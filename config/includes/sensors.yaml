@@ -1,0 +1,25 @@
+- platform: london_air
+
+- platform: london_underground
+  line:
+    - Bakerloo
+    - Central
+    - Circle
+    - District
+    - DLR
+    - Hammersmith & City
+    - Jubilee
+    - London Overground
+    - Metropolitan
+    - Northern
+    - Piccadilly
+    - TfL Rail
+    - Victoria
+    - Waterloo & City
+
+- platform: citybikes
+  name: Boris Bikes
+  stations:
+    - 200217
+    - 200205
+    - 300033

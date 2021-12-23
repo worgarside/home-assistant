@@ -1,0 +1,77 @@
+
+# ======================= Components ======================= #
+
+#breaking_changes:
+
+cloud:
+
+config:
+
+frontend:
+
+history:
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret influxdb_password
+  max_retries: 3
+
+logbook:
+
+map:
+
+media_source:
+
+mobile_app:
+
+my:
+
+network:
+
+person:
+
+python_script:
+
+recorder:
+  db_url: !secret mariadb_db_url
+
+
+speedtestdotnet:
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+ssdp:
+
+sun:
+
+system_health:
+
+tag:
+
+timer:
+
+tts:
+  - platform: google_translate
+
+usb:
+
+updater:
+
+webhook:
+
+zeroconf:
+
+zone:
+
+# ======================= Included Files ======================= #
+
+automation: !include includes/automations.yaml
+group: !include includes/groups.yaml
+scene: !include includes/scenes.yaml
+script: !include includes/scripts.yaml
+sensor: !include includes/sensors.yaml
