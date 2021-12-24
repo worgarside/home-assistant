@@ -268,3 +268,5 @@ fabric.properties
 *.cdk.staging
 **/cdk.out/*
 !cdk.json
+
+/config/secrets.yaml

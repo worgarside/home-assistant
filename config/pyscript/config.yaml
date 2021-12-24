@@ -1,0 +1,6 @@
+allow_all_imports: true
+hass_is_global: true
+apps:
+  switchbot_api:
+    api_key: !secret switchbot_api_key
+    curtain_id: !secret switchbot_curtain_id

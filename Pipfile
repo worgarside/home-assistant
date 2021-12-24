@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+black = "==21.12b0"
+pylint = "*"
+pre-commit = "*"
+
+[packages]
+wg-utilities = "==2.0.3"
+homeassistant = "*"
+requests = "*"
+
+[requires]
+python_version = "3.8"

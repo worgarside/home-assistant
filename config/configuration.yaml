@@ -7,9 +7,16 @@ cloud:
 
 config:
 
+folder_watcher:
+  - folder: /config/pyscript
+
 frontend:
 
 history:
+
+homeassistant:
+  allowlist_external_dirs:
+    - /config/pyscript
 
 influxdb:
   host: a0d7b954-influxdb
@@ -20,6 +27,11 @@ influxdb:
   max_retries: 3
 
 logbook:
+
+logger:
+  default: info
+  logs:
+    custom_components.pyscript: info
 
 map:
 
@@ -33,7 +45,7 @@ network:
 
 person:
 
-python_script:
+pyscript: !include pyscript/config.yaml
 
 recorder:
   db_url: !secret mariadb_db_url
