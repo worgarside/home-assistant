@@ -1,11 +1,13 @@
 
 # ======================= Components ======================= #
 
-#breaking_changes:
+breaking_changes:
 
 cloud:
 
 config:
+
+discovery:
 
 folder_watcher:
   - folder: /config/pyscript
@@ -25,6 +27,12 @@ influxdb:
   username: homeassistant
   password: !secret influxdb_password
   max_retries: 3
+  default_measurement: state
+  component_config_glob:
+    sensor.*humidity:
+      override_measurement: humidity
+    sensor.*temperature:
+      override_measurement: temperature
 
 logbook:
 
@@ -32,6 +40,9 @@ logger:
   default: info
   logs:
     custom_components.pyscript: info
+
+#lovelace:
+#  mode: yaml
 
 map:
 
@@ -50,12 +61,19 @@ pyscript: !include pyscript/config.yaml
 recorder:
   db_url: !secret mariadb_db_url
 
-
 speedtestdotnet:
   monitored_conditions:
     - ping
     - download
     - upload
+
+spotcast:
+  sp_dc: !secret spotcast_sp_dc
+  sp_key: !secret spotcast_sp_key
+
+spotify:
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
 
 ssdp:
 

@@ -39,7 +39,7 @@ def set_curtain_position(position, index=0, mode="ff"):
 
     Args:
         position (int): the position to set the curtain to
-        index (int): i still don't know :(
+        index (int): I still don't know :(
         mode (str): the mode (performance etc.) to use when moving the SwitchBot
     """
     res = task.executor(

@@ -4,3 +4,6 @@ apps:
   switchbot_api:
     api_key: !secret switchbot_api_key
     curtain_id: !secret switchbot_curtain_id
+  spotify_monthlies:
+    client_id: !secret spotify_monthlies_client_id
+    client_secret: !secret spotify_monthlies_client_secret

@@ -9,9 +9,10 @@ pylint = "*"
 pre-commit = "*"
 
 [packages]
-wg-utilities = "==2.0.3"
 homeassistant = "*"
 requests = "*"
+spotipy = "*"
+wg-utilities = "*"
 
 [requires]
 python_version = "3.8"
