@@ -12,6 +12,7 @@ MODULE_NAME = "spotify_monthlies"
 
 if gethostname() != "homeassistant":
     log, _, task, service = local_setup()
+    _, _, persistent_notification, _ = local_setup()
 
 ALL_SCOPES = [
     "ugc-image-upload",
@@ -135,5 +136,17 @@ def update_spotify_monthlies():
     for playlist, tracks in playlist_updates.items():
         log.debug("Adding %s to %s", ", ".join(map(str, tracks)), playlist.name)
         task.executor(SPOTIFY.add_tracks_to_playlist, tracks, playlist)
+
+    if playlist_updates:
+        message = ""
+
+        for playlist, tracks in playlist_updates.items():
+            message += f"### {playlist.name}\n"
+            for track in tracks:
+                message += f"""- {track.name}\n"""
+
+        persistent_notification.create(
+            title="Spotify Monthlies Updated", message=message
+        )
 
     log.info("Process complete, %i API calls made in total", SPOTIFY.api_call_count)
