@@ -6,7 +6,7 @@ from requests import post
 
 from helpers import get_secret, local_setup
 
-MODULE_NAME = "switchbot_api"
+MODULE_NAME = "switchbot.curtain_controller"
 
 if gethostname() != "homeassistant":
     log, _, task, service = local_setup()
@@ -21,7 +21,7 @@ HEADERS = {"Authorization": API_KEY, "Content-Type": "application/json; charset=
 def open_curtain():
     """Opens the SwitchBot curtain"""
 
-    log.debug("Opening curtain")
+    log.debug("Opening curtain...")
     set_curtain_position(0)
 
 

@@ -8,7 +8,7 @@ from wg_utilities.clients.spotify_client import SpotifyClient
 
 from helpers import local_setup, get_secret
 
-MODULE_NAME = "spotify_monthlies"
+MODULE_NAME = "spotify.monthlies"
 
 if gethostname() != "homeassistant":
     log, _, task, service = local_setup()
