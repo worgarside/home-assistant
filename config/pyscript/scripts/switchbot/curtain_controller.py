@@ -21,7 +21,7 @@ HEADERS = {"Authorization": API_KEY, "Content-Type": "application/json; charset=
 def open_curtain():
     """Opens the SwitchBot curtain"""
 
-    log.debug("Opening curtain...")
+    log.info("Opening curtain...")
     set_curtain_position(0)
 
 
@@ -29,7 +29,7 @@ def open_curtain():
 def close_curtain():
     """Closes the SwitchBot curtain"""
 
-    log.debug("Closing curtain")
+    log.info("Closing curtain")
     set_curtain_position(100)
 
 
@@ -42,15 +42,30 @@ def set_curtain_position(position, index=0, mode="ff"):
         index (int): I still don't know :(
         mode (str): the mode (performance etc.) to use when moving the SwitchBot
     """
-    res = task.executor(
-        post,
-        f"{BASE_URL}/v1.0/devices/{CURTAIN_ID}/commands",
-        json={
-            "command": "setPosition",
-            "parameter": ",".join(map(str, [index, mode, position])),
-            "commandType": "command",
-        },
-        headers=HEADERS,
-    )
+    if (
+        delta := abs(
+            (sensor_val := int(sensor.will_s_room_curtain_position)) - position
+        )
+    ) > 5:
+        log.info("Setting curtain position to %i", position)
+        res = task.executor(
+            post,
+            f"{BASE_URL}/v1.0/devices/{CURTAIN_ID}/commands",
+            json={
+                "command": "setPosition",
+                "parameter": ",".join(map(str, [index, mode, position])),
+                "commandType": "command",
+            },
+            headers=HEADERS,
+        )
 
-    log.debug(dumps(res.json(), default=str))
+        log.debug(dumps(res.json(), default=str))
+    else:
+        log.info(
+            "Change too small (%i), changing input_number.wills_room_curtain_position to %i",
+            delta,
+            sensor_val,
+        )
+        input_number.set_value(
+            entity_id="input_number.wills_room_curtain_position", value=sensor_val
+        )

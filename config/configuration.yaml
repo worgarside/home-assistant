@@ -1,4 +1,4 @@
-
+---
 # ======================= Components ======================= #
 
 breaking_changes:
@@ -40,9 +40,11 @@ logger:
   default: info
   logs:
     custom_components.pyscript: info
+    custom_components.pyscript.scripts.spotify.monthlies.update_spotify_monthlies: debug
+    charset_normalizer: warning
 
-#lovelace:
-#  mode: yaml
+lovelace:
+  mode: yaml
 
 map:
 
@@ -100,8 +102,10 @@ zone:
 
 # ======================= Included Files ======================= #
 
-automation: !include includes/automations.yaml
+automation: !include includes/automation.yaml
 group: !include includes/groups.yaml
+input_number: !include includes/input_number.yaml
 scene: !include includes/scenes.yaml
 script: !include includes/scripts.yaml
 sensor: !include includes/sensors.yaml
+template: !include includes/templates.yaml

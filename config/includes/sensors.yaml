@@ -1,25 +1,37 @@
-- platform: london_air
+---
+  - platform: london_air
 
-- platform: london_underground
-  line:
-    - Bakerloo
-    - Central
-    - Circle
-    - District
-    - DLR
-    - Hammersmith & City
-    - Jubilee
-    - London Overground
-    - Metropolitan
-    - Northern
-    - Piccadilly
-    - TfL Rail
-    - Victoria
-    - Waterloo & City
+  - platform: london_underground
+    line:
+      - Bakerloo
+      - Central
+      - Circle
+      - District
+      - DLR
+      - Hammersmith & City
+      - Jubilee
+      - London Overground
+      - Metropolitan
+      - Northern
+      - Piccadilly
+      - TfL Rail
+      - Victoria
+      - Waterloo & City
 
-- platform: citybikes
-  name: Boris Bikes
-  stations:
-    - 200217
-    - 200205
-    - 300033
+  - platform: citybikes
+    name: Boris Bikes
+    stations:
+      - 200217
+      - 200205
+      - 300033
+
+  - platform: rest
+    name: Will's Room Curtain Position
+    method: GET
+    force_update: true
+    resource: !secret switchbot_curtain_status_endpoint
+    headers:
+      Authorization: !secret switchbot_api_key
+      Content-Type: application/json
+    value_template: "{{ value_json['body']['slidePosition'] }}"
+    unit_of_measurement: '%'

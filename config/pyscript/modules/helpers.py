@@ -5,6 +5,9 @@ from unittest.mock import MagicMock
 
 
 # pylint: disable=import-outside-toplevel
+from json import loads
+
+
 def local_setup():
     """Helper function for creation of fake/stubbed variables which are automatically
     available to Pyscript
@@ -34,15 +37,23 @@ if gethostname() != "homeassistant":
     log, _, pyscript, _ = local_setup()
 
 
-def get_secret(secret_name, *, module, default=None):
+def get_secret(secret_name, *, module, default=None, json=False):
     """Get a secret from Home Assistant (similar to `os.getenv` really)
 
     Args:
         secret_name (str): the name of the secret to retrieve
         module (str): the name of the module which the secret is for
         default (str): the default value to return
+        json (str): boolean for if the secret is JSON to be parsed
 
     Returns:
         str: the secret's value
     """
-    return pyscript.config.get("apps", {}).get(module, {}).get(secret_name, default)
+    secret_value = (
+        pyscript.config.get("apps", {}).get(module, {}).get(secret_name, default)
+    )
+
+    if json:
+        return loads(secret_value)
+
+    return secret_value

@@ -1,0 +1,217 @@
+---
+title: Home
+icon: mdi:castle
+path: default_view
+
+cards:
+  - type: grid
+    square: false
+    columns: 1
+    cards:
+      - type: entities
+        title: Kitchen
+        entities:
+          - light.kitchen_led_strip
+          - entity: light.kitchen_lamp
+            name: Lamp
+      - type: media-control
+        entity: media_player.kitchen_nest_mini
+  - type: entities
+    entities:
+      - entity: light.landing_light
+        name: Light
+    title: Landing
+  - type: grid
+    square: false
+    columns: 1
+    cards:
+      - type: entities
+        entities:
+          - sensor.hifi_amp_current_consumption
+          - sensor.hifi_amp_total_consumption
+          - sensor.hifi_amp_today_s_consumption
+          - sensor.hifi_amp_voltage
+          - sensor.hifi_amp_current
+          - switch.christmas_tree
+          - switch.hifi_amp
+          - entity: light.lounge_lamp
+            name: Lamp
+          - entity: remote.lounge_tv_bravia_remote
+            name: TV Remote
+          - light.the_snail
+        title: Lounge
+      - type: media-control
+        entity: media_player.lounge_bravia_tv
+      - type: media-control
+        entity: media_player.hifi_system
+      - type: media-control
+        entity: media_player.lounge_nest_mini
+      - type: media-control
+        entity: media_player.lounge_tv
+  - type: media-control
+    entity: media_player.matts_room_nest_mini
+  - type: entities
+    entities:
+      - entity: switch.terrace_lights
+        name: Lights
+    title: Terrace
+  - type: entities
+    entities:
+      - light.toms_lamp
+      - light.toms_bloom_lamp
+    title: Tom's Room
+  - type: grid
+    square: false
+    columns: 1
+    cards:
+      - type: entities
+        entities:
+          - sensor.tower_fan_current_consumption
+          - sensor.tower_fan_total_consumption
+          - sensor.tower_fan_today_s_consumption
+          - sensor.tower_fan_voltage
+          - sensor.tower_fan_current
+          - switch.tower_fan
+          - sensor.worgarside_gmail_com_lightlevel
+          - cover.worgarside_gmail_com
+          - sensor.window_door_sensor_temperature
+          - binary_sensor.wills_balcony_door
+          - light.wills_lamp
+          - entity: sensor.wills_room_hue_motion_sensor_light_level
+            name: Motion Sensor Illuminance
+          - entity: binary_sensor.wills_room_hue_motion_sensor_motion
+            name: Motion Sensor Motion
+          - entity: sensor.wills_room_hue_motion_sensor_temperature
+            name: Motion Sensor Temperature
+          - light.wills_shapes
+        title: Will's Room
+      - type: media-control
+        entity: media_player.wills_bedroom_home_hub
+      - type: media-control
+        entity: media_player.wills_room_chromecast
+      - type: media-control
+        entity: media_player.wills_tv
+  - type: entities
+    entities:
+      - person.will
+  - type: entities
+    entities:
+      - binary_sensor.backups_stale
+      - binary_sensor.hive_hub_status
+      - binary_sensor.rpi_power_status
+      - binary_sensor.updater
+    title: Binary Sensor
+  - type: thermostat
+    entity: climate.thermostat
+  - type: grid
+    square: false
+    columns: 1
+    cards:
+  - type: media-control
+    entity: media_player.all_speakers
+  - type: media-control
+    entity: media_player.downstairs_speakers
+  - type: media-control
+    entity: media_player.spotify_will_garside
+  - type: media-control
+    entity: media_player.upstairs_speakers
+  - type: media-control
+    entity: media_player.wills_bravia_tv
+  - type: entities
+    title: Remote
+    entities:
+      - remote.wills_tv_bravia_remote
+  - type: entities
+    entities:
+      - scene.kitchen_concentrate
+      - scene.kitchen_energize
+      - scene.kitchen_read
+      - scene.kitchen_relax
+      - scene.lounge_concentrate
+      - scene.lounge_energize
+      - scene.lounge_read
+      - scene.lounge_relax
+      - scene.smoke_mode
+      - scene.tom_s_room_concentrate
+      - scene.tom_s_room_energize
+      - scene.tom_s_room_nightlight
+      - scene.tom_s_room_read
+      - scene.tom_s_room_relax
+      - scene.will_s_room_bright
+      - scene.will_s_room_dimmed
+      - scene.will_s_tv_mode
+    title: Scenes
+  - type: entities
+    entities:
+      - sensor.btc_exchange_rate
+      - sensor.backup_state
+      - sensor.bakerloo
+      - sensor.barking_and_dagenham
+      - sensor.bexley
+      - sensor.brent
+      - sensor.camden
+      - sensor.central
+      - sensor.circle
+      - sensor.city_of_london
+      - sensor.coinbase_btc_wallet
+      - sensor.coinbase_dai_wallet
+      - sensor.coinbase_forth_wallet
+      - sensor.coinbase_gbp_wallet
+      - sensor.coinbase_skl_wallet
+      - sensor.croydon
+      - sensor.dai_exchange_rate
+      - sensor.dlr
+      - sensor.district
+      - sensor.ealing
+      - sensor.enfield
+      - sensor.forth_exchange_rate
+      - sensor.greenwich
+      - sensor.hackney
+      - sensor.hammersmith_city
+      - sensor.haringey
+      - sensor.harrow
+      - sensor.havering
+      - sensor.hillingdon
+      - sensor.islington
+      - sensor.jubilee
+      - sensor.kensington_and_chelsea
+      - sensor.kingston
+      - sensor.lambeth
+      - sensor.lewisham
+      - sensor.london_overground
+      - sensor.merton
+      - sensor.metropolitan
+      - sensor.northern
+      - sensor.piccadilly
+      - sensor.potential_breaking_changes
+      - sensor.redbridge
+      - sensor.richmond
+      - sensor.skl_exchange_rate
+      - sensor.southwark
+      - sensor.speedtest_download
+      - sensor.speedtest_ping
+      - sensor.speedtest_upload
+      - sensor.sutton
+      - sensor.tfl_rail
+      - sensor.tower_hamlets
+      - sensor.united_kingdom_coronavirus_confirmed
+      - sensor.united_kingdom_coronavirus_current
+      - sensor.united_kingdom_coronavirus_deaths
+      - sensor.united_kingdom_coronavirus_recovered
+      - sensor.victoria
+      - sensor.wandsworth
+      - sensor.waterloo_city
+      - sensor.westminster
+      - sensor.hacs
+    title: Sensor
+  - type: entities
+    entities:
+      - switch.thermostat_heat_on_demand
+    title: Switch
+  - type: entities
+    entities:
+      - water_heater.hot_water
+    title: Water Heater
+  - type: weather-forecast
+    entity: weather.home
+    show_forecast: false

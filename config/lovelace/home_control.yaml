@@ -1,0 +1,20 @@
+---
+title: Home
+icon: mdi:home-automation
+
+cards:
+  - type: entities
+    entities:
+      - type: custom:paper-buttons-row
+        buttons:
+          - icon: mdi:curtains
+            tap_action:
+              action: call-service
+              service: pyscript.open_curtain
+          - icon: mdi:curtains-closed
+            tap_action:
+              action: call-service
+              service: pyscript.close_curtain
+      - type: custom:slider-entity-row
+        entity: input_number.wills_room_curtain_position
+      - sensor.will_s_room_curtain_position
