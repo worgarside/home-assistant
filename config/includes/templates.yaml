@@ -1,4 +1,72 @@
 ---
+
+# ------------------------ Media Player Active State ------------------------
+
+  - binary_sensor:
+      - name: All Speakers Active
+        state: "{{ states('media_player.all_speakers') in [ 'playing', 'paused' ] }}"
+
+  - binary_sensor:
+      - name: Downstairs Speakers Active
+        state: >
+          {{ states('media_player.downstairs_speakers') in [ 'playing', 'paused' ] }}
+
+  - binary_sensor:
+      - name: HiFi System Active
+        state: "{{ states('media_player.hifi_system') in [ 'playing', 'paused' ] }}"
+
+  - binary_sensor:
+      - name: Kitchen Nest Mini Active
+        state: >
+          {{ states('media_player.kitchen_nest_mini') in [ 'playing', 'paused' ] }}
+
+  - binary_sensor:
+      - name: Lounge TV Active
+        state: >
+          {{
+            states('media_player.lounge_bravia_tv') in [ 'playing', 'paused' ] or 
+            states('media_player.lounge_tv') in [ 'playing', 'paused' ]
+          }}
+
+  - binary_sensor:
+      - name: Lounge Nest Mini Active
+        state: >
+          {{ states('media_player.lounge_nest_mini') in [ 'playing', 'paused' ] }}
+
+  - binary_sensor:
+      - name: Matt's Room Nest Mini Active
+        state: >
+          {{ states('media_player.matts_room_nest_mini') in [ 'playing', 'paused' ] }}
+
+  - binary_sensor:
+      - name: Upstairs Speakers Active
+        state: >
+          {{ states('media_player.upstairs_speakers') in [ 'playing', 'paused' ] }}
+
+  - binary_sensor:
+      - name: Will's YAS-209 Active
+        state: "{{ states('media_player.will_s_yas_209') in [ 'playing', 'paused' ] }}"
+
+  - binary_sensor:
+      - name: Will's Bedroom Home Hub Active
+        state: >
+          {{ states('media_player.wills_bedroom_home_hub') in [ 'playing', 'paused' ] }}
+
+  - binary_sensor:
+      - name: Will's TV Active
+        state: >
+          {{ 
+            states('media_player.wills_bravia_tv') in [ 'playing', 'paused' ] or 
+            states('media_player.wills_tv') in [ 'playing', 'paused' ] 
+          }}
+
+  - binary_sensor:
+      - name: Will's Room Chromecast Active
+        state: >
+          {{ states('media_player.wills_room_chromecast') in [ 'playing', 'paused' ] }}
+
+# ------------------------ Will's Room Curtain ------------------------
+
   - binary_sensor:
       - name: Will's Room Curtain Closed
         state: "{{ int(states('sensor.will_s_room_curtain_position')) < 5  }}"
@@ -6,3 +74,56 @@
   - binary_sensor:
       - name: Will's Room Curtain Open
         state: "{{ int(states('sensor.will_s_room_curtain_position')) > 95  }}"
+
+# ------------------------ Spotify Now Playing Attributes ------------------------
+
+  - sensor:
+      - name: "Spotify Matt Scott Media Album Name"
+        state: >
+          {{ state_attr('media_player.spotify_matt_scott', 'media_album_name') }}
+
+  - sensor:
+      - name: "Spotify Matt Scott Media Album Artwork Internal URL"
+        state: "{{ state_attr('media_player.spotify_matt_scott', 'entity_picture') }}"
+
+  - sensor:
+      - name: "Spotify Matt Scott Media Artist"
+        state: "{{ state_attr('media_player.spotify_matt_scott', 'media_artist') }}"
+
+  - sensor:
+      - name: "Spotify Matt Scott Media Title"
+        state: "{{ state_attr('media_player.spotify_matt_scott', 'media_title') }}"
+
+  - sensor:
+      - name: "Spotify Tom Jones Media Album Name"
+        state: >
+          {{ state_attr('media_player.spotify_tom_jones', 'media_album_name') }}
+
+  - sensor:
+      - name: "Spotify Tom Jones Media Album Artwork Internal URL"
+        state: "{{ state_attr('media_player.spotify_tom_jones', 'entity_picture') }}"
+
+  - sensor:
+      - name: "Spotify Tom Jones Media Artist"
+        state: "{{ state_attr('media_player.spotify_tom_jones', 'media_artist') }}"
+
+  - sensor:
+      - name: "Spotify Tom Jones Media Title"
+        state: "{{ state_attr('media_player.spotify_tom_jones', 'media_title') }}"
+
+  - sensor:
+      - name: "Spotify Will Garside Media Album Name"
+        state: >
+          {{ state_attr('media_player.spotify_will_garside', 'media_album_name') }}
+
+  - sensor:
+      - name: "Spotify Will Garside Media Album Artwork Internal URL"
+        state: "{{ state_attr('media_player.spotify_will_garside', 'entity_picture') }}"
+
+  - sensor:
+      - name: "Spotify Will Garside Media Artist"
+        state: "{{ state_attr('media_player.spotify_will_garside', 'media_artist') }}"
+
+  - sensor:
+      - name: "Spotify Will Garside Media Title"
+        state: "{{ state_attr('media_player.spotify_will_garside', 'media_title') }}"

@@ -57,3 +57,17 @@ def get_secret(secret_name, *, module, default=None, json=False):
         return loads(secret_value)
 
     return secret_value
+
+
+@pyscript_executor
+def write_file(path, content, mode="wb", encoding="utf-8"):
+    """Write a file to local storage
+
+    Args:
+        path (str): the file path to be written to
+        content (Union([bytes, str])): the content to write to the file
+        mode (str): the mode to open the file with
+        encoding (str): the type of encoding to use on the file
+    """
+    with open(path, mode=mode, encoding=encoding) as fout:
+        fout.write(content)

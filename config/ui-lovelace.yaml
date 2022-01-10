@@ -1,14 +1,37 @@
 ---
 title: 133b Putney High Street
 
-resources:
-  - url: /hacsfiles/spotify-card/spotify-card.js
-    type: module
-  - url: /hacsfiles/lovelace-paper-buttons-row/paper-buttons-row.js
-    type: module
-  - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
-    type: module
+decluttering_templates:
+  media_player_template:
+    default:
+      icon: speaker
+    card:
+      type: custom:mini-media-player
+      entity: "media_player.[[media_player]]"
+      icon: "mdi:[[icon]]"
+      artwork: full-cover
+      hide:
+        volume: true
+        source: true
+        power_state: false
+  active_media_player_template:
+    default:
+      icon: speaker
+    card:
+      type: conditional
+      conditions:
+        - entity: "binary_sensor.[[binary_sensor_name]]_active"
+          state: "on"
+      card:
+        type: custom:mini-media-player
+        entity: "media_player.[[media_player]]"
+        icon: "mdi:[[icon]]"
+        artwork: cover
+        hide:
+          volume: true
+          power_state: false
 
 views:
   - !include lovelace/home.yaml
   - !include lovelace/home_control.yaml
+  - !include lovelace/media_dashboard.yaml

@@ -18,13 +18,3 @@ cards:
       - type: custom:slider-entity-row
         entity: input_number.wills_room_curtain_position
       - sensor.will_s_room_curtain_position
-
-  - type: custom:spotify-card
-    account: tom
-    name: Spotify - Tom
-    spotify_entity: media_player.spotify_tom_jones
-
-  - type: custom:spotify-card
-    account: matt
-    name: Spotify - Matt
-    spotify_entity: media_player.spotify_matt_scott

@@ -14,8 +14,6 @@ cards:
           - light.kitchen_led_strip
           - entity: light.kitchen_lamp
             name: Lamp
-      - type: media-control
-        entity: media_player.kitchen_nest_mini
   - type: entities
     entities:
       - entity: light.landing_light
@@ -40,16 +38,6 @@ cards:
             name: TV Remote
           - light.the_snail
         title: Lounge
-      - type: media-control
-        entity: media_player.lounge_bravia_tv
-      - type: media-control
-        entity: media_player.hifi_system
-      - type: media-control
-        entity: media_player.lounge_nest_mini
-      - type: media-control
-        entity: media_player.lounge_tv
-  - type: media-control
-    entity: media_player.matts_room_nest_mini
   - type: entities
     entities:
       - entity: switch.terrace_lights
@@ -85,12 +73,6 @@ cards:
             name: Motion Sensor Temperature
           - light.wills_shapes
         title: Will's Room
-      - type: media-control
-        entity: media_player.wills_bedroom_home_hub
-      - type: media-control
-        entity: media_player.wills_room_chromecast
-      - type: media-control
-        entity: media_player.wills_tv
   - type: entities
     entities:
       - person.will
@@ -103,20 +85,6 @@ cards:
     title: Binary Sensor
   - type: thermostat
     entity: climate.thermostat
-  - type: grid
-    square: false
-    columns: 1
-    cards:
-  - type: media-control
-    entity: media_player.all_speakers
-  - type: media-control
-    entity: media_player.downstairs_speakers
-  - type: media-control
-    entity: media_player.spotify_will_garside
-  - type: media-control
-    entity: media_player.upstairs_speakers
-  - type: media-control
-    entity: media_player.wills_bravia_tv
   - type: entities
     title: Remote
     entities:
