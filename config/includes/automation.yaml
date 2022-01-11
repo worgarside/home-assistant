@@ -1,6 +1,9 @@
 ---
-# Custom automation for automatically reloading Pyscript when the files are updated -
-#  no longer needed but kept here for reference
+
+# ------------------------ Internal Services ------------------------ #
+
+  # Custom automation for automatically reloading Pyscript when the files are updated -
+  #  no longer needed but kept here for reference
   - alias: Pyscript Auto-Reload
     trigger:
       platform: event
@@ -16,10 +19,10 @@
           message: >
             Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
 
-# ------------------------ Will's Room Curtain ------------------------
+# ------------------------ Will's Room Curtain ------------------------ #
 
-# When a change is detected by the sensor (from any source), set the input_number value
-#  to change the slider on the front end
+  # When a change is detected by the sensor (from any source), set the input_number
+  # value to change the slider on the front end
   - alias: Set Will's Room Curtain Position Slider
     trigger:
       platform: state
@@ -37,7 +40,7 @@
         data:
           value: '{{ trigger.to_state.state | int }}'
 
-# When the slider (input number value) is changed, update the curtain position
+  # When the slider (input number value) is changed, update the curtain position
   - alias: Will's Room Curtain Position Slider Moved
     mode: single
     max_exceeded: silent
@@ -50,3 +53,547 @@
           position: '{{ trigger.to_state.state | int }}'
       - delay: 5
 
+# ------------------------ Hue Remotes ------------------------ #
+
+  # --- --- --- --- --- Will's Room --- --- --- --- --- #
+
+  # Will's Room Remote Button 1 Short Press - Turn Will's Room on
+  - alias: Will's Room Remote Button 1 Short Press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: aa96a5e6e87f4076da2f1501c53e02c8
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 1
+    action:
+      - service: light.turn_on
+        target:
+          area_id: will_s_room
+
+  # Will's Room Remote Button 2 Short Press - Brighten Will's Room by 25
+  - alias: Will's Room Remote Button 2 Short Press
+    mode: queued
+    trigger:
+      - device_id: aa96a5e6e87f4076da2f1501c53e02c8
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 2
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.wills_lamp
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.wills_shapes
+    action:
+      - service: light.turn_on
+        entity_id: light.wills_lamp
+        data_template:
+          brightness: '{{states.light.wills_lamp.attributes.brightness + 25}}'
+      - service: light.turn_on
+        entity_id: light.wills_shapes
+        data_template:
+          brightness: '{{states.light.wills_shapes.attributes.brightness + 25}}'
+
+  # Will's Room Remote Button 2 Held Down - Brighten Will's Room by 50 (repeated)
+  - alias: Will's Room Remote Button 2 Held Down
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: aa96a5e6e87f4076da2f1501c53e02c8
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 2
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.wills_lamp
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.wills_shapes
+    action:
+      - service: light.turn_on
+        entity_id: light.wills_lamp
+        data_template:
+          brightness: '{{states.light.wills_lamp.attributes.brightness + 50}}'
+      - service: light.turn_on
+        entity_id: light.wills_shapes
+        data_template:
+          brightness: '{{states.light.wills_shapes.attributes.brightness + 50}}'
+
+  # Will's Room Remote Button 3 Short Press - Dim Will's Room by 25
+  - alias: Will's Room Remote Button 3 Short Press
+    mode: queued
+    trigger:
+      - device_id: aa96a5e6e87f4076da2f1501c53e02c8
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 3
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.wills_lamp
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.wills_shapes
+    action:
+      - service: light.turn_on
+        entity_id: light.wills_lamp
+        data_template:
+          brightness: '{{states.light.wills_lamp.attributes.brightness - 25}}'
+      - service: light.turn_on
+        entity_id: light.wills_shapes
+        data_template:
+          brightness: '{{states.light.wills_shapes.attributes.brightness - 25}}'
+
+  # Will's Room Remote Button 3 Held Down - Dim Will's Room by 50 (repeated)
+  - alias: Will's Room Remote Button 3 Held Down
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: aa96a5e6e87f4076da2f1501c53e02c8
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 3
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.wills_lamp
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.wills_shapes
+    action:
+      - service: light.turn_on
+        entity_id: light.wills_lamp
+        data_template:
+          brightness: '{{states.light.wills_lamp.attributes.brightness - 50}}'
+      - service: light.turn_on
+        entity_id: light.wills_shapes
+        data_template:
+          brightness: '{{states.light.wills_shapes.attributes.brightness - 50}}'
+
+  # Will's Room Remote Button 4 Short Press - Turn Will's Room off
+  - alias: Will's Room Remote Button 4 Short Press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: aa96a5e6e87f4076da2f1501c53e02c8
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 4
+    action:
+      - service: light.turn_off
+        target:
+          area_id: will_s_room
+
+  # --- --- --- --- --- Kitchen --- --- --- --- --- #
+
+  # Kitchen Remote Button 1 Short Press - Turn on the kitchen lamp and LED strip
+  - alias: Kitchen Remote Button 1 Short Press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 1
+    action:
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_led_strip
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_lamp
+
+  # Kitchen Remote Button 1 Long Press - Turn on all of the Kitchen lights
+  - alias: Kitchen Remote Button 1 Long Press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: long_release
+        subtype: 1
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 1
+    action:
+      - service: light.turn_on
+        target:
+          area_id: kitchen
+
+  # Kitchen Remote Button 2 Short Press
+  - alias: Kitchen Remote Button 2 Short Press
+    mode: queued
+    trigger:
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 2
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.kitchen_led_strip
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.kitchen_lamp
+    action:
+      - service: light.turn_on
+        entity_id: light.kitchen_led_strip
+        data_template:
+          brightness: '{{states.light.kitchen_led_strip.attributes.brightness + 25}}'
+      - service: light.turn_on
+        entity_id: light.kitchen_lamp
+        data_template:
+          brightness: '{{states.light.kitchen_lamp.attributes.brightness + 25}}'
+      - condition: state
+        state: "on"
+        entity_id: light.kitchen_work_light
+      - service: light.turn_on
+        entity_id: light.kitchen_work_light
+        data_template:
+          brightness: '{{states.light.kitchen_work_light.attributes.brightness + 25}}'
+
+  # Kitchen Remote Button 2 Held Down
+  - alias: Kitchen Remote Button 2 Held Down
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 2
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.kitchen_led_strip
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.kitchen_lamp
+    action:
+      - service: light.turn_on
+        entity_id: light.kitchen_led_strip
+        data_template:
+          brightness: '{{states.light.kitchen_led_strip.attributes.brightness + 50}}'
+      - service: light.turn_on
+        entity_id: light.kitchen_lamp
+        data_template:
+          brightness: '{{states.light.kitchen_lamp.attributes.brightness + 50}}'
+      - condition: state
+        state: "on"
+        entity_id: light.kitchen_work_light
+      - service: light.turn_on
+        entity_id: light.kitchen_work_light
+        data_template:
+          brightness: '{{states.light.kitchen_work_light.attributes.brightness + 50}}'
+
+  # Kitchen Remote Button 3 Short Press
+  - alias: Kitchen Remote Button 3 Short Press
+    mode: queued
+    trigger:
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 3
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.kitchen_led_strip
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.kitchen_lamp
+    action:
+      - service: light.turn_on
+        entity_id: light.kitchen_led_strip
+        data_template:
+          brightness: '{{states.light.kitchen_led_strip.attributes.brightness + 25}}'
+      - service: light.turn_on
+        entity_id: light.kitchen_lamp
+        data_template:
+          brightness: '{{states.light.kitchen_lamp.attributes.brightness + 25}}'
+      - condition: state
+        state: "on"
+        entity_id: light.kitchen_work_light
+      - service: light.turn_on
+        entity_id: light.kitchen_work_light
+        data_template:
+          brightness: '{{states.light.kitchen_work_light.attributes.brightness + 25}}'
+
+  # Kitchen Remote Button 3 Held Down
+  - alias: Kitchen Remote Button 3 Held Down
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 3
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.kitchen_led_strip
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.kitchen_lamp
+    action:
+      - service: light.turn_on
+        entity_id: light.kitchen_led_strip
+        data_template:
+          brightness: '{{states.light.kitchen_led_strip.attributes.brightness + 50}}'
+      - service: light.turn_on
+        entity_id: light.kitchen_lamp
+        data_template:
+          brightness: '{{states.light.kitchen_lamp.attributes.brightness + 50}}'
+      - condition: state
+        state: "on"
+        entity_id: light.kitchen_work_light
+      - service: light.turn_on
+        entity_id: light.kitchen_work_light
+        data_template:
+          brightness: '{{states.light.kitchen_work_light.attributes.brightness + 50}}'
+
+  # Kitchen Remote Button 4 Short Press
+  - alias: Kitchen Remote Button 4 Short Press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 4
+    action:
+      - service: light.turn_off
+        target:
+          area_id: kitchen
+
+  # --- --- --- --- --- Lounge --- --- --- --- --- #
+
+  # Lounge Remote Button 1 Short Press
+  - alias: Lounge Remote Button 1 Short Press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 1
+    action:
+      - service: light.turn_on
+        target:
+          area_id: lounge
+
+  # Lounge Remote Button 2 Short Press
+  - alias: Lounge Remote Button 2 Short Press
+    mode: queued
+    trigger:
+      - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 2
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.lounge_lamp
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.the_snail
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.galaxy_light
+    action:
+      - service: light.turn_on
+        entity_id: light.lounge_lamp
+        data_template:
+          brightness: '{{states.light.lounge_lamp.attributes.brightness + 25}}'
+      - service: light.turn_on
+        entity_id: light.the_snail
+        data_template:
+          brightness: '{{states.light.the_snail.attributes.brightness + 25}}'
+      - service: light.turn_on
+        entity_id: light.galaxy_light
+        data_template:
+          brightness: '{{states.light.galaxy_light.attributes.brightness + 25}}'
+
+  # Lounge Remote Button 2 Held Down
+  - alias: Lounge Remote Button 2 Short Press
+    mode: queued
+    trigger:
+      - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 2
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.lounge_lamp
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.the_snail
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.galaxy_light
+    action:
+      - service: light.turn_on
+        entity_id: light.lounge_lamp
+        data_template:
+          brightness: '{{states.light.lounge_lamp.attributes.brightness + 50}}'
+      - service: light.turn_on
+        entity_id: light.the_snail
+        data_template:
+          brightness: '{{states.light.the_snail.attributes.brightness + 50}}'
+      - service: light.turn_on
+        entity_id: light.galaxy_light
+        data_template:
+          brightness: '{{states.light.galaxy_light.attributes.brightness + 50}}'
+
+  # Lounge Remote Button 3 Short Press
+  - alias: Lounge Remote Button 3 Short Press
+    mode: queued
+    trigger:
+      - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 3
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.lounge_lamp
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.the_snail
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.galaxy_light
+    action:
+      - service: light.turn_on
+        entity_id: light.lounge_lamp
+        data_template:
+          brightness: '{{states.light.lounge_lamp.attributes.brightness - 25}}'
+      - service: light.turn_on
+        entity_id: light.the_snail
+        data_template:
+          brightness: '{{states.light.the_snail.attributes.brightness - 25}}'
+      - service: light.turn_on
+        entity_id: light.galaxy_light
+        data_template:
+          brightness: '{{states.light.galaxy_light.attributes.brightness - 25}}'
+
+  # Lounge Remote Button 3 Held Down
+  - alias: Lounge Remote Button 3 Short Press
+    mode: queued
+    trigger:
+      - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 3
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.lounge_lamp
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.the_snail
+          - condition: state
+            state: "on"
+            entity_id:
+              - light.galaxy_light
+    action:
+      - service: light.turn_on
+        entity_id: light.lounge_lamp
+        data_template:
+          brightness: '{{states.light.lounge_lamp.attributes.brightness - 50}}'
+      - service: light.turn_on
+        entity_id: light.the_snail
+        data_template:
+          brightness: '{{states.light.the_snail.attributes.brightness - 50}}'
+      - service: light.turn_on
+        entity_id: light.galaxy_light
+        data_template:
+          brightness: '{{states.light.galaxy_light.attributes.brightness - 50}}'
+
+  # Lounge Remote Button 4 Short Press
+  - alias: Lounge Remote Button 4 Short Press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 4
+    action:
+      - service: light.turn_off
+        target:
+          area_id: lounge
