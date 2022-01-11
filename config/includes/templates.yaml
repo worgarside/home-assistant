@@ -127,3 +127,18 @@
   - sensor:
       - name: "Spotify Will Garside Media Title"
         state: "{{ state_attr('media_player.spotify_will_garside', 'media_title') }}"
+
+# ------------------------ Sun Attributes ------------------------
+
+  - sensor:
+      - name: "Sun Elevation"
+        state: "{{ state_attr('sun.sun', 'elevation') }}"
+        unit_of_measurement: "°"
+
+  - sensor:
+      - name: "Sun Next Dawn"
+        state: "{{ state_attr('sun.sun', 'next_dawn') }}"
+
+  - sensor:
+      - name: "Sun Next Dusk"
+        state: "{{ state_attr('sun.sun', 'next_dusk') }}"

@@ -8,8 +8,6 @@ cloud:
 config:
 
 discovery:
-  enable:
-    - dlna_dmr
 
 folder_watcher:
   - folder: /config/pyscript
@@ -103,8 +101,6 @@ spotcast:
     tom:
       sp_dc: !secret spotcast_sp_dc_tom
       sp_key: !secret spotcast_sp_key_tom
-
-
 
 spotify:
   client_id: !secret spotify_client_id
