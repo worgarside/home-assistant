@@ -13,8 +13,9 @@ cards:
     entities:
       - light.kitchen_led_strip
       - entity: light.kitchen_lamp
-        name: Lamp
-      - light.kitchen_work_light
+        name: Floor Lamp
+      - entity: light.kitchen_work_light
+        name: Work Light
 
   - type: entities
     title: Landing
@@ -24,15 +25,18 @@ cards:
 
   - type: entities
     title: Lounge
+    state_color: true
     entities:
+      - entity: media_player.lounge_bravia_tv
+        name: TV
       - switch.hifi_amp
       - light.lounge_lamp
-      - media_player.lounge_bravia_tv
       - light.the_snail
       - light.galaxy_light
 
   - type: entities
     title: Terrace
+    state_color: true
     entities:
       - entity: switch.terrace_lights
         name: Lights
@@ -42,16 +46,27 @@ cards:
   - type: entities
     title: Matt's Room
     entities:
-      - light.matt_s_lamp
+      - entity: light.matt_s_lamp
+        name: Lamp
 
   - type: entities
     title: Tom's Room
     entities:
-      - light.toms_bloom_lamp
+      - entity: light.toms_bloom_lamp
+        name: Bloom Lamp
 
   - type: entities
     title: Will's Room
     entities:
+      - entity: sensor.wills_room_hue_motion_sensor_temperature
+        name: Ambient Temperature
+      - entity: sensor.wills_room_hue_motion_sensor_light_level
+        name: Ambient Light Level
+      - entity: binary_sensor.wills_balcony_door
+        name: Balcony Door
+      - entity: binary_sensor.wills_room_hue_motion_sensor_motion
+        name: Motion Sensor Motion
+      - type: divider
       - type: custom:paper-buttons-row
         buttons:
           - icon: mdi:curtains
@@ -64,14 +79,10 @@ cards:
               service: pyscript.close_curtain
       - type: custom:slider-entity-row
         entity: input_number.wills_room_curtain_position
+        name: Curtain Position
       - switch.tower_fan
-      - entity: sensor.wills_room_hue_motion_sensor_temperature
-        name: Ambient Temperature
-      - entity: sensor.wills_room_hue_motion_sensor_light_level
-        name: Ambient Light Level
-      - light.wills_shapes
-      - binary_sensor.wills_balcony_door
-      - light.wills_lamp
-      - entity: binary_sensor.wills_room_hue_motion_sensor_motion
-        name: Motion Sensor Motion
+      - entity: light.wills_shapes
+        name: Shapes
+      - entity: light.wills_lamp
+        name: Lamp
 

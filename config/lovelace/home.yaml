@@ -8,5 +8,6 @@ cards:
   - type: thermostat
     entity: climate.thermostat
   - type: weather-forecast
-    entity: weather.home
-    show_forecast: false
+    name: !secret address_line_1
+    entity: weather.openweathermap
+    show_forecast: true
