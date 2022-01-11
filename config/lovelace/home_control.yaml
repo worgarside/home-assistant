@@ -1,9 +1,56 @@
 ---
 title: Home
+
+path: home_control
+
 icon: mdi:home-automation
+
+type: custom:vertical-layout
 
 cards:
   - type: entities
+    title: Kitchen
+    entities:
+      - light.kitchen_led_strip
+      - entity: light.kitchen_lamp
+        name: Lamp
+      - light.kitchen_work_light
+
+  - type: entities
+    title: Landing
+    entities:
+      - entity: light.landing_light
+        name: Light
+
+  - type: entities
+    title: Lounge
+    entities:
+      - switch.hifi_amp
+      - light.lounge_lamp
+      - media_player.lounge_bravia_tv
+      - light.the_snail
+      - light.galaxy_light
+
+  - type: entities
+    title: Terrace
+    entities:
+      - entity: switch.terrace_lights
+        name: Lights
+
+  - type: custom:layout-break
+
+  - type: entities
+    title: Matt's Room
+    entities:
+      - light.matt_s_lamp
+
+  - type: entities
+    title: Tom's Room
+    entities:
+      - light.toms_bloom_lamp
+
+  - type: entities
+    title: Will's Room
     entities:
       - type: custom:paper-buttons-row
         buttons:
@@ -17,4 +64,14 @@ cards:
               service: pyscript.close_curtain
       - type: custom:slider-entity-row
         entity: input_number.wills_room_curtain_position
-      - sensor.will_s_room_curtain_position
+      - switch.tower_fan
+      - entity: sensor.wills_room_hue_motion_sensor_temperature
+        name: Ambient Temperature
+      - entity: sensor.wills_room_hue_motion_sensor_light_level
+        name: Ambient Light Level
+      - light.wills_shapes
+      - binary_sensor.wills_balcony_door
+      - light.wills_lamp
+      - entity: binary_sensor.wills_room_hue_motion_sensor_motion
+        name: Motion Sensor Motion
+

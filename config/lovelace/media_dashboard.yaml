@@ -1,6 +1,8 @@
 ---
 title: Media Dashboard
 
+path: media_dashboard
+
 icon: mdi:cast
 
 type: custom:vertical-layout
@@ -20,10 +22,14 @@ cards:
           - type: media-control
             entity: media_player.spotify_tom_jones
       Matt:
-        type: custom:spotify-card
-        account: matt
-        name: Spotify
-        spotify_entity: media_player.spotify_matt_scott
+        type: vertical-stack
+        cards:
+          - type: custom:spotify-card
+            account: matt
+            name: Spotify
+            spotify_entity: media_player.spotify_matt_scott
+          - type: media-control
+            entity: media_player.spotify_matt_scott
       Will:
         type: vertical-stack
         cards:
@@ -40,7 +46,7 @@ cards:
 
   - type: custom:layout-break
 
-  - type: 'custom:mod-card'
+  - type: custom:mod-card
     style: |
       ha-card { 
         height: 50vh; 

@@ -1,0 +1,69 @@
+---
+title: London
+
+path: london
+
+icon: mdi:city-variant
+
+type: custom:vertical-layout
+
+cards:
+  - type: custom:vertical-stack-in-card
+    title: TfL Service Issues
+    cards:
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: bakerloo
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: central
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: circle
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: district
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: dlr
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: hammersmith_city
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: jubilee
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: london_overground
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: metropolitan
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: northern
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: piccadilly
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: tfl_rail
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: victoria
+      - type: custom:decluttering-card
+        template: tfl_service_warning_template
+        variables:
+          - tfl_line: waterloo_city
