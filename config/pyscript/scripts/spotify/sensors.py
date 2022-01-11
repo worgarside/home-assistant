@@ -20,6 +20,8 @@ def save_album_artwork(var_name, value, old_value):
     if value in ("unknown", old_value):
         return
 
+    log.info("Triggered by `%s`", var_name)
+
     cleansed_album_name = ""
     for char in str(state.get(var_name.replace("_artwork_internal_url", "_name"))):
         if char.isalnum():
@@ -44,9 +46,16 @@ def save_album_artwork(var_name, value, old_value):
     ):
         return
 
-    res = task.executor(get, f"http://0.0.0.0:8123{value}")
+    res = task.executor(get, f"http://{sensor.local_ip}:8123{value}")
 
-    log.info("Writing content to %s", target_path)
+    res.raise_for_status()
+
+    log.info(
+        "Album artwork endpoint response was `%s %s` - writing content to %s",
+        res.status_code,
+        res.reason,
+        target_path,
+    )
 
     write_file(
         force_mkdir(
@@ -54,4 +63,5 @@ def save_album_artwork(var_name, value, old_value):
             True,
         ),
         res.content,
+        encoding=None,
     )

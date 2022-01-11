@@ -39,7 +39,6 @@ SPOTIFY = SpotifyClient(
     client_id=get_secret("client_id", module=MODULE_NAME),
     client_secret=get_secret("client_secret", module=MODULE_NAME),
     scope=SpotifyClient.ALL_SCOPES,
-    log_requests=True,
     creds_cache_path="/config/.spotify_cache",
 )
 
