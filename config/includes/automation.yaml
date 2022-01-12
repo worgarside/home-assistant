@@ -470,7 +470,7 @@
           brightness: '{{states.light.galaxy_light.attributes.brightness + 25}}'
 
   # Lounge Remote Button 2 Held Down
-  - alias: Lounge Remote Button 2 Short Press
+  - alias: Lounge Remote Button 2 Held Down
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -546,7 +546,7 @@
           brightness: '{{states.light.galaxy_light.attributes.brightness - 25}}'
 
   # Lounge Remote Button 3 Held Down
-  - alias: Lounge Remote Button 3 Short Press
+  - alias: Lounge Remote Button 3 Held Down
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
