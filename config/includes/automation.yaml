@@ -31,7 +31,7 @@
       condition: template
       value_template: >
         {{ 
-          ( trigger.from_state.state | int - trigger.to_state.state | int ) > 0 
+          ( trigger.from_state.state | int - trigger.to_state.state | int ) | abs > 0 
         }}
     action:
       - service: input_number.set_value
@@ -82,21 +82,11 @@
         type: short_release
         subtype: 2
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.wills_lamp
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.wills_shapes
+      condition: state
+      state: "on"
+      entity_id:
+        - light.wills_shapes
     action:
-      - service: light.turn_on
-        entity_id: light.wills_lamp
-        data_template:
-          brightness: '{{states.light.wills_lamp.attributes.brightness + 25}}'
       - service: light.turn_on
         entity_id: light.wills_shapes
         data_template:
@@ -113,21 +103,11 @@
         type: repeat
         subtype: 2
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.wills_lamp
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.wills_shapes
+      condition: state
+      state: "on"
+      entity_id:
+        - light.wills_shapes
     action:
-      - service: light.turn_on
-        entity_id: light.wills_lamp
-        data_template:
-          brightness: '{{states.light.wills_lamp.attributes.brightness + 50}}'
       - service: light.turn_on
         entity_id: light.wills_shapes
         data_template:
@@ -143,21 +123,11 @@
         type: short_release
         subtype: 3
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.wills_lamp
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.wills_shapes
+      condition: state
+      state: "on"
+      entity_id:
+        - light.wills_shapes
     action:
-      - service: light.turn_on
-        entity_id: light.wills_lamp
-        data_template:
-          brightness: '{{states.light.wills_lamp.attributes.brightness - 25}}'
       - service: light.turn_on
         entity_id: light.wills_shapes
         data_template:
@@ -174,21 +144,11 @@
         type: repeat
         subtype: 3
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.wills_lamp
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.wills_shapes
+      condition: state
+      state: "on"
+      entity_id:
+        - light.wills_shapes
     action:
-      - service: light.turn_on
-        entity_id: light.wills_lamp
-        data_template:
-          brightness: '{{states.light.wills_lamp.attributes.brightness - 50}}'
       - service: light.turn_on
         entity_id: light.wills_shapes
         data_template:
@@ -211,25 +171,7 @@
 
   # --- --- --- --- --- Kitchen --- --- --- --- --- #
 
-  # Kitchen Remote Button 1 Short Press - Turn on the kitchen lamp and LED strip
-  - alias: Kitchen Remote Button 1 Short Press
-    mode: single
-    max_exceeded: silent
-    trigger:
-      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
-        domain: hue
-        platform: device
-        type: short_release
-        subtype: 1
-    action:
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_led_strip
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_lamp
-
-  # Kitchen Remote Button 1 Long Press - Turn on all of the Kitchen lights
+  # Kitchen Remote Button 1 Long Press - Turn on all the Kitchen lights
   - alias: Kitchen Remote Button 1 Long Press
     mode: single
     max_exceeded: silent
@@ -259,28 +201,11 @@
         type: short_release
         subtype: 2
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.kitchen_led_strip
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.kitchen_lamp
+      condition: state
+      state: "on"
+      entity_id:
+        - light.kitchen_work_light
     action:
-      - service: light.turn_on
-        entity_id: light.kitchen_led_strip
-        data_template:
-          brightness: '{{states.light.kitchen_led_strip.attributes.brightness + 25}}'
-      - service: light.turn_on
-        entity_id: light.kitchen_lamp
-        data_template:
-          brightness: '{{states.light.kitchen_lamp.attributes.brightness + 25}}'
-      - condition: state
-        state: "on"
-        entity_id: light.kitchen_work_light
       - service: light.turn_on
         entity_id: light.kitchen_work_light
         data_template:
@@ -297,28 +222,10 @@
         type: repeat
         subtype: 2
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.kitchen_led_strip
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.kitchen_lamp
+      condition: state
+      state: "on"
+      entity_id: light.kitchen_work_light
     action:
-      - service: light.turn_on
-        entity_id: light.kitchen_led_strip
-        data_template:
-          brightness: '{{states.light.kitchen_led_strip.attributes.brightness + 50}}'
-      - service: light.turn_on
-        entity_id: light.kitchen_lamp
-        data_template:
-          brightness: '{{states.light.kitchen_lamp.attributes.brightness + 50}}'
-      - condition: state
-        state: "on"
-        entity_id: light.kitchen_work_light
       - service: light.turn_on
         entity_id: light.kitchen_work_light
         data_template:
@@ -334,28 +241,10 @@
         type: short_release
         subtype: 3
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.kitchen_led_strip
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.kitchen_lamp
+      condition: state
+      state: "on"
+      entity_id: light.kitchen_work_light
     action:
-      - service: light.turn_on
-        entity_id: light.kitchen_led_strip
-        data_template:
-          brightness: '{{states.light.kitchen_led_strip.attributes.brightness + 25}}'
-      - service: light.turn_on
-        entity_id: light.kitchen_lamp
-        data_template:
-          brightness: '{{states.light.kitchen_lamp.attributes.brightness + 25}}'
-      - condition: state
-        state: "on"
-        entity_id: light.kitchen_work_light
       - service: light.turn_on
         entity_id: light.kitchen_work_light
         data_template:
@@ -372,28 +261,10 @@
         type: repeat
         subtype: 3
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.kitchen_led_strip
-          - condition: state
-            state: "on"
-            entity_id:
-              - light.kitchen_lamp
+      condition: state
+      state: "on"
+      entity_id: light.kitchen_work_light
     action:
-      - service: light.turn_on
-        entity_id: light.kitchen_led_strip
-        data_template:
-          brightness: '{{states.light.kitchen_led_strip.attributes.brightness + 50}}'
-      - service: light.turn_on
-        entity_id: light.kitchen_lamp
-        data_template:
-          brightness: '{{states.light.kitchen_lamp.attributes.brightness + 50}}'
-      - condition: state
-        state: "on"
-        entity_id: light.kitchen_work_light
       - service: light.turn_on
         entity_id: light.kitchen_work_light
         data_template:
@@ -408,6 +279,16 @@
         domain: hue
         platform: device
         type: short_release
+        subtype: 4
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: long_release
+        subtype: 4
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: initial_press
         subtype: 4
     action:
       - service: light.turn_off
@@ -446,20 +327,12 @@
           - condition: state
             state: "on"
             entity_id:
-              - light.lounge_lamp
-          - condition: state
-            state: "on"
-            entity_id:
               - light.the_snail
           - condition: state
             state: "on"
             entity_id:
               - light.galaxy_light
     action:
-      - service: light.turn_on
-        entity_id: light.lounge_lamp
-        data_template:
-          brightness: '{{states.light.lounge_lamp.attributes.brightness + 25}}'
       - service: light.turn_on
         entity_id: light.the_snail
         data_template:
@@ -484,20 +357,12 @@
           - condition: state
             state: "on"
             entity_id:
-              - light.lounge_lamp
-          - condition: state
-            state: "on"
-            entity_id:
               - light.the_snail
           - condition: state
             state: "on"
             entity_id:
               - light.galaxy_light
     action:
-      - service: light.turn_on
-        entity_id: light.lounge_lamp
-        data_template:
-          brightness: '{{states.light.lounge_lamp.attributes.brightness + 50}}'
       - service: light.turn_on
         entity_id: light.the_snail
         data_template:
@@ -522,20 +387,12 @@
           - condition: state
             state: "on"
             entity_id:
-              - light.lounge_lamp
-          - condition: state
-            state: "on"
-            entity_id:
               - light.the_snail
           - condition: state
             state: "on"
             entity_id:
               - light.galaxy_light
     action:
-      - service: light.turn_on
-        entity_id: light.lounge_lamp
-        data_template:
-          brightness: '{{states.light.lounge_lamp.attributes.brightness - 25}}'
       - service: light.turn_on
         entity_id: light.the_snail
         data_template:
@@ -560,20 +417,12 @@
           - condition: state
             state: "on"
             entity_id:
-              - light.lounge_lamp
-          - condition: state
-            state: "on"
-            entity_id:
               - light.the_snail
           - condition: state
             state: "on"
             entity_id:
               - light.galaxy_light
     action:
-      - service: light.turn_on
-        entity_id: light.lounge_lamp
-        data_template:
-          brightness: '{{states.light.lounge_lamp.attributes.brightness - 50}}'
       - service: light.turn_on
         entity_id: light.the_snail
         data_template:
@@ -597,3 +446,162 @@
       - service: light.turn_off
         target:
           area_id: lounge
+
+# ------------------------ Sun ------------------------ #
+
+  # Open the curtain when the Sun rises past -6'
+  - alias: Open Curtain Pre-Sunrise
+    id: open_curtain_pre_sunrise
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.sun_elevation
+      above: -6
+    action:
+      - service: pyscript.open_curtain
+
+  - alias: Sunset
+    id: sun_below_horizon
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.sun_elevation
+      below: "0"
+    action:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.terrace_lights
+
+  # Open the curtain when the Sun sets past -18'
+  - alias: Close Curtain Post-Sunset
+    id: close_curtain_post_sunset
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.sun_elevation
+      below: -18
+    action:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: person.will
+                state: "home"
+            sequence:
+              - delay: 3600
+      - wait_template: "{{ is_state('binary_sensor.wills_balcony_door', 'off') }}"
+        timeout: 3600
+        continue_on_timeout: false
+      - service: pyscript.close_curtain
+
+# ------------------------ Scheduled ------------------------ #
+
+  - alias: Spotify Monthly Playlists
+    id: spotify_monthlies
+    mode: single
+    trigger:
+      - platform: time_pattern
+        minutes: "/15"
+    action:
+      - service: pyscript.update_spotify_monthlies
+
+  - alias: Midnight Terrace Lights Off
+    id: midnight_terrace_lights_off
+    trigger:
+      - platform: time
+        at: "00:00:00"
+    action:
+      - wait_template: "{{ is_state('binary_sensor.wills_balcony_door', 'off') }}"
+        timeout: 900
+      - service: switch.turn_off
+        target:
+          entity_id: switch.terrace_lights
+
+# ------------------------ Critical ------------------------ #
+
+  - alias: Keep Washing Machine Turned On
+    id: keep_washing_machine_on
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: switch.washing_machine
+        to: "off"
+    action:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.washing_machine
+      - service: script.notify_will
+        data:
+          title: "Critical Automation Triggered"
+          # yamllint disable-line rule:line-length
+          message: "`keep_washing_machine_on` was triggered with state `{{ trigger.to_state.state}}`"
+
+  - alias: Restart Galaxy Light
+    id: restart_galaxy_light_when_offline
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.galaxy_light_online
+        to: "off"
+    action:
+      # Restart the Galaxy Light with a 5s delay
+      - service: script.restart_galaxy_light
+        data:
+          switch_on_delay: 5
+      # Wait for the GL to come back online, with a 10s timeout
+      - wait_template: "{{ is_state('binary_sensor.galaxy_light_online', 'on') }}"
+        timeout: 10
+      - alias: "Restart with 30s delay if not back online"
+        choose:
+          - alias: "Light didn't come back online"
+            conditions: "{{ not wait.completed }}"
+            sequence:
+              - alias: "Restart the GL with a 30s delay"
+                service: script.restart_galaxy_light
+                data:
+                  switch_on_delay: 30
+              - wait_template: >
+                  {{ is_state('binary_sensor.galaxy_light_online', 'on') }}
+                timeout: 10
+      - alias: "Resume original state if the restart succeeded, else notify Will"
+        choose:
+          - alias: "Galaxy light is back online"
+            conditions: "{{ is_state('binary_sensor.galaxy_light_online', 'on') }}"
+            sequence:
+              - choose:
+                  - alias: "Galaxy Light was ON before it went offline"
+                    conditions: >
+                      {{ states('input_text.galaxy_light_previous_state') == 'on' }}
+                    sequence:
+                      - service: switch.turn_on
+                        target:
+                          entity_id: light.galaxy_light
+                  - alias: "Galaxy Light was OFF before it went offline"
+                    conditions: >
+                      {{ states('input_text.galaxy_light_previous_state') == 'off' }}
+                    sequence:
+                      - service: switch.turn_off
+                        target:
+                          entity_id: light.galaxy_light
+                default:
+                  - service: script.notify_will
+                    data:
+                      title: "Automation Failure"
+                      # yamllint disable-line rule:line-length
+                      message: "Galaxy Light restart failed: previous state was `{{ trigger.from_state.state\
+                        \ }}` and current state is `{{ states('light.galaxy_light') }}`"
+        default:
+          - service: script.notify_will
+            data:
+              title: "Automation Failure"
+              # yamllint disable-line rule:line-length
+              message: "Galaxy Light restart failed: previous state was `{{ states('input_text.galaxy_light_previous_state')\
+                \ }}` and current state is `{{ states('light.galaxy_light') }}`"
+
+# ------------------------ Input Text ------------------------ #
+
+  - alias: Preserve Galaxy Light Previous State
+    id: preserve_galaxy_light_previous_state
+    trigger:
+      - platform: state
+        entity_id: light.galaxy_light
+    action:
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.galaxy_light_previous_state
+          value: "{{ trigger.from_state.state }}"
