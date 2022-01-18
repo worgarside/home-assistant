@@ -1,23 +1,153 @@
 ---
 title: Home
+
 icon: mdi:castle
+
 path: default_view
 
-cards:
+type: custom:vertical-layout
 
-  - type: thermostat
+cards:
+  - type: custom:mini-climate
+    card_mod:
+      style: |
+        div.entity__secondary_info.ellipsis {
+          display: none;
+        }
+        div.entity__info__name_wrap {
+          position: relative;
+        }
+        div.entity__info__name {
+          position: absolute;
+          bottom: 3px;
+        }
+        div.entity__icon {
+          margin-top: 6px;
+        }
     entity: climate.thermostat
+    icon: mdi:thermostat-box
+    fan_mode:
+      hide: true
+      disabled: true
+    secondary_info:
+      disabled: true
   - type: weather-forecast
     name: !secret address_line_1
     entity: weather.openweathermap
     show_forecast: true
 
-  - type: sensor
-    entity: sensor.sun_elevation
-    graph: line
-    detail: 2
+  - type: custom:layout-break
 
-  - type: sensor
-    entity: sensor.openweathermap_rain
-    graph: line
-    detail: 2
+  - type: custom:swipe-card
+    parameters:
+#      navigation: true
+#      centeredSlides: true
+#      slidesPerView: 1
+      spaceBetween: 8
+      scrollbar:
+        infiniteLoop: true
+#        hide: false
+        draggable: true
+        snapOnRelease: true
+    cards:
+      - type: entities
+        title: Kitchen
+        entities:
+          - light.kitchen_led_strip
+          - entity: light.kitchen_lamp
+            name: Floor Lamp
+          - entity: light.kitchen_work_light
+            name: Work Light
+          - entity: media_player.kitchen_nest_mini
+            name: Nest Mini
+
+      - type: entities
+        title: Landing
+        entities:
+          - entity: light.landing_light
+            name: Light
+
+      - type: entities
+        title: Lounge
+        state_color: true
+        entities:
+          - entity: media_player.lounge_bravia_tv
+            name: TV
+          - switch.hifi_amp
+          - light.lounge_lamp
+          - light.the_snail
+          - light.galaxy_light
+          - entity: media_player.lounge_nest_mini
+            name: Nest Mini
+
+
+      - type: entities
+        title: Terrace
+        state_color: true
+        entities:
+          - entity: switch.terrace_lights
+            name: Lights
+
+      - type: entities
+        title: Matt's Room
+        entities:
+          - entity: light.matt_s_lamp
+            name: Lamp
+          - entity: media_player.matts_room_nest_mini
+            name: Nest Mini
+
+      - type: entities
+        title: Tom's Room
+        entities:
+          - entity: light.toms_bloom_lamp
+            name: Bloom Lamp
+          - type: custom:rgb-light-card
+            entity: light.toms_bloom_lamp
+            justify: around
+            colors:
+              - rgb_color:
+                  - 64
+                  - 0
+                  - 255
+              - rgb_color:
+                  - 251
+                  - 24
+                  - 128
+              - rgb_color:
+                  - 28
+                  - 255
+                  - 64
+
+      - type: entities
+        title: Will's Room
+        entities:
+          - entity: sensor.wills_room_hue_motion_sensor_temperature
+            name: Ambient Temperature
+          - entity: sensor.wills_room_hue_motion_sensor_light_level
+            name: Ambient Light Level
+          - entity: binary_sensor.wills_balcony_door
+            name: Balcony Door
+          - entity: binary_sensor.wills_room_hue_motion_sensor_motion
+            name: Motion Sensor Motion
+          - type: divider
+          - type: custom:paper-buttons-row
+            buttons:
+              - icon: mdi:curtains
+                tap_action:
+                  action: call-service
+                  service: pyscript.open_curtain
+              - icon: mdi:curtains-closed
+                tap_action:
+                  action: call-service
+                  service: pyscript.close_curtain
+          - type: custom:slider-entity-row
+            entity: input_number.wills_room_curtain_position
+            name: Curtain Position
+          - entity: switch.tower_fan
+            state_color: true
+          - entity: light.wills_shapes
+            name: Shapes
+          - entity: light.wills_lamp
+            name: Lamp
+          - entity: media_player.wills_bedroom_home_hub
+            name: Bedroom Home Hub

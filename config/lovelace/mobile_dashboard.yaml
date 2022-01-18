@@ -1,0 +1,149 @@
+---
+title: Mobile Dashboard
+
+icon: mdi:cellphone
+
+path: mobile_dashboard
+
+cards:
+  - type: entities
+    title: Kitchen
+    entities:
+      - type: custom:decluttering-card
+        template: folding_rgb_light_template
+        variables:
+          - entity: light.kitchen_led_strip
+          - name: LED Strip
+      - type: custom:decluttering-card
+        template: folding_rgb_light_template
+        variables:
+          - entity: light.kitchen_work_light
+          - name: Work Light
+      - entity: light.kitchen_lamp
+        name: Floor Lamp
+      - type: custom:decluttering-card
+        template: folding_media_player_with_spotcast_template
+        variables:
+          - device_friendly_name: Nest Mini
+          - entity_id: media_player.kitchen_nest_mini
+
+  - type: entities
+    title: Landing
+    entities:
+      - entity: light.landing_light
+        name: Light
+
+  - type: entities
+    title: Lounge
+    state_color: true
+    entities:
+      - entity: media_player.lounge_bravia_tv
+        name: TV
+      - type: custom:decluttering-card
+        template: folding_rgb_light_template
+        variables:
+          - entity: light.lounge_lamp
+          - name: Lamp
+      - type: custom:fold-entity-row
+        head:
+          entity: light.the_snail
+          name: The Snail
+        entities:
+          - type: custom:decluttering-card
+            template: rgb_light_template
+            variables:
+              - entity: light.the_snail
+          - type: custom:light-entity-card
+            card_mod:
+              style: |
+                paper-dropdown-menu {
+                  width: 75%;
+                  margin-top: -15px;
+                }
+            entity: light.the_snail
+            hide_header: true
+            brightness: false
+            color_temp: false
+            color_picker: false
+            child_card: true
+      - light.galaxy_light
+      - type: custom:decluttering-card
+        template: folding_media_player_with_spotcast_template
+        variables:
+          - device_friendly_name: Nest Mini
+          - entity_id: media_player.lounge_nest_mini
+      - type: custom:decluttering-card
+        template: folding_media_player_with_spotcast_template
+        variables:
+          - device_friendly_name: HiFi System
+          - entity_id: media_player.hifi_system
+
+  - type: entities
+    title: Terrace
+    state_color: true
+    entities:
+      - entity: switch.terrace_lights
+        name: Lights
+
+  - type: entities
+    title: Matt's Room
+    entities:
+      - type: custom:decluttering-card
+        template: folding_media_player_with_spotcast_template
+        variables:
+          - device_friendly_name: Nest Mini
+          - entity_id: media_player.matts_room_nest_mini
+
+  - type: entities
+    title: Tom's Room
+    entities:
+      - type: custom:decluttering-card
+        template: folding_rgb_light_template
+        variables:
+          - entity: light.toms_bloom_lamp
+          - name: Bloom Lamp
+
+  - type: entities
+    title: Will's Room
+    entities:
+      - type: custom:slider-entity-row
+        entity: input_number.wills_room_curtain_position
+        name: Curtain Position
+      - entity: switch.tower_fan
+        state_color: true
+      - type: custom:fold-entity-row
+        head:
+          entity: light.wills_shapes
+          name: Shapes
+        entities:
+          - type: custom:decluttering-card
+            template: rgb_light_template
+            variables:
+              - entity: light.wills_shapes
+          - type: custom:light-entity-card
+            card_mod:
+              style: |
+                paper-dropdown-menu {
+                  width: 75%;
+                  margin-top: -15px;
+                }
+            entity: light.wills_shapes
+            hide_header: true
+            brightness: false
+            color_temp: false
+            color_picker: false
+            child_card: true
+      - entity: light.wills_lamp
+        name: Lamp
+      - type: custom:decluttering-card
+        template: folding_media_player_with_spotcast_template
+        variables:
+          - device_friendly_name: Home Hub
+          - entity_id: media_player.wills_bedroom_home_hub
+      - type: custom:decluttering-card
+        template: folding_media_player_with_spotcast_template
+        variables:
+          - device_friendly_name: YAS-209
+          - device_key: spotify_device_id
+          - device_value: d13da09c3d2ffcc83ae1784fc05dd8bb4bb25305
+          - entity_id: media_player.will_s_yas_209

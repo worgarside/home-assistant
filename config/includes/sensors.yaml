@@ -35,3 +35,6 @@
       Content-Type: application/json
     value_template: "{{ value_json['body']['slidePosition'] }}"
     unit_of_measurement: '%'
+
+  - platform: spotcast
+    country: GB

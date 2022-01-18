@@ -15,28 +15,28 @@ cards:
       Tom:
         type: vertical-stack
         cards:
-          - type: custom:spotify-card
-            account: tom
-            name: Spotify
-            spotify_entity: media_player.spotify_tom_jones
+#          - type: custom:spotify-card
+#            account: tom
+#            name: Spotify
+#            spotify_entity: media_player.spotify_tom_jones
           - type: media-control
             entity: media_player.spotify_tom_jones
       Matt:
         type: vertical-stack
         cards:
-          - type: custom:spotify-card
-            account: matt
-            name: Spotify
-            spotify_entity: media_player.spotify_matt_scott
+#          - type: custom:spotify-card
+#            account: matt
+#            name: Spotify
+#            spotify_entity: media_player.spotify_matt_scott
           - type: media-control
             entity: media_player.spotify_matt_scott
       Will:
         type: vertical-stack
         cards:
-          - type: custom:spotify-card
-            account: default
-            name: Spotify
-            spotify_entity: media_player.spotify_will_garside
+#          - type: custom:spotify-card
+#            account: default
+#            name: Spotify
+#            spotify_entity: media_player.spotify_will_garside
           - type: media-control
             entity: media_player.spotify_will_garside
       default:

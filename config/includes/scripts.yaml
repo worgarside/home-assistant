@@ -47,9 +47,16 @@ start_spotify_on_device:
       description: "The name of the user, to determine which Spotify account to use"
       example: "Dave"
   sequence:
+#    - service: persistent_notification.create
+#      data:
+#        title: Spotcast Arguments
+#        message: |
+#          device_key: {{ device_key }}
+#          device_value: {{ device_value }}
+#          user_name: {{ user_name | lower }}
     - service: spotcast.start
       data:
-        entity_id: '{{ entity_id }}'
+        '{{device_key}}': '{{ device_value }}'
         account: '{{ user_name | lower }}'
         shuffle: true
         force_playback: true

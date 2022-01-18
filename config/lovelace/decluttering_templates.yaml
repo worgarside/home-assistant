@@ -290,3 +290,78 @@ london_air_quality_outer_template:
             - borough: westminster
             - state: "[[state]]"
             - bg_color: "[[bg_color]]"
+
+rgb_light_template:
+  card:
+    type: custom:rgb-light-card
+    entity: '[[entity]]'
+    justify: around
+    colors:
+      - rgb_color:
+          - 64
+          - 0
+          - 255
+      - rgb_color:
+          - 251
+          - 24
+          - 128
+      - rgb_color:
+          - 28
+          - 255
+          - 64
+
+folding_rgb_light_template:
+  card:
+    type: custom:fold-entity-row
+    head:
+      entity: '[[entity]]'
+      name: '[[name]]'
+    entities:
+      - type: custom:decluttering-card
+        template: rgb_light_template
+        variables:
+          - entity: '[[entity]]'
+
+folding_media_player_with_spotcast_template:
+  default:
+    - device_key: 'entity_id'
+    - device_value: 'NULL'
+  card:
+    # Allow access to user's name through JS
+    type: custom:config-template-card
+    variables:
+      USER_NAME: user.name
+    entities:
+      - '[[entity_id]]'
+    card:
+      # Allow Jinja template to be used in `device_value_template`
+      type: custom:card-templater
+      entities:
+        - '[[entity_id]]'
+      card:
+        # Folding row to hide controls
+        type: custom:fold-entity-row
+        head:
+          entity: '[[entity_id]]'
+          name: '[[device_friendly_name]]'
+        entities:
+          # Controls row
+          - type: custom:paper-buttons-row
+            buttons:
+              - icon: mdi:spotify
+                styles:
+                  icon:
+                    - color: green
+                name: Start Playback
+                tap_action:
+                  action: call-service
+                  service: script.start_spotify_on_device
+                  service_data:
+                    device_key: '[[device_key]]'
+                    device_value_template: |
+                      {% if '[[device_value]]' != 'NULL' %}
+                        [[device_value]]
+                      {% else %}
+                        [[entity_id]]
+                      {% endif %}
+                    user_name: '${USER_NAME}'
