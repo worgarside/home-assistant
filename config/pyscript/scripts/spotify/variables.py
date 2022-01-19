@@ -20,36 +20,67 @@ if gethostname() != "homeassistant":
     state = sync_mock
     var = sync_mock
     state_trigger = decorator
+    time_trigger = decorator
 
 
-@state_trigger("sensor.spotify_matt_scott_media_title")
-@state_trigger("sensor.spotify_tom_jones_media_title")
-@state_trigger("sensor.spotify_will_garside_media_title")
-def get_current_tempo(var_name, value):
-    """Get the tempo for the currently playing song and update the relevant variable
-    with the new value
+@time_trigger("cron(* * * * *)")
+def update_tempo_variables():
+    """Update the tempo variables every minute"""
 
-    Args:
-        var_name (str): the sensor which triggered this function
-        value (str): the value of the sensor
-    """
+    for user_full_name in (
+        "matt_scott",
+        "tom_jones",
+        "will_garside",
+    ):
+        user_first_name, _ = user_full_name.split("_")
+        media_title_sensor_name = f"sensor.spotify_{user_full_name}_media_title"
+        tempo_variable_name = f"var.spotify_tempo_{user_first_name}"
 
-    user_full_name = var_name.replace("sensor.spotify_", "").replace("_media_title", "")
+        media_title_state = state.get(media_title_sensor_name)
 
-    if value in ("unknown", None, ""):
-        var.set(
-            entity_id=f"var.spotify_bpm_{user_full_name.split('_')[0]}", value="unknown"
-        )
-        return
+        # if media title is newer than tempo
+        if state.get(f"{media_title_sensor_name}.last_changed") > state.get(
+            f"{tempo_variable_name}.last_changed"
+        ):
+            if media_title_state in (
+                "unknown",
+                None,
+                "",
+            ):
+                log.info(
+                    f"`{media_title_sensor_name}` has state `{media_title_state}`,"
+                    f" setting `{tempo_variable_name}` to `unknown`"
+                )
+                var.set(
+                    entity_id=tempo_variable_name, value="unknown", force_update=True
+                )
+            else:
+                track_id = (
+                    state.getattr(f"media_player.spotify_{user_full_name}")
+                    .get("media_content_id")
+                    .replace("spotify:track:", "")
+                )
 
-    track_id = (
-        state.getattr(f"media_player.spotify_{user_full_name}")
-        .get("media_content_id")
-        .replace("spotify:track:", "")
-    )
+                track = task.executor(SPOTIFY.get_track_by_id, track_id)
 
-    track = task.executor(SPOTIFY.get_track_by_id, track_id)
+                tempo = round(task.executor(getattr, track, "tempo"))
 
-    tempo = task.executor(getattr, track, "tempo")
+                log.info(
+                    f"`{media_title_sensor_name}` has state `{media_title_state}`,"
+                    f" setting `{tempo_variable_name}` to `{tempo}`"
+                )
 
-    var.set(entity_id=f"var.spotify_bpm_{user_full_name.split('_')[0]}", value=tempo)
+                var.set(entity_id=tempo_variable_name, value=tempo, force_update=True)
+        else:
+            if media_title_state not in (
+                "unknown",
+                None,
+                "",
+            ):
+                log.info("No update detected, force refreshing")
+                # Just force an update of status to the same value
+                var.set(
+                    entity_id=tempo_variable_name,
+                    value=state.get(tempo_variable_name),
+                    force_update=True,
+                )
