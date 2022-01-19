@@ -18,3 +18,11 @@ repos:
     hooks:
       - id: yamllint
         args: [--format, parsable, --strict]
+
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]

@@ -1,8 +1,19 @@
+"""Functions which are only run on a certain trigger"""
+from socket import gethostname
 from os.path import isfile
 
 from requests import get
 from wg_utilities.functions import force_mkdir
 from helpers import write_file
+
+if gethostname() != "homeassistant":
+    from helpers import local_setup
+
+    log, async_mock, sync_mock, decorator = local_setup()
+    task = async_mock
+    state = sync_mock
+    sensor = sync_mock
+    state_trigger = decorator
 
 
 @state_trigger("sensor.spotify_matt_scott_media_album_artwork_internal_url")

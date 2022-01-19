@@ -34,7 +34,9 @@ def local_setup():
 
 
 if gethostname() != "homeassistant":
-    log, _, pyscript, _ = local_setup()
+    log, async_mock, sync_mock, decorator = local_setup()
+    pyscript = sync_mock
+    pyscript_executor = decorator
 
 
 def get_secret(secret_name, *, module, default=None, json=False):
@@ -67,7 +69,7 @@ def write_file(path, content, mode="wb", encoding="utf-8"):
         path (str): the file path to be written to
         content (Union([bytes, str])): the content to write to the file
         mode (str): the mode to open the file with
-        encoding (str): the type of encoding to use on the file
+        encoding (Union[None, str]): the type of encoding to use on the file
     """
     with open(path, mode=mode, encoding=encoding) as fout:
         fout.write(content)

@@ -1,40 +1,21 @@
 """Polls Spotify's web API for recently liked songs and adds them to monthly playlists
 """
 from datetime import datetime
-from json import dumps
 from socket import gethostname
 
 from wg_utilities.clients.spotify_client import SpotifyClient
 
-from helpers import local_setup, get_secret
+from helpers import get_secret
 
-MODULE_NAME = "spotify.monthlies"
+MODULE_NAME = "spotify"
 
 if gethostname() != "homeassistant":
-    log, _, task, service = local_setup()
-    _, _, persistent_notification, _ = local_setup()
+    from helpers import local_setup
 
-ALL_SCOPES = [
-    "ugc-image-upload",
-    "user-read-recently-played",
-    "user-top-read",
-    "user-read-playback-position",
-    "user-read-playback-state",
-    "user-modify-playback-state",
-    "user-read-currently-playing",
-    "app-remote-control",
-    "streaming",
-    "playlist-modify-public",
-    "playlist-modify-private",
-    "playlist-read-private",
-    "playlist-read-collaborative",
-    "user-follow-modify",
-    "user-follow-read",
-    "user-library-modify",
-    "user-library-read",
-    "user-read-email",
-    "user-read-private",
-]
+    log, async_mock, sync_mock, service = local_setup()
+    task = async_mock
+    persistent_notification = sync_mock
+
 SPOTIFY = SpotifyClient(
     client_id=get_secret("client_id", module=MODULE_NAME),
     client_secret=get_secret("client_secret", module=MODULE_NAME),
@@ -121,16 +102,6 @@ def update_spotify_monthlies():
                 playlist_updates[target_monthly_playlist] = []
 
             playlist_updates[target_monthly_playlist].append(track)
-
-    if playlist_updates:
-        # Need this if statement because the below throws a KeyError if the dict is
-        # empty..?
-        log.info(
-            "Updates to be made: %s",
-            dumps(
-                {p.name: t_list for p, t_list in playlist_updates.items()}, default=str
-            ),
-        )
 
     for playlist, tracks in playlist_updates.items():
         log.debug("Adding %s to %s", ", ".join(map(str, tracks)), playlist.name)

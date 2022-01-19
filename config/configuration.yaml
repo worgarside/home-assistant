@@ -149,6 +149,20 @@ usb:
 
 updater:
 
+var:
+  spotify_bpm_matt:
+    friendly_name: Spotify Tempo (Matt)
+    unit_of_measurement: BPM
+    icon: mdi:metronome
+  spotify_bpm_tom:
+    friendly_name: Spotify Tempo (Tom)
+    unit_of_measurement: BPM
+    icon: mdi:metronome
+  spotify_bpm_will:
+    friendly_name: Spotify Tempo (Will)
+    unit_of_measurement: BPM
+    icon: mdi:metronome
+
 webhook:
 
 zeroconf:

@@ -4,12 +4,19 @@ from socket import gethostname
 
 from requests import post
 
-from helpers import get_secret, local_setup
+from helpers import get_secret
 
 MODULE_NAME = "switchbot.curtain_controller"
 
 if gethostname() != "homeassistant":
-    log, _, task, service = local_setup()
+    from helpers import local_setup
+
+    log, async_mock, sync_mock, decorator = local_setup()
+    task = async_mock
+    sensor = sync_mock
+    input_number = sync_mock
+    service = decorator
+
 
 API_KEY = get_secret("api_key", module=MODULE_NAME)
 CURTAIN_ID = get_secret("curtain_id", module=MODULE_NAME)
@@ -62,7 +69,8 @@ def set_curtain_position(position, index=0, mode="ff"):
         log.debug(dumps(res.json(), default=str))
     else:
         log.info(
-            "Change too small (%i), changing input_number.wills_room_curtain_position to %i",
+            "Change too small (%i), "
+            "changing input_number.wills_room_curtain_position to %i",
             delta,
             sensor_val,
         )
