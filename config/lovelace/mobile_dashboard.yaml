@@ -19,8 +19,11 @@ cards:
         variables:
           - entity: light.kitchen_work_light
           - name: Work Light
-      - entity: light.kitchen_lamp
-        name: Floor Lamp
+      - type: custom:decluttering-card
+        template: folding_white_light_template
+        variables:
+          - entity: light.kitchen_lamp
+          - name: Floor Lamp
       - type: custom:decluttering-card
         template: folding_media_player_with_spotcast_template
         variables:
@@ -30,8 +33,11 @@ cards:
   - type: entities
     title: Landing
     entities:
-      - entity: light.landing_light
-        name: Light
+      - type: custom:decluttering-card
+        template: folding_white_light_template
+        variables:
+          - entity: light.landing_light
+          - name: Light
 
   - type: entities
     title: Lounge
@@ -44,33 +50,17 @@ cards:
         variables:
           - entity: light.lounge_lamp
           - name: Lamp
-      - type: custom:fold-entity-row
-        head:
-          entity: light.the_snail
-          name: The Snail
-        entities:
-          - type: custom:decluttering-card
-            template: rgb_light_template
-            variables:
-              - entity: light.the_snail
-          - type: custom:light-entity-card
-            card_mod:
-              style: |
-                paper-dropdown-menu {
-                  width: 75%;
-                  margin-top: -15px;
-                }
-            entity: light.the_snail
-            hide_header: true
-            brightness: false
-            color_temp: false
-            color_picker: false
-            child_card: true
+      - type: custom:decluttering-card
+        template: folding_rgb_light_with_effects_template
+        variables:
+          - entity: light.the_snail
+          - name: The Snail
       - type: custom:decluttering-card
         template: folding_rgb_light_template
         variables:
           - entity: light.galaxy_light
           - name: Galaxy Light
+          - auto_entity_filter_template: "{{ 'switch.galaxy_light_plug' }}"
       - type: custom:decluttering-card
         template: folding_media_player_with_spotcast_template
         variables:
@@ -81,6 +71,7 @@ cards:
         variables:
           - device_friendly_name: HiFi System
           - entity_id: media_player.hifi_system
+          - auto_entity_filter_template: "{{ 'switch.hifi_amp' }}"
 
   - type: entities
     title: Terrace
@@ -97,6 +88,11 @@ cards:
         variables:
           - device_friendly_name: Nest Mini
           - entity_id: media_player.matts_room_nest_mini
+      - type: custom:decluttering-card
+        template: folding_rgb_light_with_effects_template
+        variables:
+          - entity: light.matts_shapes
+          - name: Shapes
 
   - type: entities
     title: Tom's Room
@@ -115,32 +111,23 @@ cards:
         name: Curtain Position
       - entity: switch.tower_fan
         state_color: true
+      - type: custom:decluttering-card
+        template: folding_rgb_light_with_effects_template
+        variables:
+          - entity: light.wills_shapes
+          - name: Shapes
+      - type: custom:decluttering-card
+        template: folding_white_light_template
+        variables:
+          - entity: light.wills_lamp
+          - name: Lamp
       - type: custom:fold-entity-row
         head:
-          entity: light.wills_shapes
-          name: Shapes
+          entity: media_player.wills_bravia_tv
+          name: TV
         entities:
-          - type: custom:decluttering-card
-            template: rgb_light_template
-            variables:
-              - entity: light.wills_shapes
-          - type: custom:light-entity-card
-            card_mod:
-              style: |
-                paper-dropdown-menu {
-                  width: 75%;
-                  margin-top: -15px;
-                }
-            entity: light.wills_shapes
-            hide_header: true
-            brightness: false
-            color_temp: false
-            color_picker: false
-            child_card: true
-      - entity: light.wills_lamp
-        name: Lamp
-      - entity: media_player.wills_bravia_tv
-        name: TV
+          - entity: media_player.wills_room_chromecast
+            name: Chromecast
       - type: custom:decluttering-card
         template: folding_media_player_with_spotcast_template
         variables:

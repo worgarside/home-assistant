@@ -57,8 +57,10 @@ def update_tempo_variables(var_name=None):
                 "",
             ):
                 log.info(
-                    f"`{media_title_sensor_name}` has state `{media_title_state}`,"
-                    f" setting `{tempo_variable_name}` to `unknown`"
+                    "`%s` has state `%s`, setting `%s` to `unknown`",
+                    media_title_sensor_name,
+                    media_title_state,
+                    tempo_variable_name,
                 )
                 var.set(
                     entity_id=tempo_variable_name, value="unknown", force_update=True
@@ -75,8 +77,11 @@ def update_tempo_variables(var_name=None):
                 tempo = round(task.executor(getattr, track, "tempo"))
 
                 log.info(
-                    f"`{media_title_sensor_name}` has state `{media_title_state}`,"
-                    f" setting `{tempo_variable_name}` to `{tempo}`"
+                    "`%s` has state `%s`, setting `%s` to `%i`",
+                    media_title_sensor_name,
+                    media_title_state,
+                    tempo_variable_name,
+                    tempo,
                 )
 
                 var.set(entity_id=tempo_variable_name, value=tempo, force_update=True)

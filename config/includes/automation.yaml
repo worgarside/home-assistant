@@ -593,15 +593,62 @@
               message: "Galaxy Light restart failed: previous state was `{{ states('input_text.galaxy_light_previous_state')\
                 \ }}` and current state is `{{ states('light.galaxy_light') }}`"
 
-# ------------------------ Input Text ------------------------ #
+# ------------------------ Input Text/Select ------------------------ #
 
   - alias: Preserve Galaxy Light Previous State
     id: preserve_galaxy_light_previous_state
     trigger:
       - platform: state
         entity_id: light.galaxy_light
+    condition: "{{ trigger.from_state.state != 'unavailable' }}"
     action:
       - service: input_text.set_value
         data:
           entity_id: input_text.galaxy_light_previous_state
           value: "{{ trigger.from_state.state }}"
+
+  - alias: Initialise "Entity Force Updater" Options
+    id: init_entity_force_updater_options
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+#      - delay:
+#          minutes: 15
+      - service: input_select.set_options
+        target:
+          entity_id: input_select.entity_force_updater
+        data_template:
+          options: |
+            {% for domain in [ 
+              states.binary_sensor,
+              states.climate,
+              states.cover,
+              states.device_tracker,
+              states.light,
+              states.media_player,
+              states.person,
+              states.remote,
+              states.scene,
+              states.script,
+              states.sensor,
+              states.sun,
+              states.switch,
+              states.var,
+              states.water_heater,
+              states.weather,
+            ] -%}
+              {% for state in domain -%}
+                - {{ state.entity_id }}
+              {% endfor %}
+            {%- endfor %}
+
+  - alias: Force Update Entity
+    id: force_update_entity
+    trigger:
+      - platform: state
+        entity_id: input_select.entity_force_updater
+    action:
+      - service: homeassistant.update_entity
+        target:
+          entity_id: "{{ trigger.to_state.state }}"

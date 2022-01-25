@@ -309,23 +309,81 @@ rgb_light_template:
           - 28
           - 255
           - 64
+      - rgbww_color:
+          - 0
+          - 0
+          - 0
+          - 255
+          - 0
 
-folding_rgb_light_template:
+folding_white_light_template:
   card:
     type: custom:fold-entity-row
     head:
       entity: '[[entity]]'
       name: '[[name]]'
     entities:
+      - type: custom:slider-entity-row
+        entity: '[[entity]]'
+        full_row: true
+        hide_state: true
+
+folding_rgb_light_template:
+  variables:
+    - auto_entity_filter_template: ''
+  card:
+    type: custom:auto-entities
+    card:
+      type: custom:fold-entity-row
+      head:
+        entity: '[[entity]]'
+        name: '[[name]]'
+    filter:
+      template: "[[auto_entity_filter_template]]"
+    entities:
+      - type: custom:slider-entity-row
+        entity: '[[entity]]'
+        full_row: true
+        hide_state: true
       - type: custom:decluttering-card
         template: rgb_light_template
         variables:
           - entity: '[[entity]]'
 
+folding_rgb_light_with_effects_template:
+  card:
+    type: custom:fold-entity-row
+    head:
+      entity: '[[entity]]'
+      name: '[[name]]'
+    entities:
+      - type: custom:slider-entity-row
+        entity: '[[entity]]'
+        full_row: true
+        hide_state: true
+      - type: custom:decluttering-card
+        template: rgb_light_template
+        variables:
+          - entity: '[[entity]]'
+      - type: custom:light-entity-card
+        card_mod:
+          style: |
+            paper-dropdown-menu {
+              width: 75%;
+              margin-top: -15px;
+            }
+        entity: '[[entity]]'
+        hide_header: true
+        brightness: false
+        color_temp: false
+        color_picker: false
+        child_card: true
+
 folding_media_player_with_spotcast_template:
   default:
     - device_key: 'entity_id'
     - device_value: 'NULL'
+    - auto_entity_filter_template: ''
   card:
     # Allow access to user's name through JS
     type: custom:config-template-card
@@ -339,11 +397,20 @@ folding_media_player_with_spotcast_template:
       entities:
         - '[[entity_id]]'
       card:
-        # Folding row to hide controls
-        type: custom:fold-entity-row
-        head:
-          entity: '[[entity_id]]'
-          name: '[[device_friendly_name]]'
+        type: custom:auto-entities
+        card_mod:
+          style: |
+            :host {
+              color: red;
+              }
+        card:
+          # Folding row to hide controls
+          type: custom:fold-entity-row
+          head:
+            entity: '[[entity_id]]'
+            name: '[[device_friendly_name]]'
+        filter:
+          template: "[[auto_entity_filter_template]]"
         entities:
           # Controls row
           - type: custom:paper-buttons-row

@@ -3,6 +3,8 @@
 
 breaking_changes:
 
+circadian_lighting:
+
 cloud:
 
 config:
@@ -88,6 +90,8 @@ lovelace:
     - url: /hacsfiles/custom-brand-icons/custom-brand-icons.js
       type: module
     - url: /hacsfiles/light-entity-card/light-entity-card.js
+      type: module
+    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
       type: module
 
 map:
@@ -175,8 +179,10 @@ automation: !include includes/automation.yaml
 binary_sensor: !include includes/binary_sensor.yaml
 group: !include includes/groups.yaml
 input_number: !include includes/input_number.yaml
+input_select: !include includes/input_select.yaml
 input_text: !include includes/input_text.yaml
 scene: !include includes/scenes.yaml
 script: !include includes/scripts.yaml
 sensor: !include includes/sensors.yaml
+switch: !include includes/switch.yaml
 template: !include includes/templates.yaml

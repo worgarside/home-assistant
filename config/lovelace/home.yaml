@@ -36,6 +36,10 @@ cards:
     entity: weather.openweathermap
     show_forecast: true
 
+  - type: entities
+    entities:
+      - input_select.entity_force_updater
+
   - type: custom:layout-break
 
   - type: custom:swipe-card
