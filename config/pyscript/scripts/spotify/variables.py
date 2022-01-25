@@ -24,14 +24,23 @@ if gethostname() != "homeassistant":
 
 
 @time_trigger("cron(* * * * *)")
-def update_tempo_variables():
+@state_trigger("sensor.spotify_matt_scott_media_title")
+@state_trigger("sensor.spotify_tom_jones_media_title")
+@state_trigger("sensor.spotify_will_garside_media_title")
+def update_tempo_variables(var_name=None):
     """Update the tempo variables every minute"""
 
-    for user_full_name in (
-        "matt_scott",
-        "tom_jones",
-        "will_garside",
-    ):
+    users_to_update = (
+        (var_name.replace("sensor.spotify_", "").replace("_media_title", ""),)
+        if var_name
+        else (
+            "matt_scott",
+            "tom_jones",
+            "will_garside",
+        )
+    )
+
+    for user_full_name in users_to_update:
         user_first_name, _ = user_full_name.split("_")
         media_title_sensor_name = f"sensor.spotify_{user_full_name}_media_title"
         tempo_variable_name = f"var.spotify_tempo_{user_first_name}"
