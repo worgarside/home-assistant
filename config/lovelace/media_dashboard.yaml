@@ -107,6 +107,13 @@ cards:
         - type: custom:decluttering-card
           template: active_media_player_template
           variables:
+            - media_player: tom_s_speakers
+            - binary_sensor_name: tom_s_speakers
+            - icon: cast-audio
+
+        - type: custom:decluttering-card
+          template: active_media_player_template
+          variables:
             - media_player: upstairs_speakers
             - binary_sensor_name: upstairs_speakers
             - icon: speaker-multiple
