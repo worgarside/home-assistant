@@ -111,6 +111,9 @@ pyscript: !include pyscript/config.yaml
 recorder:
   db_url: !secret mariadb_db_url
 
+# Installed via HACS - https://github.com/vigonotion/hass-simpleicons
+#simpleicons:
+
 speedtestdotnet:
   monitored_conditions:
     - ping
@@ -153,20 +156,6 @@ usb:
 
 updater:
 
-var:
-  spotify_tempo_matt:
-    friendly_name: Spotify Tempo (Matt)
-    unit_of_measurement: BPM
-    icon: mdi:metronome
-  spotify_tempo_tom:
-    friendly_name: Spotify Tempo (Tom)
-    unit_of_measurement: BPM
-    icon: mdi:metronome
-  spotify_tempo_will:
-    friendly_name: Spotify Tempo (Will)
-    unit_of_measurement: BPM
-    icon: mdi:metronome
-
 webhook:
 
 zeroconf:
@@ -186,3 +175,4 @@ script: !include includes/scripts.yaml
 sensor: !include includes/sensors.yaml
 switch: !include includes/switch.yaml
 template: !include includes/templates.yaml
+var: !include includes/variables.yaml
