@@ -58,7 +58,7 @@
   # --- --- --- --- --- Will's Room --- --- --- --- --- #
 
   # Will's Room Remote Button 1 Short Press - Turn Will's Room on
-  - alias: Will's Room Remote Button 1 Short Press
+  - alias: /hue/remote/will_s_room/button1/short_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -73,7 +73,7 @@
           area_id: will_s_room
 
   # Will's Room Remote Button 2 Short Press - Brighten Will's Room by 25
-  - alias: Will's Room Remote Button 2 Short Press
+  - alias: /hue/remote/will_s_room/button2/short_press
     mode: queued
     trigger:
       - device_id: aa96a5e6e87f4076da2f1501c53e02c8
@@ -93,7 +93,7 @@
           brightness: '{{states.light.wills_shapes.attributes.brightness + 25}}'
 
   # Will's Room Remote Button 2 Held Down - Brighten Will's Room by 50 (repeated)
-  - alias: Will's Room Remote Button 2 Held Down
+  - alias: /hue/remote/will_s_room/button2/held_down
     mode: single
     max_exceeded: silent
     trigger:
@@ -114,7 +114,7 @@
           brightness: '{{states.light.wills_shapes.attributes.brightness + 50}}'
 
   # Will's Room Remote Button 3 Short Press - Dim Will's Room by 25
-  - alias: Will's Room Remote Button 3 Short Press
+  - alias: /hue/remote/will_s_room/button3/short_press
     mode: queued
     trigger:
       - device_id: aa96a5e6e87f4076da2f1501c53e02c8
@@ -134,7 +134,7 @@
           brightness: '{{states.light.wills_shapes.attributes.brightness - 25}}'
 
   # Will's Room Remote Button 3 Held Down - Dim Will's Room by 50 (repeated)
-  - alias: Will's Room Remote Button 3 Held Down
+  - alias: /hue/remote/will_s_room/button3/held_down
     mode: single
     max_exceeded: silent
     trigger:
@@ -155,7 +155,7 @@
           brightness: '{{states.light.wills_shapes.attributes.brightness - 50}}'
 
   # Will's Room Remote Button 4 Short Press - Turn Will's Room off
-  - alias: Will's Room Remote Button 4 Short Press
+  - alias: /hue/remote/will_s_room/button4/short_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -172,7 +172,7 @@
   # --- --- --- --- --- Kitchen --- --- --- --- --- #
 
   # Kitchen Remote Button 1 Long Press - Turn on all the Kitchen lights
-  - alias: Kitchen Remote Button 1 Long Press
+  - alias: /hue/remote/kitchen/button1/long_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -192,7 +192,7 @@
           area_id: kitchen
 
   # Kitchen Remote Button 2 Short Press
-  - alias: Kitchen Remote Button 2 Short Press
+  - alias: /hue/remote/kitchen/button2/short_press
     mode: queued
     trigger:
       - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
@@ -212,7 +212,7 @@
           brightness: '{{states.light.kitchen_work_light.attributes.brightness + 25}}'
 
   # Kitchen Remote Button 2 Held Down
-  - alias: Kitchen Remote Button 2 Held Down
+  - alias: /hue/remote/kitchen/button2/held_down
     mode: single
     max_exceeded: silent
     trigger:
@@ -232,7 +232,7 @@
           brightness: '{{states.light.kitchen_work_light.attributes.brightness + 50}}'
 
   # Kitchen Remote Button 3 Short Press
-  - alias: Kitchen Remote Button 3 Short Press
+  - alias: /hue/remote/kitchen/button3/short_press
     mode: queued
     trigger:
       - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
@@ -251,7 +251,7 @@
           brightness: '{{states.light.kitchen_work_light.attributes.brightness + 25}}'
 
   # Kitchen Remote Button 3 Held Down
-  - alias: Kitchen Remote Button 3 Held Down
+  - alias: /hue/remote/kitchen/button3/held_down
     mode: single
     max_exceeded: silent
     trigger:
@@ -271,7 +271,7 @@
           brightness: '{{states.light.kitchen_work_light.attributes.brightness + 50}}'
 
   # Kitchen Remote Button 4 Short Press
-  - alias: Kitchen Remote Button 4 Short Press
+  - alias: /hue/remote/kitchen/button4/short_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -298,7 +298,7 @@
   # --- --- --- --- --- Lounge --- --- --- --- --- #
 
   # Lounge Remote Button 1 Short Press
-  - alias: Lounge Remote Button 1 Short Press
+  - alias: /hue/remote/lounge/button1/short_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -313,7 +313,7 @@
           area_id: lounge
 
   # Lounge Remote Button 2 Short Press
-  - alias: Lounge Remote Button 2 Short Press
+  - alias: /hue/remote/lounge/button2/short_press
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -343,7 +343,7 @@
           brightness: '{{states.light.galaxy_light.attributes.brightness + 25}}'
 
   # Lounge Remote Button 2 Held Down
-  - alias: Lounge Remote Button 2 Held Down
+  - alias: /hue/remote/lounge/button2/held_down
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -373,7 +373,7 @@
           brightness: '{{states.light.galaxy_light.attributes.brightness + 50}}'
 
   # Lounge Remote Button 3 Short Press
-  - alias: Lounge Remote Button 3 Short Press
+  - alias: /hue/remote/lounge/button3/short_press
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -403,7 +403,7 @@
           brightness: '{{states.light.galaxy_light.attributes.brightness - 25}}'
 
   # Lounge Remote Button 3 Held Down
-  - alias: Lounge Remote Button 3 Held Down
+  - alias: /hue/remote/lounge/button3/held_down
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -433,7 +433,7 @@
           brightness: '{{states.light.galaxy_light.attributes.brightness - 50}}'
 
   # Lounge Remote Button 4 Short Press
-  - alias: Lounge Remote Button 4 Short Press
+  - alias: /hue/remote/lounge/button4/short_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -506,7 +506,7 @@
 
 # ------------------------ Critical ------------------------ #
 
-  - alias: Keep Washing Machine Turned On
+  - alias: /switch/washing_machine/keep_turned_on
     id: keep_washing_machine_on
     mode: single
     trigger:
@@ -523,7 +523,7 @@
           # yamllint disable-line rule:line-length
           message: "`keep_washing_machine_on` was triggered with state `{{ trigger.to_state.state}}`"
 
-  - alias: Restart Galaxy Light
+  - alias: /light/galaxy_light/restart_when_offline
     id: restart_galaxy_light_when_offline
     trigger:
       - platform: state
