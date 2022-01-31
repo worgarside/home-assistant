@@ -492,16 +492,7 @@
 
 # ------------------------ Scheduled ------------------------ #
 
-  - alias: Spotify Monthly Playlists
-    id: spotify_monthlies
-    mode: single
-    trigger:
-      - platform: time_pattern
-        minutes: "/15"
-    action:
-      - service: pyscript.update_spotify_monthlies
-
-  - alias: Midnight Terrace Lights Off
+  - alias: /light/terrace_lights/turn_off_at_midnight
     id: midnight_terrace_lights_off
     trigger:
       - platform: time
