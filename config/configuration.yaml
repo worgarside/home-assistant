@@ -168,6 +168,7 @@ zone:
 
 automation: !include includes/automation.yaml
 binary_sensor: !include includes/binary_sensor.yaml
+device_tracker: !include includes/device_tracker.yaml
 group: !include includes/groups.yaml
 input_number: !include includes/input_number.yaml
 input_select: !include includes/input_select.yaml

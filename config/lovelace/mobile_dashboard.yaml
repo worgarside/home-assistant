@@ -74,13 +74,6 @@ cards:
           - auto_entity_filter_template: "{{ 'switch.hifi_amp' }}"
 
   - type: entities
-    title: Terrace
-    state_color: true
-    entities:
-      - entity: switch.terrace_lights
-        name: Lights
-
-  - type: entities
     title: Matt's Room
     entities:
       - type: custom:decluttering-card
@@ -95,6 +88,13 @@ cards:
           - name: Shapes
 
   - type: entities
+    title: Terrace
+    state_color: true
+    entities:
+      - entity: switch.terrace_lights
+        name: Lights
+
+  - type: entities
     title: Tom's Room
     entities:
       - type: custom:decluttering-card
@@ -102,6 +102,7 @@ cards:
         variables:
           - device_friendly_name: Speakers
           - entity_id: media_player.tom_s_speakers
+          - auto_entity_filter_template: "{{ 'switch.tom_s_amp' }}"
       - type: custom:decluttering-card
         template: folding_rgb_light_template
         variables:
