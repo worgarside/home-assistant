@@ -19,7 +19,7 @@
           message: >
             Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
 
-# ------------------------ Will's Room Curtain ------------------------ #
+# ------------------------ Will's Room ------------------------ #
 
   # When a change is detected by the sensor (from any source), set the input_number
   # value to change the slider on the front end
@@ -52,6 +52,36 @@
         data:
           position: '{{ trigger.to_state.state | int }}'
       - delay: 5
+
+  - alias: Will's Room Door Opened
+    id: wills_room_door_opened
+    trigger:
+      platform: state
+      entity_id: binary_sensor.wills_bedroom_door
+      to: "on"
+    condition: "{{ states('person.will') == 'away' }}"
+    action:
+      - service: pyscript.open_curtain
+      - service: notify.mobile_app_will_s_pixel_4_xl
+        data:
+          message: Bedroom door has been opened
+          title: Security Alert!
+      - service: light.turn_on
+        data:
+          entity_id: light.wills_shapes
+          brightness_pct: 100
+          effect: 'Cops'
+      - service: media_player.volume_set
+        target:
+          entity_id: media_player.wills_bedroom_home_hub
+        data:
+          volume_level: 1
+      - service: media_extractor.play_media
+        target:
+          entity_id: media_player.wills_bedroom_home_hub
+        data:
+          media_content_type: VIDEO
+          media_content_id: https://www.youtube.com/watch?v=Zd68AthoNIw
 
 # ------------------------ Hue Remotes ------------------------ #
 
