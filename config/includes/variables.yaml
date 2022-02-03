@@ -52,3 +52,19 @@ truelayer_balance_santander_savings_account:
   friendly_name: Santander Savings Account Balance
   unit_of_measurement: GBP
   icon: mdi:piggy-bank
+
+# ------------------------ Devices ------------------------ #
+
+will_s_macbook_pro_battery_percentage:
+  friendly_name: Will's MacBook Pro Battery Percentage
+  unit_of_measurement: "%"
+  icon: mdi:laptop
+
+will_s_macbook_pro_battery_seconds_left:
+  friendly_name: Will's MacBook Pro Battery Seconds Left
+  unit_of_measurement: "seconds"
+  icon: mdi:timer-outline
+
+will_s_macbook_pro_battery_power_plugged:
+  friendly_name: Will's MacBook Pro Power Plugged
+  icon: mdi:power-plug

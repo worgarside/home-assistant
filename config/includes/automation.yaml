@@ -673,3 +673,48 @@
       - service: homeassistant.update_entity
         target:
           entity_id: "{{ trigger.to_state.state }}"
+
+# ------------------------ Webhooks ------------------------ #
+
+  - alias: /webhook/will_s_macbook_pro_battery_percentage
+    id: will_s_macbook_pro_battery_percentage_webhook
+    trigger:
+      - platform: webhook
+        webhook_id: will_s_macbook_pro_battery_percentage
+    action:
+      - service: var.set
+        data:
+          entity_id: var.will_s_macbook_pro_battery_percentage
+          value: "{{ trigger.json.battery_percentage }}"
+      - service: var.set
+        data:
+          entity_id: var.will_s_macbook_pro_battery_seconds_left
+          value: "{{ trigger.json.battery_seconds_left }}"
+      - service: var.set
+        data:
+          entity_id: var.will_s_macbook_pro_battery_power_plugged
+          value: "{{ trigger.json.power_plugged }}"
+
+# ------------------------ Devices ------------------------ #
+
+  - alias: /switch/will_s_macbook_pro/turn_charger_on
+    id: turn_will_s_macbook_pro_charger_on
+    trigger:
+      - platform: numeric_state
+        entity_id: var.will_s_macbook_pro_battery_percentage
+        below: 25
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.will_s_macbook
+
+  - alias: /switch/will_s_macbook_pro/turn_charger_off
+    id: turn_will_s_macbook_pro_charger_off
+    trigger:
+      - platform: numeric_state
+        entity_id: var.will_s_macbook_pro_battery_percentage
+        above: 95
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.will_s_macbook
