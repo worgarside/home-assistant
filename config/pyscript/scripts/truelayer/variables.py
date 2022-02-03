@@ -1,6 +1,9 @@
 """Functions which can be triggered/timed and set the value(s) for variable(s)"""
-from wg_utilities.clients import TrueLayerClient, TrueLayerBank, Card
 from socket import gethostname
+
+from wg_utilities.clients import TrueLayerClient
+from wg_utilities.clients.truelayer import Bank, Card
+
 from helpers import get_secret
 
 MODULE_NAME = "truelayer"
@@ -13,13 +16,13 @@ TLC_ARGS = dict(
     creds_cache_path=CACHE_PATH,
 )
 
-MONZO = TrueLayerClient(bank=TrueLayerBank.MONZO, **TLC_ARGS)
+MONZO = TrueLayerClient(bank=Bank.MONZO, **TLC_ARGS)
 
-AMEX = TrueLayerClient(bank=TrueLayerBank.AMEX, **TLC_ARGS)
+AMEX = TrueLayerClient(bank=Bank.AMEX, **TLC_ARGS)
 
-HSBC = TrueLayerClient(bank=TrueLayerBank.HSBC, **TLC_ARGS)
+HSBC = TrueLayerClient(bank=Bank.HSBC, **TLC_ARGS)
 
-SANTANDER = TrueLayerClient(bank=TrueLayerBank.SANTANDER, **TLC_ARGS)
+SANTANDER = TrueLayerClient(bank=Bank.SANTANDER, **TLC_ARGS)
 
 if gethostname() != "homeassistant":
     from helpers import local_setup
@@ -29,33 +32,44 @@ if gethostname() != "homeassistant":
     var = sync_mock
     time_trigger = decorator
 
+_INSTANCE_KWARGS = {"balance_update_threshold": 1}
+
 # Mapping of the variable names to the Account/Card instances themselves
 VAR_ENTITY_MAP = {
     "monzo_current_account": task.executor(
         MONZO.get_account_by_id,
         get_secret("monzo_current_account_id", module=MODULE_NAME),
+        instance_kwargs=_INSTANCE_KWARGS,
     ),
     "monzo_savings": task.executor(
-        MONZO.get_account_by_id, get_secret("monzo_savings_pot_id", module=MODULE_NAME)
+        MONZO.get_account_by_id,
+        get_secret("monzo_savings_pot_id", module=MODULE_NAME),
+        instance_kwargs=_INSTANCE_KWARGS,
     ),
     "monzo_credit_cards": task.executor(
         MONZO.get_account_by_id,
         get_secret("monzo_credit_cards_pot_id", module=MODULE_NAME),
+        instance_kwargs=_INSTANCE_KWARGS,
     ),
     "amex": task.executor(
-        AMEX.get_card_by_id, get_secret("amex_card_id", module=MODULE_NAME)
+        AMEX.get_card_by_id,
+        get_secret("amex_card_id", module=MODULE_NAME),
+        instance_kwargs=_INSTANCE_KWARGS,
     ),
     "hsbc_current_account": task.executor(
         HSBC.get_account_by_id,
         get_secret("hsbc_current_account_id", module=MODULE_NAME),
+        instance_kwargs=_INSTANCE_KWARGS,
     ),
     "santander_current_account": task.executor(
         SANTANDER.get_account_by_id,
         get_secret("santander_current_account_id", module=MODULE_NAME),
+        instance_kwargs=_INSTANCE_KWARGS,
     ),
     "santander_savings_account": task.executor(
         SANTANDER.get_account_by_id,
         get_secret("santander_savings_account_id", module=MODULE_NAME),
+        instance_kwargs=_INSTANCE_KWARGS,
     ),
 }
 

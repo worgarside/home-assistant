@@ -4,7 +4,7 @@ from os.path import isfile
 from socket import gethostname
 from re import compile as compile_regex
 from requests import get
-from wg_utilities.clients.spotify_client import SpotifyClient
+from wg_utilities.clients import SpotifyClient
 from wg_utilities.functions import force_mkdir
 
 from helpers import get_secret
@@ -32,7 +32,7 @@ SPOTIFY = SpotifyClient(
 )
 
 _MONTH_LIST = "|".join(
-    datetime.strptime(str(i), "%m").strftime("%B") for i in range(1, 13)
+    [datetime.strptime(str(i), "%m").strftime("%B") for i in range(1, 13)]
 )
 MONTHLY_PATTERN = compile_regex(rf"^({_MONTH_LIST}) '[0-9]{{2}}$")
 

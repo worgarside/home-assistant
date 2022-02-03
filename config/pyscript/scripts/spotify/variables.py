@@ -1,5 +1,5 @@
 """Functions which can be triggered/timed and set the value(s) for variable(s)"""
-from wg_utilities.clients.spotify_client import SpotifyClient
+from wg_utilities.clients import SpotifyClient
 from socket import gethostname
 from helpers import get_secret
 

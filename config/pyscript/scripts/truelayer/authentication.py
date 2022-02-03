@@ -1,8 +1,8 @@
 """Functions/services for TrueLayer authentication"""
 from socket import gethostname
 
-from wg_utilities.clients import TrueLayerClient, TrueLayerBank
-
+from wg_utilities.clients import TrueLayerClient
+from wg_utilities.clients.truelayer import Bank
 from helpers import get_secret
 
 MODULE_NAME = "truelayer"
@@ -30,7 +30,7 @@ def get_truelayer_auth_link():
     tlc = TrueLayerClient(
         client_id=CLIENT_ID,
         client_secret=CLIENT_SECRET,
-        bank=TrueLayerBank.MONZO,
+        bank=Bank.MONZO,
         log_requests=True,
     )
 
@@ -44,10 +44,10 @@ def authenticate_truelayer_against_bank(bank, code):
     """Authenticate TrueLayer against user's bank account
 
     Args:
-        bank (str): name of the bank (must be a valid entry for TrueLayerBank)
+        bank (str): name of the bank (must be a valid entry for Bank)
         code (str): the auth code returned from the TL auth flow
     """
-    bank = TrueLayerBank[bank.upper()]
+    bank = Bank[bank.upper()]
 
     tl_client = TrueLayerClient(
         client_id=CLIENT_ID,
