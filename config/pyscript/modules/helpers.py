@@ -51,9 +51,17 @@ def get_secret(secret_name, *, module, default=None, json=False):
     Returns:
         str: the secret's value
     """
-    secret_value = (
-        pyscript.config.get("apps", {}).get(module, {}).get(secret_name, default)
-    )
+
+    if gethostname() != "homeassistant":
+        from os import getenv
+
+        secret_value = getenv(
+            f"{module.upper()}_{secret_name.upper()}", default=default
+        )
+    else:
+        secret_value = (
+            pyscript.config.get("apps", {}).get(module, {}).get(secret_name, default)
+        )
 
     if json:
         return loads(secret_value)
