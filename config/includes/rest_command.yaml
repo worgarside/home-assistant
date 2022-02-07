@@ -1,0 +1,16 @@
+---
+mini_crt_turn_power_off:
+  url: http://192.168.1.170:5000/crt/off
+  method: get
+
+mini_crt_turn_power_on:
+  url: http://192.168.1.170:5000/crt/on
+  method: get
+
+mini_crt_turn_nanoleaf_updater_on:
+  url: http://192.168.1.170:5000/nanoleaf-mirror/on
+  method: get
+
+mini_crt_turn_nanoleaf_updater_off:
+  url: http://192.168.1.170:5000/nanoleaf-mirror/off
+  method: get

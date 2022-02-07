@@ -356,10 +356,14 @@ folding_rgb_light_template:
 
 folding_rgb_light_with_effects_template:
   card:
-    type: custom:fold-entity-row
-    head:
-      entity: '[[entity]]'
-      name: '[[name]]'
+    type: custom:auto-entities
+    card:
+      type: custom:fold-entity-row
+      head:
+        entity: '[[entity]]'
+        name: '[[name]]'
+    filter:
+      template: "[[auto_entity_filter_template]]"
     entities:
       - type: custom:slider-entity-row
         entity: '[[entity]]'

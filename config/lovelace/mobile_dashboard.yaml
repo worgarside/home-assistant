@@ -55,6 +55,8 @@ cards:
         variables:
           - entity: light.the_snail
           - name: The Snail
+          - auto_entity_filter_template: >
+              {{ 'input_boolean.mini_crt_nanoleaf_updater' }}
       - type: custom:decluttering-card
         template: folding_rgb_light_template
         variables:
@@ -72,6 +74,11 @@ cards:
           - device_friendly_name: HiFi System
           - entity_id: media_player.hifi_system
           - auto_entity_filter_template: "{{ 'switch.hifi_amp' }}"
+      - type: custom:fold-entity-row
+        head:
+          entity: input_boolean.mini_crt_power
+        entities:
+          - input_boolean.mini_crt_nanoleaf_updater
 
   - type: entities
     title: Matt's Room

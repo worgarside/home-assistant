@@ -18,13 +18,39 @@
       - Victoria
       - Waterloo & City
 
-  - platform: citybikes
-    name: Boris Bikes
-    network: Santander Cycles
-    stations:
-      - 200217
-      - 200205
-      - 300033
+#  - platform: citybikes
+#    name: Boris Bikes
+#    network: Santander Cycles
+#    stations:
+#      - 200217
+#      - 200205
+#      - 300033
+
+  - platform: rest
+    resource: http://ip.jsontest.com
+    name: External IP
+    scan_interval: 300
+    value_template: "{{ value_json.ip }}"
+
+  - platform: rest
+    name: Mini CRT Power State
+    method: GET
+    scan_interval: 60
+    force_update: true
+    resource: "http://192.168.1.170:5000/crt/state"
+    headers:
+      Content-Type: application/json
+    value_template: "{{ value_json.state }}"
+
+  - platform: rest
+    name: Mini CRT Nanoleaf Updater State
+    method: GET
+    scan_interval: 60
+    force_update: true
+    resource: "http://192.168.1.170:5000/nanoleaf-mirror/state"
+    headers:
+      Content-Type: application/json
+    value_template: "{{ value_json.state }}"
 
   - platform: rest
     name: Will's Room Curtain Position

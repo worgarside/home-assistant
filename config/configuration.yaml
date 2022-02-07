@@ -170,9 +170,11 @@ automation: !include includes/automation.yaml
 binary_sensor: !include includes/binary_sensor.yaml
 device_tracker: !include includes/device_tracker.yaml
 group: !include includes/groups.yaml
+input_boolean: !include includes/input_boolean.yaml
 input_number: !include includes/input_number.yaml
 input_select: !include includes/input_select.yaml
 input_text: !include includes/input_text.yaml
+rest_command: !include includes/rest_command.yaml
 scene: !include includes/scenes.yaml
 script: !include includes/scripts.yaml
 sensor: !include includes/sensors.yaml
