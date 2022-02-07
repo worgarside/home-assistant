@@ -146,6 +146,19 @@ cards:
         variables:
           - device_friendly_name: Home Hub
           - entity_id: media_player.wills_bedroom_home_hub
+      - type: custom:fold-entity-row
+        head:
+          entity: var.will_s_macbook_pro_battery_percentage
+          name: MacBook Pro Battery
+        entities:
+          - entity: switch.will_s_macbook
+            name: Power Supply
+          - entity: automation.switch_will_s_macbook_pro_turn_charger_off
+            name: Auto Switch Off
+            icon: mdi:toggle-switch-off
+          - entity: automation.switch_will_s_macbook_pro_turn_charger_on
+            name: Auto Switch On
+            icon: mdi:toggle-switch
       - type: custom:decluttering-card
         template: folding_media_player_with_spotcast_template
         variables:
