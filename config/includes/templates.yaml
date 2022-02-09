@@ -288,3 +288,10 @@
               states("sensor.westminster")
             ]
           }}
+
+
+# ------------------------ Times ------------------------
+
+  - binary_sensor:
+      - name: Quiet Hours
+        state: "{{ not 7 < now().hour < 21 }}"

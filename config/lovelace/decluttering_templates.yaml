@@ -324,8 +324,25 @@ folding_white_light_template:
   card:
     type: custom:fold-entity-row
     head:
+      type: custom:restriction-card
+      card_mod:
+        style: |
+          :host #overlay {
+            padding: 12px 7px;
+            height: 24px;
+            margin-top: -4px;
+          }
       entity: '[[entity]]'
-      name: '[[name]]'
+      row: true
+      restrictions:
+        confirm:
+          text: It's late, do you want to unlock this action for 5 seconds?
+      condition:
+        entity: binary_sensor.quiet_hours
+        value: "on"
+      card:
+        entity: '[[entity]]'
+        name: '[[name]]'
     entities:
       - type: custom:slider-entity-row
         entity: '[[entity]]'
@@ -340,8 +357,25 @@ folding_rgb_light_template:
     card:
       type: custom:fold-entity-row
       head:
+        type: custom:restriction-card
+        card_mod:
+          style: |
+            :host #overlay {
+              padding: 12px 7px;
+              height: 24px;
+              margin-top: -4px;
+            }
         entity: '[[entity]]'
-        name: '[[name]]'
+        row: true
+        restrictions:
+          confirm:
+            text: It's late, do you want to unlock this action for 5 seconds?
+        condition:
+          entity: binary_sensor.quiet_hours
+          value: "on"
+        card:
+          entity: '[[entity]]'
+          name: '[[name]]'
     filter:
       template: "[[auto_entity_filter_template]]"
     entities:
@@ -360,8 +394,25 @@ folding_rgb_light_with_effects_template:
     card:
       type: custom:fold-entity-row
       head:
+        type: custom:restriction-card
+        card_mod:
+          style: |
+            :host #overlay {
+              padding: 12px 7px;
+              height: 24px;
+              margin-top: -4px;
+            }
         entity: '[[entity]]'
-        name: '[[name]]'
+        row: true
+        restrictions:
+          confirm:
+            text: It's late, do you want to unlock this action for 5 seconds?
+        condition:
+          entity: binary_sensor.quiet_hours
+          value: "on"
+        card:
+          entity: '[[entity]]'
+          name: '[[name]]'
     filter:
       template: "[[auto_entity_filter_template]]"
     entities:

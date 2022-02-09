@@ -4,10 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
-black = "==21.12b0"
+black = "*"
 pylint = "*"
 pre-commit = "*"
 yamllint = "*"
+locationsharinglib = "*"
 
 [packages]
 homeassistant = "*"
