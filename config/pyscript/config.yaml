@@ -5,6 +5,9 @@ apps:
   monzo:
     client_id: !secret monzo_client_id
     client_secret: !secret monzo_client_secret
+  nanoleaf.the_snail:
+    ip_address: !secret the_snail_shapes_ip
+    auth_token: !secret the_snail_shapes_auth_token
   switchbot.curtain_controller:
     api_key: !secret switchbot_api_key
     curtain_id: !secret switchbot_curtain_id

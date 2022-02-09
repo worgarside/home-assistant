@@ -79,6 +79,18 @@ cards:
           entity: input_boolean.mini_crt_power
         entities:
           - input_boolean.mini_crt_nanoleaf_updater
+          - type: custom:paper-buttons-row
+            buttons:
+              - icon: mdi:floppy
+                name: Previous animation
+                tap_action:
+                  action: call-service
+                  service: pyscript.save_previous_nanoleaf_state
+              - icon: mdi:floppy
+                name: Current animation
+                tap_action:
+                  action: call-service
+                  service: pyscript.save_current_nanoleaf_state
 
   - type: entities
     title: Matt's Room
@@ -122,6 +134,7 @@ cards:
       - type: custom:slider-entity-row
         entity: input_number.wills_room_curtain_position
         name: Curtain Position
+        icon: mdi:curtains
       - entity: switch.tower_fan
         state_color: true
       - type: custom:decluttering-card

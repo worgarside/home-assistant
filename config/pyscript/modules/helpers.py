@@ -1,11 +1,9 @@
 """helper functions for use across Pyscript"""
 
-from socket import gethostname
-from unittest.mock import MagicMock
-
-
 # pylint: disable=import-outside-toplevel
 from json import loads
+from socket import gethostname
+from unittest.mock import MagicMock
 
 
 def local_setup():
@@ -20,7 +18,6 @@ def local_setup():
     """
     from logging import getLogger, DEBUG
     from wg_utilities.loggers import add_stream_handler
-    from unittest.mock import AsyncMock
 
     def _dummy_decorator(func):
         """Dummy function for running scripts locally"""
@@ -30,7 +27,10 @@ def local_setup():
     _log.setLevel(DEBUG)
     add_stream_handler(_log)
 
-    return _log, AsyncMock(), MagicMock(), _dummy_decorator
+    task_mock = MagicMock()
+    task_mock.executor = lambda func, *a, **k: func(*a, **k)
+
+    return _log, task_mock, MagicMock(), _dummy_decorator
 
 
 if gethostname() != "homeassistant":
