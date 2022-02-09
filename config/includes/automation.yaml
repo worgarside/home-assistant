@@ -23,7 +23,8 @@
 
   # When a change is detected by the sensor (from any source), set the input_number
   # value to change the slider on the front end
-  - alias: Set Will's Room Curtain Position Slider
+  - alias: /input_number/wills_room_curtain_position/set_value
+    id: set_will_s_room_curtain_position_slider
     trigger:
       platform: state
       entity_id: sensor.will_s_room_curtain_position
@@ -41,7 +42,8 @@
           value: '{{ trigger.to_state.state | int }}'
 
   # When the slider (input number value) is changed, update the curtain position
-  - alias: Will's Room Curtain Position Slider Moved
+  - alias: /input_number/wills_room_curtain_position/value_updated
+    id: will_s_room_curtain_position_slider_moved
     mode: single
     max_exceeded: silent
     trigger:
@@ -53,8 +55,8 @@
           position: '{{ trigger.to_state.state | int }}'
       - delay: 5
 
-  - alias: Will's Room Door Opened
-    id: wills_room_door_opened
+  - alias: /door/wills_room/open_while_will_away
+    id: wills_room_door_opened_whilst_will_away
     trigger:
       platform: state
       entity_id: binary_sensor.wills_bedroom_door
@@ -480,7 +482,7 @@
 # ------------------------ Sun ------------------------ #
 
   # Open the curtain when the Sun rises past -6'
-  - alias: Open Curtain Pre-Sunrise
+  - alias: /sun/rise/open_curtain_before_sunrise
     id: open_curtain_pre_sunrise
     trigger:
       platform: numeric_state
@@ -489,8 +491,8 @@
     action:
       - service: pyscript.open_curtain
 
-  - alias: Sunset
-    id: sun_below_horizon
+  - alias: /sun/set
+    id: sun_set
     trigger:
       platform: numeric_state
       entity_id: sensor.sun_elevation
@@ -501,7 +503,7 @@
           entity_id: switch.terrace_lights
 
   # Open the curtain when the Sun sets past -18'
-  - alias: Close Curtain Post-Sunset
+  - alias: /sun/set/close_curtain_after_sunset
     id: close_curtain_post_sunset
     trigger:
       platform: numeric_state
@@ -614,17 +616,24 @@
 
 # ------------------------ Input Text/Select/Boolean ------------------------ #
 
-  - alias: Preserve Galaxy Light Previous State
-    id: preserve_galaxy_light_previous_state
+  - alias: /light/galaxy_light/preserve_state
+    id: preserve_galaxy_light_state
     trigger:
       - platform: state
         entity_id: light.galaxy_light
-    condition: "{{ trigger.from_state.state != 'unavailable' }}"
+        for:
+          seconds: 10
+    condition: "{{ trigger.to_state.state != 'unavailable' }}"
     action:
+      - service: persistent_notification.create
+        data:
+          title: Galaxy light Status Changed
+          # yamllint disable-line rule:line-length
+          message: "Changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"
       - service: input_text.set_value
         data:
           entity_id: input_text.galaxy_light_previous_state
-          value: "{{ trigger.from_state.state }}"
+          value: "{{ trigger.to_state.state }}"
 
   - alias: Initialise "Entity Force Updater" Options
     id: init_entity_force_updater_options
@@ -734,22 +743,22 @@
 
 # ------------------------ Financial ------------------------ #
 
-  - alias: Send Credit Card Top Up Notification
+  - alias: /notification/credit_card_top_up/send
     id: send_cc_top_up_notif
     trigger:
       - platform: time
         at:
-          - "19:00:00"
+          - "21:00:00"
     condition: |
       {{ 
         ( states('var.truelayer_balance_amex') | float - 
-        states('var.truelayer_balance_monzo_credit_cards') | float ) | abs > 0.01
+        states('var.truelayer_balance_monzo_credit_cards') | float )  | abs > 0.01
       }}
     action:
       - service: notify.mobile_app_will_s_pixel_4_xl
         data:
           # yamllint disable-line rule:line-length
-          message: "Credit Cards pot is £{{ ( ( states('var.truelayer_balance_amex') | float - states('var.truelayer_balance_monzo_credit_cards') | float ) ) }} too low. Top up pot?"
+          message: "Credit Cards pot is £{{ ( ( states('var.truelayer_balance_amex') | float - states('var.truelayer_balance_monzo_credit_cards') | float ) | round(2) ) }} too low. Top up pot?"
           data:
             actions:
               - action: "TOP_UP_CREDIT_CARD_POT"
