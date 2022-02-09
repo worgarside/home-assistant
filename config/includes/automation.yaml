@@ -85,6 +85,31 @@
           media_content_type: VIDEO
           media_content_id: https://www.youtube.com/watch?v=Zd68AthoNIw
 
+  - alias: /cover/curtain/auto_close
+    id: auto_close_will_s_curtain
+    # When the door is closed
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.wills_balcony_door
+        to: "off"
+        for:
+          seconds: 2.5
+    condition:
+      # If the curtain is currently open
+      - condition: template
+        value_template: >
+          {{ is_state('binary_sensor.will_s_room_curtain_open', 'off') }}
+      # If the curtain entered this state (i.e. was opened) < 15 minutes ago
+      - condition: template
+        value_template: >
+          {{ 
+            now().timestamp() - 
+            as_timestamp(states.binary_sensor.will_s_room_curtain_open.last_changed) 
+            < 15*60 
+          }}
+    action:
+      - service: pyscript.close_curtain
+
 # ------------------------ Hue Remotes ------------------------ #
 
   # --- --- --- --- --- Will's Room --- --- --- --- --- #
