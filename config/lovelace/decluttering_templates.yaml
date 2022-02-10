@@ -446,8 +446,6 @@ folding_media_player_with_spotcast_template:
   card:
     # Allow access to user's name through JS
     type: custom:config-template-card
-    variables:
-      USER_NAME: user.name
     entities:
       - '[[entity_id]]'
     card:
@@ -490,4 +488,4 @@ folding_media_player_with_spotcast_template:
                       {% else %}
                         [[entity_id]]
                       {% endif %}
-                    user_name: '${USER_NAME}'
+                    user_name: '${user.name}'
