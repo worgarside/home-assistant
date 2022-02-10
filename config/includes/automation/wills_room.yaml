@@ -1,0 +1,92 @@
+---
+
+# ------------------------ Will's Room ------------------------ #
+
+  # When a change is detected by the sensor (from any source), set the input_number
+  # value to change the slider on the front end
+  - alias: /input_number/wills_room_curtain_position/set_value
+    id: set_will_s_room_curtain_position_slider
+    trigger:
+      platform: state
+      entity_id: sensor.will_s_room_curtain_position
+    condition:
+      condition: template
+      value_template: >
+        {{ 
+          ( trigger.from_state.state | int - trigger.to_state.state | int ) | abs > 0 
+        }}
+    action:
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.wills_room_curtain_position
+        data:
+          value: '{{ trigger.to_state.state | int }}'
+
+  # When the slider (input number value) is changed, update the curtain position
+  - alias: /input_number/wills_room_curtain_position/value_updated
+    id: will_s_room_curtain_position_slider_moved
+    mode: single
+    max_exceeded: silent
+    trigger:
+      platform: state
+      entity_id: input_number.wills_room_curtain_position
+    action:
+      - service: pyscript.set_curtain_position
+        data:
+          position: '{{ trigger.to_state.state | int }}'
+      - delay: 5
+
+  - alias: /door/wills_room/open_while_will_away
+    id: wills_room_door_opened_whilst_will_away
+    trigger:
+      platform: state
+      entity_id: binary_sensor.wills_bedroom_door
+      to: "on"
+    condition: "{{ states('person.will') == 'away' }}"
+    action:
+      - service: pyscript.open_curtain
+      - service: notify.mobile_app_will_s_pixel_4_xl
+        data:
+          message: Bedroom door has been opened
+          title: Security Alert!
+      - service: light.turn_on
+        data:
+          entity_id: light.wills_shapes
+          brightness_pct: 100
+          effect: 'Cops'
+      - service: media_player.volume_set
+        target:
+          entity_id: media_player.wills_bedroom_home_hub
+        data:
+          volume_level: 1
+      - service: media_extractor.play_media
+        target:
+          entity_id: media_player.wills_bedroom_home_hub
+        data:
+          media_content_type: VIDEO
+          media_content_id: https://www.youtube.com/watch?v=Zd68AthoNIw
+
+  - alias: /cover/curtain/auto_close
+    id: auto_close_will_s_curtain
+    # When the door is closed
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.wills_balcony_door
+        to: "off"
+        for:
+          seconds: 2.5
+    condition:
+      # If the curtain is currently open
+      - condition: template
+        value_template: >
+          {{ is_state('binary_sensor.will_s_room_curtain_open', 'off') }}
+      # If the curtain entered this state (i.e. was opened) < 15 minutes ago
+      - condition: template
+        value_template: >
+          {{ 
+            now().timestamp() - 
+            as_timestamp(states.binary_sensor.will_s_room_curtain_open.last_changed) 
+            < 15*60 
+          }}
+    action:
+      - service: pyscript.close_curtain

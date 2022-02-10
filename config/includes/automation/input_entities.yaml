@@ -1,0 +1,132 @@
+---
+
+# ------------------------ Input Text/Select/Boolean ------------------------ #
+
+  - alias: /light/galaxy_light/preserve_state
+    id: preserve_galaxy_light_state
+    trigger:
+      - platform: state
+        entity_id: light.galaxy_light
+        for:
+          seconds: 10
+    condition:
+      - "{{ trigger.from_state.state != 'unavailable' }}"
+      - "{{ trigger.to_state.state != 'unavailable' }}"
+    action:
+      - service: persistent_notification.create
+        data:
+          title: Galaxy light Status Changed
+          # yamllint disable-line rule:line-length
+          message: "Changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.galaxy_light_previous_state
+          value: "{{ trigger.to_state.state }}"
+
+  - alias: Initialise "Entity Force Updater" Options
+    id: init_entity_force_updater_options
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+#      - delay:
+#          minutes: 15
+      - service: input_select.set_options
+        target:
+          entity_id: input_select.entity_force_updater
+        data_template:
+          options: |
+            {% for domain in [ 
+              states.binary_sensor,
+              states.climate,
+              states.cover,
+              states.device_tracker,
+              states.light,
+              states.media_player,
+              states.person,
+              states.remote,
+              states.scene,
+              states.script,
+              states.sensor,
+              states.sun,
+              states.switch,
+              states.var,
+              states.water_heater,
+              states.weather,
+            ] -%}
+              {% for state in domain -%}
+                - {{ state.entity_id }}
+              {% endfor %}
+            {%- endfor %}
+
+  - alias: Force Update Entity
+    id: force_update_entity
+    trigger:
+      - platform: state
+        entity_id: input_select.entity_force_updater
+    action:
+      - service: homeassistant.update_entity
+        target:
+          entity_id: "{{ trigger.to_state.state }}"
+
+  - alias: /input_boolean/mini_crt_power
+    id: input_boolean_mini_crt_power
+    trigger:
+      - platform: state
+        entity_id: input_boolean.mini_crt_power
+        for:
+          seconds: 1
+    action:
+      - choose:
+          - alias: "Turn On"
+            conditions: "{{ states('input_boolean.mini_crt_power') == 'on' }}"
+            sequence:
+              - service: rest_command.mini_crt_turn_power_on
+          - alias: "Turn Off"
+            conditions: "{{ states('input_boolean.mini_crt_power') == 'off' }}"
+            sequence:
+              - service: rest_command.mini_crt_turn_power_off
+        default:
+          - service: script.notify_will
+            data:
+              title: "Automation Failure"
+              # yamllint disable-line rule:line-length
+              message: "Automation `input_boolean_mini_crt_power` failed: unknown previous state of `{{ trigger.from_state.state }}`"
+
+  - alias: /input_boolean/mini_crt_nanoleaf_updater
+    id: input_boolean_mini_crt_nanoleaf_updater
+    trigger:
+      - platform: state
+        entity_id: input_boolean.mini_crt_nanoleaf_updater
+        for:
+          seconds: 1
+    action:
+      - choose:
+          - alias: "Turn On"
+            conditions: >
+              {{ states('input_boolean.mini_crt_nanoleaf_updater') == 'on' }}
+            sequence:
+              - service: rest_command.mini_crt_turn_nanoleaf_updater_on
+          - alias: "Turn Off"
+            conditions: >
+              {{ states('input_boolean.mini_crt_nanoleaf_updater') == 'off' }}
+            sequence:
+              - service: rest_command.mini_crt_turn_nanoleaf_updater_off
+        default:
+          - service: script.notify_will
+            data:
+              title: "Automation Failure"
+              # yamllint disable-line rule:line-length
+              message: "Automation `input_boolean_mini_crt_nanoleaf_updater` failed: unknown previous state of `{{ trigger.from_state.state }}`"
+
+  - alias: /input_boolean/mini_crt_power/force_update
+    id: force_update_input_boolean_mini_crt_power
+    trigger:
+      - platform: state
+        entity_id: media_player.hifi_system
+        to:
+    action:
+      - service: homeassistant.update_entity
+        entity_id: sensor.mini_crt_power_state
+
+

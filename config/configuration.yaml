@@ -172,7 +172,7 @@ zone:
 
 # ======================= Included Files ======================= #
 
-automation: !include includes/automation.yaml
+automation: !include_dir_merge_list includes/automation/
 binary_sensor: !include includes/binary_sensor.yaml
 device_tracker: !include includes/device_tracker.yaml
 group: !include includes/groups.yaml

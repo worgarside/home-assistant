@@ -1,0 +1,20 @@
+---
+
+# ------------------------ Internal Services ------------------------ #
+
+  # Custom automation for automatically reloading Pyscript when the files are updated -
+  #  no longer needed but kept here for reference
+  - alias: Pyscript Auto-Reload
+    trigger:
+      platform: event
+      event_type: folder_watcher
+      event_data:
+        event_type: modified
+    condition: "{{ trigger.event.data.folder == '/config/pyscript' }}"
+    action:
+      - service: pyscript.reload
+      - service: persistent_notification.create
+        data:
+          title: Pyscript has been reloaded
+          message: >
+            Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`

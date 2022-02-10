@@ -1,0 +1,79 @@
+---
+
+# ------------------------ Critical ------------------------ #
+
+  - alias: /switch/washing_machine/keep_turned_on
+    id: keep_washing_machine_on
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: switch.washing_machine
+        to: "off"
+    action:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.washing_machine
+      - service: script.notify_will
+        data:
+          title: "Critical Automation Triggered"
+          # yamllint disable-line rule:line-length
+          message: "`keep_washing_machine_on` was triggered with state `{{ trigger.to_state.state}}`"
+
+  - alias: /light/galaxy_light/restart_when_offline
+    id: restart_galaxy_light_when_offline
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.galaxy_light_online
+        to: "off"
+    action:
+      # Restart the Galaxy Light with a 5s delay
+      - service: script.restart_galaxy_light
+        data:
+          switch_on_delay: 5
+      # Wait for the GL to come back online, with a 10s timeout
+      - wait_template: "{{ is_state('binary_sensor.galaxy_light_online', 'on') }}"
+        timeout: 10
+      - alias: "Restart with 30s delay if not back online"
+        choose:
+          - alias: "Light didn't come back online"
+            conditions: "{{ not wait.completed }}"
+            sequence:
+              - alias: "Restart the GL with a 30s delay"
+                service: script.restart_galaxy_light
+                data:
+                  switch_on_delay: 30
+              - wait_template: >
+                  {{ is_state('binary_sensor.galaxy_light_online', 'on') }}
+                timeout: 10
+      - alias: "Resume original state if the restart succeeded, else notify Will"
+        choose:
+          - alias: "Galaxy light is back online"
+            conditions: "{{ is_state('binary_sensor.galaxy_light_online', 'on') }}"
+            sequence:
+              - choose:
+                  - alias: "Galaxy Light was ON before it went offline"
+                    conditions: >
+                      {{ states('input_text.galaxy_light_previous_state') == 'on' }}
+                    sequence:
+                      - service: switch.turn_on
+                        target:
+                          entity_id: light.galaxy_light
+                  - alias: "Galaxy Light was OFF before it went offline"
+                    conditions: >
+                      {{ states('input_text.galaxy_light_previous_state') == 'off' }}
+                    sequence:
+                      - service: switch.turn_off
+                        target:
+                          entity_id: light.galaxy_light
+                default:
+                  - service: script.notify_will
+                    data:
+                      title: "Automation Failure"
+                      # yamllint disable-line rule:line-length
+                      message: "Galaxy Light restart failed: previous state was `{{ trigger.from_state.state }}` and current state is `{{ states('light.galaxy_light') }}`"
+        default:
+          - service: script.notify_will
+            data:
+              title: "Automation Failure"
+              # yamllint disable-line rule:line-length
+              message: "Galaxy Light restart failed: previous state was `{{ states('input_text.galaxy_light_previous_state') }}` and current state is `{{ states('light.galaxy_light') }}`"
