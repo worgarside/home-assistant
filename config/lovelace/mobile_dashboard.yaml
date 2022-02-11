@@ -187,3 +187,47 @@ cards:
           - device_key: spotify_device_id
           - device_value: d13da09c3d2ffcc83ae1784fc05dd8bb4bb25305
           - entity_id: media_player.will_s_yas_209
+
+  - type: entities
+    title: Other
+    entities:
+      - type: custom:mini-climate
+        card_mod:
+          style: |
+            div.entity__secondary_info.ellipsis {
+              display: none;
+            }
+            div.entity__info__name_wrap {
+              position: relative;
+            }
+            div.entity__info__name {
+              position: absolute;
+              bottom: 3px;
+            }
+            div.entity__icon {
+              margin-top: 6px;
+            }
+        entity: climate.thermostat
+        icon: mdi:thermostat-box
+        fan_mode:
+          hide: true
+          disabled: true
+        secondary_info:
+          disabled: true
+        group: true
+      - type: divider
+      - type: custom:decluttering-card
+        template: folding_media_player_with_spotcast_template
+        variables:
+          - device_friendly_name: All Speakers
+          - entity_id: media_player.all_speakers
+      - type: custom:decluttering-card
+        template: folding_media_player_with_spotcast_template
+        variables:
+          - device_friendly_name: Downstairs Speakers
+          - entity_id: media_player.downstairs_speakers
+      - type: custom:decluttering-card
+        template: folding_media_player_with_spotcast_template
+        variables:
+          - device_friendly_name: Upstairs Speakers
+          - entity_id: media_player.upstairs_speakers
