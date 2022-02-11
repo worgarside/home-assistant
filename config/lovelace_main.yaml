@@ -1,0 +1,9 @@
+---
+decluttering_templates: !include lovelace/decluttering_templates.yaml
+
+
+views:
+  - !include lovelace/views/home.yaml
+  - !include lovelace/views/home_control.yaml
+  - !include lovelace/views/media_dashboard.yaml
+  - !include lovelace/views/london.yaml

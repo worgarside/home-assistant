@@ -9,8 +9,4 @@ swipe_nav:
   animate: swipe
 
 views:
-  - !include lovelace/mobile_dashboard.yaml
-  - !include lovelace/home.yaml
-  - !include lovelace/home_control.yaml
-  - !include lovelace/media_dashboard.yaml
-  - !include lovelace/london.yaml
+  - !include lovelace/views/mobile_dashboard.yaml

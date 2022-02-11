@@ -49,6 +49,16 @@ logger:
     charset_normalizer: warning
 
 lovelace:
+  title: THing
+  dashboards:
+    lovelace-main:
+      mode: yaml
+      filename: lovelace_main.yaml
+      title: Main
+    lovelace-mobile:
+      mode: yaml
+      filename: lovelace_mobile.yaml
+      title: Mobile
   mode: yaml
   resources:
     - url: /hacsfiles/spotify-card/spotify-card.js
