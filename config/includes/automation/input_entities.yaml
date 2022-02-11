@@ -148,6 +148,14 @@
             sequence:
               - service: switch.turn_off
                 entity_id: switch.tower_fan
-        default:
-          - service: switch.turn_on
-            entity_id: switch.tower_fan
+          - alias: High Temperature and Will's Home
+            conditions: |
+              {{ 
+                is_state('person.will', 'home') and
+                states('sensor.wills_room_hue_motion_sensor_temperature')
+                >=
+                states('input_number.wills_room_fan_auto_on_threshold')
+              }}
+            sequence:
+              - service: switch.turn_on
+                entity_id: switch.tower_fan

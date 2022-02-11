@@ -135,8 +135,16 @@ cards:
         entity: input_number.wills_room_curtain_position
         name: Curtain Position
         icon: mdi:curtains
-      - entity: switch.tower_fan
-        state_color: true
+      - type: custom:fold-entity-row
+        head:
+          entity: switch.tower_fan
+          state_color: true
+        entities:
+          - entity: input_number.wills_room_fan_auto_on_threshold
+            name: Auto-On Threshold
+            icon: mdi:chart-line
+          - entity: sensor.wills_room_hue_motion_sensor_temperature
+            name: Temperature
       - type: custom:decluttering-card
         template: folding_rgb_light_with_effects_template
         variables:
