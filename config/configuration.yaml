@@ -3,6 +3,11 @@
 
 breaking_changes:
 
+browser_mod:
+  devices:
+    0f686a62-15fffa21:
+      name: Chrome MacBook Pro
+
 circadian_lighting:
 
 cloud:
@@ -12,7 +17,10 @@ config:
 discovery:
 
 folder_watcher:
+  - folder: /config/includes
+  - folder: /config/lovelace
   - folder: /config/pyscript
+  - folder: /config/www
 
 frontend:
   extra_module_url: /hacsfiles/lovelace-card-mod/card-mod.js
@@ -21,7 +29,10 @@ history:
 
 homeassistant:
   allowlist_external_dirs:
+    - /config/includes
+    - /config/lovelace
     - /config/pyscript
+    - /config/www
   media_dirs:
     album_artwork: /config/www/album_artwork
 

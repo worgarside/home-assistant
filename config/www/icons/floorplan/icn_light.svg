@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>icn_light</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-28.8%" y="-28.8%" width="157.5%" height="157.5%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-490.000000, -592.000000)" id="icn_light">
+            <g filter="url(#filter-1)" transform="translate(500.000000, 600.000000)">
+                <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="80" height="80" rx="10"></rect>
+                <g id="Group" transform="translate(19.000000, 11.000000)" fill-rule="nonzero">
+                    <g transform="translate(7.000000, 7.000000)" fill="#FABB04" id="Path">
+                        <path d="M28,14 C28,6.26800001 21.7319999,0 14,0 C6.26800013,0 0,6.26800001 0,14 C0,14 28,14 28,14 Z"></path>
+                    </g>
+                    <g fill="#BCC1C5" id="Shape">
+                        <path d="M21,0 C9.40200043,0 0,9.40200043 0,21 C0,21 13,49 13,49 C13,49 13,50 13,50 C13,54.4179993 16.5819998,58 21,58 C25.4180002,58 29,54.4179993 29,50 C29,50 29,49 29,49 C29,49 42,21 42,21 C42,9.40200043 32.5979996,0 21,0 Z M35,21 C35,21 22,49 22,49 C22,49 27.8969998,49 27.8969998,49 C27.8969998,49 28,49 28,49 C28,49 28,50 28,50 C28,53.8589993 24.859,57 21,57 C17.141,57 14,53.8589993 14,50 C14,50 14,49 14,49 C14,49 14.1030002,49 14.1030002,49 C14.1030002,49 20,49 20,49 C20,49 7,21 7,21 C7,21 1,21 1,21 C1,21 0.951999664,20.0690002 0.951999664,20.0690002 C1.44000053,9.43400002 10.2460003,0.930999756 21,0.930999756 C31.7539997,0.930999756 40.5119991,9.36400032 41,20 C41,20 41,21 41,21 C41,21 35,21 35,21 Z"></path>
+                    </g>
+                    <g transform="translate(8.000000, 20.889999)" fill="#BCC1C5" id="Path">
+                        <path d="M13,27.8889999 C13,27.8889999 25.8970003,0.111000061 25.8970003,0.111000061 C25.8970003,0.111000061 0.102999687,0.111000061 0.102999687,0.111000061 C0.102999687,0.111000061 13,27.8889999 13,27.8889999 Z"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

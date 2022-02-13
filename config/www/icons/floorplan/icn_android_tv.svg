@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>icn_android_tv</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-28.8%" y="-28.8%" width="157.5%" height="157.5%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-90.000000, 8.000000)" id="icn_android_tv">
+            <g filter="url(#filter-1)" transform="translate(100.000000, 0.000000)">
+                <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="80" height="80" rx="10"></rect>
+                <g id="Group" transform="translate(11.000000, 19.000000)" fill-rule="nonzero">
+                    <g fill="#BCC1C5" id="Shape">
+                        <path d="M52,0 C52,0 6,0 6,0 C2.68700027,0 0,2.68700027 0,6 C0,6 0,36 0,36 C0,39.3129997 2.68700027,42 6,42 C6,42 28.494,42 28.494,42 C28.494,42 28.494,47 28.494,47 C28.494,47 14,47 14,47 C14,47 14,48 14,48 C14,48 28.494,48 28.494,48 C28.494,48 29.494,48 29.494,48 C29.494,48 44,48 44,48 C44,48 44,47 44,47 C44,47 29.494,47 29.494,47 C29.494,47 29.494,42 29.494,42 C29.494,42 52,42 52,42 C55.3139992,42 58,39.3129997 58,36 C58,36 58,6 58,6 C58,2.68700027 55.3139992,0 52,0 Z M1,36 C1,36 1,6 1,6 C1,3.24300003 3.24300003,1 6,1 C6,1 52,1 52,1 C54.757,1 57,3.24300003 57,6 C57,6 57,36 57,36 C57,36 1,36 1,36 Z"></path>
+                    </g>
+                    <g transform="translate(15.000000, 19.000000)" fill="#4285F4" id="Path">
+                        <path d="M2,0 C0.896000028,0 0,0.896000028 0,2 C0,3.10399997 0.896000028,4 2,4 C3.10399997,4 4,3.10399997 4,2 C4,0.896000028 3.10399997,0 2,0 Z"></path>
+                    </g>
+                    <g transform="translate(23.000000, 19.000000)" fill="#EA4335" id="Path">
+                        <path d="M2,0 C0.896000028,0 0,0.896000028 0,2 C0,3.10399997 0.896000028,4 2,4 C3.10399997,4 4,3.10399997 4,2 C4,0.896000028 3.10399997,0 2,0 Z"></path>
+                    </g>
+                    <g transform="translate(31.000000, 19.000000)" fill="#FABB04" id="Path">
+                        <path d="M2,0 C0.896000028,0 0,0.896000028 0,2 C0,3.10399997 0.896000028,4 2,4 C3.10399997,4 4,3.10399997 4,2 C4,0.896000028 3.10399997,0 2,0 Z"></path>
+                    </g>
+                    <g transform="translate(39.000000, 19.000000)" fill="#34A852" id="Path">
+                        <path d="M2,0 C0.896000028,0 0,0.896000028 0,2 C0,3.10399997 0.896000028,4 2,4 C3.10399997,4 4,3.10399997 4,2 C4,0.896000028 3.10399997,0 2,0 Z"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

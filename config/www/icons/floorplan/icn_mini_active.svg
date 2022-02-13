@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>icn_mini_active</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-28.8%" y="-28.8%" width="157.5%" height="157.5%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(10.000000, -1092.000000)" id="icn_mini_active">
+            <g filter="url(#filter-1)" transform="translate(0.000000, 1100.000000)">
+                <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="80" height="80" rx="10"></rect>
+                <g id="Group" transform="translate(18.000000, 10.000000)" fill-rule="nonzero">
+                    <g transform="translate(9.950099, 27.324999)" fill="#000000" fill-opacity="0" id="Path" stroke="#4285F4" stroke-linecap="round" stroke-width="4.00000006">
+                        <path d="M0.0500000007,0.0840000013 C0.0500000007,0.0840000013 0.0500000007,15.2640002 0.0500000007,15.2640002"></path>
+                    </g>
+                    <g transform="translate(17.950099, 33.024999)" fill="#000000" fill-opacity="0" id="Path" stroke="#EA4335" stroke-linecap="round" stroke-width="4.00000006">
+                        <path d="M0.0500000007,0.0820000012 C0.0500000007,0.0820000012 0.0500000007,3.87700006 0.0500000007,3.87700006"></path>
+                    </g>
+                    <g transform="translate(25.950103, 29.224999)" fill="#000000" fill-opacity="0" id="Path" stroke="#FBBC04" stroke-linecap="round" stroke-width="4.00000006">
+                        <path d="M0.0500000007,0.0830000012 C0.0500000007,0.0830000012 0.0500000007,11.4680002 0.0500000007,11.4680002"></path>
+                    </g>
+                    <g transform="translate(33.950103, 31.124999)" fill="#000000" fill-opacity="0" id="Path" stroke="#34A853" stroke-linecap="round" stroke-width="4.00000006">
+                        <path d="M0.0500000007,0.0830000012 C0.0500000007,0.0830000012 0.0500000007,7.67300011 0.0500000007,7.67300011"></path>
+                    </g>
+                    <g transform="translate(0.975000, 0.975000)" fill="#BCC1C5" id="Path">
+                        <g transform="translate(0.025000, 13.244199)">
+                            <path d="M24,0.0192993167 C24,0.0192993167 24,0.780700695 24,0.780700695 C24,0.780700695 21,0.780700695 21,0.780700695 C32.0281003,0.780700695 41,9.75270019 41,20.7807003 C41,31.8089002 32.0281003,40.7807013 21,40.7807013 C9.97190033,40.7807013 1,31.8089002 1,20.7807003 C1,9.75270019 9.97190033,0.780700695 21,0.780700695 C21,0.780700695 18,0.780700695 18,0.780700695 C18,0.780700695 18,0.0192993167 18,0.0192993167 C7.82709973,1.47850039 0,10.2041002 0,20.7807003 C0,32.3787007 9.40210051,41.7807013 21,41.7807013 C32.5979001,41.7807013 42,32.3787007 42,20.7807003 C42,10.2041002 34.1729009,1.47850039 24,0.0192993167 Z"></path>
+                        </g>
+                        <g transform="translate(20.525000, 0.025000)">
+                            <path d="M1,0 C1,0 0,0 0,0 C0,0 0,8 0,8 C0,8 1,8 1,8 C1,8 1,0 1,0 Z"></path>
+                        </g>
+                        <g transform="translate(18.025000, 8.025000)">
+                            <path d="M3,6 C3,6 6,6 6,6 C6,6 6,5.23860005 6,5.23860005 C6,5.23860005 6,2 6,2 C6,0.895500006 5.10450008,0 4,0 C4,0 3.5,0 3.5,0 C3.5,0 2.5,0 2.5,0 C2.5,0 2,0 2,0 C0.895500006,0 0,0.895500006 0,2 C0,2 0,5.23860005 0,5.23860005 C0,5.23860005 0,6 0,6 C0,6 3,6 3,6 Z"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

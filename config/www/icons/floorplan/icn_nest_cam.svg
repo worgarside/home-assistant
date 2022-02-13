@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>icn_nest_cam</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-28.8%" y="-28.8%" width="157.5%" height="157.5%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-90.000000, -992.000000)" id="icn_nest_cam">
+            <g filter="url(#filter-1)" transform="translate(100.000000, 1000.000000)">
+                <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="80" height="80" rx="10"></rect>
+                <g id="Group" transform="translate(19.000000, 10.000000)" fill-rule="nonzero">
+                    <g transform="translate(0.000000, 0.500000)" fill="#BCC1C5" id="Shape">
+                        <path d="M42,21.5 C42,9.90200043 32.5979996,0.5 21,0.5 C9.40200043,0.5 0,9.90200043 0,21.5 C0,30.413 5.56299973,38.0109997 13.3979998,41.059 C14.8280001,43.592 16,46.5620003 16,49.5 C16,56.3829994 9.28299999,56.4990005 9,56.5 C9,56.5 8,56.5 8,56.5 C8,56.5 8,57.5 8,57.5 C8,57.5 10,57.5 10,57.5 C10,57.5 20.5,57.5 20.5,57.5 C20.5,57.5 21.5,57.5 21.5,57.5 C21.5,57.5 32,57.5 32,57.5 C32,57.5 34,57.5 34,57.5 C34,57.5 34,56.5 34,56.5 C34,56.5 33,56.5 33,56.5 C32.717,56.4990005 26,56.3829994 26,49.5 C26,46.5620003 27.1719999,43.592 28.6020002,41.059 C36.4379997,38.0109997 42,30.413 42,21.5 Z M21,3.5 C22.104,3.5 23,4.39599991 23,5.5 C23,6.60400009 22.104,7.5 21,7.5 C19.896,7.5 19,6.60400009 19,5.5 C19,4.39599991 19.896,3.5 21,3.5 Z M21,10.5 C27.0749998,10.5 32,15.4250002 32,21.5 C32,27.575 27.0749998,32.5 21,32.5 C14.9250002,32.5 10,27.575 10,21.5 C10,15.4250002 14.9250002,10.5 21,10.5 Z M14.7979999,41.5670004 C16.605,42.125 18.5209999,42.4280005 20.5,42.4750004 C20.5,42.4750004 20.5,49.5 20.5,49.5 C20.5,49.5 17,49.5 17,49.5 C17,46.7439995 16.0430002,43.9960003 14.7979999,41.5670004 Z M25,49.5 C25,49.5 21.5,49.5 21.5,49.5 C21.5,49.5 21.5,42.4750004 21.5,42.4750004 C23.4790001,42.4280005 25.395,42.125 27.2020001,41.5670004 C25.9569998,43.9960003 25,46.7439995 25,49.5 Z"></path>
+                    </g>
+                    <g transform="translate(17.000000, 18.000000)" fill="#4285F4" id="Path">
+                        <path d="M4,8 C6.20600009,8 8,6.20600009 8,4 C8,1.79399991 6.20600009,0 4,0 C1.79399991,0 0,1.79399991 0,4 C0,6.20600009 1.79399991,8 4,8 Z"></path>
+                    </g>
+                    <g transform="translate(10.000000, 11.000000)" fill="#4285F4" id="Shape">
+                        <path d="M11,22 C17.0749998,22 22,17.0749998 22,11 C22,4.92500019 17.0749998,0 11,0 C4.92500019,0 0,4.92500019 0,11 C0,17.0749998 4.92500019,22 11,22 Z M11,6 C13.7609999,6 16,8.23799992 16,11 C16,13.7620001 13.7609999,16 11,16 C8.23900008,16 6,13.7620001 6,11 C6,8.23799992 8.23900008,6 11,6 Z"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

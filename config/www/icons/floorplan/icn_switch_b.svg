@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>icn_switch_b</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-28.8%" y="-28.8%" width="157.5%" height="157.5%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-190.000000, -1392.000000)" id="icn_switch_b">
+            <g filter="url(#filter-1)" transform="translate(200.000000, 1400.000000)">
+                <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="80" height="80" rx="10"></rect>
+                <g id="Group" transform="translate(19.000000, 11.000000)" fill-rule="nonzero">
+                    <g fill="#BCC1C5" id="Shape">
+                        <path d="M36,0 C36,0 6,0 6,0 C2.68700027,0 0,2.68700027 0,6 C0,6 0,52 0,52 C0,55.3129997 2.68700027,58 6,58 C6,58 36,58 36,58 C39.3129997,58 42,55.3129997 42,52 C42,52 42,6 42,6 C42,2.68700027 39.3129997,0 36,0 Z M41,52 C41,54.757 38.757,57 36,57 C36,57 6,57 6,57 C3.24300003,57 1,54.757 1,52 C1,52 1,6 1,6 C1,3.24300003 3.24300003,1 6,1 C6,1 36,1 36,1 C38.757,1 41,3.24300003 41,6 C41,6 41,52 41,52 Z"></path>
+                    </g>
+                    <g transform="translate(17.000000, 36.000000)" fill="#4285F4" id="Path">
+                        <path d="M4,8 C6.20600009,8 8,6.20499992 8,4 C8,1.79500008 6.20600009,0 4,0 C1.79399991,0 0,1.79500008 0,4 C0,6.20499992 1.79399991,8 4,8 Z"></path>
+                    </g>
+                    <g transform="translate(9.000000, 29.000000)" fill="#4285F4" id="Shape">
+                        <path d="M0,0 C0,0 0,19 0,19 C0,20.6569996 1.34300041,22 3,22 C3,22 21,22 21,22 C22.6569996,22 24,20.6569996 24,19 C24,19 24,0 24,0 C24,0 0,0 0,0 Z M12,6 C14.7609999,6 17,8.23799992 17,11 C17,13.7620001 14.7609999,16 12,16 C9.23900008,16 7,13.7620001 7,11 C7,8.23799992 9.23900008,6 12,6 Z"></path>
+                    </g>
+                    <g transform="translate(9.000000, 11.000000)" fill="#BCC1C5" id="Shape">
+                        <path d="M0,18 C0,18 24,18 24,18 C24,18 24,0 24,0 C24,0 0,0 0,0 C0,0 0,18 0,18 Z M11.5,4 C11.5,4 12.5,4 12.5,4 C12.5,4 12.5,14 12.5,14 C12.5,14 11.5,14 11.5,14 C11.5,14 11.5,4 11.5,4 Z"></path>
+                    </g>
+                    <g transform="translate(9.000000, 6.500000)" fill="#BCC1C5" id="Path">
+                        <path d="M21,0.5 C21,0.5 3,0.5 3,0.5 C1.34300041,0.5 0,1.844 0,3.5 C0,3.5 24,3.5 24,3.5 C24,1.84299999 22.6569996,0.5 21,0.5 Z"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

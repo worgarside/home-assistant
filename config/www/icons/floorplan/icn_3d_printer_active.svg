@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>icn_3d_printer_active</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-28.8%" y="-28.8%" width="157.5%" height="157.5%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-590.000000, -1492.000000)" id="icn_3d_printer_active">
+            <g filter="url(#filter-1)" transform="translate(600.000000, 1500.000000)">
+                <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="80" height="80" rx="10"></rect>
+                <g id="Group-6" transform="translate(11.000000, 17.000000)">
+                    <g id="Group-5" transform="translate(0.000000, 4.000000)" fill="#BCC1C5" stroke="#BCC1C5">
+                        <g id="Group-4">
+                            <path d="M1,0 L14,0 C14.5522847,-1.01453063e-16 15,0.44771525 15,1 C15,1.55228475 14.5522847,2 14,2 L1,2 C0.44771525,2 6.76353751e-17,1.55228475 0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z" id="Path-3"></path>
+                            <path d="M1,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L1,9 C0.44771525,9 6.76353751e-17,8.55228475 0,8 C-6.76353751e-17,7.44771525 0.44771525,7 1,7 Z" id="Path-3"></path>
+                        </g>
+                        <g id="Group-3" transform="translate(43.000000, 0.000000)">
+                            <path d="M1,0 L14,0 C14.5522847,-1.01453063e-16 15,0.44771525 15,1 C15,1.55228475 14.5522847,2 14,2 L1,2 C0.44771525,2 6.76353751e-17,1.55228475 0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z" id="Path-3"></path>
+                            <path d="M1,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L1,9 C0.44771525,9 6.76353751e-17,8.55228475 0,8 C-6.76353751e-17,7.44771525 0.44771525,7 1,7 Z" id="Path-3"></path>
+                        </g>
+                    </g>
+                    <path d="M29,25.1119579 L29,28" id="Line" stroke="#FFB000" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M29,32 C29,33.6568542 27.6568542,35 26,35 L8,35 C6.34314575,35 5,36.3431458 5,38 C5,39.6568542 6.34314575,41 8,41 L25,41" id="Path-5" stroke="#FFB000" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M53,41 L8,41 C6.34314575,41 5,42.3431458 5,44 C5,45.6568542 6.34314575,47 8,47 L25,47" id="Path-5" stroke="#FFB000" stroke-width="2" stroke-linecap="round" transform="translate(29.000000, 44.000000) scale(-1, -1) translate(-29.000000, -44.000000) "></path>
+                    <polygon id="Path-4" stroke="#BCC1C5" stroke-width="2" points="20 0 38 0 38 16.0115046 29 25.1119579 20 16.0115046"></polygon>
+                    <circle id="Oval" fill="#FFB000" cx="29" cy="41" r="1"></circle>
+                    <circle id="Oval" fill="#00C700" cx="24" cy="4" r="2"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

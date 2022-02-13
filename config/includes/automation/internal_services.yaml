@@ -18,3 +18,17 @@
           title: Pyscript has been reloaded
           message: >
             Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
+
+  - alias: /lovelace/auto_reload
+    id: lovelace_auto_reload
+    trigger:
+      platform: event
+      event_type: folder_watcher
+      event_data:
+        event_type: modified
+    condition: "{{ '/config/lovelace' in trigger.event.data.folder }}"
+    action:
+      - service: browser_mod.lovelace_reload
+        data:
+          deviceId:
+            - 0f686a62-15fffa21
