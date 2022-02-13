@@ -1,55 +1,55 @@
 ---
 
 
-# ------------------------ RESTful Sensors ------------------------ #
+# ------------------------ Devices ------------------------ #
 
-  - alias: /rest/mini_crt_power_state
-    id: rest_mini_crt_power_state
+  - alias: /switch/will_s_macbook_pro/turn_charger_on
+    id: turn_will_s_macbook_pro_charger_on
+    trigger:
+      - platform: numeric_state
+        entity_id: var.will_s_macbook_pro_battery_percentage
+        below: 25
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.will_s_macbook
+
+  - alias: /switch/will_s_macbook_pro/turn_charger_off
+    id: turn_will_s_macbook_pro_charger_off
+    trigger:
+      - platform: numeric_state
+        entity_id: var.will_s_macbook_pro_battery_percentage
+        above: 95
+    condition:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: var.will_s_macbook_pro_battery_power_plugged
+            state: "True"
+          - condition: numeric_state
+            entity_id: sensor.will_s_macbook_current_consumption
+            above: 40
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.will_s_macbook
+
+  - alias: /switch/hifi_amp/auto_control
+    id: auto_control_hifi_amp
     trigger:
       - platform: state
-        entity_id: sensor.mini_crt_power_state
+        entity_id:
+          - media_player.hifi_system
+          - media_player.lounge_bravia_tv
+        from:
+          - "idle"
+          - "off"
+          - "unavailable"
+          - "unknown"
+        to:
+          - "idle"
+          - "paused"
+          - "playing"
     action:
-      - choose:
-          - alias: "True"
-            conditions: "{{ states('sensor.mini_crt_power_state') | string == 'True' }}"
-            sequence:
-              - service: input_boolean.turn_on
-                entity_id: input_boolean.mini_crt_power
-          - alias: "False"
-            conditions: >
-              {{ not states('sensor.mini_crt_power_state') | string == "True" }}
-            sequence:
-              - service: input_boolean.turn_off
-                entity_id: input_boolean.mini_crt_power
-        default:
-          - service: script.notify_will
-            data:
-              title: "Automation Failure"
-              # yamllint disable-line rule:line-length
-              message: "Automation `rest_mini_crt_power_state` failed: unknown previous state of `{{ trigger.from_state.state }}`"
-
-  - alias: /rest/mini_crt_nanoleaf_updater_state
-    id: rest_mini_crt_nanoleaf_updater_state
-    trigger:
-      - platform: state
-        entity_id: sensor.mini_crt_nanoleaf_updater_state
-    action:
-      - choose:
-          - alias: "True"
-            conditions: >
-              {{ states('sensor.mini_crt_nanoleaf_updater_state') | string == 'True' }}
-            sequence:
-              - service: input_boolean.turn_on
-                entity_id: input_boolean.mini_crt_nanoleaf_updater
-          - alias: "False"
-            conditions: >
-              {{ states('sensor.mini_crt_nanoleaf_updater_state') | string == "False" }}
-            sequence:
-              - service: input_boolean.turn_off
-                entity_id: input_boolean.mini_crt_nanoleaf_updater
-        default:
-          - service: script.notify_will
-            data:
-              title: "Automation Failure"
-              # yamllint disable-line rule:line-length
-              message: "Automation `rest_mini_crt_nanoleaf_updater_state` failed: unknown previous state of `{{ trigger.from_state.state }}`"
+      - service: switch.turn_on
+        entity_id: switch.hifi_amp
