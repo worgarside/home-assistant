@@ -129,7 +129,7 @@ cards:
             name: Ambient Temperature
           - entity: sensor.wills_room_hue_motion_sensor_light_level
             name: Ambient Light Level
-          - entity: binary_sensor.wills_balcony_door
+          - entity: binary_sensor.will_s_balcony_door
             name: Balcony Door
           - entity: binary_sensor.wills_room_hue_motion_sensor_motion
             name: Motion Sensor Motion

@@ -40,7 +40,7 @@
     id: wills_room_door_opened_whilst_will_away
     trigger:
       platform: state
-      entity_id: binary_sensor.wills_bedroom_door
+      entity_id: binary_sensor.will_s_bedroom_door
       to: "on"
     condition: "{{ states('person.will') == 'away' }}"
     action:
@@ -71,7 +71,7 @@
     # When the door is closed
     trigger:
       - platform: state
-        entity_id: binary_sensor.wills_balcony_door
+        entity_id: binary_sensor.will_s_balcony_door
         to: "off"
         for:
           seconds: 2.5
