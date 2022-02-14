@@ -1,0 +1,58 @@
+---
+type: picture-elements
+
+image: /local/images/floorplan/first_floor.svg
+
+view_layout:
+  grid-area: main
+
+# icons are 8% high
+
+elements:
+  - type: image
+    entity: light.wills_room_lamp
+    hold_action:
+      action: more-info
+    tap_action:
+      action: toggle
+    state_image:
+      "on": /local/icons/floorplan/icn_light_active.svg
+      "off": /local/icons/floorplan/icn_light.svg
+      "unavailable": /local/icons/floorplan/icn_light.svg
+      "unknown": /local/images/icn_light_offline.svg
+    style:
+      top: 15%
+      left: 15.5%
+      width: 4%
+
+  - type: image
+    entity: light.wills_shapes
+    hold_action:
+      action: more-info
+    tap_action:
+      action: toggle
+    state_image:
+      "on": /local/icons/floorplan/icn_light_active.svg
+      "off": /local/icons/floorplan/icn_light.svg
+      "unavailable": /local/icons/floorplan/icn_light.svg
+      "unknown": /local/images/icn_light_offline.svg
+    style:
+      top: 8.75%
+      left: 47.5%
+      width: 4%
+
+  - type: image
+    entity: media_player.wills_bedroom_home_hub
+    tap_action:
+      action: more-info
+    state_image:
+      "playing": /local/icons/floorplan/icn_m_device_active.svg
+      "paused": /local/icons/floorplan/icn_m_device.svg
+      "idle": /local/icons/floorplan/icn_m_device.svg
+      "off": /local/icons/floorplan/icn_m_device_offline.svg
+      "unknown": /local/images/null.webp
+    style:
+      top: 15%
+      left: 19%
+      width: 4%
+

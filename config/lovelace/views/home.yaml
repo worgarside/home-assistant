@@ -5,7 +5,8 @@ background: "#313132"
 type: panel
 
 cards:
-  - !include ../cards/floorplan.yaml
+#  - !include ../cards/floorplan_ground_floor.yaml
+  - !include ../cards/floorplan_first_floor.yaml
 
 #  - type: custom:layout-card
 #    layout: horizontal
