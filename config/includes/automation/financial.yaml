@@ -32,7 +32,7 @@
         event_data:
           action: "TOP_UP_CREDIT_CARD_POT"
     action:
-      - service: persistent_notification.create
+      - service: script.debug_persistent_notification
         data:
           title: NOTIFICATION
           message: |

@@ -27,7 +27,7 @@
         to: "off"
     action:
       - alias: "Persistent Notification #1"
-        service: persistent_notification.create
+        service: script.debug_persistent_notification
         data:
           title: "Restarting Galaxy Light"
           # yamllint disable-line rule:line-length
@@ -45,7 +45,7 @@
             conditions: "{{ not wait.completed }}"
             sequence:
               - alias: "Persistent Notification #2"
-                service: persistent_notification.create
+                service: script.debug_persistent_notification
                 data:
                   title: "Initial GL restart failed"
                   message: "Attempting with delay of 30s"
@@ -67,7 +67,7 @@
                       {{ states('input_text.galaxy_light_previous_state') == 'on' }}
                     sequence:
                       - alias: "Persistent Notification #3"
-                        service: persistent_notification.create
+                        service: script.debug_persistent_notification
                         data:
                           title: "Resuming prervious GL state"
                           message: "Turning ON"
@@ -79,7 +79,7 @@
                       {{ states('input_text.galaxy_light_previous_state') == 'off' }}
                     sequence:
                       - alias: "Persistent Notification #4"
-                        service: persistent_notification.create
+                        service: script.debug_persistent_notification
                         data:
                           title: "Resuming previous GL state"
                           message: "Turning OFF"

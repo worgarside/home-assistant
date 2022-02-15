@@ -1,4 +1,16 @@
 ---
+debug_persistent_notification:
+  description: "Create a persistent notification if debugging is turned on"
+  sequence:
+    - alias: "Check if debugging is turned on"
+      condition: state
+      entity_id: input_boolean.debug_with_persistent_notification
+      state: "on"
+    - service: persistent_notification.create
+      data:
+        title: "{{ title }}"
+        message: "{{ message }}"
+
 notify_will:
   description: "Send a notification to Will's phone and the HA UI"
   fields:
@@ -36,7 +48,7 @@ restart_galaxy_light:
     - service: homeassistant.update_entity
       target:
         entity_id: binary_sensor.galaxy_light_online
-    - service: persistent_notification.create
+    - service: script.debug_persistent_notification
       data:
         title: "`script.restart_galaxy_light` completed"
         # yamllint disable-line rule:line-length
@@ -52,13 +64,13 @@ start_spotify_on_device:
       description: "The name of the user, to determine which Spotify account to use"
       example: "Dave"
   sequence:
-#    - service: persistent_notification.create
-#      data:
-#        title: Spotcast Arguments
-#        message: |
-#          device_key: {{ device_key }}
-#          device_value: {{ device_value }}
-#          user_name: {{ user_name | lower }}
+    - service: script.debug_persistent_notification
+      data:
+        title: Spotcast Arguments
+        message: |
+          device_key: {{ device_key }}
+          device_value: {{ device_value }}
+          user_name: {{ user_name | lower }}
     - service: spotcast.start
       data:
         '{{device_key}}': '{{ device_value }}'

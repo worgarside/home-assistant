@@ -13,7 +13,7 @@
       - "{{ trigger.from_state.state != 'unavailable' }}"
       - "{{ trigger.to_state.state != 'unavailable' }}"
     action:
-      - service: persistent_notification.create
+      - service: script.debug_persistent_notification
         data:
           title: Galaxy light Status Changed
           # yamllint disable-line rule:line-length
