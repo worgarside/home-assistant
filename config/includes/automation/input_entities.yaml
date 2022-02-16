@@ -18,9 +18,9 @@
           title: Galaxy light Status Changed
           # yamllint disable-line rule:line-length
           message: "Changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"
-      - service: input_text.set_value
+      - service: var.set
         data:
-          entity_id: input_text.galaxy_light_previous_state
+          entity_id: var.galaxy_light_previous_state
           value: "{{ trigger.to_state.state }}"
 
   - alias: Initialise "Entity Force Updater" Options
