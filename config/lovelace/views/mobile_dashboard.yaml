@@ -145,6 +145,8 @@ cards:
             icon: mdi:chart-line
           - entity: sensor.wills_room_hue_motion_sensor_temperature
             name: Temperature
+          - entity: automation.switch_tower_fan_auto_control
+            name: Auto-Control
       - type: custom:decluttering-card
         template: folding_rgb_light_with_effects_template
         variables:

@@ -1,7 +1,6 @@
 ---
 
-
-# ------------------------ Devices ------------------------ #
+# <editor-fold desc="MacBook Pro">
 
   - alias: /switch/will_s_macbook_pro/turn_charger_on
     id: turn_will_s_macbook_pro_charger_on
@@ -34,6 +33,9 @@
         data:
           entity_id: switch.will_s_macbook
 
+# </editor-fold>
+# <editor-fold desc="HiFi Amp">
+
   - alias: /switch/hifi_amp/auto_control
     id: auto_control_hifi_amp
     trigger:
@@ -53,3 +55,76 @@
     action:
       - service: switch.turn_on
         entity_id: switch.hifi_amp
+
+# </editor-fold>
+# <editor-fold desc="Tower Fan">
+
+  # This allows an easy way of manually overriding the auto-control automation, without
+  # having to remember to turn it off and on: if either manual input is updated then
+  # the actual tower fan state is compared to what it should be according to the auto-
+  # controller; if they match then the auto-control is turned on; if they don't then
+  # it's turned off
+  - alias: /switch/tower_fan/manually_controlled
+    id: tower_fan_manually_controlled
+    trigger:
+      - platform: state
+        entity_id:
+          - switch.tower_fan
+          - input_number.wills_room_fan_auto_on_threshold
+    action:
+      - alias: "Set variables"
+        variables:
+          tower_fan_should_be_on: |
+            {{ 
+              is_state('person.will', 'home') and
+              states('sensor.wills_room_hue_motion_sensor_temperature')
+              >=
+              states('input_number.wills_room_fan_auto_on_threshold')
+            }}
+          tower_fan_is_on: "{{ states('switch.tower_fan') == 'on' }}"
+      - choose:
+          - alias: "Should be <state> and is - i.e. auto control on"
+            conditions: "{{ tower_fan_should_be_on == tower_fan_is_on }}"
+            sequence:
+              - service: automation.turn_on
+                target:
+                  entity_id: automation.switch_tower_fan_auto_control
+          - alias: "Should be <state> but isn't - i.e. manual override"
+            conditions: "{{ tower_fan_should_be_on != tower_fan_is_on }}"
+            sequence:
+              - service: automation.turn_off
+                target:
+                  entity_id: automation.switch_tower_fan_auto_control
+
+  - alias: /switch/tower_fan/auto_control
+    id: tower_fan_auto_control
+    trigger:
+      - platform: state
+        entity_id:
+          - sensor.wills_room_hue_motion_sensor_temperature
+          - input_number.wills_room_fan_auto_on_threshold
+    action:
+      - choose:
+          - alias: Low Temperature
+            conditions: |
+              {{
+                states('sensor.wills_room_hue_motion_sensor_temperature')
+                <
+                states('input_number.wills_room_fan_auto_on_threshold')
+              }}
+            sequence:
+              - service: switch.turn_off
+                entity_id: switch.tower_fan
+          - alias: High Temperature and Will's Home
+            conditions: |
+              {{ 
+                is_state('person.will', 'home') and
+                states('sensor.wills_room_hue_motion_sensor_temperature')
+                >=
+                states('input_number.wills_room_fan_auto_on_threshold')
+              }}
+            sequence:
+              - service: switch.turn_on
+                entity_id: switch.tower_fan
+
+# </editor-fold>
