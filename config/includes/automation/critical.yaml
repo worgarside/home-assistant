@@ -75,7 +75,7 @@
                         data:
                           title: "Resuming previous GL state"
                           message: "Turning ON"
-                      - service: switch.turn_on
+                      - service: light.turn_on
                         target:
                           entity_id: light.galaxy_light
                   - alias: "Galaxy Light was OFF before it went offline"
@@ -86,7 +86,7 @@
                         data:
                           title: "Resuming previous GL state"
                           message: "Turning OFF"
-                      - service: switch.turn_off
+                      - service: light.turn_off
                         target:
                           entity_id: light.galaxy_light
                 default:
