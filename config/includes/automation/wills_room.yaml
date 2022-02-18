@@ -42,7 +42,7 @@
       platform: state
       entity_id: binary_sensor.will_s_bedroom_door
       to: "on"
-    condition: "{{ states('person.will') == 'away' }}"
+    condition: "{{ states('person.will') != 'home' }}"
     action:
       - service: pyscript.open_curtain
       - service: notify.mobile_app_will_s_pixel_4_xl
