@@ -56,7 +56,7 @@ cards:
           - entity: light.the_snail
           - name: The Snail
           # yamllint disable-line rule:line-length
-          - auto_entity_filter_template: "{{ 'input_boolean.mini_crt_nanoleaf_updater' }}"
+          - auto_entity_filter_template: "{{ 'input_boolean.the_snail_artwork_colour_source_active', 'input_select.the_snail_artwork_colour_source' }}"
       - type: custom:decluttering-card
         template: folding_rgb_light_template
         variables:
@@ -105,6 +105,8 @@ cards:
         variables:
           - entity: light.matts_shapes
           - name: Shapes
+          # yamllint disable-line rule:line-length
+          - auto_entity_filter_template: "{{ 'input_boolean.matts_shapes_artwork_colour_source_active', 'input_select.matts_shapes_artwork_colour_source' }}"
 
   - type: entities
     title: Terrace
@@ -152,6 +154,8 @@ cards:
         variables:
           - entity: light.wills_shapes
           - name: Shapes
+          # yamllint disable-line rule:line-length
+          - auto_entity_filter_template: "{{ 'input_boolean.wills_shapes_artwork_colour_source_active', 'input_select.wills_shapes_artwork_colour_source' }}"
       - type: custom:decluttering-card
         template: folding_white_light_template
         variables:
