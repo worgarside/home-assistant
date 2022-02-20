@@ -1,6 +1,8 @@
 ---
 # ======================= Components ======================= #
 
+api:
+
 breaking_changes:
 
 browser_mod:
@@ -35,6 +37,8 @@ homeassistant:
     - /config/www
   media_dirs:
     album_artwork: /config/www/album_artwork
+
+http:
 
 influxdb:
   host: a0d7b954-influxdb

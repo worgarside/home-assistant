@@ -101,3 +101,19 @@
               title: "Automation Failure"
               # yamllint disable-line rule:line-length
               message: "Galaxy Light restart failed: previous state was `{{ previous_gl_state }}` and current state is `{{ states('light.galaxy_light') }}`"
+
+  - alias: /homeassistant/remote_ui/restart_when_offline
+    id: restart_when_remote_ui_offline
+    trigger:
+      - platform: state
+        entity_id: sensor.nabu_casa_online
+        to: "unavailable"
+        for:
+          minutes: 5
+    condition: "{{ states('binary_sensor.remote_ui') == 'on' }}"
+    action:
+      - service: script.notify_will
+        data:
+          title: Home Assistant Remote UI Offline
+          message: RESTful sensor unavailable but remote UI binary sensor is ON
+      - service: homeassistant.restart

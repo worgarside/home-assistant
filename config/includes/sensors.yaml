@@ -65,3 +65,14 @@
 
   - platform: spotcast
     country: GB
+
+  - platform: rest
+    name: Nabu Casa Online
+    method: GET
+    scan_interval: 150
+    force_update: true
+    resource: !secret nabu_casa_url_online_sensor
+    headers:
+      Authorization: !secret nabu_casa_online_access_token
+      Content-Type: application/json
+    value_template: "{{ value_json['state'] }}"

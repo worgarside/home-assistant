@@ -295,3 +295,13 @@
   - binary_sensor:
       - name: Quiet Hours
         state: "{{ not 7 < now().hour < 21 }}"
+
+# ------------------------ Other ------------------------
+
+  - sensor:
+      - name: Fixed Value On
+        state: "On"
+
+  - sensor:
+      - name: Fixed Value Off
+        state: "Off"
