@@ -19,3 +19,95 @@
             actions:
               - action: "TOP_UP_CREDIT_CARD_POT"
                 title: "Top Up"
+
+  - alias: /notification/washing_machine_active_user/send
+    id: send_washing_machine_user_notif
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.washing_machine
+        to: "on"
+        for:
+          minutes: 2
+    action:
+      - choose:
+          - alias: "Ask Matt who's using the washing machine"
+            conditions: "{{ states('person.matt') == 'home' }}"
+            sequence:
+              - service: script.send_washing_machine_user_choice_notif
+                data:
+                  target_device: mobile_app_iphone
+          - alias: "Ask Tom who's using the washing machine"
+            conditions: "{{ states('person.tom') == 'home' }}"
+            sequence:
+              - service: script.send_washing_machine_user_choice_notif
+                data:
+                  target_device: mobile_app_toms_iphone
+          - alias: "Ask Will who's using the washing machine"
+            conditions: "{{ states('person.will') == 'home' }}"
+            sequence:
+              - service: script.send_washing_machine_user_choice_notif
+                data:
+                  target_device: mobile_app_will_s_pixel_4_xl
+
+  - alias: /notification/washing_machine_finished/send
+    id: send_washing_machine_finished_notif
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.washing_machine
+        to: "off"
+        for:
+          minutes: 2
+    action:
+      - alias: "Set variables"
+        variables:
+          current_user: "{{ states('input_select.washing_machine_current_user') }}"
+      - choose:
+          - alias: "Notify Matt"
+            conditions: "{{ current_user == 'Matt' }}"
+            sequence:
+              - service: notify.mobile_app_iphone
+                data:
+                  title: "Washing Machine Finished"
+                  message: "The washing machine has completed its cycle"
+          - alias: "Notify Tom"
+            conditions: "{{ current_user == 'Tom' }}"
+            sequence:
+              - service: notify.mobile_app_toms_iphone
+                data:
+                  title: "Washing Machine Finished"
+                  message: "The washing machine has completed its cycle"
+          - alias: "Notify Will"
+            conditions: "{{ current_user == 'Will' }}"
+            sequence:
+              - service: notify.mobile_app_will_s_pixel_4_xl
+                data:
+                  title: "Washing Machine Finished"
+                  message: "The washing machine has completed its cycle"
+        default:
+          - choose:
+              - alias: "Notify Matt (at home)"
+                conditions: "{{ states('person.matt') == 'home' }}"
+                sequence:
+                  - service: notify.mobile_app_iphone
+                    data:
+                      title: "Washing Machine Finished"
+                      message: "The washing machine has completed its cycle"
+              - alias: "Notify Tom (at home)"
+                conditions: "{{ states('person.tom') == 'home' }}"
+                sequence:
+                  - service: notify.mobile_app_toms_iphone
+                    data:
+                      title: "Washing Machine Finished"
+                      message: "The washing machine has completed its cycle"
+              - alias: "Notify Will (at home)"
+                conditions: "{{ states('person.will') == 'home' }}"
+                sequence:
+                  - service: notify.mobile_app_will_s_pixel_4_xl
+                    data:
+                      title: "Washing Machine Finished"
+                      message: "The washing machine has completed its cycle"
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.washing_machine_current_user
+        data:
+          option: "None"

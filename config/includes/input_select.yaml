@@ -2,12 +2,13 @@
 
 entity_force_updater:
   name: Force Update Entity
+  icon: mdi:home-assistant
   options:
     - input_select.entity_force_updater
-  icon: mdi:home-assistant
 
 wills_shapes_artwork_colour_source:
   name: Artwork Source
+  icon: mdi:disc-player
   options:
     - media_player.all_speakers
     - media_player.downstairs_speakers
@@ -20,10 +21,10 @@ wills_shapes_artwork_colour_source:
     - media_player.tom_s_speakers
     - media_player.upstairs_speakers
     - media_player.will_s_yas_209
-  icon: mdi:disc-player
 
 matts_shapes_artwork_colour_source:
   name: Artwork Source
+  icon: mdi:disc-player
   options:
     - media_player.all_speakers
     - media_player.downstairs_speakers
@@ -36,10 +37,10 @@ matts_shapes_artwork_colour_source:
     - media_player.tom_s_speakers
     - media_player.upstairs_speakers
     - media_player.will_s_yas_209
-  icon: mdi:disc-player
 
 the_snail_artwork_colour_source:
   name: Artwork Source
+  icon: mdi:disc-player
   options:
     - media_player.all_speakers
     - media_player.downstairs_speakers
@@ -52,4 +53,12 @@ the_snail_artwork_colour_source:
     - media_player.tom_s_speakers
     - media_player.upstairs_speakers
     - media_player.will_s_yas_209
-  icon: mdi:disc-player
+
+washing_machine_current_user:
+  name: Current Washing Machine User
+  icon: mdi:account-question
+  options:
+    - "None"
+    - "Matt"
+    - "Tom"
+    - "Will"

@@ -1,6 +1,13 @@
 ---
 debug_persistent_notification:
   description: "Create a persistent notification if debugging is turned on"
+  fields:
+    title:
+      description: "The notification's title"
+      example: "Something has happened!"
+    message:
+      description: "The notification's message body"
+      example: "More detail about this thing"
   sequence:
     - alias: "Check if debugging is turned on"
       condition: state
@@ -53,6 +60,25 @@ restart_galaxy_light:
         title: "`script.restart_galaxy_light` completed"
         # yamllint disable-line rule:line-length
         message: "Current online state: {{ states('binary_sensor.galaxy_light_online') }}"
+
+send_washing_machine_user_choice_notif:
+  description: "Send a notification asking who's using the washing machine"
+  fields:
+    target_device:
+      description: "The device to notify"
+      example: "mobile_app_nokia_3310"
+  sequence:
+    - service: "notify.{{ target_device }}"
+      data:
+        message: "Who's using the washing machine?"
+        data:
+          actions:
+            - action: "MATT_USING_WASHING_MACHINE"
+              title: "Matt"
+            - action: "TOM_USING_WASHING_MACHINE"
+              title: "Tom"
+            - action: "WILL_USING_WASHING_MACHINE"
+              title: "Will"
 
 start_spotify_on_device:
   description: "Start Spotify playback on a particular device"
