@@ -3,27 +3,6 @@
 
 # ------------------------ Financial ------------------------ #
 
-  - alias: /notification/credit_card_top_up/send
-    id: send_cc_top_up_notif
-    trigger:
-      - platform: time
-        at:
-          - "21:00:00"
-    condition: |
-      {{ 
-        ( states('var.truelayer_balance_amex') | float - 
-        states('var.truelayer_balance_monzo_credit_cards') | float )  | abs > 0.01
-      }}
-    action:
-      - service: notify.mobile_app_will_s_pixel_4_xl
-        data:
-          # yamllint disable-line rule:line-length
-          message: "Credit Cards pot is £{{ ( ( states('var.truelayer_balance_amex') | float - states('var.truelayer_balance_monzo_credit_cards') | float ) | round(2) ) }} too low. Top up pot?"
-          data:
-            actions:
-              - action: "TOP_UP_CREDIT_CARD_POT"
-                title: "Top Up"
-
   - alias: /finance/monzo/top_up_credit_card_pot
     id: transfer_credit_card_pot_money
     trigger:
