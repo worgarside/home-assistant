@@ -23,23 +23,24 @@ if gethostname() != "homeassistant":
     service = decorator
     pyscript_executor = decorator
 
-
-WILLS_SHAPES = task.executor(
+# Shapes 8479
+MATTS_SHAPES = task.executor(
     Nanoleaf,
-    get_secret("ip_address", module="nanoleaf.wills_shapes"),
-    get_secret("auth_token", module="nanoleaf.wills_shapes"),
+    get_secret("ip_address", module="nanoleaf.matts_shapes"),
+    get_secret("auth_token", module="nanoleaf.matts_shapes"),
 )
+
+# Shapes E418
 THE_SNAIL = task.executor(
     Nanoleaf,
     get_secret("ip_address", module="nanoleaf.the_snail"),
     get_secret("auth_token", module="nanoleaf.the_snail"),
 )
-
-
-MATTS_SHAPES = task.executor(
+# Shapes 77F4
+WILLS_SHAPES = task.executor(
     Nanoleaf,
-    get_secret("ip_address", module="nanoleaf.matts_shapes"),
-    get_secret("auth_token", module="nanoleaf.matts_shapes"),
+    get_secret("ip_address", module="nanoleaf.wills_shapes"),
+    get_secret("auth_token", module="nanoleaf.wills_shapes"),
 )
 
 
@@ -97,6 +98,11 @@ def get_local_artwork_file_path(artist, album, url):
             ]
         )
     ):
+        if url.startswith("/api"):  # if it's an internal image
+            local_base_url = f"http://{sensor.local_ip}:8123"
+            log.debug("URL is local, prepending with %s", local_base_url)
+            url = local_base_url + url
+
         res = task.executor(get, url)
 
         res.raise_for_status()
@@ -149,6 +155,11 @@ def update_nanoleaf_colors_worker(var_name, nanoleaf_device):
         "delayTime": {"minValue": 50, "maxValue": 100},
         "loop": True,
     }
+    log.info(
+        'Sending colors for "%s" to %s',
+        attributes["media_album_name"],
+        task.executor(nanoleaf_device.get_name),
+    )
     task.executor(nanoleaf_device.write_effect, effect_dict=effect_dict)
 
 
