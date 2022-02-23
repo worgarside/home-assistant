@@ -32,3 +32,19 @@
         data:
           deviceId:
             - 0f686a62-15fffa21
+
+  - alias: /homeassistant/file_watcher/automation_auto_reload
+    id: automation_auto_reload
+    trigger:
+      platform: event
+      event_type: folder_watcher
+      event_data:
+        event_type: modified
+    condition: "{{ '/config/includes/automation' in trigger.event.data.folder }}"
+    action:
+      - service: persistent_notification.create
+        data:
+          title: "Automations automatically reloaded"
+          message: >
+            Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
+      - service: automation.reload
