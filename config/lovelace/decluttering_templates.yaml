@@ -466,6 +466,7 @@ folding_media_player_with_spotcast_template:
           head:
             entity: '[[entity_id]]'
             name: '[[device_friendly_name]]'
+            state_color: true
         filter:
           template: "[[auto_entity_filter_template]]"
         entities:
