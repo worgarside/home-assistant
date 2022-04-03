@@ -36,8 +36,8 @@
 # </editor-fold>
 # <editor-fold desc="HiFi Amp">
 
-  - alias: /switch/hifi_amp/auto_control
-    id: auto_control_hifi_amp
+  - alias: /switch/hifi_amp/auto_on
+    id: auto_on_hifi_amp
     trigger:
       - platform: state
         entity_id:
@@ -54,6 +54,32 @@
           - "playing"
     action:
       - service: switch.turn_on
+        entity_id: switch.hifi_amp
+
+  - alias: /switch/hifi_amp/auto_off
+    id: auto_off_hifi_amp
+    trigger:
+      - platform: state
+        entity_id:
+          - media_player.hifi_system
+          - media_player.lounge_bravia_tv
+        to:
+          - "off"
+    condition:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: media_player.hifi_system
+            state: "off"
+          - condition: state
+            entity_id: media_player.lounge_bravia_tv
+            state: "off"
+    action:
+      # yamllint disable-line rule:line-length
+      - wait_template: "{{ states('media_player.hifi_system') == 'off' and states('media_player.lounge_bravia_tv') == 'off' }}"
+        timeout: 300
+        continue_on_timeout: false
+      - service: switch.turn_off
         entity_id: switch.hifi_amp
 
 # </editor-fold>
