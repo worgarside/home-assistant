@@ -89,5 +89,10 @@ def update_balance_variables():
 
             var.set(entity_id=var_name, value=balance, force_update=True)
         except Exception as exc:  # pylint: disable=broad-except
-            log.error("%s - %s", type(exc).__name__, str(exc))
+            log.error(
+                "Unable to update variable `%s`: %s - %s",
+                var_name,
+                type(exc).__name__,
+                str(exc),
+            )
             var.set(entity_id=var_name, value="unknown", force_update=True)
