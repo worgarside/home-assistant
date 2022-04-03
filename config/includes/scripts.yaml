@@ -32,7 +32,7 @@ notify_will:
       data:
         title: "{{ title }}"
         message: "{{ message }}"
-    - service: notify.mobile_app_will_s_pixel_4_xl
+    - service: notify.mobile_app_will_s_pixel_6_pro
       data:
         title: "{{ title }}"
         message: "{{ message }}"

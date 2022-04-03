@@ -45,7 +45,7 @@
     condition: "{{ states('person.will') != 'home' }}"
     action:
       - service: pyscript.open_curtain
-      - service: notify.mobile_app_will_s_pixel_4_xl
+      - service: notify.mobile_app_will_s_pixel_6_pro
         data:
           message: Bedroom door has been opened
           title: Security Alert!

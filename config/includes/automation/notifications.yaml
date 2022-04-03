@@ -11,7 +11,7 @@
         states('var.truelayer_balance_monzo_credit_cards') | float )  | abs > 0.01
       }}
     action:
-      - service: notify.mobile_app_will_s_pixel_4_xl
+      - service: notify.mobile_app_will_s_pixel_6_pro
         data:
         # yamllint disable-line rule:line-length
           message: "Credit Cards pot is £{{ ( ( states('var.truelayer_balance_amex') | float - states('var.truelayer_balance_monzo_credit_cards') | float ) | round(2) ) }} too low. Top up pot?"
@@ -49,7 +49,7 @@
             sequence:
               - service: script.send_washing_machine_user_choice_notif
                 data:
-                  target_device: mobile_app_will_s_pixel_4_xl
+                  target_device: mobile_app_will_s_pixel_6_pro
 
   - alias: /notification/washing_machine_finished/send
     id: send_washing_machine_finished_notif
@@ -83,7 +83,7 @@
           - alias: "Notify Will"
             conditions: "{{ current_user == 'Will' }}"
             sequence:
-              - service: notify.mobile_app_will_s_pixel_4_xl
+              - service: notify.mobile_app_will_s_pixel_6_pro
                 data:
                   title: "Washing Machine Finished"
                   message: "The washing machine has completed its cycle"
@@ -111,7 +111,7 @@
                   - alias: "Notify Will (at home)"
                     conditions: "{{ states('person.will') == 'home' }}"
                     sequence:
-                      - service: notify.mobile_app_will_s_pixel_4_xl
+                      - service: notify.mobile_app_will_s_pixel_6_pro
                         data:
                           title: "Washing Machine Finished"
                           message: "The washing machine has completed its cycle"
