@@ -43,6 +43,10 @@ WILLS_SHAPES = task.executor(
     get_secret("auth_token", module="nanoleaf.wills_shapes"),
 )
 
+MEDIA_PLAYER_OVERRIDES = {
+    "media_player.will_s_yas_209": "media_player.spotify_will_garside"
+}
+
 
 @pyscript_executor
 def get_n_colors_from_image(img_path, n):
@@ -126,15 +130,15 @@ def get_local_artwork_file_path(artist, album, url):
     return target_path
 
 
-def update_nanoleaf_colors_worker(var_name, nanoleaf_device):
+def update_nanoleaf_colors_worker(media_player, nanoleaf_device):
     """The actual worker function for updating Nanoleaf colors from an artwork image
 
     Args:
-        var_name (str): the name of the entity which updated to cause this action
+        media_player (str): the name of the entity which updated to cause this action
         nanoleaf_device (Nanoleaf): the actual Nanoleaf device to be updated
     """
 
-    attributes = state.getattr(var_name)
+    attributes = state.getattr(media_player)
 
     artwork_path = get_local_artwork_file_path(
         attributes["media_artist"],
@@ -156,9 +160,10 @@ def update_nanoleaf_colors_worker(var_name, nanoleaf_device):
         "loop": True,
     }
     log.info(
-        'Sending colors for "%s" to %s',
+        'Sending colors for "%s" to %s, triggered by %s',
         attributes["media_album_name"],
         task.executor(nanoleaf_device.get_name),
+        media_player,
     )
     task.executor(nanoleaf_device.write_effect, effect_dict=effect_dict)
 
@@ -178,23 +183,29 @@ def update_nanoleaf_colors(var_name):
     """Update Nanoleaf colors based on the currently playing song's artwork
 
     Args:
-        var_name (str): the sensor which triggered this function
+        var_name (str): the media player which triggered this function
     """
 
     if (
         var_name == input_select.matts_shapes_artwork_colour_source
         and input_boolean.matts_shapes_artwork_colour_source_active == "on"
     ):
-        update_nanoleaf_colors_worker(var_name, MATTS_SHAPES)
+        update_nanoleaf_colors_worker(
+            MEDIA_PLAYER_OVERRIDES.get(var_name, var_name), MATTS_SHAPES
+        )
 
     if (
         var_name == input_select.the_snail_artwork_colour_source
         and input_boolean.the_snail_artwork_colour_source_active == "on"
     ):
-        update_nanoleaf_colors_worker(var_name, THE_SNAIL)
+        update_nanoleaf_colors_worker(
+            MEDIA_PLAYER_OVERRIDES.get(var_name, var_name), THE_SNAIL
+        )
 
     if (
         var_name == input_select.wills_shapes_artwork_colour_source
         and input_boolean.wills_shapes_artwork_colour_source_active == "on"
     ):
-        update_nanoleaf_colors_worker(var_name, WILLS_SHAPES)
+        update_nanoleaf_colors_worker(
+            MEDIA_PLAYER_OVERRIDES.get(var_name, var_name), WILLS_SHAPES
+        )
