@@ -85,3 +85,32 @@ will_s_macbook_pro_battery_seconds_left:
 will_s_macbook_pro_battery_power_plugged:
   friendly_name: Will's MacBook Pro Power Plugged
   icon: mdi:power-plug
+
+# <editor-fold desc="Google Fit">
+
+google_fit_active_minutes:
+  friendly_name: Google Fit Active Minutes
+  unit_of_measurement: "minutes"
+  icon: mdi:run
+
+google_fit_calories_expended:
+  friendly_name: Google Fit Calories Expended
+  unit_of_measurement: "kcal"
+  icon: mdi:fire-circle
+
+google_fit_distance_moved:
+  friendly_name: Google Fit Distance Moved
+  unit_of_measurement: "m"
+  icon: mdi:map-marker-distance
+
+google_fit_step_count:
+  friendly_name: Google Fit Step Count
+  unit_of_measurement: "steps"
+  icon: mdi:shoe-print
+
+google_fit_weight:
+  friendly_name: Google Fit Weight
+  unit_of_measurement: "kg"
+  icon: mdi:weight-kilogram
+
+# </editor-fold>
