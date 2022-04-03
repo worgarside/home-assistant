@@ -72,31 +72,35 @@
                     sequence:
                       - repeat:
                           # yamllint disable-line rule:line-length
-                          while: "{{ not is_state('light.galaxy_light', 'on') and repeat.index < 10 }}"
+                          while: "{{ not is_state('light.galaxy_light', 'on') and repeat.index < 50 }}"
                           sequence:
                             - alias: "Persistent Notification #3"
                               service: script.debug_persistent_notification
                               data:
                                 title: "Resuming previous GL state"
-                                message: "Turning ON"
+                                message: "Turning ON (Attempt #{{ repeat.index }})"
                             - service: light.turn_on
                               target:
                                 entity_id: light.galaxy_light
+                            - delay:
+                                milliseconds: 750
                   - alias: "Galaxy Light was OFF before it went offline"
                     conditions: "{{ previous_gl_state == 'off' }}"
                     sequence:
                       - repeat:
                           # yamllint disable-line rule:line-length
-                          while: "{{ not is_state('light.galaxy_light', 'off') and repeat.index < 10 }}"
+                          while: "{{ not is_state('light.galaxy_light', 'off') and repeat.index < 50 }}"
                           sequence:
                             - alias: "Persistent Notification #4"
                               service: script.debug_persistent_notification
                               data:
                                 title: "Resuming previous GL state"
-                                message: "Turning OFF"
+                                message: "Turning OFF (Attempt #{{ repeat.index }})"
                             - service: light.turn_off
                               target:
                                 entity_id: light.galaxy_light
+                            - delay:
+                                milliseconds: 750
                 default:
                   - service: script.notify_will
                     data:
