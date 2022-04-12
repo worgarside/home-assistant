@@ -28,6 +28,7 @@ else:
     pyscript_executor = decorator
     time_trigger = decorator
     event_trigger = decorator
+    service = decorator
 
     CREDS_CACHE_PATH = None
 
@@ -75,16 +76,14 @@ def update_spotify_monthlies():
 
     recently_liked = task.executor(SPOTIFY.get_recently_liked_tracks, day_limit=7)
 
-    all_monthly_playlist_track_ids = set()
+    all_monthly_playlist_tracks = set()
     for playlist in get_monthly_playlists(6):
-        all_monthly_playlist_track_ids.update(
-            [t.id for t in task.executor(getattr, playlist, "tracks")]
-        )
+        all_monthly_playlist_tracks.update(task.executor(getattr, playlist, "tracks"))
 
     playlist_updates = {}
 
     for track in recently_liked:
-        if track.id not in all_monthly_playlist_track_ids:
+        if track not in all_monthly_playlist_tracks:
             log.debug("Processing %s", str(track))
 
             target_playlist_name = datetime.strptime(
@@ -108,10 +107,7 @@ def update_spotify_monthlies():
                         collaborative=False,
                     )
 
-            if target_monthly_playlist not in playlist_updates:
-                playlist_updates[target_monthly_playlist] = []
-
-            playlist_updates[target_monthly_playlist].append(track)
+            playlist_updates.setdefault(target_monthly_playlist, []).append(track)
 
     for playlist, tracks in playlist_updates.items():
         log.debug("Adding %s to %s", ", ".join(map(str, tracks)), playlist.name)
