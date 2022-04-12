@@ -14,7 +14,9 @@ from helpers import write_file
 
 MODULE_NAME = "spotify"
 
-if gethostname() != "homeassistant":
+if gethostname() == "homeassistant":
+    CREDS_CACHE_PATH = "/config/.spotify_cache"
+else:
     from helpers import local_setup
 
     log, task, sync_mock, decorator = local_setup()
@@ -27,11 +29,13 @@ if gethostname() != "homeassistant":
     time_trigger = decorator
     event_trigger = decorator
 
+    CREDS_CACHE_PATH = None
+
 SPOTIFY = SpotifyClient(
     client_id=get_secret("client_id", module=MODULE_NAME),
     client_secret=get_secret("client_secret", module=MODULE_NAME),
     scope=SpotifyClient.ALL_SCOPES,
-    creds_cache_path="/config/.spotify_cache",
+    creds_cache_path=CREDS_CACHE_PATH,
 )
 
 _MONTH_LIST = "|".join(
@@ -207,6 +211,22 @@ def save_album_artwork(var_name, value, old_value):
     )
 
 
+@pyscript_executor
+def add_to_playlist(track, playlist):
+    """Add a track to a playlist, but from PyScript...
+
+    Args:
+        track (Track): the track to add
+        playlist (Playlist): the playlist to update
+    """
+
+    if track not in playlist:
+        SPOTIFY.add_tracks_to_playlist(
+            tracks=[track],
+            playlist=playlist,
+        )
+
+
 @event_trigger("mobile_app_notification_action")
 def add_track_to_playlist(action, message, **_):
     """Add a given track to a playlist
@@ -239,17 +259,9 @@ def add_track_to_playlist(action, message, **_):
         )
 
     if action == "ADD_SONG_TO_BOTH":
-        task.executor(
-            SPOTIFY.add_tracks_to_playlist, tracks=[track], playlist=CHILL_ELECTRONICA
-        )
-        task.executor(
-            SPOTIFY.add_tracks_to_playlist, tracks=[track], playlist=JAMBOX_JAMS
-        )
-    elif action == "ADD_SONG_TO_CHILL_ELECTRONICA":
-        task.executor(
-            SPOTIFY.add_tracks_to_playlist, tracks=[track], playlist=CHILL_ELECTRONICA
-        )
-    elif action == "ADD_SONG_TO_JAMBOX_JAMS":
-        task.executor(
-            SPOTIFY.add_tracks_to_playlist, tracks=[track], playlist=JAMBOX_JAMS
-        )
+        add_to_playlist(track, CHILL_ELECTRONICA)
+        add_to_playlist(track, JAMBOX_JAMS)
+    elif action == "ADD_SONG_TO_CHILL_ELECTRONICA" and track not in CHILL_ELECTRONICA:
+        add_to_playlist(track, CHILL_ELECTRONICA)
+    elif action == "ADD_SONG_TO_JAMBOX_JAMS" and track not in JAMBOX_JAMS:
+        add_to_playlist(track, JAMBOX_JAMS)
