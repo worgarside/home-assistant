@@ -11,10 +11,10 @@ yamllint = "*"
 locationsharinglib = "*"
 
 [packages]
-homeassistant = "*"
+homeassistant = "==2022.4.2"
 requests = "*"
 spotipy = "*"
-wg-utilities = "*"
+wg-utilities = "==2.12.4"
 nanoleafapi = "*"
 pillow = "*"
 
