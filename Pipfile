@@ -9,14 +9,18 @@ pylint = "*"
 pre-commit = "*"
 yamllint = "*"
 locationsharinglib = "*"
+ftfy = "*"
 
 [packages]
-homeassistant = "==2022.4.2"
+homeassistant = ">=2022.4.0"
 requests = "*"
 spotipy = "*"
-wg-utilities = "==2.14.0"
+wg-utilities = "==2.16.0"
 nanoleafapi = "*"
 pillow = "*"
+lxml = "*"
+xmltodict = "*"
+flask = "*"
 
 [requires]
 python_version = "3.9"

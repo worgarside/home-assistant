@@ -332,3 +332,27 @@
           {% endif %}
 
 # </editor-fold>
+# <editor-fold desc="YAS-209">
+
+  - trigger:
+      - platform: webhook
+        webhook_id: will_s_yas_209_event_data
+    sensor:
+      - name: Will's YAS-209
+        unique_id: wills_yas_209_custom
+        icon: "mdi:soundbar"
+        state: "{{ trigger.json.state }}"
+        picture: "{{ trigger.json.album_art_uri }}"
+        attributes:
+          volume_level: "{{ trigger.json.volume_level }}"
+          # is_volume_muted: ""
+          # media_content_id: ""
+          # media_content_type: ""
+          # media_duration: ""
+          media_title: "{{ trigger.json.media_title }}"
+          media_artist: "{{ trigger.json.media_artist }}"
+          media_album_name: "{{ trigger.json.media_album_name }}"
+          friendly_name: "Will's YAS-209"
+          album_art_uri: "{{ trigger.json.album_art_uri }}"
+
+# </editor-fold>
