@@ -124,3 +124,20 @@
           }}
     action:
       - service: pyscript.close_curtain
+
+  - alias: /door/wills_room/closet_door_auto_light
+    id: wills_room_closet_door_auto_light
+    trigger:
+      platform: state
+      entity_id: binary_sensor.will_s_closet_door
+      to: "on"
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.will_s_closet
+      - wait_template: "{{ states('binary_sensor.will_s_closet_door') == 'off' }}"
+        timeout: 900
+        continue_on_timeout: true
+      - service: light.turn_off
+        data:
+          entity_id: light.will_s_closet

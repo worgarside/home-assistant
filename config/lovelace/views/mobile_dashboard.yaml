@@ -43,7 +43,7 @@ cards:
     title: Landing
     entities:
       - type: custom:decluttering-card
-        template: folding_white_light_template
+        template: folding_rgb_light_template
         variables:
           - entity: light.landing_light
           - name: Light
