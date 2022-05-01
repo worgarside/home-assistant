@@ -65,6 +65,8 @@
           - media_player.lounge_bravia_tv
         to:
           - "off"
+        for:
+          minutes: 1
     condition:
       - condition: and
         conditions:
@@ -76,7 +78,7 @@
             state: "off"
     action:
       # yamllint disable-line rule:line-length
-      - wait_template: "{{ states('media_player.hifi_system') == 'off' and states('media_player.lounge_bravia_tv') == 'off' }}"
+      - wait_template: "{{ states('media_player.hifi_system') == 'off' and states('media_player.lounge_bravia_tv') == 'off'  and states('media_player.lounge_tv') != 'unavailable' }}"
         timeout: 300
         continue_on_timeout: false
       - service: switch.turn_off
