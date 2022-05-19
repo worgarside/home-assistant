@@ -356,3 +356,68 @@
           album_art_uri: "{{ trigger.json.album_art_uri }}"
 
 # </editor-fold>
+# <editor-fold desc="System">
+
+  - sensor:
+      - name: Count Automations
+        state: "{{ states.automation | list | length }}"
+        icon: mdi:robot-angry
+
+  - sensor:
+      - name: Count Scripts
+        state: "{{ states.script| list | length }}"
+        icon: mdi:script-text
+
+  - sensor:
+      - name: Count Device Trackers
+        state: "{{ states.device_tracker | list | length }}"
+        icon: mdi:devices
+
+  - sensor:
+      - name: Count Binary Sensors
+        state: "{{ states.binary_sensor| list | length }}"
+        icon: mdi:electric-switch
+
+  - sensor:
+      - name: Count Sensors
+        state: "{{ states.sensor | list | length }}"
+        icon: mdi:counter
+
+  - sensor:
+      - name: Count Switches
+        state: "{{ states.switch | list | length }}"
+        icon: mdi:toggle-switch
+
+  - sensor:
+      - name: Count Zones
+        state: "{{ states.zone | list | length }}"
+        icon: mdi:map-marker-multiple
+
+  - sensor:
+      - name: Count Input Booleans
+        state: "{{ states.input_boolean | list | length }}"
+        icon: mdi:toggle-switch-outline
+
+  - sensor:
+      - name: Count Input Numbers
+        state: "{{ states.input_number | list | length }}"
+        icon: mdi:numeric-1-box-multiple-outline
+
+  - sensor:
+      - name: Count Input Texts
+        state: "{{ states.input_text | list | length }}"
+        icon: mdi:form-textbox
+
+  - sensor:
+      - name: Count Input Selects
+        state: "{{ states.input_select | list | length }}"
+        icon: mdi:form-dropdown
+
+  - sensor:
+      - name: Count Input Datetimes
+        state: "{{ states.input_datetime | list | length }}"
+        icon: mdi:calendar-edit
+
+# </editor-fold>
+
+

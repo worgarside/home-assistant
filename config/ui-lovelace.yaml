@@ -3,10 +3,10 @@ title: !secret address_line_1
 
 decluttering_templates: !include lovelace/decluttering_templates.yaml
 
-swipe_nav:
-  swipe_amount: 15
-  wrap: true
-  animate: swipe
+#swipe_nav:
+#  swipe_amount: 15
+#  wrap: true
+#  animate: swipe
 
 views:
   - !include lovelace/views/mobile_dashboard.yaml

@@ -1,0 +1,86 @@
+---
+title: System Health
+
+icon: mdi:cellphone
+
+path: system_health
+
+cards:
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Unavailable Entities
+      show_header_toggle: false
+    sort:
+      method: domain
+    filter:
+      include:
+        - state: "unavailable"
+      exclude:
+        # Exclude anything from browser mod, named like "domain.a1b2c3d4_e5f6g7h8"
+        - entity_id: /^light\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$/
+          # yamllint disable-line rule:line-length
+        - entity_id: /^media_player\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$/
+        - entity_id: /^sensor\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$/
+        - entity_id: /^switch\..*_led$/ # TP Link switch LEDs
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: glance
+        entities:
+          - entity: sensor.count_automations
+            name: Automations
+          - entity: sensor.count_binary_sensors
+            name: Binary Sensors
+          - entity: sensor.count_device_trackers
+            name: Devices
+          # - entity: sensor.count_input_booleans
+          #   name: Input Booleans
+          # - entity: sensor.count_input_datetimes
+          #   name: Input Datetimes
+          # - entity: sensor.count_input_numbers
+          #   name: Input Numbers
+          # - entity: sensor.count_input_selects
+          #   name: Input Selects
+          # - entity: sensor.count_input_texts
+          #   name: Input Texts
+          - entity: sensor.count_scripts
+            name: Scripts
+          - entity: sensor.count_sensors
+            name: Sensors
+          - entity: sensor.count_switches
+            name: Switches
+          - entity: sensor.count_zones
+            name: Zones
+
+      - type: glance
+        entities:
+          - entity: sensor.database_size
+            name: Database
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.speedtest_download
+            name: Download
+        icon: mdi:download-network-outline
+        line_color: blue
+        line_width: 8
+        font_size: 75
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.speedtest_upload
+            name: Upload
+        icon: mdi:upload-network-outline
+        line_color: '#e74c3c'
+        line_width: 8
+        font_size: 75
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.speedtest_ping
+            name: Ping
+        line_color: var(--accent-color)
+        line_width: 8
+        font_size: 75
+

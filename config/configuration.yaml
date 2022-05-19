@@ -68,8 +68,12 @@ lovelace:
   dashboards:
     lovelace-main:
       mode: yaml
-      filename: lovelace_main.yaml
-      title: Main
+      filename: lovelace/dashboards/mobile_dashboard.yaml
+      title: Mobile Dashboard
+    system-health:
+      mode: yaml
+      filename: lovelace/dashboards/system_health.yaml
+      title: System Health
   resources:
     - url: /hacsfiles/spotify-card/spotify-card.js
       type: module
@@ -120,6 +124,10 @@ lovelace:
     - url: /hacsfiles/restriction-card/restriction-card.js
       type: module
     - url: /hacsfiles/ha-floorplan/floorplan.js
+      type: module
+    - url: /local/text-row.js?v=0.0.1
+      type: module
+    - url: /hacsfiles/bar-card/bar-card.js
       type: module
 
 map:
