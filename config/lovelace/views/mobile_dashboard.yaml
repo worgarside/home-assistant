@@ -170,11 +170,98 @@ cards:
         variables:
           - entity: light.wills_lamp
           - name: Lamp
-      - type: custom:decluttering-card
-        template: folding_rgb_light_with_effects_template
-        variables:
-          - entity: light.plant_lights
-          - name: Plants
+      - type: custom:auto-entities
+        card:
+          type: custom:fold-entity-row
+          head:
+            type: custom:restriction-card
+            card_mod:
+              style: |
+                :host #overlay {
+                  padding: 12px 7px;
+                  height: 24px;
+                  margin-top: -4px;
+                }
+            entity: light.plant_lights
+            row: true
+            restrictions:
+              confirm:
+                text: It's late, do you want to unlock this action for 5 seconds?
+            condition:
+              entity: binary_sensor.quiet_hours
+              value: "on"
+            card:
+              entity: light.plant_lights
+              name: Plants
+        entities:
+          - type: custom:slider-entity-row
+            entity: light.plant_lights
+            full_row: true
+            hide_state: true
+          - type: custom:decluttering-card
+            template: rgb_light_template
+            variables:
+              - entity: light.plant_lights
+          - type: custom:light-entity-card
+            card_mod:
+              style: |
+                paper-dropdown-menu {
+                  width: 75%;
+                  margin-top: -15px;
+                }
+            entity: light.plant_lights
+            hide_header: true
+            brightness: false
+            color_temp: false
+            color_picker: false
+            child_card: true
+          - type: custom:bar-card
+            direction: up
+            stack: horizontal
+            height: 125px
+            positions:
+              icon: off
+            severity:
+              - color: '#fa3200'
+                from: 0
+                to: 10
+              - color: '#ec4700'
+                from: 10
+                to: 20
+              - color: '#d56000'
+                from: 20
+                to: 30
+              - color: '#b97c00'
+                from: 30
+                to: 40
+              - color: '#9b9b00'
+                from: 40
+                to: 50
+              - color: '#7cb900'
+                from: 50
+                to: 60
+              - color: '#60d500'
+                from: 60
+                to: 70
+              - color: '#47ec00'
+                from: 70
+                to: 80
+              - color: '#32fa00'
+                from: 80
+                to: 90
+              - color: '#14ff00'
+                from: 90
+                to: 100
+            entities:
+              - entity: sensor.monstera_saturation
+                name: Monstera
+              - entity: sensor.succulent_saturation
+                name: Succulent
+              - entity: sensor.yukka_saturation
+                name: Yukka
+
+
+
       - type: custom:fold-entity-row
         head:
           entity: media_player.wills_bravia_tv

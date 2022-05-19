@@ -26,6 +26,63 @@
 #      - 200205
 #      - 300033
 
+  - platform: mqtt
+    state_topic: "/will_s_room/plants/monstera"
+    force_update: true
+    icon: mdi:flower
+    name: Monstera Moisture
+    value_template: "{{ value_json.moisture }}"
+    unit_of_measurement: "Hz"
+    state_class: measurement
+    device_class: frequency
+
+  - platform: mqtt
+    state_topic: "/will_s_room/plants/monstera"
+    force_update: true
+    icon: mdi:flower-outline
+    name: Monstera Saturation
+    value_template: "{{ value_json.saturation }}"
+    unit_of_measurement: "%"
+    state_class: measurement
+
+  - platform: mqtt
+    state_topic: "/will_s_room/plants/yukka"
+    force_update: true
+    icon: mdi:flower
+    name: Yukka Moisture
+    value_template: "{{ value_json.moisture }}"
+    unit_of_measurement: "Hz"
+    state_class: measurement
+    device_class: frequency
+
+  - platform: mqtt
+    state_topic: "/will_s_room/plants/yukka"
+    force_update: true
+    icon: mdi:flower-outline
+    name: Yukka Saturation
+    value_template: "{{ value_json.saturation }}"
+    unit_of_measurement: "%"
+    state_class: measurement
+
+  - platform: mqtt
+    state_topic: "/will_s_room/plants/succulent"
+    force_update: true
+    icon: mdi:flower
+    name: Succulent Moisture
+    value_template: "{{ value_json.moisture }}"
+    unit_of_measurement: "Hz"
+    state_class: measurement
+    device_class: frequency
+
+  - platform: mqtt
+    state_topic: "/will_s_room/plants/succulent"
+    force_update: true
+    icon: mdi:flower-outline
+    name: Succulent Saturation
+    value_template: "{{ value_json.saturation }}"
+    unit_of_measurement: "%"
+    state_class: measurement
+
   - platform: rest
     resource: http://ip.jsontest.com
     name: External IP
@@ -63,9 +120,6 @@
     value_template: "{{ value_json['body']['slidePosition'] }}"
     unit_of_measurement: '%'
 
-  - platform: spotcast
-    country: GB
-
   - platform: rest
     name: Nabu Casa Online
     method: GET
@@ -76,3 +130,50 @@
       Authorization: !secret nabu_casa_online_access_token
       Content-Type: application/json
     value_template: "{{ value_json['state'] }}"
+
+  - platform: spotcast
+    country: GB
+
+  - platform: sql
+#    icon: mdi:database
+    db_url: !secret mariadb_db_url
+    queries:
+      - name: Database Size
+        # yamllint disable-line rule:line-length
+        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema'
+        column: 'value'
+        unit_of_measurement: MB
+
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+      - type: disk_use
+      - type: disk_free
+      - type: memory_use_percent
+      - type: memory_use
+      - type: memory_free
+      - type: swap_use_percent
+      - type: swap_use
+      - type: swap_free
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+      - type: throughput_network_in
+        arg: eth0
+      - type: throughput_network_out
+        arg: eth0
+      - type: packets_in
+        arg: eth0
+      - type: packets_out
+        arg: eth0
+      - type: ipv4_address
+        arg: eth0
+      - type: ipv6_address
+        arg: eth0
+      - type: processor_use
+      - type: processor_temperature
+
