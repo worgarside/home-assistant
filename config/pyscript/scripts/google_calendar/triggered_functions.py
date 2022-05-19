@@ -130,7 +130,7 @@ def copy_events():
 
     for work_event in accepted_work_events:
         if not event_in_list(work_event, previously_copied_events):
-            log.info("Creating", str(work_event))
+            log.info("Creating %s", str(work_event))
             task.executor(
                 PERSONAL_CLIENT.create_event,
                 summary=work_event.summary,
@@ -148,5 +148,5 @@ def copy_events():
 
     for copied_event in previously_copied_events:
         if not event_in_list(copied_event, accepted_work_events):
-            log.info("Deleting", str(copied_event))
+            log.info("Deleting %s", str(copied_event))
             task.executor(copied_event.delete)
