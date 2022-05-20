@@ -146,6 +146,8 @@ cards:
         entity: input_number.wills_room_curtain_position
         name: Curtain Position
         icon: mdi:curtains
+      - entity: fan.desk_fan
+        name: Desk Fan
       - type: custom:fold-entity-row
         head:
           entity: switch.tower_fan
@@ -259,9 +261,6 @@ cards:
                 name: Succulent
               - entity: sensor.yukka_saturation
                 name: Yukka
-
-
-
       - type: custom:fold-entity-row
         head:
           entity: media_player.wills_bravia_tv
