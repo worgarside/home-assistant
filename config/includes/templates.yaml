@@ -362,61 +362,73 @@
       - name: Count Automations
         state: "{{ states.automation | list | length }}"
         icon: mdi:robot-angry
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Scripts
         state: "{{ states.script| list | length }}"
         icon: mdi:script-text
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Device Trackers
         state: "{{ states.device_tracker | list | length }}"
         icon: mdi:devices
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Binary Sensors
         state: "{{ states.binary_sensor| list | length }}"
         icon: mdi:electric-switch
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Sensors
         state: "{{ states.sensor | list | length }}"
         icon: mdi:counter
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Switches
         state: "{{ states.switch | list | length }}"
         icon: mdi:toggle-switch
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Zones
         state: "{{ states.zone | list | length }}"
         icon: mdi:map-marker-multiple
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Input Booleans
         state: "{{ states.input_boolean | list | length }}"
         icon: mdi:toggle-switch-outline
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Input Numbers
         state: "{{ states.input_number | list | length }}"
         icon: mdi:numeric-1-box-multiple-outline
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Input Texts
         state: "{{ states.input_text | list | length }}"
         icon: mdi:form-textbox
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Input Selects
         state: "{{ states.input_select | list | length }}"
         icon: mdi:form-dropdown
+        unit_of_measurement: ""
 
   - sensor:
       - name: Count Input Datetimes
         state: "{{ states.input_datetime | list | length }}"
         icon: mdi:calendar-edit
+        unit_of_measurement: ""
 
 # </editor-fold>
 
