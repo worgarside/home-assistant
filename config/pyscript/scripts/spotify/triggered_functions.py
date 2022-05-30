@@ -105,7 +105,7 @@ def process_liked_songs():
     decade_updates = update_dynamic_playlists(
         deepcopy(recently_liked),
         all_decade_playlist_tracks,
-        lambda t: "'" + str(t.release_date.year)[2] + "0s",
+        lambda t: str(t.release_date.year)[:3] + "0s",
     )
 
     # Notifications
