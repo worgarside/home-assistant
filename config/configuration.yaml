@@ -3,8 +3,6 @@
 
 api:
 
-breaking_changes:
-
 browser_mod:
   devices:
     0f686a62-15fffa21:
@@ -172,10 +170,6 @@ spotcast:
     will:
       sp_dc: !secret spotcast_sp_dc_will
       sp_key: !secret spotcast_sp_key_will
-
-spotify:
-  client_id: !secret spotify_client_id
-  client_secret: !secret spotify_client_secret
 
 ssdp:
 
