@@ -39,7 +39,7 @@ SPOTIFY = SpotifyClient(
     creds_cache_path=CREDS_CACHE_PATH,
 )
 
-DECADE_PATTERN = compile_regex(r"^'\d0s$")
+DECADE_PATTERN = compile_regex(r"^\d{3}0s$")
 _MONTH_LIST = "|".join(
     [datetime.strptime(str(i), "%m").strftime("%B") for i in range(1, 13)]
 )
