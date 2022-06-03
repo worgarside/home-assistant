@@ -109,6 +109,214 @@
         entity_id: sensor.mini_crt_power_state
 
 #</editor-fold>
+#<editor-fold desc="Input Number">
+  - alias: /input_number/monstera_dry_point/auto_set
+    id: input_number_monstera_dry_point_auto_set
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.monstera_moisture
+        above: input_number.monstera_dry_point
+        for:
+          minutes: 5
+    action:
+      - alias: "Set variables"
+        variables:
+          previous_value: "{{ states('input_number.monstera_dry_point') }}"
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.monstera_dry_point
+        data:
+          value: "{{ ( states('sensor.monstera_moisture') | float * 1.1 ) | round(2) }}"
+      - service: script.debug_persistent_notification
+        data:
+          title: "Setting Monstera Dry Point"
+          # yamllint disable-line rule:line-length
+          message: "Changed from {{ previous_value }} to {{ states('input_number.monstera_dry_point') }}"
+
+  - alias: /input_number/monstera_dry_point/publish_update
+    id: input_number_monstera_dry_point_publish_update
+    trigger:
+      - platform: state
+        entity_id: input_number.monstera_dry_point
+    action:
+      - service: mqtt.publish
+        data:
+          topic: /plant_monitor/monstera/dry_point/set
+          payload_template: '{{ trigger.to_state.state | float }}'
+
+  - alias: /input_number/monstera_wet_point/auto_set
+    id: input_number_monstera_wet_point_auto_set
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.monstera_moisture
+        below: input_number.monstera_wet_point
+        for:
+          minutes: 5
+    action:
+      - alias: Set variables
+        variables:
+          previous_value: "{{ states('input_number.monstera_wet_point') }}"
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.monstera_wet_point
+        data:
+          value: "{{ ( states('sensor.monstera_moisture') | float * 0.9 ) | round(2) }}"
+      - service: script.debug_persistent_notification
+        data:
+          title: Setting Monstera Wet Point
+          # yamllint disable-line rule:line-length
+          message: Changed from {{ previous_value }} to {{ states('input_number.monstera_wet_point') }}
+
+  - alias: /input_number/monstera_wet_point/publish_update
+    id: input_number_monstera_wet_point_publish_update
+    trigger:
+      - platform: state
+        entity_id: input_number.monstera_wet_point
+    action:
+      - service: mqtt.publish
+        data:
+          topic: /plant_monitor/monstera/wet_point/set
+          payload_template: '{{ trigger.to_state.state | float }}'
+
+  - alias: /input_number/succulent_dry_point/auto_set
+    id: input_number_succulent_dry_point_auto_set
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.succulent_moisture
+        above: input_number.succulent_dry_point
+        for:
+          minutes: 5
+    action:
+      - alias: Set variables
+        variables:
+          previous_value: "{{ states('input_number.succulent_dry_point') }}"
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.succulent_dry_point
+        data:
+          # yamllint disable-line rule:line-length
+          value: "{{ ( states('sensor.succulent_moisture') | float * 1.1 ) | round(2) }}"
+      - service: script.debug_persistent_notification
+        data:
+          title: Setting Succulent Dry Point
+          # yamllint disable-line rule:line-length
+          message: Changed from {{ previous_value }} to {{ states('input_number.succulent_dry_point') }}
+
+  - alias: /input_number/succulent_dry_point/publish_update
+    id: input_number_succulent_dry_point_publish_update
+    trigger:
+      - platform: state
+        entity_id: input_number.succulent_dry_point
+    action:
+      - service: mqtt.publish
+        data:
+          topic: /plant_monitor/succulent/dry_point/set
+          payload_template: '{{ trigger.to_state.state | float }}'
+
+  - alias: /input_number/succulent_wet_point/auto_set
+    id: input_number_succulent_wet_point_auto_set
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.succulent_moisture
+        below: input_number.succulent_wet_point
+        for:
+          minutes: 5
+    action:
+      - alias: Set variables
+        variables:
+          previous_value: "{{ states('input_number.succulent_wet_point') }}"
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.succulent_wet_point
+        data:
+          # yamllint disable-line rule:line-length
+          value: "{{ ( states('sensor.succulent_moisture') | float * 0.9 ) | round(2) }}"
+      - service: script.debug_persistent_notification
+        data:
+          title: Setting Succulent Wet Point
+          # yamllint disable-line rule:line-length
+          message: Changed from {{ previous_value }} to {{ states('input_number.succulent_wet_point') }}
+
+  - alias: /input_number/succulent_wet_point/publish_update
+    id: input_number_succulent_wet_point_publish_update
+    trigger:
+      - platform: state
+        entity_id: input_number.succulent_wet_point
+    action:
+      - service: mqtt.publish
+        data:
+          topic: /plant_monitor/succulent/wet_point/set
+          payload_template: '{{ trigger.to_state.state | float }}'
+
+  - alias: /input_number/yukka_dry_point/auto_set
+    id: input_number_yukka_dry_point_auto_set
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.yukka_moisture
+        above: input_number.yukka_dry_point
+        for:
+          minutes: 5
+    action:
+      - alias: Set variables
+        variables:
+          previous_value: "{{ states('input_number.yukka_dry_point') }}"
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.yukka_dry_point
+        data:
+          value: "{{ ( states('sensor.yukka_moisture') | float * 1.1 ) | round(2) }}"
+      - service: script.debug_persistent_notification
+        data:
+          title: Setting Yukka Dry Point
+          # yamllint disable-line rule:line-length
+          message: Changed from {{ previous_value }} to {{ states('input_number.yukka_dry_point') }}
+
+  - alias: /input_number/yukka_dry_point/publish_update
+    id: input_number_yukka_dry_point_publish_update
+    trigger:
+      - platform: state
+        entity_id: input_number.yukka_dry_point
+    action:
+      - service: mqtt.publish
+        data:
+          topic: /plant_monitor/yukka/dry_point/set
+          payload_template: '{{ trigger.to_state.state | float }}'
+
+  - alias: /input_number/yukka_wet_point/auto_set
+    id: input_number_yukka_wet_point_auto_set
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.yukka_moisture
+        below: input_number.yukka_wet_point
+        for:
+          minutes: 5
+    action:
+      - alias: Set variables
+        variables:
+          previous_value: "{{ states('input_number.yukka_wet_point') }}"
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.yukka_wet_point
+        data:
+          value: "{{ ( states('sensor.yukka_moisture') | float * 0.9 ) | round(2) }}"
+      - service: script.debug_persistent_notification
+        data:
+          title: Setting Yukka Wet Point
+          # yamllint disable-line rule:line-length
+          message: Changed from {{ previous_value }} to {{ states('input_number.yukka_wet_point') }}
+
+  - alias: /input_number/yukka_wet_point/publish_update
+    id: input_number_yukka_wet_point_publish_update
+    trigger:
+      - platform: state
+        entity_id: input_number.yukka_wet_point
+    action:
+      - service: mqtt.publish
+        data:
+          topic: /plant_monitor/yukka/wet_point/set
+          payload_template: '{{ trigger.to_state.state | float }}'
+
+#</editor-fold>
 #<editor-fold desc="Input Select">
 
   - alias: /input_select/washing_machine_current_user/set

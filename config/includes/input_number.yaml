@@ -10,3 +10,59 @@ wills_room_fan_auto_on_threshold:
   min: 0
   max: 40
   step: 0.1
+
+monstera_dry_point:
+  name: Monstera Dry Point
+  min: 0
+  max: 900
+  step: 0.1
+  unit_of_measurement: Hz
+  icon: mdi:wave
+  mode: box
+
+monstera_wet_point:
+  name: Monstera Wet Point
+  min: 0
+  max: 900
+  step: 0.1
+  unit_of_measurement: Hz
+  icon: mdi:waves
+  mode: box
+
+yukka_dry_point:
+  name: Yukka Dry Point
+  min: 0
+  max: 900
+  step: 0.1
+  unit_of_measurement: Hz
+  icon: mdi:wave
+  mode: box
+
+yukka_wet_point:
+  name: Yukka Wet Point
+  min: 0
+  max: 900
+  step: 0.1
+  unit_of_measurement: Hz
+  icon: mdi:waves
+  mode: box
+
+succulent_dry_point:
+  name: Succulent Dry Point
+  min: 0
+  max: 900
+  step: 0.1
+  unit_of_measurement: Hz
+  icon: mdi:wave
+  mode: box
+
+succulent_wet_point:
+  name: Succulent Wet Point
+  min: 0
+  max: 900
+  step: 0.1
+  unit_of_measurement: Hz
+  icon: mdi:waves
+  mode: box
+
+
