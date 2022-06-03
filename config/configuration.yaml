@@ -208,6 +208,7 @@ input_boolean: !include includes/input_boolean.yaml
 input_number: !include includes/input_number.yaml
 input_select: !include includes/input_select.yaml
 input_text: !include includes/input_text.yaml
+mqtt: !include includes/mqtt.yaml
 rest_command: !include includes/rest_command.yaml
 scene: !include includes/scenes.yaml
 script: !include includes/scripts.yaml
