@@ -23,7 +23,7 @@
         target:
           entity_id: switch.terrace_lights
 
-  # Open the curtain when the Sun sets past -18'
+  # Close the curtain when the Sun sets past -18'
   - alias: /sun/set/close_curtain_after_sunset
     id: close_curtain_post_sunset
     trigger:

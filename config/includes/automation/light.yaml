@@ -1,0 +1,21 @@
+---
+  - alias: /light/galaxy_light/preserve_state
+    id: preserve_galaxy_light_state
+    trigger:
+      - platform: state
+        entity_id: light.galaxy_light
+        for:
+          seconds: 10
+    condition:
+      - "{{ trigger.from_state.state != 'unavailable' }}"
+      - "{{ trigger.to_state.state != 'unavailable' }}"
+    action:
+      - service: script.debug_persistent_notification
+        data:
+          title: Galaxy light Status Changed
+        # yamllint disable-line rule:line-length
+          message: Changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}
+      - service: var.set
+        data:
+          entity_id: var.galaxy_light_previous_state
+          value: '{{ trigger.to_state.state }}'

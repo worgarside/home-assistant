@@ -15,9 +15,9 @@
       - service: pyscript.reload
       - service: persistent_notification.create
         data:
-          title: Pyscript has been reloaded
           message: >
             Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
+          title: Pyscript has been reloaded
 
   - alias: /lovelace/auto_reload
     id: lovelace_auto_reload
@@ -31,7 +31,7 @@
       - service: browser_mod.lovelace_reload
         data:
           deviceId:
-            - 0f686a62-15fffa21
+            - 0f686a62-15fffa21  # Will's MBP
 
   - alias: /homeassistant/file_watcher/automation_auto_reload
     id: automation_auto_reload

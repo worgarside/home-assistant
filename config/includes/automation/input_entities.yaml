@@ -1,28 +1,5 @@
 ---
 
-# ------------------------ Input Text/Select/Boolean ------------------------ #
-
-  - alias: /light/galaxy_light/preserve_state
-    id: preserve_galaxy_light_state
-    trigger:
-      - platform: state
-        entity_id: light.galaxy_light
-        for:
-          seconds: 10
-    condition:
-      - "{{ trigger.from_state.state != 'unavailable' }}"
-      - "{{ trigger.to_state.state != 'unavailable' }}"
-    action:
-      - service: script.debug_persistent_notification
-        data:
-          title: Galaxy light Status Changed
-          # yamllint disable-line rule:line-length
-          message: "Changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}"
-      - service: var.set
-        data:
-          entity_id: var.galaxy_light_previous_state
-          value: "{{ trigger.to_state.state }}"
-
   - alias: Initialise "Entity Force Updater" Options
     id: init_entity_force_updater_options
     trigger:
@@ -32,8 +9,6 @@
 #      - delay:
 #          minutes: 15
       - service: input_select.set_options
-        target:
-          entity_id: input_select.entity_force_updater
         data_template:
           options: |
             {% for domain in [ 
@@ -58,6 +33,8 @@
                 - {{ state.entity_id }}
               {% endfor %}
             {%- endfor %}
+        target:
+          entity_id: input_select.entity_force_updater
 
   - alias: Force Update Entity
     id: force_update_entity
@@ -68,6 +45,8 @@
       - service: homeassistant.update_entity
         target:
           entity_id: "{{ trigger.to_state.state }}"
+
+#<editor-fold desc="Input Boolean">
 
   - alias: /input_boolean/mini_crt_power
     id: input_boolean_mini_crt_power
@@ -129,6 +108,9 @@
       - service: homeassistant.update_entity
         entity_id: sensor.mini_crt_power_state
 
+#</editor-fold>
+#<editor-fold desc="Input Select">
+
   - alias: /input_select/washing_machine_current_user/set
     id: set_washing_machine_current_user
     trigger:
@@ -174,3 +156,5 @@
                   entity_id: input_select.washing_machine_current_user
                 data:
                   option: "Will"
+
+#</editor-fold>
