@@ -120,3 +120,21 @@
           entity_id: input_select.washing_machine_current_user
         data:
           option: "None"
+
+  - alias: /notification/will_s_balcony_door/rain_alert
+    id: notification_will_s_balcony_door_rain_alert
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.openweathermap_rain
+        above: 0.1
+        for:
+          minutes: 5
+    condition:
+      condition: state
+      state: "on"
+      entity_id:
+        - binary_sensor.will_s_balcony_door
+    action:
+      - service: notify.mobile_app_will_s_pixel_6_pro
+        data:
+          message: "It's raining and your balcony door is open!"
