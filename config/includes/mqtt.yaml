@@ -34,8 +34,8 @@ sensor:
     unit_of_measurement: '%'
     state_class: measurement
 
-  - name: Succulent Moisture
-    state_topic: /will_s_room/plants/succulent
+  - name: Ficus Moisture
+    state_topic: /will_s_room/plants/ficus
     force_update: true
     icon: mdi:flower
     value_template: '{{ value_json.moisture }}'
@@ -43,8 +43,8 @@ sensor:
     state_class: measurement
     device_class: frequency
 
-  - name: Succulent Saturation
-    state_topic: /will_s_room/plants/succulent
+  - name: Ficus Saturation
+    state_topic: /will_s_room/plants/ficus
     force_update: true
     icon: mdi:flower-outline
     value_template: '{{ value_json.saturation }}'
