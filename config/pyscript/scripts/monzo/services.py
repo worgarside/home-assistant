@@ -21,7 +21,7 @@ if gethostname() != "homeassistant":
 
     CACHE_PATH = None
 else:
-    CACHE_PATH = "/config/.credentials/truelayer_api_creds.json"
+    CACHE_PATH = "/config/.credentials/monzo_api_creds.json"
 
 MODULE_NAME = "monzo"
 
