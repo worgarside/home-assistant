@@ -141,3 +141,19 @@
       - service: light.turn_off
         data:
           entity_id: light.will_s_closet
+
+  - alias: /plant/saturation_low
+    id: plant_saturation_low
+    mode: parallel
+    trigger:
+      platform: state
+      entity_id:
+        - sensor.monstera_saturation
+        - sensor.ficus_saturation
+        - sensor.yukka_saturation
+    condition: '{{ trigger.to_state.state | float  < 75 }}'
+    action:
+      - service: input_button.press
+        target:
+          # yamllint disable-line rule:line-length
+          entity_id: 'input_button.water_{{ trigger.entity_id.split(".")[1].split("_")[0].lower() }}'

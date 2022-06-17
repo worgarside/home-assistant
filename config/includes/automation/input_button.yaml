@@ -1,0 +1,51 @@
+---
+  - alias: /plant/water
+    id: plant_water
+    mode: single
+    trigger:
+      platform: state
+      entity_id:
+        - input_button.water_monstera
+        - input_button.water_ficus
+        - input_button.water_yukka
+    action:
+      - alias: "Set variables"
+        variables:
+          plant_name: "{{ trigger.entity_id.split('_')[-1].lower() }}"
+          input_datetime: "input_datetime.{{ plant_name }}_last_watered"
+          water_seconds: "input_number.{{ plant_name }}_water_seconds"
+          mqtt_topic: '/plant_monitor/{{ plant_name }}/water'
+        # Think this needs to be on a new line, so I don't have to put quotes around it
+        # and convert it to a string?
+          # yamllint disable-line rule:line-length
+          seconds_since_last_water: >
+            {{ 
+              (as_timestamp(now()) - as_timestamp(
+                strptime(
+                  states.input_datetime[plant_name ~ '_last_watered'].state,
+                  '%Y-%m-%d %H:%M:%S'
+                )
+              )) | int 
+            }}
+      - if:
+          - '{{ seconds_since_last_water >= 600 }}'
+        then:
+          - service: script.debug_persistent_notification
+            data:
+              title: '{{  plant_name }} Water Update'
+              message: "{{ states(water_seconds) | float }} sent to {{ mqtt_topic }}"
+          - service: mqtt.publish
+            data:
+              topic: '{{ mqtt_topic }}'
+              payload_template: "{{ states(water_seconds) | float }}"
+          - service: input_datetime.set_datetime
+            target:
+              entity_id: '{{ input_datetime }}'
+            data:
+              datetime: "{{ now() }}"
+        else:
+          - service: script.debug_persistent_notification
+            data:
+              title: '{{  plant_name }} Water Update'
+              # yamllint disable-line rule:line-length
+              message: "It's only been {{ (seconds_since_last_water / 60) | int }}m{{ (seconds_since_last_water % 60) }}s since the last water!"

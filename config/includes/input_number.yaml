@@ -65,4 +65,29 @@ ficus_wet_point:
   icon: mdi:waves
   mode: box
 
+monstera_water_seconds:
+  name: Monstera Water Seconds
+  min: 0
+  max: 30
+  step: 0.1
+  unit_of_measurement: seconds
+  icon: mdi:cup-water
+  mode: box
 
+yukka_water_seconds:
+  name: Yukka Water Seconds
+  min: 0
+  max: 30
+  step: 0.1
+  unit_of_measurement: seconds
+  icon: mdi:cup-water
+  mode: box
+
+ficus_water_seconds:
+  name: Ficus Water Seconds
+  min: 0
+  max: 30
+  step: 0.1
+  unit_of_measurement: seconds
+  icon: mdi:cup-water
+  mode: box
