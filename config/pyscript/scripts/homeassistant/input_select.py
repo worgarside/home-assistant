@@ -11,7 +11,7 @@ if gethostname() != "homeassistant":
 
 
 @service
-def init_entity_force_updater_options():
+def init_entity_force_updater_options() -> None:
     """Update the options for the force updater input select"""
 
     entity_ids = []

@@ -1,5 +1,6 @@
 """Updater script for Google Fit variables"""
 from socket import gethostname
+
 from wg_utilities.clients.google_fit import GoogleFitClient
 
 if gethostname() != "homeassistant":
@@ -9,7 +10,7 @@ if gethostname() != "homeassistant":
     task = async_mock
     var = sync_mock
     service = decorator
-    time_trigger = decorator
+    time_trigger = sync_mock
 
 
 GOOGLE_FIT = task.executor(
@@ -33,8 +34,8 @@ VARIABLE_DATA_SOURCE_MAPPING = {
 }
 
 
-@time_trigger("cron(*/5 * * * *)")
-def update_google_fit_variables():
+@time_trigger("cron(*/5 * * * *)")  # type: ignore
+def update_google_fit_variables() -> None:
     """Updates a set of Google Fit variables, as defined in
     `VARIABLE_DATA_SOURCE_MAPPING`
     """

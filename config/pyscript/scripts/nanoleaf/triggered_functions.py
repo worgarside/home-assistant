@@ -1,27 +1,27 @@
 """Functions which are only run on a certain trigger"""
 from os.path import isfile
 from socket import gethostname
-
-from PIL import Image
-from nanoleafapi import Nanoleaf
-from requests import get
-from wg_utilities.functions import force_mkdir
+from typing import Dict, List
 
 from helpers import get_secret, write_file
+from nanoleafapi import Nanoleaf
+from PIL import Image
+from requests import get
+from wg_utilities.functions import force_mkdir
 
 MODULE_NAME = "nanoleaf"
 
 if gethostname() != "homeassistant":
-    from helpers import local_setup
+    from helpers import local_setup  # pylint: disable=ungrouped-imports
 
     log, task, sync_mock, decorator = local_setup()
     state = sync_mock
     sensor = sync_mock
     input_select = sync_mock
     input_boolean = sync_mock
-    state_trigger = decorator
-    service = decorator
-    pyscript_executor = decorator
+    state_trigger = sync_mock
+    service = sync_mock
+    pyscript_executor = sync_mock
 
 # Shapes 8479
 MATTS_SHAPES = task.executor(
@@ -49,7 +49,7 @@ MEDIA_PLAYER_OVERRIDES = {
 
 
 @pyscript_executor
-def get_n_colors_from_image(img_path, n):
+def get_n_colors_from_image(img_path: str, n: int) -> List[Dict[str, int]]:
     """Get the N most common colors from an image
 
     Args:
@@ -62,6 +62,9 @@ def get_n_colors_from_image(img_path, n):
 
     pixels = Image.open(img_path).quantize(colors=n, method=0)
 
+    def sort_func(elem: List[str]) -> str:
+        return elem[0]
+
     return [
         {
             "hue": int((color_tuple[0] * 360) / 255),
@@ -70,13 +73,13 @@ def get_n_colors_from_image(img_path, n):
         }
         for count, color_tuple in sorted(
             pixels.convert(mode="HSV").getcolors(),
-            key=lambda elem: elem[0],
+            key=sort_func,
             reverse=True,
         )
     ][:n]
 
 
-def get_local_artwork_file_path(artist, album, url):
+def get_local_artwork_file_path(artist: str, album: str, url: str) -> str:
     """Get the local file path for the artwork image, downloading it if necessary
 
     Args:
@@ -130,7 +133,7 @@ def get_local_artwork_file_path(artist, album, url):
     return target_path
 
 
-def update_nanoleaf_colors_worker(media_player, nanoleaf_device):
+def update_nanoleaf_colors_worker(media_player: str, nanoleaf_device: Nanoleaf) -> None:
     """The actual worker function for updating Nanoleaf colors from an artwork image
 
     Args:
@@ -168,18 +171,18 @@ def update_nanoleaf_colors_worker(media_player, nanoleaf_device):
     task.executor(nanoleaf_device.write_effect, effect_dict=effect_dict)
 
 
-@state_trigger("media_player.all_speakers.media_title")
-@state_trigger("media_player.downstairs_speakers.media_title")
-@state_trigger("media_player.hifi_system.media_title")
-@state_trigger("media_player.kitchen_nest_mini.media_title")
-@state_trigger("media_player.matts_room_nest_mini.media_title")
-@state_trigger("media_player.spotify_matt_scott.media_title")
-@state_trigger("media_player.spotify_tom_jones.media_title")
-@state_trigger("media_player.spotify_will_garside.media_title")
-@state_trigger("media_player.tom_s_speakers.media_title")
-@state_trigger("media_player.upstairs_speakers.media_title")
-@state_trigger("media_player.will_s_yas_209.media_title")
-def update_nanoleaf_colors(var_name):
+@state_trigger("media_player.all_speakers.media_title")  # type: ignore
+@state_trigger("media_player.downstairs_speakers.media_title")  # type: ignore
+@state_trigger("media_player.hifi_system.media_title")  # type: ignore
+@state_trigger("media_player.kitchen_nest_mini.media_title")  # type: ignore
+@state_trigger("media_player.matts_room_nest_mini.media_title")  # type: ignore
+@state_trigger("media_player.spotify_matt_scott.media_title")  # type: ignore
+@state_trigger("media_player.spotify_tom_jones.media_title")  # type: ignore
+@state_trigger("media_player.spotify_will_garside.media_title")  # type: ignore
+@state_trigger("media_player.tom_s_speakers.media_title")  # type: ignore
+@state_trigger("media_player.upstairs_speakers.media_title")  # type: ignore
+@state_trigger("media_player.will_s_yas_209.media_title")  # type: ignore
+def update_nanoleaf_colors(var_name: str) -> None:
     """Update Nanoleaf colors based on the currently playing song's artwork
 
     Args:

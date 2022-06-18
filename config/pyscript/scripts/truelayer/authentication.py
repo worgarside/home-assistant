@@ -1,14 +1,14 @@
 """Functions/services for TrueLayer authentication"""
 from socket import gethostname
 
+from helpers import get_secret
 from wg_utilities.clients import TrueLayerClient
 from wg_utilities.clients.truelayer import Bank
-from helpers import get_secret
 
 MODULE_NAME = "truelayer"
 
 if gethostname() != "homeassistant":
-    from helpers import local_setup
+    from helpers import local_setup  # pylint: disable=ungrouped-imports
 
     log, async_mock, sync_mock, decorator = local_setup()
     task = async_mock
@@ -21,7 +21,7 @@ CACHE_PATH = "/config/.credentials/truelayer_api_creds.json"
 
 
 @service
-def get_truelayer_auth_link():
+def get_truelayer_auth_link() -> None:
     """Gets the TrueLayer authentication link from the client and outputs it as a
     persistent notification for user consumption.
 
@@ -40,14 +40,14 @@ def get_truelayer_auth_link():
 
 
 @service
-def authenticate_truelayer_against_bank(bank, code):
+def authenticate_truelayer_against_bank(bank_name: str, code: str) -> None:
     """Authenticate TrueLayer against user's bank account
 
     Args:
-        bank (str): name of the bank (must be a valid entry for Bank)
+        bank_name (str): name of the bank (must be a valid entry for Bank)
         code (str): the auth code returned from the TL auth flow
     """
-    bank = Bank[bank.upper()]
+    bank = Bank[bank_name.upper()]
 
     tl_client = TrueLayerClient(
         client_id=CLIENT_ID,

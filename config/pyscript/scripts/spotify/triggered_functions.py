@@ -2,22 +2,22 @@
 from copy import deepcopy
 from datetime import datetime
 from os.path import isfile
-from socket import gethostname
 from re import compile as compile_regex
-
-from requests import get
-from wg_utilities.clients import SpotifyClient
-from wg_utilities.functions import force_mkdir
+from socket import gethostname
+from typing import Any, Callable, Dict, Iterable, List, Optional
 
 from helpers import get_secret, write_file
-
+from requests import get
+from wg_utilities.clients import SpotifyClient
+from wg_utilities.clients.spotify import Playlist, Track
+from wg_utilities.functions import force_mkdir
 
 MODULE_NAME = "spotify"
 
 if gethostname() == "homeassistant":
-    CREDS_CACHE_PATH = "/config/.spotify_cache"
+    CREDS_CACHE_PATH: Optional[str] = "/config/.spotify_cache"
 else:
-    from helpers import local_setup
+    from helpers import local_setup  # pylint: disable=ungrouped-imports
 
     log, task, sync_mock, decorator = local_setup()
     state = sync_mock
@@ -51,7 +51,7 @@ JAMBOX_JAMS = task.executor(SPOTIFY.get_playlist_by_id, "4Vv023MaZsc8NTWZ4WJvIL"
 
 
 @pyscript_executor
-def get_monthly_playlists(return_count=12):
+def get_monthly_playlists(return_count: int = 12) -> List[Playlist]:
     """Gets all monthly playlists from Spotify (based on name)
 
     Args:
@@ -59,7 +59,7 @@ def get_monthly_playlists(return_count=12):
          descending)
 
     Returns:
-        list: a list of Playlist instances
+        List[Playlist]: a list of Playlist instances
     """
 
     return sorted(
@@ -69,8 +69,8 @@ def get_monthly_playlists(return_count=12):
 
 
 @service
-@time_trigger("cron(*/15 * * * *)")
-def process_liked_songs():
+@time_trigger("cron(*/15 * * * *)")  # type: ignore
+def process_liked_songs() -> None:
     """Calls other functions which process liked songs, to save polling Spotify's API
     twice"""
 
@@ -102,7 +102,7 @@ def process_liked_songs():
                 task.executor(getattr, playlist, "tracks")
             )
 
-    decade_updates = update_dynamic_playlists(
+    update_dynamic_playlists(
         deepcopy(recently_liked),
         all_decade_playlist_tracks,
         lambda t: str(t.release_date.year)[:3] + "0s",
@@ -110,7 +110,9 @@ def process_liked_songs():
 
     # Notifications
 
-    if all_playlist_updates := {**monthly_updates, **decade_updates}:
+    if all_playlist_updates := {
+        **monthly_updates,
+    }:  # **decade_updates
         message = ""
 
         for playlist, tracks in all_playlist_updates.items():
@@ -143,22 +145,25 @@ def process_liked_songs():
 
 
 def update_dynamic_playlists(
-    recently_liked, already_processed_tracks, target_name_func
-):
+    recently_liked: List[Track],
+    already_processed_tracks: Iterable[Track],
+    target_name_func: Callable[[Track], str],
+) -> Dict[Playlist, List[Track]]:
     """Updates any dynamic playlists from a set of tracks and a naming match criteria
 
     Args:
         recently_liked (List[Track]): a list of recently liked tracks
-        already_processed_tracks (List[Track]): tracks which have already been
+        already_processed_tracks (Iterable[Track]): tracks which have already been
          processed
-        target_name_func (Callable): a function to derive a target playlist from the
-         track's attributes
+        target_name_func (Callable[[Track], str]): a function to derive a target
+         playlist from the track's attributes
 
     Returns:
-        dict: a dictionary of all playlists that have been updated
+        dict[Playlist, List[Track]]: a dictionary of all playlists that have been
+         updated
     """
 
-    playlist_updates = {}
+    playlist_updates: Dict[Playlist, List[Track]] = {}
 
     for track in recently_liked:
         if track not in already_processed_tracks:
@@ -192,10 +197,13 @@ def update_dynamic_playlists(
     return playlist_updates
 
 
-@state_trigger("sensor.spotify_matt_scott_media_album_artwork_internal_url")
-@state_trigger("sensor.spotify_tom_jones_media_album_artwork_internal_url")
-@state_trigger("sensor.spotify_will_garside_media_album_artwork_internal_url")
-def save_album_artwork(var_name, value, old_value):
+_SAVE_ALBUM_ARTWORK_TRIGGER = "sensor.spotify_{}_media_album_artwork_internal_url"
+
+
+@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("matt_scott"))  # type: ignore
+@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("tom_jones"))  # type: ignore
+@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("will_garside"))  # type: ignore
+def save_album_artwork(var_name: str, value: str, old_value: str) -> None:
     """Saves the artwork for a given album to the local file storage for use elsewhere
 
     Args:
@@ -255,7 +263,7 @@ def save_album_artwork(var_name, value, old_value):
 
 
 @pyscript_executor
-def add_to_playlist(track, playlist):
+def add_to_playlist(track: Track, playlist: Playlist) -> None:
     """Add a track to a playlist, but from PyScript...
 
     Args:
@@ -270,8 +278,8 @@ def add_to_playlist(track, playlist):
         )
 
 
-@event_trigger("mobile_app_notification_action")
-def add_track_to_playlist(action, message, **_):
+@event_trigger("mobile_app_notification_action")  # type: ignore
+def add_track_to_playlist(action: str, message: str, **_: Dict[Any, Any]) -> None:
     """Add a given track to a playlist
 
     Args:

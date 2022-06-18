@@ -10,6 +10,8 @@ pre-commit = "*"
 yamllint = "*"
 locationsharinglib = "*"
 ftfy = "*"
+mypy = "*"
+types-requests = "*"
 
 [packages]
 homeassistant = ">=2022.4.0"

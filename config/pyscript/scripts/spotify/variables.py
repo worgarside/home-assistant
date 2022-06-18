@@ -1,7 +1,9 @@
 """Functions which can be triggered/timed and set the value(s) for variable(s)"""
-from wg_utilities.clients import SpotifyClient
 from socket import gethostname
+from typing import Optional
+
 from helpers import get_secret
+from wg_utilities.clients import SpotifyClient
 
 MODULE_NAME = "spotify"
 
@@ -13,21 +15,21 @@ SPOTIFY = SpotifyClient(
 )
 
 if gethostname() != "homeassistant":
-    from helpers import local_setup
+    from helpers import local_setup  # pylint: disable=ungrouped-imports
 
     log, async_mock, sync_mock, decorator = local_setup()
     task = async_mock
     state = sync_mock
     var = sync_mock
-    state_trigger = decorator
-    time_trigger = decorator
+    state_trigger = sync_mock
+    time_trigger = sync_mock
 
 
-@time_trigger("cron(* * * * *)")
-@state_trigger("sensor.spotify_matt_scott_media_title")
-@state_trigger("sensor.spotify_tom_jones_media_title")
-@state_trigger("sensor.spotify_will_garside_media_title")
-def update_tempo_variables(var_name=None):
+@time_trigger("cron(* * * * *)")  # type: ignore
+@state_trigger("sensor.spotify_matt_scott_media_title")  # type: ignore
+@state_trigger("sensor.spotify_tom_jones_media_title")  # type: ignore
+@state_trigger("sensor.spotify_will_garside_media_title")  # type: ignore
+def update_tempo_variables(var_name: Optional[str] = None) -> None:
     """Update the tempo variables every minute"""
 
     users_to_update = (

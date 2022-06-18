@@ -2,11 +2,15 @@
 
 # pylint: disable=import-outside-toplevel
 from json import loads
+from logging import Logger
 from socket import gethostname
+from typing import Any, Callable, Optional, Tuple, Union
 from unittest.mock import MagicMock
 
 
-def local_setup():
+def local_setup() -> Tuple[
+    Logger, MagicMock, MagicMock, Callable[..., Callable[..., Any]]
+]:
     """Helper function for creation of fake/stubbed variables which are automatically
     available to Pyscript
 
@@ -16,10 +20,11 @@ def local_setup():
         MagicMock: a synchronous mock object
         function: a function to be used as any decorator - it does nothing
     """
-    from logging import getLogger, DEBUG
+    from logging import DEBUG, getLogger
+
     from wg_utilities.loggers import add_stream_handler
 
-    def _dummy_decorator(func):
+    def _dummy_decorator(func):  # type: ignore
         """Dummy function for running scripts locally"""
         return func
 
@@ -39,7 +44,9 @@ if gethostname() != "homeassistant":
     pyscript_executor = decorator
 
 
-def get_secret(secret_name, *, module, default=None, json=False):
+def get_secret(
+    secret_name: str, *, module: str, default: Optional[str] = None, json: bool = False
+) -> Any:
     """Get a secret from Home Assistant (similar to `os.getenv` really)
 
     Args:
@@ -49,7 +56,7 @@ def get_secret(secret_name, *, module, default=None, json=False):
         json (str): boolean for if the secret is JSON to be parsed
 
     Returns:
-        str: the secret's value
+        Union[str, dict]: the secret's value
     """
 
     if gethostname() != "homeassistant":
@@ -63,19 +70,24 @@ def get_secret(secret_name, *, module, default=None, json=False):
             pyscript.config.get("apps", {}).get(module, {}).get(secret_name, default)
         )
 
-    if json:
+    if json and isinstance(secret_value, (str, bytes)):
         return loads(secret_value)
 
     return secret_value
 
 
 @pyscript_executor
-def write_file(path, content, mode="wb", encoding="utf-8"):
+def write_file(
+    path: str,
+    content: Union[bytes, str],
+    mode: str = "wb",
+    encoding: Optional[str] = "utf-8",
+) -> None:
     """Write a file to local storage
 
     Args:
         path (str): the file path to be written to
-        content (Union([bytes, str])): the content to write to the file
+        content (Union[bytes, str]): the content to write to the file
         mode (str): the mode to open the file with
         encoding (Union[None, str]): the type of encoding to use on the file
     """

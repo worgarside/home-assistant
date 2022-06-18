@@ -2,14 +2,15 @@
 # pylint: disable=broad-except
 from datetime import datetime
 from enum import Enum
-
-from flask import Flask, request
 from json import dump
 from logging import getLogger
-from lxml.etree import fromstring, XMLSyntaxError
+from typing import Dict, Literal
+
+from flask import Flask, request
+from lxml.etree import Element, XMLSyntaxError, fromstring
 from pyexpat import ExpatError
 from requests import post
-from wg_utilities.functions import get_nsmap, force_mkdir
+from wg_utilities.functions import force_mkdir, get_nsmap
 from wg_utilities.loggers import add_stream_handler
 from xmltodict import parse as parse_xml
 
@@ -34,7 +35,7 @@ class MediaPlayerState(Enum):
 PAYLOAD = {}
 
 
-def log_request_payload(event_xml):
+def log_request_payload(event_xml: str) -> None:
     """Log the request payload locally for archiving etc.
 
     Args:
@@ -67,7 +68,7 @@ def log_request_payload(event_xml):
                 fout.write(event_xml)
 
 
-def update_payload_metadata(event_root, event_nsmap):
+def update_payload_metadata(event_root: Element, event_nsmap: Dict[str, str]) -> None:
     """Update the metadata (song info) of the payload
 
     Args:
@@ -108,7 +109,7 @@ def update_payload_metadata(event_root, event_nsmap):
         LOGGER.exception("%s - %s", type(exc).__name__, str(exc))
 
 
-def update_payload_state(event_root, event_nsmap):
+def update_payload_state(event_root: Element, event_nsmap: Dict[str, str]) -> None:
     """Update the entity state of the payload
 
     Args:
@@ -134,7 +135,9 @@ def update_payload_state(event_root, event_nsmap):
         PAYLOAD["state"] = raw_state_value
 
 
-def update_payload_volume_level(event_root, event_nsmap):
+def update_payload_volume_level(
+    event_root: Element, event_nsmap: Dict[str, str]
+) -> None:
     """Update the volume of the payload
 
     Args:
@@ -150,7 +153,7 @@ def update_payload_volume_level(event_root, event_nsmap):
         pass
 
 
-def pass_data_to_home_assistant(request_data):
+def pass_data_to_home_assistant(request_data: str) -> None:
     """Main worker here. Parses the inbound payload and sends it over to HA
 
     Args:
@@ -193,13 +196,13 @@ def pass_data_to_home_assistant(request_data):
     )
 
 
-@app.route(
+@app.route(  # type: ignore
     "/dlna_notify",
     methods=[
         "NOTIFY",
     ],
 )
-def notify():
+def notify() -> Dict[Literal["statusCode"], Literal[200]]:
     """API endpoint for getting the CRT state"""
     try:
         pass_data_to_home_assistant(request.data.decode("unicode_escape"))
@@ -207,7 +210,7 @@ def notify():
         LOGGER.exception("%s - %s", type(exc).__name__, str(exc))
         raise
 
-    return {}
+    return {"statusCode": 200}
 
 
 if __name__ == "__main__":

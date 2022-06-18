@@ -1,10 +1,10 @@
 """Services for the Mini CRT"""
 from json import dumps
 from socket import gethostname
-
-from requests import get, put
+from typing import Literal
 
 from helpers import get_secret
+from requests import get, put
 
 MODULE = "nanoleaf.the_snail"
 
@@ -25,7 +25,7 @@ SNAIL_AUTH_TOKEN = get_secret("auth_token", module=MODULE)
 SNAIL_URL = f"http://{SNAIL_IP}:16021/api/v1/{SNAIL_AUTH_TOKEN}"
 
 
-def _save_nanoleaf_state(effect_type):
+def _save_nanoleaf_state(effect_type: Literal["current", "previous"]) -> None:
     """Save the current/previous Nanoleaf animation
 
     Args:
@@ -77,12 +77,12 @@ def _save_nanoleaf_state(effect_type):
 
 
 @service
-def save_current_nanoleaf_state():
+def save_current_nanoleaf_state() -> None:
     """Save the current Nanoleaf state"""
     _save_nanoleaf_state("current")
 
 
 @service
-def save_previous_nanoleaf_state():
+def save_previous_nanoleaf_state() -> None:
     """Save the previous Nanoleaf state"""
     _save_nanoleaf_state("previous")

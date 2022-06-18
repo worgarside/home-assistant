@@ -1,13 +1,12 @@
 """Monzo-specific services"""
+from datetime import datetime
+from json import dumps
 from socket import gethostname
 
-from datetime import datetime
-
-from json import dumps
-from wg_utilities.clients import MonzoClient
 from helpers import get_secret
 from requests import get
 from requests.exceptions import ConnectionError as RequestsConnectionError
+from wg_utilities.clients import MonzoClient
 
 if gethostname() != "homeassistant":
     # pylint: disable=ungrouped-imports
@@ -34,7 +33,7 @@ MONZO = MonzoClient(
 
 
 @service
-def top_up_credit_card_pot(top_up_amount):
+def top_up_credit_card_pot(top_up_amount: float) -> None:
     """Top up the Monzo credit card pot with a chosen amount
 
     Args:
@@ -59,7 +58,7 @@ def top_up_credit_card_pot(top_up_amount):
         )
     except Exception as exc:
         if hasattr(exc, "response"):
-            log.info(dumps(exc.response.json(), default=str))
+            log.info(dumps(exc.response.json(), default=str))  # type: ignore
 
         log.error("KILLING SERVER")
         try:

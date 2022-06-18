@@ -2,14 +2,13 @@
 from json import dumps
 from socket import gethostname
 
-from requests import post
-
 from helpers import get_secret
+from requests import post
 
 MODULE_NAME = "switchbot.curtain_controller"
 
 if gethostname() != "homeassistant":
-    from helpers import local_setup
+    from helpers import local_setup  # pylint: disable=ungrouped-imports
 
     log, async_mock, sync_mock, decorator = local_setup()
     task = async_mock
@@ -25,7 +24,7 @@ HEADERS = {"Authorization": API_KEY, "Content-Type": "application/json; charset=
 
 
 @service
-def open_curtain():
+def open_curtain() -> None:
     """Opens the SwitchBot curtain"""
 
     log.info("Opening curtain...")
@@ -33,7 +32,7 @@ def open_curtain():
 
 
 @service
-def close_curtain():
+def close_curtain() -> None:
     """Closes the SwitchBot curtain"""
 
     log.info("Closing curtain")
@@ -41,7 +40,7 @@ def close_curtain():
 
 
 @service
-def set_curtain_position(position, index=0, mode="ff"):
+def set_curtain_position(position: int, index: int = 0, mode: str = "ff") -> None:
     """Sets the SwitchBot curtain to a given position
 
     Args:
