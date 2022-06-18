@@ -66,12 +66,8 @@ cards:
           - name: The Snail
           # yamllint disable-line rule:line-length
           - auto_entity_filter_template: "{{ 'input_boolean.the_snail_artwork_colour_source_active', 'input_select.the_snail_artwork_colour_source' }}"
-      - type: custom:decluttering-card
-        template: folding_rgb_light_template
-        variables:
-          - entity: light.galaxy_light
-          - name: Galaxy Light
-          - auto_entity_filter_template: "{{ 'switch.galaxy_light_plug' }}"
+      - entity: light.galaxy_light_plug
+        name: Galaxy Light
       - type: custom:decluttering-card
         template: folding_media_player_with_spotcast_template
         variables:
