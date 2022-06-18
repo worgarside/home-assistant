@@ -14,9 +14,7 @@ from wg_utilities.functions import force_mkdir
 
 MODULE_NAME = "spotify"
 
-if gethostname() == "homeassistant":
-    CREDS_CACHE_PATH: Optional[str] = "/config/.spotify_cache"
-else:
+if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports
 
     log, task, sync_mock, decorator = local_setup()
@@ -30,7 +28,9 @@ else:
     event_trigger = sync_mock
     service = decorator
 
-    CREDS_CACHE_PATH = None
+    CREDS_CACHE_PATH: Optional[str] = None
+else:
+    CREDS_CACHE_PATH = "/config/.spotify_cache"
 
 SPOTIFY = SpotifyClient(
     client_id=get_secret("client_id", module=MODULE_NAME),
@@ -49,8 +49,10 @@ MONTHLY_PATTERN = compile_regex(rf"^({_MONTH_LIST}) '[0-9]{{2}}$")
 CHILL_ELECTRONICA = task.executor(SPOTIFY.get_playlist_by_id, "2lMx8FU0SeQ7eA5kcMlNpX")
 JAMBOX_JAMS = task.executor(SPOTIFY.get_playlist_by_id, "4Vv023MaZsc8NTWZ4WJvIL")
 
+_SAVE_ALBUM_ARTWORK_TRIGGER = "sensor.spotify_{}_media_album_artwork_internal_url"
 
-@pyscript_executor
+
+@pyscript_executor  # type: ignore
 def get_monthly_playlists(return_count: int = 12) -> List[Playlist]:
     """Gets all monthly playlists from Spotify (based on name)
 
@@ -68,7 +70,7 @@ def get_monthly_playlists(return_count: int = 12) -> List[Playlist]:
     )[-return_count:]
 
 
-@service
+@service  # type: ignore
 @time_trigger("cron(*/15 * * * *)")  # type: ignore
 def process_liked_songs() -> None:
     """Calls other functions which process liked songs, to save polling Spotify's API
@@ -163,7 +165,7 @@ def update_dynamic_playlists(
          updated
     """
 
-    playlist_updates: Dict[Playlist, List[Track]] = {}
+    playlist_updates = {}  # type: Dict[Playlist, List[Track]]
 
     for track in recently_liked:
         if track not in already_processed_tracks:
@@ -195,9 +197,6 @@ def update_dynamic_playlists(
         task.executor(SPOTIFY.add_tracks_to_playlist, tracks, playlist)
 
     return playlist_updates
-
-
-_SAVE_ALBUM_ARTWORK_TRIGGER = "sensor.spotify_{}_media_album_artwork_internal_url"
 
 
 @state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("matt_scott"))  # type: ignore
@@ -262,7 +261,7 @@ def save_album_artwork(var_name: str, value: str, old_value: str) -> None:
     )
 
 
-@pyscript_executor
+@pyscript_executor  # type: ignore
 def add_to_playlist(track: Track, playlist: Playlist) -> None:
     """Add a track to a playlist, but from PyScript...
 
