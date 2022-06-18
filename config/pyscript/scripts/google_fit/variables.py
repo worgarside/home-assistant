@@ -15,7 +15,7 @@ if gethostname() != "homeassistant":
 
 GOOGLE_FIT = task.executor(
     GoogleFitClient,
-    "home-assistant",
+    "home-assistant-worgarside",
     scopes=[
         "https://www.googleapis.com/auth/fitness.activity.read",
         "https://www.googleapis.com/auth/fitness.body.read",
