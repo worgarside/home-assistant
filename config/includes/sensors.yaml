@@ -73,6 +73,23 @@
       Authorization: !secret nabu_casa_online_access_token
       Content-Type: application/json
     value_template: "{{ value_json['state'] }}"
+    unit_of_measurement: '%'
+
+  - platform: rest
+    name: Ambee Pollen Response
+    method: GET
+    scan_interval: 600
+    force_update: true
+    resource: !secret ambee_latest_pollen_endpoint
+    headers:
+      x-api-key: !secret ambee_api_key
+      Content-Type: application/json
+    value_template: "-"  # dummy value, payload is too large
+    json_attributes_path: "$.data.[0]"
+    json_attributes:
+      - Count
+      - Risk
+      - Species
 
   - platform: spotcast
     country: GB

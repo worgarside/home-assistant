@@ -431,5 +431,35 @@
         unit_of_measurement: ""
 
 # </editor-fold>
+# <editor-fold desc="Ambee Pollen">
+
+  - sensor:
+      - name: Grass Pollen Count
+        state: "{{ state_attr('sensor.ambee_pollen_response', 'Count').grass_pollen }}"
+        unit_of_measurement: ""
+
+  - sensor:
+      - name: Tree Pollen Count
+        state: "{{ state_attr('sensor.ambee_pollen_response', 'Count').tree_pollen }}"
+        unit_of_measurement: ""
+
+  - sensor:
+      - name: Weed Pollen Count
+        state: "{{ state_attr('sensor.ambee_pollen_response', 'Count').weed_pollen }}"
+        unit_of_measurement: ""
+
+  - sensor:
+      - name: Grass Pollen Risk
+        state: "{{ state_attr('sensor.ambee_pollen_response', 'Risk').grass_pollen }}"
+
+  - sensor:
+      - name: Tree Pollen Risk
+        state: "{{ state_attr('sensor.ambee_pollen_response', 'Risk').tree_pollen }}"
+
+  - sensor:
+      - name: Weed Pollen Risk
+        state: "{{ state_attr('sensor.ambee_pollen_response', 'Risk').weed_pollen }}"
+
+# </editor-fold>
 
 
