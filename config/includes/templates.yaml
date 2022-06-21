@@ -437,28 +437,34 @@
       - name: Grass Pollen Count
         state: "{{ state_attr('sensor.ambee_pollen_response', 'Count').grass_pollen }}"
         unit_of_measurement: ""
+        icon: mdi:grass
 
   - sensor:
       - name: Tree Pollen Count
         state: "{{ state_attr('sensor.ambee_pollen_response', 'Count').tree_pollen }}"
         unit_of_measurement: ""
+        icon: mdi:tree
 
   - sensor:
       - name: Weed Pollen Count
         state: "{{ state_attr('sensor.ambee_pollen_response', 'Count').weed_pollen }}"
         unit_of_measurement: ""
+        icon: mdi:sprout
 
   - sensor:
       - name: Grass Pollen Risk
         state: "{{ state_attr('sensor.ambee_pollen_response', 'Risk').grass_pollen }}"
+        icon: mdi:grass
 
   - sensor:
       - name: Tree Pollen Risk
         state: "{{ state_attr('sensor.ambee_pollen_response', 'Risk').tree_pollen }}"
+        icon: mdi:tree
 
   - sensor:
       - name: Weed Pollen Risk
         state: "{{ state_attr('sensor.ambee_pollen_response', 'Risk').weed_pollen }}"
+        icon: mdi:sprout
 
 # </editor-fold>
 
