@@ -2,25 +2,38 @@
 # pylint: disable=broad-except
 from datetime import datetime
 from enum import Enum
-from json import dump
+from io import BytesIO
+from json import dumps
 from logging import getLogger
+from os import environ
 from typing import Dict, Literal
 
 from flask import Flask, request
 from lxml.etree import Element, XMLSyntaxError, fromstring
+from paramiko import AutoAddPolicy, SSHClient
 from pyexpat import ExpatError
 from requests import post
-from wg_utilities.functions import force_mkdir, get_nsmap
+from wg_utilities.functions import get_nsmap
 from wg_utilities.loggers import add_stream_handler
 from xmltodict import parse as parse_xml
 
-LOGGER = getLogger(__name__)
+LOGGER = getLogger("root")
 add_stream_handler(LOGGER)
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
 AVAILABILITY_POLL_PAYLOAD = """http-get:*:audio/wav:DLNA.ORG_PN=LPCM,http-get:*:audio/x-wav:DLNA.ORG_PN=LPCM,http-get:*:audio/mpeg:DLNA.ORG_PN=MP3,http-get:*:audio/mpeg:DLNA.ORG_PN=MP3X,http-get:*:audio/x-ms-wma:DLNA.ORG_PN=WMABASE,http-get:*:audio/x-ms-wma:DLNA.ORG_PN=WMAFULL,http-get:*:audio/x-ms-wma:DLNA.ORG_PN=WMAPRO,http-get:*:audio/mpeg:DLNA.ORG_PN=MP2_MPS,http-get:*:audio/mp3:*,http-get:*:audio/wma:*,http-get:*:audio/mpeg:*,http-get:*:audio/vnd.dlna.adts:DLNA.ORG_PN=AAC_ADTS,http-get:*:audio/vnd.dlna.adts:DLNA.ORG_PN=AAC_ADTS_320,http-get:*:audio/m4a:DLNA.ORG_PN=AAC_ISO,http-get:*:audio/aac:DLNA.ORG_PN=AAC_ISO,http-get:*:audio/ac3:DLNA.ORG_PN=AC3,http-get:*:audio/ogg:*,http-get:*:audio/ape:*,http-get:*:audio/x-ape:*,http-get:*:audio/flac:*"""  # pylint: disable=line-too-long
+
+SSH = SSHClient()
+SSH.set_missing_host_key_policy(AutoAddPolicy())
+
+SSH.connect(
+    hostname=environ["SFTP_HOSTNAME"],
+    username=environ["SFTP_USERNAME"],
+    key_filename=environ["SFTP_KEY_FILEPATH"],
+)
+SFTP_CLIENT = SSH.open_sftp()
 
 
 class MediaPlayerState(Enum):
@@ -42,30 +55,39 @@ def log_request_payload(event_xml: str) -> None:
         event_xml (str): the XML document sent in the request
     """
 
-    file_no_ext = datetime.now().strftime("./inbound_payloads/payload_%Y%m%d%H%M%S%f")
+    now = datetime.now()
 
-    force_mkdir("./inbound_payloads")
+    file_path = now.strftime("config/.addons/yas_209_dlna_bridge/%Y/%m/%d")
+    file_no_ext = now.strftime("payload_%Y%m%d%H%M%S%f")
 
-    with open(file_no_ext + ".xml", "w", encoding="utf-8") as fout:
-        fout.write(event_xml)
+    for dir_ in file_path.split("/"):
+        try:
+            SFTP_CLIENT.chdir(dir_)
+        except FileNotFoundError:
+            SFTP_CLIENT.mkdir(dir_)
+            SFTP_CLIENT.chdir(dir_)
+
+    SFTP_CLIENT.putfo(BytesIO(event_xml.encode()), file_no_ext + ".xml")
 
     try:
         out_json = parse_xml(event_xml, attr_prefix="")
         if (
-            ctm := out_json.get("Event", {})
+            ctmd := out_json.get("Event", {})
             .get("InstanceID", {})
             .get("CurrentTrackMetaData", {})
             .get("val")
         ):
             out_json["Event"]["InstanceID"]["CurrentTrackMetaData"] = parse_xml(
-                ctm, attr_prefix=""
+                ctmd, attr_prefix=""
             )
-        with open(file_no_ext + ".json", "w", encoding="utf-8") as fout:
-            dump(out_json, fout, indent=4)
+
+        SFTP_CLIENT.putfo(
+            BytesIO(dumps(out_json, indent=4).encode()), file_no_ext + ".json"
+        )
+
     except ExpatError:
         if "CurrentTrackMetaData" not in event_xml:
-            with open(file_no_ext + ".txt", "w", encoding="utf-8") as fout:
-                fout.write(event_xml)
+            SFTP_CLIENT.putfo(BytesIO(event_xml.encode()), file_no_ext + ".txt")
 
 
 def update_payload_metadata(event_root: Element, event_nsmap: Dict[str, str]) -> None:
@@ -196,7 +218,7 @@ def pass_data_to_home_assistant(request_data: str) -> None:
     )
 
 
-@app.route(  # type: ignore
+@app.route(  # type: ignore[misc]
     "/dlna_notify",
     methods=[
         "NOTIFY",

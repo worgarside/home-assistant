@@ -12,6 +12,9 @@ locationsharinglib = "*"
 ftfy = "*"
 mypy = "*"
 types-requests = "*"
+paramiko = "*"
+python-dotenv = "*"
+types-paramiko = "*"
 
 [packages]
 homeassistant = ">=2022.4.0"
