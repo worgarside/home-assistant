@@ -95,11 +95,15 @@ cards:
           - icon: mdi:curtains
             tap_action:
               action: call-service
-              service: pyscript.open_curtain
+              service: cover.open_cover
+              target:
+                entity_id: cover.wills_room_curtain
           - icon: mdi:curtains-closed
             tap_action:
               action: call-service
-              service: pyscript.close_curtain
+              service: cover.close_cover
+              target:
+                entity_id: cover.wills_room_curtain
       - type: custom:slider-entity-row
         entity: input_number.wills_room_curtain_position
         name: Curtain Position

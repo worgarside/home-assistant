@@ -74,7 +74,11 @@
 
   - binary_sensor:
       - name: Will's Room Curtain Closed
-        state: "{{ int(states('sensor.will_s_room_curtain_position')) < 5  }}"
+        state: >
+          {{ 
+            int(states('sensor.will_s_room_curtain_position')) < 
+            ( 17.5 if is_state('binary_sensor.will_s_balcony_door', 'on') else 5 ) 
+          }}
 
   - binary_sensor:
       - name: Will's Room Curtain Open

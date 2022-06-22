@@ -54,14 +54,26 @@
 
   - platform: rest
     name: Will's Room Curtain Position
+    scan_interval: 30
     method: GET
     force_update: true
     resource: !secret switchbot_curtain_status_endpoint
     headers:
       Authorization: !secret switchbot_api_key
       Content-Type: application/json
-    value_template: "{{ value_json['body']['slidePosition'] }}"
+    # The scale is 0-100, but SwitchBot and HA have opposing views on which way round
+    # it should be, hence the `100 - ...` here
+    value_template: "{{ 100 - ( value_json.body.slidePosition | int ) }}"
     unit_of_measurement: '%'
+    json_attributes_path: "$.body"
+    json_attributes:
+      - deviceId
+      - deviceType
+      - hubDeviceId
+      - calibrate
+      - group
+      - moving
+      - slidePosition
 
   - platform: rest
     name: Nabu Casa Online

@@ -10,7 +10,9 @@
       entity_id: sensor.sun_elevation
       above: -6
     action:
-      - service: pyscript.open_curtain
+      - service: cover.open_cover
+        target:
+          entity_id: cover.wills_room_curtain
 
   - alias: /sun/set
     id: sun_set
@@ -41,4 +43,7 @@
       - wait_template: "{{ is_state('binary_sensor.will_s_balcony_door', 'off') }}"
         timeout: 3600
         continue_on_timeout: false
-      - service: pyscript.close_curtain
+      - service: cover.close_cover
+        target:
+          entity_id: cover.wills_room_curtain
+

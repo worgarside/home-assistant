@@ -13,7 +13,9 @@ if gethostname() != "homeassistant":
     log, async_mock, sync_mock, decorator = local_setup()
     task = async_mock
     sensor = sync_mock
-    input_number = sync_mock
+    binary_sensor = sync_mock
+    cover = sync_mock
+    homeassistant = sync_mock
     service = decorator
 
 
@@ -23,23 +25,7 @@ BASE_URL = "https://api.switch-bot.com"
 HEADERS = {"Authorization": API_KEY, "Content-Type": "application/json; charset=utf8"}
 
 
-@service
-def open_curtain() -> None:
-    """Opens the SwitchBot curtain"""
-
-    log.info("Opening curtain...")
-    set_curtain_position(0)
-
-
-@service
-def close_curtain() -> None:
-    """Closes the SwitchBot curtain"""
-
-    log.info("Closing curtain")
-    set_curtain_position(100)
-
-
-@service
+@service  # type: ignore[misc]
 def set_curtain_position(position: int, index: int = 0, mode: str = "ff") -> None:
     """Sets the SwitchBot curtain to a given position
 
@@ -48,31 +34,26 @@ def set_curtain_position(position: int, index: int = 0, mode: str = "ff") -> Non
         index (int): I still don't know :(
         mode (str): the mode (performance etc.) to use when moving the SwitchBot
     """
-    if (
-        delta := abs(
-            (sensor_val := int(sensor.will_s_room_curtain_position)) - position
+
+    # If the balcony door is open, only close the curtain to 15%
+    if binary_sensor.will_s_balcony_door == "on" and position < 15:
+        log.warning("Limiting curtain position to 15% as balcony door is open")
+        position = 15
+        cover.set_cover_position(
+            position=position, entity_id="cover.wills_room_curtain"
         )
-    ) > 5:
+    else:
         log.info("Setting curtain position to %i", position)
         res = task.executor(
             post,
             f"{BASE_URL}/v1.0/devices/{CURTAIN_ID}/commands",
             json={
                 "command": "setPosition",
-                "parameter": ",".join(map(str, [index, mode, position])),
+                # 100 - position here to account for SwitchBot/HA 0-100 flip
+                "parameter": ",".join(map(str, [index, mode, 100 - position])),
                 "commandType": "command",
             },
             headers=HEADERS,
         )
 
-        log.debug(dumps(res.json(), default=str))
-    else:
-        log.info(
-            "Change too small (%i), "
-            "changing input_number.wills_room_curtain_position to %i",
-            delta,
-            sensor_val,
-        )
-        input_number.set_value(
-            entity_id="input_number.wills_room_curtain_position", value=sensor_val
-        )
+        log.info(dumps(res.json(), default=str))

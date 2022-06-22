@@ -1,0 +1,19 @@
+---
+  - platform: template
+    covers:
+      wills_room_curtain:
+        device_class: curtain
+        friendly_name: "Will's Curtain"
+        position_template: "{{ states('sensor.will_s_room_curtain_position') | int }}"
+        open_cover:
+          service: pyscript.set_curtain_position
+          data:
+            position: 100
+        close_cover:
+          service: pyscript.set_curtain_position
+          data:
+            position: 0
+        set_cover_position:
+          service: pyscript.set_curtain_position
+          data:
+            position: "{{ position }}"

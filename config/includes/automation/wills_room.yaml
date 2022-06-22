@@ -2,40 +2,6 @@
 
 # ------------------------ Will's Room ------------------------ #
 
-  # When a change is detected by the sensor (from any source), set the input_number
-  # value to change the slider on the front end
-  - alias: /input_number/wills_room_curtain_position/set_value
-    id: set_will_s_room_curtain_position_slider
-    trigger:
-      platform: state
-      entity_id: sensor.will_s_room_curtain_position
-    condition:
-      condition: template
-      value_template: >
-        {{ 
-          ( trigger.from_state.state | int - trigger.to_state.state | int ) | abs > 0 
-        }}
-    action:
-      - service: input_number.set_value
-        target:
-          entity_id: input_number.wills_room_curtain_position
-        data:
-          value: '{{ trigger.to_state.state | int }}'
-
-  # When the slider (input number value) is changed, update the curtain position
-  - alias: /input_number/wills_room_curtain_position/value_updated
-    id: will_s_room_curtain_position_slider_moved
-    mode: single
-    max_exceeded: silent
-    trigger:
-      platform: state
-      entity_id: input_number.wills_room_curtain_position
-    action:
-      - service: pyscript.set_curtain_position
-        data:
-          position: '{{ trigger.to_state.state | int }}'
-      - delay: 5
-
   - alias: /door/wills_room/open_while_will_away
     id: wills_room_door_opened_whilst_will_away
     trigger:
@@ -44,7 +10,9 @@
       to: "on"
     condition: "{{ states('person.will') != 'home' }}"
     action:
-      - service: pyscript.open_curtain
+      - service: cover.open_cover
+        target:
+          entity_id: cover.wills_room_curtain
       - service: notify.mobile_app_will_s_pixel_6_pro
         data:
           message: Bedroom door has been opened
@@ -123,7 +91,10 @@
             < 15*60 
           }}
     action:
-      - service: pyscript.close_curtain
+      - service: cover.close_cover
+        target:
+          entity_id: cover.wills_room_curtain
+
 
   - alias: /door/wills_room/closet_door_auto_light
     id: wills_room_closet_door_auto_light
