@@ -5,11 +5,9 @@ COPY yas_209_dlna_bridge /yas_209_dlna_bridge
 
 # Install requirements for add-on
 RUN \
-  apk add --no-cache python3 python3 py3-pip py3-lxml
+  apk add --no-cache python3 py3-pip py3-lxml python3-dev musl-dev gcc libffi-dev
 
 WORKDIR /yas_209_dlna_bridge
-
-RUN echo $BUILD_FROM
 
 RUN pip3 install -r requirements.txt
 RUN pip3 install --no-deps -r requirements_no_deps.txt

@@ -8,6 +8,7 @@ from logging import getLogger
 from os import environ
 from typing import Dict, Literal
 
+from dotenv import load_dotenv
 from flask import Flask, request
 from lxml.etree import Element, XMLSyntaxError, fromstring
 from paramiko import AutoAddPolicy, SSHClient
@@ -16,6 +17,8 @@ from requests import post
 from wg_utilities.functions import get_nsmap
 from wg_utilities.loggers import add_stream_handler
 from xmltodict import parse as parse_xml
+
+load_dotenv()
 
 LOGGER = getLogger("root")
 add_stream_handler(LOGGER)
@@ -60,6 +63,7 @@ def log_request_payload(event_xml: str) -> None:
     file_path = now.strftime("config/.addons/yas_209_dlna_bridge/%Y/%m/%d")
     file_no_ext = now.strftime("payload_%Y%m%d%H%M%S%f")
 
+    SFTP_CLIENT.chdir("/")
     for dir_ in file_path.split("/"):
         try:
             SFTP_CLIENT.chdir(dir_)
