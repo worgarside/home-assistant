@@ -39,4 +39,4 @@ repos:
     hooks:
       - id: mypy
         args: [--strict, --show-error-codes]
-        additional_dependencies: [types-requests, types-paramiko]
+        additional_dependencies: [types-requests, types-paramiko, types-xmltodict]

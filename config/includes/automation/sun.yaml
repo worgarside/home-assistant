@@ -25,13 +25,15 @@
         target:
           entity_id: switch.terrace_lights
 
-  # Close the curtain when the Sun sets past -18'
+  # Close the curtain either when the Sun sets past -18' or at midnight
   - alias: /sun/set/close_curtain_after_sunset
     id: close_curtain_post_sunset
     trigger:
-      platform: numeric_state
-      entity_id: sensor.sun_elevation
-      below: -18
+      - platform: numeric_state
+        entity_id: sensor.sun_elevation
+        below: -18
+      - platform: time
+        at: "00:00:00"
     action:
       - choose:
           - conditions:
