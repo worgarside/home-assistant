@@ -340,24 +340,26 @@
 
   - trigger:
       - platform: webhook
-        webhook_id: will_s_yas_209_event_data
+        webhook_id: wills_yas_209_bridge_input
     sensor:
-      - name: Will's YAS-209
-        unique_id: wills_yas_209_custom
+      - name: Will's YAS-209 Bridge Input
+        unique_id: wills_yas_209_bridge_input
         icon: "mdi:soundbar"
         state: "{{ trigger.json.state }}"
         picture: "{{ trigger.json.album_art_uri }}"
         attributes:
-          volume_level: "{{ trigger.json.volume_level }}"
-          # is_volume_muted: ""
+          volume_level: "{{ float(trigger.json.volume_level, None) }}"
+          is_volume_muted: "{{ float(trigger.json.volume_level, None) == 0 }}"
           # media_content_id: ""
           # media_content_type: ""
-          # media_duration: ""
+          media_duration: "{{ trigger.json.media_duration }}"
           media_title: "{{ trigger.json.media_title }}"
           media_artist: "{{ trigger.json.media_artist }}"
           media_album_name: "{{ trigger.json.media_album_name }}"
-          friendly_name: "Will's YAS-209"
+          friendly_name: "Will's YAS-209 Bridge Input"
           album_art_uri: "{{ trigger.json.album_art_uri }}"
+          payload: "{{ trigger.json }}"
+          last_updated: "{{ now() }}"
 
 # </editor-fold>
 # <editor-fold desc="System">

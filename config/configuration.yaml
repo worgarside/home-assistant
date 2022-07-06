@@ -33,6 +33,10 @@ homeassistant:
     - /config/lovelace
     - /config/pyscript
     - /config/www
+  customize:
+    media_player.will_s_yas_209:
+      icon: mdi:soundbar
+
   media_dirs:
     album_artwork: /config/www/album_artwork
 
@@ -203,6 +207,7 @@ input_datetime: !include includes/input_datetime.yaml
 input_number: !include includes/input_number.yaml
 input_select: !include includes/input_select.yaml
 input_text: !include includes/input_text.yaml
+media_player: !include includes/media_player.yaml
 mqtt: !include includes/mqtt.yaml
 pyscript: !include pyscript/config.yaml
 rest_command: !include includes/rest_command.yaml
