@@ -15,17 +15,18 @@ types-requests = "*"
 paramiko = "*"
 python-dotenv = "*"
 types-paramiko = "*"
+pycln = "*"
+async-upnp-client = "*"
+xmltodict = "*"
+lxml = "*"
 
 [packages]
-homeassistant = ">=2022.4.0"
+homeassistant = "==2022.6.7"
 requests = "*"
 spotipy = "*"
-wg-utilities = "==2.18.0"
+wg-utilities = "==2.21.0"
 nanoleafapi = "*"
 pillow = "*"
-lxml = "*"
-xmltodict = "*"
-flask = "*"
 
 [requires]
 python_version = "3.9"

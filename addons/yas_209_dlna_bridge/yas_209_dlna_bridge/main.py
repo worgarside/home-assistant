@@ -1,243 +1,185 @@
-"""Custom addon to unpack DLNA NOTIFY requests from the YAS-209 and POST them into HA"""
-# pylint: disable=broad-except
+"""Custom addon to listen to the YAS-209 and post updates to HA"""
 from datetime import datetime
-from enum import Enum
 from io import BytesIO
 from json import dumps
-from logging import getLogger
-from os import environ
-from typing import Dict, Literal
+from logging import DEBUG, getLogger
+from os import environ, getenv
+from typing import Any, Dict, Optional, TypedDict
 
 from dotenv import load_dotenv
-from flask import Flask, request
-from lxml.etree import Element, XMLSyntaxError, fromstring
-from paramiko import AutoAddPolicy, SSHClient
-from pyexpat import ExpatError
+from paramiko import AutoAddPolicy, SFTPClient, SSHClient
 from requests import post
-from wg_utilities.functions import get_nsmap
+
+# pylint: disable=no-name-in-module
+from wg_utilities.devices.yamaha_yas_209 import CurrentTrack, YamahaYas209
 from wg_utilities.loggers import add_stream_handler
-from xmltodict import parse as parse_xml
 
 load_dotenv()
 
-LOGGER = getLogger("root")
+LOGGER = getLogger(__name__)
+LOGGER.setLevel(DEBUG)
 add_stream_handler(LOGGER)
 
-app = Flask(__name__)
-app.config["DEBUG"] = True
 
-AVAILABILITY_POLL_PAYLOAD = """http-get:*:audio/wav:DLNA.ORG_PN=LPCM,http-get:*:audio/x-wav:DLNA.ORG_PN=LPCM,http-get:*:audio/mpeg:DLNA.ORG_PN=MP3,http-get:*:audio/mpeg:DLNA.ORG_PN=MP3X,http-get:*:audio/x-ms-wma:DLNA.ORG_PN=WMABASE,http-get:*:audio/x-ms-wma:DLNA.ORG_PN=WMAFULL,http-get:*:audio/x-ms-wma:DLNA.ORG_PN=WMAPRO,http-get:*:audio/mpeg:DLNA.ORG_PN=MP2_MPS,http-get:*:audio/mp3:*,http-get:*:audio/wma:*,http-get:*:audio/mpeg:*,http-get:*:audio/vnd.dlna.adts:DLNA.ORG_PN=AAC_ADTS,http-get:*:audio/vnd.dlna.adts:DLNA.ORG_PN=AAC_ADTS_320,http-get:*:audio/m4a:DLNA.ORG_PN=AAC_ISO,http-get:*:audio/aac:DLNA.ORG_PN=AAC_ISO,http-get:*:audio/ac3:DLNA.ORG_PN=AC3,http-get:*:audio/ogg:*,http-get:*:audio/ape:*,http-get:*:audio/x-ape:*,http-get:*:audio/flac:*"""  # pylint: disable=line-too-long
+class PayloadInfo(TypedDict):
+    """Info for the PAYLOAD constant"""
 
-SSH = SSHClient()
-SSH.set_missing_host_key_policy(AutoAddPolicy())
-
-SSH.connect(
-    hostname=environ["SFTP_HOSTNAME"],
-    username=environ["SFTP_USERNAME"],
-    key_filename=environ["SFTP_KEY_FILEPATH"],
-)
-SFTP_CLIENT = SSH.open_sftp()
+    state: Optional[str]
+    album_art_uri: Optional[str]
+    volume_level: Optional[float]
+    media_duration: Optional[float]
+    media_title: Optional[str]
+    media_artist: Optional[str]
+    media_album_name: Optional[str]
 
 
-class MediaPlayerState(Enum):
-    """Enumeration for states as the come in the DLNA payload"""
-
-    PLAYING = "playing"
-    PAUSED_PLAYBACK = "paused"
-    STOPPED = "off"
-    UNKNOWN = "unknown"
+TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
 
 
-PAYLOAD = {}
+def create_sftp_client() -> SFTPClient:
+    """Creates a new SFTP client instance. This isn't just a constant client as the
+    socket closes after some time, so we just create a new client per request
+
+    Returns:
+        SFTPClient: a new SFTP client
+    """
+
+    ssh = SSHClient()
+    ssh.set_missing_host_key_policy(AutoAddPolicy())
+
+    ssh.connect(
+        hostname=environ["SFTP_HOSTNAME"],
+        username=environ["SFTP_USERNAME"],
+        key_filename=environ["SFTP_KEY_FILEPATH"],
+    )
+    sftp_client = ssh.open_sftp()
+
+    return sftp_client
 
 
-def log_request_payload(event_xml: str) -> None:
+def log_request_payload(event_payload: Dict[str, Any]) -> None:
     """Log the request payload locally for archiving etc.
 
     Args:
-        event_xml (str): the XML document sent in the request
+        event_payload (dict): the payload received from the YAS-209
     """
 
-    now = datetime.now()
+    if (last_change := event_payload.get("last_change")) is not None:
+        event_payload["last_change"] = last_change.dict()
 
-    file_path = now.strftime("config/.addons/yas_209_dlna_bridge/%Y/%m/%d")
-    file_no_ext = now.strftime("payload_%Y%m%d%H%M%S%f")
+    event_timestamp = event_payload.get("timestamp", datetime.now())
 
-    SFTP_CLIENT.chdir("/")
+    file_path = event_timestamp.strftime("config/.addons/yas_209_dlna_bridge/%Y/%m/%d")
+    file_name = event_timestamp.strftime("payload_%Y%m%d%H%M%S%f.json")
+
+    sftp_client = create_sftp_client()
+
+    sftp_client.chdir("/")
     for dir_ in file_path.split("/"):
         try:
-            SFTP_CLIENT.chdir(dir_)
+            sftp_client.chdir(dir_)
         except FileNotFoundError:
-            SFTP_CLIENT.mkdir(dir_)
-            SFTP_CLIENT.chdir(dir_)
+            sftp_client.mkdir(dir_)
+            sftp_client.chdir(dir_)
 
-    SFTP_CLIENT.putfo(BytesIO(event_xml.encode()), file_no_ext + ".xml")
-
-    try:
-        out_json = parse_xml(event_xml, attr_prefix="")
-        if (
-            ctmd := out_json.get("Event", {})
-            .get("InstanceID", {})
-            .get("CurrentTrackMetaData", {})
-            .get("val")
-        ):
-            out_json["Event"]["InstanceID"]["CurrentTrackMetaData"] = parse_xml(
-                ctmd, attr_prefix=""
-            )
-
-        SFTP_CLIENT.putfo(
-            BytesIO(dumps(out_json, indent=4).encode()), file_no_ext + ".json"
-        )
-
-    except ExpatError:
-        if "CurrentTrackMetaData" not in event_xml:
-            SFTP_CLIENT.putfo(BytesIO(event_xml.encode()), file_no_ext + ".txt")
-
-
-def update_payload_metadata(event_root: Element, event_nsmap: Dict[str, str]) -> None:
-    """Update the metadata (song info) of the payload
-
-    Args:
-        event_root (Element): the etree root for the event XML
-        event_nsmap (dict): the namespace map for the XML
-    """
-    try:
-        metadata_attributes = event_root.xpath(
-            "/default_0:Event/default_0:InstanceID/default_0:CurrentTrackMetaData",
-            namespaces=event_nsmap,
-        )[0].attrib
-    except IndexError:
-        return
-
-    metadata_root = fromstring(
-        metadata_attributes.get("val").replace("&", "&amp;").encode()
-    )
-    metadata_nsmap = get_nsmap(root=metadata_root)
-
-    try:
-        PAYLOAD["media_title"] = metadata_root.xpath(
-            "//dc:title", namespaces=metadata_nsmap
-        )[0].text
-        PAYLOAD["media_artist"] = metadata_root.xpath(
-            "//upnp:artist", namespaces=metadata_nsmap
-        )[0].text
-        PAYLOAD["media_album_name"] = metadata_root.xpath(
-            "//upnp:album", namespaces=metadata_nsmap
-        )[0].text
-        if (
-            album_art_uri := metadata_root.xpath(
-                "//upnp:albumArtURI", namespaces=metadata_nsmap
-            )[0].text
-        ) == "un_known":
-            album_art_uri = None
-        PAYLOAD["album_art_uri"] = album_art_uri
-    except Exception as exc:
-        LOGGER.exception("%s - %s", type(exc).__name__, str(exc))
-
-
-def update_payload_state(event_root: Element, event_nsmap: Dict[str, str]) -> None:
-    """Update the entity state of the payload
-
-    Args:
-        event_root (Element): the etree root for the event XML
-        event_nsmap (dict): the namespace map for the XML
-    """
-
-    try:
-        raw_state_value = event_root.xpath(
-            "/default_0:Event/default_0:InstanceID/default_0:TransportState",
-            namespaces=event_nsmap,
-        )[0].attrib["val"]
-    except IndexError:
-        return
-    except Exception as exc:
-        LOGGER.exception("%s - %s", type(exc).__name__, str(exc))
-        raw_state_value = MediaPlayerState.UNKNOWN.name
-
-    try:
-        PAYLOAD["state"] = MediaPlayerState[raw_state_value].value
-    except KeyError as exc:
-        LOGGER.error("Unknown `MediaPlayerState`: %s", repr(exc))
-        PAYLOAD["state"] = raw_state_value
-
-
-def update_payload_volume_level(
-    event_root: Element, event_nsmap: Dict[str, str]
-) -> None:
-    """Update the volume of the payload
-
-    Args:
-        event_root (Element): the etree root for the event XML
-        event_nsmap (dict): the namespace map for the XML
-    """
-    try:
-        PAYLOAD["volume_level"] = event_root.xpath(
-            "/default_0:Event/default_0:InstanceID/default_0:Volume",
-            namespaces=event_nsmap,
-        )[0].attrib["val"]
-    except IndexError:
-        pass
-
-
-def pass_data_to_home_assistant(request_data: str) -> None:
-    """Main worker here. Parses the inbound payload and sends it over to HA
-
-    Args:
-        request_data (str): the data from the NOTIFY request
-    """
-    event_xml = (
-        fromstring(request_data.encode("latin-1"))
-        .xpath(
-            "/e:propertyset/e:property/LastChange",
-            namespaces=dict(e="urn:schemas-upnp-org:event-1-0"),
-        )[0]
-        .text
+    sftp_client.putfo(
+        BytesIO(dumps(event_payload, indent=2, default=str).encode()), file_name
     )
 
-    if event_xml == AVAILABILITY_POLL_PAYLOAD:
-        LOGGER.debug("Availability poll, ignoring")
-        return
+    LOGGER.debug(
+        "Logged %s payload to '%s/%s'",
+        event_payload.get("service_id", "unknown").split(":")[-1],
+        file_path,
+        file_name,
+    )
 
-    log_request_payload(event_xml)
+    sftp_client.close()
 
-    try:
-        event_root = fromstring(event_xml.encode())
-        event_nsmap = get_nsmap(root=event_root)
-    except XMLSyntaxError:
-        return
-    except Exception as exc:
-        LOGGER.exception(
-            "Exception parsing event root: %s - %s", type(exc).__name__, str(exc)
-        )
-        return
 
-    update_payload_metadata(event_root, event_nsmap)
-    update_payload_state(event_root, event_nsmap)
-    update_payload_volume_level(event_root, event_nsmap)
+def pass_data_to_home_assistant() -> None:
+    """Sends the payload to HA. The payload is global as we don't want to remove track
+    metadata on a volume update, for example. The data should persist unless explicitly
+     removed
+    """
 
-    post(
-        "http://192.168.1.120:8123/api/webhook/will_s_yas_209_event_data",
+    res = post(
+        "http://192.168.1.120:8123/api/webhook/wills_yas_209_bridge_input",
         json=PAYLOAD,
         headers={"Content-Type": "application/json"},
     )
 
+    LOGGER.debug("Webhook response: %i %s", res.status_code, res.reason)
 
-@app.route(  # type: ignore[misc]
-    "/dlna_notify",
-    methods=[
-        "NOTIFY",
-    ],
+
+def on_volume_update(volume: float) -> None:
+    """Callback for volume updates
+
+    Args:
+        volume (float): the new volume level
+    """
+
+    LOGGER.debug("Volume updated to %f", volume)
+
+    PAYLOAD["volume_level"] = volume
+
+    pass_data_to_home_assistant()
+
+
+def on_state_update(state: str) -> None:
+    """Callback for state updates
+
+    Args:
+        state (str): the new state
+    """
+    LOGGER.debug("State updated to %s", state)
+
+    PAYLOAD["state"] = state
+
+    pass_data_to_home_assistant()
+
+
+def on_track_update(track: CurrentTrack.Info) -> None:
+    """Callback for track updates
+
+    Args:
+        track (CurrentTrack.Info): the track metadata
+    """
+    LOGGER.debug("Track updated to %s", dumps(track, default=str))
+
+    PAYLOAD.update(track)
+
+    pass_data_to_home_assistant()
+
+
+PAYLOAD: PayloadInfo = {
+    "state": None,
+    "album_art_uri": None,
+    "volume_level": None,
+    "media_duration": None,
+    "media_title": None,
+    "media_artist": None,
+    "media_album_name": None,
+}
+
+
+YAS_209 = YamahaYas209(
+    "192.168.1.144",
+    on_event=log_request_payload,
+    on_volume_update=on_volume_update,
+    on_state_update=on_state_update,
+    on_track_update=on_track_update,
+    start_listener=True,
+    listen_ip=None
+    if (listen_ip := getenv("LISTEN_IP", "null").lower()) == "null"
+    else listen_ip,
+    listen_port=None
+    if (listen_port := getenv("LISTEN_PORT", "null").lower()) == "null"
+    else int(listen_port),
+    source_port=None
+    if (source_port := getenv("SOURCE_PORT", "null").lower()) == "null"
+    else int(source_port),
 )
-def notify() -> Dict[Literal["statusCode"], Literal[200]]:
-    """API endpoint for getting the CRT state"""
-    try:
-        pass_data_to_home_assistant(request.data.decode("unicode_escape"))
-    except Exception as exc:
-        LOGGER.exception("%s - %s", type(exc).__name__, str(exc))
-        raise
-
-    return {"statusCode": 200}
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=False)
+PAYLOAD["state"] = YAS_209.state.value
+PAYLOAD["volume_level"] = YAS_209.volume_level

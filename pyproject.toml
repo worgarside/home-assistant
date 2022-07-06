@@ -17,3 +17,9 @@ exclude = '''
 
 [tool.isort]
 profile = "black"
+
+[tool.pycln]
+path = "*"
+expand_stars = true
+all = true
+no_gitignore = false
