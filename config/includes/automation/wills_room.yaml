@@ -121,9 +121,21 @@
         - sensor.monstera_saturation
         - sensor.ficus_saturation
         - sensor.yukka_saturation
-    condition: '{{ trigger.to_state.state | float  < 75 }}'
     action:
-      - service: input_button.press
-        target:
-          # yamllint disable-line rule:line-length
-          entity_id: 'input_button.water_{{ trigger.entity_id.split(".")[1].split("_")[0].lower() }}'
+      - variables:
+          plant_name: "{{ trigger.entity_id.split('.')[-1].split('_')[0].lower() }}"
+          input_number: "input_number.{{ plant_name }}_water_threshold"
+      - service: persistent_notification.create
+        data:
+          title: Thing
+          message: "{{plant_name}} {{input_number}} {{trigger.to_state.state | float}}"
+      - if:
+          - >
+            {{ 
+              trigger.to_state.state | float  < 
+              states(input_number) | float 
+            }}
+        then:
+          - service: input_button.press
+            target:
+              entity_id: 'input_button.water_{{ plant_name }}'

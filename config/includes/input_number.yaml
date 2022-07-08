@@ -23,6 +23,24 @@ monstera_wet_point:
   icon: mdi:waves
   mode: box
 
+monstera_water_threshold:
+  name: Monstera Water Threshold
+  min: 0
+  max: 100
+  step: 0.1
+  unit_of_measurement: "%"
+  icon: mdi:waves-arrow-up
+  mode: box
+
+monstera_water_seconds:
+  name: Monstera Water Seconds
+  min: 0
+  max: 30
+  step: 0.1
+  unit_of_measurement: seconds
+  icon: mdi:cup-water
+  mode: box
+
 yukka_dry_point:
   name: Yukka Dry Point
   min: 0
@@ -39,6 +57,24 @@ yukka_wet_point:
   step: 0.1
   unit_of_measurement: Hz
   icon: mdi:waves
+  mode: box
+
+yukka_water_threshold:
+  name: Yukka Water Threshold
+  min: 0
+  max: 100
+  step: 0.1
+  unit_of_measurement: "%"
+  icon: mdi:waves-arrow-up
+  mode: box
+
+yukka_water_seconds:
+  name: Yukka Water Seconds
+  min: 0
+  max: 30
+  step: 0.1
+  unit_of_measurement: seconds
+  icon: mdi:cup-water
   mode: box
 
 ficus_dry_point:
@@ -59,22 +95,13 @@ ficus_wet_point:
   icon: mdi:waves
   mode: box
 
-monstera_water_seconds:
-  name: Monstera Water Seconds
+ficus_water_threshold:
+  name: Ficus Water Threshold
   min: 0
-  max: 30
+  max: 100
   step: 0.1
-  unit_of_measurement: seconds
-  icon: mdi:cup-water
-  mode: box
-
-yukka_water_seconds:
-  name: Yukka Water Seconds
-  min: 0
-  max: 30
-  step: 0.1
-  unit_of_measurement: seconds
-  icon: mdi:cup-water
+  unit_of_measurement: "%"
+  icon: mdi:waves-arrow-up
   mode: box
 
 ficus_water_seconds:
