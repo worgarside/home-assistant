@@ -1,0 +1,19 @@
+---
+name: "HA Remote Logger"
+description: "A custom API to add logs to HA"
+version: "1.0.0"
+slug: "rss_log_feed"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+startup: before
+options:
+  log_ttl: 259200
+schema:
+  log_ttl: int
+ports:
+  8001/tcp: 8001

@@ -19,14 +19,16 @@ pycln = "*"
 async-upnp-client = "*"
 xmltodict = "*"
 lxml = "*"
+types-flask = "*"
 
 [packages]
 homeassistant = "==2022.6.7"
 requests = "*"
 spotipy = "*"
-wg-utilities = "==2.21.0"
+wg-utilities = "==2.23.0"
 nanoleafapi = "*"
 pillow = "*"
+feedgen = "*"
 
 [requires]
 python_version = "3.9"
