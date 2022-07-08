@@ -125,10 +125,6 @@
       - variables:
           plant_name: "{{ trigger.entity_id.split('.')[-1].split('_')[0].lower() }}"
           input_number: "input_number.{{ plant_name }}_water_threshold"
-      - service: persistent_notification.create
-        data:
-          title: Thing
-          message: "{{plant_name}} {{input_number}} {{trigger.to_state.state | float}}"
       - if:
           - >
             {{ 
