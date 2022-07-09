@@ -34,16 +34,16 @@ cards:
             name: Binary Sensors
           - entity: sensor.count_device_trackers
             name: Devices
-          # - entity: sensor.count_input_booleans
-          #   name: Input Booleans
-          # - entity: sensor.count_input_datetimes
-          #   name: Input Datetimes
-          # - entity: sensor.count_input_numbers
-          #   name: Input Numbers
-          # - entity: sensor.count_input_selects
-          #   name: Input Selects
-          # - entity: sensor.count_input_texts
-          #   name: Input Texts
+          - entity: sensor.count_input_booleans
+            name: Input Booleans
+          - entity: sensor.count_input_datetimes
+            name: Input Datetimes
+          - entity: sensor.count_input_numbers
+            name: Input Numbers
+          - entity: sensor.count_input_selects
+            name: Input Selects
+          - entity: sensor.count_input_texts
+            name: Input Texts
           - entity: sensor.count_scripts
             name: Scripts
           - entity: sensor.count_sensors
@@ -59,6 +59,7 @@ cards:
             name: Database
 
   - type: horizontal-stack
+    title: Internet Speeds
     cards:
       - type: custom:mini-graph-card
         entities:
