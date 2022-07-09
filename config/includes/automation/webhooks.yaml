@@ -1,6 +1,5 @@
 ---
 
-
 # ------------------------ Webhooks ------------------------ #
 
   - alias: /webhook/will_s_macbook_pro_battery_percentage
@@ -24,4 +23,3 @@
         data:
           entity_id: var.will_s_macbook_pro_battery_power_plugged
           value: "{{ trigger.json.power_plugged }}"
-
