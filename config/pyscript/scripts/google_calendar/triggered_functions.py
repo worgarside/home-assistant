@@ -3,18 +3,19 @@ from datetime import datetime, timedelta
 from socket import gethostname
 from typing import List
 
+from helpers import HAExceptionCatcher
 from wg_utilities.clients import GoogleCalendarClient
 from wg_utilities.clients.google_calendar import Event, ResponseStatus
 
 MODULE_NAME = "google_calendar"
 
 if gethostname() != "homeassistant":
-    from helpers import local_setup
+    from helpers import local_setup  # pylint: disable=ungrouped-imports
 
-    log, task, sync_mock, decorator = local_setup()
+    log, task, sync_mock, decorator, decorator_with_args = local_setup()
     service = decorator
     pyscript_executor = decorator
-    time_trigger = sync_mock
+    time_trigger = decorator_with_args
 
 WORK_CLIENT = GoogleCalendarClient(
     "calendar-copier-252518",
@@ -39,7 +40,7 @@ PERSONAL_CLIENT = GoogleCalendarClient(
 )
 
 
-@pyscript_executor
+@pyscript_executor  # type: ignore[misc]
 def get_accepted_work_events(
     from_datetime: datetime, to_datetime: datetime
 ) -> List[Event]:
@@ -59,7 +60,7 @@ def get_accepted_work_events(
     return sorted([e for e in events if e.response_status == ResponseStatus.ACCEPTED])
 
 
-@pyscript_executor
+@pyscript_executor  # type: ignore[misc]
 def get_previously_copied_events(
     from_datetime: datetime, to_datetime: datetime
 ) -> List[Event]:
@@ -110,40 +111,44 @@ def event_in_list(target_event: Event, event_list: List[Event]) -> bool:
     return False
 
 
-@service
-@time_trigger("cron(*/5 * * * *)")  # type: ignore
+@service  # type: ignore[misc]
+@time_trigger("cron(*/5 * * * *)")  # type: ignore[misc]
 def copy_events() -> None:
     """Copy events from my work calendar to my personal one"""
+    with HAExceptionCatcher(MODULE_NAME, "copy_events"):
+        description_suffix = datetime.utcnow().strftime(
+            "%Y-%m-%d %H:%M:%S - copied from work calendar."
+        )
 
-    description_suffix = datetime.utcnow().strftime(
-        "%Y-%m-%d %H:%M:%S - copied from work calendar."
-    )
+        from_datetime = datetime.utcnow() - timedelta(days=3)
+        to_datetime = datetime.utcnow() + timedelta(weeks=4)
 
-    from_datetime = datetime.utcnow() - timedelta(days=3)
-    to_datetime = datetime.utcnow() + timedelta(weeks=4)
+        previously_copied_events = get_previously_copied_events(
+            from_datetime, to_datetime
+        )
+        accepted_work_events = get_accepted_work_events(from_datetime, to_datetime)
 
-    previously_copied_events = get_previously_copied_events(from_datetime, to_datetime)
-    accepted_work_events = get_accepted_work_events(from_datetime, to_datetime)
+        for work_event in accepted_work_events:
+            if not event_in_list(work_event, previously_copied_events):
+                log.info("Creating %s", str(work_event))
+                task.executor(
+                    PERSONAL_CLIENT.create_event,
+                    summary=work_event.summary,
+                    start_datetime=work_event.start_datetime,
+                    end_datetime=work_event.end_datetime,
+                    tz=work_event.start.get("timeZone"),
+                    extra_params={
+                        "colorId": 8,  # grey
+                        "description": work_event.description
+                        + "\n"
+                        + description_suffix
+                        if work_event.description
+                        else description_suffix,
+                        "location": work_event.location,
+                    },
+                )
 
-    for work_event in accepted_work_events:
-        if not event_in_list(work_event, previously_copied_events):
-            log.info("Creating %s", str(work_event))
-            task.executor(
-                PERSONAL_CLIENT.create_event,
-                summary=work_event.summary,
-                start_datetime=work_event.start_datetime,
-                end_datetime=work_event.end_datetime,
-                tz=work_event.start.get("timeZone"),
-                extra_params={
-                    "colorId": 8,  # grey
-                    "description": work_event.description + "\n" + description_suffix
-                    if work_event.description
-                    else description_suffix,
-                    "location": work_event.location,
-                },
-            )
-
-    for copied_event in previously_copied_events:
-        if not event_in_list(copied_event, accepted_work_events):
-            log.info("Deleting %s", str(copied_event))
-            task.executor(copied_event.delete)
+        for copied_event in previously_copied_events:
+            if not event_in_list(copied_event, accepted_work_events):
+                log.info("Deleting %s", str(copied_event))
+                task.executor(copied_event.delete)
