@@ -1,15 +1,56 @@
 """helper functions for use across Pyscript"""
+from __future__ import annotations
 
-# pylint: disable=import-outside-toplevel
+from functools import wraps
 from json import loads
 from logging import Logger
 from socket import gethostname
-from typing import Any, Callable, Optional, Tuple, Union
+from types import TracebackType
+from typing import Any, Callable, Optional, Tuple, Type, Union
 from unittest.mock import MagicMock
 
+from requests import post
 
+
+class HAExceptionCatcher:
+    """Custom class for catching any exception which Pyscript throws. Exceptions are
+    sent to the RSS log feed for HA-internal logging
+
+    Args:
+        module_name (str): the name of the module which the exception has come from
+        func_name (str): the name of the function which the exception has come from
+    """
+
+    def __init__(self, module_name: str, func_name: Optional[str] = None):
+        self.module_name = module_name
+        self.func_name = func_name
+
+    def __enter__(self) -> HAExceptionCatcher:
+        return self
+
+    def __exit__(
+        self,
+        exc_type: Optional[Type[type]],
+        exc_val: Optional[Exception],
+        exc_tb: Optional[TracebackType],
+    ) -> None:
+        if exc_type is not None:
+            task.executor(
+                post,
+                "http://192.168.1.120:8001/log/error",
+                data=f"{exc_type.__name__} in `{self.module_name}"
+                f"{f'.{self.func_name}' if self.func_name is not None else ''}`: "
+                f"{repr(exc_val)}",
+            )
+
+
+# pylint: disable=import-outside-toplevel
 def local_setup() -> Tuple[
-    Logger, MagicMock, MagicMock, Callable[..., Callable[..., Any]]
+    Logger,
+    MagicMock,
+    MagicMock,
+    Callable[..., Callable[..., Any]],
+    Callable[[Any], Callable[..., Any]],
 ]:
     """Helper function for creation of fake/stubbed variables which are automatically
     available to Pyscript
@@ -24,9 +65,18 @@ def local_setup() -> Tuple[
 
     from wg_utilities.loggers import add_stream_handler
 
-    def _dummy_decorator(func):  # type: ignore
+    def _simple_decorator(func: Callable[[Any], Any]) -> Callable[[Any, Any], Any]:
         """Dummy function for running scripts locally"""
-        return func
+
+        @wraps(func)
+        def _worker(*args: Any, **kwargs: Any) -> Any:
+            return func(*args, **kwargs)
+
+        return _worker
+
+    # pylint: disable=unused-argument
+    def _decorator_with_args(*args: Any, **kwargs: Any) -> Any:
+        return _simple_decorator
 
     _log = getLogger(__name__)
     _log.setLevel(DEBUG)
@@ -35,11 +85,11 @@ def local_setup() -> Tuple[
     task_mock = MagicMock()
     task_mock.executor = lambda func, *a, **k: func(*a, **k)
 
-    return _log, task_mock, MagicMock(), _dummy_decorator
+    return _log, task_mock, MagicMock(), _simple_decorator, _decorator_with_args
 
 
 if gethostname() != "homeassistant":
-    log, async_mock, sync_mock, decorator = local_setup()
+    log, task, sync_mock, decorator, _ = local_setup()
     pyscript = sync_mock
     pyscript_executor = decorator
 
