@@ -8,5 +8,6 @@ decluttering_templates: !include lovelace/decluttering_templates.yaml
 #  wrap: true
 #  animate: swipe
 
+#This file is the equivalent of having a lovelace/dashboards/mobile_dashboard.yaml
 views:
   - !include lovelace/views/mobile_dashboard.yaml

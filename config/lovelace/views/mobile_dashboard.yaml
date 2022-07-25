@@ -52,8 +52,13 @@ cards:
     title: Lounge
     state_color: true
     entities:
-      - entity: media_player.lounge_bravia_tv
-        name: TV
+      - type: custom:fold-entity-row
+        head:
+          entity: media_player.lounge_bravia_tv
+          name: TV
+        entities:
+          - entity: media_player.lounge_chromecast
+            name: Chromecast
       - type: custom:decluttering-card
         template: folding_rgb_light_template
         variables:
