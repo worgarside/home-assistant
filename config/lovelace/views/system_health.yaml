@@ -85,3 +85,25 @@ cards:
         line_width: 8
         font_size: 75
 
+  - type: entities
+    entities:
+      - sensor.error_feed
+      - sensor.info_feed
+      - sensor.debug_feed
+
+  - type: custom:list-card
+    entity: sensor.error_feed
+    title: Error Feed
+    feed_attribute: entries
+
+  - type: custom:list-card
+    entity: sensor.info_feed
+    title: Info Feed
+    feed_attribute: entries
+
+  - type: custom:list-card
+    entity: sensor.debug_feed
+    title: Debug Feed
+    feed_attribute: entries
+
+

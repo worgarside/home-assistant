@@ -149,3 +149,38 @@
       - type: processor_use
       - type: processor_temperature
 
+  - platform: feedparser
+    name: Error Feed
+    feed_url: 'http://192.168.1.120:8001/feed/logs?level=error'
+    scan_interval:
+      seconds: 60
+
+  - platform: feedparser
+    name: Info Feed
+    feed_url: 'http://192.168.1.120:8001/feed/logs?level=info'
+    scan_interval:
+      seconds: 60
+
+  - platform: feedparser
+    name: Debug Feed
+    feed_url: 'http://192.168.1.120:8001/feed/logs?level=debug'
+    scan_interval:
+      seconds: 60
+
+  - platform: feedparser
+    name: Warning Feed
+    feed_url: 'http://192.168.1.120:8001/feed/logs?level=warning'
+    scan_interval:
+      seconds: 60
+
+  - platform: feedparser
+    name: Critical Feed
+    feed_url: 'http://192.168.1.120:8001/feed/logs?level=critical'
+    scan_interval:
+      seconds: 60
+
+  - platform: feedparser
+    name: Log Feed
+    feed_url: 'http://192.168.1.120:8001/feed/logs'
+    scan_interval:
+      seconds: 60
