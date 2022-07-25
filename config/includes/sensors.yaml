@@ -63,7 +63,15 @@
       Content-Type: application/json
     # The scale is 0-100, but SwitchBot and HA have opposing views on which way round
     # it should be, hence the `100 - ...` here
-    value_template: "{{ 100 - ( value_json.body.slidePosition | int ) }}"
+    value_template: >
+      {% if 100 - ( value_json.body.slidePosition | int ) < 4 %}
+        0 
+      {% elif 100 - ( value_json.body.slidePosition | int ) > 96 %}
+        100 
+      {% else %}
+        {{ 100 - ( value_json.body.slidePosition | int ) }}
+      {% endif %}
+
     unit_of_measurement: '%'
     json_attributes_path: "$.body"
     json_attributes:
