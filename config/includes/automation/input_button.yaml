@@ -28,12 +28,12 @@
               )) | int 
             }}
       - if:
-          - '{{ seconds_since_last_water >= 600 }}'
+          - '{{ seconds_since_last_water >= 1800 }}'
         then:
-          - service: script.debug_persistent_notification
+          - service: script.notify_will
             data:
               title: '{{  plant_name }} Water Update'
-              message: "{{ states(water_seconds) | float }} sent to {{ mqtt_topic }}"
+              message: "{{ states(water_seconds) | float }} sent to `{{ mqtt_topic }}`"
           - service: mqtt.publish
             data:
               topic: '{{ mqtt_topic }}'
@@ -43,9 +43,3 @@
               entity_id: '{{ input_datetime }}'
             data:
               datetime: "{{ now() }}"
-        else:
-          - service: script.debug_persistent_notification
-            data:
-              title: '{{  plant_name }} Water Update'
-              # yamllint disable-line rule:line-length
-              message: "It's only been {{ (seconds_since_last_water / 60) | int }}m{{ (seconds_since_last_water % 60) }}s since the last water!"
