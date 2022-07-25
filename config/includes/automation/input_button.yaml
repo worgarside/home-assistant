@@ -32,7 +32,7 @@
         then:
           - service: script.notify_will
             data:
-              title: '{{  plant_name }} Water Update'
+              title: '{{  plant_name.title() }} Water Update'
               message: "{{ states(water_seconds) | float }} sent to `{{ mqtt_topic }}`"
           - service: mqtt.publish
             data:
