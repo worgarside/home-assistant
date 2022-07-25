@@ -2,7 +2,7 @@
 from socket import gethostname
 from typing import Any, Callable
 
-from helpers import get_secret
+from helpers import HAExceptionCatcher, get_secret
 from wg_utilities.clients import TrueLayerClient
 from wg_utilities.clients.truelayer import Bank
 
@@ -27,16 +27,18 @@ def get_truelayer_auth_link() -> None:
 
     N.B.: The bank used in instantiating the client is immaterial
     """
-    tlc = TrueLayerClient(
-        client_id=CLIENT_ID,
-        client_secret=CLIENT_SECRET,
-        bank=Bank.MONZO,
-        log_requests=True,
-    )
+    with HAExceptionCatcher(MODULE_NAME, "get_truelayer_auth_link"):
 
-    persistent_notification.create(
-        title="TrueLayer Auth Link", message=tlc.authentication_link
-    )
+        tlc = TrueLayerClient(
+            client_id=CLIENT_ID,
+            client_secret=CLIENT_SECRET,
+            bank=Bank.MONZO,
+            log_requests=True,
+        )
+
+        persistent_notification.create(
+            title="TrueLayer Auth Link", message=tlc.authentication_link
+        )
 
 
 @service
@@ -49,14 +51,17 @@ def authenticate_truelayer_against_bank(bank_name: str, code: str) -> None:
     """
     bank = Bank[bank_name.upper()]
 
-    tl_client = TrueLayerClient(
-        client_id=CLIENT_ID,
-        client_secret=CLIENT_SECRET,
-        bank=bank,
-        log_requests=True,
-        creds_cache_path=CACHE_PATH,
-    )
+    with HAExceptionCatcher(MODULE_NAME, "authenticate_truelayer_against_bank"):
+        tl_client = TrueLayerClient(
+            client_id=CLIENT_ID,
+            client_secret=CLIENT_SECRET,
+            bank=bank,
+            log_requests=True,
+            creds_cache_path=CACHE_PATH,
+        )
 
-    task.executor(tl_client.authenticate_against_bank, code)
+        task.executor(tl_client.authenticate_against_bank, code)
 
-    log.info("Credentials for %s added to `%s`", bank.value, tl_client.creds_cache_path)
+        log.info(
+            "Credentials for %s added to `%s`", bank.value, tl_client.creds_cache_path
+        )

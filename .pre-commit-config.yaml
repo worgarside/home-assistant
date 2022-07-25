@@ -32,7 +32,7 @@ repos:
       - id: mypy
         args: [--strict, --show-error-codes]
         # yamllint disable-line rule:line-length
-        additional_dependencies: [types-requests, types-paramiko, lxml-stubs, pydantic, types-flask]
+        additional_dependencies: [types-requests, types-paramiko, lxml-stubs, pydantic, types-flask, types-Pillow]
 
   - repo: https://github.com/hadialqattan/pycln
     rev: v1.3.3

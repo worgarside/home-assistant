@@ -2,10 +2,13 @@
 from socket import gethostname
 from typing import Any, Callable
 
+from helpers import HAExceptionCatcher
 from wg_utilities.clients.google_fit import GoogleFitClient
 
+MODULE_NAME = "google_fit"
+
 if gethostname() != "homeassistant":
-    from helpers import local_setup
+    from helpers import local_setup  # pylint: disable=ungrouped-imports
 
     log, async_mock, sync_mock, decorator, decorator_with_args = local_setup()
     task = async_mock
@@ -40,26 +43,26 @@ def update_google_fit_variables() -> None:
     """Updates a set of Google Fit variables, as defined in
     `VARIABLE_DATA_SOURCE_MAPPING`
     """
+    with HAExceptionCatcher(MODULE_NAME, "update_google_fit_variables"):
+        for var_name, data_source_id in VARIABLE_DATA_SOURCE_MAPPING.items():
+            try:
+                data_source = task.executor(GOOGLE_FIT.get_data_source, data_source_id)
+                log.info("Updating %s with sum from `%s`", var_name, data_source_id)
 
-    for var_name, data_source_id in VARIABLE_DATA_SOURCE_MAPPING.items():
-        try:
-            data_source = task.executor(GOOGLE_FIT.get_data_source, data_source_id)
-            log.info("Updating %s with sum from `%s`", var_name, data_source_id)
+                sum_value = task.executor(data_source.sum_data_points_in_range)
+                if isinstance(sum_value, float):
+                    sum_value = round(sum_value, 2)
 
-            sum_value = task.executor(data_source.sum_data_points_in_range)
-            if isinstance(sum_value, float):
-                sum_value = round(sum_value, 2)
-
-            var.set(
-                entity_id=var_name,
-                value=sum_value,
-                force_update=True,
-            )
-        except Exception as exc:  # pylint: disable=broad-except
-            log.error(
-                "Unable to update variable `%s`: %s - %s",
-                var_name,
-                type(exc).__name__,
-                str(exc),
-            )
-            var.set(entity_id=var_name, value="unknown", force_update=True)
+                var.set(
+                    entity_id=var_name,
+                    value=sum_value,
+                    force_update=True,
+                )
+            except Exception as exc:  # pylint: disable=broad-except
+                log.error(
+                    "Unable to update variable `%s`: %s - %s",
+                    var_name,
+                    type(exc).__name__,
+                    str(exc),
+                )
+                var.set(entity_id=var_name, value="unknown", force_update=True)

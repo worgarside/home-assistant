@@ -3,7 +3,7 @@ from os.path import isfile
 from socket import gethostname
 from typing import Any, Callable, Dict, List
 
-from helpers import get_secret, write_file
+from helpers import HAExceptionCatcher, get_secret, write_file
 from nanoleafapi import Nanoleaf
 from PIL import Image
 from requests import get
@@ -62,18 +62,15 @@ def get_n_colors_from_image(img_path: str, n: int) -> List[Dict[str, int]]:
 
     pixels = Image.open(img_path).quantize(colors=n, method=0)
 
-    def sort_func(elem: List[str]) -> str:
-        return elem[0]
-
     return [
         {
-            "hue": int((color_tuple[0] * 360) / 255),
-            "saturation": int((color_tuple[1] * 100) / 255),
-            "brightness": int((color_tuple[2] * 100) / 255),
+            "hue": int((color_tuple[0] * 360) / 255),  # type: ignore[index]
+            "saturation": int((color_tuple[1] * 100) / 255),  # type: ignore[index]
+            "brightness": int((color_tuple[2] * 100) / 255),  # type: ignore[index]
         }
         for count, color_tuple in sorted(
             pixels.convert(mode="HSV").getcolors(),
-            key=sort_func,
+            key=lambda elem: elem[0],
             reverse=True,
         )
     ][:n]
@@ -188,27 +185,29 @@ def update_nanoleaf_colors(var_name: str) -> None:
     Args:
         var_name (str): the media player which triggered this function
     """
+    with HAExceptionCatcher(MODULE_NAME, "update_nanoleaf_colors_matts_shapes"):
+        if (
+            var_name == input_select.matts_shapes_artwork_colour_source
+            and input_boolean.matts_shapes_artwork_colour_source_active == "on"
+        ):
+            update_nanoleaf_colors_worker(
+                MEDIA_PLAYER_OVERRIDES.get(var_name, var_name), MATTS_SHAPES
+            )
 
-    if (
-        var_name == input_select.matts_shapes_artwork_colour_source
-        and input_boolean.matts_shapes_artwork_colour_source_active == "on"
-    ):
-        update_nanoleaf_colors_worker(
-            MEDIA_PLAYER_OVERRIDES.get(var_name, var_name), MATTS_SHAPES
-        )
+    with HAExceptionCatcher(MODULE_NAME, "update_nanoleaf_colors_the_snail"):
+        if (
+            var_name == input_select.the_snail_artwork_colour_source
+            and input_boolean.the_snail_artwork_colour_source_active == "on"
+        ):
+            update_nanoleaf_colors_worker(
+                MEDIA_PLAYER_OVERRIDES.get(var_name, var_name), THE_SNAIL
+            )
 
-    if (
-        var_name == input_select.the_snail_artwork_colour_source
-        and input_boolean.the_snail_artwork_colour_source_active == "on"
-    ):
-        update_nanoleaf_colors_worker(
-            MEDIA_PLAYER_OVERRIDES.get(var_name, var_name), THE_SNAIL
-        )
-
-    if (
-        var_name == input_select.wills_shapes_artwork_colour_source
-        and input_boolean.wills_shapes_artwork_colour_source_active == "on"
-    ):
-        update_nanoleaf_colors_worker(
-            MEDIA_PLAYER_OVERRIDES.get(var_name, var_name), WILLS_SHAPES
-        )
+    with HAExceptionCatcher(MODULE_NAME, "update_nanoleaf_colors_wills_shapes"):
+        if (
+            var_name == input_select.wills_shapes_artwork_colour_source
+            and input_boolean.wills_shapes_artwork_colour_source_active == "on"
+        ):
+            update_nanoleaf_colors_worker(
+                MEDIA_PLAYER_OVERRIDES.get(var_name, var_name), WILLS_SHAPES
+            )

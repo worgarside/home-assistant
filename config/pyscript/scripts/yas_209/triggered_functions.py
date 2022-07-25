@@ -3,12 +3,13 @@
 from socket import gethostname
 from typing import Any, Callable
 
+from helpers import HAExceptionCatcher
 from wg_utilities.devices import YamahaYas209  # pylint: disable=no-name-in-module
 
 MODULE_NAME = "yas_209"
 
 if gethostname() != "homeassistant":
-    from helpers import local_setup
+    from helpers import local_setup  # pylint: disable=ungrouped-imports
 
     log, task, sync_mock, decorator, decorator_with_args = local_setup()
     sensor = sync_mock
@@ -42,57 +43,68 @@ YAS_209 = task.executor(
 
 @service
 def yas_209_mute() -> None:
-    task.executor(YAS_209.mute)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_mute"):
+        task.executor(YAS_209.mute)
 
 
 @service
 def yas_209_next_track() -> None:
-    task.executor(YAS_209.next_track)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_next_track"):
+        task.executor(YAS_209.next_track)
 
 
 @service
 def yas_209_pause() -> None:
-    task.executor(YAS_209.pause)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_pause"):
+        task.executor(YAS_209.pause)
 
 
 @service
 def yas_209_play() -> None:
-    task.executor(YAS_209.play)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_play"):
+        task.executor(YAS_209.play)
 
 
 @service
 def yas_209_play_pause() -> None:
-    task.executor(YAS_209.play_pause)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_play_pause"):
+        task.executor(YAS_209.play_pause)
 
 
 @service
 def yas_209_previous_track() -> None:
-    task.executor(YAS_209.previous_track)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_previous_track"):
+        task.executor(YAS_209.previous_track)
 
 
 @service
 def yas_209_set_volume_level(volume_level: float) -> None:
     log.info(f"Setting volume to {volume_level}")
-    task.executor(YAS_209.set_volume_level, volume_level)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_set_volume_level"):
+        task.executor(YAS_209.set_volume_level, volume_level)
 
 
 @service
 def yas_209_stop() -> None:
-    task.executor(YAS_209.stop)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_stop"):
+        task.executor(YAS_209.stop)
 
 
 @service
 def yas_209_unmute() -> None:
-    task.executor(YAS_209.unmute)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_unmute"):
+        task.executor(YAS_209.unmute)
 
 
 @service
 def yas_209_volume_down() -> None:
     log.info("Volume down")
-    task.executor(YAS_209.volume_down)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_volume_down"):
+        task.executor(YAS_209.volume_down)
 
 
 @service
 def yas_209_volume_up() -> None:
     log.info("Volume up")
-    task.executor(YAS_209.volume_up)
+    with HAExceptionCatcher(MODULE_NAME, "yas_209_volume_up"):
+        task.executor(YAS_209.volume_up)

@@ -4,7 +4,7 @@ from json import dumps
 from socket import gethostname
 from typing import Any, Callable
 
-from helpers import get_secret
+from helpers import HAExceptionCatcher, get_secret
 from requests import get
 from requests.exceptions import ConnectionError as RequestsConnectionError
 from wg_utilities.clients import MonzoClient
@@ -46,30 +46,32 @@ def top_up_credit_card_pot(top_up_amount: float) -> None:
     """
     # convert GBP into pence
     top_up_amount = round(top_up_amount * 100)
-    try:
-        credit_card_pot = task.executor(MONZO.get_pot_by_name, "credit cards")
-        log.info("DEPOSITING %f INTO %s", top_up_amount, str(credit_card_pot))
-        log.info(type(credit_card_pot))
-        task.executor(
-            MONZO.deposit_into_pot,
-            credit_card_pot,
-            amount_pence=top_up_amount,
-            dedupe_id=f"hass-{top_up_amount}-"
-            + datetime.today().strftime("%Y%m%d%H%M%S"),
-        )
-    except Exception as exc:
-        if hasattr(exc, "response"):
-            res_json = exc.response.json()  # type: ignore[attr-defined]
-            log.info(dumps(res_json, default=str))
 
-        log.error("KILLING SERVER")
+    with HAExceptionCatcher(MODULE_NAME, "top_up_credit_card_pot"):
         try:
-            task.executor(get, f"http://{sensor.local_ip}:5001/kill")
-            log.info("KILLED")
-        except (ConnectionError, RequestsConnectionError) as connection_exc:
-            log.warning(
-                "UNABLE TO KILL SERVER: %s - %s",
-                type(connection_exc).__name__,
-                str(connection_exc),
+            credit_card_pot = task.executor(MONZO.get_pot_by_name, "credit cards")
+            log.info("DEPOSITING %f INTO %s", top_up_amount, str(credit_card_pot))
+            log.info(type(credit_card_pot))
+            task.executor(
+                MONZO.deposit_into_pot,
+                credit_card_pot,
+                amount_pence=top_up_amount,
+                dedupe_id=f"hass-{top_up_amount}-"
+                + datetime.today().strftime("%Y%m%d%H%M%S"),
             )
-        raise
+        except Exception as exc:
+            if hasattr(exc, "response"):
+                res_json = exc.response.json()  # type: ignore[attr-defined]
+                log.info(dumps(res_json, default=str))
+
+            log.error("KILLING SERVER")
+            try:
+                task.executor(get, f"http://{sensor.local_ip}:5001/kill")
+                log.info("KILLED")
+            except (ConnectionError, RequestsConnectionError) as connection_exc:
+                log.warning(
+                    "UNABLE TO KILL SERVER: %s - %s",
+                    type(connection_exc).__name__,
+                    str(connection_exc),
+                )
+            raise

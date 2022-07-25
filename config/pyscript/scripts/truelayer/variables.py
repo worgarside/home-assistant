@@ -2,7 +2,7 @@
 from socket import gethostname
 from typing import Any, Callable
 
-from helpers import get_secret
+from helpers import HAExceptionCatcher, get_secret
 from wg_utilities.clients import TrueLayerClient
 from wg_utilities.clients.truelayer import Bank, Card
 
@@ -76,22 +76,21 @@ VAR_ENTITY_MAP = {
 @time_trigger("cron(*/5 * * * *)")
 def update_balance_variables() -> None:
     """Update all TrueLayer balance variables as defined by `VAR_ENTITY_MAP`"""
-
-    for var_name_suffix, entity in VAR_ENTITY_MAP.items():
-        var_name = f"var.truelayer_balance_{var_name_suffix}"
-        attr_name = (
-            "current_balance" if isinstance(entity, Card) else "available_balance"
-        )
-        try:
-            # log.info("Getting %s from %s for %s", attr_name, str(entity), var_name)
-            balance = task.executor(getattr, entity, attr_name)
-
-            var.set(entity_id=var_name, value=balance, force_update=True)
-        except Exception as exc:  # pylint: disable=broad-except
-            log.error(
-                "Unable to update variable `%s`: %s - %s",
-                var_name,
-                type(exc).__name__,
-                str(exc),
+    with HAExceptionCatcher(MODULE_NAME, "update_balance_variables"):
+        for var_name_suffix, entity in VAR_ENTITY_MAP.items():
+            var_name = f"var.truelayer_balance_{var_name_suffix}"
+            attr_name = (
+                "current_balance" if isinstance(entity, Card) else "available_balance"
             )
-            var.set(entity_id=var_name, value="unknown", force_update=True)
+            try:
+                balance = task.executor(getattr, entity, attr_name)
+
+                var.set(entity_id=var_name, value=balance, force_update=True)
+            except Exception as exc:  # pylint: disable=broad-except
+                log.error(
+                    "Unable to update variable `%s`: %s - %s",
+                    var_name,
+                    type(exc).__name__,
+                    str(exc),
+                )
+                var.set(entity_id=var_name, value="unknown", force_update=True)

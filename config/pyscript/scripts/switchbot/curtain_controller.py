@@ -3,7 +3,7 @@ from json import dumps
 from socket import gethostname
 from typing import Any, Callable
 
-from helpers import get_secret
+from helpers import HAExceptionCatcher, get_secret
 from requests import post
 
 MODULE_NAME = "switchbot.curtain_controller"
@@ -35,25 +35,26 @@ def set_curtain_position(position: int, index: int = 0, mode: str = "ff") -> Non
         mode (str): the mode (performance etc.) to use when moving the SwitchBot
     """
 
-    # If the balcony door is open, only close the curtain to 15%
-    if binary_sensor.will_s_balcony_door == "on" and position < 15:
-        log.warning("Limiting curtain position to 15% as balcony door is open")
-        position = 15
-        cover.set_cover_position(
-            position=position, entity_id="cover.wills_room_curtain"
-        )
-    else:
-        log.info("Setting curtain position to %i", position)
-        res = task.executor(
-            post,
-            f"{BASE_URL}/v1.0/devices/{CURTAIN_ID}/commands",
-            json={
-                "command": "setPosition",
-                # 100 - position here to account for SwitchBot/HA 0-100 flip
-                "parameter": ",".join(map(str, [index, mode, 100 - position])),
-                "commandType": "command",
-            },
-            headers=HEADERS,
-        )
+    with HAExceptionCatcher(MODULE_NAME, "set_curtain_position"):
+        # If the balcony door is open, only close the curtain to 15%
+        if binary_sensor.will_s_balcony_door == "on" and position < 15:
+            log.warning("Limiting curtain position to 15% as balcony door is open")
+            position = 15
+            cover.set_cover_position(
+                position=position, entity_id="cover.wills_room_curtain"
+            )
+        else:
+            log.info("Setting curtain position to %i", position)
+            res = task.executor(
+                post,
+                f"{BASE_URL}/v1.0/devices/{CURTAIN_ID}/commands",
+                json={
+                    "command": "setPosition",
+                    # 100 - position here to account for SwitchBot/HA 0-100 flip
+                    "parameter": ",".join(map(str, [index, mode, 100 - position])),
+                    "commandType": "command",
+                },
+                headers=HEADERS,
+            )
 
-        log.info(dumps(res.json(), default=str))
+            log.info(dumps(res.json(), default=str))
