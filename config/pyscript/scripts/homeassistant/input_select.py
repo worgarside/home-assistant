@@ -1,11 +1,12 @@
 """PyScript functions/services specifically for input selects"""
 from socket import gethostname
+from typing import Any, Callable
 
 if gethostname() != "homeassistant":
     from helpers import local_setup
 
-    log, async_mock, sync_mock, decorator = local_setup()
-    service = decorator
+    log, _, sync_mock, decorator, __ = local_setup()
+    service: Callable[..., Callable[..., Any]] = decorator
     state = sync_mock
     input_select = sync_mock
 

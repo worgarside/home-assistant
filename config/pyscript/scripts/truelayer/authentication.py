@@ -1,5 +1,6 @@
 """Functions/services for TrueLayer authentication"""
 from socket import gethostname
+from typing import Any, Callable
 
 from helpers import get_secret
 from wg_utilities.clients import TrueLayerClient
@@ -10,10 +11,9 @@ MODULE_NAME = "truelayer"
 if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports
 
-    log, async_mock, sync_mock, decorator = local_setup()
-    task = async_mock
+    log, task, sync_mock, decorator, _ = local_setup()
     persistent_notification = sync_mock
-    service = decorator
+    service: Callable[..., Callable[..., Any]] = decorator
 
 CLIENT_ID = get_secret("client_id", module=MODULE_NAME)
 CLIENT_SECRET = get_secret("client_secret", module=MODULE_NAME)

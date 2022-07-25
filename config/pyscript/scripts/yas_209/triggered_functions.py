@@ -10,15 +10,15 @@ MODULE_NAME = "yas_209"
 if gethostname() != "homeassistant":
     from helpers import local_setup
 
-    log, task, sync_mock, decorator = local_setup()
+    log, task, sync_mock, decorator, decorator_with_args = local_setup()
     sensor = sync_mock
     persistent_notification = sync_mock
     notify = sync_mock
-    state_trigger = sync_mock
-    pyscript_executor = decorator
-    time_trigger = sync_mock
-    event_trigger = sync_mock
-    service: Callable[[Callable[..., Any]], Callable[..., Any]] = decorator
+    state_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
+    pyscript_executor: Callable[..., Callable[..., Any]] = decorator
+    time_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
+    event_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
+    service: Callable[..., Callable[..., Any]] = decorator
 
 
 PAYLOAD = {

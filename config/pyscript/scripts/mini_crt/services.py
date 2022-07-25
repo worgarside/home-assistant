@@ -1,7 +1,7 @@
 """Services for the Mini CRT"""
 from json import dumps
 from socket import gethostname
-from typing import Literal
+from typing import Any, Callable, Literal
 
 from helpers import get_secret
 from requests import get, put
@@ -12,13 +12,12 @@ if gethostname() != "homeassistant":
     # pylint: disable=ungrouped-imports
     from helpers import local_setup
 
-    log, task, sync_mock, decorator = local_setup()
+    log, task, sync_mock, decorator, _ = local_setup()
     persistent_notification = sync_mock
     sensor = sync_mock
-    homeassistant = sync_mock
     sensor.local_ip = "0.0.0.0"
-    service = decorator
-    pyscript_executor = decorator
+    homeassistant = sync_mock
+    service: Callable[..., Callable[..., Any]] = decorator
 
 SNAIL_IP = get_secret("ip_address", module=MODULE)
 SNAIL_AUTH_TOKEN = get_secret("auth_token", module=MODULE)

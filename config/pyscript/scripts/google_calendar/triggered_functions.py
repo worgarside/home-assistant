@@ -1,7 +1,7 @@
 """Functions which are only run on a certain trigger"""
 from datetime import datetime, timedelta
 from socket import gethostname
-from typing import List
+from typing import Any, Callable, List
 
 from helpers import HAExceptionCatcher
 from wg_utilities.clients import GoogleCalendarClient
@@ -12,10 +12,10 @@ MODULE_NAME = "google_calendar"
 if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports
 
-    log, task, sync_mock, decorator, decorator_with_args = local_setup()
-    service = decorator
-    pyscript_executor = decorator
-    time_trigger = decorator_with_args
+    log, task, _, decorator, decorator_with_args = local_setup()
+    service: Callable[..., Callable[..., Any]] = decorator
+    pyscript_executor: Callable[..., Callable[..., Any]] = decorator
+    time_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
 
 WORK_CLIENT = GoogleCalendarClient(
     "calendar-copier-252518",
@@ -40,7 +40,7 @@ PERSONAL_CLIENT = GoogleCalendarClient(
 )
 
 
-@pyscript_executor  # type: ignore[misc]
+@pyscript_executor
 def get_accepted_work_events(
     from_datetime: datetime, to_datetime: datetime
 ) -> List[Event]:
@@ -60,7 +60,7 @@ def get_accepted_work_events(
     return sorted([e for e in events if e.response_status == ResponseStatus.ACCEPTED])
 
 
-@pyscript_executor  # type: ignore[misc]
+@pyscript_executor
 def get_previously_copied_events(
     from_datetime: datetime, to_datetime: datetime
 ) -> List[Event]:
@@ -111,8 +111,8 @@ def event_in_list(target_event: Event, event_list: List[Event]) -> bool:
     return False
 
 
-@service  # type: ignore[misc]
-@time_trigger("cron(*/5 * * * *)")  # type: ignore[misc]
+@service
+@time_trigger("cron(*/5 * * * *)")
 def copy_events() -> None:
     """Copy events from my work calendar to my personal one"""
     with HAExceptionCatcher(MODULE_NAME, "copy_events"):

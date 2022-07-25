@@ -17,16 +17,16 @@ MODULE_NAME = "spotify"
 if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports
 
-    log, task, sync_mock, decorator = local_setup()
+    log, task, sync_mock, decorator, decorator_with_args = local_setup()
     state = sync_mock
     sensor = sync_mock
     persistent_notification = sync_mock
     notify = sync_mock
-    state_trigger = sync_mock
-    pyscript_executor = decorator
-    time_trigger = sync_mock
-    event_trigger = sync_mock
-    service = decorator
+    state_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
+    pyscript_executor: Callable[..., Callable[..., Any]] = decorator
+    time_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
+    event_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
+    service: Callable[..., Callable[..., Any]] = decorator
 
     CREDS_CACHE_PATH: Optional[str] = None
 else:
@@ -52,7 +52,7 @@ JAMBOX_JAMS = task.executor(SPOTIFY.get_playlist_by_id, "4Vv023MaZsc8NTWZ4WJvIL"
 _SAVE_ALBUM_ARTWORK_TRIGGER = "sensor.spotify_{}_media_album_artwork_internal_url"
 
 
-@pyscript_executor  # type: ignore
+@pyscript_executor
 def get_monthly_playlists(return_count: int = 12) -> List[Playlist]:
     """Gets all monthly playlists from Spotify (based on name)
 
@@ -70,8 +70,8 @@ def get_monthly_playlists(return_count: int = 12) -> List[Playlist]:
     )[-return_count:]
 
 
-@service  # type: ignore
-@time_trigger("cron(*/15 * * * *)")  # type: ignore
+@service
+@time_trigger("cron(*/15 * * * *)")
 def process_liked_songs() -> None:
     """Calls other functions which process liked songs, to save polling Spotify's API
     twice"""
@@ -199,9 +199,9 @@ def update_dynamic_playlists(
     return playlist_updates
 
 
-@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("matt_scott"))  # type: ignore
-@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("tom_jones"))  # type: ignore
-@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("will_garside"))  # type: ignore
+@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("matt_scott"))
+@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("tom_jones"))
+@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("will_garside"))
 def save_album_artwork(var_name: str, value: str, old_value: str) -> None:
     """Saves the artwork for a given album to the local file storage for use elsewhere
 
@@ -261,7 +261,7 @@ def save_album_artwork(var_name: str, value: str, old_value: str) -> None:
     )
 
 
-@pyscript_executor  # type: ignore
+@pyscript_executor
 def add_to_playlist(track: Track, playlist: Playlist) -> None:
     """Add a track to a playlist, but from PyScript...
 
@@ -277,7 +277,7 @@ def add_to_playlist(track: Track, playlist: Playlist) -> None:
         )
 
 
-@event_trigger("mobile_app_notification_action")  # type: ignore
+@event_trigger("mobile_app_notification_action")
 def add_track_to_playlist(action: str, message: str, **_: Dict[Any, Any]) -> None:
     """Add a given track to a playlist
 

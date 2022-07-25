@@ -1,6 +1,7 @@
 """Services for managing SwitchBot devices via the API"""
 from json import dumps
 from socket import gethostname
+from typing import Any, Callable
 
 from helpers import get_secret
 from requests import post
@@ -10,13 +11,12 @@ MODULE_NAME = "switchbot.curtain_controller"
 if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports
 
-    log, async_mock, sync_mock, decorator = local_setup()
-    task = async_mock
+    log, task, sync_mock, decorator, _ = local_setup()
     sensor = sync_mock
     binary_sensor = sync_mock
     cover = sync_mock
     homeassistant = sync_mock
-    service = decorator
+    service: Callable[..., Callable[..., Any]] = decorator
 
 
 API_KEY = get_secret("api_key", module=MODULE_NAME)
@@ -25,7 +25,7 @@ BASE_URL = "https://api.switch-bot.com"
 HEADERS = {"Authorization": API_KEY, "Content-Type": "application/json; charset=utf8"}
 
 
-@service  # type: ignore[misc]
+@service
 def set_curtain_position(position: int, index: int = 0, mode: str = "ff") -> None:
     """Sets the SwitchBot curtain to a given position
 

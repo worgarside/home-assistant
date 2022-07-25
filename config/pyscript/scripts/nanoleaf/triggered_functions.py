@@ -1,7 +1,7 @@
 """Functions which are only run on a certain trigger"""
 from os.path import isfile
 from socket import gethostname
-from typing import Dict, List
+from typing import Any, Callable, Dict, List
 
 from helpers import get_secret, write_file
 from nanoleafapi import Nanoleaf
@@ -14,14 +14,14 @@ MODULE_NAME = "nanoleaf"
 if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports
 
-    log, task, sync_mock, decorator = local_setup()
+    log, task, sync_mock, decorator, decorator_with_args = local_setup()
     state = sync_mock
     sensor = sync_mock
     input_select = sync_mock
     input_boolean = sync_mock
-    state_trigger = sync_mock
-    service = sync_mock
-    pyscript_executor = sync_mock
+    state_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
+    service: Callable[..., Callable[..., Any]] = decorator
+    pyscript_executor: Callable[..., Callable[..., Any]] = decorator
 
 # Shapes 8479
 MATTS_SHAPES = task.executor(
@@ -171,17 +171,17 @@ def update_nanoleaf_colors_worker(media_player: str, nanoleaf_device: Nanoleaf) 
     task.executor(nanoleaf_device.write_effect, effect_dict=effect_dict)
 
 
-@state_trigger("media_player.all_speakers.media_title")  # type: ignore
-@state_trigger("media_player.downstairs_speakers.media_title")  # type: ignore
-@state_trigger("media_player.hifi_system.media_title")  # type: ignore
-@state_trigger("media_player.kitchen_nest_mini.media_title")  # type: ignore
-@state_trigger("media_player.matts_room_nest_mini.media_title")  # type: ignore
-@state_trigger("media_player.spotify_matt_scott.media_title")  # type: ignore
-@state_trigger("media_player.spotify_tom_jones.media_title")  # type: ignore
-@state_trigger("media_player.spotify_will_garside.media_title")  # type: ignore
-@state_trigger("media_player.tom_s_speakers.media_title")  # type: ignore
-@state_trigger("media_player.upstairs_speakers.media_title")  # type: ignore
-@state_trigger("media_player.will_s_yas_209.media_title")  # type: ignore
+@state_trigger("media_player.all_speakers.media_title")
+@state_trigger("media_player.downstairs_speakers.media_title")
+@state_trigger("media_player.hifi_system.media_title")
+@state_trigger("media_player.kitchen_nest_mini.media_title")
+@state_trigger("media_player.matts_room_nest_mini.media_title")
+@state_trigger("media_player.spotify_matt_scott.media_title")
+@state_trigger("media_player.spotify_tom_jones.media_title")
+@state_trigger("media_player.spotify_will_garside.media_title")
+@state_trigger("media_player.tom_s_speakers.media_title")
+@state_trigger("media_player.upstairs_speakers.media_title")
+@state_trigger("media_player.will_s_yas_209.media_title")
 def update_nanoleaf_colors(var_name: str) -> None:
     """Update Nanoleaf colors based on the currently playing song's artwork
 

@@ -1,5 +1,6 @@
 """Functions which can be triggered/timed and set the value(s) for variable(s)"""
 from socket import gethostname
+from typing import Any, Callable
 
 from helpers import get_secret
 from wg_utilities.clients import TrueLayerClient
@@ -26,10 +27,9 @@ SANTANDER = TrueLayerClient(bank=Bank.SANTANDER, **TLC_ARGS)
 if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports
 
-    log, async_mock, sync_mock, decorator = local_setup()
-    task = async_mock
+    log, task, sync_mock, _, decorator_with_args = local_setup()
     var = sync_mock
-    time_trigger = sync_mock
+    time_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
 
 _INSTANCE_KWARGS = {"balance_update_threshold": 1}
 
@@ -73,7 +73,7 @@ VAR_ENTITY_MAP = {
 }
 
 
-@time_trigger("cron(*/5 * * * *)")  # type: ignore
+@time_trigger("cron(*/5 * * * *)")
 def update_balance_variables() -> None:
     """Update all TrueLayer balance variables as defined by `VAR_ENTITY_MAP`"""
 

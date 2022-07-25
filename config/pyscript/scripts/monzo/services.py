@@ -2,6 +2,7 @@
 from datetime import datetime
 from json import dumps
 from socket import gethostname
+from typing import Any, Callable
 
 from helpers import get_secret
 from requests import get
@@ -12,11 +13,11 @@ if gethostname() != "homeassistant":
     # pylint: disable=ungrouped-imports
     from helpers import local_setup
 
-    log, async_mock, sync_mock, decorator = local_setup()
+    log, async_mock, sync_mock, decorator, _ = local_setup()
     task = async_mock
     sensor = sync_mock
     sensor.local_ip = "0.0.0.0"
-    service = decorator
+    service: Callable[..., Callable[..., Any]] = decorator
 
     CACHE_PATH = None
 else:
@@ -58,7 +59,8 @@ def top_up_credit_card_pot(top_up_amount: float) -> None:
         )
     except Exception as exc:
         if hasattr(exc, "response"):
-            log.info(dumps(exc.response.json(), default=str))  # type: ignore
+            res_json = exc.response.json()  # type: ignore[attr-defined]
+            log.info(dumps(res_json, default=str))
 
         log.error("KILLING SERVER")
         try:
