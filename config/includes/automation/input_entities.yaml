@@ -72,32 +72,6 @@
               # yamllint disable-line rule:line-length
               message: "Automation `input_boolean_mini_crt_power` failed: unknown previous state of `{{ trigger.from_state.state }}`"
 
-  - alias: /input_boolean/mini_crt_nanoleaf_updater
-    id: input_boolean_mini_crt_nanoleaf_updater
-    trigger:
-      - platform: state
-        entity_id: input_boolean.mini_crt_nanoleaf_updater
-        for:
-          seconds: 1
-    action:
-      - choose:
-          - alias: "Turn On"
-            conditions: >
-              {{ states('input_boolean.mini_crt_nanoleaf_updater') == 'on' }}
-            sequence:
-              - service: rest_command.mini_crt_turn_nanoleaf_updater_on
-          - alias: "Turn Off"
-            conditions: >
-              {{ states('input_boolean.mini_crt_nanoleaf_updater') == 'off' }}
-            sequence:
-              - service: rest_command.mini_crt_turn_nanoleaf_updater_off
-        default:
-          - service: script.notify_will
-            data:
-              title: "Automation Failure"
-              # yamllint disable-line rule:line-length
-              message: "Automation `input_boolean_mini_crt_nanoleaf_updater` failed: unknown previous state of `{{ trigger.from_state.state }}`"
-
   - alias: /input_boolean/mini_crt_power/force_update
     id: force_update_input_boolean_mini_crt_power
     trigger:
@@ -107,6 +81,17 @@
     action:
       - service: homeassistant.update_entity
         entity_id: sensor.mini_crt_power_state
+
+  - alias: /input_boolean/mini_crt_fan
+    id: input_boolean_mini_crt_fan
+    trigger:
+      - platform: state
+        entity_id: input_boolean.mini_crt_fan
+    action:
+      - service: mqtt.publish
+        data:
+          topic: /crt-pi/fan/state
+          payload_template: "{{ states('input_boolean.mini_crt_fan')}}"
 
 #</editor-fold>
 #<editor-fold desc="Input Number">

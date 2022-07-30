@@ -27,29 +27,3 @@
               title: "Automation Failure"
               # yamllint disable-line rule:line-length
               message: "Automation `rest_mini_crt_power_state` failed: unknown previous state of `{{ trigger.from_state.state }}`"
-
-  - alias: /rest/mini_crt_nanoleaf_updater_state
-    id: rest_mini_crt_nanoleaf_updater_state
-    trigger:
-      - platform: state
-        entity_id: sensor.mini_crt_nanoleaf_updater_state
-    action:
-      - choose:
-          - alias: "True"
-            conditions: >
-              {{ states('sensor.mini_crt_nanoleaf_updater_state') | string == 'True' }}
-            sequence:
-              - service: input_boolean.turn_on
-                entity_id: input_boolean.mini_crt_nanoleaf_updater
-          - alias: "False"
-            conditions: >
-              {{ states('sensor.mini_crt_nanoleaf_updater_state') | string == "False" }}
-            sequence:
-              - service: input_boolean.turn_off
-                entity_id: input_boolean.mini_crt_nanoleaf_updater
-        default:
-          - service: script.notify_will
-            data:
-              title: "Automation Failure"
-              # yamllint disable-line rule:line-length
-              message: "Automation `rest_mini_crt_nanoleaf_updater_state` failed: unknown previous state of `{{ trigger.from_state.state }}`"
