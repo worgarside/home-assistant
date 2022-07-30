@@ -13,6 +13,7 @@ from feedgen.feed import FeedGenerator
 from flask import Flask, Request, Response, make_response, request
 from paramiko import AutoAddPolicy, SFTPClient, SSHClient
 from pydantic import BaseModel, Extra, ValidationError
+from wg_utilities.exceptions import on_exception  # pylint: disable=no-name-in-module
 from wg_utilities.functions import force_mkdir, user_data_dir
 
 # pylint: disable=no-name-in-module
@@ -125,6 +126,7 @@ def create_sftp_client() -> SFTPClient:
     return sftp_client
 
 
+@on_exception()  # type: ignore[misc]
 def _create_log_string(record: LogRecord, message_only: bool = False) -> str:
     """Builds a log string from a record, to be written to a file or a console
 
@@ -164,6 +166,7 @@ def _create_log_string(record: LogRecord, message_only: bool = False) -> str:
     return log_str
 
 
+@on_exception()  # type: ignore[misc]
 def log_record_to_sftp(record: LogRecord) -> None:
     """Log records to a remote file when they expire from the ListHandler
 

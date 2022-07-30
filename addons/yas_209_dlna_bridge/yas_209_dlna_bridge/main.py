@@ -12,6 +12,7 @@ from requests import post
 
 # pylint: disable=no-name-in-module
 from wg_utilities.devices.yamaha_yas_209 import CurrentTrack, YamahaYas209
+from wg_utilities.exceptions import on_exception
 from wg_utilities.loggers import add_stream_handler
 
 load_dotenv()
@@ -36,6 +37,7 @@ class PayloadInfo(TypedDict):
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
 
 
+@on_exception()  # type: ignore[misc]
 def create_sftp_client() -> SFTPClient:
     """Creates a new SFTP client instance. This isn't just a constant client as the
     socket closes after some time, so we just create a new client per request
@@ -57,6 +59,7 @@ def create_sftp_client() -> SFTPClient:
     return sftp_client
 
 
+@on_exception()  # type: ignore[misc]
 def log_request_payload(event_payload: Dict[str, Any]) -> None:
     """Log the request payload locally for archiving etc.
 
@@ -96,6 +99,7 @@ def log_request_payload(event_payload: Dict[str, Any]) -> None:
     sftp_client.close()
 
 
+@on_exception()  # type: ignore[misc]
 def pass_data_to_home_assistant() -> None:
     """Sends the payload to HA. The payload is global as we don't want to remove track
     metadata on a volume update, for example. The data should persist unless explicitly
@@ -125,6 +129,7 @@ def on_volume_update(volume: float) -> None:
     pass_data_to_home_assistant()
 
 
+@on_exception()  # type: ignore[misc]
 def on_state_update(state: str) -> None:
     """Callback for state updates
 
@@ -138,6 +143,7 @@ def on_state_update(state: str) -> None:
     pass_data_to_home_assistant()
 
 
+@on_exception()  # type: ignore[misc]
 def on_track_update(track: CurrentTrack.Info) -> None:
     """Callback for track updates
 

@@ -10,7 +10,6 @@ RUN \
 WORKDIR /yas_209_dlna_bridge
 
 RUN pip3 install -r requirements.txt
-RUN pip3 install --no-deps -r requirements_no_deps.txt
 
 # Copy data for add-on
 COPY run.sh /
