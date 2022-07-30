@@ -5,5 +5,7 @@ icon: mdi:cellphone
 
 path: system_health
 
+decluttering_templates: !include ../decluttering_templates.yaml
+
 views:
   - !include ../views/system_health.yaml

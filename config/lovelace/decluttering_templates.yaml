@@ -490,3 +490,30 @@ folding_media_player_with_spotcast_template:
                         [[entity_id]]
                       {% endif %}
                     user_name: '${user.name}'
+
+pi_stats_graph_card_template:
+  card:
+    type: custom:mini-graph-card
+    name: "[[name]]"
+    entities:
+      - entity: "sensor.[[crtpi_sensor]]"
+        name: CRT Pi
+      - entity: "sensor.[[growpi_sensor]]"
+        name: Grow Pi
+      - entity: "sensor.[[hasspi_sensor]]"
+        name: HAss Pi
+      - entity: "sensor.[[vsmppi_sensor]]"
+        name: VSMP Pi
+    show:
+      state: false
+      legend: false
+      labels: true
+      fill: false
+    hours_to_show: 2
+    points_per_hour: 30
+    upper_bound: "[[upper_bound]]"
+    lower_bound: 0
+    height: 250
+    icon: "[[icon]]"
+    line_width: 5
+    font_size: 75

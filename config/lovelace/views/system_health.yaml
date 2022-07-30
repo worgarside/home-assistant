@@ -85,6 +85,77 @@ cards:
         line_width: 8
         font_size: 75
 
+  - type: custom:vertical-stack-in-card
+    title: Raspberry Pi Stats
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.crtpi_cpu_usage
+            name: CRT Pi
+          - entity: sensor.growpi_cpu_usage
+            name: Grow Pi
+          - entity: sensor.processor_use
+            name: HAss Pi
+          - entity: sensor.vsmppi_cpu_usage
+            name: VSMP Pi
+        show:
+          legend: true
+          icon: false
+          state: false
+          name: false
+        card_mod:
+          style: |
+            .line--rect, .fill--rect, .graph__container__svg {
+              display: none;
+            }
+            ha-card.flex.type-custom-mini-graph-card, .graph__legend {
+              padding: 0px;
+            }
+      - type: horizontal-stack
+        cards:
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: CPU Usage
+              - crtpi_sensor: crtpi_cpu_usage
+              - growpi_sensor: growpi_cpu_usage
+              - hasspi_sensor: processor_use
+              - vsmppi_sensor: vsmppi_cpu_usage
+              - upper_bound: ~25
+              - icon: mdi:cpu-32-bit
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: CPU Temperature
+              - crtpi_sensor: crtpi_cpu_temperature
+              - growpi_sensor: growpi_cpu_temperature
+              - hasspi_sensor: processor_temperature
+              - vsmppi_sensor: vsmppi_cpu_temperature
+              - upper_bound: 100
+              - icon: mdi:thermometer-lines
+      - type: horizontal-stack
+        cards:
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: Memory Usage
+              - crtpi_sensor: crtpi_memory_usage
+              - growpi_sensor: growpi_memory_usage
+              - hasspi_sensor: memory_use_percent
+              - vsmppi_sensor: vsmppi_memory_usage
+              - upper_bound: ~50
+              - icon: mdi:memory
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: Disk Usage
+              - crtpi_sensor: crtpi_disk_usage
+              - growpi_sensor: growpi_disk_usage
+              - hasspi_sensor: disk_use_percent
+              - vsmppi_sensor: vsmppi_disk_usage
+              - upper_bound: 100
+              - icon: mdi:harddisk
+
   - type: entities
     entities:
       - sensor.error_feed
