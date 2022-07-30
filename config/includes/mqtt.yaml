@@ -1,5 +1,8 @@
 ---
 sensor:
+
+#<editor-fold desc="Plants">
+
   - name: Monstera Moisture
     state_topic: /will_s_room/plants/monstera
     force_update: true
@@ -50,3 +53,178 @@ sensor:
     value_template: '{{ value_json.saturation }}'
     unit_of_measurement: '%'
     state_class: measurement
+
+#</editor-fold">
+
+#<editor-fold desc="Pi Stats">
+
+  - name: GrowPi CPU Usage
+    state_topic: /homeassistant/growpi/stats
+    force_update: true
+    icon: mdi:cpu-32-bit
+    value_template: '{{ value_json.cpu_usage }}'
+    unit_of_measurement: '%'
+    state_class: measurement
+
+  - name: GrowPi Memory Usage
+    state_topic: /homeassistant/growpi/stats
+    force_update: true
+    icon: mdi:memory
+    value_template: '{{ value_json.memory_usage }}'
+    unit_of_measurement: '%'
+    state_class: measurement
+
+  - name: GrowPi CPU Temperature
+    state_topic: /homeassistant/growpi/stats
+    force_update: true
+    icon: mdi:memory
+    value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: "°"
+    state_class: measurement
+
+  - name: GrowPi Disk Usage
+    state_topic: /homeassistant/growpi/stats
+    force_update: true
+    icon: mdi:harddisk
+    value_template: '{{ value_json.disk_usage_percent }}'
+    unit_of_measurement: "%"
+    state_class: measurement
+
+  - name: GrowPi Average Load (1 min)
+    state_topic: /homeassistant/growpi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_1m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+  - name: GrowPi Average Load (5 min)
+    state_topic: /homeassistant/growpi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_5m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+  - name: GrowPi Average Load (15 min)
+    state_topic: /homeassistant/growpi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_15m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+  - name: CRTPi CPU Usage
+    state_topic: /homeassistant/crt-pi/stats
+    force_update: true
+    icon: mdi:cpu-32-bit
+    value_template: '{{ value_json.cpu_usage }}'
+    unit_of_measurement: '%'
+    state_class: measurement
+
+  - name: CRTPi Memory Usage
+    state_topic: /homeassistant/crt-pi/stats
+    force_update: true
+    icon: mdi:memory
+    value_template: '{{ value_json.memory_usage }}'
+    unit_of_measurement: '%'
+    state_class: measurement
+
+  - name: CRTPi CPU Temperature
+    state_topic: /homeassistant/crt-pi/stats
+    force_update: true
+    icon: mdi:memory
+    value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: "°"
+    state_class: measurement
+
+  - name: CRTPi Disk Usage
+    state_topic: /homeassistant/crt-pi/stats
+    force_update: true
+    icon: mdi:harddisk
+    value_template: '{{ value_json.disk_usage_percent }}'
+    unit_of_measurement: "%"
+    state_class: measurement
+
+  - name: CRTPi Average Load (1 min)
+    state_topic: /homeassistant/crt-pi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_1m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+  - name: CRTPi Average Load (5 min)
+    state_topic: /homeassistant/crt-pi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_5m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+  - name: CRTPi Average Load (15 min)
+    state_topic: /homeassistant/crt-pi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_15m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+  - name: VSMPPi CPU Usage
+    state_topic: /homeassistant/vsmppi/stats
+    force_update: true
+    icon: mdi:cpu-32-bit
+    value_template: '{{ value_json.cpu_usage }}'
+    unit_of_measurement: '%'
+    state_class: measurement
+
+  - name: VSMPPi Memory Usage
+    state_topic: /homeassistant/vsmppi/stats
+    force_update: true
+    icon: mdi:memory
+    value_template: '{{ value_json.memory_usage }}'
+    unit_of_measurement: '%'
+    state_class: measurement
+
+  - name: VSMPPi CPU Temperature
+    state_topic: /homeassistant/vsmppi/stats
+    force_update: true
+    icon: mdi:memory
+    value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: "°"
+    state_class: measurement
+
+  - name: VSMPPi Disk Usage
+    state_topic: /homeassistant/vsmppi/stats
+    force_update: true
+    icon: mdi:harddisk
+    value_template: '{{ value_json.disk_usage_percent }}'
+    unit_of_measurement: "%"
+    state_class: measurement
+
+  - name: VSMPPi Average Load (1 min)
+    state_topic: /homeassistant/vsmppi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_1m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+  - name: VSMPPi Average Load (5 min)
+    state_topic: /homeassistant/vsmppi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_5m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+  - name: VSMPPi Average Load (15 min)
+    state_topic: /homeassistant/vsmppi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_15m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+#</editor-fold">
+
