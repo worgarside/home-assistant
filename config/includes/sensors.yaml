@@ -64,10 +64,16 @@
     # The scale is 0-100, but SwitchBot and HA have opposing views on which way round
     # it should be, hence the `100 - ...` here
     value_template: >
-      {% if 100 - ( value_json.body.slidePosition | int ) < 4 %}
-        0 
-      {% elif 100 - ( value_json.body.slidePosition | int ) > 96 %}
-        100 
+      {%
+        if 100 - ( value_json.body.slidePosition | int ) < (
+          20
+          if states('binary_sensor.will_s_balcony_door') == "on"
+          else 4
+        )
+      %}
+        0
+      {% elif 100 - ( value_json.body.slidePosition | int ) > 96  %}
+        100
       {% else %}
         {{ 100 - ( value_json.body.slidePosition | int ) }}
       {% endif %}
