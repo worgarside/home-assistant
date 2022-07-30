@@ -6,6 +6,7 @@
 
   # Will's Room Remote Button 1 Short Press - Turn Will's Room on
   - alias: /hue/remote/will_s_room/button1/short_press
+    id: hue_remote_will_s_room_button1_short_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -21,6 +22,7 @@
 
   # Will's Room Remote Button 2 Short Press - Brighten Will's Room by 25
   - alias: /hue/remote/will_s_room/button2/short_press
+    id: hue_remote_will_s_room_button2_short_press
     mode: queued
     trigger:
       - device_id: aa96a5e6e87f4076da2f1501c53e02c8
@@ -41,6 +43,7 @@
 
   # Will's Room Remote Button 2 Held Down - Brighten Will's Room by 50 (repeated)
   - alias: /hue/remote/will_s_room/button2/held_down
+    id: hue_remote_will_s_room_button2_held_down
     mode: single
     max_exceeded: silent
     trigger:
@@ -62,6 +65,7 @@
 
   # Will's Room Remote Button 3 Short Press - Dim Will's Room by 25
   - alias: /hue/remote/will_s_room/button3/short_press
+    id: hue_remote_will_s_room_button3_short_press
     mode: queued
     trigger:
       - device_id: aa96a5e6e87f4076da2f1501c53e02c8
@@ -82,6 +86,7 @@
 
   # Will's Room Remote Button 3 Held Down - Dim Will's Room by 50 (repeated)
   - alias: /hue/remote/will_s_room/button3/held_down
+    id: hue_remote_will_s_room_button3_held_down
     mode: single
     max_exceeded: silent
     trigger:
@@ -103,6 +108,7 @@
 
   # Will's Room Remote Button 4 Short Press - Turn Will's Room off
   - alias: /hue/remote/will_s_room/button4/short_press
+    id: hue_remote_will_s_room_button4_short_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -118,8 +124,9 @@
 
   # --- --- --- --- --- Kitchen --- --- --- --- --- #
 
-  # Kitchen Remote Button 1 Long Press - Turn on all the Kitchen lights
-  - alias: /hue/remote/kitchen/button1/long_press
+  # Kitchen Remote Button 1 Any Press - Turn on all the Kitchen lights
+  - alias: /hue/remote/kitchen/button1/press
+    id: hue_remote_kitchen_button1_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -127,6 +134,11 @@
         domain: hue
         platform: device
         type: long_release
+        subtype: 1
+      - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
+        domain: hue
+        platform: device
+        type: short_release
         subtype: 1
       - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
         domain: hue
@@ -140,6 +152,7 @@
 
   # Kitchen Remote Button 2 Short Press
   - alias: /hue/remote/kitchen/button2/short_press
+    id: hue_remote_kitchen_button2_short_press
     mode: queued
     trigger:
       - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
@@ -160,6 +173,7 @@
 
   # Kitchen Remote Button 2 Held Down
   - alias: /hue/remote/kitchen/button2/held_down
+    id: hue_remote_kitchen_button2_held_down
     mode: single
     max_exceeded: silent
     trigger:
@@ -180,6 +194,7 @@
 
   # Kitchen Remote Button 3 Short Press
   - alias: /hue/remote/kitchen/button3/short_press
+    id: hue_remote_kitchen_button3_short_press
     mode: queued
     trigger:
       - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
@@ -199,6 +214,7 @@
 
   # Kitchen Remote Button 3 Held Down
   - alias: /hue/remote/kitchen/button3/held_down
+    id: hue_remote_kitchen_button3_held_down
     mode: single
     max_exceeded: silent
     trigger:
@@ -219,6 +235,7 @@
 
   # Kitchen Remote Button 4 Short Press
   - alias: /hue/remote/kitchen/button4/short_press
+    id: hue_remote_kitchen_button4_short_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -246,6 +263,7 @@
 
   # Lounge Remote Button 1 Short Press
   - alias: /hue/remote/lounge/button1/short_press
+    id: hue_remote_lounge_button1_short_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -261,6 +279,7 @@
 
   # Lounge Remote Button 2 Short Press
   - alias: /hue/remote/lounge/button2/short_press
+    id: hue_remote_lounge_button2_short_press
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -291,6 +310,7 @@
 
   # Lounge Remote Button 2 Held Down
   - alias: /hue/remote/lounge/button2/held_down
+    id: hue_remote_lounge_button2_held_down
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -321,6 +341,7 @@
 
   # Lounge Remote Button 3 Short Press
   - alias: /hue/remote/lounge/button3/short_press
+    id: hue_remote_lounge_button3_short_press
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -351,6 +372,7 @@
 
   # Lounge Remote Button 3 Held Down
   - alias: /hue/remote/lounge/button3/held_down
+    id: hue_remote_lounge_button3_held_down
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -381,6 +403,7 @@
 
   # Lounge Remote Button 4 Short Press
   - alias: /hue/remote/lounge/button4/short_press
+    id: hue_remote_lounge_button4_short_press
     mode: single
     max_exceeded: silent
     trigger:
