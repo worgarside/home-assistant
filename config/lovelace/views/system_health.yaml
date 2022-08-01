@@ -5,8 +5,53 @@ icon: mdi:cellphone
 
 path: system_health
 
+#type: custom:grid-layout
+
+layout:
+  max_cols: 3
+
 cards:
+
+  - type: custom:list-card
+    entity: sensor.error_feed
+    title: Error Feed
+    feed_attribute: entries
+    columns:
+      - title: Host
+        field: title
+      - title: Log
+        field: summary
+      - title: Timestamp
+        field: published
+
+  - type: custom:list-card
+    entity: sensor.info_feed
+    title: Info Feed
+    feed_attribute: entries
+    columns:
+      - title: Host
+        field: title
+      - title: Log
+        field: summary
+      - title: Timestamp
+        field: published
+
+  - type: custom:list-card
+    entity: sensor.debug_feed
+    title: Debug Feed
+    feed_attribute: entries
+    columns:
+      - title: Host
+        field: title
+      - title: Log
+        field: summary
+      - title: Timestamp
+        field: published
+
   - type: custom:auto-entities
+    view_layout:
+      grid-column-start: 3;
+      grid-column-end: 3;
     card:
       type: entities
       title: Unavailable Entities
@@ -88,8 +133,58 @@ cards:
   - type: custom:vertical-stack-in-card
     title: Raspberry Pi Stats
     cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: CPU Usage
+              - clmtpi_sensor: clmtpi_cpu_usage
+              - crtpi_sensor: crtpi_cpu_usage
+              - growpi_sensor: growpi_cpu_usage
+              - hasspi_sensor: processor_use
+              - vsmppi_sensor: vsmppi_cpu_usage
+              - upper_bound: ~25
+              - icon: mdi:cpu-32-bit
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: CPU Temperature
+              - clmtpi_sensor: clmtpi_cpu_temperature
+              - crtpi_sensor: crtpi_cpu_temperature
+              - growpi_sensor: growpi_cpu_temperature
+              - hasspi_sensor: processor_temperature
+              - vsmppi_sensor: vsmppi_cpu_temperature
+              - upper_bound: 100
+              - icon: mdi:thermometer-lines
+      - type: horizontal-stack
+        cards:
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: Memory Usage
+              - clmtpi_sensor: clmtpi_memory_usage
+              - crtpi_sensor: crtpi_memory_usage
+              - growpi_sensor: growpi_memory_usage
+              - hasspi_sensor: memory_use_percent
+              - vsmppi_sensor: vsmppi_memory_usage
+              - upper_bound: ~50
+              - icon: mdi:memory
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: Disk Usage
+              - clmtpi_sensor: clmtpi_disk_usage
+              - crtpi_sensor: crtpi_disk_usage
+              - growpi_sensor: growpi_disk_usage
+              - hasspi_sensor: disk_use_percent
+              - vsmppi_sensor: vsmppi_disk_usage
+              - upper_bound: 100
+              - icon: mdi:harddisk
       - type: custom:mini-graph-card
         entities:
+          - entity: sensor.clmtpi_cpu_usage
+            name: Clmt Pi
           - entity: sensor.crtpi_cpu_usage
             name: CRT Pi
           - entity: sensor.growpi_cpu_usage
@@ -111,70 +206,9 @@ cards:
             ha-card.flex.type-custom-mini-graph-card, .graph__legend {
               padding: 0px;
             }
-      - type: horizontal-stack
-        cards:
-          - type: custom:decluttering-card
-            template: pi_stats_graph_card_template
-            variables:
-              - name: CPU Usage
-              - crtpi_sensor: crtpi_cpu_usage
-              - growpi_sensor: growpi_cpu_usage
-              - hasspi_sensor: processor_use
-              - vsmppi_sensor: vsmppi_cpu_usage
-              - upper_bound: ~25
-              - icon: mdi:cpu-32-bit
-          - type: custom:decluttering-card
-            template: pi_stats_graph_card_template
-            variables:
-              - name: CPU Temperature
-              - crtpi_sensor: crtpi_cpu_temperature
-              - growpi_sensor: growpi_cpu_temperature
-              - hasspi_sensor: processor_temperature
-              - vsmppi_sensor: vsmppi_cpu_temperature
-              - upper_bound: 100
-              - icon: mdi:thermometer-lines
-      - type: horizontal-stack
-        cards:
-          - type: custom:decluttering-card
-            template: pi_stats_graph_card_template
-            variables:
-              - name: Memory Usage
-              - crtpi_sensor: crtpi_memory_usage
-              - growpi_sensor: growpi_memory_usage
-              - hasspi_sensor: memory_use_percent
-              - vsmppi_sensor: vsmppi_memory_usage
-              - upper_bound: ~50
-              - icon: mdi:memory
-          - type: custom:decluttering-card
-            template: pi_stats_graph_card_template
-            variables:
-              - name: Disk Usage
-              - crtpi_sensor: crtpi_disk_usage
-              - growpi_sensor: growpi_disk_usage
-              - hasspi_sensor: disk_use_percent
-              - vsmppi_sensor: vsmppi_disk_usage
-              - upper_bound: 100
-              - icon: mdi:harddisk
+            .type-custom-mini-graph-card {
+              margin-top: -10px;
+            }
 
-  - type: entities
-    entities:
-      - sensor.error_feed
-      - sensor.info_feed
-      - sensor.debug_feed
-
-  - type: custom:list-card
-    entity: sensor.error_feed
-    title: Error Feed
-    feed_attribute: entries
-
-  - type: custom:list-card
-    entity: sensor.info_feed
-    title: Info Feed
-    feed_attribute: entries
-
-  - type: custom:list-card
-    entity: sensor.debug_feed
-    title: Debug Feed
-    feed_attribute: entries
 
 

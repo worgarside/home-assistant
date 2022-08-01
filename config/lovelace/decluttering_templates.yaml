@@ -495,7 +495,14 @@ pi_stats_graph_card_template:
   card:
     type: custom:mini-graph-card
     name: "[[name]]"
+    card_mod:
+      style: |
+        .graph {
+          padding: 5px;
+        }
     entities:
+      - entity: "sensor.[[clmtpi_sensor]]"
+        name: Clmt Pi
       - entity: "sensor.[[crtpi_sensor]]"
         name: CRT Pi
       - entity: "sensor.[[growpi_sensor]]"

@@ -226,5 +226,61 @@ sensor:
     unit_of_measurement: ""
     state_class: measurement
 
+  - name: ClmtPi CPU Usage
+    state_topic: /homeassistant/clmtpi/stats
+    force_update: true
+    icon: mdi:cpu-32-bit
+    value_template: '{{ value_json.cpu_usage }}'
+    unit_of_measurement: '%'
+    state_class: measurement
+
+  - name: ClmtPi Memory Usage
+    state_topic: /homeassistant/clmtpi/stats
+    force_update: true
+    icon: mdi:memory
+    value_template: '{{ value_json.memory_usage }}'
+    unit_of_measurement: '%'
+    state_class: measurement
+
+  - name: ClmtPi CPU Temperature
+    state_topic: /homeassistant/clmtpi/stats
+    force_update: true
+    icon: mdi:memory
+    value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: "°"
+    state_class: measurement
+
+  - name: ClmtPi Disk Usage
+    state_topic: /homeassistant/clmtpi/stats
+    force_update: true
+    icon: mdi:harddisk
+    value_template: '{{ value_json.disk_usage_percent }}'
+    unit_of_measurement: "%"
+    state_class: measurement
+
+  - name: ClmtPi Average Load (1 min)
+    state_topic: /homeassistant/clmtpi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_1m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+  - name: ClmtPi Average Load (5 min)
+    state_topic: /homeassistant/clmtpi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_5m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
+  - name: ClmtPi Average Load (15 min)
+    state_topic: /homeassistant/clmtpi/stats
+    force_update: true
+    icon: mdi:weight
+    value_template: '{{ value_json.load_15m }}'
+    unit_of_measurement: ""
+    state_class: measurement
+
 #</editor-fold">
 
