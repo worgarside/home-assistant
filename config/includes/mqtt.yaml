@@ -54,8 +54,7 @@ sensor:
     unit_of_measurement: '%'
     state_class: measurement
 
-#</editor-fold">
-
+#</editor-fold>
 #<editor-fold desc="Pi Stats">
 
   - name: GrowPi CPU Usage
@@ -282,5 +281,23 @@ sensor:
     unit_of_measurement: ""
     state_class: measurement
 
-#</editor-fold">
+#</editor-fold>
+#<editor-fold desc="Lounge DHT22">
 
+  - name: Lounge Temperature
+    state_topic: /homeassistant/clmtpi/dht22
+    force_update: true
+    icon: mdi:thermometer
+    value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: "°"
+    state_class: measurement
+
+  - name: Lounge Humidity
+    state_topic: /homeassistant/clmtpi/dht22
+    force_update: true
+    icon: mdi:water-percent
+    value_template: '{{ value_json.humidity }}'
+    unit_of_measurement: "%"
+    state_class: measurement
+
+#</editor-fold>
