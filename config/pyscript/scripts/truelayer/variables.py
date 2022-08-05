@@ -33,49 +33,73 @@ if gethostname() != "homeassistant":
 
 _INSTANCE_KWARGS = {"balance_update_threshold": 1}
 
+VAR_ENTITY_MAP = {}
+
 # Mapping of the variable names to the Account/Card instances themselves
-VAR_ENTITY_MAP = {
-    "monzo_current_account": task.executor(
-        MONZO.get_account_by_id,
-        get_secret("monzo_current_account_id", module=MODULE_NAME),
-        instance_kwargs=_INSTANCE_KWARGS,
-    ),
-    "monzo_savings": task.executor(
-        MONZO.get_account_by_id,
-        get_secret("monzo_savings_pot_id", module=MODULE_NAME),
-        instance_kwargs=_INSTANCE_KWARGS,
-    ),
-    "monzo_credit_cards": task.executor(
-        MONZO.get_account_by_id,
-        get_secret("monzo_credit_cards_pot_id", module=MODULE_NAME),
-        instance_kwargs=_INSTANCE_KWARGS,
-    ),
-    "amex": task.executor(
-        AMEX.get_card_by_id,
-        get_secret("amex_card_id", module=MODULE_NAME),
-        instance_kwargs=_INSTANCE_KWARGS,
-    ),
-    "hsbc_current_account": task.executor(
-        HSBC.get_account_by_id,
-        get_secret("hsbc_current_account_id", module=MODULE_NAME),
-        instance_kwargs=_INSTANCE_KWARGS,
-    ),
-    "santander_current_account": task.executor(
-        SANTANDER.get_account_by_id,
-        get_secret("santander_current_account_id", module=MODULE_NAME),
-        instance_kwargs=_INSTANCE_KWARGS,
-    ),
-    "santander_savings_account": task.executor(
-        SANTANDER.get_account_by_id,
-        get_secret("santander_savings_account_id", module=MODULE_NAME),
-        instance_kwargs=_INSTANCE_KWARGS,
-    ),
-}
+with HAExceptionCatcher(MODULE_NAME, "instantiate_monzo_accounts"):
+    VAR_ENTITY_MAP.update(
+        {
+            "monzo_current_account": task.executor(
+                MONZO.get_account_by_id,
+                get_secret("monzo_current_account_id", module=MODULE_NAME),
+                instance_kwargs=_INSTANCE_KWARGS,
+            ),
+            "monzo_savings": task.executor(
+                MONZO.get_account_by_id,
+                get_secret("monzo_savings_pot_id", module=MODULE_NAME),
+                instance_kwargs=_INSTANCE_KWARGS,
+            ),
+            "monzo_credit_cards": task.executor(
+                MONZO.get_account_by_id,
+                get_secret("monzo_credit_cards_pot_id", module=MODULE_NAME),
+                instance_kwargs=_INSTANCE_KWARGS,
+            ),
+        }
+    )
+
+with HAExceptionCatcher(MODULE_NAME, "instantiate_amex_account"):
+    VAR_ENTITY_MAP.update(
+        {
+            "amex": task.executor(
+                AMEX.get_card_by_id,
+                get_secret("amex_card_id", module=MODULE_NAME),
+                instance_kwargs=_INSTANCE_KWARGS,
+            )
+        }
+    )
+
+with HAExceptionCatcher(MODULE_NAME, "instantiate_hsbc_account"):
+    VAR_ENTITY_MAP.update(
+        {
+            "hsbc_current_account": task.executor(
+                HSBC.get_account_by_id,
+                get_secret("hsbc_current_account_id", module=MODULE_NAME),
+                instance_kwargs=_INSTANCE_KWARGS,
+            )
+        }
+    )
+
+with HAExceptionCatcher(MODULE_NAME, "instantiate_santander_accounts"):
+    VAR_ENTITY_MAP.update(
+        {
+            "santander_current_account": task.executor(
+                SANTANDER.get_account_by_id,
+                get_secret("santander_current_account_id", module=MODULE_NAME),
+                instance_kwargs=_INSTANCE_KWARGS,
+            ),
+            "santander_savings_account": task.executor(
+                SANTANDER.get_account_by_id,
+                get_secret("santander_savings_account_id", module=MODULE_NAME),
+                instance_kwargs=_INSTANCE_KWARGS,
+            ),
+        }
+    )
 
 
 @time_trigger("cron(*/5 * * * *)")
 def update_balance_variables() -> None:
     """Update all TrueLayer balance variables as defined by `VAR_ENTITY_MAP`"""
+    log.info("time to get values")
     with HAExceptionCatcher(MODULE_NAME, "update_balance_variables"):
         for var_name_suffix, entity in VAR_ENTITY_MAP.items():
             var_name = f"var.truelayer_balance_{var_name_suffix}"
@@ -94,3 +118,4 @@ def update_balance_variables() -> None:
                     str(exc),
                 )
                 var.set(entity_id=var_name, value="unknown", force_update=True)
+                raise
