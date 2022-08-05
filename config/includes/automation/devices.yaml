@@ -207,10 +207,6 @@
           - service: input_boolean.turn_off
             target:
               entity_id: input_boolean.mini_crt_fan
-      - service: script.debug_persistent_notification
-        data:
-          title: CRT Pi Fan Controller
-          message: "{{ ( states('sensor.crtpi_cpu_temperature') | float > 50 ) }}"
 
 # </editor-fold>
 
