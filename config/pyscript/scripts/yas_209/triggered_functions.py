@@ -4,7 +4,9 @@ from socket import gethostname
 from typing import Any, Callable
 
 from helpers import HAExceptionCatcher
-from wg_utilities.devices import YamahaYas209  # pylint: disable=no-name-in-module
+from wg_utilities.devices.yamaha_yas_209 import (  # pylint: disable=no-name-in-module
+    YamahaYas209,
+)
 
 MODULE_NAME = "yas_209"
 

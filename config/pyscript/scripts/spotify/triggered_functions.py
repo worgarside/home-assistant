@@ -48,6 +48,7 @@ MONTHLY_PATTERN = compile_regex(rf"^({_MONTH_LIST}) '[0-9]{{2}}$")
 # Playlists
 CHILL_ELECTRONICA = task.executor(SPOTIFY.get_playlist_by_id, "2lMx8FU0SeQ7eA5kcMlNpX")
 JAMBOX_JAMS = task.executor(SPOTIFY.get_playlist_by_id, "4Vv023MaZsc8NTWZ4WJvIL")
+PIXEL_NOW_PLAYING = task.executor(SPOTIFY.get_playlist_by_id, "7vK46qf4I352doLdlSG9G0")
 
 _SAVE_ALBUM_ARTWORK_TRIGGER = "sensor.spotify_{}_media_album_artwork_internal_url"
 
@@ -65,7 +66,7 @@ def get_monthly_playlists(return_count: int = 12) -> List[Playlist]:
     """
 
     return sorted(
-        [p for p in SPOTIFY.playlists if MONTHLY_PATTERN.match(p.name)],
+        (p for p in SPOTIFY.playlists if MONTHLY_PATTERN.match(p.name)),
         key=lambda playlist: datetime.strptime(playlist.name, "%B '%y"),
     )[-return_count:]
 
@@ -283,7 +284,7 @@ def add_to_playlist(track: Track, playlist: Playlist) -> None:
 
 @event_trigger("mobile_app_notification_action")
 def add_track_to_playlist(action: str, message: str, **_: Dict[Any, Any]) -> None:
-    """Add a given track to a playlist
+    """Add a given track to a playlist, triggered from mobile notification
 
     Args:
         action (str): the action from the mobile notification
@@ -319,3 +320,30 @@ def add_track_to_playlist(action: str, message: str, **_: Dict[Any, Any]) -> Non
         add_to_playlist(track, CHILL_ELECTRONICA)
     elif action == "ADD_SONG_TO_JAMBOX_JAMS" and track not in JAMBOX_JAMS:
         add_to_playlist(track, JAMBOX_JAMS)
+
+
+@state_trigger("var.tasker_pixel_now_playing")
+def process_now_playing(value: str) -> None:
+    """Saves the artwork for a given album to the local file storage for use elsewhere
+
+    Args:
+        value (str): the value of the sensor
+    """
+    with HAExceptionCatcher(MODULE_NAME, "process_now_playing.search"):
+        matched_track = task.executor(
+            SPOTIFY.search,
+            (search_term := value.replace(" by ", " ")),
+            entity_types=["track"],
+            get_best_match_only=True,
+        )
+
+    with HAExceptionCatcher(MODULE_NAME, "process_now_playing.add_to_playlist"):
+        if matched_track is not None:
+            log.info(
+                "Track found for search term '%s' with ID %s",
+                search_term,
+                matched_track.id,
+            )
+            add_to_playlist(matched_track, PIXEL_NOW_PLAYING)
+        else:
+            log.info("No matching track found")

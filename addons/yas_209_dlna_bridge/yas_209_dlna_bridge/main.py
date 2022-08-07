@@ -11,7 +11,8 @@ from paramiko import AutoAddPolicy, SFTPClient, SSHClient
 from requests import post
 
 # pylint: disable=no-name-in-module
-from wg_utilities.devices.yamaha_yas_209 import CurrentTrack, YamahaYas209
+from wg_utilities.devices.yamaha_yas_209 import YamahaYas209
+from wg_utilities.devices.yamaha_yas_209.yamaha_yas_209 import CurrentTrack
 from wg_utilities.exceptions import on_exception
 from wg_utilities.loggers import add_stream_handler
 
