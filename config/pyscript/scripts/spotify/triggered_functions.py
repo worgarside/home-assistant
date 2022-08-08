@@ -280,6 +280,7 @@ def add_to_playlist(track: Track, playlist: Playlist) -> None:
             tracks=[track],
             playlist=playlist,
         )
+        playlist.tracks.append(track)
 
 
 @event_trigger("mobile_app_notification_action")

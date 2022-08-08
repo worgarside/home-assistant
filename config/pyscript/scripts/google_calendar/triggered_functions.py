@@ -57,7 +57,7 @@ def get_accepted_work_events(
         from_datetime=from_datetime, to_datetime=to_datetime
     )
 
-    return sorted([e for e in events if e.response_status == ResponseStatus.ACCEPTED])
+    return sorted(e for e in events if e.response_status == ResponseStatus.ACCEPTED)
 
 
 @pyscript_executor
@@ -79,11 +79,9 @@ def get_previously_copied_events(
     )
 
     return sorted(
-        [
-            e
-            for e in events
-            if (e.description or "").lower().endswith(" - copied from work calendar.")
-        ]
+        e
+        for e in events
+        if (e.description or "").lower().endswith(" - copied from work calendar.")
     )
 
 

@@ -6,7 +6,7 @@ from json import loads
 from logging import Logger
 from socket import gethostname
 from types import TracebackType
-from typing import Any, Callable, Optional, Tuple, Type, Union
+from typing import Any, Callable
 from unittest.mock import MagicMock
 
 from requests import post
@@ -21,7 +21,7 @@ class HAExceptionCatcher:
         func_name (str): the name of the function which the exception has come from
     """
 
-    def __init__(self, module_name: str, func_name: Optional[str] = None):
+    def __init__(self, module_name: str, func_name: str | None = None):
         self.module_name = module_name
         self.func_name = func_name
 
@@ -30,9 +30,9 @@ class HAExceptionCatcher:
 
     def __exit__(
         self,
-        exc_type: Optional[Type[type]],
-        exc_val: Optional[Exception],
-        exc_tb: Optional[TracebackType],
+        exc_type: type[type] | None,
+        exc_val: Exception | None,
+        exc_tb: TracebackType | None,
     ) -> None:
         if exc_type is not None:
             task.executor(
@@ -45,7 +45,7 @@ class HAExceptionCatcher:
 
 
 # pylint: disable=import-outside-toplevel
-def local_setup() -> Tuple[
+def local_setup() -> tuple[
     Logger,
     MagicMock,
     MagicMock,
@@ -95,7 +95,7 @@ if gethostname() != "homeassistant":
 
 
 def get_secret(
-    secret_name: str, *, module: str, default: Optional[str] = None, json: bool = False
+    secret_name: str, *, module: str, default: str | None = None, json: bool = False
 ) -> Any:
     """Get a secret from Home Assistant (similar to `os.getenv` really)
 
@@ -129,9 +129,9 @@ def get_secret(
 @pyscript_executor
 def write_file(
     path: str,
-    content: Union[bytes, str],
+    content: bytes | str,
     mode: str = "wb",
-    encoding: Optional[str] = "utf-8",
+    encoding: str | None = "utf-8",
 ) -> None:
     """Write a file to local storage
 
