@@ -1002,11 +1002,11 @@
         },
         "wg-utilities": {
             "hashes": [
-                "sha256:8db0f9c6b856cc7b2aaaa79f6c215e391611f3321742ff11c105e3a9d2423dbc",
-                "sha256:b063291a4785e598ee1833258ddd509739b4c83f605b220a63691995067ed7a9"
+                "sha256:b2096fcf26ada76be8a829866320ae465d1d229181e94ca63bb563c778a024dd",
+                "sha256:b63c9a0b3034d5c236cc88674f101e38435c950f15c54e5d852270bfbd6a4d49"
             ],
             "index": "pypi",
-            "version": "==2.29.0"
+            "version": "==2.29.1"
         },
         "wrapt": {
             "hashes": [
@@ -1605,7 +1605,7 @@
                 "sha256:6f62d78e2f89b4500b080fe3a81690850cd254227f27f75c3a0c491a1f351ba7",
                 "sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951"
             ],
-            "markers": "python_version < '4.0' and python_full_version >= '3.6.1'",
+            "markers": "python_version < '4' and python_full_version >= '3.6.1'",
             "version": "==5.10.1"
         },
         "lazy-object-proxy": {
@@ -2058,7 +2058,7 @@
                 "sha256:69e0675671a2eed1c08a53f342c955c4ead5d373a10f756219bf39f3d4f0018a",
                 "sha256:d1b49c3e460f5910b22d799b13513504acb4f5fcaee01660ee66f07bd45a271c"
             ],
-            "markers": "python_version >= '3.6' and python_version < '4.0'",
+            "markers": "python_version >= '3.6' and python_version < '4'",
             "version": "==0.11.2"
         },
         "typer": {
