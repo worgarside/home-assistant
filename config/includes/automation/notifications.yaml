@@ -126,7 +126,7 @@
     trigger:
       - platform: numeric_state
         entity_id: sensor.openweathermap_rain
-        above: 0.1
+        above: 0.5
         for:
           minutes: 5
     condition:

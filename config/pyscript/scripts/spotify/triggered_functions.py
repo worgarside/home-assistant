@@ -345,6 +345,26 @@ def process_now_playing(value: str) -> None:
                 search_term,
                 matched_track.id,
             )
-            add_to_playlist(matched_track, PIXEL_NOW_PLAYING)
+
+            # Get current User, then current Track
+            current_track = task.executor(
+                getattr,
+                task.executor(getattr, SPOTIFY, "current_user"),
+                "current_track",
+            )
+
+            if current_track is not None and (
+                current_track == matched_track
+                or (
+                    current_track.name == matched_track.name
+                    and current_track.artists == matched_track.artists
+                )
+            ):
+                log.info(
+                    "Not adding track to playlist, it's currently playing (%s)",
+                    repr(current_track),
+                )
+            else:
+                add_to_playlist(matched_track, PIXEL_NOW_PLAYING)
         else:
             log.info("No matching track found")
