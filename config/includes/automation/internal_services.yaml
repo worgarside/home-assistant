@@ -44,10 +44,31 @@
     action:
       - service: persistent_notification.create
         data:
-          title: "Automations automatically reloaded"
+          title: "Automations reloading..."
           message: >
             Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
       - service: automation.reload
+
+  - alias: /homeassistant/file_watcher/script_auto_reload
+    id: script_auto_reload
+    trigger:
+      platform: event
+      event_type: folder_watcher
+      event_data:
+        event_type: modified
+    condition: >
+      {{
+        trigger.event.data.file == 'scripts.yaml'
+        and
+        trigger.event.data.folder == '/config/includes'
+      }}
+    action:
+      - service: persistent_notification.create
+        data:
+          title: "Scripts reloading..."
+          message: >
+            Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
+      - service: script.reload
 
   - alias: /homeassistant/automation/reload_complete
     id: automation_auto_reload_complete
