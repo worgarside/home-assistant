@@ -13,22 +13,27 @@
         variables:
           plant_name: "{{ trigger.entity_id.split('_')[-1].lower() }}"
           input_datetime: "input_datetime.{{ plant_name }}_last_watered"
+          water_delay: "input_number.{{ plant_name }}_water_delay"
           water_seconds: "input_number.{{ plant_name }}_water_seconds"
           mqtt_topic: '/plant_monitor/{{ plant_name }}/water'
-        # Think this needs to be on a new line, so I don't have to put quotes around it
-        # and convert it to a string?
-          # yamllint disable-line rule:line-length
+        # Think this needs to be on a new line, so I don't have to put quotes
+        # around it and convert it to a string?
           seconds_since_last_water: >
-            {{ 
+            {{
               (as_timestamp(now()) - as_timestamp(
                 strptime(
                   states.input_datetime[plant_name ~ '_last_watered'].state,
                   '%Y-%m-%d %H:%M:%S'
                 )
-              )) | int 
+              )) | int
             }}
+#      - service: persistent_notification.create
+#        data:
+#          title: "{{ plant_name.title() }} Watering"
+#          message: >
+#            {{ seconds_since_last_water }} ? {{ states(water_delay) | int }}
       - if:
-          - '{{ seconds_since_last_water >= 1800 }}'
+          - '{{ seconds_since_last_water | int >= states(water_delay) | int }}'
         then:
           - service: script.notify_will
             data:

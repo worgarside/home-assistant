@@ -41,6 +41,15 @@ monstera_water_seconds:
   icon: mdi:cup-water
   mode: box
 
+monstera_water_delay:
+  name: Monstera Water Delay
+  min: 15
+  max: 5760
+  step: 5
+  unit_of_measurement: minutes
+  icon: mdi:timer-outline
+  mode: box
+
 yukka_dry_point:
   name: Yukka Dry Point
   min: 0
@@ -77,6 +86,15 @@ yukka_water_seconds:
   icon: mdi:cup-water
   mode: box
 
+yukka_water_delay:
+  name: Yukka Water Delay
+  min: 15
+  max: 5760
+  step: 5
+  unit_of_measurement: minutes
+  icon: mdi:timer-outline
+  mode: box
+
 ficus_dry_point:
   name: Ficus Dry Point
   min: 0
@@ -111,4 +129,13 @@ ficus_water_seconds:
   step: 0.1
   unit_of_measurement: seconds
   icon: mdi:cup-water
+  mode: box
+
+ficus_water_delay:
+  name: Ficus Water Delay
+  min: 15
+  max: 5760
+  step: 5
+  unit_of_measurement: minutes
+  icon: mdi:timer-outline
   mode: box
