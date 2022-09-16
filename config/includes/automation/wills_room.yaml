@@ -85,10 +85,10 @@
       # If the curtain entered this state (i.e. was opened) < 15 minutes ago
       - condition: template
         value_template: >
-          {{ 
-            now().timestamp() - 
-            as_timestamp(states.binary_sensor.will_s_room_curtain_open.last_changed) 
-            < 15*60 
+          {{
+            now().timestamp() -
+            as_timestamp(states.binary_sensor.will_s_room_curtain_open.last_changed)
+            < 15*60
           }}
     action:
       - service: cover.close_cover
@@ -105,7 +105,14 @@
       - service: light.turn_on
         data:
           entity_id: light.will_s_closet
-      - wait_template: "{{ states('binary_sensor.will_s_closet_door') == 'off' }}"
+          brightness_pct: >
+            {{
+              50
+              if states('binary_sensor.quiet_hours') == 'on'
+              else 100
+            }}
+      - wait_template: >
+          {{ states('binary_sensor.will_s_closet_door') == 'off' }}
         timeout: 900
         continue_on_timeout: true
       - service: light.turn_off
@@ -123,8 +130,8 @@
         - sensor.yukka_saturation
     # Adding condition to minimise "false positive" triggers       -
     condition: >
-      {{ 
-        trigger.to_state.state | float  < 
+      {{
+        trigger.to_state.state | float  <
         max(
           states('input_number.monstera_water_threshold'),
           states('input_number.ficus_water_threshold'),
@@ -137,9 +144,9 @@
           input_number: "input_number.{{ plant_name }}_water_threshold"
       - if:
           - >
-            {{ 
-              trigger.to_state.state | float  < 
-              states(input_number) | float 
+            {{
+              trigger.to_state.state | float  <
+              states(input_number) | float
             }}
         then:
           - service: input_button.press
