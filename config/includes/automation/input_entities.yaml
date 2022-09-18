@@ -11,7 +11,7 @@
       - service: input_select.set_options
         data_template:
           options: |
-            {% for domain in [ 
+            {% for domain in [
               states.binary_sensor,
               states.climate,
               states.cover,

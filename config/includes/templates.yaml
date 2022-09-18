@@ -24,7 +24,7 @@
       - name: Lounge TV Active
         state: >
           {{
-            states('media_player.lounge_bravia_tv') in [ 'playing', 'paused' ] or 
+            states('media_player.lounge_bravia_tv') in [ 'playing', 'paused' ] or
             states('media_player.lounge_tv') in [ 'playing', 'paused' ]
           }}
 
@@ -59,9 +59,9 @@
   - binary_sensor:
       - name: Will's TV Active
         state: >
-          {{ 
-            states('media_player.wills_bravia_tv') in [ 'playing', 'paused' ] or 
-            states('media_player.wills_tv') in [ 'playing', 'paused' ] 
+          {{
+            states('media_player.wills_bravia_tv') in [ 'playing', 'paused' ] or
+            states('media_player.wills_tv') in [ 'playing', 'paused' ]
           }}
 
   - binary_sensor:
@@ -75,9 +75,9 @@
   - binary_sensor:
       - name: Will's Room Curtain Closed
         state: >
-          {{ 
-            int(states('sensor.will_s_room_curtain_position')) < 
-            ( 17.5 if is_state('binary_sensor.will_s_balcony_door', 'on') else 5 ) 
+          {{
+            int(states('sensor.will_s_room_curtain_position')) <
+            ( 17.5 if is_state('binary_sensor.will_s_balcony_door', 'on') else 5 )
           }}
 
   - binary_sensor:
@@ -160,7 +160,7 @@
   - binary_sensor:
       - name: London Air Low Active
         state: >
-          {{ 
+          {{
             "Low" in [
               states("sensor.barking_and_dagenham"),
               states("sensor.bexley"),
@@ -195,7 +195,7 @@
   - binary_sensor:
       - name: London Air Moderate Active
         state: >
-          {{ 
+          {{
             "Moderate" in [
               states("sensor.barking_and_dagenham"),
               states("sensor.bexley"),
@@ -230,7 +230,7 @@
   - binary_sensor:
       - name: London Air High Active
         state: >
-          {{ 
+          {{
             "High" in [
               states("sensor.barking_and_dagenham"),
               states("sensor.bexley"),
@@ -265,7 +265,7 @@
   - binary_sensor:
       - name: London Air Very High Active
         state: >
-          {{ 
+          {{
             "Very High" in [
               states("sensor.barking_and_dagenham"),
               states("sensor.bexley"),
@@ -473,5 +473,3 @@
         icon: mdi:sprout
 
 # </editor-fold>
-
-

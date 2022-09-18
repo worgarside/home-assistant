@@ -48,9 +48,9 @@ cards:
 
   - type: custom:mod-card
     style: |
-      ha-card { 
-        height: 50vh; 
-        overflow-y: scroll !important; 
+      ha-card {
+        height: 50vh;
+        overflow-y: scroll !important;
       }
     card:
       type: vertical-stack
@@ -140,12 +140,12 @@ cards:
               icon: "mdi:soundbar"
               artwork: cover
               background_template: >
-                {{ 
+                {{
                   "/local/album_artwork/" ~
                   states("sensor.spotify_will_garside_media_artist") |
                   regex_replace("[^A-Za-z0-9]", "") |
-                  lower ~ 
-                  "/" ~ 
+                  lower ~
+                  "/" ~
                   states("sensor.spotify_will_garside_media_album_name") |
                   regex_replace("[^A-Za-z0-9]", "") |
                   lower ~

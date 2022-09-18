@@ -15,15 +15,14 @@
         data:
           title: NOTIFICATION
           message: |
-            {{ 
-              ( ( states('var.truelayer_balance_amex') | float - 
+            {{
+              ( ( states('var.truelayer_balance_amex') | float -
               states('var.truelayer_balance_monzo_credit_cards') | float ) | round(2) )
             }}
       - service: pyscript.top_up_credit_card_pot
         data:
           top_up_amount: |
-            {{ 
-              ( ( states('var.truelayer_balance_amex') | float - 
+            {{
+              ( ( states('var.truelayer_balance_amex') | float -
               states('var.truelayer_balance_monzo_credit_cards') | float ) | round(2) )
             }}
-

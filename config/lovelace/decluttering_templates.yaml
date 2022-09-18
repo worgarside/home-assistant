@@ -27,8 +27,8 @@ tfl_service_warning_template:
       type: entities
       card_mod:
         style: |
-          ha-card { 
-            --ha-card-background: 
+          ha-card {
+            --ha-card-background:
             {% if "good service" in (states("sensor.[[tfl_line]]") | lower) %}
               #007229;
             {% elif "minor delays" in (states("sensor.[[tfl_line]]") | lower) %}

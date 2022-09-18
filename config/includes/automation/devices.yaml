@@ -103,7 +103,7 @@
       - alias: "Set variables"
         variables:
           tower_fan_should_be_on: |
-            {{ 
+            {{
               is_state('person.will', 'home') and
               states('sensor.wills_room_hue_motion_sensor_temperature')
               >=
@@ -145,7 +145,7 @@
                 entity_id: switch.tower_fan
           - alias: High Temperature and Will's Home
             conditions: |
-              {{ 
+              {{
                 is_state('person.will', 'home') and
                 states('sensor.wills_room_hue_motion_sensor_temperature')
                 >=
@@ -191,9 +191,9 @@
           ( states('input_boolean.mini_crt_fan') | bool )
         )
         and
-        ( 
-          states.input_boolean.mini_crt_fan.last_changed < 
-          ( now() - timedelta(minutes=5) ) 
+        (
+          states.input_boolean.mini_crt_fan.last_changed <
+          ( now() - timedelta(minutes=5) )
         )
       }}
     action:
@@ -209,4 +209,3 @@
               entity_id: input_boolean.mini_crt_fan
 
 # </editor-fold>
-

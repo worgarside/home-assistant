@@ -6,8 +6,8 @@
         at:
           - "21:00:00"
     condition: |
-      {{ 
-        ( states('var.truelayer_balance_amex') | float - 
+      {{
+        ( states('var.truelayer_balance_amex') | float -
         states('var.truelayer_balance_monzo_credit_cards') | float ) > 0.0
       }}
     action:
