@@ -301,3 +301,11 @@ sensor:
     state_class: measurement
 
 #</editor-fold>
+
+  - name: Scheduled Tasks
+    state_topic: /task_scheduler/scheduled_tasks
+    icon: mdi:wrench-clock
+    value_template: '{{ value_json.scheduledTasks | length }}'
+    unit_of_measurement: ""
+    json_attributes_topic: /task_scheduler/scheduled_tasks
+    json_attributes_template: '{{ value_json | tojson }}'

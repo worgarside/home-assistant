@@ -177,6 +177,21 @@ cards:
             tap_action:
               action: call-service
               service: pyscript.create_task
+      - type: custom:list-card
+        entity: sensor.scheduled_tasks
+        title: Scheduled Tasks
+        feed_attribute: scheduledTasks
+        columns:
+          - title: Entity ID
+            field: trigger_entity_id
+          - title: Trigger State
+            field: trigger_state
+          - title: Service Call
+            field: service_call
+          - title: Kwargs
+            field: service_kwargs
+          - title: Runs Remaining
+            field: runs_remaining
 
   - type: horizontal-stack
     title: Internet Speeds
