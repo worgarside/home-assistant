@@ -133,6 +133,9 @@ lovelace:
       type: module
     - url: /hacsfiles/list-card/list-card.js
       type: module
+      # yamllint disable-line rule:line-length
+    - url: /hacsfiles/lovelace-multiline-text-input-card/lovelace-multiline-text-input-card.js
+      type: module
 
 map:
 

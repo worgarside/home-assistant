@@ -103,6 +103,81 @@ cards:
           - entity: sensor.database_size
             name: Database
 
+  - type: entities
+    entities:
+      - type: custom:fold-entity-row
+        head:
+          type: section
+          label: Task Scheduler
+          card_mod:
+            style: |
+              div.divider {
+                display: none;
+              }
+              .label {
+                font-size: 24px;
+                font-weight: 400 !important;
+                margin-bottom: 0px !important;
+              }
+        entities:
+          - type: custom:vertical-stack-in-card
+            cards:
+              - type: entities
+                entities:
+                  - entity: input_text.task_scheduler_trigger_entity_id
+                    name: Entity ID
+                  - entity: input_text.task_scheduler_trigger_state
+                    name: State
+                  - entity: input_text.task_scheduler_service_call
+                    name: Service Call
+                  - entity: input_text.task_scheduler_repeat_count
+                    name: Repeat Count
+              - type: custom:lovelace-multiline-text-input-card
+                entity: input_text.task_scheduler_service_kwargs
+                placeholder_text: Add kwargs for the service call here (YAML format)
+                title: Service Call Kwargs
+                max_length: 255
+                style: |
+                  div.card-header, div > textarea.textarea {
+                    background-color: var(--mdc-text-field-fill-color, whitesmoke);
+                  }
+                  div.card-header {
+                    border-radius: 4px 4px 0 0;
+                    padding: 0px 15px;
+                    margin: 0 16px;
+                    color: var(--mdc-text-field-label-ink-color, rgba(0, 0, 0, 0.6));
+                    font-size: 16px;
+                    height: 40px;
+                  }
+                  div.card-content {
+                    padding-bottom: 0px;
+                  }
+                  div.card-content > textarea.textarea {
+                    margin-top: 8px;
+                    padding-top: 8px;
+                    padding-left: 16px;
+                    width: calc(100% - 19px);
+                    border-color: #00000000;
+                    font-family: monospace;
+                    border-bottom-width: 1px;
+                    border-bottom-color: #828282;
+                  }
+                  div.card-content > textarea.textarea:focus {
+                    background-color: #2D2D2D;
+                    border-bottom-color: white;
+                  }
+                  div.card-content > span#spanMaxCharactersInfoText {
+                    display: none;
+                  }
+
+          - type: button
+            name: Schedule Task
+            show_state: false
+            icon: mdi:timer-play
+            tap_action:
+              action: call-service
+              service: pyscript.create_task
+
   - type: horizontal-stack
     title: Internet Speeds
     cards:

@@ -1,2 +1,30 @@
 ---
-...
+
+task_scheduler_trigger_entity_id:
+  name: Task Scheduler Trigger Entity ID
+  initial: ""
+  pattern: "^\\w+\\.\\w+$"
+  icon: mdi:identifier
+
+task_scheduler_trigger_state:
+  name: Task Scheduler Trigger State
+  initial: ""
+  icon: mdi:help-network
+
+task_scheduler_service_call:
+  name: Task Scheduler Service Call
+  initial: ""
+  pattern: "^\\w+\\.\\w+$"
+  icon: mdi:home-assistant
+
+task_scheduler_service_kwargs:
+  name: Task Scheduler Service Call Arguments
+  initial: ""
+  pattern: "^(\\w+: \"?\\w+\\.?\\w+\"?\\n?)+$"
+  icon: mdi:format-list-group
+
+task_scheduler_repeat_count:
+  name: Task Scheduler Repeat Count
+  initial: "1"
+  pattern: "^\\d+$"
+  icon: mdi:repeat

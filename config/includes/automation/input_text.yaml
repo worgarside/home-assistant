@@ -1,0 +1,27 @@
+---
+  - alias: /task_scheduler/validate_input
+    id: validate_task_scheduler_input
+    mode: single
+    trigger:
+      platform: state
+      entity_id:
+        - input_text.task_scheduler_trigger_entity_id
+        - input_text.task_scheduler_service_call
+        - input_text.task_scheduler_service_kwargs
+        - input_text.task_scheduler_repeat_count
+    action:
+      - if:
+          - alias: "If the input value is invalid"
+            condition: template
+            value_template: >
+              {{
+                not trigger.to_state.state |
+                regex_match(trigger.from_state.attributes.pattern)
+              }}
+        then:
+          - service: persistent_notification.create
+            data:
+              # yamllint disable-line rule:line-length
+              title: "Invalid Input ({{ trigger.from_state.attributes.friendly_name.replace(\"Task Scheduler \", \"\") }})"
+              # yamllint disable-line rule:line-length
+              message: "Invalid input for `{{ trigger.entity_id }}`, must match pattern `{{ trigger.from_state.attributes.pattern }}`:<pre><code>{{ trigger.to_state.state }}</code></pre>"

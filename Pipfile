@@ -15,6 +15,7 @@ pycln = "*"
 types-flask = "*"
 types-pillow = "*"
 pylint-strict-informational = "*"
+types-pyyaml = "*"
 
 [packages]
 python-dotenv = "*"
@@ -30,6 +31,7 @@ pydantic = "*"
 flask = "*"
 wg-utilities = {extras = ["devices"], version = "*"}
 paramiko = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.9"
