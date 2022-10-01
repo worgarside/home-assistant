@@ -112,3 +112,39 @@ start_spotify_on_device:
         account: '{{ user_name | lower }}'
         shuffle: true
         force_playback: true
+
+crt_pi_update_display:
+  description: "Update the CRT Pi display from the chosen media player's track"
+  sequence:
+    - alias: "Set Variables"
+      variables:
+        media_player: "{{ states('input_select.crt_pi_display_source') }}"
+        album_artwork_url: |
+          {% set url = state_attr(media_player, 'entity_picture') %}
+          {{
+            "http://" + states('sensor.local_ip') + ":8123" + url
+            if url and url.startswith('/api/')
+            else url
+          }}
+    - service: script.debug_persistent_notification
+      data:
+        title: CRT Display Update
+        message: |
+          ```
+          Title:   {{ state_attr(media_player, 'media_title') }}
+          Artist:  {{ state_attr(media_player, 'media_artist') }}
+          Album:   {{ state_attr(media_player, 'media_album_name') }}
+          Artwork: {{ album_artwork_url }}
+          State:   {{ states(media_player) }}
+          ```
+    - service: mqtt.publish
+      data:
+        topic: "/crt-pi/display/update_display"
+        payload: |
+          {
+            "title": "{{ state_attr(media_player, 'media_title') }}",
+            "artist": "{{ state_attr(media_player, 'media_artist') }}",
+            "album": "{{ state_attr(media_player, 'media_album_name') }}",
+            "album_artwork_url": "{{ album_artwork_url }}",
+            "state": "{{ states(media_player) }}"
+          }

@@ -1,0 +1,48 @@
+---
+  - alias: /crt-pi/display/update_display
+    id: crt_pi_display_update_display
+    trigger:
+      - platform: state
+        entity_id:
+          - media_player.all_speakers
+          - media_player.downstairs_speakers
+          - media_player.hifi_system
+          - media_player.kitchen_nest_mini
+          - media_player.lounge_chromecast
+          - media_player.matts_room_nest_mini
+          - media_player.spotify_matt_scott
+          - media_player.spotify_tom_jones
+          - media_player.spotify_will_garside
+          - media_player.tom_s_speakers
+          - media_player.upstairs_speakers
+          - media_player.will_s_yas_209
+    condition: |
+      {{
+        states('input_select.crt_pi_display_source') ==
+          trigger.to_state.entity_id and
+        trigger.to_state.state not in ('unavailable', 'unknown') and
+        (
+          (
+            trigger.to_state.attributes.media_title !=
+              trigger.from_state.attributes.media_title and
+            trigger.to_state.attributes.media_artist !=
+              trigger.from_state.attributes.media_artist and
+            trigger.to_state.attributes.media_album_name !=
+              trigger.from_state.attributes.media_album_name and
+            trigger.to_state.attributes.entity_picture !=
+              trigger.from_state.attributes.entity_picture
+          ) or (
+            trigger.to_state.state != trigger.from_state.state
+          )
+        )
+      }}
+    action:
+      - service: script.crt_pi_update_display
+
+  - alias: /crt-pi/display/source_changed
+    id: crt_pi_display_source_changed
+    trigger:
+      - platform: state
+        entity_id: input_select.crt_pi_display_source
+    action:
+      - service: script.crt_pi_update_display

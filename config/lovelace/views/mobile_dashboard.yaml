@@ -69,8 +69,11 @@ cards:
         variables:
           - entity: light.the_snail
           - name: The Snail
-          # yamllint disable-line rule:line-length
-          - auto_entity_filter_template: "{{ 'input_boolean.the_snail_artwork_colour_source_active', 'input_select.the_snail_artwork_colour_source' }}"
+          - auto_entity_filter_template: |
+              {{
+                'input_boolean.the_snail_artwork_colour_source_active',
+                'input_select.the_snail_artwork_colour_source'
+              }}
       - entity: light.galaxy_light_plug
         name: Galaxy Light
       - type: custom:decluttering-card
@@ -92,6 +95,10 @@ cards:
             name: Fan
           - entity: sensor.crtpi_cpu_temperature
             name: CPU Temperature
+          - entity: input_select.crt_pi_display_source
+            name: Display Source
+          - entity: script.crt_pi_update_display
+            name: Force Update
 #          - type: custom:paper-buttons-row
 #            buttons:
 #              - icon: mdi:floppy
