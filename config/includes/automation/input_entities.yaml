@@ -48,30 +48,6 @@
 
 #<editor-fold desc="Input Boolean">
 
-  - alias: /input_boolean/mini_crt_power
-    id: input_boolean_mini_crt_power
-    trigger:
-      - platform: state
-        entity_id: input_boolean.mini_crt_power
-        for:
-          seconds: 1
-    action:
-      - choose:
-          - alias: "Turn On"
-            conditions: "{{ states('input_boolean.mini_crt_power') == 'on' }}"
-            sequence:
-              - service: rest_command.mini_crt_turn_power_on
-          - alias: "Turn Off"
-            conditions: "{{ states('input_boolean.mini_crt_power') == 'off' }}"
-            sequence:
-              - service: rest_command.mini_crt_turn_power_off
-        default:
-          - service: script.notify_will
-            data:
-              title: "Automation Failure"
-              # yamllint disable-line rule:line-length
-              message: "Automation `input_boolean_mini_crt_power` failed: unknown previous state of `{{ trigger.from_state.state }}`"
-
   - alias: /input_boolean/mini_crt_power/force_update
     id: force_update_input_boolean_mini_crt_power
     trigger:
