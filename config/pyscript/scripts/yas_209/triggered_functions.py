@@ -4,9 +4,7 @@ from socket import gethostname
 from typing import Any, Callable
 
 from helpers import HAExceptionCatcher
-from wg_utilities.devices.yamaha_yas_209 import (  # pylint: disable=no-name-in-module
-    YamahaYas209,
-)
+from wg_utilities.devices.yamaha_yas_209 import YamahaYas209
 
 MODULE_NAME = "yas_209"
 
@@ -37,7 +35,7 @@ PAYLOAD = {
 
 YAS_209 = task.executor(
     YamahaYas209,
-    "192.168.1.144",
+    "10.0.0.21",
     start_listener=True,
     # logging=False
 )
@@ -81,7 +79,7 @@ def yas_209_previous_track() -> None:
 
 @service
 def yas_209_set_volume_level(volume_level: float) -> None:
-    log.info(f"Setting volume to {volume_level}")
+    log.info("Setting volume to %s", volume_level)
     with HAExceptionCatcher(MODULE_NAME, "yas_209_set_volume_level"):
         task.executor(YAS_209.set_volume_level, volume_level)
 

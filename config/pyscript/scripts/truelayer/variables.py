@@ -110,7 +110,7 @@ def update_balance_variables() -> None:
                 balance = task.executor(getattr, entity, attr_name)
 
                 var.set(entity_id=var_name, value=balance, force_update=True)
-            except Exception as exc:  # pylint: disable=broad-except
+            except Exception as exc:
                 log.error(
                     "Unable to update variable `%s`: %s - %s",
                     var_name,

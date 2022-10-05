@@ -13,10 +13,8 @@ from feedgen.feed import FeedGenerator
 from flask import Flask, Request, Response, make_response, request
 from paramiko import AutoAddPolicy, SFTPClient, SSHClient
 from pydantic import BaseModel, Extra, ValidationError
-from wg_utilities.exceptions import on_exception  # pylint: disable=no-name-in-module
+from wg_utilities.exceptions import on_exception
 from wg_utilities.functions import force_mkdir, user_data_dir
-
-# pylint: disable=no-name-in-module
 from wg_utilities.loggers import add_list_handler, add_stream_handler
 
 load_dotenv()
@@ -62,7 +60,6 @@ LOCAL_TZ = datetime.now().astimezone().tzinfo
 SFTP_LOG_PATH = "/config/.addons/rss_log_feed"
 
 
-# pylint: disable=too-few-public-methods
 class LogPayload(BaseModel, extra=Extra.allow):
     """Model for the payload data"""
 
@@ -233,7 +230,7 @@ def get_log_feed() -> Response:
     feed_gen = FeedGenerator()
     feed_gen.title("Home Assistant Remote Log Feed")
     feed_gen.description("Externally-writeable log feed")
-    feed_gen.link(href="http://192.168.1.120:8123", rel="self")
+    feed_gen.link(href="http://homeassistant.local:8123", rel="self")
 
     for record in record_list:
         record_payload = loads(record.getMessage())
@@ -242,7 +239,8 @@ def get_log_feed() -> Response:
         # Use the title field for client info
         entry.title(record_payload.pop("client"))
         entry.link(
-            href=record_payload.pop("link", "http://192.168.1.120:8123"), rel="self"
+            href=record_payload.pop("link", "http://homeassistant.local:8123"),
+            rel="self",
         )
         entry.published(datetime.fromtimestamp(record.created, tz=LOCAL_TZ))
         entry.category({"label": record.levelname, "term": record.levelname})

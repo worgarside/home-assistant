@@ -155,42 +155,42 @@
 
   - platform: feedparser
     name: Error Feed
-    feed_url: 'http://192.168.1.120:8001/feed/logs?level=error'
+    feed_url: 'http://homeassistant.local:8001/feed/logs?level=error'
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
 
   - platform: feedparser
     name: Info Feed
-    feed_url: 'http://192.168.1.120:8001/feed/logs?level=info'
+    feed_url: 'http://homeassistant.local:8001/feed/logs?level=info'
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
 
   - platform: feedparser
     name: Debug Feed
-    feed_url: 'http://192.168.1.120:8001/feed/logs?level=debug'
+    feed_url: 'http://homeassistant.local:8001/feed/logs?level=debug'
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
 
   - platform: feedparser
     name: Warning Feed
-    feed_url: 'http://192.168.1.120:8001/feed/logs?level=warning'
+    feed_url: 'http://homeassistant.local:8001/feed/logs?level=warning'
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
 
   - platform: feedparser
     name: Critical Feed
-    feed_url: 'http://192.168.1.120:8001/feed/logs?level=critical'
+    feed_url: 'http://homeassistant.local:8001/feed/logs?level=critical'
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
 
   - platform: feedparser
     name: Log Feed
-    feed_url: 'http://192.168.1.120:8001/feed/logs'
+    feed_url: 'http://homeassistant.local:8001/feed/logs'
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60

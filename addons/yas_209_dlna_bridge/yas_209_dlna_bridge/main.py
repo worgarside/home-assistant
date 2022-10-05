@@ -108,7 +108,7 @@ def pass_data_to_home_assistant() -> None:
     """
 
     res = post(
-        "http://192.168.1.120:8123/api/webhook/wills_yas_209_bridge_input",
+        "http://homeassistant.local:8123/api/webhook/wills_yas_209_bridge_input",
         json=PAYLOAD,
         headers={"Content-Type": "application/json"},
     )
@@ -170,7 +170,7 @@ PAYLOAD: PayloadInfo = {
 
 
 YAS_209 = YamahaYas209(
-    "192.168.1.144",
+    "10.0.0.21",
     on_event=log_request_payload,
     on_volume_update=on_volume_update,
     on_state_update=on_state_update,
