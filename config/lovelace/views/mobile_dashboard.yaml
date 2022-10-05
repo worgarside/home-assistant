@@ -69,11 +69,8 @@ cards:
         variables:
           - entity: light.the_snail
           - name: The Snail
-          - auto_entity_filter_template: |
-              {{
-                'input_boolean.the_snail_artwork_colour_source_active',
-                'input_select.the_snail_artwork_colour_source'
-              }}
+          # yamllint disable-line rule:line-length
+          - auto_entity_filter_template: "{{ 'input_boolean.the_snail_artwork_colour_source_active', 'input_select.the_snail_artwork_colour_source' }}"
       - entity: light.galaxy_light_plug
         name: Galaxy Light
       - type: custom:decluttering-card

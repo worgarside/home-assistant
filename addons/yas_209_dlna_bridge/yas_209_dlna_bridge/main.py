@@ -111,9 +111,12 @@ def pass_data_to_home_assistant() -> None:
         "http://homeassistant.local:8123/api/webhook/wills_yas_209_bridge_input",
         json=PAYLOAD,
         headers={"Content-Type": "application/json"},
+        timeout=10,
     )
 
     LOGGER.debug("Webhook response: %i %s", res.status_code, res.reason)
+
+    res.raise_for_status()
 
 
 def on_volume_update(volume: float) -> None:
