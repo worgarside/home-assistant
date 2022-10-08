@@ -102,7 +102,7 @@ def update_variables(method_name: str, new_variables: dict[str, object]) -> None
             if (var_name := RESPONSE_KEY_VARIABLE_MAPPING.get(k)) is not None:
                 if isinstance(v, timedelta):
                     v = v.total_seconds()
-                    
+
                 var.set(
                     entity_id=var_name,
                     value=v,
