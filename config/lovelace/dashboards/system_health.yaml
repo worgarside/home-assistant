@@ -9,3 +9,4 @@ decluttering_templates: !include ../decluttering_templates.yaml
 
 views:
   - !include ../views/system_health.yaml
+  - !include ../views/log_feeds.yaml

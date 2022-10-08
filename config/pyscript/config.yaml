@@ -14,6 +14,8 @@ apps:
   nanoleaf.wills_shapes:
     ip_address: !secret wills_shapes_ip
     auth_token: !secret wills_shapes_auth_token
+  netgear:
+    password: !secret netgear_password
   switchbot.curtain_controller:
     api_key: !secret switchbot_api_key
     curtain_id: !secret switchbot_curtain_id

@@ -32,6 +32,7 @@ flask = "*"
 wg-utilities = {extras = ["devices"], version = "*"}
 paramiko = "*"
 pyyaml = "*"
+pynetgear = "*"
 
 [requires]
 python_version = "3.9"

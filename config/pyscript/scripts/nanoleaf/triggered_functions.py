@@ -182,6 +182,8 @@ def update_nanoleaf_colors_worker(media_player: str, nanoleaf_device: Nanoleaf) 
 def update_nanoleaf_colors(var_name: str) -> None:
     """Update Nanoleaf colors based on the currently playing song's artwork
 
+    FIXME: two consecutive songs with the same name will not trigger this
+
     Args:
         var_name (str): the media player which triggered this function
     """

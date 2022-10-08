@@ -213,7 +213,8 @@ input_number: !include includes/input_number.yaml
 input_select: !include includes/input_select.yaml
 input_text: !include includes/input_text.yaml
 media_player: !include includes/media_player.yaml
-mqtt: !include includes/mqtt.yaml
+mqtt:
+  sensor: !include_dir_merge_list includes/mqtt/
 pyscript: !include pyscript/config.yaml
 rest_command: !include includes/rest_command.yaml
 scene: !include includes/scenes.yaml
@@ -221,4 +222,4 @@ script: !include includes/scripts.yaml
 sensor: !include includes/sensors.yaml
 switch: !include includes/switch.yaml
 template: !include includes/templates.yaml
-var: !include includes/variables.yaml
+var: !include_dir_merge_named includes/variable/

@@ -1,0 +1,44 @@
+---
+title: Log Feeds
+
+icon: mdi:rss
+
+path: log_feeds
+
+cards:
+
+  - type: custom:list-card
+    entity: sensor.error_feed
+    title: Error Feed
+    feed_attribute: entries
+    columns:
+      - title: Host
+        field: title
+      - title: Log
+        field: summary
+      - title: Timestamp
+        field: published
+
+  - type: custom:list-card
+    entity: sensor.info_feed
+    title: Info Feed
+    feed_attribute: entries
+    columns:
+      - title: Host
+        field: title
+      - title: Log
+        field: summary
+      - title: Timestamp
+        field: published
+
+  - type: custom:list-card
+    entity: sensor.debug_feed
+    title: Debug Feed
+    feed_attribute: entries
+    columns:
+      - title: Host
+        field: title
+      - title: Log
+        field: summary
+      - title: Timestamp
+        field: published
