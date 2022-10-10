@@ -103,6 +103,9 @@ def update_variables(method_name: str, new_variables: dict[str, object]) -> None
                 if isinstance(v, timedelta):
                     v = v.total_seconds()
 
+                if isinstance(v, float):
+                    v = round(v, 2)
+
                 var.set(
                     entity_id=var_name,
                     value=v,
