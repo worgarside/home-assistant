@@ -257,22 +257,16 @@ cards:
             template: pi_stats_graph_card_template
             variables:
               - name: CPU Usage
-              - clmtpi_sensor: clmtpi_cpu_usage
-              - crtpi_sensor: crtpi_cpu_usage
-              - growpi_sensor: growpi_cpu_usage
+              - sensor_suffix: _cpu_usage
               - hasspi_sensor: processor_use
-              - vsmppi_sensor: vsmppi_cpu_usage
-              - upper_bound: ~25
+              - upper_bound: ~75
               - icon: mdi:cpu-32-bit
           - type: custom:decluttering-card
             template: pi_stats_graph_card_template
             variables:
               - name: CPU Temperature
-              - clmtpi_sensor: clmtpi_cpu_temperature
-              - crtpi_sensor: crtpi_cpu_temperature
-              - growpi_sensor: growpi_cpu_temperature
+              - sensor_suffix: _cpu_usage
               - hasspi_sensor: processor_temperature
-              - vsmppi_sensor: vsmppi_cpu_temperature
               - upper_bound: 100
               - icon: mdi:thermometer-lines
       - type: horizontal-stack
@@ -281,22 +275,16 @@ cards:
             template: pi_stats_graph_card_template
             variables:
               - name: Memory Usage
-              - clmtpi_sensor: clmtpi_memory_usage
-              - crtpi_sensor: crtpi_memory_usage
-              - growpi_sensor: growpi_memory_usage
+              - sensor_suffix: _cpu_usage
               - hasspi_sensor: memory_use_percent
-              - vsmppi_sensor: vsmppi_memory_usage
-              - upper_bound: ~50
+              - upper_bound: ~75
               - icon: mdi:memory
           - type: custom:decluttering-card
             template: pi_stats_graph_card_template
             variables:
               - name: Disk Usage
-              - clmtpi_sensor: clmtpi_disk_usage
-              - crtpi_sensor: crtpi_disk_usage
-              - growpi_sensor: growpi_disk_usage
+              - sensor_suffix: _cpu_usage
               - hasspi_sensor: disk_use_percent
-              - vsmppi_sensor: vsmppi_disk_usage
               - upper_bound: 100
               - icon: mdi:harddisk
       - type: custom:mini-graph-card
@@ -309,6 +297,8 @@ cards:
             name: Grow Pi
           - entity: sensor.processor_use
             name: HAss Pi
+          - entity: sensor.mtrxpi_cpu_usage
+            name: Mtrx Pi
           - entity: sensor.vsmppi_cpu_usage
             name: VSMP Pi
         show:

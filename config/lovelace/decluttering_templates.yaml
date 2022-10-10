@@ -501,15 +501,17 @@ pi_stats_graph_card_template:
           padding: 5px;
         }
     entities:
-      - entity: "sensor.[[clmtpi_sensor]]"
+      - entity: "sensor.clmtpi[[sensor_suffix]]"
         name: Clmt Pi
-      - entity: "sensor.[[crtpi_sensor]]"
+      - entity: "sensor.crtpi[[sensor_suffix]]"
         name: CRT Pi
-      - entity: "sensor.[[growpi_sensor]]"
+      - entity: "sensor.growpi[[sensor_suffix]]"
         name: Grow Pi
       - entity: "sensor.[[hasspi_sensor]]"
         name: HAss Pi
-      - entity: "sensor.[[vsmppi_sensor]]"
+      - entity: "sensor.mtrxpi[[sensor_suffix]]"
+        name: Mtrx Pi
+      - entity: "sensor.vsmppi[[sensor_suffix]]"
         name: VSMP Pi
     show:
       state: false
