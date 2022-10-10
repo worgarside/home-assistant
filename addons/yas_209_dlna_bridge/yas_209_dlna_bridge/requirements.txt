@@ -1,8 +1,7 @@
 requests
 paramiko
-python-dotenv
 async-upnp-client
 pydantic
 xmltodict
 lxml
-wg-utilities[devices]
+wg-utilities[devices,exceptions]

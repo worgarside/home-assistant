@@ -1,7 +1,7 @@
 ---
 name: "YAS-209 DLNA Bridge"
 description: "A custom bridge for the events from YAS-209"
-version: "0.1.0"
+version: "1.0.0"
 slug: "yas_209_dlna_bridge"
 init: false
 arch:
@@ -15,9 +15,17 @@ options:
   listen_ip: 192.168.1.X
   listen_port: 29421
   source_port: 29420
+  yas_209_ip: 192.168.1.Y
+  sftp_hostname: homeassistant.local
+  sftp_username: root
+  sftp_key_filepath: .ssh/id_rsa
 schema:
   listen_ip: str
   listen_port: int
   source_port: int
+  yas_209_ip: str
+  sftp_hostname: str
+  sftp_username: str
+  sftp_key_filepath: str
 ports:
   29420/tcp: 29420

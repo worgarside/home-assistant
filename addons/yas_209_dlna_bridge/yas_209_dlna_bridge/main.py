@@ -6,15 +6,12 @@ from logging import DEBUG, getLogger
 from os import environ, getenv
 from typing import Any, Dict, Optional, TypedDict
 
-from dotenv import load_dotenv
 from paramiko import AutoAddPolicy, SFTPClient, SSHClient
 from requests import post
 from wg_utilities.devices.yamaha_yas_209 import YamahaYas209
 from wg_utilities.devices.yamaha_yas_209.yamaha_yas_209 import CurrentTrack
 from wg_utilities.exceptions import on_exception
 from wg_utilities.loggers import add_stream_handler
-
-load_dotenv()
 
 LOGGER = getLogger(__name__)
 LOGGER.setLevel(DEBUG)
@@ -171,7 +168,7 @@ PAYLOAD: PayloadInfo = {
 
 
 YAS_209 = YamahaYas209(
-    "10.0.0.21",
+    environ["YAS_209_IP"],
     on_event=log_request_payload,
     on_volume_update=on_volume_update,
     on_state_update=on_state_update,
