@@ -1,4 +1,5 @@
 ---
+sensor:
 
 #<editor-fold desc="Plants">
 
@@ -349,6 +350,25 @@
 
   - name: Lounge Humidity
     state_topic: /homeassistant/clmtpi/dht22
+    force_update: true
+    icon: mdi:water-percent
+    value_template: '{{ value_json.humidity }}'
+    unit_of_measurement: "%"
+    state_class: measurement
+
+#</editor-fold>
+#<editor-fold desc="CRT DHT22">
+
+  - name: CRT TV Internal Temperature
+    state_topic: /homeassistant/crtpi/dht22
+    force_update: true
+    icon: mdi:thermometer
+    value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: "°"
+    state_class: measurement
+
+  - name: CRT TV Internal Humidity
+    state_topic: /homeassistant/crtpi/dht22
     force_update: true
     icon: mdi:water-percent
     value_template: '{{ value_json.humidity }}'

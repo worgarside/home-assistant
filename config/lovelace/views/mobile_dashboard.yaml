@@ -92,6 +92,10 @@ cards:
             name: Fan
           - entity: sensor.crtpi_cpu_temperature
             name: CPU Temperature
+          - entity: sensor.crt_tv_internal_temperature
+            name: CRT TV Internal Temperature
+          - entity: sensor.crt_tv_internal_humidity
+            name: CRT TV Internal Humidity
           - entity: input_select.crt_pi_display_source
             name: Display Source
           - entity: script.crt_pi_update_display

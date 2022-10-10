@@ -122,7 +122,7 @@ crt_pi_update_display:
         album_artwork_url: |
           {% set url = state_attr(media_player, 'entity_picture') %}
           {{
-            "http://" + states('sensor.local_ip') + ":8123" + url
+            "http://homeassistant.local:8123" + url
             if url and url.startswith('/api/')
             else url
           }}
@@ -136,7 +136,31 @@ crt_pi_update_display:
           Album:   {{ state_attr(media_player, 'media_album_name') }}
           Artwork: {{ album_artwork_url }}
           State:   {{ states(media_player) }}
+
+          Topic:   /homeassistant/led_matrix/payload
           ```
+    - service: mqtt.publish
+      data:
+        topic: "/homeassistant/led_matrix/display"
+        payload: |
+          {
+            "title": "{{ state_attr(media_player, 'media_title') }}",
+            "artist": "{{ state_attr(media_player, 'media_artist') }}",
+            "album": "{{ state_attr(media_player, 'media_album_name') }}",
+            "album_artwork_url": "{{ album_artwork_url }}",
+            "state": "{{ states(media_player) }}"
+          }
+    - service: mqtt.publish
+      data:
+        topic: "/homeassistant/led_matrix/artwork_cache"
+        payload: |
+          {
+            "title": "{{ state_attr(media_player, 'media_title') }}",
+            "artist": "{{ state_attr(media_player, 'media_artist') }}",
+            "album": "{{ state_attr(media_player, 'media_album_name') }}",
+            "album_artwork_url": "{{ album_artwork_url }}",
+            "state": "{{ states(media_player) }}"
+          }
     - service: mqtt.publish
       data:
         topic: "/crt-pi/display/update_display"
