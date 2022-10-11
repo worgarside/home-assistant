@@ -79,3 +79,12 @@ crt_pi_display_source:
     - media_player.tom_s_speakers
     - media_player.upstairs_speakers
     - media_player.will_s_yas_209
+
+pi_stats_legend_sensor_type:
+  name: Pi Stats Legend Sensor
+  icon: mdi:raspberry-pi
+  options:
+    - CPU Usage
+    - CPU Temperature
+    - Memory Usage
+    - Disk Usage

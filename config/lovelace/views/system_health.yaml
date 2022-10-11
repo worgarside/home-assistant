@@ -249,8 +249,22 @@ cards:
         font_size: 75
 
   - type: custom:vertical-stack-in-card
-    title: Raspberry Pi Stats
     cards:
+      - type: horizontal-stack
+        cards:
+          - type: markdown
+            content: "# Raspberry Pi Stats"
+          - type: entities
+            entities:
+              - entity: input_select.pi_stats_legend_sensor_type
+                name: Legend
+                card_mod:
+                  style:
+                    hui-generic-entity-row:
+                      $: |
+                        state-badge {
+                          display: none;
+                        }
       - type: horizontal-stack
         cards:
           - type: custom:decluttering-card
@@ -265,7 +279,7 @@ cards:
             template: pi_stats_graph_card_template
             variables:
               - name: CPU Temperature
-              - sensor_suffix: _cpu_usage
+              - sensor_suffix: _cpu_temperature
               - hasspi_sensor: processor_temperature
               - upper_bound: 100
               - icon: mdi:thermometer-lines
@@ -275,7 +289,7 @@ cards:
             template: pi_stats_graph_card_template
             variables:
               - name: Memory Usage
-              - sensor_suffix: _cpu_usage
+              - sensor_suffix: _memory_usage
               - hasspi_sensor: memory_use_percent
               - upper_bound: ~75
               - icon: mdi:memory
@@ -283,37 +297,47 @@ cards:
             template: pi_stats_graph_card_template
             variables:
               - name: Disk Usage
-              - sensor_suffix: _cpu_usage
+              - sensor_suffix: _disk_usage
               - hasspi_sensor: disk_use_percent
               - upper_bound: 100
               - icon: mdi:harddisk
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.clmtpi_cpu_usage
-            name: Clmt Pi
-          - entity: sensor.crtpi_cpu_usage
-            name: CRT Pi
-          - entity: sensor.growpi_cpu_usage
-            name: Grow Pi
-          - entity: sensor.processor_use
-            name: HAss Pi
-          - entity: sensor.mtrxpi_cpu_usage
-            name: Mtrx Pi
-          - entity: sensor.vsmppi_cpu_usage
-            name: VSMP Pi
-        show:
-          legend: true
-          icon: false
-          state: false
-          name: false
-        card_mod:
-          style: |
-            .line--rect, .fill--rect, .graph__container__svg {
-              display: none;
-            }
-            ha-card.flex.type-custom-mini-graph-card, .graph__legend {
-              padding: 0px;
-            }
-            .type-custom-mini-graph-card {
-              margin-top: -10px;
-            }
+      - type: conditional
+        conditions:
+          - entity: input_select.pi_stats_legend_sensor_type
+            state: "CPU Usage"
+        card:
+          type: custom:decluttering-card
+          template: pi_stats_legend_card_template
+          variables:
+            - sensor_suffix: _cpu_usage
+            - hasspi_sensor: processor_use
+      - type: conditional
+        conditions:
+          - entity: input_select.pi_stats_legend_sensor_type
+            state: "CPU Temperature"
+        card:
+          type: custom:decluttering-card
+          template: pi_stats_legend_card_template
+          variables:
+            - sensor_suffix: _cpu_temperature
+            - hasspi_sensor: processor_temperature
+      - type: conditional
+        conditions:
+          - entity: input_select.pi_stats_legend_sensor_type
+            state: "Memory Usage"
+        card:
+          type: custom:decluttering-card
+          template: pi_stats_legend_card_template
+          variables:
+            - sensor_suffix: _memory_usage
+            - hasspi_sensor: memory_use_percent
+      - type: conditional
+        conditions:
+          - entity: input_select.pi_stats_legend_sensor_type
+            state: "Disk Usage"
+        card:
+          type: custom:decluttering-card
+          template: pi_stats_legend_card_template
+          variables:
+            - sensor_suffix: _disk_usage
+            - hasspi_sensor: disk_use_percent

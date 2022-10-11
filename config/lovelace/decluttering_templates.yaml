@@ -526,3 +526,37 @@ pi_stats_graph_card_template:
     icon: "[[icon]]"
     line_width: 5
     font_size: 75
+
+
+pi_stats_legend_card_template:
+  card:
+    type: custom:mini-graph-card
+    entities:
+      - entity: "sensor.clmtpi[[sensor_suffix]]"
+        name: Clmt Pi
+      - entity: "sensor.crtpi[[sensor_suffix]]"
+        name: CRT Pi
+      - entity: "sensor.growpi[[sensor_suffix]]"
+        name: Grow Pi
+      - entity: "sensor.[[hasspi_sensor]]"
+        name: HAss Pi
+      - entity: "sensor.mtrxpi[[sensor_suffix]]"
+        name: Mtrx Pi
+      - entity: "sensor.vsmppi[[sensor_suffix]]"
+        name: VSMP Pi
+    show:
+      legend: true
+      icon: false
+      state: false
+      name: false
+    card_mod:
+      style: |
+        .line--rect, .fill--rect, .graph__container__svg {
+          display: none;
+        }
+        ha-card.flex.type-custom-mini-graph-card, .graph__legend {
+          padding: 0px;
+        }
+        .type-custom-mini-graph-card {
+          margin-top: -10px;
+        }
