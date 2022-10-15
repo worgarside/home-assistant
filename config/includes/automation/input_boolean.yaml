@@ -3,7 +3,7 @@
     id: input_boolean_mini_crt_power_state_from_crt
     trigger:
       - platform: mqtt
-        topic: /home-assistant/crt-pi/state
+        topic: /home-assistant/crt-pi/state-from-crt
     action:
       - service: script.debug_persistent_notification
         data:
