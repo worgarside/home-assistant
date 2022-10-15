@@ -6,3 +6,12 @@
         topic: /home-assistant/script/crt_pi_update_display/run
     action:
       - service: script.crt_pi_update_display
+
+
+  - alias: /mqtt/script/mtrxpi_update_display/run
+    id: mqtt_script_mtrxpi_update_display_run
+    trigger:
+      - platform: mqtt
+        topic: /home-assistant/script/mtrxpi_update_display/run
+    action:
+      - service: script.mtrxpi_update_display

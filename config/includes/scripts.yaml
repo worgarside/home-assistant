@@ -118,33 +118,60 @@ crt_pi_update_display:
           Artwork: {{ album_artwork_url }}
           State:   {{ states(media_player) }}
 
+          Topic:   /crt-pi/display/update_display
+          Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
+          ```
+    - service: mqtt.publish
+      data:
+        topic: "/crt-pi/display/update_display"
+        payload: |
+          {
+            "title": "{{ state_attr(media_player, 'media_title') }}",
+            "artist": "{{ state_attr(media_player, 'media_artist') }}",
+            "album": "{{ state_attr(media_player, 'media_album_name') }}",
+            "album_artwork_url": "{{ album_artwork_url }}",
+            "state": "{{ states(media_player) }}"
+          }
+
+mtrxpi_update_display:
+  description: "Update the MtrxPi display from the chosen media player's track"
+  mode: parallel
+  sequence:
+    - alias: "Set Variables"
+      variables:
+        media_player: "{{ states('input_select.mtrxpi_display_source') }}"
+        album_artwork_url: |
+          {% set url = state_attr(media_player, 'entity_picture') %}
+          {{
+            "http://homeassistant.local:8123" + url
+            if url and url.startswith('/api/')
+            else url
+          }}
+        media_player_state: |
+          {% if states(media_player) in ("playing", "paused", "buffering", "idle") %}
+            playing
+          {% elif states(media_player) in ("off", "standby") %}
+            off
+          {% else %}
+            -1
+          {%endif%}
+    - service: script.debug_persistent_notification
+      data:
+        title: RGB LED Matrix Display Update
+        message: |
+          ```
+          Title:   {{ state_attr(media_player, 'media_title') }}
+          Artist:  {{ state_attr(media_player, 'media_artist') }}
+          Album:   {{ state_attr(media_player, 'media_album_name') }}
+          Artwork: {{ album_artwork_url }}
+          State:
+
           Topic:   /homeassistant/led_matrix/payload
+          Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
           ```
     - service: mqtt.publish
       data:
         topic: "/homeassistant/led_matrix/display"
-        payload: |
-          {
-            "title": "{{ state_attr(media_player, 'media_title') }}",
-            "artist": "{{ state_attr(media_player, 'media_artist') }}",
-            "album": "{{ state_attr(media_player, 'media_album_name') }}",
-            "album_artwork_url": "{{ album_artwork_url }}",
-            "state": "{{ states(media_player) }}"
-          }
-    - service: mqtt.publish
-      data:
-        topic: "/homeassistant/led_matrix/artwork_cache"
-        payload: |
-          {
-            "title": "{{ state_attr(media_player, 'media_title') }}",
-            "artist": "{{ state_attr(media_player, 'media_artist') }}",
-            "album": "{{ state_attr(media_player, 'media_album_name') }}",
-            "album_artwork_url": "{{ album_artwork_url }}",
-            "state": "{{ states(media_player) }}"
-          }
-    - service: mqtt.publish
-      data:
-        topic: "/crt-pi/display/update_display"
         payload: |
           {
             "title": "{{ state_attr(media_player, 'media_title') }}",

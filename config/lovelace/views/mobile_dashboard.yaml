@@ -87,32 +87,12 @@ cards:
           - auto_entity_filter_template: "{{ 'switch.hifi_amp' }}"
       - type: custom:fold-entity-row
         head:
-          entity: input_boolean.mini_crt_power
+          entity: binary_sensor.rgb_led_matrix
         entities:
-          - entity: input_boolean.mini_crt_fan
-            name: Fan
-          - entity: sensor.crtpi_cpu_temperature
-            name: CPU Temperature
-          - entity: sensor.crt_tv_internal_temperature
-            name: CRT TV Internal Temperature
-          - entity: sensor.crt_tv_internal_humidity
-            name: CRT TV Internal Humidity
-          - entity: input_select.crt_pi_display_source
+          - entity: input_select.mtrxpi_display_source
             name: Display Source
-          - entity: script.crt_pi_update_display
+          - entity: script.mtrxpi_update_display
             name: Force Update
-#          - type: custom:paper-buttons-row
-#            buttons:
-#              - icon: mdi:floppy
-#                name: Previous animation
-#                tap_action:
-#                  action: call-service
-#                  service: pyscript.save_previous_nanoleaf_state
-#              - icon: mdi:floppy
-#                name: Current animation
-#                tap_action:
-#                  action: call-service
-#                  service: pyscript.save_current_nanoleaf_state
 
   - type: entities
     title: Matt's Room
@@ -316,6 +296,36 @@ cards:
           - device_key: spotify_device_id
           - device_value: d13da09c3d2ffcc83ae1784fc05dd8bb4bb25305
           - entity_id: media_player.will_s_yas_209
+      - type: custom:fold-entity-row
+        head:
+          entity: input_boolean.mini_crt_power
+        entities:
+          - entity: input_boolean.mini_crt_fan
+            name: Fan
+          - entity: input_number.crt_tv_fan_auto_on_threshold
+            name: Fan Auto-On Threshold
+          - entity: sensor.crtpi_cpu_temperature
+            name: CPU Temperature
+          - entity: sensor.crt_tv_internal_temperature
+            name: CRT TV Internal Temperature
+          - entity: sensor.crt_tv_internal_humidity
+            name: CRT TV Internal Humidity
+          - entity: input_select.crt_pi_display_source
+            name: Display Source
+          - entity: script.crt_pi_update_display
+            name: Force Update
+    #          - type: custom:paper-buttons-row
+    #            buttons:
+    #              - icon: mdi:floppy
+    #                name: Previous animation
+    #                tap_action:
+    #                  action: call-service
+    #                  service: pyscript.save_previous_nanoleaf_state
+    #              - icon: mdi:floppy
+    #                name: Current animation
+    #                tap_action:
+    #                  action: call-service
+    #                  service: pyscript.save_current_nanoleaf_state
 
   - type: entities
     title: Other

@@ -80,6 +80,23 @@ crt_pi_display_source:
     - media_player.upstairs_speakers
     - media_player.will_s_yas_209
 
+mtrxpi_display_source:
+  name: MtrxPi Display Source
+  icon: mdi:square-opacity
+  options:
+    - media_player.all_speakers
+    - media_player.downstairs_speakers
+    - media_player.hifi_system
+    - media_player.kitchen_nest_mini
+    - media_player.lounge_chromecast
+    - media_player.matts_room_nest_mini
+    - media_player.spotify_matt_scott
+    - media_player.spotify_tom_jones
+    - media_player.spotify_will_garside
+    - media_player.tom_s_speakers
+    - media_player.upstairs_speakers
+    - media_player.will_s_yas_209
+
 pi_stats_legend_sensor_type:
   name: Pi Stats Legend Sensor
   icon: mdi:raspberry-pi
