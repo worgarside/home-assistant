@@ -78,7 +78,7 @@ sensor:
     force_update: true
     icon: mdi:memory
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°"
+    unit_of_measurement: "°C"
     state_class: measurement
 
   - name: GrowPi Disk Usage
@@ -134,7 +134,7 @@ sensor:
     force_update: true
     icon: mdi:memory
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°"
+    unit_of_measurement: "°C"
     state_class: measurement
 
   - name: CRTPi Disk Usage
@@ -190,7 +190,7 @@ sensor:
     force_update: true
     icon: mdi:memory
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°"
+    unit_of_measurement: "°C"
     state_class: measurement
 
   - name: VSMPPi Disk Usage
@@ -246,7 +246,7 @@ sensor:
     force_update: true
     icon: mdi:memory
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°"
+    unit_of_measurement: "°C"
     state_class: measurement
 
   - name: ClmtPi Disk Usage
@@ -302,7 +302,7 @@ sensor:
     force_update: true
     icon: mdi:memory
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°"
+    unit_of_measurement: "°C"
     state_class: measurement
 
   - name: MtrxPi Disk Usage
@@ -345,7 +345,7 @@ sensor:
     force_update: true
     icon: mdi:thermometer
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°"
+    unit_of_measurement: "°C"
     state_class: measurement
 
   - name: Lounge Humidity
@@ -364,7 +364,7 @@ sensor:
     force_update: true
     icon: mdi:thermometer
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°"
+    unit_of_measurement: "°C"
     state_class: measurement
 
   - name: CRT TV Internal Humidity
