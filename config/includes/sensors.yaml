@@ -33,16 +33,6 @@
     value_template: "{{ value_json.ip }}"
 
   - platform: rest
-    name: Mini CRT Power State
-    method: GET
-    scan_interval: 60
-    force_update: true
-    resource: "http://192.168.1.170:5000/crt/state"
-    headers:
-      Content-Type: application/json
-    value_template: "{{ value_json.state }}"
-
-  - platform: rest
     name: Will's Room Curtain Position
     scan_interval: 30
     method: GET
