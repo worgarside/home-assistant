@@ -1,6 +1,7 @@
 ---
 debug_persistent_notification:
   description: "Create a persistent notification if debugging is turned on"
+  mode: parallel
   fields:
     title:
       description: "The notification's title"
@@ -20,6 +21,7 @@ debug_persistent_notification:
 
 notify_will:
   description: "Send a notification to Will's phone and the HA UI"
+  mode: parallel
   fields:
     title:
       description: "The title of the notification"
@@ -39,6 +41,7 @@ notify_will:
 
 send_washing_machine_user_choice_notif:
   description: "Send a notification asking who's using the washing machine"
+  mode: parallel
   fields:
     target_device:
       description: "The device to notify"
@@ -58,6 +61,7 @@ send_washing_machine_user_choice_notif:
 
 start_spotify_on_device:
   description: "Start Spotify playback on a particular device"
+  mode: restart
   fields:
     entity_id:
       # yamllint disable-line rule:line-length
@@ -91,6 +95,7 @@ start_spotify_on_device:
 
 crt_pi_update_display:
   description: "Update the CRT Pi display from the chosen media player's track"
+  mode: parallel
   sequence:
     - alias: "Set Variables"
       variables:
