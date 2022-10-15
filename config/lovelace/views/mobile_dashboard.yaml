@@ -8,6 +8,7 @@ path: mobile_dashboard
 cards:
   - type: entities
     title: Kitchen
+    state_color: true
     entities:
       - type: custom:decluttering-card
         template: folding_rgb_light_template
@@ -32,7 +33,6 @@ cards:
       - type: custom:fold-entity-row
         head:
           entity: binary_sensor.washing_machine
-          state_color: true
         entities:
           - entity: sensor.washing_machine_current_consumption
             name: Power Consumption
@@ -41,6 +41,7 @@ cards:
 
   - type: entities
     title: Landing
+    state_color: true
     entities:
       - type: custom:decluttering-card
         template: folding_rgb_light_template
@@ -115,6 +116,7 @@ cards:
 
   - type: entities
     title: Matt's Room
+    state_color: true
     entities:
       - type: custom:decluttering-card
         template: folding_media_player_with_spotcast_template
@@ -138,6 +140,7 @@ cards:
 
   - type: entities
     title: Tom's Room
+    state_color: true
     entities:
       - type: custom:decluttering-card
         template: folding_media_player_with_spotcast_template
@@ -153,6 +156,7 @@ cards:
 
   - type: entities
     title: Will's Room
+    state_color: true
     entities:
       - type: custom:fold-entity-row
         head:
@@ -171,7 +175,6 @@ cards:
       - type: custom:fold-entity-row
         head:
           entity: switch.tower_fan
-          state_color: true
         entities:
           - entity: input_number.wills_room_fan_auto_on_threshold
             name: Auto-On Threshold
@@ -316,6 +319,7 @@ cards:
 
   - type: entities
     title: Other
+    state_color: true
     entities:
       - type: custom:mini-climate
         card_mod:
