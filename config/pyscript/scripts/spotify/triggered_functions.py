@@ -365,6 +365,7 @@ def process_now_playing(value: str) -> None:
                     repr(current_track),
                 )
             else:
+                log.info("Adding track to playlist (%s)", repr(matched_track))
                 add_to_playlist(matched_track, PIXEL_NOW_PLAYING)
         else:
             log.info("No matching track found")
