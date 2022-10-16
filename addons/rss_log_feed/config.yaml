@@ -1,7 +1,7 @@
 ---
 name: "HA Remote Logger"
 description: "A custom API to add logs to HA"
-version: "1.0.0"
+version: "1.1.0"
 slug: "rss_log_feed"
 init: false
 arch:
@@ -13,7 +13,13 @@ arch:
 startup: before
 options:
   log_ttl: 259200
+  sftp_hostname: homeassistant.local
+  sftp_username: root
+  sftp_key_filepath: .ssh/home_assistant_addons
 schema:
   log_ttl: int
+  sftp_hostname: str
+  sftp_username: str
+  sftp_key_filepath: str
 ports:
   8001/tcp: 8001

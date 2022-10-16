@@ -262,11 +262,13 @@ def log(level: str) -> Response:
     if (not isinstance(level, str)) or (
         level_num := NAME_TO_LEVEL.get(level.upper())
     ) is None:
+        LOGGER.error("Invalid log level: %s", level)
         return Response(f"Invalid level: {str(level)!r}", status=400)
 
     try:
         log_payload = LogPayload.from_request(request)
     except ValidationError as exc:
+        LOGGER.exception(exc)
         return Response(
             dumps(
                 {
