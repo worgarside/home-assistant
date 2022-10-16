@@ -341,11 +341,76 @@ cards:
           variables:
             - sensor_suffix: _disk_usage
             - hasspi_sensor: disk_use_percent
-      - type: entities
-        entities:
-          - binary_sensor.clmtpi_online
-          - binary_sensor.crtpi_online
-          - binary_sensor.growpi_online
-          - binary_sensor.hasspi_online
-          - binary_sensor.mtrxpi_online
-          - binary_sensor.vsmppi_online
+      - type: horizontal-stack
+        cards:
+          - type: entities
+            show_state: false
+            entities:
+              - entity: binary_sensor.clmtpi_online
+                name: ClmtPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.clmtpi_online") == "on" %}
+                        #FF9800;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+              - entity: binary_sensor.crtpi_online
+                name: CRTPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.crtpi_online") == "on" %}
+                        #02D1D1;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+              - entity: binary_sensor.growpi_online
+                name: GrowPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.growpi_online") == "on" %}
+                        #E74B3B;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+          - type: entities
+            entities:
+              - entity: binary_sensor.hasspi_online
+                name: HAssPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.hasspi_online") == "on" %}
+                        #9B59B6;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+              - entity: binary_sensor.mtrxpi_online
+                name: MtrxPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.mtrxpi_online") == "on" %}
+                        #F1C40E;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+              - entity: binary_sensor.vsmppi_online
+                name: VSMPPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.vsmppi_online") == "on" %}
+                        #029E44;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
