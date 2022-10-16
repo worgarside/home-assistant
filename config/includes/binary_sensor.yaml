@@ -1,20 +1,25 @@
 ---
   - platform: ping
-    host: 192.168.1.160
-    name: "Galaxy Light Online"
+    host: vsmppi.local
+    name: "VSMPPi Online"
     scan_interval: 30
 
   - platform: ping
-    host: 192.168.1.166
-    name: "VSMP Pi Online"
+    host: crt-pi.local
+    name: "CRTPi Online"
     scan_interval: 30
 
   - platform: ping
-    host: 192.168.1.170
-    name: "CRT Pi Online"
+    host: growpi.local
+    name: "GrowPi Online"
     scan_interval: 30
 
   - platform: ping
-    host: 192.168.1.197
-    name: "Grow Pi Online"
+    host: clmt.local
+    name: "ClmtPi Online"
+    scan_interval: 30
+
+  - platform: ping
+    host: mtrxpi.local
+    name: "MtrxPi Online"
     scan_interval: 30
