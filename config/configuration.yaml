@@ -136,6 +136,10 @@ lovelace:
       # yamllint disable-line rule:line-length
     - url: /hacsfiles/lovelace-multiline-text-input-card/lovelace-multiline-text-input-card.js
       type: module
+    - url: /hacsfiles/clock-weather-card/clock-weather-card.js
+      type: module
+    - url: /hacsfiles/tabbed-card/tabbed-card.js
+      type: module
 
 map:
 
