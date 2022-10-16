@@ -91,6 +91,8 @@ cards:
         entities:
           - entity: input_select.mtrxpi_display_source
             name: Display Source
+          - entity: input_number.rgb_led_matrix_brightness
+            name: Brightness
           - entity: script.mtrxpi_update_display
             name: Force Update
 
