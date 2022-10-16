@@ -15,11 +15,16 @@
     scan_interval: 30
 
   - platform: ping
-    host: clmt.local
+    host: clmtpi.local
     name: "ClmtPi Online"
     scan_interval: 30
 
   - platform: ping
     host: mtrxpi.local
     name: "MtrxPi Online"
+    scan_interval: 30
+
+  - platform: ping
+    host: homeassistant.local
+    name: "HAssPi Online"
     scan_interval: 30

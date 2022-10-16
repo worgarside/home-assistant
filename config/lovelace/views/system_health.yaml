@@ -341,3 +341,11 @@ cards:
           variables:
             - sensor_suffix: _disk_usage
             - hasspi_sensor: disk_use_percent
+      - type: entities
+        entities:
+          - binary_sensor.clmtpi_online
+          - binary_sensor.crtpi_online
+          - binary_sensor.growpi_online
+          - binary_sensor.hasspi_online
+          - binary_sensor.mtrxpi_online
+          - binary_sensor.vsmppi_online
