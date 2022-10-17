@@ -19,21 +19,6 @@
             Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
           title: Pyscript has been reloaded
 
-  - alias: /lovelace/auto_reload
-    id: lovelace_auto_reload
-    trigger:
-      platform: event
-      event_type: folder_watcher
-      event_data:
-        event_type: modified
-    condition: "{{ '/config/lovelace' in trigger.event.data.folder }}"
-    action:
-      - service: browser_mod.lovelace_refresh
-        data:
-          deviceId:
-            - a70fc31e-241f5927  # Will's MBP
-            - 2549ac14-8730c6e5  # Will's Pixel 6 Pro
-
   - alias: /homeassistant/file_watcher/automation_auto_reload
     id: automation_auto_reload
     trigger:
