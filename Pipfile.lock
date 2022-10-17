@@ -1416,7 +1416,7 @@
                 "sha256:6f62d78e2f89b4500b080fe3a81690850cd254227f27f75c3a0c491a1f351ba7",
                 "sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951"
             ],
-            "markers": "python_version < '4' and python_full_version >= '3.6.1'",
+            "markers": "python_version < '4.0' and python_full_version >= '3.6.1'",
             "version": "==5.10.1"
         },
         "lazy-object-proxy": {
@@ -1659,7 +1659,7 @@
                 "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
                 "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
             ],
-            "markers": "python_full_version < '3.11.0a7'",
+            "markers": "python_version < '3.11'",
             "version": "==2.0.1"
         },
         "tomlkit": {
@@ -1667,7 +1667,7 @@
                 "sha256:571854ebbb5eac89abcb4a2e47d7ea27b89bf29e09c35395da6f03dd4ae23d1c",
                 "sha256:f2ef9da9cef846ee027947dc99a45d6b68a63b0ebc21944649505bf2e8bc5fe7"
             ],
-            "markers": "python_version >= '3.6' and python_version < '4'",
+            "markers": "python_version >= '3.6' and python_version < '4.0'",
             "version": "==0.11.5"
         },
         "typer": {
@@ -1724,11 +1724,11 @@
         },
         "types-pillow": {
             "hashes": [
-                "sha256:6b525b0951ada076f3aefe2347e0bff6231283ce959ad8577a4416604acc673c",
-                "sha256:bfe14afa1e9047a52b3dc326c93b4f57db72641794e194f11b511f68b0061814"
+                "sha256:49a633ad811446efeb2abbfea4596cff470b1a48adba6c944fae57b3a667e5cb",
+                "sha256:b88bd03d6b1d467d2dd1d54808b04631ca88941fe16f9eeb92bc114e5a145ec0"
             ],
             "index": "pypi",
-            "version": "==9.2.2"
+            "version": "==9.2.2.2"
         },
         "types-pyyaml": {
             "hashes": [
