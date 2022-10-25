@@ -1,12 +1,10 @@
 ---
 
-# ------------------------ Hue Remotes ------------------------ #
+# <editor-fold desc="Will's Room">
 
-  # --- --- --- --- --- Will's Room --- --- --- --- --- #
-
-  # Will's Room Remote Button 1 Short Press - Turn Will's Room on
-  - alias: /hue/remote/will_s_room/button1/short_press
-    id: hue_remote_will_s_room_button1_short_press
+  # Will's Room Remote Button 1 Initial Press - Turn Will's Room on
+  - alias: /hue/remote/will_s_room/button1/initial_press
+    id: hue_remote_will_s_room_button1_initial_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -20,9 +18,9 @@
         target:
           area_id: will_s_room
 
-  # Will's Room Remote Button 2 Short Press - Brighten Will's Room by 25
-  - alias: /hue/remote/will_s_room/button2/short_press
-    id: hue_remote_will_s_room_button2_short_press
+  # Will's Room Remote Button 2 Initial Press - Brighten Will's Room by 25
+  - alias: /hue/remote/will_s_room/button2/initial_press
+    id: hue_remote_will_s_room_button2_initial_press
     mode: queued
     trigger:
       - device_id: aa96a5e6e87f4076da2f1501c53e02c8
@@ -63,9 +61,9 @@
         data_template:
           brightness: '{{states.light.wills_shapes.attributes.brightness + 50}}'
 
-  # Will's Room Remote Button 3 Short Press - Dim Will's Room by 25
-  - alias: /hue/remote/will_s_room/button3/short_press
-    id: hue_remote_will_s_room_button3_short_press
+  # Will's Room Remote Button 3 Initial Press - Dim Will's Room by 25
+  - alias: /hue/remote/will_s_room/button3/initial_press
+    id: hue_remote_will_s_room_button3_initial_press
     mode: queued
     trigger:
       - device_id: aa96a5e6e87f4076da2f1501c53e02c8
@@ -106,9 +104,9 @@
         data_template:
           brightness: '{{states.light.wills_shapes.attributes.brightness - 50}}'
 
-  # Will's Room Remote Button 4 Short Press - Turn Will's Room off
-  - alias: /hue/remote/will_s_room/button4/short_press
-    id: hue_remote_will_s_room_button4_short_press
+  # Will's Room Remote Button 4 Initial Press - Turn Will's Room off
+  - alias: /hue/remote/will_s_room/button4/initial_press
+    id: hue_remote_will_s_room_button4_initial_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -122,7 +120,100 @@
         target:
           area_id: will_s_room
 
-  # --- --- --- --- --- Kitchen --- --- --- --- --- #
+  # Will's Room Curtain Remote Button 1 Initial Press - Turn Will's Room off
+  - alias: /hue/remote/will_s_room_curtain/button1/initial_press
+    id: hue_remote_will_s_room_curtain_button1_initial_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - platform: event
+        event_type: hue_event
+        event_data:
+          id: will_s_room_curtain_remote_button
+          device_id: 439d37f63e91cac74df88af27f08d688
+          type: initial_press
+          subtype: 1
+    action:
+      - service: cover.close_cover
+        target:
+          entity_id: cover.wills_room_curtain
+
+# Will's Room Curtain Remote Button 1 Initial Press - Turn Will's Room off
+  - alias: /hue/remote/will_s_room_curtain/button2/initial_press
+    id: hue_remote_will_s_room_curtain_button2_initial_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - platform: event
+        event_type: hue_event
+        event_data:
+          id: will_s_room_curtain_remote_button
+          device_id: 439d37f63e91cac74df88af27f08d688
+          type: initial_press
+          subtype: 2
+    action:
+      - service: cover.set_cover_position
+        target:
+          entity_id: cover.wills_room_curtain
+        data:
+          position: >
+            {{
+              max(
+                int(
+                  states.cover.wills_room_curtain.attributes.current_position - 25
+                ),
+                0
+              )
+            }}
+
+# Will's Room Curtain Remote Button 1 Initial Press - Turn Will's Room off
+  - alias: /hue/remote/will_s_room_curtain/button3/initial_press
+    id: hue_remote_will_s_room_curtain_button3_initial_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - platform: event
+        event_type: hue_event
+        event_data:
+          id: will_s_room_curtain_remote_button
+          device_id: 439d37f63e91cac74df88af27f08d688
+          type: initial_press
+          subtype: 3
+    action:
+      - service: cover.set_cover_position
+        target:
+          entity_id: cover.wills_room_curtain
+        data:
+          position: >
+            {{
+              min(
+                int(
+                  states.cover.wills_room_curtain.attributes.current_position + 25
+                ),
+                100
+              )
+            }}
+
+  # Will's Room Curtain Remote Button 1 Initial Press - Turn Will's Room off
+  - alias: /hue/remote/will_s_room_curtain/button4/initial_press
+    id: hue_remote_will_s_room_curtain_button4_initial_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - platform: event
+        event_type: hue_event
+        event_data:
+          id: will_s_room_curtain_remote_button
+          device_id: 439d37f63e91cac74df88af27f08d688
+          type: initial_press
+          subtype: 4
+    action:
+      - service: cover.open_cover
+        target:
+          entity_id: cover.wills_room_curtain
+
+# </editor-fold>
+# <editor-fold desc="Kitchen">
 
   # Kitchen Remote Button 1 Any Press - Turn on all the Kitchen lights
   - alias: /hue/remote/kitchen/button1/press
@@ -150,9 +241,9 @@
         target:
           area_id: kitchen
 
-  # Kitchen Remote Button 2 Short Press
-  - alias: /hue/remote/kitchen/button2/short_press
-    id: hue_remote_kitchen_button2_short_press
+  # Kitchen Remote Button 2 Initial Press
+  - alias: /hue/remote/kitchen/button2/initial_press
+    id: hue_remote_kitchen_button2_initial_press
     mode: queued
     trigger:
       - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
@@ -192,9 +283,9 @@
         data_template:
           brightness: '{{states.light.kitchen_work_light.attributes.brightness + 50}}'
 
-  # Kitchen Remote Button 3 Short Press
-  - alias: /hue/remote/kitchen/button3/short_press
-    id: hue_remote_kitchen_button3_short_press
+  # Kitchen Remote Button 3 Initial Press
+  - alias: /hue/remote/kitchen/button3/initial_press
+    id: hue_remote_kitchen_button3_initial_press
     mode: queued
     trigger:
       - device_id: c4b6cf2f6bd194eefe26f2a22e545b7a
@@ -233,9 +324,9 @@
         data_template:
           brightness: '{{states.light.kitchen_work_light.attributes.brightness + 50}}'
 
-  # Kitchen Remote Button 4 Short Press
-  - alias: /hue/remote/kitchen/button4/short_press
-    id: hue_remote_kitchen_button4_short_press
+  # Kitchen Remote Button 4 Initial Press
+  - alias: /hue/remote/kitchen/button4/initial_press
+    id: hue_remote_kitchen_button4_initial_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -259,11 +350,12 @@
         target:
           area_id: kitchen
 
-  # --- --- --- --- --- Lounge --- --- --- --- --- #
+# </editor-fold>
+# <editor-fold desc="Lounge">
 
-  # Lounge Remote Button 1 Short Press
-  - alias: /hue/remote/lounge/button1/short_press
-    id: hue_remote_lounge_button1_short_press
+  # Lounge Remote Button 1 Initial Press
+  - alias: /hue/remote/lounge/button1/initial_press
+    id: hue_remote_lounge_button1_initial_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -277,9 +369,9 @@
         target:
           area_id: lounge
 
-  # Lounge Remote Button 2 Short Press
-  - alias: /hue/remote/lounge/button2/short_press
-    id: hue_remote_lounge_button2_short_press
+  # Lounge Remote Button 2 Initial Press
+  - alias: /hue/remote/lounge/button2/initial_press
+    id: hue_remote_lounge_button2_initial_press
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -339,9 +431,9 @@
         data_template:
           brightness: '{{states.light.galaxy_light.attributes.brightness + 50}}'
 
-  # Lounge Remote Button 3 Short Press
-  - alias: /hue/remote/lounge/button3/short_press
-    id: hue_remote_lounge_button3_short_press
+  # Lounge Remote Button 3 Initial Press
+  - alias: /hue/remote/lounge/button3/initial_press
+    id: hue_remote_lounge_button3_initial_press
     mode: queued
     trigger:
       - device_id: 6e2fd8c60e6ff2ffcb8f60627281f767
@@ -401,9 +493,9 @@
         data_template:
           brightness: '{{states.light.galaxy_light.attributes.brightness - 50}}'
 
-  # Lounge Remote Button 4 Short Press
-  - alias: /hue/remote/lounge/button4/short_press
-    id: hue_remote_lounge_button4_short_press
+  # Lounge Remote Button 4 Initial Press
+  - alias: /hue/remote/lounge/button4/initial_press
+    id: hue_remote_lounge_button4_initial_press
     mode: single
     max_exceeded: silent
     trigger:
@@ -416,3 +508,5 @@
       - service: light.turn_off
         target:
           area_id: lounge
+
+# </editor-fold>
