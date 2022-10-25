@@ -127,7 +127,7 @@
       entity_id:
         - sensor.monstera_saturation
         - sensor.ficus_saturation
-        - sensor.yukka_saturation
+        - sensor.pineapple_saturation
     # Adding condition to minimise "false positive" triggers       -
     condition: >
       {{
@@ -135,7 +135,7 @@
         max(
           states('input_number.monstera_water_threshold'),
           states('input_number.ficus_water_threshold'),
-          states('input_number.yukka_water_threshold'),
+          states('input_number.pineapple_water_threshold'),
         ) | float
       }}
     action:

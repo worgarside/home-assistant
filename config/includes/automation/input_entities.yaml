@@ -209,72 +209,78 @@
           topic: /plant_monitor/ficus/wet_point/set
           payload_template: '{{ trigger.to_state.state | float }}'
 
-  - alias: /input_number/yukka_dry_point/auto_set
-    id: input_number_yukka_dry_point_auto_set
+  - alias: /input_number/pineapple_dry_point/auto_set
+    id: input_number_pineapple_dry_point_auto_set
     trigger:
       - platform: numeric_state
-        entity_id: sensor.yukka_moisture
-        above: input_number.yukka_dry_point
+        entity_id: sensor.pineapple_moisture
+        above: input_number.pineapple_dry_point
         for:
           minutes: 5
     action:
       - alias: Set variables
         variables:
-          previous_value: "{{ states('input_number.yukka_dry_point') }}"
+          previous_value: "{{ states('input_number.pineapple_dry_point') }}"
       - service: input_number.set_value
         target:
-          entity_id: input_number.yukka_dry_point
+          entity_id: input_number.pineapple_dry_point
         data:
-          value: "{{ ( states('sensor.yukka_moisture') | float * 1.1 ) | round(2) }}"
+          value: >
+            {{
+              ( states('sensor.pineapple_moisture') | float * 1.1 ) | round(2)
+            }}
       - service: script.debug_persistent_notification
         data:
-          title: Setting Yukka Dry Point
+          title: Setting Pineapple Dry Point
           # yamllint disable-line rule:line-length
-          message: Changed from {{ previous_value }} to {{ states('input_number.yukka_dry_point') }}
+          message: Changed from {{ previous_value }} to {{ states('input_number.pineapple_dry_point') }}
 
-  - alias: /input_number/yukka_dry_point/publish_update
-    id: input_number_yukka_dry_point_publish_update
+  - alias: /input_number/pineapple_dry_point/publish_update
+    id: input_number_pineapple_dry_point_publish_update
     trigger:
       - platform: state
-        entity_id: input_number.yukka_dry_point
+        entity_id: input_number.pineapple_dry_point
     action:
       - service: mqtt.publish
         data:
-          topic: /plant_monitor/yukka/dry_point/set
+          topic: /plant_monitor/pineapple/dry_point/set
           payload_template: '{{ trigger.to_state.state | float }}'
 
-  - alias: /input_number/yukka_wet_point/auto_set
-    id: input_number_yukka_wet_point_auto_set
+  - alias: /input_number/pineapple_wet_point/auto_set
+    id: input_number_pineapple_wet_point_auto_set
     trigger:
       - platform: numeric_state
-        entity_id: sensor.yukka_moisture
-        below: input_number.yukka_wet_point
+        entity_id: sensor.pineapple_moisture
+        below: input_number.pineapple_wet_point
         for:
           minutes: 5
     action:
       - alias: Set variables
         variables:
-          previous_value: "{{ states('input_number.yukka_wet_point') }}"
+          previous_value: "{{ states('input_number.pineapple_wet_point') }}"
       - service: input_number.set_value
         target:
-          entity_id: input_number.yukka_wet_point
+          entity_id: input_number.pineapple_wet_point
         data:
-          value: "{{ ( states('sensor.yukka_moisture') | float * 0.9 ) | round(2) }}"
+          value: >
+            {{
+              ( states('sensor.pineapple_moisture') | float * 0.9 ) | round(2)
+            }}
       - service: script.debug_persistent_notification
         data:
-          title: Setting Yukka Wet Point
+          title: Setting Pineapple Wet Point
           # yamllint disable-line rule:line-length
-          message: Changed from {{ previous_value }} to {{ states('input_number.yukka_wet_point') }}
+          message: Changed from {{ previous_value }} to {{ states('input_number.pineapple_wet_point') }}
 
-  - alias: /input_number/yukka_wet_point/publish_update
-    id: input_number_yukka_wet_point_publish_update
+  - alias: /input_number/pineapple_wet_point/publish_update
+    id: input_number_pineapple_wet_point_publish_update
     trigger:
       - platform: state
-        entity_id: input_number.yukka_wet_point
+        entity_id: input_number.pineapple_wet_point
     action:
       - service: mqtt.publish
         data:
-          topic: /plant_monitor/yukka/wet_point/set
+          topic: /plant_monitor/pineapple/wet_point/set
           payload_template: '{{ trigger.to_state.state | float }}'
 
 #</editor-fold>

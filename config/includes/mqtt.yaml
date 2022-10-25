@@ -20,8 +20,8 @@ sensor:
     unit_of_measurement: '%'
     state_class: measurement
 
-  - name: Yukka Moisture
-    state_topic: /will_s_room/plants/yukka
+  - name: Pineapple Moisture
+    state_topic: /will_s_room/plants/pineapple
     force_update: true
     icon: mdi:flower
     value_template: '{{ value_json.moisture }}'
@@ -29,8 +29,8 @@ sensor:
     state_class: measurement
     device_class: frequency
 
-  - name: Yukka Saturation
-    state_topic: /will_s_room/plants/yukka
+  - name: Pineapple Saturation
+    state_topic: /will_s_room/plants/pineapple
     force_update: true
     icon: mdi:flower-outline
     value_template: '{{ value_json.saturation }}'
