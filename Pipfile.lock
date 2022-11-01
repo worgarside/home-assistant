@@ -147,7 +147,7 @@
                 "sha256:2f4190d333e81e10b2a4e156150ddb3596f5f11da67e9d51ba39057aa7a17f7e",
                 "sha256:f4716e1e65ea1194be03f312f2b2643a8b76326c59538ddc5353642616ead82a"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4.0'",
+            "markers": "python_version >= '3.7' and python_version < '4'",
             "version": "==22.9.0"
         },
         "bcrypt": {
@@ -180,7 +180,7 @@
                 "sha256:5bf2c87ef370fcd80ebe75be361ef7b9655660c2e2baf957fab0f3a42c82ec7f",
                 "sha256:dff7c7f281dcb6629d0d722209c79ec3aa2a6c33867cb5c1ea3d44b72ca155c0"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4.0'",
+            "markers": "python_version >= '3.7' and python_version < '4'",
             "version": "==0.19.1"
         },
         "certifi": {
@@ -449,7 +449,7 @@
                 "sha256:00aaffe0e5c37213d2f25b65aada15dd6d02f1b9d2fe89e927ac69e59ee8f2f9",
                 "sha256:da9fd3ba1e2231f69540f45d85636c2250a8fbe1ff74de216f9917a6afbe6d8b"
             ],
-            "markers": "python_version >= '3.9' and python_version < '4.0'",
+            "markers": "python_version < '4' and python_full_version >= '3.9.0'",
             "version": "==1.3.0"
         },
         "homeassistant": {
@@ -1141,7 +1141,7 @@
                 "sha256:3fa96cf423e6987997fc326ae8df396db2a8b7c667747d47ddd8ecba91f4a74e",
                 "sha256:b930dd878d5a8afb066a637fbb35144fe7901e3b209d1cd4f524bd0e9deee997"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5' and python_version < '4.0'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5' and python_version < '4'",
             "version": "==1.26.12"
         },
         "voluptuous": {
@@ -1707,11 +1707,11 @@
         },
         "types-pillow": {
             "hashes": [
-                "sha256:49a633ad811446efeb2abbfea4596cff470b1a48adba6c944fae57b3a667e5cb",
-                "sha256:b88bd03d6b1d467d2dd1d54808b04631ca88941fe16f9eeb92bc114e5a145ec0"
+                "sha256:0851a1b3ff002253a7af8f7eaf74d79fb761430933bd1aeb73d853a17f2a0a9d",
+                "sha256:df09de7e557706c16fb30db887327c7f1c81e8ebc703d9d4739bfda7cad0e733"
             ],
             "index": "pypi",
-            "version": "==9.2.2.2"
+            "version": "==9.3.0.0"
         },
         "types-pyyaml": {
             "hashes": [
