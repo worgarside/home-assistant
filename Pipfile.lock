@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "63fe9982804fc4b0567b25fe7c0e735184699c928b2d83dbc36d936c6300a647"
+            "sha256": "471c9d3fd031c8411cc9f6e6112c867bb2f7331c10a67dd65e59334c7d219b19"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -462,11 +462,11 @@
         },
         "homeassistant": {
             "hashes": [
-                "sha256:180335b15c31af464ab1e262c00deb73d69273ed05b320ec311efe5269127857",
-                "sha256:2b76329bbb744f4af80395e1fcd6a2866b72f161fb1f8e13708a0d4dc65c489a"
+                "sha256:78f13709727541851ea6e4cb3e8ab4cd40244da9cf6315535272d55f63778345",
+                "sha256:ac79ad484180ab58d294d9664050b5e47e6626273581ecd2e8645483cb4f9584"
             ],
             "index": "pypi",
-            "version": "==2022.11.2"
+            "version": "==2022.11.4"
         },
         "httpcore": {
             "hashes": [
@@ -1364,7 +1364,7 @@
                 "sha256:6f62d78e2f89b4500b080fe3a81690850cd254227f27f75c3a0c491a1f351ba7",
                 "sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951"
             ],
-            "markers": "python_version < '4.0' and python_full_version >= '3.6.1'",
+            "markers": "python_version < '4' and python_full_version >= '3.6.1'",
             "version": "==5.10.1"
         },
         "lazy-object-proxy": {
