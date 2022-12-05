@@ -457,7 +457,7 @@
                 "sha256:82487a7e6bdcf59a703def06b1659c9d7ed1bd8d8742129f5bc198d00360c8c7",
                 "sha256:a39e82f121d0178a7ccde4d09fba84875413ae27625795d1174634639d2a22df"
             ],
-            "markers": "python_version < '4.0' and python_full_version >= '3.9.0'",
+            "markers": "python_version >= '3.9' and python_version < '4.0'",
             "version": "==1.6.0"
         },
         "homeassistant": {
@@ -1660,11 +1660,11 @@
         },
         "types-pillow": {
             "hashes": [
-                "sha256:0851a1b3ff002253a7af8f7eaf74d79fb761430933bd1aeb73d853a17f2a0a9d",
-                "sha256:df09de7e557706c16fb30db887327c7f1c81e8ebc703d9d4739bfda7cad0e733"
+                "sha256:2a0323bdc0af126a7ba12d3a529a50f1d058e827cb475500f14994876ab7d863",
+                "sha256:b2d8a21b97857b69fbfdd5d0302e9a43ba4a9bdc625f4a6bdcd404aa175d86bc"
             ],
             "index": "pypi",
-            "version": "==9.3.0.0"
+            "version": "==9.3.0.2"
         },
         "types-pyyaml": {
             "hashes": [
