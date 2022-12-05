@@ -1,7 +1,10 @@
 """Services for managing SwitchBot devices via the API"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from json import dumps
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret
 from requests import post
