@@ -1,8 +1,11 @@
 """Update a whole load of variables from the Netgear API"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from datetime import timedelta
 from json import dumps
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret
 from pynetgear import Netgear
