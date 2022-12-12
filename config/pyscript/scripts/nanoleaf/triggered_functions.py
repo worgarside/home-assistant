@@ -1,7 +1,10 @@
 """Functions which are only run on a certain trigger"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from os.path import isfile
 from socket import gethostname
-from typing import Any, Callable, Dict, List
+from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret, write_file
 from nanoleafapi import Nanoleaf
@@ -49,7 +52,7 @@ MEDIA_PLAYER_OVERRIDES = {
 
 
 @pyscript_executor
-def get_n_colors_from_image(img_path: str, n: int) -> List[Dict[str, int]]:
+def get_n_colors_from_image(img_path: str, n: int) -> list[dict[str, int]]:
     """Get the N most common colors from an image
 
     Args:
