@@ -1,7 +1,10 @@
 # pylint: disable=missing-function-docstring
 """Functions which are only run on a certain trigger"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 from helpers import HAExceptionCatcher
 from wg_utilities.devices.yamaha_yas_209 import YamahaYas209
