@@ -1,10 +1,12 @@
 """Custom addon to listen to the YAS-209 and post updates to HA"""
+from __future__ import annotations
+
 from datetime import datetime
 from io import BytesIO
 from json import dumps
 from logging import DEBUG, getLogger
 from os import environ, getenv
-from typing import Any, Dict, Optional, TypedDict
+from typing import Any, TypedDict
 
 from paramiko import AutoAddPolicy, SFTPClient, SSHClient
 from requests import post
@@ -21,13 +23,13 @@ add_stream_handler(LOGGER)
 class PayloadInfo(TypedDict):
     """Info for the PAYLOAD constant"""
 
-    state: Optional[str]
-    album_art_uri: Optional[str]
-    volume_level: Optional[float]
-    media_duration: Optional[float]
-    media_title: Optional[str]
-    media_artist: Optional[str]
-    media_album_name: Optional[str]
+    state: str | None
+    album_art_uri: str | None
+    volume_level: float | None
+    media_duration: float | None
+    media_title: str | None
+    media_artist: str | None
+    media_album_name: str | None
 
 
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
@@ -56,7 +58,7 @@ def create_sftp_client() -> SFTPClient:
 
 
 @on_exception()  # type: ignore[misc]
-def log_request_payload(event_payload: Dict[str, Any]) -> None:
+def log_request_payload(event_payload: dict[str, Any]) -> None:
     """Log the request payload locally for archiving etc.
 
     Args:

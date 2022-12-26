@@ -1,6 +1,9 @@
 """Functions which can be triggered/timed and set the value(s) for variable(s)"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from socket import gethostname
-from typing import Any, Callable, Optional
+from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret
 from wg_utilities.clients import SpotifyClient
@@ -28,7 +31,7 @@ if gethostname() != "homeassistant":
 @state_trigger("sensor.spotify_matt_scott_media_title")
 @state_trigger("sensor.spotify_tom_jones_media_title")
 @state_trigger("sensor.spotify_will_garside_media_title")
-def update_tempo_variables(var_name: Optional[str] = None) -> None:
+def update_tempo_variables(var_name: str | None = None) -> None:
     """Update the tempo variables every minute"""
 
     users_to_update = (
