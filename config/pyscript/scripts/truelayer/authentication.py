@@ -1,6 +1,9 @@
 """Functions/services for TrueLayer authentication"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret
 from wg_utilities.clients import TrueLayerClient
