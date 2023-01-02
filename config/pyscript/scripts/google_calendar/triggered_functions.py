@@ -1,7 +1,10 @@
 """Functions which are only run on a certain trigger"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from datetime import datetime, timedelta
 from socket import gethostname
-from typing import Any, Callable, List
+from typing import Any
 
 from helpers import HAExceptionCatcher
 from wg_utilities.clients import GoogleCalendarClient
@@ -43,7 +46,7 @@ PERSONAL_CLIENT = GoogleCalendarClient(
 @pyscript_executor
 def get_accepted_work_events(
     from_datetime: datetime, to_datetime: datetime
-) -> List[Event]:
+) -> list[Event]:
     """Get a list of the work events which have been accepted
 
     Args:
@@ -63,7 +66,7 @@ def get_accepted_work_events(
 @pyscript_executor
 def get_previously_copied_events(
     from_datetime: datetime, to_datetime: datetime
-) -> List[Event]:
+) -> list[Event]:
     """Get a list of events which have previously been copied to my personal calendar
 
     Args:
@@ -85,7 +88,7 @@ def get_previously_copied_events(
     )
 
 
-def event_in_list(target_event: Event, event_list: List[Event]) -> bool:
+def event_in_list(target_event: Event, event_list: list[Event]) -> bool:
     """Check if an Event is in a list of Events
 
     Args:

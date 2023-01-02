@@ -1,8 +1,11 @@
 """Module to allow the creation of triggered service calls on the fly"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from hashlib import md5
 from json import dumps
 from socket import gethostname
-from typing import TYPE_CHECKING, Any, Callable, Literal, Optional, TypedDict, Union
+from typing import TYPE_CHECKING, Any, Literal, Optional, TypedDict
 
 from helpers import HAExceptionCatcher
 from yaml import safe_load
@@ -27,7 +30,7 @@ if TYPE_CHECKING:
         """Typing info for the `config` field in the scheduled tasks records"""
 
         repeat_forever: bool
-        runs_remaining: Union[int, Literal["∞"]]
+        runs_remaining: int | Literal["∞"]
         service_call: str
         service_kwargs: str
         total_repeat_count: int

@@ -1,6 +1,9 @@
 """Updater script for Google Fit variables"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 from helpers import HAExceptionCatcher
 from wg_utilities.clients.google_fit import GoogleFitClient
