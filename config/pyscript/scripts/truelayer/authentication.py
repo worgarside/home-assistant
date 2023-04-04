@@ -1,6 +1,9 @@
 """Functions/services for TrueLayer authentication"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret
 from wg_utilities.clients import TrueLayerClient
@@ -28,7 +31,6 @@ def get_truelayer_auth_link() -> None:
     N.B.: The bank used in instantiating the client is immaterial
     """
     with HAExceptionCatcher(MODULE_NAME, "get_truelayer_auth_link"):
-
         tlc = TrueLayerClient(
             client_id=CLIENT_ID,
             client_secret=CLIENT_SECRET,

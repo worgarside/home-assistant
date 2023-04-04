@@ -1,6 +1,9 @@
 """PyScript functions/services specifically for input selects"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 if gethostname() != "homeassistant":
     from helpers import local_setup

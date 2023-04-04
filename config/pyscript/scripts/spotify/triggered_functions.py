@@ -1,10 +1,13 @@
 """Functions which are only run on a certain trigger"""
+from __future__ import annotations
+
+from collections.abc import Callable, Iterable
 from copy import deepcopy
 from datetime import datetime
 from os.path import isfile
 from re import compile as compile_regex
 from socket import gethostname
-from typing import Any, Callable, Dict, Iterable, List, Optional
+from typing import Any, Dict, List
 
 from helpers import HAExceptionCatcher, get_secret, write_file
 from requests import get
@@ -28,7 +31,7 @@ if gethostname() != "homeassistant":
     event_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
     service: Callable[..., Callable[..., Any]] = decorator
 
-    CREDS_CACHE_PATH: Optional[str] = None
+    CREDS_CACHE_PATH: str | None = None
 else:
     CREDS_CACHE_PATH = "/config/.spotify_cache"
 
@@ -54,7 +57,7 @@ _SAVE_ALBUM_ARTWORK_TRIGGER = "sensor.spotify_{}_media_album_artwork_internal_ur
 
 
 @pyscript_executor
-def get_monthly_playlists(return_count: int = 12) -> List[Playlist]:
+def get_monthly_playlists(return_count: int = 12) -> list[Playlist]:
     """Gets all monthly playlists from Spotify (based on name)
 
     Args:
@@ -77,7 +80,6 @@ def process_liked_songs() -> None:
     """Calls other functions which process liked songs, to save polling Spotify's API
     twice"""
     with HAExceptionCatcher(MODULE_NAME, "process_liked_songs"):
-
         log.info("Resetting all Spotify client properties")
         SPOTIFY.reset_properties()
 
@@ -151,10 +153,10 @@ def process_liked_songs() -> None:
 
 
 def update_dynamic_playlists(
-    recently_liked: List[Track],
+    recently_liked: list[Track],
     already_processed_tracks: Iterable[Track],
     target_name_func: Callable[[Track], str],
-) -> Dict[Playlist, List[Track]]:
+) -> dict[Playlist, list[Track]]:
     """Updates any dynamic playlists from a set of tracks and a naming match criteria
 
     Args:
@@ -171,7 +173,6 @@ def update_dynamic_playlists(
 
     playlist_updates = {}  # type: Dict[Playlist, List[Track]]
     with HAExceptionCatcher(MODULE_NAME, "update_dynamic_playlists"):
-
         for track in recently_liked:
             if track not in already_processed_tracks:
                 log.debug("Processing %s", str(track))
@@ -284,7 +285,7 @@ def add_to_playlist(track: Track, playlist: Playlist) -> None:
 
 
 @event_trigger("mobile_app_notification_action")
-def add_track_to_playlist(action: str, message: str, **_: Dict[Any, Any]) -> None:
+def add_track_to_playlist(action: str, message: str, **_: dict[Any, Any]) -> None:
     """Add a given track to a playlist, triggered from mobile notification
 
     Args:

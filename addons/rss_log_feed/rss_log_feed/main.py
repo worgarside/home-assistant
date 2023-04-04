@@ -1,12 +1,13 @@
 """Custom addon to listen to the YAS-209 and post updates to HA"""
 from __future__ import annotations
 
+from collections.abc import Mapping
 from datetime import datetime
 from json import JSONDecodeError, dumps, loads
 from logging import CRITICAL, DEBUG, ERROR, INFO, WARNING, LogRecord, getLogger
 from os import environ, getenv
 from traceback import format_exc
-from typing import Any, Mapping
+from typing import Any
 
 from dotenv import load_dotenv
 from feedgen.feed import FeedGenerator
