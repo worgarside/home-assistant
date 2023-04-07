@@ -1,3 +1,48 @@
+[tool.poetry]
+name = "home-assistant"
+version = "0.1.0"
+description = ""
+authors = ["Will Garside <worgarside@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-dotenv = "*"
+lxml = "*"
+xmltodict = "*"
+requests = "*"
+spotipy = "*"
+nanoleafapi = "*"
+pillow = "*"
+feedgen = "*"
+pydantic = "*"
+flask = "*"
+wg-utilities = {extras = ["devices"], version = "*"}
+paramiko = "*"
+pyyaml = "*"
+pynetgear = "*"
+homeassistant = "2023.4.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "*"
+pylint = "*"
+pre-commit = "*"
+yamllint = "*"
+mypy = "*"
+types-requests = "*"
+types-paramiko = "*"
+pycln = "*"
+types-flask = "*"
+types-pillow = "*"
+pylint-strict-informational = "*"
+types-pyyaml = "*"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = [
+  "poetry-core",
+]
+
 [tool.black]
 include = '\.pyi?$'
 exclude = '''
