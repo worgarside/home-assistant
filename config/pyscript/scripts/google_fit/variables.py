@@ -1,6 +1,9 @@
 """Updater script for Google Fit variables"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 from helpers import HAExceptionCatcher
 from wg_utilities.clients.google_fit import GoogleFitClient
@@ -30,11 +33,11 @@ GOOGLE_FIT = task.executor(
 )
 
 VARIABLE_DATA_SOURCE_MAPPING = {
-    "var.google_fit_active_minutes": "derived:com.google.active_minutes:com.google.android.gms:merge_active_minutes",  # pylint: disable=line-too-long
-    "var.google_fit_calories_expended": "derived:com.google.calories.expended:com.google.android.gms:merge_calories_expended",  # pylint: disable=line-too-long
-    "var.google_fit_distance_moved": "derived:com.google.distance.delta:com.google.android.gms:merge_distance_delta",  # pylint: disable=line-too-long
-    "var.google_fit_step_count": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps",  # pylint: disable=line-too-long
-    "var.google_fit_weight": "derived:com.google.weight:com.google.android.gms:merge_weight",  # pylint: disable=line-too-long
+    "var.google_fit_active_minutes": "derived:com.google.active_minutes:com.google.android.gms:merge_active_minutes",  # pylint: disable=line-too-long  # noqa: E501
+    "var.google_fit_calories_expended": "derived:com.google.calories.expended:com.google.android.gms:merge_calories_expended",  # pylint: disable=line-too-long  # noqa: E501
+    "var.google_fit_distance_moved": "derived:com.google.distance.delta:com.google.android.gms:merge_distance_delta",  # pylint: disable=line-too-long  # noqa: E501
+    "var.google_fit_step_count": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps",  # pylint: disable=line-too-long  # noqa: E501
+    "var.google_fit_weight": "derived:com.google.weight:com.google.android.gms:merge_weight",  # pylint: disable=line-too-long  # noqa: E501
 }
 
 

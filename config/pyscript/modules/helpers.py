@@ -1,12 +1,13 @@
 """helper functions for use across Pyscript"""
 from __future__ import annotations
 
+from collections.abc import Callable
 from functools import wraps
 from json import loads
 from logging import Logger
 from socket import gethostname
 from types import TracebackType
-from typing import Any, Callable
+from typing import Any
 from unittest.mock import MagicMock
 
 from requests import post
@@ -45,13 +46,15 @@ class HAExceptionCatcher:
 
 
 # pylint: disable=import-outside-toplevel
-def local_setup() -> tuple[
-    Logger,
-    MagicMock,
-    MagicMock,
-    Callable[..., Callable[..., Any]],
-    Callable[[Any], Callable[..., Any]],
-]:
+def local_setup() -> (
+    tuple[
+        Logger,
+        MagicMock,
+        MagicMock,
+        Callable[..., Callable[..., Any]],
+        Callable[[Any], Callable[..., Any]],
+    ]
+):
     """Helper function for creation of fake/stubbed variables which are automatically
     available to Pyscript
 
@@ -120,7 +123,7 @@ def get_secret(
             pyscript.config.get("apps", {}).get(module, {}).get(secret_name, default)
         )
 
-    if json and isinstance(secret_value, (str, bytes)):
+    if json and isinstance(secret_value, (str, bytes)):  # noqa: UP038
         return loads(secret_value)
 
     return secret_value

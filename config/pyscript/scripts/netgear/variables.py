@@ -1,8 +1,11 @@
 """Update a whole load of variables from the Netgear API"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from datetime import timedelta
 from json import dumps
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret
 from pynetgear import Netgear
@@ -113,8 +116,10 @@ def update_variables(method_name: str, new_variables: dict[str, object]) -> None
                 )
             else:
                 log.info(
-                    f"New key found in `{method_name}` response: `{k}`. "
-                    f"Full response:\n{dumps(new_variables, default=str)}"
+                    "New key found in `%s` response: `%s`. Full response:\n%s",
+                    method_name,
+                    k,
+                    dumps(new_variables, default=str),
                 )
                 persistent_notification.create(
                     title="New key found in `NETGEAR.get_info` response",

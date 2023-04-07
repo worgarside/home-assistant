@@ -1,8 +1,11 @@
 """Monzo-specific services"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from datetime import datetime
 from json import dumps
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret
 from requests import get
@@ -61,7 +64,7 @@ def top_up_credit_card_pot(top_up_amount: float) -> None:
             )
         except Exception as exc:
             if hasattr(exc, "response"):
-                res_json = exc.response.json()  # type: ignore[attr-defined]
+                res_json = exc.response.json()
                 log.info(dumps(res_json, default=str))
 
             log.error("KILLING SERVER")

@@ -1,6 +1,9 @@
 """Functions which can be triggered/timed and set the value(s) for variable(s)"""
+from __future__ import annotations
+
+from collections.abc import Callable
 from socket import gethostname
-from typing import Any, Callable
+from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret
 from wg_utilities.clients import TrueLayerClient
@@ -9,12 +12,12 @@ from wg_utilities.clients.truelayer import Bank, Card
 MODULE_NAME = "truelayer"
 CACHE_PATH = get_secret("creds_cache_path", module=MODULE_NAME)
 
-TLC_ARGS = dict(
-    client_id=get_secret("client_id", module=MODULE_NAME),
-    client_secret=get_secret("client_secret", module=MODULE_NAME),
-    log_requests=False,
-    creds_cache_path=CACHE_PATH,
-)
+TLC_ARGS = {
+    "client_id": get_secret("client_id", module=MODULE_NAME),
+    "client_secret": get_secret("client_secret", module=MODULE_NAME),
+    "log_requests": False,
+    "creds_cache_path": CACHE_PATH,
+}
 
 MONZO = TrueLayerClient(bank=Bank.MONZO, **TLC_ARGS)
 
