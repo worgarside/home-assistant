@@ -183,6 +183,14 @@
       "markers": "python_version >= '3.7' and python_version < '4.0'",
       "version": "==0.20.1"
     },
+    "botocore": {
+      "hashes": [
+        "sha256:2e449525f0ccedb31fdb962a77caac48b4c486c23515b84c5989a39a1823a024",
+        "sha256:cf43dddb7e2ba5425fe19fad68b10043307b61d9103d06566f1ab6034e38b8db"
+      ],
+      "markers": "python_version >= '3.7'",
+      "version": "==1.29.109"
+    },
     "certifi": {
       "hashes": [
         "sha256:35824b4c3a97115964b408844d64aa14db1cc518f6562e8d7261699d1350a9e3",
@@ -507,6 +515,13 @@
       "markers": "python_version >= '3.7'",
       "version": "==2.1.2"
     },
+    "jetson.gpio": {
+      "hashes": [
+        "sha256:e0ea4fd0e9832560917fa85ff20781a996f3ff995d28443f382b7be3aea2f53f"
+      ],
+      "markers": "sys_platform == 'linux'",
+      "version": "==2.1.0"
+    },
     "jinja2": {
       "hashes": [
         "sha256:31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852",
@@ -514,6 +529,14 @@
       ],
       "markers": "python_version >= '3.7'",
       "version": "==3.1.2"
+    },
+    "jmespath": {
+      "hashes": [
+        "sha256:02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980",
+        "sha256:90261b206d6defd58fdd5e85f478bf633a2901798906be2ad389150c5c60edbe"
+      ],
+      "markers": "python_version >= '3.7'",
+      "version": "==1.0.1"
     },
     "lru-dict": {
       "hashes": [
@@ -1196,11 +1219,11 @@
         "devices"
       ],
       "hashes": [
-        "sha256:5c5a78b6484a86acedeecb87753c9e47beb8dd970f1dd2ce6b5b4b78e2e8c480",
-        "sha256:6898b9081f81a38b5a64a1c7476386c776b0cf468e7ead303028e147c705408c"
+        "sha256:6f62f41ca129d2bd0f0efcfef297c175b8a882dc414615abb4c42515513d5ad8",
+        "sha256:7b1671f022b42adf05720d7d1976ed613ced3d8b27a3120a2279db8a2bc97e3e"
       ],
       "index": "pypi",
-      "version": "==2.33.0"
+      "version": "==3.1.1"
     },
     "xmltodict": {
       "hashes": [
@@ -1619,7 +1642,7 @@
         "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
         "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
       ],
-      "markers": "python_full_version < '3.11.0a7'",
+      "markers": "python_version < '3.11'",
       "version": "==2.0.1"
     },
     "tomlkit": {
