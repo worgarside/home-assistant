@@ -21,7 +21,7 @@ wg-utilities = {extras = ["devices"], version = "*"}
 paramiko = "*"
 pyyaml = "*"
 pynetgear = "*"
-homeassistant = "2023.4.0"
+homeassistant = "2023.4.2"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
