@@ -24,7 +24,7 @@
         conditions:
           - condition: state
             entity_id: var.will_s_macbook_pro_battery_power_plugged
-            state: "True"
+            state: 'True'
           - condition: numeric_state
             entity_id: sensor.will_s_macbook_current_consumption
             above: 40
@@ -44,14 +44,14 @@
           - media_player.hifi_system
           - media_player.lounge_bravia_tv
         from:
-          - "idle"
-          - "off"
-          - "unavailable"
-          - "unknown"
+          - idle
+          - off
+          - unavailable
+          - unknown
         to:
-          - "idle"
-          - "paused"
-          - "playing"
+          - idle
+          - paused
+          - playing
     action:
       - service: switch.turn_on
         entity_id: switch.hifi_amp
@@ -64,7 +64,7 @@
           - media_player.hifi_system
           - media_player.lounge_bravia_tv
         to:
-          - "off"
+          - off
         for:
           minutes: 1
     condition:
@@ -72,10 +72,10 @@
         conditions:
           - condition: state
             entity_id: media_player.hifi_system
-            state: "off"
+            state: off
           - condition: state
             entity_id: media_player.lounge_bravia_tv
-            state: "off"
+            state: off
     action:
       # yamllint disable-line rule:line-length
       - wait_template: "{{ states('media_player.hifi_system') == 'off' and states('media_player.lounge_bravia_tv') == 'off'  and states('media_player.lounge_tv') != 'unavailable' }}"
@@ -100,7 +100,7 @@
           - switch.tower_fan
           - input_number.wills_room_fan_auto_on_threshold
     action:
-      - alias: "Set variables"
+      - alias: Set variables
         variables:
           tower_fan_should_be_on: |
             {{
@@ -111,14 +111,14 @@
             }}
           tower_fan_is_on: "{{ states('switch.tower_fan') == 'on' }}"
       - choose:
-          - alias: "Should be <state> and is - i.e. auto control on"
-            conditions: "{{ tower_fan_should_be_on == tower_fan_is_on }}"
+          - alias: Should be <state> and is - i.e. auto control on
+            conditions: '{{ tower_fan_should_be_on == tower_fan_is_on }}'
             sequence:
               - service: automation.turn_on
                 target:
                   entity_id: automation.switch_tower_fan_auto_control
-          - alias: "Should be <state> but isn't - i.e. manual override"
-            conditions: "{{ tower_fan_should_be_on != tower_fan_is_on }}"
+          - alias: Should be <state> but isn't - i.e. manual override
+            conditions: '{{ tower_fan_should_be_on != tower_fan_is_on }}'
             sequence:
               - service: automation.turn_off
                 target:

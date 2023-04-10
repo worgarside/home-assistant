@@ -16,10 +16,10 @@ elements:
     tap_action:
       action: toggle
     state_image:
-      "on": /local/icons/floorplan/icn_light_active.svg
-      "off": /local/icons/floorplan/icn_light.svg
-      "unavailable": /local/icons/floorplan/icn_light.svg
-      "unknown": /local/images/icn_light_offline.svg
+      on: /local/icons/floorplan/icn_light_active.svg
+      off: /local/icons/floorplan/icn_light.svg
+      unavailable: /local/icons/floorplan/icn_light.svg
+      unknown: /local/images/icn_light_offline.svg
     style:
       top: 59%
       left: 11.5%
@@ -32,10 +32,10 @@ elements:
     tap_action:
       action: toggle
     state_image:
-      "on": /local/icons/floorplan/icn_light_active.svg
-      "off": /local/icons/floorplan/icn_light.svg
-      "unavailable": /local/icons/floorplan/icn_light.svg
-      "unknown": /local/images/icn_light_offline.svg
+      on: /local/icons/floorplan/icn_light_active.svg
+      off: /local/icons/floorplan/icn_light.svg
+      unavailable: /local/icons/floorplan/icn_light.svg
+      unknown: /local/images/icn_light_offline.svg
     style:
       top: 8.75%
       left: 45.5%
@@ -48,10 +48,10 @@ elements:
     tap_action:
       action: toggle
     state_image:
-      "on": /local/icons/floorplan/icn_light_active.svg
-      "off": /local/icons/floorplan/icn_light.svg
-      "unavailable": /local/icons/floorplan/icn_light.svg
-      "unknown": /local/images/icn_light_offline.svg
+      on: /local/icons/floorplan/icn_light_active.svg
+      off: /local/icons/floorplan/icn_light.svg
+      unavailable: /local/icons/floorplan/icn_light.svg
+      unknown: /local/images/icn_light_offline.svg
     style:
       top: 15.5%
       left: 48%
@@ -62,13 +62,13 @@ elements:
     tap_action:
       action: more-info
     state_image:
-      "on": /local/icons/floorplan/icn_mini.svg
-      "off": /local/icons/floorplan/icn_mini_offline.svg
-      "playing": /local/icons/floorplan/icn_mini_active.svg
-      "paused": /local/icons/floorplan/icn_mini_active.svg
-      "idle": /local/icons/floorplan/icn_mini.svg
-      "unavailable": /local/icons/floorplan/icn_mini_offline.svg
-      "unknown": /local/images/null.webp
+      on: /local/icons/floorplan/icn_mini.svg
+      off: /local/icons/floorplan/icn_mini_offline.svg
+      playing: /local/icons/floorplan/icn_mini_active.svg
+      paused: /local/icons/floorplan/icn_mini_active.svg
+      idle: /local/icons/floorplan/icn_mini.svg
+      unavailable: /local/icons/floorplan/icn_mini_offline.svg
+      unknown: /local/images/null.webp
     style:
       top: 55%
       left: 24%
@@ -87,13 +87,13 @@ elements:
     tap_action:
       action: more-info
     state_image:
-      "on": /local/icons/floorplan/icn_mini.svg
-      "off": /local/icons/floorplan/icn_mini_offline.svg
-      "playing": /local/icons/floorplan/icn_mini_active.svg
-      "paused": /local/icons/floorplan/icn_mini_active.svg
-      "idle": /local/icons/floorplan/icn_mini.svg
-      "unavailable": /local/icons/floorplan/icn_mini_offline.svg
-      "unknown": /local/images/null.webp
+      on: /local/icons/floorplan/icn_mini.svg
+      off: /local/icons/floorplan/icn_mini_offline.svg
+      playing: /local/icons/floorplan/icn_mini_active.svg
+      paused: /local/icons/floorplan/icn_mini_active.svg
+      idle: /local/icons/floorplan/icn_mini.svg
+      unavailable: /local/icons/floorplan/icn_mini_offline.svg
+      unknown: /local/images/null.webp
     style:
       top: 50%
       left: 67.5%
@@ -106,10 +106,10 @@ elements:
     tap_action:
       action: toggle
     state_image:
-      "on": /local/icons/floorplan/icn_light_active.svg
-      "off": /local/icons/floorplan/icn_light.svg
-      "unavailable": /local/icons/floorplan/icn_light.svg
-      "unknown": /local/images/icn_light_offline.svg
+      on: /local/icons/floorplan/icn_light_active.svg
+      off: /local/icons/floorplan/icn_light.svg
+      unavailable: /local/icons/floorplan/icn_light.svg
+      unknown: /local/images/icn_light_offline.svg
     style:
       top: 21.5%
       left: 54.25%
@@ -120,11 +120,11 @@ elements:
     tap_action:
       action: more-info
     state_image:
-      "on": /local/icons/floorplan/icn_android_tv_active.svg
-      "playing": /local/icons/floorplan/icn_android_tv_active.svg
-      "off": /local/icons/floorplan/icn_android_tv_offline.svg
-      "unavailable": /local/icons/floorplan/icn_android_tv_offline.svg
-      "unknown": /local/icons/floorplan/icn_android_tv_offline.svg
+      on: /local/icons/floorplan/icn_android_tv_active.svg
+      playing: /local/icons/floorplan/icn_android_tv_active.svg
+      off: /local/icons/floorplan/icn_android_tv_offline.svg
+      unavailable: /local/icons/floorplan/icn_android_tv_offline.svg
+      unknown: /local/icons/floorplan/icn_android_tv_offline.svg
     style:
       top: 17.5%
       left: 73%
@@ -135,11 +135,11 @@ elements:
     tap_action:
       action: more-info
     state_image:
-      "playing": /local/icons/floorplan/icn_g_assistant_speaker_active.svg
-      "paused": /local/icons/floorplan/icn_g_assistant_speaker.svg
-      "off": /local/icons/floorplan/icn_g_assistant_speaker_offline.svg
-      "unavailable": /local/icons/floorplan/icn_g_assistant_speaker_offline.svg
-      "unknown": /local/icons/floorplan/icn_g_assistant_speaker_offline.svg
+      playing: /local/icons/floorplan/icn_g_assistant_speaker_active.svg
+      paused: /local/icons/floorplan/icn_g_assistant_speaker.svg
+      off: /local/icons/floorplan/icn_g_assistant_speaker_offline.svg
+      unavailable: /local/icons/floorplan/icn_g_assistant_speaker_offline.svg
+      unknown: /local/icons/floorplan/icn_g_assistant_speaker_offline.svg
     style:
       top: 17.5%
       left: 78.5%
@@ -152,10 +152,10 @@ elements:
     tap_action:
       action: toggle
     state_image:
-      "on": /local/icons/floorplan/icn_light_active.svg
-      "off": /local/icons/floorplan/icn_light.svg
-      "unavailable": /local/icons/floorplan/icn_light.svg
-      "unknown": /local/images/icn_light_offline.svg
+      on: /local/icons/floorplan/icn_light_active.svg
+      off: /local/icons/floorplan/icn_light.svg
+      unavailable: /local/icons/floorplan/icn_light.svg
+      unknown: /local/images/icn_light_offline.svg
     style:
       top: 12%
       left: 94%
@@ -168,10 +168,10 @@ elements:
     tap_action:
       action: toggle
     state_image:
-      "on": /local/icons/floorplan/icn_android_tv_active.svg
-      "off": /local/icons/floorplan/icn_android_tv_offline.svg
-      "unavailable": /local/icons/floorplan/icn_android_tv_offline.svg
-      "unknown": /local/icons/floorplan/icn_android_tv_offline.svg
+      on: /local/icons/floorplan/icn_android_tv_active.svg
+      off: /local/icons/floorplan/icn_android_tv_offline.svg
+      unavailable: /local/icons/floorplan/icn_android_tv_offline.svg
+      unknown: /local/icons/floorplan/icn_android_tv_offline.svg
     style:
       top: 11.5%
       left: 88%
@@ -184,10 +184,10 @@ elements:
     tap_action:
       action: toggle
     state_image:
-      "on": /local/icons/floorplan/icn_light_active.svg
-      "off": /local/icons/floorplan/icn_light.svg
-      "unavailable": /local/icons/floorplan/icn_light.svg
-      "unknown": /local/images/icn_light_offline.svg
+      on: /local/icons/floorplan/icn_light_active.svg
+      off: /local/icons/floorplan/icn_light.svg
+      unavailable: /local/icons/floorplan/icn_light.svg
+      unknown: /local/images/icn_light_offline.svg
     style:
       top: 49%
       left: 93%
@@ -198,13 +198,13 @@ elements:
     tap_action:
       action: more-info
     state_image:
-      "on": /local/icons/floorplan/icn_mini.svg
-      "off": /local/icons/floorplan/icn_mini_offline.svg
-      "playing": /local/icons/floorplan/icn_mini_active.svg
-      "paused": /local/icons/floorplan/icn_mini_active.svg
-      "idle": /local/icons/floorplan/icn_mini.svg
-      "unavailable": /local/icons/floorplan/icn_mini_offline.svg
-      "unknown": /local/images/null.webp
+      on: /local/icons/floorplan/icn_mini.svg
+      off: /local/icons/floorplan/icn_mini_offline.svg
+      playing: /local/icons/floorplan/icn_mini_active.svg
+      paused: /local/icons/floorplan/icn_mini_active.svg
+      idle: /local/icons/floorplan/icn_mini.svg
+      unavailable: /local/icons/floorplan/icn_mini_offline.svg
+      unknown: /local/images/null.webp
     style:
       top: 90%
       left: 81%
@@ -217,10 +217,10 @@ elements:
     tap_action:
       action: toggle
     state_image:
-      "on": /local/icons/floorplan/icn_light_active.svg
-      "off": /local/icons/floorplan/icn_light.svg
-      "unavailable": /local/icons/floorplan/icn_light.svg
-      "unknown": /local/images/icn_light_offline.svg
+      on: /local/icons/floorplan/icn_light_active.svg
+      off: /local/icons/floorplan/icn_light.svg
+      unavailable: /local/icons/floorplan/icn_light.svg
+      unknown: /local/images/icn_light_offline.svg
     style:
       top: 92.5%
       left: 90.27%

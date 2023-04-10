@@ -30,7 +30,7 @@
     resource: http://ip.jsontest.com
     name: External IP
     scan_interval: 300
-    value_template: "{{ value_json.ip }}"
+    value_template: '{{ value_json.ip }}'
 
   - platform: rest
     name: Will's Room Curtain Position
@@ -59,7 +59,7 @@
       {% endif %}
 
     unit_of_measurement: '%'
-    json_attributes_path: "$.body"
+    json_attributes_path: $.body
     json_attributes:
       - deviceId
       - deviceType
@@ -90,8 +90,8 @@
     headers:
       x-api-key: !secret ambee_api_key
       Content-Type: application/json
-    value_template: "-"  # dummy value, payload is too large
-    json_attributes_path: "$.data.[0]"
+    value_template: '-'  # dummy value, payload is too large
+    json_attributes_path: $.data.[0]
     json_attributes:
       - Count
       - Risk
@@ -106,8 +106,8 @@
     queries:
       - name: Database Size
         # yamllint disable-line rule:line-length
-        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema'
-        column: 'value'
+        query: SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema
+        column: value
         unit_of_measurement: MB
 
   - platform: systemmonitor
@@ -145,42 +145,42 @@
 
   - platform: feedparser
     name: Error Feed
-    feed_url: 'http://homeassistant.local:8001/feed/logs?level=error'
+    feed_url: http://homeassistant.local:8001/feed/logs?level=error
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
 
   - platform: feedparser
     name: Info Feed
-    feed_url: 'http://homeassistant.local:8001/feed/logs?level=info'
+    feed_url: http://homeassistant.local:8001/feed/logs?level=info
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
 
   - platform: feedparser
     name: Debug Feed
-    feed_url: 'http://homeassistant.local:8001/feed/logs?level=debug'
+    feed_url: http://homeassistant.local:8001/feed/logs?level=debug
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
 
   - platform: feedparser
     name: Warning Feed
-    feed_url: 'http://homeassistant.local:8001/feed/logs?level=warning'
+    feed_url: http://homeassistant.local:8001/feed/logs?level=warning
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
 
   - platform: feedparser
     name: Critical Feed
-    feed_url: 'http://homeassistant.local:8001/feed/logs?level=critical'
+    feed_url: http://homeassistant.local:8001/feed/logs?level=critical
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
 
   - platform: feedparser
     name: Log Feed
-    feed_url: 'http://homeassistant.local:8001/feed/logs'
+    feed_url: http://homeassistant.local:8001/feed/logs
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60

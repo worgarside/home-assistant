@@ -7,7 +7,7 @@
     trigger:
       platform: state
       entity_id: binary_sensor.will_s_bedroom_door
-      to: "on"
+      to: on
     condition: "{{ states('person.will') != 'home' }}"
     action:
       - service: cover.open_cover
@@ -21,7 +21,7 @@
         data:
           entity_id: light.wills_shapes
           brightness_pct: 100
-          effect: 'Cops'
+          effect: Cops
       - service: media_player.volume_set
         target:
           entity_id: media_player.wills_bedroom_home_hub
@@ -39,9 +39,9 @@
     trigger:
       platform: state
       entity_id: binary_sensor.will_s_bedroom_door
-      to: "on"
+      to: on
     action:
-      - alias: "Set variables"
+      - alias: Set variables
         variables:
           original_state: "{{ states('light.wills_shapes') }}"
           original_effect: "{{ state_attr('light.wills_shapes', 'effect') }}"
@@ -50,18 +50,18 @@
         data:
           entity_id: light.wills_shapes
           brightness: 255
-          effect: 'Cops'
+          effect: Cops
       - wait_template: "{{ is_state('binary_sensor.will_s_bedroom_door', 'off') }}"
       - choose:
-          - alias: "Shapes were ON"
+          - alias: Shapes were ON
             conditions: "{{ original_state == 'on' }}"
             sequence:
               - service: light.turn_on
                 data:
                   entity_id: light.wills_shapes
-                  effect: "{{ original_effect }}"
-                  brightness: "{{ original_brightness }}"
-          - alias: "Shapes were OFF"
+                  effect: '{{ original_effect }}'
+                  brightness: '{{ original_brightness }}'
+          - alias: Shapes were OFF
             conditions: "{{ original_state == 'off' }}"
             sequence:
               - service: light.turn_off
@@ -74,7 +74,7 @@
     trigger:
       - platform: state
         entity_id: binary_sensor.will_s_balcony_door
-        to: "off"
+        to: off
         for:
           seconds: 2.5
     condition:
@@ -100,7 +100,7 @@
     trigger:
       platform: state
       entity_id: binary_sensor.will_s_closet_door
-      to: "on"
+      to: on
     action:
       - service: light.turn_on
         data:
@@ -141,7 +141,7 @@
     action:
       - variables:
           plant_name: "{{ trigger.entity_id.split('.')[-1].split('_')[0].lower() }}"
-          input_number: "input_number.{{ plant_name }}_water_threshold"
+          input_number: input_number.{{ plant_name }}_water_threshold
       - if:
           - >
             {{
@@ -151,4 +151,4 @@
         then:
           - service: input_button.press
             target:
-              entity_id: 'input_button.water_{{ plant_name }}'
+              entity_id: input_button.water_{{ plant_name }}

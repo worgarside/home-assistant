@@ -189,22 +189,22 @@ netgear_r8000_cpu_utilization:
 netgear_r8000_physical_memory:
   friendly_name: Netgear R8000 Physical Memory
   icon: mdi:router-network
-  unit_of_measurement: 'MB'
+  unit_of_measurement: MB
 
 netgear_r8000_memory_utilization:
   friendly_name: Netgear R8000 Memory Utilization
   icon: mdi:router-network
-  unit_of_measurement: 'MB'
+  unit_of_measurement: MB
 
 netgear_r8000_physical_flash:
   friendly_name: Netgear R8000 Physical Flash
   icon: mdi:router-network
-  unit_of_measurement: 'MB'
+  unit_of_measurement: MB
 
 netgear_r8000_available_flash:
   friendly_name: Netgear R8000 Available Flash
   icon: mdi:router-network
-  unit_of_measurement: 'MB'
+  unit_of_measurement: MB
 
 netgear_r8000_ethernet_link_status:
   friendly_name: Netgear R8000 Ethernet Link Status
@@ -245,7 +245,7 @@ netgear_r8000_mac_address_override:
 netgear_r8000_max_mtu_size:
   friendly_name: Netgear R8000 Max MTU Size
   icon: mdi:router-network
-  unit_of_measurement: 'b'
+  unit_of_measurement: b
 
 netgear_r8000_dns_enabled:
   friendly_name: Netgear R8000 DNS Enabled

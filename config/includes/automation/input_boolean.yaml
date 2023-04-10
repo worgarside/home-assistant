@@ -7,8 +7,8 @@
     action:
       - service: script.debug_persistent_notification
         data:
-          title: "Mini CRT Power State"
-          message: "{{ trigger.payload }}"
+          title: Mini CRT Power State
+          message: '{{ trigger.payload }}'
       - choose:
           - conditions: "{{ trigger.payload  | string | lower == 'true' }}"
             sequence:
@@ -23,8 +23,8 @@
         default:
           - service: persistent_notification.create
             data:
-              title: "Mini CRT Power State"
-              message: "Unknown state: {{ trigger.payload }}"
+              title: Mini CRT Power State
+              message: 'Unknown state: {{ trigger.payload }}'
               notification_id: mini_crt_power_state_unknown
 
   - alias: /input_boolean/mini_crt_power/state-from-ha

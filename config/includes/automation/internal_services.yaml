@@ -30,7 +30,7 @@
     action:
       - service: persistent_notification.create
         data:
-          title: "Automations reloading..."
+          title: Automations reloading...
           message: >
             Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
       - service: automation.reload
@@ -51,7 +51,7 @@
     action:
       - service: persistent_notification.create
         data:
-          title: "Scripts reloading..."
+          title: Scripts reloading...
           message: >
             Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
       - service: script.reload
