@@ -12,14 +12,28 @@
         data:
           entity_id: var.will_s_macbook_pro_battery_percentage
           value: '{{ trigger.json.battery_percentage }}'
-      - service: var.update
-        data:
-          entity_id: var.will_s_macbook_pro_battery_percentage
+          force_update: true
+          icon: |
+            {%- if states('var.will_s_macbook_pro_battery_power_plugged')
+              | string
+              | lower == 'true'
+            %}
+              mdi:battery-charging
+            {%- elif states('var.will_s_macbook_pro_battery_percentage') | int <= 5 %}
+              mdi:battery-outline
+            {%- elif states('var.will_s_macbook_pro_battery_percentage') | int >= 95 %}
+              mdi:battery
+            {% else %}
+              mdi:battery-{{ (states('var.will_s_macbook_pro_battery_percentage')
+              | float / 10 ) | round * 10 }}
+            {%- endif %}
       - service: var.set
         data:
           entity_id: var.will_s_macbook_pro_battery_seconds_left
           value: '{{ trigger.json.battery_seconds_left }}'
+          force_update: true
       - service: var.set
         data:
           entity_id: var.will_s_macbook_pro_battery_power_plugged
           value: '{{ trigger.json.power_plugged }}'
+          force_update: true

@@ -1,31 +1,6 @@
 ---
   - platform: london_air
 
-  - platform: london_underground
-    line:
-      - Bakerloo
-      - Central
-      - Circle
-      - District
-      - DLR
-      - Hammersmith & City
-      - Jubilee
-      - London Overground
-      - Metropolitan
-      - Northern
-      - Piccadilly
-      # - TfL Rail
-      - Victoria
-      - Waterloo & City
-
-#  - platform: citybikes
-#    name: Boris Bikes
-#    network: Santander Cycles
-#    stations:
-#      - 200217
-#      - 200205
-#      - 300033
-
   - platform: rest
     resource: http://ip.jsontest.com
     name: External IP
@@ -81,49 +56,23 @@
     value_template: "{{ value_json['state'] }}"
     unit_of_measurement: '%'
 
-  - platform: rest
-    name: Ambee Pollen Response
-    method: GET
-    scan_interval: 600
-    force_update: true
-    resource: !secret ambee_latest_pollen_endpoint
-    headers:
-      x-api-key: !secret ambee_api_key
-      Content-Type: application/json
-    value_template: '-'  # dummy value, payload is too large
-    json_attributes_path: $.data.[0]
-    json_attributes:
-      - Count
-      - Risk
-      - Species
-
   - platform: spotcast
     country: GB
-
-  - platform: sql
-#    icon: mdi:database
-    db_url: !secret mariadb_db_url
-    queries:
-      - name: Database Size
-        # yamllint disable-line rule:line-length
-        query: SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema
-        column: value
-        unit_of_measurement: MB
 
   - platform: systemmonitor
     resources:
       - type: disk_use_percent
-      - type: disk_use
-      - type: disk_free
+      # - type: disk_use
+      # - type: disk_free
       - type: memory_use_percent
-      - type: memory_use
-      - type: memory_free
+      # - type: memory_use
+      # - type: memory_free
       - type: swap_use_percent
-      - type: swap_use
-      - type: swap_free
-      - type: load_1m
-      - type: load_5m
-      - type: load_15m
+      # - type: swap_use
+      # - type: swap_free
+      # - type: load_1m
+      # - type: load_5m
+      # - type: load_15m
       - type: network_in
         arg: eth0
       - type: network_out
@@ -132,10 +81,10 @@
         arg: eth0
       - type: throughput_network_out
         arg: eth0
-      - type: packets_in
-        arg: eth0
-      - type: packets_out
-        arg: eth0
+      # - type: packets_in
+      #   arg: eth0
+      # - type: packets_out
+      #   arg: eth0
       - type: ipv4_address
         arg: eth0
       - type: ipv6_address

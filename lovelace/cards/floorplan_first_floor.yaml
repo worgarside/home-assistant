@@ -1,7 +1,7 @@
 ---
 type: picture-elements
 
-image: /local/images/floorplan/first_floor.svg
+image: /local/images/floorplan/light_theme/first_floor.png
 
 view_layout:
   grid-area: main
@@ -10,20 +10,180 @@ view_layout:
 
 elements:
   - type: image
-    entity: light.wills_room_lamp
+    entity: switch.terrace_lights
     hold_action:
       action: more-info
     tap_action:
       action: toggle
     state_image:
-      on: /local/icons/floorplan/icn_light_active.svg
-      off: /local/icons/floorplan/icn_light.svg
-      unavailable: /local/icons/floorplan/icn_light.svg
+      on: /local/icons/floorplan/light_theme/icn_light_active.svg
+      off: /local/icons/floorplan/light_theme/icn_light.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_light.svg
       unknown: /local/images/icn_light_offline.svg
     style:
-      top: 15%
-      left: 15.5%
+      top: 13.5%
+      left: 4%
+      width: 5%
+
+  - type: image
+    entity: light.wills_lamp
+    hold_action:
+      action: more-info
+    tap_action:
+      action: toggle
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_light_active.svg
+      off: /local/icons/floorplan/light_theme/icn_light.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_light.svg
+      unknown: /local/images/icn_light_offline.svg
+    style:
+      top: 13.5%
+      left: 16.5%
+      width: 5%
+
+  - type: image
+    entity: media_player.wills_bedroom_home_hub
+    tap_action:
+      action: more-info
+    state_image:
+      playing: /local/icons/floorplan/light_theme/icn_m_device_active.svg
+      paused: /local/icons/floorplan/light_theme/icn_m_device.svg
+      idle: /local/icons/floorplan/light_theme/icn_m_device.svg
+      off: /local/icons/floorplan/light_theme/icn_m_device_offline.svg
+      unknown: /local/images/icn_m_device_offline.svg
+    style:
+      top: 13.5%
+      left: 22%
+      width: 5%
+
+  - type: image
+    entity: input_boolean.mini_crt_power
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_crt_tv_active.svg
+      off: /local/icons/floorplan/light_theme/icn_crt_tv.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_crt_tv_offline.svg
+      unknown: /local/icons/floorplan/light_theme/icn_crt_tv_offline.svg
+    style:
+      top: 44%
+      left: 14%
+      width: 5%
+
+  - type: image
+    entity: sensor.monstera_floorplan_icon
+    tap_action:
+      action: more-info
+    state_image:
+      unknown: /local/icons/floorplan/light_theme/icn_monstera_offline.svg
+      happy: /local/icons/floorplan/light_theme/icn_monstera.svg
+      thirsty: /local/icons/floorplan/light_theme/icn_monstera_thirsty.svg
+      dying: /local/icons/floorplan/light_theme/icn_monstera_dying.svg
+    style:
+      top: 52%
+      left: 8%
       width: 4%
+
+  - type: image
+    entity: sensor.ficus_floorplan_icon
+    tap_action:
+      action: more-info
+    state_image:
+      unknown: /local/icons/floorplan/light_theme/icn_ficus_offline.svg
+      happy: /local/icons/floorplan/light_theme/icn_ficus.svg
+      thirsty: /local/icons/floorplan/light_theme/icn_ficus_thirsty.svg
+      dying: /local/icons/floorplan/light_theme/icn_ficus_dying.svg
+    style:
+      top: 45.5%
+      left: 8%
+      width: 4%
+
+  - type: image
+    entity: sensor.pineapple_floorplan_icon
+    tap_action:
+      action: more-info
+    state_image:
+      unknown: /local/icons/floorplan/light_theme/icn_pineapple_offline.svg
+      happy: /local/icons/floorplan/light_theme/icn_pineapple.svg
+      thirsty: /local/icons/floorplan/light_theme/icn_pineapple_thirsty.svg
+      dying: /local/icons/floorplan/light_theme/icn_pineapple_dying.svg
+    style:
+      top: 52%
+      left: 13.5%
+      width: 4%
+
+  - type: image
+    entity: light.plant_lights
+    hold_action:
+      action: more-info
+    tap_action:
+      action: toggle
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_hex_lights_active.svg
+      off: /local/icons/floorplan/light_theme/icn_hex_lights.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_hex_lights_offline.svg
+      unknown: /local/images/icn_hex_lights_offline.svg
+    style:
+      top: 39%
+      left: 8%
+      width: 4%
+
+  - type: image
+    entity: media_player.will_s_yas_209
+    hold_action:
+      action: more-info
+    tap_action:
+      action: toggle
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_soundbar_active.svg
+      playing: /local/icons/floorplan/light_theme/icn_soundbar_active.svg
+      paused: /local/icons/floorplan/light_theme/icn_soundbar_active.svg
+      idle: /local/icons/floorplan/light_theme/icn_soundbar.svg
+      off: /local/icons/floorplan/light_theme/icn_soundbar.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_soundbar_offline.svg
+      unknown: /local/icons/floorplan/light_theme/icn_soundbar_offline.svg
+    style:
+      top: 47.5%
+      left: 25%
+      width: 5%
+
+  - type: image
+    entity: media_player.will_s_bravia_tv
+    hold_action:
+      action: more-info
+    tap_action:
+      action: toggle
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_android_tv_active.svg
+      playing: /local/icons/floorplan/light_theme/icn_android_tv_active.svg
+      idle: /local/icons/floorplan/light_theme/icn_android_tv_active.svg
+      off: /local/icons/floorplan/light_theme/icn_android_tv_offline.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_android_tv_offline.svg
+      unknown: /local/icons/floorplan/light_theme/icn_android_tv_offline.svg
+    style:
+      top: 47.5%
+      left: 30%
+      width: 5%
+
+  - type: image
+    entity: media_player.wills_room_chromecast
+    hold_action:
+      action: more-info
+    tap_action:
+      action: toggle
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_chromecast_active.svg
+      playing: /local/icons/floorplan/light_theme/icn_chromecast_active.svg
+      idle: /local/icons/floorplan/light_theme/icn_chromecast_active.svg
+      off: /local/icons/floorplan/light_theme/icn_chromecast_offline.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_chromecast_offline.svg
+      unknown: /local/icons/floorplan/light_theme/icn_chromecast_offline.svg
+    style:
+      top: 47.5%
+      left: 35%
+      width: 5%
 
   - type: image
     entity: light.wills_shapes
@@ -32,26 +192,187 @@ elements:
     tap_action:
       action: toggle
     state_image:
-      on: /local/icons/floorplan/icn_light_active.svg
-      off: /local/icons/floorplan/icn_light.svg
-      unavailable: /local/icons/floorplan/icn_light.svg
+      on: /local/icons/floorplan/light_theme/icn_light_active.svg
+      off: /local/icons/floorplan/light_theme/icn_light.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_light.svg
       unknown: /local/images/icn_light_offline.svg
     style:
       top: 8.75%
-      left: 47.5%
-      width: 4%
+      left: 49.25%
+      width: 5%
 
   - type: image
-    entity: media_player.wills_bedroom_home_hub
+    entity: sensor.will_s_macbook_pro_floorplan_icon
     tap_action:
       action: more-info
     state_image:
-      playing: /local/icons/floorplan/icn_m_device_active.svg
-      paused: /local/icons/floorplan/icn_m_device.svg
-      idle: /local/icons/floorplan/icn_m_device.svg
-      off: /local/icons/floorplan/icn_m_device_offline.svg
-      unknown: /local/images/null.webp
+      on: /local/icons/floorplan/light_theme/icn_laptop.svg
+      offline: /local/icons/floorplan/light_theme/icn_laptop_offline.svg
+      active: /local/icons/floorplan/light_theme/icn_laptop_active.svg
+      high_charge: /local/icons/floorplan/light_theme/icn_laptop_high_charge.svg
+      high_charge_active: /local/icons/floorplan/light_theme/icn_laptop_high_charge_active.svg
+      medium_charge: /local/icons/floorplan/light_theme/icn_laptop_medium_charge.svg
+      medium_charge_active: /local/icons/floorplan/light_theme/icn_laptop_medium_charge_active.svg
+      low_charge: /local/icons/floorplan/light_theme/icn_laptop_low_charge.svg
+      low_charge_active: /local/icons/floorplan/light_theme/icn_laptop_low_charge_active.svg
     style:
-      top: 15%
-      left: 19%
+      top: 8.75%
+      left: 44.75%
+      width: 5%
+
+  - type: image
+    entity: fan.desk_fan
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_fan_active.svg
+      off: /local/icons/floorplan/light_theme/icn_fan.svg
+      unknown: /local/icons/floorplan/light_theme/icn_fan.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_fan.svg
+    style:
+      top: 8.75%
+      left: 40.25%
+      width: 5%
+
+  - type: image
+    entity: fan.tower_fan
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_fan_active.svg
+      off: /local/icons/floorplan/light_theme/icn_fan.svg
+      unknown: /local/icons/floorplan/light_theme/icn_fan.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_fan.svg
+    style:
+      top: 34.5%
+      left: 47.5%
+      width: 5%
+
+  - type: image
+    entity: light.will_s_closet
+    hold_action:
+      action: more-info
+    tap_action:
+      action: toggle
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_light_active.svg
+      off: /local/icons/floorplan/light_theme/icn_light.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_light.svg
+      unknown: /local/images/icn_light_offline.svg
+    style:
+      top: 61.5%
+      left: 16%
+      width: 5%
+
+  - type: image
+    entity: cover.wills_room_curtain
+    tap_action:
+      action: more-info
+    state_image:
+      closed: /local/icons/floorplan/light_theme/icn_curtain_single_closed.svg
+      open: /local/icons/floorplan/light_theme/icn_curtain_single_open_left.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_curtain_single_offline.svg
+      unknown: /local/images/icn_curtain_single_offline.svg
+    style:
+      top: 32.5%
+      left: 8%
       width: 4%
+
+  - type: image
+    entity: binary_sensor.will_s_balcony_door_leak_sensor
+    tap_action:
+      action: more-info
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_leak_sensor_active.svg
+      off: /local/icons/floorplan/light_theme/icn_leak_sensor.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_leak_sensor.svg
+      unknown: /local/images/icn_leak_sensor_offline.svg
+    style:
+      top: 26%
+      left: 8%
+      width: 4%
+
+  - type: image
+    entity: binary_sensor.wills_room_hue_motion_sensor_motion
+    tap_action:
+      action: fire-dom-event
+      browser_mod:
+        service: browser_mod.popup
+        data:
+          content:
+            type: vertical-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: binary_sensor.wills_room_hue_motion_sensor_motion
+                    name: Motion Sensor
+                  - entity: sensor.wills_room_hue_motion_sensor_temperature
+                    name: Temperature
+                    style: |
+                      :host {
+                        --card-mod-icon-color: #FF9800;
+                      }
+              - type: custom:mini-graph-card
+                title: Temperature
+                entities:
+                  - entity: sensor.lounge_temperature
+                    name: Temperature
+                    color: '#FF9800'
+                line_width: 2
+                animate: true
+                font_size: 75
+                points_per_hour: 30
+                hours_to_show: 4
+                lower_bound: ~20
+                upper_bound: ~25
+                height: 250
+                show:
+                  state: false
+                  name: false
+                  icon: false
+                  labels: true
+                  legend: false
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_hue_motion_sensor_active.svg
+      off: /local/icons/floorplan/light_theme/icn_hue_motion_sensor.svg
+      unknown: /local/icons/floorplan/light_theme/icn_hue_motion_sensor_offline.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_hue_motion_sensor_offline.svg
+    style:
+      top: 48.75%
+      left: 47.8%
+      width: 5%
+
+  - type: image
+    entity: switch.tom_s_amp
+    #    tap_action:
+    #      action: toggle
+    hold_action:
+      action: more-info
+    state_image:
+      on: /local/icons/floorplan/light_theme/icn_outlet_active.svg
+      off: /local/icons/floorplan/light_theme/icn_outlet.svg
+      unavailable: /local/icons/floorplan/light_theme/icn_outlet.svg
+      unknown: /local/images/icn_outlet_offline.svg
+    style:
+      top: 48.75%
+      left: 69.3%
+      width: 5%
+
+  - type: image
+    entity: media_player.tom_s_speakers
+    tap_action:
+      action: more-info
+    state_image:
+      playing: /local/icons/floorplan/light_theme/icn_g_assistant_speaker_active.svg
+      paused: /local/icons/floorplan/light_theme/icn_g_assistant_speaker.svg
+      idle: /local/icons/floorplan/light_theme/icn_g_assistant_speaker.svg
+      off: /local/icons/floorplan/light_theme/icn_g_assistant_speaker_offline.svg
+      unknown: /local/images/icn_g_assistant_speaker_offline.svg
+    style:
+      top: 48.75%
+      left: 64.95%
+      width: 5%

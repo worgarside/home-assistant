@@ -64,20 +64,6 @@ galaxy_light_previous_state:
 will_s_macbook_pro_battery_percentage:
   friendly_name: Will's MacBook Pro Battery Percentage
   unit_of_measurement: '%'
-  icon_template: |
-    {%- if states('var.will_s_macbook_pro_battery_power_plugged')
-      | string
-      | lower == 'true'
-    %}
-      mdi:battery-charging
-    {%- elif states('var.will_s_macbook_pro_battery_percentage') | int <= 5 %}
-      mdi:battery-outline
-    {%- elif states('var.will_s_macbook_pro_battery_percentage') | int >= 95 %}
-      mdi:battery
-    {% else %}
-      mdi:battery-{{ (states('var.will_s_macbook_pro_battery_percentage')
-      | float / 10 ) | round * 10 }}
-    {%- endif %}
 
 will_s_macbook_pro_battery_seconds_left:
   friendly_name: Will's MacBook Pro Battery Seconds Left

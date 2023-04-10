@@ -38,7 +38,7 @@ PAYLOAD = {
 
 YAS_209 = task.executor(
     YamahaYas209,
-    "10.0.0.19",
+    "10.0.0.16",
     start_listener=True,
 )
 

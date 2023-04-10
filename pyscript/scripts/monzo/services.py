@@ -19,7 +19,7 @@ if gethostname() != "homeassistant":
     log, async_mock, sync_mock, decorator, _ = local_setup()
     task = async_mock
     sensor = sync_mock
-    sensor.local_ip = "0.0.0.0"
+    sensor.ipv4_address_eth0 = "0.0.0.0"
     service: Callable[..., Callable[..., Any]] = decorator
 
     CACHE_PATH = None
@@ -31,7 +31,7 @@ MODULE_NAME = "monzo"
 MONZO = MonzoClient(
     client_id=get_secret("client_id", module=MODULE_NAME),
     client_secret=get_secret("client_secret", module=MODULE_NAME),
-    redirect_uri=f"http://{sensor.local_ip}:5001/get_auth_code",
+    redirect_uri=f"http://{sensor.ipv4_address_eth0}:5001/get_auth_code",
     creds_cache_path=CACHE_PATH,
 )
 
@@ -69,7 +69,7 @@ def top_up_credit_card_pot(top_up_amount: float) -> None:
 
             log.error("KILLING SERVER")
             try:
-                task.executor(get, f"http://{sensor.local_ip}:5001/kill")
+                task.executor(get, f"http://{sensor.ipv4_address_eth0}:5001/kill")
                 log.info("KILLED")
             except (ConnectionError, RequestsConnectionError) as connection_exc:
                 log.warning(

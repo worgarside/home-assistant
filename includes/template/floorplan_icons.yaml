@@ -1,0 +1,110 @@
+---
+  - sensor:
+      - name: Will's Macbook Pro Floorplan Icon
+        state: |
+          {%- set pwr_consumption = states('sensor.will_s_macbook_current_consumption') | float  %}
+          {%- set plugged = bool(states('var.will_s_macbook_pro_battery_power_plugged')) %}
+          {%- set btry_pcnt = states.var.will_s_macbook_pro_battery_percentage.state | int %}
+
+          {%-
+            if states.var.will_s_macbook_pro_battery_percentage.last_changed.replace(tzinfo=None) <
+            ( utcnow().replace(tzinfo=None) - timedelta(minutes=5) )
+          %}
+            offline
+          {%-
+            elif pwr_consumption <= 5 and
+              plugged == False
+          %}
+            on
+          {%-
+            elif pwr_consumption >= 25 and
+              plugged == True and
+              btry_pcnt <= 30
+          %}
+            low_charge_active
+          {%-
+            elif pwr_consumption >= 25 and
+              plugged == True and
+              30 < btry_pcnt <= 75
+          %}
+            medium_charge_active
+          {%-
+            elif pwr_consumption >= 25 and
+              plugged == True and
+              btry_pcnt > 75
+          %}
+            high_charge_active
+          {%-
+            elif pwr_consumption <= 5 and
+              plugged == True and
+              btry_pcnt <= 30
+          %}
+            low_charge
+          {%-
+            elif pwr_consumption <= 5 and
+              plugged == True and
+              30 < btry_pcnt <= 75
+          %}
+            medium_charge
+          {%-
+            elif pwr_consumption <= 5 and
+              plugged == True and
+              btry_pcnt > 75
+          %}
+            high_charge
+          {%-
+            elif pwr_consumption >= 25 and
+              plugged == True
+          %}
+            active
+          {%- else %}
+            unknown
+          {%-endif%}
+
+      - name: ClmtPi Floorplan Icon
+        state: >
+          {%- if states('binary_sensor.clmtpi_online') == 'off' %}
+            offline
+          {%- elif states('sensor.lounge_temperature') | int <= 17.5 %}
+            cold
+          {%- elif states('sensor.lounge_temperature') | int >= 22.5 %}
+            hot
+          {% else %}
+            on
+          {%- endif %}
+
+      - name: Monstera Floorplan Icon
+        state: >
+          {%- if states('sensor.monstera_saturation') == "unknown" %}
+            unknown
+          {%- elif states('sensor.monstera_saturation') | float >= 65 %}
+            happy
+          {%- elif states('sensor.monstera_saturation') | float >= 55 %}
+            thirsty
+          {%- else %}
+            dying
+          {%- endif %}
+
+      - name: Ficus Floorplan Icon
+        state: >
+          {%- if states('sensor.ficus_saturation') == "unknown" %}
+            unknown
+          {%- elif states('sensor.ficus_saturation') | float >= 65 %}
+            happy
+          {%- elif states('sensor.ficus_saturation') | float >= 55 %}
+            thirsty
+          {%- else %}
+            dying
+          {%- endif %}
+
+      - name: Pineapple Floorplan Icon
+        state: >
+          {%- if states('sensor.pineapple_saturation') == "unknown" %}
+            unknown
+          {%- elif states('sensor.pineapple_saturation') | float >= 65 %}
+            happy
+          {%- elif states('sensor.pineapple_saturation') | float >= 55 %}
+            thirsty
+          {%- else %}
+            dying
+          {%- endif %}

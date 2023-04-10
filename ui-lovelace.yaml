@@ -3,11 +3,12 @@ title: !secret address_line_1
 
 decluttering_templates: !include lovelace/decluttering_templates.yaml
 
-#swipe_nav:
-#  swipe_amount: 15
-#  wrap: true
-#  animate: swipe
+swipe_nav:
+  swipe_amount: 15
+  wrap: true
+  animate: swipe
 
-#This file is the equivalent of having a lovelace/dashboards/mobile_dashboard.yaml
+#This file is the equivalent of having a lovelace/dashboards/main.yaml
 views:
-  - !include lovelace/views/mobile_dashboard.yaml
+  - !include lovelace/views/ground_floor.yaml
+  - !include lovelace/views/first_floor.yaml

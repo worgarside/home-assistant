@@ -149,8 +149,6 @@ def process_liked_songs() -> None:
                 title="Spotify Playlists Updated", message=message
             )
 
-        log.info("Process complete, %i API calls made in total", SPOTIFY.api_call_count)
-
 
 def update_dynamic_playlists(
     recently_liked: list[Track],
@@ -246,7 +244,7 @@ def save_album_artwork(var_name: str, value: str, old_value: str) -> None:
     ):
         return
 
-    res = task.executor(get, f"http://{sensor.local_ip}:8123{value}")
+    res = task.executor(get, f"http://{sensor.ipv4_address_eth0}:8123{value}")
 
     res.raise_for_status()
 
