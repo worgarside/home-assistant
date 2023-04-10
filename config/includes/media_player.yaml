@@ -7,17 +7,17 @@
       - sensor.will_s_yas_209_bridge_input
     attributes:
     # is_volume_muted
-      media_album_name: "sensor.will_s_yas_209_bridge_input|media_album_name"
-      media_artist: "sensor.will_s_yas_209_bridge_input|media_artist"
+      media_album_name: sensor.will_s_yas_209_bridge_input|media_album_name
+      media_artist: sensor.will_s_yas_209_bridge_input|media_artist
     # media_content_id - Spotify URI
     # media_content_type - "movie", "music", "tvshow"
-      media_duration: "sensor.will_s_yas_209_bridge_input|media_duration"
-      media_title: "sensor.will_s_yas_209_bridge_input|media_title"
+      media_duration: sensor.will_s_yas_209_bridge_input|media_duration
+      media_title: sensor.will_s_yas_209_bridge_input|media_title
     # media_track - song number on album?
     # repeat
     # shuffle
     # source
-      volume_level: "sensor.will_s_yas_209_bridge_input|volume_level"
+      volume_level: sensor.will_s_yas_209_bridge_input|volume_level
     commands:
       turn_on:
         service: pyscript.yas_209_play
@@ -31,7 +31,7 @@
       volume_set:
         service: pyscript.yas_209_set_volume_level
         data:
-          volume_level: "{{ volume_level }}"
+          volume_level: '{{ volume_level }}'
       volume_mute:
         service: pyscript.yas_209_mute
       media_play_pause:

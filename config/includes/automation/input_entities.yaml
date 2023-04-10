@@ -44,7 +44,7 @@
     action:
       - service: homeassistant.update_entity
         target:
-          entity_id: "{{ trigger.to_state.state }}"
+          entity_id: '{{ trigger.to_state.state }}'
 
 #<editor-fold desc="Input Boolean">
 
@@ -80,7 +80,7 @@
         for:
           minutes: 5
     action:
-      - alias: "Set variables"
+      - alias: Set variables
         variables:
           previous_value: "{{ states('input_number.monstera_dry_point') }}"
       - service: input_number.set_value
@@ -90,9 +90,9 @@
           value: "{{ ( states('sensor.monstera_moisture') | float * 1.1 ) | round(2) }}"
       - service: script.debug_persistent_notification
         data:
-          title: "Setting Monstera Dry Point"
+          title: Setting Monstera Dry Point
           # yamllint disable-line rule:line-length
-          message: "Changed from {{ previous_value }} to {{ states('input_number.monstera_dry_point') }}"
+          message: Changed from {{ previous_value }} to {{ states('input_number.monstera_dry_point') }}
 
   - alias: /input_number/monstera_dry_point/publish_update
     id: input_number_monstera_dry_point_publish_update
@@ -292,44 +292,44 @@
       - platform: event
         event_type: mobile_app_notification_action
         event_data:
-          action: "MATT_USING_WASHING_MACHINE"
+          action: MATT_USING_WASHING_MACHINE
       - platform: event
         event_type: mobile_app_notification_action
         event_data:
-          action: "TOM_USING_WASHING_MACHINE"
+          action: TOM_USING_WASHING_MACHINE
       - platform: event
         event_type: mobile_app_notification_action
         event_data:
-          action: "WILL_USING_WASHING_MACHINE"
+          action: WILL_USING_WASHING_MACHINE
     condition: "{{ states('binary_sensor.washing_machine') == 'on' }}"
     action:
-      - alias: "Set variables"
+      - alias: Set variables
         variables:
-          trigger_action: "{{ trigger.event.data.action }}"
+          trigger_action: '{{ trigger.event.data.action }}'
       - choose:
-          - alias: "Matt"
+          - alias: Matt
             conditions: "{{ trigger_action == 'MATT_USING_WASHING_MACHINE' }}"
             sequence:
               - service: input_select.select_option
                 target:
                   entity_id: input_select.washing_machine_current_user
                 data:
-                  option: "Matt"
-          - alias: "Tom"
+                  option: Matt
+          - alias: Tom
             conditions: "{{ trigger_action == 'TOM_USING_WASHING_MACHINE' }}"
             sequence:
               - service: input_select.select_option
                 target:
                   entity_id: input_select.washing_machine_current_user
                 data:
-                  option: "Tom"
-          - alias: "Will"
+                  option: Tom
+          - alias: Will
             conditions: "{{ trigger_action == 'WILL_USING_WASHING_MACHINE' }}"
             sequence:
               - service: input_select.select_option
                 target:
                   entity_id: input_select.washing_machine_current_user
                 data:
-                  option: "Will"
+                  option: Will
 
 #</editor-fold>

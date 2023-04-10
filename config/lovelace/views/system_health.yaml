@@ -24,7 +24,7 @@ cards:
       method: domain
     filter:
       include:
-        - state: "unavailable"
+        - state: unavailable
       exclude:
         # Exclude anything from browser mod, named like "domain.a1b2c3d4_e5f6g7h8"
         - entity_id: /^light\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$/
@@ -253,7 +253,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: markdown
-            content: "# Raspberry Pi Stats"
+            content: '# Raspberry Pi Stats'
           - type: entities
             entities:
               - entity: input_select.pi_stats_legend_sensor_type
@@ -304,7 +304,7 @@ cards:
       - type: conditional
         conditions:
           - entity: input_select.pi_stats_legend_sensor_type
-            state: "CPU Usage"
+            state: CPU Usage
         card:
           type: custom:decluttering-card
           template: pi_stats_legend_card_template
@@ -314,7 +314,7 @@ cards:
       - type: conditional
         conditions:
           - entity: input_select.pi_stats_legend_sensor_type
-            state: "CPU Temperature"
+            state: CPU Temperature
         card:
           type: custom:decluttering-card
           template: pi_stats_legend_card_template
@@ -324,7 +324,7 @@ cards:
       - type: conditional
         conditions:
           - entity: input_select.pi_stats_legend_sensor_type
-            state: "Memory Usage"
+            state: Memory Usage
         card:
           type: custom:decluttering-card
           template: pi_stats_legend_card_template
@@ -334,7 +334,7 @@ cards:
       - type: conditional
         conditions:
           - entity: input_select.pi_stats_legend_sensor_type
-            state: "Disk Usage"
+            state: Disk Usage
         card:
           type: custom:decluttering-card
           template: pi_stats_legend_card_template

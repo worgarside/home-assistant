@@ -78,7 +78,7 @@ sensor:
     force_update: true
     icon: mdi:memory
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°C"
+    unit_of_measurement: °C
     state_class: measurement
 
   - name: GrowPi Disk Usage
@@ -86,7 +86,7 @@ sensor:
     force_update: true
     icon: mdi:harddisk
     value_template: '{{ value_json.disk_usage_percent }}'
-    unit_of_measurement: "%"
+    unit_of_measurement: '%'
     state_class: measurement
 
   - name: GrowPi Average Load (1 min)
@@ -94,7 +94,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_1m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: GrowPi Average Load (5 min)
@@ -102,7 +102,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_5m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: GrowPi Average Load (15 min)
@@ -110,7 +110,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_15m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: CRTPi CPU Usage
@@ -134,7 +134,7 @@ sensor:
     force_update: true
     icon: mdi:memory
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°C"
+    unit_of_measurement: °C
     state_class: measurement
 
   - name: CRTPi Disk Usage
@@ -142,7 +142,7 @@ sensor:
     force_update: true
     icon: mdi:harddisk
     value_template: '{{ value_json.disk_usage_percent }}'
-    unit_of_measurement: "%"
+    unit_of_measurement: '%'
     state_class: measurement
 
   - name: CRTPi Average Load (1 min)
@@ -150,7 +150,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_1m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: CRTPi Average Load (5 min)
@@ -158,7 +158,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_5m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: CRTPi Average Load (15 min)
@@ -166,7 +166,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_15m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: VSMPPi CPU Usage
@@ -190,7 +190,7 @@ sensor:
     force_update: true
     icon: mdi:memory
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°C"
+    unit_of_measurement: °C
     state_class: measurement
 
   - name: VSMPPi Disk Usage
@@ -198,7 +198,7 @@ sensor:
     force_update: true
     icon: mdi:harddisk
     value_template: '{{ value_json.disk_usage_percent }}'
-    unit_of_measurement: "%"
+    unit_of_measurement: '%'
     state_class: measurement
 
   - name: VSMPPi Average Load (1 min)
@@ -206,7 +206,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_1m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: VSMPPi Average Load (5 min)
@@ -214,7 +214,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_5m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: VSMPPi Average Load (15 min)
@@ -222,7 +222,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_15m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: ClmtPi CPU Usage
@@ -246,7 +246,7 @@ sensor:
     force_update: true
     icon: mdi:memory
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°C"
+    unit_of_measurement: °C
     state_class: measurement
 
   - name: ClmtPi Disk Usage
@@ -254,7 +254,7 @@ sensor:
     force_update: true
     icon: mdi:harddisk
     value_template: '{{ value_json.disk_usage_percent }}'
-    unit_of_measurement: "%"
+    unit_of_measurement: '%'
     state_class: measurement
 
   - name: ClmtPi Average Load (1 min)
@@ -262,7 +262,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_1m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: ClmtPi Average Load (5 min)
@@ -270,7 +270,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_5m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: ClmtPi Average Load (15 min)
@@ -278,7 +278,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_15m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: MtrxPi CPU Usage
@@ -302,7 +302,7 @@ sensor:
     force_update: true
     icon: mdi:memory
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°C"
+    unit_of_measurement: °C
     state_class: measurement
 
   - name: MtrxPi Disk Usage
@@ -310,7 +310,7 @@ sensor:
     force_update: true
     icon: mdi:harddisk
     value_template: '{{ value_json.disk_usage_percent }}'
-    unit_of_measurement: "%"
+    unit_of_measurement: '%'
     state_class: measurement
 
   - name: MtrxPi Average Load (1 min)
@@ -318,7 +318,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_1m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: MtrxPi Average Load (5 min)
@@ -326,7 +326,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_5m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
   - name: MtrxPi Average Load (15 min)
@@ -334,7 +334,7 @@ sensor:
     force_update: true
     icon: mdi:weight
     value_template: '{{ value_json.load_15m }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     state_class: measurement
 
 #</editor-fold>
@@ -345,7 +345,7 @@ sensor:
     force_update: true
     icon: mdi:thermometer
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°C"
+    unit_of_measurement: °C
     state_class: measurement
 
   - name: Lounge Humidity
@@ -353,7 +353,7 @@ sensor:
     force_update: true
     icon: mdi:water-percent
     value_template: '{{ value_json.humidity }}'
-    unit_of_measurement: "%"
+    unit_of_measurement: '%'
     state_class: measurement
 
 #</editor-fold>
@@ -364,7 +364,7 @@ sensor:
     force_update: true
     icon: mdi:thermometer
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: "°C"
+    unit_of_measurement: °C
     state_class: measurement
 
   - name: CRT TV Internal Humidity
@@ -372,7 +372,7 @@ sensor:
     force_update: true
     icon: mdi:water-percent
     value_template: '{{ value_json.humidity }}'
-    unit_of_measurement: "%"
+    unit_of_measurement: '%'
     state_class: measurement
 
 #</editor-fold>
@@ -381,7 +381,7 @@ sensor:
     state_topic: /task_scheduler/scheduled_tasks
     icon: mdi:wrench-clock
     value_template: '{{ value_json.scheduledTasks | length }}'
-    unit_of_measurement: ""
+    unit_of_measurement: ''
     json_attributes_topic: /task_scheduler/scheduled_tasks
     json_attributes_template: '{{ value_json | tojson }}'
 

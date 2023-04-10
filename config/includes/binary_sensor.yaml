@@ -1,30 +1,30 @@
 ---
   - platform: ping
     host: vsmppi.local
-    name: "VSMPPi Online"
+    name: VSMPPi Online
     scan_interval: 30
 
   - platform: ping
     host: crt-pi.local
-    name: "CRTPi Online"
+    name: CRTPi Online
     scan_interval: 30
 
   - platform: ping
     host: growpi.local
-    name: "GrowPi Online"
+    name: GrowPi Online
     scan_interval: 30
 
   - platform: ping
     host: clmtpi.local
-    name: "ClmtPi Online"
+    name: ClmtPi Online
     scan_interval: 30
 
   - platform: ping
     host: mtrxpi.local
-    name: "MtrxPi Online"
+    name: MtrxPi Online
     scan_interval: 30
 
   - platform: ping
     host: homeassistant.local
-    name: "HAssPi Online"
+    name: HAssPi Online
     scan_interval: 30

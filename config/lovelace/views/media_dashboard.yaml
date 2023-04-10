@@ -129,15 +129,15 @@ cards:
         - type: conditional
           conditions:
             - entity: binary_sensor.will_s_yas_209_active
-              state: "on"
+              state: on
           card:
-            type: 'custom:card-templater'
+            type: custom:card-templater
             entities:
               - binary_sensor.will_s_yas_209_active
             card:
               type: custom:mini-media-player
-              entity: "media_player.will_s_yas_209"
-              icon: "mdi:soundbar"
+              entity: media_player.will_s_yas_209
+              icon: mdi:soundbar
               artwork: cover
               background_template: >
                 {{

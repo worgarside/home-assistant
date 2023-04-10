@@ -19,7 +19,7 @@
     trigger:
       platform: numeric_state
       entity_id: sensor.sun_elevation
-      below: "0"
+      below: '0'
     action:
       - service: switch.turn_on
         target:
@@ -33,13 +33,13 @@
         entity_id: sensor.sun_elevation
         below: -18
       - platform: time
-        at: "00:00:00"
+        at: 00:00:00
     action:
       - choose:
           - conditions:
               - condition: state
                 entity_id: person.will
-                state: "home"
+                state: home
             sequence:
               - delay: 3600
       - wait_template: "{{ is_state('binary_sensor.will_s_balcony_door', 'off') }}"

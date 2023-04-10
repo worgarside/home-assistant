@@ -9,13 +9,13 @@
         - input_button.water_ficus
         - input_button.water_pineapple
     action:
-      - alias: "Set variables"
+      - alias: Set variables
         variables:
           plant_name: "{{ trigger.entity_id.split('_')[-1].lower() }}"
-          input_datetime: "input_datetime.{{ plant_name }}_last_watered"
-          water_delay: "input_number.{{ plant_name }}_water_delay"
-          water_seconds: "input_number.{{ plant_name }}_water_seconds"
-          mqtt_topic: '/plant_monitor/{{ plant_name }}/water'
+          input_datetime: input_datetime.{{ plant_name }}_last_watered
+          water_delay: input_number.{{ plant_name }}_water_delay
+          water_seconds: input_number.{{ plant_name }}_water_seconds
+          mqtt_topic: /plant_monitor/{{ plant_name }}/water
         # Think this needs to be on a new line, so I don't have to put quotes
         # around it and convert it to a string?
           seconds_since_last_water: >
@@ -38,13 +38,13 @@
           - service: script.notify_will
             data:
               title: '{{  plant_name.title() }} Water Update'
-              message: "{{ states(water_seconds) | float }} sent to `{{ mqtt_topic }}`"
+              message: '{{ states(water_seconds) | float }} sent to `{{ mqtt_topic }}`'
           - service: mqtt.publish
             data:
               topic: '{{ mqtt_topic }}'
-              payload_template: "{{ states(water_seconds) | float }}"
+              payload_template: '{{ states(water_seconds) | float }}'
           - service: input_datetime.set_datetime
             target:
               entity_id: '{{ input_datetime }}'
             data:
-              datetime: "{{ now() }}"
+              datetime: '{{ now() }}'

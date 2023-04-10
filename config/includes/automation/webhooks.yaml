@@ -11,15 +11,15 @@
       - service: var.set
         data:
           entity_id: var.will_s_macbook_pro_battery_percentage
-          value: "{{ trigger.json.battery_percentage }}"
+          value: '{{ trigger.json.battery_percentage }}'
       - service: var.update
         data:
           entity_id: var.will_s_macbook_pro_battery_percentage
       - service: var.set
         data:
           entity_id: var.will_s_macbook_pro_battery_seconds_left
-          value: "{{ trigger.json.battery_seconds_left }}"
+          value: '{{ trigger.json.battery_seconds_left }}'
       - service: var.set
         data:
           entity_id: var.will_s_macbook_pro_battery_power_plugged
-          value: "{{ trigger.json.power_plugged }}"
+          value: '{{ trigger.json.power_plugged }}'
