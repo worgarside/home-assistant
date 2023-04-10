@@ -78,6 +78,7 @@ disallow_untyped_defs = true
 enable_recursive_aliases = true
 
 [tool.codespell]
+ignore-words-list = "hass"
 skip = '*.json,*.csv,*.xml,*.lock'
 
 [tool.pydantic-mypy]

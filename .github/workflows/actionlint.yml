@@ -2,7 +2,12 @@
 name: Lint GitHub Actions workflows
 
 on:
-  push:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
 
 jobs:
   actionlint:
