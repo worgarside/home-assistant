@@ -59,7 +59,7 @@ def update_sensor() -> None:
         task_list = [task["config"] for task in SCHEDULED_TASKS.values()]
 
     with HAExceptionCatcher(MODULE_NAME, "update_sensor"):
-        service.call(
+        service.call(  # pylint: disable=no-member
             "mqtt",
             "publish",
             topic=MQTT_SENSOR_TOPIC,
@@ -107,7 +107,9 @@ def create_task() -> None:
 
             with HAExceptionCatcher(MODULE_NAME, f"run.{trigger_entity_id}"):
                 domain, entity = service_call.split(".")
-                service.call(domain, entity, **service_kwargs)
+                service.call(  # pylint: disable=no-member
+                    domain, entity, **service_kwargs
+                )
 
                 persistent_notification.create(
                     title="Scheduled task run",
