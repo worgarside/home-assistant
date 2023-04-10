@@ -277,4 +277,20 @@ fabric.properties
 !cdk.json
 
 /config/secrets.yaml
+
+
 .HA_VERSION
+.cloud/*
+.spotify_cache
+.credentials
+.storage
+custom_components
+home-assistant.log*
+known_devices.yaml
+node-red/*
+secrets.yaml
+tts/*
+www/album_artwork/*
+www/community/*
+www/text-row.js
+zigbee.db*
