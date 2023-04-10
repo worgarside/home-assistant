@@ -37,24 +37,24 @@ homeassistant:
 
 http:
 
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: homeassistant
-  password: !secret influxdb_password
-  max_retries: 3
-  default_measurement: state
-  component_config_glob:
-    sensor.*humidity:
-      override_measurement: humidity
-    sensor.*temperature:
-      override_measurement: temperature
+#influxdb:
+#  host: a0d7b954-influxdb
+#  port: 8086
+#  database: homeassistant
+#  username: homeassistant
+#  password: !secret influxdb_password
+#  max_retries: 3
+#  default_measurement: state
+#  component_config_glob:
+#    sensor.*humidity:
+#      override_measurement: humidity
+#    sensor.*temperature:
+#      override_measurement: temperature
 
 logbook:
 
 logger:
-  default: info
+  default: warning
   logs:
     custom_components.pyscript: info
     custom_components.pyscript.scripts.spotify.monthlies.update_spotify_monthlies: debug
@@ -63,7 +63,7 @@ logger:
 lovelace:
   mode: yaml
   dashboards:
-    lovelace-main:
+    mobile-dashboard:
       mode: yaml
       filename: lovelace/dashboards/mobile_dashboard.yaml
       title: Mobile Dashboard
@@ -152,9 +152,12 @@ person:
 
 recorder:
   db_url: !secret mariadb_db_url
-
-# Installed via HACS - https://github.com/vigonotion/hass-simpleicons
-#simpleicons:
+  purge_keep_days: 7
+  exclude:
+    domains:
+      - automation
+    entity_globs:
+      - sensor.*_voltage
 
 speedtestdotnet:
   monitored_conditions:
@@ -194,6 +197,8 @@ usb:
 
 webhook:
 
+websocket_api:
+
 zeroconf:
 
 zone:
@@ -219,5 +224,5 @@ scene: !include includes/scenes.yaml
 script: !include includes/scripts.yaml
 sensor: !include includes/sensors.yaml
 switch: !include includes/switch.yaml
-template: !include includes/templates.yaml
+template: !include_dir_merge_list includes/template/
 var: !include_dir_merge_named includes/variable/

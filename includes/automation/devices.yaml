@@ -19,15 +19,6 @@
       - platform: numeric_state
         entity_id: var.will_s_macbook_pro_battery_percentage
         above: 95
-    condition:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: var.will_s_macbook_pro_battery_power_plugged
-            state: 'True'
-          - condition: numeric_state
-            entity_id: sensor.will_s_macbook_current_consumption
-            above: 40
     action:
       - service: switch.turn_off
         data:

@@ -197,7 +197,7 @@ def netgear_check_new_firmware() -> None:
     update_variables("check_new_firmware", new_firmware)
 
 
-@time_trigger("cron(* * * * *)")
+# @time_trigger("cron(* * * * *)")
 def netgear_get_system_info() -> None:
     """Get system info from Netgear router
 
@@ -211,7 +211,7 @@ def netgear_get_system_info() -> None:
     update_variables("get_system_info", system_info)
 
 
-@time_trigger("cron(*/5 * * * *)")
+# @time_trigger("cron(*/5 * * * *)")
 def netgear_check_ethernet_link() -> None:
     """Check ethernet link
 
@@ -221,7 +221,7 @@ def netgear_check_ethernet_link() -> None:
     update_variables("check_ethernet_link", ethernet_link_status)
 
 
-@time_trigger("cron(*/15 * * *)")
+# @time_trigger("cron(*/15 * * *)")
 def netgear_get_wan_ip_con_info() -> None:
     """Get WAN IP connection info
 
@@ -242,7 +242,7 @@ def netgear_get_wan_ip_con_info() -> None:
     update_variables("get_wan_ip_con_info", wan_ip_con_info)
 
 
-@time_trigger("cron(*/20 * * * *)")
+# @time_trigger("cron(*/20 * * * *)")
 def netgear_run_speed_test() -> None:
     """Get new speed test result
 

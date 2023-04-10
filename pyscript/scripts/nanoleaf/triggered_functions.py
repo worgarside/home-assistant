@@ -106,7 +106,7 @@ def get_local_artwork_file_path(artist: str, album: str, url: str) -> str:
         )
     ):
         if url.startswith("/api"):  # if it's an internal image
-            local_base_url = f"http://{sensor.local_ip}:8123"
+            local_base_url = f"http://{sensor.ipv4_address_eth0}:8123"
             log.debug("URL is local, prepending with %s", local_base_url)
             url = local_base_url + url
 

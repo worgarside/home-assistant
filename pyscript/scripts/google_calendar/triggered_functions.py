@@ -113,7 +113,7 @@ def event_in_list(target_event: Event, event_list: list[Event]) -> bool:
 
 
 @service
-@time_trigger("cron(*/5 * * * *)")
+# @time_trigger("cron(*/5 * * * *)")
 def copy_events() -> None:
     """Copy events from my work calendar to my personal one"""
     with HAExceptionCatcher(MODULE_NAME, "copy_events"):
