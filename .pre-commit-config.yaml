@@ -69,7 +69,6 @@ repos:
           - '2'
           - --width
           - '4096'
-          - --preserve-quotes
 
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.30.0
@@ -127,7 +126,7 @@ repos:
     rev: v1.10.0
     hooks:
       - id: python-check-blanket-type-ignore
-      # - id: python-use-type-annotations
+      - id: python-use-type-annotations
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.4
