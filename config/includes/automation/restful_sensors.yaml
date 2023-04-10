@@ -10,12 +10,12 @@
         entity_id: sensor.mini_crt_power_state
     action:
       - choose:
-          - alias: "True"
+          - alias: 'True'
             conditions: "{{ states('sensor.mini_crt_power_state') | string == 'True' }}"
             sequence:
               - service: input_boolean.turn_on
                 entity_id: input_boolean.mini_crt_power
-          - alias: "False"
+          - alias: 'False'
             conditions: >
               {{ not states('sensor.mini_crt_power_state') | string == "True" }}
             sequence:
@@ -24,6 +24,6 @@
         default:
           - service: script.notify_will
             data:
-              title: "Automation Failure"
+              title: Automation Failure
               # yamllint disable-line rule:line-length
-              message: "Automation `rest_mini_crt_power_state` failed: unknown previous state of `{{ trigger.from_state.state }}`"
+              message: 'Automation `rest_mini_crt_power_state` failed: unknown previous state of `{{ trigger.from_state.state }}`'

@@ -1,83 +1,83 @@
 ---
 debug_persistent_notification:
-  description: "Create a persistent notification if debugging is turned on"
+  description: Create a persistent notification if debugging is turned on
   mode: parallel
   fields:
     title:
-      description: "The notification's title"
-      example: "Something has happened!"
+      description: The notification's title
+      example: Something has happened!
     message:
-      description: "The notification's message body"
-      example: "More detail about this thing"
+      description: The notification's message body
+      example: More detail about this thing
   sequence:
-    - alias: "Check if debugging is turned on"
+    - alias: Check if debugging is turned on
       condition: state
       entity_id: input_boolean.debug_with_persistent_notification
-      state: "on"
+      state: on
     - service: persistent_notification.create
       data:
-        title: "{{ title }}"
-        message: "{{ message }}"
+        title: '{{ title }}'
+        message: '{{ message }}'
 
 notify_will:
-  description: "Send a notification to Will's phone and the HA UI"
+  description: Send a notification to Will's phone and the HA UI
   mode: parallel
   fields:
     title:
-      description: "The title of the notification"
-      example: "Something Important!"
+      description: The title of the notification
+      example: Something Important!
     message:
-      description: "The message body of the notification"
-      example: "A thing has happened, though you ought to know"
+      description: The message body of the notification
+      example: A thing has happened, though you ought to know
   sequence:
     - service: persistent_notification.create
       data:
-        title: "{{ title }}"
-        message: "{{ message }}"
+        title: '{{ title }}'
+        message: '{{ message }}'
     - service: notify.mobile_app_will_s_pixel_6_pro
       data:
-        title: "{{ title }}"
-        message: "{{ message }}"
+        title: '{{ title }}'
+        message: '{{ message }}'
 
 send_washing_machine_user_choice_notif:
-  description: "Send a notification asking who's using the washing machine"
+  description: Send a notification asking who's using the washing machine
   mode: parallel
   fields:
     target_device:
-      description: "The device to notify"
-      example: "mobile_app_nokia_3310"
+      description: The device to notify
+      example: mobile_app_nokia_3310
   sequence:
-    - service: "notify.{{ target_device }}"
+    - service: notify.{{ target_device }}
       data:
-        message: "Who's using the washing machine?"
+        message: Who's using the washing machine?
         data:
           actions:
-            - action: "MATT_USING_WASHING_MACHINE"
-              title: "Matt"
-            - action: "TOM_USING_WASHING_MACHINE"
-              title: "Tom"
-            - action: "WILL_USING_WASHING_MACHINE"
-              title: "Will"
+            - action: MATT_USING_WASHING_MACHINE
+              title: Matt
+            - action: TOM_USING_WASHING_MACHINE
+              title: Tom
+            - action: WILL_USING_WASHING_MACHINE
+              title: Will
 
 start_spotify_on_device:
-  description: "Start Spotify playback on a particular device"
+  description: Start Spotify playback on a particular device
   mode: restart
   fields:
     entity_id:
       # yamllint disable-line rule:line-length
-      description: "The ID of the device to start playback on, used in creating a stopping condition for the exponential backoff"
-      example: "entity_id"
+      description: The ID of the device to start playback on, used in creating a stopping condition for the exponential backoff
+      example: entity_id
     device_key:
       # yamllint disable-line rule:line-length
-      description: "The key to use in identifying the device (i.e. `spotify_device_id` or `entity_id`)"
-      example: "entity_id"
+      description: The key to use in identifying the device (i.e. `spotify_device_id` or `entity_id`)
+      example: entity_id
     device_value:
-      description: "The value to use in identifying the device"
-      example: "media_player.hifi_system"
+      description: The value to use in identifying the device
+      example: media_player.hifi_system
     user_name:
       # yamllint disable-line rule:line-length
-      description: "The name of the user, to determine which Spotify account to use"
-      example: "Dave"
+      description: The name of the user, to determine which Spotify account to use
+      example: Dave
   sequence:
     - service: script.debug_persistent_notification
       data:
@@ -94,10 +94,10 @@ start_spotify_on_device:
         force_playback: true
 
 crt_pi_update_display:
-  description: "Update the CRT Pi display from the chosen media player's track"
+  description: Update the CRT Pi display from the chosen media player's track
   mode: parallel
   sequence:
-    - alias: "Set Variables"
+    - alias: Set Variables
       variables:
         media_player: "{{ states('input_select.crt_pi_display_source') }}"
         album_artwork_url_prefix: |
@@ -125,7 +125,7 @@ crt_pi_update_display:
         # yamllint enable rule:line-length
     - service: mqtt.publish
       data:
-        topic: "/crt-pi/display/update_display"
+        topic: /crt-pi/display/update_display
         # yamllint disable rule:line-length
         payload: |
           {
@@ -138,10 +138,10 @@ crt_pi_update_display:
         # yamllint enable rule:line-length
 
 mtrxpi_update_display:
-  description: "Update the MtrxPi display from the chosen media player's track"
+  description: Update the MtrxPi display from the chosen media player's track
   mode: restart
   sequence:
-    - alias: "Set Variables"
+    - alias: Set Variables
       variables:
         media_player: "{{ states('input_select.mtrxpi_display_source') }}"
         album_artwork_url_prefix: |
@@ -169,7 +169,7 @@ mtrxpi_update_display:
         # yamllint enable rule:line-length
     - service: mqtt.publish
       data:
-        topic: "/homeassistant/led_matrix/display"
+        topic: /homeassistant/led_matrix/display
         # yamllint disable rule:line-length
         payload: |
           {

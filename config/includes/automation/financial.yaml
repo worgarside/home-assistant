@@ -9,7 +9,7 @@
       - platform: event
         event_type: mobile_app_notification_action
         event_data:
-          action: "TOP_UP_CREDIT_CARD_POT"
+          action: TOP_UP_CREDIT_CARD_POT
     action:
       - service: script.debug_persistent_notification
         data:

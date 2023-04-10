@@ -4,7 +4,7 @@
     trigger:
       - platform: time
         at:
-          - "21:00:00"
+          - 21:00:00
     condition: |
       {{
         ( states('var.truelayer_balance_amex') | float -
@@ -14,37 +14,37 @@
       - service: notify.mobile_app_will_s_pixel_6_pro
         data:
         # yamllint disable-line rule:line-length
-          message: "Credit Cards pot is £{{ '%.2f' % ( ( states('var.truelayer_balance_amex') | float - states('var.truelayer_balance_monzo_credit_cards') | float ) | round(2) ) }} too low. Top up pot?"
+          message: Credit Cards pot is £{{ '%.2f' % ( ( states('var.truelayer_balance_amex') | float - states('var.truelayer_balance_monzo_credit_cards') | float ) | round(2) ) }} too low. Top up pot?
           data:
             actions:
-              - action: "TOP_UP_CREDIT_CARD_POT"
-                title: "Top Up"
+              - action: TOP_UP_CREDIT_CARD_POT
+                title: Top Up
 
   - alias: /notification/washing_machine_active_user/send
     id: send_washing_machine_user_notif
     trigger:
       - platform: state
         entity_id: binary_sensor.washing_machine
-        to: "on"
+        to: on
         for:
           minutes: 2
     action:
       - choose:
-          - alias: "Ask Matt who's using the washing machine"
+          - alias: Ask Matt who's using the washing machine
             conditions: "{{ states('person.matt') == 'home' }}"
             sequence:
               - service: script.send_washing_machine_user_choice_notif
                 data:
                   target_device: mobile_app_iphone
       - choose:
-          - alias: "Ask Tom who's using the washing machine"
+          - alias: Ask Tom who's using the washing machine
             conditions: "{{ states('person.tom') == 'home' }}"
             sequence:
               - service: script.send_washing_machine_user_choice_notif
                 data:
                   target_device: mobile_app_toms_iphone
       - choose:
-          - alias: "Ask Will who's using the washing machine"
+          - alias: Ask Will who's using the washing machine
             conditions: "{{ states('person.will') == 'home' }}"
             sequence:
               - service: script.send_washing_machine_user_choice_notif
@@ -56,70 +56,70 @@
     trigger:
       - platform: state
         entity_id: binary_sensor.washing_machine
-        to: "off"
+        to: off
         for:
           minutes: 2
     action:
-      - alias: "Set variables"
+      - alias: Set variables
         variables:
           current_user: "{{ states('input_select.washing_machine_current_user') }}"
       - choose:
-          - alias: "Notify Matt"
+          - alias: Notify Matt
             conditions: "{{ current_user == 'Matt' }}"
             sequence:
               - service: notify.mobile_app_iphone
                 data:
-                  title: "Washing Machine Finished"
-                  message: "The washing machine has completed its cycle"
+                  title: Washing Machine Finished
+                  message: The washing machine has completed its cycle
       - choose:
-          - alias: "Notify Tom"
+          - alias: Notify Tom
             conditions: "{{ current_user == 'Tom' }}"
             sequence:
               - service: notify.mobile_app_toms_iphone
                 data:
-                  title: "Washing Machine Finished"
-                  message: "The washing machine has completed its cycle"
+                  title: Washing Machine Finished
+                  message: The washing machine has completed its cycle
       - choose:
-          - alias: "Notify Will"
+          - alias: Notify Will
             conditions: "{{ current_user == 'Will' }}"
             sequence:
               - service: notify.mobile_app_will_s_pixel_6_pro
                 data:
-                  title: "Washing Machine Finished"
-                  message: "The washing machine has completed its cycle"
+                  title: Washing Machine Finished
+                  message: The washing machine has completed its cycle
       - choose:
-          - alias: "Notify all at home"
+          - alias: Notify all at home
             conditions: "{{ current_user == 'None' }}"
             sequence:
               - choose:
-                  - alias: "Notify Matt (at home)"
+                  - alias: Notify Matt (at home)
                     conditions: "{{ states('person.matt') == 'home' }}"
                     sequence:
                       - service: notify.mobile_app_iphone
                         data:
-                          title: "Washing Machine Finished"
-                          message: "The washing machine has completed its cycle"
+                          title: Washing Machine Finished
+                          message: The washing machine has completed its cycle
               - choose:
-                  - alias: "Notify Tom (at home)"
+                  - alias: Notify Tom (at home)
                     conditions: "{{ states('person.tom') == 'home' }}"
                     sequence:
                       - service: notify.mobile_app_toms_iphone
                         data:
-                          title: "Washing Machine Finished"
-                          message: "The washing machine has completed its cycle"
+                          title: Washing Machine Finished
+                          message: The washing machine has completed its cycle
               - choose:
-                  - alias: "Notify Will (at home)"
+                  - alias: Notify Will (at home)
                     conditions: "{{ states('person.will') == 'home' }}"
                     sequence:
                       - service: notify.mobile_app_will_s_pixel_6_pro
                         data:
-                          title: "Washing Machine Finished"
-                          message: "The washing machine has completed its cycle"
+                          title: Washing Machine Finished
+                          message: The washing machine has completed its cycle
       - service: input_select.select_option
         target:
           entity_id: input_select.washing_machine_current_user
         data:
-          option: "None"
+          option: None
 
   - alias: /notification/will_s_balcony_door/rain_alert
     id: notification_will_s_balcony_door_rain_alert
@@ -131,10 +131,10 @@
           minutes: 5
     condition:
       condition: state
-      state: "on"
+      state: on
       entity_id:
         - binary_sensor.will_s_balcony_door
     action:
       - service: notify.mobile_app_will_s_pixel_6_pro
         data:
-          message: "It's raining and your balcony door is open!"
+          message: It's raining and your balcony door is open!
