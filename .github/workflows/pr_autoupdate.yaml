@@ -1,9 +1,9 @@
 ---
-name: PR Auto-Update
+name: autoupdate
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   autoupdate:
@@ -14,5 +14,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           PR_FILTER: labelled
-          PR_LABELS: "dependencies"
-          MERGE_CONFLICT_ACTION: "ignore"
+          PR_LABELS: dependencies
