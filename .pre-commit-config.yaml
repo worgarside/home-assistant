@@ -55,7 +55,6 @@ repos:
           - -a
           - from __future__ import annotations
 
-
   - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
     rev: 0.2.2
     hooks:
@@ -69,6 +68,7 @@ repos:
           - '2'
           - --width
           - '4096'
+        exclude: includes/scripts.yaml
 
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.30.0
