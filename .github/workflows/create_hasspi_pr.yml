@@ -45,7 +45,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
         run: |
-          gh pr ${{ steps.check-if-pr-exists.outputs.pr-number }} create \
+          gh pr create \
             --repo ${{ github.repository }} \
             --title "HAssPi Sync (${{ steps.get-files-changed.outputs.file-count }} files changed)" \
             --fill \
@@ -60,6 +60,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
         run: |
-          gh pr ${{ steps.check-if-pr-exists.outputs.pr-number }} edit \
+          gh pr edit ${{ steps.check-if-pr-exists.outputs.pr-number }} \
             --repo ${{ github.repository }} \
             --title "HAssPi Sync (${{ steps.get-files-changed.outputs.file-count }} files changed)"
