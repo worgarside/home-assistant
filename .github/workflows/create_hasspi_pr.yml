@@ -26,7 +26,7 @@ jobs:
                 .baseRefName == "main"
               ) | select(
                 .headRefName == "homeassistant.local"
-              )
+              ) | .number
             '
           )" >> $GITHUB_OUTPUT
 
