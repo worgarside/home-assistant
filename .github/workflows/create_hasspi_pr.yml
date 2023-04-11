@@ -23,7 +23,7 @@ jobs:
             --json baseRefName,headRefName,number \
             --jq '
               .[] | select(
-                .baseRefName == "main"
+                .baseRefName == "develop"
               ) | select(
                 .headRefName == "homeassistant.local"
               ) | .number
@@ -38,7 +38,7 @@ jobs:
       - name: Get Files Changed
         id: get-files-changed
         run: |
-          echo "file-count=$(git diff --name-only origin/main | wc -l)" >> $GITHUB_OUTPUT
+          echo "file-count=$(git diff --name-only origin/develop | wc -l)" >> $GITHUB_OUTPUT
 
       - name: Create PR
         if: steps.check-if-pr-exists.outputs.pr-number == null
@@ -49,7 +49,7 @@ jobs:
             --repo ${{ github.repository }} \
             --title "HAssPi Sync (${{ steps.get-files-changed.outputs.file-count }} files changed)" \
             --fill \
-            --base main \
+            --base develop \
             --head homeassistant.local \
             --reviewer worgarside \
             --draft \
