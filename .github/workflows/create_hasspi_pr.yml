@@ -47,8 +47,7 @@ jobs:
         run: |
           gh pr ${{ steps.check-if-pr-exists.outputs.pr-number }} create \
             --repo ${{ github.repository }} \
-            --title "HAssPi Sync (${{ steps.get-files-changed.outputs.file-count }} \
-              files changed)" \
+            --title "HAssPi Sync (${{ steps.get-files-changed.outputs.file-count }} files changed)" \
             --fill \
             --base main \
             --head homeassistant.local \
@@ -63,5 +62,4 @@ jobs:
         run: |
           gh pr ${{ steps.check-if-pr-exists.outputs.pr-number }} edit \
             --repo ${{ github.repository }} \
-            --title "HAssPi Sync (${{ steps.get-files-changed.outputs.file-count }} \
-              files changed)"
+            --title "HAssPi Sync (${{ steps.get-files-changed.outputs.file-count }} files changed)"
