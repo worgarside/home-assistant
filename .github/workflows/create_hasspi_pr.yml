@@ -53,7 +53,7 @@ jobs:
             --head homeassistant.local \
             --reviewer worgarside \
             --draft \
-            --label "sync"
+            --label "hasspi-sync"
 
       - name: Edit PR Title
         if: steps.check-if-pr-exists.outputs.pr-number
