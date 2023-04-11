@@ -64,5 +64,4 @@ jobs:
           gh pr ${{ steps.check-if-pr-exists.outputs.pr-number }} edit \
             --repo ${{ github.repository }} \
             --title "HAssPi Sync (${{ steps.get-files-changed.outputs.file-count }} \
-              files changed)" \
-            --fill
+              files changed)"
