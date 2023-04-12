@@ -4,7 +4,7 @@ name: Run SonarCloud Scan
 on:
   push:
     branches:
-      - main
+      - develop
   pull_request:
 
 jobs:

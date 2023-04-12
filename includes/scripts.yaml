@@ -1,3 +1,4 @@
+---
 debug_persistent_notification:
   description: Create a persistent notification if debugging is turned on
   mode: parallel
@@ -12,7 +13,7 @@ debug_persistent_notification:
     - alias: Check if debugging is turned on
       condition: state
       entity_id: input_boolean.debug_with_persistent_notification
-      state: on
+      state: "on"
     - service: persistent_notification.create
       data:
         title: '{{ title }}'
