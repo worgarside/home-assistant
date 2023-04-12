@@ -5,6 +5,7 @@ from collections.abc import Callable, Iterable
 from copy import deepcopy
 from datetime import datetime
 from os.path import isfile
+from pathlib import Path
 from re import compile as compile_regex
 from socket import gethostname
 from typing import Any, Dict, List  # noqa: UP035,F401
@@ -31,14 +32,13 @@ if gethostname() != "homeassistant":
     event_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
     service: Callable[..., Callable[..., Any]] = decorator
 
-    CREDS_CACHE_PATH: str | None = None
+    CREDS_CACHE_PATH: Path | None = None
 else:
-    CREDS_CACHE_PATH = "/config/.spotify_cache"
+    CREDS_CACHE_PATH = Path("/config/.spotify_cache")
 
 SPOTIFY = SpotifyClient(
     client_id=get_secret("client_id", module=MODULE_NAME),
     client_secret=get_secret("client_secret", module=MODULE_NAME),
-    scope=SpotifyClient.ALL_SCOPES,
     creds_cache_path=CREDS_CACHE_PATH,
 )
 
@@ -69,7 +69,7 @@ def get_monthly_playlists(return_count: int = 12) -> list[Playlist]:
     """
 
     return sorted(
-        (p for p in SPOTIFY.playlists if MONTHLY_PATTERN.match(p.name)),
+        (p for p in SPOTIFY.current_user.playlists if MONTHLY_PATTERN.match(p.name)),
         key=lambda playlist: datetime.strptime(playlist.name, "%B '%y"),
     )[-return_count:]
 
@@ -81,9 +81,10 @@ def process_liked_songs() -> None:
     twice"""
     with HAExceptionCatcher(MODULE_NAME, "process_liked_songs"):
         log.info("Resetting all Spotify client properties")
-        SPOTIFY.reset_properties()
 
-        recently_liked = task.executor(SPOTIFY.get_recently_liked_tracks, day_limit=7)
+        recently_liked = task.executor(
+            SPOTIFY.current_user.get_recently_liked_tracks, day_limit=7
+        )
 
         # Monthly updates
 
@@ -97,7 +98,8 @@ def process_liked_songs() -> None:
             deepcopy(recently_liked),
             all_monthly_playlist_tracks,
             lambda t: datetime.strptime(
-                t.metadata.get("liked_at"), SPOTIFY.DATETIME_FORMAT
+                t.metadata.get("liked_at"),  # type: ignore[arg-type]
+                SPOTIFY.DATETIME_FORMAT,
             ).strftime("%B '%y"),
         )
 
@@ -183,7 +185,7 @@ def update_dynamic_playlists(
                         break
                 else:
                     target_playlist = task.executor(
-                        SPOTIFY.get_playlists_by_name, target_playlist_name
+                        SPOTIFY.current_user.get_playlists_by_name, target_playlist_name
                     )
 
                     if target_playlist is None:
@@ -233,13 +235,9 @@ def save_album_artwork(var_name: str, value: str, old_value: str) -> None:
             cleansed_artist_name += char.lower()
 
     if isfile(
-        target_path := "/".join(
-            [
-                "www",
-                "album_artwork",
-                cleansed_artist_name,
-                f"{cleansed_album_name}.jpg",
-            ]
+        target_path := Path("/config/www/album_artwork").joinpath(
+            cleansed_artist_name,
+            f"{cleansed_album_name}.jpg",
         )
     ):
         return
@@ -304,7 +302,9 @@ def add_track_to_playlist(action: str, message: str, **_: dict[Any, Any]) -> Non
     log.debug("Looking for '%s'", target_track_name)
 
     track = None
-    for track in task.executor(SPOTIFY.get_recently_liked_tracks, day_limit=7):
+    for track in task.executor(
+        SPOTIFY.current_user.get_recently_liked_tracks, day_limit=7
+    ):
         if track.name == target_track_name:
             break
 
