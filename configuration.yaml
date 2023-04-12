@@ -169,12 +169,6 @@ spotcast:
   sp_dc: !secret spotcast_sp_dc_will
   sp_key: !secret spotcast_sp_key_will
   accounts:
-    matt:
-      sp_dc: !secret spotcast_sp_dc_matt
-      sp_key: !secret spotcast_sp_key_matt
-    tom:
-      sp_dc: !secret spotcast_sp_dc_tom
-      sp_key: !secret spotcast_sp_key_tom
     # including myself as a specific account for automations
     will:
       sp_dc: !secret spotcast_sp_dc_will
