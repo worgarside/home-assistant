@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from pathlib import Path
 from socket import gethostname
 from typing import Any
 
@@ -13,8 +14,7 @@ MODULE_NAME = "spotify"
 SPOTIFY = SpotifyClient(
     client_id=get_secret("client_id", module=MODULE_NAME),
     client_secret=get_secret("client_secret", module=MODULE_NAME),
-    scope=SpotifyClient.ALL_SCOPES,
-    creds_cache_path="/config/.spotify_cache",
+    creds_cache_path=Path("/config/.spotify_cache"),
 )
 
 if gethostname() != "homeassistant":
@@ -27,7 +27,6 @@ if gethostname() != "homeassistant":
     time_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
 
 
-@time_trigger("cron(* * * * *)")
 @state_trigger("sensor.spotify_matt_scott_media_title")
 @state_trigger("sensor.spotify_tom_jones_media_title")
 @state_trigger("sensor.spotify_will_garside_media_title")
