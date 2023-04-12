@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "SSH FS - Home Assistant",
+			"uri": "ssh://hasspi/config"
+		}
+	],
+	"settings": {
+		"launches": {
+			"PythonCurrentFile": "Python: Current File"
+		},
+		"files.associations": {
+			"*.yaml": "home-assistant"
+		},
+		"terminal.integrated.env.osx": {
+			"PYTHONPATH": "${workspaceFolder}/pyscript/modules/"
+		}
+	}
+}
