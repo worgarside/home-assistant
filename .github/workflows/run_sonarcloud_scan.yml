@@ -4,7 +4,10 @@ name: Run SonarCloud Scan
 on:
   push:
     branches:
+      - master
+      - main
       - develop
+      - homeassistant.local
   pull_request:
 
 jobs:
