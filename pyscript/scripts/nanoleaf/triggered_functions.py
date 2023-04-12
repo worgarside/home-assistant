@@ -3,11 +3,12 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from os.path import isfile
+from pathlib import Path
 from socket import gethostname
 from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret, write_file
-from nanoleafapi import Nanoleaf
+from nanoleafapi import Nanoleaf  # type: ignore[import]
 from PIL import Image
 from requests import get
 from wg_utilities.functions import force_mkdir
@@ -25,13 +26,6 @@ if gethostname() != "homeassistant":
     state_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
     service: Callable[..., Callable[..., Any]] = decorator
     pyscript_executor: Callable[..., Callable[..., Any]] = decorator
-
-# Shapes 8479
-MATTS_SHAPES = task.executor(
-    Nanoleaf,
-    get_secret("ip_address", module="nanoleaf.matts_shapes"),
-    get_secret("auth_token", module="nanoleaf.matts_shapes"),
-)
 
 # Shapes E418
 THE_SNAIL = task.executor(
@@ -52,7 +46,7 @@ MEDIA_PLAYER_OVERRIDES = {
 
 
 @pyscript_executor
-def get_n_colors_from_image(img_path: str, n: int) -> list[dict[str, int]]:
+def get_n_colors_from_image(img_path: Path, n: int) -> list[dict[str, int]]:
     """Get the N most common colors from an image
 
     Args:
@@ -63,7 +57,7 @@ def get_n_colors_from_image(img_path: str, n: int) -> list[dict[str, int]]:
         list: a list of the N most common colors in an image in the HSB format
     """
 
-    pixels = Image.open(img_path).quantize(colors=n, method=0)
+    pixels = Image.open(str(img_path)).quantize(colors=n, method=0)
 
     return [
         {
@@ -79,7 +73,7 @@ def get_n_colors_from_image(img_path: str, n: int) -> list[dict[str, int]]:
     ][:n]
 
 
-def get_local_artwork_file_path(artist: str, album: str, url: str) -> str:
+def get_local_artwork_file_path(artist: str, album: str, url: str) -> Path:
     """Get the local file path for the artwork image, downloading it if necessary
 
     Args:
@@ -96,13 +90,9 @@ def get_local_artwork_file_path(artist: str, album: str, url: str) -> str:
     cleansed_artist_name = "".join([char.lower() for char in artist if char.isalnum()])
 
     if not isfile(
-        target_path := "/".join(
-            [
-                "www",
-                "album_artwork",
-                cleansed_artist_name,
-                f"{cleansed_album_name}.jpg",
-            ]
+        target_path := Path("/config/www/album_artwork").joinpath(
+            cleansed_artist_name,
+            f"{cleansed_album_name}.jpg",
         )
     ):
         if url.startswith("/api"):  # if it's an internal image
@@ -190,15 +180,6 @@ def update_nanoleaf_colors(var_name: str) -> None:
     Args:
         var_name (str): the media player which triggered this function
     """
-    with HAExceptionCatcher(MODULE_NAME, "update_nanoleaf_colors_matts_shapes"):
-        if (
-            var_name == input_select.matts_shapes_artwork_colour_source
-            and input_boolean.matts_shapes_artwork_colour_source_active == "on"
-        ):
-            update_nanoleaf_colors_worker(
-                MEDIA_PLAYER_OVERRIDES.get(var_name, var_name), MATTS_SHAPES
-            )
-
     with HAExceptionCatcher(MODULE_NAME, "update_nanoleaf_colors_the_snail"):
         if (
             var_name == input_select.the_snail_artwork_colour_source

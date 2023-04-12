@@ -4,6 +4,7 @@ from __future__ import annotations
 from collections.abc import Callable
 from datetime import datetime
 from json import dumps
+from pathlib import Path
 from socket import gethostname
 from typing import Any
 
@@ -24,14 +25,13 @@ if gethostname() != "homeassistant":
 
     CACHE_PATH = None
 else:
-    CACHE_PATH = "/config/.credentials/monzo_api_creds.json"
+    CACHE_PATH = Path("/config/.credentials/monzo_api_creds.json")
 
 MODULE_NAME = "monzo"
 
 MONZO = MonzoClient(
     client_id=get_secret("client_id", module=MODULE_NAME),
     client_secret=get_secret("client_secret", module=MODULE_NAME),
-    redirect_uri=f"http://{sensor.ipv4_address_eth0}:5001/get_auth_code",
     creds_cache_path=CACHE_PATH,
 )
 

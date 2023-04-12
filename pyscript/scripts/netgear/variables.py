@@ -8,7 +8,7 @@ from socket import gethostname
 from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret
-from pynetgear import Netgear
+from pynetgear import Netgear  # type: ignore[import]
 
 MODULE_NAME = "netgear"
 
