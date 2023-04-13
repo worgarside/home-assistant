@@ -73,85 +73,85 @@
     description: PR for updating the tools used in this repo
 
   - name: ha:binary-sensor
-    color: 9B59B6
+    color: '00BFFF'
     description: Detects on/off states
 
   - name: ha:config
-    color: 3498DB
+    color: '1E90FF'
     description: Configuration files
 
   - name: ha:cover
-    color: E74C3C
-    description: Controls window coverings
+    color: 'FF8C00'
+    description: Controls door and window coverings
 
   - name: ha:device-tracker
-    color: 1ABC9C
+    color: '32CD32'
     description: Tracks device presence
 
   - name: ha:groups
-    color: 2ECC71
+    color: 'FF1493'
     description: Organizes devices/entities
 
   - name: ha:input-boolean
-    color: F1C40F
+    color: 'FFFF00'
     description: Toggles between two states
 
   - name: ha:input-button
-    color: 7F8C8D
+    color: '696969'
     description: Manual control buttons
 
   - name: ha:input-datetime
-    color: 95A5A6
+    color: 'BEBEBE'
     description: User-defined date/time inputs
 
   - name: ha:input-number
-    color: E67E22
+    color: 'FFA500'
     description: User-defined numerical inputs
 
   - name: ha:input-select
-    color: 27AE60
+    color: '00FF7F'
     description: User-defined dropdown inputs
 
   - name: ha:input-text
-    color: 2980B9
+    color: '1E90FF'
     description: User-defined text inputs
 
   - name: ha:lovelace
-    color: 8E44AD
+    color: '9400D3'
     description: Home Assistant UI configuration
 
   - name: ha:media-player
-    color: C0392B
+    color: 'FF0000'
     description: Plays media (music, videos)
 
   - name: ha:mqtt
-    color: 16A085
+    color: '7CFC00'
     description: Uses MQTT messaging protocol
 
   - name: ha:pyscript
-    color: D2527F
+    color: 'FF69B4'
     description: Python automation scripts
 
   - name: ha:rest-command
-    color: F39C12
+    color: 'FFD700'
     description: HTTP commands for external control
 
   - name: ha:scenes
-    color: 1F8448
+    color: '008000'
     description: Predefined states for multiple devices
 
   - name: ha:scripts
-    color: 2C3E50
+    color: '808080'
     description: User-defined automations/commands
 
   - name: ha:sensors
-    color: E74C3C
+    color: 'FF8C00'
     description: Measures physical properties
 
   - name: ha:switch
-    color: 3498DB
+    color: '1E90FF'
     description: Switches between two states
 
   - name: ha:template
-    color: F1C40F
+    color: 'FFFF00'
     description: User-defined templates for dynamic content/configurations
