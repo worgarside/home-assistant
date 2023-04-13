@@ -1,5 +1,5 @@
 ---
-  # yamllint disable rule:indentation
+   # yamllint disable rule:indentation
 
   - name: bug
     color: D73A4A
@@ -73,89 +73,89 @@
     description: PR for updating the tools used in this repo
 
   - name: ha:automations
-    color: '#FF0000'
+    color: 'FF0000'
     description: Automations for smart home devices.
 
   - name: ha:config
-    color: '#FF3300'
+    color: 'FF3300'
     description: Configuration settings for Home Assistant.
 
   - name: ha:cover
-    color: '#FF6600'
+    color: 'FF6600'
     description: Covers and blinds controlled by Home Assistant.
 
   - name: ha:device-tracker
-    color: '#FF9900'
+    color: 'FF9900'
     description: Devices that track the location of people or pets.
 
   - name: ha:groups
-    color: '#FFCC00'
+    color: 'FFCC00'
     description: Groups of smart home devices.
 
   - name: ha:input-boolean
-    color: '#FFFF00'
+    color: 'FFFF00'
     description: Boolean inputs for Home Assistant.
 
   - name: ha:input-button
-    color: '#CCFF00'
+    color: 'CCFF00'
     description: Buttons used to trigger actions in Home Assistant.
 
   - name: ha:input-datetime
-    color: '#99FF00'
+    color: '99FF00'
     description: Date and time inputs for Home Assistant.
 
   - name: ha:input-number
-    color: '#66FF00'
+    color: '66FF00'
     description: Numeric inputs for Home Assistant.
 
   - name: ha:input-select
-    color: '#33FF00'
+    color: '33FF00'
     description: Drop-down selection inputs for Home Assistant.
 
   - name: ha:input-text
-    color: '#00FF00'
+    color: '00FF00'
     description: Text inputs for Home Assistant.
 
   - name: ha:lovelace
-    color: '#00FF33'
+    color: '00FF33'
     description: Custom user interface for Home Assistant.
 
   - name: ha:media-player
-    color: '#00FF66'
+    color: '00FF66'
     description: Media players controlled by Home Assistant.
 
   - name: ha:mqtt
-    color: '#00FF99'
+    color: '00FF99'
     description: Devices or services that use the MQTT protocol.
 
   - name: ha:pyscript
-    color: '#FF00FF'
+    color: 'FF00FF'
     description: Custom Python scripts for Home Assistant.
 
   - name: ha:rest-command
-    color: '#0099FF'
+    color: '0099FF'
     description: Commands to be sent to a RESTful API.
 
   - name: ha:scenes
-    color: '#0066FF'
+    color: '0066FF'
     description: Preconfigured states for groups of devices.
 
   - name: ha:scripts
-    color: '#0033FF'
+    color: '0033FF'
     description: Automated sequences of actions for Home Assistant.
 
   - name: ha:sensors
-    color: '#0000FF'
+    color: '0000FF'
     description: Sensors that measure environmental data or device states.
 
   - name: ha:switch
-    color: '#3300FF'
+    color: '3300FF'
     description: Switches to turn devices on or off.
 
   - name: ha:template
-    color: '#6600FF'
+    color: '6600FF'
     description: Custom templates for Home Assistant.
 
   - name: ha:variables
-    color: '#9900FF'
+    color: '9900FF'
     description: Variables used in Home Assistant automations.
