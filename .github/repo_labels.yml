@@ -73,89 +73,89 @@
     description: PR for updating the tools used in this repo
 
   - name: ha:automations
-    color: 'FF0000'
-    description: Automations for smart home devices.
+    color: 'ff0000'
+    description: Automations to control devices
 
   - name: ha:config
-    color: 'FF3300'
-    description: Configuration settings for Home Assistant.
+    color: 'ff3f00'
+    description: Configuration files for Home Assistant
 
   - name: ha:cover
-    color: 'FF6600'
-    description: Covers and blinds controlled by Home Assistant.
+    color: 'ff7f00'
+    description: Window blinds, curtains, and garage doors
 
   - name: ha:device-tracker
-    color: 'FF9900'
-    description: Devices that track the location of people or pets.
+    color: 'ffbf00'
+    description: Track device locations and presence
 
   - name: ha:groups
-    color: 'FFCC00'
-    description: Groups of smart home devices.
+    color: 'ffff00'
+    description: Group entities together for easy control
 
   - name: ha:input-boolean
-    color: 'FFFF00'
-    description: Boolean inputs for Home Assistant.
+    color: 'bfff00'
+    description: Binary on/off input controls
 
   - name: ha:input-button
-    color: 'CCFF00'
-    description: Buttons used to trigger actions in Home Assistant.
+    color: '7fff00'
+    description: Momentary push button input controls
 
   - name: ha:input-datetime
-    color: '99FF00'
-    description: Date and time inputs for Home Assistant.
+    color: '3fff00'
+    description: Date and time input controls
 
   - name: ha:input-number
-    color: '66FF00'
-    description: Numeric inputs for Home Assistant.
+    color: '00ff00'
+    description: Numeric input controls
 
   - name: ha:input-select
-    color: '33FF00'
-    description: Drop-down selection inputs for Home Assistant.
+    color: '00ff7f'
+    description: Dropdown selection input controls
 
   - name: ha:input-text
-    color: '00FF00'
-    description: Text inputs for Home Assistant.
+    color: '00ffff'
+    description: Text input controls
 
   - name: ha:lovelace
-    color: '00FF33'
-    description: Custom user interface for Home Assistant.
+    color: '007fff'
+    description: Lovelace UI configuration files
 
   - name: ha:media-player
-    color: '00FF66'
-    description: Media players controlled by Home Assistant.
+    color: '003fff'
+    description: Music and video playback devices
 
   - name: ha:mqtt
-    color: '00FF99'
-    description: Devices or services that use the MQTT protocol.
+    color: '0000ff'
+    description: MQTT broker and clients
 
   - name: ha:pyscript
-    color: 'FF00FF'
-    description: Custom Python scripts for Home Assistant.
+    color: '3f00ff'
+    description: Custom Python scripts for Home Assistant
 
   - name: ha:rest-command
-    color: '0099FF'
-    description: Commands to be sent to a RESTful API.
+    color: '7f00ff'
+    description: RESTful API commands
 
   - name: ha:scenes
-    color: '0066FF'
-    description: Preconfigured states for groups of devices.
+    color: 'bf00ff'
+    description: Preconfigured sets of entity states
 
   - name: ha:scripts
-    color: '0033FF'
-    description: Automated sequences of actions for Home Assistant.
+    color: 'ff00ff'
+    description: Reusable blocks of automation code
 
   - name: ha:sensors
-    color: '0000FF'
-    description: Sensors that measure environmental data or device states.
+    color: 'ff00bf'
+    description: Gather data about the environment
 
   - name: ha:switch
-    color: '3300FF'
-    description: Switches to turn devices on or off.
+    color: 'ff007f'
+    description: On/off switches for devices
 
   - name: ha:template
-    color: '6600FF'
-    description: Custom templates for Home Assistant.
+    color: 'ff003f'
+    description: Template entities for customization
 
   - name: ha:variables
-    color: '9900FF'
-    description: Variables used in Home Assistant automations.
+    color: 'ff0000'
+    description: Global variables for use in automations
