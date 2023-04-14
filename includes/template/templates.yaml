@@ -480,3 +480,12 @@
             round(2)
           }}
         icon: mdi:map-marker-distance
+
+  - sensor:
+      - name: YAS-209 Local IP
+        state: >
+          {{
+            state_attr("binary_sensor.will_s_yas_209", "url") |
+            replace("http://", "") |
+            replace(":49152/description.xml", "")
+          }}
