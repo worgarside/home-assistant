@@ -42,6 +42,9 @@ SPOTIFY = SpotifyClient(
     creds_cache_path=CREDS_CACHE_PATH,
 )
 
+# Instantiate the user now so that we can use it freely later
+task.executor(getattr, SPOTIFY, "current_user")
+
 DECADE_PATTERN = compile_regex(r"^\d{3}0s$")
 _MONTH_LIST = "|".join(
     [datetime.strptime(str(i), "%m").strftime("%B") for i in range(1, 13)]
