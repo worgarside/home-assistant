@@ -1,5 +1,5 @@
 ---
-  # yamllint disable rule:indentation
+   # yamllint disable rule:indentation
 
   - name: bug
     color: D73A4A
@@ -71,3 +71,91 @@
   - name: tools
     color: '414141'
     description: PR for updating the tools used in this repo
+
+  - name: ha:automations
+    color: 'ff0000'
+    description: Automations to control devices
+
+  - name: ha:config
+    color: 'ff3f00'
+    description: Configuration files for Home Assistant
+
+  - name: ha:cover
+    color: 'ff7f00'
+    description: Window blinds, curtains, and garage doors
+
+  - name: ha:device-tracker
+    color: 'ffbf00'
+    description: Track device locations and presence
+
+  - name: ha:groups
+    color: 'ffff00'
+    description: Group entities together for easy control
+
+  - name: ha:input-boolean
+    color: 'bfff00'
+    description: Binary on/off input controls
+
+  - name: ha:input-button
+    color: '7fff00'
+    description: Momentary push button input controls
+
+  - name: ha:input-datetime
+    color: '3fff00'
+    description: Date and time input controls
+
+  - name: ha:input-number
+    color: '00ff00'
+    description: Numeric input controls
+
+  - name: ha:input-select
+    color: '00ff7f'
+    description: Dropdown selection input controls
+
+  - name: ha:input-text
+    color: '00ffff'
+    description: Text input controls
+
+  - name: ha:lovelace
+    color: '007fff'
+    description: Lovelace UI configuration files
+
+  - name: ha:media-player
+    color: '003fff'
+    description: Music and video playback devices
+
+  - name: ha:mqtt
+    color: '0000ff'
+    description: MQTT broker and clients
+
+  - name: ha:pyscript
+    color: '3f00ff'
+    description: Custom Python scripts for Home Assistant
+
+  - name: ha:rest-command
+    color: '7f00ff'
+    description: RESTful API commands
+
+  - name: ha:scenes
+    color: 'bf00ff'
+    description: Preconfigured sets of entity states
+
+  - name: ha:scripts
+    color: 'ff00ff'
+    description: Reusable blocks of automation code
+
+  - name: ha:sensors
+    color: 'ff00bf'
+    description: Gather data about the environment
+
+  - name: ha:switch
+    color: 'ff007f'
+    description: On/off switches for devices
+
+  - name: ha:template
+    color: 'ff003f'
+    description: Template entities for customization
+
+  - name: ha:variables
+    color: 'ff0000'
+    description: Global variables for use in automations
