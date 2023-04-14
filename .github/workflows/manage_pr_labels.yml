@@ -148,11 +148,17 @@ jobs:
     name: Set Auto Merge
     runs-on: ubuntu-latest
     if: |
-      ${{ github.event.action == 'ready_for_review' }} &&
-      ${{ github.event.pull_request.head.user.login }} == 'worgarside-dev'
+      github.event.action == 'ready_for_review' &&
+      github.event.pull_request.user.login == 'worgarside-dev'
     steps:
       - name: Clone Repo
         uses: actions/checkout@v3
+
+      - name: Log GitHub Context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo -e "\`\`\`json\n$GITHUB_CONTEXT\n\`\`\`" >> $GITHUB_STEP_SUMMARY
 
       - name: Set Auto-Merge on PR
         run: |
