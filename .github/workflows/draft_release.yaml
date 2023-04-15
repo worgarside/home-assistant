@@ -8,7 +8,7 @@ on:
       - release/*
   pull_request:
     branches:
-      - main
+      - homeassistant.local
     types:
       - ready_for_review
   workflow_dispatch:

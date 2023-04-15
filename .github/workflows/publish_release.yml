@@ -6,8 +6,7 @@ on:
     types:
       - closed
     branches:
-      - main
-      - master
+      - homeassistant.local
 
 jobs:
   cancel_if_not_merged:
