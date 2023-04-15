@@ -1,0 +1,78 @@
+---
+name: Draft Release
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - release/*
+  pull_request:
+    branches:
+      - homeassistant.local
+    types:
+      - ready_for_review
+  workflow_dispatch:
+
+jobs:
+  get-release-tag:
+    name: Get Release Tag
+    runs-on: ubuntu-latest
+    outputs:
+      release-tag: ${{ steps.get-tag.outputs.release-tag }}
+    steps:
+      - name: Get Release Tag
+        id: get-tag
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        run: |
+          release_tag=$(echo "$BRANCH_NAME" | cut -d '/' -f2)
+
+          if ! [[ $release_tag =~ ^[0-9]{1,2}\.[0-9]{1,4}\.[0-9]{1,4}$ ]]
+          then
+              echo "Release number is invalid: \`$release_tag\`" >> $GITHUB_STEP_SUMMARY
+              exit 1
+          fi
+
+          echo "release-tag=$release_tag" >> $GITHUB_OUTPUT
+
+  create-pr:
+    name: Create PR
+    needs:
+      - get-release-tag
+    uses: worgarside/github-config-files/.github/workflows/create_pr.yml@main
+    with:
+      base-ref-name: "homeassistant.local"
+      head-ref-name: ${{ github.ref_name }}
+      pr-title: "Release ${{ needs.get-release-tag.outputs.release-tag }}"
+      pr-draft: true
+    secrets:
+      gh-token: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
+
+  draft-release:
+    name: Draft Release
+    needs:
+      - get-release-tag
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v3
+
+      - name: Validate `pyproject.toml` version
+        # yamllint disable rule:line-length
+        run: |
+          expected_line="version = \"${{ needs.get-release-tag.outputs.release-tag }}\""
+          actual_line=$(grep -E "^version = \"" pyproject.toml)
+          if [ "$expected_line" != "$actual_line" ]
+          then
+              echo "`pyproject.toml` version is invalid: \`$actual_line\`" >> $GITHUB_STEP_SUMMARY
+              exit 1
+          fi
+        # yamllint enable rule:line-length
+
+      - name: Draft Release
+        uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
