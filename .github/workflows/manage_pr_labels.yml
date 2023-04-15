@@ -31,13 +31,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   set_release_label:
-    # If a new PR is raised against `main`, label it with the correct release label
     name: Set Release Label
     runs-on: ubuntu-latest
     # This dependency is just to ensure that thejobs don't interfere with each other
     needs: set_labels
     if: |
-      github.base_ref == 'main' &&
+      contains( toJson('["main", "homeassistant.local"]' ), github.base_ref) &&
       startsWith(github.head_ref, 'release/')
     permissions:
       contents: read
@@ -109,10 +108,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: set_labels
     if: |
-      (
-        github.base_ref != 'main' ||
-        !startsWith(github.head_ref, 'release/')
-      )
+      !contains( toJson('["main", "homeassistant.local"]' ), github.base_ref) ||
+      !startsWith(github.head_ref, 'release/')
     steps:
       - name: Validate SemVer Label
         uses: yogevbd/enforce-label-action@2.2.2
