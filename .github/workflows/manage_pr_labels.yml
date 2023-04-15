@@ -151,20 +151,18 @@ jobs:
       - name: Clone Repo
         uses: actions/checkout@v3
 
-      - name: Log GitHub Context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: |
-          echo -e "\`\`\`json\n$GITHUB_CONTEXT\n\`\`\`" >> $GITHUB_STEP_SUMMARY
-
       - name: Set Auto-Merge on PR
         env:
           GITHUB_TOKEN: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
-          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_TITLE:
+          GH_CONFIG_FILES_OVERRIDE: >
+            --subject "${{ github.event.pull_request.title }}"
+            --body "${{ github.repository }}#${{ github.event.pull_request.number }}"
+        # yamllint disable rule:line-length
         run: |
           gh pr merge "${{ github.event.pull_request.html_url }}"\
             --delete-branch \
             --squash \
             --auto \
-            --subject "$PR_TITLE" \
-            --body "${{ github.repository }}#${{ github.event.pull_request.number }}"
+            ${{ github.repository == 'worgarside/github-config-files' && env.GH_CONFIG_FILES_OVERRIDE || '' }}
+        # yamllint enable rule:line-length
