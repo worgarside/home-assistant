@@ -167,4 +167,4 @@ jobs:
             --squash \
             --auto \
             --subject "$PR_TITLE" \
-            --body "#${{ github.event.pull_request.number }}"
+            --body "${{ github.repository }}#${{ github.event.pull_request.number }}"
