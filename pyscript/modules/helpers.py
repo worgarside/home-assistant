@@ -209,12 +209,6 @@ def instantiate_client(
         **extra_kwargs,
     )
 
-    log.debug(
-        "%s redirect URI override: `%s`",
-        client_class.__name__,
-        client.oauth_redirect_uri_override,
-    )
-
     if client.access_token_has_expired:
         client.temp_auth_server.port = 5000
 
