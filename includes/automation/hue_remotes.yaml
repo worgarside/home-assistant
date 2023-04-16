@@ -30,7 +30,7 @@
         subtype: 2
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id:
         - light.wills_shapes
     action:
@@ -52,7 +52,7 @@
         subtype: 2
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id:
         - light.wills_shapes
     action:
@@ -73,7 +73,7 @@
         subtype: 3
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id:
         - light.wills_shapes
     action:
@@ -95,7 +95,7 @@
         subtype: 3
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id:
         - light.wills_shapes
     action:
@@ -253,7 +253,7 @@
         subtype: 2
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id:
         - light.kitchen_work_light
     action:
@@ -275,7 +275,7 @@
         subtype: 2
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id: light.kitchen_work_light
     action:
       - service: light.turn_on
@@ -295,7 +295,7 @@
         subtype: 3
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id: light.kitchen_work_light
     action:
       - service: light.turn_on
@@ -316,7 +316,7 @@
         subtype: 3
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id: light.kitchen_work_light
     action:
       - service: light.turn_on
@@ -383,11 +383,11 @@
       - condition: or
         conditions:
           - condition: state
-            state: on
+            state: "on"
             entity_id:
               - light.the_snail
           - condition: state
-            state: on
+            state: "on"
             entity_id:
               - light.galaxy_light
     action:
@@ -414,11 +414,11 @@
       - condition: or
         conditions:
           - condition: state
-            state: on
+            state: "on"
             entity_id:
               - light.the_snail
           - condition: state
-            state: on
+            state: "on"
             entity_id:
               - light.galaxy_light
     action:
@@ -445,11 +445,11 @@
       - condition: or
         conditions:
           - condition: state
-            state: on
+            state: "on"
             entity_id:
               - light.the_snail
           - condition: state
-            state: on
+            state: "on"
             entity_id:
               - light.galaxy_light
     action:
@@ -476,11 +476,11 @@
       - condition: or
         conditions:
           - condition: state
-            state: on
+            state: "on"
             entity_id:
               - light.the_snail
           - condition: state
-            state: on
+            state: "on"
             entity_id:
               - light.galaxy_light
     action:

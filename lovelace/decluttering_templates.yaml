@@ -7,7 +7,7 @@ active_media_player_template:
     type: conditional
     conditions:
       - entity: binary_sensor.[[binary_sensor_name]]_active
-        state: on
+        state: "on"
     card:
       type: custom:mini-media-player
       entity: media_player.[[media_player]]
@@ -94,7 +94,7 @@ london_air_quality_outer_template:
     type: conditional
     conditions:
       - entity: '[[conditional_sensor]]'
-        state: on
+        state: "on"
     card:
       type: custom:layout-card
       layout_type: custom:horizontal-layout
@@ -339,7 +339,7 @@ folding_white_light_template:
           text: It's late, do you want to unlock this action for 5 seconds?
       condition:
         entity: binary_sensor.quiet_hours
-        value: on
+        value: "on"
       card:
         entity: '[[entity]]'
         name: '[[name]]'
@@ -372,7 +372,7 @@ folding_rgb_light_template:
             text: It's late, do you want to unlock this action for 5 seconds?
         condition:
           entity: binary_sensor.quiet_hours
-          value: on
+          value: "on"
         card:
           entity: '[[entity]]'
           name: '[[name]]'
@@ -409,7 +409,7 @@ folding_rgb_light_with_effects_template:
             text: It's late, do you want to unlock this action for 5 seconds?
         condition:
           entity: binary_sensor.quiet_hours
-          value: on
+          value: "on"
         card:
           entity: '[[entity]]'
           name: '[[name]]'

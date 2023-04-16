@@ -63,10 +63,10 @@
         conditions:
           - condition: state
             entity_id: media_player.hifi_system
-            state: off
+            state: "off"
           - condition: state
             entity_id: media_player.lounge_bravia_tv
-            state: off
+            state: "off"
     action:
       # yamllint disable-line rule:line-length
       - wait_template: "{{ states('media_player.hifi_system') == 'off' and states('media_player.lounge_bravia_tv') == 'off'  and states('media_player.lounge_tv') != 'unavailable' }}"

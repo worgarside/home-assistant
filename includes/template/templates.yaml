@@ -315,11 +315,11 @@
 
   - sensor:
       - name: Fixed Value On
-        state: On
+        state: "on"
 
   - sensor:
       - name: Fixed Value Off
-        state: Off
+        state: "off"
 
 # </editor-fold>
 # <editor-fold desc="Washing Machine">
