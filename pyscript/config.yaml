@@ -29,13 +29,12 @@ apps:
     curtain_id: !secret switchbot_curtain_id
 
   spotify:
-    client_id: !secret spotify_monthlies_client_id
-    client_secret: !secret spotify_monthlies_client_secret
+    client_id: !secret spotify_pyscript_client_id
+    client_secret: !secret spotify_pyscript_client_secret
 
   truelayer:
     client_id: !secret truelayer_client_id
     client_secret: !secret truelayer_client_secret
-    creds_cache_path: !secret truelayer_creds_cache_path
     amex_card_id: !secret truelayer_amex_card_id
     hsbc_current_account_id: !secret truelayer_hsbc_current_account_id
     monzo_current_account_id: !secret truelayer_monzo_current_account_id

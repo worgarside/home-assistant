@@ -5,7 +5,7 @@ from collections.abc import Callable
 from socket import gethostname
 from typing import Any
 
-from helpers import HAExceptionCatcher, instantiate_client
+from helpers import HAExceptionCatcher, get_secret, instantiate_client
 from wg_utilities.clients.google_fit import GoogleFitClient
 
 MODULE_NAME = "google_fit"
@@ -20,8 +20,12 @@ if gethostname() != "homeassistant":
     pyscript_executor: Callable[..., Callable[..., Any]] = decorator
     time_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
 
+GOOGLE_FIT = instantiate_client(
+    GoogleFitClient,
+    module_name=MODULE_NAME,
+    redirect_uri_override=get_secret("redirect_uri_override", module="oauth"),
+)
 
-GOOGLE_FIT = instantiate_client(GoogleFitClient, MODULE_NAME)
 
 VARIABLE_DATA_SOURCE_MAPPING = {
     "var.google_fit_active_minutes": "derived:com.google.active_minutes:com.google.android.gms:merge_active_minutes",  # pylint: disable=line-too-long  # noqa: E501

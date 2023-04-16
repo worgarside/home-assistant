@@ -13,7 +13,12 @@ from unittest.mock import MagicMock
 
 from const import OAUTH_CREDS_CACHE_DIR
 from requests import post
-from wg_utilities.clients import GoogleFitClient, SpotifyClient, TrueLayerClient
+from wg_utilities.clients import (
+    GoogleFitClient,
+    MonzoClient,
+    SpotifyClient,
+    TrueLayerClient,
+)
 
 
 class HAExceptionCatcher:
@@ -152,7 +157,7 @@ def write_file(
         fout.write(content)
 
 
-T = TypeVar("T", TrueLayerClient, SpotifyClient, GoogleFitClient)
+T = TypeVar("T", TrueLayerClient, SpotifyClient, GoogleFitClient, MonzoClient)
 
 
 def generate_oauth_headless_callback(
@@ -167,25 +172,31 @@ def generate_oauth_headless_callback(
         Callable[[str], None]: the callback function
     """
 
+    log.info("Generating OAuth headless callback for `%s`", cls.__name__)
+
     def send_auth_link_as_notification(auth_link: str) -> None:
         """Send the auth link as a persistent notification.
 
         Args:
             auth_link (str): the auth link to send
         """
+        raise NotImplementedError("This function doesn't work yet :(")
+        # pylint: disable=unreachable
+        log.info("Sending auth link as notifications for `%s`", cls.__name__)
         persistent_notification.create(
             title=f"OAuth Link for {cls.__name__}",
             message=f"Click [here]({auth_link}) to complete the OAuth code exchange"
             f" process. Link expires at `{datetime.now() + timedelta(minutes=5)}`",
         )
+        log.info("Auth link sent as notification for `%s`", cls.__name__)
 
     return send_auth_link_as_notification
 
 
-@pyscript_executor
 def instantiate_client(
     client_class: type[T],
     module_name: str,
+    redirect_uri_override: str | None = None,
     **extra_kwargs: Any,
 ) -> T:
     """Instantiate an OAuthClient subclass with the appropriate credentials.
@@ -194,6 +205,7 @@ def instantiate_client(
         client_class (type[OAuthClient]): the OAuthClient subclass to instantiate
         module_name (str): the name of the module which the client is for
         extra_kwargs (Any): any extra keyword arguments to pass to the client
+        redirect_uri_override (str): the redirect URI to use for the client
 
     Returns:
         OAuthClient: the instantiated OAuthClient
@@ -201,15 +213,23 @@ def instantiate_client(
 
     client_class.DEFAULT_CACHE_DIR = OAUTH_CREDS_CACHE_DIR
 
-    client = client_class(
+    client: T = task.executor(
+        client_class,
         client_id=get_secret("client_id", module=module_name),
         client_secret=get_secret("client_secret", module=module_name),
-        headless_auth_link_callback=generate_oauth_headless_callback(client_class),
-        oauth_redirect_uri_override=get_secret("redirect_uri_override", module="oauth"),
+        oauth_redirect_uri_override=redirect_uri_override,
         **extra_kwargs,
     )
 
+    client.headless_auth_link_callback = generate_oauth_headless_callback(client_class)
+
     if client.access_token_has_expired:
         client.temp_auth_server.port = 5000
+
+    log.info(
+        "Instantiated client for `%s`. Creds cache path: `%s`",
+        module_name,
+        client.creds_cache_path,
+    )
 
     return client
