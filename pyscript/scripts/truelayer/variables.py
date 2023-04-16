@@ -5,27 +5,16 @@ from collections.abc import Callable
 from socket import gethostname
 from typing import Any
 
-from helpers import HAExceptionCatcher, get_secret
+from helpers import HAExceptionCatcher, get_secret, instantiate_client
 from wg_utilities.clients import TrueLayerClient
 from wg_utilities.clients.truelayer import Bank, Card
 
 MODULE_NAME = "truelayer"
-CACHE_PATH = get_secret("creds_cache_path", module=MODULE_NAME)
 
-TLC_ARGS = {
-    "client_id": get_secret("client_id", module=MODULE_NAME),
-    "client_secret": get_secret("client_secret", module=MODULE_NAME),
-    "log_requests": False,
-    "creds_cache_path": CACHE_PATH,
-}
-
-MONZO = TrueLayerClient(bank=Bank.MONZO, **TLC_ARGS)
-
-AMEX = TrueLayerClient(bank=Bank.AMEX, **TLC_ARGS)
-
-HSBC = TrueLayerClient(bank=Bank.HSBC, **TLC_ARGS)
-
-SANTANDER = TrueLayerClient(bank=Bank.SANTANDER, **TLC_ARGS)
+MONZO = instantiate_client(TrueLayerClient, MODULE_NAME, bank=Bank.MONZO)
+AMEX = instantiate_client(TrueLayerClient, MODULE_NAME, bank=Bank.AMEX)
+HSBC = instantiate_client(TrueLayerClient, MODULE_NAME, bank=Bank.HSBC)
+SANTANDER = instantiate_client(TrueLayerClient, MODULE_NAME, bank=Bank.SANTANDER)
 
 if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports

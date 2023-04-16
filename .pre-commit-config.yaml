@@ -105,7 +105,7 @@ repos:
           - pydantic
           - types-PyYAML
           - types-python-dateutil
-          - wg-utilities
+          - wg-utilities==3.4.0
 
   - repo: local
     hooks:

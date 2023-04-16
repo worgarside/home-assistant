@@ -5,7 +5,7 @@ from collections.abc import Callable
 from socket import gethostname
 from typing import Any
 
-from helpers import HAExceptionCatcher
+from helpers import HAExceptionCatcher, instantiate_client
 from wg_utilities.clients.google_fit import GoogleFitClient
 
 MODULE_NAME = "google_fit"
@@ -17,20 +17,11 @@ if gethostname() != "homeassistant":
     task = async_mock
     var = sync_mock
     service: Callable[..., Callable[..., Any]] = decorator
+    pyscript_executor: Callable[..., Callable[..., Any]] = decorator
     time_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
 
 
-GOOGLE_FIT = task.executor(
-    GoogleFitClient,
-    "home-assistant-worgarside",
-    scopes=[
-        "https://www.googleapis.com/auth/fitness.activity.read",
-        "https://www.googleapis.com/auth/fitness.body.read",
-        "https://www.googleapis.com/auth/fitness.location.read",
-        "https://www.googleapis.com/auth/fitness.nutrition.read",
-    ],
-    creds_cache_path="/config/.credentials/google_api_creds.json",
-)
+GOOGLE_FIT = instantiate_client(GoogleFitClient, MODULE_NAME)
 
 VARIABLE_DATA_SOURCE_MAPPING = {
     "var.google_fit_active_minutes": "derived:com.google.active_minutes:com.google.android.gms:merge_active_minutes",  # pylint: disable=line-too-long  # noqa: E501
@@ -41,6 +32,7 @@ VARIABLE_DATA_SOURCE_MAPPING = {
 }
 
 
+@service
 @time_trigger("cron(*/5 * * * *)")
 def update_google_fit_variables() -> None:
     """Updates a set of Google Fit variables, as defined in

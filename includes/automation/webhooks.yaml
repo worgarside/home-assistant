@@ -13,5 +13,5 @@
           title: "OAuth2 Code Received"
           message: |
             ```json
-            {{ trigger.json }}
+            {{ trigger.query }}
             ```

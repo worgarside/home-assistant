@@ -4,11 +4,10 @@ from __future__ import annotations
 from collections.abc import Callable
 from datetime import datetime
 from json import dumps
-from pathlib import Path
 from socket import gethostname
 from typing import Any
 
-from helpers import HAExceptionCatcher, get_secret
+from helpers import HAExceptionCatcher, instantiate_client
 from requests import get
 from requests.exceptions import ConnectionError as RequestsConnectionError
 from wg_utilities.clients import MonzoClient
@@ -22,18 +21,12 @@ if gethostname() != "homeassistant":
     sensor = sync_mock
     sensor.ipv4_address_eth0 = "0.0.0.0"
     service: Callable[..., Callable[..., Any]] = decorator
-
-    CACHE_PATH = None
-else:
-    CACHE_PATH = Path("/config/.credentials/monzo_api_creds.json")
+    pyscript_executor: Callable[..., Callable[..., Any]] = decorator
 
 MODULE_NAME = "monzo"
 
-MONZO = MonzoClient(
-    client_id=get_secret("client_id", module=MODULE_NAME),
-    client_secret=get_secret("client_secret", module=MODULE_NAME),
-    creds_cache_path=CACHE_PATH,
-)
+
+MONZO = instantiate_client(MonzoClient, MODULE_NAME)
 
 
 @service

@@ -10,7 +10,7 @@ from re import compile as compile_regex
 from socket import gethostname
 from typing import Any, Dict, List  # noqa: UP035,F401
 
-from helpers import HAExceptionCatcher, get_secret, write_file
+from helpers import HAExceptionCatcher, instantiate_client, write_file
 from requests import get
 from wg_utilities.clients import SpotifyClient
 from wg_utilities.clients.spotify import Playlist, Track
@@ -32,15 +32,7 @@ if gethostname() != "homeassistant":
     event_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
     service: Callable[..., Callable[..., Any]] = decorator
 
-    CREDS_CACHE_PATH: Path | None = None
-else:
-    CREDS_CACHE_PATH = Path("/config/.spotify_cache")
-
-SPOTIFY = SpotifyClient(
-    client_id=get_secret("client_id", module=MODULE_NAME),
-    client_secret=get_secret("client_secret", module=MODULE_NAME),
-    creds_cache_path=CREDS_CACHE_PATH,
-)
+SPOTIFY = instantiate_client(SpotifyClient, MODULE_NAME)
 
 # Instantiate the user now so that we can use it freely later
 task.executor(getattr, SPOTIFY, "current_user")

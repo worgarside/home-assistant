@@ -5,23 +5,33 @@ apps:
   monzo:
     client_id: !secret monzo_client_id
     client_secret: !secret monzo_client_secret
+
   nanoleaf.matts_shapes:
     ip_address: !secret matts_shapes_ip
     auth_token: !secret matts_shapes_auth_token
+
   nanoleaf.the_snail:
     ip_address: !secret the_snail_ip
     auth_token: !secret the_snail_auth_token
+
   nanoleaf.wills_shapes:
     ip_address: !secret wills_shapes_ip
     auth_token: !secret wills_shapes_auth_token
+
   netgear:
     password: !secret netgear_password
+
+  oauth:
+    redirect_uri_override: !secret oauth_redirect_uri_override
+
   switchbot.curtain_controller:
     api_key: !secret switchbot_api_key
     curtain_id: !secret switchbot_curtain_id
+
   spotify:
     client_id: !secret spotify_monthlies_client_id
     client_secret: !secret spotify_monthlies_client_secret
+
   truelayer:
     client_id: !secret truelayer_client_id
     client_secret: !secret truelayer_client_secret

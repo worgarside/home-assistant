@@ -21,7 +21,9 @@ paramiko = "*"
 pyyaml = "*"
 pynetgear = "*"
 homeassistant = "2023.4.2"
-wg-utilities = "3.1.1"
+wg-utilities = "3.4.0"
+tzlocal = "^4.3"
+strenum = "^0.4.10"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"

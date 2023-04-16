@@ -2,15 +2,18 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from datetime import datetime, timedelta
 from functools import wraps
 from json import loads
 from logging import Logger
 from socket import gethostname
 from types import TracebackType
-from typing import Any
+from typing import Any, TypeVar
 from unittest.mock import MagicMock
 
+from const import OAUTH_CREDS_CACHE_DIR
 from requests import post
+from wg_utilities.clients import GoogleFitClient, SpotifyClient, TrueLayerClient
 
 
 class HAExceptionCatcher:
@@ -95,6 +98,7 @@ if gethostname() != "homeassistant":
     log, task, sync_mock, decorator, _ = local_setup()
     pyscript = sync_mock
     pyscript_executor = decorator
+    persistent_notification = sync_mock
 
 
 def get_secret(
@@ -146,3 +150,72 @@ def write_file(
     """
     with open(path, mode=mode, encoding=encoding) as fout:
         fout.write(content)
+
+
+T = TypeVar("T", TrueLayerClient, SpotifyClient, GoogleFitClient)
+
+
+def generate_oauth_headless_callback(
+    cls: type[T],
+) -> Callable[[str], None]:
+    """Generate a callback function for use with OAuthClient first time logins.
+
+    Args:
+        cls (type[OAuthClient]): the OAuthClient class to use
+
+    Returns:
+        Callable[[str], None]: the callback function
+    """
+
+    def send_auth_link_as_notification(auth_link: str) -> None:
+        """Send the auth link as a persistent notification.
+
+        Args:
+            auth_link (str): the auth link to send
+        """
+        persistent_notification.create(
+            title=f"OAuth Link for {cls.__name__}",
+            message=f"Click [here]({auth_link}) to complete the OAuth code exchange"
+            f" process. Link expires at `{datetime.now() + timedelta(minutes=5)}`",
+        )
+
+    return send_auth_link_as_notification
+
+
+@pyscript_executor
+def instantiate_client(
+    client_class: type[T],
+    module_name: str,
+    **extra_kwargs: Any,
+) -> T:
+    """Instantiate an OAuthClient subclass with the appropriate credentials.
+
+    Args:
+        client_class (type[OAuthClient]): the OAuthClient subclass to instantiate
+        module_name (str): the name of the module which the client is for
+        extra_kwargs (Any): any extra keyword arguments to pass to the client
+
+    Returns:
+        OAuthClient: the instantiated OAuthClient
+    """
+
+    client_class.DEFAULT_CACHE_DIR = OAUTH_CREDS_CACHE_DIR
+
+    client = client_class(
+        client_id=get_secret("client_id", module=module_name),
+        client_secret=get_secret("client_secret", module=module_name),
+        headless_auth_link_callback=generate_oauth_headless_callback(client_class),
+        oauth_redirect_uri_override=get_secret("redirect_uri_override", module="oauth"),
+        **extra_kwargs,
+    )
+
+    log.debug(
+        "%s redirect URI override: `%s`",
+        client_class.__name__,
+        client.oauth_redirect_uri_override,
+    )
+
+    if client.access_token_has_expired:
+        client.temp_auth_server.port = 5000
+
+    return client
