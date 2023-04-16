@@ -196,7 +196,7 @@ cards:
                 text: It's late, do you want to unlock this action for 5 seconds?
             condition:
               entity: binary_sensor.quiet_hours
-              value: on
+              value: "on"
             card:
               entity: light.plant_lights
               name: Plants
@@ -227,7 +227,7 @@ cards:
             stack: horizontal
             height: 125px
             positions:
-              icon: off
+              icon: "off"
             severity:
               - color: '#fa3200'
                 from: 0
