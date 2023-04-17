@@ -63,6 +63,9 @@ def get_monthly_playlists(return_count: int = 12) -> list[Playlist]:
         List[Playlist]: a list of Playlist instances
     """
 
+    if hasattr(SPOTIFY.current_user, "_playlists"):
+        delattr(SPOTIFY.current_user, "_playlists")
+
     return sorted(
         (p for p in SPOTIFY.current_user.playlists if MONTHLY_PATTERN.match(p.name)),
         key=lambda playlist: datetime.strptime(playlist.name, "%B '%y"),
@@ -74,56 +77,62 @@ def get_monthly_playlists(return_count: int = 12) -> list[Playlist]:
 def process_liked_songs() -> None:
     """Calls other functions which process liked songs, to save polling Spotify's API
     twice"""
-    with HAExceptionCatcher(MODULE_NAME, "process_liked_songs"):
-        log.info("Resetting all Spotify client properties")
 
+    with HAExceptionCatcher(MODULE_NAME, "process_liked_songs"):
         recently_liked = task.executor(
             SPOTIFY.current_user.get_recently_liked_tracks, day_limit=7
         )
 
+        log.info("Found %s recently liked tracks", len(recently_liked))
+
         # Monthly updates
 
         all_monthly_playlist_tracks = set()
-        for playlist in get_monthly_playlists(6):
+
+        for playlist in (last_3_monthly_playlists := get_monthly_playlists(3)):
+            if hasattr(playlist, "_tracks"):
+                delattr(playlist, "_tracks")
+
             all_monthly_playlist_tracks.update(
                 task.executor(getattr, playlist, "tracks")
             )
 
+        log.info(
+            "Found %s tracks in playlists %s",
+            len(all_monthly_playlist_tracks),
+            ", ".join([p.name for p in last_3_monthly_playlists]),
+        )
+
         monthly_updates = update_dynamic_playlists(
             deepcopy(recently_liked),
             all_monthly_playlist_tracks,
-            lambda t: datetime.strptime(
-                t.metadata.get("liked_at"),  # type: ignore[arg-type]
-                SPOTIFY.DATETIME_FORMAT,
-            ).strftime("%B '%y"),
+            lambda t: str(t.metadata["saved_at"].strftime("%B '%y")),
         )
+
+        log.info("Found %s monthly playlist updates", len(monthly_updates))
 
         # Decade playlists
 
-        all_decade_playlist_tracks = set()
-        for playlist in task.executor(getattr, SPOTIFY, "playlists"):
-            if DECADE_PATTERN.match(playlist.name):
-                all_decade_playlist_tracks.update(
-                    task.executor(getattr, playlist, "tracks")
-                )
-
         update_dynamic_playlists(
             deepcopy(recently_liked),
-            all_decade_playlist_tracks,
+            None,
             lambda t: str(t.release_date.year)[:3] + "0s",
         )
 
+        log.info("Decade playlists updated")
+
         # Notifications
 
-        if all_playlist_updates := {
-            **monthly_updates,
-        }:  # **decade_updates
+        if monthly_updates:
+            log.info("Building notification content")
             message = ""
 
-            for playlist, tracks in all_playlist_updates.items():
+            for playlist, tracks in monthly_updates.items():
                 message += f"\n### {playlist.name}\n"
                 for track in tracks:
                     message += f"- {track.name}\n"
+
+                    log.info("Sending notification for %s", track.name)
 
                     notify.mobile_app_will_s_pixel_6_pro(
                         message=f'"{track.name}" added to {playlist.name}',
@@ -142,6 +151,8 @@ def process_liked_songs() -> None:
                         },
                     )
 
+                    log.info("Notification sent")
+
             persistent_notification.create(
                 title="Spotify Playlists Updated", message=message
             )
@@ -149,7 +160,7 @@ def process_liked_songs() -> None:
 
 def update_dynamic_playlists(
     recently_liked: list[Track],
-    already_processed_tracks: Iterable[Track],
+    already_processed_tracks: Iterable[Track] | None,
     target_name_func: Callable[[Track], str],
 ) -> dict[Playlist, list[Track]]:
     """Updates any dynamic playlists from a set of tracks and a naming match criteria
@@ -167,41 +178,43 @@ def update_dynamic_playlists(
     """
 
     playlist_updates = {}  # type: Dict[Playlist, List[Track]]
-    with HAExceptionCatcher(MODULE_NAME, "update_dynamic_playlists"):
-        for track in recently_liked:
-            if track not in already_processed_tracks:
-                log.debug("Processing %s", str(track))
+    for track in recently_liked:
+        if already_processed_tracks is None or track not in already_processed_tracks:
+            log.info("Processing %s", str(track))
 
-                target_playlist_name = target_name_func(track)
+            target_playlist_name = target_name_func(track)
 
-                for playlist in playlist_updates:
-                    if playlist.name == target_playlist_name:
-                        target_playlist = playlist
-                        break
-                else:
+            log.info("Target playlist: %s", target_playlist_name)
+
+            for playlist in playlist_updates:
+                if playlist.name == target_playlist_name:
+                    target_playlist = playlist
+                    log.info("Found existing playlist %s", target_playlist_name)
+                    break
+            else:
+                target_playlist = task.executor(
+                    SPOTIFY.current_user.get_playlists_by_name, target_playlist_name
+                )
+
+                if target_playlist is None:
                     target_playlist = task.executor(
-                        SPOTIFY.current_user.get_playlists_by_name, target_playlist_name
+                        SPOTIFY.create_playlist,
+                        name=target_playlist_name,
+                        public=False,
+                        collaborative=False,
                     )
 
-                    if target_playlist is None:
-                        target_playlist = task.executor(
-                            SPOTIFY.create_playlist,
-                            name=target_playlist_name,
-                            public=False,
-                            collaborative=False,
-                        )
+            playlist_updates.setdefault(target_playlist, []).append(track)
 
-                playlist_updates.setdefault(target_playlist, []).append(track)
+        log.info("Processed %s", str(track))
 
-        for playlist, tracks in playlist_updates.items():
-            log.debug("Adding %s to %s", ", ".join(map(str, tracks)), playlist.name)
-            task.executor(SPOTIFY.add_tracks_to_playlist, tracks, playlist)
+    for playlist, tracks in playlist_updates.items():
+        log.info("Adding %s to %s", ", ".join(map(str, tracks)), playlist.name)
+        task.executor(SPOTIFY.add_tracks_to_playlist, tracks, playlist)
 
-        return playlist_updates
+    return playlist_updates
 
 
-@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("matt_scott"))
-@state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("tom_jones"))
 @state_trigger(_SAVE_ALBUM_ARTWORK_TRIGGER.format("will_garside"))
 def save_album_artwork(var_name: str, value: str, old_value: str) -> None:
     """Saves the artwork for a given album to the local file storage for use elsewhere

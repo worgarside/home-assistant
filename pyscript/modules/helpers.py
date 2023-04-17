@@ -213,18 +213,27 @@ def instantiate_client(
 
     client_class.DEFAULT_CACHE_DIR = OAUTH_CREDS_CACHE_DIR
 
-    client: T = task.executor(
+    client_id = get_secret("client_id", module=module_name)
+    client_secret = get_secret("client_secret", module=module_name)
+
+    if not (client_id and client_secret):
+        raise ValueError(
+            f"Both client ID {'' if client_id else '(missing) '}and"
+            f" secret {'' if client_secret else '(missing) '}must be provided."
+        )
+
+    client = task.executor(
         client_class,
-        client_id=get_secret("client_id", module=module_name),
-        client_secret=get_secret("client_secret", module=module_name),
+        client_id=client_id,
+        client_secret=client_secret,
         oauth_redirect_uri_override=redirect_uri_override,
         **extra_kwargs,
-    )
+    )  # type: T
 
-    client.headless_auth_link_callback = generate_oauth_headless_callback(client_class)
+    assert client.DEFAULT_CACHE_DIR == OAUTH_CREDS_CACHE_DIR
+    assert client.creds_cache_path.is_file(), str(client.creds_cache_path)
 
-    if client.access_token_has_expired:
-        client.temp_auth_server.port = 5000
+    client.headless_auth_link_callback = None
 
     log.info(
         "Instantiated client for `%s`. Creds cache path: `%s`",
