@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from datetime import datetime, timedelta
 from functools import wraps
 from json import loads
 from logging import Logger
@@ -158,39 +157,6 @@ def write_file(
 
 
 T = TypeVar("T", TrueLayerClient, SpotifyClient, GoogleFitClient, MonzoClient)
-
-
-def generate_oauth_headless_callback(
-    cls: type[T],
-) -> Callable[[str], None]:
-    """Generate a callback function for use with OAuthClient first time logins.
-
-    Args:
-        cls (type[OAuthClient]): the OAuthClient class to use
-
-    Returns:
-        Callable[[str], None]: the callback function
-    """
-
-    log.info("Generating OAuth headless callback for `%s`", cls.__name__)
-
-    def send_auth_link_as_notification(auth_link: str) -> None:
-        """Send the auth link as a persistent notification.
-
-        Args:
-            auth_link (str): the auth link to send
-        """
-        raise NotImplementedError("This function doesn't work yet :(")
-        # pylint: disable=unreachable
-        log.info("Sending auth link as notifications for `%s`", cls.__name__)
-        persistent_notification.create(
-            title=f"OAuth Link for {cls.__name__}",
-            message=f"Click [here]({auth_link}) to complete the OAuth code exchange"
-            f" process. Link expires at `{datetime.now() + timedelta(minutes=5)}`",
-        )
-        log.info("Auth link sent as notification for `%s`", cls.__name__)
-
-    return send_auth_link_as_notification
 
 
 def instantiate_client(
