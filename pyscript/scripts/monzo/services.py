@@ -4,13 +4,10 @@ from __future__ import annotations
 from collections.abc import Callable
 from datetime import datetime
 from json import dumps
-from pathlib import Path
 from socket import gethostname
 from typing import Any
 
-from helpers import HAExceptionCatcher, get_secret
-from requests import get
-from requests.exceptions import ConnectionError as RequestsConnectionError
+from helpers import HAExceptionCatcher, instantiate_client
 from wg_utilities.clients import MonzoClient
 
 if gethostname() != "homeassistant":
@@ -22,18 +19,12 @@ if gethostname() != "homeassistant":
     sensor = sync_mock
     sensor.ipv4_address_eth0 = "0.0.0.0"
     service: Callable[..., Callable[..., Any]] = decorator
-
-    CACHE_PATH = None
-else:
-    CACHE_PATH = Path("/config/.credentials/monzo_api_creds.json")
+    pyscript_executor: Callable[..., Callable[..., Any]] = decorator
 
 MODULE_NAME = "monzo"
 
-MONZO = MonzoClient(
-    client_id=get_secret("client_id", module=MODULE_NAME),
-    client_secret=get_secret("client_secret", module=MODULE_NAME),
-    creds_cache_path=CACHE_PATH,
-)
+
+MONZO = instantiate_client(MonzoClient, MODULE_NAME)
 
 
 @service
@@ -53,7 +44,7 @@ def top_up_credit_card_pot(top_up_amount: float) -> None:
     with HAExceptionCatcher(MODULE_NAME, "top_up_credit_card_pot"):
         try:
             credit_card_pot = task.executor(MONZO.get_pot_by_name, "credit cards")
-            log.info("DEPOSITING %f INTO %s", top_up_amount, str(credit_card_pot))
+            log.info("DEPOSITING %f INTO %s", top_up_amount, credit_card_pot.name)
             log.info(type(credit_card_pot))
             task.executor(
                 MONZO.deposit_into_pot,
@@ -67,14 +58,4 @@ def top_up_credit_card_pot(top_up_amount: float) -> None:
                 res_json = exc.response.json()
                 log.info(dumps(res_json, default=str))
 
-            log.error("KILLING SERVER")
-            try:
-                task.executor(get, f"http://{sensor.ipv4_address_eth0}:5001/kill")
-                log.info("KILLED")
-            except (ConnectionError, RequestsConnectionError) as connection_exc:
-                log.warning(
-                    "UNABLE TO KILL SERVER: %s - %s",
-                    type(connection_exc).__name__,
-                    str(connection_exc),
-                )
             raise

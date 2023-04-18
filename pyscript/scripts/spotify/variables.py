@@ -2,20 +2,15 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from pathlib import Path
 from socket import gethostname
 from typing import Any
 
-from helpers import HAExceptionCatcher, get_secret
+from helpers import HAExceptionCatcher, instantiate_client
 from wg_utilities.clients import SpotifyClient
 
 MODULE_NAME = "spotify"
 
-SPOTIFY = SpotifyClient(
-    client_id=get_secret("client_id", module=MODULE_NAME),
-    client_secret=get_secret("client_secret", module=MODULE_NAME),
-    creds_cache_path=Path("/config/.spotify_cache"),
-)
+SPOTIFY = instantiate_client(SpotifyClient, MODULE_NAME)
 
 if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports
