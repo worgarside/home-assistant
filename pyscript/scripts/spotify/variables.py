@@ -22,8 +22,6 @@ if gethostname() != "homeassistant":
     time_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
 
 
-@state_trigger("sensor.spotify_matt_scott_media_title")
-@state_trigger("sensor.spotify_tom_jones_media_title")
 @state_trigger("sensor.spotify_will_garside_media_title")
 def update_tempo_variables(var_name: str | None = None) -> None:
     """Update the tempo variables every minute"""
@@ -31,11 +29,7 @@ def update_tempo_variables(var_name: str | None = None) -> None:
     users_to_update = (
         (var_name.replace("sensor.spotify_", "").replace("_media_title", ""),)
         if var_name
-        else (
-            "matt_scott",
-            "tom_jones",
-            "will_garside",
-        )
+        else ("will_garside",)
     )
     with HAExceptionCatcher(MODULE_NAME, "update_tempo_variables"):
         for user_full_name in users_to_update:
