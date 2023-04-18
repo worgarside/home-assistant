@@ -88,40 +88,6 @@
 # <editor-fold desc="Spotify Now Playing Attributes">
 
   - sensor:
-      - name: Spotify Matt Scott Media Album Name
-        state: >
-          {{ state_attr('media_player.spotify_matt_scott', 'media_album_name') }}
-
-  - sensor:
-      - name: Spotify Matt Scott Media Album Artwork Internal URL
-        state: "{{ state_attr('media_player.spotify_matt_scott', 'entity_picture') }}"
-
-  - sensor:
-      - name: Spotify Matt Scott Media Artist
-        state: "{{ state_attr('media_player.spotify_matt_scott', 'media_artist') }}"
-
-  - sensor:
-      - name: Spotify Matt Scott Media Title
-        state: "{{ state_attr('media_player.spotify_matt_scott', 'media_title') }}"
-
-  - sensor:
-      - name: Spotify Tom Jones Media Album Name
-        state: >
-          {{ state_attr('media_player.spotify_tom_jones', 'media_album_name') }}
-
-  - sensor:
-      - name: Spotify Tom Jones Media Album Artwork Internal URL
-        state: "{{ state_attr('media_player.spotify_tom_jones', 'entity_picture') }}"
-
-  - sensor:
-      - name: Spotify Tom Jones Media Artist
-        state: "{{ state_attr('media_player.spotify_tom_jones', 'media_artist') }}"
-
-  - sensor:
-      - name: Spotify Tom Jones Media Title
-        state: "{{ state_attr('media_player.spotify_tom_jones', 'media_title') }}"
-
-  - sensor:
       - name: Spotify Will Garside Media Album Name
         state: >
           {{ state_attr('media_player.spotify_will_garside', 'media_album_name') }}
