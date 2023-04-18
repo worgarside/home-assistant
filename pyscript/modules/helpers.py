@@ -7,10 +7,17 @@ from json import loads
 from logging import Logger
 from socket import gethostname
 from types import TracebackType
-from typing import Any
+from typing import Any, TypeVar
 from unittest.mock import MagicMock
 
+from const import OAUTH_CREDS_CACHE_DIR
 from requests import post
+from wg_utilities.clients import (
+    GoogleFitClient,
+    MonzoClient,
+    SpotifyClient,
+    TrueLayerClient,
+)
 
 
 class HAExceptionCatcher:
@@ -95,6 +102,7 @@ if gethostname() != "homeassistant":
     log, task, sync_mock, decorator, _ = local_setup()
     pyscript = sync_mock
     pyscript_executor = decorator
+    persistent_notification = sync_mock
 
 
 def get_secret(
@@ -146,3 +154,58 @@ def write_file(
     """
     with open(path, mode=mode, encoding=encoding) as fout:
         fout.write(content)
+
+
+T = TypeVar("T", TrueLayerClient, SpotifyClient, GoogleFitClient, MonzoClient)
+
+
+def instantiate_client(
+    client_class: type[T],
+    module_name: str,
+    redirect_uri_override: str | None = None,
+    **extra_kwargs: Any,
+) -> T:
+    """Instantiate an OAuthClient subclass with the appropriate credentials.
+
+    Args:
+        client_class (type[OAuthClient]): the OAuthClient subclass to instantiate
+        module_name (str): the name of the module which the client is for
+        extra_kwargs (Any): any extra keyword arguments to pass to the client
+        redirect_uri_override (str): the redirect URI to use for the client
+
+    Returns:
+        OAuthClient: the instantiated OAuthClient
+    """
+
+    client_class.DEFAULT_CACHE_DIR = OAUTH_CREDS_CACHE_DIR
+
+    client_id = get_secret("client_id", module=module_name)
+    client_secret = get_secret("client_secret", module=module_name)
+
+    if not (client_id and client_secret):
+        raise ValueError(
+            f"Both client ID {'' if client_id else '(missing) '}and"
+            f" secret {'' if client_secret else '(missing) '}must be provided."
+        )
+
+    client = task.executor(
+        client_class,
+        client_id=client_id,
+        client_secret=client_secret,
+        oauth_redirect_uri_override=redirect_uri_override,
+        use_existing_credentials_only=True,
+        **extra_kwargs,
+    )  # type: T
+
+    assert client.DEFAULT_CACHE_DIR == OAUTH_CREDS_CACHE_DIR
+    assert client.creds_cache_path.is_file(), str(client.creds_cache_path)
+
+    client.headless_auth_link_callback = None
+
+    log.info(
+        "Instantiated client for `%s`. Creds cache path: `%s`",
+        module_name,
+        client.creds_cache_path,
+    )
+
+    return client
