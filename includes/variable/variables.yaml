@@ -1,5 +1,5 @@
 ---
-# <editor-fold desc="Spotify">>
+# Spotify
 
 spotify_tempo_matt:
   friendly_name: Spotify Tempo (Matt)
@@ -16,8 +16,7 @@ spotify_tempo_will:
   unit_of_measurement: BPM
   icon: mdi:metronome
 
-# </editor-fold>
-# <editor-fold desc="TrueLayer">
+# TrueLayer
 
 truelayer_balance_monzo_current_account:
   friendly_name: Monzo Current Account Balance
@@ -54,8 +53,7 @@ truelayer_balance_santander_savings_account:
   unit_of_measurement: GBP
   icon: mdi:piggy-bank
 
-# </editor-fold>
-# <editor-fold desc="Devices">
+# Devices
 
 galaxy_light_previous_state:
   friendly_name: Galaxy Light Previous State
@@ -73,8 +71,7 @@ will_s_macbook_pro_battery_seconds_left:
 will_s_macbook_pro_battery_power_plugged:
   friendly_name: Will's MacBook Pro Power Plugged
   icon: mdi:power-plug
-# </editor-fold>
-# <editor-fold desc="Google Fit">
+# Google Fit
 
 google_fit_active_minutes:
   friendly_name: Google Fit Active Minutes
@@ -101,14 +98,12 @@ google_fit_weight:
   unit_of_measurement: kg
   icon: mdi:weight-kilogram
 
-# </editor-fold>
-# <editor-fold desc="Hardcoded">
+# Hardcoded
 
 empty_string:
   initial_value: ' '
 
-# </editor-fold>
-# <editor-fold desc="Tasker">>
+# Tasker
 
 tasker_pixel_now_playing:
   friendly_name: Pixel Now Playing (Tasker)
