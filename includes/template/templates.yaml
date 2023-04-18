@@ -70,7 +70,7 @@
 #          {{ states('media_player.wills_room_chromecast') in [ 'playing', 'paused' ] }}
 #
 ## </editor-fold>
-# <editor-fold desc="Will's Room Curtain">
+# Will's Room Curtain
 
   - binary_sensor:
       - name: Will's Room Curtain Closed
@@ -84,8 +84,7 @@
       - name: Will's Room Curtain Open
         state: "{{ int(states('sensor.will_s_room_curtain_position')) > 95  }}"
 
-# </editor-fold>
-# <editor-fold desc="Spotify Now Playing Attributes">
+# Spotify Now Playing Attributes
 
   - sensor:
       - name: Spotify Will Garside Media Album Name
@@ -104,8 +103,7 @@
       - name: Spotify Will Garside Media Title
         state: "{{ state_attr('media_player.spotify_will_garside', 'media_title') }}"
 
-# </editor-fold>
-# <editor-fold desc="Sun Attributes">
+# Sun Attributes
 
   - sensor:
       - name: Sun Elevation
@@ -120,8 +118,7 @@
       - name: Sun Next Dusk
         state: "{{ state_attr('sun.sun', 'next_dusk') }}"
 
-# </editor-fold>
-# <editor-fold desc="London Air Quality Card Conditions">
+# London Air Quality Card Conditions
 
   - binary_sensor:
       - name: London Air Low Active
@@ -264,8 +261,7 @@
           }}
 
 
-# </editor-fold>
-# <editor-fold desc="Times">
+# Times
 
   - binary_sensor:
       - name: Quiet Hours
@@ -276,8 +272,7 @@
             {{ now().hour < 8 }}
           {%- endif %}
 
-# </editor-fold>
-# <editor-fold desc="Fixed Values">
+# Fixed Values
 
   - sensor:
       - name: Fixed Value On
@@ -287,7 +282,6 @@
       - name: Fixed Value Off
         state: "off"
 
-# </editor-fold>
 # <editor-fold desc="Washing Machine">
 
   - binary_sensor:
@@ -301,8 +295,7 @@
             mdi:washing-machine-off
           {%- endif %}
 
-# </editor-fold>
-# <editor-fold desc="YAS-209">
+# YAS-209
 
   - trigger:
       - platform: webhook
@@ -327,8 +320,7 @@
           payload: '{{ trigger.json }}'
           last_updated: '{{ now() }}'
 
-# </editor-fold>
-# <editor-fold desc="System">
+# System
 
   - sensor:
       - name: Count Automations
@@ -417,7 +409,6 @@
         unit_of_measurement: Records
 
 
-# </editor-fold>
 
   - sensor:
       - name: Vic and Will Distance
