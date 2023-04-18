@@ -282,19 +282,6 @@
       - name: Fixed Value Off
         state: "off"
 
-# <editor-fold desc="Washing Machine">
-
-  - binary_sensor:
-      - name: Washing Machine
-        state: >
-          {{ states('sensor.washing_machine_current_consumption') | float > 2.5 }}
-        icon: >
-          {%- if is_state("binary_sensor.washing_machine", "on") %}
-            mdi:washing-machine
-          {%- else %}
-            mdi:washing-machine-off
-          {%- endif %}
-
 # YAS-209
 
   - trigger:
