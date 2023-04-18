@@ -28,8 +28,3 @@
     host: homeassistant.local
     name: HAssPi Online
     scan_interval: 60
-
-  - platform: ping
-    host: 10.0.0.5
-    name: AS0140 Online
-    scan_interval: 60
