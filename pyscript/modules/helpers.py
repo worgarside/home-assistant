@@ -227,6 +227,7 @@ def instantiate_client(
         client_id=client_id,
         client_secret=client_secret,
         oauth_redirect_uri_override=redirect_uri_override,
+        use_existing_credentials_only=True,
         **extra_kwargs,
     )  # type: T
 
