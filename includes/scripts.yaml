@@ -39,26 +39,6 @@ notify_will:
         title: '{{ title }}'
         message: '{{ message }}'
 
-send_washing_machine_user_choice_notif:
-  description: Send a notification asking who's using the washing machine
-  mode: parallel
-  fields:
-    target_device:
-      description: The device to notify
-      example: mobile_app_nokia_3310
-  sequence:
-    - service: notify.{{ target_device }}
-      data:
-        message: Who's using the washing machine?
-        data:
-          actions:
-            - action: MATT_USING_WASHING_MACHINE
-              title: Matt
-            - action: TOM_USING_WASHING_MACHINE
-              title: Tom
-            - action: WILL_USING_WASHING_MACHINE
-              title: Will
-
 start_spotify_on_device:
   description: Start Spotify playback on a particular device
   mode: restart
