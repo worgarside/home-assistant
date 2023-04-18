@@ -2,23 +2,6 @@
 
 # ------------------------ Critical ------------------------ #
 
-  - alias: /switch/washing_machine/keep_turned_on
-    id: keep_washing_machine_on
-    mode: single
-    trigger:
-      - platform: state
-        entity_id: switch.washing_machine
-        to: "off"
-    action:
-      - service: switch.turn_on
-        target:
-          entity_id: switch.washing_machine
-      - service: script.notify_will
-        data:
-          title: Critical Automation Triggered
-          # yamllint disable-line rule:line-length
-          message: '`keep_washing_machine_on` was triggered with state `{{ trigger.to_state.state}}`'
-
   - alias: /homeassistant/remote_ui/restart_when_offline
     id: restart_when_remote_ui_offline
     trigger:

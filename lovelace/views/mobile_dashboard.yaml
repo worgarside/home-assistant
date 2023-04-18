@@ -30,14 +30,6 @@ cards:
         variables:
           - device_friendly_name: Nest Mini
           - entity_id: media_player.kitchen_nest_mini
-      - type: custom:fold-entity-row
-        head:
-          entity: binary_sensor.washing_machine
-        entities:
-          - entity: sensor.washing_machine_current_consumption
-            name: Power Consumption
-          - entity: input_select.washing_machine_current_user
-            name: Current User
 
   - type: entities
     title: Landing
