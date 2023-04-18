@@ -1,6 +1,6 @@
 ---
 
-# <editor-fold desc="Will's Room">
+# Will's Room
 
   # Will's Room Remote Button 1 Initial Press - Turn Will's Room on
   - alias: /hue/remote/will_s_room/button1/initial_press
@@ -212,8 +212,7 @@
         target:
           entity_id: cover.wills_room_curtain
 
-# </editor-fold>
-# <editor-fold desc="Kitchen">
+# Kitchen
 
   # Kitchen Remote Button 1 Any Press - Turn on all the Kitchen lights
   - alias: /hue/remote/kitchen/button1/press
@@ -350,8 +349,7 @@
         target:
           area_id: kitchen
 
-# </editor-fold>
-# <editor-fold desc="Lounge">
+# Lounge
 
   # Lounge Remote Button 1 Initial Press
   - alias: /hue/remote/lounge/button1/initial_press
@@ -468,5 +466,3 @@
       - service: light.turn_off
         target:
           area_id: lounge
-
-# </editor-fold>
