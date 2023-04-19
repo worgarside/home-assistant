@@ -128,7 +128,7 @@ def update_variables(method_name: str, new_variables: dict[str, object]) -> None
                 )
 
 
-@time_trigger("cron(5 0 * * *)")
+# @time_trigger("cron(5 0 * * *)")
 def netgear_get_info() -> None:
     """Get info from Netgear router
 
@@ -146,7 +146,7 @@ def netgear_get_info() -> None:
     update_variables("get_info", info)
 
 
-@time_trigger("cron(*/15 * * * *)")
+# @time_trigger("cron(*/15 * * * *)")
 def netgear_get_traffic_meter() -> None:
     """Get traffic meter info from Netgear router
 
@@ -183,7 +183,7 @@ def netgear_get_traffic_meter() -> None:
     update_variables("get_traffic_meter", traffic_meter)
 
 
-@time_trigger("cron(5 0 * * *)")
+# @time_trigger("cron(5 0 * * *)")
 def netgear_check_new_firmware() -> None:
     """Check for new firmware
 

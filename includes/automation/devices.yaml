@@ -1,6 +1,6 @@
 ---
 
-# <editor-fold desc="MacBook Pro">
+# MacBook Pro
 
   - alias: /switch/will_s_macbook_pro/turn_charger_on
     id: turn_will_s_macbook_pro_charger_on
@@ -24,8 +24,7 @@
         data:
           entity_id: switch.will_s_macbook
 
-# </editor-fold>
-# <editor-fold desc="HiFi Amp">
+# HiFi Amp
 
   - alias: /switch/hifi_amp/auto_on
     id: auto_on_hifi_amp
@@ -36,7 +35,7 @@
           - media_player.lounge_bravia_tv
         from:
           - idle
-          - off
+          - "off"
           - unavailable
           - unknown
         to:
@@ -55,7 +54,7 @@
           - media_player.hifi_system
           - media_player.lounge_bravia_tv
         to:
-          - off
+          - "off"
         for:
           minutes: 1
     condition:
@@ -63,10 +62,10 @@
         conditions:
           - condition: state
             entity_id: media_player.hifi_system
-            state: off
+            state: "off"
           - condition: state
             entity_id: media_player.lounge_bravia_tv
-            state: off
+            state: "off"
     action:
       # yamllint disable-line rule:line-length
       - wait_template: "{{ states('media_player.hifi_system') == 'off' and states('media_player.lounge_bravia_tv') == 'off'  and states('media_player.lounge_tv') != 'unavailable' }}"
@@ -75,8 +74,7 @@
       - service: switch.turn_off
         entity_id: switch.hifi_amp
 
-# </editor-fold>
-# <editor-fold desc="Tower Fan">
+# Tower Fan
 
   # This allows an easy way of manually overriding the auto-control automation, without
   # having to remember to turn it off and on: if either manual input is updated then
@@ -146,8 +144,7 @@
               - service: switch.turn_on
                 entity_id: switch.tower_fan
 
-# </editor-fold>
-# <editor-fold desc="Lounge TV">
+# Lounge TV
 
   - alias: /media_player/lounge_bravia_tv/limit_volume
     id: limit_media_player_lounge_bravia_tv_volume
@@ -164,5 +161,3 @@
           volume_level: 0.6
         target:
           entity_id: media_player.lounge_bravia_tv
-
-# </editor-fold>

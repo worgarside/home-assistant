@@ -75,14 +75,6 @@ elements:
       width: 6%
 
   - type: image
-    entity: sensor.washing_machine_current_consumption
-    image: /local/icons/floorplan/icn_washing_machine.svg
-    style:
-      top: 28.5%
-      left: 47%
-      width: 6%
-
-  - type: image
     entity: media_player.lounge_nest_mini
     tap_action:
       action: more-info

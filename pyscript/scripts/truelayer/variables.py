@@ -5,27 +5,16 @@ from collections.abc import Callable
 from socket import gethostname
 from typing import Any
 
-from helpers import HAExceptionCatcher, get_secret
+from helpers import HAExceptionCatcher, get_secret, instantiate_client
 from wg_utilities.clients import TrueLayerClient
 from wg_utilities.clients.truelayer import Bank, Card
 
 MODULE_NAME = "truelayer"
-CACHE_PATH = get_secret("creds_cache_path", module=MODULE_NAME)
 
-TLC_ARGS = {
-    "client_id": get_secret("client_id", module=MODULE_NAME),
-    "client_secret": get_secret("client_secret", module=MODULE_NAME),
-    "log_requests": False,
-    "creds_cache_path": CACHE_PATH,
-}
-
-MONZO = TrueLayerClient(bank=Bank.MONZO, **TLC_ARGS)
-
-AMEX = TrueLayerClient(bank=Bank.AMEX, **TLC_ARGS)
-
-HSBC = TrueLayerClient(bank=Bank.HSBC, **TLC_ARGS)
-
-SANTANDER = TrueLayerClient(bank=Bank.SANTANDER, **TLC_ARGS)
+# ToDo: Re-add HSBC client
+MONZO = instantiate_client(TrueLayerClient, MODULE_NAME, bank=Bank.MONZO)
+AMEX = instantiate_client(TrueLayerClient, MODULE_NAME, bank=Bank.AMEX)
+SANTANDER = instantiate_client(TrueLayerClient, MODULE_NAME, bank=Bank.SANTANDER)
 
 if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports
@@ -34,7 +23,6 @@ if gethostname() != "homeassistant":
     var = sync_mock
     time_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
 
-_INSTANCE_KWARGS = {"balance_update_threshold": 1}
 
 VAR_ENTITY_MAP = {}
 
@@ -45,17 +33,14 @@ with HAExceptionCatcher(MODULE_NAME, "instantiate_monzo_accounts"):
             "monzo_current_account": task.executor(
                 MONZO.get_account_by_id,
                 get_secret("monzo_current_account_id", module=MODULE_NAME),
-                instance_kwargs=_INSTANCE_KWARGS,
             ),
             "monzo_savings": task.executor(
                 MONZO.get_account_by_id,
                 get_secret("monzo_savings_pot_id", module=MODULE_NAME),
-                instance_kwargs=_INSTANCE_KWARGS,
             ),
             "monzo_credit_cards": task.executor(
                 MONZO.get_account_by_id,
                 get_secret("monzo_credit_cards_pot_id", module=MODULE_NAME),
-                instance_kwargs=_INSTANCE_KWARGS,
             ),
         }
     )
@@ -66,18 +51,6 @@ with HAExceptionCatcher(MODULE_NAME, "instantiate_amex_account"):
             "amex": task.executor(
                 AMEX.get_card_by_id,
                 get_secret("amex_card_id", module=MODULE_NAME),
-                instance_kwargs=_INSTANCE_KWARGS,
-            )
-        }
-    )
-
-with HAExceptionCatcher(MODULE_NAME, "instantiate_hsbc_account"):
-    VAR_ENTITY_MAP.update(
-        {
-            "hsbc_current_account": task.executor(
-                HSBC.get_account_by_id,
-                get_secret("hsbc_current_account_id", module=MODULE_NAME),
-                instance_kwargs=_INSTANCE_KWARGS,
             )
         }
     )
@@ -88,12 +61,10 @@ with HAExceptionCatcher(MODULE_NAME, "instantiate_santander_accounts"):
             "santander_current_account": task.executor(
                 SANTANDER.get_account_by_id,
                 get_secret("santander_current_account_id", module=MODULE_NAME),
-                instance_kwargs=_INSTANCE_KWARGS,
             ),
             "santander_savings_account": task.executor(
                 SANTANDER.get_account_by_id,
                 get_secret("santander_savings_account_id", module=MODULE_NAME),
-                instance_kwargs=_INSTANCE_KWARGS,
             ),
         }
     )

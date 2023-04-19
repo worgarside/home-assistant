@@ -7,7 +7,7 @@
     trigger:
       platform: state
       entity_id: binary_sensor.will_s_bedroom_door
-      to: on
+      to: "on"
     condition: "{{ states('person.will') != 'home' }}"
     action:
       - service: cover.open_cover
@@ -39,7 +39,7 @@
     trigger:
       platform: state
       entity_id: binary_sensor.will_s_bedroom_door
-      to: on
+      to: "on"
     action:
       - alias: Set variables
         variables:
@@ -74,7 +74,7 @@
     trigger:
       - platform: state
         entity_id: binary_sensor.will_s_balcony_door
-        to: off
+        to: "off"
         for:
           seconds: 2.5
     condition:
@@ -100,7 +100,7 @@
     trigger:
       platform: state
       entity_id: binary_sensor.will_s_closet_door
-      to: on
+      to: "on"
     action:
       - service: light.turn_on
         data:

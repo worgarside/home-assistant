@@ -1,7 +1,7 @@
 ---
 sensor:
 
-#<editor-fold desc="Plants">
+# Plants
 
   - name: Monstera Moisture
     state_topic: /will_s_room/plants/monstera
@@ -55,7 +55,7 @@ sensor:
     state_class: measurement
 
 #</editor-fold>
-#<editor-fold desc="Pi Stats">
+# Pi Stats
 
   - name: GrowPi CPU Usage
     state_topic: /homeassistant/growpi/stats
@@ -338,7 +338,7 @@ sensor:
     state_class: measurement
 
 #</editor-fold>
-#<editor-fold desc="Lounge DHT22">
+# Lounge DHT22
 
   - name: Lounge Temperature
     state_topic: /homeassistant/clmtpi/dht22
@@ -357,7 +357,7 @@ sensor:
     state_class: measurement
 
 #</editor-fold>
-#<editor-fold desc="CRT DHT22">
+# CRT DHT22
 
   - name: CRT TV Internal Temperature
     state_topic: /homeassistant/crtpi/dht22

@@ -2,20 +2,15 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from pathlib import Path
 from socket import gethostname
 from typing import Any
 
-from helpers import HAExceptionCatcher, get_secret
+from helpers import HAExceptionCatcher, instantiate_client
 from wg_utilities.clients import SpotifyClient
 
 MODULE_NAME = "spotify"
 
-SPOTIFY = SpotifyClient(
-    client_id=get_secret("client_id", module=MODULE_NAME),
-    client_secret=get_secret("client_secret", module=MODULE_NAME),
-    creds_cache_path=Path("/config/.spotify_cache"),
-)
+SPOTIFY = instantiate_client(SpotifyClient, MODULE_NAME)
 
 if gethostname() != "homeassistant":
     from helpers import local_setup  # pylint: disable=ungrouped-imports
@@ -27,8 +22,6 @@ if gethostname() != "homeassistant":
     time_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
 
 
-@state_trigger("sensor.spotify_matt_scott_media_title")
-@state_trigger("sensor.spotify_tom_jones_media_title")
 @state_trigger("sensor.spotify_will_garside_media_title")
 def update_tempo_variables(var_name: str | None = None) -> None:
     """Update the tempo variables every minute"""
@@ -36,11 +29,7 @@ def update_tempo_variables(var_name: str | None = None) -> None:
     users_to_update = (
         (var_name.replace("sensor.spotify_", "").replace("_media_title", ""),)
         if var_name
-        else (
-            "matt_scott",
-            "tom_jones",
-            "will_garside",
-        )
+        else ("will_garside",)
     )
     with HAExceptionCatcher(MODULE_NAME, "update_tempo_variables"):
         for user_full_name in users_to_update:

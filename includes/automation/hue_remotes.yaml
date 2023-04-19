@@ -1,6 +1,6 @@
 ---
 
-# <editor-fold desc="Will's Room">
+# Will's Room
 
   # Will's Room Remote Button 1 Initial Press - Turn Will's Room on
   - alias: /hue/remote/will_s_room/button1/initial_press
@@ -30,7 +30,7 @@
         subtype: 2
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id:
         - light.wills_shapes
     action:
@@ -52,7 +52,7 @@
         subtype: 2
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id:
         - light.wills_shapes
     action:
@@ -73,7 +73,7 @@
         subtype: 3
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id:
         - light.wills_shapes
     action:
@@ -95,7 +95,7 @@
         subtype: 3
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id:
         - light.wills_shapes
     action:
@@ -212,8 +212,7 @@
         target:
           entity_id: cover.wills_room_curtain
 
-# </editor-fold>
-# <editor-fold desc="Kitchen">
+# Kitchen
 
   # Kitchen Remote Button 1 Any Press - Turn on all the Kitchen lights
   - alias: /hue/remote/kitchen/button1/press
@@ -253,7 +252,7 @@
         subtype: 2
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id:
         - light.kitchen_work_light
     action:
@@ -275,7 +274,7 @@
         subtype: 2
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id: light.kitchen_work_light
     action:
       - service: light.turn_on
@@ -295,7 +294,7 @@
         subtype: 3
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id: light.kitchen_work_light
     action:
       - service: light.turn_on
@@ -316,7 +315,7 @@
         subtype: 3
     condition:
       condition: state
-      state: on
+      state: "on"
       entity_id: light.kitchen_work_light
     action:
       - service: light.turn_on
@@ -350,8 +349,7 @@
         target:
           area_id: kitchen
 
-# </editor-fold>
-# <editor-fold desc="Lounge">
+# Lounge
 
   # Lounge Remote Button 1 Initial Press
   - alias: /hue/remote/lounge/button1/initial_press
@@ -380,25 +378,15 @@
         type: short_release
         subtype: 2
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: on
-            entity_id:
-              - light.the_snail
-          - condition: state
-            state: on
-            entity_id:
-              - light.galaxy_light
+      - condition: state
+        state: "on"
+        entity_id:
+          - light.the_snail
     action:
       - service: light.turn_on
         entity_id: light.the_snail
         data_template:
           brightness: '{{states.light.the_snail.attributes.brightness + 25}}'
-      - service: light.turn_on
-        entity_id: light.galaxy_light
-        data_template:
-          brightness: '{{states.light.galaxy_light.attributes.brightness + 25}}'
 
   # Lounge Remote Button 2 Held Down
   - alias: /hue/remote/lounge/button2/held_down
@@ -411,25 +399,15 @@
         type: repeat
         subtype: 2
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: on
-            entity_id:
-              - light.the_snail
-          - condition: state
-            state: on
-            entity_id:
-              - light.galaxy_light
+      - condition: state
+        state: "on"
+        entity_id:
+          - light.the_snail
     action:
       - service: light.turn_on
         entity_id: light.the_snail
         data_template:
           brightness: '{{states.light.the_snail.attributes.brightness + 50}}'
-      - service: light.turn_on
-        entity_id: light.galaxy_light
-        data_template:
-          brightness: '{{states.light.galaxy_light.attributes.brightness + 50}}'
 
   # Lounge Remote Button 3 Initial Press
   - alias: /hue/remote/lounge/button3/initial_press
@@ -442,25 +420,15 @@
         type: short_release
         subtype: 3
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: on
-            entity_id:
-              - light.the_snail
-          - condition: state
-            state: on
-            entity_id:
-              - light.galaxy_light
+      - condition: state
+        state: "on"
+        entity_id:
+          - light.the_snail
     action:
       - service: light.turn_on
         entity_id: light.the_snail
         data_template:
           brightness: '{{states.light.the_snail.attributes.brightness - 25}}'
-      - service: light.turn_on
-        entity_id: light.galaxy_light
-        data_template:
-          brightness: '{{states.light.galaxy_light.attributes.brightness - 25}}'
 
   # Lounge Remote Button 3 Held Down
   - alias: /hue/remote/lounge/button3/held_down
@@ -473,25 +441,15 @@
         type: repeat
         subtype: 3
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            state: on
-            entity_id:
-              - light.the_snail
-          - condition: state
-            state: on
-            entity_id:
-              - light.galaxy_light
+      - condition: state
+        state: "on"
+        entity_id:
+          - light.the_snail
     action:
       - service: light.turn_on
         entity_id: light.the_snail
         data_template:
           brightness: '{{states.light.the_snail.attributes.brightness - 50}}'
-      - service: light.turn_on
-        entity_id: light.galaxy_light
-        data_template:
-          brightness: '{{states.light.galaxy_light.attributes.brightness - 50}}'
 
   # Lounge Remote Button 4 Initial Press
   - alias: /hue/remote/lounge/button4/initial_press
@@ -508,5 +466,3 @@
       - service: light.turn_off
         target:
           area_id: lounge
-
-# </editor-fold>

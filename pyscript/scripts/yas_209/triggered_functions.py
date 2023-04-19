@@ -37,9 +37,7 @@ PAYLOAD = {
 
 
 YAS_209 = task.executor(
-    YamahaYas209,
-    "10.0.0.16",
-    start_listener=True,
+    YamahaYas209, sensor.yas_209_local_ip, start_listener=True, resubscribe_seconds=600
 )
 
 

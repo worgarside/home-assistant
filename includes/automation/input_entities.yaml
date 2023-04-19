@@ -1,52 +1,6 @@
 ---
 
-  - alias: Initialise "Entity Force Updater" Options
-    id: init_entity_force_updater_options
-    trigger:
-      - platform: homeassistant
-        event: start
-    action:
-#      - delay:
-#          minutes: 15
-      - service: input_select.set_options
-        data_template:
-          options: |
-            {% for domain in [
-              states.binary_sensor,
-              states.climate,
-              states.cover,
-              states.device_tracker,
-              states.light,
-              states.media_player,
-              states.person,
-              states.remote,
-              states.scene,
-              states.script,
-              states.sensor,
-              states.sun,
-              states.switch,
-              states.var,
-              states.water_heater,
-              states.weather,
-            ] -%}
-              {% for state in domain -%}
-                - {{ state.entity_id }}
-              {% endfor %}
-            {%- endfor %}
-        target:
-          entity_id: input_select.entity_force_updater
-
-  - alias: Force Update Entity
-    id: force_update_entity
-    trigger:
-      - platform: state
-        entity_id: input_select.entity_force_updater
-    action:
-      - service: homeassistant.update_entity
-        target:
-          entity_id: '{{ trigger.to_state.state }}'
-
-#<editor-fold desc="Input Boolean">
+# Input Boolean
 
   - alias: /input_boolean/mini_crt_power/force_update
     id: force_update_input_boolean_mini_crt_power
@@ -69,8 +23,8 @@
           topic: /crt-pi/fan/state
           payload_template: "{{ states('input_boolean.mini_crt_fan')}}"
 
-#</editor-fold>
-#<editor-fold desc="Input Number">
+# Input Number
+
   - alias: /input_number/monstera_dry_point/auto_set
     id: input_number_monstera_dry_point_auto_set
     trigger:
@@ -282,54 +236,5 @@
         data:
           topic: /plant_monitor/pineapple/wet_point/set
           payload_template: '{{ trigger.to_state.state | float }}'
-
-#</editor-fold>
-#<editor-fold desc="Input Select">
-
-  - alias: /input_select/washing_machine_current_user/set
-    id: set_washing_machine_current_user
-    trigger:
-      - platform: event
-        event_type: mobile_app_notification_action
-        event_data:
-          action: MATT_USING_WASHING_MACHINE
-      - platform: event
-        event_type: mobile_app_notification_action
-        event_data:
-          action: TOM_USING_WASHING_MACHINE
-      - platform: event
-        event_type: mobile_app_notification_action
-        event_data:
-          action: WILL_USING_WASHING_MACHINE
-    condition: "{{ states('binary_sensor.washing_machine') == 'on' }}"
-    action:
-      - alias: Set variables
-        variables:
-          trigger_action: '{{ trigger.event.data.action }}'
-      - choose:
-          - alias: Matt
-            conditions: "{{ trigger_action == 'MATT_USING_WASHING_MACHINE' }}"
-            sequence:
-              - service: input_select.select_option
-                target:
-                  entity_id: input_select.washing_machine_current_user
-                data:
-                  option: Matt
-          - alias: Tom
-            conditions: "{{ trigger_action == 'TOM_USING_WASHING_MACHINE' }}"
-            sequence:
-              - service: input_select.select_option
-                target:
-                  entity_id: input_select.washing_machine_current_user
-                data:
-                  option: Tom
-          - alias: Will
-            conditions: "{{ trigger_action == 'WILL_USING_WASHING_MACHINE' }}"
-            sequence:
-              - service: input_select.select_option
-                target:
-                  entity_id: input_select.washing_machine_current_user
-                data:
-                  option: Will
 
 #</editor-fold>

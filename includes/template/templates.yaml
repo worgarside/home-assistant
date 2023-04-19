@@ -70,7 +70,7 @@
 #          {{ states('media_player.wills_room_chromecast') in [ 'playing', 'paused' ] }}
 #
 ## </editor-fold>
-# <editor-fold desc="Will's Room Curtain">
+# Will's Room Curtain
 
   - binary_sensor:
       - name: Will's Room Curtain Closed
@@ -84,42 +84,7 @@
       - name: Will's Room Curtain Open
         state: "{{ int(states('sensor.will_s_room_curtain_position')) > 95  }}"
 
-# </editor-fold>
-# <editor-fold desc="Spotify Now Playing Attributes">
-
-  - sensor:
-      - name: Spotify Matt Scott Media Album Name
-        state: >
-          {{ state_attr('media_player.spotify_matt_scott', 'media_album_name') }}
-
-  - sensor:
-      - name: Spotify Matt Scott Media Album Artwork Internal URL
-        state: "{{ state_attr('media_player.spotify_matt_scott', 'entity_picture') }}"
-
-  - sensor:
-      - name: Spotify Matt Scott Media Artist
-        state: "{{ state_attr('media_player.spotify_matt_scott', 'media_artist') }}"
-
-  - sensor:
-      - name: Spotify Matt Scott Media Title
-        state: "{{ state_attr('media_player.spotify_matt_scott', 'media_title') }}"
-
-  - sensor:
-      - name: Spotify Tom Jones Media Album Name
-        state: >
-          {{ state_attr('media_player.spotify_tom_jones', 'media_album_name') }}
-
-  - sensor:
-      - name: Spotify Tom Jones Media Album Artwork Internal URL
-        state: "{{ state_attr('media_player.spotify_tom_jones', 'entity_picture') }}"
-
-  - sensor:
-      - name: Spotify Tom Jones Media Artist
-        state: "{{ state_attr('media_player.spotify_tom_jones', 'media_artist') }}"
-
-  - sensor:
-      - name: Spotify Tom Jones Media Title
-        state: "{{ state_attr('media_player.spotify_tom_jones', 'media_title') }}"
+# Spotify Now Playing Attributes
 
   - sensor:
       - name: Spotify Will Garside Media Album Name
@@ -138,8 +103,7 @@
       - name: Spotify Will Garside Media Title
         state: "{{ state_attr('media_player.spotify_will_garside', 'media_title') }}"
 
-# </editor-fold>
-# <editor-fold desc="Sun Attributes">
+# Sun Attributes
 
   - sensor:
       - name: Sun Elevation
@@ -154,8 +118,7 @@
       - name: Sun Next Dusk
         state: "{{ state_attr('sun.sun', 'next_dusk') }}"
 
-# </editor-fold>
-# <editor-fold desc="London Air Quality Card Conditions">
+# London Air Quality Card Conditions
 
   - binary_sensor:
       - name: London Air Low Active
@@ -298,8 +261,7 @@
           }}
 
 
-# </editor-fold>
-# <editor-fold desc="Times">
+# Times
 
   - binary_sensor:
       - name: Quiet Hours
@@ -310,33 +272,17 @@
             {{ now().hour < 8 }}
           {%- endif %}
 
-# </editor-fold>
-# <editor-fold desc="Fixed Values">
+# Fixed Values
 
   - sensor:
       - name: Fixed Value On
-        state: On
+        state: "on"
 
   - sensor:
       - name: Fixed Value Off
-        state: Off
+        state: "off"
 
-# </editor-fold>
-# <editor-fold desc="Washing Machine">
-
-  - binary_sensor:
-      - name: Washing Machine
-        state: >
-          {{ states('sensor.washing_machine_current_consumption') | float > 2.5 }}
-        icon: >
-          {%- if is_state("binary_sensor.washing_machine", "on") %}
-            mdi:washing-machine
-          {%- else %}
-            mdi:washing-machine-off
-          {%- endif %}
-
-# </editor-fold>
-# <editor-fold desc="YAS-209">
+# YAS-209
 
   - trigger:
       - platform: webhook
@@ -361,8 +307,7 @@
           payload: '{{ trigger.json }}'
           last_updated: '{{ now() }}'
 
-# </editor-fold>
-# <editor-fold desc="System">
+# System
 
   - sensor:
       - name: Count Automations
@@ -451,7 +396,6 @@
         unit_of_measurement: Records
 
 
-# </editor-fold>
 
   - sensor:
       - name: Vic and Will Distance
@@ -480,3 +424,12 @@
             round(2)
           }}
         icon: mdi:map-marker-distance
+
+  - sensor:
+      - name: YAS-209 Local IP
+        state: >
+          {{
+            state_attr("binary_sensor.will_s_yas_209", "url") |
+            replace("http://", "") |
+            replace(":49152/description.xml", "")
+          }}
