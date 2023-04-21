@@ -149,7 +149,7 @@ person:
 
 recorder:
   db_url: !secret mariadb_db_url
-  purge_keep_days: 7
+  purge_keep_days: 31
   exclude:
     domains:
       - automation
