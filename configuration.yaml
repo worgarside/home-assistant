@@ -64,10 +64,6 @@ logger:
 lovelace:
   mode: yaml
   dashboards:
-    mobile-dashboard:
-      mode: yaml
-      filename: lovelace/dashboards/mobile_dashboard.yaml
-      title: Mobile Dashboard
     system-health:
       mode: yaml
       filename: lovelace/dashboards/system_health.yaml
