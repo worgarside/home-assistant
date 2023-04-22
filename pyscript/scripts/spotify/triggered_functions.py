@@ -62,10 +62,6 @@ def get_monthly_playlists(return_count: int = 12) -> list[Playlist]:
     Returns:
         List[Playlist]: a list of Playlist instances
     """
-
-    if hasattr(SPOTIFY.current_user, "_playlists"):
-        delattr(SPOTIFY.current_user, "_playlists")
-
     return sorted(
         (p for p in SPOTIFY.current_user.playlists if MONTHLY_PATTERN.match(p.name)),
         key=lambda playlist: datetime.strptime(playlist.name, "%B '%y"),
@@ -90,9 +86,6 @@ def process_liked_songs() -> None:
         all_monthly_playlist_tracks = set()
 
         for playlist in (last_3_monthly_playlists := get_monthly_playlists(3)):
-            if hasattr(playlist, "_tracks"):
-                delattr(playlist, "_tracks")
-
             all_monthly_playlist_tracks.update(
                 task.executor(getattr, playlist, "tracks")
             )
