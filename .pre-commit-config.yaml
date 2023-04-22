@@ -106,6 +106,7 @@ repos:
           - types-PyYAML
           - types-python-dateutil
           - wg-utilities==3.6.0
+          - python-dotenv
 
   - repo: local
     hooks:
