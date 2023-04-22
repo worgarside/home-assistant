@@ -102,17 +102,31 @@ def process_liked_songs() -> None:
             lambda t: str(t.metadata["saved_at"].strftime("%B '%y")),
         )
 
-        log.info("Found %s monthly playlist updates", len(monthly_updates))
+        if monthly_updates:
+            log.info(
+                "%i monthly playlists updated: %s",
+                len(monthly_updates),
+                ", ".join(p.name for p in monthly_updates),
+            )
+        else:
+            log.info("No monthly playlists updated")
 
         # Decade playlists
 
-        update_dynamic_playlists(
+        decade_updates = update_dynamic_playlists(
             deepcopy(recently_liked),
             None,
             lambda t: str(t.release_date.year)[:3] + "0s",
         )
 
-        log.info("Decade playlists updated")
+        if monthly_updates:
+            log.info(
+                "%i decade playlists updated: %s",
+                len(decade_updates),
+                ", ".join(p.name for p in decade_updates),
+            )
+        else:
+            log.info("No decade playlists updated")
 
         # Notifications
 
