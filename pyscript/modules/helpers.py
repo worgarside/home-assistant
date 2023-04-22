@@ -11,6 +11,7 @@ from typing import Any, TypeVar
 from unittest.mock import MagicMock
 
 from const import OAUTH_CREDS_CACHE_DIR
+from dotenv import load_dotenv
 from requests import post
 from wg_utilities.clients import (
     GoogleFitClient,
@@ -18,6 +19,8 @@ from wg_utilities.clients import (
     SpotifyClient,
     TrueLayerClient,
 )
+
+load_dotenv()
 
 
 class HAExceptionCatcher:
