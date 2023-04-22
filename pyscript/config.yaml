@@ -11,10 +11,6 @@ apps:
     client_id: !secret monzo_client_id
     client_secret: !secret monzo_client_secret
 
-  nanoleaf.matts_shapes:
-    ip_address: !secret matts_shapes_ip
-    auth_token: !secret matts_shapes_auth_token
-
   nanoleaf.the_snail:
     ip_address: !secret the_snail_ip
     auth_token: !secret the_snail_auth_token
