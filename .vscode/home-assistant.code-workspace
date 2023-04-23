@@ -1,0 +1,24 @@
+{
+    "settings": {
+        "files.associations": {
+            "*.yaml": "home-assistant"
+        }
+    },
+    "folders": [
+        {
+            "path": ".."
+        },
+        {
+            "name": "SSH FS - /addons",
+            "uri": "ssh://hasspi-addons/addons"
+        },
+        {
+            "name": "SSH FS - /config",
+            "uri": "ssh://hasspi-config/config"
+        },
+        {
+            "name": "SSH FS - /media",
+            "uri": "ssh://hasspi-media/media"
+        }
+    ]
+}
