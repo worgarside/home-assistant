@@ -1,0 +1,10 @@
+---
+
+  - alias: /zha/send_command/yamaha_yas_209/set_eq_music
+    description: "Set the YAS-209 EQ to music setting when the media player is turned on"
+    trigger:
+      platform: state
+      entity_id: media_player.will_s_yas_209
+      from: 'off'
+    action:
+      service: script.yas_209_set_eq_music
