@@ -107,6 +107,7 @@ repos:
           - types-python-dateutil
           - wg-utilities==3.6.0
           - python-dotenv
+        exclude: "^custom_zha_quirks/.*"
 
   - repo: local
     hooks:

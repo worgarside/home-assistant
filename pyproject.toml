@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "home-assistant"
-version = "0.2.1"
+version = "0.3.0"
 description = ""
 authors = ["Will Garside <worgarside@gmail.com>"]
 readme = "README.md"
@@ -66,7 +66,6 @@ exclude = '''
 profile = "black"
 
 [tool.mypy]
-exclude = ["_local_sandbox"]
 show_error_codes = true
 plugins = 'pydantic.mypy'
 follow_imports = "silent"
@@ -121,3 +120,4 @@ ignore = [
     "D407",  # dashed-underline-after-section
     "UP037", # quoted-annotation
 ]
+exclude = ["custom_zha_quirks/*"]
