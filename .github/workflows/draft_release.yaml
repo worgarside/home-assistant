@@ -18,7 +18,7 @@ jobs:
     name: Draft Release
     uses: worgarside/github-config-files/.github/workflows/draft_release.yml@main
     with:
-      base-ref-name: home-assistant.local
+      base-ref-name: homeassistant.local
       head-ref-name: ${{ github.head_ref || github.ref_name }}
     secrets:
       gh-token: ${{ secrets.WORGARSIDE_DEV_TOKEN}}

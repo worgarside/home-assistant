@@ -13,7 +13,7 @@ jobs:
     name: Publish Release
     uses: worgarside/github-config-files/.github/workflows/publish_release.yml@main
     with:
-      base-ref-name: home-assistant.local
+      base-ref-name: homeassistant.local
       head-ref-name: ${{ github.head_ref || github.ref_name }}
       pr-merged: ${{ github.event.pull_request.merged }}
     secrets:
