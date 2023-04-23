@@ -160,3 +160,139 @@ mtrxpi_update_display:
             "state": "{{ states(media_player) }}"
           }
         # yamllint enable rule:line-length
+
+# YAS-209 Infrared Commands
+yas_209_toggle_power:
+  mode: single
+  sequence:
+    - service: zha.issue_zigbee_cluster_command
+      data:
+        cluster_type: in
+        endpoint_id: 1
+        command: 2
+        ieee: dc:8e:95:ff:fe:f9:ad:13
+        command_type: server
+        params:
+          code: >-
+            BUwj7BEoAuADAQHCBuAFA0AB4AMT4AcBQBvAAUALQAPAAUAL4AMDwAHAE8ABD6WdTCPzCCgC//9MI/MIKAI=
+        cluster_id: 57348
+
+yas_209_volume_up:
+  mode: single
+  sequence:
+    - service: zha.issue_zigbee_cluster_command
+      data:
+        cluster_type: in
+        endpoint_id: 1
+        command: 2
+        ieee: dc:8e:95:ff:fe:f9:ad:13
+        command_type: server
+        params:
+          code: >-
+            BUojwBEuAuADAQG1BuAFA0AB4AMT4AcBQBtAAUAH4AMD4AMBQBfgBwFAE8ADD6qdSiPqCC4C//9KI+oILgI=
+        cluster_id: 57348
+
+yas_209_volume_down:
+  mode: single
+  sequence:
+    - service: zha.issue_zigbee_cluster_command
+      data:
+        cluster_type: in
+        endpoint_id: 1
+        command: 2
+        ieee: dc:8e:95:ff:fe:f9:ad:13
+        command_type: server
+        params:
+          code: >-
+            BUQj0hEpAuADAQHABuAFA0AB4AMTAl0CKeAEAeADG+ADC+APAcA/4AMrD8OdRCPeCCkC//9EI94IKQI=
+        cluster_id: 57348
+
+yas_209_set_eq_movie:
+  mode: single
+  sequence:
+    - service: zha.issue_zigbee_cluster_command
+      data:
+        cluster_type: in
+        endpoint_id: 1
+        command: 2
+        ieee: dc:8e:95:ff:fe:f9:ad:13
+        command_type: server
+        params:
+          code: >-
+            BXAjqBExAuADAQGsBuAFA0AB4AMT4AcBwBvAAeADD+APC0ABQBvAAQdunXAj0wgxAg==
+        cluster_id: 57348
+
+yas_209_set_eq_tv:
+  mode: single
+  sequence:
+    - service: zha.issue_zigbee_cluster_command
+      data:
+        cluster_type: in
+        endpoint_id: 1
+        command: 2
+        ieee: dc:8e:95:ff:fe:f9:ad:13
+        command_type: server
+        params:
+          code: >-
+            BUsjwBEqAkABAbwG4A0DQAFAG+ALAQNlAioCQBtAA+ADAUAP4AMDQAHgBw/gAwEPlJ1LIwUJKgL//0sjBQkqAg==
+        cluster_id: 57348
+
+yas_209_set_eq_music:
+  mode: single
+  sequence:
+    - service: zha.issue_zigbee_cluster_command
+      data:
+        cluster_type: in
+        endpoint_id: 1
+        command: 6
+        ieee: dc:8e:95:ff:fe:f9:ad:13
+        command_type: server
+        params:
+          code: >-
+            BVcj1BEvAuADAQG0BuAFA0AB4AMT4AcBQBtAAeADB+AHC+ADD8ABwBNAAQ+tnVcj1wgvAv//VyPXCC8C
+        cluster_id: 57348
+
+yas_209_set_source_tv:
+  mode: single
+  sequence:
+    - service: zha.issue_zigbee_cluster_command
+      data:
+        cluster_type: in
+        endpoint_id: 1
+        command: 6
+        ieee: dc:8e:95:ff:fe:f9:ad:13
+        command_type: server
+        params:
+          code: >-
+            BWgjqhEqAuADAQHABuAFA0AB4AMT4AcB4AMb4AMLQAHADwJcAirgAAHAC0AbwAEPhZ1oI9sIKgL//2gj2wgqAg==
+        cluster_id: 57348
+
+yas_209_set_source_hdmi:
+  mode: single
+  sequence:
+    - service: zha.issue_zigbee_cluster_command
+      data:
+        cluster_type: in
+        endpoint_id: 1
+        command: 6
+        ieee: dc:8e:95:ff:fe:f9:ad:13
+        command_type: server
+        params:
+          code: >-
+            BUUjzBEsAuADAQG4BuAFA0AB4AMT4AcBQBtAAeAHB0AB4AcT4AMP4AMLB3ydRSPxCCwC
+        cluster_id: 57348
+
+yas_209_volume_mute:
+  mode: single
+  sequence:
+    - service: zha.issue_zigbee_cluster_command
+      data:
+        cluster_type: in
+        endpoint_id: 1
+        command: 8
+        ieee: dc:8e:95:ff:fe:f9:ad:13
+        command_type: server
+        params:
+          code: >-
+            BTcj2REsAuADAQG7BuAFA0AB4AMT4AcBQBvAAUALwAPAAcAPQAfgAwFAD0ADQAEPZJ03I/wILAL//zcj/AgsAg==
+        cluster_id: 57348
