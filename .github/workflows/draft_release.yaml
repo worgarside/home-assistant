@@ -8,7 +8,7 @@ on:
       - release/*
   pull_request:
     branches:
-      - homeassistant.local
+      - main
     types:
       - ready_for_review
   workflow_dispatch:
@@ -18,7 +18,7 @@ jobs:
     name: Draft Release
     uses: worgarside/github-config-files/.github/workflows/draft_release.yml@main
     with:
-      base-ref-name: homeassistant.local
+      base-ref-name: main
       head-ref-name: ${{ github.event.pull_request.head.ref || github.ref_name }}
     secrets:
       gh-token: ${{ secrets.WORGARSIDE_DEV_TOKEN}}

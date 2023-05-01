@@ -6,14 +6,14 @@ on:
     types:
       - closed
     branches:
-      - homeassistant.local
+      - main
 
 jobs:
   publish-release:
     name: Publish Release
     uses: worgarside/github-config-files/.github/workflows/publish_release.yml@main
     with:
-      base-ref-name: homeassistant.local
+      base-ref-name: main
       head-ref-name: ${{ github.head_ref || github.ref_name }}
       pr-merged: ${{ github.event.pull_request.merged }}
     secrets:
