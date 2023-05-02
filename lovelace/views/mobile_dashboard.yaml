@@ -144,8 +144,6 @@ cards:
             name: Open Pre-Sunrise
           - entity: automation.close_curtain_post_sunset
             name: Close Post-Sunset
-      - entity: fan.desk_fan
-        name: Desk Fan
       - type: custom:fold-entity-row
         head:
           entity: switch.tower_fan
