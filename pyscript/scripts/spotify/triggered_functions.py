@@ -106,7 +106,7 @@ def process_liked_songs() -> None:
             log.info(
                 "%i monthly playlists updated: %s",
                 len(monthly_updates),
-                ", ".join(p.name for p in monthly_updates),
+                ", ".join([p.name for p in monthly_updates]),
             )
         else:
             log.info("No monthly playlists updated")
