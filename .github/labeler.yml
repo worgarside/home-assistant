@@ -5,19 +5,23 @@ appendOnly: true
 
 labels:
   - label: bug
-    branch: ^bugfix\/
+    branch: ^bugfix/.+$
 
   - label: chore
-    branch: ^chore\/
+    branch: ^chore/.+$
 
   - label: dependencies
     files:
       - ^poetry\.lock$
       - ^Pipfile\.lock$
-      - ^pyscript/requirements\.txt$
+
+  - label: documentation
+    files:
+      - ^docs/.+$
+      - ^.+\.md$
 
   - label: enhancement
-    branch: ^feature\/.+$
+    branch: ^feature/.+$
 
   - label: github-actions
     files:
@@ -28,97 +32,9 @@ labels:
       - ^.+\.py$
 
   - label: release
-    branch: ^release\/.+$
+    base-branch: ^main$
+    branch: ^release/.+$
 
   - label: tests
     files:
       - ^tests/.+$
-
-  - label: ha:automations
-    files:
-      - ^includes/automation/.+$
-
-  - label: ha:config
-    files:
-      - ^configuration\.yaml$
-
-  - label: ha:cover
-    files:
-      - ^includes/cover\.yaml$
-
-  - label: ha:device-tracker
-    files:
-      - ^includes/device_tracker\.yaml$
-
-  - label: ha:groups
-    files:
-      - ^includes/groups\.yaml$
-
-  - label: ha:input-boolean
-    files:
-      - ^includes/input_boolean\.yaml$
-
-  - label: ha:input-button
-    files:
-      - ^includes/input_button\.yaml$
-
-  - label: ha:input-datetime
-    files:
-      - ^includes/input_datetime\.yaml$
-
-  - label: ha:input-number
-    files:
-      - ^includes/input_number\.yaml$
-
-  - label: ha:input-select
-    files:
-      - ^includes/input_select\.yaml$
-
-  - label: ha:input-text
-    files:
-      - ^includes/input_text\.yaml$
-
-  - label: ha:lovelace
-    files:
-      - ^lovelace/.+\.yaml$
-      - ^ui-lovelace\.yaml$
-
-  - label: ha:media-player
-    files:
-      - ^includes/media_player\.yaml$
-
-  - label: ha:mqtt
-    files:
-      - ^includes/mqtt\.yaml$
-
-  - label: ha:pyscript
-    files:
-      - ^pyscript/.+$
-
-  - label: ha:rest-command
-    files:
-      - ^includes/rest_command\.yaml$
-
-  - label: ha:scenes
-    files:
-      - ^includes/scenes\.yaml$
-
-  - label: ha:scripts
-    files:
-      - ^includes/scripts\.yaml$
-
-  - label: ha:sensors
-    files:
-      - ^includes/sensors\.yaml$
-
-  - label: ha:switch
-    files:
-      - ^includes/switch\.yaml$
-
-  - label: ha:template
-    files:
-      - ^includes/template/.+$
-
-  - label: ha:variables
-    files:
-      - ^includes/variable/.+$
