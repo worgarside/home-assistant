@@ -14,17 +14,6 @@
         target:
           entity_id: cover.wills_room_curtain
 
-  - alias: /sun/set
-    id: sun_set
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.sun_elevation
-      below: '0'
-    action:
-      - service: switch.turn_on
-        target:
-          entity_id: switch.terrace_lights
-
   # Close the curtain either when the Sun sets past -18' or at midnight
   - alias: /sun/set/close_curtain_after_sunset
     id: close_curtain_post_sunset
