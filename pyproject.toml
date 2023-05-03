@@ -27,17 +27,7 @@ strenum = "^0.4.10"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
-pylint = "*"
 pre-commit = "*"
-yamllint = "*"
-mypy = "*"
-types-requests = "*"
-types-paramiko = "*"
-pycln = "*"
-types-flask = "*"
-types-pillow = "*"
-pylint-strict-informational = "*"
-types-pyyaml = "*"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
