@@ -4,10 +4,12 @@
         state: |
           {%- set pwr_consumption = states('sensor.will_s_macbook_current_consumption') | float  %}
           {%- set plugged = bool(states('var.will_s_macbook_pro_battery_power_plugged')) %}
-          {%- set btry_pcnt = states.var.will_s_macbook_pro_battery_percentage.state | int %}
+          {%- set btry_pcnt = states.sensor.wills_macbook_pro_internal_battery_level.state | int %}
 
           {%-
-            if states.var.will_s_macbook_pro_battery_percentage.last_changed.replace(tzinfo=None) <
+            if states.sensor.wills_macbook_pro_internal_battery_level.last_changed.replace(
+              tzinfo=None
+            ) <
             ( utcnow().replace(tzinfo=None) - timedelta(minutes=5) )
           %}
             offline
