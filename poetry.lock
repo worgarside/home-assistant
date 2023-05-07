@@ -2163,14 +2163,14 @@ watchdog = ["watchdog (>=2.3)"]
 
 [[package]]
 name = "wg-utilities"
-version = "3.6.0"
+version = "3.7.0"
 description = "Loads of useful stuff for the things I do :)"
 category = "main"
 optional = false
 python-versions = ">=3.10,<4.0"
 files = [
-    {file = "wg_utilities-3.6.0-py3-none-any.whl", hash = "sha256:96bad6ec5a4fac7142f403c3606af9fbdd83492782707e0e08fcaed33db74c61"},
-    {file = "wg_utilities-3.6.0.tar.gz", hash = "sha256:35e713d4cdd1d6c1b59a10e4cb5c0fcce5aed4b56ae2790756e80e863ee229e3"},
+    {file = "wg_utilities-3.7.0-py3-none-any.whl", hash = "sha256:7bd614cc12c38897d9d01bf840af39e86488fa786b94923e98b89e135147a49c"},
+    {file = "wg_utilities-3.7.0.tar.gz", hash = "sha256:61944fd2d98b3e8ed6e00b7edb8f6363ca926ae4b2b7ed2a0379ad7bd0a52ed3"},
 ]
 
 [package.dependencies]
