@@ -6,7 +6,7 @@
     id: turn_will_s_macbook_pro_charger_on
     trigger:
       - platform: numeric_state
-        entity_id: var.will_s_macbook_pro_battery_percentage
+        entity_id: sensor.wills_macbook_pro_internal_battery_level
         below: 25
     action:
       - service: switch.turn_on
@@ -17,7 +17,7 @@
     id: turn_will_s_macbook_pro_charger_off
     trigger:
       - platform: numeric_state
-        entity_id: var.will_s_macbook_pro_battery_percentage
+        entity_id: sensor.wills_macbook_pro_internal_battery_level
         above: 95
     action:
       - service: switch.turn_off

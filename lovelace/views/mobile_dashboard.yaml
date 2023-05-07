@@ -263,7 +263,7 @@ cards:
           - entity_id: media_player.wills_bedroom_home_hub
       - type: custom:fold-entity-row
         head:
-          entity: var.will_s_macbook_pro_battery_percentage
+          entity: sensor.wills_macbook_pro_internal_battery_level
           name: MacBook Pro Battery
         entities:
           - entity: switch.will_s_macbook
