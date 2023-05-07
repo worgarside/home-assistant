@@ -38,14 +38,6 @@ cards:
       - entity: media_player.lounge_nest_mini
         name: Nest Mini
 
-
-  - type: entities
-    title: Terrace
-    state_color: true
-    entities:
-      - entity: switch.terrace_lights
-        name: Lights
-
   - type: custom:layout-break
 
   - type: entities

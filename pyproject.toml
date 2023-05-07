@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "home-assistant"
-version = "0.4.0"
+version = "0.5.0"
 description = ""
 authors = ["Will Garside <worgarside@gmail.com>"]
 readme = "README.md"
@@ -27,17 +27,7 @@ strenum = "^0.4.10"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
-pylint = "*"
 pre-commit = "*"
-yamllint = "*"
-mypy = "*"
-types-requests = "*"
-types-paramiko = "*"
-pycln = "*"
-types-flask = "*"
-types-pillow = "*"
-pylint-strict-informational = "*"
-types-pyyaml = "*"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
