@@ -123,7 +123,7 @@ def process_liked_songs() -> None:
             log.info(
                 "%i decade playlists updated: %s",
                 len(decade_updates),
-                ", ".join(p.name for p in decade_updates),
+                ", ".join([p.name for p in decade_updates]),
             )
         else:
             log.info("No decade playlists updated")
