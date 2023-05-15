@@ -186,23 +186,6 @@ elements:
       width: 4%
 
   - type: image
-    entity: media_player.matts_room_nest_mini
-    tap_action:
-      action: more-info
-    state_image:
-      on: /local/icons/floorplan/icn_mini.svg
-      off: /local/icons/floorplan/icn_mini_offline.svg
-      playing: /local/icons/floorplan/icn_mini_active.svg
-      paused: /local/icons/floorplan/icn_mini_active.svg
-      idle: /local/icons/floorplan/icn_mini.svg
-      unavailable: /local/icons/floorplan/icn_mini_offline.svg
-      unknown: /local/images/null.webp
-    style:
-      top: 90%
-      left: 81%
-      width: 6%
-
-  - type: image
     entity: light.galaxy_light
     hold_action:
       action: more-info

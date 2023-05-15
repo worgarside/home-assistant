@@ -34,11 +34,6 @@
 #          {{ states('media_player.lounge_nest_mini') in [ 'playing', 'paused' ] }}
 #
 #  - binary_sensor:
-#      - name: Matt's Room Nest Mini Active
-#        state: >
-#          {{ states('media_player.matts_room_nest_mini') in [ 'playing', 'paused' ] }}
-#
-#  - binary_sensor:
 #      - name: Tom's Speakers Active
 #        state: "{{ states('media_player.tom_s_speakers') in [ 'playing', 'paused' ] }}"
 #
