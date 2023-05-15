@@ -65,20 +65,6 @@
 #          {{ states('media_player.wills_room_chromecast') in [ 'playing', 'paused' ] }}
 #
 ## </editor-fold>
-# Will's Room Curtain
-
-  - binary_sensor:
-      - name: Will's Room Curtain Closed
-        state: >
-          {{
-            int(states('sensor.will_s_room_curtain_position')) <
-            ( 17.5 if is_state('binary_sensor.will_s_balcony_door', 'on') else 5 )
-          }}
-
-  - binary_sensor:
-      - name: Will's Room Curtain Open
-        state: "{{ int(states('sensor.will_s_room_curtain_position')) > 95  }}"
-
 # Spotify Now Playing Attributes
 
   - sensor:

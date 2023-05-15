@@ -7,32 +7,6 @@
     scan_interval: 300
     value_template: '{{ value_json.ip }}'
 
-  - platform: rest
-    name: Will's Room Curtain Position
-    scan_interval: 30
-    method: GET
-    force_update: true
-    resource: !secret switchbot_curtain_status_endpoint
-    headers:
-      Authorization: !secret switchbot_api_key
-      Content-Type: application/json
-    # The scale is 0-100, but SwitchBot and HA have opposing views on which way round
-    # it should be, hence the `100 - ...` here
-    value_template: >
-      {%
-        if 100 - ( value_json.body.slidePosition | int ) < (
-          20
-          if states('binary_sensor.will_s_balcony_door') == "on"
-          else 4
-        )
-      %}
-        0
-      {% elif 100 - ( value_json.body.slidePosition | int ) > 96  %}
-        100
-      {% else %}
-        {{ 100 - ( value_json.body.slidePosition | int ) }}
-      {% endif %}
-
     unit_of_measurement: '%'
     json_attributes_path: $.body
     json_attributes:
