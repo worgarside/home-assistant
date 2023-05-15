@@ -41,14 +41,6 @@ cards:
   - type: custom:layout-break
 
   - type: entities
-    title: Matt's Room
-    entities:
-      - entity: light.matt_s_lamp
-        name: Lamp
-      - entity: media_player.matts_room_nest_mini
-        name: Nest Mini
-
-  - type: entities
     title: Will's Room
     entities:
       - entity: sensor.wills_room_hue_motion_sensor_temperature
