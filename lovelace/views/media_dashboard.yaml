@@ -12,15 +12,6 @@ cards:
     entity: user
     default: default
     states:
-      Matt:
-        type: vertical-stack
-        cards:
-#          - type: custom:spotify-card
-#            account: matt
-#            name: Spotify
-#            spotify_entity: media_player.spotify_matt_scott
-          - type: media-control
-            entity: media_player.spotify_matt_scott
       Will:
         type: vertical-stack
         cards:
@@ -87,13 +78,6 @@ cards:
             - media_player: lounge_bravia_tv
             - binary_sensor_name: lounge_tv
             - icon: television
-
-        - type: custom:decluttering-card
-          template: active_media_player_template
-          variables:
-            - media_player: matts_room_nest_mini
-            - binary_sensor_name: matt_s_room_nest_mini
-            - icon: google-home
 
         - type: custom:decluttering-card
           template: active_media_player_template

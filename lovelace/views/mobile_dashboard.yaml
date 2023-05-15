@@ -89,23 +89,6 @@ cards:
             name: Force Update
 
   - type: entities
-    title: Matt's Room
-    state_color: true
-    entities:
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: Nest Mini
-          - entity_id: media_player.matts_room_nest_mini
-      - type: custom:decluttering-card
-        template: folding_rgb_light_with_effects_template
-        variables:
-          - entity: light.matts_shapes
-          - name: Shapes
-          # yamllint disable-line rule:line-length
-          - auto_entity_filter_template: "{{ 'input_boolean.matts_shapes_artwork_colour_source_active', 'input_select.matts_shapes_artwork_colour_source' }}"
-
-  - type: entities
     title: Will's Room
     state_color: true
     entities:
