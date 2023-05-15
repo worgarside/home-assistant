@@ -331,34 +331,3 @@ elements:
       top: 48.75%
       left: 47.8%
       width: 5%
-
-  - type: image
-    entity: switch.tom_s_amp
-    #    tap_action:
-    #      action: toggle
-    hold_action:
-      action: more-info
-    state_image:
-      on: /local/icons/floorplan/light_theme/icn_outlet_active.svg
-      off: /local/icons/floorplan/light_theme/icn_outlet.svg
-      unavailable: /local/icons/floorplan/light_theme/icn_outlet.svg
-      unknown: /local/images/icn_outlet_offline.svg
-    style:
-      top: 48.75%
-      left: 69.3%
-      width: 5%
-
-  - type: image
-    entity: media_player.tom_s_speakers
-    tap_action:
-      action: more-info
-    state_image:
-      playing: /local/icons/floorplan/light_theme/icn_g_assistant_speaker_active.svg
-      paused: /local/icons/floorplan/light_theme/icn_g_assistant_speaker.svg
-      idle: /local/icons/floorplan/light_theme/icn_g_assistant_speaker.svg
-      off: /local/icons/floorplan/light_theme/icn_g_assistant_speaker_offline.svg
-      unknown: /local/images/icn_g_assistant_speaker_offline.svg
-    style:
-      top: 48.75%
-      left: 64.95%
-      width: 5%

@@ -166,7 +166,6 @@ def update_nanoleaf_colors_worker(media_player: str, nanoleaf_device: Nanoleaf) 
 @state_trigger("media_player.hifi_system.media_title")
 @state_trigger("media_player.kitchen_nest_mini.media_title")
 @state_trigger("media_player.spotify_will_garside.media_title")
-@state_trigger("media_player.tom_s_speakers.media_title")
 @state_trigger("media_player.upstairs_speakers.media_title")
 @state_trigger("media_player.will_s_yas_209.media_title")
 def update_nanoleaf_colors(var_name: str) -> None:

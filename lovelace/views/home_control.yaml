@@ -41,28 +41,6 @@ cards:
   - type: custom:layout-break
 
   - type: entities
-    title: Tom's Room
-    entities:
-      - entity: light.toms_bloom_lamp
-        name: Bloom Lamp
-      - type: custom:rgb-light-card
-        entity: light.toms_bloom_lamp
-        justify: around
-        colors:
-          - rgb_color:
-              - 64
-              - 0
-              - 255
-          - rgb_color:
-              - 251
-              - 24
-              - 128
-          - rgb_color:
-              - 28
-              - 255
-              - 64
-
-  - type: entities
     title: Will's Room
     entities:
       - entity: sensor.wills_room_hue_motion_sensor_temperature

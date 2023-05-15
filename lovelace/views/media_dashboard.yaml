@@ -12,15 +12,6 @@ cards:
     entity: user
     default: default
     states:
-      Tom:
-        type: vertical-stack
-        cards:
-#          - type: custom:spotify-card
-#            account: tom
-#            name: Spotify
-#            spotify_entity: media_player.spotify_tom_jones
-          - type: media-control
-            entity: media_player.spotify_tom_jones
       Will:
         type: vertical-stack
         cards:
@@ -87,13 +78,6 @@ cards:
             - media_player: lounge_bravia_tv
             - binary_sensor_name: lounge_tv
             - icon: television
-
-        - type: custom:decluttering-card
-          template: active_media_player_template
-          variables:
-            - media_player: tom_s_speakers
-            - binary_sensor_name: tom_s_speakers
-            - icon: cast-audio
 
         - type: custom:decluttering-card
           template: active_media_player_template
