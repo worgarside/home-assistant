@@ -25,10 +25,6 @@ apps:
   oauth:
     redirect_uri_override: !secret oauth_redirect_uri_override
 
-  switchbot.curtain_controller:
-    api_key: !secret switchbot_api_key
-    curtain_id: !secret switchbot_curtain_id
-
   spotify:
     client_id: !secret spotify_pyscript_client_id
     client_secret: !secret spotify_pyscript_client_secret
