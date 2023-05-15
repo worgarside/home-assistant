@@ -111,18 +111,6 @@ cards:
     entities:
       - type: custom:fold-entity-row
         head:
-          type: custom:slider-entity-row
-          entity: cover.wills_room_curtain
-          name: Curtain
-        entities:
-          - entity: automation.cover_curtain_auto_close
-            name: Auto-Close
-          - entity: automation.open_curtain_pre_sunrise
-            name: Open Pre-Sunrise
-          - entity: automation.close_curtain_post_sunset
-            name: Close Post-Sunset
-      - type: custom:fold-entity-row
-        head:
           entity: switch.tower_fan
         entities:
           - entity: input_number.wills_room_fan_auto_on_threshold

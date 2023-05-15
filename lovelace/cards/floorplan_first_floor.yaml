@@ -269,20 +269,6 @@ elements:
       width: 5%
 
   - type: image
-    entity: cover.wills_room_curtain
-    tap_action:
-      action: more-info
-    state_image:
-      closed: /local/icons/floorplan/light_theme/icn_curtain_single_closed.svg
-      open: /local/icons/floorplan/light_theme/icn_curtain_single_open_left.svg
-      unavailable: /local/icons/floorplan/light_theme/icn_curtain_single_offline.svg
-      unknown: /local/images/icn_curtain_single_offline.svg
-    style:
-      top: 32.5%
-      left: 8%
-      width: 4%
-
-  - type: image
     entity: binary_sensor.will_s_balcony_door_leak_sensor
     tap_action:
       action: more-info
