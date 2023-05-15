@@ -39,10 +39,6 @@
 #          {{ states('media_player.matts_room_nest_mini') in [ 'playing', 'paused' ] }}
 #
 #  - binary_sensor:
-#      - name: Tom's Speakers Active
-#        state: "{{ states('media_player.tom_s_speakers') in [ 'playing', 'paused' ] }}"
-#
-#  - binary_sensor:
 #      - name: Upstairs Speakers Active
 #        state: >
 #          {{ states('media_player.upstairs_speakers') in [ 'playing', 'paused' ] }}
