@@ -106,22 +106,6 @@ cards:
           - auto_entity_filter_template: "{{ 'input_boolean.matts_shapes_artwork_colour_source_active', 'input_select.matts_shapes_artwork_colour_source' }}"
 
   - type: entities
-    title: Tom's Room
-    state_color: true
-    entities:
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: Speakers
-          - entity_id: media_player.tom_s_speakers
-          - auto_entity_filter_template: "{{ 'switch.tom_s_amp' }}"
-      - type: custom:decluttering-card
-        template: folding_rgb_light_template
-        variables:
-          - entity: light.toms_bloom_lamp
-          - name: Bloom Lamp
-
-  - type: entities
     title: Will's Room
     state_color: true
     entities:
