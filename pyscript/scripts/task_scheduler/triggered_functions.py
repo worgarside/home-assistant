@@ -21,7 +21,7 @@ if gethostname() != "homeassistant":
     state_trigger: Callable[[Any], Callable[..., Any]] = decorator_with_args
     service: Any = decorator
 
-TaskType = Optional[Callable[[str, str], None]]
+TaskType = Optional[Callable[[str, str], None]]  # noqa: UP007
 
 
 if TYPE_CHECKING:
