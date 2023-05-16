@@ -1,0 +1,27 @@
+---
+
+  # Open the bedroom blinds when the Sun rises past -6'
+  - alias: /cover/bedroom_blinds/open_before_sunrise
+    id: cover_bedroom_blinds_open_before_sunrise
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.sun_elevation
+      above: -6
+    action:
+      - service: cover.open_cover
+        target:
+          entity_id: cover.bedroom_blinds
+
+  # Close the bedroom blinds either when the Sun sets past -18' or at midnight
+  - alias: /cover/bedroom_blinds/close_after_sunset
+    id: cover_bedroom_blinds_close_after_sunset
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.sun_elevation
+        below: -18
+      - platform: time
+        at: 00:00:00
+    action:
+      - service: cover.close_cover
+        target:
+          entity_id: cover.bedroom_blinds
