@@ -55,3 +55,31 @@
       - service: cover.close_cover
         target:
           entity_id: cover.lounge_blinds
+
+# Office Blinds
+
+  # Open the office blinds when the Sun rises past -6'
+  - alias: /cover/office_blinds/open_before_sunrise
+    id: cover_office_blinds_open_before_sunrise
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.sun_elevation
+      above: -6
+    action:
+      - service: cover.open_cover
+        target:
+          entity_id: cover.office_blinds
+
+  # Close the office blinds either when the Sun sets past -6' or at 21:30
+  - alias: /cover/office_blinds/close_after_sunset
+    id: cover_office_blinds_close_after_sunset
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.sun_elevation
+        below: -6
+      - platform: time
+        at: "21:30:00"
+    action:
+      - service: cover.close_cover
+        target:
+          entity_id: cover.office_blinds
