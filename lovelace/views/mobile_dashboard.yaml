@@ -22,9 +22,16 @@ cards:
       - entity: media_player.bedroom_nest_mini
         name: Nest Mini
         icon: phu:home-mini
-      - entity: media_player.bedroom_speakers
+      - type: custom:mini-media-player
+        entity: media_player.bedroom_speakers
         name: Speakers
         icon: mdi:speaker-multiple
+        group: true
+        hide:
+          volume: true
+          source: true
+          power: true
+          progress: true
       - type: custom:fold-entity-row
         head:
           entity: media_player.bedroom_chromecast
@@ -41,6 +48,8 @@ cards:
               - device_key: spotify_device_id
               - device_value: d13da09c3d2ffcc83ae1784fc05dd8bb4bb25305
               - entity_id: media_player.yas_209
+      - entity: binary_sensor.bedroom_window
+        name: Window
 
   - type: entities
     title: Hallway
@@ -62,30 +71,6 @@ cards:
         entities:
           - entity: number.lounge_blinds
             name: Height
-      - entity: media_player.lounge_nest_hub
-        name: Nest Hub
-      - type: custom:fold-entity-row
-        head:
-          entity: media_player.lounge_chromecast
-          name: TV (Chromecast)
-          icon: mdi:cast-variant
-        entities:
-          - entity: media_player.lounge_tv
-            name: TV (Google Cast)
-            icon: mdi:television
-          - entity: media_player.lounge_tv_bravia
-            name: TV (Bravia)
-            icon: si:sony
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: HiFi System
-          - entity_id: media_player.hifi_system
-          - auto_entity_filter_template: "{{ 'switch.hifi_amp' }}"
-      - entity: media_player.lounge_speakers
-        name: Speakers
-      - entity: light.shelf_lamp
-      - entity: light.table_lamp
       - type: custom:fold-entity-row
         head:
           entity: input_boolean.mini_crt_power
@@ -104,7 +89,47 @@ cards:
             name: Display Source
           - entity: script.crt_pi_update_display
             name: Force Update
-
+      - entity: media_player.lounge_nest_hub
+        name: Nest Hub
+      - type: custom:decluttering-card
+        template: folding_rgb_light_with_effects_template
+        variables:
+          - entity: light.lounge_shapes
+          - name: Shapes
+          # yamllint disable-line rule:line-length
+          - auto_entity_filter_template: "{{ 'input_boolean.lounge_shapes_artwork_colour_source_active', 'input_select.lounge_shapes_artwork_colour_source' }}"
+      - entity: light.shelf_lamp
+      - type: custom:mini-media-player
+        entity: media_player.lounge_speakers
+        name: Speakers
+        icon: mdi:speaker-multiple
+        group: true
+        hide:
+          volume: true
+          source: true
+          power: true
+          progress: true
+      - entity: light.table_lamp
+      - type: custom:fold-entity-row
+        head:
+          entity: media_player.lounge_chromecast
+          name: TV (Chromecast)
+          icon: mdi:cast-variant
+        entities:
+          - entity: media_player.lounge_tv
+            name: TV (Google Cast)
+            icon: mdi:television
+          - entity: media_player.lounge_tv_bravia
+            name: TV (Bravia)
+            icon: si:sony
+          - type: custom:decluttering-card
+            template: folding_media_player_with_spotcast_template
+            variables:
+              - device_friendly_name: HiFi System
+              - entity_id: media_player.hifi_system
+              - auto_entity_filter_template: "{{ 'switch.hifi_amp' }}"
+      - entity: binary_sensor.lounge_window
+        name: Window
 
   - type: entities
     title: Office
@@ -120,22 +145,10 @@ cards:
       - entity: fan.desk_fan
         name: Fan
       - type: custom:decluttering-card
-        template: folding_rgb_light_with_effects_template
-        variables:
-          - entity: light.office_shapes
-          - name: Shapes
-          # yamllint disable-line rule:line-length
-          - auto_entity_filter_template: "{{ 'input_boolean.office_shapes_artwork_colour_source_active', 'input_select.office_shapes_artwork_colour_source' }}"
-      - type: custom:decluttering-card
         template: folding_white_light_template
         variables:
           - entity: light.desk_lamp
           - name: Lamp
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: Nest Mini
-          - entity_id: media_player.office_nest_mini
       - type: custom:fold-entity-row
         head:
           entity: sensor.wills_macbook_pro_internal_battery_level
@@ -149,3 +162,17 @@ cards:
           - entity: automation.switch_will_s_macbook_pro_turn_charger_on
             name: Auto Switch On
             icon: mdi:toggle-switch
+      - type: custom:decluttering-card
+        template: folding_media_player_with_spotcast_template
+        variables:
+          - device_friendly_name: Nest Mini
+          - entity_id: media_player.office_nest_mini
+      - type: custom:decluttering-card
+        template: folding_rgb_light_with_effects_template
+        variables:
+          - entity: light.office_shapes
+          - name: Shapes
+          # yamllint disable-line rule:line-length
+          - auto_entity_filter_template: "{{ 'input_boolean.office_shapes_artwork_colour_source_active', 'input_select.office_shapes_artwork_colour_source' }}"
+      - entity: binary_sensor.office_window
+        name: Window
