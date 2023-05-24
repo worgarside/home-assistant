@@ -3,7 +3,12 @@
       - name: Will's Macbook Pro Floorplan Icon
         state: |
           {%- set pwr_consumption = states('sensor.will_s_macbook_current_consumption') | float  %}
-          {%- set plugged = states_attr('sensor.wills_macbook_pro_internal_battery_level', 'Is Charging') %}
+          {%-
+            set plugged = states_attr(
+              'sensor.wills_macbook_pro_internal_battery_level',
+              'Is Charging'
+            )
+          %}
           {%- set btry_pcnt = states.sensor.wills_macbook_pro_internal_battery_level.state | int %}
 
           {%-
