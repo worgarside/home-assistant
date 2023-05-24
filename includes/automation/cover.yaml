@@ -24,6 +24,9 @@
       - platform: time
         at: "21:30:00"
     action:
+      - wait_template: "{{ is_state('binary_sensor.bedroom_window', 'off') }}"
+        timeout: 3600
+        continue_on_timeout: true
       - service: cover.close_cover
         target:
           entity_id: cover.bedroom_blinds
@@ -52,6 +55,9 @@
       - platform: time
         at: "21:30:00"
     action:
+      - wait_template: "{{ is_state('binary_sensor.lounge_window', 'off') }}"
+        timeout: 3600
+        continue_on_timeout: true
       - service: cover.close_cover
         target:
           entity_id: cover.lounge_blinds
@@ -80,6 +86,9 @@
       - platform: time
         at: "21:30:00"
     action:
+      - wait_template: "{{ is_state('binary_sensor.office_window', 'off') }}"
+        timeout: 3600
+        continue_on_timeout: true
       - service: cover.close_cover
         target:
           entity_id: cover.office_blinds
