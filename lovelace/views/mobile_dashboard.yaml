@@ -11,13 +11,8 @@ cards:
     state_color: true
     show_header_toggle: false
     entities:
-      - type: custom:fold-entity-row
-        head:
-          entity: cover.bedroom_blinds
-          name: Blinds
-        entities:
-          - entity: number.bedroom_blinds
-            name: Height
+      - entity: cover.bedroom_blinds
+        name: Blinds
       - entity: fan.fan
       - entity: light.glowstick
       - entity: media_player.bedroom_nest_mini
@@ -67,13 +62,8 @@ cards:
     entities:
       - entity: switch.scent_plug
         name: Air Freshener
-      - type: custom:fold-entity-row
-        head:
-          entity: cover.lounge_blinds
-          name: Blinds
-        entities:
-          - entity: number.lounge_blinds
-            name: Height
+      - entity: cover.lounge_blinds
+        name: Blinds
       - type: custom:fold-entity-row
         head:
           entity: input_boolean.mini_crt_power
@@ -139,13 +129,8 @@ cards:
     state_color: true
     show_header_toggle: false
     entities:
-      - type: custom:fold-entity-row
-        head:
-          entity: cover.office_blinds
-          name: Blinds
-        entities:
-          - entity: number.office_blinds
-            name: Height
+      - entity: cover.office_blinds
+        name: Blinds
       - entity: fan.desk_fan
         name: Fan
       - type: custom:decluttering-card
