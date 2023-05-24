@@ -9,6 +9,7 @@ cards:
   - type: entities
     title: Bedroom
     state_color: true
+    show_header_toggle: false
     entities:
       - type: custom:fold-entity-row
         head:
@@ -54,6 +55,7 @@ cards:
   - type: entities
     title: Hallway
     state_color: true
+    show_header_toggle: false
     entities:
       - entity: binary_sensor.front_door
         name: Front Door
@@ -61,6 +63,7 @@ cards:
   - type: entities
     title: Lounge
     state_color: true
+    show_header_toggle: false
     entities:
       - entity: switch.scent_plug
         name: Air Freshener
@@ -134,6 +137,7 @@ cards:
   - type: entities
     title: Office
     state_color: true
+    show_header_toggle: false
     entities:
       - type: custom:fold-entity-row
         head:
