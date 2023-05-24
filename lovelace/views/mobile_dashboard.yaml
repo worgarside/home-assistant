@@ -7,235 +7,81 @@ path: mobile_dashboard
 
 cards:
   - type: entities
-    title: Kitchen
+    title: Bedroom
     state_color: true
+    show_header_toggle: false
     entities:
-      - type: custom:decluttering-card
-        template: folding_rgb_light_template
-        variables:
-          - entity: light.kitchen_led_strip
-          - name: LED Strip
-      - type: custom:decluttering-card
-        template: folding_rgb_light_template
-        variables:
-          - entity: light.kitchen_work_light
-          - name: Work Light
-      - type: custom:decluttering-card
-        template: folding_white_light_template
-        variables:
-          - entity: light.kitchen_lamp
-          - name: Floor Lamp
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: Nest Mini
-          - entity_id: media_player.kitchen_nest_mini
+      - type: custom:fold-entity-row
+        head:
+          entity: cover.bedroom_blinds
+          name: Blinds
+        entities:
+          - entity: automation.cover_bedroom_blinds_open_before_sunrise
+            name: Auto-Open
+            icon: mdi:weather-sunset-up
+          - entity: automation.cover_bedroom_blinds_close_after_sunset
+            name: Auto-Close
+            icon: mdi:weather-sunset-down
+      - entity: fan.fan
+      - entity: light.glowstick
+      - entity: media_player.bedroom_nest_mini
+        name: Nest Mini
+        icon: phu:home-mini
+      - type: custom:mini-media-player
+        entity: media_player.bedroom_speakers
+        name: Speakers
+        icon: mdi:speaker-multiple
+        group: true
+        hide:
+          volume: true
+          source: true
+          power: true
+          progress: true
+      - type: custom:fold-entity-row
+        head:
+          entity: media_player.bedroom_chromecast
+          name: TV (Chromecast)
+          icon: mdi:cast-variant
+        entities:
+          - entity: media_player.bedroom_tv
+            name: TV
+            icon: mdi:television
+          - type: custom:decluttering-card
+            template: folding_media_player_with_spotcast_template
+            variables:
+              - device_friendly_name: Soundbar
+              - device_key: spotify_device_id
+              - device_value: d13da09c3d2ffcc83ae1784fc05dd8bb4bb25305
+              - entity_id: media_player.yas_209
+      - entity: binary_sensor.bedroom_window
+        name: Window
 
   - type: entities
-    title: Landing
+    title: Hallway
     state_color: true
+    show_header_toggle: false
     entities:
-      - type: custom:decluttering-card
-        template: folding_rgb_light_template
-        variables:
-          - entity: light.landing_light
-          - name: Light
+      - entity: binary_sensor.front_door
+        name: Front Door
 
   - type: entities
     title: Lounge
     state_color: true
+    show_header_toggle: false
     entities:
+      - entity: switch.scent_plug
+        name: Air Freshener
       - type: custom:fold-entity-row
         head:
-          entity: media_player.lounge_bravia_tv
-          name: TV
+          entity: cover.lounge_blinds
+          name: Blinds
         entities:
-          - entity: media_player.lounge_chromecast
-            name: Chromecast
-      - type: custom:decluttering-card
-        template: folding_rgb_light_template
-        variables:
-          - entity: light.lightsaber
-          - name: Lamp
-      - type: custom:decluttering-card
-        template: folding_rgb_light_with_effects_template
-        variables:
-          - entity: light.the_snail
-          - name: The Snail
-          # yamllint disable-line rule:line-length
-          - auto_entity_filter_template: "{{ 'input_boolean.the_snail_artwork_colour_source_active', 'input_select.the_snail_artwork_colour_source' }}"
-      - entity: light.galaxy_light_plug
-        name: Galaxy Light
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: Nest Mini
-          - entity_id: media_player.lounge_nest_mini
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: HiFi System
-          - entity_id: media_player.hifi_system
-          - auto_entity_filter_template: "{{ 'switch.hifi_amp' }}"
-      - type: custom:fold-entity-row
-        head:
-          entity: binary_sensor.rgb_led_matrix
-        entities:
-          - entity: input_select.mtrxpi_display_source
-            name: Display Source
-          - entity: input_number.rgb_led_matrix_brightness
-            name: Brightness
-          - entity: script.mtrxpi_update_display
-            name: Force Update
-
-  - type: entities
-    title: Will's Room
-    state_color: true
-    entities:
-      - type: custom:fold-entity-row
-        head:
-          entity: switch.tower_fan
-        entities:
-          - entity: input_number.wills_room_fan_auto_on_threshold
-            name: Auto-On Threshold
-            icon: mdi:chart-line
-          - entity: sensor.wills_room_hue_motion_sensor_temperature
-            name: Temperature
-          - entity: automation.switch_tower_fan_auto_control
-            name: Auto-Control
-      - type: custom:decluttering-card
-        template: folding_rgb_light_with_effects_template
-        variables:
-          - entity: light.wills_shapes
-          - name: Shapes
-          # yamllint disable-line rule:line-length
-          - auto_entity_filter_template: "{{ 'input_boolean.wills_shapes_artwork_colour_source_active', 'input_select.wills_shapes_artwork_colour_source' }}"
-      - type: custom:decluttering-card
-        template: folding_white_light_template
-        variables:
-          - entity: light.wills_lamp
-          - name: Lamp
-      - type: custom:auto-entities
-        card:
-          type: custom:fold-entity-row
-          head:
-            type: custom:restriction-card
-            card_mod:
-              style: |
-                :host #overlay {
-                  padding: 12px 7px;
-                  height: 24px;
-                  margin-top: -4px;
-                }
-            entity: light.plant_lights
-            row: true
-            restrictions:
-              confirm:
-                text: It's late, do you want to unlock this action for 5 seconds?
-            condition:
-              entity: binary_sensor.quiet_hours
-              value: "on"
-            card:
-              entity: light.plant_lights
-              name: Plants
-        entities:
-          - type: custom:slider-entity-row
-            entity: light.plant_lights
-            full_row: true
-            hide_state: true
-          - type: custom:decluttering-card
-            template: rgb_light_template
-            variables:
-              - entity: light.plant_lights
-          - type: custom:light-entity-card
-            card_mod:
-              style: |
-                paper-dropdown-menu {
-                  width: 75%;
-                  margin-top: -15px;
-                }
-            entity: light.plant_lights
-            hide_header: true
-            brightness: false
-            color_temp: false
-            color_picker: false
-            child_card: true
-          - type: custom:bar-card
-            direction: up
-            stack: horizontal
-            height: 125px
-            positions:
-              icon: "off"
-            severity:
-              - color: '#fa3200'
-                from: 0
-                to: 10
-              - color: '#ec4700'
-                from: 10
-                to: 20
-              - color: '#d56000'
-                from: 20
-                to: 30
-              - color: '#b97c00'
-                from: 30
-                to: 40
-              - color: '#9b9b00'
-                from: 40
-                to: 50
-              - color: '#7cb900'
-                from: 50
-                to: 60
-              - color: '#60d500'
-                from: 60
-                to: 70
-              - color: '#47ec00'
-                from: 70
-                to: 80
-              - color: '#32fa00'
-                from: 80
-                to: 90
-              - color: '#14ff00'
-                from: 90
-                to: 100
-            entities:
-              - entity: sensor.monstera_saturation
-                name: Monstera
-              - entity: sensor.ficus_saturation
-                name: Ficus
-              - entity: sensor.yukka_saturation
-                name: Yukka
-      - type: custom:fold-entity-row
-        head:
-          entity: media_player.wills_bravia_tv
-          name: TV
-        entities:
-          - entity: media_player.wills_room_chromecast
-            name: Chromecast
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: Home Hub
-          - entity_id: media_player.wills_bedroom_home_hub
-      - type: custom:fold-entity-row
-        head:
-          entity: sensor.wills_macbook_pro_internal_battery_level
-          name: MacBook Pro Battery
-        entities:
-          - entity: switch.will_s_macbook
-            name: Power Supply
-          - entity: automation.switch_will_s_macbook_pro_turn_charger_off
-            name: Auto Switch Off
-            icon: mdi:toggle-switch-off
-          - entity: automation.switch_will_s_macbook_pro_turn_charger_on
-            name: Auto Switch On
-            icon: mdi:toggle-switch
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: YAS-209
-          - device_key: spotify_device_id
-          - device_value: d13da09c3d2ffcc83ae1784fc05dd8bb4bb25305
-          - entity_id: media_player.will_s_yas_209
+          - entity: automation.cover_lounge_blinds_open_before_sunrise
+            name: Auto-Open
+            icon: mdi:weather-sunset-up
+          - entity: automation.cover_lounge_blinds_close_after_sunset
+            name: Auto-Close
+            icon: mdi:weather-sunset-down
       - type: custom:fold-entity-row
         head:
           entity: input_boolean.mini_crt_power
@@ -254,60 +100,95 @@ cards:
             name: Display Source
           - entity: script.crt_pi_update_display
             name: Force Update
-    #          - type: custom:paper-buttons-row
-    #            buttons:
-    #              - icon: mdi:floppy
-    #                name: Previous animation
-    #                tap_action:
-    #                  action: call-service
-    #                  service: pyscript.save_previous_nanoleaf_state
-    #              - icon: mdi:floppy
-    #                name: Current animation
-    #                tap_action:
-    #                  action: call-service
-    #                  service: pyscript.save_current_nanoleaf_state
+      - entity: media_player.lounge_nest_hub
+        name: Nest Hub
+      - type: custom:decluttering-card
+        template: folding_rgb_light_with_effects_template
+        variables:
+          - entity: light.lounge_shapes
+          - name: Shapes
+          # yamllint disable-line rule:line-length
+          - auto_entity_filter_template: "{{ 'input_boolean.lounge_shapes_artwork_colour_source_active', 'input_select.lounge_shapes_artwork_colour_source' }}"
+      - entity: light.shelf_lamp
+      - type: custom:mini-media-player
+        entity: media_player.lounge_speakers
+        name: Speakers
+        icon: mdi:speaker-multiple
+        group: true
+        hide:
+          volume: true
+          source: true
+          power: true
+          progress: true
+      - entity: light.table_lamp
+      - type: custom:fold-entity-row
+        head:
+          entity: media_player.lounge_chromecast
+          name: TV (Chromecast)
+          icon: mdi:cast-variant
+        entities:
+          - entity: media_player.lounge_tv
+            name: TV (Google Cast)
+            icon: mdi:television
+          - entity: media_player.lounge_tv_bravia
+            name: TV (Bravia)
+            icon: si:sony
+          - type: custom:decluttering-card
+            template: folding_media_player_with_spotcast_template
+            variables:
+              - device_friendly_name: HiFi System
+              - entity_id: media_player.hifi_system
+              - auto_entity_filter_template: "{{ 'switch.hifi_amp' }}"
+      - entity: binary_sensor.lounge_window
+        name: Window
 
   - type: entities
-    title: Other
+    title: Office
     state_color: true
+    show_header_toggle: false
     entities:
-      - type: custom:mini-climate
-        card_mod:
-          style: |
-            div.entity__secondary_info.ellipsis {
-              display: none;
-            }
-            div.entity__info__name_wrap {
-              position: relative;
-            }
-            div.entity__info__name {
-              position: absolute;
-              bottom: 3px;
-            }
-            div.entity__icon {
-              margin-top: 6px;
-            }
-        entity: climate.thermostat
-        icon: mdi:thermostat-box
-        fan_mode:
-          hide: true
-          disabled: true
-        secondary_info:
-          disabled: true
-        group: true
-      - type: divider
+      - type: custom:fold-entity-row
+        head:
+          entity: cover.office_blinds
+          name: Blinds
+        entities:
+          - entity: automation.cover_office_blinds_open_before_sunrise
+            name: Auto-Open
+            icon: mdi:weather-sunset-up
+          - entity: automation.cover_office_blinds_close_after_sunset
+            name: Auto-Close
+            icon: mdi:weather-sunset-down
+      - entity: fan.desk_fan
+        name: Fan
+      - type: custom:decluttering-card
+        template: folding_white_light_template
+        variables:
+          - entity: light.desk_lamp
+          - name: Lamp
+      - type: custom:fold-entity-row
+        head:
+          entity: sensor.wills_macbook_pro_internal_battery_level
+          name: MacBook Pro Battery
+        entities:
+          - entity: switch.macbook_pro
+            name: Power Supply
+          - entity: automation.switch_will_s_macbook_pro_turn_charger_off
+            name: Auto Switch Off
+            icon: mdi:toggle-switch-off
+          - entity: automation.switch_will_s_macbook_pro_turn_charger_on
+            name: Auto Switch On
+            icon: mdi:toggle-switch
       - type: custom:decluttering-card
         template: folding_media_player_with_spotcast_template
         variables:
-          - device_friendly_name: All Speakers
-          - entity_id: media_player.all_speakers
+          - device_friendly_name: Nest Mini
+          - entity_id: media_player.office_nest_mini
       - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
+        template: folding_rgb_light_with_effects_template
         variables:
-          - device_friendly_name: Downstairs Speakers
-          - entity_id: media_player.downstairs_speakers
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: Upstairs Speakers
-          - entity_id: media_player.upstairs_speakers
+          - entity: light.office_shapes
+          - name: Shapes
+          # yamllint disable-line rule:line-length
+          - auto_entity_filter_template: "{{ 'input_boolean.office_shapes_artwork_colour_source_active', 'input_select.office_shapes_artwork_colour_source' }}"
+      - entity: binary_sensor.office_window
+        name: Window
