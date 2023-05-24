@@ -71,7 +71,7 @@ repos:
           - --preserve-quotes
 
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.31.0
+    rev: v1.32.0
     hooks:
       - id: yamllint
         args:
@@ -143,6 +143,6 @@ repos:
           - '*.svg,*.json'
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.267
+    rev: v0.0.269
     hooks:
       - id: ruff
