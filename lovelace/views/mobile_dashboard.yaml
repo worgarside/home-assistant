@@ -11,8 +11,17 @@ cards:
     state_color: true
     show_header_toggle: false
     entities:
-      - entity: cover.bedroom_blinds
-        name: Blinds
+      - type: custom:fold-entity-row
+        head:
+          entity: cover.bedroom_blinds
+          name: Blinds
+        entities:
+          - entity: automation.cover_bedroom_blinds_open_before_sunrise
+            name: Auto-Open
+            icon: mdi:weather-sunset-up
+          - entity: automation.cover_bedroom_blinds_close_after_sunset
+            name: Auto-Close
+            icon: mdi:weather-sunset-down
       - entity: fan.fan
       - entity: light.glowstick
       - entity: media_player.bedroom_nest_mini
@@ -62,8 +71,17 @@ cards:
     entities:
       - entity: switch.scent_plug
         name: Air Freshener
-      - entity: cover.lounge_blinds
-        name: Blinds
+      - type: custom:fold-entity-row
+        head:
+          entity: cover.lounge_blinds
+          name: Blinds
+        entities:
+          - entity: automation.cover_lounge_blinds_open_before_sunrise
+            name: Auto-Open
+            icon: mdi:weather-sunset-up
+          - entity: automation.cover_lounge_blinds_close_after_sunset
+            name: Auto-Close
+            icon: mdi:weather-sunset-down
       - type: custom:fold-entity-row
         head:
           entity: input_boolean.mini_crt_power
@@ -129,8 +147,17 @@ cards:
     state_color: true
     show_header_toggle: false
     entities:
-      - entity: cover.office_blinds
-        name: Blinds
+      - type: custom:fold-entity-row
+        head:
+          entity: cover.office_blinds
+          name: Blinds
+        entities:
+          - entity: automation.cover_office_blinds_open_before_sunrise
+            name: Auto-Open
+            icon: mdi:weather-sunset-up
+          - entity: automation.cover_office_blinds_close_after_sunset
+            name: Auto-Close
+            icon: mdi:weather-sunset-down
       - entity: fan.desk_fan
         name: Fan
       - type: custom:decluttering-card
