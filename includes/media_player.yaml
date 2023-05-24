@@ -1,7 +1,7 @@
 ---
   - platform: universal
-    id: media_player.will_s_yas_209_universal
-    name: Will's YAS-209
+    id: media_player.yas_209_universal
+    name: YAS-209
     device_class: speaker
     children:
       - sensor.will_s_yas_209_bridge_input
