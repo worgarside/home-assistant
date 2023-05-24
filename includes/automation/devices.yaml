@@ -11,7 +11,7 @@
     action:
       - service: switch.turn_on
         data:
-          entity_id: switch.will_s_macbook
+          entity_id: switch.macbook_pro
 
   - alias: /switch/will_s_macbook_pro/turn_charger_off
     id: turn_will_s_macbook_pro_charger_off
@@ -22,7 +22,7 @@
     action:
       - service: switch.turn_off
         data:
-          entity_id: switch.will_s_macbook
+          entity_id: switch.macbook_pro
 
 # HiFi Amp
 
