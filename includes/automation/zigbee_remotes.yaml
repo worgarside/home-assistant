@@ -1,5 +1,24 @@
 ---
 
+  - alias: /remote/lounge-desk/single-press
+    trigger:
+      - platform: event
+        event_type: zha_event
+        event_data:
+          command: single
+          device_ieee: 00:15:8d:00:09:e0:13:9c
+    action:
+      - service: light.turn_on
+        entity_id: light.lounge_shapes
+        data:
+          brightness: 255
+          effect: bon appetit
+      - service: cover.set_cover_position
+        data:
+          position: 50
+        target:
+          entity_id: cover.lounge_blinds
+
   - alias: /remote/lounge-lamps/single-press
     trigger:
       - platform: event
@@ -22,7 +41,7 @@
       - service: light.toggle
         entity_id: light.table_lamp
 
-  - alias: /remote/wills-desk/single-press
+  - alias: /remote/office-desk/single-press
     trigger:
       - platform: event
         event_type: zha_event
@@ -33,7 +52,7 @@
       - service: light.toggle
         entity_id: light.office_shapes
 
-  - alias: /remote/wills-desk/double-press
+  - alias: /remote/office-desk/double-press
     trigger:
       - platform: event
         event_type: zha_event
