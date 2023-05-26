@@ -41,7 +41,7 @@
       - service: light.toggle
         entity_id: light.table_lamp
 
-  - alias: /remote/wills-desk/single-press
+  - alias: /remote/office-desk/single-press
     trigger:
       - platform: event
         event_type: zha_event
@@ -52,7 +52,7 @@
       - service: light.toggle
         entity_id: light.office_shapes
 
-  - alias: /remote/wills-desk/double-press
+  - alias: /remote/office-desk/double-press
     trigger:
       - platform: event
         event_type: zha_event
