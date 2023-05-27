@@ -167,23 +167,6 @@ elements:
       left: 30%
       width: 5%
 
-  - type: image
-    entity: media_player.wills_room_chromecast
-    hold_action:
-      action: more-info
-    tap_action:
-      action: toggle
-    state_image:
-      on: /local/icons/floorplan/light_theme/icn_chromecast_active.svg
-      playing: /local/icons/floorplan/light_theme/icn_chromecast_active.svg
-      idle: /local/icons/floorplan/light_theme/icn_chromecast_active.svg
-      off: /local/icons/floorplan/light_theme/icn_chromecast_offline.svg
-      unavailable: /local/icons/floorplan/light_theme/icn_chromecast_offline.svg
-      unknown: /local/icons/floorplan/light_theme/icn_chromecast_offline.svg
-    style:
-      top: 47.5%
-      left: 35%
-      width: 5%
 
   - type: image
     entity: light.wills_shapes
@@ -281,53 +264,3 @@ elements:
       top: 26%
       left: 8%
       width: 4%
-
-  - type: image
-    entity: binary_sensor.wills_room_hue_motion_sensor_motion
-    tap_action:
-      action: fire-dom-event
-      browser_mod:
-        service: browser_mod.popup
-        data:
-          content:
-            type: vertical-stack
-            cards:
-              - type: entities
-                entities:
-                  - entity: binary_sensor.wills_room_hue_motion_sensor_motion
-                    name: Motion Sensor
-                  - entity: sensor.wills_room_hue_motion_sensor_temperature
-                    name: Temperature
-                    style: |
-                      :host {
-                        --card-mod-icon-color: #FF9800;
-                      }
-              - type: custom:mini-graph-card
-                title: Temperature
-                entities:
-                  - entity: sensor.lounge_temperature
-                    name: Temperature
-                    color: '#FF9800'
-                line_width: 2
-                animate: true
-                font_size: 75
-                points_per_hour: 30
-                hours_to_show: 4
-                lower_bound: ~20
-                upper_bound: ~25
-                height: 250
-                show:
-                  state: false
-                  name: false
-                  icon: false
-                  labels: true
-                  legend: false
-    state_image:
-      on: /local/icons/floorplan/light_theme/icn_hue_motion_sensor_active.svg
-      off: /local/icons/floorplan/light_theme/icn_hue_motion_sensor.svg
-      unknown: /local/icons/floorplan/light_theme/icn_hue_motion_sensor_offline.svg
-      unavailable: /local/icons/floorplan/light_theme/icn_hue_motion_sensor_offline.svg
-    style:
-      top: 48.75%
-      left: 47.8%
-      width: 5%

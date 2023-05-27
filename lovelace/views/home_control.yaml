@@ -43,14 +43,8 @@ cards:
   - type: entities
     title: Will's Room
     entities:
-      - entity: sensor.wills_room_hue_motion_sensor_temperature
-        name: Ambient Temperature
-      - entity: sensor.wills_room_hue_motion_sensor_light_level
-        name: Ambient Light Level
       - entity: binary_sensor.will_s_balcony_door
         name: Balcony Door
-      - entity: binary_sensor.wills_room_hue_motion_sensor_motion
-        name: Motion Sensor Motion
       - type: divider
       - entity: switch.tower_fan
         state_color: true
