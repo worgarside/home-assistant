@@ -374,3 +374,92 @@
       - service: light.turn_off
         target:
           area_id: lounge
+
+# Office
+  
+  # Office Remote Button 1 Press
+  - alias: /hue/remote/office_desk/button1/any_press
+    id: hue_remote_office_desk_button1_any_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: long_release
+        subtype: 1
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 1
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 1
+    action:
+      - service: script.office_desk_standing_mode
+
+  # Office Remote Button 2/3 Press
+  - alias: /hue/remote/office_desk/button2_3/press
+    id: hue_remote_office_desk_button2_3_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: long_release
+        subtype: 2
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 2
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 2
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: long_release
+        subtype: 3
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 3
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 3
+    action:
+      - service: script.office_desk_stop_moving
+  
+  # Office Remote Button 4 Press
+  - alias: /hue/remote/office_desk/button4/press
+    id: hue_remote_office_desk_button4_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: long_release
+        subtype: 4
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: repeat
+        subtype: 4
+      - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 4
+    action:
+      - service: script.office_desk_sitting_mode
