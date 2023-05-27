@@ -2,34 +2,47 @@
 
 # MacBook Pro
 
-  - alias: /switch/will_s_macbook_pro/turn_charger_on
-    id: turn_will_s_macbook_pro_charger_on
+  - alias: /switch/macbook_pro/turn_on/docked
+    id: macbook_pro_docked
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.wills_macbook_pro_internal_battery_level
-        below: 25
       - platform: state
-        entity_id: binary_sensor.will_s_macbook_pro_docked
+        entity_id: binary_sensor.macbook_pro_docked
         to: "on"
-    condition: >
-      {{
-        states('binary_sensor.will_s_macbook_pro_docked') == 'on'
-        and states('sensor.wills_macbook_pro_internal_battery_level') | int < 25
-      }}
+    condition: "{{ states('sensor.wills_macbook_pro_internal_battery_level') | int < 25 }}"
     action:
       - service: switch.turn_on
         data:
           entity_id: switch.macbook_pro
 
-  - alias: /switch/will_s_macbook_pro/turn_charger_off
-    id: turn_will_s_macbook_pro_charger_off
+  - alias: /switch/macbook_pro/turn_on/battery_low
+    id: macbook_pro_battery_low
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.wills_macbook_pro_internal_battery_level
+        below: 25
+    condition: "{{ states('binary_sensor.macbook_pro_docked') == 'on' }}"
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.macbook_pro
+
+  - alias: /switch/macbook_pro/turn_off/undocked
+    id: macbook_pro_undocked
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.macbook_pro_docked
+        to: "off"
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.macbook_pro
+
+  - alias: /switch/macbook_pro/turn_off/battery_full
+    id: macbook_pro_battery_full
     trigger:
       - platform: numeric_state
         entity_id: sensor.wills_macbook_pro_internal_battery_level
         above: 95
-      - platform: state
-        entity_id: binary_sensor.will_s_macbook_pro_docked
-        to: "off"
     action:
       - service: switch.turn_off
         data:
