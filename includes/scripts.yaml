@@ -347,3 +347,23 @@ office_desk_standing_mode:
         entity_id: script.office_desk_set_position
         variables:
           position: "{{ states('input_number.office_desk_standing_height') | int }}"
+
+office_desk_stop_moving:
+  mode: restart
+  sequence:
+    - service: cover.set_cover_position
+      data:
+        entity_id: cover.office_desk_esphome
+        position: "{{ state_attr('cover.office_desk_esphome', 'current_position') | int }}"
+    - service: script.turn_off
+      target:
+        entity_id: script.office_desk_set_position
+    - service: script.turn_off
+      target:
+        entity_id: script.office_desk_standing_mode
+    - service: script.turn_off
+      target:
+        entity_id: script.office_desk_sitting_mode
+    - wait_template: >
+        {{ states("cover.office_desk_esphome") not in ["opening", "closing"] }}
+      timeout: '00:00:10'
