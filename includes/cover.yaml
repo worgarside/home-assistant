@@ -2,6 +2,7 @@
   - platform: template
     covers:
       office_desk:
+        unique_id: office_desk
         friendly_name: "Office Desk"
         value_template: "{{ states('cover.office_desk_esphome') }}"
         position_template: "{{ state_attr('cover.office_desk_esphome', 'current_position') }}"
