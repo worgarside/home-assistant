@@ -314,20 +314,20 @@ office_desk_set_position:
     - repeat:
         until: >
           {{
-            state_attr("cover.office_desk", "current_position") | int ==
+            state_attr("cover.office_desk_esphome", "current_position") | int ==
             position | int
           }}
         sequence:
           - service: cover.set_cover_position
             data:
-              entity_id: cover.office_desk
+              entity_id: cover.office_desk_esphome
               position: >
                 {{ position | int }}
           - wait_template: >
-              {{ states("cover.office_desk") in ["opening", "closing"] }}
+              {{ states("cover.office_desk_esphome") in ["opening", "closing"] }}
             timeout: '00:00:05'
           - wait_template: >
-              {{ states("cover.office_desk") not in ["opening", "closing"] }}
+              {{ states("cover.office_desk_esphome") not in ["opening", "closing"] }}
             timeout: '00:00:10'
 
 office_desk_sitting_mode:
