@@ -162,12 +162,16 @@ office_desk_standing_height:
   name: Office Desk Standing Height
   min: 10
   max: 100
-  step: 0.1
+  step: 1
   initial: 80
+  unit_of_measurement: '%'
+  mode: box
 
 office_desk_sitting_height:
   name: Office Desk Sitting Height
   min: 10
   max: 100
-  step: 0.1
+  step: 1
   initial: 26
+  unit_of_measurement: '%'
+  mode: box

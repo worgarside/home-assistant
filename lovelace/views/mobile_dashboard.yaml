@@ -158,6 +158,36 @@ cards:
           - entity: automation.cover_office_blinds_close_after_sunset
             name: Auto-Close
             icon: mdi:weather-sunset-down
+      - type: custom:fold-entity-row
+        head:
+          type: custom:multiple-entity-row
+          entity: cover.office_desk
+          name: Desk
+          show_state: false
+          entities:
+            - entity: script.office_desk_standing_mode
+              tap_action:
+                action: call-service
+                service: script.office_desk_standing_mode
+              icon: mdi:arrow-up-bold-hexagon-outline
+              name: false
+            - entity: script.office_desk_stop_moving
+              tap_action:
+                action: call-service
+                service: script.office_desk_stop_moving
+              icon: mdi:stop
+              name: false
+            - entity: script.office_desk_sitting_mode
+              tap_action:
+                action: call-service
+                service: script.office_desk_sitting_mode
+              icon: mdi:arrow-down-bold-hexagon-outline
+              name: false
+        entities:
+          - entity: input_number.office_desk_sitting_height
+            name: Sitting Height
+          - entity: input_number.office_desk_standing_height
+            name: Standing Height
       - entity: fan.desk_fan
         name: Fan
       - type: custom:decluttering-card
