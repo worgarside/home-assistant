@@ -1,0 +1,109 @@
+esphome:
+  name: "office-desk"
+  friendly_name: Office Desk
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret office_desk_encryption_key
+
+ota:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: True
+
+external_components:
+  - source: github://j5lien/esphome-idasen-desk-controller@v4.0.0
+    
+esp32_ble_tracker:
+
+globals:
+  - id: ble_client_connected
+    type: bool
+    initial_value: 'false'
+
+ble_client:
+  - mac_address: "CD:1F:C3:88:D7:3F"
+    id: idasen_desk
+    on_connect:
+      then:
+        # Update the Desk Connection Status
+        - lambda: |-
+            id(ble_client_connected) = true;
+        - delay: 5s
+        # Update desk height and speed sensors after bluetooth is connected
+        - lambda: |-
+            id(desk_height).update();
+            id(desk_speed).update();
+    on_disconnect:
+      then:
+        # Update the Desk Connection Status
+        - lambda: |-
+            id(ble_client_connected) = false;
+
+sensor:
+  # Desk Height Sensor
+  - platform: ble_client
+    type: characteristic
+    ble_client_id: idasen_desk
+    id: desk_height
+    name: 'Desk Height'
+    service_uuid: '99fa0020-338a-1024-8a49-009c0215f78a'
+    characteristic_uuid: '99fa0021-338a-1024-8a49-009c0215f78a'
+    icon: 'mdi:arrow-up-down'
+    unit_of_measurement: 'cm'
+    accuracy_decimals: 1
+    update_interval: never
+    notify: true
+    lambda: |-
+      uint16_t raw_height = ((uint16_t)x[1] << 8) | x[0];
+      unsigned short height_mm = raw_height / 10;
+
+      return (float) height_mm / 10;
+
+  # Desk Speed Sensor
+  - platform: ble_client
+    type: characteristic
+    ble_client_id: idasen_desk
+    id: desk_speed
+    name: 'Desk Speed'
+    service_uuid: '99fa0020-338a-1024-8a49-009c0215f78a'
+    characteristic_uuid: '99fa0021-338a-1024-8a49-009c0215f78a'
+    icon: 'mdi:speedometer'
+    unit_of_measurement: 'cm/min'
+    accuracy_decimals: 0
+    update_interval: never
+    notify: true
+    lambda: |-
+      uint16_t raw_speed = ((uint16_t)x[3] << 8) | x[2];
+      return raw_speed / 100;
+
+binary_sensor:
+  # Desk Bluetooth Connection Status
+  - platform: template
+    name: 'Desk Connection'
+    id: desk_connection
+    lambda: 'return id(ble_client_connected);'
+
+  # Desk Moving Status
+  - platform: template
+    name: 'Desk Moving'
+    id: desk_moving
+    lambda: 'return id(desk_speed).state > 0;'
+
+idasen_desk_controller:
+    ble_client_id: idasen_desk
+
+cover:
+  - platform: idasen_desk_controller
+    name: "Desk"
