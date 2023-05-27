@@ -172,10 +172,10 @@ cards:
         entities:
           - entity: switch.macbook_pro
             name: Power Supply
-          - entity: automation.switch_will_s_macbook_pro_turn_charger_off
+          - entity: automation.switch_macbook_pro_turn_off_battery_full
             name: Auto Switch Off
             icon: mdi:toggle-switch-off
-          - entity: automation.switch_will_s_macbook_pro_turn_charger_on
+          - entity: automation.switch_macbook_pro_turn_on_battery_low
             name: Auto Switch On
             icon: mdi:toggle-switch
           - type: custom:fold-entity-row
