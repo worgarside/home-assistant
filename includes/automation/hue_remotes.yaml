@@ -376,7 +376,7 @@
           area_id: lounge
 
 # Office
-  
+
   # Office Remote Button 1 Press
   - alias: /hue/remote/office_desk/button1/any_press
     id: hue_remote_office_desk_button1_any_press
@@ -439,7 +439,7 @@
         subtype: 3
     action:
       - service: script.office_desk_stop_moving
-  
+
   # Office Remote Button 4 Press
   - alias: /hue/remote/office_desk/button4/press
     id: hue_remote_office_desk_button4_press
