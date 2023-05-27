@@ -296,3 +296,54 @@ yas_209_volume_mute:
           code: >-
             BTcj2REsAuADAQG7BuAFA0AB4AMT4AcBQBvAAUALwAPAAcAPQAfgAwFAD0ADQAEPZJ03I/wILAL//zcj/AgsAg==
         cluster_id: 57348
+
+# Office Desk
+office_desk_set_position:
+  mode: restart
+  fields:
+    position:
+      name: Position
+      description: Position to set the desk to
+      example: "50"
+      selector:
+        number:
+          min: 10
+          max: 100
+          step: 1
+  sequence:
+    - repeat:
+        until: >
+          {{
+            state_attr("cover.office_desk", "current_position") | int ==
+            position | int
+          }}
+        sequence:
+          - service: cover.set_cover_position
+            data:
+              entity_id: cover.office_desk
+              position: >
+                {{ position | int }}
+          - wait_template: >
+              {{ states("cover.office_desk") in ["opening", "closing"] }}
+            timeout: '00:00:05'
+          - wait_template: >
+              {{ states("cover.office_desk") not in ["opening", "closing"] }}
+            timeout: '00:00:10'
+
+office_desk_sitting_mode:
+  mode: single
+  sequence:
+    - service: script.turn_on
+      data:
+        entity_id: script.office_desk_set_position
+        variables:
+          new_position: "{{ states('input_number.office_desk_sitting_height') | int }}"
+
+office_desk_standing_mode:
+  mode: single
+  sequence:
+    - service: script.turn_on
+      data:
+        entity_id: script.office_desk_set_position
+        variables:
+          new_position: "{{ states('input_number.office_desk_standing_height') | int }}"

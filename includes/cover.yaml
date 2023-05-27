@@ -1,2 +1,30 @@
 ---
-...
+  - platform: template
+    covers:
+      office_desk:
+        friendly_name: "Office Desk"
+        value_template: "{{ states('cover.office_desk_esphome') }}"
+        position_template: "{{ state_attr('cover.office_desk_esphome', 'current_position') }}"
+        icon_template: >
+          {% if state_attr('cover.office_desk_esphome', 'current_position') > 30 %}
+            phu:desk-stand-alt
+          {% else %}
+            phu:desk-sit-alt
+          {% endif %}
+        availability_template: "{{ states('binary_sensor.office_desk_esphome_connection') }}"
+        open_cover:
+          service: script.office_desk_set_position
+          data:
+            position: 100
+        close_cover:
+          service: script.office_desk_set_position
+          data:
+            position: 10
+        stop_cover:
+          service: cover.stop_cover
+          data:
+            entity_id: cover.office_desk_esphome
+        set_cover_position:
+          service: script.office_desk_set_position
+          data_template:
+            position: "{{ position }}"
