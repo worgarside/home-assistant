@@ -360,3 +360,24 @@
             and states("sensor.wills_macbook_pro_displays") | int == 3
           }}
         icon: mdi:monitor-share
+
+      - name: Office Desk Occupied
+        unique_id: office_desk_occupied
+        delay_off: '00:02:00'
+        icon: mdi:chair-rolling
+        state: >
+          {{
+            (
+              states('binary_sensor.will_s_macbook_pro_docked') == 'on' and
+              states('sensor.wills_macbook_pro_frontmost_app') not in [
+                'loginwindow',
+                'Screen Saver'
+              ]
+            ) or (
+              states('binary_sensor.st_macbook_pro_docked') == 'on' and
+              states('sensor.st_macbook_pro_frontmost_app') not in [
+                'loginwindow',
+                'Screen Saver'
+              ]
+            )
+          }}
