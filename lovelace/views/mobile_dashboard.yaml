@@ -188,6 +188,19 @@ cards:
             name: Sitting Height
           - entity: input_number.office_desk_standing_height
             name: Standing Height
+          - type: custom:fold-entity-row
+            head:
+              entity: automation.cover_office_desk_work_mode
+              name: Work Mode Automation
+            entities:
+              - entity: sensor.office_desk_standing_mode_percentage
+                name: Current Percentage
+              - entity: input_number.office_desk_standing_mode_percentage_target
+                name: Target Percentage
+              - entity: sensor.office_desk_standing_occupied_cumulative_time
+                name: Time Standing at Desk Today
+              - entity: sensor.office_desk_occupied_cumulative_time
+                name: Total Time at Desk Today
       - entity: fan.desk_fan
         name: Fan
       - type: custom:decluttering-card
