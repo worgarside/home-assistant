@@ -406,6 +406,15 @@
             ( states('input_number.office_desk_standing_height') | int - 10 )
           }}
 
+      - name: Office Desk Standing and Occupied
+        unique_id: office_desk_standing_and_occupied
+        icon: mdi:human-handsup
+        state: >
+          {{
+            states('binary_sensor.office_desk_occupied') == 'on' and
+            states('binary_sensor.office_desk_standing_mode') == 'on'
+          }}
+
   - sensor:
       - name: Office Desk Standing Mode Percentage
         unique_id: office_desk_standing_mode_percentage
