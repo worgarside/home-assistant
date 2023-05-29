@@ -109,8 +109,8 @@
       seconds: 60
 
   - platform: history_stats
-    name: Office Desk Standing Mode Cumulative Time
-    entity_id: binary_sensor.office_desk_standing_mode
+    name: Office Desk Standing/Occupied Cumulative Time
+    entity_id: binary_sensor.office_desk_standing_and_occupied
     state: "on"
     type: time
     start: "{{ today_at('04:00') }}"
