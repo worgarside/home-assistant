@@ -33,3 +33,12 @@ office_desk_sitting_height:
   initial: 26
   unit_of_measurement: '%'
   mode: box
+
+office_desk_standing_mode_percentage_target:
+  name: Office Desk Standing Mode Percentage Target
+  min: 0
+  max: 100
+  step: 1
+  initial: 40
+  unit_of_measurement: '%'
+  mode: box
