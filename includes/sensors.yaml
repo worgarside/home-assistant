@@ -110,7 +110,6 @@
 
   - platform: history_stats
     name: Office Desk Standing Mode Cumulative Time
-    unique_id: office_desk_standing_mode_cumulative_time
     entity_id: binary_sensor.office_desk_standing_mode
     state: "on"
     type: time
@@ -119,7 +118,6 @@
 
   - platform: history_stats
     name: Office Desk Occupied Cumulative Time
-    unique_id: office_desk_occupied_cumulative_time
     entity_id: binary_sensor.office_desk_occupied
     state: "on"
     type: time
