@@ -191,7 +191,7 @@ cards:
           - type: custom:fold-entity-row
             head:
               entity: automation.cover_office_desk_work_mode
-              name: Work Mode Automation
+              name: Work Mode
             entities:
               - entity: sensor.office_desk_standing_mode_percentage
                 name: Current Percentage
