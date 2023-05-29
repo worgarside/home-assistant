@@ -24,6 +24,7 @@ office_desk_standing_height:
   initial: 80
   unit_of_measurement: '%'
   mode: box
+  icon: mdi:arrow-collapse-up
 
 office_desk_sitting_height:
   name: Office Desk Sitting Height
@@ -33,6 +34,7 @@ office_desk_sitting_height:
   initial: 26
   unit_of_measurement: '%'
   mode: box
+  icon: mdi:arrow-collapse-down
 
 office_desk_standing_mode_percentage_target:
   name: Office Desk Standing Mode Percentage Target
@@ -42,3 +44,4 @@ office_desk_standing_mode_percentage_target:
   initial: 40
   unit_of_measurement: '%'
   mode: box
+  icon: mdi:bullseye-arrow
