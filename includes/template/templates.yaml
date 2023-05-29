@@ -405,3 +405,18 @@
             state_attr("cover.office_desk_esphome", "current_position") | int >
             ( states('input_number.office_desk_standing_height') | int - 10 )
           }}
+
+  - sensor:
+      - name: Office Desk Standing Mode Percentage
+        unique_id: office_desk_standing_mode_percentage
+        icon: mdi:percent
+        unit_of_measurement: '%'
+        state: >
+          {{
+            (
+              (
+                states('sensor.office_desk_occupied_cumulative_time') | float /
+                states('sensor.office_desk_standing_mode_cumulative_time') | float
+              ) * 100
+            ) | round(2)
+          }}
