@@ -129,6 +129,12 @@
         entity_id: sensor.office_desk_standing_mode_percentage
         below: input_number.office_desk_standing_mode_percentage_target
     action:
+      - alias: "Send debug notification"
+        service: script.debug_persistent_notification
+        data:
+          title: "Work Mode: Standing Target Not Met \U0001F621"
+          message: >
+            {{ states('office_desk_standing_time_remaining') }} minutes remaining...
       - alias: "Wait for desk to be occupied"
         wait_template: "{{ states('binary_sensor.office_desk_occupied') == 'on' }}"
         timeout: 3480 # Gives a 2 minute buffer before the next trigger

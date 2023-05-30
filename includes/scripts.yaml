@@ -311,6 +311,12 @@ office_desk_set_position:
           max: 100
           step: 1
   sequence:
+    - alias: "Send debug notification"
+      service: script.debug_persistent_notification
+      data:
+        title: Work Mode
+        message: >
+          Setting desk to {{ position }}%
     - repeat:
         until: >
           {{
