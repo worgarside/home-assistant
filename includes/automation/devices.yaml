@@ -8,8 +8,11 @@
       - platform: state
         entity_id: binary_sensor.will_s_macbook_pro_docked
         to: "on"
-    condition: "{{ states('sensor.wills_macbook_pro_internal_battery_level') | int < 25 }}"
     action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.st_macbook_pro
+      - condition: "{{ states('sensor.wills_macbook_pro_internal_battery_level') | int < 25 }}"
       - service: switch.turn_on
         data:
           entity_id: switch.will_s_macbook_pro
@@ -56,8 +59,11 @@
       - platform: state
         entity_id: binary_sensor.st_macbook_pro_docked
         to: "on"
-    condition: "{{ states('sensor.st_macbook_pro_internal_battery_level') | int < 25 }}"
     action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.will_s_macbook_pro
+      - condition: "{{ states('sensor.st_macbook_pro_internal_battery_level') | int < 25 }}"
       - service: switch.turn_on
         data:
           entity_id: switch.st_macbook_pro
