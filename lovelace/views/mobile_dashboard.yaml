@@ -188,6 +188,8 @@ cards:
             name: Sitting Height
           - entity: input_number.office_desk_standing_height
             name: Standing Height
+          - entity: sensor.office_desk_standing_time_remaining
+            name: Standing Time Remaining
           - type: custom:fold-entity-row
             head:
               entity: automation.cover_office_desk_work_mode
@@ -230,7 +232,6 @@ cards:
       - type: custom:fold-entity-row
         head:
           entity: sensor.st_macbook_pro_internal_battery_level
-          name: ST MacBook Pro Battery
         entities:
           - entity: switch.st_macbook_pro
             name: Power Supply
