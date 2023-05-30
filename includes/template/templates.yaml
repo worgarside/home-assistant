@@ -408,7 +408,12 @@
 
       - name: Office Desk Standing and Occupied
         unique_id: office_desk_standing_and_occupied
-        icon: mdi:human-handsup
+        icon: >
+          {% if this.state == "on" %}
+            mdi:human-handsup
+          {% else %}
+            mdi:human-handsdown
+          {% endif %}
         state: >
           {{
             states('binary_sensor.office_desk_occupied') == 'on' and
