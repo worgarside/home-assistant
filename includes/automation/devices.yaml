@@ -1,6 +1,6 @@
 ---
 
-# MacBook Pro
+# Will's MacBook Pro
 
   - alias: /switch/will_s_macbook_pro/turn_on/docked
     id: will_s_macbook_pro_docked
@@ -47,6 +47,54 @@
       - service: switch.turn_off
         data:
           entity_id: switch.will_s_macbook_pro
+
+# Work MacBook Pro
+
+  - alias: /switch/st_macbook_pro/turn_on/docked
+    id: st_macbook_pro_docked
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.st_macbook_pro_docked
+        to: "on"
+    condition: "{{ states('sensor.st_macbook_pro_internal_battery_level') | int < 25 }}"
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.st_macbook_pro
+
+  - alias: /switch/st_macbook_pro/turn_on/battery_low
+    id: st_macbook_pro_battery_low
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.st_macbook_pro_internal_battery_level
+        below: 25
+    condition: "{{ states('binary_sensor.st_macbook_pro_docked') == 'on' }}"
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.st_macbook_pro
+
+  - alias: /switch/st_macbook_pro/turn_off/undocked
+    id: st_macbook_pro_undocked
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.st_macbook_pro_docked
+        to: "off"
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.st_macbook_pro
+
+  - alias: /switch/st_macbook_pro/turn_off/battery_full
+    id: st_macbook_pro_battery_full
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.st_macbook_pro_internal_battery_level
+        above: 95
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.st_macbook_pro
 
 # HiFi Amp
 
