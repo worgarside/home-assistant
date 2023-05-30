@@ -315,8 +315,7 @@ office_desk_set_position:
       service: script.debug_persistent_notification
       data:
         title: Work Mode
-        message: >
-          Setting desk to {{ position }}%
+        message: "Setting desk to {{ position }}%"
     - repeat:
         until: >
           {{
@@ -327,13 +326,10 @@ office_desk_set_position:
           - service: cover.set_cover_position
             data:
               entity_id: cover.office_desk_esphome
-              position: >
-                {{ position | int }}
-          - wait_template: >
-              {{ states("cover.office_desk_esphome") in ["opening", "closing"] }}
+              position: "{{ position | int }}"
+          - wait_template: "{{ states('cover.office_desk_esphome') in ['opening', 'closing'] }}"
             timeout: '00:00:05'
-          - wait_template: >
-              {{ states("cover.office_desk_esphome") not in ["opening", "closing"] }}
+          - wait_template: "{{ states('cover.office_desk_esphome') not in ['opening', 'closing'] }}"
             timeout: '00:00:10'
 
 office_desk_sitting_mode:
