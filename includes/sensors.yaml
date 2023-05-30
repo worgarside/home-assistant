@@ -107,3 +107,19 @@
     date_format: '%Y-%m-%d %H:%M:%S'
     scan_interval:
       seconds: 60
+
+  - platform: history_stats
+    name: Office Desk Standing/Occupied Cumulative Time
+    entity_id: binary_sensor.office_desk_standing_and_occupied
+    state: "on"
+    type: time
+    start: "{{ today_at('04:00') }}"
+    end: "{{ now() }}"
+
+  - platform: history_stats
+    name: Office Desk Occupied Cumulative Time
+    entity_id: binary_sensor.office_desk_occupied
+    state: "on"
+    type: time
+    start: "{{ today_at('04:00') }}"
+    end: "{{ now() }}"

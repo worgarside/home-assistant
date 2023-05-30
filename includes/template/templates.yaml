@@ -370,3 +370,98 @@
             and states("sensor.wills_macbook_pro_displays") | int == 3
           }}
         icon: mdi:monitor-share
+
+      - name: Office Desk Occupied
+        unique_id: office_desk_occupied
+        delay_off: '00:02:00'
+        icon: mdi:chair-rolling
+        state: >
+          {{
+            (
+              states('binary_sensor.will_s_macbook_pro_docked') == 'on' and
+              states('sensor.wills_macbook_pro_frontmost_app') not in [
+                'loginwindow',
+                'Screen Saver'
+              ]
+            ) or (
+              states('binary_sensor.st_macbook_pro_docked') == 'on' and
+              states('sensor.st_macbook_pro_frontmost_app') not in [
+                'loginwindow',
+                'Screen Saver'
+              ]
+            )
+          }}
+
+      - name: Office Desk Standing Mode
+        unique_id: office_desk_standing_mode
+        icon: >
+          {% if state_attr('cover.office_desk_esphome', 'current_position') > 30 %}
+            phu:desk-stand-alt
+          {% else %}
+            phu:desk-sit-alt
+          {% endif %}
+        state: >
+          {{
+            state_attr("cover.office_desk_esphome", "current_position") | int >
+            ( states('input_number.office_desk_standing_height') | int - 10 )
+          }}
+
+      - name: Office Desk Standing and Occupied
+        unique_id: office_desk_standing_and_occupied
+        icon: >
+          {% if this.state == "on" %}
+            mdi:human-handsup
+          {% else %}
+            mdi:human-handsdown
+          {% endif %}
+        state: >
+          {{
+            states('binary_sensor.office_desk_occupied') == 'on' and
+            states('binary_sensor.office_desk_standing_mode') == 'on'
+          }}
+
+  - sensor:
+      - name: Office Desk Standing Mode Percentage
+        unique_id: office_desk_standing_mode_percentage
+        icon: mdi:percent
+        unit_of_measurement: '%'
+        state: >
+          {%
+            set total_time = states('sensor.office_desk_occupied_cumulative_time') |
+              float(default=0.0)
+          %}
+          {%
+            set standing_time = states('sensor.office_desk_standing_occupied_cumulative_time') |
+              float(default=0.0)
+          %}
+          {{ ( ( standing_time / total_time ) * 100 ) | round(2) }}
+
+      - name: Office Desk Standing Time Remaining
+        unique_id: office_desk_standing_time_remaining
+        unit_of_measurement: min
+        icon: >
+          {% if this.state | float(default=0.0) > 0 %}
+            mdi:timer-sand
+          {% else %}
+            mdi:timer-sand-complete
+          {% endif %}
+        # Time needed to meet target is 2N; see "geometric series with a common ratio of 1/2"
+        state: >
+          {%
+            set total_time = states('sensor.office_desk_occupied_cumulative_time') |
+              float(default=0.0)
+          %}
+          {%
+            set target_percentage = states(
+              'input_number.office_desk_standing_mode_percentage_target'
+            ) |
+              float(default=0.0) / 100
+          %}
+          {%
+            set standing_time = states('sensor.office_desk_standing_occupied_cumulative_time') |
+              float(default=0.0)
+          %}
+          {%
+            set owed = ( ( ( total_time * target_percentage ) - standing_time ) * 60 ) | round(2)
+          %}
+          {{ [ 2 * owed , 0 ] | max | round(2) }}

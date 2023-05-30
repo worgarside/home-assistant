@@ -158,6 +158,51 @@ cards:
           - entity: automation.cover_office_blinds_close_after_sunset
             name: Auto-Close
             icon: mdi:weather-sunset-down
+      - type: custom:fold-entity-row
+        head:
+          type: custom:multiple-entity-row
+          entity: cover.office_desk
+          name: Desk
+          show_state: false
+          entities:
+            - entity: script.office_desk_standing_mode
+              tap_action:
+                action: call-service
+                service: script.office_desk_standing_mode
+              icon: mdi:arrow-up-bold-hexagon-outline
+              name: false
+            - entity: script.office_desk_stop_moving
+              tap_action:
+                action: call-service
+                service: script.office_desk_stop_moving
+              icon: mdi:stop
+              name: false
+            - entity: script.office_desk_sitting_mode
+              tap_action:
+                action: call-service
+                service: script.office_desk_sitting_mode
+              icon: mdi:arrow-down-bold-hexagon-outline
+              name: false
+        entities:
+          - entity: input_number.office_desk_sitting_height
+            name: Sitting Height
+          - entity: input_number.office_desk_standing_height
+            name: Standing Height
+          - entity: sensor.office_desk_standing_time_remaining
+            name: Standing Time Remaining
+          - type: custom:fold-entity-row
+            head:
+              entity: automation.cover_office_desk_work_mode
+              name: Work Mode
+            entities:
+              - entity: sensor.office_desk_standing_mode_percentage
+                name: Current Percentage
+              - entity: input_number.office_desk_standing_mode_percentage_target
+                name: Target Percentage
+              - entity: sensor.office_desk_standing_occupied_cumulative_time
+                name: Time Standing at Desk Today
+              - entity: sensor.office_desk_occupied_cumulative_time
+                name: Total Time at Desk Today
       - entity: fan.desk_fan
         name: Fan
       - type: custom:decluttering-card
@@ -170,12 +215,12 @@ cards:
           entity: sensor.wills_macbook_pro_internal_battery_level
           name: MacBook Pro Battery
         entities:
-          - entity: switch.macbook_pro
+          - entity: switch.will_s_macbook_pro
             name: Power Supply
-          - entity: automation.switch_macbook_pro_turn_off_battery_full
+          - entity: automation.switch_will_s_macbook_pro_turn_off_battery_full
             name: Auto Switch Off
             icon: mdi:toggle-switch-off
-          - entity: automation.switch_macbook_pro_turn_on_battery_low
+          - entity: automation.switch_will_s_macbook_pro_turn_on_battery_low
             name: Auto Switch On
             icon: mdi:toggle-switch
           - type: custom:fold-entity-row
@@ -184,6 +229,24 @@ cards:
               name: Docked
             entities:
               - entity: sensor.wills_macbook_pro_displays
+      - type: custom:fold-entity-row
+        head:
+          entity: sensor.st_macbook_pro_internal_battery_level
+        entities:
+          - entity: switch.st_macbook_pro
+            name: Power Supply
+          - entity: automation.switch_st_macbook_pro_turn_off_battery_full
+            name: Auto Switch Off
+            icon: mdi:toggle-switch-off
+          - entity: automation.switch_st_macbook_pro_turn_on_battery_low
+            name: Auto Switch On
+            icon: mdi:toggle-switch
+          - type: custom:fold-entity-row
+            head:
+              entity: binary_sensor.st_macbook_pro_docked
+              name: Docked
+            entities:
+              - entity: sensor.st_macbook_pro_displays
       - type: custom:decluttering-card
         template: folding_media_player_with_spotcast_template
         variables:
