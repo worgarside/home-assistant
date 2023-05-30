@@ -213,7 +213,7 @@ cards:
           entity: sensor.wills_macbook_pro_internal_battery_level
           name: MacBook Pro Battery
         entities:
-          - entity: switch.macbook_pro
+          - entity: switch.will_s_macbook_pro
             name: Power Supply
           - entity: automation.switch_macbook_pro_turn_off_battery_full
             name: Auto Switch Off

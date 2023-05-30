@@ -12,7 +12,7 @@
     action:
       - service: switch.turn_on
         data:
-          entity_id: switch.macbook_pro
+          entity_id: switch.will_s_macbook_pro
 
   - alias: /switch/will_s_macbook_pro/turn_on/battery_low
     id: will_s_macbook_pro_battery_low
@@ -24,7 +24,7 @@
     action:
       - service: switch.turn_on
         data:
-          entity_id: switch.macbook_pro
+          entity_id: switch.will_s_macbook_pro
 
   - alias: /switch/will_s_macbook_pro/turn_off/undocked
     id: will_s_macbook_pro_undocked
@@ -35,7 +35,7 @@
     action:
       - service: switch.turn_off
         data:
-          entity_id: switch.macbook_pro
+          entity_id: switch.will_s_macbook_pro
 
   - alias: /switch/will_s_macbook_pro/turn_off/battery_full
     id: will_s_macbook_pro_battery_full
@@ -46,7 +46,7 @@
     action:
       - service: switch.turn_off
         data:
-          entity_id: switch.macbook_pro
+          entity_id: switch.will_s_macbook_pro
 
 # HiFi Amp
 
