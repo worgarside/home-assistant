@@ -227,6 +227,25 @@ cards:
               name: Docked
             entities:
               - entity: sensor.wills_macbook_pro_displays
+      - type: custom:fold-entity-row
+        head:
+          entity: sensor.st_macbook_pro_internal_battery_level
+          name: ST MacBook Pro Battery
+        entities:
+          - entity: switch.st_macbook_pro
+            name: Power Supply
+          - entity: automation.switch_macbook_pro_turn_off_battery_full
+            name: Auto Switch Off
+            icon: mdi:toggle-switch-off
+          - entity: automation.switch_macbook_pro_turn_on_battery_low
+            name: Auto Switch On
+            icon: mdi:toggle-switch
+          - type: custom:fold-entity-row
+            head:
+              entity: binary_sensor.st_macbook_pro_docked
+              name: Docked
+            entities:
+              - entity: sensor.st_macbook_pro_displays
       - type: custom:decluttering-card
         template: folding_media_player_with_spotcast_template
         variables:
