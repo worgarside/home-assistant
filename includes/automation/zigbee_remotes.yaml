@@ -1,5 +1,42 @@
 ---
 
+# Bedroom
+
+  - alias: /remote/bedroom-blinds/single-press
+    trigger:
+      - platform: event
+        event_type: zha_event
+        event_data:
+          command: single
+          device_ieee: 00:15:8d:00:09:ee:2c:3f
+    action:
+      - service: cover.close_cover
+        entity_id: cover.bedroom_blinds
+
+  - alias: /remote/bedroom-blinds/double-press
+    trigger:
+      - platform: event
+        event_type: zha_event
+        event_data:
+          command: double
+          device_ieee: 00:15:8d:00:09:ee:2c:3f
+    action:
+      - service: cover.open_cover
+        entity_id: cover.bedroom_blinds
+
+  - alias: /remote/bedroom-blinds/hold
+    trigger:
+      - platform: event
+        event_type: zha_event
+        event_data:
+          command: hold
+          device_ieee: 00:15:8d:00:09:ee:2c:3f
+    action:
+      - service: cover.stop_cover
+        entity_id: cover.bedroom_blinds
+
+# Lounge
+
   - alias: /remote/lounge-desk/single-press
     trigger:
       - platform: event
@@ -40,6 +77,8 @@
     action:
       - service: light.toggle
         entity_id: light.table_lamp
+
+# Office
 
   - alias: /remote/office-desk/single-press
     trigger:
