@@ -382,13 +382,17 @@
               states('sensor.wills_macbook_pro_frontmost_app') not in [
                 'loginwindow',
                 'Screen Saver'
-              ]
+              ] and
+              states('sensor.will_s_macbook_pro_last_update') | as_datetime >
+                now() - timedelta(minutes=2)
             ) or (
               states('binary_sensor.st_macbook_pro_docked') == 'on' and
               states('sensor.st_macbook_pro_frontmost_app') not in [
                 'loginwindow',
                 'Screen Saver'
-              ]
+              ] and
+              states('sensor.st_macbook_pro_last_update') | as_datetime >
+                now() - timedelta(minutes=2)
             )
           }}
 
