@@ -465,3 +465,63 @@
             set owed = ( ( ( total_time * target_percentage ) - standing_time ) * 60 ) | round(2)
           %}
           {{ [ 2 * owed , 0 ] | max | round(2) }}
+
+      - name: ST MacBook Pro Last Update
+        unique_id: st_macbook_pro_last_update
+        icon: mdi:clock
+        unit_of_measurement: epoch-seconds
+        state: >
+          {{
+            [
+              states.sensor.st_macbook_pro_active_audio_input.last_updated,
+              states.sensor.st_macbook_pro_active_audio_output.last_updated,
+              states.sensor.st_macbook_pro_active_camera.last_updated,
+              states.sensor.st_macbook_pro_bssid.last_updated,
+              states.sensor.st_macbook_pro_connection_type.last_updated,
+              states.sensor.st_macbook_pro_displays.last_updated,
+              states.sensor.st_macbook_pro_frontmost_app.last_updated,
+              states.sensor.st_macbook_pro_geocoded_location.last_updated,
+              states.sensor.st_macbook_pro_internal_battery_level.last_updated,
+              states.sensor.st_macbook_pro_internal_battery_state.last_updated,
+              states.sensor.st_macbook_pro_last_update_trigger.last_updated,
+              states.sensor.st_macbook_pro_primary_display_id.last_updated,
+              states.sensor.st_macbook_pro_primary_display_name.last_updated,
+              states.sensor.st_macbook_pro_ssid.last_updated,
+              states.sensor.st_macbook_pro_storage.last_updated,
+              states.binary_sensor.st_macbook_pro_active.last_updated,
+              states.binary_sensor.st_macbook_pro_audio_input_in_use.last_updated,
+              states.binary_sensor.st_macbook_pro_audio_output_in_use.last_updated,
+              states.binary_sensor.st_macbook_pro_camera_in_use.last_updated,
+              states.binary_sensor.st_macbook_pro_online.last_updated
+            ] | max | as_timestamp
+          }}
+
+      - name: Will's MacBook Pro Last Update
+        unique_id: wills_macbook_pro_last_update
+        icon: mdi:clock
+        unit_of_measurement: epoch-seconds
+        state: >
+          {{
+            [
+              states.sensor.wills_macbook_pro_active_audio_input.last_updated,
+              states.sensor.wills_macbook_pro_active_audio_output.last_updated,
+              states.sensor.wills_macbook_pro_active_camera.last_updated,
+              states.sensor.wills_macbook_pro_bssid.last_updated,
+              states.sensor.wills_macbook_pro_connection_type.last_updated,
+              states.sensor.wills_macbook_pro_displays.last_updated,
+              states.sensor.wills_macbook_pro_frontmost_app.last_updated,
+              states.sensor.wills_macbook_pro_geocoded_location.last_updated,
+              states.sensor.wills_macbook_pro_internal_battery_level.last_updated,
+              states.sensor.wills_macbook_pro_internal_battery_state.last_updated,
+              states.sensor.wills_macbook_pro_last_update_trigger.last_updated,
+              states.sensor.wills_macbook_pro_primary_display_id.last_updated,
+              states.sensor.wills_macbook_pro_primary_display_name.last_updated,
+              states.sensor.wills_macbook_pro_ssid.last_updated,
+              states.sensor.wills_macbook_pro_storage.last_updated,
+              states.binary_sensor.wills_macbook_pro_active.last_updated,
+              states.binary_sensor.wills_macbook_pro_audio_input_in_use.last_updated,
+              states.binary_sensor.wills_macbook_pro_audio_output_in_use.last_updated,
+              states.binary_sensor.wills_macbook_pro_camera_in_use.last_updated,
+              states.binary_sensor.wills_macbook_pro_focus.last_updated
+            ] | max | as_timestamp
+          }}
