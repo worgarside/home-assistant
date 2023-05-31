@@ -28,3 +28,13 @@
     host: homeassistant.local
     name: HAssPi Online
     scan_interval: 60
+
+  - platform: ping
+    host: Wills-MacBook-Pro.local
+    name: Will's MacBook Pro Online
+    scan_interval: 60
+
+  - platform: ping
+    host: !secret st_local_hostname
+    name: ST MacBook Pro Online
+    scan_interval: 60
