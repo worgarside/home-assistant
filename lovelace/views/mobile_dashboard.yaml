@@ -203,6 +203,10 @@ cards:
                 name: Time Standing at Desk Today
               - entity: sensor.office_desk_occupied_cumulative_time
                 name: Total Time at Desk Today
+              - entity: binary_sensor.office_desk_occupied
+                name: Desk Occupied
+              - entity: binary_sensor.office_desk_standing_and_occupied
+                name: Desk Occupied and Standing Mode
       - entity: fan.desk_fan
         name: Fan
       - type: custom:decluttering-card
