@@ -258,6 +258,40 @@
 # Office
 
   # Office Remote Button 1 Press
+  - alias: /hue/remote/office/button1/press
+    id: hue_remote_office_button1_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: 143de217ee3f684c339353a371764642
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 1
+    action:
+      - service: light.turn_on
+        target:
+          area_id: office
+
+  # Office Remote Button 4 Press
+  - alias: /hue/remote/office/button4/press
+    id: hue_remote_office_button4_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: 143de217ee3f684c339353a371764642
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 4
+    action:
+      - service: light.turn_off
+        target:
+          area_id: office
+
+# Office Desk
+
+  # Office Desk Remote Button 1 Press
   - alias: /hue/remote/office_desk/button1/any_press
     id: hue_remote_office_desk_button1_any_press
     mode: single
@@ -281,7 +315,7 @@
     action:
       - service: script.office_desk_standing_mode
 
-  # Office Remote Button 2/3 Press
+  # Office Desk Remote Button 2/3 Press
   - alias: /hue/remote/office_desk/button2_3/press
     id: hue_remote_office_desk_button2_3_press
     mode: single
@@ -320,7 +354,7 @@
     action:
       - service: script.office_desk_stop_moving
 
-  # Office Remote Button 4 Press
+  # Office Desk Remote Button 4 Press
   - alias: /hue/remote/office_desk/button4/press
     id: hue_remote_office_desk_button4_press
     mode: single
