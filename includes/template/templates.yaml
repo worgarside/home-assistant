@@ -399,7 +399,7 @@
       - name: Office Desk Standing Mode
         unique_id: office_desk_standing_mode
         icon: >
-          {% if state_attr('cover.office_desk_esphome', 'current_position') > 30 %}
+          {% if this.state == "on" %}
             phu:desk-stand-alt
           {% else %}
             phu:desk-sit-alt
