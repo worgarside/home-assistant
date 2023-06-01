@@ -1,5 +1,83 @@
 ---
 
+# Lounge
+
+  # Lounge Remote Button 1 Press
+  - alias: /hue/remote/lounge/button1/press
+    id: hue_remote_lounge_button1_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: 8c34149c1ac7c90b74a567f366ac8543
+        domain: hue
+        platform: device
+        type: short_press
+        subtype: 1
+      - device_id: 8c34149c1ac7c90b74a567f366ac8543
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 1
+    action:
+      - service: light.turn_on
+        target:
+          area_id: lounge
+
+  # Lounge Remote Button 4 Press
+  - alias: /hue/remote/lounge/button4/press
+    id: hue_remote_lounge_button4_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: 8c34149c1ac7c90b74a567f366ac8543
+        domain: hue
+        platform: device
+        type: short_press
+        subtype: 4
+      - device_id: 8c34149c1ac7c90b74a567f366ac8543
+        domain: hue
+        platform: device
+        type: short_release
+        subtype: 4
+    action:
+      - service: light.turn_off
+        target:
+          area_id: lounge
+
+  # Lounge Remote Button 4 Long Press
+  - alias: /hue/remote/lounge/button4/long_press
+    id: hue_remote_lounge_button4_long_press
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - device_id: 8c34149c1ac7c90b74a567f366ac8543
+        domain: hue
+        platform: device
+        type: long_press
+        subtype: 4
+      - device_id: 8c34149c1ac7c90b74a567f366ac8543
+        domain: hue
+        platform: device
+        type: long_release
+        subtype: 4
+    action:
+      - service: light.turn_off
+        target:
+          area_id: lounge
+      - service: switch.turn_off
+        target:
+          area_id: lounge
+      - service: media_player.media_stop
+        target:
+          area_id: lounge
+      - service: media_player.turn_off
+        target:
+          area_id: lounge
+      - condition: "{{ states('binary_sensor.lounge_window') == 'off' }}"
+      - service: cover.close_cover
+        target:
+          entity_id: cover.lounge_blinds
+
 # Office
 
   # Office Remote Button 1 Press
@@ -34,7 +112,7 @@
         target:
           area_id: office
 
-  # Office Remote Button 4 Press
+  # Office Remote Button 4 Long Press
   - alias: /hue/remote/office/button4/long_press
     id: hue_remote_office_button4_long_press
     mode: single
