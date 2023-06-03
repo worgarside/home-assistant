@@ -1,4 +1,7 @@
 ---
+
+# Mini CRT
+
   - alias: /input_boolean/mini_crt_power/state-from-crt
     id: input_boolean_mini_crt_power_state_from_crt
     trigger:
@@ -39,3 +42,75 @@
         data:
           topic: /home-assistant/crt-pi/state-from-ha
           payload: '{{ trigger.to_state.state }}'
+
+# Room Control: Bedroom
+
+  - alias: /input_boolean/bedroom_entity_header/on
+    id: input_boolean_bedroom_entity_header_on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.bedroom_entity_header
+        to: "on"
+    action:
+      - service: light.turn_on
+        target:
+          area_id: bedroom
+
+  - alias: /input_boolean/bedroom_entity_header/off
+    id: input_boolean_bedroom_entity_header_off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.bedroom_entity_header
+        to: "off"
+    action:
+      - service: homeassistant.turn_off
+        target:
+          area_id: bedroom
+
+# Room Control: Lounge
+
+  - alias: /input_boolean/lounge_entity_header/on
+    id: input_boolean_lounge_entity_header_on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lounge_entity_header
+        to: "on"
+    action:
+      - service: light.turn_on
+        target:
+          area_id: lounge
+
+  - alias: /input_boolean/lounge_entity_header/off
+    id: input_boolean_lounge_entity_header_off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lounge_entity_header
+        to: "off"
+    action:
+      - service: homeassistant.turn_off
+        target:
+          area_id: lounge
+
+# Room Control: Office
+
+  - alias: /input_boolean/office_entity_header/on
+    id: input_boolean_office_entity_header_on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.office_entity_header
+        to: "on"
+    action:
+      - service: light.turn_on
+        target:
+          area_id: office
+
+  - alias: /input_boolean/office_entity_header/off
+    id: input_boolean_office_entity_header_off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.office_entity_header
+        to: "off"
+    action:
+      - service: homeassistant.turn_off
+        target:
+          area_id: office
