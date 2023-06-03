@@ -7,10 +7,21 @@ path: mobile_dashboard
 
 cards:
   - type: entities
-    title: Bedroom
     state_color: true
     show_header_toggle: false
     entities:
+      - entity: input_boolean.bedroom_entity_header
+        card_mod:
+          style:
+            hui-generic-entity-row:
+              $: |
+                state-badge {
+                  display: none;
+                }
+                :host {
+                  font-size: 24px;
+                  line-height: 32px;
+                }
       - type: custom:fold-entity-row
         head:
           entity: cover.bedroom_blinds
@@ -65,10 +76,21 @@ cards:
         name: Front Door
 
   - type: entities
-    title: Lounge
     state_color: true
     show_header_toggle: false
     entities:
+      - entity: input_boolean.lounge_entity_header
+        card_mod:
+          style:
+            hui-generic-entity-row:
+              $: |
+                state-badge {
+                  display: none;
+                }
+                :host {
+                  font-size: 24px;
+                  line-height: 32px;
+                }
       - entity: switch.scent_plug
         name: Air Freshener
       - type: custom:fold-entity-row
@@ -143,10 +165,21 @@ cards:
         name: Window
 
   - type: entities
-    title: Office
     state_color: true
     show_header_toggle: false
     entities:
+      - entity: input_boolean.office_entity_header
+        card_mod:
+          style:
+            hui-generic-entity-row:
+              $: |
+                state-badge {
+                  display: none;
+                }
+                :host {
+                  font-size: 24px;
+                  line-height: 32px;
+                }
       - type: custom:fold-entity-row
         head:
           entity: cover.office_blinds

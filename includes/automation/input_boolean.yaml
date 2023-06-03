@@ -1,4 +1,7 @@
 ---
+
+# Mini CRT
+
   - alias: /input_boolean/mini_crt_power/state-from-crt
     id: input_boolean_mini_crt_power_state_from_crt
     trigger:
@@ -39,3 +42,276 @@
         data:
           topic: /home-assistant/crt-pi/state-from-ha
           payload: '{{ trigger.to_state.state }}'
+
+# Room Control: Bedroom
+
+  - alias: /input_boolean/bedroom_entity_header/on
+    id: input_boolean_bedroom_entity_header_on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.bedroom_entity_header
+        to: "on"
+    action:
+      - service: light.turn_on
+        target:
+          area_id: bedroom
+
+  - alias: /input_boolean/bedroom_entity_header/off
+    id: input_boolean_bedroom_entity_header_off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.bedroom_entity_header
+        to: "off"
+    action:
+      - service: script.turn_off_physical_room
+        data:
+          room: bedroom
+
+  - alias: /input_boolean/bedroom_entity_header/auto_turn_on
+    id: input_boolean_bedroom_entity_header_auto_turn_on
+    trigger:
+      - platform: state
+        entity_id:
+          - light.bedroom_lights
+          - media_player.bedroom_media_players
+          - switch.bedroom_switches
+        from:
+          - idle
+          - "off"
+          - unavailable
+          - unknown
+        to:
+          - idle
+          - paused
+          - playing
+          - "on"
+    condition: "{{ states('input_boolean.bedroom_entity_header') == 'off' }}"
+    action:
+      - service: automation.turn_off
+        target:
+          entity_id: automation.input_boolean_bedroom_entity_header_on
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.bedroom_entity_header
+      - service: automation.turn_on
+        target:
+          entity_id: automation.input_boolean_bedroom_entity_header_on
+
+  - alias: /input_boolean/bedroom_entity_header/auto_turn_off
+    id: input_boolean_bedroom_entity_header_auto_turn_off
+    trigger:
+      - platform: state
+        entity_id:
+          - light.bedroom_lights
+          - media_player.bedroom_media_players
+          - switch.bedroom_switches
+        from:
+          - idle
+          - paused
+          - playing
+          - "on"
+        to:
+          - "off"
+          - unavailable
+          - unknown
+    condition: >
+      {{
+        states('input_boolean.bedroom_entity_header') == 'on' and
+        [
+          states.light.bedroom_lights,
+          states.media_player.bedroom_media_players,
+          states.switch.bedroom_switches,
+        ] | selectattr('state', 'eq', 'on') | list | count == 0
+      }}
+    action:
+      - service: automation.turn_off
+        target:
+          entity_id: automation.input_boolean_bedroom_entity_header_off
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.bedroom_entity_header
+      - service: automation.turn_on
+        target:
+          entity_id: automation.input_boolean_bedroom_entity_header_off
+
+# Room Control: Lounge
+
+  - alias: /input_boolean/lounge_entity_header/on
+    id: input_boolean_lounge_entity_header_on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lounge_entity_header
+        to: "on"
+    action:
+      - service: light.turn_on
+        target:
+          area_id: lounge
+
+  - alias: /input_boolean/lounge_entity_header/off
+    id: input_boolean_lounge_entity_header_off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lounge_entity_header
+        to: "off"
+    action:
+      - service: script.turn_off_physical_room
+        data:
+          room: lounge
+
+  - alias: /input_boolean/lounge_entity_header/auto_turn_on
+    id: input_boolean_lounge_entity_header_auto_turn_on
+    trigger:
+      - platform: state
+        entity_id:
+          - light.lounge_lights
+          - media_player.lounge_media_players
+          - switch.lounge_switches
+        from:
+          - idle
+          - "off"
+          - unavailable
+          - unknown
+        to:
+          - idle
+          - paused
+          - playing
+          - "on"
+    condition: "{{ states('input_boolean.lounge_entity_header') == 'off' }}"
+    action:
+      - service: automation.turn_off
+        target:
+          entity_id: automation.input_boolean_lounge_entity_header_on
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.lounge_entity_header
+      - service: automation.turn_on
+        target:
+          entity_id: automation.input_boolean_lounge_entity_header_on
+
+  - alias: /input_boolean/lounge_entity_header/auto_turn_off
+    id: input_boolean_lounge_entity_header_auto_turn_off
+    trigger:
+      - platform: state
+        entity_id:
+          - light.lounge_lights
+          - media_player.lounge_media_players
+          - switch.lounge_switches
+        from:
+          - idle
+          - paused
+          - playing
+          - "on"
+        to:
+          - "off"
+          - unavailable
+          - unknown
+    condition: >
+      {{
+        states('input_boolean.lounge_entity_header') == 'on' and
+        [
+          states.light.lounge_lights,
+          states.media_player.lounge_media_players,
+          states.switch.lounge_switches,
+        ] | selectattr('state', 'eq', 'on') | list | count == 0
+      }}
+    action:
+      - service: automation.turn_off
+        target:
+          entity_id: automation.input_boolean_lounge_entity_header_off
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.lounge_entity_header
+      - service: automation.turn_on
+        target:
+          entity_id: automation.input_boolean_lounge_entity_header_off
+
+# Room Control: Office
+
+  - alias: /input_boolean/office_entity_header/on
+    id: input_boolean_office_entity_header_on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.office_entity_header
+        to: "on"
+    action:
+      - service: light.turn_on
+        target:
+          area_id: office
+
+  - alias: /input_boolean/office_entity_header/off
+    id: input_boolean_office_entity_header_off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.office_entity_header
+        to: "off"
+    action:
+      - service: script.turn_off_physical_room
+        data:
+          room: office
+
+  - alias: /input_boolean/office_entity_header/auto_turn_on
+    id: input_boolean_office_entity_header_auto_turn_on
+    trigger:
+      - platform: state
+        entity_id:
+          - light.office_lights
+          - media_player.office_media_players
+          - switch.office_switches
+        from:
+          - idle
+          - "off"
+          - unavailable
+          - unknown
+        to:
+          - idle
+          - paused
+          - playing
+          - "on"
+    condition: "{{ states('input_boolean.office_entity_header') == 'off' }}"
+    action:
+      - service: automation.turn_off
+        target:
+          entity_id: automation.input_boolean_office_entity_header_on
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.office_entity_header
+      - service: automation.turn_on
+        target:
+          entity_id: automation.input_boolean_office_entity_header_on
+
+  - alias: /input_boolean/office_entity_header/auto_turn_off
+    id: input_boolean_office_entity_header_auto_turn_off
+    trigger:
+      - platform: state
+        entity_id:
+          - light.office_lights
+          - media_player.office_media_players
+          - switch.office_switches
+        from:
+          - idle
+          - paused
+          - playing
+          - "on"
+        to:
+          - "off"
+          - unavailable
+          - unknown
+    condition: >
+      {{
+        states('input_boolean.office_entity_header') == 'on' and
+        [
+          states.light.office_lights,
+          states.media_player.office_media_players,
+          states.switch.office_switches,
+        ] | selectattr('state', 'eq', 'on') | list | count == 0
+      }}
+    action:
+      - service: automation.turn_off
+        target:
+          entity_id: automation.input_boolean_office_entity_header_off
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.office_entity_header
+      - service: automation.turn_on
+        target:
+          entity_id: automation.input_boolean_office_entity_header_off
