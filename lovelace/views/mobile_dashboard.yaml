@@ -12,7 +12,7 @@ cards:
     entities:
       - entity: input_boolean.bedroom_entity_header
         card_mod:
-          style: 
+          style:
             hui-generic-entity-row:
               $: |
                 state-badge {
@@ -81,7 +81,7 @@ cards:
     entities:
       - entity: input_boolean.lounge_entity_header
         card_mod:
-          style: 
+          style:
             hui-generic-entity-row:
               $: |
                 state-badge {
@@ -170,7 +170,7 @@ cards:
     entities:
       - entity: input_boolean.office_entity_header
         card_mod:
-          style: 
+          style:
             hui-generic-entity-row:
               $: |
                 state-badge {
