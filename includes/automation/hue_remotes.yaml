@@ -61,13 +61,11 @@
         type: long_release
         subtype: 4
     action:
-      - service: homeassistant.turn_off
-        target:
-          area_id: lounge
-      - condition: "{{ states('binary_sensor.lounge_window') == 'off' }}"
-      - service: cover.close_cover
-        target:
-          entity_id: cover.lounge_blinds
+      - service: script.turn_off_physical_room
+        data:
+          room: lounge
+          close_blinds: true
+          close_blinds_with_open_window_after_delay: true
 
 # Office
 
@@ -120,14 +118,14 @@
         type: long_release
         subtype: 4
     action:
-      - service: script.office_desk_sitting_mode
-      - service: homeassistant.turn_off
-        target:
-          area_id: office
-      - condition: "{{ states('binary_sensor.office_window') == 'off' }}"
-      - service: cover.close_cover
-        target:
-          entity_id: cover.office_blinds
+      - service: script.turn_off_physical_room
+        data:
+          room: office
+          close_blinds: true
+          close_blinds_with_open_window_after_delay: true
+          extra_service_calls:
+            - service_call: script.turn_on
+              entity_id: script.office_desk_sitting_mode
 
 # Office Desk
 
