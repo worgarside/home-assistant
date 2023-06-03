@@ -389,7 +389,7 @@ turn_off_physical_room:
       example: >
         [
           {
-            "service_call": "script.turn_on", 
+            "service_call": "script.turn_on",
             "entity_id": "script.office_desk_sitting_mode"
           }
         ]
@@ -442,32 +442,32 @@ turn_off_physical_room:
       then:
         - alias: "Wait for window to be closed"
           choose:
-          - alias: Continue on timeout
-            conditions: >
-              {{ 
-                states('binary_sensor.{{ room }}_window') == 'on' and
-                close_blinds_with_open_window_after_delay is true
-              }}
-            sequence:
-              - wait_template: "{{ states('binary_sensor.{{ room }}_window') == 'off' }}"
-                timeout: "{{ close_blinds_window_delay }}"
-                continue_on_timeout: true
-              - service: cover.close_cover
-                target:
-                  entity_id: "cover.{{ room }}_blinds"
-          - alias: Don't continue on timeout
-            conditions: >
-              {{ 
-                states('binary_sensor.{{ room }}_window') == 'on' and
-                close_blinds_with_open_window_after_delay is false
-              }}
-            sequence:
-              - wait_template: "{{ states('binary_sensor.{{ room }}_window') == 'off' }}"
-                timeout: "{{ close_blinds_window_delay }}"
-                continue_on_timeout: false
-              - service: cover.close_cover
-                target:
-                  entity_id: "cover.{{ room }}_blinds"
+            - alias: Continue on timeout
+              conditions: >
+                {{
+                  states('binary_sensor.{{ room }}_window') == 'on' and
+                  close_blinds_with_open_window_after_delay is true
+                }}
+              sequence:
+                - wait_template: "{{ states('binary_sensor.{{ room }}_window') == 'off' }}"
+                  timeout: "{{ close_blinds_window_delay }}"
+                  continue_on_timeout: true
+                - service: cover.close_cover
+                  target:
+                    entity_id: "cover.{{ room }}_blinds"
+            - alias: Don't continue on timeout
+              conditions: >
+                {{
+                  states('binary_sensor.{{ room }}_window') == 'on' and
+                  close_blinds_with_open_window_after_delay is false
+                }}
+              sequence:
+                - wait_template: "{{ states('binary_sensor.{{ room }}_window') == 'off' }}"
+                  timeout: "{{ close_blinds_window_delay }}"
+                  continue_on_timeout: false
+                - service: cover.close_cover
+                  target:
+                    entity_id: "cover.{{ room }}_blinds"
           default:
             - service: cover.close_cover
               target:
