@@ -109,7 +109,7 @@
     trigger:
       - platform: state
         entity_id:
-          - media_player.lounge_media_players
+          - media_player.hifi_system_media_players
         from:
           - idle
           - "off"
@@ -129,7 +129,7 @@
     trigger:
       - platform: state
         entity_id:
-          - media_player.lounge_media_players
+          - media_player.hifi_system_media_players
         to:
           - "off"
         for:
