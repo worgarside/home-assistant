@@ -63,9 +63,9 @@
         entity_id: input_boolean.bedroom_entity_header
         to: "off"
     action:
-      - service: homeassistant.turn_off
-        target:
-          area_id: bedroom
+      - service: script.turn_off_physical_room
+        data:
+          room: bedroom
 
 # Room Control: Lounge
 
@@ -87,9 +87,9 @@
         entity_id: input_boolean.lounge_entity_header
         to: "off"
     action:
-      - service: homeassistant.turn_off
-        target:
-          area_id: lounge
+      - service: script.turn_off_physical_room
+        data:
+          room: lounge
 
 # Room Control: Office
 
@@ -111,6 +111,6 @@
         entity_id: input_boolean.office_entity_header
         to: "off"
     action:
-      - service: homeassistant.turn_off
-        target:
-          area_id: office
+      - service: script.turn_off_physical_room
+        data:
+          room: office
