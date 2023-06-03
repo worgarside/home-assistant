@@ -431,7 +431,7 @@ turn_off_physical_room:
             target:
               area_id: "{{ room }}"
     - repeat:
-        for_each: "{{ extra_entities }}"
+        for_each: "{{ extra_service_calls }}"
         sequence:
           - service: "{{ repeat.item.service_call | default('homeassistant.turn_off') }}"
             target:
