@@ -61,16 +61,7 @@
         type: long_release
         subtype: 4
     action:
-      - service: light.turn_off
-        target:
-          area_id: lounge
-      - service: switch.turn_off
-        target:
-          area_id: lounge
-      - service: media_player.media_stop
-        target:
-          area_id: lounge
-      - service: media_player.turn_off
+      - service: homeassistant.turn_off
         target:
           area_id: lounge
       - condition: "{{ states('binary_sensor.lounge_window') == 'off' }}"
@@ -130,13 +121,7 @@
         subtype: 4
     action:
       - service: script.office_desk_sitting_mode
-      - service: fan.turn_off
-        target:
-          area_id: office
-      - service: light.turn_off
-        target:
-          area_id: office
-      - service: switch.turn_off
+      - service: homeassistant.turn_off
         target:
           area_id: office
       - condition: "{{ states('binary_sensor.office_window') == 'off' }}"
