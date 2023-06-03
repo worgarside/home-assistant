@@ -109,8 +109,7 @@
     trigger:
       - platform: state
         entity_id:
-          - media_player.hifi_system
-          - media_player.lounge_bravia_tv
+          - media_player.hifi_system_media_players
         from:
           - idle
           - "off"
@@ -120,6 +119,7 @@
           - idle
           - paused
           - playing
+          - "on"
     action:
       - service: switch.turn_on
         entity_id: switch.hifi_amp
@@ -129,26 +129,12 @@
     trigger:
       - platform: state
         entity_id:
-          - media_player.hifi_system
-          - media_player.lounge_bravia_tv
+          - media_player.hifi_system_media_players
         to:
           - "off"
         for:
           minutes: 1
-    condition:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: media_player.hifi_system
-            state: "off"
-          - condition: state
-            entity_id: media_player.lounge_bravia_tv
-            state: "off"
     action:
-      # yamllint disable-line rule:line-length
-      - wait_template: "{{ states('media_player.hifi_system') == 'off' and states('media_player.lounge_bravia_tv') == 'off'  and states('media_player.lounge_tv') != 'unavailable' }}"
-        timeout: 300
-        continue_on_timeout: false
       - service: switch.turn_off
         entity_id: switch.hifi_amp
 
