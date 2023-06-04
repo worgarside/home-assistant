@@ -391,10 +391,23 @@ office_desk_standing_mode:
 office_desk_stop_moving:
   mode: restart
   sequence:
-    - service: cover.set_cover_position
-      data:
-        entity_id: cover.office_desk_esphome
-        position: "{{ state_attr('cover.office_desk_esphome', 'current_position') | int }}"
+    - if:
+        condition: template
+        value_template: >
+          {{
+            states('cover.office_desk_esphome') in ['opening', 'closing']
+          }}
+      then:
+        - service: cover.set_cover_position
+          data:
+            entity_id: cover.office_desk_esphome
+            position: >
+              {% set desk_state = states('cover.office_desk_esphome') %}
+              {% if desk_state == 'opening' %}
+                {{ state_attr('cover.office_desk_esphome', 'current_position') | int - 1 }}
+              {% elif desk_state == 'closing' %}
+                {{ state_attr('cover.office_desk_esphome', 'current_position') | int + 1 }}
+              {% endif %}
     - service: script.turn_off
       target:
         entity_id: script.office_desk_set_position
