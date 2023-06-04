@@ -377,7 +377,7 @@ office_desk_sitting_mode:
       data:
         entity_id: script.office_desk_set_position
         variables:
-          position: "{{ states('input_number.office_desk_sitting_height') | int }}"
+          position: "{{ states('input_number.office_desk_sitting_height') | int(default=27) }}"
 
 office_desk_standing_mode:
   mode: single
@@ -386,7 +386,7 @@ office_desk_standing_mode:
       data:
         entity_id: script.office_desk_set_position
         variables:
-          position: "{{ states('input_number.office_desk_standing_height') | int }}"
+          position: "{{ states('input_number.office_desk_standing_height') | int(default=80) }}"
 
 office_desk_stop_moving:
   mode: restart
