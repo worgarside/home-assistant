@@ -8,8 +8,8 @@
         position_template: "{{ state_attr('cover.office_desk_esphome', 'current_position') | int }}"
         icon_template: >
           {%
-            if state_attr('cover.office_desk_esphome', 'current_position') | int(default=0) >
-            states('input_number.office_desk_standing_height') | int(default=80) %}
+            if state_attr('cover.office_desk_esphome', 'current_position') | int(default=0) >=
+            states('input_number.office_desk_standing_height') | int(default=80) - 5 %}
           %}
             phu:desk-stand-alt
           {% else %}
