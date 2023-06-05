@@ -74,6 +74,8 @@
         entity_id:
           - light.bedroom_lights
           - media_player.bedroom_media_players
+          - remote.bedroom_chromecast
+          - remote.bedroom_tv
           - switch.bedroom_switches
         from:
           - idle
@@ -104,6 +106,8 @@
         entity_id:
           - light.bedroom_lights
           - media_player.bedroom_media_players
+          - remote.bedroom_chromecast
+          - remote.bedroom_tv
           - switch.bedroom_switches
         from:
           - idle
@@ -120,6 +124,8 @@
         [
           states.light.bedroom_lights,
           states.media_player.bedroom_media_players,
+          states.remote.bedroom_chromecast,
+          states.remote.bedroom_tv,
           states.switch.bedroom_switches,
         ] | selectattr('state', 'eq', 'on') | list | count == 0
       }}
@@ -165,6 +171,8 @@
         entity_id:
           - light.lounge_lights
           - media_player.lounge_media_players
+          - remote.lounge_chromecast
+          - remote.lounge_tv
           - switch.lounge_switches
         from:
           - idle
@@ -195,6 +203,8 @@
         entity_id:
           - light.lounge_lights
           - media_player.lounge_media_players
+          - remote.lounge_chromecast
+          - remote.lounge_tv
           - switch.lounge_switches
         from:
           - idle
@@ -211,6 +221,8 @@
         [
           states.light.lounge_lights,
           states.media_player.lounge_media_players,
+          states.remote.lounge_chromecast,
+          states.remote.lounge_tv,
           states.switch.lounge_switches,
         ] | selectattr('state', 'eq', 'on') | list | count == 0
       }}
