@@ -187,16 +187,6 @@
             {{ now().hour < 8 }}
           {%- endif %}
 
-# Fixed Values
-
-  - sensor:
-      - name: Fixed Value On
-        state: "on"
-
-  - sensor:
-      - name: Fixed Value Off
-        state: "off"
-
 # YAS-209
 
   - trigger:
