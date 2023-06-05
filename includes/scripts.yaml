@@ -311,26 +311,64 @@ office_desk_set_position:
           max: 100
           step: 1
   sequence:
-    - alias: "Send debug notification"
-      service: script.debug_persistent_notification
-      data:
-        title: Work Mode
-        message: "Setting desk to {{ position }}%"
+    - alias: Check desk isn't already at height
+      condition: template
+      value_template: >
+        {{
+          state_attr("cover.office_desk_esphome", "current_position") | int !=
+          position | int
+        }}
     - repeat:
-        until: >
-          {{
-            state_attr("cover.office_desk_esphome", "current_position") | int ==
-            position | int
-          }}
+        until:
+          condition: template
+          value_template: >
+            {{
+              state_attr("cover.office_desk_esphome", "current_position") | int ==
+              position | int
+            }}
         sequence:
+          - alias: "Delay for 0.2s if it's not the first iteration"
+            if: "{{ repeat.index > 1 }}"
+            then:
+              - delay:
+                  milliseconds: 200
+              - service: script.debug_persistent_notification
+                data:
+                  title: "Desk Move Delay (Target Position: {{ position }}%)"
+                  message: "Delaying for 0.2s in loop iteration {{ repeat.index }}"
+          - alias: "Send debug notification"
+            service: script.debug_persistent_notification
+            data:
+              title: Setting desk position
+              message: |
+                Target: {{ position }}%
+                Current: {{ state_attr('cover.office_desk_esphome', 'current_position') }}%
           - service: cover.set_cover_position
             data:
               entity_id: cover.office_desk_esphome
               position: "{{ position | int }}"
-          - wait_template: "{{ states('cover.office_desk_esphome') in ['opening', 'closing'] }}"
-            timeout: '00:00:05'
-          - wait_template: "{{ states('cover.office_desk_esphome') not in ['opening', 'closing'] }}"
-            timeout: '00:00:10'
+          - alias: "Wait for desk to stop moving"
+            wait_for_trigger:
+              - platform: state
+                entity_id: cover.office_desk_esphome
+                to:
+                  - closed
+                  - open
+            timeout: "00:00:30"
+            continue_on_timeout: true
+          - service: script.debug_persistent_notification
+            data:
+              title: >-
+                Desk Move {{
+                  'Complete'
+                  if state_attr('cover.office_desk_esphome', 'current_position') | int ==
+                    position | int
+                  else 'Failed'
+                }}
+                (Target Position: {{ position }}%)
+              message: |
+                Final position: {{ state_attr('cover.office_desk_esphome', 'current_position') }}%
+                Final state: {{ states('cover.office_desk_esphome')}}
 
 office_desk_sitting_mode:
   mode: single
@@ -339,7 +377,7 @@ office_desk_sitting_mode:
       data:
         entity_id: script.office_desk_set_position
         variables:
-          position: "{{ states('input_number.office_desk_sitting_height') | int }}"
+          position: "{{ states('input_number.office_desk_sitting_height') | int(default=27) }}"
 
 office_desk_standing_mode:
   mode: single
@@ -348,15 +386,28 @@ office_desk_standing_mode:
       data:
         entity_id: script.office_desk_set_position
         variables:
-          position: "{{ states('input_number.office_desk_standing_height') | int }}"
+          position: "{{ states('input_number.office_desk_standing_height') | int(default=80) }}"
 
 office_desk_stop_moving:
   mode: restart
   sequence:
-    - service: cover.set_cover_position
-      data:
-        entity_id: cover.office_desk_esphome
-        position: "{{ state_attr('cover.office_desk_esphome', 'current_position') | int }}"
+    - if:
+        condition: template
+        value_template: >
+          {{
+            states('cover.office_desk_esphome') in ['opening', 'closing']
+          }}
+      then:
+        - service: cover.set_cover_position
+          data:
+            entity_id: cover.office_desk_esphome
+            position: >
+              {% set desk_state = states('cover.office_desk_esphome') %}
+              {% if desk_state == 'opening' %}
+                {{ state_attr('cover.office_desk_esphome', 'current_position') | int - 1 }}
+              {% elif desk_state == 'closing' %}
+                {{ state_attr('cover.office_desk_esphome', 'current_position') | int + 1 }}
+              {% endif %}
     - service: script.turn_off
       target:
         entity_id: script.office_desk_set_position
