@@ -60,7 +60,7 @@
         and
         (
           states.input_boolean.mini_crt_fan.last_changed <
-          ( now() - timedelta(minutes=5) )
+          ( utcnow() - timedelta(minutes=5) )
         )
       }}
     action:
