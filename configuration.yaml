@@ -161,12 +161,6 @@ recorder:
       - sensor.*_table_size
       - sensor.*_voltage
 
-speedtestdotnet:
-  monitored_conditions:
-    - ping
-    - download
-    - upload
-
 spotcast:
   sp_dc: !secret spotcast_sp_dc_will
   sp_key: !secret spotcast_sp_key_will
