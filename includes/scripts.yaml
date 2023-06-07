@@ -477,6 +477,7 @@ turn_off_physical_room:
           - fan.turn_off
           - media_player.media_stop
           - media_player.turn_off
+          - remote.turn_off
         sequence:
           - service: "{{ repeat.item }}"
             target:
