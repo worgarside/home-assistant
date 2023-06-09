@@ -162,7 +162,6 @@ cards:
             variables:
               - device_friendly_name: HiFi System
               - entity_id: media_player.hifi_system
-              - auto_entity_filter_template: "{{ 'switch.hifi_amp' }}"
       - entity: binary_sensor.lounge_window
         name: Window
 
