@@ -30,9 +30,6 @@
     value_template: "{{ value_json['state'] }}"
     unit_of_measurement: '%'
 
-  - platform: spotcast
-    country: GB
-
   - platform: systemmonitor
     resources:
       - type: disk_use_percent

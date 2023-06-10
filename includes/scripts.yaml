@@ -39,40 +39,6 @@ notify_will:
         title: '{{ title }}'
         message: '{{ message }}'
 
-start_spotify_on_device:
-  description: Start Spotify playback on a particular device
-  mode: restart
-  fields:
-    entity_id:
-      # yamllint disable-line rule:line-length
-      description: The ID of the device to start playback on, used in creating a stopping condition for the exponential backoff
-      example: entity_id
-    device_key:
-      # yamllint disable-line rule:line-length
-      description: The key to use in identifying the device (i.e. `spotify_device_id` or `entity_id`)
-      example: entity_id
-    device_value:
-      description: The value to use in identifying the device
-      example: media_player.hifi_system
-    user_name:
-      # yamllint disable-line rule:line-length
-      description: The name of the user, to determine which Spotify account to use
-      example: Dave
-  sequence:
-    - service: script.debug_persistent_notification
-      data:
-        title: Spotcast Arguments
-        message: |
-          device_key: {{ device_key }}
-          device_value: {{ device_value }}
-          user_name: {{ user_name | lower }}
-    - service: spotcast.start
-      data:
-        '{{device_key}}': '{{ device_value }}'
-        account: '{{ user_name | lower }}'
-        shuffle: true
-        force_playback: true
-
 crt_pi_update_display:
   description: Update the CRT Pi display from the chosen media player's track
   mode: parallel
