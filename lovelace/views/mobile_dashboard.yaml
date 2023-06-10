@@ -59,13 +59,8 @@ cards:
           - entity: media_player.bedroom_tv
             name: TV
             icon: mdi:television
-          - type: custom:decluttering-card
-            template: folding_media_player_with_spotcast_template
-            variables:
-              - device_friendly_name: Soundbar
-              - device_key: spotify_device_id
-              - device_value: d13da09c3d2ffcc83ae1784fc05dd8bb4bb25305
-              - entity_id: media_player.yas_209
+          - entity: media_player.yas_209
+            name: Soundbar
       - entity: binary_sensor.bedroom_window
         name: Window
 
@@ -157,11 +152,8 @@ cards:
           - entity: media_player.lounge_tv_bravia
             name: TV (Bravia)
             icon: si:sony
-          - type: custom:decluttering-card
-            template: folding_media_player_with_spotcast_template
-            variables:
-              - device_friendly_name: HiFi System
-              - entity_id: media_player.hifi_system
+          - entity: media_player.hifi_system
+            name: HiFi System
       - entity: binary_sensor.lounge_window
         name: Window
 
@@ -285,11 +277,8 @@ cards:
               name: Docked
             entities:
               - entity: sensor.st_macbook_pro_displays
-      - type: custom:decluttering-card
-        template: folding_media_player_with_spotcast_template
-        variables:
-          - device_friendly_name: Nest Mini
-          - entity_id: media_player.office_nest_mini
+      - entity: media_player.office_nest_mini
+        name: Nest Mini
       - type: custom:decluttering-card
         template: folding_rgb_light_with_effects_template
         variables:
