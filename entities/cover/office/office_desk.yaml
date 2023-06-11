@@ -1,30 +1,29 @@
 ---
-office_desk:
-  friendly_name: "Office Desk"
-  unique_id: office_desk
-  value_template: "{{ states('cover.office_desk_esphome') }}"
-  position_template: "{{ state_attr('cover.office_desk_esphome', 'current_position') | int }}"
-  icon_template: >
-    {%
-      if state_attr('cover.office_desk_esphome', 'current_position') | int(default=0) >=
-      states('input_number.office_desk_standing_height') | int(default=80) - 5 %}
-    %}
-      phu:desk-stand-alt
-    {% else %}
-      phu:desk-sit-alt
-    {% endif %}
-  availability_template: "{{ states('binary_sensor.office_desk_esphome_connection') }}"
-  open_cover:
-    service: script.office_desk_set_position
-    data:
-      position: 100
-  close_cover:
-    service: script.office_desk_set_position
-    data:
-      position: 10
-  stop_cover:
-    service: script.office_desk_stop_moving
-  set_cover_position:
-    service: script.office_desk_set_position
-    data_template:
-      position: "{{ position }}"
+friendly_name: "Office Desk"
+unique_id: office_desk
+value_template: "{{ states('cover.office_desk_esphome') }}"
+position_template: "{{ state_attr('cover.office_desk_esphome', 'current_position') | int }}"
+icon_template: >
+  {%
+    if state_attr('cover.office_desk_esphome', 'current_position') | int(default=0) >=
+    states('input_number.office_desk_standing_height') | int(default=80) - 5 %}
+  %}
+    phu:desk-stand-alt
+  {% else %}
+    phu:desk-sit-alt
+  {% endif %}
+availability_template: "{{ states('binary_sensor.office_desk_esphome_connection') }}"
+open_cover:
+  service: script.office_desk_set_position
+  data:
+    position: 100
+close_cover:
+  service: script.office_desk_set_position
+  data:
+    position: 10
+stop_cover:
+  service: script.office_desk_stop_moving
+set_cover_position:
+  service: script.office_desk_set_position
+  data_template:
+    position: "{{ position }}"
