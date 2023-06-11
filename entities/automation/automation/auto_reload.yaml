@@ -6,7 +6,7 @@ trigger:
   event_type: folder_watcher
   event_data:
     event_type: modified
-condition: "{{ '/config/includes/automation' in trigger.event.data.folder }}"
+condition: "{{ '/config/entities/automation' in trigger.event.data.folder }}"
 action:
   - service: persistent_notification.create
     data:

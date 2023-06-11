@@ -6,12 +6,7 @@ trigger:
   event_type: folder_watcher
   event_data:
     event_type: modified
-condition: >
-  {{
-    trigger.event.data.file == 'scripts.yaml'
-    and
-    trigger.event.data.folder == '/config/includes'
-  }}
+condition: "{{ '/config/entities/script' in trigger.event.data.folder }}"
 action:
   - service: persistent_notification.create
     data:
