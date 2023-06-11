@@ -1,0 +1,20 @@
+---
+notify_will:
+  description: Send a notification to Will's phone and the HA UI
+  fields:
+    message:
+      description: The message body of the notification
+      example: A thing has happened, though you ought to know
+    title:
+      description: The title of the notification
+      example: Something Important!
+  mode: parallel
+  sequence:
+    - data:
+        message: '{{ message }}'
+        title: '{{ title }}'
+      service: persistent_notification.create
+    - data:
+        message: '{{ message }}'
+        title: '{{ title }}'
+      service: notify.mobile_app_will_s_pixel_6_pro

@@ -1,0 +1,14 @@
+---
+name: "Hifi System: Is Volume Muted"
+unique_id: hifi_system_is_volume_muted
+state: >
+  {%
+    if (
+      state_attr("media_player.hifi_system_avr", "source") == "HEOS Music" and
+      states("media_player.hifi_system_heos") != "idle"
+    )
+  %}
+    {{ state_attr("media_player.hifi_system_heos", "is_volume_muted") }}
+  {% else %}
+    {{ state_attr("media_player.hifi_system_avr", "is_volume_muted") }}
+  {% endif %}

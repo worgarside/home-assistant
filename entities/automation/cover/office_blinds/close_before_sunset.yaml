@@ -1,0 +1,17 @@
+---
+# Close the office blinds either when the Sun sets past -6' or at 21:30
+alias: /cover/office_blinds/close_after_sunset
+id: cover_office_blinds_close_after_sunset
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.sun_elevation
+    below: -6
+  - platform: time
+    at: "21:30:00"
+action:
+  - wait_template: "{{ is_state('binary_sensor.office_window', 'off') }}"
+    timeout: 3600
+    continue_on_timeout: true
+  - service: cover.close_cover
+    target:
+      entity_id: cover.office_blinds

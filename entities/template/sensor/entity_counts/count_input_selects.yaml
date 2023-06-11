@@ -1,0 +1,6 @@
+---
+name: Count Input Selects
+unique_id: count_input_selects
+state: '{{ states.input_select | list | length }}'
+icon: mdi:form-dropdown
+unit_of_measurement: ''

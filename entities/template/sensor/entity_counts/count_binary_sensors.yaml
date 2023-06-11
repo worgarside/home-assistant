@@ -1,0 +1,6 @@
+---
+name: Count Binary Sensors
+unique_id: count_binary_sensors
+state: '{{ states.binary_sensor| list | length }}'
+icon: mdi:electric-switch
+unit_of_measurement: ''

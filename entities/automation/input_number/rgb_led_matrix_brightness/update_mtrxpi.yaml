@@ -1,0 +1,12 @@
+---
+alias: /input_number/rgb_led_matrix_brightness/update_mtrxpi
+id: input_number_rgb_led_matrix_brightness_update_mtrxpi
+mode: restart
+trigger:
+  - platform: state
+    entity_id: input_number.rgb_led_matrix_brightness
+action:
+  - service: mqtt.publish
+    data:
+      topic: /homeassistant/led_matrix/brightness
+      payload: "{{ states('input_number.rgb_led_matrix_brightness') | int }}"

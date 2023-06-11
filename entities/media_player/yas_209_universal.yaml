@@ -1,0 +1,40 @@
+---
+platform: universal
+id: media_player.yas_209_universal
+name: YAS-209
+device_class: speaker
+children:
+  - sensor.will_s_yas_209_bridge_input
+attributes:
+  media_album_name: sensor.will_s_yas_209_bridge_input|media_album_name
+  media_artist: sensor.will_s_yas_209_bridge_input|media_artist
+  media_duration: sensor.will_s_yas_209_bridge_input|media_duration
+  media_title: sensor.will_s_yas_209_bridge_input|media_title
+  volume_level: sensor.will_s_yas_209_bridge_input|volume_level
+commands:
+  turn_on:
+    service: pyscript.yas_209_play
+  turn_off:
+    service: pyscript.yas_209_stop
+  volume_up:
+    service: pyscript.yas_209_volume_up
+  volume_down:
+    service: pyscript.yas_209_volume_down
+  volume_set:
+    service: pyscript.yas_209_set_volume_level
+    data:
+      volume_level: '{{ volume_level }}'
+  volume_mute:
+    service: pyscript.yas_209_mute
+  media_play_pause:
+    service: pyscript.yas_209_play_pause
+  media_play:
+    service: pyscript.yas_209_play
+  media_pause:
+    service: pyscript.yas_209_pause
+  media_stop:
+    service: pyscript.yas_209_stop
+  media_next_track:
+    service: pyscript.yas_209_next_track
+  media_previous_track:
+    service: pyscript.yas_209_previous_track

@@ -1,0 +1,26 @@
+---
+alias: /cover/office_desk/work_mode
+id: cover_office_desk_work_mode
+trigger:
+  - platform: time_pattern
+    minutes: 58
+condition:
+  - alias: "If standing target has not been met"
+    condition: numeric_state
+    entity_id: sensor.office_desk_standing_mode_percentage
+    below: input_number.office_desk_standing_mode_percentage_target
+action:
+  - alias: "Send debug notification"
+    service: script.debug_persistent_notification
+    data:
+      title: "Work Mode: Standing Target Not Met \U0001F621"
+      message: >
+        {{ states('office_desk_standing_time_remaining') }} minutes remaining...
+  - alias: "Wait for desk to be occupied"
+    wait_template: "{{ states('binary_sensor.office_desk_occupied') == 'on' }}"
+    timeout: 3480 # Gives a 2 minute buffer before the next trigger
+    continue_on_timeout: false
+  - alias: "Delay 30 seconds in case I'm still plugging stuff in"
+    delay: 00:00:30
+  - alias: "Set desk to standing mode"
+    service: script.office_desk_standing_mode

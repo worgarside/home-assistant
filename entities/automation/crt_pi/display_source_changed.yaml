@@ -1,0 +1,8 @@
+---
+alias: /crt-pi/display_source_changed
+id: crt_pi_display_source_changed
+trigger:
+  - platform: state
+    entity_id: input_select.crt_pi_display_source
+action:
+  - service: script.crt_pi_update_display

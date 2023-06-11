@@ -1,0 +1,30 @@
+---
+alias: /input_boolean/office_entity_header/auto_turn_on
+id: input_boolean_office_entity_header_auto_turn_on
+trigger:
+  - platform: state
+    entity_id:
+      - light.office_lights
+      - media_player.office_media_players
+      - switch.office_switches
+    from:
+      - idle
+      - "off"
+      - unavailable
+      - unknown
+    to:
+      - idle
+      - paused
+      - playing
+      - "on"
+condition: "{{ states('input_boolean.office_entity_header') == 'off' }}"
+action:
+  - service: automation.turn_off
+    target:
+      entity_id: automation.input_boolean_office_entity_header_on
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.office_entity_header
+  - service: automation.turn_on
+    target:
+      entity_id: automation.input_boolean_office_entity_header_on

@@ -1,0 +1,9 @@
+---
+# https://www.home-assistant.io/integrations/template
+
+template:
+  - sensor: !include_dir_list ../entities/template/sensor
+  - binary_sensor: !include_dir_list ../entities/template/binary_sensor
+
+# Templates with triggers are written as lists inside their files
+template split: !include_dir_merge_list ../entities/template/triggered

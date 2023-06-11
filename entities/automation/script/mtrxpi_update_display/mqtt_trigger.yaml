@@ -1,0 +1,8 @@
+---
+alias: /script/mtrxpi_update_display/mqtt_trigger
+id: mqtt_script_mtrxpi_update_display_run
+trigger:
+  - platform: mqtt
+    topic: /home-assistant/script/mtrxpi_update_display/run
+action:
+  - service: script.mtrxpi_update_display

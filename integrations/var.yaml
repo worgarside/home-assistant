@@ -1,0 +1,4 @@
+---
+# https://www.home-assistant.io/integrations/var
+
+var: !include_dir_merge_named ../entities/var

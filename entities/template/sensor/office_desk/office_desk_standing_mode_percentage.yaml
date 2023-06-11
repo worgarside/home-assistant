@@ -1,0 +1,15 @@
+---
+name: Office Desk Standing Mode Percentage
+unique_id: office_desk_standing_mode_percentage
+icon: mdi:percent
+unit_of_measurement: "%"
+state: >
+  {%
+    set total_time = states('sensor.office_desk_occupied_cumulative_time') |
+      float(default=0.0)
+  %}
+  {%
+    set standing_time = states('sensor.office_desk_standing_occupied_cumulative_time') |
+      float(default=0.0)
+  %}
+  {{ ( ( standing_time / total_time ) * 100 ) | round(2) }}

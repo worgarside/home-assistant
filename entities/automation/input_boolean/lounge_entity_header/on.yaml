@@ -1,0 +1,11 @@
+---
+alias: /input_boolean/lounge_entity_header/on
+id: input_boolean_lounge_entity_header_on
+trigger:
+  - platform: state
+    entity_id: input_boolean.lounge_entity_header
+    to: "on"
+action:
+  - service: light.turn_on
+    target:
+      area_id: lounge

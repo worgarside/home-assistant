@@ -1,0 +1,6 @@
+---
+name: Count Sensors
+unique_id: count_sensors
+state: '{{ states.sensor | list | length }}'
+icon: mdi:counter
+unit_of_measurement: ''

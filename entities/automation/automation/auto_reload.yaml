@@ -1,0 +1,16 @@
+---
+alias: /automation/auto_reload
+id: automation_auto_reload
+trigger:
+  platform: event
+  event_type: folder_watcher
+  event_data:
+    event_type: modified
+condition: "{{ '/config/includes/automation' in trigger.event.data.folder }}"
+action:
+  - service: persistent_notification.create
+    data:
+      title: Automations reloading...
+      message: >
+        Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
+  - service: automation.reload

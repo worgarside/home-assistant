@@ -1,0 +1,24 @@
+---
+alias: /hue_remote/office_desk/button_2_3/any_press
+id: hue_remote_office_desk_button2_3_press
+mode: single
+max_exceeded: silent
+trigger:
+  - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+    domain: hue
+    platform: device
+    subtype: 2
+    type:
+      - long_release
+      - repeat
+      - short_release
+  - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+    domain: hue
+    platform: device
+    subtype: 3
+    type:
+      - long_release
+      - repeat
+      - short_release
+action:
+  - service: script.office_desk_stop_moving

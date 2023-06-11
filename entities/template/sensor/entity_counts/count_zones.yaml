@@ -1,0 +1,6 @@
+---
+name: Count Zones
+unique_id: count_zones
+state: '{{ states.zone | list | length }}'
+icon: mdi:map-marker-multiple
+unit_of_measurement: ''

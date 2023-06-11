@@ -1,0 +1,13 @@
+---
+name: ClmtPi Floorplan Icon
+unique_id: clmtpi_floorplan_icon
+state: >
+  {%- if states('binary_sensor.clmtpi_online') == 'off' %}
+    offline
+  {%- elif states('sensor.lounge_temperature') | int <= 17.5 %}
+    cold
+  {%- elif states('sensor.lounge_temperature') | int >= 22.5 %}
+    hot
+  {% else %}
+    on
+  {%- endif %}

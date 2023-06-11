@@ -1,0 +1,35 @@
+---
+alias: /mtrxpi/update_display
+id: mtrxpi_display_update_display
+trigger:
+  - platform: state
+    entity_id:
+      - media_player.all_speakers
+      - media_player.downstairs_speakers
+      - media_player.hifi_system
+      - media_player.kitchen_nest_mini
+      - media_player.lounge_chromecast
+      - media_player.spotify_will_garside
+      - media_player.upstairs_speakers
+      - media_player.will_s_yas_209
+condition: |
+  {{
+    states('input_select.mtrxpi_display_source') ==
+      trigger.to_state.entity_id and
+    trigger.to_state.state not in ('unavailable', 'unknown') and
+    (
+      (
+        trigger.to_state.attributes.media_title !=
+          trigger.from_state.attributes.media_title or
+        trigger.to_state.attributes.media_artist !=
+          trigger.from_state.attributes.media_artist or
+        trigger.to_state.attributes.media_album_name !=
+          trigger.from_state.attributes.media_album_name or
+        trigger.to_state.attributes.entity_picture !=
+          trigger.from_state.attributes.entity_picture or
+        trigger.to_state.state != trigger.from_state.state
+      )
+    )
+  }}
+action:
+  - service: script.mtrxpi_update_display

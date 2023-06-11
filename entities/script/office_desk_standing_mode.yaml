@@ -1,0 +1,9 @@
+---
+office_desk_standing_mode:
+  mode: single
+  sequence:
+    - service: script.turn_on
+      data:
+        entity_id: script.office_desk_set_position
+        variables:
+          position: "{{ states('input_number.office_desk_standing_height') | int(default=80) }}"

@@ -1,0 +1,12 @@
+---
+alias: /crt-pi/mqtt-sync-mini-crt-fan
+id: crt_pi_mqtt_sync_mini_crt_fan
+description: Sync the state of `input_boolean.mini_crt_fan` with `crt-pi`
+trigger:
+  - platform: state
+    entity_id: input_boolean.mini_crt_fan
+action:
+  - service: mqtt.publish
+    data:
+      topic: /crt-pi/fan/state
+      payload_template: "{{ states('input_boolean.mini_crt_fan')}}"

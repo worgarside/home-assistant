@@ -1,0 +1,6 @@
+---
+name: Count Input Numbers
+unique_id: count_input_numbers
+state: '{{ states.input_number | list | length }}'
+icon: mdi:numeric-1-box-multiple-outline
+unit_of_measurement: ''
