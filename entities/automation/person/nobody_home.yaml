@@ -1,31 +1,31 @@
 ---
-  - alias: /person/nobody_home
-    id: person_nobody_home
-    description: "Turn off all physical devices when nobody is home"
-    trigger:
-      platform: state
-      entity_id:
-        - person.vic
-        - person.will
-      from: 'home'
-      to: 'not_home'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: person.vic
-          state: 'not_home'
-        - condition: state
-          entity_id: person.will
-          state: 'not_home'
-    action:
-      - alias: "Turn off each physical room"
-        repeat:
-          for_each:
-            - bedroom
-            - lounge
-            - office
-          sequence:
-            - service: "{{ repeat.item }}"
-              target:
-                area_id: "{{ room }}"
+alias: /person/nobody_home
+id: person_nobody_home
+description: "Turn off all physical devices when nobody is home"
+trigger:
+  platform: state
+  entity_id:
+    - person.vic
+    - person.will
+  from: 'home'
+  to: 'not_home'
+condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: person.vic
+      state: 'not_home'
+    - condition: state
+      entity_id: person.will
+      state: 'not_home'
+action:
+  - alias: "Turn off each physical room"
+    repeat:
+      for_each:
+        - bedroom
+        - lounge
+        - office
+      sequence:
+        - service: "{{ repeat.item }}"
+          target:
+            area_id: "{{ room }}"
