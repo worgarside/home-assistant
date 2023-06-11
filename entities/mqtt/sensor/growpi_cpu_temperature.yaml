@@ -1,0 +1,9 @@
+---
+force_update: true
+icon: mdi:memory
+name: GrowPi CPU Temperature
+state_class: measurement
+state_topic: /homeassistant/growpi/stats
+unique_id: growpi_cpu_temperature
+unit_of_measurement: "°C"
+value_template: '{{ value_json.temperature }}'

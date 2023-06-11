@@ -1,0 +1,22 @@
+---
+alias: /automation/auto-reload-complete
+id: automation_auto_reload_complete
+trigger:
+  platform: event
+  event_type: automation_reloaded
+action:
+  - service: persistent_notification.create
+    data:
+      title: Automation Reload Complete
+      # yamllint disable-line rule:line-length
+      message: >
+        {{
+          [
+            "( ._. )",
+            "( -_•) \U0001F52B",
+            "(ง ◉ _ ◉)ง",
+            "ʕっ•ᴥ•ʔっ",
+            "(⌐■_■)",
+            "<(^_^)>"
+          ] | random
+        }}

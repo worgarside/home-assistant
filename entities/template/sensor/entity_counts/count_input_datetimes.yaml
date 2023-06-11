@@ -1,0 +1,6 @@
+---
+name: Count Input Datetimes
+unique_id: count_input_datetimes
+state: '{{ states.input_datetime | list | length }}'
+icon: mdi:calendar-edit
+unit_of_measurement: ''

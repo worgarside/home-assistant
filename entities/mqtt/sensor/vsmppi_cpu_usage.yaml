@@ -1,0 +1,9 @@
+---
+force_update: true
+icon: mdi:cpu-32-bit
+name: VSMPPi CPU Usage
+state_class: measurement
+state_topic: /homeassistant/vsmppi/stats
+unique_id: vsmppi_cpu_usage
+unit_of_measurement: '%'
+value_template: '{{ value_json.cpu_usage }}'

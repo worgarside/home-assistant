@@ -1,0 +1,14 @@
+---
+name: Database Record Count
+unique_id: database_record_count
+state: >
+  {% set ns = namespace(total = 0) -%}
+  {%- for state in states.sensor %}
+      {%- if state.entity_id.endswith('_table_record_count') %}
+          {%- set ns.total = ns.total + (state.state|int) %}
+      {%- endif %}
+  {%- endfor %}
+
+  {{ ns.total }}
+icon: mdi:table-large
+unit_of_measurement: Records

@@ -1,0 +1,9 @@
+---
+force_update: true
+icon: mdi:weight
+name: GrowPi Average Load (15 min)
+state_class: measurement
+state_topic: /homeassistant/growpi/stats
+unique_id: growpi_average_load_15_min_
+unit_of_measurement: ''
+value_template: '{{ value_json.load_15m }}'

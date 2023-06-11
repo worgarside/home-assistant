@@ -1,0 +1,16 @@
+---
+# https://www.home-assistant.io/integrations/recorder
+
+recorder:
+  db_url: !secret mariadb_db_url
+  purge_keep_days: 31
+  exclude:
+    domains:
+      - automation
+    entities:
+      - sensor.database_record_count
+      - sensor.database_size
+    entity_globs:
+      - sensor.*_table_record_count
+      - sensor.*_table_size
+      - sensor.*_voltage

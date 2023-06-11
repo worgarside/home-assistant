@@ -1,0 +1,20 @@
+---
+alias: /hue-remote/lounge/button-1/press
+id: hue_remote_lounge_button_1_press
+mode: single
+max_exceeded: silent
+trigger:
+  - device_id: 8c34149c1ac7c90b74a567f366ac8543
+    domain: hue
+    platform: device
+    type: short_press
+    subtype: 1
+  - device_id: 8c34149c1ac7c90b74a567f366ac8543
+    domain: hue
+    platform: device
+    type: short_release
+    subtype: 1
+action:
+  - service: light.turn_on
+    target:
+      area_id: lounge

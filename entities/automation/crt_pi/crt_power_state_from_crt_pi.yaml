@@ -1,0 +1,28 @@
+---
+alias: /crt-pi/crt-power-state-from-crt-pi
+id: crt_pi_crt_power_state_from_crt_pi
+trigger:
+  - platform: mqtt
+    topic: /home-assistant/crt-pi/state-from-crt
+action:
+  - service: script.debug_persistent_notification
+    data:
+      title: Mini CRT Power State
+      message: '{{ trigger.payload }}'
+  - choose:
+      - conditions: "{{ trigger.payload  | string | lower == 'true' }}"
+        sequence:
+          - service: input_boolean.turn_on
+            data:
+              entity_id: input_boolean.mini_crt_power
+      - conditions: "{{ trigger.payload  | string | lower == 'false' }}"
+        sequence:
+          - service: input_boolean.turn_off
+            data:
+              entity_id: input_boolean.mini_crt_power
+    default:
+      - service: persistent_notification.create
+        data:
+          title: Mini CRT Power State
+          message: 'Unknown state: {{ trigger.payload }}'
+          notification_id: mini_crt_power_state_unknown

@@ -1,0 +1,14 @@
+---
+mode: single
+sequence:
+  - data:
+      cluster_id: 57348
+      cluster_type: in
+      command: 2
+      command_type: server
+      endpoint_id: 1
+      ieee: dc:8e:95:ff:fe:f9:ad:13
+      params:
+          # yamllint disable-line rule:line-length
+        code: BUsjwBEqAkABAbwG4A0DQAFAG+ALAQNlAioCQBtAA+ADAUAP4AMDQAHgBw/gAwEPlJ1LIwUJKgL//0sjBQkqAg==
+    service: zha.issue_zigbee_cluster_command

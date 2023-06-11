@@ -1,0 +1,5 @@
+---
+host: !secret st_local_hostname
+name: ST MacBook Pro Online
+platform: ping
+scan_interval: 60

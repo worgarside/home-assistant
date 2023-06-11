@@ -1,0 +1,5 @@
+---
+name: Sun Elevation
+unique_id: sun_elevation
+state: "{{ state_attr('sun.sun', 'elevation') }}"
+unit_of_measurement: °

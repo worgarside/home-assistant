@@ -1,0 +1,9 @@
+---
+force_update: true
+icon: mdi:cpu-32-bit
+name: GrowPi CPU Usage
+state_class: measurement
+state_topic: /homeassistant/growpi/stats
+unique_id: growpi_cpu_usage
+unit_of_measurement: '%'
+value_template: '{{ value_json.cpu_usage }}'

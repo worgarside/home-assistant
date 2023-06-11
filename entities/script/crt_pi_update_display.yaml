@@ -1,0 +1,43 @@
+---
+description: Update the CRT Pi display from the chosen media player's track
+mode: parallel
+sequence:
+  - alias: Set Variables
+    variables:
+      media_player: "{{ states('input_select.crt_pi_display_source') }}"
+      album_artwork_url_prefix: |
+        {% set url = state_attr(media_player, 'entity_picture') %}
+        {{
+          "http://homeassistant.local:8123"
+          if url and url.startswith('/api/')
+          else ""
+        }}
+  - service: script.debug_persistent_notification
+    data:
+      title: CRT Display Update
+      # yamllint disable rule:line-length
+      message: |
+        ```
+        Title:   {{ state_attr(media_player, 'media_title') }}
+        Artist:  {{ state_attr(media_player, 'media_artist') }}
+        Album:   {{ state_attr(media_player, 'media_album_name') }}
+        Artwork: {{ album_artwork_url_prefix }}{{ state_attr(media_player, 'entity_picture') }}
+        State:   {{ states(media_player) }}
+
+        Topic:   /crt-pi/display/update_display
+        Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
+        ```
+      # yamllint enable rule:line-length
+  - service: mqtt.publish
+    data:
+      topic: /crt-pi/display/update_display
+      # yamllint disable rule:line-length
+      payload: |
+        {
+          "title": "{{ state_attr(media_player, 'media_title') }}",
+          "artist": "{{ state_attr(media_player, 'media_artist') }}",
+          "album": "{{ state_attr(media_player, 'media_album_name') }}",
+          "album_artwork_url": "{{ album_artwork_url_prefix }}{{ state_attr(media_player, 'entity_picture') }}",
+          "state": "{{ states(media_player) }}"
+        }
+      # yamllint enable rule:line-length

@@ -1,0 +1,9 @@
+---
+force_update: true
+icon: mdi:harddisk
+name: VSMPPi Disk Usage
+state_class: measurement
+state_topic: /homeassistant/vsmppi/stats
+unique_id: vsmppi_disk_usage
+unit_of_measurement: '%'
+value_template: '{{ value_json.disk_usage_percent }}'

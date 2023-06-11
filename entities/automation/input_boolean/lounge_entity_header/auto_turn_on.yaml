@@ -1,0 +1,32 @@
+---
+alias: /input-boolean/lounge-entity-header/auto-turn-on
+id: input_boolean_lounge_entity_header_auto_turn_on
+trigger:
+  - platform: state
+    entity_id:
+      - light.lounge_lights
+      - media_player.lounge_media_players
+      - remote.lounge_chromecast
+      - remote.lounge_tv
+      - switch.lounge_switches
+    from:
+      - idle
+      - "off"
+      - unavailable
+      - unknown
+    to:
+      - idle
+      - paused
+      - playing
+      - "on"
+condition: "{{ states('input_boolean.lounge_entity_header') == 'off' }}"
+action:
+  - service: automation.turn_off
+    target:
+      entity_id: automation.input_boolean_lounge_entity_header_on
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.lounge_entity_header
+  - service: automation.turn_on
+    target:
+      entity_id: automation.input_boolean_lounge_entity_header_on

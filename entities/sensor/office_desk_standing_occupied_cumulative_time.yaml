@@ -1,0 +1,8 @@
+---
+end: '{{ now() }}'
+entity_id: binary_sensor.office_desk_standing_and_occupied
+name: Office Desk Standing/Occupied Cumulative Time
+platform: history_stats
+start: '{{ today_at(''04:00'') }}'
+state: 'on'
+type: time

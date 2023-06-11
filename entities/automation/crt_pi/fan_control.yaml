@@ -1,0 +1,36 @@
+---
+alias: /crt-pi/fan-control
+id: crt_pi_fan_control
+trigger:
+  - platform: state
+    entity_id: sensor.crtpi_cpu_temperature
+condition: >
+  {{
+    (
+      (
+        ( states('sensor.crtpi_cpu_temperature') | float ) >
+        ( states('input_number.crt_tv_fan_auto_on_threshold') | int )
+      )
+      !=
+      ( states('input_boolean.mini_crt_fan') | bool )
+    )
+    and
+    (
+      states.input_boolean.mini_crt_fan.last_changed <
+      ( utcnow() - timedelta(minutes=5) )
+    )
+  }}
+action:
+  - if: >
+      {{
+        states('sensor.crtpi_cpu_temperature') | float >
+        states('input_number.crt_tv_fan_auto_on_threshold') | int
+      }}
+    then:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.mini_crt_fan
+    else:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.mini_crt_fan

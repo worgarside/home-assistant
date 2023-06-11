@@ -1,0 +1,12 @@
+---
+alias: /cover/bedroom-blinds/open-before-sunrise
+id: cover_bedroom_blinds_open_before_sunrise
+description: Open the bedroom blinds when the Sun rises past -6'
+trigger:
+  platform: numeric_state
+  entity_id: sensor.sun_elevation
+  above: -6
+action:
+  - service: cover.open_cover
+    target:
+      entity_id: cover.bedroom_blinds
