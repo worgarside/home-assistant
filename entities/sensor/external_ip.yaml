@@ -12,5 +12,4 @@ name: External IP
 platform: rest
 resource: http://ip.jsontest.com
 scan_interval: 300
-unit_of_measurement: '%'
 value_template: '{{ value_json.ip }}'
