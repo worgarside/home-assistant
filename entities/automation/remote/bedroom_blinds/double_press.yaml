@@ -1,5 +1,6 @@
 ---
 alias: /remote/bedroom-blinds/double-press
+id: remote_bedroom_blinds_double_press
 trigger:
   - platform: event
     event_type: zha_event

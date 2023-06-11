@@ -1,6 +1,6 @@
 ---
-alias: /switch/st_macbook_pro/turn_on_when_battery_low
-id: switch.st_macbook_pro_turn_on_when_battery_low
+alias: /switch/st-macbook-pro/turn-on-when-battery-low
+id: switch_st_macbook_pro_turn_on_when_battery_low
 trigger:
   - platform: numeric_state
     entity_id: sensor.st_macbook_pro_internal_battery_level

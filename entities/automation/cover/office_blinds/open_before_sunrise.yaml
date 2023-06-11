@@ -1,7 +1,7 @@
 ---
-# Open the office blinds when the Sun rises past -6'
-alias: /cover/office_blinds/open_before_sunrise
+alias: /cover/office-blinds/open-before-sunrise
 id: cover_office_blinds_open_before_sunrise
+description: Open the office blinds when the Sun rises past -6'
 trigger:
   platform: numeric_state
   entity_id: sensor.sun_elevation

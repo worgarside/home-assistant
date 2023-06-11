@@ -1,6 +1,6 @@
 ---
-alias: /mtrxpi/update_display
-id: mtrxpi_display_update_display
+alias: /mtrxpi/update-display
+id: mtrxpi_update_display
 trigger:
   - platform: state
     entity_id:

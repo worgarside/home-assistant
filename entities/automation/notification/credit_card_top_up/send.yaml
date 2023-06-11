@@ -1,6 +1,6 @@
 ---
-alias: /notification/credit_card_top_up/send
-id: send_cc_top_up_notif
+alias: /notification/credit-card-top-up/send
+id: notification_credit_card_top_up_send
 trigger:
   - platform: time
     at:

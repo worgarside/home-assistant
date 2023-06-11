@@ -1,5 +1,6 @@
 ---
 alias: /remote/office-desk/double-press
+id: remote_office_desk_double_press
 trigger:
   - platform: event
     event_type: zha_event

@@ -1,5 +1,6 @@
 ---
 alias: /remote/lounge-lamps/single-press
+id: remote_lounge_lamps_single_press
 trigger:
   - platform: event
     event_type: zha_event

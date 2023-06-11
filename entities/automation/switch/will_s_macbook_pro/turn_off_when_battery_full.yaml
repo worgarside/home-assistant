@@ -1,6 +1,6 @@
 ---
-alias: /switch/will_s_macbook_pro/turn_off_when_battery_full
-id: will_s_macbook_pro_battery_full
+alias: /switch/will-s-macbook-pro/turn-off-when-battery-full
+id: switch_will_s_macbook_pro_turn_off_when_battery_full
 trigger:
   - platform: numeric_state
     entity_id: sensor.wills_macbook_pro_internal_battery_level

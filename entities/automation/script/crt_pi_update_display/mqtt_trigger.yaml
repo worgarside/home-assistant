@@ -1,6 +1,6 @@
 ---
-alias: /script/crt_pi_update_display/mqtt_trigger
-id: mqtt_script_crt_pi_update_display_run
+alias: /script/crt-pi-update-display/mqtt-trigger
+id: script_crt_pi_update_display_mqtt_trigger
 trigger:
   - platform: mqtt
     topic: /home-assistant/script/crt_pi_update_display/run

@@ -1,6 +1,6 @@
 ---
-alias: /crt-pi/fan_control
-id: crt-pi_fan_control
+alias: /crt-pi/fan-control
+id: crt_pi_fan_control
 trigger:
   - platform: state
     entity_id: sensor.crtpi_cpu_temperature

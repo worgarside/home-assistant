@@ -1,5 +1,6 @@
 ---
 alias: /remote/office-desk/single-press
+id: remote_office_desk_single_press
 trigger:
   - platform: event
     event_type: zha_event

@@ -1,7 +1,7 @@
 ---
-# Open the bedroom blinds when the Sun rises past -6'
-alias: /cover/bedroom_blinds/open_before_sunrise
+alias: /cover/bedroom-blinds/open-before-sunrise
 id: cover_bedroom_blinds_open_before_sunrise
+description: Open the bedroom blinds when the Sun rises past -6'
 trigger:
   platform: numeric_state
   entity_id: sensor.sun_elevation
