@@ -117,8 +117,8 @@ labels:
 
   - label: ha:template
     files:
-      - ^entities/template/.+$
+      - ^entities/template/.+\.yaml$
 
   - label: ha:variables
     files:
-      - ^entities/variable/.+$
+      - ^entities/var/.+\.yaml$
