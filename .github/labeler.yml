@@ -36,7 +36,7 @@ labels:
 
   - label: ha:automations
     files:
-      - ^entities/automations/.+\.yaml$
+      - ^entities/automation/.+\.yaml$
 
   - label: ha:config
     files:
