@@ -8,17 +8,31 @@ trigger:
     domain: hue
     platform: device
     subtype: 2
-    type:
-      - long_release
-      - repeat
-      - short_release
+    type: long_release
+  - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+    domain: hue
+    platform: device
+    subtype: 2
+    type: repeat
+  - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+    domain: hue
+    platform: device
+    subtype: 2
+    type: short_release
   - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
     domain: hue
     platform: device
     subtype: 3
-    type:
-      - long_release
-      - repeat
-      - short_release
+    type: long_release
+  - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+    domain: hue
+    platform: device
+    subtype: 3
+    type: repeat
+  - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+    domain: hue
+    platform: device
+    subtype: 3
+    type: short_release
 action:
   - service: script.office_desk_stop_moving
