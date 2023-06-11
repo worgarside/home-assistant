@@ -1,12 +1,12 @@
 ---
 force_update: true
 headers:
-  Authorization: '!secret nabu_casa_online_access_token'
+  Authorization: !secret nabu_casa_online_access_token
   Content-Type: application/json
 method: GET
 name: Nabu Casa Online
 platform: rest
-resource: '!secret nabu_casa_url_online_sensor'
+resource: !secret nabu_casa_url_online_sensor
 scan_interval: 150
 unit_of_measurement: '%'
 value_template: '{{ value_json[''state''] }}'
