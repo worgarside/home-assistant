@@ -25,7 +25,7 @@ fields:
     example: false
     required: false
     selector:
-      boolean: {}
+      boolean:
   close_blinds_window_delay:
     name: Close Blinds Window Delay
     description: The delay before closing the blinds if the window is open
@@ -33,7 +33,7 @@ fields:
     default: "00:01:00"
     required: false
     selector:
-      time: {}
+      time:
   close_blinds_with_open_window_after_delay:
     name: Close Blinds With Open Window After Delay
     description: Whether to close the blinds if the window is open after a delay
@@ -41,7 +41,7 @@ fields:
     example: false
     required: false
     selector:
-      boolean: {}
+      boolean:
 sequence:
   - alias: "Turn off each physical domain"
     repeat:
