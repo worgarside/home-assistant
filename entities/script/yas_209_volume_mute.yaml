@@ -1,15 +1,14 @@
 ---
-yas_209_volume_mute:
-  mode: single
-  sequence:
-    - data:
-        cluster_id: 57348
-        cluster_type: in
-        command: 8
-        command_type: server
-        endpoint_id: 1
-        ieee: dc:8e:95:ff:fe:f9:ad:13
-        params:
+mode: single
+sequence:
+  - data:
+      cluster_id: 57348
+      cluster_type: in
+      command: 8
+      command_type: server
+      endpoint_id: 1
+      ieee: dc:8e:95:ff:fe:f9:ad:13
+      params:
           # yamllint disable-line rule:line-length
-          code: BTcj2REsAuADAQG7BuAFA0AB4AMT4AcBQBvAAUALwAPAAcAPQAfgAwFAD0ADQAEPZJ03I/wILAL//zcj/AgsAg==
-      service: zha.issue_zigbee_cluster_command
+        code: BTcj2REsAuADAQG7BuAFA0AB4AMT4AcBQBvAAUALwAPAAcAPQAfgAwFAD0ADQAEPZJ03I/wILAL//zcj/AgsAg==
+    service: zha.issue_zigbee_cluster_command

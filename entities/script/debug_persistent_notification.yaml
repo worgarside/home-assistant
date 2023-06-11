@@ -1,20 +1,19 @@
 ---
-debug_persistent_notification:
-  description: Create a persistent notification if debugging is turned on
-  fields:
-    message:
-      description: The notification's message body
-      example: More detail about this thing
-    title:
-      description: The notification's title
-      example: Something has happened!
-  mode: parallel
-  sequence:
-    - alias: Check if debugging is turned on
-      condition: state
-      entity_id: input_boolean.debug_with_persistent_notification
-      state: "on"
-    - data:
-        message: "{{ message }}"
-        title: "{{ title }}"
-      service: persistent_notification.create
+description: Create a persistent notification if debugging is turned on
+fields:
+  message:
+    description: The notification's message body
+    example: More detail about this thing
+  title:
+    description: The notification's title
+    example: Something has happened!
+mode: parallel
+sequence:
+  - alias: Check if debugging is turned on
+    condition: state
+    entity_id: input_boolean.debug_with_persistent_notification
+    state: "on"
+  - data:
+      message: "{{ message }}"
+      title: "{{ title }}"
+    service: persistent_notification.create

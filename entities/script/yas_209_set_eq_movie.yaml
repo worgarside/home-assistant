@@ -1,14 +1,13 @@
 ---
-yas_209_set_eq_movie:
-  mode: single
-  sequence:
-    - data:
-        cluster_id: 57348
-        cluster_type: in
-        command: 2
-        command_type: server
-        endpoint_id: 1
-        ieee: dc:8e:95:ff:fe:f9:ad:13
-        params:
-          code: BXAjqBExAuADAQGsBuAFA0AB4AMT4AcBwBvAAeADD+APC0ABQBvAAQdunXAj0wgxAg==
-      service: zha.issue_zigbee_cluster_command
+mode: single
+sequence:
+  - data:
+      cluster_id: 57348
+      cluster_type: in
+      command: 2
+      command_type: server
+      endpoint_id: 1
+      ieee: dc:8e:95:ff:fe:f9:ad:13
+      params:
+        code: BXAjqBExAuADAQGsBuAFA0AB4AMT4AcBwBvAAeADD+APC0ABQBvAAQdunXAj0wgxAg==
+    service: zha.issue_zigbee_cluster_command

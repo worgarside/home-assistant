@@ -1,15 +1,14 @@
 ---
-yas_209_set_source_tv:
-  mode: single
-  sequence:
-    - data:
-        cluster_id: 57348
-        cluster_type: in
-        command: 6
-        command_type: server
-        endpoint_id: 1
-        ieee: dc:8e:95:ff:fe:f9:ad:13
-        params:
+mode: single
+sequence:
+  - data:
+      cluster_id: 57348
+      cluster_type: in
+      command: 6
+      command_type: server
+      endpoint_id: 1
+      ieee: dc:8e:95:ff:fe:f9:ad:13
+      params:
           # yamllint disable-line rule:line-length
-          code: BWgjqhEqAuADAQHABuAFA0AB4AMT4AcB4AMb4AMLQAHADwJcAirgAAHAC0AbwAEPhZ1oI9sIKgL//2gj2wgqAg==
-      service: zha.issue_zigbee_cluster_command
+        code: BWgjqhEqAuADAQHABuAFA0AB4AMT4AcB4AMb4AMLQAHADwJcAirgAAHAC0AbwAEPhZ1oI9sIKgL//2gj2wgqAg==
+    service: zha.issue_zigbee_cluster_command

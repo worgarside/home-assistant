@@ -1,14 +1,13 @@
 ---
-yas_209_volume_down:
-  mode: single
-  sequence:
-    - data:
-        cluster_id: 57348
-        cluster_type: in
-        command: 2
-        command_type: server
-        endpoint_id: 1
-        ieee: dc:8e:95:ff:fe:f9:ad:13
-        params:
-          code: BUQj0hEpAuADAQHABuAFA0AB4AMTAl0CKeAEAeADG+ADC+APAcA/4AMrD8OdRCPeCCkC//9EI94IKQI=
-      service: zha.issue_zigbee_cluster_command
+mode: single
+sequence:
+  - data:
+      cluster_id: 57348
+      cluster_type: in
+      command: 2
+      command_type: server
+      endpoint_id: 1
+      ieee: dc:8e:95:ff:fe:f9:ad:13
+      params:
+        code: BUQj0hEpAuADAQHABuAFA0AB4AMTAl0CKeAEAeADG+ADC+APAcA/4AMrD8OdRCPeCCkC//9EI94IKQI=
+    service: zha.issue_zigbee_cluster_command
