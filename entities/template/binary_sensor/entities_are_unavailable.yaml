@@ -1,3 +1,4 @@
+---
 name: Entities Are Unavailable
 unique_id: entities_are_unavailable
 state: "{{ states('sensor.count_unavailable_entities') | int(default=-1) != 0 }}"
