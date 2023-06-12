@@ -5,34 +5,44 @@ icon: mdi:medication
 
 path: system_health
 
-#type: custom:grid-layout
-
-#layout:
-#  max_cols: 3
-
 cards:
-
-#  - type: custom:auto-entities
-#    view_layout:
-#      grid-column-start: 3;
-#      grid-column-end: 3;
-#    card:
-#      type: entities
-#      title: Unavailable Entities
-#      show_header_toggle: false
-#    sort:
-#      method: domain
-#    filter:
-#      include:
-#        - state: "unavailable"
-#      exclude:
-#        # Exclude anything from browser mod, named like "domain.a1b2c3d4_e5f6g7h8"
-#        - entity_id: /^light\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$/
-#          # yamllint disable-line rule:line-length
-#        - entity_id: /^media_player\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$/
-#        - entity_id: /^sensor\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$/
-#        - entity_id: /^binary_sensor\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$/
-#        - entity_id: /^switch\..*_led$/ # TP Link switch LEDs
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Unavailable Entities
+          show_header_toggle: false
+        sort:
+          method: domain
+        filter:
+          include:
+            - state: "unavailable"
+          exclude:
+            # yamllint disable rule:line-length
+            # Exclude anything from browser mod, named like "domain.a1b2c3d4_e5f6g7h8"
+            - entity_id: /^(light|media_player|(binary_)?sensor|)\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$/
+            - entity_id: /^binary_sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(fullykiosk|dark_mode)$/
+            - entity_id: /^light\.([a-z]|\d){8}_([a-z]|\d){8}_screen$/
+            - entity_id: /^sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(path|visibility|user(agent)?|height|width)$/
+            - entity_id: /^switch\..+_led$/ # TP Link switch LEDs (only want to see the switches)
+            - entity_id: sensor.hacs # Becomes unavailable when there's no pending updates on restart
+            # GitHub sensors become unavailable when there's no matching data
+            - entity_id: /^sensor\.worgarside_.+_latest_(discussion|release|issue|pull_request|tag)$/
+            # yamllint enable rule:line-length
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.entities_are_unavailable
+            state: "off"
+        card:
+          type: markdown
+          content: Nothing to report here!
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: none;
+              margin-top: -32px;
+            }
 
   - type: custom:vertical-stack-in-card
     cards:
@@ -60,6 +70,8 @@ cards:
             name: Sensors
           - entity: sensor.count_switches
             name: Switches
+          - entity: sensor.count_unavailable_entities
+            name: Unavailable
           - entity: sensor.count_zones
             name: Zones
 
@@ -86,70 +98,69 @@ cards:
           - entity: sensor.statistics_table_record_count
             name: Statistics Table Record Count
 
-
-#  - type: entities
-#    title: Netgear Entities
-#    entities:
-#      - entity: var.netgear_r8000_model_name
-#      - entity: var.netgear_r8000_description
-#      - entity: var.netgear_r8000_serial_number
-#      - entity: var.netgear_r8000_firmware_version
-#      - entity: var.netgear_r8000_smart_agent_version
-#      - entity: var.netgear_r8000_firewall_version
-#      - entity: var.netgear_r8000_vpn_version
-#      - entity: var.netgear_r8000_other_software_version
-#      - entity: var.netgear_r8000_hardware_version
-#      - entity: var.netgear_r8000_other_hardware_version
-#      - entity: var.netgear_r8000_first_use_date
-#      - entity: var.netgear_r8000_device_name
-#      - entity: var.netgear_r8000_firmware_dl_method
-#      - entity: var.netgear_r8000_firmware_last_update
-#      - entity: var.netgear_r8000_firmware_last_checked
-#      - entity: var.netgear_r8000_device_mode
-#      - entity: var.netgear_r8000_today_connection_time
-#      - entity: var.netgear_r8000_today_upload
-#      - entity: var.netgear_r8000_today_download
-#      - entity: var.netgear_r8000_yesterday_connection_time
-#      - entity: var.netgear_r8000_yesterday_upload
-#      - entity: var.netgear_r8000_yesterday_download
-#      - entity: var.netgear_r8000_week_connection_time
-#      - entity: var.netgear_r8000_month_connection_time
-#      - entity: var.netgear_r8000_last_month_connection_time
-#      - entity: var.netgear_r8000_week_upload_total
-#      - entity: var.netgear_r8000_week_upload_average
-#      - entity: var.netgear_r8000_week_download_total
-#      - entity: var.netgear_r8000_week_download_average
-#      - entity: var.netgear_r8000_month_upload_total
-#      - entity: var.netgear_r8000_month_upload_average
-#      - entity: var.netgear_r8000_month_download_total
-#      - entity: var.netgear_r8000_month_download_average
-#      - entity: var.netgear_r8000_last_month_upload_total
-#      - entity: var.netgear_r8000_last_month_upload_average
-#      - entity: var.netgear_r8000_last_month_download_total
-#      - entity: var.netgear_r8000_last_month_download_average
-#      - entity: var.netgear_r8000_current_firmware_version
-#      - entity: var.netgear_r8000_new_firmware_version
-#      - entity: var.netgear_r8000_firmware_release_note
-#      - entity: var.netgear_r8000_cpu_utilization
-#      - entity: var.netgear_r8000_physical_memory
-#      - entity: var.netgear_r8000_memory_utilization
-#      - entity: var.netgear_r8000_physical_flash
-#      - entity: var.netgear_r8000_available_flash
-#      - entity: var.netgear_r8000_ethernet_link_status
-#      - entity: var.netgear_r8000_enable
-#      - entity: var.netgear_r8000_connection_type
-#      - entity: var.netgear_r8000_external_ip_address
-#      - entity: var.netgear_r8000_subnet_mask
-#      - entity: var.netgear_r8000_addressing_type
-#      - entity: var.netgear_r8000_default_gateway
-#      - entity: var.netgear_r8000_mac_address
-#      - entity: var.netgear_r8000_mac_address_override
-#      - entity: var.netgear_r8000_max_mtu_size
-#      - entity: var.netgear_r8000_dns_enabled
-#      - entity: var.netgear_r8000_dns_servers
-#      - entity: var.netgear_r8000_uplink_bandwidth
-#      - entity: var.netgear_r8000_downlink_bandwidth
-#      - entity: var.netgear_r8000_average_ping
+  #  - type: entities
+  #    title: Netgear Entities
+  #    entities:
+  #      - entity: var.netgear_r8000_model_name
+  #      - entity: var.netgear_r8000_description
+  #      - entity: var.netgear_r8000_serial_number
+  #      - entity: var.netgear_r8000_firmware_version
+  #      - entity: var.netgear_r8000_smart_agent_version
+  #      - entity: var.netgear_r8000_firewall_version
+  #      - entity: var.netgear_r8000_vpn_version
+  #      - entity: var.netgear_r8000_other_software_version
+  #      - entity: var.netgear_r8000_hardware_version
+  #      - entity: var.netgear_r8000_other_hardware_version
+  #      - entity: var.netgear_r8000_first_use_date
+  #      - entity: var.netgear_r8000_device_name
+  #      - entity: var.netgear_r8000_firmware_dl_method
+  #      - entity: var.netgear_r8000_firmware_last_update
+  #      - entity: var.netgear_r8000_firmware_last_checked
+  #      - entity: var.netgear_r8000_device_mode
+  #      - entity: var.netgear_r8000_today_connection_time
+  #      - entity: var.netgear_r8000_today_upload
+  #      - entity: var.netgear_r8000_today_download
+  #      - entity: var.netgear_r8000_yesterday_connection_time
+  #      - entity: var.netgear_r8000_yesterday_upload
+  #      - entity: var.netgear_r8000_yesterday_download
+  #      - entity: var.netgear_r8000_week_connection_time
+  #      - entity: var.netgear_r8000_month_connection_time
+  #      - entity: var.netgear_r8000_last_month_connection_time
+  #      - entity: var.netgear_r8000_week_upload_total
+  #      - entity: var.netgear_r8000_week_upload_average
+  #      - entity: var.netgear_r8000_week_download_total
+  #      - entity: var.netgear_r8000_week_download_average
+  #      - entity: var.netgear_r8000_month_upload_total
+  #      - entity: var.netgear_r8000_month_upload_average
+  #      - entity: var.netgear_r8000_month_download_total
+  #      - entity: var.netgear_r8000_month_download_average
+  #      - entity: var.netgear_r8000_last_month_upload_total
+  #      - entity: var.netgear_r8000_last_month_upload_average
+  #      - entity: var.netgear_r8000_last_month_download_total
+  #      - entity: var.netgear_r8000_last_month_download_average
+  #      - entity: var.netgear_r8000_current_firmware_version
+  #      - entity: var.netgear_r8000_new_firmware_version
+  #      - entity: var.netgear_r8000_firmware_release_note
+  #      - entity: var.netgear_r8000_cpu_utilization
+  #      - entity: var.netgear_r8000_physical_memory
+  #      - entity: var.netgear_r8000_memory_utilization
+  #      - entity: var.netgear_r8000_physical_flash
+  #      - entity: var.netgear_r8000_available_flash
+  #      - entity: var.netgear_r8000_ethernet_link_status
+  #      - entity: var.netgear_r8000_enable
+  #      - entity: var.netgear_r8000_connection_type
+  #      - entity: var.netgear_r8000_external_ip_address
+  #      - entity: var.netgear_r8000_subnet_mask
+  #      - entity: var.netgear_r8000_addressing_type
+  #      - entity: var.netgear_r8000_default_gateway
+  #      - entity: var.netgear_r8000_mac_address
+  #      - entity: var.netgear_r8000_mac_address_override
+  #      - entity: var.netgear_r8000_max_mtu_size
+  #      - entity: var.netgear_r8000_dns_enabled
+  #      - entity: var.netgear_r8000_dns_servers
+  #      - entity: var.netgear_r8000_uplink_bandwidth
+  #      - entity: var.netgear_r8000_downlink_bandwidth
+  #      - entity: var.netgear_r8000_average_ping
 
   - type: entities
     entities:
@@ -257,7 +268,7 @@ cards:
           - entity: sensor.speedtest_upload
             name: Upload
         icon: mdi:upload-network-outline
-        line_color: '#e74c3c'
+        line_color: "#e74c3c"
         line_width: 8
         font_size: 75
       - type: custom:mini-graph-card
@@ -273,7 +284,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: markdown
-            content: '# Raspberry Pi Stats'
+            content: "# Raspberry Pi Stats"
           - type: entities
             entities:
               - entity: input_select.pi_stats_legend_sensor_type

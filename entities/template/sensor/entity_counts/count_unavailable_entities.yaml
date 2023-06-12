@@ -1,0 +1,26 @@
+name: Count Unavailable Entities
+unique_id: count_unavailable_entities
+# yamllint disable rule:line-length
+state: >
+  {% set unavailable_entities = states | selectattr('state', 'eq', 'unavailable') | list %}
+  {% set ns = namespace(total = 0) -%}
+  {% for e in unavailable_entities %}
+    {%
+      if not (
+        e.entity_id is match("^(light|media_player|(binary_)?sensor|)\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$", ignorecase=True) or
+        e.entity_id is match("^binary_sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(fullykiosk|dark_mode)$") or
+        e.entity_id is match("^light\.([a-z]|\d){8}_([a-z]|\d){8}_screen$") or
+        e.entity_id is match("^sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(path|visibility|user(agent)?|height|width)$") or
+        e.entity_id is match("^switch\..+_led$") or
+        e.entity_id == "sensor.hacs" or
+        e.entity_id is match("^sensor\.worgarside_.+_latest_(discussion|release|issue|pull_request|tag)$")
+      )
+    %}
+      {% set ns.total = ns.total + 1 %}
+    {% endif %}
+  {% endfor %}
+
+  {{ ns.total }}
+icon: mdi:lan-disconnect
+unit_of_measurement: ""
+# yamllint enable rule:line-length
