@@ -5,8 +5,6 @@
 #   - Browser Mod entities: they're unavailable as soon as the browser is closed
 #   - TP Link Kasa switch LEDS: if the switch is unavailable, don't count the LED as a separate
 #       entity
-#   - `sensor.hacs`: seems to be unavailable if there aren't any pending updates (possibly only on
-#       restart)
 #   - GitHub sensors: if there's no matching data they become unavailable
 
 name: Count Unavailable Entities
@@ -26,7 +24,6 @@ attributes:
         "^light\.([a-z]|\d){8}_([a-z]|\d){8}_screen$",
         "^sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(path|visibility|user(agent)?|height|width)$",
         "^switch\..+_led$",
-        "sensor\.hacs",
         "^sensor\.worgarside_.+_latest_(discussion|release|issue|pull_request|tag)$"
       ]
     %}
