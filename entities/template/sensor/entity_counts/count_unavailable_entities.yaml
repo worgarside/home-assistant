@@ -15,6 +15,7 @@ state: "{{ this.attributes.entities | list | count }}"
 icon: mdi:lan-disconnect
 unit_of_measurement: ""
 attributes:
+  # yamllint disable rule:line-length
   entities: >
     {% set unavailable_entities = namespace(entities=[]) %}
 
@@ -38,3 +39,4 @@ attributes:
     {% endfor %}
 
     {{ unavailable_entities.entities }}
+  # yamllint enable rule:line-length
