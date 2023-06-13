@@ -2,7 +2,7 @@
 name: Count Low Batteries
 unique_id: count_low_batteries
 state: "{{ this.attributes.entities | list | count }}"
-icon_template: >
+icon: >
   {% set ns = namespace(total=0, count=0, average=0) %}
   {% for value in this.attributes.entities | map(attribute="state") | map("int") %}
     {% set ns.total = ns.total + value %}

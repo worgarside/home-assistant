@@ -2,7 +2,7 @@
 name: Batteries Are Low
 unique_id: batteries_are_low
 state: "{{ states('sensor.count_low_batteries') | int(default=0) != 0 }}"
-icon_template: >
+icon: >
   {% set ns = namespace(total=0, count=0, average=0) %}
   {%
     for value in state_attr("sensor.count_low_batteries", "entities") |
