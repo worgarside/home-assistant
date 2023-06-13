@@ -1,4 +1,14 @@
 ---
+
+# Derives a list of all unavailable entities (with some exclusions, see below) for re-use and
+# consumption elsewhere. Exclusions are as follows:
+#   - Browser Mod entities: they're unavailable as soon as the browser is closed
+#   - TP Link Kasa switch LEDS: if the switch is unavailable, don't count the LED as a separate
+#       entity
+#   - `sensor.hacs`: seems to be unavailable if there aren't any pending updates (possibly only on
+#       restart)
+#   - GitHub sensors: if there's no matching data they become unavailable
+
 name: Count Unavailable Entities
 unique_id: count_unavailable_entities
 state: "{{ this.attributes.entities | list | count }}"
