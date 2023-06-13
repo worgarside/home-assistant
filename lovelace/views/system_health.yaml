@@ -16,20 +16,7 @@ cards:
         sort:
           method: domain
         filter:
-          include:
-            - state: "unavailable"
-          exclude:
-            # yamllint disable rule:line-length
-            # Exclude anything from browser mod, named like "domain.a1b2c3d4_e5f6g7h8"
-            - entity_id: /^(light|media_player|(binary_)?sensor|)\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$/
-            - entity_id: /^binary_sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(fullykiosk|dark_mode)$/
-            - entity_id: /^light\.([a-z]|\d){8}_([a-z]|\d){8}_screen$/
-            - entity_id: /^sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(path|visibility|user(agent)?|height|width)$/
-            - entity_id: /^switch\..+_led$/ # TP Link switch LEDs (only want to see the switches)
-            - entity_id: sensor.hacs # Becomes unavailable when there's no pending updates on restart
-            # GitHub sensors become unavailable when there's no matching data
-            - entity_id: /^sensor\.worgarside_.+_latest_(discussion|release|issue|pull_request|tag)$/
-            # yamllint enable rule:line-length
+          template: "{{ state_attr('sensor.count_unavailable_entities', 'entities') }}"
       - type: conditional
         conditions:
           - entity: binary_sensor.entities_are_unavailable
