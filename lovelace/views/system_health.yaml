@@ -33,6 +33,36 @@ cards:
 
   - type: custom:vertical-stack-in-card
     cards:
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Low Batteries
+          show_header_toggle: false
+        sort:
+          method: domain
+        filter:
+          template: >
+            {{
+              state_attr("sensor.count_low_batteries", "entities") |
+              map(attribute="entity_id") |
+              list
+            }}
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.batteries_are_low
+            state: "off"
+        card:
+          type: markdown
+          content: All charged up!
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: none;
+              margin-top: -32px;
+            }
+
+  - type: custom:vertical-stack-in-card
+    cards:
       - type: glance
         entities:
           - entity: sensor.count_automations
@@ -51,6 +81,8 @@ cards:
             name: Input Selects
           - entity: sensor.count_input_texts
             name: Input Texts
+          - entity: sensor.count_low_batteries
+            name: Low Batteries
           - entity: sensor.count_scripts
             name: Scripts
           - entity: sensor.count_sensors

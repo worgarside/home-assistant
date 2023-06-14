@@ -1,0 +1,19 @@
+---
+name: Batteries Are Low
+unique_id: batteries_are_low
+state: "{{ states('sensor.count_low_batteries') | int(default=0) != 0 }}"
+icon: >
+  {% set ns = namespace(total=0, count=0, average=0) %}
+  {%
+    for value in state_attr("sensor.count_low_batteries", "entities") |
+      map(attribute="state")
+  %}
+    {% set ns.total = ns.total + value %}
+    {% set ns.count = ns.count + 1 %}
+    {% set ns.average = ns.total / ns.count %}
+  {% endfor %}
+  {% if ns.average > 0 %}
+    mdi:battery-{{ ns.average | round(-1) | int }}
+  {% else %}
+    mdi:battery
+  {% endif %}
