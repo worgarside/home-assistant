@@ -26,6 +26,10 @@ attributes:
         states(s.entity_id) | int(default=100) <= 30
       )
     %}
-      {% set ns.low_batteries = ns.low_batteries + [ s ] %}
+      {% 
+        set ns.low_batteries = ns.low_batteries + [
+          { "entity_id": s.entity_id, "state": s.state | int } 
+        ] 
+      %}
     {% endfor %}
     {{ ns.low_batteries }}

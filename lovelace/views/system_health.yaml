@@ -41,7 +41,12 @@ cards:
         sort:
           method: domain
         filter:
-          template: "{{ state_attr('sensor.count_low_batteries', 'entities') }}"
+          template: >
+            {{ 
+              state_attr("sensor.count_low_batteries", "entities") |
+              map(attribute="entity_id") |
+              list
+            }}
       - type: conditional
         conditions:
           - entity: binary_sensor.batteries_are_low
