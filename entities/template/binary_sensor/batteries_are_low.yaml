@@ -6,8 +6,7 @@ icon: >
   {% set ns = namespace(total=0, count=0, average=0) %}
   {%
     for value in state_attr("sensor.count_low_batteries", "entities") |
-      map(attribute="state") |
-      map("int")
+      map(attribute="state")
   %}
     {% set ns.total = ns.total + value %}
     {% set ns.count = ns.count + 1 %}
