@@ -2,23 +2,84 @@
     "settings": {
         "files.associations": {
             "*.yaml": "home-assistant"
-        }
+        },
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestEnabled": true,
+        "python.envFile": "${workspaceFolder}/.env",
+        "python.linting.pylintEnabled": false,
+        "python.terminal.activateEnvInCurrentTerminal": true,
+        "python.analysis.typeCheckingMode": "off",
+        "python.analysis.autoImportCompletions": true,
+        "python.formatting.provider": "black",
+        "python.formatting.blackPath": "black",
+        "python.linting.mypyEnabled": true,
+        "python.analysis.diagnosticSeverityOverrides": {
+            "reportUnusedFunction": "none"
+        },
+        "editor.rulers": [
+            88,
+            101
+        ],
+        "files.exclude": {
+            "**/.git": true,
+            "**/.svn": true,
+            "**/.hg": true,
+            "**/CVS": true,
+            "**/.DS_Store": true,
+            "**/Thumbs.db": true,
+        },
+        "launches": {
+            "PythonCurrentFile": "Python: Current File",
+        },
+        "python.testing.autoTestDiscoverOnSaveEnabled": true,
+        "python.analysis.extraPaths": [
+            "./custom_components"
+        ],
+        "[python]": {
+            "editor.defaultFormatter": "ms-python.black-formatter"
+        },
+        "json.schemas": [
+            {
+                "fileMatch": [
+                    ".github/custom_hooks/validator_configs.json"
+                ],
+                "url": "../.github/custom_hooks/config_schema.json"
+            }
+        ]
     },
     "folders": [
         {
             "path": ".."
-        },
-        {
-            "name": "SSH FS - /addons",
-            "uri": "ssh://hasspi-addons/addons"
-        },
-        {
-            "name": "SSH FS - /config",
-            "uri": "ssh://hasspi-config/config"
-        },
-        {
-            "name": "SSH FS - /media",
-            "uri": "ssh://hasspi-media/media"
         }
-    ]
+    ],
+    "launch": {
+        "version": "0.2.0",
+        "terminal.integrated.env.osx": {
+            "PYTHONPATH": "${workspaceFolder:home-assistant}",
+        },
+        "configurations": [
+            {
+                "name": "Python: Current File",
+                "type": "python",
+                "request": "launch",
+                "program": "${file}",
+                "console": "integratedTerminal",
+                "env": {
+                    "PYTHONPATH": "${workspaceFolder:home-assistant}"
+                }
+            },
+            {
+                "name": "Python: Debug Current File",
+                "type": "python",
+                "request": "launch",
+                "program": "${file}",
+                "console": "integratedTerminal",
+                "stopOnEntry": true,
+                "justMyCode": false,
+                "env": {
+                    "PYTHONPATH": "${workspaceFolder:home-assistant}"
+                }
+            },
+        ]
+    }
 }
