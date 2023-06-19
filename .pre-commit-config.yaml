@@ -148,6 +148,6 @@ repos:
       - id: ruff
 
   - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: cc64001bc5b6a7f0b4aa9aaecc5c993340d8b0e5
+    rev: d5f88caf555b9a597d549538cafde11673943f1e
     hooks:
       - id: validate-entities
