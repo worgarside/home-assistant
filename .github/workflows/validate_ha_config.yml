@@ -9,16 +9,34 @@ on:
   pull_request:
 
 jobs:
+  get-current-version:
+    name: Get Current Version Number
+    runs-on: ubuntu-latest
+    outputs:
+      current-version: ${{ steps.current-version.outputs.current-version }}
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v3
+
+      - name: Get Current Version from .HA_VERSION
+        id: current-version
+        run: |
+          HA_VERSION=$(<.HA_VERSION)
+          echo "current-version=$HA_VERSION" >> $GITHUB_OUTPUT
+
+
   validate-ha-config:
     name: Validate Home Assistant Configuration
     runs-on: ubuntu-latest
+    needs:
+      - get-current-version
     strategy:
       matrix:
         version:
           - stable
           - beta
           - dev
-          - "2023.5.4"
+          - ${{ needs.get-current-version.outputs.current-version}}
     steps:
       - name: Clone Repo
         uses: actions/checkout@v3
