@@ -1,0 +1,111 @@
+{
+  "customValidators": {
+    "automation": {
+      "should_match_filepath": [
+        {
+          "field": "alias",
+          "separator": "/",
+          "prefix": "/",
+          "ignore_chars": "/"
+        },
+        {
+          "field": "id",
+          "separator": "_"
+        }
+      ]
+    },
+    "binary_sensor": {
+      "should_match_filename": [
+        "name"
+      ]
+    },
+    "cover": {
+      "should_match_filename": [
+        "unique_id"
+      ]
+    },
+    "input_boolean": {
+      "should_match_filename": [
+        "name"
+      ]
+    },
+    "input_button": {
+      "should_match_filename": [
+        "name"
+      ]
+    },
+    "input_datetime": {
+      "should_match_filename": [
+        "name"
+      ]
+    },
+    "input_number": {
+      "should_match_filename": [
+        "name"
+      ]
+    },
+    "input_select": {
+      "should_match_filename": [
+        "name"
+      ]
+    },
+    "input_text": {
+      "should_match_filename": [
+        "name"
+      ]
+    },
+    "media_player": {
+      "should_be_equal": [
+        [
+          "id",
+          "unique_id"
+        ]
+      ],
+      "should_match_filepath": [
+        {
+          "field": "id",
+          "separator": ".",
+          "include_domain_dir": true
+        },
+        {
+          "field": "unique_id",
+          "separator": ".",
+          "include_domain_dir": true
+        }
+      ],
+      "should_match_filename": [
+        "name"
+      ]
+    },
+    "mqtt": {
+      "should_match_filename": [
+        "name",
+        "unique_id"
+      ]
+    },
+    "script": {
+      "should_exist": [
+        "mode"
+      ]
+    },
+    "sensor": {
+      "should_match_filename": [
+        "name"
+      ]
+    },
+    "template": {
+      "should_match_filename": [
+        "name",
+        "unique_id"
+      ]
+    },
+    "var": {
+      "should_exist": [
+        "restore"
+      ],
+      "should_be_hardcoded": {
+        "restore": true
+      }
+    }
+  }
+}

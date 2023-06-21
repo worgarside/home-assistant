@@ -13,6 +13,10 @@ on:
       - ready_for_review
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   draft-release:
     name: Draft Release
