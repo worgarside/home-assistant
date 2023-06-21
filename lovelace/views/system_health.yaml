@@ -91,6 +91,8 @@ cards:
             name: Switches
           - entity: sensor.count_unavailable_entities
             name: Unavailable
+          - entity: sensor.count_updates
+            name: Updates
           - entity: sensor.count_zones
             name: Zones
 
