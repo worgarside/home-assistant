@@ -278,12 +278,10 @@ fabric.properties
 /config/secrets.yaml
 
 
-.HA_VERSION
 .cloud/*
 .spotify_cache
 .credentials
 .storage
-custom_components
 home-assistant.log*
 image/*
 known_devices.yaml
@@ -300,3 +298,5 @@ zigbee.db*
 .gnupg/
 .ssh
 .vscode/*.py
+
+!custom_components/**/*.json

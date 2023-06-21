@@ -65,7 +65,7 @@ disallow_any_generics = true
 check_untyped_defs = true
 no_implicit_reexport = true
 disallow_untyped_defs = true
-mypy_path= "pyscript/modules"
+mypy_path = "pyscript/modules"
 
 [tool.codespell]
 ignore-words-list = "hass"
@@ -88,26 +88,25 @@ no_gitignore = false
 # wraps the lines (e.g. a long URL).
 line-length = 120
 select = [
-    # https://github.com/charliermarsh/ruff#supported-rules
-    "B",   # Flake8 bugbear
-    "C4",  # Flake8 comprehensions
-    # "D",   # pydocstyle
-    "E",   # Pycodestyle errors
-    "ERA", # Eradicate commented out code
-    "F",   # Pyflakes
-    "N",   # PEP8 Naming
-    "RUF", # Ruff-specific rules
-    "UP",  # PyUpgrade
-    "W",   # Pycodestyle warnings
+  # https://github.com/charliermarsh/ruff#supported-rules
+  "B",  # Flake8 bugbear
+  "C4", # Flake8 comprehensions
+  "E",   # Pycodestyle errors
+  "ERA", # Eradicate commented out code
+  "F",   # Pyflakes
+  "N",   # PEP8 Naming
+  "RUF", # Ruff-specific rules
+  "UP",  # PyUpgrade
+  "W",   # Pycodestyle warnings
 ]
 ignore = [
-    "D107",  # public-init
-    "D202",  # no-blank-line-after-function
-    "D203",  # one-blank-line-before-class
-    "D213",  # multi-line-summary-second-line
-    "D400",  # first-line-end-with-period
-    "D406",  # new-line-after-section-name
-    "D407",  # dashed-underline-after-section
-    "UP037", # quoted-annotation
+  "D107",  # public-init
+  "D202",  # no-blank-line-after-function
+  "D203",  # one-blank-line-before-class
+  "D213",  # multi-line-summary-second-line
+  "D400",  # first-line-end-with-period
+  "D406",  # new-line-after-section-name
+  "D407",  # dashed-underline-after-section
+  "UP037", # quoted-annotation
 ]
-exclude = ["custom_zha_quirks/*"]
+exclude = ["custom_zha_quirks/*", "custom_components/*"]

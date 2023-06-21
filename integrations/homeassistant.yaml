@@ -1,10 +1,7 @@
 ---
 homeassistant:
   allowlist_external_dirs:
-    - /config/entities
-    - /config/lovelace
-    - /config/pyscript
-    - /config/www
+    - /config
 
   customize: !include_dir_named ../customizations
 
