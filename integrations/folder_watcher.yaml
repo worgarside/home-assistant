@@ -2,7 +2,4 @@
 # https://www.home-assistant.io/integrations/folder_watcher
 
 folder_watcher:
-  - folder: ../entities
-  - folder: ../lovelace
-  - folder: ../pyscript
-  - folder: ../www
+  - folder: /config
