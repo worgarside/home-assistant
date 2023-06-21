@@ -46,6 +46,10 @@ labels:
     files:
       - ^entities/cover/.+\.yaml$
 
+  - label: ha:custom-components
+    files:
+      - ^custom_components/.+$
+
   - label: ha:device-tracker
     files:
       - ^entities/device_tracker/.+\.yaml$
