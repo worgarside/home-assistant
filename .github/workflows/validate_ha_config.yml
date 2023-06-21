@@ -66,7 +66,7 @@ jobs:
           rm -rf cc_pyscript
 
       - name: ZHA Quirk Workaround
-        run: sed -i 's/\/config\//\/github\/workspace\/g' integrations/zha.yaml
+        run: sed -i 's/\/config\//\/github\/workspace\//g' integrations/zha.yaml
 
       - name: Validate Configuration
         uses: frenck/action-home-assistant@v1
