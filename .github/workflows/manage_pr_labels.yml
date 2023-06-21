@@ -16,7 +16,7 @@ on:
       - auto_merge_disabled
 
 concurrency:
-  group: manage-labels-${{ github.event.pull_request.number }}
+  group: manage-labels-${{ github.event.pull_request.number }}-${{ github.event.action }}
   cancel-in-progress: true
 
 jobs:
