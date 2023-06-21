@@ -32,6 +32,7 @@ jobs:
       - get-current-version
     strategy:
       matrix:
+        fail-fast: false
         version:
           - stable
           - beta
