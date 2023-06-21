@@ -18,6 +18,7 @@ jobs:
           - stable
           - beta
           - dev
+          - "2023.5.4"
     steps:
       - name: Clone Repo
         uses: actions/checkout@v3
