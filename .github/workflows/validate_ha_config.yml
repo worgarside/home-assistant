@@ -65,6 +65,9 @@ jobs:
           mv -vn cc_pyscript/custom_components/pyscript ./custom_components/
           rm -rf cc_pyscript
 
+      - name: ZHA Quirk Workaround
+        run: sed -i 's/\/config\//\/github\/workspace\/g' integrations/zha.yaml
+
       - name: Validate Configuration
         uses: frenck/action-home-assistant@v1
         with:
