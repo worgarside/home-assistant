@@ -42,6 +42,9 @@ jobs:
         run: |
           git clone https://github.com/custom-components/pyscript.git \
             --depth 1 cc_pyscript
+          cd cc_pyscript
+          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+          cd ..
           mv -vn cc_pyscript/custom_components/pyscript ./custom_components/
           rm -rf cc_pyscript
 
