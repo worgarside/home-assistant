@@ -1,0 +1,77 @@
+---
+name: Validate Home Assistant Config
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+
+jobs:
+  get-current-version:
+    name: Get Current Version Number
+    runs-on: ubuntu-latest
+    outputs:
+      current-version: ${{ steps.current-version.outputs.current-version }}
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v3
+
+      - name: Get Current Version from .HA_VERSION
+        id: current-version
+        run: |
+          HA_VERSION=$(<.HA_VERSION)
+          echo "current-version=$HA_VERSION" >> $GITHUB_OUTPUT
+
+
+  validate-ha-config:
+    name: Validate Home Assistant Configuration
+    runs-on: ubuntu-latest
+    needs:
+      - get-current-version
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - stable
+          - beta
+          - dev
+          - ${{ needs.get-current-version.outputs.current-version}}
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v3
+
+      - name: "Clone Custom Component: `var`"
+        run: |
+          git clone https://github.com/snarky-snark/home-assistant-variables.git \
+            --depth 1
+          mkdir -p ./custom_components/
+          mv -vn home-assistant-variables/custom_components/* ./custom_components/var/
+          rm -rf home-assistant-variables
+
+      - name: "Clone Custom Component: `feedparser`"
+        run: |
+          git clone https://github.com/custom-components/feedparser.git \
+            --depth 1
+          mv -vn feedparser/custom_components/* ./custom_components/feedparser/
+          rm -rf feedparser
+
+      - name: "Clone Custom Component: `pyscript`"
+        run: |
+          git clone https://github.com/custom-components/pyscript.git cc_pyscript
+          cd cc_pyscript
+          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+          cd ..
+          mv -vn cc_pyscript/custom_components/pyscript ./custom_components/
+          rm -rf cc_pyscript
+
+      - name: ZHA Quirk Workaround
+        run: sed -i 's/\/config\//\/github\/workspace\//g' integrations/zha.yaml
+
+      - name: Validate Configuration
+        uses: frenck/action-home-assistant@v1
+        with:
+          path: .
+          secrets: secrets.fake.yaml
+          version: ${{ matrix.version }}
