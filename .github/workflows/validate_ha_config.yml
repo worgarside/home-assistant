@@ -1,0 +1,51 @@
+---
+name: Validate Home Assistant Config
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+
+jobs:
+  validate-ha-config:
+    name: Validate Home Assistant Configuration
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - stable
+          - beta
+          - dev
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v3
+
+      - name: "Clone Custom Component: `var`"
+        run: |
+          git clone https://github.com/snarky-snark/home-assistant-variables.git \
+            --depth 1
+          mkdir -p ./custom_components/
+          mv -n home-assistant-variables/custom_components/* ./custom_components/var/
+          rm -r home-assistant-variables
+
+      - name: "Clone Custom Component: `feedparser`"
+        run: |
+          git clone https://github.com/custom-components/feedparser.git \
+            --depth 1
+          mv -n feedparser/custom_components/* ./custom_components/feedparser/
+          rm -r feedparser
+
+      - name: "Clone Custom Component: `pyscript`"
+        run: |
+          git clone https://github.com/custom-components/pyscript.git \
+            --depth 1
+          mv -n pyscript/custom_components/* ./custom_components/pyscript/
+          rm -r pyscript
+
+      - name: Validate Configuration
+        uses: frenck/action-home-assistant@v1
+        with:
+          secrets: secrets.fake.yaml
+          version: ${{ matrix.version }}
