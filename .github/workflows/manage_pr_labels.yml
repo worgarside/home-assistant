@@ -16,6 +16,7 @@ on:
       - auto_merge_disabled
 
 concurrency:
+  # yamllint disable-line rule:line-length
   group: manage-labels-${{ github.event.pull_request.number }}-${{ github.event.action }}
   cancel-in-progress: true
 
