@@ -11,7 +11,7 @@ mode: parallel
 sequence:
   - alias: Check if debugging is turned on
     condition: state
-    entity_id: input_boolean.debug_with_persistent_notification
+    entity_id: input_boolean.debug_with_persistent_notifications
     state: "on"
   - data:
       message: "{{ message }}"
