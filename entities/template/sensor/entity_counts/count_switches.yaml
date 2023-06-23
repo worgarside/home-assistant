@@ -1,0 +1,6 @@
+---
+name: Count Switches
+unique_id: count_switches
+state: '{{ states.switch | list | length }}'
+icon: mdi:toggle-switch
+unit_of_measurement: ''

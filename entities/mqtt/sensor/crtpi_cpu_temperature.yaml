@@ -1,0 +1,9 @@
+---
+force_update: true
+icon: mdi:memory
+name: CRTPi CPU Temperature
+state_class: measurement
+state_topic: /homeassistant/crt-pi/stats
+unique_id: crtpi_cpu_temperature
+unit_of_measurement: "°C"
+value_template: '{{ value_json.temperature }}'

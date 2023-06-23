@@ -1,0 +1,12 @@
+---
+alias: /remote/office-desk/double-press
+id: remote_office_desk_double_press
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      command: double
+      device_ieee: 00:15:8d:00:09:ee:31:98
+action:
+  - service: fan.toggle
+    entity_id: fan.desk_fan

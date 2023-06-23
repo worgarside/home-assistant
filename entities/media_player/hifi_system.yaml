@@ -1,0 +1,91 @@
+---
+platform: universal
+id: media_player.hifi_system
+unique_id: media_player.hifi_system
+name: HiFi System
+device_class: speaker
+icon_template: >
+  {% if this.state == "off" %}
+    mdi:amplifier-off
+  {% else %}
+    mdi:amplifier
+  {% endif %}
+children:
+  - sensor.hifi_system_media_metadata
+  - media_player.hifi_system_heos
+  - media_player.hifi_system_avr
+attributes:
+  state: sensor.hifi_system_media_metadata
+  is_volume_muted: binary_sensor.hifi_system_is_volume_muted
+  media_album_name: sensor.hifi_system_media_metadata|media_album_name
+  media_artist: sensor.hifi_system_media_metadata|media_artist
+  media_content_id: sensor.hifi_system_media_metadata|media_content_id
+  media_content_type: media_player.hifi_system_avr|media_content_type
+  media_duration: sensor.hifi_system_media_metadata|media_duration
+  media_title: sensor.hifi_system_media_metadata|media_title
+  shuffle: sensor.hifi_system_media_metadata|shuffle
+  source: media_player.hifi_system_avr|source
+  volume_level: media_player.hifi_system_avr|volume_level
+commands:
+  turn_on:
+    service: media_player.turn_on
+    target:
+      entity_id: media_player.hifi_system_avr
+  turn_off:
+    service: media_player.turn_off
+    target:
+      entity_id: media_player.hifi_system_avr
+  toggle:
+    service: media_player.toggle
+    target:
+      entity_id: media_player.hifi_system_avr
+  volume_up:
+    service: media_player.volume_up
+    target:
+      entity_id: media_player.hifi_system_avr
+  volume_down:
+    service: media_player.volume_down
+    target:
+      entity_id: media_player.hifi_system_avr
+  volume_set:
+    service: media_player.volume_set
+    data:
+      volume_level: '{{ volume_level }}'
+    target:
+      entity_id: media_player.hifi_system_avr
+  volume_mute:
+    service: media_player.volume_mute
+    data:
+      is_volume_muted: '{{ is_volume_muted }}'
+    target:
+      entity_id: media_player.hifi_system_avr
+  media_play_pause:
+    service: media_player.media_play_pause
+    target:
+      entity_id: media_player.hifi_system_heos
+  media_play:
+    service: media_player.media_play
+    target:
+      entity_id: media_player.hifi_system_heos
+  media_pause:
+    service: media_player.media_pause
+    target:
+      entity_id: media_player.hifi_system_heos
+  media_stop:
+    service: media_player.media_stop
+    target:
+      entity_id: media_player.hifi_system_heos
+  media_next_track:
+    service: media_player.media_next_track
+    target:
+      entity_id: media_player.hifi_system_heos
+  media_previous_track:
+    service: media_player.media_previous_track
+    target:
+      entity_id: media_player.hifi_system_heos
+  select_source:
+    service: media_player.select_source
+    target:
+      entity_id: media_player.hifi_system_avr
+    data:
+      source: "{{ source }}"

@@ -1,0 +1,13 @@
+---
+mode: single
+sequence:
+  - data:
+      cluster_id: 57348
+      cluster_type: in
+      command: 2
+      command_type: server
+      endpoint_id: 1
+      ieee: dc:8e:95:ff:fe:f9:ad:13
+      params:
+        code: BVcj1BEvAuADAQG0BuAFA0AB4AMT4AcBQBtAAeADB+AHC+ADD8ABwBNAAQ+tnVcj1wgvAv//VyPXCC8C
+    service: zha.issue_zigbee_cluster_command

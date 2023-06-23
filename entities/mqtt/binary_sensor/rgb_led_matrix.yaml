@@ -1,0 +1,7 @@
+---
+icon: mdi:square-opacity
+json_attributes_template: '{{ value_json | tojson }}'
+json_attributes_topic: /homeassistant/mtrxpi/content
+name: RGB LED Matrix
+state_topic: /homeassistant/led_matrix/state
+unique_id: rgb_led_matrix

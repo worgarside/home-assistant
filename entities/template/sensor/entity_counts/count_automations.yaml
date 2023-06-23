@@ -1,0 +1,6 @@
+---
+name: Count Automations
+unique_id: count_automations
+state: '{{ states.automation | list | length }}'
+icon: mdi:robot-angry
+unit_of_measurement: ''

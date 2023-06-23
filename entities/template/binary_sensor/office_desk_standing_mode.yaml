@@ -1,0 +1,14 @@
+---
+name: Office Desk Standing Mode
+unique_id: office_desk_standing_mode
+icon: >
+  {% if this.state == "on" %}
+    phu:desk-stand-alt
+  {% else %}
+    phu:desk-sit-alt
+  {% endif %}
+state: >
+  {{
+    state_attr("cover.office_desk_esphome", "current_position") | int >
+    ( states('input_number.office_desk_standing_height') | int - 10 )
+  }}

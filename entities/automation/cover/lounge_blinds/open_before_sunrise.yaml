@@ -1,0 +1,12 @@
+---
+alias: /cover/lounge-blinds/open-before-sunrise
+id: cover_lounge_blinds_open_before_sunrise
+description: Open the lounge blinds when the Sun rises past -6'
+trigger:
+  platform: numeric_state
+  entity_id: sensor.sun_elevation
+  above: -6
+action:
+  - service: cover.open_cover
+    target:
+      entity_id: cover.lounge_blinds

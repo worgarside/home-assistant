@@ -36,7 +36,7 @@ labels:
 
   - label: ha:automations
     files:
-      - ^includes/automation/.+$
+      - ^entities/automation/.+\.yaml$
 
   - label: ha:config
     files:
@@ -44,39 +44,43 @@ labels:
 
   - label: ha:cover
     files:
-      - ^includes/cover\.yaml$
+      - ^entities/cover/.+\.yaml$
+
+  - label: ha:custom-components
+    files:
+      - ^custom_components/.+$
 
   - label: ha:device-tracker
     files:
-      - ^includes/device_tracker\.yaml$
+      - ^entities/device_tracker/.+\.yaml$
 
   - label: ha:groups
     files:
-      - ^includes/groups\.yaml$
+      - ^entities/group/.+\.yaml$
 
   - label: ha:input-boolean
     files:
-      - ^includes/input_boolean\.yaml$
+      - ^entities/input_boolean/.+\.yaml$
 
   - label: ha:input-button
     files:
-      - ^includes/input_button\.yaml$
+      - ^entities/input_button/.+\.yaml$
 
   - label: ha:input-datetime
     files:
-      - ^includes/input_datetime\.yaml$
+      - ^entities/input_datetime/.+\.yaml$
 
   - label: ha:input-number
     files:
-      - ^includes/input_number\.yaml$
+      - ^entities/input_number/.+\.yaml$
 
   - label: ha:input-select
     files:
-      - ^includes/input_select\.yaml$
+      - ^entities/input_select/.+\.yaml$
 
   - label: ha:input-text
     files:
-      - ^includes/input_text\.yaml$
+      - ^entities/input_text/.+\.yaml$
 
   - label: ha:lovelace
     files:
@@ -85,11 +89,11 @@ labels:
 
   - label: ha:media-player
     files:
-      - ^includes/media_player\.yaml$
+      - ^entities/media_player/.+\.yaml$
 
   - label: ha:mqtt
     files:
-      - ^includes/mqtt\.yaml$
+      - ^entities/mqtt/.+\.yaml$
 
   - label: ha:pyscript
     files:
@@ -97,28 +101,28 @@ labels:
 
   - label: ha:rest-command
     files:
-      - ^includes/rest_command\.yaml$
+      - ^entities/rest_command/.+\.yaml$
 
   - label: ha:scenes
     files:
-      - ^includes/scenes\.yaml$
+      - ^entities/scene/.+\.yaml$
 
   - label: ha:scripts
     files:
-      - ^includes/scripts\.yaml$
+      - ^entities/script/.+\.yaml$
 
   - label: ha:sensors
     files:
-      - ^includes/sensors\.yaml$
+      - ^entities/sensor/.+\.yaml$
 
   - label: ha:switch
     files:
-      - ^includes/switch\.yaml$
+      - ^entities/switch/.+\.yaml$
 
   - label: ha:template
     files:
-      - ^includes/template/.+$
+      - ^entities/template/.+\.yaml$
 
   - label: ha:variables
     files:
-      - ^includes/variable/.+$
+      - ^entities/var/.+\.yaml$

@@ -1,0 +1,25 @@
+---
+alias: /hue-remote/office/button-4/long-press
+id: hue_remote_office_button_4_long_press
+mode: single
+max_exceeded: silent
+trigger:
+  - device_id: 143de217ee3f684c339353a371764642
+    domain: hue
+    platform: device
+    subtype: 4
+    type: long_press
+  - device_id: 143de217ee3f684c339353a371764642
+    domain: hue
+    platform: device
+    subtype: 4
+    type: long_release
+action:
+  - service: script.turn_off_physical_room
+    data:
+      room: office
+      close_blinds: true
+      close_blinds_with_open_window_after_delay: true
+      extra_service_calls:
+        - service_call: script.turn_on
+          entity_id: script.office_desk_sitting_mode

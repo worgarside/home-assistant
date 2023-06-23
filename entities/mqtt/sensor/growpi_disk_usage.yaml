@@ -1,0 +1,9 @@
+---
+force_update: true
+icon: mdi:harddisk
+name: GrowPi Disk Usage
+state_class: measurement
+state_topic: /homeassistant/growpi/stats
+unique_id: growpi_disk_usage
+unit_of_measurement: '%'
+value_template: '{{ value_json.disk_usage_percent }}'

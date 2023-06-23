@@ -1,0 +1,10 @@
+---
+homeassistant:
+  allowlist_external_dirs:
+    - /config
+
+  customize: !include_dir_named ../customizations
+
+  media_dirs:
+    album_artwork: /config/www/album_artwork
+    media: /media

@@ -125,7 +125,6 @@ lib/
 lib64/
 parts/
 sdist/
-var/
 wheels/
 pip-wheel-metadata/
 share/python-wheels/
@@ -279,13 +278,12 @@ fabric.properties
 /config/secrets.yaml
 
 
-.HA_VERSION
 .cloud/*
 .spotify_cache
 .credentials
 .storage
-custom_components
 home-assistant.log*
+image/*
 known_devices.yaml
 node-red/*
 secrets.yaml
@@ -300,3 +298,6 @@ zigbee.db*
 .gnupg/
 .ssh
 .vscode/*.py
+
+!custom_components/**/*.json
+!config_validator.json

@@ -51,7 +51,7 @@ class HAExceptionCatcher:
                 "http://homeassistant.local:8001/log/error",
                 data=f"{exc_type.__name__} in `{self.module_name}"
                 f"{f'.{self.func_name}' if self.func_name is not None else ''}`: "
-                f"{repr(exc_val)}",
+                f"{exc_val!r}",
             )
 
 

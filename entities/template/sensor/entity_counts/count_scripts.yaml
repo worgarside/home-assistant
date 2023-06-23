@@ -1,0 +1,6 @@
+---
+name: Count Scripts
+unique_id: count_scripts
+state: '{{ states.script| list | length }}'
+icon: mdi:script-text
+unit_of_measurement: ''

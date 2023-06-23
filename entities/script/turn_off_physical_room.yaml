@@ -1,0 +1,100 @@
+---
+mode: restart
+fields:
+  room:
+    name: Room
+    description: The room to turn off
+    example: "office"
+    required: true
+  extra_service_calls:
+    name: Extra Service Calls
+    description: Extra services to call (default service is `homeassistant.turn_off`)
+    default: []
+    required: false
+    example: >
+      [
+        {
+          "service_call": "script.turn_on",
+          "entity_id": "script.office_desk_sitting_mode"
+        }
+      ]
+  close_blinds:
+    name: Close Blinds
+    description: Whether to close the blinds
+    default: false
+    example: false
+    required: false
+    selector:
+      boolean:
+  close_blinds_window_delay:
+    name: Close Blinds Window Delay
+    description: The delay before closing the blinds if the window is open
+    example: "00:01:00"
+    default: "00:01:00"
+    required: false
+    selector:
+      time:
+  close_blinds_with_open_window_after_delay:
+    name: Close Blinds With Open Window After Delay
+    description: Whether to close the blinds if the window is open after a delay
+    default: false
+    example: false
+    required: false
+    selector:
+      boolean:
+sequence:
+  - alias: "Turn off each physical domain"
+    repeat:
+      for_each:
+        - light.turn_off
+        - switch.turn_off
+        - fan.turn_off
+        - media_player.media_stop
+        - media_player.turn_off
+        - remote.turn_off
+      sequence:
+        - service: "{{ repeat.item }}"
+          target:
+            area_id: "{{ room }}"
+  - repeat:
+      for_each: "{{ extra_service_calls }}"
+      sequence:
+        - service: "{{ repeat.item.service_call | default('homeassistant.turn_off') }}"
+          target:
+            entity_id: "{{ repeat.item.entity_id }}"
+  - alias: "Close blinds if requested"
+    if: >
+      {{ close_blinds }}
+    then:
+      - alias: "Wait for window to be closed"
+        choose:
+          - alias: Continue on timeout
+            conditions: >
+              {{
+                states('binary_sensor.{{ room }}_window') == 'on' and
+                close_blinds_with_open_window_after_delay is true
+              }}
+            sequence:
+              - wait_template: "{{ states('binary_sensor.{{ room }}_window') == 'off' }}"
+                timeout: "{{ close_blinds_window_delay }}"
+                continue_on_timeout: true
+              - service: cover.close_cover
+                target:
+                  entity_id: "cover.{{ room }}_blinds"
+          - alias: Don't continue on timeout
+            conditions: >
+              {{
+                states('binary_sensor.{{ room }}_window') == 'on' and
+                close_blinds_with_open_window_after_delay is false
+              }}
+            sequence:
+              - wait_template: "{{ states('binary_sensor.{{ room }}_window') == 'off' }}"
+                timeout: "{{ close_blinds_window_delay }}"
+                continue_on_timeout: false
+              - service: cover.close_cover
+                target:
+                  entity_id: "cover.{{ room }}_blinds"
+        default:
+          - service: cover.close_cover
+            target:
+              entity_id: "cover.{{ room }}_blinds"

@@ -1,0 +1,14 @@
+---
+# https://www.home-assistant.io/integrations/logger
+
+logger:
+  default: warning
+  filters:
+    homeassistant.loader:
+      - "We found a custom integration"
+    pychromecast.socket_client:
+      - "Failed to connect to service ServiceInfo"
+      - "Error communicating with socket, resetting connection"
+  logs:
+    custom_components.pyscript: info
+    charset_normalizer: warning

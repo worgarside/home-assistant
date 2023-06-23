@@ -1,0 +1,9 @@
+---
+name: Quiet Hours
+unique_id: quiet_hours
+state: >
+  {%- if now().isoweekday() in range(1, 6) %}
+    {{ not 7 < now().hour < 22 }}
+  {%- else %}
+    {{ now().hour < 8 }}
+  {%- endif %}

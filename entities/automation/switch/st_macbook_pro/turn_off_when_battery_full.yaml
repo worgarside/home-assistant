@@ -1,0 +1,11 @@
+---
+alias: /switch/st-macbook-pro/turn-off-when-battery-full
+id: switch_st_macbook_pro_turn_off_when_battery_full
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.st_macbook_pro_internal_battery_level
+    above: input_number.st_macbook_pro_full_battery_threshold
+action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.st_macbook_pro

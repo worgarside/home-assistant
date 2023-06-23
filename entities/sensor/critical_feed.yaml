@@ -1,0 +1,7 @@
+---
+date_format: '%Y-%m-%d %H:%M:%S'
+feed_url: http://homeassistant.local:8001/feed/logs?level=critical
+name: Critical Feed
+platform: feedparser
+scan_interval:
+  seconds: 60

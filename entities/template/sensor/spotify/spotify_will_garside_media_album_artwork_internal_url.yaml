@@ -1,0 +1,4 @@
+---
+name: Spotify Will Garside Media Album Artwork Internal URL
+unique_id: spotify_will_garside_media_album_artwork_internal_url
+state: "{{ state_attr('media_player.spotify_will_garside', 'entity_picture') }}"

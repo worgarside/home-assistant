@@ -324,25 +324,8 @@ folding_white_light_template:
   card:
     type: custom:fold-entity-row
     head:
-      type: custom:restriction-card
-      card_mod:
-        style: |
-          :host #overlay {
-            padding: 12px 7px;
-            height: 24px;
-            margin-top: -4px;
-          }
       entity: '[[entity]]'
-      row: true
-      restrictions:
-        confirm:
-          text: It's late, do you want to unlock this action for 5 seconds?
-      condition:
-        entity: binary_sensor.quiet_hours
-        value: "on"
-      card:
-        entity: '[[entity]]'
-        name: '[[name]]'
+      name: '[[name]]'
     entities:
       - type: custom:slider-entity-row
         entity: '[[entity]]'
@@ -357,25 +340,8 @@ folding_rgb_light_template:
     card:
       type: custom:fold-entity-row
       head:
-        type: custom:restriction-card
-        card_mod:
-          style: |
-            :host #overlay {
-              padding: 12px 7px;
-              height: 24px;
-              margin-top: -4px;
-            }
         entity: '[[entity]]'
-        row: true
-        restrictions:
-          confirm:
-            text: It's late, do you want to unlock this action for 5 seconds?
-        condition:
-          entity: binary_sensor.quiet_hours
-          value: "on"
-        card:
-          entity: '[[entity]]'
-          name: '[[name]]'
+        name: '[[name]]'
     filter:
       template: '[[auto_entity_filter_template]]'
     entities:
@@ -394,25 +360,8 @@ folding_rgb_light_with_effects_template:
     card:
       type: custom:fold-entity-row
       head:
-        type: custom:restriction-card
-        card_mod:
-          style: |
-            :host #overlay {
-              padding: 12px 7px;
-              height: 24px;
-              margin-top: -4px;
-            }
         entity: '[[entity]]'
-        row: true
-        restrictions:
-          confirm:
-            text: It's late, do you want to unlock this action for 5 seconds?
-        condition:
-          entity: binary_sensor.quiet_hours
-          value: "on"
-        card:
-          entity: '[[entity]]'
-          name: '[[name]]'
+        name: '[[name]]'
     filter:
       template: '[[auto_entity_filter_template]]'
     entities:
@@ -437,98 +386,6 @@ folding_rgb_light_with_effects_template:
         color_temp: false
         color_picker: false
         child_card: true
-
-entities_media_player_with_spotcast_template:
-  default:
-    - device_key: entity_id
-    - device_value: 'NULL'
-    - auto_entity_filter_template: ''
-  card:
-    # Allow access to user's name through JS
-    type: custom:config-template-card
-    entities:
-      - '[[entity_id]]'
-    card:
-      # Allow Jinja template to be used in `device_value_template`
-      type: custom:card-templater
-      entities:
-        - '[[entity_id]]'
-      card:
-        type: custom:auto-entities
-        card:
-          type: entities
-        filter:
-          template: '[[auto_entity_filter_template]]'
-        entities:
-          - entity: '[[entity_id]]'
-          # Controls row
-          - type: custom:paper-buttons-row
-            buttons:
-              - icon: mdi:spotify
-                styles:
-                  icon:
-                    - color: green
-                name: Start Playback
-                tap_action:
-                  action: call-service
-                  service: script.start_spotify_on_device
-                  service_data:
-                    device_key: '[[device_key]]'
-                    device_value_template: |
-                      {% if '[[device_value]]' != 'NULL' %}
-                        [[device_value]]
-                      {% else %}
-                        [[entity_id]]
-                      {% endif %}
-                    user_name: ${user.name}
-
-folding_media_player_with_spotcast_template:
-  default:
-    - device_key: entity_id
-    - device_value: 'NULL'
-    - auto_entity_filter_template: ''
-  card:
-    # Allow access to user's name through JS
-    type: custom:config-template-card
-    entities:
-      - '[[entity_id]]'
-    card:
-      # Allow Jinja template to be used in `device_value_template`
-      type: custom:card-templater
-      entities:
-        - '[[entity_id]]'
-      card:
-        type: custom:auto-entities
-        card:
-          # Folding row to hide controls
-          type: custom:fold-entity-row
-          head:
-            entity: '[[entity_id]]'
-            name: '[[device_friendly_name]]'
-            state_color: true
-        filter:
-          template: '[[auto_entity_filter_template]]'
-        entities:
-          # Controls row
-          - type: custom:paper-buttons-row
-            buttons:
-              - icon: mdi:spotify
-                styles:
-                  icon:
-                    - color: green
-                name: Start Playback
-                tap_action:
-                  action: call-service
-                  service: script.start_spotify_on_device
-                  service_data:
-                    device_key: '[[device_key]]'
-                    device_value_template: |
-                      {% if '[[device_value]]' != 'NULL' %}
-                        [[device_value]]
-                      {% else %}
-                        [[entity_id]]
-                      {% endif %}
-                    user_name: ${user.name}
 
 pi_stats_graph_card_template:
   card:

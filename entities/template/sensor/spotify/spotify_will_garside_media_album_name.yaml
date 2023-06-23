@@ -1,0 +1,5 @@
+---
+name: Spotify Will Garside Media Album Name
+unique_id: spotify_will_garside_media_album_name
+state: >
+  {{ state_attr('media_player.spotify_will_garside', 'media_album_name') }}

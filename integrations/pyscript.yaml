@@ -1,0 +1,30 @@
+---
+
+# https://www.home-assistant.io/integrations/pyscript
+
+pyscript:
+  allow_all_imports: true
+  hass_is_global: true
+
+  apps:
+    monzo:
+      client_id: !secret monzo_client_id
+      client_secret: !secret monzo_client_secret
+
+    oauth:
+      redirect_uri_override: !secret oauth_redirect_uri_override
+
+    spotify:
+      client_id: !secret spotify_pyscript_client_id
+      client_secret: !secret spotify_pyscript_client_secret
+
+    truelayer:
+      client_id: !secret truelayer_client_id
+      client_secret: !secret truelayer_client_secret
+      amex_card_id: !secret truelayer_amex_card_id
+      hsbc_current_account_id: !secret truelayer_hsbc_current_account_id
+      monzo_current_account_id: !secret truelayer_monzo_current_account_id
+      monzo_savings_pot_id: !secret truelayer_monzo_savings_pot_id
+      monzo_credit_cards_pot_id: !secret truelayer_monzo_credit_cards_pot_id
+      santander_current_account_id: !secret truelayer_santander_current_account_id
+      santander_savings_account_id: !secret truelayer_santander_savings_account_id

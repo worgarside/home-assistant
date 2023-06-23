@@ -1,0 +1,9 @@
+---
+
+# The default of -1 means that if `sensor.count_unavailable_entities` itself is unavailable, this
+# will still evaluate to "on"
+
+name: Entities Are Unavailable
+unique_id: entities_are_unavailable
+state: "{{ states('sensor.count_unavailable_entities') | int(default=-1) != 0 }}"
+icon: mdi:lan-disconnect
