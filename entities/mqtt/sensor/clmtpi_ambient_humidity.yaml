@@ -1,9 +1,9 @@
 ---
 force_update: true
 icon: mdi:water-percent
-name: Lounge Humidity
+name: ClmtPi Ambient Humidity
 state_class: measurement
 state_topic: /homeassistant/clmtpi/dht22
-unique_id: lounge_humidity
+unique_id: clmtpi_ambient_humidity
 unit_of_measurement: '%'
 value_template: '{{ value_json.humidity }}'
