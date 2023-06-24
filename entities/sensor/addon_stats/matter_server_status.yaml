@@ -1,0 +1,9 @@
+---
+command: !secret addon_stats_command_matter_server
+json_attributes:
+  - data
+name: Matter Server Status
+platform: command_line
+scan_interval: 60
+unique_id: matter_server_status
+value_template: "{{ value_json.result }}"
