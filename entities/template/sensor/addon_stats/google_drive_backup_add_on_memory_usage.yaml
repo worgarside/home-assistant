@@ -6,6 +6,7 @@ state: >
   {% if data %}
     {{ data.memory_percent | float }}
   {% else %}
+    0
   {% endif %}
 unique_id: google_drive_backup_add_on_memory_usage
 unit_of_measurement: '%'

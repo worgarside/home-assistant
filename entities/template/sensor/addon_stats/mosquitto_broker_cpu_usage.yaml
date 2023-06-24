@@ -6,6 +6,7 @@ state: >
   {% if data %}
     {{ data.cpu_percent | float }}
   {% else %}
+    0
   {% endif %}
 unique_id: mosquitto_broker_cpu_usage
 unit_of_measurement: '%'
