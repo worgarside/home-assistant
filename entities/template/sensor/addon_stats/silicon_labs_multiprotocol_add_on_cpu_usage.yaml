@@ -2,10 +2,10 @@
 icon: mdi:cpu-32-bit
 name: Silicon Labs Multiprotocol Add-on CPU Usage
 state: >
-  {{
-    state_attr('sensor.silicon_labs_multiprotocol_add_on_status', 'data').cpu_percent |
-    float(default=0) * 100 |
-    round(2)
-  }}
+  {% set data = state_attr('sensor.silicon_labs_multiprotocol_add_on_status', 'data') %}
+  {% if data %}
+    {{ data.cpu_percent | float }}
+  {% else %}
+  {% endif %}
 unique_id: silicon_labs_multiprotocol_add_on_cpu_usage
 unit_of_measurement: '%'
