@@ -402,3 +402,74 @@ cards:
                         var(--paper-item-icon-color, #44739e);
                       {% endif %}
                   }
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: markdown
+            content: "# Add-on Container Stats"
+          - type: entities
+            entities:
+              - entity: input_select.add_on_stats_legend_sensor_type
+                name: Legend
+                card_mod:
+                  style:
+                    hui-generic-entity-row:
+                      $: |
+                        state-badge {
+                          display: none;
+                        }
+      - type: custom:layout-card
+        layout_type: custom:horizontal-layout
+        layout:
+          width: 180
+          column_widths: 50% 50%
+          max_cols: 2
+        cards:
+          - type: custom:vertical-stack-in-card
+            card_mod:
+              style: |
+                ha-card {
+                  box-shadow: none;
+                  border: none;
+                }
+            view_layout:
+              column: 1
+            cards:
+              - type: custom:decluttering-card
+                template: addon_stats_graph_card_template
+                variables:
+                  - name: CPU Usage
+                  - sensor_type: cpu
+                  - icon: mdi:cpu-32-bit
+              - type: custom:decluttering-card
+                template: addon_stats_graph_card_template
+                variables:
+                  - name: Memory Usage
+                  - sensor_type: memory
+                  - icon: mdi:memory
+
+          - type: conditional
+            view_layout:
+              column: 2
+            conditions:
+              - entity: input_select.add_on_stats_legend_sensor_type
+                state: CPU Usage
+            card:
+              type: custom:decluttering-card
+              template: addon_stats_legend_card_template
+              variables:
+                - sensor_type: cpu
+
+          - type: conditional
+            view_layout:
+              column: 2
+            conditions:
+              - entity: input_select.add_on_stats_legend_sensor_type
+                state: Memory Usage
+            card:
+              type: custom:decluttering-card
+              template: addon_stats_legend_card_template
+              variables:
+                - sensor_type: memory
