@@ -3,7 +3,6 @@ command: !secret addon_stats_command_google_drive_backup
 json_attributes:
   - data
 name: Google Drive Backup Add-on Status
-platform: command_line
 scan_interval: 60
 unique_id: google_drive_backup_add_on_status
 value_template: "{{ value_json.result }}"
