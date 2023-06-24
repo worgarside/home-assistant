@@ -1,0 +1,13 @@
+---
+alias: /switch/bedroom_scent_plug/turn_off_after_an_hour
+id: switch_bedroom_scent_plug_turn_off_after_an_hour
+icon: mdi:timer
+trigger:
+  - platform: state
+    entity_id: switch.bedroom_scent_plug
+    to: "on"
+    for:
+      hours: 1
+action:
+  - service: switch.turn_off
+    entity_id: switch.bedroom_scent_plug

@@ -1,0 +1,15 @@
+---
+alias: /switch/bedroom_scent_plug/turn_off_when_window_opened
+id: switch_bedroom_scent_plug_turn_off_when_window_opened
+icon: mdi:window-open-variant
+trigger:
+  - platform: state
+    entity_id: binary_sensor.bedroom_window
+    to: "on"
+condition:
+  - condition: state
+    entity_id: switch.bedroom_scent_plug
+    state: "on"
+action:
+  - service: switch.turn_off
+    entity_id: switch.bedroom_scent_plug

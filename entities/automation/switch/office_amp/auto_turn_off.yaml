@@ -1,6 +1,5 @@
 ---
 alias: /switch/office_amp/auto_turn_off
-unique_id: switch.office_amp_auto_turn_off
 id: switch_office_amp_auto_turn_off
 trigger:
   - platform: state
