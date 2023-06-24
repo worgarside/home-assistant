@@ -1,9 +1,0 @@
----
-command: !secret addon_stats_command_yas_209_bridge
-json_attributes:
-  - data
-name: YAS-209 Bridge Status
-platform: command_line
-scan_interval: 60
-unique_id: yas_209_bridge_status
-value_template: "{{ value_json.result }}"

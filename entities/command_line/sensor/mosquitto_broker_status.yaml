@@ -1,0 +1,9 @@
+---
+sensor:
+  command: !secret addon_stats_command_mosquitto_broker
+  json_attributes:
+    - data
+  name: Mosquitto Broker Status
+  scan_interval: 60
+  unique_id: mosquitto_broker_status
+  value_template: "{{ value_json.result }}"

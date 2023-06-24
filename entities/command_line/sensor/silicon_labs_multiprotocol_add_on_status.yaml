@@ -1,0 +1,9 @@
+---
+sensor:
+  command: !secret addon_stats_command_silicon_labs_multiprotocol
+  json_attributes:
+    - data
+  name: Silicon Labs Multiprotocol Add-on Status
+  scan_interval: 60
+  unique_id: silicon_labs_multiprotocol_add_on_status
+  value_template: "{{ value_json.result }}"
