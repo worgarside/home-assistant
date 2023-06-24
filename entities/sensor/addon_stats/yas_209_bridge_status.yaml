@@ -1,0 +1,11 @@
+---
+command: !secret addon_stats_command_yas_209_bridge
+json_attributes:
+  - cpu_percent
+  - memory_percent
+json_attributes_path: $.data
+name: YAS-209 Bridge Status
+platform: command_line
+scan_interval: 60
+unique_id: yas_209_bridge_status
+value_template: "{{ value_json.result }}"

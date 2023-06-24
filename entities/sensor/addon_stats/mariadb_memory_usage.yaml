@@ -1,0 +1,11 @@
+---
+icon: mdi:memory
+name: MariaDB Memory Usage
+state: >
+  {{
+    state_attr('sensor.mariadb_status', 'memory_percent') |
+    float(default=0) * 100 |
+    round(2)
+  }}
+unique_id: mariadb_memory_usage
+unit_of_measurement: '%'

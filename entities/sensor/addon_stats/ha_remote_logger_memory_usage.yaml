@@ -1,0 +1,11 @@
+---
+icon: mdi:memory
+name: HA Remote Logger Memory Usage
+state: >
+  {{
+    state_attr('sensor.ha_remote_logger_status', 'memory_percent') |
+    float(default=0) * 100 |
+    round(2)
+  }}
+unique_id: ha_remote_logger_memory_usage
+unit_of_measurement: '%'

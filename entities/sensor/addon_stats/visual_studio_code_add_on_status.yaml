@@ -1,0 +1,11 @@
+---
+command: !secret addon_stats_command_studio_code
+json_attributes:
+  - cpu_percent
+  - memory_percent
+json_attributes_path: $.data
+name: Visual Studio Code Add-on Status
+platform: command_line
+scan_interval: 60
+unique_id: visual_studio_code_add_on_status
+value_template: "{{ value_json.result }}"
