@@ -6,7 +6,7 @@ authors = ["Will Garside <worgarside@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 python-dotenv = "*"
 lxml = "*"
 xmltodict = "*"
