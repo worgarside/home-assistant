@@ -1,0 +1,11 @@
+---
+icon: mdi:memory
+name: Terminal & SSH Add-on Memory Usage
+state: >
+  {{
+    state_attr('sensor.terminal_ssh_add_on_status', 'data').memory_percent |
+    float(default=0) * 100 |
+    round(2)
+  }}
+unique_id: terminal_ssh_add_on_memory_usage
+unit_of_measurement: '%'
