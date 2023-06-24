@@ -3,7 +3,7 @@ icon: mdi:cpu-32-bit
 name: Mosquitto Broker CPU Usage
 state: >
   {{
-    state_attr('sensor.mosquitto_broker_status', 'cpu_percent') |
+    state_attr('sensor.mosquitto_broker_status', 'data').cpu_percent |
     float(default=0) * 100 |
     round(2)
   }}

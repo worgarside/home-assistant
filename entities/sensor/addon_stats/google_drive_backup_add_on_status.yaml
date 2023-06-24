@@ -1,9 +1,7 @@
 ---
 command: !secret addon_stats_command_google_drive_backup
 json_attributes:
-  - cpu_percent
-  - memory_percent
-json_attributes_path: $.data
+  - data
 name: Google Drive Backup Add-on Status
 platform: command_line
 scan_interval: 60

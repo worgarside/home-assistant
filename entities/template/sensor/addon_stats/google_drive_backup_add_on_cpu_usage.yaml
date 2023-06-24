@@ -3,7 +3,7 @@ icon: mdi:cpu-32-bit
 name: Google Drive Backup Add-on CPU Usage
 state: >
   {{
-    state_attr('sensor.google_drive_backup_add_on_status', 'cpu_percent') |
+    state_attr('sensor.google_drive_backup_add_on_status', 'data').cpu_percent |
     float(default=0) * 100 |
     round(2)
   }}

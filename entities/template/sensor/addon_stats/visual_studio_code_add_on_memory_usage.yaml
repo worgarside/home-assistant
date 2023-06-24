@@ -3,7 +3,7 @@ icon: mdi:memory
 name: Visual Studio Code Add-on Memory Usage
 state: >
   {{
-    state_attr('sensor.visual_studio_code_add_on_status', 'memory_percent') |
+    state_attr('sensor.visual_studio_code_add_on_status', 'data').memory_percent |
     float(default=0) * 100 |
     round(2)
   }}

@@ -3,7 +3,7 @@ icon: mdi:memory
 name: Mosquitto Broker Memory Usage
 state: >
   {{
-    state_attr('sensor.mosquitto_broker_status', 'memory_percent') |
+    state_attr('sensor.mosquitto_broker_status', 'data').memory_percent |
     float(default=0) * 100 |
     round(2)
   }}

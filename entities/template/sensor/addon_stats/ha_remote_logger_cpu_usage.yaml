@@ -3,7 +3,7 @@ icon: mdi:cpu-32-bit
 name: HA Remote Logger CPU Usage
 state: >
   {{
-    state_attr('sensor.ha_remote_logger_status', 'cpu_percent') |
+    state_attr('sensor.ha_remote_logger_status', 'data').cpu_percent |
     float(default=0) * 100 |
     round(2)
   }}

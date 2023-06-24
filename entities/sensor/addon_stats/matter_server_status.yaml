@@ -1,9 +1,7 @@
 ---
 command: !secret addon_stats_command_matter_server
 json_attributes:
-  - cpu_percent
-  - memory_percent
-json_attributes_path: $.data
+  - data
 name: Matter Server Status
 platform: command_line
 scan_interval: 60
