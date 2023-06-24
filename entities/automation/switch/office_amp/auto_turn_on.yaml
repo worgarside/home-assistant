@@ -1,6 +1,5 @@
 ---
 alias: /switch/office_amp/auto_turn_on
-unique_id: switch.office_amp_auto_turn_on
 id: switch_office_amp_auto_turn_on
 trigger:
   - platform: state
