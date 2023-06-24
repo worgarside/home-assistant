@@ -392,6 +392,10 @@ pi_stats_graph_card_template:
     name: "[[name]]"
     card_mod:
       style: |
+        ha-card {
+          box-shadow: none;
+          border: none;
+        }
         .graph {
           padding: 5px;
         }
@@ -457,6 +461,10 @@ pi_stats_legend_card_template:
       name: false
     card_mod:
       style: |
+        ha-card {
+          box-shadow: none;
+          border: none;
+        }
         .line--rect, .fill--rect, .graph__container__svg {
           display: none;
         }
@@ -466,8 +474,6 @@ pi_stats_legend_card_template:
         .type-custom-mini-graph-card {
           margin-top: -10px;
         }
-
-
 
 addon_stats_graph_card_template:
   card:
