@@ -8,6 +8,6 @@ jobs:
   create-new-release:
     name: Create New Release
     # yamllint disable-line rule:line-length
-    uses: worgarside/github-config-files/.github/workflows/create_new_release.yml@feature/create-new-release-overwrite-function
+    uses: worgarside/github-config-files/.github/workflows/create_new_release.yml@main
     secrets:
       gh-token: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
