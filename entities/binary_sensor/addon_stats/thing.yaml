@@ -2,7 +2,6 @@
 platform: command_line
 name: Grafana CPU
 command: 'curl -sSL -H "Authorization: Bearer $SUPERVISOR_TOKEN" http://supervisor/addons/a0d7b954_grafana/stats'
-unit_of_measurement: '%'
 value_template: "{{ (value_json.data.cpu_percent|float/4)|round(2) }}"
 scan_interval: 60
 json_attributes:
