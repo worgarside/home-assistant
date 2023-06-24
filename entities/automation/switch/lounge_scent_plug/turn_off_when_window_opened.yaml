@@ -1,7 +1,6 @@
 ---
 alias: /switch/lounge_scent_plug/turn_off_when_window_opened
 id: switch_lounge_scent_plug_turn_off_when_window_opened
-icon: mdi:window-open-variant
 trigger:
   - platform: state
     entity_id: binary_sensor.lounge_window

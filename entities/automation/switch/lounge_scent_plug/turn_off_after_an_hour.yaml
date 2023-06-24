@@ -1,7 +1,6 @@
 ---
 alias: /switch/lounge_scent_plug/turn_off_after_an_hour
 id: switch_lounge_scent_plug_turn_off_after_an_hour
-icon: mdi:timer
 trigger:
   - platform: state
     entity_id: switch.lounge_scent_plug
