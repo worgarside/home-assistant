@@ -1,5 +1,4 @@
 ---
-
 active_media_player_template:
   default:
     icon: speaker
@@ -67,7 +66,7 @@ london_air_quality_inner_template:
     type: conditional
     conditions:
       - entity: sensor.[[borough]]
-        state: '[[state]]'
+        state: "[[state]]"
     card:
       type: entities
       card_mod:
@@ -93,7 +92,7 @@ london_air_quality_outer_template:
   card:
     type: conditional
     conditions:
-      - entity: '[[conditional_sensor]]'
+      - entity: "[[conditional_sensor]]"
         state: "on"
     card:
       type: custom:layout-card
@@ -106,195 +105,195 @@ london_air_quality_outer_template:
           template: london_air_quality_inner_template
           variables:
             - borough: barking_and_dagenham
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: bexley
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: brent
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: camden
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: city_of_london
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: croydon
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: ealing
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: enfield
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: greenwich
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: hackney
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: haringey
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: harrow
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: havering
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: hillingdon
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: islington
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: kensington_and_chelsea
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: kingston
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: lambeth
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: lewisham
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: merton
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: redbridge
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: richmond
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: southwark
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: sutton
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: tower_hamlets
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: wandsworth
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
         - type: custom:decluttering-card
           template: london_air_quality_inner_template
           variables:
             - borough: westminster
-            - state: '[[state]]'
-            - bg_color: '[[bg_color]]'
+            - state: "[[state]]"
+            - bg_color: "[[bg_color]]"
 
 rgb_light_template:
   card:
     type: custom:rgb-light-card
-    entity: '[[entity]]'
+    entity: "[[entity]]"
     justify: around
     colors:
       - rgb_color:
@@ -324,35 +323,35 @@ folding_white_light_template:
   card:
     type: custom:fold-entity-row
     head:
-      entity: '[[entity]]'
-      name: '[[name]]'
+      entity: "[[entity]]"
+      name: "[[name]]"
     entities:
       - type: custom:slider-entity-row
-        entity: '[[entity]]'
+        entity: "[[entity]]"
         full_row: true
         hide_state: true
 
 folding_rgb_light_template:
   variables:
-    - auto_entity_filter_template: ''
+    - auto_entity_filter_template: ""
   card:
     type: custom:auto-entities
     card:
       type: custom:fold-entity-row
       head:
-        entity: '[[entity]]'
-        name: '[[name]]'
+        entity: "[[entity]]"
+        name: "[[name]]"
     filter:
-      template: '[[auto_entity_filter_template]]'
+      template: "[[auto_entity_filter_template]]"
     entities:
       - type: custom:slider-entity-row
-        entity: '[[entity]]'
+        entity: "[[entity]]"
         full_row: true
         hide_state: true
       - type: custom:decluttering-card
         template: rgb_light_template
         variables:
-          - entity: '[[entity]]'
+          - entity: "[[entity]]"
 
 folding_rgb_light_with_effects_template:
   card:
@@ -360,19 +359,19 @@ folding_rgb_light_with_effects_template:
     card:
       type: custom:fold-entity-row
       head:
-        entity: '[[entity]]'
-        name: '[[name]]'
+        entity: "[[entity]]"
+        name: "[[name]]"
     filter:
-      template: '[[auto_entity_filter_template]]'
+      template: "[[auto_entity_filter_template]]"
     entities:
       - type: custom:slider-entity-row
-        entity: '[[entity]]'
+        entity: "[[entity]]"
         full_row: true
         hide_state: true
       - type: custom:decluttering-card
         template: rgb_light_template
         variables:
-          - entity: '[[entity]]'
+          - entity: "[[entity]]"
       - type: custom:light-entity-card
         card_mod:
           style: |
@@ -380,7 +379,7 @@ folding_rgb_light_with_effects_template:
               width: 75%;
               margin-top: -15px;
             }
-        entity: '[[entity]]'
+        entity: "[[entity]]"
         hide_header: true
         brightness: false
         color_temp: false
@@ -390,7 +389,7 @@ folding_rgb_light_with_effects_template:
 pi_stats_graph_card_template:
   card:
     type: custom:mini-graph-card
-    name: '[[name]]'
+    name: "[[name]]"
     card_mod:
       style: |
         .graph {
@@ -399,22 +398,22 @@ pi_stats_graph_card_template:
     entities:
       - entity: sensor.clmtpi[[sensor_suffix]]
         name: Clmt Pi
-        color: '#FF9800'
+        color: "#FF9800"
       - entity: sensor.crtpi[[sensor_suffix]]
         name: CRT Pi
-        color: '#02D1D1'
+        color: "#02D1D1"
       - entity: sensor.growpi[[sensor_suffix]]
         name: Grow Pi
-        color: '#E74B3B'
+        color: "#E74B3B"
       - entity: sensor.[[hasspi_sensor]]
         name: HAss Pi
-        color: '#9B59B6'
+        color: "#9B59B6"
       - entity: sensor.mtrxpi[[sensor_suffix]]
         name: Mtrx Pi
-        color: '#F1C40E'
+        color: "#F1C40E"
       - entity: sensor.vsmppi[[sensor_suffix]]
         name: VSMP Pi
-        color: '#029E44'
+        color: "#029E44"
     show:
       state: false
       legend: false
@@ -422,13 +421,12 @@ pi_stats_graph_card_template:
       fill: false
     hours_to_show: 2
     points_per_hour: 30
-    upper_bound: '[[upper_bound]]'
+    upper_bound: "[[upper_bound]]"
     lower_bound: 0
     height: 250
-    icon: '[[icon]]'
+    icon: "[[icon]]"
     line_width: 5
     font_size: 75
-
 
 pi_stats_legend_card_template:
   card:
@@ -436,22 +434,22 @@ pi_stats_legend_card_template:
     entities:
       - entity: sensor.clmtpi[[sensor_suffix]]
         name: Clmt Pi
-        color: '#FF9800'
+        color: "#FF9800"
       - entity: sensor.crtpi[[sensor_suffix]]
         name: CRT Pi
-        color: '#02D1D1'
+        color: "#02D1D1"
       - entity: sensor.growpi[[sensor_suffix]]
         name: Grow Pi
-        color: '#E74B3B'
+        color: "#E74B3B"
       - entity: sensor.[[hasspi_sensor]]
         name: HAss Pi
-        color: '#9B59B6'
+        color: "#9B59B6"
       - entity: sensor.mtrxpi[[sensor_suffix]]
         name: Mtrx Pi
-        color: '#F1C40E'
+        color: "#F1C40E"
       - entity: sensor.vsmppi[[sensor_suffix]]
         name: VSMP Pi
-        color: '#029E44'
+        color: "#029E44"
     show:
       legend: true
       icon: false
@@ -467,4 +465,125 @@ pi_stats_legend_card_template:
         }
         .type-custom-mini-graph-card {
           margin-top: -10px;
+        }
+
+
+
+addon_stats_graph_card_template:
+  card:
+    type: custom:mini-graph-card
+    name: "[[name]]"
+    card_mod:
+      style: |
+        ha-card {
+          box-shadow: none;
+          border: none;
+        }
+    entities:
+      - entity: sensor.esphome_add_on_[[sensor_type]]_usage
+        name: ESPHome
+        color: "#FF0000"
+      - entity: sensor.google_drive_backup_add_on_[[sensor_type]]_usage
+        name: Google Drive Backup
+        color: "#FF6600"
+      - entity: sensor.ha_remote_logger_[[sensor_type]]_usage
+        name: HA Remote Logger
+        color: "#FFCC00"
+      - entity: sensor.mariadb_[[sensor_type]]_usage
+        name: MariaDB
+        color: "#00FF00"
+      - entity: sensor.matter_server_[[sensor_type]]_usage
+        name: Matter Server
+        color: "#00FFFF"
+      - entity: sensor.mosquitto_broker_[[sensor_type]]_usage
+        name: Mosquitto Broker
+        color: "#0000FF"
+      - entity: sensor.plex_media_server_[[sensor_type]]_usage
+        name: Plex Media Server
+        color: "#6600FF"
+      - entity: sensor.silicon_labs_multiprotocol_add_on_[[sensor_type]]_usage
+        name: Silicon Labs Multiprotocol
+        color: "#CC00FF"
+      - entity: sensor.terminal_ssh_add_on_[[sensor_type]]_usage
+        name: Terminal & SSH
+        color: "#FF00FF"
+      - entity: sensor.visual_studio_code_add_on_[[sensor_type]]_usage
+        name: VSCode
+        color: "#FF0066"
+      - entity: sensor.yas_209_bridge_[[sensor_type]]_usage
+        name: YAS-209 Bridge
+        color: "#FF0000"
+    hours_to_show: 2
+    points_per_hour: 30
+    upper_bound: ~10
+    lower_bound: 0
+    height: 250
+    icon: "[[icon]]"
+    line_width: 3
+    font_size: 75
+    show:
+      state: false
+      legend: false
+      labels: true
+      fill: false
+
+addon_stats_legend_card_template:
+  card:
+    type: custom:mini-graph-card
+    entities:
+      - entity: sensor.esphome_add_on_[[sensor_type]]_usage
+        name: ESPHome
+        color: "#FF0000"
+      - entity: sensor.google_drive_backup_add_on_[[sensor_type]]_usage
+        name: Google Drive Backup
+        color: "#FF6600"
+      - entity: sensor.ha_remote_logger_[[sensor_type]]_usage
+        name: HA Remote Logger
+        color: "#FFCC00"
+      - entity: sensor.mariadb_[[sensor_type]]_usage
+        name: MariaDB
+        color: "#00FF00"
+      - entity: sensor.matter_server_[[sensor_type]]_usage
+        name: Matter Server
+        color: "#00FFFF"
+      - entity: sensor.mosquitto_broker_[[sensor_type]]_usage
+        name: Mosquitto Broker
+        color: "#0000FF"
+      - entity: sensor.plex_media_server_[[sensor_type]]_usage
+        name: Plex Media Server
+        color: "#6600FF"
+      - entity: sensor.silicon_labs_multiprotocol_add_on_[[sensor_type]]_usage
+        name: Silicon Labs Multiprotocol
+        color: "#CC00FF"
+      - entity: sensor.terminal_ssh_add_on_[[sensor_type]]_usage
+        name: Terminal & SSH
+        color: "#FF00FF"
+      - entity: sensor.visual_studio_code_add_on_[[sensor_type]]_usage
+        name: VSCode
+        color: "#FF0066"
+      - entity: sensor.yas_209_bridge_[[sensor_type]]_usage
+        name: YAS-209 Bridge
+        color: "#FF0000"
+    show:
+      state: false
+      legend: true
+      labels: false
+      icon: false
+      name: false
+    font_size: 90
+    card_mod:
+      style: |
+        ha-card {
+          box-shadow: none;
+          border: none;
+          flex: 0.65 1 50%;
+        }
+        ha-card > div.graph > div.graph__legend {
+          flex-flow: column;
+        }
+        .line--rect, .fill--rect, .graph__container__svg {
+          display: none;
+        }
+        :host {
+          max-width: 200px;
         }
