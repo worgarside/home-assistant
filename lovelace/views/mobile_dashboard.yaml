@@ -11,6 +11,7 @@ cards:
     show_header_toggle: false
     entities:
       - entity: input_boolean.bedroom_entity_header
+        name: Bedroom
         card_mod:
           style:
             hui-generic-entity-row:
@@ -77,6 +78,7 @@ cards:
     show_header_toggle: false
     entities:
       - entity: input_boolean.lounge_entity_header
+        name: Lounge
         card_mod:
           style:
             hui-generic-entity-row:
@@ -162,6 +164,7 @@ cards:
     show_header_toggle: false
     entities:
       - entity: input_boolean.office_entity_header
+        name: Office
         card_mod:
           style:
             hui-generic-entity-row:
