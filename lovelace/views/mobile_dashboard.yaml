@@ -297,3 +297,15 @@ cards:
             icon: mdi:amplifier
       - entity: binary_sensor.office_window
         name: Window
+      - type: custom:fold-entity-row
+        head:
+          entity: binary_sensor.clmtpi_online
+          name: ClmtPi Ambient Sensor
+          icon: mdi:raspberry-pi
+        entities:
+          - entity: sensor.clmtpi_ambient_humidity
+            name: Humidity
+            icon: mdi:water-percent
+          - entity: sensor.clmtpi_ambient_temperature
+            name: Temperature
+            icon: mdi:thermometer
