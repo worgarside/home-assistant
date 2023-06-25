@@ -1,0 +1,9 @@
+---
+sensor:
+  command: !secret addon_stats_command_esphome
+  json_attributes:
+    - data
+  name: ESPHome Add-on Status
+  scan_interval: 60
+  unique_id: esphome_add_on_status
+  value_template: "{{ value_json.result }}"

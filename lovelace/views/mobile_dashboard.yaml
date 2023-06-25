@@ -286,5 +286,26 @@ cards:
           - name: Shapes
           # yamllint disable-line rule:line-length
           - auto_entity_filter_template: "{{ 'input_boolean.office_shapes_artwork_colour_source_active', 'input_select.office_shapes_artwork_colour_source' }}"
+      - type: custom:fold-entity-row
+        head:
+          entity: media_player.office_speakers
+          name: Speakers
+          icon: mdi:speaker-multiple
+        entities:
+          - entity: switch.office_amp
+            name: Amp
+            icon: mdi:amplifier
       - entity: binary_sensor.office_window
         name: Window
+      - type: custom:fold-entity-row
+        head:
+          entity: binary_sensor.clmtpi_online
+          name: ClmtPi Ambient Sensor
+          icon: mdi:raspberry-pi
+        entities:
+          - entity: sensor.clmtpi_ambient_humidity
+            name: Humidity
+            icon: mdi:water-percent
+          - entity: sensor.clmtpi_ambient_temperature
+            name: Temperature
+            icon: mdi:thermometer

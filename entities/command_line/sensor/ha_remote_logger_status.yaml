@@ -1,0 +1,9 @@
+---
+sensor:
+  command: !secret addon_stats_command_ha_remote_logger
+  json_attributes:
+    - data
+  name: HA Remote Logger Status
+  scan_interval: 60
+  unique_id: ha_remote_logger_status
+  value_template: "{{ value_json.result }}"

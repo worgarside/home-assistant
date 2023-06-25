@@ -1,17 +1,16 @@
 [tool.poetry]
 name = "home-assistant"
-version = "1.1.0"
+version = "1.2.0"
 description = ""
 authors = ["Will Garside <worgarside@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 python-dotenv = "*"
 lxml = "*"
 xmltodict = "*"
 requests = "*"
-spotipy = "*"
 nanoleafapi = "*"
 pillow = "*"
 feedgen = "*"
@@ -20,7 +19,7 @@ flask = "*"
 paramiko = "*"
 pyyaml = "*"
 pynetgear = "*"
-homeassistant = "2023.5.4"
+homeassistant = "2023.6.3"
 wg-utilities = "^3.4.0"
 tzlocal = "^5.0"
 strenum = "^0.4.10"

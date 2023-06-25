@@ -2,10 +2,11 @@
 icon: mdi:memory
 name: Plex Media Server Memory Usage
 state: >
-  {{
-    state_attr('sensor.plex_media_server_status', 'data').memory_percent |
-    float(default=0) * 100 |
-    round(2)
-  }}
+  {% set data = state_attr('sensor.plex_media_server_status', 'data') %}
+  {% if data %}
+    {{ data.memory_percent | float }}
+  {% else %}
+    0
+  {% endif %}
 unique_id: plex_media_server_memory_usage
 unit_of_measurement: '%'

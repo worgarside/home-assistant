@@ -1,0 +1,21 @@
+---
+alias: /switch/office_amp/auto_turn_off
+id: switch_office_amp_auto_turn_off
+trigger:
+  - platform: state
+    entity_id: media_player.office_speakers
+    from:
+      - idle
+      - paused
+      - playing
+      - "on"
+    to:
+      - idle
+      - "off"
+      - unavailable
+      - unknown
+    for:
+      minutes: 2
+action:
+  - service: switch.turn_off
+    entity_id: switch.office_amp
