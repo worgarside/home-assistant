@@ -27,4 +27,4 @@ trigger:
 action:
   - service: script.office_desk_standing_mode
     data:
-      sync_blinds: "{{ trigger.event.event_type == 'long_release' }}"
+      sync_blinds: "{{ trigger.event.type != 'short_release' }}"
