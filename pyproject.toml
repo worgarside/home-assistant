@@ -27,6 +27,7 @@ strenum = "^0.4.10"
 [tool.poetry.group.dev.dependencies]
 black = "*"
 pre-commit = "*"
+watchdog = "^3.0.0"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
