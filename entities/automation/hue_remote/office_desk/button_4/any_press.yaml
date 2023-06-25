@@ -12,6 +12,11 @@ trigger:
   - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
     domain: hue
     platform: device
+    type: long_press
+    subtype: 4
+  - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
+    domain: hue
+    platform: device
     type: repeat
     subtype: 4
   - device_id: f7f8f67e9af4b1ad4e0bcc93247f3424
@@ -21,3 +26,5 @@ trigger:
     subtype: 4
 action:
   - service: script.office_desk_sitting_mode
+    data:
+      close_blinds: "{{ trigger.event.event_type == 'long_release' }}"
