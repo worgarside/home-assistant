@@ -1,0 +1,21 @@
+---
+sensor:
+  command: >-
+    sh
+    /config/resources/shell_command/github_pull_requests/get_pull_requests.sh
+    wg-utilities
+  name: "WG Utilities Pull Requests"
+  scan_interval: 60
+  unique_id: wg_utilities_pull_requests
+  value_template: "{{ value_json | count }}"
+  json_attributes:
+    - "0"
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+    - "7"
+    - "8"
+    - "9"

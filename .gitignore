@@ -301,3 +301,6 @@ zigbee.db*
 custom_components
 !custom_components/**/*.json
 !config_validator.json
+
+resources/gh_cli/
+.github_token

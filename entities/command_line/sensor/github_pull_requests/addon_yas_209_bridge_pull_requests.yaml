@@ -1,0 +1,21 @@
+---
+sensor:
+  command: >-
+    sh
+    /config/resources/shell_command/github_pull_requests/get_pull_requests.sh
+    addon-yas-209-bridge
+  name: "Add-on: YAS-209 Bridge Pull Requests"
+  scan_interval: 60
+  unique_id: addon_yas_209_bridge_pull_requests
+  value_template: "{{ value_json | count }}"
+  json_attributes:
+    - "0"
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+    - "7"
+    - "8"
+    - "9"

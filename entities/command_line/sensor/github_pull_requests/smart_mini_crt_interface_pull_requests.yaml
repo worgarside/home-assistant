@@ -1,0 +1,21 @@
+---
+sensor:
+  command: >-
+    sh
+    /config/resources/shell_command/github_pull_requests/get_pull_requests.sh
+    smart-mini-crt-interface
+  name: "Smart Mini CRT Interface Pull Requests"
+  scan_interval: 60
+  unique_id: smart_mini_crt_interface_pull_requests
+  value_template: "{{ value_json | count }}"
+  json_attributes:
+    - "0"
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+    - "7"
+    - "8"
+    - "9"
