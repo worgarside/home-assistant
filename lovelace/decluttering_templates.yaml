@@ -481,11 +481,15 @@ addon_stats_graph_card_template:
     name: "[[name]]"
     card_mod:
       style: |
-        ha-card {
+        ha-card.type-custom-mini-graph-card {
           box-shadow: none;
           border: none;
         }
+        .graph {
+          padding: 0px;
+        }
     entities:
+      # TODO add total with no line but fill
       - entity: sensor.esphome_add_on_[[sensor_type]]_usage
         name: ESPHome
         color: "#FF0000"
@@ -593,3 +597,279 @@ addon_stats_legend_card_template:
         :host {
           max-width: 200px;
         }
+
+repo_pr_list_card_template:
+  card:
+    type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: |
+          ## <ha-icon icon="mdi:github"></ha-icon> [[repo_name]]
+      - type: divider
+      - type: custom:decluttering-card
+        template: pr_summary_card_template
+        variables:
+          - repo_slug: "[[repo_slug]]"
+          - pr_count_id: "0"
+      - type: divider
+      - type: custom:decluttering-card
+        template: pr_summary_card_template
+        variables:
+          - repo_slug: "[[repo_slug]]"
+          - pr_count_id: "1"
+      - type: divider
+      - type: custom:decluttering-card
+        template: pr_summary_card_template
+        variables:
+          - repo_slug: "[[repo_slug]]"
+          - pr_count_id: "2"
+      - type: divider
+      - type: custom:decluttering-card
+        template: pr_summary_card_template
+        variables:
+          - repo_slug: "[[repo_slug]]"
+          - pr_count_id: "3"
+      - type: divider
+      - type: custom:decluttering-card
+        template: pr_summary_card_template
+        variables:
+          - repo_slug: "[[repo_slug]]"
+          - pr_count_id: "4"
+      - type: divider
+      - type: custom:decluttering-card
+        template: pr_summary_card_template
+        variables:
+          - repo_slug: "[[repo_slug]]"
+          - pr_count_id: "5"
+      - type: divider
+      - type: custom:decluttering-card
+        template: pr_summary_card_template
+        variables:
+          - repo_slug: "[[repo_slug]]"
+          - pr_count_id: "6"
+      - type: divider
+      - type: custom:decluttering-card
+        template: pr_summary_card_template
+        variables:
+          - repo_slug: "[[repo_slug]]"
+          - pr_count_id: "7"
+      - type: divider
+      - type: custom:decluttering-card
+        template: pr_summary_card_template
+        variables:
+          - repo_slug: "[[repo_slug]]"
+          - pr_count_id: "8"
+      - type: divider
+      - type: custom:decluttering-card
+        template: pr_summary_card_template
+        variables:
+          - repo_slug: "[[repo_slug]]"
+          - pr_count_id: "9"
+
+pr_summary_card_template:
+  card:
+    type: custom:state-switch
+    entity: "{{ state_attr('sensor.[[repo_slug]]_pull_requests', '[[pr_count_id]]') is none }}"
+    states:
+      false:
+        type: custom:button-card
+        tap_action:
+          action: url
+          url_path: '[[[ return variables.pr.url ]]]'
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: none;
+            }
+        styles:
+          custom_fields:
+            subtitle:
+              - justify-self: start
+              - margin-left: 10px
+              - margin-top: 5px
+              - color: grey
+              - font-size: 14px
+            title:
+              - justify-self: start
+              - margin-left: 10px
+            labels:
+              - margin-top: 5px
+              - margin-left: 10px
+              - margin-right: 10px
+          grid:
+            - grid-template-areas: >
+                "title title"
+                "subtitle subtitle"
+                "labels labels"
+        variables:
+          pr: >
+            [[[
+              return states["sensor.[[repo_slug]]_pull_requests"].attributes["[[pr_count_id]]"]
+            ]]]
+          time_since_pr: >
+            [[[
+              const pr = states["sensor.[[repo_slug]]_pull_requests"].attributes["[[pr_count_id]]"];
+
+              if (!pr) {return null;}
+
+              const utcnow = Date.now();
+              const createdAt = new Date(pr.createdAt).getTime();
+              const mins_since_pr = (utcnow - createdAt) / (1000 * 60);
+
+              let time_since_pr;
+
+              if (mins_since_pr < 60) {
+                time_since_pr = `${Math.floor(mins_since_pr)} minutes ago`;
+              } else if (mins_since_pr < 60 * 24) {
+                time_since_pr = `${Math.floor(mins_since_pr / 60)} hours ago`;
+              } else {
+                time_since_pr = `${Math.floor(mins_since_pr / (60 * 24))} days ago`;
+              }
+
+              return time_since_pr;
+            ]]]
+        custom_fields:
+          subtitle: >
+            [[[
+              if (!variables.pr) {return null;}
+
+              return `
+                #${variables.pr.number} opened
+                ${variables.time_since_pr} by
+                @${variables.pr.author.replace(/^app\//, "")}
+              `
+            ]]]
+          title: >
+            [[[
+              if (!variables.pr) {return null;}
+
+              function replaceBackticksWithCodeTags(inputString) {
+                let codeTagOpen = false;
+
+                return inputString.replace(
+                  /`/g, () => (codeTagOpen = !codeTagOpen) ?
+                    '<span style="font-family: monospace;">' :
+                    '</span>'
+                );
+              }
+
+              const { title, isDraft, statusCheckRollup, autoMergeRequest } = variables.pr;
+
+              const pr_icon_color = isDraft ? 'grey' : '#57AB5A';
+              let title_str = title.length > 50 ? `${title.substring(0, 48)}...` : title;
+              let title_html = `
+                <ha-icon
+                  icon="mdi:source-pull"
+                  style="width: 22px; height: 22px; color: ${pr_icon_color};"
+                ></ha-icon>
+                <span> ${replaceBackticksWithCodeTags(title_str)}</span>
+              `;
+
+              if (statusCheckRollup.includes("IN_PROGRESS")) {
+                title_html += `
+                  <ha-icon
+                    icon="mdi:circle"
+                    style="width: 15px; height: 15px; color: #DBAB0A;"
+                  ></ha-icon>
+                `;
+              } else if (statusCheckRollup.includes("FAILURE")) {
+                title_html += `
+                  <ha-icon
+                    icon="mdi:close-thick"
+                    style="width: 15px; height: 15px; color: #E5534B;">
+                  </ha-icon>
+                `;
+              } else {
+                const checkIconColor = autoMergeRequest ? '#57AB5A' : '#7E867F';
+                title_html += `
+                  <ha-icon
+                    icon="mdi:check-bold"
+                    style="width: 15px; height: 15px; color: ${checkIconColor};"
+                  ></ha-icon>
+                `;
+              }
+
+              return title_html;
+            ]]]
+          labels: >
+            [[[
+              if (!variables.pr) {return null;}
+
+              const labelColors = {
+                'bug': {'font': '#EA9CA5', 'background': '#D73A4A2D'},
+                'chore': {'font': '#E48545', 'background': '#8B45132D'},
+                'bot:delete-on-merge': {'font': '#FF8181', 'background': '#8B00002D'},
+                'bot:keep-updated': {'font': '#85F9A4', 'background': '#87FAA62D'},
+                'dependencies': {'font': '#59A8FC', 'background': '#0366D62D'},
+                'documentation': {'font': '#35AAFF', 'background': '#0075CA2D'},
+                'enhancement': {'font': '#9FEEEE', 'background': '#A2EEEF2D'},
+                'feature-request': {'font': '#9FEEEE', 'background': '#A2EEEF2D'},
+                'github-actions': {'font': '#999999', 'background': '#0000002D'},
+                'hasspi-sync': {'font': '#51C2EF', 'background': '#53C2F12D'},
+                'hotfix': {'font': '#EA9CA5', 'background': '#D73A4A2D'},
+                'major': {'font': '#FFC5C5', 'background': '#FF00002D'},
+                'minor': {'font': '#FFA100', 'background': '#FFA5002D'},
+                'non-functional': {'font': '#FFFFFF', 'background': '#FFFFFF2D'},
+                'patch': {'font': '#FEFF00', 'background': '#FFFF002D'},
+                'python': {'font': '#7DA5E2', 'background': '#2B67C62D'},
+                'release': {'font': '#F687F8', 'background': '#C30AC62D'},
+                'skip-changelog': {'font': '#FFFFFF', 'background': '#FFFFFF2D'},
+                'sync': {'font': '#EAEAEA', 'background': '#EDEDED2D'},
+                'tests': {'font': '#17DF21', 'background': '#0E8A162D'},
+                'tools': {'font': '#979797', 'background': '#4141412D'},
+                'ha:automations': {'font': '#FFC5C5', 'background': '#FF00002D'},
+                'ha:config': {'font': '#FF8D6B', 'background': '#FF3F002D'},
+                'ha:command-line': {'font': '#FF843D', 'background': '#FF5F002D'},
+                'ha:cover': {'font': '#FF830F', 'background': '#FF7F002D'},
+                'ha:custom-components': {'font': '#FF9D00', 'background': '#FF9F002D'},
+                'ha:device-tracker': {'font': '#FFBB00', 'background': '#FFBF002D'},
+                'ha:groups': {'font': '#FEFF00', 'background': '#FFFF002D'},
+                'ha:input-boolean': {'font': '#BFFF00', 'background': '#BFFF002D'},
+                'ha:input-button': {'font': '#7FFF00', 'background': '#7FFF002D'},
+                'ha:input-datetime': {'font': '#3FFF00', 'background': '#3FFF002D'},
+                'ha:input-number': {'font': '#00FF00', 'background': '#00FF002D'},
+                'ha:input-select': {'font': '#00FF7B', 'background': '#00FF7F2D'},
+                'ha:input-text': {'font': '#00FEFF', 'background': '#00FFFF2D'},
+                'ha:lovelace': {'font': '#57ABFE', 'background': '#007FFF2D'},
+                'ha:media-player': {'font': '#B3C6FF', 'background': '#003FFF2D'},
+                'ha:mqtt': {'font': '#10D10DFF', 'background': '#0000FF2D'},
+                'ha:pyscript': {'font': '#F5F2FF', 'background': '#3F00FF2D'},
+                'ha:rest-command': {'font': '#EAD7FE', 'background': '#7F00FF2D'},
+                'ha:scenes': {'font': '#EDBBFF', 'background': '#BF00FF2D'},
+                'ha:scripts': {'font': '#FFA0FE', 'background': '#FF00FF2D'},
+                'ha:sensors': {'font': '#FFA9E9', 'background': '#FF00BF2D'},
+                'ha:shell-command': {'font': '#FFAEE1', 'background': '#FF009F2D'},
+                'ha:switch': {'font': '#FEB3D9', 'background': '#FF007F2D'},
+                'ha:template': {'font': '#FFBCCD', 'background': '#FF003F2D'},
+                'ha:variables': {'font': '#FFC5C5', 'background': '#FF00002D'}
+              };
+
+              const defaultColor = {
+                background: '#CCCCCC',
+                font: '#000000',
+              };
+
+              const labelsHTML = variables.pr.labels.sort().map((label) => {
+                const color = labelColors[label.trim()] || defaultColor;
+
+                return `
+                  <span
+                    style="
+                      display: inline-block;
+                      margin: 1px;
+                      padding: 2px 7px;
+                      background-color: ${color.background};
+                      color: ${color.font};
+                      border-radius: 2em;
+                      border: 1px solid ${color.font}4B;
+                      font-size: 10px;
+                      font-weight: 500;
+                    ">${label.trim()}</span>`;
+              }).join('');
+
+              return `
+                <div
+                  style="overflow-x: auto; white-space: nowrap; text-align: left;"
+                >${labelsHTML}</div>`;
+            ]]]
