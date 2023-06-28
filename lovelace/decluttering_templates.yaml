@@ -605,6 +605,18 @@ repo_pr_list_card_template:
       - type: markdown
         content: |
           ## <ha-icon icon="mdi:github"></ha-icon> [[repo_name]]
+      - type: conditional
+        conditions:
+          - entity: 'sensor.[[repo_slug]]_pull_requests'
+            state: "0"
+        card:
+          type: markdown
+          content: "### No open pull requests"
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: none;
+            }
       - type: divider
       - type: custom:decluttering-card
         template: pr_summary_card_template
