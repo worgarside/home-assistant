@@ -675,7 +675,7 @@ pr_summary_card_template:
         type: custom:button-card
         tap_action:
           action: url
-          url_path: '[[[ return variables.pr.url ]]]'
+          url_path: "[[[ return variables.pr.url ]]]"
         card_mod:
           style: |
             ha-card {
@@ -770,7 +770,7 @@ pr_summary_card_template:
                 title_html += `
                   <ha-icon
                     icon="mdi:circle"
-                    style="width: 15px; height: 15px; color: #DBAB0A;"
+                    style="width: 14px; height: 14px; color: #DBAB0A;"
                   ></ha-icon>
                 `;
               } else if (statusCheckRollup.includes("FAILURE")) {
