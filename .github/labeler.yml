@@ -46,6 +46,10 @@ labels:
     files:
       - ^entities/cover/.+\.yaml$
 
+  - label: ha:command-line
+    files:
+      - ^entities/command_line/.+\.yaml$
+
   - label: ha:custom-components
     files:
       - ^custom_components/.+$
@@ -114,6 +118,11 @@ labels:
   - label: ha:sensors
     files:
       - ^entities/sensor/.+\.yaml$
+
+  - label: ha:shell-command
+    files:
+      - ^entities/shell_command/.+\.yaml$
+      - ^resources/shell_command/.+\.yaml$
 
   - label: ha:switch
     files:
