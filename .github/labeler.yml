@@ -11,6 +11,9 @@ labels:
     branch: ^chore\/
 
   - label: dependencies
+    authors:
+      - app/dependabot
+      - app/pre-commit-ci
     files:
       - ^poetry\.lock$
       - ^Pipfile\.lock$
