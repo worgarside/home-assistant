@@ -66,6 +66,13 @@ jobs:
           mv -vn cc_pyscript/custom_components/pyscript ./custom_components/
           rm -rf cc_pyscript
 
+      - name: "Clone Custom Component: `spotcast`"
+        run: |
+          git clone https://github.com/fondberg/spotcast \
+            --depth 1
+          mv -vn spotcast/custom_components/* ./custom_components/spotcast/
+          rm -rf spotcast
+
       - name: ZHA Quirk Workaround
         run: sed -i 's/\/config\//\/github\/workspace\//g' integrations/zha.yaml
 

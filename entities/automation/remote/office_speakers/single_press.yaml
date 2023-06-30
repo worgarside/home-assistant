@@ -1,0 +1,53 @@
+---
+alias: /remote/office-speakers/single-press
+id: remote_office_speakers_single_press
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      command: single
+      device_ieee: 00:15:8d:00:09:ee:31:be
+action:
+  - if: "{{ states('media_player.office_speakers') in ['unknown', 'unavailable']}}"
+    then:
+      - service: tts.cloud_say
+        data:
+          cache: true
+          entity_id: media_player.office_nest_mini
+          message: >
+            Unable to play music, Office Speakers state is currently
+            {{ states('media_player.office_speakers') }}
+      - wait_for_trigger:
+          - platform: state
+            entity_id: media_player.office_nest_mini
+            to: idle
+      - service: media_player.turn_off
+        target:
+          entity_id: media_player.office_nest_mini
+    else:
+      - if: "{{ states('media_player.office_speakers') in ['playing', 'paused'] }}"
+        then:
+          - service: media_player.media_play_pause
+            target:
+              entity_id: media_player.office_speakers
+        else:
+          - if: "{{ states('media_player.office_speakers') in ['idle', 'off'] }}"
+            then:
+              - service: spotcast.start
+                data:
+                  entity_id: media_player.office_speakers
+            else:
+              - service: tts.cloud_say
+                data:
+                  cache: true
+                  entity_id: media_player.office_nest_mini
+                  message: >
+                    Automation failed. Office speakers state is
+                    {{ states('media_player.office_speakers') }}
+              - wait_for_trigger:
+                  - platform: state
+                    entity_id: media_player.office_nest_mini
+                    to: idle
+              - service: media_player.turn_off
+                target:
+                  entity_id: media_player.office_nest_mini
