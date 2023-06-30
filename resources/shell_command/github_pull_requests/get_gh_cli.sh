@@ -21,4 +21,4 @@ chmod +x resources/gh_cli/bin/gh
 # Remove tarball
 rm "$TARBALL_FILE"
 
-echo "gh cli version: $(resources/gh_cli/bin/gh --version)"
+echo "gh cli version: $(resources/gh_cli/bin/gh --version)" >> /config/home-assistant.log
