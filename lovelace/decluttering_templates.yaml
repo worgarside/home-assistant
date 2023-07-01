@@ -743,6 +743,62 @@ pr_summary_card_template:
                                 "
                               ></ha-icon>
                             </div>
+                  - type: custom:state-switch
+                    entity: >
+                      {%
+                        set pr = state_attr(
+                          'sensor.[[repo_slug]]_pull_requests',
+                          '[[pr_count_id]]'
+                        )
+                      %}
+                      {{
+                        pr and not pr.isDraft and not pr.autoMergeRequest
+                      }}
+                    states:
+                      true:
+                        type: custom:button-card
+                        card_mod:
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border: none;
+                              cursor: default;
+                            }
+                        tap_action:
+                          action: call-service
+                          service: shell_command.approve_pull_request
+                          service_data:
+                            url: >
+                              [[[
+                                return states[
+                                  "sensor.[[repo_slug]]_pull_requests"
+                                ].attributes["[[pr_count_id]]"].url
+                              ]]]
+                        styles:
+                          grid:
+                            - grid-template-areas: >
+                                "content"
+                        custom_fields:
+                          content: >
+                            <div style="
+                              display: flex;
+                              justify-content: space-between;
+                              max-width: 300px;
+                              margin: 0 auto;
+                            ">
+                              <h3 style="
+                                margin: 0;
+                                padding-top: 3px;
+                              ">(Auto) Merge  Pull Request</h3>
+                              <ha-icon
+                                icon="mdi:source-merge"
+                                style="
+                                  width: 28px;
+                                  height: 28px;
+                                  margin: 0 0 0 auto;
+                                "
+                              ></ha-icon>
+                            </div>
                   - type: custom:button-card
                     card_mod:
                       style: |
