@@ -902,6 +902,12 @@ pr_summary_card_template:
                   - type: custom:decluttering-card
                     template: semver_label_toggler_card_template
                     variables:
+                      - label: "bot:keep-updated"
+                      - repo_slug: "[[repo_slug]]"
+                      - pr_count_id: "[[pr_count_id]]"
+                  - type: custom:decluttering-card
+                    template: semver_label_toggler_card_template
+                    variables:
                       - label: "non-functional"
                       - repo_slug: "[[repo_slug]]"
                       - pr_count_id: "[[pr_count_id]]"
