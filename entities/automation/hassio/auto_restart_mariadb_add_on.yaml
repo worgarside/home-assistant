@@ -1,0 +1,17 @@
+---
+alias: /hassio/auto_restart_mariadb_add_on
+id: hassio_auto_restart_mariadb_add_on
+trigger:
+  platform: numeric_state
+  entity_id: sensor.mariadb_cpu_usage
+  above: 15
+  for:
+    minutes: 5
+action:
+  - service: hassio.addon_restart
+    data:
+      addon: core_mariadb
+  - service: persistent_notification.create
+    data:
+      title: "MariaDB Add-on Restarted"
+      message: "MariaDB Add-on was restarted because CPU usage was above 15% for 5 minutes"
