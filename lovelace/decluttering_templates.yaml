@@ -600,83 +600,97 @@ addon_stats_legend_card_template:
 
 repo_pr_list_card_template:
   card:
-    type: custom:vertical-stack-in-card
-    cards:
-      - type: markdown
-        content: |
-          ## <ha-icon icon="mdi:github"></ha-icon> [[repo_name]]
-      - type: conditional
-        conditions:
-          - entity: 'sensor.[[repo_slug]]_pull_requests'
-            state: "0"
-        card:
-          type: markdown
+    type: conditional
+    conditions:
+      - entity: 'sensor.[[repo_slug]]_pull_requests'
+        state_not: "0"
+    card:
+      type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: |
+            ## <ha-icon icon="mdi:github"></ha-icon> [[repo_name]]
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "0"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "1"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "2"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "3"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "4"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "5"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "6"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "7"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "8"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "9"
+
+empty_repo_pr_list_card_template:
+  card:
+    type: conditional
+    conditions:
+      - entity: 'sensor.[[repo_slug]]_pull_requests'
+        state: "0"
+    card:
+      type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: |
+            ## <ha-icon icon="mdi:github"></ha-icon> [[repo_name]]
+        - type: divider
+        - type: markdown
           content: "### No open pull requests"
           style: |
             ha-card {
               box-shadow: none;
               border: none;
             }
-      - type: divider
-      - type: custom:decluttering-card
-        template: pr_summary_card_template
-        variables:
-          - repo_slug: "[[repo_slug]]"
-          - pr_count_id: "0"
-      - type: divider
-      - type: custom:decluttering-card
-        template: pr_summary_card_template
-        variables:
-          - repo_slug: "[[repo_slug]]"
-          - pr_count_id: "1"
-      - type: divider
-      - type: custom:decluttering-card
-        template: pr_summary_card_template
-        variables:
-          - repo_slug: "[[repo_slug]]"
-          - pr_count_id: "2"
-      - type: divider
-      - type: custom:decluttering-card
-        template: pr_summary_card_template
-        variables:
-          - repo_slug: "[[repo_slug]]"
-          - pr_count_id: "3"
-      - type: divider
-      - type: custom:decluttering-card
-        template: pr_summary_card_template
-        variables:
-          - repo_slug: "[[repo_slug]]"
-          - pr_count_id: "4"
-      - type: divider
-      - type: custom:decluttering-card
-        template: pr_summary_card_template
-        variables:
-          - repo_slug: "[[repo_slug]]"
-          - pr_count_id: "5"
-      - type: divider
-      - type: custom:decluttering-card
-        template: pr_summary_card_template
-        variables:
-          - repo_slug: "[[repo_slug]]"
-          - pr_count_id: "6"
-      - type: divider
-      - type: custom:decluttering-card
-        template: pr_summary_card_template
-        variables:
-          - repo_slug: "[[repo_slug]]"
-          - pr_count_id: "7"
-      - type: divider
-      - type: custom:decluttering-card
-        template: pr_summary_card_template
-        variables:
-          - repo_slug: "[[repo_slug]]"
-          - pr_count_id: "8"
-      - type: divider
-      - type: custom:decluttering-card
-        template: pr_summary_card_template
-        variables:
-          - repo_slug: "[[repo_slug]]"
-          - pr_count_id: "9"
 
 pr_summary_card_template:
   card:
