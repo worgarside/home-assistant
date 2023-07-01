@@ -20,10 +20,7 @@ action:
         - elevation: 6
           position: 100
       sequence:
-        - wait_for_trigger:
-            platform: numeric_state
-            entity_id: sensor.sun_elevation
-            above: "{{ elevation }}"
+        - wait_template: "{{ states('sensor.sun_elevation') | float >= elevation }}"
         - service: cover.set_cover_position
           target:
             entity_id: cover.bedroom_blinds
