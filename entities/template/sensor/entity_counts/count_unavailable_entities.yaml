@@ -20,9 +20,9 @@ attributes:
     {%
       set regex_patterns = [
         "^(light|media_player|(binary_)?sensor)\.(?=[a-z]*\d)([a-z]|\d){8}_(?=[a-z]*\d)([a-z]|\d){8}$",
-        "^binary_sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(fullykiosk|dark_mode)$",
+        "^binary_sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(fullykiosk|dark_mode|charging)$",
         "^light\.([a-z]|\d){8}_([a-z]|\d){8}_screen$",
-        "^sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(path|visibility|user(agent)?|height|width)$",
+        "^sensor\.([a-z]|\d){8}_([a-z]|\d){8}_browser_(path|visibility|user(agent)?|height|width|battery)$",
         "^switch\..+_led$",
         "^sensor\.worgarside_.+_latest_(discussion|release|issue|pull_request|tag)$"
       ]
