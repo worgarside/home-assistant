@@ -7,6 +7,22 @@ trigger:
   entity_id: sensor.sun_elevation
   above: -6
 action:
-  - service: cover.open_cover
-    target:
-      entity_id: cover.bedroom_blinds
+  - repeat:
+      for_each:
+        - elevation: -6
+          position: 20
+        - elevation: -3
+          position: 40
+        - elevation: 0
+          position: 60
+        - elevation: 3
+          position: 80
+        - elevation: 6
+          position: 100
+      sequence:
+        - wait_template: "{{ states('sensor.sun_elevation') | float >= elevation }}"
+        - service: cover.set_cover_position
+          target:
+            entity_id: cover.bedroom_blinds
+          data:
+            position: "{{ position }}"
