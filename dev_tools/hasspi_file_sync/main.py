@@ -163,6 +163,7 @@ class FileSyncHandler(FileSystemEventHandler):
                 LOGGER.debug("OK")
             except OSError as exc:
                 LOGGER.debug("Failed: %s", exc)
+                self._ssh_client = create_ssh_client()
                 self._sftp_client = self._ssh_client.open_sftp()
                 LOGGER.debug("Recreated SFTP client")
 
