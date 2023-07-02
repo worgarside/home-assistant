@@ -1,5 +1,5 @@
 ---
 approve_pull_request: >
   bash
-  /config/resources/shell_command/github_pull_requests/approve_pull_request.sh
+  /config/resources/shell_command/gh_cli/approve_pull_request.sh
   -u {{ url }}

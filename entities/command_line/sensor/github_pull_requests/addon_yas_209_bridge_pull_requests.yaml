@@ -2,7 +2,7 @@
 sensor:
   command: >-
     sh
-    /config/resources/shell_command/github_pull_requests/get_pull_requests.sh
+    /config/resources/shell_command/gh_cli/get_pull_requests.sh
     addon-yas-209-bridge
   name: "Add-on: YAS-209 Bridge Pull Requests"
   scan_interval: 60

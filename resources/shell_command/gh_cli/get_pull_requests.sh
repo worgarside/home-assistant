@@ -4,7 +4,7 @@ REPO_NAME=$1
 
 if [ ! -f "/config/resources/gh_cli/bin/gh" ]
 then
-    # sh /config/resources/shell_command/github_pull_requests/get_gh_cli.sh
+    # sh /config/resources/shell_command/gh_cli/get_gh_cli.sh
 
     if [ ! -f "/config/resources/gh_cli/bin/gh" ]
     then

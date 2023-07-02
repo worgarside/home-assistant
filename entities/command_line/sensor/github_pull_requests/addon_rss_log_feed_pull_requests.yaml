@@ -2,7 +2,7 @@
 sensor:
   command: >-
     sh
-    /config/resources/shell_command/github_pull_requests/get_pull_requests.sh
+    /config/resources/shell_command/gh_cli/get_pull_requests.sh
     addon-rss-log-feed
   name: "Add-on: RSS Log Feed Pull Requests"
   scan_interval: 60
