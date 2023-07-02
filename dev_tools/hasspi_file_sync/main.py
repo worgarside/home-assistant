@@ -47,14 +47,41 @@ class FileSyncHandler(FileSystemEventHandler):
 
         self._last_sftp_use = 0
 
+    def _delete_file_from_hasspi(
+        self, event: DirDeletedEvent | FileDeletedEvent
+    ) -> None:
+        """Delete a file from the HAssPi.
+
+        Args:
+            event (DirDeletedEvent | FileDeletedEvent): The event.
+        """
+        file_path = Path(event.src_path).relative_to(REPO_PATH)
+
+        if self._path_is_ignored(file_path=file_path):
+            LOGGER.debug("Ignoring %s deletion", file_path.as_posix())
+            return
+
+        target_path = Path("/config") / file_path
+
+        try:
+            self.sftp_client.remove(target_path.as_posix())
+            LOGGER.info("Deleted %s", target_path.as_posix())
+        except FileNotFoundError as exc:
+            LOGGER.debug("Delete failed successfully? %r", exc)
+
     def _path_is_ignored(
-        self, *, file_path: Path | None = None, src_path: str | None = None
+        self,
+        *,
+        file_path: Path | None = None,
+        src_path: str | None = None,
+        must_exist: bool = False,
     ) -> bool:
         """Check if a path should be ignored.
 
         Args:
             file_path (Path): The file path, relative to REPO_PATH
             src_path (str): The event's source path
+            must_exist (bool): If the path must exist in the repository.
 
         Returns:
             bool: True if the path should be ignored.
@@ -75,6 +102,9 @@ class FileSyncHandler(FileSystemEventHandler):
         ):
             return True
 
+        if must_exist:
+            return not REPO_PATH.joinpath(file_path).exists()
+
         return False
 
     def _write_file_to_hasspi(
@@ -84,9 +114,14 @@ class FileSyncHandler(FileSystemEventHandler):
         | FileCreatedEvent
         | FileModifiedEvent,
     ) -> None:
+        """Write a file to the HAssPi."""
+
         file_path = Path(event.src_path).relative_to(REPO_PATH)
 
-        if event.is_directory or self._path_is_ignored(file_path=file_path):
+        if event.is_directory or self._path_is_ignored(
+            file_path=file_path, must_exist=True
+        ):
+            LOGGER.debug("Ignoring %s write event", file_path.as_posix())
             return
 
         target_path = Path("/config") / file_path
@@ -104,7 +139,7 @@ class FileSyncHandler(FileSystemEventHandler):
                     self.sftp_client.chdir(directory)
 
             self.sftp_client.put(event.src_path, target_path.as_posix())
-            LOGGER.info("%s -> %s", file_path.as_posix(), target_path.as_posix())
+            LOGGER.info("Wrote %s -> %s", file_path.as_posix(), target_path.as_posix())
 
     def on_created(self, event: DirCreatedEvent | FileCreatedEvent) -> None:
         """Handle a file or directory being created."""
@@ -112,18 +147,7 @@ class FileSyncHandler(FileSystemEventHandler):
 
     def on_deleted(self, event: DirDeletedEvent | FileDeletedEvent) -> None:
         """Handle a file or directory being deleted."""
-        file_path = Path(event.src_path).relative_to(REPO_PATH)
-
-        if self._path_is_ignored(file_path=file_path):
-            return
-
-        target_path = Path("/config") / file_path
-
-        try:
-            self.sftp_client.remove(target_path.as_posix())
-            LOGGER.info("Deleted %s", target_path.as_posix())
-        except FileNotFoundError as exc:
-            LOGGER.debug("Delete failed successfully? %r", exc)
+        self._delete_file_from_hasspi(event)
 
     def on_modified(self, event: DirModifiedEvent | FileModifiedEvent) -> None:
         """Handle a file or directory being modified."""
@@ -132,9 +156,22 @@ class FileSyncHandler(FileSystemEventHandler):
     def on_moved(self, event: DirMovedEvent | FileMovedEvent) -> None:
         """Handle a file or directory being moved."""
         if self._path_is_ignored(src_path=event.src_path):
+            LOGGER.debug("Ignoring %s move", event.src_path)
             return
 
-        print(event)
+        delete_event: DirDeletedEvent | FileDeletedEvent = (
+            DirDeletedEvent(event.src_path)  # type: ignore[no-untyped-call]
+            if event.is_directory
+            else FileDeletedEvent(event.src_path)  # type: ignore[no-untyped-call]
+        )
+        write_event: DirCreatedEvent | FileCreatedEvent = (
+            DirCreatedEvent(event.dest_path)  # type: ignore[no-untyped-call]
+            if event.is_directory
+            else FileCreatedEvent(event.dest_path)  # type: ignore[no-untyped-call]
+        )
+
+        self._delete_file_from_hasspi(delete_event)
+        self._write_file_to_hasspi(write_event)
 
     @property
     def sftp_client(self) -> SFTPClient:
