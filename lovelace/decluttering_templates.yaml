@@ -481,11 +481,15 @@ addon_stats_graph_card_template:
     name: "[[name]]"
     card_mod:
       style: |
-        ha-card {
+        ha-card.type-custom-mini-graph-card {
           box-shadow: none;
           border: none;
         }
+        .graph {
+          padding: 0px;
+        }
     entities:
+      # TODO add total with no line but fill
       - entity: sensor.esphome_add_on_[[sensor_type]]_usage
         name: ESPHome
         color: "#FF0000"
@@ -593,3 +597,632 @@ addon_stats_legend_card_template:
         :host {
           max-width: 200px;
         }
+
+repo_pr_list_card_template:
+  card:
+    type: conditional
+    conditions:
+      - entity: 'sensor.[[repo_slug]]_pull_requests'
+        state_not: "0"
+    card:
+      type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: |
+            ## <ha-icon icon="mdi:github"></ha-icon> [[repo_name]]
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "0"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "1"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "2"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "3"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "4"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "5"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "6"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "7"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "8"
+        - type: divider
+        - type: custom:decluttering-card
+          template: pr_summary_card_template
+          variables:
+            - repo_slug: "[[repo_slug]]"
+            - pr_count_id: "9"
+
+empty_repo_pr_list_card_template:
+  card:
+    type: conditional
+    conditions:
+      - entity: 'sensor.[[repo_slug]]_pull_requests'
+        state: "0"
+    card:
+      type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          content: |
+            ## <ha-icon icon="mdi:github"></ha-icon> [[repo_name]]
+        - type: divider
+        - type: markdown
+          content: "### No open pull requests"
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: none;
+            }
+
+pr_summary_card_template:
+  card:
+    type: custom:state-switch
+    entity: "{{ state_attr('sensor.[[repo_slug]]_pull_requests', '[[pr_count_id]]') is none }}"
+    states:
+      false:
+        type: custom:button-card
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            service: browser_mod.popup
+            data:
+              content:
+                type: entities
+                entities:
+                  - type: custom:state-switch
+                    entity: >
+                      {%
+                        set pr = state_attr(
+                          'sensor.[[repo_slug]]_pull_requests',
+                          '[[pr_count_id]]'
+                        )
+                      %}
+                      {{
+                        pr and not pr.isDraft and pr.reviewDecision != "APPROVED"
+                      }}
+                    states:
+                      true:
+                        type: custom:button-card
+                        card_mod:
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border: none;
+                              cursor: default;
+                            }
+                        tap_action:
+                          action: call-service
+                          service: shell_command.approve_pull_request
+                          service_data:
+                            url: >
+                              [[[
+                                return states[
+                                  "sensor.[[repo_slug]]_pull_requests"
+                                ].attributes["[[pr_count_id]]"].url
+                              ]]]
+                        styles:
+                          grid:
+                            - grid-template-areas: >
+                                "content"
+                        custom_fields:
+                          content: >
+                            <div style="
+                              display: flex;
+                              justify-content: space-between;
+                              max-width: 300px;
+                              margin: 0 auto;
+                            ">
+                              <h3 style="
+                                margin: 0;
+                                padding-top: 3px;
+                              ">Approve Pull Request</h3>
+                              <ha-icon
+                                icon="mdi:stamper"
+                                style="
+                                  width: 28px;
+                                  height: 28px;
+                                  margin: 0 0 0 auto;
+                                "
+                              ></ha-icon>
+                            </div>
+                  - type: custom:state-switch
+                    entity: >
+                      {%
+                        set pr = state_attr(
+                          'sensor.[[repo_slug]]_pull_requests',
+                          '[[pr_count_id]]'
+                        )
+                      %}
+                      {{
+                        pr and not pr.isDraft and not pr.autoMergeRequest
+                      }}
+                    states:
+                      true:
+                        type: custom:button-card
+                        card_mod:
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border: none;
+                              cursor: default;
+                            }
+                        tap_action:
+                          action: call-service
+                          service: shell_command.set_pr_auto_merge
+                          service_data:
+                            url: >
+                              [[[
+                                return states[
+                                  "sensor.[[repo_slug]]_pull_requests"
+                                ].attributes["[[pr_count_id]]"].url
+                              ]]]
+                        styles:
+                          grid:
+                            - grid-template-areas: >
+                                "content"
+                        custom_fields:
+                          content: >
+                            <div style="
+                              display: flex;
+                              justify-content: space-between;
+                              max-width: 300px;
+                              margin: 0 auto;
+                            ">
+                              <h3 style="
+                                margin: 0;
+                                padding-top: 3px;
+                              ">(Auto) Merge  Pull Request</h3>
+                              <ha-icon
+                                icon="mdi:source-merge"
+                                style="
+                                  width: 28px;
+                                  height: 28px;
+                                  margin: 0 0 0 auto;
+                                "
+                              ></ha-icon>
+                            </div>
+                  - type: custom:button-card
+                    card_mod:
+                      style: |
+                        ha-card {
+                          box-shadow: none;
+                          border: none;
+                          cursor: default;
+                          padding: 4% 0 !important;
+                        }
+                    tap_action:
+                      action: call-service
+                      service: shell_command.mark_pr_as_ready_for_review
+                      service_data:
+                        url: >
+                          [[[
+                            return states[
+                              "sensor.[[repo_slug]]_pull_requests"
+                            ].attributes["[[pr_count_id]]"].url
+                          ]]]
+                        draft: >
+                          [[[
+                            return states[
+                              "sensor.[[repo_slug]]_pull_requests"
+                            ].attributes["[[pr_count_id]]"].isDraft
+                          ]]]
+                    styles:
+                      grid:
+                        - grid-template-areas: >
+                            "content"
+                    custom_fields:
+                      content: >
+                        [[[
+                          const isDraft = states["sensor.[[repo_slug]]_pull_requests"]
+                            .attributes["[[pr_count_id]]"]
+                            .isDraft;
+
+                          const label = isDraft ? "Ready for review" : "Mark as draft";
+                          const icon = isDraft ? "mdi:file-find" : "mdi:note-edit";
+
+                          return `
+                            <div style="
+                              display: flex;
+                              justify-content: space-between;
+                              max-width: 300px;
+                              margin: 0 auto;
+                            ">
+                              <h3 style="
+                                margin: 0;
+                                padding-top: 3px;
+                              ">${label}</h3>
+                              <ha-icon
+                                icon="${icon}"
+                                style="
+                                  width: 28px;
+                                  height: 28px;
+                                  margin: 0 0 0 auto;
+                                "
+                              ></ha-icon>
+                            </div>
+                          `
+                        ]]]
+                  - type: divider
+                  - type: custom:decluttering-card
+                    template: semver_label_toggler_card_template
+                    variables:
+                      - label: "major"
+                      - repo_slug: "[[repo_slug]]"
+                      - pr_count_id: "[[pr_count_id]]"
+                  - type: custom:decluttering-card
+                    template: semver_label_toggler_card_template
+                    variables:
+                      - label: "minor"
+                      - repo_slug: "[[repo_slug]]"
+                      - pr_count_id: "[[pr_count_id]]"
+                  - type: custom:decluttering-card
+                    template: semver_label_toggler_card_template
+                    variables:
+                      - label: "patch"
+                      - repo_slug: "[[repo_slug]]"
+                      - pr_count_id: "[[pr_count_id]]"
+                  - type: custom:decluttering-card
+                    template: semver_label_toggler_card_template
+                    variables:
+                      - label: "bot:keep-updated"
+                      - repo_slug: "[[repo_slug]]"
+                      - pr_count_id: "[[pr_count_id]]"
+                  - type: custom:decluttering-card
+                    template: semver_label_toggler_card_template
+                    variables:
+                      - label: "non-functional"
+                      - repo_slug: "[[repo_slug]]"
+                      - pr_count_id: "[[pr_count_id]]"
+        double_tap_action:
+          action: url
+          url_path: "[[[ return variables.pr.url ]]]"
+        card_mod:
+          style: |
+            ha-card {
+              box-shadow: none;
+              border: none;
+            }
+        styles:
+          custom_fields:
+            subtitle:
+              - justify-self: start
+              - margin-left: 10px
+              - margin-top: 5px
+              - color: grey
+              - font-size: 14px
+            title:
+              - justify-self: start
+              - max-width: calc(100% - 20px)
+              - margin-left: 10px
+              - margin-right: 10px
+            labels:
+              - margin-top: 5px
+              - margin-left: 10px
+              - margin-right: 10px
+          grid:
+            - grid-template-areas: >
+                "title title"
+                "subtitle subtitle"
+                "labels labels"
+        variables:
+          pr: >
+            [[[
+              return states["sensor.[[repo_slug]]_pull_requests"].attributes["[[pr_count_id]]"]
+            ]]]
+          time_since_pr: >
+            [[[
+              const pr = states["sensor.[[repo_slug]]_pull_requests"].attributes["[[pr_count_id]]"];
+
+              if (!pr) {return null;}
+
+              const utcnow = Date.now();
+              const createdAt = new Date(pr.createdAt).getTime();
+              const mins_since_pr = (utcnow - createdAt) / (1000 * 60);
+
+              let time_since_pr;
+
+              if (mins_since_pr < 60) {
+                time_since_pr = `${Math.floor(mins_since_pr)} minutes ago`;
+              } else if (mins_since_pr < 60 * 24) {
+                time_since_pr = `${Math.floor(mins_since_pr / 60)} hours ago`;
+              } else {
+                time_since_pr = `${Math.floor(mins_since_pr / (60 * 24))} days ago`;
+              }
+
+              return time_since_pr;
+            ]]]
+        custom_fields:
+          subtitle: >
+            [[[
+              if (!variables.pr) {return null;}
+
+              return `
+                #${variables.pr.number} opened
+                ${variables.time_since_pr} by
+                @${variables.pr.author.replace(/^app\//, "")}
+              `
+            ]]]
+          # yamllint disable rule:line-length
+          title: >
+            [[[
+              if (!variables.pr) {return null;}
+
+              function replaceBackticksWithCodeTags(inputString) {
+                let codeTagOpen = false;
+
+                return inputString.replace(
+                  /`/g, () => (codeTagOpen = !codeTagOpen) ? '<code>' : '</code>'
+                );
+              }
+
+              const { title, isDraft, statusCheckRollup, autoMergeRequest } = variables.pr;
+
+              const prIcon = isDraft ? `
+                <svg
+                  style="bottom: 0;"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M4.46876 1.375C5.19903 1.37438 5.90598 1.6321 6.46451 2.10257C7.02304 2.57303 7.39715 3.22591 7.52062 3.94567C7.64409 4.66543 7.50897 5.40566 7.13917 6.03538C6.76937 6.6651 6.18874 7.1437 5.50001 7.3865V14.6135C6.18846 14.8568 6.76873 15.3356 7.13825 15.9654C7.50778 16.5951 7.64277 17.3353 7.51935 18.0549C7.39593 18.7746 7.02206 19.4274 6.46382 19.8981C5.90559 20.3688 5.19893 20.6269 4.46876 20.6269C3.73859 20.6269 3.03193 20.3688 2.47369 19.8981C1.91545 19.4274 1.54158 18.7746 1.41817 18.0549C1.29475 17.3353 1.42973 16.5951 1.79926 15.9654C2.16879 15.3356 2.74906 14.8568 3.43751 14.6135V7.3865C2.7504 7.14228 2.17159 6.66329 1.80313 6.034C1.43468 5.40471 1.30024 4.66553 1.42354 3.94681C1.54683 3.22809 1.91994 2.57597 2.47706 2.10546C3.03418 1.63495 3.73954 1.37626 4.46876 1.375ZM17.5313 20.625C16.7107 20.625 15.9238 20.2991 15.3436 19.7189C14.7635 19.1387 14.4375 18.3518 14.4375 17.5313C14.4375 16.7107 14.7635 15.9238 15.3436 15.3436C15.9238 14.7634 16.7107 14.4375 17.5313 14.4375C18.3518 14.4375 19.1387 14.7634 19.7189 15.3436C20.2991 15.9238 20.625 16.7107 20.625 17.5313C20.625 18.3518 20.2991 19.1387 19.7189 19.7189C19.1387 20.2991 18.3518 20.625 17.5313 20.625ZM3.43751 4.46875C3.43751 4.74226 3.54616 5.00456 3.73955 5.19795C3.93295 5.39135 4.19525 5.5 4.46876 5.5C4.74226 5.5 5.00457 5.39135 5.19796 5.19795C5.39136 5.00456 5.50001 4.74226 5.50001 4.46875C5.50001 4.19525 5.39136 3.93294 5.19796 3.73955C5.00457 3.54615 4.74226 3.4375 4.46876 3.4375C4.19525 3.4375 3.93295 3.54615 3.73955 3.73955C3.54616 3.93294 3.43751 4.19525 3.43751 4.46875ZM4.46876 16.5C4.19525 16.5 3.93295 16.6087 3.73955 16.802C3.54616 16.9954 3.43751 17.2577 3.43751 17.5313C3.43751 17.8048 3.54616 18.0671 3.73955 18.2605C3.93295 18.4539 4.19525 18.5625 4.46876 18.5625C4.74226 18.5625 5.00457 18.4539 5.19796 18.2605C5.39136 18.0671 5.50001 17.8048 5.50001 17.5313C5.50001 17.2577 5.39136 16.9954 5.19796 16.802C5.00457 16.6087 4.74226 16.5 4.46876 16.5ZM17.5313 16.5C17.2578 16.5 16.9955 16.6087 16.8021 16.802C16.6087 16.9954 16.5 17.2577 16.5 17.5313C16.5 17.8048 16.6087 18.0671 16.8021 18.2605C16.9955 18.4539 17.2578 18.5625 17.5313 18.5625C17.8048 18.5625 18.0671 18.4539 18.2605 18.2605C18.4539 18.0671 18.5625 17.8048 18.5625 17.5313C18.5625 17.2577 18.4539 16.9954 18.2605 16.802C18.0671 16.6087 17.8048 16.5 17.5313 16.5ZM19.25 10.3125C19.25 10.7683 19.0689 11.2055 18.7466 11.5278C18.4243 11.8502 17.9871 12.0313 17.5313 12.0313C17.0754 12.0313 16.6382 11.8502 16.3159 11.5278C15.9936 11.2055 15.8125 10.7683 15.8125 10.3125C15.8125 9.85666 15.9936 9.41949 16.3159 9.09716C16.6382 8.77483 17.0754 8.59375 17.5313 8.59375C17.9871 8.59375 18.4243 8.77483 18.7466 9.09716C19.0689 9.41949 19.25 9.85666 19.25 10.3125ZM19.25 4.46875C19.25 4.92459 19.0689 5.36176 18.7466 5.68409C18.4243 6.00642 17.9871 6.1875 17.5313 6.1875C17.0754 6.1875 16.6382 6.00642 16.3159 5.68409C15.9936 5.36176 15.8125 4.92459 15.8125 4.46875C15.8125 4.01291 15.9936 3.57574 16.3159 3.25341C16.6382 2.93108 17.0754 2.75 17.5313 2.75C17.9871 2.75 18.4243 2.93108 18.7466 3.25341C19.0689 3.57574 19.25 4.01291 19.25 4.46875Z" fill="#808080"/>
+                </svg>
+              ` : `
+                <ha-icon
+                  icon="mdi:source-pull"
+                  style="width: 24px; height: 24px; color: #57AB5A;"
+                ></ha-icon>
+              `;
+
+              const titleSpan = `
+                <span style="
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                  flex: 1;
+                  padding-left: 5px;
+                  padding-right: 2px;
+                ">${replaceBackticksWithCodeTags(title)}</span>
+              `;
+
+              let statusIcon;
+              if (statusCheckRollup.includes("IN_PROGRESS")) {
+                statusIcon = `
+                  <ha-icon
+                    icon="mdi:circle"
+                    style="
+                      width: 14px;
+                      height: 14px;
+                      color: #DBAB0A;
+                      display: flex;
+                    "
+                  ></ha-icon>
+                `;
+              } else if (statusCheckRollup.includes("FAILURE")) {
+                statusIcon = `
+                  <ha-icon
+                    icon="mdi:close-thick"
+                    style="
+                      width: 15px;
+                      height: 15px;
+                      color: #E5534B;
+                      display: flex;
+                    "
+                  ></ha-icon>
+                `;
+              } else {
+                const checkIconColor = autoMergeRequest ? '#57AB5A' : '#7E867F';
+                statusIcon = `
+                  <ha-icon
+                    icon="mdi:check-bold"
+                    style="
+                      width: 15px;
+                      height: 15px;
+                      color: ${checkIconColor};
+                      display: flex;
+                    "
+                  ></ha-icon>
+                `;
+              }
+
+              return `
+                <div style="display: flex; align-items: center;">
+                  ${prIcon}
+                  ${titleSpan}
+                  ${statusIcon}
+                </div>
+              `;
+            ]]]
+          # yamllint enable rule:line-length
+          labels: >
+            [[[
+              if (!variables.pr) {return null;}
+
+              const labelColors = {
+                'bug': {'font': '#EA9CA5', 'background': '#D73A4A2D'},
+                'chore': {'font': '#E48545', 'background': '#8B45132D'},
+                'bot:delete-on-merge': {'font': '#FF8181', 'background': '#8B00002D'},
+                'bot:keep-updated': {'font': '#85F9A4', 'background': '#87FAA62D'},
+                'dependencies': {'font': '#59A8FC', 'background': '#0366D62D'},
+                'documentation': {'font': '#35AAFF', 'background': '#0075CA2D'},
+                'enhancement': {'font': '#9FEEEE', 'background': '#A2EEEF2D'},
+                'feature-request': {'font': '#9FEEEE', 'background': '#A2EEEF2D'},
+                'github-actions': {'font': '#999999', 'background': '#0000002D'},
+                'hasspi-sync': {'font': '#51C2EF', 'background': '#53C2F12D'},
+                'hotfix': {'font': '#EA9CA5', 'background': '#D73A4A2D'},
+                'major': {'font': '#FFC5C5', 'background': '#FF00002D'},
+                'minor': {'font': '#FFA100', 'background': '#FFA5002D'},
+                'non-functional': {'font': '#FFFFFF', 'background': '#FFFFFF2D'},
+                'patch': {'font': '#FEFF00', 'background': '#FFFF002D'},
+                'python': {'font': '#7DA5E2', 'background': '#2B67C62D'},
+                'release': {'font': '#F687F8', 'background': '#C30AC62D'},
+                'skip-changelog': {'font': '#FFFFFF', 'background': '#FFFFFF2D'},
+                'sync': {'font': '#EAEAEA', 'background': '#EDEDED2D'},
+                'tests': {'font': '#17DF21', 'background': '#0E8A162D'},
+                'tools': {'font': '#979797', 'background': '#4141412D'},
+                'ha:automations': {'font': '#FFC5C5', 'background': '#FF00002D'},
+                'ha:config': {'font': '#FF8D6B', 'background': '#FF3F002D'},
+                'ha:command-line': {'font': '#FF843D', 'background': '#FF5F002D'},
+                'ha:cover': {'font': '#FF830F', 'background': '#FF7F002D'},
+                'ha:custom-components': {'font': '#FF9D00', 'background': '#FF9F002D'},
+                'ha:device-tracker': {'font': '#FFBB00', 'background': '#FFBF002D'},
+                'ha:groups': {'font': '#FEFF00', 'background': '#FFFF002D'},
+                'ha:input-boolean': {'font': '#BFFF00', 'background': '#BFFF002D'},
+                'ha:input-button': {'font': '#7FFF00', 'background': '#7FFF002D'},
+                'ha:input-datetime': {'font': '#3FFF00', 'background': '#3FFF002D'},
+                'ha:input-number': {'font': '#00FF00', 'background': '#00FF002D'},
+                'ha:input-select': {'font': '#00FF7B', 'background': '#00FF7F2D'},
+                'ha:input-text': {'font': '#00FEFF', 'background': '#00FFFF2D'},
+                'ha:lovelace': {'font': '#57ABFE', 'background': '#007FFF2D'},
+                'ha:media-player': {'font': '#B3C6FF', 'background': '#003FFF2D'},
+                'ha:mqtt': {'font': '#10D10DFF', 'background': '#0000FF2D'},
+                'ha:pyscript': {'font': '#F5F2FF', 'background': '#3F00FF2D'},
+                'ha:rest-command': {'font': '#EAD7FE', 'background': '#7F00FF2D'},
+                'ha:scenes': {'font': '#EDBBFF', 'background': '#BF00FF2D'},
+                'ha:scripts': {'font': '#FFA0FE', 'background': '#FF00FF2D'},
+                'ha:sensors': {'font': '#FFA9E9', 'background': '#FF00BF2D'},
+                'ha:shell-command': {'font': '#FFAEE1', 'background': '#FF009F2D'},
+                'ha:switch': {'font': '#FEB3D9', 'background': '#FF007F2D'},
+                'ha:template': {'font': '#FFBCCD', 'background': '#FF003F2D'},
+                'ha:variables': {'font': '#FFC5C5', 'background': '#FF00002D'}
+              };
+
+              const defaultColor = {
+                background: '#CCCCCC',
+                font: '#000000',
+              };
+
+              const labelsHTML = variables.pr.labels.sort().map((label) => {
+                const color = labelColors[label.trim()] || defaultColor;
+
+                return `
+                  <span
+                    style="
+                      display: inline-block;
+                      margin: 1px;
+                      padding: 2px 7px;
+                      background-color: ${color.background};
+                      color: ${color.font};
+                      border-radius: 2em;
+                      border: 1px solid ${color.font}4B;
+                      font-size: 10px;
+                      font-weight: 500;
+                    ">${label.trim()}</span>`;
+              }).join('');
+
+              return `
+                <div
+                  style="overflow-x: auto; white-space: nowrap; text-align: left;"
+                >${labelsHTML}</div>`;
+            ]]]
+
+semver_label_toggler_card_template:
+  card:
+    type: custom:button-card
+    card_mod:
+      style: |
+        ha-card {
+          box-shadow: none;
+          border: none;
+          cursor: default;
+          padding: 4% 0 !important;
+        }
+    tap_action:
+      action: call-service
+      service: shell_command.toggle_pr_label
+      service_data:
+        url: >
+          [[[
+            return states[
+              "sensor.[[repo_slug]]_pull_requests"
+            ].attributes["[[pr_count_id]]"].url
+          ]]]
+        label: "[[label]]"
+        add_remove: >
+          [[[
+            return states[
+              "sensor.[[repo_slug]]_pull_requests"
+            ]
+              .attributes["[[pr_count_id]]"]
+              .labels
+              .includes("[[label]]") ? "remove" : "add"
+          ]]]
+    styles:
+      grid:
+        - grid-template-areas: >
+            "content"
+    custom_fields:
+      content: >
+        [[[
+          const hasLabel = states[
+            "sensor.[[repo_slug]]_pull_requests"
+          ]
+            .attributes["[[pr_count_id]]"]
+            .labels
+            .includes("[[label]]");
+
+          const addRemove = hasLabel ? "Remove" : "Add"
+          const icon = hasLabel ? "mdi:label-off" : "mdi:label";
+          const label = '[[label]]';
+
+          return `
+            <div style="
+              display: flex;
+              justify-content: space-between;
+              max-width: 300px;
+              margin: 0 auto;
+            ">
+              <h3 style="
+                margin: 0;
+                padding-top: 3px;
+              ">${addRemove} <code>${label}</code> label</h3>
+              <ha-icon
+                icon="${icon}"
+                style="
+                  width: 28px;
+                  height: 28px;
+                  margin: 0 0 0 auto;
+                "
+              ></ha-icon>
+            </div>
+          `
+        ]]]

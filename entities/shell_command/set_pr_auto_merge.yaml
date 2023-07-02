@@ -1,0 +1,5 @@
+---
+set_pr_auto_merge: >
+  bash
+  /config/resources/shell_command/gh_cli/set_pr_auto_merge.sh
+  -u {{ url }}

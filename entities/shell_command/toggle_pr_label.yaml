@@ -1,0 +1,7 @@
+---
+toggle_pr_label: >
+  bash
+  /config/resources/shell_command/gh_cli/toggle_pr_label.sh
+  -u {{ url }}
+  -l {{ label }}
+  -a {{ add_remove }}

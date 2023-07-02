@@ -1,0 +1,5 @@
+---
+approve_pull_request: >
+  bash
+  /config/resources/shell_command/gh_cli/approve_pull_request.sh
+  -u {{ url }}

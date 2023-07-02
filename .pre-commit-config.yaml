@@ -19,7 +19,7 @@ repos:
       - id: blacken-docs
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: 0.12.0
+    rev: 0.12.1
     hooks:
       - id: pyproject-fmt
 
@@ -87,7 +87,7 @@ repos:
           - --all
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.3.0
+    rev: v1.4.1
     hooks:
       - id: mypy
         args:
@@ -107,6 +107,8 @@ repos:
           - types-python-dateutil
           - wg-utilities==3.6.0
           - python-dotenv
+          - voluptuous
+          - watchdog
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
   - repo: local
@@ -143,7 +145,7 @@ repos:
           - '*.svg,*.json'
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.272
+    rev: v0.0.275
     hooks:
       - id: ruff
 
