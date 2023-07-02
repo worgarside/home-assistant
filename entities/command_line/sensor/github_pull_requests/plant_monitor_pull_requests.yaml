@@ -2,7 +2,7 @@
 sensor:
   command: >-
     sh
-    /config/resources/shell_command/github_pull_requests/get_pull_requests.sh
+    /config/resources/shell_command/gh_cli/get_pull_requests.sh
     plant-monitor
   name: "Plant Monitor Pull Requests"
   scan_interval: 60
