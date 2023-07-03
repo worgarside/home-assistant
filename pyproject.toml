@@ -22,7 +22,7 @@ pynetgear = "*"
 homeassistant = "2023.6.3"
 wg-utilities = "^3.4.0"
 tzlocal = "^5.0"
-strenum = "^0.4.10"
+strenum = "^0.4.15"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
