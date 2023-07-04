@@ -15,6 +15,6 @@ action:
       effect: bon appetit
   - service: cover.set_cover_position
     data:
-      position: 50
+      position: 54
     target:
       entity_id: cover.lounge_blinds
