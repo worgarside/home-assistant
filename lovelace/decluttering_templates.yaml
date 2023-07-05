@@ -707,7 +707,17 @@ pr_summary_card_template:
               content:
                 type: entities
                 entities:
-                  - type: custom:state-switch
+                  - type: custom:hui-element
+                    card_mod:
+                      style: |
+                        ha-card {
+                          box-shadow: none;
+                          border: none;
+                        }
+                    card_type: markdown
+                    content: |
+                      ### Pull Request Controls
+                  - type: custom:state-switch  # Approve Pull Request
                     entity: >
                       {%
                         set pr = state_attr(
@@ -726,7 +736,7 @@ pr_summary_card_template:
                             ha-card {
                               box-shadow: none;
                               border: none;
-                              cursor: default;
+                              padding: 2% 0 !important;
                             }
                         tap_action:
                           action: call-service
@@ -750,10 +760,10 @@ pr_summary_card_template:
                               max-width: 300px;
                               margin: 0 auto;
                             ">
-                              <h3 style="
+                              <h4 style="
                                 margin: 0;
                                 padding-top: 3px;
-                              ">Approve Pull Request</h3>
+                              ">Approve Pull Request</h4>
                               <ha-icon
                                 icon="mdi:stamper"
                                 style="
@@ -763,7 +773,7 @@ pr_summary_card_template:
                                 "
                               ></ha-icon>
                             </div>
-                  - type: custom:state-switch
+                  - type: custom:state-switch  # (Auto) Merge Pull Request
                     entity: >
                       {%
                         set pr = state_attr(
@@ -782,7 +792,7 @@ pr_summary_card_template:
                             ha-card {
                               box-shadow: none;
                               border: none;
-                              cursor: default;
+                              padding: 2% 0 !important;
                             }
                         tap_action:
                           action: call-service
@@ -806,10 +816,10 @@ pr_summary_card_template:
                               max-width: 300px;
                               margin: 0 auto;
                             ">
-                              <h3 style="
+                              <h4 style="
                                 margin: 0;
                                 padding-top: 3px;
-                              ">(Auto) Merge  Pull Request</h3>
+                              ">(Auto) Merge  Pull Request</h4>
                               <ha-icon
                                 icon="mdi:source-merge"
                                 style="
@@ -819,14 +829,13 @@ pr_summary_card_template:
                                 "
                               ></ha-icon>
                             </div>
-                  - type: custom:button-card
+                  - type: custom:button-card  # Toggle draft
                     card_mod:
                       style: |
                         ha-card {
                           box-shadow: none;
                           border: none;
-                          cursor: default;
-                          padding: 4% 0 !important;
+                          padding: 2% 0 !important;
                         }
                     tap_action:
                       action: call-service
@@ -865,10 +874,10 @@ pr_summary_card_template:
                               max-width: 300px;
                               margin: 0 auto;
                             ">
-                              <h3 style="
+                              <h4 style="
                                 margin: 0;
                                 padding-top: 3px;
-                              ">${label}</h3>
+                              ">${label}</h4>
                               <ha-icon
                                 icon="${icon}"
                                 style="
@@ -881,6 +890,16 @@ pr_summary_card_template:
                           `
                         ]]]
                   - type: divider
+                  - type: custom:hui-element
+                    card_mod:
+                      style: |
+                        ha-card {
+                          box-shadow: none;
+                          border: none;
+                        }
+                    card_type: markdown
+                    content: |
+                      ### Set Labels
                   - type: custom:decluttering-card
                     template: semver_label_toggler_card_template
                     variables:
@@ -911,6 +930,57 @@ pr_summary_card_template:
                       - label: "non-functional"
                       - repo_slug: "[[repo_slug]]"
                       - pr_count_id: "[[pr_count_id]]"
+                  - type: custom:state-switch
+                    entity: >
+                      {{
+                        state_attr('sensor.[[repo_slug]]_pull_requests', '[[pr_count_id]]').author
+                        == 'app/dependabot'
+                      }}
+                    states:
+                      true:
+                        type: custom:vertical-stack-in-card
+                        card_mod:
+                          style: |
+                            ha-card {
+                              border-top: 1px solid var(
+                                --entities-divider-color, var(--divider-color)
+                              );
+                              border-bottom: none;
+                              border-left: none;
+                              border-right: none;
+                              border-top-left-radius: 0;
+                              border-top-right-radius: 0;
+                            }
+                        cards:
+                          - type: markdown
+                            content: |
+                              ### Dependabot Commands
+                          - type: horizontal-stack
+                            cards:
+                              - type: custom:decluttering-card
+                                template: comment_on_pr_card_template
+                                variables:
+                                  - url: >
+                                      [[[
+                                        return states[
+                                          "sensor.[[repo_slug]]_pull_requests"
+                                        ].attributes["[[pr_count_id]]"].url
+                                      ]]]
+                                  - comment: "@dependabot rebase"
+                                  - name: "Rebase"
+                                  - icon: mdi:source-branch-refresh
+                              - type: custom:decluttering-card
+                                template: comment_on_pr_card_template
+                                variables:
+                                  - url: >
+                                      [[[
+                                        return states[
+                                          "sensor.[[repo_slug]]_pull_requests"
+                                        ].attributes["[[pr_count_id]]"].url
+                                      ]]]
+                                  - comment: "@dependabot recreate"
+                                  - name: "Recreate"
+                                  - icon: mdi:source-branch-sync
         double_tap_action:
           action: url
           url_path: "[[[ return variables.pr.url ]]]"
@@ -1163,8 +1233,7 @@ semver_label_toggler_card_template:
         ha-card {
           box-shadow: none;
           border: none;
-          cursor: default;
-          padding: 4% 0 !important;
+          padding: 2% 0 !important;
         }
     tap_action:
       action: call-service
@@ -1211,10 +1280,10 @@ semver_label_toggler_card_template:
               max-width: 300px;
               margin: 0 auto;
             ">
-              <h3 style="
+              <h4 style="
                 margin: 0;
                 padding-top: 3px;
-              ">${addRemove} <code>${label}</code> label</h3>
+              ">${addRemove} <code>${label}</code> label</h4>
               <ha-icon
                 icon="${icon}"
                 style="
@@ -1226,3 +1295,30 @@ semver_label_toggler_card_template:
             </div>
           `
         ]]]
+
+comment_on_pr_card_template:
+  card:
+    type: custom:button-card
+    tap_action:
+      action: call-service
+      service: shell_command.comment_on_pr
+      service_data:
+        url: '[[url]]'
+        comment: '[[comment]]'
+    styles:
+      grid:
+        - grid-template-areas: >
+            "content"
+    custom_fields:
+      content: >
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <ha-icon
+            icon="[[icon]]"
+            style="
+              width: 28px;
+              height: 28px;
+              margin: 0 10px 0 0;
+            "
+          ></ha-icon>
+          <span>[[name]]</span>
+        </div>

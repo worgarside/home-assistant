@@ -1,0 +1,6 @@
+---
+comment_on_pr: >
+  bash
+  /config/resources/shell_command/gh_cli/comment_on_pr.sh
+  -u {{ url }}
+  -c "{{ comment }}"
