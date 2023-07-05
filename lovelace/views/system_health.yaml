@@ -8,36 +8,38 @@ path: system_health
 cards:
   - type: custom:vertical-stack-in-card
     cards:
+      - type: markdown
+        content: "# Unavailable Entities"
       - type: custom:auto-entities
         card:
           type: entities
-          title: Unavailable Entities
           show_header_toggle: false
+          card_mod:
+            style: |
+              ha-card {
+                border: none;
+              }
         sort:
           method: domain
         filter:
           template: "{{ state_attr('sensor.count_unavailable_entities', 'entities') }}"
-      - type: conditional
-        conditions:
-          - entity: binary_sensor.entities_are_unavailable
-            state: "off"
-        card:
+        else:
           type: markdown
-          content: Nothing to report here!
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: none;
-              margin-top: -32px;
-            }
+          content: "### Nothing to report here!"
 
   - type: custom:vertical-stack-in-card
     cards:
+      - type: markdown
+        content: "# Low Batteries"
       - type: custom:auto-entities
         card:
           type: entities
-          title: Low Batteries
           show_header_toggle: false
+          card_mod:
+            style: |
+              ha-card {
+                border: none;
+              }
         sort:
           method: domain
         filter:
@@ -47,19 +49,9 @@ cards:
               map(attribute="entity_id") |
               list
             }}
-      - type: conditional
-        conditions:
-          - entity: binary_sensor.batteries_are_low
-            state: "off"
-        card:
+        else:
           type: markdown
-          content: All charged up!
-          style: |
-            ha-card {
-              box-shadow: none;
-              border: none;
-              margin-top: -32px;
-            }
+          content: "### All charged up!"
 
   - type: custom:vertical-stack-in-card
     cards:
