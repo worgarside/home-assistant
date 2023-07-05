@@ -291,9 +291,16 @@ cards:
           - auto_entity_filter_template: "{{ 'input_boolean.office_shapes_artwork_colour_source_active', 'input_select.office_shapes_artwork_colour_source' }}"
       - type: custom:fold-entity-row
         head:
+          type: custom:mini-media-player
           entity: media_player.office_speakers
           name: Speakers
           icon: mdi:speaker-multiple
+          group: true
+          hide:
+            volume: true
+            source: true
+            power: true
+            progress: true
         entities:
           - entity: switch.office_amp
             name: Amp
