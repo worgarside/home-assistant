@@ -62,6 +62,7 @@ cards:
             icon: mdi:television
           - entity: media_player.yas_209
             name: Soundbar
+      - entity: fan.vic_s_fan
       - entity: binary_sensor.bedroom_window
         name: Window
 
