@@ -38,9 +38,6 @@ action:
           - wait_for_trigger:
               - platform: state
                 entity_id: media_player.office_speakers
-                from:
-                  - idle
-                  - "off"
                 not_to: idle
             timeout:
               minutes: 1
