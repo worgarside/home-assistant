@@ -14,8 +14,7 @@ action:
   - service: script.debug_persistent_notification
     data:
       title: "GitHub Webhook Triggered"
-      message: |
-        {{ sensor_name }}
+      message: "`{{ sensor_name }}`"
   - service: homeassistant.update_entity
     data:
       entity_id: "{{ sensor_name }}"
