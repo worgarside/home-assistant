@@ -5,7 +5,7 @@ sensor:
     /config/resources/shell_command/gh_cli/get_pull_requests.sh
     led-matrix-now-playing
   name: "LED Matrix Now Playing Pull Requests"
-  scan_interval: 60
+  scan_interval: 3600
   unique_id: led_matrix_now_playing_pull_requests
   value_template: "{{ value_json | count }}"
   json_attributes:
