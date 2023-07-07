@@ -13,6 +13,4 @@ while getopts ":u:l:a:" opt; do
   esac
 done
 
-/config/resources/gh_cli/bin/gh auth login --with-token < "/config/.github_token" 2>&1 > /config/home-assistant.log
-
 /config/resources/gh_cli/bin/gh pr edit "$URL" --"$ADD_REMOVE"-label "$LABEL"
