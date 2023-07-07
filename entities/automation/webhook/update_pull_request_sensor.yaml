@@ -1,6 +1,7 @@
 ---
 alias: /webhook/update_pull_request_sensor
 id: webhook_update_pull_request_sensor
+mode: parallel
 trigger:
   - platform: webhook
     webhook_id: update_pull_request_sensor
