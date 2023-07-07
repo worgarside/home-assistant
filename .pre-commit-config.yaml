@@ -148,11 +148,3 @@ repos:
     hooks:
       - id: validate-entities
       - id: validate-lovelace
-
-  - repo: https://github.com/hugoh/pre-commit-fish.git
-    rev: v1.2
-    additional_dependencies:
-      - fish
-    hooks:
-      - id: fish_syntax
-      - id: fish_indent
