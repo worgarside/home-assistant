@@ -1,7 +1,7 @@
 ---
 alias: /webhook/update_pull_request_sensor
 id: webhook_update_pull_request_sensor
-mode: parallel
+mode: queued
 trigger:
   - platform: webhook
     webhook_id: update_pull_request_sensor
@@ -19,3 +19,5 @@ action:
   - service: homeassistant.update_entity
     data:
       entity_id: "{{ sensor_name }}"
+  - delay:
+      seconds: 1
