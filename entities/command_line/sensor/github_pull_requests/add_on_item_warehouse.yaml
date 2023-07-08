@@ -4,9 +4,9 @@ sensor:
     sh
     /config/resources/shell_command/gh_cli/get_pull_requests.sh
     addon-item-warehouse
-  name: "Add-on: Item Warehouse"
+  name: "Add-on: Item Warehouse Pull Requests"
   scan_interval: 3600
-  unique_id: add_on_item_warehouse
+  unique_id: add_on_item_warehouse_pull_requests
   value_template: "{{ value_json | count }}"
   json_attributes:
     - "0"
