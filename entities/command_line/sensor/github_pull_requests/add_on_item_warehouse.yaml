@@ -3,10 +3,10 @@ sensor:
   command: >-
     sh
     /config/resources/shell_command/gh_cli/get_pull_requests.sh
-    addon-rss-log-feed
-  name: "Add-on: RSS Log Feed Pull Requests"
+    addon-item-warehouse
+  name: "Add-on: Item Warehouse"
   scan_interval: 3600
-  unique_id: addon_rss_log_feed_pull_requests
+  unique_id: add_on_item_warehouse
   value_template: "{{ value_json | count }}"
   json_attributes:
     - "0"
