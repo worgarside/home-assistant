@@ -104,6 +104,8 @@ cards:
           - entity: automation.cover_lounge_blinds_close_after_sunset
             name: Auto-Close
             icon: mdi:weather-sunset-down
+          - name: Button Height
+            entity: input_number.lounge_blinds_button_height
       - type: custom:fold-entity-row
         head:
           entity: input_boolean.mini_crt_power

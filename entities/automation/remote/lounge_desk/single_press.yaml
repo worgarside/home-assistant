@@ -15,6 +15,6 @@ action:
       effect: bon appetit
   - service: cover.set_cover_position
     data:
-      position: 54
+      position: "{{ states('input_number.lounge_blinds_button_height') }}"
     target:
       entity_id: cover.lounge_blinds
