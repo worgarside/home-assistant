@@ -5,22 +5,29 @@ appendOnly: true
 
 labels:
   - label: bug
-    branch: ^bugfix\/
+    branch: ^bugfix/.+$
 
   - label: chore
-    branch: ^chore\/
+    branch: ^chore/.+$
+
+  - label: dependencies
+    files:
+      - ^Pipfile\.lock$
+      - ^poetry\.lock$
+      - ^requirements\.txt$
 
   - label: dependencies
     authors:
-      - app/dependabot
-      - app/pre-commit-ci
+      - dependabot[bot]
+      - pre-commit-ci[bot]
+
+  - label: documentation
     files:
-      - ^poetry\.lock$
-      - ^Pipfile\.lock$
-      - ^pyscript/requirements\.txt$
+      - ^docs/.+$
+      - ^.+\.md$
 
   - label: enhancement
-    branch: ^feature\/.+$
+    branch: ^feature/.+$
 
   - label: github-actions
     files:
@@ -31,7 +38,8 @@ labels:
       - ^.+\.py$
 
   - label: release
-    branch: ^release\/.+$
+    base-branch: ^main$
+    branch: ^release/.+$
 
   - label: tests
     files:

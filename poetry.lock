@@ -2015,13 +2015,13 @@ watchdog = ["watchdog (>=2.3)"]
 
 [[package]]
 name = "wg-utilities"
-version = "3.8.0"
+version = "3.9.0"
 description = "Loads of useful stuff for the things I do :)"
 optional = false
 python-versions = ">=3.10,<4.0"
 files = [
-    {file = "wg_utilities-3.8.0-py3-none-any.whl", hash = "sha256:8197c3f0e6da792663e941fe2772f8118580d7d83c9683714d1c243652a884f6"},
-    {file = "wg_utilities-3.8.0.tar.gz", hash = "sha256:9bc182218aaeaa6bca2595d04d33d1ed6ee2628f6d54bc757af9e201d78c1522"},
+    {file = "wg_utilities-3.9.0-py3-none-any.whl", hash = "sha256:f3be085521a332eadc5cac4c05120dabc4f4500137c74afeb9f4f5ac615aa31b"},
+    {file = "wg_utilities-3.9.0.tar.gz", hash = "sha256:7507872794c70b04311fb8b546d4f3b38bbf1a15d2eedef2e6c583b29fcf317b"},
 ]
 
 [package.dependencies]
@@ -2029,12 +2029,12 @@ botocore = "*"
 "jetson.gpio" = {version = "*", markers = "sys_platform == \"linux\""}
 
 [package.extras]
-clients = ["flask (>=2.0.2)", "pydantic (<2.0.0)", "pyjwt (>=2.6,<2.8)", "python-dotenv", "pytz (>=2022.1)", "requests (>=2.26.0)", "strenum", "tzlocal"]
+clients = ["flask (>=2.0.2)", "pydantic (<2.0.0)", "pyjwt (>=2.6,<2.9)", "python-dotenv", "pytz (>=2022.1)", "requests (>=2.26.0)", "strenum", "tzlocal"]
 devices-dht22 = ["pigpio"]
 devices-epd = ["pillow", "rpi.gpio", "spidev"]
 devices-yamaha-yas-209 = ["async-upnp-client", "pydantic (<2.0.0)", "xmltodict"]
 exceptions = ["python-dotenv", "requests (>=2.26.0)"]
-functions = ["lxml (==4.9.2)"]
+functions = ["lxml (==4.9.3)"]
 
 [[package]]
 name = "xmltodict"
@@ -2137,4 +2137,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "aa1f273428c61b5e493a4ec8b80ab28760008be4a376cefe7b085c745ade1cc8"
+content-hash = "417a61936c1fff204d6fa5ae3c4f038ec2f6839a771fff5afb097a6335d1491f"
