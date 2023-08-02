@@ -5,7 +5,7 @@ description: Close the lounge blinds either when the Sun sets past -6' or at 21:
 trigger:
   - platform: numeric_state
     entity_id: sensor.sun_elevation
-    below: -6
+    below: -3
   - platform: time
     at: "21:30:00"
 action:

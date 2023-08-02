@@ -1,20 +1,20 @@
 ---
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.8.0
+    rev: v3.10.1
     hooks:
       - id: pyupgrade
         args:
           - --py310-plus
 
   - repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 23.7.0
     hooks:
       - id: black
         language_version: python3.11
 
   - repo: https://github.com/asottile/blacken-docs
-    rev: 1.14.0
+    rev: 1.15.0
     hooks:
       - id: blacken-docs
 
@@ -80,7 +80,7 @@ repos:
           - --strict
 
   - repo: https://github.com/hadialqattan/pycln
-    rev: v2.1.5
+    rev: v2.2.0
     hooks:
       - id: pycln
         args:
@@ -96,16 +96,10 @@ repos:
         additional_dependencies:
           - types-requests
           - types-paramiko
-          - boto3-stubs
-          - lxml-stubs
           - types-flask
-          - types-Pillow
-          - types-setuptools
-          - types-tzlocal
-          - pydantic
-          - types-PyYAML
-          - types-python-dateutil
-          - wg-utilities==3.6.0
+          - types-pillow
+          - types-pyyaml
+          - wg-utilities
           - python-dotenv
           - voluptuous
           - watchdog
@@ -145,7 +139,7 @@ repos:
           - '*.svg,*.json'
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.276
+    rev: v0.0.281
     hooks:
       - id: ruff
 

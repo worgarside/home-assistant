@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "home-assistant"
-version = "1.4.0"
+version = "1.5.0"
 description = ""
 authors = ["Will Garside <worgarside@gmail.com>"]
 readme = "README.md"
@@ -14,13 +14,11 @@ requests = "*"
 nanoleafapi = "*"
 pillow = "*"
 feedgen = "*"
-pydantic = "*"
 flask = "*"
 paramiko = "*"
 pyyaml = "*"
-pynetgear = "*"
-homeassistant = "2023.6.3"
-wg-utilities = "^3.4.0"
+homeassistant = "2023.7.2"
+wg-utilities = "^3.9.0"
 tzlocal = "^5.0"
 strenum = "^0.4.15"
 
@@ -57,7 +55,6 @@ profile = "black"
 
 [tool.mypy]
 show_error_codes = true
-plugins = 'pydantic.mypy'
 follow_imports = "silent"
 warn_redundant_casts = true
 warn_unused_ignores = true
@@ -70,12 +67,6 @@ mypy_path = "pyscript/modules"
 [tool.codespell]
 ignore-words-list = "hass"
 skip = '*.json,*.csv,*.xml,*.lock'
-
-[tool.pydantic-mypy]
-init_forbid_extra = true
-init_typed = true
-warn_required_dynamic_aliases = true
-warn_untyped_fields = true
 
 [tool.pycln]
 path = "*"

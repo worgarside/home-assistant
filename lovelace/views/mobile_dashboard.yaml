@@ -62,6 +62,7 @@ cards:
             icon: mdi:television
           - entity: media_player.yas_209
             name: Soundbar
+      - entity: fan.vic_s_fan
       - entity: binary_sensor.bedroom_window
         name: Window
 
@@ -103,6 +104,8 @@ cards:
           - entity: automation.cover_lounge_blinds_close_after_sunset
             name: Auto-Close
             icon: mdi:weather-sunset-down
+          - name: Button Height
+            entity: input_number.lounge_blinds_button_height
       - type: custom:fold-entity-row
         head:
           entity: input_boolean.mini_crt_power
@@ -291,9 +294,16 @@ cards:
           - auto_entity_filter_template: "{{ 'input_boolean.office_shapes_artwork_colour_source_active', 'input_select.office_shapes_artwork_colour_source' }}"
       - type: custom:fold-entity-row
         head:
+          type: custom:mini-media-player
           entity: media_player.office_speakers
           name: Speakers
           icon: mdi:speaker-multiple
+          group: true
+          hide:
+            volume: true
+            source: true
+            power: true
+            progress: true
         entities:
           - entity: switch.office_amp
             name: Amp

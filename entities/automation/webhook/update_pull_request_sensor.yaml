@@ -1,0 +1,23 @@
+---
+alias: /webhook/update_pull_request_sensor
+id: webhook_update_pull_request_sensor
+mode: queued
+trigger:
+  - platform: webhook
+    webhook_id: update_pull_request_sensor
+    allowed_methods:
+      - POST
+    local_only: false
+action:
+  - variables:
+      sensor_name: >-
+        sensor.{{ trigger.json["repository"]["name"] | replace("-", "_") }}_pull_requests
+  - service: script.debug_persistent_notification
+    data:
+      title: "GitHub Webhook Triggered"
+      message: "`{{ sensor_name }}`"
+  - service: homeassistant.update_entity
+    data:
+      entity_id: "{{ sensor_name }}"
+  - delay:
+      seconds: 1

@@ -1,31 +1,8 @@
 #!/bin/bash
 
+sh /config/resources/shell_command/gh_cli/check_gh_cli.sh
+
 REPO_NAME=$1
-
-if [ ! -f "/config/resources/gh_cli/bin/gh" ]
-then
-    # sh /config/resources/shell_command/gh_cli/get_gh_cli.sh
-
-    if [ ! -f "/config/resources/gh_cli/bin/gh" ]
-    then
-        echo '
-            {
-                "0": {
-                    "title": "ERROR: GitHub CLI not found",
-                    "labels": ["major"],
-                    "url": "https://github.com/settings/tokens",
-                    "statusCheckRollup": ["FAILURE"],
-                    "author": "worgarside",
-                    "createdAt": "2021-01-01T00:00:00Z",
-                    "isDraft": false,
-                    "number": 0,
-                    "autoMergeRequest": false
-                }
-            }
-        '
-        exit 0
-    fi
-fi
 
 if [ -z "$REPO_NAME" ]
 then
@@ -46,30 +23,6 @@ then
     '
     exit 0
 fi
-
-TOKEN_FILE=/config/.github_token
-
-if [ ! -f "$TOKEN_FILE" ]
-then
-    echo '
-        {
-            "0": {
-                "title": "ERROR: No GitHub token found",
-                "labels": ["major"],
-                "url": "https://github.com/settings/tokens",
-                "statusCheckRollup": ["FAILURE"],
-                "author": "worgarside",
-                "createdAt": "2021-01-01T00:00:00Z",
-                "isDraft": false,
-                "number": 0,
-                "autoMergeRequest": false
-            }
-        }
-    '
-    exit 0
-fi
-
-/config/resources/gh_cli/bin/gh auth login --with-token < "$TOKEN_FILE" 2>&1 > /config/home-assistant.log
 
 PULL_REQUESTS=$(
     /config/resources/gh_cli/bin/gh pr list \
