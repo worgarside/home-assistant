@@ -53,8 +53,7 @@ jobs:
         run: |
           git clone https://github.com/custom-components/feedparser.git \
             --depth 1
-          mkdir -p ./custom_components/feedparser/
-          mv -vn feedparser/custom_components/* ./custom_components/feedparser/
+          mv -vn feedparser/custom_components/* ./custom_components/
           rm -rf feedparser
 
       - name: "Clone Custom Component: `pyscript`"
