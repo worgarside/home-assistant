@@ -3,6 +3,7 @@ flask
 nanoleafapi==2.1.2
 pillow
 pydantic
+pydantic==1.10.11
 pyjwt
 pynetgear
 python-dotenv
@@ -10,5 +11,5 @@ pytz
 requests
 strenum
 tzlocal
-wg-utilities==3.8.0
+wg-utilities==3.10.0
 xmltodict
