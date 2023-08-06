@@ -87,12 +87,12 @@ def local_setup() -> (
 
     from wg_utilities.loggers import add_stream_handler
 
-    def _simple_decorator(flunc: Callable[[Any], Any]) -> Callable[[Any, Any], Any]:
+    def _simple_decorator(func: Callable[[Any], Any]) -> Callable[[Any, Any], Any]:
         """Dummy function for running scripts locally"""
 
-        @wraps(flunc)
+        @wraps(func)
         def _worker(*args: Any, **kwargs: Any) -> Any:
-            return flunc(*args, **kwargs)
+            return func(*args, **kwargs)
 
         return _worker
 
