@@ -23,7 +23,6 @@ if gethostname() != "homeassistant":
 
 MODULE_NAME = "monzo"
 
-
 MONZO = instantiate_client(MonzoClient, MODULE_NAME)
 
 
@@ -44,8 +43,6 @@ def top_up_credit_card_pot(top_up_amount: float) -> None:
     with HAExceptionCatcher(MODULE_NAME, "top_up_credit_card_pot"):
         try:
             credit_card_pot = task.executor(MONZO.get_pot_by_name, "credit cards")
-            log.info("DEPOSITING %f INTO %s", top_up_amount, credit_card_pot.name)
-            log.info(type(credit_card_pot))
             task.executor(
                 MONZO.deposit_into_pot,
                 credit_card_pot,

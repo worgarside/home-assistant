@@ -4,7 +4,7 @@ from __future__ import annotations
 from collections.abc import Callable
 from functools import wraps
 from json import loads
-from logging import Logger
+from logging import DEBUG, INFO, Logger, getLogger
 from socket import gethostname
 from types import TracebackType
 from typing import Any, TypeVar
@@ -12,15 +12,26 @@ from unittest.mock import MagicMock
 
 from const import OAUTH_CREDS_CACHE_DIR
 from dotenv import load_dotenv
-from requests import post
 from wg_utilities.clients import (
     GoogleFitClient,
     MonzoClient,
     SpotifyClient,
     TrueLayerClient,
 )
+from wg_utilities.loggers import add_warehouse_handler
 
 load_dotenv()
+
+
+LOGGER = getLogger(__name__)
+LOGGER.setLevel(DEBUG)
+add_warehouse_handler(
+    LOGGER,
+    level=INFO,
+    warehouse_port=8002,
+    allow_connection_errors=True,
+    pyscript_task_executor=task.executor,  # type: ignore[has-type,used-before-def]  # noqa: F821
+)
 
 
 class HAExceptionCatcher:
@@ -41,17 +52,16 @@ class HAExceptionCatcher:
 
     def __exit__(
         self,
-        exc_type: type[type] | None,
-        exc_val: Exception | None,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
         exc_tb: TracebackType | None,
     ) -> None:
-        if exc_type is not None:
-            task.executor(
-                post,
-                "http://homeassistant.local:8001/log/error",
-                data=f"{exc_type.__name__} in `{self.module_name}"
-                f"{f'.{self.func_name}' if self.func_name is not None else ''}`: "
-                f"{exc_val!r}",
+        if exc_type and exc_val and exc_tb:
+            LOGGER.exception(
+                "Unexpected exception in %s.%s",
+                self.module_name,
+                self.func_name or "<unknown>",
+                exc_info=(exc_type, exc_val, exc_tb),
             )
 
 
@@ -74,7 +84,6 @@ def local_setup() -> (
         MagicMock: a synchronous mock object
         function: a function to be used as any decorator - it does nothing
     """
-    from logging import DEBUG, getLogger
 
     from wg_utilities.loggers import add_stream_handler
 
@@ -91,7 +100,7 @@ def local_setup() -> (
     def _decorator_with_args(*args: Any, **kwargs: Any) -> Any:
         return _simple_decorator
 
-    _log = getLogger(__name__)
+    _log = getLogger("custom_components.pyscript.LOCAL_STUB")
     _log.setLevel(DEBUG)
     add_stream_handler(_log)
 
@@ -186,26 +195,36 @@ def instantiate_client(
     client_secret = get_secret("client_secret", module=module_name)
 
     if not (client_id and client_secret):
-        raise ValueError(
-            f"Both client ID {'' if client_id else '(missing) '}and"
-            f" secret {'' if client_secret else '(missing) '}must be provided."
+        msg = (
+            f"Error creating {client_class.__name__}: both client ID"
+            f" {'' if client_id else '(missing) '}and secret"
+            f" {'' if client_secret else '(missing) '}must be provided."
         )
 
-    client = task.executor(
-        client_class,
-        client_id=client_id,
-        client_secret=client_secret,
-        oauth_redirect_uri_override=redirect_uri_override,
-        use_existing_credentials_only=True,
-        **extra_kwargs,
-    )  # type: T
+        LOGGER.error(msg)
+        raise ValueError(msg)
+
+    try:
+        client = task.executor(
+            client_class,
+            client_id=client_id,
+            client_secret=client_secret,
+            oauth_redirect_uri_override=redirect_uri_override,
+            use_existing_credentials_only=True,
+            **extra_kwargs,
+        )  # type: T
+    except Exception as exc:
+        LOGGER.exception(
+            "Error creating %s: %s - %s", client_class.__name__, type(exc).__name__, exc
+        )
+        raise exc
 
     assert client.DEFAULT_CACHE_DIR == OAUTH_CREDS_CACHE_DIR
     assert client.creds_cache_path.is_file(), str(client.creds_cache_path)
 
     client.headless_auth_link_callback = None
 
-    log.info(
+    LOGGER.info(
         "Instantiated client for `%s`. Creds cache path: `%s`",
         module_name,
         client.creds_cache_path,

@@ -10,5 +10,5 @@ logger:
       - "Failed to connect to service ServiceInfo"
       - "Error communicating with socket, resetting connection"
   logs:
-    custom_components.pyscript: warning
+    custom_components.pyscript: debug
     charset_normalizer: warning
