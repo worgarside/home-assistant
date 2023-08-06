@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from logging import DEBUG, ERROR, getLogger
 from socket import gethostname
 from typing import Any
 
 from helpers import HAExceptionCatcher, get_secret, instantiate_client
 from wg_utilities.clients.google_fit import GoogleFitClient
+from wg_utilities.loggers import add_warehouse_handler
 
 MODULE_NAME = "google_fit"
 
@@ -35,6 +37,17 @@ VARIABLE_DATA_SOURCE_MAPPING = {
     "var.google_fit_weight": "derived:com.google.weight:com.google.android.gms:merge_weight",  # pylint: disable=line-too-long  # noqa: E501
 }
 
+LOGGER = getLogger(__name__)
+LOGGER.setLevel(DEBUG)
+
+add_warehouse_handler(
+    LOGGER,
+    level=ERROR,
+    warehouse_port=8002,
+    allow_connection_errors=True,
+    pyscript_task_executor=task.executor,
+)
+
 
 @service
 @time_trigger("cron(*/5 * * * *)")
@@ -58,7 +71,7 @@ def update_google_fit_variables() -> None:
                     force_update=True,
                 )
             except Exception as exc:  # pylint: disable=broad-except
-                log.error(
+                LOGGER.exception(
                     "Unable to update variable `%s`: %s - %s",
                     var_name,
                     type(exc).__name__,

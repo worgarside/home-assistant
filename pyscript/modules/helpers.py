@@ -4,7 +4,7 @@ from __future__ import annotations
 from collections.abc import Callable
 from functools import wraps
 from json import loads
-from logging import DEBUG, ERROR, Logger, getLogger
+from logging import DEBUG, INFO, Logger, getLogger
 from socket import gethostname
 from types import TracebackType
 from typing import Any, TypeVar
@@ -27,7 +27,7 @@ LOGGER = getLogger(__name__)
 LOGGER.setLevel(DEBUG)
 add_warehouse_handler(
     LOGGER,
-    level=ERROR,
+    level=INFO,
     warehouse_port=8002,
     allow_connection_errors=True,
     pyscript_task_executor=task.executor,  # type: ignore[has-type,used-before-def]  # noqa: F821
@@ -100,7 +100,7 @@ def local_setup() -> (
     def _decorator_with_args(*args: Any, **kwargs: Any) -> Any:
         return _simple_decorator
 
-    _log = getLogger(__name__)
+    _log = getLogger("custom_components.pyscript.LOCAL_STUB")
     _log.setLevel(DEBUG)
     add_stream_handler(_log)
 
