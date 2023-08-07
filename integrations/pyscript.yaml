@@ -7,6 +7,10 @@ pyscript:
   hass_is_global: true
 
   apps:
+    google_fit:
+      client_id: !secret google_fit_client_id
+      client_secret: !secret google_fit_client_secret
+
     monzo:
       client_id: !secret monzo_client_id
       client_secret: !secret monzo_client_secret
