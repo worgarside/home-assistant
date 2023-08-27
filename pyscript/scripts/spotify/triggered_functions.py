@@ -8,7 +8,7 @@ from os.path import isfile
 from pathlib import Path
 from re import compile as compile_regex
 from socket import gethostname
-from typing import Any, Dict, List  # noqa: UP035,F401
+from typing import Any, Dict, List  # noqa: F401
 
 from helpers import HAExceptionCatcher, instantiate_client, write_file
 from requests import get
