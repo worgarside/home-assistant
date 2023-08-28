@@ -402,22 +402,25 @@ pi_stats_graph_card_template:
     entities:
       - entity: sensor.clmtpi[[sensor_suffix]]
         name: Clmt Pi
-        color: "#FF9800"
+        color: "#E51919"
       - entity: sensor.crtpi[[sensor_suffix]]
         name: CRT Pi
-        color: "#02D1D1"
+        color: "#E5C819"
       - entity: sensor.growpi[[sensor_suffix]]
         name: Grow Pi
-        color: "#E74B3B"
+        color: "#53E519"
       - entity: sensor.[[hasspi_sensor]]
         name: HAss Pi
-        color: "#9B59B6"
+        color: "#19E58E"
       - entity: sensor.mtrxpi[[sensor_suffix]]
         name: Mtrx Pi
-        color: "#F1C40E"
+        color: "#198EE5"
+      - entity: sensor.rtropi[[sensor_suffix]]
+        name: Rtro Pi
+        color: "#5319E5"
       - entity: sensor.vsmppi[[sensor_suffix]]
         name: VSMP Pi
-        color: "#029E44"
+        color: "#E519C8"
     show:
       state: false
       legend: false
@@ -438,22 +441,25 @@ pi_stats_legend_card_template:
     entities:
       - entity: sensor.clmtpi[[sensor_suffix]]
         name: Clmt Pi
-        color: "#FF9800"
+        color: "#E51919"
       - entity: sensor.crtpi[[sensor_suffix]]
         name: CRT Pi
-        color: "#02D1D1"
+        color: "#E5C819"
       - entity: sensor.growpi[[sensor_suffix]]
         name: Grow Pi
-        color: "#E74B3B"
+        color: "#53E519"
       - entity: sensor.[[hasspi_sensor]]
         name: HAss Pi
-        color: "#9B59B6"
+        color: "#19E58E"
       - entity: sensor.mtrxpi[[sensor_suffix]]
         name: Mtrx Pi
-        color: "#F1C40E"
+        color: "#198EE5"
+      - entity: sensor.rtropi[[sensor_suffix]]
+        name: Rtro Pi
+        color: "#5319E5"
       - entity: sensor.vsmppi[[sensor_suffix]]
         name: VSMP Pi
-        color: "#029E44"
+        color: "#E519C8"
     show:
       legend: true
       icon: false
