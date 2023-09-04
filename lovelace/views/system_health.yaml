@@ -332,7 +332,7 @@ cards:
                   :host {
                     --card-mod-icon-color:
                       {% if states("binary_sensor.clmtpi_online") == "on" %}
-                        #FF9800;
+                        #E51919;
                       {% else %}
                         var(--paper-item-icon-color, #44739e);
                       {% endif %}
@@ -343,7 +343,7 @@ cards:
                   :host {
                     --card-mod-icon-color:
                       {% if states("binary_sensor.crtpi_online") == "on" %}
-                        #02D1D1;
+                        #E5C819;
                       {% else %}
                         var(--paper-item-icon-color, #44739e);
                       {% endif %}
@@ -354,7 +354,7 @@ cards:
                   :host {
                     --card-mod-icon-color:
                       {% if states("binary_sensor.growpi_online") == "on" %}
-                        #E74B3B;
+                        #53E519;
                       {% else %}
                         var(--paper-item-icon-color, #44739e);
                       {% endif %}
@@ -367,7 +367,7 @@ cards:
                   :host {
                     --card-mod-icon-color:
                       {% if states("binary_sensor.hasspi_online") == "on" %}
-                        #9B59B6;
+                        #19E58E;
                       {% else %}
                         var(--paper-item-icon-color, #44739e);
                       {% endif %}
@@ -378,7 +378,18 @@ cards:
                   :host {
                     --card-mod-icon-color:
                       {% if states("binary_sensor.mtrxpi_online") == "on" %}
-                        #F1C40E;
+                        #198EE5;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+              - entity: binary_sensor.rtropi_online
+                name: RtroPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.rtropi_online") == "on" %}
+                        #5319E5;
                       {% else %}
                         var(--paper-item-icon-color, #44739e);
                       {% endif %}
@@ -389,7 +400,7 @@ cards:
                   :host {
                     --card-mod-icon-color:
                       {% if states("binary_sensor.vsmppi_online") == "on" %}
-                        #029E44;
+                        #E519C8;
                       {% else %}
                         var(--paper-item-icon-color, #44739e);
                       {% endif %}
