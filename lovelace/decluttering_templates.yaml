@@ -496,45 +496,48 @@ addon_stats_graph_card_template:
         }
     entities:
       # TODO add total with no line but fill
+      - entity: sensor.adguard_[[sensor_type]]_usage
+        name: AdGuard
+        color: "#E51919"
       - entity: sensor.esphome_add_on_[[sensor_type]]_usage
         name: ESPHome
-        color: "#E51919"
+        color: "#E57019"
       - entity: sensor.google_drive_backup_add_on_[[sensor_type]]_usage
         name: Google Drive Backup
-        color: "#E57719"
+        color: "#E5C819"
       - entity: sensor.ha_remote_logger_[[sensor_type]]_usage
         name: HA Remote Logger
-        color: "#E5D519"
+        color: "#ABE519"
       - entity: sensor.item_warehouse_api_[[sensor_type]]_usage
         name: Item Warehouse API
-        color: "#97E519"
+        color: "#53E519"
       - entity: sensor.item_warehouse_website_[[sensor_type]]_usage
         name: Item Warehouse Website
-        color: "#38E519"
+        color: "#19E536"
       - entity: sensor.mariadb_[[sensor_type]]_usage
         name: MariaDB
-        color: "#19E558"
+        color: "#19E58E"
       - entity: sensor.matter_server_[[sensor_type]]_usage
         name: Matter Server
-        color: "#19E5B6"
+        color: "#19E5E5"
       - entity: sensor.mosquitto_broker_[[sensor_type]]_usage
         name: Mosquitto Broker
-        color: "#19B6E5"
+        color: "#198EE5"
       - entity: sensor.plex_media_server_[[sensor_type]]_usage
         name: Plex Media Server
-        color: "#1958E5"
+        color: "#1936E5"
       - entity: sensor.silicon_labs_multiprotocol_add_on_[[sensor_type]]_usage
         name: Silicon Labs Multiprotocol
-        color: "#3819E5"
+        color: "#5319E5"
       - entity: sensor.terminal_ssh_add_on_[[sensor_type]]_usage
         name: Terminal & SSH
-        color: "#9719E5"
+        color: "#AB19E5"
       - entity: sensor.visual_studio_code_add_on_[[sensor_type]]_usage
         name: VSCode
-        color: "#E519D5"
+        color: "#E519C8"
       - entity: sensor.yas_209_bridge_[[sensor_type]]_usage
         name: YAS-209 Bridge
-        color: "#E51977"
+        color: "#E51970"
     hours_to_show: 2
     points_per_hour: 30
     upper_bound: ~10
@@ -553,45 +556,48 @@ addon_stats_legend_card_template:
   card:
     type: custom:mini-graph-card
     entities:
+      - entity: sensor.adguard_[[sensor_type]]_usage
+        name: AdGuard
+        color: "#E51919"
       - entity: sensor.esphome_add_on_[[sensor_type]]_usage
         name: ESPHome
-        color: "#E51919"
+        color: "#E57019"
       - entity: sensor.google_drive_backup_add_on_[[sensor_type]]_usage
         name: Google Drive Backup
-        color: "#E57719"
+        color: "#E5C819"
       - entity: sensor.ha_remote_logger_[[sensor_type]]_usage
         name: HA Remote Logger
-        color: "#E5D519"
+        color: "#ABE519"
       - entity: sensor.item_warehouse_api_[[sensor_type]]_usage
         name: Item Warehouse API
-        color: "#97E519"
+        color: "#53E519"
       - entity: sensor.item_warehouse_website_[[sensor_type]]_usage
         name: Item Warehouse Website
-        color: "#38E519"
+        color: "#19E536"
       - entity: sensor.mariadb_[[sensor_type]]_usage
         name: MariaDB
-        color: "#19E558"
+        color: "#19E58E"
       - entity: sensor.matter_server_[[sensor_type]]_usage
         name: Matter Server
-        color: "#19E5B6"
+        color: "#19E5E5"
       - entity: sensor.mosquitto_broker_[[sensor_type]]_usage
         name: Mosquitto Broker
-        color: "#19B6E5"
+        color: "#198EE5"
       - entity: sensor.plex_media_server_[[sensor_type]]_usage
         name: Plex Media Server
-        color: "#1958E5"
+        color: "#1936E5"
       - entity: sensor.silicon_labs_multiprotocol_add_on_[[sensor_type]]_usage
         name: Silicon Labs Multiprotocol
-        color: "#3819E5"
+        color: "#5319E5"
       - entity: sensor.terminal_ssh_add_on_[[sensor_type]]_usage
         name: Terminal & SSH
-        color: "#9719E5"
+        color: "#AB19E5"
       - entity: sensor.visual_studio_code_add_on_[[sensor_type]]_usage
         name: VSCode
-        color: "#E519D5"
+        color: "#E519C8"
       - entity: sensor.yas_209_bridge_[[sensor_type]]_usage
         name: YAS-209 Bridge
-        color: "#E51977"
+        color: "#E51970"
     show:
       state: false
       legend: true

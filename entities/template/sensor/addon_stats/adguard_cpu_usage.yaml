@@ -1,0 +1,12 @@
+---
+icon: mdi:cpu-32-bit
+name: AdGuard CPU Usage
+state: >
+  {% set data = state_attr('sensor.adguard_status', 'data') %}
+  {% if data %}
+    {{ data.cpu_percent | float }}
+  {% else %}
+    0
+  {% endif %}
+unique_id: adguard_cpu_usage
+unit_of_measurement: '%'
