@@ -21,7 +21,6 @@ homeassistant = "2023.7.2"
 wg-utilities = "^4.0.0"
 tzlocal = "^5.0"
 strenum = "^0.4.15"
-pydantic = "<3.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
