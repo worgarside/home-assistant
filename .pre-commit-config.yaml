@@ -43,7 +43,6 @@ repos:
           - --autofix
           - --indent
           - '2'
-      - id: requirements-txt-fixer
       - id: trailing-whitespace
 
   - repo: https://github.com/pycqa/isort
