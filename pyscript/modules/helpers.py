@@ -18,18 +18,16 @@ from wg_utilities.clients import (
     SpotifyClient,
     TrueLayerClient,
 )
-from wg_utilities.loggers import add_warehouse_handler
+from wg_utilities.loggers import add_pyscript_warehouse_handler
 
 load_dotenv()
 
 
 LOGGER = getLogger(__name__)
 LOGGER.setLevel(DEBUG)
-add_warehouse_handler(
+add_pyscript_warehouse_handler(
     LOGGER,
     level=INFO,
-    warehouse_port=8002,
-    allow_connection_errors=True,
     pyscript_task_executor=task.executor,  # type: ignore[has-type,used-before-def]  # noqa: F821
 )
 

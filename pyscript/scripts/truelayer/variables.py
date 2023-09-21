@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from logging import DEBUG, ERROR, getLogger
+from logging import DEBUG, INFO, getLogger
 from socket import gethostname
 from typing import Any
 
@@ -10,7 +10,7 @@ from helpers import HAExceptionCatcher, get_secret, instantiate_client
 from requests import HTTPError
 from wg_utilities.clients import TrueLayerClient
 from wg_utilities.clients.truelayer import Bank, Card
-from wg_utilities.loggers import add_warehouse_handler
+from wg_utilities.loggers import add_pyscript_warehouse_handler
 
 MODULE_NAME = "truelayer"
 
@@ -29,11 +29,9 @@ if gethostname() != "homeassistant":
 LOGGER = getLogger(__name__)
 LOGGER.setLevel(DEBUG)
 
-add_warehouse_handler(
+add_pyscript_warehouse_handler(
     LOGGER,
-    level=ERROR,
-    warehouse_port=8002,
-    allow_connection_errors=True,
+    level=INFO,
     pyscript_task_executor=task.executor,
 )
 
