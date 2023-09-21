@@ -43,7 +43,6 @@ repos:
           - --autofix
           - --indent
           - '2'
-      - id: requirements-txt-fixer
       - id: trailing-whitespace
 
   - repo: https://github.com/pycqa/isort
@@ -99,7 +98,7 @@ repos:
           - types-flask
           - types-pillow
           - types-pyyaml
-          - wg-utilities==3.11.3
+          - wg-utilities==5.1.1
           - python-dotenv
           - voluptuous
           - watchdog

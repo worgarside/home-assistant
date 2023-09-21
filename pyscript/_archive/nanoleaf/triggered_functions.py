@@ -114,7 +114,7 @@ def get_local_artwork_file_path(artist: str, album: str, url: str) -> Path:
         write_file(
             force_mkdir(
                 target_path,
-                True,
+                path_is_file=True,
             ),
             res.content,
             encoding=None,

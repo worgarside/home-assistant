@@ -2,14 +2,16 @@ async-upnp-client
 flask
 nanoleafapi==2.1.2
 pillow
-pydantic
-pydantic==1.10.11
-pyjwt
 pynetgear
-python-dotenv
-pytz
-requests
 strenum
-tzlocal
-wg-utilities==3.11.3
+wg-utilities==5.1.1
 xmltodict
+
+# wg-utilities[clients]
+flask
+pyjwt
+requests
+pytz
+tzlocal
+pydantic
+python-dotenv
