@@ -271,7 +271,7 @@ def save_album_artwork(var_name: str, value: str, old_value: str) -> None:
     write_file(
         force_mkdir(
             target_path,
-            True,
+            path_is_file=True,
         ),
         res.content,
         encoding=None,
