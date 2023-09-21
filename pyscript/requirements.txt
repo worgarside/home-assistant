@@ -4,10 +4,9 @@ nanoleafapi==2.1.2
 pillow
 pyjwt
 pynetgear
-python-dotenv
 pytz
 requests
 strenum
 tzlocal
-wg-utilities==5.1.1
+wg-utilities[clients]==5.1.1
 xmltodict
