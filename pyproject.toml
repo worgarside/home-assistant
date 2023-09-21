@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "home-assistant"
-version = "1.6.0"
+version = "1.7.0"
 description = ""
 authors = ["Will Garside <worgarside@gmail.com>"]
 readme = "README.md"
@@ -18,7 +18,7 @@ flask = "*"
 paramiko = "*"
 pyyaml = "*"
 homeassistant = "2023.7.2"
-wg-utilities = "^3.9.0"
+wg-utilities = "^4.0.0"
 tzlocal = "^5.0"
 strenum = "^0.4.15"
 pydantic = "<2.0.0"

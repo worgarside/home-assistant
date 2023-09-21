@@ -1,0 +1,12 @@
+---
+icon: mdi:memory
+name: Item Warehouse API Memory Usage
+state: >
+  {% set data = state_attr('sensor.item_warehouse_api_status', 'data') %}
+  {% if data %}
+    {{ data.memory_percent | float }}
+  {% else %}
+    0
+  {% endif %}
+unique_id: item_warehouse_api_memory_usage
+unit_of_measurement: '%'

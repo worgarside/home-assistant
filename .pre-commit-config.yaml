@@ -1,25 +1,25 @@
 ---
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.10.1
+    rev: v3.11.0
     hooks:
       - id: pyupgrade
         args:
           - --py310-plus
 
   - repo: https://github.com/psf/black
-    rev: 23.7.0
+    rev: 23.9.1
     hooks:
       - id: black
         language_version: python3.11
 
   - repo: https://github.com/asottile/blacken-docs
-    rev: 1.15.0
+    rev: 1.16.0
     hooks:
       - id: blacken-docs
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: 0.13.0
+    rev: 1.1.0
     hooks:
       - id: pyproject-fmt
 
@@ -80,14 +80,14 @@ repos:
           - --strict
 
   - repo: https://github.com/hadialqattan/pycln
-    rev: v2.2.0
+    rev: v2.2.2
     hooks:
       - id: pycln
         args:
           - --all
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.4.1
+    rev: v1.5.1
     hooks:
       - id: mypy
         args:
@@ -139,7 +139,7 @@ repos:
           - '*.svg,*.json'
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.281
+    rev: v0.0.290
     hooks:
       - id: ruff
 

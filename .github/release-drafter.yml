@@ -1,12 +1,14 @@
 ---
-name-template: '$RESOLVED_VERSION'
-tag-template: '$RESOLVED_VERSION'
+name-template: $RESOLVED_VERSION
+tag-template: $RESOLVED_VERSION
 exclude-labels:
   - release
   - skip-changelog
   - sync
 categories:
-  - title: '🏠 Home Assistant Updates'
+  # This section only applies to the Home Assistant repo but is included here
+  # for simplicity (doesn't affect other repos, cleaner to have one source of truth)
+  - title: 🏠 Home Assistant Updates
     labels:
       - ha:automations
       - ha:config
@@ -30,25 +32,32 @@ categories:
       - ha:switch
       - ha:template
       - ha:variables
-  - title: '🚀 Features'
+  - title: 💥 Breaking Changes
     labels:
-      - 'feature'
-      - 'enhancement'
-  - title: '🐛 Bug Fixes'
+      - major
+  - title: 🚀 Features
     labels:
-      - 'fix'
-      - 'bugfix'
-      - 'bug'
-  - title: '🧰 Maintenance'
+      - feature
+      - enhancement
+  - title: 🐛 Bug Fixes
+    labels:
+      - patch
+      - fix
+      - bugfix
+      - bug
+  - title: 🧰 Maintenance
     labels:
       - chore
-      - dependencies
       - github-actions
       - maintenance
       - tools
+      - non-functional
+  - title: 🛠️ Dependencies
     collapse-after: 5
+    labels:
+      - dependencies
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
-change-title-escapes: '\<*_&'
+change-title-escapes: \<*_&
 template: |
   ## Changes
 
@@ -57,20 +66,22 @@ template: |
 version-resolver:
   major:
     labels:
-      - 'major'
+      - major
   minor:
     labels:
-      - 'minor'
+      - minor
   patch:
     labels:
-      - 'patch'
-      - 'bug'
+      - patch
+      - bug
   default: major
 
 exclude-contributors:
   - '@dependabot'
-  - 'dependabot'
-  - 'dependabot[bot]'
+  - dependabot
+  - app/dependabot
+  - dependabot[bot]
   - '@pre-commit-ci'
-  - 'pre-commit-ci'
-  - 'pre-commit-ci[bot]'
+  - pre-commit-ci
+  - app/pre-commit-ci
+  - pre-commit-ci[bot]

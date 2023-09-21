@@ -143,7 +143,7 @@ def get_secret(
             pyscript.config.get("apps", {}).get(module, {}).get(secret_name, default)
         )
 
-    if json and isinstance(secret_value, (str, bytes)):  # noqa: UP038
+    if json and isinstance(secret_value, (str, bytes)):
         return loads(secret_value)
 
     return secret_value
