@@ -1,4 +1,6 @@
 ---
-hello_world:
-  module: hello
-  class: HelloWorld
+spotify_process_liked_songs:
+  module: process_liked_songs
+  class: ProcessLikedSongs
+  client_id: !secret spotify_pyscript_client_id
+  client_secret: !secret spotify_pyscript_client_secret
