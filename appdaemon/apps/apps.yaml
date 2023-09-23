@@ -1,6 +1,6 @@
 ---
-spotify_process_liked_songs:
-  module: process_liked_songs
-  class: ProcessLikedSongs
+spotify_track_processor:
+  module: track_processor
+  class: SpotifyTrackProcessor
   client_id: !secret spotify_pyscript_client_id
   client_secret: !secret spotify_pyscript_client_secret
