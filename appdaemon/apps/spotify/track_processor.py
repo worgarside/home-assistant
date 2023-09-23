@@ -82,6 +82,9 @@ class SpotifyTrackProcessor(Hass):  # type: ignore[misc]
 
         self.run_every(self.process_liked_tracks, "now", 15 * 60)
         self.listen_state(self.process_now_playing, "var.tasker_pixel_now_playing")
+        self.listen_state(
+            self.update_tempo_variable, "sensor.spotify_will_garside_media_title"
+        )
         self.listen_event(self.add_track_to_playlist, "mobile_app_notification_action")
 
     def add_track_to_playlist(
@@ -174,14 +177,14 @@ class SpotifyTrackProcessor(Hass):  # type: ignore[misc]
                 playlist,
             )
 
-            self.log(
-                "Added %s tracks to playlist %s: %s",
-                len(tracks_added),
-                target_playlist_name,
-                ", ".join([f"{t.name!r} by {t.artist}" for t in tracks_added]),
-            )
-
-            actual_updates[playlist.name] = tracks_added
+            if tracks_added:
+                self.log(
+                    "Added %s tracks to playlist %s: %s",
+                    len(tracks_added),
+                    target_playlist_name,
+                    ", ".join([f"{t.name!r} by {t.artist}" for t in tracks_added]),
+                )
+                actual_updates[playlist.name] = tracks_added
 
         self.log(
             "%i playlists updated: %s",
@@ -273,13 +276,77 @@ class SpotifyTrackProcessor(Hass):  # type: ignore[misc]
                 )
             ):
                 self.log(
-                    "Not adding track to playlist, it's currently playing (%s)",
-                    repr(current_track),
+                    "Not adding track to Pixel Now Playing playlist, it's currently playing: %s",
+                    current_track,
                 )
             else:
-                self.log("Adding track to playlist (%s)", repr(matched_track))
+                self.log(
+                    "Adding track to Pixel Now Playing playlist: %s", matched_track
+                )
                 self.spotify.add_tracks_to_playlist(
                     [matched_track], self.playlists["pixel_now_playing"]
                 )
         else:
             self.error("No matching track found for search term '%s'", search_term)
+
+    def update_tempo_variable(
+        self,
+        entity: Literal["sensor.spotify_will_garside_media_title"],
+        attribute: Literal["state"],
+        old: str,
+        new: str,
+        pin_app: bool,
+        **kwargs: dict[str, Any],
+    ) -> None:
+        """Update the tempo variable for a given user.
+
+        Args:
+            entity (str): the entity that triggered the update
+            attribute (str): the attribute that triggered the update
+            old (str): the old value
+            new (str): the new value
+            pin_app (bool): whether the app should be pinned
+            kwargs (dict[str, Any]): any other kwargs
+        """
+
+        _ = entity, old, pin_app, kwargs
+
+        if attribute != "state" or not new:
+            return
+
+        tempo_variable_name = "var.spotify_tempo_will"
+
+        if new in ("unknown", None, ""):
+            self.log(
+                "`%s` has state `%s`, setting `%s` to `unknown`",
+                entity,
+                new,
+                tempo_variable_name,
+            )
+            self.call_service(
+                "var/set",
+                entity_id=tempo_variable_name,
+                value="unknown",
+                force_update=True,
+            )
+        else:
+            track_id = self.get_state(
+                "media_player.spotify_will_garside", attribute="media_content_id"
+            ).replace("spotify:track:", "")
+
+            track = self.spotify.get_track_by_id(track_id)
+
+            self.log(
+                "`%s` has state `%s`, setting `%s` to `%i`",
+                entity,
+                new,
+                tempo_variable_name,
+                track.tempo,
+            )
+
+            self.call_service(
+                "var/set",
+                entity_id=tempo_variable_name,
+                value=track.tempo,
+                force_update=True,
+            )
