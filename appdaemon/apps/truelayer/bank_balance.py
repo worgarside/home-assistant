@@ -20,7 +20,7 @@ class BankBalanceGetter(Hass):  # type: ignore[misc]
     def initialize(self) -> None:
         """Initialize the app."""
 
-        self.bank = Bank[self.args["bank"].upper().replace(" ", "_")]
+        self.bank = Bank[self.args["bank_ref"].upper().replace(" ", "_")]
 
         self.client = TrueLayerClient(
             client_id=self.args["client_id"],
@@ -31,7 +31,7 @@ class BankBalanceGetter(Hass):  # type: ignore[misc]
         )
 
         self.accounts = {}
-        if accounts := self.args.get("account_ids"):
+        if accounts := self.args.get("account_ids", {}):
             for account_ref, account_id in accounts.items():
                 if account := self.client.get_account_by_id(account_id):
                     self.accounts[account_ref] = account
@@ -41,7 +41,7 @@ class BankBalanceGetter(Hass):  # type: ignore[misc]
                 self.log("Added callback for account balances")
 
         self.cards = {}
-        if cards := self.args.get("card_ids"):
+        if cards := self.args.get("card_ids", {}):
             for card_ref, card_id in cards.items():
                 if card := self.client.get_card_by_id(card_id):
                     self.cards[card_ref] = card
