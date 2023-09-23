@@ -50,6 +50,11 @@ class BankBalanceGetter(Hass):  # type: ignore[misc]
                 self.run_every(self.update_card_balances, "now", 15 * 60)
                 self.log("Added callback for card balances")
 
+        self.register_service(
+            f"appdaemon/refresh_{self.bank.lower()}_access_token",
+            self.refresh_access_token,
+        )
+
         self.log(
             "Initialized for bank %s, with %i accounts and %i cards",
             self.bank,
@@ -57,13 +62,19 @@ class BankBalanceGetter(Hass):  # type: ignore[misc]
             len(cards),
         )
 
+    def refresh_access_token(self, _: dict[str, Any]) -> None:
+        """Refresh the access token."""
+
+        self.log("Refreshing access token for %s", self.bank)
+
+        self.client.refresh_access_token()
+        self.log("Refreshed access token")
+
     def update_account_balances(self, _: dict[str, Any]) -> None:
         """Loop through the account IDs and retrieve their balances."""
 
         for account_ref, account in self.accounts.items():
-            variable_id = (
-                f"var.truelayer_balance_{self.bank.name.lower()}_{account_ref}"
-            )
+            variable_id = f"var.truelayer_balance_{self.bank.lower()}_{account_ref}"
 
             self.call_service(
                 "var/set",
@@ -78,7 +89,7 @@ class BankBalanceGetter(Hass):  # type: ignore[misc]
         """Loop through the card IDs and retrieve their balances."""
 
         for card_ref, card in self.cards.items():
-            variable_id = f"var.truelayer_balance_{self.bank.name.lower()}"
+            variable_id = f"var.truelayer_balance_{self.bank.lower()}"
 
             if card_ref != "no_ref":
                 variable_id += f"_{card_ref}"
