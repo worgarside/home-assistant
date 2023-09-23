@@ -53,14 +53,11 @@ class SpotifyTrackProcessor(Hass):  # type: ignore[misc]
 
     def initialize(self) -> None:
         """Initialise the app."""
-        client_id = self.args["client_id"]
 
         self.spotify = SpotifyClient(
-            client_id=client_id,
+            client_id=self.args["client_id"],
             client_secret=self.args["client_secret"],
-            creds_cache_path=Path(
-                f"/config/.wg-utilities/oauth_credentials/SpotifyClient/{client_id}.json"
-            ),
+            creds_cache_dir=Path("/config/.wg-utilities/oauth_credentials"),
             use_existing_credentials_only=True,
         )
 
