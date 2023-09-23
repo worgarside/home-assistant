@@ -8,6 +8,7 @@ appdaemon:
   plugins:
     HASS:
       type: hass
+  thread_duration_warning_threshold: 120
 http:
   url: http://127.0.0.1:5050
 admin:
