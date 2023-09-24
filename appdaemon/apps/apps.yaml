@@ -1,4 +1,15 @@
 ---
+
+# Monzo Credit Card Pot Manager
+
+monzo_credit_card_pot_manager:
+  module: credit_card_pot_manager
+  class: CreditCardPotManager
+  client_id: !secret monzo_client_id
+  client_secret: !secret monzo_client_secret
+
+# Spotify Dynamic Playlists
+
 spotify_track_processor:
   module: track_processor
   class: SpotifyTrackProcessor
@@ -44,4 +55,3 @@ santander_balance_getter:
   client_secret: !secret truelayer_client_secret
   account_ids:
     current_account: !secret truelayer_santander_current_account_id
-    savings_account: !secret truelayer_santander_savings_account_id

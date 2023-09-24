@@ -101,7 +101,7 @@ class SpotifyTrackProcessor(Hass):  # type: ignore[misc]
             Exception: if the desired track can't be found in the recently liked
         """
 
-        action_phrase, track_id = data.get("action", "").split(":")
+        action_phrase, track_id = data.get("action", "0:0").split(":")
 
         if not action_phrase.startswith("ADD_TRACK_TO_"):
             return
