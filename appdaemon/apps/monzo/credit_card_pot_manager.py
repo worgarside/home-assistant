@@ -48,15 +48,15 @@ class CreditCardPotManager(Hass):  # type: ignore[misc]
         if action_phrase != "TOP_UP_CREDIT_CARD_POT":
             return
 
-        top_up_amount = float(top_up_amount_str)
+        top_up_amount = round(float(top_up_amount_str) * 100)
 
-        if not 0 < top_up_amount < 1000:
+        if not 0 < top_up_amount < 1000 * 100:
             self.error("Invalid top up amount %s", top_up_amount)
             return
 
         self.client.deposit_into_pot(
             self.credit_card_pot,
-            amount_pence=round(top_up_amount * 100),
+            amount_pence=top_up_amount,
             dedupe_id="-".join(
                 (
                     self.name,
@@ -66,4 +66,4 @@ class CreditCardPotManager(Hass):  # type: ignore[misc]
             ),
         )
 
-        self.log("Topped up credit card pot by %f", top_up_amount)
+        self.log("Topped up credit card pot by %i", top_up_amount)
