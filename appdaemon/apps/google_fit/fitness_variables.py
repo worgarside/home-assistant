@@ -12,14 +12,25 @@ from appdaemon.plugins.hass.hassapi import Hass  # type: ignore[import]
 
 
 class FitnessVariablesGetter(Hass):  # type: ignore[misc]
+    """Return fitness variables from Google Fit API."""
+
     client: GoogleFitClient
 
     VARIABLE_DATA_SOURCE_MAPPING: ClassVar[dict[str, str]] = {
-        "var.google_fit_active_minutes": "derived:com.google.active_minutes:com.google.android.gms:merge_active_minutes",  # noqa: E501
-        "var.google_fit_calories_expended": "derived:com.google.calories.expended:com.google.android.gms:merge_calories_expended",  # noqa: E501
-        "var.google_fit_distance_moved": "derived:com.google.distance.delta:com.google.android.gms:merge_distance_delta",  # noqa: E501
-        "var.google_fit_step_count": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps",  # noqa: E501
-        "var.google_fit_weight": "derived:com.google.weight:com.google.android.gms:merge_weight",  # n
+        f"var.google_fit_{var_suffix}": ":".join(
+            ["derived", namespace, "com.google.android.gms", operation]
+        )
+        for var_suffix, namespace, operation in [
+            ("active_minutes", "com.google.active_minutes", "merge_active_minutes"),
+            (
+                "calories_expended",
+                "com.google.calories.expended",
+                "merge_calories_expended",
+            ),
+            ("distance_moved", "com.google.distance.delta", "merge_distance_delta"),
+            ("step_count", "com.google.step_count.delta", "estimated_steps"),
+            ("weight", "com.google.weight", "merge_weight"),
+        ]
     }
 
     def initialize(self) -> None:
@@ -31,6 +42,8 @@ class FitnessVariablesGetter(Hass):  # type: ignore[misc]
             creds_cache_dir=Path("/config/.wg-utilities/oauth_credentials"),
             use_existing_credentials_only=True,
         )
+
+        self.log("Initialized Google Fit client.")
 
         self.run_every(self.update_variables, "now", 15 * 60)
 
@@ -49,3 +62,5 @@ class FitnessVariablesGetter(Hass):  # type: ignore[misc]
                 value=sum_value,
                 force_update=True,
             )
+
+        self.log("Updated Google Fit variables.")

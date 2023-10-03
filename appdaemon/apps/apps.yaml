@@ -1,5 +1,13 @@
 ---
 
+# Google Fit Variables
+
+google_fit_variable_getter:
+  module: fitness_variables
+  class: FitnessVariablesGetter
+  client_id: !secret google_fit_client_id
+  client_secret: !secret google_fit_client_secret
+
 # Monzo Credit Card Pot Manager
 
 monzo_credit_card_pot_manager:
