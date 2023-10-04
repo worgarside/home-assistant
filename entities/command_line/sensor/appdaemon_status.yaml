@@ -1,0 +1,9 @@
+---
+sensor:
+  command: !secret addon_stats_command_appdaemon
+  json_attributes:
+    - data
+  name: AppDaemon Status
+  scan_interval: 60
+  unique_id: appdaemon_status
+  value_template: "{{ value_json.result }}"

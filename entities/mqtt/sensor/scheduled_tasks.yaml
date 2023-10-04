@@ -1,9 +1,0 @@
----
-icon: mdi:wrench-clock
-json_attributes_template: '{{ value_json | tojson }}'
-json_attributes_topic: /task_scheduler/scheduled_tasks
-name: Scheduled Tasks
-state_topic: /task_scheduler/scheduled_tasks
-unique_id: scheduled_tasks
-unit_of_measurement: ''
-value_template: '{{ value_json.scheduledTasks | length }}'
