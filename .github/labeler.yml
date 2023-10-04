@@ -45,6 +45,10 @@ labels:
     files:
       - ^tests/.+$
 
+  - label: ha:appdaemon
+    files:
+      - ^appdaemon/.+$
+
   - label: ha:automations
     files:
       - ^entities/automation/.+\.yaml$
@@ -109,10 +113,6 @@ labels:
   - label: ha:mqtt
     files:
       - ^entities/mqtt/.+\.yaml$
-
-  - label: ha:pyscript
-    files:
-      - ^pyscript/.+$
 
   - label: ha:rest-command
     files:
