@@ -56,15 +56,6 @@ jobs:
           mv -vn feedparser/custom_components/* ./custom_components/
           rm -rf feedparser
 
-      - name: 'Clone Custom Component: `pyscript`'
-        run: |
-          git clone https://github.com/custom-components/pyscript.git cc_pyscript
-          cd cc_pyscript
-          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-          cd ..
-          mv -vn cc_pyscript/custom_components/pyscript ./custom_components/
-          rm -rf cc_pyscript
-
       - name: 'Clone Custom Component: `spotcast`'
         run: |
           git clone https://github.com/fondberg/spotcast \
