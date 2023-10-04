@@ -9,6 +9,7 @@ from typing import Any, Literal, overload
 
 from wg_utilities.clients import TrueLayerClient
 from wg_utilities.clients.truelayer import Account, Bank, Card
+from wg_utilities.loggers import add_warehouse_handler
 
 # pylint: disable=no-name-in-module
 from appdaemon.plugins.hass.hassapi import Hass  # type: ignore[import]
@@ -28,6 +29,8 @@ class BankBalanceGetter(Hass):  # type: ignore[misc]
 
     def initialize(self) -> None:
         """Initialize the app."""
+
+        add_warehouse_handler(self.err)
 
         self.bank = Bank[self.args["bank_ref"].upper().replace(" ", "_")]
 

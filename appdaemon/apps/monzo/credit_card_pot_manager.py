@@ -6,6 +6,7 @@ from typing import Any, Literal
 
 from wg_utilities.clients import MonzoClient
 from wg_utilities.clients.monzo import Pot
+from wg_utilities.loggers import add_warehouse_handler
 
 # pylint: disable=no-name-in-module
 from appdaemon.plugins.hass.hassapi import Hass  # type: ignore[import]
@@ -17,6 +18,8 @@ class CreditCardPotManager(Hass):  # type: ignore[misc]
 
     def initialize(self) -> None:
         """Initialize the app."""
+
+        add_warehouse_handler(self.err)
 
         self.client = MonzoClient(
             client_id=self.args["client_id"],

@@ -11,6 +11,7 @@ from re import sub
 from typing import TYPE_CHECKING, Any, Literal, Self
 
 from wg_utilities.clients import SpotifyClient
+from wg_utilities.loggers import add_warehouse_handler
 
 # pylint: disable=no-name-in-module
 from appdaemon.plugins.hass.hassapi import Hass  # type: ignore[import]
@@ -53,6 +54,8 @@ class SpotifyTrackProcessor(Hass):  # type: ignore[misc]
 
     def initialize(self) -> None:
         """Initialise the app."""
+
+        add_warehouse_handler(self.err)
 
         self.spotify = SpotifyClient(
             client_id=self.args["client_id"],

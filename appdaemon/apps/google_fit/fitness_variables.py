@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, ClassVar
 
 from wg_utilities.clients import GoogleFitClient
+from wg_utilities.loggers import add_warehouse_handler
 
 # pylint: disable=no-name-in-module
 from appdaemon.plugins.hass.hassapi import Hass  # type: ignore[import]
@@ -36,6 +37,8 @@ class FitnessVariablesGetter(Hass):  # type: ignore[misc]
     def initialize(self) -> None:
         """Initialize the app."""
 
+        add_warehouse_handler(self.err)
+
         self.client = GoogleFitClient(
             client_id=self.args["client_id"],
             client_secret=self.args["client_secret"],
@@ -62,5 +65,7 @@ class FitnessVariablesGetter(Hass):  # type: ignore[misc]
                 value=sum_value,
                 force_update=True,
             )
+
+            self.log("Updated %s", var_name)
 
         self.log("Updated Google Fit variables.")
