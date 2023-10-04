@@ -118,6 +118,7 @@ repos:
         types:
           - python
         additional_dependencies:
+          - pylint<3.0.0
           - pylint-strict-informational
 
   - repo: https://github.com/pre-commit/pygrep-hooks
