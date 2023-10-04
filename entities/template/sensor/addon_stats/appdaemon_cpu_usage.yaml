@@ -1,0 +1,12 @@
+---
+icon: mdi:cpu-32-bit
+name: AppDaemon CPU Usage
+state: >
+  {% set data = state_attr('sensor.appdaemon_status', 'data') %}
+  {% if data %}
+    {{ data.cpu_percent | float }}
+  {% else %}
+    0
+  {% endif %}
+unique_id: appdaemon_cpu_usage
+unit_of_measurement: '%'

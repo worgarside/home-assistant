@@ -11,11 +11,37 @@ condition: |
     states('var.truelayer_balance_monzo_credit_cards') | float ) > 0.0
   }}
 action:
+  - variables:
+      deficit: |
+        {{
+           (
+             states('var.truelayer_balance_amex') | float -
+             states('var.truelayer_balance_monzo_credit_cards') | float
+           ) |
+           round(2)
+         }}
+        }}
+      top_up_amount: |
+        {% set deficit = (
+            states('var.truelayer_balance_amex') | float -
+            states('var.truelayer_balance_monzo_credit_cards') | float
+          ) |
+          round(2)
+        %}
+        {%
+          set available = max(
+            ( states('var.truelayer_balance_monzo_current_account') | float ) - 100,
+            0
+          )
+        %}
+        {{
+          min( available, deficit )
+        }}
   - service: notify.mobile_app_will_s_pixel_6_pro
     data:
-    # yamllint disable-line rule:line-length
-      message: Credit Cards pot is £{{ '%.2f' % ( ( states('var.truelayer_balance_amex') | float - states('var.truelayer_balance_monzo_credit_cards') | float ) | round(2) ) }} too low. Top up pot?
+      # yamllint disable-line rule:line-length
+      message: Credit Cards pot is £{{ '%.2f' % deficit }} too low. Top up pot?
       data:
         actions:
-          - action: TOP_UP_CREDIT_CARD_POT
-            title: Top Up
+          - action: TOP_UP_CREDIT_CARD_POT:{{ top_up_amount }}
+            title: Top Up (£{{ top_up_amount }})
