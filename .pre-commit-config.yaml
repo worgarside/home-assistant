@@ -1,11 +1,16 @@
 ---
 repos:
+  - repo: https://github.com/worgarside/pre-commit-hooks-dependency-sync
+    rev: 1.0.0
+    hooks:
+      - id: sync-additional-dependencies
+
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.11.0
+    rev: v3.15.0
     hooks:
       - id: pyupgrade
         args:
-          - --py310-plus
+          - --py311-plus
 
   - repo: https://github.com/psf/black
     rev: 23.9.1
@@ -19,12 +24,12 @@ repos:
       - id: blacken-docs
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: 1.1.0
+    rev: 1.2.0
     hooks:
       - id: pyproject-fmt
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: check-added-large-files
         args:
@@ -98,10 +103,10 @@ repos:
           - types-flask
           - types-pillow
           - types-pyyaml
-          - wg-utilities==5.1.1
-          - python-dotenv
-          - voluptuous
-          - watchdog
+          - wg-utilities==5.3.0
+          - python-dotenv==1.0.0
+          - voluptuous==0.13.1
+          - watchdog==3.0.0
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
   - repo: local
@@ -118,6 +123,7 @@ repos:
         types:
           - python
         additional_dependencies:
+          - pylint<3.0.0
           - pylint-strict-informational
 
   - repo: https://github.com/pre-commit/pygrep-hooks
@@ -128,7 +134,7 @@ repos:
       - id: python-check-mock-methods
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.5
+    rev: v2.2.6
     hooks:
       - id: codespell
         additional_dependencies:
@@ -138,7 +144,7 @@ repos:
           - '*.svg,*.json'
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.290
+    rev: v0.0.292
     hooks:
       - id: ruff
 

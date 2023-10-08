@@ -85,102 +85,106 @@
     color: "414141"
     description: PR for updating the tools used in this repo
 
+  - name: ha:appdaemon
+    color: "E51919"
+    description: AppDaemon apps for Home Assistant
+
   - name: ha:automations
-    color: "ff0000"
+    color: "E54819"
     description: Automations to control devices
 
   - name: ha:config
-    color: "ff3f00"
+    color: "E57719"
     description: Configuration files for Home Assistant
 
   - name: ha:command-line
-    color: "ff5f00"
+    color: "E5A619"
     description: Command line sensors
 
   - name: ha:cover
-    color: "ff7f00"
+    color: "E5D519"
     description: Window blinds, curtains, and garage doors
 
   - name: ha:custom-components
-    color: "ff9f00"
+    color: "C6E519"
     description: Custom Components added to Home Assistant
 
   - name: ha:device-tracker
-    color: "ffbf00"
+    color: "97E519"
     description: Track device locations and presence
 
   - name: ha:groups
-    color: "ffff00"
+    color: "67E519"
     description: Group entities together for easy control
 
   - name: ha:input-boolean
-    color: "bfff00"
+    color: "38E519"
     description: Binary on/off input controls
 
   - name: ha:input-button
-    color: "7fff00"
+    color: "19E529"
     description: Momentary push button input controls
 
   - name: ha:input-datetime
-    color: "3fff00"
+    color: "19E558"
     description: Date and time input controls
 
   - name: ha:input-number
-    color: "00ff00"
+    color: "19E587"
     description: Numeric input controls
 
   - name: ha:input-select
-    color: "00ff7f"
+    color: "19E5B6"
     description: Dropdown selection input controls
 
   - name: ha:input-text
-    color: "00ffff"
+    color: "19E5E5"
     description: Text input controls
 
   - name: ha:lovelace
-    color: "007fff"
+    color: "19B6E5"
     description: Lovelace UI configuration files
 
   - name: ha:media-player
-    color: "003fff"
+    color: "1987E5"
     description: Music and video playback devices
 
   - name: ha:mqtt
-    color: "0000ff"
+    color: "1958E5"
     description: MQTT broker and clients
 
   - name: ha:pyscript
-    color: "3f00ff"
+    color: "1929E5"
     description: Custom Python scripts for Home Assistant
 
   - name: ha:rest-command
-    color: "7f00ff"
+    color: "3819E5"
     description: RESTful API commands
 
   - name: ha:scenes
-    color: "bf00ff"
+    color: "6719E5"
     description: Preconfigured sets of entity states
 
   - name: ha:scripts
-    color: "ff00ff"
+    color: "9719E5"
     description: Reusable blocks of automation code
 
   - name: ha:sensors
-    color: "ff00bf"
+    color: "C619E5"
     description: Gather data about the environment
 
   - name: ha:shell-command
-    color: "ff009f"
+    color: "E519D5"
     description: Shell commands to run on the host system
 
   - name: ha:switch
-    color: "ff007f"
+    color: "E519A6"
     description: On/off switches for devices
 
   - name: ha:template
-    color: "ff003f"
+    color: "E51977"
     description: Template entities for customization
 
   - name: ha:variables
-    color: "ff0000"
+    color: "E51948"
     description: Global variables for use in automations
