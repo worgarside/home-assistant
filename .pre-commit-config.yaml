@@ -1,11 +1,16 @@
 ---
 repos:
+  - repo: https://github.com/worgarside/pre-commit-hooks-dependency-sync
+    rev: 1.0.0
+    hooks:
+      - id: sync-additional-dependencies
+
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.14.0
+    rev: v3.15.0
     hooks:
       - id: pyupgrade
         args:
-          - --py310-plus
+          - --py311-plus
 
   - repo: https://github.com/psf/black
     rev: 23.9.1
@@ -24,7 +29,7 @@ repos:
       - id: pyproject-fmt
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: check-added-large-files
         args:
@@ -99,9 +104,9 @@ repos:
           - types-pillow
           - types-pyyaml
           - wg-utilities==5.3.0
-          - python-dotenv
-          - voluptuous
-          - watchdog
+          - python-dotenv==1.0.0
+          - voluptuous==0.13.1
+          - watchdog==3.0.0
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
   - repo: local
