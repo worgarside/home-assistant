@@ -29,9 +29,9 @@ REPO_PATH = Path(__file__).parents[2]
 
 
 if REPO_PATH.name != "home-assistant" or not REPO_PATH.is_dir():
-    raise RuntimeError(
+    raise RuntimeError(  # noqa: TRY003
         "Unable to locate the `home-assistant` repository."
-        f" Current path is: {REPO_PATH!s}"
+        f" Current path is: {REPO_PATH!s}",
     )
 
 OBSERVER = Observer()
@@ -43,12 +43,14 @@ class FileSyncHandler(FileSystemEventHandler):
     _sftp_client: SFTPClient
 
     def __init__(self, ssh_client: SSHClient) -> None:
+        """Initialize the FileSyncHandler."""
         self._ssh_client = ssh_client
 
         self._last_sftp_use = 0
 
     def _delete_file_from_hasspi(
-        self, event: DirDeletedEvent | FileDeletedEvent
+        self,
+        event: DirDeletedEvent | FileDeletedEvent,
     ) -> None:
         """Delete a file from the HAssPi.
 
@@ -89,12 +91,13 @@ class FileSyncHandler(FileSystemEventHandler):
         Raises:
             ValueError: If neither `file_path` or `src_path` are provided.
         """
-
         if src_path:
             file_path = Path(src_path).relative_to(REPO_PATH)
 
         if not file_path:
-            raise ValueError("Must provide either `file_path` or `src_path`")
+            raise ValueError(  # noqa: TRY003
+                "Must provide either `file_path` or `src_path`",
+            )
 
         if file_path.as_posix().startswith(".") or file_path.suffix in (
             ".pyc",
@@ -115,11 +118,11 @@ class FileSyncHandler(FileSystemEventHandler):
         | FileModifiedEvent,
     ) -> None:
         """Write a file to the HAssPi."""
-
         file_path = Path(event.src_path).relative_to(REPO_PATH)
 
         if event.is_directory or self._path_is_ignored(
-            file_path=file_path, must_exist=True
+            file_path=file_path,
+            must_exist=True,
         ):
             LOGGER.debug("Ignoring %s write event", file_path.as_posix())
             return
@@ -244,7 +247,9 @@ def main() -> None:
 
     event_handler = FileSyncHandler(ssh_client)
     OBSERVER.schedule(  # type: ignore[no-untyped-call]
-        event_handler, path=REPO_PATH, recursive=True
+        event_handler,
+        path=REPO_PATH,
+        recursive=True,
     )
     OBSERVER.start()  # type: ignore[no-untyped-call]
     LOGGER.info("Watching %s", REPO_PATH)

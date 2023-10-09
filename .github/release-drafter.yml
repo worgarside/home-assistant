@@ -72,6 +72,7 @@ version-resolver:
       - minor
   patch:
     labels:
+      - dependencies
       - patch
       - bug
   default: major
