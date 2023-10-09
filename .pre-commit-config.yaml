@@ -1,7 +1,7 @@
 ---
 repos:
   - repo: https://github.com/worgarside/pre-commit-hooks-dependency-sync
-    rev: 1.0.0
+    rev: 1.0.1
     hooks:
       - id: sync-additional-dependencies
 
@@ -140,7 +140,7 @@ repos:
       - id: ruff
 
   - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: 1.2.2
+    rev: 1.2.3
     hooks:
       - id: validate-entities
       - id: validate-lovelace
