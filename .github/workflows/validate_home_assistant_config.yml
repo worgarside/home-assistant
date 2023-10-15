@@ -4,9 +4,12 @@ name: Validate Home Assistant Config
 on:
   push:
     branches:
-      - main
       - develop
   pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
 
 jobs:
   get-current-version:
