@@ -5,8 +5,11 @@ trigger:
   - platform: numeric_state
     entity_id: sensor.st_macbook_pro_internal_battery_level
     below: input_number.st_macbook_pro_low_battery_threshold
-condition: "{{ states('binary_sensor.st_macbook_pro_docked') == 'on' }}"
+condition:
+  - condition: state
+    entity_id: binary_sensor.st_macbook_pro_docked
+    state: 'on'
 action:
   - service: switch.turn_on
     data:
-      entity_id: switch.st_macbook_pro
+      entity_id: switch.will_s_macbook_pro

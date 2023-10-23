@@ -5,7 +5,11 @@ trigger:
   - platform: numeric_state
     entity_id: sensor.st_macbook_pro_internal_battery_level
     above: input_number.st_macbook_pro_full_battery_threshold
+condition:
+  - condition: state
+    entity_id: binary_sensor.st_macbook_pro_docked
+    state: 'on'
 action:
   - service: switch.turn_off
     data:
-      entity_id: switch.st_macbook_pro
+      entity_id: switch.will_s_macbook_pro
