@@ -5,6 +5,5 @@ state: >
   {{
     "LU28R55" in
     state_attr("sensor.wills_macbook_pro_displays", "Display Names")
-    and states("sensor.wills_macbook_pro_displays") | int == 3
   }}
 icon: mdi:monitor-share
