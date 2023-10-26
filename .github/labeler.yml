@@ -47,7 +47,10 @@ labels:
 
   - label: ha:appdaemon
     files:
-      - ^appdaemon/.+$
+      - ^appdaemon.+$
+
+  - label: ha:appdaemon
+    title: ^.+appdaemon.+
 
   - label: ha:automations
     files:
