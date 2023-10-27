@@ -124,6 +124,7 @@ cards:
             name: Display Source
           - entity: script.crt_pi_update_display
             name: Force Update
+      - entity: light.mini_lamp
       - entity: media_player.lounge_nest_hub
         name: Nest Hub
       - type: custom:decluttering-card
