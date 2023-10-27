@@ -8,7 +8,6 @@ recorder:
     domains:
       - automation
     entities:
-      - sensor.database_record_count
       - sensor.database_size
     entity_globs:
       - sensor.*_table_record_count
