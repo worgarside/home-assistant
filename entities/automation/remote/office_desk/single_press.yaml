@@ -6,7 +6,8 @@ trigger:
     event_type: zha_event
     event_data:
       command: single
-      device_ieee: 00:15:8d:00:09:ee:31:98
+      device_ieee: 00:15:8d:00:09:ee:31:be
 action:
-  - service: light.toggle
-    entity_id: light.office_shapes
+  - service: script.office_desk_sitting_mode
+    data:
+      sync_blinds: true
