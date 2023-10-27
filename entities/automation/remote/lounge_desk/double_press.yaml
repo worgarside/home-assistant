@@ -1,0 +1,12 @@
+---
+alias: /remote/lounge-desk/double-press
+id: remote_lounge_desk_double_press
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      command: double
+      device_ieee: 00:15:8d:00:09:e0:13:9c
+action:
+  - service: cover.open_cover
+    entity_id: cover.lounge_blinds
