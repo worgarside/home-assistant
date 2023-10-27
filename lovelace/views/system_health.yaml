@@ -87,29 +87,8 @@ cards:
             name: Updates
           - entity: sensor.count_zones
             name: Zones
-
-      - type: glance
-        entities:
           - entity: sensor.database_size
-            name: Database
-          - entity: sensor.events_table_size
-            name: Events Table Size
-          - entity: sensor.state_attributes_table_size
-            name: State Attributes Table Size
-          - entity: sensor.states_table_size
-            name: States Table Size
-          - entity: sensor.statistics_table_size
-            name: Statistics Table Size
-          - entity: sensor.database_record_count
-            name: Database Record Count
-          - entity: sensor.events_table_record_count
-            name: Events Table Record Count
-          - entity: sensor.state_attributes_table_record_count
-            name: State Attributes Table Record Count
-          - entity: sensor.states_table_record_count
-            name: States Table Record Count
-          - entity: sensor.statistics_table_record_count
-            name: Statistics Table Record Count
+            name: Database Size
 
   - type: horizontal-stack
     title: Internet Speeds
