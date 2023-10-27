@@ -13,6 +13,10 @@ action:
     data:
       brightness: 255
       effect: bon appetit
+  - service: light.turn_on
+    entity_id: light.table_lamp
+    data:
+      brightness: 255
   - service: cover.set_cover_position
     data:
       position: "{{ states('input_number.lounge_blinds_button_height') }}"
