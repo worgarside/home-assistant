@@ -1,0 +1,6 @@
+---
+sensor:
+  command: cd /config && git rev-parse --abbrev-ref HEAD
+  name: Current Git Branch
+  scan_interval: 120
+  unique_id: current_git_branch
