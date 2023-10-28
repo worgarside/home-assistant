@@ -9,4 +9,18 @@ trigger:
       - POST
     local_only: false
 action:
+  - alias: Validate Payload
+    condition: template
+    value_template: |
+      {{
+        trigger.json["ref_type"] == "tag" and
+        trigger.json["ref"] is match("^\d+\.\d+\.\d+$")
+      }}
+  - service: persistent_notification.create
+    data:
+      title: "Updating Config ({{trigger.json['ref']}})"
+      message: |
+        ```json
+        {{ trigger.json | to_json }}
+        ```
   - service: shell_command.get_latest_release
