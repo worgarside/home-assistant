@@ -7,9 +7,11 @@
     echo git add .
     git add .
 
-    echo git stash -m "shell_command.checkout_develop_head|$(date +%s)"
-    git stash -m "shell_command.checkout_develop_head|$(date +%s)"
+    echo git stash -m "shell_command.get_latest_release|$(date +%s)"
+    git stash -m "shell_command.get_latest_release|$(date +%s)"
 
-    git checkout develop
+    git checkout main
     git pull
+
+    git status
 }>> /config/shell-command.log 2>&1

@@ -1,0 +1,12 @@
+---
+alias: /webhook/get_latest_release
+id: webhook_get_latest_release
+mode: queued
+trigger:
+  - platform: webhook
+    webhook_id: get_latest_release
+    allowed_methods:
+      - POST
+    local_only: false
+action:
+  - service: shell_command.get_latest_release
