@@ -1,6 +1,6 @@
 ---
 name: CRTPi Online
-unqiue_id: crtpi_online
+unique_id: crtpi_online
 icon: mdi:raspberry-pi
 state: >
   {% set last_changed = as_timestamp(states.sensor.crtpi_cpu_usage.last_changed) %}

@@ -1,6 +1,6 @@
 ---
 name: RtroPi Online
-unqiue_id: rtropi_online
+unique_id: rtropi_online
 icon: mdi:raspberry-pi
 state: >
   {% set last_changed = as_timestamp(states.sensor.rtropi_cpu_usage.last_changed) %}
