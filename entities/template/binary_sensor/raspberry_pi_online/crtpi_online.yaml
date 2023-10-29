@@ -1,0 +1,12 @@
+---
+name: CRTPi Online
+unique_id: crtpi_online
+icon: mdi:raspberry-pi
+device_class: connectivity
+state: >
+  {% set last_changed = as_timestamp(states.sensor.crtpi_cpu_usage.last_changed) %}
+  {% set now = as_timestamp(now()) %}
+  {% set time_diff = now - last_changed %}
+  {{ time_diff < 300 }}
+attributes:
+  last_online: "{{ states.sensor.crtpi_cpu_usage.last_changed }}"
