@@ -390,15 +390,6 @@ pi_stats_graph_card_template:
   card:
     type: custom:mini-graph-card
     name: "[[name]]"
-    card_mod:
-      style: |
-        ha-card {
-          box-shadow: none;
-          border: none;
-        }
-        .graph {
-          padding: 5px;
-        }
     entities:
       - entity: sensor.clmtpi[[sensor_suffix]]
         name: Clmt Pi
@@ -423,16 +414,16 @@ pi_stats_graph_card_template:
         color: "#E519C8"
     show:
       state: false
-      legend: false
+      legend: true
       labels: true
-      fill: false
-    hours_to_show: 2
-    points_per_hour: 30
+      fill: fade
+    hours_to_show: 4
+    points_per_hour: 6
     upper_bound: "[[upper_bound]]"
     lower_bound: 0
     height: 250
     icon: "[[icon]]"
-    line_width: 5
+    line_width: 2
     font_size: 75
 
 pi_stats_legend_card_template:

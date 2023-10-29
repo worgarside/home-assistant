@@ -79,22 +79,6 @@ cards:
           type: custom:fold-entity-row
           head:
             type: custom:mushroom-entity-card
-            entity: sensor.count_unavailable_entities
-            name: Unavailable Entities
-            icon_color: red
-        sort:
-          method: domain
-        filter:
-          template: >
-            {{
-              state_attr('sensor.count_unavailable_entities', 'entities') |
-              select('is_state', 'unavailable') | list
-            }}
-      - type: custom:auto-entities
-        card:
-          type: custom:fold-entity-row
-          head:
-            type: custom:mushroom-entity-card
             entity: sensor.count_low_batteries
             name: Low Batteries
             icon_color: orange
@@ -106,6 +90,22 @@ cards:
               state_attr("sensor.count_low_batteries", "entities") |
               map(attribute="entity_id") |
               list
+            }}
+      - type: custom:auto-entities
+        card:
+          type: custom:fold-entity-row
+          head:
+            type: custom:mushroom-entity-card
+            entity: sensor.count_unavailable_entities
+            name: Unavailable Entities
+            icon_color: red
+        sort:
+          method: domain
+        filter:
+          template: >
+            {{
+              state_attr('sensor.count_unavailable_entities', 'entities') |
+              select('is_state', 'unavailable') | list
             }}
 
   - type: custom:layout-break
@@ -165,8 +165,49 @@ cards:
   - type: custom:layout-break
 
   - type: custom:vertical-stack-in-card
+    title: Raspberry Pi Stats
     cards:
-
+      - type: custom:swipe-card
+        parameters:
+          rewind: true
+          pagination:
+            type: bullets
+            clickable: true
+          navigation:
+            enabled: true
+        cards:
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: CPU Usage
+              - sensor_suffix: _cpu_usage
+              - hasspi_sensor: processor_use
+              - upper_bound: 100
+              - icon: mdi:cpu-32-bit
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: CPU Temperature
+              - sensor_suffix: _cpu_temperature
+              - hasspi_sensor: processor_temperature
+              - upper_bound: 100
+              - icon: mdi:thermometer-lines
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: Memory Usage
+              - sensor_suffix: _memory_usage
+              - hasspi_sensor: memory_use_percent
+              - upper_bound: 100
+              - icon: mdi:memory
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: Disk Usage
+              - sensor_suffix: _disk_usage
+              - hasspi_sensor: disk_use_percent
+              - upper_bound: 100
+              - icon: mdi:harddisk
       - type: custom:layout-card
         layout_type: custom:horizontal-layout
         layout:
