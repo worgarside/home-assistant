@@ -1,0 +1,9 @@
+---
+name: VSMPPi Online
+unique_id: vsmppi_online
+icon: mdi:raspberry-pi
+state: >
+  {% set last_changed = as_timestamp(states.sensor.vsmppi_cpu_usage.last_changed) %}
+  {% set now = as_timestamp(now()) %}
+  {% set time_diff = now - last_changed %}
+  {{ time_diff < 300 }}
