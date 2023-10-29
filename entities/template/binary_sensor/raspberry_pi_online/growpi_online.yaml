@@ -2,6 +2,7 @@
 name: GrowPi Online
 unique_id: growpi_online
 icon: mdi:raspberry-pi
+device_class: connectivity
 state: >
   {% set last_changed = as_timestamp(states.sensor.growpi_cpu_usage.last_changed) %}
   {% set now = as_timestamp(now()) %}

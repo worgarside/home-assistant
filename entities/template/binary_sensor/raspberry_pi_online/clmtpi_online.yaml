@@ -2,6 +2,7 @@
 name: ClmtPi Online
 unique_id: clmtpi_online
 icon: mdi:raspberry-pi
+device_class: connectivity
 state: >
   {% set last_changed = as_timestamp(states.sensor.clmtpi_cpu_usage.last_changed) %}
   {% set now = as_timestamp(now()) %}
