@@ -8,30 +8,30 @@ path: system_health
 type: custom:vertical-layout
 
 cards:
-  - type: vertical-stack
-    cards:
-      - type: custom:mushroom-title-card
-        title: "{{ states('sensor.address_line_1') }}"
-      - type: custom:mushroom-chips-card
-        chips:
-          - type: entity
-            entity: sensor.current_version
-            icon: mdi:home-assistant
-            icon_color: "#0EBEF2"
-          - type: entity
-            entity: sensor.current_git_ref
-            icon: mdi:git
-            icon_color: "#E84D32"
-            double_tap_action:
-              action: url
-              url_path: https://github.com/worgarside/home-assistant
-          - type: entity
-            entity: sensor.current_git_branch
-            icon: mdi:source-branch
-            icon_color: "#AD20ED"
-            double_tap_action:
-              action: ur
-              url_path: https://github.com/worgarside/home-assistant
+  - type: custom:decluttering-card
+    template: compact_title_card_template
+    variables:
+      - title: System Health
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: entity
+        entity: sensor.current_version
+        icon: mdi:home-assistant
+        icon_color: "#0EBEF2"
+      - type: entity
+        entity: sensor.current_git_ref
+        icon: mdi:git
+        icon_color: "#E84D32"
+        double_tap_action:
+          action: url
+          url_path: https://github.com/worgarside/home-assistant
+      - type: entity
+        entity: sensor.current_git_branch
+        icon: mdi:source-branch
+        icon_color: "#AD20ED"
+        double_tap_action:
+          action: ur
+          url_path: https://github.com/worgarside/home-assistant
 
   - type: custom:vertical-stack-in-card
     cards:
@@ -110,104 +110,181 @@ cards:
 
   - type: custom:layout-break
 
+
   - type: entities
     title: Entity Counts
+    card_mod:
+      style: |
+        .card-content {
+          padding: 0 !important;
+          box-shadow: none;
+          border: none;
+        }
     entities:
       - type: custom:layout-card
         layout_type: custom:horizontal-layout
         layout:
-          width: 175
-          max_cols: 2
+          width: 150
+          max_cols: 3
         cards:
           - entity: sensor.count_automations
             name: Automations
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_binary_sensors
             name: Binary Sensors
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.database_size
             name: Database Size
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_device_trackers
             name: Devices
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_input_booleans
             name: Input Booleans
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_input_datetimes
             name: Input Datetimes
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_input_numbers
             name: Input Numbers
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_input_selects
             name: Input Selects
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_input_texts
             name: Input Texts
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_scripts
             name: Scripts
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_sensors
             name: Sensors
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_switches
             name: Switches
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_updates
             name: Updates
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
           - entity: sensor.count_zones
             name: Zones
             type: custom:mushroom-entity-card
+            card_mod:
+              style: |
+                ha-card {
+                  padding-top: 0.25rem !important;
+                  padding-bottom: 0.25rem !important;
+                  box-shadow: none;
+                  border: none;
+                }
 
-  - type: custom:layout-break
-
-  - type: custom:vertical-stack-in-card
-    title: Raspberry Pi Stats
-    cards:
-      - type: custom:swipe-card
-        parameters:
-          rewind: true
-          pagination:
-            type: bullets
-            clickable: true
-          navigation:
-            enabled: true
-        cards:
-          - type: custom:decluttering-card
-            template: pi_stats_graph_card_template
-            variables:
-              - name: CPU Usage
-              - sensor_suffix: _cpu_usage
-              - hasspi_sensor: processor_use
-              - upper_bound: 100
-              - icon: mdi:cpu-32-bit
-          - type: custom:decluttering-card
-            template: pi_stats_graph_card_template
-            variables:
-              - name: CPU Temperature
-              - sensor_suffix: _cpu_temperature
-              - hasspi_sensor: processor_temperature
-              - upper_bound: 100
-              - icon: mdi:thermometer-lines
-          - type: custom:decluttering-card
-            template: pi_stats_graph_card_template
-            variables:
-              - name: Memory Usage
-              - sensor_suffix: _memory_usage
-              - hasspi_sensor: memory_use_percent
-              - upper_bound: 100
-              - icon: mdi:memory
-          - type: custom:decluttering-card
-            template: pi_stats_graph_card_template
-            variables:
-              - name: Disk Usage
-              - sensor_suffix: _disk_usage
-              - hasspi_sensor: disk_use_percent
-              - upper_bound: 100
-              - icon: mdi:harddisk
+  - type: entities
+    title: Raspberry Pi Metrics
+    entities:
       - type: custom:layout-card
         layout_type: custom:horizontal-layout
         layout:
@@ -256,3 +333,47 @@ cards:
               - color: '#E519C8'
               - name: VSMPPi
               - slug: vsmppi
+
+      - type: custom:fold-entity-row
+        head:
+          type: section
+          label: Metric Graphs
+        entities:
+          - type: custom:swipe-card
+            parameters:
+              rewind: true
+              navigation:
+                enabled: true
+            cards:
+              - type: custom:decluttering-card
+                template: pi_stats_graph_card_template
+                variables:
+                  - name: CPU Usage
+                  - sensor_suffix: _cpu_usage
+                  - hasspi_sensor: processor_use
+                  - upper_bound: 100
+                  - icon: mdi:cpu-32-bit
+              - type: custom:decluttering-card
+                template: pi_stats_graph_card_template
+                variables:
+                  - name: CPU Temperature
+                  - sensor_suffix: _cpu_temperature
+                  - hasspi_sensor: processor_temperature
+                  - upper_bound: 100
+                  - icon: mdi:thermometer-lines
+              - type: custom:decluttering-card
+                template: pi_stats_graph_card_template
+                variables:
+                  - name: Memory Usage
+                  - sensor_suffix: _memory_usage
+                  - hasspi_sensor: memory_use_percent
+                  - upper_bound: 100
+                  - icon: mdi:memory
+              - type: custom:decluttering-card
+                template: pi_stats_graph_card_template
+                variables:
+                  - name: Disk Usage
+                  - sensor_suffix: _disk_usage
+                  - hasspi_sensor: disk_use_percent
+                  - upper_bound: 100
+                  - icon: mdi:harddisk

@@ -421,7 +421,7 @@ pi_stats_graph_card_template:
     points_per_hour: 6
     upper_bound: "[[upper_bound]]"
     lower_bound: 0
-    height: 250
+    height: 150
     icon: "[[icon]]"
     line_width: 2
     font_size: 75
@@ -1382,7 +1382,7 @@ pi_online_entity_template:
     entity: binary_sensor.[[slug]]_online
     type: custom:mushroom-template-card
     primary: "[[name]]"
-    secondary: "{{ 'Online' if states('binary_sensor.[[slug]]_online') == 'on' else '' }}"
+    secondary: "{{ 'Online' if states('binary_sensor.[[slug]]_online') == 'on' else 'Offline' }}"
     icon_color: "{{ '[[color]]' if states('binary_sensor.[[slug]]_online') == 'on' }}"
     icon: mdi:raspberry-pi
     tap_action:
@@ -1394,4 +1394,20 @@ pi_online_entity_template:
           padding-bottom: 0.25rem !important;
           box-shadow: none;
           border: none;
+        }
+
+compact_title_card_template:
+  card:
+    type: custom:mushroom-title-card
+    title: "[[title]]"
+    card_mod:
+      style: |
+        ha-card {
+          padding-top: 1rem !important;
+          padding-bottom: 1rem !important;
+          box-shadow: none;
+          border: none;
+        }
+        div {
+          margin-bottom: 0 !important;
         }
