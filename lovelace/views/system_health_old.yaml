@@ -1,0 +1,367 @@
+---
+title: System Health
+
+icon: mdi:medication
+
+path: system_health_old
+
+cards:
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: "# Unavailable Entities"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          show_header_toggle: false
+          card_mod:
+            style: |
+              ha-card {
+                border: none;
+              }
+        sort:
+          method: domain
+        filter:
+          template: "{{ state_attr('sensor.count_unavailable_entities', 'entities') }}"
+        else:
+          type: markdown
+          content: "### Nothing to report here!"
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: markdown
+        content: "# Low Batteries"
+      - type: custom:auto-entities
+        card:
+          type: entities
+          show_header_toggle: false
+          card_mod:
+            style: |
+              ha-card {
+                border: none;
+              }
+        sort:
+          method: domain
+        filter:
+          template: >
+            {{
+              state_attr("sensor.count_low_batteries", "entities") |
+              map(attribute="entity_id") |
+              list
+            }}
+        else:
+          type: markdown
+          content: "### All charged up!"
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: glance
+        entities:
+          - entity: sensor.count_automations
+            name: Automations
+          - entity: sensor.count_binary_sensors
+            name: Binary Sensors
+          - entity: sensor.count_device_trackers
+            name: Devices
+          - entity: sensor.count_input_booleans
+            name: Input Booleans
+          - entity: sensor.count_input_datetimes
+            name: Input Datetimes
+          - entity: sensor.count_input_numbers
+            name: Input Numbers
+          - entity: sensor.count_input_selects
+            name: Input Selects
+          - entity: sensor.count_input_texts
+            name: Input Texts
+          - entity: sensor.count_low_batteries
+            name: Low Batteries
+          - entity: sensor.count_scripts
+            name: Scripts
+          - entity: sensor.count_sensors
+            name: Sensors
+          - entity: sensor.count_switches
+            name: Switches
+          - entity: sensor.count_unavailable_entities
+            name: Unavailable
+          - entity: sensor.count_updates
+            name: Updates
+          - entity: sensor.count_zones
+            name: Zones
+          - entity: sensor.database_size
+            name: Database Size
+
+  - type: horizontal-stack
+    title: Internet Speeds
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.speedtest_download
+            name: Download
+        icon: mdi:download-network-outline
+        line_color: blue
+        line_width: 8
+        font_size: 75
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.speedtest_upload
+            name: Upload
+        icon: mdi:upload-network-outline
+        line_color: "#e74c3c"
+        line_width: 8
+        font_size: 75
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.speedtest_ping
+            name: Ping
+        line_color: var(--accent-color)
+        line_width: 8
+        font_size: 75
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: markdown
+            content: "# Raspberry Pi Stats"
+          - type: entities
+            entities:
+              - entity: input_select.pi_stats_legend_sensor_type
+                name: Legend
+                card_mod:
+                  style:
+                    hui-generic-entity-row:
+                      $: |
+                        state-badge {
+                          display: none;
+                        }
+      - type: horizontal-stack
+        cards:
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: CPU Usage
+              - sensor_suffix: _cpu_usage
+              - hasspi_sensor: processor_use
+              - upper_bound: ~75
+              - icon: mdi:cpu-32-bit
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: CPU Temperature
+              - sensor_suffix: _cpu_temperature
+              - hasspi_sensor: processor_temperature
+              - upper_bound: 100
+              - icon: mdi:thermometer-lines
+      - type: horizontal-stack
+        cards:
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: Memory Usage
+              - sensor_suffix: _memory_usage
+              - hasspi_sensor: memory_use_percent
+              - upper_bound: ~75
+              - icon: mdi:memory
+          - type: custom:decluttering-card
+            template: pi_stats_graph_card_template
+            variables:
+              - name: Disk Usage
+              - sensor_suffix: _disk_usage
+              - hasspi_sensor: disk_use_percent
+              - upper_bound: 100
+              - icon: mdi:harddisk
+      - type: conditional
+        conditions:
+          - entity: input_select.pi_stats_legend_sensor_type
+            state: CPU Usage
+        card:
+          type: custom:decluttering-card
+          template: pi_stats_legend_card_template
+          variables:
+            - sensor_suffix: _cpu_usage
+            - hasspi_sensor: processor_use
+      - type: conditional
+        conditions:
+          - entity: input_select.pi_stats_legend_sensor_type
+            state: CPU Temperature
+        card:
+          type: custom:decluttering-card
+          template: pi_stats_legend_card_template
+          variables:
+            - sensor_suffix: _cpu_temperature
+            - hasspi_sensor: processor_temperature
+      - type: conditional
+        conditions:
+          - entity: input_select.pi_stats_legend_sensor_type
+            state: Memory Usage
+        card:
+          type: custom:decluttering-card
+          template: pi_stats_legend_card_template
+          variables:
+            - sensor_suffix: _memory_usage
+            - hasspi_sensor: memory_use_percent
+      - type: conditional
+        conditions:
+          - entity: input_select.pi_stats_legend_sensor_type
+            state: Disk Usage
+        card:
+          type: custom:decluttering-card
+          template: pi_stats_legend_card_template
+          variables:
+            - sensor_suffix: _disk_usage
+            - hasspi_sensor: disk_use_percent
+      - type: horizontal-stack
+        cards:
+          - type: entities
+            show_state: false
+            entities:
+              - entity: binary_sensor.clmtpi_online
+                name: ClmtPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.clmtpi_online") == "on" %}
+                        #E51919;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+              - entity: binary_sensor.crtpi_online
+                name: CRTPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.crtpi_online") == "on" %}
+                        #E5C819;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+              - entity: binary_sensor.growpi_online
+                name: GrowPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.growpi_online") == "on" %}
+                        #53E519;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+          - type: entities
+            entities:
+              - entity: binary_sensor.hasspi_online
+                name: HAssPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.hasspi_online") == "on" %}
+                        #19E58E;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+              - entity: binary_sensor.mtrxpi_online
+                name: MtrxPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.mtrxpi_online") == "on" %}
+                        #198EE5;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+              - entity: binary_sensor.rtropi_online
+                name: RtroPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.rtropi_online") == "on" %}
+                        #5319E5;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+              - entity: binary_sensor.vsmppi_online
+                name: VSMPPi
+                style: |
+                  :host {
+                    --card-mod-icon-color:
+                      {% if states("binary_sensor.vsmppi_online") == "on" %}
+                        #E519C8;
+                      {% else %}
+                        var(--paper-item-icon-color, #44739e);
+                      {% endif %}
+                  }
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: markdown
+            content: "# Add-on Container Stats"
+          - type: entities
+            entities:
+              - entity: input_select.add_on_stats_legend_sensor_type
+                name: Legend
+                card_mod:
+                  style:
+                    hui-generic-entity-row:
+                      $: |
+                        state-badge {
+                          display: none;
+                        }
+      - type: custom:layout-card
+        layout_type: custom:horizontal-layout
+        layout:
+          width: 180
+          column_widths: 50% 50%
+          max_cols: 2
+        cards:
+          - type: custom:vertical-stack-in-card
+            card_mod:
+              style: |
+                ha-card {
+                  box-shadow: none;
+                  border: none;
+                }
+            view_layout:
+              column: 1
+            cards:
+              - type: custom:decluttering-card
+                template: addon_stats_graph_card_template
+                variables:
+                  - name: CPU Usage
+                  - sensor_type: cpu
+                  - icon: mdi:cpu-32-bit
+              - type: custom:decluttering-card
+                template: addon_stats_graph_card_template
+                variables:
+                  - name: Memory Usage
+                  - sensor_type: memory
+                  - icon: mdi:memory
+
+          - type: conditional
+            view_layout:
+              column: 2
+            conditions:
+              - entity: input_select.add_on_stats_legend_sensor_type
+                state: CPU Usage
+            card:
+              type: custom:decluttering-card
+              template: addon_stats_legend_card_template
+              variables:
+                - sensor_type: cpu
+
+          - type: conditional
+            view_layout:
+              column: 2
+            conditions:
+              - entity: input_select.add_on_stats_legend_sensor_type
+                state: Memory Usage
+            card:
+              type: custom:decluttering-card
+              template: addon_stats_legend_card_template
+              variables:
+                - sensor_type: memory

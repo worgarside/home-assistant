@@ -9,5 +9,6 @@ decluttering_templates: !include ../decluttering_templates.yaml
 
 views:
   - !include ../views/system_health.yaml
+  - !include ../views/system_health_old.yaml
   - !include ../views/log_feeds.yaml
   - !include ../views/github.yaml
