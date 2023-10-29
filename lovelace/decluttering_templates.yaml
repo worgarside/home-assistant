@@ -390,6 +390,15 @@ pi_stats_graph_card_template:
   card:
     type: custom:mini-graph-card
     name: "[[name]]"
+    card_mod:
+      style: |
+        ha-card.type-custom-mini-graph-card {
+          box-shadow: none;
+          border: none;
+        }
+        .graph {
+          padding: 0px;
+        }
     entities:
       - entity: sensor.clmtpi[[sensor_suffix]]
         name: Clmt Pi
@@ -421,7 +430,7 @@ pi_stats_graph_card_template:
     points_per_hour: 6
     upper_bound: "[[upper_bound]]"
     lower_bound: 0
-    height: 150
+    height: 200
     icon: "[[icon]]"
     line_width: 2
     font_size: 75
@@ -532,19 +541,19 @@ addon_stats_graph_card_template:
       - entity: sensor.yas_209_bridge_[[sensor_type]]_usage
         name: YAS-209 Bridge
         color: "#E5196B"
-    hours_to_show: 2
-    points_per_hour: 30
-    upper_bound: ~10
+    hours_to_show: 4
+    points_per_hour: 15
+    upper_bound: ~5
     lower_bound: 0
-    height: 250
+    height: 200
     icon: "[[icon]]"
-    line_width: 3
+    line_width: 2
     font_size: 75
     show:
       state: false
-      legend: false
+      legend: true
       labels: true
-      fill: false
+      fill: fade
 
 addon_stats_legend_card_template:
   card:
@@ -1410,4 +1419,23 @@ compact_title_card_template:
         }
         div {
           margin-bottom: 0 !important;
+        }
+
+addon_active_entity_template:
+  card:
+    entity: sensor.[[slug]]_status
+    type: custom:mushroom-template-card
+    primary: "[[name]]"
+    secondary: "{{ 'Online' if states('sensor.[[slug]]_status') == 'ok' else 'Offline' }}"
+    icon_color: "{{ '[[color]]' if states('sensor.[[slug]]_status') == 'ok' }}"
+    icon: mdi:docker
+    tap_action:
+      action: more-info
+    card_mod:
+      style: |
+        ha-card {
+          padding-top: 0.25rem !important;
+          padding-bottom: 0.25rem !important;
+          box-shadow: none;
+          border: none;
         }
