@@ -331,28 +331,6 @@ folding_white_light_template:
         full_row: true
         hide_state: true
 
-folding_rgb_light_template:
-  variables:
-    - auto_entity_filter_template: ""
-  card:
-    type: custom:auto-entities
-    card:
-      type: custom:fold-entity-row
-      head:
-        entity: "[[entity]]"
-        name: "[[name]]"
-    filter:
-      template: "[[auto_entity_filter_template]]"
-    entities:
-      - type: custom:slider-entity-row
-        entity: "[[entity]]"
-        full_row: true
-        hide_state: true
-      - type: custom:decluttering-card
-        template: rgb_light_template
-        variables:
-          - entity: "[[entity]]"
-
 folding_rgb_light_with_effects_template:
   card:
     type: custom:auto-entities
@@ -434,52 +412,6 @@ pi_stats_graph_card_template:
     icon: "[[icon]]"
     line_width: 2
     font_size: 75
-
-pi_stats_legend_card_template:
-  card:
-    type: custom:mini-graph-card
-    entities:
-      - entity: sensor.clmtpi[[sensor_suffix]]
-        name: Clmt Pi
-        color: "#E51919"
-      - entity: sensor.crtpi[[sensor_suffix]]
-        name: CRT Pi
-        color: "#E5C819"
-      - entity: sensor.growpi[[sensor_suffix]]
-        name: Grow Pi
-        color: "#53E519"
-      - entity: sensor.[[hasspi_sensor]]
-        name: HAss Pi
-        color: "#19E58E"
-      - entity: sensor.mtrxpi[[sensor_suffix]]
-        name: Mtrx Pi
-        color: "#198EE5"
-      - entity: sensor.rtropi[[sensor_suffix]]
-        name: Rtro Pi
-        color: "#5319E5"
-      - entity: sensor.vsmppi[[sensor_suffix]]
-        name: VSMP Pi
-        color: "#E519C8"
-    show:
-      legend: true
-      icon: false
-      state: false
-      name: false
-    card_mod:
-      style: |
-        ha-card {
-          box-shadow: none;
-          border: none;
-        }
-        .line--rect, .fill--rect, .graph__container__svg {
-          display: none;
-        }
-        ha-card.flex.type-custom-mini-graph-card, .graph__legend {
-          padding: 0px;
-        }
-        .type-custom-mini-graph-card {
-          margin-top: -10px;
-        }
 
 addon_stats_graph_card_template:
   card:
