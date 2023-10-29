@@ -426,7 +426,7 @@ cards:
             variables:
               - color: '#E5C819'
               - name: CRTPi
-              - sluge: crtpi
+              - slug: crtpi
           - type: custom:decluttering-card
             template: pi_online_entity_template
             variables:
