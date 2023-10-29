@@ -8,3 +8,5 @@ state: >
   {% set now = as_timestamp(now()) %}
   {% set time_diff = now - last_changed %}
   {{ time_diff < 300 }}
+attributes:
+  last_online: "{{ states.sensor.vsmppi_cpu_usage.last_changed }}"
