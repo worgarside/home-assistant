@@ -110,7 +110,6 @@ cards:
 
   - type: custom:layout-break
 
-
   - type: entities
     title: Entity Counts
     card_mod:
@@ -285,7 +284,7 @@ cards:
   - type: custom:layout-break
 
   - type: entities
-    title: Add-On Metrics
+    title: Add-Ons
     entities:
       - type: custom:layout-card
         layout_type: custom:horizontal-layout
@@ -407,9 +406,8 @@ cards:
                   - sensor_type: memory
                   - icon: mdi:memory
 
-
   - type: entities
-    title: Raspberry Pi Metrics
+    title: Raspberry Pis
     entities:
       - type: custom:layout-card
         layout_type: custom:horizontal-layout

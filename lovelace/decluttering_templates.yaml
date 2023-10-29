@@ -1426,9 +1426,9 @@ addon_active_entity_template:
     entity: sensor.[[slug]]_status
     type: custom:mushroom-template-card
     primary: "[[name]]"
-    secondary: "{{ 'Online' if states('sensor.[[slug]]_status') == 'ok' else 'Offline' }}"
+    secondary: "{{ 'Running' if states('sensor.[[slug]]_status') == 'ok' else 'Stopped' }}"
     icon_color: "{{ '[[color]]' if states('sensor.[[slug]]_status') == 'ok' }}"
-    icon: mdi:docker
+    icon: "{{ 'mdi:docker' if states('sensor.[[slug]]_status') == 'ok' else 'mdi:alert-octagon' }}"
     tap_action:
       action: more-info
     card_mod:
