@@ -438,13 +438,13 @@ watchmedo = ["PyYAML (>=3.10)"]
 
 [[package]]
 name = "wg-utilities"
-version = "5.3.1"
+version = "5.4.0"
 description = "Loads of useful stuff for the things I do :)"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "wg_utilities-5.3.1-py3-none-any.whl", hash = "sha256:7aca3e3a382cb2b3767a86a837ffced1cfe62355fb2b2465fd20e0738958f093"},
-    {file = "wg_utilities-5.3.1.tar.gz", hash = "sha256:2568ef58024dbc9cc402ec3fe23c943482cd9234296d50587a7608b81b688d02"},
+    {file = "wg_utilities-5.4.0-py3-none-any.whl", hash = "sha256:4c02a3a1e8bbbd768439a174eef7ad9f82104092d2682ef38be55d824a30a88c"},
+    {file = "wg_utilities-5.4.0.tar.gz", hash = "sha256:bf01f3e154a8253205b48da44bc41778b450a5b03a470f34748f9c6c1ac23094"},
 ]
 
 [package.extras]
@@ -459,4 +459,4 @@ testing = ["botocore"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "ccaf889e78b105bb6ff6fa5c7fafd98ba9fd484a32efab3a597c059e4b0ee9f0"
+content-hash = "13d61ff63e4456cb86d80cca95addf8c8f0d00633c621a5fb8e3b9b145096559"
