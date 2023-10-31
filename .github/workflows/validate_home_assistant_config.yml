@@ -52,13 +52,6 @@ jobs:
           mv -vn home-assistant-variables/custom_components/* ./custom_components/var/
           rm -rf home-assistant-variables
 
-      - name: 'Clone Custom Component: `feedparser`'
-        run: |
-          git clone https://github.com/custom-components/feedparser.git \
-            --depth 1
-          mv -vn feedparser/custom_components/* ./custom_components/
-          rm -rf feedparser
-
       - name: 'Clone Custom Component: `spotcast`'
         run: |
           git clone https://github.com/fondberg/spotcast \
