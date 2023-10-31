@@ -19,7 +19,6 @@ action:
              states('var.truelayer_balance_monzo_credit_cards') | float
            ) |
            round(2)
-         }}
         }}
       top_up_amount: |
         {% set deficit = (
