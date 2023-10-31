@@ -85,11 +85,6 @@ cards:
       - type: custom:decluttering-card
         template: repo_pr_list_card_template
         variables:
-          - repo_name: Useful DevOps Scripts
-          - repo_slug: useful_devops_scripts
-      - type: custom:decluttering-card
-        template: repo_pr_list_card_template
-        variables:
           - repo_name: Very Slow Movie Player
           - repo_slug: very_slow_movie_player
       - type: custom:decluttering-card
@@ -152,11 +147,6 @@ cards:
         variables:
           - repo_name: Smart Mini CRT Interface
           - repo_slug: smart_mini_crt_interface
-      - type: custom:decluttering-card
-        template: empty_repo_pr_list_card_template
-        variables:
-          - repo_name: Useful DevOps Scripts
-          - repo_slug: useful_devops_scripts
       - type: custom:decluttering-card
         template: empty_repo_pr_list_card_template
         variables:
