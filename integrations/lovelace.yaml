@@ -29,7 +29,7 @@ lovelace:
       type: module
     - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
       type: module
-    - url: /hacsfiles/lovelace-swipe-navigation/swipe-navigation.js
+    - url: /hacsfiles/hass-swipe-navigation/swipe-navigation.js
       type: module
     - url: /hacsfiles/swipe-card/swipe-card.js
       type: module
@@ -65,7 +65,6 @@ lovelace:
       type: module
     - url: /hacsfiles/list-card/list-card.js
       type: module
-      # yamllint disable-line rule:line-length
     - url: /hacsfiles/lovelace-multiline-text-input-card/lovelace-multiline-text-input-card.js
       type: module
     - url: /hacsfiles/clock-weather-card/clock-weather-card.js
