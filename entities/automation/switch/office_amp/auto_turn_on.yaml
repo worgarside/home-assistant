@@ -14,6 +14,11 @@ trigger:
       - paused
       - playing
       - "on"
+  - platform: state
+    entity_id:
+      - sensor.st_macbook_pro_active_audio_output
+      - sensor.wills_macbook_pro_active_audio_output
+    to: "FiiO USB DAC-E10"
 action:
   - service: switch.turn_on
     entity_id: switch.office_amp
