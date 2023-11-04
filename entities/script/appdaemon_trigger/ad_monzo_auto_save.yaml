@@ -1,0 +1,8 @@
+---
+mode: single
+max_exceeded: silent
+sequence:
+  - service: input_boolean.toggle
+    entity_id: input_boolean.ad_monzo_auto_save
+  - delay:
+      seconds: 2
