@@ -30,7 +30,7 @@ cards:
         icon: mdi:source-branch
         icon_color: "#AD20ED"
         double_tap_action:
-          action: ur
+          action: url
           url_path: https://github.com/worgarside/home-assistant
 
   - type: custom:vertical-stack-in-card
