@@ -1,0 +1,24 @@
+---
+alias: /webhook/create_appdaemon_pull_request
+id: webhook_create_appdaemon_pull_request
+mode: queued
+trigger:
+  - platform: webhook
+    webhook_id: create_appdaemon_pull_request
+    allowed_methods:
+      - POST
+    local_only: false
+action:
+  - alias: Validate Payload
+    condition: template
+    value_template: |
+      {{
+        trigger.json["ref_type"] == "tag" and
+        trigger.json["repository"]["name"] == "home-assistant-appdaemon" and
+        trigger.json["ref"] is match("^\d+\.\d+\.\d+$")
+      }}
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.ad_create_appdaemon_pull_request
+    data:
+      value: "{{ trigger.json['ref'] }}"

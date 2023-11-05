@@ -14,6 +14,7 @@ action:
     value_template: |
       {{
         trigger.json["ref_type"] == "tag" and
+        trigger.json["repository"]["name"] == "home-assistant" and
         trigger.json["ref"] is match("^\d+\.\d+\.\d+$")
       }}
   - service: persistent_notification.create
