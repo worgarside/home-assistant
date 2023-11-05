@@ -14,6 +14,7 @@
 
     git checkout main
     git pull
+    git submodule update --init --recursive
 
     git status
 }>> /config/shell-command.log 2>&1
