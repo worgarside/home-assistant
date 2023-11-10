@@ -20,9 +20,18 @@ trigger:
     entity_id:
       - sensor.st_macbook_pro_active_audio_output
       - sensor.wills_macbook_pro_active_audio_output
-    from: "FiiO USB DAC-E10"
+    from: FiiO USB DAC-E10
+    not_to: Inactive
     for:
-      minutes: 30
+      minutes: 1
+  - platform: state
+    entity_id:
+      - sensor.st_macbook_pro_active_audio_output
+      - sensor.wills_macbook_pro_active_audio_output
+    from: FiiO USB DAC-E10
+    to: Inactive
+    for:
+      minutes: 5
 condition:
   - condition: and
     conditions:
@@ -36,10 +45,10 @@ condition:
       - not:
           - condition: state
             entity_id: sensor.st_macbook_pro_active_audio_output
-            state: "FiiO USB DAC-E10"
+            state: FiiO USB DAC-E10
           - condition: state
             entity_id: sensor.wills_macbook_pro_active_audio_output
-            state: "FiiO USB DAC-E10"
+            state: FiiO USB DAC-E10
 action:
   - service: switch.turn_off
     entity_id: switch.office_amp
