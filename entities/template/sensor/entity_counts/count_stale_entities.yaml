@@ -30,8 +30,8 @@ attributes:
         {
           "entity_id": entity.entity_id,
           "state": entity.state,
-          "last_changed": entity.last_changed,
-          "last_updated": entity.last_updated,
+          "last_changed": entity.last_changed.isoformat(),
+          "last_updated": entity.last_updated.isoformat(),
         }
       ] -%}
     {% endfor %}
