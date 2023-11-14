@@ -13,7 +13,7 @@ repos:
           - --py311-plus
 
   - repo: https://github.com/psf/black
-    rev: 23.10.1
+    rev: 23.11.0
     hooks:
       - id: black
         language_version: python3.11
@@ -24,7 +24,7 @@ repos:
       - id: blacken-docs
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: 1.4.1
+    rev: 1.5.1
     hooks:
       - id: pyproject-fmt
 
@@ -75,7 +75,7 @@ repos:
           - --preserve-quotes
 
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.32.0
+    rev: v1.33.0
     hooks:
       - id: yamllint
         args:
@@ -91,7 +91,7 @@ repos:
           - --all
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.6.1
+    rev: v1.7.0
     hooks:
       - id: mypy
         args:
@@ -135,7 +135,7 @@ repos:
           - tomli
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.4
+    rev: v0.1.5
     hooks:
       - id: ruff
 
