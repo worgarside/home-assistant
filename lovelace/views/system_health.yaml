@@ -30,7 +30,7 @@ cards:
         icon: mdi:source-branch
         icon_color: "#AD20ED"
         double_tap_action:
-          action: ur
+          action: url
           url_path: https://github.com/worgarside/home-assistant
 
   - type: custom:vertical-stack-in-card
@@ -88,6 +88,23 @@ cards:
           template: >
             {{
               state_attr("sensor.count_low_batteries", "entities") |
+              map(attribute="entity_id") |
+              list
+            }}
+      - type: custom:auto-entities
+        card:
+          type: custom:fold-entity-row
+          head:
+            type: custom:mushroom-entity-card
+            entity: sensor.count_stale_entities
+            name: Stale Entities
+            icon_color: deep-orange
+        sort:
+          method: domain
+        filter:
+          template: >
+            {{
+              state_attr('sensor.count_stale_entities', 'entities') |
               map(attribute="entity_id") |
               list
             }}

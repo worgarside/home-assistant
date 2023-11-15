@@ -12,6 +12,12 @@
     echo git stash -m "shell_command.get_latest_release|$(date +%s)"
     git stash -m "shell_command.get_latest_release|$(date +%s)"
 
+    cd /config/appdaemon || exit 1
+
+    git stash -m "shell_command.get_latest_release__appdaemon|$(date +%s)"
+
+    cd /config || exit 1
+
     git checkout main
     git pull
     git submodule update --init --recursive

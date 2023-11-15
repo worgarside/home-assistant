@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "home-assistant"
-version = "2.7.1"
+version = "2.11.0"
 description = ""
 authors = ["Will Garside <worgarside@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-wg-utilities = "^5.4.1"
+wg-utilities = "^5.6.0"
 watchdog = "^3.0.0"
 paramiko = "^3.3.1"
 
