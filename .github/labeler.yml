@@ -106,7 +106,7 @@ labels:
 
   - label: ha:lovelace
     files:
-      - ^lovelace/.+\.yaml$
+      - (^|/)lovelace/.+\.yaml$
       - ^ui-lovelace\.yaml$
 
   - label: ha:media-player
