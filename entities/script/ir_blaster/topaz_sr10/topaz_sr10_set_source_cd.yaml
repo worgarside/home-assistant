@@ -3,5 +3,5 @@ mode: parallel
 sequence:
   - service: script.ir_blaster_issue_command
     data:
-      code: B0AjSxFcAiICQAPAAUALQAMDIgJ2BkADAFygB8ALwA8DXAIiAoADQAtAA0APAnYGIiADA1wCIgJAA8ABgAvgARcEXAJ2BiIgA0AHEVwCQ5tAI6MIXAL//0AjowgiAg==  # yamllint disable-line rule:line-length
-      ieee: dc:8e:95:ff:fe:f9:ad:13
+      # yamllint disable-line rule:line-length
+      code: B0AjSxFcAiICQAPAAUALQAMDIgJ2BkADAFygB8ALwA8DXAIiAoADQAtAA0APAnYGIiADA1wCIgJAA8ABgAvgARcEXAJ2BiIgA0AHEVwCQ5tAI6MIXAL//0AjowgiAg==

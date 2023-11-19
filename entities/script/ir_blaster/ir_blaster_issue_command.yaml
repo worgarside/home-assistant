@@ -2,9 +2,6 @@
 mode: queued
 max: 40
 fields:
-  ieee:
-    description: IEEE address of the device
-    example: 00:0d:6f:00:0a:90:69:7c
   code:
     description: The IR code to send
     example: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC  # yamllint disable-line rule:line-length
@@ -15,7 +12,7 @@ sequence:
       command: 2
       command_type: server
       endpoint_id: 1
-      ieee: '{{ ieee }}'
+      ieee: dc:8e:95:ff:fe:f9:ad:13
       params:
         code: '{{ code }}'
     service: zha.issue_zigbee_cluster_command
