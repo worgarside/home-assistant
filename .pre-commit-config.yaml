@@ -84,7 +84,7 @@ repos:
           - --strict
 
   - repo: https://github.com/hadialqattan/pycln
-    rev: v2.3.0
+    rev: v2.4.0
     hooks:
       - id: pycln
         args:
@@ -135,12 +135,12 @@ repos:
           - tomli
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.5
+    rev: v0.1.6
     hooks:
       - id: ruff
 
   - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: 1.2.3
+    rev: 1.2.4
     hooks:
       - id: validate-entities
       - id: validate-lovelace

@@ -33,8 +33,6 @@ done
 
     git status
 
-    echo "${TOKEN}"
-
     curl -sSL -X POST \
       -H "Authorization: Bearer ${TOKEN}" \
       -d '{"state": "on"}' \
