@@ -1,0 +1,7 @@
+---
+mode: parallel
+sequence:
+  - service: script.ir_blaster_issue_command
+    data:
+      code: BTcj2REsAuADAQG7BuAFA0AB4AMT4AcBQBvAAUALwAPAAcAPQAfgAwFAD0ADQAEPZJ03I/wILAL//zcj/AgsAg==
+      ieee: dc:8e:95:ff:fe:f9:ad:13
