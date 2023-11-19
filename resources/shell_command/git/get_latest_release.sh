@@ -38,6 +38,6 @@ done
     curl -sSL -X POST \
       -H "Authorization: Bearer ${TOKEN}" \
       -d '{"state": "on"}' \
-      http://homeassistant.local:8123/api/states/input_boolean.latest_release_downloaded
+      http://homeassistant.local:8123/api/states/input_boolean.system_latest_release_downloaded
 
 }>> /config/shell-command.log 2>&1
