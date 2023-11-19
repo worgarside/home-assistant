@@ -20,14 +20,23 @@ trigger:
       - sensor.wills_macbook_pro_active_audio_output
     to: "FiiO USB DAC-E10"
 action:
-  - service: switch.turn_on
-    entity_id: switch.office_amp
-  - delay:
-      seconds: 5
-  - alias: Set Amp to Correct Input
-    service: script.topaz_sr10_set_source_cd
-  - alias: Initialize volume
-    repeat:
-      count: 15
-      sequence:
-        - service: script.topaz_sr10_volume_up
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: switch.office_amp
+            state: "off"
+        sequence:
+          - service: switch.turn_on
+            entity_id: switch.office_amp
+          - delay:
+              seconds: 5
+          - alias: Set Amp to Correct Input
+            service: script.topaz_sr10_set_source_cd
+          - alias: Initialize volume
+            repeat:
+              count: 15
+              sequence:
+                - service: script.topaz_sr10_volume_up
+    default:
+      - alias: Set Amp to Correct Input
+        service: script.topaz_sr10_set_source_cd
