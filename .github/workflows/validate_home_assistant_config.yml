@@ -25,7 +25,7 @@ jobs:
         id: current-version
         run: |
           HA_VERSION=$(<.HA_VERSION)
-          echo "current-version=$HA_VERSION" >> $GITHUB_OUTPUT
+          echo "current-version=$HA_VERSION" >> "${GITHUB_OUTPUT}"
 
   validate-home-assistant-config:
     name: Validate Home Assistant Configuration
@@ -59,8 +59,10 @@ jobs:
           mv -vn spotcast/custom_components/* ./custom_components/spotcast/
           rm -rf spotcast
 
-      - name: ZHA Quirk Workaround
-        run: sed -i 's/\/config\//\/github\/workspace\//g' integrations/zha.yaml
+      - name: Absolute Path Workaround
+        run: |
+          sed -i 's/\/config\//\/github\/workspace\//g' integrations/folder_watcher.yaml
+          sed -i 's/\/config\//\/github\/workspace\//g' integrations/zha.yaml
 
       - name: Validate Configuration
         uses: frenck/action-home-assistant@v1
