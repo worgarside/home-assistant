@@ -24,8 +24,10 @@ action:
     entity_id: switch.office_amp
   - delay:
       seconds: 5
+  - alias: Set Amp to Correct Input
+    service: script.topaz_sr10_set_source_cd
   - alias: Initialize volume
     repeat:
-      count: 20
+      count: 15
       sequence:
         - service: script.topaz_sr10_volume_up
