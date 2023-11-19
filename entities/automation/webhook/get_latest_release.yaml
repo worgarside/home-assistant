@@ -23,7 +23,7 @@ action:
       message: |
         ## Webhook Payload
         ```json
-        {{ trigger.json | to_json(indent=2) }}
+        {{ trigger.json }}
         ```
   - service: shell_command.get_latest_release
     data:
