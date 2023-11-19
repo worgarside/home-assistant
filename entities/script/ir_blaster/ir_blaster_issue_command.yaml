@@ -1,6 +1,6 @@
 ---
 mode: queued
-max: 20
+max: 40
 fields:
   ieee:
     description: IEEE address of the device
@@ -19,3 +19,5 @@ sequence:
       params:
         code: '{{ code }}'
     service: zha.issue_zigbee_cluster_command
+  - delay:
+      milliseconds: 500

@@ -1,5 +1,5 @@
 ---
-mode: single
+mode: parallel
 sequence:
   - service: script.ir_blaster_issue_command
     data:
