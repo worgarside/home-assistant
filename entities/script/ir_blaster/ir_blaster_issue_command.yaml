@@ -1,0 +1,20 @@
+---
+mode: queued
+max: 40
+fields:
+  code:
+    description: The IR code to send
+    example: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC  # yamllint disable-line rule:line-length
+sequence:
+  - data:
+      cluster_id: 57348
+      cluster_type: in
+      command: 2
+      command_type: server
+      endpoint_id: 1
+      ieee: dc:8e:95:ff:fe:f9:ad:13
+      params:
+        code: '{{ code }}'
+    service: zha.issue_zigbee_cluster_command
+  - delay:
+      milliseconds: 500
