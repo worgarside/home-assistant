@@ -1,0 +1,7 @@
+---
+mode: single
+sequence:
+  - service: script.ir_blaster_issue_command
+    data:
+      code: Bz0jTBFhAjQCQAPAAcALBGECcQY04AYD4AMTAmECNKABAXEG4AcDwBtAB0ADwAHgAQsBcQbgAQMPSJs9I5UINAL//z0jlQg0Ag==  # yamllint disable-line rule:line-length
+      ieee: dc:8e:95:ff:fe:f9:ad:13
