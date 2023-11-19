@@ -1,4 +1,12 @@
 ---
 
 homeassistant:
+  allowlist_external_dirs:
+    - "/config"
+
+  customize: !include_dir_named ../customizations
+
+  media_dirs:
+    media: /media
+
   packages: !include_dir_named integrations
