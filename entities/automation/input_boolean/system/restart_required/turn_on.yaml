@@ -1,0 +1,51 @@
+---
+alias: /input-boolean/system/restart-required/turn-on
+id: input_boolean_system_restart_required_turn_on
+trigger:
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: created
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: deleted
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: modified
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: moved
+condition: >
+  {%
+    set patterns = [
+      '^/config/entities/(cover|device_tracker|media_player|sensor)/',
+      '^/config/entities/mqtt/(binary_)?sensor/',
+      '^/config/integrations/(log(book|ger)\.yaml',
+      '^/config/integrations/(media_(extractor|source)\.yaml',
+      '^/config/integrations/(system_(health|log)\.yaml',
+      '^/config/integrations/(websocket_)?api\.yaml',
+      '^/config/integrations/(api|cloud|config|frontend|hardware|history|map|mobile_app|my)\.yaml',
+      '^/config/integrations/(network|person|recorder|spotcast|ssdp|sun|tag|usb|zeroconf|zha)\.yaml',
+      '^/config/secrets\.yaml',
+    ]
+  %}
+  {% set match_found = false %}
+
+  {% for pattern in patterns if trigger.event.data.folder | regex_match(pattern) %}
+    {% set match_found = true %}
+    {% break %}
+  {% endfor %}
+
+  {{ match_found }}
+action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.system_restart_required
+  - service: script.debug_persistent_notification
+    data:
+      title: "System Entity Activated"
+      message: >-
+        `input_boolean.system_restart_required` has been set to `on` because
+        `{{ trigger.event.data.file }}` has been {{ trigger.event.data.event_type }}.
