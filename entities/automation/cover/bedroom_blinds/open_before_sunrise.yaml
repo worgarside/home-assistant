@@ -25,4 +25,4 @@ action:
           target:
             entity_id: cover.bedroom_blinds
           data:
-            position: "{{ repeat.item.position }}"
+            position: '{{ repeat.item.position }}'

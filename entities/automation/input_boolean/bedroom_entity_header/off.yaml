@@ -4,7 +4,7 @@ id: input_boolean_bedroom_entity_header_off
 trigger:
   - platform: state
     entity_id: input_boolean.bedroom_entity_header
-    to: "off"
+    to: off
 action:
   - service: script.turn_off_physical_room
     data:

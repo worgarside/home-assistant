@@ -17,18 +17,18 @@ cards:
       - type: entity
         entity: sensor.current_version
         icon: mdi:home-assistant
-        icon_color: "#0EBEF2"
+        icon_color: '#0EBEF2'
       - type: entity
         entity: sensor.current_git_ref
         icon: mdi:git
-        icon_color: "#E84D32"
+        icon_color: '#E84D32'
         double_tap_action:
           action: url
           url_path: https://github.com/worgarside/home-assistant
       - type: entity
         entity: sensor.current_git_branch
         icon: mdi:source-branch
-        icon_color: "#AD20ED"
+        icon_color: '#AD20ED'
         double_tap_action:
           action: url
           url_path: https://github.com/worgarside/home-assistant
@@ -312,91 +312,91 @@ cards:
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#E51919"
+              - color: '#E51919'
               - name: AdGuard
               - slug: adguard
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#E56B19"
+              - color: '#E56B19'
               - name: AppDaemon
               - slug: appdaemon
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#E5BC19"
+              - color: '#E5BC19'
               - name: ESPHome
               - slug: esphome_add_on
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#BCE519"
+              - color: '#BCE519'
               - name: Google Drive Backup
               - slug: google_drive_backup_add_on
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#6BE519"
+              - color: '#6BE519'
               - name: HA Remote Logger
               - slug: ha_remote_logger
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#19E519"
+              - color: '#19E519'
               - name: Item Warehouse API
               - slug: item_warehouse_api
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#19E56B"
+              - color: '#19E56B'
               - name: Item Warehouse Website
               - slug: item_warehouse_website
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#19E5BC"
+              - color: '#19E5BC'
               - name: MariaDB
               - slug: mariadb
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#19BCE5"
+              - color: '#19BCE5'
               - name: Matter Server
               - slug: matter_server
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#196BE5"
+              - color: '#196BE5'
               - name: Mosquitto Broker
               - slug: mosquitto_broker
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#1919E5"
+              - color: '#1919E5'
               - name: Plex Media Server
               - slug: plex_media_server
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#6B19E5"
+              - color: '#6B19E5'
               - name: Silicon Labs Multiprotocol
               - slug: silicon_labs_multiprotocol_add_on
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#BC19E5"
+              - color: '#BC19E5'
               - name: Terminal & SSH
               - slug: terminal_ssh_add_on
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#E519BC"
+              - color: '#E519BC'
               - name: VSCode
               - slug: visual_studio_code_add_on
           - type: custom:decluttering-card
             template: addon_active_entity_template
             variables:
-              - color: "#E5196B"
+              - color: '#E5196B'
               - name: YAS-209 Bridge
               - slug: yas_209_bridge
       - type: custom:fold-entity-row

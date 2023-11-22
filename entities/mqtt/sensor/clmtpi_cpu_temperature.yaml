@@ -5,5 +5,5 @@ name: ClmtPi CPU Temperature
 state_class: measurement
 state_topic: /homeassistant/clmtpi/stats
 unique_id: clmtpi_cpu_temperature
-unit_of_measurement: "°C"
+unit_of_measurement: °C
 value_template: '{{ value_json.temperature }}'

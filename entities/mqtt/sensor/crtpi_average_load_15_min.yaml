@@ -6,5 +6,5 @@ state_class: measurement
 state_topic: /homeassistant/crt-pi/stats
 unique_id: crtpi_average_load_15_min
 
-unit_of_measurement: ""
-value_template: "{{ value_json.load_15m }}"
+unit_of_measurement: ''
+value_template: '{{ value_json.load_15m }}'

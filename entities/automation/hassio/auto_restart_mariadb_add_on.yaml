@@ -13,5 +13,5 @@ action:
       addon: core_mariadb
   - service: persistent_notification.create
     data:
-      title: "MariaDB Add-on Restarted"
-      message: "MariaDB Add-on was restarted because CPU usage was above 15% for 5 minutes"
+      title: MariaDB Add-on Restarted
+      message: MariaDB Add-on was restarted because CPU usage was above 15% for 5 minutes

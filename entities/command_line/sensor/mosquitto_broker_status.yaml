@@ -6,4 +6,4 @@ sensor:
   name: Mosquitto Broker Status
   scan_interval: 60
   unique_id: mosquitto_broker_status
-  value_template: "{{ value_json.result }}"
+  value_template: '{{ value_json.result }}'

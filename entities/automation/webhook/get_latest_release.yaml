@@ -19,7 +19,7 @@ action:
       }}
   - service: persistent_notification.create
     data:
-      title: "Updating Config ({{trigger.json['ref']}})"
+      title: Updating Config ({{trigger.json['ref']}})
       message: |
         ```json
         {{ trigger.json | to_json }}

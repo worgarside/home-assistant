@@ -4,7 +4,7 @@ id: notification_credit_card_top_up_send
 trigger:
   - platform: time
     at:
-      - "21:00:00"
+      - 21:00:00
 condition: |
   {{
     ( states('var.truelayer_balance_amex') | float -

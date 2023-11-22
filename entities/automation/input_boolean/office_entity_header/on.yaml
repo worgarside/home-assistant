@@ -4,7 +4,7 @@ id: input_boolean_office_entity_header_on
 trigger:
   - platform: state
     entity_id: input_boolean.office_entity_header
-    to: "on"
+    to: on
 action:
   - service: light.turn_on
     target:

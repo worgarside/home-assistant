@@ -4,7 +4,7 @@ fields:
   position:
     name: Position
     description: Position to set the desk to
-    example: "50"
+    example: '50'
     selector:
       number:
         min: 10
@@ -27,16 +27,16 @@ sequence:
             position | int
           }}
       sequence:
-        - alias: "Delay for 0.2s if it's not the first iteration"
-          if: "{{ repeat.index > 1 }}"
+        - alias: Delay for 0.2s if it's not the first iteration
+          if: '{{ repeat.index > 1 }}'
           then:
             - delay:
                 milliseconds: 200
             - service: script.debug_persistent_notification
               data:
-                title: "Desk Move Delay (Target Position: {{ position }}%)"
-                message: "Delaying for 0.2s in loop iteration {{ repeat.index }}"
-        - alias: "Send debug notification"
+                title: 'Desk Move Delay (Target Position: {{ position }}%)'
+                message: Delaying for 0.2s in loop iteration {{ repeat.index }}
+        - alias: Send debug notification
           service: script.debug_persistent_notification
           data:
             title: Setting desk position
@@ -46,15 +46,15 @@ sequence:
         - service: cover.set_cover_position
           data:
             entity_id: cover.office_desk_esphome
-            position: "{{ position | int }}"
-        - alias: "Wait for desk to stop moving"
+            position: '{{ position | int }}'
+        - alias: Wait for desk to stop moving
           wait_for_trigger:
             - platform: state
               entity_id: cover.office_desk_esphome
               to:
                 - closed
                 - open
-          timeout: "00:00:30"
+          timeout: 00:00:30
           continue_on_timeout: true
         - service: script.debug_persistent_notification
           data:

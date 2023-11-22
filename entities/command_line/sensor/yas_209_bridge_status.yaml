@@ -6,4 +6,4 @@ sensor:
   name: YAS-209 Bridge Status
   scan_interval: 60
   unique_id: yas_209_bridge_status
-  value_template: "{{ value_json.result }}"
+  value_template: '{{ value_json.result }}'

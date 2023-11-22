@@ -4,7 +4,7 @@ fields:
   room:
     name: Room
     description: The room to turn off
-    example: "office"
+    example: office
     required: true
   extra_service_calls:
     name: Extra Service Calls
@@ -29,8 +29,8 @@ fields:
   close_blinds_window_delay:
     name: Close Blinds Window Delay
     description: The delay before closing the blinds if the window is open
-    example: "00:01:00"
-    default: "00:01:00"
+    example: 00:01:00
+    default: 00:01:00
     required: false
     selector:
       time:
@@ -43,7 +43,7 @@ fields:
     selector:
       boolean:
 sequence:
-  - alias: "Turn off each physical domain"
+  - alias: Turn off each physical domain
     repeat:
       for_each:
         - light.turn_off
@@ -53,20 +53,20 @@ sequence:
         - media_player.turn_off
         - remote.turn_off
       sequence:
-        - service: "{{ repeat.item }}"
+        - service: '{{ repeat.item }}'
           target:
-            area_id: "{{ room }}"
+            area_id: '{{ room }}'
   - repeat:
-      for_each: "{{ extra_service_calls }}"
+      for_each: '{{ extra_service_calls }}'
       sequence:
         - service: "{{ repeat.item.service_call | default('homeassistant.turn_off') }}"
           target:
-            entity_id: "{{ repeat.item.entity_id }}"
-  - alias: "Close blinds if requested"
+            entity_id: '{{ repeat.item.entity_id }}'
+  - alias: Close blinds if requested
     if: >
       {{ close_blinds }}
     then:
-      - alias: "Wait for window to be closed"
+      - alias: Wait for window to be closed
         choose:
           - alias: Continue on timeout
             conditions: >
@@ -76,11 +76,11 @@ sequence:
               }}
             sequence:
               - wait_template: "{{ states('binary_sensor.{{ room }}_window') == 'off' }}"
-                timeout: "{{ close_blinds_window_delay }}"
+                timeout: '{{ close_blinds_window_delay }}'
                 continue_on_timeout: true
               - service: cover.close_cover
                 target:
-                  entity_id: "cover.{{ room }}_blinds"
+                  entity_id: cover.{{ room }}_blinds
           - alias: Don't continue on timeout
             conditions: >
               {{
@@ -89,12 +89,12 @@ sequence:
               }}
             sequence:
               - wait_template: "{{ states('binary_sensor.{{ room }}_window') == 'off' }}"
-                timeout: "{{ close_blinds_window_delay }}"
+                timeout: '{{ close_blinds_window_delay }}'
                 continue_on_timeout: false
               - service: cover.close_cover
                 target:
-                  entity_id: "cover.{{ room }}_blinds"
+                  entity_id: cover.{{ room }}_blinds
         default:
           - service: cover.close_cover
             target:
-              entity_id: "cover.{{ room }}_blinds"
+              entity_id: cover.{{ room }}_blinds

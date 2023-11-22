@@ -35,17 +35,17 @@ cards:
       - type: custom:decluttering-card
         template: repo_pr_list_card_template
         variables:
-          - repo_name: "Add-on: Item Warehouse"
+          - repo_name: 'Add-on: Item Warehouse'
           - repo_slug: add_on_item_warehouse
       - type: custom:decluttering-card
         template: repo_pr_list_card_template
         variables:
-          - repo_name: "Add-on: RSS Log Feed"
+          - repo_name: 'Add-on: RSS Log Feed'
           - repo_slug: add_on_rss_log_feed
       - type: custom:decluttering-card
         template: repo_pr_list_card_template
         variables:
-          - repo_name: "Add-on: YAS-209 Bridge"
+          - repo_name: 'Add-on: YAS-209 Bridge'
           - repo_slug: add_on_yas_209_bridge
       - type: custom:decluttering-card
         template: repo_pr_list_card_template
@@ -100,17 +100,17 @@ cards:
       - type: custom:decluttering-card
         template: empty_repo_pr_list_card_template
         variables:
-          - repo_name: "Add-on: Item Warehouse"
+          - repo_name: 'Add-on: Item Warehouse'
           - repo_slug: add_on_item_warehouse
       - type: custom:decluttering-card
         template: empty_repo_pr_list_card_template
         variables:
-          - repo_name: "Add-on: RSS Log Feed"
+          - repo_name: 'Add-on: RSS Log Feed'
           - repo_slug: add_on_rss_log_feed
       - type: custom:decluttering-card
         template: empty_repo_pr_list_card_template
         variables:
-          - repo_name: "Add-on: YAS-209 Bridge"
+          - repo_name: 'Add-on: YAS-209 Bridge'
           - repo_slug: add_on_yas_209_bridge
       - type: custom:decluttering-card
         template: empty_repo_pr_list_card_template

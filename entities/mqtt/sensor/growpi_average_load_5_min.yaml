@@ -5,5 +5,5 @@ name: GrowPi Average Load (5 min)
 state_class: measurement
 state_topic: /homeassistant/growpi/stats
 unique_id: growpi_average_load_5_min
-unit_of_measurement: ""
-value_template: "{{ value_json.load_5m }}"
+unit_of_measurement: ''
+value_template: '{{ value_json.load_5m }}'

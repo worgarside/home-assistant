@@ -14,10 +14,10 @@ action:
         sensor.{{ trigger.json["repository"]["name"] | replace("-", "_") }}_pull_requests
   - service: script.debug_persistent_notification
     data:
-      title: "GitHub Webhook Triggered"
-      message: "`{{ sensor_name }}`"
+      title: GitHub Webhook Triggered
+      message: '`{{ sensor_name }}`'
   - service: homeassistant.update_entity
     data:
-      entity_id: "{{ sensor_name }}"
+      entity_id: '{{ sensor_name }}'
   - delay:
       seconds: 1

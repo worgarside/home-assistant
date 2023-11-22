@@ -1,6 +1,6 @@
 ---
 esphome:
-  name: "office-desk"
+  name: office-desk
   friendly_name: Office Desk
 
 esp32:
@@ -34,7 +34,7 @@ globals:
     initial_value: 'false'
 
 ble_client:
-  - mac_address: "CD:1F:C3:88:D7:3F"
+  - mac_address: CD:1F:C3:88:D7:3F
     id: idasen_desk
     on_connect:
       then:
@@ -58,11 +58,11 @@ sensor:
     type: characteristic
     ble_client_id: idasen_desk
     id: desk_height
-    name: 'Desk Height'
-    service_uuid: '99fa0020-338a-1024-8a49-009c0215f78a'
-    characteristic_uuid: '99fa0021-338a-1024-8a49-009c0215f78a'
-    icon: 'mdi:arrow-up-down'
-    unit_of_measurement: 'cm'
+    name: Desk Height
+    service_uuid: 99fa0020-338a-1024-8a49-009c0215f78a
+    characteristic_uuid: 99fa0021-338a-1024-8a49-009c0215f78a
+    icon: mdi:arrow-up-down
+    unit_of_measurement: cm
     accuracy_decimals: 1
     update_interval: never
     notify: true
@@ -77,11 +77,11 @@ sensor:
     type: characteristic
     ble_client_id: idasen_desk
     id: desk_speed
-    name: 'Desk Speed'
-    service_uuid: '99fa0020-338a-1024-8a49-009c0215f78a'
-    characteristic_uuid: '99fa0021-338a-1024-8a49-009c0215f78a'
-    icon: 'mdi:speedometer'
-    unit_of_measurement: 'cm/min'
+    name: Desk Speed
+    service_uuid: 99fa0020-338a-1024-8a49-009c0215f78a
+    characteristic_uuid: 99fa0021-338a-1024-8a49-009c0215f78a
+    icon: mdi:speedometer
+    unit_of_measurement: cm/min
     accuracy_decimals: 0
     update_interval: never
     notify: true
@@ -92,19 +92,19 @@ sensor:
 binary_sensor:
   # Desk Bluetooth Connection Status
   - platform: template
-    name: 'Desk Connection'
+    name: Desk Connection
     id: desk_connection
-    lambda: 'return id(ble_client_connected);'
+    lambda: return id(ble_client_connected);
 
   # Desk Moving Status
   - platform: template
-    name: 'Desk Moving'
+    name: Desk Moving
     id: desk_moving
-    lambda: 'return id(desk_speed).state > 0;'
+    lambda: return id(desk_speed).state > 0;
 
 idasen_desk_controller:
   ble_client_id: idasen_desk
 
 cover:
   - platform: idasen_desk_controller
-    name: "Desk"
+    name: Desk

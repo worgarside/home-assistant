@@ -8,7 +8,7 @@ trigger:
 condition:
   - condition: state
     entity_id: binary_sensor.will_s_macbook_pro_docked
-    state: 'on'
+    state: on
 action:
   - service: switch.turn_on
     data:

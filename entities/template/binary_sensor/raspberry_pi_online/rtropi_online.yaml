@@ -9,4 +9,4 @@ state: >
   {% set time_diff = now - last_changed %}
   {{ time_diff < 300 }}
 attributes:
-  last_online: "{{ states.sensor.rtropi_cpu_usage.last_changed }}"
+  last_online: '{{ states.sensor.rtropi_cpu_usage.last_changed }}'

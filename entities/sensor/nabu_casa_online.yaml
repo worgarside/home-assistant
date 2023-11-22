@@ -9,4 +9,4 @@ platform: rest
 resource: !secret nabu_casa_url_online_sensor
 scan_interval: 150
 unit_of_measurement: '%'
-value_template: '{{ value_json[''state''] }}'
+value_template: "{{ value_json['state'] }}"

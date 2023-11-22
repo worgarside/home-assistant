@@ -1,5 +1,5 @@
 ---
-friendly_name: "Office Desk"
+friendly_name: Office Desk
 unique_id: office_desk
 value_template: "{{ states('cover.office_desk_esphome') }}"
 position_template: "{{ state_attr('cover.office_desk_esphome', 'current_position') | int }}"
@@ -26,4 +26,4 @@ stop_cover:
 set_cover_position:
   service: script.office_desk_set_position
   data_template:
-    position: "{{ position }}"
+    position: '{{ position }}'

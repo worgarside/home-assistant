@@ -13,7 +13,7 @@ action:
       addon: core_silabs_multiprotocol
   - service: persistent_notification.create
     data:
-      title: "Silicon Labs Multiprotocol Add-on Restarted"
+      title: Silicon Labs Multiprotocol Add-on Restarted
       message: >
         The Silicon Labs Multiprotocol Add-on has been restarted because the CPU
         usage was above 20% for 5 minutes.

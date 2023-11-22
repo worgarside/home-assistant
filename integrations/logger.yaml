@@ -5,9 +5,9 @@ logger:
   default: warning
   filters:
     homeassistant.loader:
-      - "^We found a custom integration .*"
+      - ^We found a custom integration .*
     pychromecast.socket_client:
-      - "Failed to connect to service ServiceInfo"
-      - "Error communicating with socket, resetting connection"
+      - Failed to connect to service ServiceInfo
+      - Error communicating with socket, resetting connection
   logs:
     charset_normalizer: warning

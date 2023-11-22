@@ -7,7 +7,7 @@ trigger:
     entity_id: sensor.sun_elevation
     below: -3
   - platform: time
-    at: "21:30:00"
+    at: 21:30:00
 action:
   - wait_template: "{{ is_state('binary_sensor.bedroom_window', 'off') }}"
     timeout: 3600

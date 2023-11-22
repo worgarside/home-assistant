@@ -6,4 +6,4 @@ sensor:
   name: HA Remote Logger Status
   scan_interval: 60
   unique_id: ha_remote_logger_status
-  value_template: "{{ value_json.result }}"
+  value_template: '{{ value_json.result }}'

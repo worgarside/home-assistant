@@ -97,7 +97,7 @@ cards:
         - type: conditional
           conditions:
             - entity: binary_sensor.will_s_yas_209_active
-              state: "on"
+              state: on
           card:
             type: custom:card-templater
             entities:

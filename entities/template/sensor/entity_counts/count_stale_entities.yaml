@@ -1,9 +1,9 @@
 ---
 name: Count Stale Entities
 unique_id: count_stale_entities
-state: "{{ this.attributes.entities | list | count }}"
+state: '{{ this.attributes.entities | list | count }}'
 icon: mdi:timer-sync
-unit_of_measurement: ""
+unit_of_measurement: ''
 attributes:
   entities: >
     {% set stale_entities = namespace(entities=[]) %}

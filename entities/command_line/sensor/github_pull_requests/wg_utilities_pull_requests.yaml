@@ -4,18 +4,18 @@ sensor:
     sh
     /config/resources/shell_command/gh_cli/get_pull_requests.sh
     wg-utilities
-  name: "WG Utilities Pull Requests"
+  name: WG Utilities Pull Requests
   scan_interval: 3600
   unique_id: wg_utilities_pull_requests
-  value_template: "{{ value_json | count }}"
+  value_template: '{{ value_json | count }}'
   json_attributes:
-    - "0"
-    - "1"
-    - "2"
-    - "3"
-    - "4"
-    - "5"
-    - "6"
-    - "7"
-    - "8"
-    - "9"
+    - '0'
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    - '7'
+    - '8'
+    - '9'

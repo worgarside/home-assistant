@@ -11,14 +11,14 @@ trigger:
       - switch.lounge_switches
     from:
       - idle
-      - "off"
+      - off
       - unavailable
       - unknown
     to:
       - idle
       - paused
       - playing
-      - "on"
+      - on
 condition: "{{ states('input_boolean.lounge_entity_header') == 'off' }}"
 action:
   - service: automation.turn_off

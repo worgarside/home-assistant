@@ -1,5 +1,5 @@
 ---
-name: "HiFi System: Media Metadata"
+name: 'HiFi System: Media Metadata'
 unique_id: hifi_system_media_metadata
 state: >
   {% if state_attr("media_player.hifi_system_avr", "source") == "HEOS Music" %}

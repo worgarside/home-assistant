@@ -4,11 +4,11 @@ id: switch_lounge_scent_plug_turn_off_when_window_opened
 trigger:
   - platform: state
     entity_id: binary_sensor.lounge_window
-    to: "on"
+    to: on
 condition:
   - condition: state
     entity_id: switch.lounge_scent_plug
-    state: "on"
+    state: on
 action:
   - service: switch.turn_off
     entity_id: switch.lounge_scent_plug

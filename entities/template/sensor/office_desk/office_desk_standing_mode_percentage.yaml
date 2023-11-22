@@ -2,7 +2,7 @@
 name: Office Desk Standing Mode Percentage
 unique_id: office_desk_standing_mode_percentage
 icon: mdi:percent
-unit_of_measurement: "%"
+unit_of_measurement: '%'
 state: >
   {%
     set standing_time = states('sensor.office_desk_standing_occupied_cumulative_time') |

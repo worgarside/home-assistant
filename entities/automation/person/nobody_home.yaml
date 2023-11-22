@@ -1,25 +1,25 @@
 ---
 alias: /person/nobody-home
 id: person_nobody_home
-description: "Turn off all physical devices when nobody is home"
+description: Turn off all physical devices when nobody is home
 trigger:
   platform: state
   entity_id:
     - person.vic
     - person.will
-  from: 'home'
-  to: 'not_home'
+  from: home
+  to: not_home
 condition:
   condition: and
   conditions:
     - condition: state
       entity_id: person.vic
-      state: 'not_home'
+      state: not_home
     - condition: state
       entity_id: person.will
-      state: 'not_home'
+      state: not_home
 action:
-  - alias: "Turn off each physical room"
+  - alias: Turn off each physical room
     repeat:
       for_each:
         - bedroom
@@ -28,4 +28,4 @@ action:
       sequence:
         - service: script.turn_off_physical_room
           data:
-            room: "{{ repeat.item }}"
+            room: '{{ repeat.item }}'

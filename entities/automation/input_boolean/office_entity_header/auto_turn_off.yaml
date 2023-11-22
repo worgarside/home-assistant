@@ -11,9 +11,9 @@ trigger:
       - idle
       - paused
       - playing
-      - "on"
+      - on
     to:
-      - "off"
+      - off
       - unavailable
       - unknown
 condition: >

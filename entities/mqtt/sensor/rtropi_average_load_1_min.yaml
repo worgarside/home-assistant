@@ -5,5 +5,5 @@ name: RtroPi Average Load (1 min)
 state_class: measurement
 state_topic: /homeassistant/rtropi/stats
 unique_id: rtropi_average_load_1_min
-unit_of_measurement: ""
-value_template: "{{ value_json.load_1m }}"
+unit_of_measurement: ''
+value_template: '{{ value_json.load_1m }}'

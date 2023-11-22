@@ -5,5 +5,5 @@ name: MtrxPi CPU Temperature
 state_class: measurement
 state_topic: /homeassistant/mtrxpi/stats
 unique_id: mtrxpi_cpu_temperature
-unit_of_measurement: "°C"
+unit_of_measurement: °C
 value_template: '{{ value_json.temperature }}'

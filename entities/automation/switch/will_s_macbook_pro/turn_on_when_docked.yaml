@@ -4,8 +4,8 @@ id: switch_will_s_macbook_pro_turn_on_when_docked
 trigger:
   - platform: state
     entity_id: binary_sensor.will_s_macbook_pro_docked
-    from: "off"
-    to: "on"
+    from: off
+    to: on
 action:
   - condition: >
       {{

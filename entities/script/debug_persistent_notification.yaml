@@ -12,8 +12,8 @@ sequence:
   - alias: Check if debugging is turned on
     condition: state
     entity_id: input_boolean.debug_with_persistent_notifications
-    state: "on"
+    state: on
   - data:
-      message: "{{ message }}"
-      title: "{{ title }}"
+      message: '{{ message }}'
+      title: '{{ title }}'
     service: persistent_notification.create

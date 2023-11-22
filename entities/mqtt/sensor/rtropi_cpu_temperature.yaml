@@ -5,5 +5,5 @@ name: RtroPi CPU Temperature
 state_class: measurement
 state_topic: /homeassistant/rtropi/stats
 unique_id: rtropi_cpu_temperature
-unit_of_measurement: "°C"
+unit_of_measurement: °C
 value_template: '{{ value_json.temperature }}'

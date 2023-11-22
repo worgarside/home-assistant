@@ -8,10 +8,10 @@ trigger:
       - idle
       - paused
       - playing
-      - "on"
+      - on
     to:
       - idle
-      - "off"
+      - off
       - unavailable
       - unknown
     for:
@@ -39,7 +39,7 @@ condition:
         entity_id: media_player.office_speakers
         state:
           - idle
-          - "off"
+          - off
           - unavailable
           - unknown
       - not:

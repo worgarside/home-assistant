@@ -6,25 +6,25 @@ trigger:
     entity_id: media_player.office_speakers
     from:
       - idle
-      - "off"
+      - off
       - unavailable
       - unknown
     to:
       - idle
       - paused
       - playing
-      - "on"
+      - on
   - platform: state
     entity_id:
       - sensor.st_macbook_pro_active_audio_output
       - sensor.wills_macbook_pro_active_audio_output
-    to: "FiiO USB DAC-E10"
+    to: FiiO USB DAC-E10
 action:
   - choose:
       - conditions:
           - condition: state
             entity_id: switch.office_amp
-            state: "off"
+            state: off
         sequence:
           - service: switch.turn_on
             entity_id: switch.office_amp

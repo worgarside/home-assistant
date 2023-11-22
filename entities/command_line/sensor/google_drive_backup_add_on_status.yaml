@@ -6,4 +6,4 @@ sensor:
   name: Google Drive Backup Add-on Status
   scan_interval: 60
   unique_id: google_drive_backup_add_on_status
-  value_template: "{{ value_json.result }}"
+  value_template: '{{ value_json.result }}'

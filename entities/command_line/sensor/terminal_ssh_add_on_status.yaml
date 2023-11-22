@@ -6,4 +6,4 @@ sensor:
   name: Terminal & SSH Add-on Status
   scan_interval: 60
   unique_id: terminal_ssh_add_on_status
-  value_template: "{{ value_json.result }}"
+  value_template: '{{ value_json.result }}'
