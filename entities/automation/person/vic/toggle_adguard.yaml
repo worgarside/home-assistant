@@ -1,0 +1,20 @@
+---
+alias: /person/vic/toggle_adguard
+id: person_vic_toggle_adguard
+description: "Turns AdGuard on when Vic is away and off when Vic is home"
+mode: single
+trigger:
+  - platform: state
+    entity_id: person.vic
+    to:
+      - "home"
+      - "not_home"
+action:
+  - if:
+      - condition: "{{ trigger.to_state.state == 'home' }}"
+    then:
+      - service: switch.turn_off
+        entity_id: switch.adguard_home_protection
+    else:
+      - service: switch.turn_on
+        entity_id: switch.adguard_home_protection
