@@ -1,0 +1,44 @@
+---
+friendly_name: 'System: Restart Required Files Changed'
+unique_id: var_system_restart_required_files_changed
+icon_template: >
+  {% if ( states('var.reloadable_files_changed') | int ) > 0 %}
+    mdi:reload-alert
+  {% else %}
+    mdi:reload
+  {% endif %}
+restore: false
+initial_value: 0
+tracked_event_type: folder_watcher
+value_template: "{{ ( states('var.reloadable_files_changed') | int ) + 1 }}"
+unit_of_measurement: files
+attributes:
+  updated_files: |
+    {% set updated_files = state_attr('var.reloadable_files_changed', 'updated_files') or [] %}
+
+    {%
+      if (
+        trigger.event.data.event_type != 'closed' and
+        trigger.event.data.file not in updated_files
+      )
+    %}
+      {%
+        set patterns = [
+          '^/config/entities/(cover|device_tracker|media_player|sensor)/',
+          '^/config/entities/mqtt/(binary_)?sensor/',
+          '^/config/integrations/(log(book|ger)\.yaml',
+          '^/config/integrations/(media_(extractor|source)\.yaml',
+          '^/config/integrations/(system_(health|log)\.yaml',
+          '^/config/integrations/(websocket_)?api\.yaml',
+          '^/config/integrations/(api|cloud|config|frontend|hardware|history|map|mobile_app|my)\.yaml',
+          '^/config/integrations/(network|person|recorder|spotcast|ssdp|sun|tag|usb|zeroconf|zha)\.yaml',
+          '^/config/secrets\.yaml',
+        ]
+      %}
+      {% for pattern in patterns if trigger.event.data.path | regex_match(pattern) %}
+        {% set updated_files = updated_files + [ trigger.event.data.file ] %}
+        {% break %}
+      {% endfor %}
+    {% endif %}
+
+    {{ updated_files }}

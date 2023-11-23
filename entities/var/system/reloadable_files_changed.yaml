@@ -1,0 +1,44 @@
+---
+friendly_name: 'System: Reloadable Files Changed'
+unique_id: var_system_reloadable_files_changed
+icon_template: >
+  {% if ( states('var.reloadable_files_changed') | int ) > 0 %}
+    mdi:reload-alert
+  {% else %}
+    mdi:reload
+  {% endif %}
+restore: false
+initial_value: 0
+tracked_event_type: folder_watcher
+value_template: "{{ ( states('var.reloadable_files_changed') | int ) + 1 }}"
+unit_of_measurement: files
+attributes:
+  updated_files: |
+    {% set updated_files = state_attr('var.reloadable_files_changed', 'updated_files') or [] %}
+
+    {%
+      if (
+        trigger.event.data.event_type != 'closed' and
+        trigger.event.data.file not in updated_files
+      )
+    %}
+      {%
+        set patterns = [
+          '^/config/entities/(automation|binary_sensor|script|shell_command|template|var)/',
+          '^/config/entities/command_line/(binary_)?sensor/',
+          '^/config/entities/input_[a-z_]*/',
+          '^/config/integrations/input_[a-z_]+\.yaml',
+          '^/config/integrations/(rest|shell)_command\.yaml',
+          '^/config/integrations/(automation|binary_sensor|command_line|cover|device_tracker)\.yaml',
+          '^/config/integrations/(folder_watcher|group|lovelace|media_player|mqtt|scene|script)\.yaml',
+          '^/config/integrations/(sensor|template|timer|tts|var|webhook|zone)\.yaml',
+          '^/lovelace/',
+        ]
+      %}
+      {% for pattern in patterns if trigger.event.data.path | regex_match(pattern) %}
+        {% set updated_files = updated_files + [ trigger.event.data.file ] %}
+        {% break %}
+      {% endfor %}
+    {% endif %}
+
+    {{ updated_files }}
