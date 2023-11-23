@@ -26,9 +26,9 @@ attributes:
         set patterns = [
           '^/config/entities/(cover|device_tracker|media_player|sensor)/',
           '^/config/entities/mqtt/(binary_)?sensor/',
-          '^/config/integrations/(log(book|ger)\.yaml',
-          '^/config/integrations/(media_(extractor|source)\.yaml',
-          '^/config/integrations/(system_(health|log)\.yaml',
+          '^/config/integrations/log(book|ger)\.yaml',
+          '^/config/integrations/media_(extractor|source)\.yaml',
+          '^/config/integrations/system_(health|log)\.yaml',
           '^/config/integrations/(websocket_)?api\.yaml',
           '^/config/integrations/(api|cloud|config|frontend|hardware|history|map|mobile_app|my)\.yaml',
           '^/config/integrations/(network|person|recorder|spotcast|ssdp|sun|tag|usb|zeroconf|zha)\.yaml',
