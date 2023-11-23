@@ -1,0 +1,15 @@
+---
+alias: /input-boolean/system/latest-release-downloaded/on
+id: input_boolean_system_latest_release_downloaded_on
+trigger:
+  - platform: state
+    entity_id: input_boolean.system_latest_release_downloaded
+    to: "on"
+action:
+  - service: homeassistant.update_entity
+    target:
+      entity_id:
+        - sensor.current_git_branch
+        - sensor.current_git_ref
+        - sensor.current_appdaemon_ref
+        - sensor.current_appdaemon_branch
