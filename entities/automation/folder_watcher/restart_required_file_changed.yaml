@@ -13,10 +13,11 @@ trigger:
       - modified
       - moved
 condition: >
-  {% set match_found = false %}
+  {% set ns = namespace() %}
+  {% set path = trigger.event.data.path %}
   {%
     if (
-      trigger.event.data.path not in (
+      path not in (
         state_attr('var.restart_required_files_changed', 'updated_files') or []
       )
     )
@@ -35,13 +36,13 @@ condition: >
       ]
     %}
 
-    {% for pattern in patterns if trigger.event.data.path | regex_match(pattern) %}
-      {% set match_found = true %}
+    {% for pattern in patterns if path | regex_match(pattern) %}
+      {% set ns.match_found = true %}
       {% break %}
     {% endfor %}
   {% endif %}
 
-  {{ match_found }}
+  {{ ns.match_found | default(false) }}
 action:
   - service: var.set
     data:
