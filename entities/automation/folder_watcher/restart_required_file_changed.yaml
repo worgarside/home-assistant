@@ -67,6 +67,8 @@ action:
         updated_files: >-
           {{
             (
-              state_attr('var.restart_required_files_changed', 'updated_files') or []
-            ) + [trigger.event.data.path]
+              (
+                state_attr('var.restart_required_files_changed', 'updated_files') or []
+              ) + [trigger.event.data.path]
+            ) | tojson
           }}
