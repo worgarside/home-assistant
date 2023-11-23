@@ -1,0 +1,6 @@
+---
+# https://www.home-assistant.io/integrations/template
+
+# Templates with triggers are imported separately because they don't fit under the
+# sensor/binary_sensor keys in template.yaml, and can't be included in the same way.
+template: !include_dir_list ../entities/template/triggered/

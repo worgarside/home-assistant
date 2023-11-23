@@ -1,64 +1,64 @@
 ---
-  - trigger:
-      - platform: event
-        event_type: folder_watcher
-        event_data:
-          event_type: created
-      - platform: event
-        event_type: folder_watcher
-        event_data:
-          event_type: deleted
-      - platform: event
-        event_type: folder_watcher
-        event_data:
-          event_type: modified
-      - platform: event
-        event_type: folder_watcher
-        event_data:
-          event_type: moved
-    sensor:
-      - name: "System: Restart Required Files Changed"
-        unique_id: system_restart_required_files_changed
-        icon_template: >
-          {% if ( states('sensor.restart_required_files_changed') | int ) > 0 %}
-            mdi:restart-alert
-          {% else %}
-            mdi:restart
+trigger:
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: created
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: deleted
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: modified
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: moved
+sensor:
+  - name: "System: Restart Required Files Changed"
+    unique_id: system_restart_required_files_changed
+    icon_template: >
+      {% if this.state | int(default=0) > 0 %}
+        mdi:restart-alert
+      {% else %}
+        mdi:restart
+      {% endif %}
+    state: "{{ this.attributes.updated_files | list | count }}"
+    unit_of_measurement: ""
+    attributes:
+      updated_files: >
+        {%
+          set updated_files = namespace(
+            files=(state_attr('sensor.restart_required_files_changed', 'updated_files') or [])
+          )
+        %}
+
+        {%
+          if (
+            trigger.event.data.event_type != 'closed' and
+            trigger.event.data.file not in updated_files.files
+          )
+        %}
+          {%
+            set regex_patterns = [
+              '^/config/entities/(cover|device_tracker|media_player|sensor)/',
+              '^/config/entities/mqtt/(binary_)?sensor/',
+              '^/config/integrations/log(book|ger)\.yaml',
+              '^/config/integrations/media_(extractor|source)\.yaml',
+              '^/config/integrations/system_(health|log)\.yaml',
+              '^/config/integrations/(websocket_)?api\.yaml',
+              '^/config/integrations/(api|cloud|config|frontend|hardware|history|map|mobile_app|my)\.yaml',
+              '^/config/integrations/(network|person|recorder|spotcast|ssdp|sun|tag|usb|zeroconf|zha)\.yaml',
+              '^/config/secrets\.yaml',
+            ]
+          %}
+          {% set master_pattern = "(" ~ regex_patterns | join("|") ~ ")" %}
+
+          {% if trigger.event.data.path is match(master_pattern, ignorecase=True) %}
+            {% set updated_files.files = updated_files.files + [ trigger.event.data.file ] %}
           {% endif %}
-        state: "{{ this.attributes.updated_files | list | count }}"
-        unit_of_measurement: ''
-        attributes:
-          updated_files: >
-            {%
-              set updated_files = namespace(
-                files=(state_attr('sensor.restart_required_files_changed', 'updated_files') or [])
-              )
-            %}
+        {% endif %}
 
-            {%
-              if (
-                trigger.event.data.event_type != 'closed' and
-                trigger.event.data.file not in updated_files.files
-              )
-            %}
-              {%
-                set regex_patterns = [
-                  '^/config/entities/(cover|device_tracker|media_player|sensor)/',
-                  '^/config/entities/mqtt/(binary_)?sensor/',
-                  '^/config/integrations/log(book|ger)\.yaml',
-                  '^/config/integrations/media_(extractor|source)\.yaml',
-                  '^/config/integrations/system_(health|log)\.yaml',
-                  '^/config/integrations/(websocket_)?api\.yaml',
-                  '^/config/integrations/(api|cloud|config|frontend|hardware|history|map|mobile_app|my)\.yaml',
-                  '^/config/integrations/(network|person|recorder|spotcast|ssdp|sun|tag|usb|zeroconf|zha)\.yaml',
-                  '^/config/secrets\.yaml',
-                ]
-              %}
-              {% set master_pattern = "(" ~ regex_patterns | join("|") ~ ")" %}
-
-              {% if trigger.event.data.path is match(master_pattern, ignorecase=True) %}
-                {% set updated_files.files = updated_files.files + [ trigger.event.data.file ] %}
-              {% endif %}
-            {% endif %}
-
-            {{ updated_files.files }}
+        {{ updated_files.files }}
