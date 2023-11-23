@@ -2,19 +2,19 @@
 friendly_name: 'System: Restart Required Files Changed'
 unique_id: var_system_restart_required_files_changed
 icon_template: >
-  {% if ( states('var.reloadable_files_changed') | int ) > 0 %}
-    mdi:reload-alert
+  {% if ( states('var.restart_required_files_changed') | int ) > 0 %}
+    mdi:restart-alert
   {% else %}
-    mdi:reload
+    mdi:restart
   {% endif %}
 restore: false
 initial_value: 0
 tracked_event_type: folder_watcher
-value_template: "{{ ( states('var.reloadable_files_changed') | int ) + 1 }}"
+value_template: "{{ ( states('var.restart_required_files_changed') | int ) + 1 }}"
 unit_of_measurement: files
 attributes:
   updated_files: |
-    {% set updated_files = state_attr('var.reloadable_files_changed', 'updated_files') or [] %}
+    {% set updated_files = state_attr('var.restart_required_files_changed', 'updated_files') or [] %}
 
     {%
       if (
