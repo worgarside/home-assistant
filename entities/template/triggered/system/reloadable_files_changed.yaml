@@ -1,0 +1,64 @@
+---
+  - trigger:
+      - platform: event
+        event_type: folder_watcher
+        event_data:
+          event_type: created
+      - platform: event
+        event_type: folder_watcher
+        event_data:
+          event_type: deleted
+      - platform: event
+        event_type: folder_watcher
+        event_data:
+          event_type: modified
+      - platform: event
+        event_type: folder_watcher
+        event_data:
+          event_type: moved
+    sensor:
+      - name: "System: Reloadable Files Changed"
+        unique_id: system_reloadable_files_changed
+        icon_template: >
+          {% if ( states('sensor.reloadable_files_changed') | int ) > 0 %}
+            mdi:reload-alert
+          {% else %}
+            mdi:reload
+          {% endif %}
+        state: "{{ this.attributes.updated_files | list | count }}"
+        unit_of_measurement: ''
+        attributes:
+          updated_files: >
+            {%
+              set updated_files = namespace(
+                files=(state_attr('sensor.reloadable_files_changed', 'updated_files') or [])
+              )
+            %}
+
+            {%
+              if (
+                trigger.event.data.event_type != 'closed' and
+                trigger.event.data.file not in updated_files.files
+              )
+            %}
+              {%
+                set regex_patterns = [
+                  '^/config/entities/(automation|binary_sensor|script|shell_command|template|var)/',
+                  '^/config/entities/command_line/(binary_)?sensor/',
+                  '^/config/entities/input_[a-z_]*/',
+                  '^/config/integrations/input_[a-z_]+\.yaml',
+                  '^/config/integrations/(rest|shell)_command\.yaml',
+                  '^/config/integrations/(automation|binary_sensor|command_line|cover|device_tracker)\.yaml',
+                  '^/config/integrations/(folder_watcher|group|lovelace|media_player|mqtt|scene|script)\.yaml',
+                  '^/config/integrations/(sensor|template|timer|tts|var|webhook|zone)\.yaml',
+                  '^/lovelace/',
+                ]
+              %}
+              {% set master_pattern = "(" ~ regex_patterns | join("|") ~ ")" %}
+
+              {% if trigger.event.data.path is match(master_pattern, ignorecase=True) %}
+                {% set updated_files.files = updated_files.files + [ trigger.event.data.file ] %}
+              {% endif %}
+            {% endif %}
+
+            {{ updated_files.files }}
