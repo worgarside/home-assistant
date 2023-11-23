@@ -19,7 +19,7 @@ trigger:
 sensor:
   - name: "System: Reloadable Files Changed"
     unique_id: system_reloadable_files_changed
-    icon_template: >
+    icon: >
       {% if this.state | int(default=0) > 0 %}
         mdi:reload-alert
       {% else %}

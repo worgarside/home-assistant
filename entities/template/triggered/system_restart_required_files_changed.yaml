@@ -19,7 +19,7 @@ trigger:
 sensor:
   - name: "System: Restart Required Files Changed"
     unique_id: system_restart_required_files_changed
-    icon_template: >
+    icon: >
       {% if this.state | int(default=0) > 0 %}
         mdi:restart-alert
       {% else %}
