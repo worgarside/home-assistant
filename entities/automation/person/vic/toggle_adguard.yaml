@@ -11,7 +11,8 @@ trigger:
       - "not_home"
 action:
   - if:
-      - condition: "{{ trigger.to_state.state == 'home' }}"
+      - condition: template
+        value_template: "{{ trigger.to_state.state == 'home' }}"
     then:
       - service: switch.turn_off
         entity_id: switch.adguard_home_protection
