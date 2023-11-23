@@ -1,6 +1,7 @@
 ---
 alias: /hassio/auto_restart_mariadb_add_on
 id: hassio_auto_restart_mariadb_add_on
+mode: single
 trigger:
   platform: numeric_state
   entity_id: sensor.mariadb_cpu_usage

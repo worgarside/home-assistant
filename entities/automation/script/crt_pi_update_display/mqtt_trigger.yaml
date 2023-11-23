@@ -1,6 +1,7 @@
 ---
 alias: /script/crt-pi-update-display/mqtt-trigger
 id: script_crt_pi_update_display_mqtt_trigger
+mode: queued
 trigger:
   - platform: mqtt
     topic: /home-assistant/script/crt_pi_update_display/run

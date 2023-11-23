@@ -1,6 +1,9 @@
 {
   "customValidators": {
     "automation": {
+      "should_exist": [
+        "mode"
+      ],
       "should_match_filepath": [
         {
           "field": "alias",

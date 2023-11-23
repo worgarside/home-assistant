@@ -1,6 +1,7 @@
 ---
 alias: /remote/vic-s-remote/hold
 id: remote_vic_s_remote_hold
+mode: single
 trigger:
   - platform: event
     event_type: zha_event

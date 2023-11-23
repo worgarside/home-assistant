@@ -1,6 +1,7 @@
 ---
 alias: /crt-pi/display-source-changed
 id: crt_pi_display_source_changed
+mode: restart
 trigger:
   - platform: state
     entity_id: input_select.crt_pi_display_source

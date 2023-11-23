@@ -1,6 +1,7 @@
 ---
 alias: /automation/auto-reload
 id: automation_auto_reload
+mode: single
 trigger:
   platform: event
   event_type: folder_watcher
