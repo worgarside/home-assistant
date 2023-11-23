@@ -4,14 +4,22 @@ id: folder_watcher_restart_required_file_changed
 mode: queued
 max: 50
 trigger:
-  platform: event
-  event_type: folder_watcher
-  event_data:
-    event_type:
-      - created
-      - deleted
-      - modified
-      - moved
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: created
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: deleted
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: modified
+  - platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: moved
 condition: >
   {% set ns = namespace() %}
   {% set path = trigger.event.data.path %}
