@@ -25,20 +25,20 @@ sensor:
       {% else %}
         mdi:restart
       {% endif %}
-    state: "{{ this.attributes.updated_files | list | count }}"
+    state: "{{ this.attributes.updated_files | default([]) | count }}"
     unit_of_measurement: ""
     attributes:
       updated_files: >
         {%
           set updated_files = namespace(
-            files=(state_attr('sensor.restart_required_files_changed', 'updated_files') or [])
+            files=(this.attributes.updated_files | default([]))
           )
         %}
 
         {%
           if (
             trigger.event.data.event_type != 'closed' and
-            trigger.event.data.file not in updated_files.files
+            trigger.event.data.path not in updated_files.files
           )
         %}
           {%
@@ -57,7 +57,7 @@ sensor:
           {% set master_pattern = "(" ~ regex_patterns | join("|") ~ ")" %}
 
           {% if trigger.event.data.path is match(master_pattern, ignorecase=True) %}
-            {% set updated_files.files = updated_files.files + [ trigger.event.data.file ] %}
+            {% set updated_files.files = updated_files.files + [ trigger.event.data.path ] %}
           {% endif %}
         {% endif %}
 
