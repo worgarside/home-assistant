@@ -1,0 +1,24 @@
+---
+alias: /notification/system/reload_required/send
+id: notification_system_reload_required_send
+trigger:
+  - platform: state
+    entity_id: sensor.system_reloadable_files_changed
+    not_to:
+      - 0
+      - "0"
+action:
+  - service: persistent_notification.create
+    data:
+      notification_id: system_reload_required
+      title: "Home Assistant Update: Reload Required"
+      # yamllint disable rule:line-length
+      message: >
+        The following files have been updated and require a soft reload:
+
+        ```
+        {%- for file in state_attr('sensor.system_reloadable_files_changed', 'updated_files') or [] %}
+        - [{{ file.removeprefix('/config') }}](https://github.com/worgarside/home-assistant/tree/{{ states('sensor.current_git_ref') }}/{{ file.removeprefix('/config') }})
+        {%- endfor %}
+        ```
+      # yamllint enable rule:line-length
