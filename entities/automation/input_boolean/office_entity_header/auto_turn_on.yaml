@@ -1,6 +1,7 @@
 ---
 alias: /input-boolean/office-entity-header/auto-turn-on
 id: input_boolean_office_entity_header_auto_turn_on
+mode: single
 trigger:
   - platform: state
     entity_id:

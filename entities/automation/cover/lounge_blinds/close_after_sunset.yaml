@@ -1,6 +1,7 @@
 ---
 alias: /cover/lounge-blinds/close-after-sunset
 id: cover_lounge_blinds_close_after_sunset
+mode: single
 description: Close the lounge blinds either when the Sun sets past -6' or at 21:30
 trigger:
   - platform: numeric_state

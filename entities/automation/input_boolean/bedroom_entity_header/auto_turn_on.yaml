@@ -1,6 +1,7 @@
 ---
 alias: /input-boolean/bedroom-entity-header/auto-turn-on
 id: input_boolean_bedroom_entity_header_auto_turn_on
+mode: single
 trigger:
   - platform: state
     entity_id:

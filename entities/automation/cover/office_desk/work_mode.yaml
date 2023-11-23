@@ -1,6 +1,7 @@
 ---
 alias: /cover/office-desk/work-mode
 id: cover_office_desk_work_mode
+mode: single
 trigger:
   - platform: time_pattern
     minutes: 0

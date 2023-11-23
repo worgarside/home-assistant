@@ -1,6 +1,7 @@
 ---
 alias: /input-boolean/bedroom-entity-header/off
 id: input_boolean_bedroom_entity_header_off
+mode: single
 trigger:
   - platform: state
     entity_id: input_boolean.bedroom_entity_header

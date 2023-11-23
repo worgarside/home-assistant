@@ -1,6 +1,7 @@
 ---
 alias: /remote/vic-s-remote/double-press
 id: remote_vic_s_remote_double_press
+mode: single
 trigger:
   - platform: event
     event_type: zha_event

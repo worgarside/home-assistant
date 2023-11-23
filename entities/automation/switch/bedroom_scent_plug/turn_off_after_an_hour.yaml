@@ -1,6 +1,7 @@
 ---
 alias: /switch/bedroom_scent_plug/turn_off_after_an_hour
 id: switch_bedroom_scent_plug_turn_off_after_an_hour
+mode: single
 trigger:
   - platform: state
     entity_id: switch.bedroom_scent_plug

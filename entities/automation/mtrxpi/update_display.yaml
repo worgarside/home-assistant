@@ -1,6 +1,7 @@
 ---
 alias: /mtrxpi/update-display
 id: mtrxpi_update_display
+mode: queued
 trigger:
   - platform: state
     entity_id:

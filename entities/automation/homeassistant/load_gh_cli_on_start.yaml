@@ -1,6 +1,7 @@
 ---
 alias: /homeassistant/load_gh_cli_on_start
 id: homeassistant_load_gh_cli_on_start
+mode: single
 trigger:
   - platform: homeassistant
     event: start

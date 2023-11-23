@@ -1,6 +1,7 @@
 ---
 alias: /input-boolean/lounge-entity-header/auto-turn-off
 id: input_boolean_lounge_entity_header_auto_turn_off
+mode: single
 trigger:
   - platform: state
     entity_id:
