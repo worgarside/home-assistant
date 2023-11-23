@@ -101,11 +101,16 @@
     },
     "var": {
       "should_exist": [
-        "restore"
+        "restore",
+        "unique_id"
       ],
-      "should_be_hardcoded": {
-        "restore": true
-      }
+      "should_match_filepath": [
+        {
+          "field": "unique_id",
+          "separator": "_",
+          "include_domain_dir": true
+        }
+      ]
     }
   }
 }
