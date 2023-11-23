@@ -1,6 +1,7 @@
 ---
 alias: /crt-pi/fan-control
 id: crt_pi_fan_control
+mode: restart
 trigger:
   - platform: state
     entity_id: sensor.crtpi_cpu_temperature

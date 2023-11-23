@@ -1,6 +1,7 @@
 ---
 alias: /switch/office_amp/auto_turn_on
 id: switch_office_amp_auto_turn_on
+mode: single
 trigger:
   - platform: state
     entity_id: media_player.office_speakers

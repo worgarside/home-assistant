@@ -1,6 +1,7 @@
 ---
 alias: /cover/lounge-blinds/open-before-sunrise
 id: cover_lounge_blinds_open_before_sunrise
+mode: single
 description: Open the lounge blinds when the Sun rises past -6'
 trigger:
   platform: numeric_state

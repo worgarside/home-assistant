@@ -1,6 +1,7 @@
 ---
 alias: /script/auto-reload
 id: script_auto_reload
+mode: single
 trigger:
   platform: event
   event_type: folder_watcher

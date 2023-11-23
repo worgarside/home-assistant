@@ -1,6 +1,7 @@
 ---
 alias: /notification/credit-card-top-up/send
 id: notification_credit_card_top_up_send
+mode: single
 trigger:
   - platform: time
     at:

@@ -1,6 +1,7 @@
 ---
 alias: /script/mtrxpi-update-display/mqtt-trigger
 id: script_mtrxpi_update_display_mqtt_trigger
+mode: single
 trigger:
   - platform: mqtt
     topic: /home-assistant/script/mtrxpi_update_display/run

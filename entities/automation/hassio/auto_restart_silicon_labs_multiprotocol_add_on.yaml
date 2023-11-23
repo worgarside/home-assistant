@@ -1,6 +1,7 @@
 ---
 alias: /hassio/auto_restart_silicon_labs_multiprotocol_add_on
 id: hassio_auto_restart_silicon_labs_multiprotocol_add_on
+mode: single
 trigger:
   platform: numeric_state
   entity_id: sensor.silicon_labs_multiprotocol_add_on_cpu_usage

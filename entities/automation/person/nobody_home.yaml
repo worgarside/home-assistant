@@ -1,6 +1,7 @@
 ---
 alias: /person/nobody-home
 id: person_nobody_home
+mode: restart
 description: "Turn off all physical devices when nobody is home"
 trigger:
   platform: state
