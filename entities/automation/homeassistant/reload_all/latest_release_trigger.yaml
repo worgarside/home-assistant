@@ -3,13 +3,13 @@ alias: /homeassistant/reload_all/latest_release_trigger
 
 id: homeassistant_reload_all_latest_release_trigger
 
-mode: restart
+mode: single
 
 trigger:
   - platform: state
     entity_id: sensor.system_reloadable_files_changed
     for:
-      minutes: 5
+      minutes: 1
 
 condition:
   and:
@@ -24,6 +24,7 @@ condition:
 action:
   - service: script.debug_persistent_notification
     data:
+      tag: homeassistant_reload_all_latest_release_trigger_1
       title: "Home Assistant Update: Reloading All Integrations"
       message: |
         Version {{ states('sensor.current_git_ref') }} has been downloaded.
