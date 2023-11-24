@@ -1,11 +1,15 @@
 ---
 alias: /notification/system/restart_required/send
+
 id: notification_system_restart_required_send
+
 mode: restart
+
 trigger:
   - platform: state
     entity_id: sensor.system_restart_required_files_changed
     not_to: "0"
+
 action:
   - service: script.notify_will
     data:

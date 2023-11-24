@@ -14,7 +14,7 @@ trigger:
 action:
   - service: script.debug_persistent_notification
     data:
-      title: Reload Requested
+      title: Restart Requested
       message: |
         ```
         {{ trigger | tojson(indent=2) }}
