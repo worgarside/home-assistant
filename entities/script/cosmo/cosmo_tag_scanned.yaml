@@ -1,0 +1,142 @@
+---
+description: Send Cosmo to work when an NFC tag is scanned
+
+mode: single
+
+fields:
+  segment_id:
+    description: The segment ID to clean
+    example: 1
+    required: true
+
+  tts_entity_id:
+    description: The entity ID of the TTS device to use
+    example: media_player.bedroom_nest_mini
+    required: true
+
+  tts_room:
+    description: The room name to use in the TTS message
+    example: bedroom
+    required: true
+
+sequence:
+  - variables:
+      battery_level: "{{ states('sensor.cosmo_battery_level') | int(default=100) }}"
+      low_battery: "{{ states('sensor.cosmo_battery_level') | int(default=100) < 30 }}"
+      cosmo_is_cleaning: "{{ states('vacuum.cosmo') == 'cleaning' }}"
+      cosmo_is_in_current_room: >
+        {{
+          state_attr('sensor.cosmo_current_room', 'room_id') | int(default=-1) ==
+          segment_id | int(default=-1)
+        }}
+
+  - choose:
+      - alias: Already cleaning in this room - go home
+        conditions: >
+          {{
+            cosmo_is_cleaning and cosmo_is_in_current_room
+          }}
+        sequence:
+          - service: tts.cloud_say
+            data:
+              entity_id: "{{ tts_entity_id }}"
+              message: >-
+                {% set message = "Goodbye Cosmo, time to go back home! " %}
+
+                {% if 40 <= battery_level < 50 %}
+                  {% set message = message ~ "Go and rest, you look tired." %}
+                {% elif 30 <= battery_level < 40 %}
+                  {% set message = message ~ "Go and rest, you look exhausted." %}
+                {% elif 20 <= battery_level < 30 %}
+                  {% set message = message ~ "Go and get that power nap ASAP." %}
+                {% elif battery_level < 20 %}
+                  {%
+                    set message = (
+                      message ~
+                      "Straight to bed, you're only on " ~
+                      battery_level ~
+                      " percent!"
+                    )
+                  %}
+                {% endif %}
+
+                {{ message }}
+
+          - service: vacuum.stop
+            target:
+              entity_id: vacuum.cosmo
+
+          - service: vacuum.return_to_base
+            target:
+              entity_id: vacuum.cosmo
+
+      - alias: Cleaning in another room - go to this room
+        conditions: >
+          {{
+            cosmo_is_cleaning and not cosmo_is_in_current_room
+          }}
+        sequence:
+          - service: tts.cloud_say
+            data:
+              entity_id: "{{ tts_entity_id }}"
+              message: >-
+                {%
+                  set message = (
+                    "Hey Cosmo, stop dilly dallying and get over to the " ~
+                    tts_room ~
+                    " - stat! "
+                  )
+                %}
+                {% set battery_level = states('sensor.cosmo_battery_level') | int(default=100) %}
+
+                {% if 40 <= battery_level < 50 %}
+                  {% set message = message ~ "Uh oh, you look tired." %}
+                {% elif 30 <= battery_level < 40 %}
+                  {% set message = message ~ "Hey! I see you yawning!" %}
+                {% elif 20 <= battery_level < 30 %}
+                  {% set message = message ~ "I said, put the pedal to the metal!" %}
+                {% elif battery_level < 20 %}
+                  {%
+                    set message = (
+                      message ~
+                      "I'm not sure you're going to make it, maybe you should go home instead"
+                    )
+                  %}
+                {% endif %}
+
+                {{ message }}
+
+          - service: vacuum.stop
+            target:
+              entity_id: vacuum.cosmo
+
+          - service: dreame_vacuum.vacuum_clean_segment
+            data:
+              entity_id: vacuum.cosmo
+              segments:
+                - "{{ segment_id }}"
+
+    default:
+      - alias: Not cleaning - go to this room
+        service: dreame_vacuum.vacuum_clean_segment
+        data:
+          entity_id: vacuum.cosmo
+          segments:
+            - "{{ segment_id }}"
+
+      - service: tts.cloud_say
+        data:
+          cache: "{{ not low_battery }}"
+          entity_id: "{{ tts_entity_id }}"
+          message: >-
+            Cosmo is on his way to the {{ tts_room }}!
+            {{
+              "He only has " ~
+              states('sensor.cosmo_battery_level') ~
+              "% battery, he'll need a power nap soon!"
+              if low_battery else ""
+            }}
+
+  - alias: Prevent accidental tag scans
+    delay:
+      seconds: 5

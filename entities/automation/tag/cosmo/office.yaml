@@ -1,0 +1,19 @@
+---
+alias: /tag/cosmo/office
+
+id: tag_cosmo_office
+
+mode: single
+
+trigger:
+  platform: event
+  event_type: tag_scanned
+  event_data:
+    tag_id: 9f02cb10-5ff4-46c0-93ab-1fc9d08c47cb
+
+action:
+  - service: script.cosmo_tag_scanned
+    data:
+      segment_id: 2
+      tts_entity_id: media_player.office_nest_mini
+      tts_room: office
