@@ -1,0 +1,17 @@
+---
+name: Vic at Work
+
+unique_id: vic_at_work
+
+icon: mdi:monitor
+
+# Larger delay so automations don't start at lunch or _as soon_ as work is over
+delay_off: 01:00:00
+
+delay_on: 00:02:00
+
+state: >
+  {%
+    states('binary_sensor.workday') == 'on' and
+    states('sensor.vic_s_monitor_current_consumption') | float(default=0) > 2
+  %}
