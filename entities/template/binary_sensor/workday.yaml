@@ -1,0 +1,12 @@
+---
+name: Workday
+
+unique_id: workday
+
+icon: mdi:calendar-week
+
+state: >-
+  {{
+    states('binary_sensor.weekday') == "on" and
+    states('binary_sensor.bank_holiday') == "off"
+  }}
