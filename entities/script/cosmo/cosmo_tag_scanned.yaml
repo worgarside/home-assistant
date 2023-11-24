@@ -33,8 +33,9 @@ sequence:
   - choose:
       - alias: Already cleaning in this room - go home
         conditions:
-          - condition: template
-            value_template: "{{ cosmo_is_cleaning and cosmo_is_in_current_room }}"
+          - conditions:
+              - condition: template
+                value_template: "{{ cosmo_is_cleaning and cosmo_is_in_current_room }}"
             sequence:
               - service: tts.cloud_say
                 data:
@@ -67,8 +68,9 @@ sequence:
 
       - alias: Cleaning in another room - go to this room
         conditions:
-          - condition: template
-            value_template: "{{ cosmo_is_cleaning and not cosmo_is_in_current_room }}"
+          - conditions:
+              - condition: template
+                value_template: "{{ cosmo_is_cleaning and not cosmo_is_in_current_room }}"
             sequence:
               - service: tts.cloud_say
                 data:
