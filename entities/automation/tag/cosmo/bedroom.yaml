@@ -8,7 +8,8 @@ mode: single
 trigger:
   platform: event
   event_type: tag_scanned
-  event_data: tag_id:9297abd1-9023-4c66-99c4-c5fd2c93cf78
+  event_data:
+    tag_id: 9297abd1-9023-4c66-99c4-c5fd2c93cf78
 
 action:
   - service: script.cosmo_tag_scanned
