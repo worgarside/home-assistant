@@ -1,0 +1,5 @@
+---
+description: Fire a custom event to reset `sensor.system_restart_required_files_changed`
+mode: single
+sequence:
+  - event: system_restart_required_files_changed_reset

@@ -21,13 +21,13 @@ trigger:
     event: start
 
   - platform: event
+    event_type: system_reloadable_files_changed_reset
+
+  - platform: event
     event_type: call_service
     event_data:
       domain: homeassistant
       service: reload_all
-
-  - platform: event
-    event_type: system_reloadable_files_changed_reset
 
 sensor:
   - name: "System: Reloadable Files Changed"

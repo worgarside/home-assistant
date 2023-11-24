@@ -1,0 +1,26 @@
+---
+alias: /notification/system/restart_required/send
+id: notification_system_restart_required_send
+mode: restart
+trigger:
+  - platform: state
+    entity_id: sensor.system_restart_required_files_changed
+    not_to: "0"
+action:
+  - service: script.notify_will
+    data:
+      title: "Home Assistant Update: Restart Required"
+      # yamllint disable rule:line-length
+      message: |
+        The following files have been updated and require a full restart:
+        <ul>
+        {%- for file in state_attr('sensor.system_restart_required_files_changed', 'updated_files') or [] %}
+          <li><a href="https://github.com/worgarside/home-assistant/tree/{{ states('sensor.current_git_ref') }}/{{ file.removeprefix('/config') }}">{{ file.removeprefix('/config') }}</a></li>
+        {%- endfor %}
+        </ul>
+      # yamllint enable rule:line-length
+      notification_id: system_restart_required
+      mobile_notification_icon: mdi:restart-alert
+      actions:
+        - action: CALL_SERVICE:homeassistant.restart
+          title: Restart Home Assistant
