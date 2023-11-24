@@ -1,6 +1,7 @@
 ---
 alias: /input-boolean/office-entity-header/off
 id: input_boolean_office_entity_header_off
+mode: single
 trigger:
   - platform: state
     entity_id: input_boolean.office_entity_header

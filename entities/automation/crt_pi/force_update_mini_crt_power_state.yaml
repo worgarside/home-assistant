@@ -1,6 +1,7 @@
 ---
 alias: /crt-pi/force-update-mini-crt-power-state
 id: crt_pi_force_update_mini_crt_power_state
+mode: queued
 trigger:
   - platform: state
     entity_id: media_player.hifi_system

@@ -1,6 +1,7 @@
 ---
 alias: /crt-pi/crt-power-state-from-crt-pi
 id: crt_pi_crt_power_state_from_crt_pi
+mode: queued
 trigger:
   - platform: mqtt
     topic: /home-assistant/crt-pi/state-from-crt

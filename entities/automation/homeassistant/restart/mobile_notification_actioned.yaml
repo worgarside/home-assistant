@@ -1,0 +1,23 @@
+---
+alias: /homeassistant/restart/mobile-notification-actioned
+
+id: homeassistant_restart_mobile_notification_actioned
+
+mode: single
+
+trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: CALL_SERVICE:homeassistant.restart
+
+action:
+  - service: script.debug_persistent_notification
+    data:
+      title: Restart Requested
+      message: |
+        ```
+        {{ trigger | tojson(indent=2) }}
+        ```
+
+  - service: homeassistant.restart

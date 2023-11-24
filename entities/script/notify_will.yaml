@@ -3,17 +3,35 @@ description: Send a notification to Will's phone and the HA UI
 fields:
   message:
     description: The message body of the notification
-    example: A thing has happened, though you ought to know
+    example: A thing has happened, thought you ought to know
   title:
     description: The title of the notification
     example: Something Important!
-mode: parallel
+  notification_id:
+    description: Optional ID for the persistent notification
+    example: important_thing_happened
+  actions:
+    description: Optional actions for the phone notification
+    example: '[{"action": "URI", "title": "View More", "uri": "https://example.com"}]'
+  mobile_notification_icon:
+    description: Optional icon for the phone notification
+    example: mdi:alert
+    default: ""
+mode: queued
+max: 100
+variables:
+  notification_id: "{{ notification_id | default('notify_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}"
 sequence:
-  - data:
-      message: '{{ message }}'
-      title: '{{ title }}'
-    service: persistent_notification.create
-  - data:
-      message: '{{ message }}'
-      title: '{{ title }}'
-    service: notify.mobile_app_will_s_pixel_6_pro
+  - service: persistent_notification.create
+    data:
+      message: "{{ message }}"
+      notification_id: "{{ notification_id }}"
+      title: "{{ title }}"
+  - service: notify.mobile_app_will_s_pixel_6_pro
+    data:
+      message: "{{ message }}"
+      title: "{{ title }}"
+      data:
+        actions: "{{ actions | default([]) }}"
+        tag: "{{ notification_id }}"
+        notification_icon: "{{ mobile_notification_icon }}"

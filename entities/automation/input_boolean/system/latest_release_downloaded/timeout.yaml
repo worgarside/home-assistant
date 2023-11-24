@@ -1,0 +1,19 @@
+---
+alias: /input-boolean/system/latest-release-downloaded/timeout
+id: input_boolean_system_latest_release_downloaded_timeout
+mode: single
+trigger:
+  - platform: state
+    entity_id: input_boolean.system_latest_release_downloaded
+    to: "on"
+    for:
+      minutes: 10
+action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.system_latest_release_downloaded
+  - service: persistent_notification.create
+    data:
+      title: "System Entity Reset"
+      message: >-
+        `input_boolean.system_latest_release_downloaded` has been reset due to a timeout
+        of 10 minutes.

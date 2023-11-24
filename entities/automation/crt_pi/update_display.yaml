@@ -1,6 +1,7 @@
 ---
 alias: /crt-pi/update-display
 id: crt_pi_update_display
+mode: queued
 trigger:
   - platform: state
     entity_id:
