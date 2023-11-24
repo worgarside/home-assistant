@@ -1,18 +1,33 @@
 ---
 alias: /cover/bedroom-blinds/close-after-sunset
+
 id: cover_bedroom_blinds_close_after_sunset
+
 mode: single
+
 description: Close the bedroom blinds either when the Sun sets past -6' or at 21:30
+
 trigger:
   - platform: numeric_state
     entity_id: sensor.sun_elevation
     below: -3
+
   - platform: time
     at: "21:30:00"
+
+condition:
+  - condition: template
+    value_template: >
+      {{
+        trigger.platform == "time" or
+        trigger.from_state.state | float(default=999) != 999
+      }}
+
 action:
   - wait_template: "{{ is_state('binary_sensor.bedroom_window', 'off') }}"
     timeout: 3600
     continue_on_timeout: true
+
   - service: cover.close_cover
     target:
       entity_id: cover.bedroom_blinds

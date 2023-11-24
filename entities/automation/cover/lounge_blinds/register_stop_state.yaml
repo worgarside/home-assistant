@@ -1,11 +1,15 @@
 ---
 alias: /cover/lounge-blinds/register-stop-state
+
 id: cover_lounge_blinds_register_stop_state
+
 mode: single
+
 description: >-
   Register that the blinds have stopped moving when they hang in the opening or closing state for
   a minute (they take ~35 seconds to open/close). This usually arises when the blinds are set to a
   non-0/100 value.
+
 trigger:
   - platform: state
     entity_id: cover.lounge_blinds
@@ -14,11 +18,13 @@ trigger:
       - closing
     for:
       minutes: 1
+
 action:
   - service: script.debug_persistent_notification
     data:
       title: Lounge Blinds
       message: Failsafe for `stop` state triggered
+
   - service: cover.stop_cover
     target:
       entity_id: cover.lounge_blinds
