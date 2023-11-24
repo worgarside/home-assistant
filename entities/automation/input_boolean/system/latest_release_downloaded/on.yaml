@@ -1,6 +1,7 @@
 ---
 alias: /input-boolean/system/latest-release-downloaded/on
 id: input_boolean_system_latest_release_downloaded_on
+mode: single
 trigger:
   - platform: state
     entity_id: input_boolean.system_latest_release_downloaded

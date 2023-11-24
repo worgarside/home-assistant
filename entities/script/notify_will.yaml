@@ -13,18 +13,25 @@ fields:
   actions:
     description: Optional actions for the phone notification
     example: '[{"action": "URI", "title": "View More", "uri": "https://example.com"}]'
-mode: parallel
+  mobile_notification_icon:
+    description: Optional icon for the phone notification
+    example: mdi:alert
+    default: ""
+mode: queued
+max: 100
 variables:
   notification_id: "{{ notification_id | default('notify_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}"
 sequence:
   - service: persistent_notification.create
     data:
-      message: '{{ message }}'
-      notification_id: '{{ notification_id }}'
-      title: '{{ title }}'
+      message: "{{ message }}"
+      notification_id: "{{ notification_id }}"
+      title: "{{ title }}"
   - service: notify.mobile_app_will_s_pixel_6_pro
     data:
-      message: '{{ message }}'
-      title: '{{ title }}'
+      message: "{{ message }}"
+      title: "{{ title }}"
       data:
-        actions: '{{ actions | default([]) }}'
+        actions: "{{ actions | default([]) }}"
+        tag: "{{ notification_id }}"
+        notification_icon: "{{ mobile_notification_icon }}"
