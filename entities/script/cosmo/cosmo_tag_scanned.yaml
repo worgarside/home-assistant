@@ -62,6 +62,10 @@ sequence:
 
                 {{ message }}
 
+          - service: vacuum.stop
+            target:
+              entity_id: vacuum.cosmo
+
           - service: vacuum.return_to_base
             target:
               entity_id: vacuum.cosmo
@@ -101,6 +105,10 @@ sequence:
                 {% endif %}
 
                 {{ message }}
+
+          - service: vacuum.stop
+            target:
+              entity_id: vacuum.cosmo
 
           - service: dreame_vacuum.vacuum_clean_segment
             data:
