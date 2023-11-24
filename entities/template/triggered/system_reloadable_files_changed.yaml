@@ -3,26 +3,32 @@ trigger:
   - platform: event
     event_type: folder_watcher
     event_data:
-      event_type: created
-  - platform: event
-    event_type: folder_watcher
-    event_data:
       event_type: deleted
+
   - platform: event
     event_type: folder_watcher
     event_data:
       event_type: modified
+
   - platform: event
     event_type: folder_watcher
     event_data:
       event_type: moved
+
+  # These are used to reset the sensor
+
   - platform: homeassistant
     event: start
+
   - platform: event
     event_type: call_service
     event_data:
       domain: homeassistant
       service: reload_all
+
+  - platform: event
+    event_type: system_reloadable_files_changed_reset
+
 sensor:
   - name: "System: Reloadable Files Changed"
     unique_id: system_reloadable_files_changed
@@ -36,12 +42,7 @@ sensor:
     unit_of_measurement: ""
     attributes:
       updated_files: >
-        {%
-          if (
-            trigger.event_type == "homeassistant" or
-            trigger.event.data.event_type == "call_service"
-          )
-        %}
+        {% if trigger.platform != "event" or trigger.event.event_type != "folder_watcher" %}
           {{ [] }}
         {% else %}
           {%

@@ -1,0 +1,5 @@
+---
+description: Fire a custom event to reset `sensor.system_reloadable_files_changed`
+mode: single
+sequence:
+  - event: system_reloadable_files_changed_reset
