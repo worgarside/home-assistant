@@ -1,2 +1,5 @@
 ---
-get_latest_release: bash /config/resources/shell_command/git/get_latest_release.sh
+get_latest_release: >
+  bash
+  /config/resources/shell_command/git/get_latest_release.sh
+  -t {{ api_token }}
