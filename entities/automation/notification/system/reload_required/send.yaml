@@ -1,11 +1,15 @@
 ---
 alias: /notification/system/reload_required/send
+
 id: notification_system_reload_required_send
+
 mode: restart
+
 trigger:
   - platform: state
     entity_id: sensor.system_reloadable_files_changed
     not_to: "0"
+
 action:
   - service: script.notify_will
     data:
