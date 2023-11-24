@@ -1,0 +1,19 @@
+---
+alias: /tag/cosmo/en-suite
+
+id: tag_cosmo_en_suite
+
+mode: single
+
+trigger:
+  platform: event
+  event_type: tag_scanned
+  event_data:
+    tag_id: 9239edae-4905-443f-b573-0af6e5888fec
+
+action:
+  - service: script.cosmo_tag_scanned
+    data:
+      segment_id: 3
+      tts_entity_id: media_player.bedroom_nest_mini
+      tts_room: en-suite

@@ -1,0 +1,19 @@
+---
+alias: /tag/cosmo/lounge
+
+id: tag_cosmo_lounge
+
+mode: single
+
+trigger:
+  platform: event
+  event_type: tag_scanned
+  event_data:
+    tag_id: eeeb42a4-5a1c-4382-9a5c-1912ccca4745
+
+action:
+  - service: script.cosmo_tag_scanned
+    data:
+      segment_id: 5
+      tts_entity_id: media_player.lounge_nest_hub
+      tts_room: lounge
