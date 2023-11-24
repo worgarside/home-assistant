@@ -1,12 +1,21 @@
 ---
 alias: /cover/bedroom-blinds/open-before-sunrise
+
 id: cover_bedroom_blinds_open_before_sunrise
+
 mode: single
+
 description: Open the bedroom blinds when the Sun rises past -6'
+
 trigger:
   platform: numeric_state
   entity_id: sensor.sun_elevation
   above: -6
+
+condition:
+  - condition: template
+    value_template: "{{ trigger.from_state.state | float(default=999) != 999 }}"
+
 action:
   - repeat:
       for_each:
