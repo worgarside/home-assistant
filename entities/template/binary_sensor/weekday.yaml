@@ -1,0 +1,8 @@
+---
+name: Weekday
+
+unique_id: weekday
+
+icon: mdi:calendar-week
+
+state: "{{ now().weekday() < 5 }}"

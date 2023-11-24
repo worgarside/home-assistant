@@ -1,0 +1,12 @@
+---
+name: Bank Holiday
+
+unique_id: bank_holiday
+
+icon: mdi:calendar-star
+
+state: >-
+  {{
+    states('calendar.holidays_in_united_kingdom') == "on" and
+    not state_attr('calendar.holidays_in_united_kingdom', 'message').endswith(" (Scotland)")
+  }}

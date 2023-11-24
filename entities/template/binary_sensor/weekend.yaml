@@ -1,0 +1,8 @@
+---
+name: Weekend
+
+unique_id: weekend
+
+icon: mdi:calendar-weekend
+
+state: "{{ now().weekday() in [5, 6] }}"
