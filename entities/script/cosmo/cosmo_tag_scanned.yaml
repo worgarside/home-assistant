@@ -110,25 +110,24 @@ sequence:
 
     default:
       - alias: Not cleaning - go to this room
-        sequence:
-          - service: dreame_vacuum.vacuum_clean_segment
-            data:
-              entity_id: vacuum.cosmo
-              segments:
-                - "{{ segment_id }}"
+        service: dreame_vacuum.vacuum_clean_segment
+        data:
+          entity_id: vacuum.cosmo
+          segments:
+            - "{{ segment_id }}"
 
-          - service: tts.cloud_say
-            data:
-              cache: "{{ not low_battery }}"
-              entity_id: "{{ tts_entity_id }}"
-              message: >-
-                Cosmo is on his way to the {{ tts_room }}!
-                {{
-                  "He only has " ~
-                  states('sensor.cosmo_battery_level') ~
-                  "% battery, he'll need a power nap soon!"
-                  if low_battery else ""
-                }}
+      - service: tts.cloud_say
+        data:
+          cache: "{{ not low_battery }}"
+          entity_id: "{{ tts_entity_id }}"
+          message: >-
+            Cosmo is on his way to the {{ tts_room }}!
+            {{
+              "He only has " ~
+              states('sensor.cosmo_battery_level') ~
+              "% battery, he'll need a power nap soon!"
+              if low_battery else ""
+            }}
 
   - alias: Prevent accidental tag scans
     delay:
