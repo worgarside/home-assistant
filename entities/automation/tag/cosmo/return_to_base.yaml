@@ -16,6 +16,9 @@ action:
     target:
       entity_id: vacuum.cosmo
 
+  - variables:
+      battery_level: "{{ states('sensor.cosmo_battery_level') | int(default=100) }}"
+
   - service: tts.cloud_say
     data:
       entity_id: media_player.lounge_nest_hub
