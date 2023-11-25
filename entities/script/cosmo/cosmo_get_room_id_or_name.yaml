@@ -1,0 +1,36 @@
+---
+description: Get a room's ID from its name, or vice versa
+
+mode: parallel
+
+fields:
+  lookup_value:
+    description: The value to look up
+    required: true
+    type: str
+
+sequence:
+  - variables:
+      return_value: >-
+        {% set lookup = states('sensor.cosmo_room_lookup') | from_json %}
+        {% set key = lookup_value | string | lower | regex_replace("[^A-Za-z0-9]", "") %}
+
+        {% if lookup_value in lookup %}
+          {{ lookup[key] }}
+        {% else %}
+          ERROR: {{ lookup_value }} not found in lookup: {{ lookup | tojson(indent=2) }}
+        {% endif %}
+
+  - if: >-
+      {{ return_value.startswith("ERROR") }}
+    then:
+      - service: script.debug_persistent_notification
+        data:
+          title: Cosmo Room Lookup Error
+          message: "{{ return_value }}"
+      - stop: Cosmo Room Lookup Error
+        error: true
+    else:
+      - stop: Cosmo Room Lookup Success
+        error: false
+        response_variable: "{{ return_value }}"
