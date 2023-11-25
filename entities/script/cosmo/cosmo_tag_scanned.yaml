@@ -4,9 +4,9 @@ description: Send Cosmo to work when an NFC tag is scanned
 mode: single
 
 fields:
-  segment_id:
-    description: The segment ID to clean
-    example: 1
+  room_name:
+    description: The room name to use for the ID lookup and in in the TTS message
+    example: bedroom
     required: true
 
   tts_entity_id:
@@ -14,12 +14,13 @@ fields:
     example: media_player.bedroom_nest_mini
     required: true
 
-  tts_room:
-    description: The room name to use in the TTS message
-    example: bedroom
-    required: true
-
 sequence:
+  - alias: Get Room ID
+    service: script.cosmo_get_room_id_or_name
+    data:
+      lookup_value: "{{ room_name }}"
+    response_variable: room_id
+
   - variables:
       battery_level: "{{ states('sensor.cosmo_battery_level') | int(default=100) }}"
       low_battery: "{{ states('sensor.cosmo_battery_level') | int(default=100) < 30 }}"
@@ -27,7 +28,7 @@ sequence:
       cosmo_is_in_current_room: >
         {{
           state_attr('sensor.cosmo_current_room', 'room_id') | int(default=-1) ==
-          segment_id | int(default=-1)
+          room_id
         }}
 
   - choose:
@@ -111,18 +112,20 @@ sequence:
               entity_id: vacuum.cosmo
 
           - service: dreame_vacuum.vacuum_clean_segment
-            data:
+            target:
               entity_id: vacuum.cosmo
+            data:
               segments:
-                - "{{ segment_id }}"
+                - "{{ room_id }}"
 
     default:
       - alias: Not cleaning - go to this room
         service: dreame_vacuum.vacuum_clean_segment
-        data:
+        target:
           entity_id: vacuum.cosmo
+        data:
           segments:
-            - "{{ segment_id }}"
+            - "{{ room_id }}"
 
       - service: tts.cloud_say
         data:

@@ -9,6 +9,11 @@ fields:
     example: Something has happened!
 mode: parallel
 sequence:
+  - service: system_log.write
+    data:
+      message: "{{ message }}"
+      level: debug
+      logger: script.debug_with_persistent_notifications
   - alias: Check if debugging is turned on
     condition: state
     entity_id: input_boolean.debug_with_persistent_notifications

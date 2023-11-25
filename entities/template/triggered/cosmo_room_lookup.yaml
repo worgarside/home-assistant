@@ -1,0 +1,35 @@
+---
+trigger:
+  - platform: state
+    entity_id: vacuum.cosmo
+    attribute:
+      - rooms
+      - selected_map
+
+sensor:
+  - name: Cosmo Room Lookup
+    unique_id: cosmo_room_lookup
+    icon: mdi:floor-plan
+    state: >-
+      {%
+        set rooms = state_attr('vacuum.cosmo', 'rooms')[
+          state_attr('vacuum.cosmo', 'selected_map')
+        ]
+      %}
+      {% set ns = namespace(lookup={}) %}
+
+      {% for room in rooms %}
+        {% set room_name = room.name.casefold() | regex_replace("[^A-Za-z0-9]", "") %}
+
+        {%
+          set ns.lookup = dict(
+            ns.lookup,
+            **{
+              room.id | string: room_name,
+              room_name: room.id
+            }
+          )
+        %}
+      {% endfor %}
+
+      {{ ns.lookup }}

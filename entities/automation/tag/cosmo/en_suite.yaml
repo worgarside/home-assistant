@@ -14,6 +14,5 @@ trigger:
 action:
   - service: script.cosmo_tag_scanned
     data:
-      segment_id: 3
+      room_name: en-suite
       tts_entity_id: media_player.bedroom_nest_mini
-      tts_room: en-suite
