@@ -1,24 +1,17 @@
 ---
 alias: /person/nobody-home
+
 id: person_nobody_home
+
 mode: restart
-description: "Turn off all physical devices when nobody is home"
+
+description: Turn off all physical devices when nobody is home
+
 trigger:
-  platform: state
-  entity_id:
-    - person.vic
-    - person.will
-  from: 'home'
-  to: 'not_home'
-condition:
-  condition: and
-  conditions:
-    - condition: state
-      entity_id: person.vic
-      state: 'not_home'
-    - condition: state
-      entity_id: person.will
-      state: 'not_home'
+  - platform: state
+    entity_id: zone.home
+    to: 0
+
 action:
   - alias: "Turn off each physical room"
     repeat:
