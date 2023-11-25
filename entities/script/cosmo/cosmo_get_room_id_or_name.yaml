@@ -7,7 +7,6 @@ fields:
   lookup_value:
     description: The value to look up
     required: true
-    type: str
 
 sequence:
   - variables:
@@ -32,5 +31,4 @@ sequence:
         error: true
     else:
       - stop: Cosmo Room Lookup Success
-        error: false
         response_variable: "{{ return_value }}"
