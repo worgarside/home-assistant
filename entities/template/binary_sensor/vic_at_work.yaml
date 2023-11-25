@@ -11,7 +11,7 @@ delay_off: 01:00:00
 delay_on: 00:02:00
 
 state: >
-  {%
+  {{
     states('binary_sensor.workday') == 'on' and
     states('sensor.vic_s_monitor_current_consumption') | float(default=0) > 2
-  %}
+  }}
