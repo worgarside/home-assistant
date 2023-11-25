@@ -31,5 +31,4 @@ sequence:
         error: true
     else:
       - stop: Cosmo Room Lookup Success
-        error: false
         response_variable: "{{ return_value }}"
