@@ -1,18 +1,16 @@
 ---
 
-alias: /binary_sensor/front-door/open
+alias: /binary_sensor/hallway-motion-sensor/on
 
-id: binary_sensor_front_door_open
+id: binary_sensor_hallway_motion_sensor_on
 
 mode: single
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.front_door
+    entity_id: binary_sensor.hallway_motion_sensor
     from: "off"
     to: "on"
-    for:
-      milliseconds: 500
 
 action:
   - variables:
@@ -25,7 +23,7 @@ action:
       delay: 1
 
   - service: light.turn_on
-    entity_id: light.hallway_3
+    entity_id: light.hallway_1
     data:
       brightness: "{{ brightness }}"
       transition: "{{ delay }}"
@@ -41,7 +39,7 @@ action:
   - delay: "{{ delay }}"
 
   - service: light.turn_on
-    entity_id: light.hallway_1
+    entity_id: light.hallway_3
     data:
       brightness: "{{ brightness }}"
       transition: "{{ delay }}"
