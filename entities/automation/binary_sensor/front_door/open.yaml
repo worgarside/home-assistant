@@ -1,0 +1,47 @@
+---
+
+alias: /binary_sensor/front_door/open
+
+id: binary_sensor_front_door_open
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door
+    from: "off"
+    to: "on"
+    for:
+      milliseconds: 500
+
+action:
+  - variables:
+      brightness: >-
+        {% if states('binary_sensor.quiet_hours') == "off" %}
+          255
+        {% else %}
+          127
+        {% endif %}
+      delay: 1
+
+  - service: light.turn_on
+    entity_id: light.hallway_3
+    data:
+      brightness: "{{ brightness }}"
+      transition: "{{ delay }}"
+
+  - delay: "{{ delay }}"
+
+  - service: light.turn_on
+    entity_id: light.hallway_2
+    data:
+      brightness: "{{ brightness }}"
+      transition: "{{ delay }}"
+
+  - delay: "{{ delay }}"
+
+  - service: light.turn_on
+    entity_id: light.hallway_1
+    data:
+      brightness: "{{ brightness }}"
+      transition: "{{ delay }}"
