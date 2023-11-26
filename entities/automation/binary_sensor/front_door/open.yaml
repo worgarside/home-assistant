@@ -33,10 +33,15 @@ condition:
 action:
   - variables:
       brightness: >-
-        {% if states('binary_sensor.quiet_hours') == "off" %}
-          255
-        {% else %}
+        {%
+          if (
+            states('sensor.sun_elevation') | int(default=1) < 0 or
+            states('binary_sensor.quiet_hours') == "off"
+          )
+        %}
           127
+        {% else %}
+          255
         {% endif %}
       delay: 1
 
