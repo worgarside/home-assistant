@@ -1,8 +1,8 @@
 ---
 
-alias: /binary_sensor/hallway-motion-sensor/off-for-5-minutes
+alias: /binary-sensor/hallway-motion-sensor/off-for-2-minutes
 
-id: binary_sensor_hallway_motion_sensor_off_for_5_minutes
+id: binary_sensor_hallway_motion_sensor_off_for_2_minutes
 
 mode: single
 
@@ -12,10 +12,10 @@ trigger:
     from: "on"
     to: "off"
     for:
-      minutes: 5
+      minutes: 2
 
 action:
   - service: light.turn_off
     entity_id: light.hallway
     data:
-      transition: "{{ delay }}"
+      transition: 10
