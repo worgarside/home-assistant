@@ -39,6 +39,7 @@ action:
     data:
       message: |
         Credit Cards pot is £{{ '%.2f' % deficit }} too low. Top up pot?
+
         Amount remaining: £{{- '%.2f' % (
           states('var.truelayer_balance_monzo_current_account') | float(default=-999) -
           top_up_amount
