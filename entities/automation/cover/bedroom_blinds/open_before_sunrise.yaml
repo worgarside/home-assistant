@@ -8,9 +8,12 @@ mode: single
 description: Open the bedroom blinds when the Sun rises past -6'
 
 trigger:
-  platform: numeric_state
-  entity_id: sensor.sun_elevation
-  above: -6
+  - platform: numeric_state
+    entity_id: sensor.sun_elevation
+    above: -6
+
+  - platform: time
+    at: '07:00:00'
 
 condition:
   - condition: template
@@ -21,16 +24,25 @@ action:
       for_each:
         - elevation: -6
           position: 20
+          time: '07:00:00'
         - elevation: -3
           position: 40
+          time: '07:10:00'
         - elevation: 0
           position: 60
+          time: '07:20:00'
         - elevation: 3
           position: 80
+          time: '07:30:00'
         - elevation: 6
           position: 100
+          time: '07:40:00'
       sequence:
-        - wait_template: "{{ states('sensor.sun_elevation') | float >= repeat.item.elevation }}"
+        - wait_template: >-
+            {{
+              states('sensor.sun_elevation') | float(default=-999) >= repeat.item.elevation or
+              now() > today_at(repeat.item.time)
+            }}
         - service: cover.set_cover_position
           target:
             entity_id: cover.bedroom_blinds
