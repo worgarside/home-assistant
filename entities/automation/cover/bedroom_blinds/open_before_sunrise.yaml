@@ -40,8 +40,13 @@ action:
       sequence:
         - wait_template: >-
             {{
-              states('sensor.sun_elevation') | float(default=-999) >= repeat.item.elevation or
-              now() > today_at(repeat.item.time)
+              (
+                states('sensor.sun_elevation') | float(default=-999) >= repeat.item.elevation or
+                now() > today_at(repeat.item.time)
+              ) and state_attr(
+                'cover.bedroom_blinds',
+                'current_position',
+              ) | int(-1) < repeat.item.position
             }}
         - service: cover.set_cover_position
           target:
