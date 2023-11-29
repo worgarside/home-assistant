@@ -17,7 +17,11 @@ trigger:
 
 condition:
   - condition: template
-    value_template: "{{ trigger.from_state.state | float(default=999) != 999 }}"
+    value_template: >-
+      {{
+        trigger.platform == 'time' or
+        trigger.from_state.state | float(default=999) != 999
+      }}
 
 action:
   - repeat:
@@ -42,7 +46,7 @@ action:
             {{
               (
                 states('sensor.sun_elevation') | float(default=-999) >= repeat.item.elevation or
-                now() > today_at(repeat.item.time)
+                now() >= today_at(repeat.item.time)
               ) and state_attr(
                 'cover.bedroom_blinds',
                 'current_position',
