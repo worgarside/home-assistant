@@ -34,13 +34,20 @@ action:
             0
           )
         %}
-        {{
-          min( available, deficit )
-        }}
+        {{ min( available, deficit ) }}
   - service: notify.mobile_app_will_s_pixel_6_pro
     data:
-      message: Credit Cards pot is £{{ '%.2f' % deficit }} too low. Top up pot?
+      message: |
+        Credit Cards pot is £{{ '%.2f' % deficit }} too low. Top up pot?
+
+        Amount remaining: £{{- '%.2f' % (
+          states('var.truelayer_balance_monzo_current_account') | float(default=-999) -
+          top_up_amount
+        ) -}}
       data:
         actions:
           - action: TOP_UP_CREDIT_CARD_POT:{{ top_up_amount }}
             title: Top Up (£{{ '%.2f' % top_up_amount }})
+        tag: notification_credit_card_top_up_send
+        notification_icon: mdi:credit-card-plus-outline
+        visibility: private
