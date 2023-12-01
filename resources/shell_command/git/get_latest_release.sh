@@ -21,7 +21,7 @@ done
     echo git stash -m "shell_command.get_latest_release|$(date +%s)"
     git stash -m "shell_command.get_latest_release|$(date +%s)"
 
-    cd /config/appdaemon || exit 1
+    cd /addon_configs/a0d7b954_appdaemon || exit 1
 
     git stash -m "shell_command.get_latest_release__appdaemon|$(date +%s)"
 
