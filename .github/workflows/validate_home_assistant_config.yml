@@ -62,6 +62,7 @@ jobs:
       - name: Absolute Path Workaround
         run: |
           sed -i 's/\/config\//\/github\/workspace\//g' integrations/folder_watcher.yaml
+          sed -i 's/\/addon_configs\//\/github\/workspace\//g' integrations/folder_watcher.yaml
           sed -i 's/\/config\//\/github\/workspace\//g' integrations/zha.yaml
 
       - name: Validate Configuration
