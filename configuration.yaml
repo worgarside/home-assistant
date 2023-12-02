@@ -2,7 +2,6 @@
 
 homeassistant:
   allowlist_external_dirs:
-    - /addon_configs
     - /config
 
   customize: !include_dir_named customizations

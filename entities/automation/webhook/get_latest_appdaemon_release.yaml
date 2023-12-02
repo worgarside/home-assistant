@@ -34,7 +34,6 @@ action:
         {{ trigger.json }}
         ```
 
-  - service: shell_command.get_latest_appdaemon_release
-    data:
-      api_token: !secret api_bearer_token
-      tag: "{{ tag }}"
+  - service: input_boolean.toggle
+    target:
+      entity_id: input_boolean.ad_monzo_auto_save

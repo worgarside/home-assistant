@@ -1,7 +1,0 @@
----
-sensor:
-  command: cd /addon_configs/a0d7b954_appdaemon && git rev-parse --abbrev-ref HEAD
-  name: Current AppDaemon Branch
-  scan_interval: 120
-  unique_id: current_appdaemon_branch
-  icon: mdi:source-branch-plus

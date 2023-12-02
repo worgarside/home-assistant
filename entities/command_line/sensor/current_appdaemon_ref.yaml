@@ -1,9 +1,0 @@
----
-sensor:
-  command: >-
-    cd /addon_configs/a0d7b954_appdaemon &&
-    git describe --tags --exact-match 2>/dev/null || git rev-parse --short HEAD
-  name: Current AppDaemon Ref
-  scan_interval: 120
-  unique_id: current_appdaemon_ref
-  icon: mdi:application-parentheses
