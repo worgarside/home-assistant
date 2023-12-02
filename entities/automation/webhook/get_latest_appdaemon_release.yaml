@@ -17,6 +17,8 @@ action:
         trigger.json["repository"]["name"] == "home-assistant-appdaemon" and
         trigger.json["ref"] is match("^\d+\.\d+\.\d+$")
       }}
+  - variables:
+      tag: "{{ trigger.json['ref'] }}"
   - service: persistent_notification.create
     data:
       title: "Updating AppDaemon ({{trigger.json['ref']}})"
@@ -25,6 +27,7 @@ action:
         ```json
         {{ trigger.json }}
         ```
-  # - service: shell_command.get_latest_appdaemon_release
-    # data:
-      # api_token: !secret api_bearer_token
+  - service: shell_command.get_latest_appdaemon_release
+    data:
+      api_token: !secret api_bearer_token
+      tag: "{{ tag }}"

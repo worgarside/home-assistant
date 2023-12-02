@@ -1,0 +1,6 @@
+---
+get_latest_appdaemon_release: >
+  bash
+  /config/resources/shell_command/git/get_latest_appdaemon_release.sh
+  -t {{ api_token }}
+  -v {{ tag }}
