@@ -34,6 +34,8 @@ action:
         {{ trigger.json }}
         ```
 
-  - service: input_boolean.toggle
+  - service: input_text.set_value
     target:
-      entity_id: input_boolean.ad_monzo_auto_save
+      entity_id: input_text.ad_get_latest_release
+    data:
+      value: "{{ tag }}"
