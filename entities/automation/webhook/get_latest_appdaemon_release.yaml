@@ -1,32 +1,39 @@
 ---
 alias: /webhook/get_latest_appdaemon_release
+
 id: webhook_get_latest_appdaemon_release
+
 mode: queued
+
 trigger:
   - platform: webhook
     webhook_id: get_latest_appdaemon_release
     allowed_methods:
       - POST
     local_only: false
-action:
-  - alias: Validate Payload
-    condition: template
-    value_template: |
+
+condition:
+  - condition: template
+    value_template: >-
       {{
         trigger.json["ref_type"] == "tag" and
         trigger.json["repository"]["name"] == "home-assistant-appdaemon" and
         trigger.json["ref"] is match("^\d+\.\d+\.\d+$")
       }}
+
+action:
   - variables:
       tag: "{{ trigger.json['ref'] }}"
+
   - service: persistent_notification.create
     data:
-      title: "Updating AppDaemon ({{trigger.json['ref']}})"
+      title: "Updating AppDaemon ({{ tag }})"
       message: |
         ## Webhook Payload
         ```json
         {{ trigger.json }}
         ```
+
   - service: shell_command.get_latest_appdaemon_release
     data:
       api_token: !secret api_bearer_token
