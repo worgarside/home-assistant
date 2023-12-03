@@ -2,9 +2,11 @@
 trigger:
   - platform: state
     entity_id: vacuum.cosmo
-    attribute:
-      - rooms
-      - selected_map
+    attribute: rooms
+
+  - platform: state
+    entity_id: vacuum.cosmo
+    attribute: selected_map
 
 sensor:
   - name: Cosmo Room Lookup
