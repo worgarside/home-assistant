@@ -12,5 +12,3 @@ action:
       entity_id:
         - sensor.current_git_branch
         - sensor.current_git_ref
-        - sensor.current_appdaemon_ref
-        - sensor.current_appdaemon_branch
