@@ -3,7 +3,7 @@
 
 recorder:
   db_url: !secret mariadb_db_url
-  purge_keep_days: 31
+  purge_keep_days: 720
   exclude:
     domains:
       - automation
