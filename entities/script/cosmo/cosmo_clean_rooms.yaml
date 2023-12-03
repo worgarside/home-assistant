@@ -1,0 +1,56 @@
+---
+description: Clean all rooms from least recently cleaned to most recently cleaned
+
+mode: restart
+
+fields:
+  rooms:
+    description: List of rooms to clean
+    required: false
+
+sequence:
+  - variables:
+      cleaning_sequence: >-
+        {% if rooms is not defined or not rooms %}
+          {% set rooms = state_attr('sensor.cosmo_room_lookup', 'room_names') %}
+        {% elif rooms is string %}
+          {% set rooms = rooms.split(",") %}
+        {% endif %}
+
+        {%
+          set target_rooms = rooms
+          | map('regex_replace', '[^a-z_0-9]', '', ignorecase=True)
+          | list
+        %}
+
+        {% if "ensuite" in target_rooms %}
+          {% set target_rooms = target_rooms | reject('equalto', "ensuite") | list + ["en_suite"] %}
+        {% endif %}
+
+        {% set ns = namespace(clean_times=[]) %}
+
+        {%-
+          for room in state_attr('sensor.cosmo_room_lookup', 'rooms')
+          if room["name"].replace("-", "_") | lower | regex_replace("[^a-z_0-9]", "") in target_rooms
+        -%}
+          {%- set room_name = room["name"].replace("-", "_") | lower -%}
+          {%-
+            set ns.clean_times = ns.clean_times + [
+              (
+                states.input_datetime['cosmo_last_{0}_clean'.format(room_name)].state,
+                room["id"]
+              )
+            ]
+          -%}
+        {%- endfor -%}
+
+        {{
+          ns.clean_times
+          | sort(attribute='0')
+          | map(attribute='1')
+          | list
+        }}
+
+  - service: dreame_vacuum.vacuum_set_cleaning_sequence
+    data:
+      cleaning_sequence: "{{ cleaning_sequence }}"
