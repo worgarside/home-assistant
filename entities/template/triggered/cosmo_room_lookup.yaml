@@ -23,6 +23,10 @@ sensor:
       {% for room in rooms %}
         {% set room_name = room.name.casefold() | regex_replace("[^A-Za-z0-9]", "") %}
 
+        {% if not room_name %}
+          {%  continue %}
+        {% endif %}
+
         {%
           set ns.lookup = dict(
             ns.lookup,
@@ -34,4 +38,4 @@ sensor:
         %}
       {% endfor %}
 
-      {{ ns.lookup }}
+      {{ ns.lookup | tojson }}
