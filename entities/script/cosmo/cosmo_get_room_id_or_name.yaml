@@ -21,7 +21,7 @@ sequence:
         {% endif %}
 
   - if: >-
-      {{ return_value.startswith("ERROR") }}
+      {{ (return_value | string).startswith("ERROR") }}
     then:
       - service: script.debug_persistent_notification
         data:
