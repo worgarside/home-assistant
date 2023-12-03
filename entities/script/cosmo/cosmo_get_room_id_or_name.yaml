@@ -14,10 +14,10 @@ sequence:
         {% set lookup = states('sensor.cosmo_room_lookup') | from_json %}
         {% set key = lookup_value | string | lower | regex_replace("[^A-Za-z0-9]", "") %}
 
-        {% if lookup_value in lookup %}
+        {% if key in lookup %}
           {{ lookup[key] }}
         {% else %}
-          ERROR: {{ lookup_value }} not found in lookup: {{ lookup | tojson(indent=2) }}
+          ERROR: {{ key }} not found in lookup: {{ lookup | tojson(indent=2) }}
         {% endif %}
 
   - if: >-
