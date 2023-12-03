@@ -22,13 +22,21 @@ sequence:
 
   - if: >-
       {{ (return_value | string).startswith("ERROR") }}
+
     then:
       - service: script.debug_persistent_notification
         data:
           title: Cosmo Room Lookup Error
           message: "{{ return_value }}"
+
       - stop: Cosmo Room Lookup Error
         error: true
+
     else:
+      - service: script.debug_persistent_notification
+        data:
+          title: Cosmo Room Lookup Success
+          message: "{{ return_value }}"
+
       - stop: Cosmo Room Lookup Success
         response_variable: "{{ return_value }}"
