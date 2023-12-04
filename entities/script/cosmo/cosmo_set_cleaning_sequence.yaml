@@ -1,5 +1,5 @@
 ---
-description: Seet Cosmo's cleaning sequence based on the last time each room was cleaned
+description: Set Cosmo's cleaning sequence based on the last time each room was cleaned
 
 mode: restart
 
@@ -52,5 +52,7 @@ sequence:
         }}
 
   - service: dreame_vacuum.vacuum_set_cleaning_sequence
+    target:
+      entity_id: vacuum.cosmo
     data:
       cleaning_sequence: "{{ cleaning_sequence }}"
