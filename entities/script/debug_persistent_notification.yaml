@@ -31,5 +31,9 @@ sequence:
   - service: persistent_notification.create
     data:
       message: "{{ message }}"
-      notification_id: "{{ notification_id }}"
       title: "{{ title }}"
+      notification_id: >-
+        {{
+          notification_id |
+          default('notify_debug_' ~ now().strftime('%Y%m%d%H%M%S%f'))
+        }}
