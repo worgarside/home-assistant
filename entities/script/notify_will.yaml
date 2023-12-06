@@ -1,37 +1,103 @@
 ---
 description: Send a notification to Will's phone and the HA UI
+
 fields:
   message:
     description: The message body of the notification
     example: A thing has happened, thought you ought to know
+
   title:
     description: The title of the notification
     example: Something Important!
+
   notification_id:
     description: Optional ID for the persistent notification
     example: important_thing_happened
+
   actions:
     description: Optional actions for the phone notification
     example: '[{"action": "URI", "title": "View More", "uri": "https://example.com"}]'
+
   mobile_notification_icon:
     description: Optional icon for the phone notification
     example: mdi:alert
     default: ""
+
 mode: queued
-max: 100
+
+max: 50
+
 variables:
-  notification_id: "{{ notification_id | default('notify_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}"
+  actions: "{{ actions | default([]) }}"
+  notification_id: >-
+    {{ notification_id | default('notify_will_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}
+
 sequence:
-  - service: persistent_notification.create
+  - alias: HA Notification
+    service: persistent_notification.create
     data:
       message: "{{ message }}"
       notification_id: "{{ notification_id }}"
       title: "{{ title }}"
-  - service: notify.mobile_app_will_s_pixel_6_pro
+
+  - alias: Phone
+    service: notify.mobile_app_will_s_pixel_6_pro
     data:
       message: "{{ message }}"
       title: "{{ title }}"
       data:
-        actions: "{{ actions | default([]) }}"
+        actions: "{{ actions }}"
         tag: "{{ notification_id }}"
         notification_icon: "{{ mobile_notification_icon }}"
+
+  - alias: Personal MacBook Pro
+    if:
+      or:
+        - alias: MBP is active
+          condition: state
+          entity_id: binary_sensor.wills_macbook_pro_active
+          state: "on"
+
+        - alias: Will is at home
+          condition: state
+          entity_id: person.will
+          state: home
+
+    then:
+      - service: notify.mobile_app_wills_macbook_pro
+        data:
+          message: "{{ message }}"
+          title: "{{ title }}"
+          data:
+            actions: "{{ actions }}"
+            tag: "{{ notification_id }}"
+
+  - alias: Work MacBook Pro
+    if:
+      or:
+        - alias: Work MBP is active
+          condition: state
+          entity_id: binary_sensor.st_macbook_pro_active
+          state: "on"
+
+        - alias: Will is at the office
+          condition: state
+          entity_id: person.will
+          state: SigTech
+
+        # - and:
+        #   - alias: It's a workday
+        #     condition: state
+        #     entity_id: binary_sensor.workday
+        #     state: "on"
+
+        #   - alias: Will not on A/L - TODO
+
+    then:
+      - service: notify.mobile_app_vd2074dc9l
+        data:
+          message: "{{ message }}"
+          title: "{{ title }}"
+          data:
+            actions: "{{ actions }}"
+            tag: "{{ notification_id }}"
