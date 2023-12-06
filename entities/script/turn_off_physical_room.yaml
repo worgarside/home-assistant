@@ -1,11 +1,13 @@
 ---
 mode: restart
+
 fields:
   room:
     name: Room
     description: The room to turn off
     example: "office"
     required: true
+
   extra_service_calls:
     name: Extra Service Calls
     description: Extra services to call (default service is `homeassistant.turn_off`)
@@ -18,6 +20,7 @@ fields:
           "entity_id": "script.office_desk_sitting_mode"
         }
       ]
+
   close_blinds:
     name: Close Blinds
     description: Whether to close the blinds
@@ -26,6 +29,7 @@ fields:
     required: false
     selector:
       boolean:
+
   close_blinds_window_delay:
     name: Close Blinds Window Delay
     description: The delay before closing the blinds if the window is open
@@ -34,6 +38,7 @@ fields:
     required: false
     selector:
       time:
+
   close_blinds_with_open_window_after_delay:
     name: Close Blinds With Open Window After Delay
     description: Whether to close the blinds if the window is open after a delay
@@ -42,6 +47,7 @@ fields:
     required: false
     selector:
       boolean:
+
 sequence:
   - alias: "Turn off each physical domain"
     repeat:
@@ -56,15 +62,18 @@ sequence:
         - service: "{{ repeat.item }}"
           target:
             area_id: "{{ room }}"
-  - repeat:
-      for_each: "{{ extra_service_calls }}"
-      sequence:
-        - service: "{{ repeat.item.service_call | default('homeassistant.turn_off') }}"
-          target:
-            entity_id: "{{ repeat.item.entity_id }}"
+
+  - if: "{{ extra_service_calls is defined and extra_service_calls | length > 0 }}"
+    then:
+      - repeat:
+          for_each: "{{ extra_service_calls }}"
+          sequence:
+            - service: "{{ repeat.item.service_call | default('homeassistant.turn_off') }}"
+              target:
+                entity_id: "{{ repeat.item.entity_id }}"
+
   - alias: "Close blinds if requested"
-    if: >
-      {{ close_blinds }}
+    if: "{{ close_blinds }}"
     then:
       - alias: "Wait for window to be closed"
         choose:
@@ -81,6 +90,7 @@ sequence:
               - service: cover.close_cover
                 target:
                   entity_id: "cover.{{ room }}_blinds"
+
           - alias: Don't continue on timeout
             conditions: >
               {{
@@ -94,6 +104,7 @@ sequence:
               - service: cover.close_cover
                 target:
                   entity_id: "cover.{{ room }}_blinds"
+
         default:
           - service: cover.close_cover
             target:
