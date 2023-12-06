@@ -1,17 +1,25 @@
 ---
 alias: /script/auto-reload
+
 id: script_auto_reload
+
 mode: single
+
+max_exceeded: silent
+
 trigger:
   platform: event
   event_type: folder_watcher
   event_data:
     event_type: modified
+
 condition: "{{ '/config/entities/script' in trigger.event.data.folder }}"
+
 action:
   - service: persistent_notification.create
     data:
       title: Scripts reloading...
       message: >
         Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
+
   - service: script.reload
