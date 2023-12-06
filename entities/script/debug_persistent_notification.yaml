@@ -1,24 +1,35 @@
 ---
 description: Create a persistent notification if debugging is turned on
+
 fields:
   message:
     description: The notification's message body
     example: More detail about this thing
+
   title:
     description: The notification's title
     example: Something has happened!
+
+  notification_id:
+    description: Optional ID for the persistent notification
+    example: important_thing_happened
+
 mode: parallel
+
 sequence:
   - service: system_log.write
     data:
       message: "{{ message }}"
       level: debug
       logger: script.debug_with_persistent_notifications
+
   - alias: Check if debugging is turned on
     condition: state
     entity_id: input_boolean.debug_with_persistent_notifications
     state: "on"
-  - data:
+
+  - service: persistent_notification.create
+    data:
       message: "{{ message }}"
+      notification_id: "{{ notification_id }}"
       title: "{{ title }}"
-    service: persistent_notification.create
