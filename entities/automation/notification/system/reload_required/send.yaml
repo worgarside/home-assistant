@@ -23,7 +23,7 @@ action:
         {{ states('sensor.system_reloadable_files_changed') }} files have been updated and require a soft reload:
         <ul>
         {%- for file in state_attr('sensor.system_reloadable_files_changed', 'updated_files') or [] %}
-          <li><a href="https://github.com/worgarside/home-assistant/tree/{{ states('sensor.current_git_ref') }}/{{ file.removeprefix('/config') }}">{{ file.removeprefix('/config') }}</a></li>
+          <li><a href="https://github.com/worgarside/home-assistant/tree/{{ states('sensor.current_git_ref') }}{{ file.removeprefix('/config') }}">{{ file.removeprefix('/config') }}</a></li>
         {%- endfor %}
         </ul>
       # yamllint enable rule:line-length
