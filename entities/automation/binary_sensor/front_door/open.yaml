@@ -15,27 +15,26 @@ trigger:
       milliseconds: 500
 
 condition:
-  and:
-    - alias: Don't run if all the lights are already on (i.e. only run if at least one if off)
-      or:
-        - condition: state
-          entity_id: light.hallway_1
-          state: "off"
+  alias: Don't run if all the lights are already on (i.e. only run if at least one if off)
+  or:
+    - condition: state
+      entity_id: light.hallway_1
+      state: "off"
 
-        - condition: state
-          entity_id: light.hallway_2
-          state: "off"
+    - condition: state
+      entity_id: light.hallway_2
+      state: "off"
 
-        - condition: state
-          entity_id: light.hallway_3
-          state: "off"
+    - condition: state
+      entity_id: light.hallway_3
+      state: "off"
 
 action:
   - variables:
       brightness: >-
         {%
           if (
-            states('sensor.sun_elevation') | int(default=1) < 0 or
+            states('sensor.sun_elevation') | int(1) < 0 or
             states('binary_sensor.quiet_hours') == "off"
           )
         %}
@@ -43,6 +42,7 @@ action:
         {% else %}
           255
         {% endif %}
+
       delay: 1
 
   - service: light.turn_on
