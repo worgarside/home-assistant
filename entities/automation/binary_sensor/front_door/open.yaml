@@ -15,7 +15,7 @@ trigger:
       milliseconds: 500
 
 condition:
-  alias: Don't run if all the lights are already on (i.e. only run if at least one if off)
+  alias: Don't run if all the lights are already on (i.e. only run if at least one is off)
   or:
     - condition: state
       entity_id: light.hallway_1
