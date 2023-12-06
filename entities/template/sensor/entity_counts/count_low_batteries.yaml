@@ -1,23 +1,31 @@
 ---
 name: Count Low Batteries
+
 unique_id: count_low_batteries
+
 state: "{{ this.attributes.entities | list | count }}"
+
 icon: >
   {% set ns = namespace(total=0, count=0, average=0) %}
-  {% for value in this.attributes.entities | map(attribute="state") %}
+
+  {% for value in this.attributes.entities | default([]) | map(attribute="state") %}
     {% set ns.total = ns.total + value %}
     {% set ns.count = ns.count + 1 %}
     {% set ns.average = ns.total / ns.count %}
   {% endfor %}
+
   {% if ns.average > 0 %}
     mdi:battery-{{ ns.average | round(-1) | int or 10 }}
   {% else %}
     mdi:battery
   {% endif %}
+
 unit_of_measurement: ""
+
 attributes:
   entities: >
     {% set ns = namespace(low_batteries=[]) %}
+
     {%
       for s in states.sensor
       if (
@@ -36,4 +44,5 @@ attributes:
         ]
       %}
     {% endfor %}
+
     {{ ns.low_batteries }}
