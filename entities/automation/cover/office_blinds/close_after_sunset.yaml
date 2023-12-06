@@ -3,6 +3,8 @@ alias: /cover/office-blinds/close-after-sunset
 
 id: cover_office_blinds_close_after_sunset
 
+max_exceeded: silent
+
 mode: single
 
 description: Close the office blinds either when the Sun sets past -6' or at 21:30
