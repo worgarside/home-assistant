@@ -1,6 +1,6 @@
 ---
 checkout_git_branch: >-
   bash
-  /config/resources/shell_command/gh_cli/checkout_git_branch.sh
+  /config/resources/shell_command/git/checkout_git_branch.sh
   -b {{ branch }}
   -t {{ api_token }}
