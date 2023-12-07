@@ -14,11 +14,11 @@ trigger:
 action:
   - variables:
       branches: "{{ state_attr('sensor.remote_git_branches', 'branches') | sort }}"
-      count: "{{ states('sensor.remote_git_branches') }}"
+      branch_count: "{{ states('sensor.remote_git_branches') }}"
 
   - service: script.debug_persistent_notification
     data:
-      title: "{{ branches }} Remote Git Branches"
+      title: "{{ branch_count }} Remote Git Branches"
       notification_id: remote_git_branches
       message: |
         ```
