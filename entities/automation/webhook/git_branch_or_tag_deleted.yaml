@@ -1,0 +1,26 @@
+---
+alias: /webhook/git_branch_or_tag_deleted
+
+id: webhook_git_branch_or_tag_deleted
+
+mode: queued
+
+trigger:
+  - platform: webhook
+    webhook_id: git_branch_or_tag_deleted
+    allowed_methods:
+      - POST
+    local_only: true
+
+condition:
+  - condition: template
+    value_template: >-
+      {{
+        trigger.json["repository"]["name"] == "home-assistant" and
+        trigger.json["ref_type"] == "branch"
+      }}
+
+action:
+  - service: homeassistant.update_entity
+    target:
+      entity_id: sensor.remote_git_branches
