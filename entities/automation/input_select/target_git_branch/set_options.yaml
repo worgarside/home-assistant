@@ -1,0 +1,41 @@
+---
+alias: /input-select/target-git-branch/set-options
+
+id: input_select_target_git_branch_set_options
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: sensor.remote_git_branches
+
+  - platform: homeassistant
+    event: start
+
+action:
+  - variables:
+      branches: "{{ state_attr('sensor.remote_git_branches', 'branches') | sort }}"
+      branch_count: "{{ states('sensor.remote_git_branches') }}"
+
+  - service: script.debug_persistent_notification
+    data:
+      title: "{{ branch_count }} Remote Git Branches"
+      notification_id: remote_git_branches
+      message: |
+        ```
+        {{ branches | join('\n') }}
+        ```
+
+  - service: input_select.set_options
+    target:
+      entity_id: input_select.target_git_branch
+    data:
+      options: "{{ branches }}"
+
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.target_git_branch
+    data:
+      option: "{{ states('sensor.current_git_branch') }}"
