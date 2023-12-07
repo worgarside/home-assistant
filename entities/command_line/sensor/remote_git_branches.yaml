@@ -1,0 +1,23 @@
+---
+sensor:
+  command: >-
+    cd /config &&
+    git ls-remote --heads https://github.com/worgarside/home-assistant |
+    awk '{print $2}' |
+    sed 's/refs\/heads\///' |
+    jq -R -s -c '{"branches": (split("\n")[:-1])}'
+
+  name: Remote Git Branches
+
+  scan_interval: 1800
+
+  unique_id: remote_git_branches
+
+  value_template: "{{ value_json.branches | length }}"
+
+  icon: "mdi:source-branch{{ '-plus' if value_json.branches | length > 1 else '' }}"
+
+  unit_of_measurement: Branches
+
+  json_attributes:
+    - branches

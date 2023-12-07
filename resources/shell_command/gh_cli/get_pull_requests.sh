@@ -46,8 +46,8 @@ PULL_REQUESTS=$(
             map({(.key|tostring): .value}) |
             add |
             with_entries(select(.key | test("^[0-9]$")))
-        '
-    )
+    '
+)
 
 if [ -z "$PULL_REQUESTS" ]
 then
