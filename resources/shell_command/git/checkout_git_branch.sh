@@ -1,17 +1,19 @@
 #!/bin/bash
 
+BRANCH="main"
+TOKEN=""
+ENTITY_ID=""
+
 while getopts ":b:e:t:" opt; do
     case ${opt} in
         b)
-            if [[ -z "${OPTARG}" ]]; then
-                BRANCH="main"
-            else
+            if [[ -n "${OPTARG}" ]]; then
                 BRANCH="${OPTARG}"
             fi
             ;;
         e) ENTITY_ID="${OPTARG}" ;;
         t) TOKEN="${OPTARG}" ;;
-        *) echo "shell_command.checkout_git_branch INVALID USAGE :(" >> /config/home-assistant.log
+        *) echo "shell_command.checkout_git_branch INVALID USAGE: -${opt} ${OPTARG}" >> /config/home-assistant.log
             exit 1 ;;
     esac
 done
@@ -19,6 +21,8 @@ done
 {
     exec > >(trap "" INT TERM; sed "s/^/$(date +'%Y-%m-%dT%H:%M:%S')\t[INFO]\t/")
     exec 2> >(trap "" INT TERM; sed "s/^/$(date +'%Y-%m-%dT%H:%M:%S')\t[ERROR]\t/" >&2)
+
+    echo "shell_command.checkout_git_branch STARTED with branch: ${BRANCH} and entity ID(s): ${ENTITY_ID}"
 
     cd /config || exit 1
 
@@ -28,9 +32,13 @@ done
     echo git stash -m "shell_command.checkout_git_branch|${BRANCH}|$(date +%s)"
     git stash -m "shell_command.checkout_git_branch|${BRANCH}|$(date +%s)"
 
+    echo git fetch --all --prune
     git fetch --all --prune
 
+    echo git checkout "${BRANCH}"
     git checkout "${BRANCH}"
+
+    echo git pull
     git pull
 
     git status
