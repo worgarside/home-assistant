@@ -8,8 +8,11 @@ mode: single
 max_exceeded: silent
 
 trigger:
-  platform: state
-  entity_id: sensor.remote_git_branches
+  - platform: state
+    entity_id: sensor.remote_git_branches
+
+  - platform: homeassistant
+    event: start
 
 action:
   - variables:
