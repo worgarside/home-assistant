@@ -19,5 +19,6 @@ action:
         ```
         {{ trigger | tojson(indent=2) }}
         ```
+      notification_id: homeassistant_restart_mobile_notification_actioned
 
   - service: homeassistant.restart

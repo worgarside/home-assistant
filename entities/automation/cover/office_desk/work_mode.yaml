@@ -1,24 +1,32 @@
 ---
 alias: /cover/office-desk/work-mode
+
 id: cover_office_desk_work_mode
+
 mode: single
+
 trigger:
   - platform: time_pattern
     minutes: 0
+
   - platform: time_pattern
     minutes: 30
+
 condition:
   - alias: "If standing target has not been met"
     condition: numeric_state
     entity_id: sensor.office_desk_standing_mode_percentage
     below: input_number.office_desk_standing_mode_percentage_target
+
 action:
   - alias: "Send debug notification"
     service: script.debug_persistent_notification
     data:
       title: "Work Mode: Standing Target Not Met \U0001F621"
-      message: >
+      message: >-
         {{ states('sensor.office_desk_standing_time_remaining') }} minutes remaining...
+      notification_id: cover_office_desk_work_mode
+
   - alias: "Set desk to standing mode"
     service: script.office_desk_standing_mode
     data:

@@ -24,6 +24,7 @@ action:
     data:
       title: Office Blinds
       message: Failsafe for `stop` state triggered
+      notification_id: cover_office_blinds_register_stop_state
 
   - service: cover.stop_cover
     target:
