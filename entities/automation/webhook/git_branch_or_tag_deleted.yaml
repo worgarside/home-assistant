@@ -10,7 +10,7 @@ trigger:
     webhook_id: git_branch_or_tag_deleted
     allowed_methods:
       - POST
-    local_only: true
+    local_only: false
 
 condition:
   - condition: template
