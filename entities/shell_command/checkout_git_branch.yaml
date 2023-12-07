@@ -4,3 +4,4 @@ checkout_git_branch: >-
   /config/resources/shell_command/git/checkout_git_branch.sh
   -b {{ branch }}
   -t {{ api_token }}
+  -e {{ entity_ids }}

@@ -1,11 +1,16 @@
 #!/bin/bash
 
-while getopts ":b:t:" opt; do
+while getopts ":b:e:t:" opt; do
   case ${opt} in
-    b) BRANCH="${OPTARG}"
-    ;;
-    t) TOKEN="${OPTARG}"
-    ;;
+    b)
+      if [[ -z "${OPTARG}" ]]; then
+        BRANCH="main"
+      else
+        BRANCH="${OPTARG}"
+      fi
+      ;;
+    e) ENTITY_ID="${OPTARG}" ;;
+    t) TOKEN="${OPTARG}" ;;
     *) echo "shell_command.checkout_git_branch INVALID USAGE :(" >> /config/home-assistant.log
        exit 1 ;;
   esac
@@ -20,8 +25,8 @@ done
     echo git add .
     git add .
 
-    echo git stash -m "shell_command.checkout_git_branch|$(date +%s)"
-    git stash -m "shell_command.checkout_git_branch|$(date +%s)"
+    echo git stash -m "shell_command.checkout_git_branch|${BRANCH}|$(date +%s)"
+    git stash -m "shell_command.checkout_git_branch|${BRANCH}|$(date +%s)"
 
     git fetch --all --prune
 
@@ -30,10 +35,22 @@ done
 
     git status
 
-    curl -sSL -X POST \
-      -H "Authorization: Bearer ${TOKEN}" \
-      -H "Content-Type: application/json" \
-      -d '{"entity_id": "sensor.current_git_branch"}' \
-      http://homeassistant.local:8123/api/services/homeassistant/update_entity
+  if [[ -n ${TOKEN} ]] && [[ -n ${ENTITY_ID} ]]; then
+    IFS=',' read -ra ENTITY_IDS <<< "${ENTITY_ID}"
+
+    for id in "${ENTITY_IDS[@]}"; do
+      echo "Updating Home Assistant entity: ${id}"
+
+      curl -sSL -X POST \
+        -H "Authorization: Bearer ${TOKEN}" \
+        -H "Content-Type: application/json" \
+        -d '{"entity_id": "'"${id}"'"}' \
+        http://homeassistant.local:8123/api/services/homeassistant/update_entity
+    done
+
+  else
+    echo "Token or entity ID missing, skipping Home Assistant update."
+  fi
+
 
 }>> /config/shell-command.log 2>&1
