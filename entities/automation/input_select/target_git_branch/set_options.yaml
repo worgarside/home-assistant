@@ -3,13 +3,16 @@ alias: /input-select/target-git-branch/set-options
 
 id: input_select_target_git_branch_set_options
 
-mode: single
+mode: restart
 
 max_exceeded: silent
 
 trigger:
   - platform: state
-    entity_id: sensor.remote_git_branches
+    entity_id:
+      - sensor.current_git_branch
+      - sensor.current_git_ref
+      - sensor.remote_git_branches
 
   - platform: homeassistant
     event: start
