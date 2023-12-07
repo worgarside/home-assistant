@@ -1,6 +1,8 @@
 ---
 description: Update the MtrxPi display from the chosen media player's track
+
 mode: restart
+
 sequence:
   - alias: Set Variables
     variables:
@@ -12,6 +14,7 @@ sequence:
           if url and url.startswith('/api/')
           else ""
         }}
+
   - service: script.debug_persistent_notification
     data:
       title: RGB LED Matrix Display Update
@@ -28,6 +31,7 @@ sequence:
         Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
         ```
        # yamllint enable rule:line-length
+
   - service: mqtt.publish
     data:
       topic: /homeassistant/led_matrix/display
