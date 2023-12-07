@@ -21,7 +21,8 @@ condition:
 
 action:
   - choose:
-      - conditions: >-
+      - alias: Get new release for newly published tag
+        conditions: >-
           {{
             trigger.json["ref_type"] == "tag" and
             trigger.json["ref"] is match("^\d+\.\d+\.\d+$")
@@ -34,18 +35,21 @@ action:
               message: |
                 ## Webhook Payload
                 ```json
-                {{ trigger.json }}
+                {{ trigger.json | tojson(indent=2) }}
                 ```
 
           - service: shell_command.checkout_git_branch
             data:
               api_token: !secret api_bearer_token
               branch: main
-              entity_ids: sensor.current_git_branch,sensor.current_git_ref
+              entity_ids: sensor.current_git_branch,sensor.current_git_ref,sensor.remote_git_branches
 
-      - conditions: "{{ trigger.json['ref_type'] == 'branch' }}"
+      - alias: Update entities to record new branch
+        conditions: "{{ trigger.json['ref_type'] == 'branch' }}"
 
         sequence:
           - service: homeassistant.update_entity
             target:
               entity_id: sensor.remote_git_branches
+
+  - service: script.target_git_branch_set_options
