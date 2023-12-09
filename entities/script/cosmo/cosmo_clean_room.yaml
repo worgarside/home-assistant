@@ -1,0 +1,101 @@
+---
+description: >-
+  (Try to) get Cosmo to clean a room: if the route is clear, then vacuum the room; otherwise, do
+  nothing. Any other conditions should be evaluated in the calling automation/script.
+
+  Returns true if the room clean started, false otherwise.
+
+mode: parallel
+
+fields:
+  room:
+    description: The name of the room to clean
+    required: true
+
+sequence:
+  - alias: Get doors on route to room
+    variables:
+      doors: >-
+        {% set lookup = {
+            ("office", "lounge"): ["office"],
+            ("office", "kitchen"): ["office"],
+            ("office", "bathroom"): ["office", "bathroom"],
+            ("office", "hallway"): ["office"],
+            ("office", "en_suite"): ["office", "bedroom", "en_suite"],
+            ("office", "bedroom"): ["office", "bedroom"],
+            ("lounge", "kitchen"): [],
+            ("lounge", "bathroom"): ["kitchen", "bathroom"],
+            ("lounge", "hallway"): ["kitchen"],
+            ("lounge", "en_suite"): ["bedroom", "en_suite"],
+            ("lounge", "bedroom"): ["bedroom"],
+            ("kitchen", "bathroom"): ["kitchen", "bathroom"],
+            ("kitchen", "hallway"): ["kitchen"],
+            ("kitchen", "en_suite"): ["kitchen", "bedroom", "en_suite"],
+            ("kitchen", "bedroom"): ["kitchen", "bedroom"],
+            ("bathroom", "hallway"): ["bathroom"],
+            ("bathroom", "en_suite"): ["bathroom", "bedroom", "en_suite"],
+            ("bathroom", "bedroom"): ["bathroom", "bedroom"],
+            ("hallway", "en_suite"): ["bedroom", "en_suite" ],
+            ("hallway", "bedroom"): ["bedroom"],
+            ("en_suite", "bedroom"): ["en_suite"],
+          }
+        %}
+
+        {% set lookup_key = (
+            states("sensor.cosmo_current_room").lower(),
+            room.lower()
+          )
+        %}
+
+        {{
+          lookup.get(
+            lookup_key,
+            lookup.get(
+              lookup_key[::-1],
+              []
+            )
+          )
+        }}
+
+  - alias: Check if doors are open
+    variables:
+      doors_open: >-
+        {% set ns = namespace(all_open=true, valid_room_count=0) %}
+
+        {% for room in doors %}
+          {% set room_state = states('binary_sensor.' ~ room ~ '_door') %}
+
+          {% if room_state in ['unknown', 'unavailable'] %}
+            {{ continue }}
+          {% endif %}
+
+          {% set ns.valid_room_count = ns.valid_room_count + 1 %}
+          {% set ns.all_open = ns.all_open and room_state == 'on' %}
+        {% endfor %}
+
+        {{ ns.all_open }}
+
+  - alias: Get room ID
+    service: script.cosmo_get_room_id_or_name
+    data:
+      lookup_value: "{{ room_name }}"
+    response_variable: room_id
+
+  - if: >-
+      {{ doors_open }}
+    then:
+      - service: dreame_vacuum.vacuum_clean_segment
+        target:
+          entity_id: vacuum.cosmo
+        data:
+          segments:
+            - "{{ room_id }}"
+          repeats: 3
+          suction_level: 2
+
+      - stop: Clean session started
+        response_variable: "1"
+
+    else:
+      - stop: Clean session not started
+        response_variable: "0"
