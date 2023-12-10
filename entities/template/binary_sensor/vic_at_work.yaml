@@ -3,15 +3,45 @@ name: Vic at Work
 
 unique_id: vic_at_work
 
-icon: mdi:monitor
+icon: mdi:badge-account
 
 # Larger delay so automations don't start at lunch or _as soon_ as work is over
 delay_off: 01:00:00
 
 delay_on: 00:02:00
 
-state: >
-  {{
-    states('binary_sensor.workday') == 'on' and
-    states('sensor.vic_s_monitor_current_consumption') | float(default=0) > 2
-  }}
+# Start with the return value as true: it can't be guaranteed that Vic is at work, so it has to
+# be assumed that she is; if this disproven, the return value is set to false
+
+state: >-
+  {%
+    set ns = namespace(
+      at_work=is_state('binary_sensor.workday', 'on'),
+    )
+  %}
+
+  {% if ns.at_work and not is_state('person.vic', 'home') %}
+    {% set ns.at_work = false %}
+  {% endif %}
+
+  {% if ns.at_work and is_state('calendar.vic_work', 'on') %}
+    {% set keywords = ['holiday', 'annual leave', 'a/l'] %}
+    {% set event_name = state_attr('calendar.vic_work', 'message') | default('') | lower %}
+
+    {% for keyword in keywords if keyword in event_name %}
+      {% set ns.at_work = false %}
+      {% break %}
+    {% endfor %}
+  {% endif %}
+
+  {%
+    if ns.at_work and (
+      now() <= today_at("09:00") or
+      today_at("17:00") < now() or
+      states('sensor.vic_s_monitor_current_consumption') | float(999) < 2
+    )
+  %}
+    {% set ns.at_work = false %}
+  {% endif %}
+
+  {{ ns.at_work }}
