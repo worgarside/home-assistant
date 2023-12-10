@@ -3,17 +3,32 @@ description: >-
   (Try to) get Cosmo to clean a room: if the route is clear, then vacuum the room; otherwise, do
   nothing. Any other conditions should be evaluated in the calling automation/script.
 
-  Returns true if the room clean started, false otherwise.
+  Returns 1 if the room clean started, 0 otherwise.
 
 mode: parallel
 
 fields:
-  room:
+  room_name:
     description: The name of the room to clean
     required: true
 
+  extend_wait_time:
+    description: Whether to wait for doors to be open instead of exiting
+    required: false
+
+  wait_timeout:
+    description: How long to wait for doors to be open (defaults to 60)
+    required: false
+
 sequence:
+  - alias: Get room ID
+    service: script.cosmo_get_room_id_or_name
+    data:
+      lookup_value: "{{ room_name }}"
+    response_variable: room_id
+
   - alias: Get doors on route to room
+
     variables:
       doors: >-
         {% set lookup = {
@@ -58,31 +73,41 @@ sequence:
         }}
 
   - alias: Check if doors are open
-    variables:
-      doors_open: >-
-        {% set ns = namespace(all_open=true, valid_room_count=0) %}
 
-        {% for room in doors %}
-          {% set room_state = states('binary_sensor.' ~ room ~ '_door') %}
+    continue_on_timeout: true
 
-          {% if room_state in ['unknown', 'unavailable'] %}
-            {{ continue }}
-          {% endif %}
+    wait_for_trigger:
+      - platform: template
+        for:
+          minutes: 10
+        value_template: >-
+          {% set ns = namespace(all_open=true, valid_room_count=0) %}
 
-          {% set ns.valid_room_count = ns.valid_room_count + 1 %}
-          {% set ns.all_open = ns.all_open and room_state == 'on' %}
-        {% endfor %}
+          {% for room in doors %}
+            {% set room_state = states('binary_sensor.' ~ room ~ '_door') %}
 
-        {{ ns.all_open }}
+            {% if room_state in ['unknown', 'unavailable'] %}
+              {{ continue }}
+            {% endif %}
 
-  - alias: Get room ID
-    service: script.cosmo_get_room_id_or_name
-    data:
-      lookup_value: "{{ room_name }}"
-    response_variable: room_id
+            {% set ns.valid_room_count = ns.valid_room_count + 1 %}
+            {% set ns.all_open = ns.all_open and room_state == 'on' %}
+          {% endfor %}
 
-  - if: >-
-      {{ doors_open }}
+          {{ ns.all_open }}
+
+    timeout:
+      minutes: >-
+        {% if extend_wait_time | default(true) %}
+          {{ max(wait_timeout | int(60), 11) }}
+        {% else %}
+          11
+        {% endif %}
+
+  - alias: Validate doors are open
+
+    if: "{{ wait.completed }}"
+
     then:
       - service: dreame_vacuum.vacuum_clean_segment
         target:
