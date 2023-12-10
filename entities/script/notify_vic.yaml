@@ -1,0 +1,70 @@
+---
+description: Send a notification to Vic's devices
+
+fields:
+  message:
+    description: The message body of the notification
+    example: A thing has happened, thought you ought to know
+
+  title:
+    description: The title of the notification
+    example: Something Important!
+
+  notification_id:
+    description: Optional ID for the persistent notification
+    example: important_thing_happened
+
+  actions:
+    description: Optional actions for the phone notification
+    example: '[{"action": "URI", "title": "View More", "uri": "https://example.com"}]'
+
+  mobile_notification_icon:
+    description: Optional icon for the phone notification
+    example: mdi:alert
+    default: ""
+
+mode: queued
+
+max: 50
+
+variables:
+  actions: "{{ actions | default([]) }}"
+  notification_id: >-
+    {{ notification_id | default('notify_vic_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}
+
+sequence:
+  - alias: iPhone
+    service: notify.mobile_app_victorias_iphone
+    data:
+      message: "{{ message }}"
+      title: "{{ title }}"
+      data:
+        actions: "{{ actions }}"
+        tag: "{{ notification_id }}"
+        notification_icon: "{{ mobile_notification_icon }}"
+
+  - alias: iPad
+    service: notify.mobile_app_ipad
+    data:
+      message: "{{ message }}"
+      title: "{{ title }}"
+      data:
+        actions: "{{ actions }}"
+        tag: "{{ notification_id }}"
+        notification_icon: "{{ mobile_notification_icon }}"
+
+  - alias: MacBook Air
+    if:
+      - alias: MBA is active
+        condition: state
+        entity_id: binary_sensor.victorias_macbook_air_active
+        state: "on"
+
+    then:
+      - service: notify.mobile_app_victorias_macbook_air
+        data:
+          message: "{{ message }}"
+          title: "{{ title }}"
+          data:
+            actions: "{{ actions }}"
+            tag: "{{ notification_id }}"
