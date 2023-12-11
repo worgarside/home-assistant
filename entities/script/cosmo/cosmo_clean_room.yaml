@@ -72,14 +72,14 @@ sequence:
           )
         }}
 
-  - alias: Check if doors are open
+  - alias: Check if doors are open for 5 minutes
 
     continue_on_timeout: true
 
     wait_for_trigger:
       - platform: template
         for:
-          minutes: 10
+          minutes: 5
         value_template: >-
           {% set ns = namespace(all_open=true, valid_room_count=0) %}
 
@@ -99,9 +99,9 @@ sequence:
     timeout:
       minutes: >-
         {% if extend_wait_time | default(true) %}
-          {{ max(wait_timeout | int(60), 11) }}
+          {{ max(wait_timeout | int(60), 6) }}
         {% else %}
-          11
+          6
         {% endif %}
 
   - alias: Validate doors are open

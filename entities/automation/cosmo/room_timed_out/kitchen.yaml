@@ -1,0 +1,25 @@
+---
+alias: /cosmo/room-timed-out/kitchen
+
+description: The kitchen has not been cleaned for N hours
+
+id: cosmo_room_timed_out_kitchen
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+    # No need for an input_number trigger because this will check every minute anyway
+  platform: template
+  value_template: >-
+    {{
+      (
+        now() | as_timestamp - states('input_datetime.cosmo_last_kitchen_clean') | as_timestamp
+      ) > states('input_number.cosmo_room_timeout_kitchen') | int(168)
+    }}
+
+action:
+  - service: script.cosmo_send_clean_requests
+    data:
+      room: kitchen
