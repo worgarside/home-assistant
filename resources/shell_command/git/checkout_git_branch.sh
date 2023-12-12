@@ -1,8 +1,6 @@
 #!/bin/bash
 
 BRANCH="main"
-TOKEN=""
-ENTITY_ID=""
 
 while getopts ":b:e:t:" opt; do
     case ${opt} in
@@ -11,8 +9,10 @@ while getopts ":b:e:t:" opt; do
                 BRANCH="${OPTARG}"
             fi
             ;;
-        e) ENTITY_ID="${OPTARG}" ;;
-        t) TOKEN="${OPTARG}" ;;
+        t)
+            [[ "${OPTARG}" != "null" ]] && TOKEN="${OPTARG}" || TOKEN="" ;;
+        e)
+            [[ "${OPTARG}" != "null" ]] && ENTITY_ID="${OPTARG}" || ENTITY_ID="" ;;
         *) echo "shell_command.checkout_git_branch INVALID USAGE: -${opt} ${OPTARG}" >> /config/home-assistant.log
             exit 1 ;;
     esac
