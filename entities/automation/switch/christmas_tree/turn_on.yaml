@@ -1,0 +1,22 @@
+---
+alias: /switch/christmas_tree/turn_on
+
+id: switch_christmas_tree_turn_on
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: zone.home
+    from: "0"
+
+condition:
+  - alias: Check switch exists
+    condition: template
+    value_template: >-
+      {{ states("switch.christmas_tree")  not in ["unknown", "unavailable", "none"] }}
+
+action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.christmas_tree
