@@ -1,0 +1,15 @@
+---
+alias: /switch/christmas_tree/turn_on
+
+id: switch_christmas_tree_turn_on
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: zone.home
+    from: "0"
+
+action:
+  - service: switch.turn_on
+    entity_id: switch.christmas_tree
