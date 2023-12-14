@@ -1,0 +1,17 @@
+---
+alias: /input-datetime/home-assistant-start-time/set-datetime
+
+id: input_datetime_home_assistant_start_time_set_datetime
+
+mode: single
+
+trigger:
+  - platform: homeassistant
+    event: start
+
+action:
+  - service: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.home_assistant_start_time
+    data:
+      datetime: "{{ now().replace(microsecond=0).isoformat() }}"
