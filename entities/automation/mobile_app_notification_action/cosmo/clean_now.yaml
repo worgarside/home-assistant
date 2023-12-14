@@ -24,7 +24,18 @@ condition:
     }}
 
 action:
-  - service: script.cosmo_clean_room
-    data:
-      room_name: "{{ trigger.event.data.action.split(':')[2] }}"
-      extend_wait_time: true
+  - variables:
+      room: "{{ trigger.event.data.action.split(':')[2] }}"
+
+  - if:
+      - "{{ room == 'all' }}"
+
+    then:
+      - service: vacuum.start
+        target:
+          entity_id: vacuum.cosmo
+
+    else:
+      - service: script.cosmo_clean_room
+        data:
+          room_name: "{{ room }}"

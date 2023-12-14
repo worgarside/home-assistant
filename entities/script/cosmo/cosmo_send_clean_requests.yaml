@@ -37,50 +37,50 @@ sequence:
       for_each:
         - vic
         - will
-    sequence:
-      - if:
-          or:
-            - alias: Nobody home
-              condition: state
-              entity_id: zone.home
-              state: 0
+      sequence:
+        - if:
+            or:
+              - alias: Nobody home
+                condition: state
+                entity_id: zone.home
+                state: 0
 
-            - alias: "{{ repeat.item }} is at home"
-              condition: state
-              entity_id: person.{{ repeat.item }}
-              state: home
+              - alias: "{{ repeat.item }} is at home"
+                condition: state
+                entity_id: person.{{ repeat.item }}
+                state: home
 
-        then:
-          - service: script.notify_{{ repeat.item }}
-            data:
-              title: Cosmo wants to clean the lounge!
+          then:
+            - service: script.notify_{{ repeat.item }}
+              data:
+                title: Cosmo wants to clean the lounge!
 
-              message: >-
-                I haven't cleaned the lounge for
+                message: >-
+                  I haven't cleaned the lounge for
 
-                {% if days > 0 -%}
-                  {{ days ~ ' day' ~ ('s' if days > 1 else '') }}
-                  {% if hours > 0 %}
-                    ,
+                  {% if days > 0 -%}
+                    {{ days ~ ' day' ~ ('s' if days > 1 else '') }}
+                    {% if hours > 0 %}
+                      ,
+                    {% endif %}
                   {% endif %}
-                {% endif %}
 
-                {% if hours > 0 %}
-                  {{ hours ~ ' hour' ~ ('s' if hours > 1 else '') }}
-                {% endif %}
+                  {% if hours > 0 %}
+                    {{ hours ~ ' hour' ~ ('s' if hours > 1 else '') }}
+                  {% endif %}
 
-                . Please can I clean it?
+                  . Please can I clean it?
 
-              notification_id: cosmo_room_timed_out_lounge
+                notification_id: cosmo_room_timed_out_lounge
 
-              mobile_notification_icon: mdi:robot-vacuum
+                mobile_notification_icon: mdi:robot-vacuum
 
-              actions:
-                - action: COSMO:CLEAN_NOW:LOUNGE
-                  title: Clean now
+                actions:
+                  - action: COSMO:CLEAN_NOW:LOUNGE
+                    title: Clean now
 
-                - action: COSMO:CLEAN_LATER:LOUNGE
-                  title: Remind me later
+                  - action: COSMO:CLEAN_LATER:LOUNGE
+                    title: Remind me later
 
-                - action: COSMO:IGNORE:LOUNGE
-                  title: Not today
+                  - action: COSMO:IGNORE:LOUNGE
+                    title: Not today

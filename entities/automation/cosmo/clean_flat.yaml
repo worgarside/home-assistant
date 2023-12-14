@@ -1,0 +1,33 @@
+---
+
+alias: /cosmo/clean-flat
+
+id: cosmo_clean_flat
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: zone.home
+    to: "0"
+
+action:
+  - alias: Send cleaning request
+    repeat:
+      for_each:
+        - vic
+        - will
+      sequence:
+        - service: script.notify_{{ repeat.item }}
+          data:
+            title: Cosmo wants to clean!
+
+            message: I'm home alone, can I clean?
+
+            notification_id: cosmo_room_timed_out_all
+
+            mobile_notification_icon: mdi:robot-vacuum
+
+            actions:
+              - action: COSMO:CLEAN_NOW:ALL
+                title: Clean now

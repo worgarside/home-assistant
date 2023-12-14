@@ -12,13 +12,10 @@ fields:
     description: The name of the room to clean
     required: true
 
-  extend_wait_time:
-    description: Whether to wait for doors to be open instead of exiting
+  doors_open_timeout:
+    description: How long to wait for doors to be open (defaults to 60 minutes)
     required: false
-
-  wait_timeout:
-    description: How long to wait for doors to be open (defaults to 60)
-    required: false
+    default: 60
 
 sequence:
   - alias: Get room ID
