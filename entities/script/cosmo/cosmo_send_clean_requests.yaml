@@ -43,7 +43,7 @@ sequence:
               - alias: Nobody home
                 condition: state
                 entity_id: zone.home
-                state: 0
+                state: "0"
 
               - alias: "{{ repeat.item }} is at home"
                 condition: state
