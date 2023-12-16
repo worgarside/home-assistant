@@ -1,0 +1,35 @@
+---
+alias: /input-select/target-git-branch/option-selected
+
+id: input_select_target_git_branch_option_selected
+
+mode: queued
+
+trigger:
+  platform: state
+  entity_id: input_select.target_git_branch
+  not_from:
+    - unavailable
+    - unknown
+  not_to:
+    - unavailable
+    - unknown
+
+condition:
+  and:
+    - alias: Validate new branch selected
+      condition: template
+      value_template: "{{ trigger.to_state.state != states('sensor.current_git_branch') }}"
+
+action:
+  - service: script.target_git_branch_set_options
+    response_variable: updated
+
+  - if: "{{ updated is false }}"
+
+    then:
+      - service: shell_command.checkout_git_branch
+        data:
+          branch: "{{ trigger.to_state.state }}"
+          api_token: !secret api_bearer_token
+          entity_ids: sensor.current_git_branch,sensor.current_git_ref,sensor.remote_git_branches

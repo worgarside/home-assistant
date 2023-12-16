@@ -1,0 +1,92 @@
+---
+description: Set the options of an input_select to the current git branches
+
+mode: restart
+
+fields:
+  set_option_to_current_git_branch:
+    description: Set the option of the input_select to the current git branch
+    required: false
+    default: true
+
+  update_remote_branches:
+    description: Update the remote branches sensor
+    required: false
+    default: true
+
+sequence:
+  - alias: Update `sensor.remote_git_branches`
+
+    if: "{{ update_remote_branches }}"
+
+    then:
+      - service: homeassistant.update_entity
+        target:
+          entity_id: sensor.remote_git_branches
+
+  - alias: Set variables
+    variables:
+      branches: "{{ state_attr('sensor.remote_git_branches', 'branches') }}"
+      branch_count: "{{ branches | length }}"
+      current_options: "{{ state_attr('input_select.target_git_branch', 'options') }}"
+
+  - alias: Check if options are already correct
+
+    if: >-
+      {{
+        branches not in (None, "unavailable", "unknown") and
+        current_options not in (None, "unavailable", "unknown") and
+        branches | sort == current_options | sort
+      }}
+
+    then:
+      - service: script.turn_on
+        target:
+          entity_id: script.debug_persistent_notification
+        data:
+          title: "Remote Git Branches Already Set"
+          notification_id: remote_git_branches
+          message: |
+            `{{ now().strftime('%Y-%m-%d %H:%M:%S') }}`
+            ```
+            {{ state_attr('sensor.remote_git_branches', 'branches') | join('\n') }}
+            ```
+
+      - stop: No update needed
+        response_variable: false
+
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      title: "{{ branch_count }} Remote Git Branches"
+      notification_id: remote_git_branches
+      message: |
+        ```
+        {{ branches | join('\n') }}
+        ```
+
+  - alias: Set input_select options to remote git branches
+    service: input_select.set_options
+    target:
+      entity_id: input_select.target_git_branch
+    data:
+      options: "{{ branches }}"
+
+  - alias: Set input_select to current git branch
+
+    if: >-
+      {{
+        set_option_to_current_git_branch and
+        states('sensor.current_git_branch') != states('input_select.target_git_branch')
+      }}
+
+    then:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.target_git_branch
+        data:
+          option: "{{ states('sensor.current_git_branch') }}"
+
+  - stop: Updated
+    response_variable: true
