@@ -53,7 +53,7 @@ sequence:
             ```
 
       - stop: No update needed
-        response_variable: false
+        response_variable: "false"
 
   - service: script.turn_on
     target:
@@ -89,4 +89,4 @@ sequence:
           option: "{{ states('sensor.current_git_branch') }}"
 
   - stop: Updated
-    response_variable: true
+    response_variable: "true"
