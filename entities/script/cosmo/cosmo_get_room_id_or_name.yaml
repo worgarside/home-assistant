@@ -8,35 +8,38 @@ fields:
     description: The value to look up
     required: true
 
+variables:
+  result: >-
+    {% set lookup = states('sensor.cosmo_room_lookup') | from_json %}
+    {% set key = lookup_value | string | lower | regex_replace("[^A-Za-z0-9]", "") %}
+
+    {% if key in lookup %}
+      {{ lookup[key] }}
+    {% else %}
+      ERROR: {{ key | default("null") }} not found in lookup: {{ lookup | tojson(indent=2) }}
+    {% endif %}
+
 sequence:
-  - variables:
-      return_value: >-
-        {% set lookup = states('sensor.cosmo_room_lookup') | from_json %}
-        {% set key = lookup_value | string | lower | regex_replace("[^A-Za-z0-9]", "") %}
-
-        {% if key in lookup %}
-          {{ lookup[key] }}
-        {% else %}
-          ERROR: {{ key }} not found in lookup: {{ lookup | tojson(indent=2) }}
-        {% endif %}
-
   - if: >-
-      {{ (return_value | string).startswith("ERROR") }}
+      {{ (result | string).startswith("ERROR") }}
 
     then:
       - service: script.debug_persistent_notification
         data:
           title: Cosmo Room Lookup Error
-          message: "{{ return_value }}"
+          message: "{{ result }}"
 
       - stop: Cosmo Room Lookup Error
         error: true
 
-    else:
-      - service: script.debug_persistent_notification
-        data:
-          title: Cosmo Room Lookup Success
-          message: "{{ return_value }}"
+  - variables:
+      response:
+        value: "{{ result }}"
 
-      - stop: Cosmo Room Lookup Success
-        response_variable: "{{ return_value }}"
+  - service: script.debug_persistent_notification
+    data:
+      title: Cosmo Room Lookup Success
+      message: "{{ response }}"
+
+  - stop: Cosmo Room Lookup Success
+    response_variable: response
