@@ -1,0 +1,30 @@
+---
+description: Wraps a script to log the response variable(s)
+
+mode: parallel
+
+fields:
+  script_name:
+    description: Name of the script to run
+    required: true
+
+  script_args:
+    description: Arguments to pass to the script (object)
+    required: false
+
+sequence:
+  - alias: Run script
+    service: script.{{ script_name }}
+    data: "{{ script_args }}"
+    response_variable: script_response
+
+  - service: persistent_notification.create
+    data:
+      title: "Script `{{ script_name }}` response"
+      message: |
+        ```
+        {{ script_response }}
+        ```
+
+  - stop: End
+    response_variable: script_response
