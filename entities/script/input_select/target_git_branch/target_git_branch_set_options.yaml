@@ -44,13 +44,14 @@ sequence:
         target:
           entity_id: script.debug_persistent_notification
         data:
-          title: "Remote Git Branches Already Set"
-          notification_id: remote_git_branches
-          message: |
-            `{{ now().strftime('%Y-%m-%d %H:%M:%S') }}`
-            ```
-            {{ state_attr('sensor.remote_git_branches', 'branches') | join('\n') }}
-            ```
+          variables:
+            title: "Remote Git Branches Already Set"
+            notification_id: remote_git_branches
+            message: |
+              `{{ now().strftime('%Y-%m-%d %H:%M:%S') }}`
+              ```
+              {{ state_attr('sensor.remote_git_branches', 'branches') | join('\n') }}
+              ```
 
       - stop: No update needed
         response_variable: "false"
@@ -59,12 +60,13 @@ sequence:
     target:
       entity_id: script.debug_persistent_notification
     data:
-      title: "{{ branch_count }} Remote Git Branches"
-      notification_id: remote_git_branches
-      message: |
-        ```
-        {{ branches | join('\n') }}
-        ```
+      variables:
+        title: "{{ branch_count }} Remote Git Branches"
+        notification_id: remote_git_branches
+        message: |
+          ```
+          {{ branches | join('\n') }}
+          ```
 
   - alias: Set input_select options to remote git branches
     service: input_select.set_options
