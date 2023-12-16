@@ -25,7 +25,7 @@ action:
   - service: script.target_git_branch_set_options
     response_variable: updated
 
-  - if: "{{ updated.value is true }}"
+  - if: "{{ updated.value is false }}"
 
     then:
       - service: shell_command.checkout_git_branch
