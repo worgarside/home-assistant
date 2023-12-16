@@ -1,5 +1,5 @@
 ---
-description: Set the options of an input_select to the current git branches
+description: Set the options of input_select.target_git_branch to the current git branches
 
 mode: restart
 
@@ -30,6 +30,11 @@ sequence:
       branch_count: "{{ branches | length }}"
       current_options: "{{ state_attr('input_select.target_git_branch', 'options') }}"
 
+      true_response:
+        value: true
+      false_response:
+        value: false
+
   - alias: Check if options are already correct
 
     if: >-
@@ -54,7 +59,7 @@ sequence:
               ```
 
       - stop: No update needed
-        response_variable: "false"
+        response_variable: false_response
 
   - service: script.turn_on
     target:
@@ -91,4 +96,4 @@ sequence:
           option: "{{ states('sensor.current_git_branch') }}"
 
   - stop: Updated
-    response_variable: "true"
+    response_variable: true_response
