@@ -2,6 +2,11 @@
 description: Send a notification to Will's phone and the HA UI
 
 fields:
+  clear_notification:
+    description: Clear the persistent notification
+    example: "true"
+    default: false
+
   message:
     description: The message body of the notification
     example: A thing has happened, thought you ought to know
@@ -29,16 +34,42 @@ max: 50
 
 variables:
   actions: "{{ actions | default([]) }}"
+  clear_notification: >-
+    {{
+      message == 'clear_notification' or
+      clear_notification in ('true', 'True', 'TRUE', '1', 1, True, true)
+    }}
   notification_id: >-
-    {{ notification_id | default('notify_will_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}
+    {% if clear_notification %}
+      {{ notification_id }}
+    {% else %}
+      {{ notification_id | default('notify_will_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}
+    {% endif %}
+  message: >-
+    {% if clear_notification %}
+      clear_notification
+    {% else %}
+      {{ message }}
+    {% endif %}
 
 sequence:
-  - alias: HA Notification
-    service: persistent_notification.create
-    data:
-      message: "{{ message }}"
-      notification_id: "{{ notification_id }}"
-      title: "{{ title }}"
+  - if:
+      - condition: template
+        value_template: "{{ clear_notification }}"
+
+    then:
+      - alias: Remove HA Notification
+        service: persistent_notification.dismiss
+        data:
+          notification_id: "{{ notification_id }}"
+
+    else:
+      - alias: HA Notification
+        service: persistent_notification.create
+        data:
+          message: "{{ message }}"
+          notification_id: "{{ notification_id }}"
+          title: "{{ title }}"
 
   - alias: Phone
     service: notify.mobile_app_will_s_pixel_6_pro
@@ -63,6 +94,10 @@ sequence:
           entity_id: person.will
           state: home
 
+        - alias: Clear Notification
+          condition: template
+          value_template: "{{ clear_notification }}"
+
     then:
       - service: notify.mobile_app_wills_macbook_pro
         data:
@@ -84,6 +119,10 @@ sequence:
           condition: state
           entity_id: person.will
           state: SigTech
+
+        - alias: Clear Notification
+          condition: template
+          value_template: "{{ clear_notification }}"
 
         # - and:
         #   - alias: It's a workday
