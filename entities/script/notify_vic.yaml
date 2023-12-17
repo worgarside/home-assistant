@@ -2,6 +2,11 @@
 description: Send a notification to Vic's devices
 
 fields:
+  clear_notification:
+    description: Clear the persistent notification
+    example: "true"
+    default: false
+
   message:
     description: The message body of the notification
     example: A thing has happened, thought you ought to know
@@ -29,8 +34,23 @@ max: 50
 
 variables:
   actions: "{{ actions | default([]) }}"
+  clear_notification: >-
+    {{
+      message == 'clear_notification' or
+      clear_notification in ('true', 'True', 'TRUE', '1', 1, True, true)
+    }}
   notification_id: >-
-    {{ notification_id | default('notify_vic_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}
+    {% if clear_notification %}
+      {{ notification_id }}
+    {% else %}
+      {{ notification_id | default('notify_vic_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}
+    {% endif %}
+  message: >-
+    {% if clear_notification %}
+      clear_notification
+    {% else %}
+      {{ message }}
+    {% endif %}
 
 sequence:
   - alias: iPhone
@@ -55,10 +75,15 @@ sequence:
 
   - alias: MacBook Air
     if:
-      - alias: MBA is active
-        condition: state
-        entity_id: binary_sensor.victorias_macbook_air_active
-        state: "on"
+      or:
+        - alias: MBA is active
+          condition: state
+          entity_id: binary_sensor.victorias_macbook_air_active
+          state: "on"
+
+        - alias: Clear Notification
+          condition: template
+          value_template: "{{ clear_notification }}"
 
     then:
       - service: notify.mobile_app_victorias_macbook_air
