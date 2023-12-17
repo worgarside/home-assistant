@@ -1,0 +1,57 @@
+---
+description: Send a notification to Vic and Will
+
+fields:
+  message:
+    description: The message body of the notification
+    example: A thing has happened, thought you ought to know
+
+  title:
+    description: The title of the notification
+    example: Something Important!
+
+  notification_id:
+    description: Optional ID for the persistent notification
+    example: important_thing_happened
+
+  actions:
+    description: Optional actions for the phone notification
+    example: '[{"action": "URI", "title": "View More", "uri": "https://example.com"}]'
+
+  mobile_notification_icon:
+    description: Optional icon for the phone notification
+    example: mdi:alert
+    default: ""
+
+  notification_conditions:
+    description: Optional conditions for the phone notification
+    example: '[{"condition": "template", "value_template": "{{{{ states("sensor.temperature") | float > 30 }}}}"}]'  # yamllint disable-line rule:line-length
+    default:
+      - condition: template
+        value_template: "{{ true }}"
+
+mode: queued
+
+max: 50
+
+variables:
+  actions: "{{ actions | default([]) }}"
+  notification_id: >-
+    {{ notification_id | default('notify_will_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}
+
+sequence:
+  - repeat:
+      for_each:
+        - vic
+        - will
+      sequence:
+        - if: "{{ notification_conditions }}"
+
+          then:
+            - service: script.notify_{{ repeat.item }}
+              data:
+                title: "{{ title }}"
+                message: "{{ message }}"
+                notification_id: "{{ notification_id }}"
+                mobile_notification_icon: "{{ mobile_notification_icon }}"
+                actions: "{{ actions }}"
