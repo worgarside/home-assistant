@@ -14,6 +14,7 @@ fields:
   title:
     description: The title of the notification
     example: Something Important!
+    default: ""
 
   notification_id:
     description: Optional ID for the persistent notification
@@ -36,12 +37,12 @@ variables:
   actions: "{{ actions | default([]) }}"
   clear_notification: >-
     {{
-      message == 'clear_notification' or
+      message | default('') == 'clear_notification' or
       clear_notification in ('true', 'True', 'TRUE', '1', 1, True, true)
     }}
   notification_id: >-
     {% if clear_notification %}
-      {{ notification_id }}
+      {{ notification_id | default(None) }}
     {% else %}
       {{ notification_id | default('notify_will_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}
     {% endif %}
@@ -53,6 +54,21 @@ variables:
     {% endif %}
 
 sequence:
+  - if:
+      - condition: template
+        value_template: >-
+          {{
+            clear_notification is true and
+            (
+              notification_id is undefined or
+              not notification_id
+            )
+          }}
+
+    then:
+      - stop: Invalid usage, clear_notification is true but notification_id is not set
+        error: true
+
   - if:
       - condition: template
         value_template: "{{ clear_notification }}"
