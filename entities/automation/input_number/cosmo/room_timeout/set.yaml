@@ -19,7 +19,7 @@ trigger:
 variables:
   room: "{{ trigger.entity_id.removeprefix('input_number.cosmo_room_timeout_office') }}"
   timeout_hours: "{{ trigger.to_state.state | int(72) }}"
-  last_clean: "{{ states('input_number.cosmo_last_' ~ room ~ '_clean') }}"
+  last_clean: "{{ states('input_datetime.cosmo_last_' ~ room ~ '_clean') }}"
   next_clean: "{{ last_clean | as_datetime + timedelta(hours=timeout_hours) }}"
 
 action:
