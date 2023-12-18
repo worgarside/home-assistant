@@ -35,7 +35,6 @@ sequence:
             ("office", "hallway"): ["office"],
             ("office", "en_suite"): ["office", "bedroom", "en_suite"],
             ("office", "bedroom"): ["office", "bedroom"],
-            ("lounge", "kitchen"): [],
             ("lounge", "bathroom"): ["kitchen", "bathroom"],
             ("lounge", "hallway"): ["kitchen"],
             ("lounge", "en_suite"): ["bedroom", "en_suite"],

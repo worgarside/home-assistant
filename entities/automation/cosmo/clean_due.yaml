@@ -24,8 +24,6 @@ variables:
   room: "{{ trigger.to_state.object_id.split('_')[2] }}"
 
 action:
-  - wait_template: "{{ is_state('binary_sensor.quiet_hours', 'off' ) }}"
-
   - service: script.cosmo_send_clean_requests
     data:
       room: "{{ room }}"

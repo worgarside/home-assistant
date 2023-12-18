@@ -1,6 +1,5 @@
 ---
-
-alias: /mobile_app_notification_action/cosmo/clean_now
+alias: /mobile-app-notification-action/cosmo/clean-now
 
 description: Get Cosmo to clean a room immediately, triggered from a mobile notification
 
@@ -16,7 +15,6 @@ condition:
   condition: template
   value_template: >-
     {% set parts = ( trigger.event.data.action | default("") ).split(":") %}
-
     {{
       parts | length == 3 and
       parts[0].casefold() == "cosmo" and
