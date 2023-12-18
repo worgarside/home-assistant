@@ -26,6 +26,6 @@ action:
     target:
       entity_id: input_datetime.cosmo_next_{{ room }}_clean_due
     data:
-      datetime: "{{ next_clean.isoformat() }}"
+      datetime: "{{ next_clean }}"
 
   - service: script.cosmo_set_cleaning_sequence

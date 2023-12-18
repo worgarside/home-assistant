@@ -1,0 +1,30 @@
+---
+alias: /input-number/cosmo/room-timeout/set
+
+id: input_number_cosmo_room_timeout_set
+
+mode: parallel
+
+trigger:
+  - platform: state
+    entity_id:
+      - input_number.cosmo_room_timeout_bathroom
+      - input_number.cosmo_room_timeout_bedroom
+      - input_number.cosmo_room_timeout_en_suite
+      - input_number.cosmo_room_timeout_hallway
+      - input_number.cosmo_room_timeout_kitchen
+      - input_number.cosmo_room_timeout_lounge
+      - input_number.cosmo_room_timeout_office
+
+variables:
+  room: "{{ trigger.entity_id.removeprefix('input_number.cosmo_room_timeout_office') }}"
+  timeout_hours: "{{ trigger.to_state.state | int(72) }}"
+  last_clean: "{{ states('input_number.cosmo_last_' ~ room ~ '_clean') }}"
+  next_clean: "{{ last_clean | as_datetime + timedelta(hours=timeout_hours) }}"
+
+action:
+  - service: input_number.set_number
+    target:
+      entity_id: input_number.cosmo_next_{{ room }}_clean_due
+    data:
+      number: "{{ next_clean }}"
