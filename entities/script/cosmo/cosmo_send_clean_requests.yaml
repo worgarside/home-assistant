@@ -20,7 +20,7 @@ sequence:
 
   - variables:
       time_difference: >-
-        {% set clean = states('input_datetime.cosmo_last_lounge_clean') | default(0) %}
+        {% set clean = states('input_datetime.cosmo_last_' ~ room ~ '_clean') | default(0) %}
 
         {% if clean in (0, "unavailable", "unknown") %}
           0
@@ -29,14 +29,37 @@ sequence:
           {% set now_ts = now() | as_timestamp %}
           {{ max(0, now_ts - clean_ts) }}
         {% endif %}
+
       days: "{{ (time_difference // (24 * 3600)) }}"
+
       hours: "{{ (time_difference % (24 * 3600)) // 3600 }}"
+
+      message: >-
+        {%
+          set day_str = (
+            days | round(0) ~ ' day' ~ (
+              's' if days > 1 else ''
+            ) ~ (
+              ',' if hours > 0 else ''
+            )
+          ) if days > 0 else ''
+        %}
+        {%
+          set hour_str = (
+            ' ' ~ hours | round(0) ~ ' hour' ~ (
+              's' if hours > 1 else ''
+            )
+          ) if hours > 0 else ''
+        %}
+        Time since last {{ room.replace('_', '-') }} clean: {{ day_str }}{{ hour_str }}.
+        Start clean now?
 
   - alias: Conditionally send a request to Vic and Will
     repeat:
       for_each:
         - vic
         - will
+
       sequence:
         - if:
             or:
@@ -52,34 +75,16 @@ sequence:
           then:
             - service: script.notify_{{ repeat.item }}
               data:
-                title: Cosmo wants to clean the lounge!
-
-                message: >-
-                  I haven't cleaned the lounge for
-
-                  {% if days > 0 -%}
-                    {{ days ~ ' day' ~ ('s' if days > 1 else '') }}
-                    {% if hours > 0 %}
-                      ,
-                    {% endif %}
-                  {% endif %}
-
-                  {% if hours > 0 %}
-                    {{ hours ~ ' hour' ~ ('s' if hours > 1 else '') }}
-                  {% endif %}
-
-                  . Please can I clean it?
-
-                notification_id: cosmo_room_timed_out_lounge
-
+                title: Cosmo wants to clean the {{ room.replace('_', '-') }}!
+                message: "{{ message }}"
+                notification_id: cosmo_clean_due_{{ room }}
                 mobile_notification_icon: mdi:robot-vacuum
-
                 actions:
-                  - action: COSMO:CLEAN_NOW:LOUNGE
+                  - action: COSMO:CLEAN_NOW:{{ room | upper }}
                     title: Clean now
 
-                  - action: COSMO:CLEAN_LATER:LOUNGE
+                  - action: COSMO:REMIND_LATER:{{ room | upper }}
                     title: Remind me later
 
-                  - action: COSMO:IGNORE:LOUNGE
+                  - action: COSMO:IGNORE_REQUEST:{{ room | upper }}
                     title: Not today

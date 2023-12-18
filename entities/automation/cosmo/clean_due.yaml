@@ -1,0 +1,31 @@
+---
+alias: /cosmo/clean-due
+
+description: A room has not been cleaned for N hours
+
+id: cosmo_clean_due
+
+mode: parallel
+
+max_exceeded: silent
+
+trigger:
+  platform: time
+  at:
+    - input_datetime.cosmo_next_bathroom_clean_due
+    - input_datetime.cosmo_next_bedroom_clean_due
+    - input_datetime.cosmo_next_en_suite_clean_due
+    - input_datetime.cosmo_next_hallway_clean_due
+    - input_datetime.cosmo_next_kitchen_clean_due
+    - input_datetime.cosmo_next_lounge_clean_due
+    - input_datetime.cosmo_next_office_clean_due
+
+variables:
+  room: "{{ trigger.to_state.object_id.split('_')[2] }}"
+
+action:
+  - wait_template: "{{ is_state('binary_sensor.quiet_hours', 'off' ) }}"
+
+  - service: script.cosmo_send_clean_requests
+    data:
+      room: "{{ room }}"
