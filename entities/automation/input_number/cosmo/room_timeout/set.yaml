@@ -23,8 +23,8 @@ variables:
   next_clean: "{{ last_clean | as_datetime + timedelta(hours=timeout_hours) }}"
 
 action:
-  - service: input_number.set_number
+  - service: input_number.set_value
     target:
       entity_id: input_number.cosmo_next_{{ room }}_clean_due
     data:
-      number: "{{ next_clean }}"
+      value: "{{ next_clean }}"
