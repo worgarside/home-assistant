@@ -106,7 +106,7 @@ sequence:
           entity_id: vacuum.cosmo
         data:
           segments:
-            - "{{ room_id }}"
+            - "{{ room_id.value }}"
           repeats: 3
           suction_level: 2
 

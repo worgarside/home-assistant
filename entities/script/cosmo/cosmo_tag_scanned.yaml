@@ -28,7 +28,7 @@ sequence:
       cosmo_is_in_current_room: >
         {{
           state_attr('sensor.cosmo_current_room', 'room_id') | int(default=-1) ==
-          room_id
+          room_id.value
         }}
 
   - choose:
@@ -116,7 +116,7 @@ sequence:
               entity_id: vacuum.cosmo
             data:
               segments:
-                - "{{ room_id }}"
+                - "{{ room_id.value }}"
 
     default:
       - alias: Not cleaning - go to this room
@@ -125,7 +125,7 @@ sequence:
           entity_id: vacuum.cosmo
         data:
           segments:
-            - "{{ room_id }}"
+            - "{{ room_id.value }}"
 
       - service: tts.cloud_say
         data:
