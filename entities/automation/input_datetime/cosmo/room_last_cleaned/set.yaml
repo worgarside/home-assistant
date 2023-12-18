@@ -23,10 +23,10 @@ variables:
   next_clean: "{{ last_clean + timeout }}"
 
 action:
-  - service: script.cosmo_set_cleaning_sequence
-
   - service: input_datetime.set_datetime
     target:
       entity_id: input_datetime.cosmo_next_{{ room }}_clean_due
     data:
       datetime: "{{ next_clean.isoformat() }}"
+
+  - service: script.cosmo_set_cleaning_sequence

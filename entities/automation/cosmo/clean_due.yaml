@@ -21,7 +21,10 @@ trigger:
     - input_datetime.cosmo_next_office_clean_due
 
 variables:
-  room: "{{ trigger.to_state.object_id.split('_')[2] }}"
+  room: >-
+    {{
+      trigger.entity_id.removeprefix('input_datetime.cosmo_next_').removesuffix('_clean_due')
+    }}
 
 action:
   - service: script.cosmo_send_clean_requests
