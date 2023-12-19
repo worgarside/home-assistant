@@ -17,7 +17,8 @@ trigger:
       - input_datetime.cosmo_next_office_clean_due
 
 variables:
-  new_datetime: "{{ trigger.to_state.state | as_datetime }}"
+  new_datetime: >-
+    {{ trigger.to_state.state | as_datetime }}
 
 condition:
   condition: template
