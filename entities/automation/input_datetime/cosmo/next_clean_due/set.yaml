@@ -17,27 +17,28 @@ trigger:
       - input_datetime.cosmo_next_office_clean_due
 
 variables:
-  new_datetime: >-
-    {{ trigger.to_state.state | as_datetime }}
+  new_datetime: "{{ trigger.to_state.state }}"
+  hour: >-
+    {{ (new_datetime | as_datetime).hour | int }}
 
 condition:
   condition: template
-  value_template: "{{ new_datetime.hour >= 20 or new_datetime.hour < 8 }}"
+  value_template: "{{ hour >= 20 or hour < 8 }}"
 
 action:
   - choose:
-      - conditions: "{{ new_datetime.hour < 8 }}"
+      - conditions: "{{ hour < 8 }}"
         sequence:
           - variables:
-              hours_needed: "{{ 8 - new_datetime.hour }}"
+              hours_needed: "{{ 8 - hour }}"
 
-      - conditions: "{{ new_datetime.hour >= 20 }}"
+      - conditions: "{{ hour >= 20 }}"
         sequence:
           - variables:
-              hours_needed: "{{ 32 - new_datetime.hour }}"
+              hours_needed: "{{ 32 - hour }}"
 
   - service: input_datetime.set_datetime
     target:
       entity_id: "{{ trigger.entity_id }}"
     data:
-      datetime: "{{ (new_datetime + timedelta(hours=hours_needed)).isoformat() }}"
+      datetime: "{{ ((new_datetime | as_datetime) + timedelta(hours=hours_needed)).isoformat() }}"
