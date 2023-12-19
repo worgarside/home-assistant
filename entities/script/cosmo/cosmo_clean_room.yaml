@@ -15,21 +15,19 @@ fields:
   doors_open_timeout:
     description: How long to wait for doors to be open (defaults to 60 minutes)
     required: false
-    default: 60
 
   repeats:
     description: How many times to repeat the clean (defaults to 3)
     required: false
-    default: 3
 
   suction_level:
     description: The suction level to use (defaults to 2)
     required: false
-    default: 2
 
 variables:
-  repeats: "{{ max(min(repeats, 3), 1) }}"
-  suction_level: "{{ max(min(suction_level, 3), 0) }}"
+  doors_open_timeout: "{{ doors_open_timeout | default(60) | int(60) }}"
+  repeats: "{{ max(min(repeats | default(3) | int(3), 3), 1) }}"
+  suction_level: "{{ max(min(suction_level | default(2) | int(2), 3), 0) }}"
 
 sequence:
   - alias: Get room ID
