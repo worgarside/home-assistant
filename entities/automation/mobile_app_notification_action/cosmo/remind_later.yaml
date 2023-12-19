@@ -1,0 +1,45 @@
+---
+alias: /mobile-app-notification-action/cosmo/remind-later
+
+description: Get Cosmo to check again later, triggered from a mobile notification
+
+id: mobile_app_notification_action_cosmo_remind_later
+
+mode: restart
+
+trigger:
+  platform: event
+  event_type: mobile_app_notification_action
+
+condition:
+  condition: template
+  value_template: >-
+    {% set parts = ( trigger.event.data.action | default("") ).split(":") %}
+
+    {{
+      parts | length == 3 and
+      parts[0].casefold() == "cosmo" and
+      parts[1].casefold() == "remind_later"
+    }}
+
+variables:
+  room: "{{ trigger.event.data.action.split(':')[2] }}"
+
+action:
+  - service: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.cosmo_next_{{ room }}_clean_due
+    data:
+      datetime: "{{ (now() + timedelta(hours=4)).isoformat() }}"
+
+  - alias: Clear pending requests
+    repeat:
+      for_each:
+        - vic
+        - will
+
+      sequence:
+        - service: script.notify_{{ repeat.item }}
+          data:
+            clear_notification: true
+            notification_id: cosmo_clean_due_{{ room }}

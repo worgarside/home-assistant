@@ -1,0 +1,31 @@
+---
+alias: /input-datetime/cosmo/room-last-cleaned/set
+
+id: input_datetime_cosmo_room_last_cleaned_set
+
+mode: parallel
+
+trigger:
+  - platform: state
+    entity_id:
+      - input_datetime.cosmo_last_bathroom_clean
+      - input_datetime.cosmo_last_bedroom_clean
+      - input_datetime.cosmo_last_en_suite_clean
+      - input_datetime.cosmo_last_hallway_clean
+      - input_datetime.cosmo_last_kitchen_clean
+      - input_datetime.cosmo_last_lounge_clean
+      - input_datetime.cosmo_last_office_clean
+
+variables:
+  room: "{{ trigger.entity_id.removeprefix('input_datetime.cosmo_last_').removesuffix('_clean') }}"
+  timeout_hours: "{{ states('input_number.cosmo_room_timeout_' ~ room) | int(72) }}"
+  next_clean: "{{ trigger.to_state.state | as_datetime + timedelta(hours=timeout_hours) }}"
+
+action:
+  - service: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.cosmo_next_{{ room }}_clean_due
+    data:
+      datetime: "{{ next_clean }}"
+
+  - service: script.cosmo_set_cleaning_sequence

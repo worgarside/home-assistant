@@ -56,6 +56,7 @@ repos:
     rev: v6.2.1
     hooks:
       - id: beautysh
+        language_version: python3.11
 
   - repo: https://github.com/pycqa/isort
     rev: 5.13.2
@@ -118,6 +119,7 @@ repos:
       - id: pylint
         name: pylint
         entry: pylint
+        language_version: python3.11
         args:
           - --disable=fixme
           - --enable=useless-suppression

@@ -1,0 +1,51 @@
+---
+alias: /mobile-app-notification-action/cosmo/clean-now
+
+description: Get Cosmo to clean a room immediately, triggered from a mobile notification
+
+id: mobile_app_notification_action_cosmo_clean_now
+
+mode: restart
+
+trigger:
+  platform: event
+  event_type: mobile_app_notification_action
+
+condition:
+  condition: template
+  value_template: >-
+    {% set parts = ( trigger.event.data.action | default("") ).split(":") %}
+    {{
+      parts | length == 3 and
+      parts[0].casefold() == "cosmo" and
+      parts[1].casefold() == "clean_now"
+    }}
+
+variables:
+  room: "{{ trigger.event.data.action.split(':')[2] }}"
+
+action:
+  - if:
+      - "{{ room == 'all' }}"
+
+    then:
+      - service: vacuum.start
+        target:
+          entity_id: vacuum.cosmo
+
+    else:
+      - service: script.cosmo_clean_room
+        data:
+          room_name: "{{ room }}"
+
+  - alias: Clear pending requests
+    repeat:
+      for_each:
+        - vic
+        - will
+
+      sequence:
+        - service: script.notify_{{ repeat.item }}
+          data:
+            clear_notification: true
+            notification_id: cosmo_clean_due_{{ room }}

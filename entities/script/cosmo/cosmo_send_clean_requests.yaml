@@ -1,0 +1,99 @@
+---
+description: Send a notification asking to vacuum on behalf of Cosmo
+
+mode: queued
+
+max: 7
+
+fields:
+  room:
+    description: The room to send the request for
+    required: true
+
+sequence:
+  - if:
+      not:
+        - alias: Cosmo isn't already docked
+          condition: state
+          entity_id: vacuum.cosmo
+          state: docked
+
+    then:
+      - alias: Ensure it's not a temporary dock (e.g. for emptying)
+        wait_for_trigger:
+          - platform: state
+            entity_id: vacuum.cosmo
+            to: docked
+            for:
+              minutes: 5
+
+  - variables:
+      time_difference: >-
+        {% set clean = states('input_datetime.cosmo_last_' ~ room ~ '_clean') | default(0) %}
+
+        {% if clean in (0, "unavailable", "unknown") %}
+          0
+        {% else %}
+          {% set clean_ts = clean | as_timestamp %}
+          {% set now_ts = now() | as_timestamp %}
+          {{ max(0, now_ts - clean_ts) }}
+        {% endif %}
+
+      days: "{{ (time_difference // (24 * 3600)) }}"
+
+      hours: "{{ (time_difference % (24 * 3600)) // 3600 }}"
+
+      message: >-
+        {%
+          set day_str = (
+            days | round(0) ~ ' day' ~ (
+              's' if days > 1 else ''
+            ) ~ (
+              ',' if hours > 0 else ''
+            )
+          ) if days > 0 else ''
+        %}
+        {%
+          set hour_str = (
+            ' ' ~ hours | round(0) ~ ' hour' ~ (
+              's' if hours > 1 else ''
+            )
+          ) if hours > 0 else ''
+        %}
+        Time since last {{ room.replace('_', '-') }} clean: {{ day_str }}{{ hour_str }}.
+        Start clean now?
+
+  - alias: Conditionally send a request to Vic and Will
+    repeat:
+      for_each:
+        - vic
+        - will
+
+      sequence:
+        - if:
+            or:
+              - alias: Nobody home
+                condition: state
+                entity_id: zone.home
+                state: "0"
+
+              - alias: "{{ repeat.item }} is at home"
+                condition: template
+                value_template: "{{ is_state('person.' ~ repeat.item, 'home') }}"
+
+          then:
+            - service: script.notify_{{ repeat.item }}
+              data:
+                title: Cosmo wants to clean the {{ room.replace('_', '-') }}!
+                message: "{{ message }}"
+                notification_id: cosmo_clean_due_{{ room }}
+                mobile_notification_icon: mdi:robot-vacuum
+                actions:
+                  - action: COSMO:CLEAN_NOW:{{ room | upper }}
+                    title: Clean now
+
+                  - action: COSMO:REMIND_LATER:{{ room | upper }}
+                    title: Remind me later
+
+                  - action: COSMO:IGNORE_REQUEST:{{ room | upper }}
+                    title: Not today

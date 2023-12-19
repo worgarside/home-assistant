@@ -1,0 +1,21 @@
+---
+alias: /cosmo/nightly-kitchen-clean
+
+id: cosmo_nightly_kitchen_clean
+
+mode: single
+
+trigger:
+  platform: time
+  at: '22:00:00'
+
+condition:
+  alias: Run every other day
+  condition: template
+  value_template: "{{ now().day % 2 == 1 }}"
+
+action:
+  - service: script.cosmo_clean_room
+    data:
+      room_name: kitchen
+      suction_level: 0

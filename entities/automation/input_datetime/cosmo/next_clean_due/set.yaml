@@ -1,0 +1,36 @@
+---
+alias: /input-datetime/cosmo/next-clean-due/set
+
+id: input_datetime_cosmo_next_clean_due_set
+
+mode: parallel
+
+trigger:
+  - platform: state
+    entity_id:
+      - input_datetime.cosmo_next_bathroom_clean_due
+      - input_datetime.cosmo_next_bedroom_clean_due
+      - input_datetime.cosmo_next_en_suite_clean_due
+      - input_datetime.cosmo_next_hallway_clean_due
+      - input_datetime.cosmo_next_kitchen_clean_due
+      - input_datetime.cosmo_next_lounge_clean_due
+      - input_datetime.cosmo_next_office_clean_due
+
+variables:
+  new_datetime: "{{ trigger.to_state.state }}"
+  hour: >-
+    {{ (new_datetime | as_datetime).hour | int }}
+
+condition:
+  condition: template
+  value_template: "{{ hour >= 20 or hour < 8 }}"
+
+action:
+  - variables:
+      hours_needed: "{{ 8 - hour if hour < 8 else 32 - hour }}"
+
+  - service: input_datetime.set_datetime
+    target:
+      entity_id: "{{ trigger.entity_id }}"
+    data:
+      datetime: "{{ ((new_datetime | as_datetime) + timedelta(hours=hours_needed)).isoformat() }}"
