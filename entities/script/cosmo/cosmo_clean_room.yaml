@@ -26,8 +26,8 @@ fields:
     required: false
 
 variables:
-  repeats: "{{ max(min(repeats | int(3), 3), 1) }}"
-  suction_level: "{{ max(min(suction_level | int(2), 3), 0) }}"
+  repeats: "{{ max(min(repeats | default(3) | int(3), 3), 1) }}"
+  suction_level: "{{ max(min(suction_level | default(2) | int(2), 3), 0) }}"
 
 sequence:
   - alias: Get room ID
