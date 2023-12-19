@@ -11,12 +11,21 @@ fields:
     required: true
 
 sequence:
-  - wait_for_trigger:
-      - platform: state
-        entity_id: vacuum.cosmo
-        to: docked
-        for:
-          minutes: 5
+  - if:
+      not:
+        - alias: Cosmo isn't already docked
+          condition: state
+          entity_id: vacuum.cosmo
+          state: docked
+
+    then:
+      - alias: Ensure it's not a temporary dock (e.g. for emptying)
+        wait_for_trigger:
+          - platform: state
+            entity_id: vacuum.cosmo
+            to: docked
+            for:
+              minutes: 5
 
   - variables:
       time_difference: >-
