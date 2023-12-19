@@ -20,23 +20,13 @@ variables:
   new_datetime: "{{ trigger.to_state.state }}"
   hour: >-
     {{ (new_datetime | as_datetime).hour | int }}
+  hours_needed: "{{ 8 - hour if hour < 8 else 32 - hour }}"
 
 condition:
   condition: template
   value_template: "{{ hour >= 20 or hour < 8 }}"
 
 action:
-  - choose:
-      - conditions: "{{ hour < 8 }}"
-        sequence:
-          - variables:
-              hours_needed: "{{ 8 - hour }}"
-
-      - conditions: "{{ hour >= 20 }}"
-        sequence:
-          - variables:
-              hours_needed: "{{ 32 - hour }}"
-
   - service: input_datetime.set_datetime
     target:
       entity_id: "{{ trigger.entity_id }}"
