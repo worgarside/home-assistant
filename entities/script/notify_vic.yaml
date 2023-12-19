@@ -14,7 +14,7 @@ fields:
   title:
     description: The title of the notification
     example: Something Important!
-    default: ""
+    default: " "
 
   notification_id:
     description: Optional ID for the persistent notification
@@ -27,7 +27,7 @@ fields:
   mobile_notification_icon:
     description: Optional icon for the phone notification
     example: mdi:alert
-    default: ""
+    default: mdi:home-assistant
 
 mode: queued
 
