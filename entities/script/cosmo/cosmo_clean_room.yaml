@@ -20,16 +20,14 @@ fields:
   repeats:
     description: How many times to repeat the clean (defaults to 3)
     required: false
-    default: 3
 
   suction_level:
     description: The suction level to use (defaults to 2)
     required: false
-    default: 2
 
 variables:
-  repeats: "{{ max(min(repeats, 3), 1) }}"
-  suction_level: "{{ max(min(suction_level, 3), 0) }}"
+  repeats: "{{ max(min(repeats | int(3), 3), 1) }}"
+  suction_level: "{{ max(min(suction_level | int(2), 3), 0) }}"
 
 sequence:
   - alias: Get room ID
