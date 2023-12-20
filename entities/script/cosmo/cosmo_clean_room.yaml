@@ -41,8 +41,8 @@ sequence:
     variables:
       doors: >-
         {% set lookup = {
-            ("office", "lounge"): ["office"],
-            ("office", "kitchen"): ["office"],
+            ("office", "lounge"): ["office", "kitchen"],
+            ("office", "kitchen"): ["office", "kitchen"],
             ("office", "bathroom"): ["office", "bathroom"],
             ("office", "hallway"): ["office"],
             ("office", "en_suite"): ["office", "bedroom", "en_suite"],
@@ -84,25 +84,20 @@ sequence:
 
     continue_on_timeout: true
 
-    wait_for_trigger:
-      - platform: template
-        for:
-          minutes: 2
-        value_template: >-
-          {% set ns = namespace(all_open=true, valid_room_count=0) %}
+    wait_template: >-
+      {% set ns = namespace(all_open=true) %}
 
-          {% for room in doors %}
-            {% set room_state = states('binary_sensor.' ~ room ~ '_door') %}
+      {% for room in doors %}
+        {% set room_state = states('binary_sensor.' ~ room ~ '_door') %}
 
-            {% if room_state in ['unknown', 'unavailable'] %}
-              {{ continue }}
-            {% endif %}
+        {% if room_state in ['unknown', 'unavailable'] %}
+          {{ continue }}
+        {% endif %}
 
-            {% set ns.valid_room_count = ns.valid_room_count + 1 %}
-            {% set ns.all_open = ns.all_open and room_state == 'on' %}
-          {% endfor %}
+        {% set ns.all_open = ns.all_open and room_state == 'on' %}
+      {% endfor %}
 
-          {{ ns.all_open }}
+      {{ ns.all_open }}
 
     timeout:
       minutes: "{{ doors_open_timeout }}"
