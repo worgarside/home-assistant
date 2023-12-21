@@ -26,8 +26,16 @@ fields:
 
 variables:
   doors_open_timeout: "{{ doors_open_timeout | default(60) | int(60) }}"
+
   repeats: "{{ max(min(repeats | default(3) | int(3), 3), 1) }}"
+
   suction_level: "{{ max(min(suction_level | default(2) | int(2), 3), 0) }}"
+
+  true_response:
+    value: true
+
+  false_response:
+    value: false
 
 sequence:
   - alias: Get room ID
@@ -80,45 +88,75 @@ sequence:
           )
         }}
 
-  - alias: Check if doors are open
-
-    continue_on_timeout: true
-
-    wait_template: >-
-      {% set ns = namespace(all_open=true) %}
-
-      {% for room in doors %}
-        {% set room_state = states('binary_sensor.' ~ room ~ '_door') %}
-
-        {% if room_state in ['unknown', 'unavailable'] %}
-          {{ continue }}
-        {% endif %}
-
-        {% set ns.all_open = ns.all_open and room_state == 'on' %}
+  - alias: If the doors aren't already open
+    if: >-
+      {% set ns = namespace(any_closed=False) %}
+      {%
+        for room in doors
+        if (
+          not ns.any_closed and
+          is_state('binary_sensor.' ~ room ~ '_door', 'off')
+        )
+      %}
+        {% set ns.any_closed = True %}
       {% endfor %}
 
-      {{ ns.all_open }}
-
-    timeout:
-      minutes: "{{ doors_open_timeout }}"
-
-  - alias: Validate doors are open
-
-    if: "{{ wait.completed }}"
+      {{ ns.any_closed }}
 
     then:
-      - service: dreame_vacuum.vacuum_clean_segment
-        target:
-          entity_id: vacuum.cosmo
-        data:
-          segments:
-            - "{{ room_id.value }}"
-          repeats: "{{ repeats }}"
-          suction_level: "{{ suction_level }}"
+      - alias: Wait for doors to have been open for 2 minutes
 
-      - stop: Clean session started
-        response_variable: "1"
+        continue_on_timeout: true
 
-    else:
-      - stop: Clean session not started
-        response_variable: "0"
+        wait_template: >-
+          {% set ns = namespace(all_open_long_enough=True) %}
+          {% set now_ts = states('sensor.date_time_iso') | as_timestamp %}
+
+          {%
+            for room in doors
+            if (
+              ns.all_open_long_enough and
+              states.binary_sensor |
+                selectattr('entity_id', 'eq', 'binary_sensor.' ~ room ~ '_door') |
+                list |
+                length > 0
+            )
+          %}
+            {% set door_state = states.binary_sensor[room ~ '_door'] %}
+            {% set door_last_changed = door_state.last_changed | as_timestamp %}
+
+            {%
+              if (
+                door_state.state not in ['unknown', 'unavailable', 'on']
+              ) or not (
+                door_last_changed and (now_ts - door_last_changed) > 120
+              )
+            %}
+              {% set ns.all_open_long_enough = False %}
+            {% endif %}
+          {% endfor %}
+
+          {{ ns.all_open_long_enough }}
+
+        timeout:
+          minutes: "{{ doors_open_timeout }}"
+
+      - alias: Validate doors are open
+
+        if: "{{ not wait.completed }}"
+
+        then:
+          - stop: Clean session not started
+            response_variable: false_response
+
+  - service: dreame_vacuum.vacuum_clean_segment
+    target:
+      entity_id: vacuum.cosmo
+    data:
+      segments:
+        - "{{ room_id.value }}"
+      repeats: "{{ repeats }}"
+      suction_level: "{{ suction_level }}"
+
+  - stop: Clean session started
+    response_variable: true_response
