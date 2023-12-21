@@ -12,41 +12,23 @@ trigger:
     to: "on"
 
 condition:
-  and:
-    - alias: Don't run if the front door is open(ing), let the lights come on from the other end
-      condition: state
-      entity_id: binary_sensor.front_door
-      state: "off"
+  alias: Don't run if the front door is open(ing), let the lights come on from the other end
+  condition: state
+  entity_id: binary_sensor.front_door
+  state: "off"
 
-    - alias: Don't run if all the lights are already on (i.e. only run if at least one if off)
-      or:
-        - condition: state
-          entity_id: light.hallway_1
-          state: "off"
-
-        - condition: state
-          entity_id: light.hallway_2
-          state: "off"
-
-        - condition: state
-          entity_id: light.hallway_3
-          state: "off"
+variables:
+  brightness: >-
+    {% if states('binary_sensor.quiet_hours') == "on" %}
+      63
+    {% elif states('sensor.sun_elevation') | int(default=1) < 0 %}
+      127
+    {% else %}
+      255
+    {% endif %}
+  delay: 1
 
 action:
-  - variables:
-      brightness: >-
-        {%
-          if (
-            states('sensor.sun_elevation') | int(default=1) < 0 or
-            states('binary_sensor.quiet_hours') == "off"
-          )
-        %}
-          127
-        {% else %}
-          255
-        {% endif %}
-      delay: 1
-
   - service: light.turn_on
     entity_id: light.hallway_1
     data:
