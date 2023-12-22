@@ -1,0 +1,5 @@
+---
+ls: >-
+  ls
+  {{ '-A' if show_hidden | default(none) else '' }}
+  {{ path | default("/config")}}
