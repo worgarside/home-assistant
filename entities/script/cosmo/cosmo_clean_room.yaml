@@ -5,7 +5,7 @@ description: >-
 
   Returns 1 if the room clean started, 0 otherwise.
 
-mode: parallel
+mode: restart
 
 fields:
   room_name:
@@ -13,7 +13,7 @@ fields:
     required: true
 
   doors_open_timeout:
-    description: How long to wait for doors to be open (defaults to 60 minutes)
+    description: How long to wait for doors to be open (defaults to 120 minutes)
     required: false
 
   repeats:
@@ -25,7 +25,7 @@ fields:
     required: false
 
 variables:
-  doors_open_timeout: "{{ doors_open_timeout | default(60) | int(60) }}"
+  doors_open_timeout: "{{ doors_open_timeout | default(120) | int(120) }}"
 
   repeats: "{{ max(min(repeats | default(3) | int(3), 3), 1) }}"
 
