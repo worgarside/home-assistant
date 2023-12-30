@@ -1,0 +1,16 @@
+---
+alias: /prusa-i3-mk3/enclosure/send-fan-mqtt-message
+
+id: prusa_i3_mk3_enclosure_send_fan_mqtt_message
+
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: input_boolean.prusa_i3_mk3_enclosure_fan
+
+action:
+  - service: mqtt.publish
+    data:
+      topic: /prusa_i3_mk3/fan/state
+      payload_template: "{{ states('input_boolean.prusa_i3_mk3_enclosure_fan')}}"
