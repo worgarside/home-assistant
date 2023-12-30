@@ -7,7 +7,7 @@ name: OctoPi CPU Temperature
 
 state_class: measurement
 
-state_topic: /homeassistant/octo-pi/stats
+state_topic: /homeassistant/octopi/stats
 
 unique_id: octopi_cpu_temperature
 

@@ -7,7 +7,7 @@ name: OctoPi Average Load (1 min)
 
 state_class: measurement
 
-state_topic: /homeassistant/octo-pi/stats
+state_topic: /homeassistant/octopi/stats
 
 unique_id: octopi_average_load_1_min
 
