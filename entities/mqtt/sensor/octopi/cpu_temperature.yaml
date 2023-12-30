@@ -1,0 +1,16 @@
+---
+force_update: true
+
+icon: mdi:memory
+
+name: OctoPi CPU Temperature
+
+state_class: measurement
+
+state_topic: /homeassistant/octo-pi/stats
+
+unique_id: octopi_cpu_temperature
+
+unit_of_measurement: "°C"
+
+value_template: "{{ value_json.temperature }}"
