@@ -12,5 +12,5 @@ trigger:
 action:
   - service: mqtt.publish
     data:
-      topic: /prusa_i3_mk3/fan/state
+      topic: /prusa_i3_mk3/enclosure/fan/state
       payload_template: "{{ states('input_boolean.prusa_i3_mk3_enclosure_fan')}}"
