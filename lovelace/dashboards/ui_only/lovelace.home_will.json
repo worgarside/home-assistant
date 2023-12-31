@@ -1153,7 +1153,7 @@
               }
             },
             {
-              "type": "vertical-stack",
+              "type": "custom:vertical-stack-in-card",
               "cards": [
                 {
                   "square": false,
@@ -1201,7 +1201,10 @@
                   ],
                   "columns": 2
                 }
-              ]
+              ],
+              "view_layout": {
+                "grid-area": "3dp"
+              }
             }
           ]
         }
