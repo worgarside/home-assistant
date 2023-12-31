@@ -1156,43 +1156,6 @@
               "type": "vertical-stack",
               "cards": [
                 {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_tool_0_target",
-                      "name": "Hotend Target"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_bed_target",
-                      "name": "Bed Target",
-                      "icon": "mdi:grid"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_tool_0_temperature",
-                      "name": "Hotend Actual"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_bed_temperature",
-                      "name": "Bed Actual",
-                      "icon": "mdi:grid"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
                   "square": false,
                   "type": "grid",
                   "cards": [
