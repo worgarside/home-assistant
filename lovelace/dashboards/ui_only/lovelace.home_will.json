@@ -1142,19 +1142,6 @@
               "points_per_hour": 6,
               "line_width": 2,
               "entities": [
-                "sensor.octoprint_bed_temperature",
-                "sensor.octoprint_tool_0_temperature"
-              ],
-              "view_layout": {
-                "grid-area": "3dp"
-              }
-            },
-            {
-              "type": "custom:mini-graph-card",
-              "hours_to_show": 4,
-              "points_per_hour": 6,
-              "line_width": 2,
-              "entities": [
                 {
                   "entity": "sensor.octopi_ambient_humidity",
                   "y_axis": "secondary"
@@ -1164,6 +1151,22 @@
               "view_layout": {
                 "grid-area": "amb"
               }
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octoprint_tool_0_temperature",
+                  "name": "Hotend"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octoprint_bed_temperature",
+                  "name": "Bed",
+                  "icon": "mdi:grid"
+                }
+              ]
             }
           ]
         }
