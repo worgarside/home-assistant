@@ -1188,6 +1188,52 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_target_tool0_temp",
+                      "name": "Current Amount",
+                      "icon_color": "orange"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_tool_0_target",
+                      "icon_color": "green"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.auto_save_debit_transaction_percentage",
+                      "name": "Income Percentage",
+                      "icon_color": "lime"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.auto_save_minimum",
+                      "icon_color": "deep-orange"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.auto_save_naughty_transaction_percentage",
+                      "name": "Naughty Percentage",
+                      "icon_color": "red"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.auto_save_naughty_transaction_pattern",
+                      "name": "Naughty Pattern",
+                      "icon_color": "pink"
+                    }
+                  ],
+                  "columns": 2
+                }
+              ]
             }
           ]
         }
