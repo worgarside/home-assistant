@@ -1151,22 +1151,6 @@
               "view_layout": {
                 "grid-area": "amb"
               }
-            },
-            {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octoprint_tool_0_temperature",
-                  "name": "Hotend"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octoprint_bed_temperature",
-                  "name": "Bed",
-                  "icon": "mdi:grid"
-                }
-              ]
             }
           ]
         }
