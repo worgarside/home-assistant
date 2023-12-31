@@ -59,8 +59,10 @@ jobs:
           mv -vn spotcast/custom_components/* ./custom_components/spotcast/
           rm -rf spotcast
 
-      - name: Absolute Path Workaround
+      - name: Local Workspace Workarounds
         run: |
+          mkdir -p ./.storage
+
           sed -i 's/\/config/\/github\/workspace/g' integrations/folder_watcher.yaml
           sed -i 's/\/config/\/github\/workspace/g' integrations/zha.yaml
 
