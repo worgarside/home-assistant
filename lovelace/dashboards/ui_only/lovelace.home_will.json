@@ -1155,6 +1155,10 @@
               "points_per_hour": 6,
               "line_width": 2,
               "entities": [
+                {
+                  "entity": "sensor.octopi_ambient_humidity",
+                  "y_axis": "secondary"
+                },
                 "sensor.octopi_ambient_temperature"
               ],
               "view_layout": {
