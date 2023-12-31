@@ -17,3 +17,6 @@ folder_watcher:
       - configuration.yaml
       - secrets*.yaml
       - ui-lovelace.yaml
+  - folder: /config/.storage
+    patterns:
+      - lovelace*
