@@ -106,6 +106,7 @@ labels:
 
   - label: ha:lovelace
     files:
+      - ^lovelace/.+$
       - (^|/)lovelace\.yaml$
       - (^|/)lovelace/.+\.yaml$
       - ^ui-lovelace\.yaml$

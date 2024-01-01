@@ -1,0 +1,1197 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.home_will",
+  "data": {
+    "config": {
+      "swipe_nav": {
+        "wrap": true,
+        "enable_mouse_swipe": true,
+        "animate": "swipe",
+        "swipe_amount": 30
+      },
+      "views": [
+        {
+          "title": "Home",
+          "path": "home",
+          "type": "custom:vertical-layout",
+          "layout": {},
+          "icon": "hue:home",
+          "badges": [],
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-person-card",
+                  "entity": "person.vic",
+                  "fill_container": false,
+                  "layout": "vertical",
+                  "icon_type": "entity-picture"
+                },
+                {
+                  "type": "custom:mushroom-person-card",
+                  "entity": "sensor.person_cosmo",
+                  "fill_container": false,
+                  "icon_type": "entity-picture",
+                  "layout": "vertical",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "vertical-stack",
+                          "cards": [
+                            {
+                              "type": "custom:card-templater",
+                              "entities": [
+                                "input_select.cosmo_entity_picture"
+                              ],
+                              "card": {
+                                "type": "picture",
+                                "image_template": "{{ states('input_select.cosmo_entity_picture') }}"
+                              }
+                            },
+                            {
+                              "type": "entities",
+                              "entities": [
+                                {
+                                  "type": "custom:mushroom-entity-card",
+                                  "entity": "sensor.person_cosmo",
+                                  "name": "Cosmo"
+                                },
+                                {
+                                  "type": "custom:mushroom-entity-card",
+                                  "entity": "vacuum.cosmo",
+                                  "name": "Cosmo"
+                                },
+                                {
+                                  "type": "custom:mushroom-select-card",
+                                  "entity": "input_select.cosmo_entity_picture"
+                                },
+                                {
+                                  "entity": "automation.input_select_cosmo_entity_picture_set_options"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "custom:mushroom-person-card",
+                  "entity": "person.will",
+                  "fill_container": false,
+                  "layout": "vertical",
+                  "icon_type": "entity-picture"
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-chips-card",
+              "chips": [
+                {
+                  "type": "entity",
+                  "entity": "sensor.current_version",
+                  "icon": "mdi:home-assistant",
+                  "icon_color": "#0EBEF2"
+                },
+                {
+                  "type": "spacer"
+                },
+                {
+                  "type": "entity",
+                  "entity": "sensor.current_git_ref",
+                  "icon": "mdi:git",
+                  "icon_color": "#E84D32",
+                  "double_tap_action": {
+                    "action": "url",
+                    "url_path": "https://github.com/worgarside/home-assistant"
+                  },
+                  "hold_action": {
+                    "action": "call-service",
+                    "service": "homeassistant.update_entity",
+                    "target": {
+                      "entity_id": "sensor.current_git_ref"
+                    }
+                  }
+                },
+                {
+                  "type": "entity",
+                  "entity": "sensor.current_git_branch",
+                  "icon": "mdi:source-branch",
+                  "icon_color": "#AD20ED",
+                  "double_tap_action": {
+                    "action": "url",
+                    "url_path": "https://github.com/worgarside/home-assistant"
+                  },
+                  "hold_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "custom:vertical-stack-in-card",
+                          "cards": [
+                            {
+                              "type": "entities",
+                              "entities": [
+                                {
+                                  "type": "custom:mushroom-select-card",
+                                  "entity": "input_select.target_git_branch",
+                                  "secondary_info": "last-updated"
+                                },
+                                {
+                                  "entity": "sensor.remote_git_branches"
+                                },
+                                {
+                                  "entity": "script.git_pull",
+                                  "name": "Git Pull",
+                                  "icon": "mdi:source-pull"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "markdown",
+                              "content": "{% set current_branch = states('sensor.current_git_branch') %}\n- [{{ current_branch }}](https://github.com/worgarside/home-assistant/tree/{{ current_branch }})\n---\n{%- for branch in state_attr('sensor.remote_git_branches', 'branches') if branch != current_branch %}\n- [{{ branch }}](https://github.com/worgarside/home-assistant/tree/{{ branch }})\n{%- endfor %}"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "spacer"
+                },
+                {
+                  "type": "entity",
+                  "entity": "var.current_appdaemon_ref",
+                  "icon_color": "#01A9F4",
+                  "double_tap_action": {
+                    "action": "url",
+                    "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
+                  },
+                  "hold_action": {
+                    "action": "call-service",
+                    "service": "homeassistant.update_entity",
+                    "target": {
+                      "entity_id": "sensor.current_appdaemon_ref"
+                    }
+                  }
+                },
+                {
+                  "type": "entity",
+                  "entity": "var.current_appdaemon_branch",
+                  "icon_color": "#AD20ED",
+                  "double_tap_action": {
+                    "action": "url",
+                    "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
+                  },
+                  "hold_action": {
+                    "action": "call-service",
+                    "service": "homeassistant.update_entity",
+                    "target": {
+                      "entity_id": "sensor.current_appdaemon_branch"
+                    }
+                  }
+                }
+              ],
+              "alignment": "justify"
+            },
+            {
+              "type": "custom:clock-weather-card",
+              "entity": "weather.met_office_fulham_3_hourly",
+              "date_pattern": "DDDD",
+              "time_pattern": "HH:mm:ss"
+            },
+            {
+              "type": "custom:layout-break"
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "script.ad_monzo_auto_save",
+                      "name": "Auto-Save",
+                      "card_mod": {
+                        "style": {
+                          "hui-generic-entity-row": {
+                            "$": "state-badge {\n  display: none;\n}\n:host {\n  font-size: 24px;\n  font-weight: 600;\n  line-height: 32px;\n}\n"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.auto_save_amount",
+                      "name": "Current Amount",
+                      "icon_color": "orange"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.last_auto_save",
+                      "icon_color": "green"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.auto_save_debit_transaction_percentage",
+                      "name": "Income Percentage",
+                      "icon_color": "lime"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.auto_save_minimum",
+                      "icon_color": "deep-orange"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.auto_save_naughty_transaction_percentage",
+                      "name": "Naughty Percentage",
+                      "icon_color": "red"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.auto_save_naughty_transaction_pattern",
+                      "name": "Naughty Pattern",
+                      "icon_color": "pink"
+                    }
+                  ],
+                  "columns": 2
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "custom:mushroom-entity-card",
+                        "entity": "var.truelayer_balance_monzo_current_account",
+                        "icon_color": "#FF4F40",
+                        "layout": "vertical",
+                        "name": "Current Account",
+                        "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-right: 0.25em !important;\n}\n"
+                      },
+                      {
+                        "type": "custom:mushroom-entity-card",
+                        "entity": "var.truelayer_balance_amex",
+                        "icon_color": "#036ED0",
+                        "layout": "vertical",
+                        "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                      },
+                      {
+                        "type": "custom:mushroom-entity-card",
+                        "entity": "var.truelayer_balance_monzo_credit_cards",
+                        "icon_color": "#4D3926",
+                        "layout": "vertical",
+                        "name": "Credit Cards",
+                        "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                      },
+                      {
+                        "type": "custom:mushroom-entity-card",
+                        "entity": "var.truelayer_balance_monzo_savings",
+                        "icon_color": "amber",
+                        "layout": "vertical",
+                        "name": "Savings",
+                        "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                      }
+                    ]
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "entities": [
+                        {
+                          "entity": "var.truelayer_balance_monzo_current_account",
+                          "color": "#FF4F40"
+                        },
+                        {
+                          "entity": "var.truelayer_balance_amex",
+                          "color": "#036ED0"
+                        },
+                        {
+                          "entity": "var.truelayer_balance_monzo_credit_cards",
+                          "color": "#4D3926"
+                        },
+                        {
+                          "entity": "var.truelayer_balance_monzo_savings",
+                          "color": "#FFC007"
+                        },
+                        {
+                          "entity": "var.truelayer_balance_starling_current_account",
+                          "color": "#6633CC"
+                        },
+                        {
+                          "entity": "var.truelayer_balance_starling_joint_account",
+                          "color": "purple"
+                        },
+                        {
+                          "entity": "var.truelayer_balance_santander_current_account",
+                          "color": "red"
+                        },
+                        {
+                          "entity": "var.truelayer_balance_hsbc_current_account",
+                          "color": "white"
+                        }
+                      ],
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "legend": false,
+                        "labels": true,
+                        "fill": "fade",
+                        "name": false
+                      },
+                      "hours_to_show": 168,
+                      "points_per_hour": 1,
+                      "lower_bound": 0,
+                      "height": 200,
+                      "line_width": 2,
+                      "font_size": 75
+                    }
+                  ],
+                  "padding": 0,
+                  "child-padding": 0,
+                  "title-card-button-overlay": false
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_starling_current_account",
+                      "icon_color": "#6633CC",
+                      "layout": "vertical",
+                      "icon": "si:starlingbank",
+                      "name": "Current Account"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_starling_joint_account",
+                      "icon_color": "purple",
+                      "layout": "vertical",
+                      "icon": "si:starlingbank",
+                      "name": "Joint Account"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_santander_current_account",
+                      "icon_color": "red",
+                      "layout": "vertical",
+                      "name": "Santander"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_hsbc_current_account",
+                      "icon_color": "white",
+                      "layout": "vertical",
+                      "name": "HSBC"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "custom:layout-break"
+            },
+            {
+              "type": "custom:mushroom-entity-card",
+              "entity": "binary_sensor.front_door",
+              "secondary_info": "last-changed",
+              "name": "Front Door"
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wills_macbook_pro_internal_battery_level",
+                  "name": "MacBook Pro"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.st_macbook_pro_internal_battery_level",
+                  "name": "SigTech MacBook Pro"
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.office_shapes",
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "use_light_color": true,
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.desk_lamp",
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "use_light_color": true,
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "show_color_temp_control": false,
+                  "show_color_control": false,
+                  "fill_container": false
+                },
+                {
+                  "type": "custom:mushroom-cover-card",
+                  "entity": "cover.office_desk",
+                  "show_position_control": false,
+                  "show_buttons_control": true,
+                  "layout": "horizontal",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-cover-card",
+                  "entity": "cover.office_blinds",
+                  "show_position_control": true,
+                  "layout": "horizontal",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.desk_fan",
+                  "name": "Desk Fan",
+                  "icon_animation": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "toggle"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "custom:mushroom-title-card",
+                  "title": "Cosmo",
+                  "title_tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/home-will/cosmo"
+                  }
+                },
+                {
+                  "type": "custom:xiaomi-vacuum-map-card",
+                  "map_source": {
+                    "camera": "camera.cosmo_map"
+                  },
+                  "calibration_source": {
+                    "camera": true
+                  },
+                  "entity": "vacuum.cosmo",
+                  "vacuum_platform": "Tasshack/dreame-vacuum",
+                  "title": "",
+                  "two_finger_pan": false,
+                  "map_modes": [
+                    {
+                      "template": "vacuum_clean_segment"
+                    },
+                    {
+                      "template": "vacuum_clean_zone"
+                    },
+                    {
+                      "template": "vacuum_clean_point"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Mobile",
+          "type": "custom:vertical-layout",
+          "path": "mobile",
+          "visible": [],
+          "badges": [],
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-person-card",
+                  "entity": "person.vic",
+                  "fill_container": false,
+                  "layout": "horizontal",
+                  "icon_type": "entity-picture"
+                },
+                {
+                  "type": "custom:mushroom-person-card",
+                  "entity": "person.will",
+                  "fill_container": false,
+                  "layout": "horizontal",
+                  "icon_type": "entity-picture"
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-title-card",
+              "title": "Bedroom",
+              "alignment": "center"
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.bedroom_scent_plug",
+                  "name": "Air Freshener",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "layout": "vertical"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.fan",
+                  "name": "Will's Fan",
+                  "icon_animation": true,
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "layout": "vertical"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.vic_s_fan",
+                  "name": "Vic's Fan",
+                  "icon_animation": true,
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "layout": "vertical"
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-light-card",
+              "entity": "light.glowstick",
+              "fill_container": false,
+              "use_light_color": false,
+              "show_brightness_control": true,
+              "show_color_temp_control": false,
+              "collapsible_controls": false,
+              "layout": "horizontal",
+              "hold_action": {
+                "action": "more-info"
+              },
+              "double_tap_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "custom:mushroom-cover-card",
+              "entity": "cover.bedroom_blinds",
+              "name": "Blinds",
+              "show_position_control": true,
+              "hold_action": {
+                "action": "more-info"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "layout": "horizontal"
+            },
+            {
+              "type": "custom:mushroom-entity-card",
+              "entity": "binary_sensor.bedroom_window",
+              "name": "Window"
+            },
+            {
+              "type": "custom:mushroom-title-card",
+              "title": "Lounge",
+              "alignment": "center"
+            },
+            {
+              "type": "custom:mushroom-cover-card",
+              "entity": "cover.lounge_blinds",
+              "name": "Blinds",
+              "show_position_control": true,
+              "hold_action": {
+                "action": "more-info"
+              },
+              "double_tap_action": {
+                "action": "more-info"
+              },
+              "layout": "horizontal"
+            },
+            {
+              "type": "custom:mushroom-light-card",
+              "entity": "light.lounge_shapes",
+              "fill_container": false,
+              "use_light_color": false,
+              "show_brightness_control": true,
+              "show_color_temp_control": false,
+              "collapsible_controls": false,
+              "layout": "horizontal",
+              "hold_action": {
+                "action": "more-info"
+              },
+              "double_tap_action": {
+                "action": "toggle"
+              },
+              "name": "Shapes",
+              "tap_action": {
+                "action": "more-info"
+              }
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.mini_lamp",
+                  "layout": "vertical",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.shelf_lamp",
+                  "layout": "vertical",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.table_lamp",
+                  "layout": "vertical",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Cosmo",
+          "path": "cosmo",
+          "subview": true,
+          "type": "custom:grid-layout",
+          "layout": {
+            "grid-template-columns": "auto 25% 25%",
+            "grid-template-rows": "auto",
+            "grid-template-areas": "\"left middle right\"\n"
+          },
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:hui-element",
+                      "card_mod": {
+                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
+                      },
+                      "card_type": "markdown",
+                      "content": " "
+                    },
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "Last Clean",
+                      "alignment": "center",
+                      "subtitle": ""
+                    },
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "Next Clean Due",
+                      "alignment": "center"
+                    },
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "",
+                      "alignment": "center"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:hui-element",
+                      "card_mod": {
+                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
+                      },
+                      "card_type": "markdown",
+                      "content": "### Bathroom"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_last_bathroom_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_next_bathroom_clean_due",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "script.cosmo_clean_room",
+                      "name": "Clean Now",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.cosmo_clean_room",
+                        "target": {},
+                        "data": {
+                          "room_name": "bathroom"
+                        }
+                      },
+                      "icon": "mdi:robot-vacuum",
+                      "icon_color": "green"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:hui-element",
+                      "card_mod": {
+                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
+                      },
+                      "card_type": "markdown",
+                      "content": "### Bedroom"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_last_bedroom_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_next_bedroom_clean_due",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "script.cosmo_clean_room",
+                      "name": "Clean Now",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.cosmo_clean_room",
+                        "target": {},
+                        "data": {
+                          "room_name": "bedroom"
+                        }
+                      },
+                      "icon": "mdi:robot-vacuum",
+                      "icon_color": "green"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:hui-element",
+                      "card_mod": {
+                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
+                      },
+                      "card_type": "markdown",
+                      "content": "### En-Suite"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_last_en_suite_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_next_en_suite_clean_due",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "script.cosmo_clean_room",
+                      "name": "Clean Now",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.cosmo_clean_room",
+                        "target": {},
+                        "data": {
+                          "room_name": "en_suite"
+                        }
+                      },
+                      "icon": "mdi:robot-vacuum",
+                      "icon_color": "green"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:hui-element",
+                      "card_mod": {
+                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
+                      },
+                      "card_type": "markdown",
+                      "content": "### Hallway"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_last_hallway_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_next_hallway_clean_due",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "script.cosmo_clean_room",
+                      "name": "Clean Now",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.cosmo_clean_room",
+                        "target": {},
+                        "data": {
+                          "room_name": "hallway"
+                        }
+                      },
+                      "icon": "mdi:robot-vacuum",
+                      "icon_color": "green"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:hui-element",
+                      "card_mod": {
+                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
+                      },
+                      "card_type": "markdown",
+                      "content": "### Kitchen"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_last_kitchen_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_next_kitchen_clean_due",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "script.cosmo_clean_room",
+                      "name": "Clean Now",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.cosmo_clean_room",
+                        "target": {},
+                        "data": {
+                          "room_name": "kitchen"
+                        }
+                      },
+                      "icon": "mdi:robot-vacuum",
+                      "icon_color": "green"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:hui-element",
+                      "card_mod": {
+                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
+                      },
+                      "card_type": "markdown",
+                      "content": "### Lounge"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_last_lounge_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_next_lounge_clean_due",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "script.cosmo_clean_room",
+                      "name": "Clean Now",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.cosmo_clean_room",
+                        "target": {},
+                        "data": {
+                          "room_name": "lounge"
+                        }
+                      },
+                      "icon": "mdi:robot-vacuum",
+                      "icon_color": "green"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:hui-element",
+                      "card_mod": {
+                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
+                      },
+                      "card_type": "markdown",
+                      "content": "### Office"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_last_office_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_datetime.cosmo_next_office_clean_due",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "script.cosmo_clean_room",
+                      "name": "Clean Now",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.cosmo_clean_room",
+                        "target": {},
+                        "data": {
+                          "room_name": "office"
+                        }
+                      },
+                      "icon": "mdi:robot-vacuum",
+                      "icon_color": "green"
+                    }
+                  ]
+                }
+              ],
+              "view_layout": {
+                "grid-area": "left"
+              }
+            },
+            {
+              "type": "custom:xiaomi-vacuum-map-card",
+              "view_layout": {
+                "grid-area": "middle"
+              },
+              "map_source": {
+                "camera": "camera.cosmo_map"
+              },
+              "calibration_source": {
+                "camera": true
+              },
+              "entity": "vacuum.cosmo",
+              "vacuum_platform": "Tasshack/dreame-vacuum",
+              "title": "",
+              "two_finger_pan": false,
+              "map_modes": [
+                {
+                  "template": "vacuum_clean_segment"
+                },
+                {
+                  "template": "vacuum_clean_zone"
+                },
+                {
+                  "template": "vacuum_clean_point"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Design Lab",
+          "path": "makerspace",
+          "icon": "mdi:printer-3d",
+          "layout": {
+            "grid-template-areas": "\"cam cam amb\"\n\"cam cam 3dp\"\n"
+          },
+          "badges": [],
+          "cards": [
+            {
+              "camera_view": "live",
+              "type": "picture-glance",
+              "entities": [
+                {
+                  "entity": "binary_sensor.octoprint_printing"
+                }
+              ],
+              "camera_image": "camera.octoprint_camera",
+              "aspect_ratio": "1.333333",
+              "entity": "binary_sensor.octoprint_connected",
+              "theme": "Mushroom",
+              "view_layout": {
+                "grid-area": "cam"
+              }
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_tool_0_temperature",
+                      "name": "Hotend Temperature",
+                      "icon_color": "orange",
+                      "icon": ""
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "icon_color": "green",
+                      "name": "Hotend Target",
+                      "entity": "sensor.octoprint_tool_0_target"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_bed_temperature",
+                      "name": "Bed Temperature",
+                      "icon_color": "lime",
+                      "icon": "mdi:grid"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_bed_target",
+                      "icon_color": "deep-orange",
+                      "name": "Bed Target",
+                      "icon": "mdi:grid"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_boolean.prusa_i3_mk3_enclosure_fan",
+                      "name": "Enclosure Fan",
+                      "icon_color": "red"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octopi_ambient_temperature",
+                      "name": "Ambient Temperature",
+                      "icon_color": "pink"
+                    }
+                  ],
+                  "columns": 2
+                }
+              ],
+              "view_layout": {
+                "grid-area": "3dp"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
