@@ -1117,7 +1117,6 @@
           "layout": {
             "grid-template-areas": "\"cam cam amb\"\n\"cam cam 3dp\"\n"
           },
-          "type": "custom:grid-layout",
           "badges": [],
           "cards": [
             {
@@ -1137,57 +1136,58 @@
               }
             },
             {
-              "type": "custom:mini-graph-card",
-              "hours_to_show": 4,
-              "points_per_hour": 6,
-              "line_width": 2,
-              "entities": [
-                {
-                  "entity": "sensor.octopi_ambient_humidity",
-                  "y_axis": "secondary"
-                },
-                "sensor.octopi_ambient_temperature"
-              ],
-              "view_layout": {
-                "grid-area": "amb"
-              }
-            },
-            {
-              "type": "vertical-stack",
+              "type": "custom:vertical-stack-in-card",
               "cards": [
                 {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_tool_0_target",
-                      "name": "Hotend Target"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_bed_target",
-                      "name": "Bed Target",
-                      "icon": "mdi:grid"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
+                  "square": false,
+                  "type": "grid",
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_tool_0_temperature",
-                      "name": "Hotend Actual"
+                      "name": "Hotend Temperature",
+                      "icon_color": "orange",
+                      "icon": ""
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "icon_color": "green",
+                      "name": "Hotend Target",
+                      "entity": "sensor.octoprint_tool_0_target"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_bed_temperature",
-                      "name": "Bed Actual",
+                      "name": "Bed Temperature",
+                      "icon_color": "lime",
                       "icon": "mdi:grid"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_bed_target",
+                      "icon_color": "deep-orange",
+                      "name": "Bed Target",
+                      "icon": "mdi:grid"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_boolean.prusa_i3_mk3_enclosure_fan",
+                      "name": "Enclosure Fan",
+                      "icon_color": "red"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octopi_ambient_temperature",
+                      "name": "Ambient Temperature",
+                      "icon_color": "pink"
                     }
-                  ]
+                  ],
+                  "columns": 2
                 }
-              ]
+              ],
+              "view_layout": {
+                "grid-area": "3dp"
+              }
             }
           ]
         }
