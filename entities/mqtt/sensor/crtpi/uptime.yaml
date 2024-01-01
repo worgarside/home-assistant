@@ -11,6 +11,6 @@ state_topic: /homeassistant/crt-pi/stats
 
 unique_id: crtpi_uptime
 
-unit_of_measurement: seconds
+unit_of_measurement: s
 
 value_template: "{{ value_json.uptime }}"

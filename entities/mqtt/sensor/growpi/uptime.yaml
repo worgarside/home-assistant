@@ -11,6 +11,6 @@ state_topic: /homeassistant/growpi/stats
 
 unique_id: growpi_uptime
 
-unit_of_measurement: seconds
+unit_of_measurement: s
 
 value_template: "{{ value_json.uptime }}"
