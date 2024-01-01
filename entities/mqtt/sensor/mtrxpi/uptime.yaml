@@ -1,0 +1,16 @@
+---
+force_update: false
+
+icon: mdi:timer-cog-outline
+
+name: MtrxPi Uptime
+
+state_class: measurement
+
+state_topic: /homeassistant/mtrxpi/stats
+
+unique_id: mtrxpi_uptime
+
+unit_of_measurement: seconds
+
+value_template: "{{ value_json.uptime }}"

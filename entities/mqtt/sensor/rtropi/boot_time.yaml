@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:console
+
+name: RtroPi Boot Time
+
+state_topic: /homeassistant/rtropi/stats
+
+unique_id: rtropi_boot_time
+
+value_template: "{{ value_json.boot_time }}"

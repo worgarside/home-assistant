@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:console
+
+name: GrowPi Boot Time
+
+state_topic: /homeassistant/growpi/stats
+
+unique_id: growpi_boot_time
+
+value_template: "{{ value_json.boot_time }}"

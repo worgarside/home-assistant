@@ -1,0 +1,16 @@
+---
+force_update: false
+
+icon: mdi:timer-cog-outline
+
+name: CrtPi Uptime
+
+state_class: measurement
+
+state_topic: /homeassistant/crt-pi/stats
+
+unique_id: crtpi_uptime
+
+unit_of_measurement: seconds
+
+value_template: "{{ value_json.uptime }}"

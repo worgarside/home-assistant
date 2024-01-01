@@ -1,0 +1,16 @@
+---
+force_update: false
+
+icon: mdi:timer-cog-outline
+
+name: VSMPPi Uptime
+
+state_class: measurement
+
+state_topic: /homeassistant/vsmppi/stats
+
+unique_id: vsmppi_uptime
+
+unit_of_measurement: seconds
+
+value_template: "{{ value_json.uptime }}"

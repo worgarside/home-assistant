@@ -1,0 +1,16 @@
+---
+force_update: false
+
+icon: mdi:timer-cog-outline
+
+name: ClmtPi Uptime
+
+state_class: measurement
+
+state_topic: /homeassistant/clmtpi/stats
+
+unique_id: clmtpi_uptime
+
+unit_of_measurement: seconds
+
+value_template: "{{ value_json.uptime }}"
