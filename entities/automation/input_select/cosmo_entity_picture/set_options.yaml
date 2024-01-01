@@ -1,0 +1,76 @@
+---
+alias: /input-select/cosmo-entity-picture/set-options
+
+id: input_select_cosmo_entity_picture_set_options
+
+mode: restart
+
+trigger:
+  - platform: event
+    event_type: folder_watcher
+
+  - platform: homeassistant
+    event: start
+
+variables:
+  image_directory_lovelace: /local/images/cosmo/
+  image_directory_real: /config/www/images/cosmo
+  null_image: /local/images/null.webp
+
+condition: >-
+  {{
+    trigger.platform == "homeassistant" or
+    trigger.event.data.folder.startswith(image_directory_real)
+  }}
+
+action:
+  - alias: Get files
+    service: shell_command.ls
+    response_variable: files
+    data:
+      path: "{{ image_directory_real }}"
+
+  - service: script.debug_persistent_notification
+    data:
+      title: "`script.input_select_cosmo_picture_set_options`"
+      message: "{{ files | tojson(indent=2) }}"
+
+  - variables:
+      file_list: >-
+        {% if files is undefined or not files %}
+          {{ [null_image, "ERROR: No response from `ls` command"] }}
+        {% elif files.returncode is defined and files.returncode != 0 %}
+          {%
+            set error = "ERROR: `ls` command returned non-zero exit code " ~ files.returncode
+          %}
+          {{
+            [null_image, error, files]
+            if files.stderr is defined and files.stderr
+            else [null_image, error, files.stderr]
+          }}
+        {% elif files.stdout is defined and files.stdout %}
+          {% set ns = namespace(prefixed=[]) %}
+          {% for file in files.stdout.splitlines() if file %}
+            {% set ns.prefixed = ns.prefixed + [image_directory_lovelace ~ file] %}
+          {% endfor %}
+          {{ ns.prefixed }}
+        {% else %}
+          {{ [null_image, "ERROR: No files found"] }}
+        {% endif %}
+
+  - service: input_select.set_options
+    target:
+      entity_id: input_select.cosmo_entity_picture
+    data_template:
+      options: "{{ file_list }}"
+
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.cosmo_entity_picture
+    data:
+      option: >-
+        {% if null_image in file_list %}
+          {{ null_image }}
+        {% else %}
+          {{ max(file_list) }}
+        {% endif %}
