@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:source-branch-sync
+
+name: VSMPPi Active Git Ref
+
+state_topic: /homeassistant/vsmppi/stats
+
+unique_id: vsmppi_active_git_ref
+
+value_template: "{{ value_json.active_git_ref }}"

@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:source-branch-sync
+
+name: ClmtPi Active Git Ref
+
+state_topic: /homeassistant/clmtpi/stats
+
+unique_id: clmtpi_active_git_ref
+
+value_template: "{{ value_json.active_git_ref }}"

@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:source-branch-sync
+
+name: CRTPi Active Git Ref
+
+state_topic: /homeassistant/crt-pi/stats
+
+unique_id: crtpi_active_git_ref
+
+value_template: "{{ value_json.active_git_ref }}"

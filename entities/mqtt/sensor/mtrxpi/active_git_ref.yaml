@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:source-branch-sync
+
+name: MtrxPi Active Git Ref
+
+state_topic: /homeassistant/mtrxpi/stats
+
+unique_id: mtrxpi_active_git_ref
+
+value_template: "{{ value_json.active_git_ref }}"

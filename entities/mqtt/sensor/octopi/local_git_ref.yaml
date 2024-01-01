@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:source-repository
+
+name: OctoPi Local Git Ref
+
+state_topic: /homeassistant/octopi/stats
+
+unique_id: octopi_local_git_ref
+
+value_template: "{{ value_json.local_git_ref }}"
