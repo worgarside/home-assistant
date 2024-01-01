@@ -1,0 +1,16 @@
+---
+force_update: true
+
+icon: mdi:memory
+
+name: OctoPi Memory Usage
+
+state_class: measurement
+
+state_topic: /homeassistant/octopi/stats
+
+unique_id: octopi_memory_usage
+
+unit_of_measurement: "%"
+
+value_template: "{{ value_json.memory_usage }}"

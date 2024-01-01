@@ -1,0 +1,16 @@
+---
+force_update: true
+
+icon: mdi:thermometer
+
+name: OctoPi Ambient Temperature
+
+state_class: measurement
+
+state_topic: /homeassistant/octopi/dht22
+
+unique_id: octopi_ambient_temperature
+
+unit_of_measurement: "°C"
+
+value_template: "{{ value_json.temperature }}"

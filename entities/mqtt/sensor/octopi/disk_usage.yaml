@@ -1,0 +1,16 @@
+---
+force_update: true
+
+icon: mdi:harddisk
+
+name: OctoPi Disk Usage
+
+state_class: measurement
+
+state_topic: /homeassistant/octopi/stats
+
+unique_id: octopi_disk_usage
+
+unit_of_measurement: "%"
+
+value_template: "{{ value_json.disk_usage_percent }}"
