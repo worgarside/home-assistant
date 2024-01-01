@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:console
+
+name: OctoPi Boot Time
+
+state_topic: /homeassistant/octopi/stats
+
+unique_id: octopi_boot_time
+
+value_template: "{{ value_json.boot_time }}"

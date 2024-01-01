@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:console
+
+name: VSMPPi Boot Time
+
+state_topic: /homeassistant/vsmppi/stats
+
+unique_id: vsmppi_boot_time
+
+value_template: "{{ value_json.boot_time }}"

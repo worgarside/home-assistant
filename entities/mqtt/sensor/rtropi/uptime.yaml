@@ -1,0 +1,16 @@
+---
+force_update: false
+
+icon: mdi:timer-cog-outline
+
+name: RtroPi Uptime
+
+state_class: measurement
+
+state_topic: /homeassistant/rtropi/stats
+
+unique_id: rtropi_uptime
+
+unit_of_measurement: s
+
+value_template: "{{ value_json.uptime }}"

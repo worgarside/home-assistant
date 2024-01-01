@@ -83,6 +83,12 @@
     "mqtt": {
       "should_match_filepath": [
         {
+          "field": "name",
+          "separator": " ",
+          "include_domain_dir": false,
+          "remove_sensor_prefix": true
+        },
+        {
           "field": "unique_id",
           "separator": "_",
           "include_domain_dir": false,

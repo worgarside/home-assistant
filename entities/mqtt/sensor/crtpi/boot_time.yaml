@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:console
+
+name: CrtPi Boot Time
+
+state_topic: /homeassistant/crt-pi/stats
+
+unique_id: crtpi_boot_time
+
+value_template: "{{ value_json.boot_time }}"

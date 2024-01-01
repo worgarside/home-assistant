@@ -1,0 +1,16 @@
+---
+force_update: false
+
+icon: mdi:timer-cog-outline
+
+name: GrowPi Uptime
+
+state_class: measurement
+
+state_topic: /homeassistant/growpi/stats
+
+unique_id: growpi_uptime
+
+unit_of_measurement: s
+
+value_template: "{{ value_json.uptime }}"

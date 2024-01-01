@@ -1,0 +1,12 @@
+---
+force_update: false
+
+icon: mdi:source-repository
+
+name: GrowPi Local Git Ref
+
+state_topic: /homeassistant/growpi/stats
+
+unique_id: growpi_local_git_ref
+
+value_template: "{{ value_json.local_git_ref }}"
