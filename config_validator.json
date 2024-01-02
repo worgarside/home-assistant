@@ -106,6 +106,18 @@
         "name"
       ]
     },
+    "switch": {
+      "should_exist": [
+        "friendly_name",
+        "unique_id",
+        "turn_off",
+        "turn_on"
+      ],
+      "should_match_filename": [
+        "friendly_name",
+        "unique_id"
+      ]
+    },
     "template": {
       "should_match_filename": [
         "name",
