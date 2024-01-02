@@ -1,0 +1,65 @@
+---
+friendly_name: Prusa i3 MK3 Power
+
+unique_id: prusa_i3_mk3_power
+
+availability_template: "{{ not is_state('switch.prusa_i3_mk3', 'unavailable') }}"
+
+value_template: "{{ states('switch.prusa_i3_mk3') }}"
+
+icon_template: >-
+  {%
+    if (
+      is_state("switch.prusa_i3_mk3", "on") and
+      states("sensor.prusa_i3_mk3_current_consumption") | float > 0
+    )
+  %}
+    mdi:printer-3d
+  {% else %}
+    mdi:printer-3d-off
+  {% endif %}
+
+turn_off:
+  - alias: Check power consumption is low and OctoPrint is not printing
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.prusa_i3_mk3_current_consumption
+        below: 30
+
+      - not:
+          - condition: state
+            entity_id: binary_sensor.prusa_i3_mk3_printing
+            state: "on"
+
+  - service: switch.turn_off
+    target:
+      entity_id: switch.octoprint_connect_to_printer
+
+  - wait_template: "{{ is_state('binary_sensor.octoprint_connected', 'off') }}"
+    timeout:
+      seconds: 30
+
+  - service: switch.turn_off
+    target:
+      entity_id: switch.prusa_i3_mk3
+
+turn_on:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.prusa_i3_mk3
+
+  - delay:
+      seconds: 5
+
+  - repeat:
+      while: "{{ is_state('binary_sensor.octoprint_connected', 'off') and repeat.index < 6 }}"
+
+      sequence:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.octoprint_connect_to_printer
+
+        - wait_template: "{{ is_state('binary_sensor.octoprint_connected', 'on') }}"
+          timeout:
+            seconds: 10
+          continue_on_timeout: true
