@@ -32,7 +32,7 @@ action:
 
   - service: script.debug_persistent_notification
     data:
-      title: "`script.input_select_cosmo_picture_set_options`"
+      title: "`automation.input_select_cosmo_picture_set_options`"
       message: "{{ files | tojson(indent=2) }}"
 
   - variables:

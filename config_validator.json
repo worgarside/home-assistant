@@ -113,17 +113,9 @@
         "turn_off",
         "turn_on"
       ],
-      "should_match_filepath": [
-        {
-          "field": "friendly_name",
-          "separator": " ",
-          "include_domain_dir": false
-        },
-        {
-          "field": "unique_id",
-          "separator": "_",
-          "include_domain_dir": false
-        }
+      "should_match_filename": [
+        "friendly_name",
+        "unique_id"
       ]
     },
     "template": {
