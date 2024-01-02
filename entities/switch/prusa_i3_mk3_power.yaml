@@ -28,7 +28,7 @@ turn_off:
 
       - not:
           - condition: state
-            entity_id: binary_sensor.prusa_i3_mk3_printing
+            entity_id: binary_sensor.octoprint_printing
             state: "on"
 
   - service: switch.turn_off
