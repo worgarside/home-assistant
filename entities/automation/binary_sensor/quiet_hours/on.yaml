@@ -47,11 +47,12 @@ action:
 
             - service: script.debug_persistent_notification
               data:
-                title: "{{ repeat.item.title()}} Clean Missed"
+                title: "{{ repeat.item.title().replace('_', '-') }} Clean Missed"
                 message: >-
                   {{ repeat.item.title() }} clean was due by
                   `{{ next_clean_timestamp | as_datetime }}` but was missed.
                   New target: `{{ new_dttm }}`
+                notification_id: "{{ repeat.item }}_clean_missed"
 
             - service: input_datetime.set_datetime
               target:
