@@ -2,7 +2,7 @@
 
 BRANCH="main"
 
-while getopts ":b:e:t:" opt; do
+while getopts ":b:t:" opt; do
     case ${opt} in
         b)
             if [[ -n "${OPTARG}" ]]; then
@@ -11,8 +11,6 @@ while getopts ":b:e:t:" opt; do
             ;;
         t)
             [[ "${OPTARG}" != "null" ]] && TOKEN="${OPTARG}" || TOKEN="" ;;
-        e)
-            [[ "${OPTARG}" != "null" ]] && ENTITY_ID="${OPTARG}" || ENTITY_ID="" ;;
         *) echo "shell_command.checkout_git_branch INVALID USAGE: -${opt} ${OPTARG}" >> /config/home-assistant.log
             exit 1 ;;
     esac
@@ -22,7 +20,7 @@ done
     exec > >(trap "" INT TERM; sed "s/^/$(date +'%Y-%m-%dT%H:%M:%S')\t[INFO]\t/")
     exec 2> >(trap "" INT TERM; sed "s/^/$(date +'%Y-%m-%dT%H:%M:%S')\t[ERROR]\t/" >&2)
 
-    echo "shell_command.checkout_git_branch STARTED with branch: ${BRANCH} and entity ID(s): ${ENTITY_ID}"
+    echo "shell_command.checkout_git_branch STARTED with branch: ${BRANCH}"
 
     cd /config || exit 1
 
@@ -43,10 +41,8 @@ done
 
     git status
 
-    if [[ -n ${TOKEN} ]] && [[ -n ${ENTITY_ID} ]]; then
-        IFS=',' read -ra ENTITY_IDS <<< "${ENTITY_ID}"
-
-        for id in "${ENTITY_IDS[@]}"; do
+    if [[ -n ${TOKEN} ]]; then
+        for id in "sensor.current_git_branch" "sensor.current_git_ref" "sensor.remote_git_branches"; do
             echo "Updating Home Assistant entity: ${id}"
 
             curl -sSL -X POST \
@@ -55,9 +51,8 @@ done
                 -d '{"entity_id": "'"${id}"'"}' \
                 http://homeassistant.local:8123/api/services/homeassistant/update_entity
         done
-
     else
-        echo "Token or entity ID missing, skipping Home Assistant update."
+        echo "Token missing, skipping Home Assistant updates."
     fi
 
 

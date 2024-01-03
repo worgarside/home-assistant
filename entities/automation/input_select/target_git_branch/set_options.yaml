@@ -10,7 +10,12 @@ trigger:
     entity_id:
       - sensor.current_git_branch
       - sensor.current_git_ref
-      - sensor.remote_git_branches
+    to:
+
+  - platform: state
+    entity_id: sensor.remote_git_branches
+    attribute: branches
+    to:
 
 action:
   - service: script.target_git_branch_set_options
