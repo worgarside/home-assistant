@@ -1144,6 +1144,12 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
+                      "entity": "switch.prusa_i3_mk3_power",
+                      "name": "Hotend Temperature",
+                      "icon_color": "blue"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_tool_0_temperature",
                       "name": "Hotend Temperature",
                       "icon_color": "orange",
