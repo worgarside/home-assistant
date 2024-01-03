@@ -16,6 +16,9 @@ fields:
 
 mode: parallel
 
+variables:
+  notif_title: "{{ title | default(' ') }}"
+
 sequence:
   - service: system_log.write
     data:
@@ -31,7 +34,7 @@ sequence:
   - service: persistent_notification.create
     data:
       message: "{{ message }}"
-      title: "{{ title }}"
+      title: "{{ notif_title }}"
       notification_id: >-
         {{
           notification_id |

@@ -8,9 +8,6 @@ mode: queued
 trigger:
   platform: state
   entity_id: input_select.target_git_branch
-  not_from:
-    - unavailable
-    - unknown
   not_to:
     - unavailable
     - unknown
