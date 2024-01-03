@@ -32,7 +32,7 @@ action:
               {{ states('input_datetime.cosmo_next_' + repeat.item + '_clean_due') | as_timestamp }}
             new_ts: >-
               {{
-                ( (now_dttm | as_datetime ) + timedelta(days=1) ).replace(
+                ( (now_iso | as_datetime ) + timedelta(days=1) ).replace(
                   hour=range(9, 18) | random,
                   minute=range(0, 60, 5) | random,
                   second=0,
