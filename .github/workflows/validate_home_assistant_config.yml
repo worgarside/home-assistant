@@ -12,8 +12,7 @@ on:
       - synchronize
 
 concurrency:
-  # yamllint disable-line rule:line-length
-  group: validate-home-assistant-config-${{ github.event.pull_request.number }}-${{ github.event.action }}
+  group: validate-home-assistant-config-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: true
 
 jobs:
