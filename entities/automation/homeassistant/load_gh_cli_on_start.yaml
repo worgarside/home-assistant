@@ -12,7 +12,9 @@ trigger:
 action:
   - service: shell_command.get_gh_cli
 
-  - service: script.debug_persistent_notification
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
     data:
       title: GH CLI Loaded
       message: ":)"

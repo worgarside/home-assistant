@@ -1,6 +1,8 @@
 ---
 description: Update the CRT Pi display from the chosen media player's track
+
 mode: parallel
+
 sequence:
   - alias: Set Variables
     variables:
@@ -12,7 +14,10 @@ sequence:
           if url and url.startswith('/api/')
           else ""
         }}
-  - service: script.debug_persistent_notification
+
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
     data:
       title: CRT Display Update
       # yamllint disable rule:line-length
@@ -28,6 +33,7 @@ sequence:
         Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
         ```
       # yamllint enable rule:line-length
+
   - service: mqtt.publish
     data:
       topic: /crt-pi/display/update_display

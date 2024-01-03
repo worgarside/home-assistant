@@ -30,7 +30,9 @@ action:
     data:
       path: "{{ image_directory_real }}"
 
-  - service: script.debug_persistent_notification
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
     data:
       title: "`automation.input_select_cosmo_picture_set_options`"
       message: "{{ files | tojson(indent=2) }}"
