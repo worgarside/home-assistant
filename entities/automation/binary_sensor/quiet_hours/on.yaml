@@ -42,7 +42,7 @@ action:
                       minute=range(0, 60, 5) | random,
                       second=0,
                       microsecond=0
-                    ) | as_datetime
+                    )
                   }}
 
             - service: script.debug_persistent_notification
