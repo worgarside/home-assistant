@@ -27,7 +27,6 @@ fields:
   mobile_notification_icon:
     description: Optional icon for the phone notification
     example: mdi:alert
-    default: mdi:home-assistant
 
 mode: queued
 
@@ -35,23 +34,30 @@ max: 50
 
 variables:
   actions: "{{ actions | default([]) }}"
+
   clear_notification: >-
     {{
       message | default('') == 'clear_notification' or
       clear_notification in ('true', 'True', 'TRUE', '1', 1, True, true)
     }}
+
   notification_id: >-
     {% if clear_notification %}
       {{ notification_id | default(None) }}
     {% else %}
       {{ notification_id | default('notify_vic_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}
     {% endif %}
+
   message: >-
     {% if clear_notification %}
       clear_notification
     {% else %}
       {{ message }}
     {% endif %}
+
+  mobile_notification_icon: "{{ mobile_notification_icon | default('mdi:home-assistant') }}"
+
+  notif_title: "{{ title | default(' ') }}"
 
 sequence:
   - if:
@@ -73,7 +79,7 @@ sequence:
     service: notify.mobile_app_victorias_iphone
     data:
       message: "{{ message }}"
-      title: "{{ title }}"
+      title: "{{ notif_title }}"
       data:
         actions: "{{ actions }}"
         tag: "{{ notification_id }}"
@@ -83,7 +89,7 @@ sequence:
     service: notify.mobile_app_ipad
     data:
       message: "{{ message }}"
-      title: "{{ title }}"
+      title: "{{ notif_title }}"
       data:
         actions: "{{ actions }}"
         tag: "{{ notification_id }}"
@@ -105,7 +111,7 @@ sequence:
       - service: notify.mobile_app_victorias_macbook_air
         data:
           message: "{{ message }}"
-          title: "{{ title }}"
+          title: "{{ notif_title }}"
           data:
             actions: "{{ actions }}"
             tag: "{{ notification_id }}"

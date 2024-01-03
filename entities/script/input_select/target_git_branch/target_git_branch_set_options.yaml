@@ -4,20 +4,14 @@ description: Set the options of input_select.target_git_branch to the current gi
 mode: restart
 
 fields:
-  set_option_to_current_git_branch:
-    description: Set the option of the input_select to the current git branch
-    required: false
-    default: true
-
   update_remote_branches:
     description: Update the remote branches sensor
     required: false
-    default: true
 
 sequence:
   - alias: Update `sensor.remote_git_branches`
 
-    if: "{{ update_remote_branches }}"
+    if: "{{ update_remote_branches | default(true) }}"
 
     then:
       - service: homeassistant.update_entity
@@ -84,7 +78,6 @@ sequence:
 
     if: >-
       {{
-        set_option_to_current_git_branch and
         states('sensor.current_git_branch') != states('input_select.target_git_branch')
       }}
 
