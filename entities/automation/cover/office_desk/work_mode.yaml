@@ -20,7 +20,9 @@ condition:
 
 action:
   - alias: "Send debug notification"
-    service: script.debug_persistent_notification
+    service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
     data:
       title: "Work Mode: Standing Target Not Met \U0001F621"
       message: >-

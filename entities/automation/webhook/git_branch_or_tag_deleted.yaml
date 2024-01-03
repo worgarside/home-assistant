@@ -21,7 +21,9 @@ condition:
       }}
 
 action:
-  - service: script.debug_persistent_notification
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
     data:
       title: Git branch deleted
       message: >-
