@@ -20,7 +20,9 @@ trigger:
       minutes: 1
 
 action:
-  - service: script.debug_persistent_notification
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
     data:
       title: Office Blinds
       message: Failsafe for `stop` state triggered

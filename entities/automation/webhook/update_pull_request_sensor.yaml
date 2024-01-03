@@ -17,7 +17,9 @@ action:
       sensor_name: >-
         sensor.{{ trigger.json["repository"]["name"] | replace("-", "_") }}_pull_requests
 
-  - service: script.debug_persistent_notification
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
     data:
       title: "GitHub Webhook Triggered"
       message: "`{{ sensor_name }}`"

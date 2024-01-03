@@ -10,7 +10,9 @@ trigger:
     topic: /home-assistant/crt-pi/state-from-crt
 
 action:
-  - service: script.debug_persistent_notification
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
     data:
       title: Mini CRT Power State
       message: '{{ trigger.payload }}'
