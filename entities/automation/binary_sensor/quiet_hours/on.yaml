@@ -1,0 +1,52 @@
+---
+alias: /binary-sensor/quiet-hours/on
+
+id: binary_sensor_quiet_hours_on
+
+mode: single
+
+trigger:
+  platform: state
+  entity_id: binary_sensor.quiet_hours
+  from: "off"
+  to: "on"
+
+variables:
+  now_dttm: "{{ now() }}"
+  now_ts: "{{ now_dttm.timestamp() }}"
+
+action:
+  - repeat:
+      for_each:
+        - bathroom
+        - bedroom
+        - en_suite
+        - hallway
+        - kitchen
+        - lounge
+        - office
+
+      sequence:
+        - variables:
+            next_clean_timestamp: >-
+              {{ states('input_datetime.cosmo_next_' + repeat.item + '_clean_due') | as_timestamp }}
+            new_ts: >-
+              {{
+                ( now_dttm + timedelta(days=1) ).replace(
+                  hour=range(9, 18) | random,
+                  minute=range(0, 60, 5) | random,
+                  second=0,
+                  microsecond=0
+                )
+              }}
+
+        - if: "{{ next_clean_timestamp | float < now_ts | float }}"
+
+          then:
+            - service: script.debug_persistent_notification
+              data:
+                title: "{{ repeat.item.title()}} Clean Missed"
+                message: >-
+                  {{ repeat.item.title() }} clean was due by
+                  `{{ next_clean_timestamp | as_datetime }}` but was missed.
+                  New target: `{{ new_ts | as_datetime }}`
