@@ -10,4 +10,3 @@ sequence:
     data:
       api_token: !secret api_bearer_token
       branch: "{{ states('sensor.current_git_branch') }}"
-      entity_ids: sensor.current_git_branch,sensor.current_git_ref,sensor.remote_git_branches
