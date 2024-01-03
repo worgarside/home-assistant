@@ -12,8 +12,8 @@ trigger:
   to: "on"
 
 variables:
-  now_dttm: "{{ now() }}"
-  now_ts: "{{ now_dttm.timestamp() }}"
+  now_iso: "{{ now().isoformat() }}"
+  now_ts: "{{ ( now_iso | as_datetime ).timestamp() }}"
 
 action:
   - repeat:
@@ -32,7 +32,7 @@ action:
               {{ states('input_datetime.cosmo_next_' + repeat.item + '_clean_due') | as_timestamp }}
             new_ts: >-
               {{
-                ( now_dttm + timedelta(days=1) ).replace(
+                ( (now_dttm | as_datetime ) + timedelta(days=1) ).replace(
                   hour=range(9, 18) | random,
                   minute=range(0, 60, 5) | random,
                   second=0,
