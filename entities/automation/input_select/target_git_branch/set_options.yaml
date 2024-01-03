@@ -3,9 +3,7 @@ alias: /input-select/target-git-branch/set-options
 
 id: input_select_target_git_branch_set_options
 
-mode: single
-
-max_exceeded: silent
+mode: restart
 
 trigger:
   - platform: state
@@ -18,7 +16,3 @@ action:
   - service: script.target_git_branch_set_options
     data:
       update_remote_branches: "{{ trigger.to_state.entity_id != 'sensor.remote_git_branches' }}"
-
-  - alias: Ensure no quick repeats from simultaneous branch/ref updates
-    delay:
-      seconds: 5
