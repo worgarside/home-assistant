@@ -21,11 +21,14 @@ sequence:
   - alias: Set variables
     variables:
       branches: "{{ state_attr('sensor.remote_git_branches', 'branches') }}"
+
       branch_count: "{{ branches | length }}"
+
       current_options: "{{ state_attr('input_select.target_git_branch', 'options') }}"
 
       true_response:
         value: true
+
       false_response:
         value: false
 
@@ -74,19 +77,20 @@ sequence:
     data:
       options: "{{ branches }}"
 
+  - alias: Update current git branch
+    service: homeassistant.update_entity
+    target:
+      entity_id: sensor.current_git_branch
+
+  - delay:
+      seconds: 2.5
+
   - alias: Set input_select to current git branch
-
-    if: >-
-      {{
-        states('sensor.current_git_branch') != states('input_select.target_git_branch')
-      }}
-
-    then:
-      - service: input_select.select_option
-        target:
-          entity_id: input_select.target_git_branch
-        data:
-          option: "{{ states('sensor.current_git_branch') }}"
+    service: input_select.select_option
+    target:
+      entity_id: input_select.target_git_branch
+    data:
+      option: "{{ states('sensor.current_git_branch') }}"
 
   - stop: Updated
     response_variable: true_response
