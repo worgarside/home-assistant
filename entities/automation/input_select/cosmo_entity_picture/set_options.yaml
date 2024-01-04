@@ -34,8 +34,10 @@ action:
     target:
       entity_id: script.debug_persistent_notification
     data:
-      title: "`automation.input_select_cosmo_picture_set_options`"
-      message: "{{ files | tojson(indent=2) }}"
+      variables:
+        title: "`automation.input_select_cosmo_picture_set_options`"
+        message: "{{ files | tojson(indent=2) }}"
+        notification_id: input_select_cosmo_entity_picture_set_options
 
   - variables:
       file_list: >-

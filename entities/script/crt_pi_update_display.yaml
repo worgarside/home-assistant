@@ -19,20 +19,21 @@ sequence:
     target:
       entity_id: script.debug_persistent_notification
     data:
-      title: CRT Display Update
-      # yamllint disable rule:line-length
-      message: |
-        ```
-        Title:   {{ state_attr(media_player, 'media_title') }}
-        Artist:  {{ state_attr(media_player, 'media_artist') }}
-        Album:   {{ state_attr(media_player, 'media_album_name') }}
-        Artwork: {{ album_artwork_url_prefix }}{{ state_attr(media_player, 'entity_picture') }}
-        State:   {{ states(media_player) }}
+      variables:
+        title: CRT Display Update
+        # yamllint disable rule:line-length
+        message: |
+          ```
+          Title:   {{ state_attr(media_player, 'media_title') }}
+          Artist:  {{ state_attr(media_player, 'media_artist') }}
+          Album:   {{ state_attr(media_player, 'media_album_name') }}
+          Artwork: {{ album_artwork_url_prefix }}{{ state_attr(media_player, 'entity_picture') }}
+          State:   {{ states(media_player) }}
 
-        Topic:   /crt-pi/display/update_display
-        Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
-        ```
-      # yamllint enable rule:line-length
+          Topic:   /crt-pi/display/update_display
+          Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
+          ```
+        # yamllint enable rule:line-length
 
   - service: mqtt.publish
     data:
