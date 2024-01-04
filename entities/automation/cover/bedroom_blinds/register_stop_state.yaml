@@ -24,9 +24,10 @@ action:
     target:
       entity_id: script.debug_persistent_notification
     data:
-      title: Bedroom Blinds
-      message: Failsafe for `stop` state triggered
-      notification_id: cover_bedroom_blinds_register_stop_state
+      variables:
+        title: Bedroom Blinds
+        message: Failsafe for `stop` state triggered
+        notification_id: cover_bedroom_blinds_register_stop_state
 
   - service: cover.stop_cover
     target:
