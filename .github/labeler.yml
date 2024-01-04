@@ -41,6 +41,9 @@ labels:
     base-branch: ^main$
     branch: ^release/.+$
 
+  - label: refactor
+    branch: ^refactor/.+$
+
   - label: tests
     files:
       - ^tests/.+$
