@@ -815,6 +815,12 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_bathroom",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_next_bathroom_clean_due",
                       "primary_info": "state",
                       "secondary_info": "none"
@@ -850,6 +856,12 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_last_bedroom_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_bedroom",
                       "primary_info": "state",
                       "secondary_info": "none"
                     },
@@ -895,6 +907,12 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_en_suite",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_next_en_suite_clean_due",
                       "primary_info": "state",
                       "secondary_info": "none"
@@ -930,6 +948,12 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_last_hallway_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_hallway",
                       "primary_info": "state",
                       "secondary_info": "none"
                     },
@@ -975,6 +999,12 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_kitchen",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_next_kitchen_clean_due",
                       "primary_info": "state",
                       "secondary_info": "none"
@@ -1015,6 +1045,12 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_lounge",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_next_lounge_clean_due",
                       "primary_info": "state",
                       "secondary_info": "none"
@@ -1050,6 +1086,12 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_last_office_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_office",
                       "primary_info": "state",
                       "secondary_info": "none"
                     },
