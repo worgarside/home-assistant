@@ -1,21 +1,23 @@
 ---
 mode: single
+
 max_exceeded: silent
+
 fields:
   sync_blinds:
     description: "Sync blinds with desk position"
-    default: false
     example: "false"
     required: false
-    selector:
-      boolean:
+
 sequence:
   - service: script.turn_on
     data:
       entity_id: script.office_desk_set_position
       variables:
         position: "{{ states('input_number.office_desk_standing_height') | int(default=80) }}"
-  - condition: "{{ sync_blinds }}"
+
+  - condition: "{{ sync_blinds is defined and sync_blinds | bool }}"
+
   - service: cover.set_cover_position
     data:
       entity_id: cover.office_blinds
