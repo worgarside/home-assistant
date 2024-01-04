@@ -109,7 +109,7 @@
                   "icon_color": "#E84D32",
                   "double_tap_action": {
                     "action": "url",
-                    "url_path": "https://github.com/worgarside/home-assistant"
+                    "url_path": "https://github.com/worgarside/home-assistant/releases"
                   },
                   "hold_action": {
                     "action": "call-service",
@@ -1142,6 +1142,11 @@
                   "square": false,
                   "type": "grid",
                   "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "switch.prusa_i3_mk3_power",
+                      "icon_color": "blue"
+                    },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_tool_0_temperature",
