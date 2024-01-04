@@ -25,12 +25,13 @@ action:
     target:
       entity_id: script.debug_persistent_notification
     data:
-      title: Git branch deleted
-      message: >-
-        {{ trigger.json["sender"]["login"] }} deleted branch
-        {{ trigger.json["ref"] }} in
-        {{ trigger.json["repository"]["full_name"] }}
-      notification_id: "git_branch_or_tag_deleted_{{ trigger.json['ref'] }}"
+      variables:
+        title: Git branch deleted
+        message: >-
+          {{ trigger.json["sender"]["login"] }} deleted branch
+          {{ trigger.json["ref"] }} in
+          {{ trigger.json["repository"]["full_name"] }}
+        notification_id: "git_branch_or_tag_deleted_{{ trigger.json['ref'] }}"
 
   - service: homeassistant.update_entity
     target:

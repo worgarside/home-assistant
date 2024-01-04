@@ -11,8 +11,9 @@ fields:
       boolean:
 sequence:
   - service: script.turn_on
-    data:
+    target:
       entity_id: script.office_desk_set_position
+    data:
       variables:
         position: "{{ states('input_number.office_desk_standing_height') | int(default=80) }}"
   - condition: "{{ sync_blinds }}"

@@ -24,10 +24,11 @@ action:
     target:
       entity_id: script.debug_persistent_notification
     data:
-      title: "Work Mode: Standing Target Not Met \U0001F621"
-      message: >-
-        {{ states('sensor.office_desk_standing_time_remaining') }} minutes remaining...
-      notification_id: cover_office_desk_work_mode
+      variables:
+        title: "Work Mode: Standing Target Not Met \U0001F621"
+        message: >-
+          {{ states('sensor.office_desk_standing_time_remaining') }} minutes remaining...
+        notification_id: cover_office_desk_work_mode
 
   - alias: "Set desk to standing mode"
     service: script.office_desk_standing_mode
