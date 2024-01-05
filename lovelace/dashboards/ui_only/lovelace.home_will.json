@@ -758,7 +758,7 @@
           "subview": true,
           "type": "custom:grid-layout",
           "layout": {
-            "grid-template-columns": "auto 25% 25%",
+            "grid-template-columns": "75% auto",
             "grid-template-rows": "auto",
             "grid-template-areas": "\"left middle right\"\n"
           },
@@ -786,6 +786,11 @@
                     },
                     {
                       "type": "custom:mushroom-title-card",
+                      "title": "Clean Timeout",
+                      "alignment": "center"
+                    },
+                    {
+                      "type": "custom:mushroom-title-card",
                       "title": "Next Clean Due",
                       "alignment": "center"
                     },
@@ -810,6 +815,12 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_last_bathroom_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_bathroom",
                       "primary_info": "state",
                       "secondary_info": "none"
                     },
@@ -855,6 +866,12 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_bedroom",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_next_bedroom_clean_due",
                       "primary_info": "state",
                       "secondary_info": "none"
@@ -890,6 +907,12 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_last_en_suite_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_en_suite",
                       "primary_info": "state",
                       "secondary_info": "none"
                     },
@@ -935,6 +958,12 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_hallway",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_next_hallway_clean_due",
                       "primary_info": "state",
                       "secondary_info": "none"
@@ -970,6 +999,12 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_last_kitchen_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_kitchen",
                       "primary_info": "state",
                       "secondary_info": "none"
                     },
@@ -1015,6 +1050,12 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_lounge",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_next_lounge_clean_due",
                       "primary_info": "state",
                       "secondary_info": "none"
@@ -1050,6 +1091,12 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "input_datetime.cosmo_last_office_clean",
+                      "primary_info": "state",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.cosmo_room_timeout_office",
                       "primary_info": "state",
                       "secondary_info": "none"
                     },
