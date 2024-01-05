@@ -70,19 +70,30 @@ sequence:
         - will
 
       sequence:
+        - variables:
+            person_name: "{{ repeat.item }}"
+            entity_id: "person.{{ person_name }}"
+            miles_away: >-
+              {{ states('sensor.' ~ person_name ~ '_distance_from_home') | float(0) > 25 }}
+
         - if:
             or:
-              - alias: Nobody home
-                condition: state
-                entity_id: zone.home
-                state: "0"
-
               - alias: "{{ repeat.item }} is at home"
                 condition: template
-                value_template: "{{ is_state('person.' ~ repeat.item, 'home') }}"
+                value_template: "{{ is_state(entity_id, 'home') }}"
+
+              - and:
+                  - alias: Nobody home
+                    condition: state
+                    entity_id: zone.home
+                    state: "0"
+
+                  - alias: "{{ person_name }} is not miles away"
+                    condition: template
+                    value_template: "{{ not ( miles_away | bool ) }}"
 
           then:
-            - service: script.notify_{{ repeat.item }}
+            - service: script.notify_{{ person_name }}
               data:
                 title: Cosmo wants to clean the {{ room.replace('_', '-') }}!
                 message: "{{ message }}"
