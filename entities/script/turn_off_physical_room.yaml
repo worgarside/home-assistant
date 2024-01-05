@@ -24,31 +24,28 @@ fields:
   close_blinds:
     name: Close Blinds
     description: Whether to close the blinds
-    default: false
-    example: false
     required: false
-    selector:
-      boolean:
 
   close_blinds_window_delay:
     name: Close Blinds Window Delay
     description: The delay before closing the blinds if the window is open
     example: "00:01:00"
-    default: "00:01:00"
     required: false
-    selector:
-      time:
 
   close_blinds_with_open_window_after_delay:
     name: Close Blinds With Open Window After Delay
     description: Whether to close the blinds if the window is open after a delay
-    default: false
-    example: false
     required: false
-    selector:
-      boolean:
 
 sequence:
+  - variables:
+      close_blinds: "{{ close_blinds | default(false) }}"
+
+      close_blinds_window_delay: "{{ close_blinds_window_delay | default('00:01:00') }}"
+
+      close_blinds_with_open_window_after_delay: >-
+        {{ close_blinds_with_open_window_after_delay | default(false) }}
+
   - alias: "Turn off each physical domain"
     repeat:
       for_each:
