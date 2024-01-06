@@ -1,0 +1,18 @@
+---
+alias: /sensor/octoprint-bed-target/set
+
+id: sensor_octoprint_bed_target_set
+
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: sensor.octoprint_bed_target
+    to:
+
+action:
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.prusa_i3_mk3_target_bed_temperature
+    data:
+      value: "{{ trigger.to_state.state }}"
