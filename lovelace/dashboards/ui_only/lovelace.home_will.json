@@ -1232,6 +1232,24 @@
                       "entity": "sensor.octopi_ambient_temperature",
                       "name": "Ambient Temperature",
                       "icon_color": "pink"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.prusa_i3_mk3_current_consumption",
+                      "name": "Current Power Draw",
+                      "icon_color": "yellow"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_boolean.octopi_fan",
+                      "name": "OctoPi Fan",
+                      "icon_color": "yellow"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octopi_cpu_temperature",
+                      "name": "OctoPi CPU Temp",
+                      "icon_color": "yellow"
                     }
                   ],
                   "columns": 2
