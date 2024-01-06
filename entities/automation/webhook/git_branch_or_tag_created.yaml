@@ -12,39 +12,38 @@ trigger:
       - POST
     local_only: false
 
-condition:
-  - condition: template
-    value_template: >-
-      {{
-        trigger.json["repository"]["name"] == "home-assistant"
-      }}
+variables:
+  img_url: '{{ trigger.json["sender"]["avatar_url"] }}'
+  repository: '{{ trigger.json["repository"]["name"] }}'
+  ref: '{{ trigger.json["ref"] }}'
+  ref_type: '{{ trigger.json["ref_type"] }}'
 
 action:
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      variables:
+        title: Git {{ ref_type }} created
+        notification_id: "git_{{ ref_type }}_created_{{ ref }}"
+        message: >-
+          <img src="{{ img_url }}" width="24" height="24">
+          `{{ trigger.json["sender"]["login"] }}`
+          created {{ ref_type }} `{{ ref }}` in [`{{ repository }}`]
+          ({{ trigger.json["repository"]["html_url"] }})
+
   - choose:
       - alias: Get new release for newly published tag
-        conditions: >-
-          {{
-            trigger.json["ref_type"] == "tag" and
-            trigger.json["ref"] is match("^\d+\.\d+\.\d+$")
-          }}
+        conditions: '{{ ref_type == "tag" and ref is match("^\d+\.\d+\.\d+$") }}'
 
         sequence:
-          - service: persistent_notification.create
-            data:
-              title: "Updating Config ({{trigger.json['ref']}})"
-              message: |
-                ## Webhook Payload
-                ```json
-                {{ trigger.json | tojson(indent=2) }}
-                ```
-
           - service: shell_command.checkout_git_branch
             data:
               api_token: !secret api_bearer_token
               branch: main
 
       - alias: Update entities to record new branch
-        conditions: "{{ trigger.json['ref_type'] == 'branch' }}"
+        conditions: '{{ repository == "home-assistant" and ref_type == "branch" }}'
 
         sequence:
           - service: homeassistant.update_entity
