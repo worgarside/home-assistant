@@ -1,5 +1,5 @@
 ---
-alias: /webhook/git_branch_or_tag_deleted
+alias: /webhook/git-branch-or-tag-deleted
 
 id: webhook_git_branch_or_tag_deleted
 
@@ -12,13 +12,11 @@ trigger:
       - POST
     local_only: false
 
-condition:
-  - condition: template
-    value_template: >-
-      {{
-        trigger.json["repository"]["name"] == "home-assistant" and
-        trigger.json["ref_type"] == "branch"
-      }}
+variables:
+  img_url: '{{ trigger.json["sender"]["avatar_url"] }}'
+  repository: '{{ trigger.json["repository"]["name"] }}'
+  ref: '{{ trigger.json["ref"] }}'
+  ref_type: '{{ trigger.json["ref_type"] }}'
 
 action:
   - service: script.turn_on
@@ -26,12 +24,17 @@ action:
       entity_id: script.debug_persistent_notification
     data:
       variables:
-        title: Git branch deleted
+        title: Git {{ ref_type }} deleted
+        notification_id: "git_{{ ref_type }}_deleted_{{ ref }}"
         message: >-
-          {{ trigger.json["sender"]["login"] }} deleted branch
-          {{ trigger.json["ref"] }} in
-          {{ trigger.json["repository"]["full_name"] }}
-        notification_id: "git_branch_or_tag_deleted_{{ trigger.json['ref'] }}"
+          <img src="{{ img_url }}" width="24" height="24">
+          `{{ trigger.json["sender"]["login"] }}`
+          deleted {{ ref_type }} `{{ ref }}` in [`{{ repository }}`]
+          ({{ trigger.json["repository"]["html_url"] }})
+
+  - condition: template
+    value_template: >-
+      {{ repository == "home-assistant" and ref_type == "branch" }}
 
   - service: homeassistant.update_entity
     target:
