@@ -8,8 +8,10 @@ mode: restart
 trigger:
   - platform: state
     entity_id: input_number.prusa_i3_mk3_target_bed_temperature
-    to:
     not_from:
+      - unavailable
+      - unknown
+    not_to:
       - unavailable
       - unknown
     for:
@@ -17,7 +19,9 @@ trigger:
 
 variables:
   payload:
-    value: "{{ trigger.to_state.state | int(0) }}"
+    value: "{{ trigger.to_state.state | int(-1) }}"
+
+condition: "{{ payload.value != -1 }}"
 
 action:
   - service: mqtt.publish
