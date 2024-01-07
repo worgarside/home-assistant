@@ -3,12 +3,14 @@ alias: /input-number/prusa-i3-mk3/bed-target/set
 
 id: input_number_prusa_i3_mk3_bed_target_set
 
-mode: queued
+mode: restart
 
 trigger:
   - platform: state
     entity_id: input_number.prusa_i3_mk3_target_bed_temperature
     to:
+    for:
+      seconds: 2.5
 
 variables:
   payload:
