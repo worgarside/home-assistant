@@ -18,4 +18,4 @@ action:
   - service: mqtt.publish
     data_template:
       topic: "/octoprint/prusa_i3_mk3/tool/0/target/set"
-      payload: "{{ payload }}"
+      payload: "{{ payload | tojson }}"
