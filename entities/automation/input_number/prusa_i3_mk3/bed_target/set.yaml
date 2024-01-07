@@ -1,0 +1,30 @@
+---
+alias: /input-number/prusa-i3-mk3/bed-target/set
+
+id: input_number_prusa_i3_mk3_bed_target_set
+
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: input_number.prusa_i3_mk3_target_bed_temperature
+    not_from:
+      - unavailable
+      - unknown
+    not_to:
+      - unavailable
+      - unknown
+    for:
+      seconds: 2.5
+
+variables:
+  payload:
+    value: "{{ trigger.to_state.state | int(-1) }}"
+
+condition: "{{ payload.value != -1 }}"
+
+action:
+  - service: mqtt.publish
+    data_template:
+      topic: "/octoprint/prusa_i3_mk3/bed/target/set"
+      payload: "{{ payload | tojson }}"
