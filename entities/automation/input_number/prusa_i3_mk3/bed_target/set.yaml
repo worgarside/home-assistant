@@ -9,6 +9,9 @@ trigger:
   - platform: state
     entity_id: input_number.prusa_i3_mk3_target_bed_temperature
     to:
+    not_from:
+      - unavailable
+      - unknown
     for:
       seconds: 2.5
 
