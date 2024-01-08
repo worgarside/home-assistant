@@ -32,7 +32,7 @@ action:
 
     default:
         action
-      
+
 
     - wait_template: "{{ is_state('binary_sensor.octoprint_connected', 'on') }}"
       timeout: '00:00:30'
