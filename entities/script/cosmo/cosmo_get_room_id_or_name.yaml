@@ -39,7 +39,10 @@ sequence:
   - service: script.debug_persistent_notification
     data:
       title: Cosmo Room Lookup Success
-      message: "{{ response }}"
+      message: |
+        ```json
+        {{ response || tojson(indent=2) }}
+        ```
 
   - stop: Cosmo Room Lookup Success
     response_variable: response
