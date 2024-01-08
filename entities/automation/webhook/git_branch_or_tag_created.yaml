@@ -29,8 +29,8 @@ action:
         message: >-
           <img src="{{ img_url }}" width="24" height="24">
           `{{ trigger.json["sender"]["login"] }}`
-          created {{ ref_type }} `{{ ref }}` in [`{{ repository }}`]
-          ({{ trigger.json["repository"]["html_url"] }})
+          created {{ ref_type }} `{{ ref }}` in
+          [`{{ repository }}`]({{ trigger.json["repository"]["html_url"] }})
 
   - choose:
       - alias: Get new release for newly published tag
