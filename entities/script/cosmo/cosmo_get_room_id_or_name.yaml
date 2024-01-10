@@ -41,7 +41,7 @@ sequence:
       title: Cosmo Room Lookup Success
       message: |
         ```json
-        {{ response || tojson(indent=2) }}
+        {{ response }}
         ```
 
   - stop: Cosmo Room Lookup Success
