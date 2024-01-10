@@ -11,7 +11,7 @@ trigger:
   to: home
 
 condition:
-  platform: state
+  condition: state
   entity_id: binary_sensor.workday
   state: "on"
 
