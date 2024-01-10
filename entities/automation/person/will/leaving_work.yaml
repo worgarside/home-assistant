@@ -13,11 +13,11 @@ trigger:
     minutes: 2
 
 condition:
-  - platform: state
+  - condition: state
     entity_id: person.vic
     state: home
 
-  - platform: state
+  - condition: state
     entity_id: binary_sensor.workday
     state: "on"
 
