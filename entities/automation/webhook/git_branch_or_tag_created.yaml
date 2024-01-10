@@ -30,7 +30,7 @@ action:
         message: >-
           <img src="{{ img_url }}" width="24" height="24">
           `{{ trigger.json["sender"]["login"] }}`
-          created {{ ref_type }} `{{ ref }}` in
+          created {{ ref_type }}
           [`{{ ref }}`]({{ repo_url }}/tree/{{ ref }})
           in
           [`{{ repository }}`]({{ repo_url }})
