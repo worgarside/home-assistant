@@ -1,0 +1,42 @@
+---
+alias: /person/will/leaving-work
+
+id: person_will_leaving_work
+
+mode: single
+
+trigger:
+  platform: state
+  entity_id: person.will
+  from: SigTech
+  for:
+    minutes: 2
+
+condition:
+  - platform: state
+    entity_id: person.vic
+    state: home
+
+  - platform: state
+    entity_id: binary_sensor.workday
+    state: "on"
+
+  - condition: time
+    after: "17:00:00"
+
+action:
+  - service: tts.cloud_say
+    data:
+      message: Will's on his way home
+      entity_id: media_player.lounge_nest_hub
+
+  - service: media_player.turn_off
+    target:
+      entity_id: media_player.lounge_nest_hub
+
+  - service: script.notify_vic
+    data:
+      title: Will's on his way home
+      message: See you soon! x
+      notification_id: will_leaving_work
+      mobile_notification_icon: mdi:email-open-heart-outline

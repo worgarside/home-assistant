@@ -1,0 +1,25 @@
+---
+alias: /person/will/home
+
+id: person_will_home
+
+mode: single
+
+trigger:
+  platform: state
+  entity_id: person.will
+  to: home
+
+condition:
+  platform: state
+  entity_id: binary_sensor.workday
+  state: "on"
+
+action:
+  - service: script.turn_on
+    target:
+      entity_id: script.notify_vic
+    data:
+      variables:
+        clear_notification: true
+        notification_id: will_leaving_work
