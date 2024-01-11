@@ -156,7 +156,7 @@ sequence:
         #   - alias: Will not on A/L - TODO
 
     then:
-      - service: notify.mobile_app_vd2074dc9l
+      - service: notify.mobile_app_k3qfmw509d
         data:
           message: "{{ message }}"
           title: "{{ notif_title }}"
