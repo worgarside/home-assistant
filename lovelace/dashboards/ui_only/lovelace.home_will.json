@@ -209,6 +209,41 @@
               "time_pattern": "HH:mm:ss"
             },
             {
+              "type": "custom:mini-graph-card",
+              "entities": [
+                {
+                  "entity": "sensor.kitchen_temperature",
+                  "name": "Kitchen"
+                },
+                {
+                  "entity": "sensor.lounge_temperature",
+                  "name": "Lounge"
+                },
+                {
+                  "entity": "sensor.office_temperature",
+                  "name": "Office"
+                },
+                {
+                  "entity": "sensor.hallway_temperature",
+                  "name": "Hallway"
+                }
+              ],
+              "hours_to_show": 4,
+              "points_per_hour": 30,
+              "line_width": 2,
+              "lower_bound": 0,
+              "show": {
+                "fill": "fade",
+                "name": false,
+                "icon": false,
+                "state": false,
+                "legend": true,
+                "extrema": true,
+                "average": true,
+                "labels": true
+              }
+            },
+            {
               "type": "custom:layout-break"
             },
             {
@@ -1249,7 +1284,25 @@
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octopi_cpu_temperature",
                       "name": "OctoPi CPU Temp",
-                      "icon_color": "yellow"
+                      "icon_color": "pink"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_approximate_completion_time",
+                      "name": "Print Completion Time",
+                      "icon_color": "purple"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.prusa_i3_mk3_target_bed_temperature",
+                      "name": "Bed Target",
+                      "icon_color": "purple"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.prusa_i3_mk3_target_hotend_temperature",
+                      "name": "Hotend Target",
+                      "icon_color": "purple"
                     }
                   ],
                   "columns": 2
