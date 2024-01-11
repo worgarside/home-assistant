@@ -29,6 +29,7 @@ action:
     data:
       message: Will's on his way home
       entity_id: media_player.lounge_nest_hub
+      cache: true
 
   - service: media_player.turn_off
     target:
