@@ -22,6 +22,7 @@ action:
   - service: tts.cloud_say
     data:
       entity_id: media_player.lounge_nest_hub
+      cache: true
       message: >-
         {% set message = "Come on Cosmo, time to come back home! " %}
 

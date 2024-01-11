@@ -41,6 +41,7 @@ sequence:
           - service: tts.cloud_say
             data:
               entity_id: "{{ tts_entity_id }}"
+              cache: true
               message: >-
                 {% set message = "Goodbye Cosmo, time to go back home! " %}
 
@@ -80,6 +81,7 @@ sequence:
           - service: tts.cloud_say
             data:
               entity_id: "{{ tts_entity_id }}"
+              cache: true
               message: >-
                 {%
                   set message = (
