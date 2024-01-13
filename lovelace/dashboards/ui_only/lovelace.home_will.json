@@ -128,7 +128,7 @@
                     "action": "url",
                     "url_path": "https://github.com/worgarside/home-assistant"
                   },
-                  "hold_action": {
+                  "tap_action": {
                     "action": "fire-dom-event",
                     "browser_mod": {
                       "service": "browser_mod.popup",
