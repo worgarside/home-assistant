@@ -73,9 +73,10 @@ jobs:
           sed -i 's/\/config/\/github\/workspace/g' configuration.yaml
 
       - name: Validate Configuration
-        uses: worgarside/action-home-assistant@91606e39880690aaaac5aa3584b45d77e617e2fd
+        uses: worgarside/action-home-assistant@d6d91dd4ee35bf016e309421dcb7065a1d3fa613
         with:
           path: .
           secrets: secrets.fake.yaml
           version: ${{ matrix.version }}
           catch_error_logs: ${{ matrix.version == needs.get-current-version.outputs.version }}
+          ignore_pattern: "'\\/hue-remote\\/(lounge|office)\\/button-\\d\\/((long|short)-)?press'"
