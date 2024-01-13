@@ -111,7 +111,7 @@ repos:
         additional_dependencies:
           - types-paramiko
           - watchdog==3.0.0
-          - wg-utilities==5.7.1
+          - wg-utilities==5.8.0
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
   - repo: local
