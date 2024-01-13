@@ -73,7 +73,7 @@ jobs:
           sed -i 's/\/config/\/github\/workspace/g' configuration.yaml
 
       - name: Validate Configuration
-        uses: worgarside/action-home-assistant@3f38c892726802b4427eff8dda3ad83af99d580a
+        uses: worgarside/action-home-assistant@91606e39880690aaaac5aa3584b45d77e617e2fd
         with:
           path: .
           secrets: secrets.fake.yaml
