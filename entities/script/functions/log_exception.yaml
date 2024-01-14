@@ -1,0 +1,33 @@
+---
+description: Log an exception, does not end the calling execution!
+
+mode: parallel
+
+fields:
+  calling_entity:
+    description: The entity that called this service
+    required: true
+
+  message:
+    description: The message to be logged
+    required: true
+
+variables:
+  entity_domain: "{{ calling_entity.split('.')[0] }}"
+  entity_id: "{{ calling_entity.split('.')[1] }}"
+  timestamp: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+
+sequence:
+  - service: persistent_notification.create
+    data:
+      title: ⚠️ Error thrown by {{ entity_domain.replace('_', ' ').title() }}
+      message: |
+        Source:  [`{{ calling_entity }}`](/config/{{ entity_domain }}/trace/{{ entity_id }})
+        Time:    `{{ timestamp }}`
+        Message: `{{ message }}`
+
+  - service: system_log.write
+    data:
+      message: "{{ message }}"
+      level: error
+      logger: "{{ calling_entity }}"
