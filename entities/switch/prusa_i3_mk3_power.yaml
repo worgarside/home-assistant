@@ -3,9 +3,19 @@ friendly_name: Prusa i3 MK3 Power
 
 unique_id: prusa_i3_mk3_power
 
-availability_template: "{{ not is_state('switch.prusa_i3_mk3', 'unavailable') }}"
+availability_template: >-
+  {{
+    not (
+      is_state('switch.prusa_i3_mk3', 'unavailable') or
+      is_state('sensor.octoprint_print_status', 'unavailable')
+    )
+  }}
 
-value_template: "{{ states('switch.prusa_i3_mk3') }}"
+value_template: >-
+  {{
+    is_state('switch.prusa_i3_mk3', 'on') and
+    ( state_attr('sensor.octoprint_print_status', 'flags') or {} ).get("operational", False)
+  }}
 
 icon_template: >-
   {%
@@ -35,7 +45,7 @@ turn_off:
     target:
       entity_id: switch.octoprint_connect_to_printer
 
-  - wait_template: "{{ is_state('binary_sensor.octoprint_connected', 'off') }}"
+  - wait_template: "{{ is_state('sensor.octoprint_print_status', 'Offline') }}"
     timeout:
       seconds: 30
 
@@ -48,18 +58,19 @@ turn_on:
     target:
       entity_id: switch.prusa_i3_mk3
 
-  - delay:
+  - alias: Allow printer to boot
+    delay:
       seconds: 5
 
   - repeat:
-      while: "{{ is_state('binary_sensor.octoprint_connected', 'off') and repeat.index < 6 }}"
+      while: "{{ is_state('sensor.octoprint_print_status', 'Offline') and repeat.index < 6 }}"
 
       sequence:
         - service: switch.turn_on
           target:
             entity_id: switch.octoprint_connect_to_printer
 
-        - wait_template: "{{ is_state('binary_sensor.octoprint_connected', 'on') }}"
+        - wait_template: "{{ not is_state('sensor.octoprint_print_status', 'Offline') }}"
           timeout:
-            seconds: 10
+            seconds: 5
           continue_on_timeout: true
