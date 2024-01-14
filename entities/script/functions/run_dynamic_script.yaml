@@ -1,0 +1,50 @@
+---
+description: Run a script, but the script is passed in as a literal argument
+
+mode: parallel
+
+fields:
+  actions:
+    description: A list of services/actions to run
+    required: true
+    example: >
+      [
+        {
+          "service": "script.turn_on",
+          "target": "script.office_desk_sitting_mode",
+          "data": {}
+        },
+        {
+          "service": "persistent_notification.create",
+          "target": {},
+          "data": {
+            "title": "Sitting mode activated",
+            "message": "The office desk is now in sitting mode",
+          }
+        }
+      ]
+
+    script_id:
+      description: The name of the script to run
+      required: false
+
+sequence:
+  - repeat:
+      for_each: "{{ actions }}"
+
+      sequence:
+        - service: script.turn_on
+          target:
+            entity_id: script.debug_persistent_notification
+          data:
+            variables:
+              title: >-
+                Running Action #{{ repeat.index }} in dynamic script {{ script_id | default('') }}
+              message: |
+                ```json
+                {{ repeat | tojson(indent=2) }}
+                ```
+
+        - service: "{{ repeat.item.service }}"
+          target: "{{ repeat.item.target | default({}) }}"
+          data: "{{ repeat.item.data | default({}) }}"
