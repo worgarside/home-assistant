@@ -39,7 +39,7 @@ fields:
       }
 
 variables: >-
-  {{ variable_dict | default({}) }}
+  {{ variable_dict | default({}) | tojson }}
 
 sequence:
   - repeat:
