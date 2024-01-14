@@ -12,7 +12,7 @@ fields:
         {
           "service": "script.turn_on",
           "target": {
-            "entity_id": "script.office_desk_{{ sit_stand }}_mode"
+            "entity_id": "script.office_desk_{{ vars.sit_stand }}_mode"
           },
           "data": {}
         },
@@ -20,8 +20,8 @@ fields:
           "service": "persistent_notification.create",
           "target": {},
           "data": {
-            "title": "{{ sit_stand.title() }} mode activated",
-            "message": "The office desk is now in {{ sit_stand }} mode",
+            "title": "{{ vars.sit_stand.title() }} mode activated",
+            "message": "The office desk is now in {{ vars.sit_stand }} mode",
           }
         }
       ]
@@ -31,17 +31,19 @@ fields:
     required: false
 
   variable_dict:
-    description: A dictionary of variables to use in the script
+    description: >-
+      A dictionary of variables to use in the script. They can be accessed in the script using
+      `{{ vars.<variable_name> }}`.
     required: false
     example: >
       {
         "sit_stand": "sitting"
       }
 
-sequence:
-  - variables: >-
-      {{ variable_dict | default({}) | tojson }}
+variables:
+  vars: "{{ variable_dict | default({}) }}"
 
+sequence:
   - repeat:
       for_each: "{{ actions }}"
 
