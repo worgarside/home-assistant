@@ -20,7 +20,7 @@ jobs:
     name: Get Current Version Number
     runs-on: ubuntu-latest
     outputs:
-      current-version: ${{ steps.current-version.outputs.current-version }}
+      version: ${{ steps.current-version.outputs.current-version }}
     steps:
       - name: Clone Repo
         uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
           - stable
           - beta
           - dev
-          - ${{ needs.get-current-version.outputs.current-version}}
+          - ${{ needs.get-current-version.outputs.version }}
     steps:
       - name: Clone Repo
         uses: actions/checkout@v4
@@ -73,8 +73,11 @@ jobs:
           sed -i 's/\/config/\/github\/workspace/g' configuration.yaml
 
       - name: Validate Configuration
-        uses: frenck/action-home-assistant@v1
+        uses: worgarside/action-home-assistant@main
         with:
           path: .
           secrets: secrets.fake.yaml
           version: ${{ matrix.version }}
+          catch_error_logs: ${{ matrix.version == needs.get-current-version.outputs.version }}
+          ignore_error_log_pattern: >-
+            '/hue-remote/(lounge|office)/button-[0-9]/((long|short)-)?press'
