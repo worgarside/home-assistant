@@ -41,14 +41,6 @@ fields:
       }
 
 variables:
-  actions: >-
-    {{
-      ( actions | default([]) ) |
-      to_json |
-      replace("[[", "{{") |
-      replace("]]", "}}") |
-      from_json
-    }}
   vars: >-
     {{
       ( vars | default({}) ) |
@@ -60,7 +52,14 @@ variables:
 
 sequence:
   - repeat:
-      for_each: "{{ actions }}"
+      for_each: >-
+        {{
+          actions |
+          to_json |
+          replace("[[", "{{") |
+          replace("]]", "}}") |
+          from_json
+        }}
 
       sequence:
         - service: script.turn_on
