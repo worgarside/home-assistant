@@ -17,6 +17,7 @@ variables:
   repository: '{{ trigger.json["repository"]["name"] }}'
   ref: '{{ trigger.json["ref"] }}'
   ref_type: '{{ trigger.json["ref_type"] }}'
+  repo_url: '{{ trigger.json["repository"]["html_url"] }}'
 
 action:
   - service: script.turn_on
@@ -26,7 +27,6 @@ action:
       variables:
         title: Git {{ ref_type }} created
         notification_id: "git_{{ ref_type }}_created_{{ ref }}"
-        repo_url: '{{ trigger.json["repository"]["html_url"] }}'
         message: >-
           <img src="{{ img_url }}" width="24" height="24">
           `{{ trigger.json["sender"]["login"] }}`
