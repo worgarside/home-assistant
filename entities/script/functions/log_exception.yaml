@@ -1,5 +1,5 @@
 ---
-description: Throw an exception, ending the calling execion
+description: Log an exception, does not end the calling execution!
 
 mode: parallel
 
@@ -21,7 +21,7 @@ sequence:
     data:
       title: ⚠️ Error thrown by {{ entity_domain.replace('_', ' ').title() }}
       message: |
-        Source:  `{{ calling_entity }}`
+        Source:  [`{{ calling_entity }}`](/config/{{ entity_domain }}/trace/{{ calling_entity }})
         Time:    `{{ timestamp }}`
         Message: `{{ message }}`
 
@@ -30,6 +30,3 @@ sequence:
       message: "{{ message }}"
       level: error
       logger: "{{ calling_entity }}"
-
-  - stop: Exception Thrown
-    error: true
