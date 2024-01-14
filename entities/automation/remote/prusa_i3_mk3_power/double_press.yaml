@@ -48,4 +48,5 @@ action:
   - service: input_number.set_value
     target:
       entity_id: input_number.prusa_i3_mk3_target_hotend_temperature
+    data:
       value: 180
