@@ -11,7 +11,9 @@ fields:
       [
         {
           "service": "script.turn_on",
-          "target": "script.office_desk_sitting_mode",
+          "target": {
+            "entity_id": "script.debug_persistent_notification"
+          },
           "data": {}
         },
         {
