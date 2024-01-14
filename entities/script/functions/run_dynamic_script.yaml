@@ -12,7 +12,7 @@ fields:
         {
           "service": "script.turn_on",
           "target": {
-            "entity_id": "script.debug_persistent_notification"
+            "entity_id": "script.office_desk_{{ sit_stand }}_mode"
           },
           "data": {}
         },
@@ -20,15 +20,25 @@ fields:
           "service": "persistent_notification.create",
           "target": {},
           "data": {
-            "title": "Sitting mode activated",
-            "message": "The office desk is now in sitting mode",
+            "title": "{{ sit_stand.title() }} mode activated",
+            "message": "The office desk is now in {{ sit_stand }} mode",
           }
         }
       ]
 
   script_id:
-    description: The name of the script to run
+    description: The name of the script to run (for debugging/notifications)
     required: false
+
+  variable_dict:
+    description: A dictionary of variables to use in the script
+    required: false
+    example: >
+      {
+        "sit_stand": "sitting"
+      }
+
+variables: "{{ variable_dict | default({}) }}"
 
 sequence:
   - repeat:
@@ -42,6 +52,7 @@ sequence:
             variables:
               title: >-
                 Running Action #{{ repeat.index }} in dynamic script {{ script_id | default('') }}
+
               message: |
                 ```json
                 {{ repeat | tojson(indent=2) }}
