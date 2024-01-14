@@ -14,12 +14,7 @@ device_class: speaker
 children:
   - media_player.spotify_will
 
-active_child_template: >-
-  {% if is_state('sensor.topaz_sr10_active_child', 'unknown') %}
-    {{ None }}
-  {% else %}
-    {{ states('sensor.topaz_sr10_active_child') }}
-  {% endif %}
+active_child_template: "{{ states('sensor.topaz_sr10_active_child') }}"
 
 attributes:
   source_list: sensor.topaz_sr10_active_child|source_list
