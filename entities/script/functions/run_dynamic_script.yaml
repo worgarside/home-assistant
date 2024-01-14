@@ -12,7 +12,7 @@ fields:
         {
           "service": "script.turn_on",
           "target": {
-            "entity_id": "script.office_desk_{\{ vars.sit_stand }\}_mode"
+            "entity_id": "script.office_desk_{\\{ vars.sit_stand }\\}_mode"
           },
           "data": {}
         },
@@ -20,8 +20,8 @@ fields:
           "service": "persistent_notification.create",
           "target": {},
           "data": {
-            "title": "{\{ vars.sit_stand.title() }\} mode activated",
-            "message": "The office desk is now in {\{ vars.sit_stand }\} mode",
+            "title": "{\\{ vars.sit_stand.title() }\\} mode activated",
+            "message": "The office desk is now in {\\{ vars.sit_stand }\\} mode",
           }
         }
       ]
