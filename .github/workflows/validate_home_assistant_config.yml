@@ -80,4 +80,4 @@ jobs:
           version: ${{ matrix.version }}
           catch_error_logs: ${{ matrix.version == needs.get-current-version.outputs.version }}
           ignore_error_log_pattern: >-
-            '/hue-remote/(lounge|office)/button-[0-9]/((long|short)-)?press'
+            '/hue-remote/office/button-[0-9]/((long|short)-)?press'
