@@ -17,10 +17,4 @@ state: >-
   {% endif %}
 
 attributes:
-  source_list:
-    - FM
-    - AM
-    - CD
-    - BD/DVD
-    - MP3/Aux
-    - Phono
+  source_list: "{{ [ 'FM', 'AM', 'CD', 'BD/DVD', 'MP3/Aux', 'Phono' ] }}"
