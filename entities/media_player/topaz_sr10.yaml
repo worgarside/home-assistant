@@ -22,13 +22,7 @@ active_child_template: >-
   {% endif %}
 
 attributes:
-  source_list:
-    - FM
-    - AM
-    - CD
-    - BD/DVD
-    - MP3/Aux
-    - Phono
+  source_list: sensor.topaz_sr10_active_child|source_list
 
 commands:
   turn_on:

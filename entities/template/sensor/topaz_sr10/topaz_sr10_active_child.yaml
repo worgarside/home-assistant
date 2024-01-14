@@ -1,0 +1,26 @@
+---
+name: Topaz SR10 Active Child
+
+unique_id: topaz_sr10_active_child
+
+state: >-
+  {% if (
+      is_state('sensor.wills_macbook_pro_active_audio_output', 'FiiO USB DAC-E10') and
+      state_attr(
+        'media_player.spotify_will', 'source'
+      ).casefold().replace("’", "'") == "will's macbook pro"
+    )
+  %}
+    media_player.spotify_will
+  {% else %}
+    unknown
+  {% endif %}
+
+attributes:
+  source_list:
+    - FM
+    - AM
+    - CD
+    - BD/DVD
+    - MP3/Aux
+    - Phono
