@@ -41,6 +41,7 @@ fields:
       }
 
 variables:
+  actions: "{{ ( actions | default([]) ) | to_json | replace('\\\\', '') | from_json }}"
   vars: "{{ ( vars | default({}) ) | to_json | replace('\\\\', '') | from_json }}"
 
 sequence:
