@@ -38,10 +38,10 @@ fields:
         "sit_stand": "sitting"
       }
 
-variables: >-
-  {{ variable_dict | default({}) | tojson }}
-
 sequence:
+  - variables: >-
+      {{ variable_dict | default({}) | tojson }}
+
   - repeat:
       for_each: "{{ actions }}"
 
