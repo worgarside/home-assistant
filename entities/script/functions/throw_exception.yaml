@@ -17,7 +17,7 @@ variables:
   timestamp: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
 
 sequence:
-  - servic: persistent_notification.create
+  - service: persistent_notification.create
     data:
       title: ⚠️ Error thrown by {{ entity_domain.replace('_', ' ').title() }}
       message: |
