@@ -14,6 +14,7 @@ fields:
 
 variables:
   entity_domain: "{{ calling_entity.split('.')[0] }}"
+  entity_id: "{{ calling_entity.split('.')[1] }}"
   timestamp: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
 
 sequence:
@@ -21,7 +22,7 @@ sequence:
     data:
       title: ⚠️ Error thrown by {{ entity_domain.replace('_', ' ').title() }}
       message: |
-        Source:  [`{{ calling_entity }}`](/config/{{ entity_domain }}/trace/{{ calling_entity }})
+        Source:  [`{{ calling_entity }}`](/config/{{ entity_domain }}/trace/{{ entity_id }})
         Time:    `{{ timestamp }}`
         Message: `{{ message }}`
 
