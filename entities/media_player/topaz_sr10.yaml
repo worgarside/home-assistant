@@ -1,0 +1,110 @@
+---
+# yamllint disable rule:line-length
+
+platform: universal
+
+id: media_player.topaz_sr10
+
+unique_id: media_player.topaz_sr10
+
+name: Topaz SR10
+
+device_class: speaker
+
+children:
+  - media_player.spotify_will
+
+active_child_template: >-
+  {% if is_state('sensor.topaz_sr10_active_child', 'unknown') %}
+    {{ None }}
+  {% else %}
+    {{ states('sensor.topaz_sr10_active_child') }}
+  {% endif %}
+
+attributes:
+  source_list:
+    - FM
+    - AM
+    - CD
+    - BD/DVD
+    - MP3/Aux
+    - Phono
+
+commands:
+  turn_on:
+    service: switch.turn_on
+    target:
+      entity_id: switch.office_amp
+
+  turn_off:
+    service: switch.turn_off
+    target:
+      entity_id: switch.office_amp
+
+  select_source:
+    service: script.ir_blaster_issue_command
+    data:
+      code: >-
+        {%
+          set source_code_mapping = {
+            "CD": "B0AjSxFcAiICQAPAAUALQAMDIgJ2BkADAFygB8ALwA8DXAIiAoADQAtAA0APAnYGIiADA1wCIgJAA8ABgAvgARcEXAJ2BiIgA0AHEVwCQ5tAI6MIXAL//0AjowgiAg==",
+            "FM": "BzEjTBFmAjMCQAPAAeABCwF2BuAVA4ABQC9AA4ABwDNAAUALQAFAB8ADgAEBZgJADwEzAoAHB2mbMSOxCDMC",
+            "AM": "BkUjQxFjAjNgAUAHQAPAAQRjAnIGM+AUA4ABgCcEMwJjAjMgAcAzAzMCYwJAC8ABQAtAAwQzAmMCMyABAXIGwAcJMwJUm0UjoAhjAg==",
+            "BD/DVD": "Bz0jTBFhAjQCQAPAAcALBGECcQY04AYD4AMTAmECNKABAXEG4AcDwBtAB0ADwAHgAQsBcQbgAQMPSJs9I5UINAL//z0jlQg0Ag==",
+            "MP3/Aux": "BUwjQhEsAoABAV4CgANAAUALAywCeQbgCwMAXuAAFwMsAl4CgANAAQReAnkGLOAAAwEsAkAPAV4CgAcBLAJAAwEsAkAPgAEBeQaACwt5BiwCVJtMI6IILAI=",
+            "Phono": "BjYjahFoAidgAUAHQANAAUAHBGgCdAYnoAPgAwvAEwUnAicCaAJAA8ALAXQGQAMAJ2AHACcgAUALgAEBaAKACwJoAiegAQF0BoALC3QGaAJTmzYjpQgnAg==",
+          }
+        %}
+
+        {{ source_code_mapping[source] }}
+
+  volume_up:
+    service: script.ir_blaster_issue_command
+    data:
+      code: BxojaBFdAiMCwANAAcALBF0CewYjoANAC0ADQA/ABwUjAiMCXQJAAwR7Bl0CIyABAXsG4AEDASMCQBPgAQNAG4ABAV0CQANAD8ADB4ObGiOYCCMC
+
+  volume_down:
+    service: script.ir_blaster_issue_command
+    data:
+      code: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC
+
+  volume_set:
+    sequence:
+      - variables:
+          initial_level: "{{ state_attr('media_player.topaz_sr10', 'volume_level') }}"
+          up_or_down: "{{ initial_level | float > volume_level and 'down' or 'up' }}"
+          repeat_count: "{{ (initial_level - volume_level) | abs | int }}"
+
+      - repeat:
+          count: "{{ repeat_count | int }}"
+          sequence:
+            - service: media_player.volume_{{ up_or_down }}
+              target:
+                entity_id: media_player.topaz_sr10
+
+  volume_mute:
+    service: script.ir_blaster_issue_command
+    data:
+      code: CRojYhEmAiYCZgKAA0AB4AELAW0GQAMAZuACB8ALQBcGJgImAmYCJmABQAfgBwNAAYATQCuAA+ANCw9NmxojmghmAv//GiOaCGYC
+
+  # media_play_pause:
+  #   if: "{{ is_state('sensor.topaz_sr10_active_child', 'media_player.spotify_will') }}"
+  #   then:
+  #     - service: media_player.media_play_pause
+  #       target:
+  #         entity_id: media_player.spotify_will
+
+  # media_play:
+  #   service: pyscript.yas_209_play
+
+  # media_pause:
+  #   service: pyscript.yas_209_pause
+
+  # media_stop:
+  #   service: pyscript.yas_209_stop
+
+  # media_next_track:
+  #   service: pyscript.yas_209_next_track
+
+  # media_previous_track:
+  #   service: pyscript.yas_209_previous_track
