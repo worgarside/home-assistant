@@ -1,12 +1,39 @@
 ---
 mode: queued
-max: 40
+
+max: 50
+
 fields:
   code:
     description: The IR code to send
-    example: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC  # yamllint disable-line rule:line-length
+    example: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC # yamllint disable-line rule:line-length
+
 sequence:
-  - data:
+  - choose:
+      - conditions: "{{ code is not defined or not code }}"
+
+        sequence:
+          - service: script.log_exception
+            data:
+              calling_entity: script.ir_blaster_issue_command
+              message: No IR Code provided to script
+
+          - stop: No code provided
+            error: true
+
+      - conditions: "{{ not is_state('switch.office_amp', 'on') }}"
+
+        sequence:
+          - service: script.log_exception
+            data:
+              calling_entity: script.ir_blaster_issue_command
+              message: Topaz SR10 not turned on
+
+          - stop: Topaz SR10 not turned on
+            error: true
+
+  - service: zha.issue_zigbee_cluster_command
+    data:
       cluster_id: 57348
       cluster_type: in
       command: 2
@@ -14,7 +41,7 @@ sequence:
       endpoint_id: 1
       ieee: dc:8e:95:ff:fe:f9:ad:13
       params:
-        code: '{{ code }}'
-    service: zha.issue_zigbee_cluster_command
+        code: "{{ code }}"
+
   - delay:
       milliseconds: 500
