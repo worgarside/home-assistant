@@ -57,19 +57,10 @@ commands:
     data:
       code: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC
 
-  # volume_set:
-  #   sequence:
-  #     - variables:
-  #         initial_level: "{{ state_attr('media_player.topaz_sr10', 'volume_level') }}"
-  #         up_or_down: "{{ initial_level | float > volume_level and 'down' or 'up' }}"
-  #         repeat_count: "{{ (initial_level - volume_level) | abs | int }}"
-
-  #     - repeat:
-  #         count: "{{ repeat_count | int }}"
-  #         sequence:
-  #           - service: media_player.volume_{{ up_or_down }}
-  #             target:
-  #               entity_id: media_player.topaz_sr10
+  volume_set:
+    service: script.topaz_sr10_volume_set
+    data:
+      volume_level: "{{ volume_level }}"
 
   volume_mute:
     service: script.ir_blaster_issue_command

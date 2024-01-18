@@ -1,0 +1,24 @@
+---
+description: Set the volume of the Topaz SR10 to a specific value
+
+mode: restart
+
+fields:
+  volume_level:
+    description: The volume level to set the Topaz SR10 to
+    required: true
+
+variables:
+  initial_level: "{{ state_attr('media_player.topaz_sr10', 'volume_level') }}"
+
+  up_or_down: "{{ initial_level | float > volume_level and 'down' or 'up' }}"
+
+  repeat_count: "{{ (initial_level - volume_level) | abs | int }}"
+
+sequence:
+  - repeat:
+      count: "{{ repeat_count | int }}"
+      sequence:
+        - service: media_player.volume_{{ up_or_down }}
+          target:
+            entity_id: media_player.topaz_sr10
