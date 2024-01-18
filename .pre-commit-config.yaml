@@ -26,7 +26,7 @@ repos:
         language_version: python3.11
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: 1.5.3
+    rev: 1.6.0
     hooks:
       - id: pyproject-fmt
 
@@ -111,7 +111,7 @@ repos:
         additional_dependencies:
           - types-paramiko
           - watchdog==3.0.0
-          - wg-utilities==5.8.0
+          - wg-utilities==5.8.1
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
   - repo: local
@@ -147,7 +147,7 @@ repos:
           - tomli
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.11
+    rev: v0.1.13
     hooks:
       - id: ruff
         language_version: python3.11
