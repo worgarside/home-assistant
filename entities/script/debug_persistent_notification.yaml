@@ -6,7 +6,7 @@ fields:
     description: The notification's message body
     example: More detail about this thing
 
-  title:
+  notification_title:
     description: The notification's title
     example: Something has happened!
 
@@ -16,15 +16,12 @@ fields:
 
 mode: parallel
 
-variables:
-  notif_title: "{{ title | default(' ') }}"
-
 sequence:
   - service: system_log.write
     data:
       message: "{{ message }}"
       level: debug
-      logger: script.debug_with_persistent_notifications
+      logger: script.debug_persistent_notification
 
   - alias: Check if debugging is turned on
     condition: state
@@ -34,7 +31,7 @@ sequence:
   - service: persistent_notification.create
     data:
       message: "{{ message }}"
-      title: "{{ notif_title }}"
+      title: "{{ notification_title | default('Notification') }}"
       notification_id: >-
         {{
           notification_id |

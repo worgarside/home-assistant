@@ -50,7 +50,7 @@ action:
                 entity_id: script.debug_persistent_notification
               data:
                 variables:
-                  title: "{{ repeat.item.title().replace('_', '-') }} Clean Missed"
+                  notification_title: "{{ repeat.item.title().replace('_', '-') }} Clean Missed"
                   message: >-
                     {{ repeat.item.title() }} clean was due by
                     `{{ next_clean_timestamp | as_datetime }}` but was missed.

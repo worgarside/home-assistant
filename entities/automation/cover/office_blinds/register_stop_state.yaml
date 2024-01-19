@@ -25,7 +25,7 @@ action:
       entity_id: script.debug_persistent_notification
     data:
       variables:
-        title: Office Blinds
+        notification_title: Office Blinds
         message: Failsafe for `stop` state triggered
         notification_id: cover_office_blinds_register_stop_state
 

@@ -24,10 +24,13 @@ sequence:
       {{ (result | string).startswith("ERROR") }}
 
     then:
-      - service: script.debug_persistent_notification
+      - service: script.turn_on
+        target:
+          entity_id: script.debug_persistent_notification
         data:
-          title: Cosmo Room Lookup Error
-          message: "{{ result }}"
+          variables:
+            notification_title: Cosmo Room Lookup Error
+            message: "{{ result }}"
 
       - stop: Cosmo Room Lookup Error
         error: true
@@ -36,13 +39,16 @@ sequence:
       response:
         value: "{{ result }}"
 
-  - service: script.debug_persistent_notification
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
     data:
-      title: Cosmo Room Lookup Success
-      message: |
-        ```json
-        {{ response }}
-        ```
+      variables:
+        notification_title: Cosmo Room Lookup Success
+        message: |
+          ```json
+          {{ response }}
+          ```
 
   - stop: Cosmo Room Lookup Success
     response_variable: response
