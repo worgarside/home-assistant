@@ -19,7 +19,7 @@ condition:
 
 variables:
   brightness: >-
-    {% if states('binary_sensor.quiet_hours') == "on" %}
+    {% if is_state('binary_sensor.quiet_hours', "on") %}
       63
     {% elif states('sensor.sun_elevation') | int(default=1) < 0 %}
       127

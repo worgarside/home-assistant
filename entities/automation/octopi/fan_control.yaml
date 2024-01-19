@@ -18,7 +18,7 @@ variables:
 condition: >
   {{
     (
-      ( states('input_boolean.octopi_fan') == "on" ) != should_be_on
+      is_state('input_boolean.octopi_fan', "on") != should_be_on
     ) and (
       states.input_boolean.octopi_fan.last_changed < ( utcnow() - timedelta(minutes=5) )
     )
