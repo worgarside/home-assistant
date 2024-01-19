@@ -34,6 +34,7 @@ state_template: >-
   {% endif %}
 
 attributes:
+  source: input_select.topaz_sr10_source
   source_list: sensor.topaz_sr10_active_child|source_list
   volume_level: sensor.topaz_sr10_active_child|volume_level
 
@@ -70,21 +71,31 @@ commands:
             entity_id: switch.office_amp
 
   select_source:
-    service: script.ir_blaster_issue_command
+    service: script.run_dynamic_script
     data:
-      code: >-
-        {%
-          set source_code_mapping = {
-            "CD": "B0AjSxFcAiICQAPAAUALQAMDIgJ2BkADAFygB8ALwA8DXAIiAoADQAtAA0APAnYGIiADA1wCIgJAA8ABgAvgARcEXAJ2BiIgA0AHEVwCQ5tAI6MIXAL//0AjowgiAg==",
-            "FM": "BzEjTBFmAjMCQAPAAeABCwF2BuAVA4ABQC9AA4ABwDNAAUALQAFAB8ADgAEBZgJADwEzAoAHB2mbMSOxCDMC",
-            "AM": "BkUjQxFjAjNgAUAHQAPAAQRjAnIGM+AUA4ABgCcEMwJjAjMgAcAzAzMCYwJAC8ABQAtAAwQzAmMCMyABAXIGwAcJMwJUm0UjoAhjAg==",
-            "BD/DVD": "Bz0jTBFhAjQCQAPAAcALBGECcQY04AYD4AMTAmECNKABAXEG4AcDwBtAB0ADwAHgAQsBcQbgAQMPSJs9I5UINAL//z0jlQg0Ag==",
-            "MP3/Aux": "BUwjQhEsAoABAV4CgANAAUALAywCeQbgCwMAXuAAFwMsAl4CgANAAQReAnkGLOAAAwEsAkAPAV4CgAcBLAJAAwEsAkAPgAEBeQaACwt5BiwCVJtMI6IILAI=",
-            "Phono": "BjYjahFoAidgAUAHQANAAUAHBGgCdAYnoAPgAwvAEwUnAicCaAJAA8ALAXQGQAMAJ2AHACcgAUALgAEBaAKACwJoAiegAQF0BoALC3QGaAJTmzYjpQgnAg==",
-          }
-        %}
+      script_id: script.topaz_sr10_select_source
+      actions:
+        - service: script.ir_blaster_issue_command
+          data:
+            code: >-
+              {%
+                set source_code_mapping = {
+                  "CD": "B0AjSxFcAiICQAPAAUALQAMDIgJ2BkADAFygB8ALwA8DXAIiAoADQAtAA0APAnYGIiADA1wCIgJAA8ABgAvgARcEXAJ2BiIgA0AHEVwCQ5tAI6MIXAL//0AjowgiAg==",
+                  "FM": "BzEjTBFmAjMCQAPAAeABCwF2BuAVA4ABQC9AA4ABwDNAAUALQAFAB8ADgAEBZgJADwEzAoAHB2mbMSOxCDMC",
+                  "AM": "BkUjQxFjAjNgAUAHQAPAAQRjAnIGM+AUA4ABgCcEMwJjAjMgAcAzAzMCYwJAC8ABQAtAAwQzAmMCMyABAXIGwAcJMwJUm0UjoAhjAg==",
+                  "BD/DVD": "Bz0jTBFhAjQCQAPAAcALBGECcQY04AYD4AMTAmECNKABAXEG4AcDwBtAB0ADwAHgAQsBcQbgAQMPSJs9I5UINAL//z0jlQg0Ag==",
+                  "MP3/Aux": "BUwjQhEsAoABAV4CgANAAUALAywCeQbgCwMAXuAAFwMsAl4CgANAAQReAnkGLOAAAwEsAkAPAV4CgAcBLAJAAwEsAkAPgAEBeQaACwt5BiwCVJtMI6IILAI=",
+                  "Phono": "BjYjahFoAidgAUAHQANAAUAHBGgCdAYnoAPgAwvAEwUnAicCaAJAA8ALAXQGQAMAJ2AHACcgAUALgAEBaAKACwJoAiegAQF0BoALC3QGaAJTmzYjpQgnAg==",
+                }
+              %}
 
-        {{ source_code_mapping[source] }}
+              {{ source_code_mapping[source] }}
+
+        - service: input_select.select_option
+          target:
+            entity_id: input_select.topaz_sr10_source
+          data:
+            option: "{{ source }}"
 
   volume_up:
     service: script.run_dynamic_script
