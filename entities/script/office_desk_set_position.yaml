@@ -60,10 +60,11 @@ sequence:
           data:
             title: >-
               Desk Move {{
-                'Complete'
-                if state_attr('cover.office_desk_esphome', 'current_position') | int ==
-                  position | int
-                else 'Failed'
+                iif(
+                  is_state_attr('cover.office_desk_esphome', 'current_position', position | int),
+                  'Complete',
+                  'Failed'
+                )
               }}
               (Target Position: {{ position }}%)
             message: |

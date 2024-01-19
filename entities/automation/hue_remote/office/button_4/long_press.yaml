@@ -18,7 +18,7 @@ action:
   - service: script.turn_off_physical_room
     data:
       room: office
-      close_blinds: "{{ states('binary_sensor.quiet_hours') == 'on' }}"
+      close_blinds: "{{ is_state('binary_sensor.quiet_hours', 'on') }}"
       close_blinds_with_open_window_after_delay: true
       extra_service_calls:
         - service_call: script.turn_on

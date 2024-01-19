@@ -8,29 +8,8 @@ unit_of_measurement: miles
 icon: mdi:map-marker-distance
 
 state: >-
-  {% if states('person.vic') == "home" %}
+  {% if is_state('person.vic', "home") %}
     0
   {% else %}
-    {%- set p = pi/180 %}
-    {%- set lat1 = state_attr('person.vic', 'latitude') %}
-    {%- set lon1 = state_attr('person.vic', 'longitude') %}
-    {%- set lat2 = state_attr('zone.home', 'latitude') %}
-    {%- set lon2 = state_attr('zone.home', 'longitude') %}
-
-    {{
-      (
-        7917.5 * asin(
-          sqrt(
-            (0.5 - cos((lat2 - lat1) * p) / 2 ) +
-            (
-              cos(lat1 * p) *
-              cos(lat2 * p) *
-              ( 1 - cos((lon2 - lon1) * p) ) *
-              0.5
-            )
-          )
-        )
-      ) |
-      round(2)
-    }}
+    {{ ( distance("person.vic", "zone.home") * 0.621371 ) | round(2) }}
   {% endif %}

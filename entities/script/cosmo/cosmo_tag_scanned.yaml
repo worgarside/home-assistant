@@ -24,12 +24,9 @@ sequence:
   - variables:
       battery_level: "{{ states('sensor.cosmo_battery_level') | int(default=100) }}"
       low_battery: "{{ states('sensor.cosmo_battery_level') | int(default=100) < 30 }}"
-      cosmo_is_cleaning: "{{ states('vacuum.cosmo') == 'cleaning' }}"
-      cosmo_is_in_current_room: >
-        {{
-          state_attr('sensor.cosmo_current_room', 'room_id') | int(default=-1) ==
-          room_id.value
-        }}
+      cosmo_is_cleaning: "{{ is_state('vacuum.cosmo', 'cleaning') }}"
+      cosmo_is_in_current_room: >-
+        {{ is_state_attr('sensor.cosmo_current_room', 'room_id', room_id.value) }}
 
   - choose:
       - alias: Already cleaning in this room - go home

@@ -19,7 +19,7 @@ trigger:
       - unknown
 condition: >
   {{
-    states('input_boolean.office_entity_header') == 'on' and
+    is_state('input_boolean.office_entity_header', 'on') and
     [
       states.light.office_lights,
       states.media_player.office_media_players,

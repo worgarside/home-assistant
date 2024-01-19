@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-wg-utilities = "^5.8.0"
+wg-utilities = "^5.8.1"
 watchdog = "^3.0.0"
 paramiko = "^3.4.0"
 
@@ -62,7 +62,7 @@ strict_equality = true
 show_error_codes = true
 
 [tool.codespell]
-ignore-words-list = "hass"
+ignore-words-list = "hass,iif"
 skip = '*.json,*.csv,*.xml,*.lock'
 
 [tool.pycln]
