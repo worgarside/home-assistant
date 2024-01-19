@@ -44,8 +44,6 @@ attributes:
       {{ this.state }}
     {% endif %}
 
-  source_list: "{{ [ 'FM', 'AM', 'CD', 'BD/DVD', 'MP3/Aux', 'Phono' ] }}"
-
   volume_level: >-
     {{
       iif(

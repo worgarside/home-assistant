@@ -34,7 +34,7 @@ state_template: >-
   {% endif %}
 
 attributes:
-  source_list: sensor.topaz_sr10_active_child|source_list
+  source_list: input_select.topaz_sr10_source|options
   volume_level: sensor.topaz_sr10_active_child|volume_level
 
 commands:
@@ -51,8 +51,8 @@ commands:
         - alias: Stop media if applicable
           if:
             - not:
-              - condition: state
-                entity_id: sensor.topaz_sr10_active_child
+                - condition: state
+                  entity_id: sensor.topaz_sr10_active_child
                   state:
                     - none
                     - None
