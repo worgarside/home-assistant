@@ -30,22 +30,33 @@ fields:
     description: The name of the script to run
     required: false
 
+  suppress_debug_notifications:
+    description: If true, the debug notification(s) will not be shown
+    required: false
+
+variables:
+  suppress_debug_notifications: "{{ suppress_debug_notifications | default(false) }}"
+
 sequence:
   - repeat:
       for_each: "{{ actions }}"
 
       sequence:
-        - service: script.turn_on
-          target:
-            entity_id: script.debug_persistent_notification
-          data:
-            variables:
-              notification_title: >-
-                Running Action #{{ repeat.index }} in dynamic script {{ script_id | default('') }}
-              message: |
-                ```json
-                {{ repeat | tojson(indent=2) }}
-                ```
+        - if: "{{ not suppress_debug_notifications | bool }}"
+
+          then:
+            - service: script.turn_on
+              target:
+                entity_id: script.debug_persistent_notification
+              data:
+                variables:
+                  notification_title: >-
+                    Running Action #{{ repeat.index }} in
+                    dynamic script {{ script_id | default('') }}
+                  message: |
+                    ```json
+                    {{ repeat.item | tojson(indent=2) }}
+                    ```
 
         - service: "{{ repeat.item.service }}"
           target: "{{ repeat.item.target | default({}) }}"
