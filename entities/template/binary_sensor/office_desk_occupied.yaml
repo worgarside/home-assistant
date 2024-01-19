@@ -12,7 +12,7 @@ state: >-
 
   {{
     (
-      states('binary_sensor.will_s_macbook_pro_docked') == 'on' and
+      is_state('binary_sensor.will_s_macbook_pro_docked', 'on') and
       states('sensor.will_s_macbook_pro_last_update') | int(0) > threshold and
       not (
         state_attr('binary_sensor.wills_macbook_pro_active', 'Locked') or
@@ -20,7 +20,7 @@ state: >-
         state_attr('binary_sensor.wills_macbook_pro_active', 'Screen Off')
       )
     ) or (
-      states('binary_sensor.st_macbook_pro_docked') == 'on' and
+      is_state('binary_sensor.st_macbook_pro_docked', 'on') and
       states('sensor.st_macbook_pro_last_update') | int(0) > threshold and
       not (
         state_attr('binary_sensor.st_macbook_pro_active', 'Locked') or

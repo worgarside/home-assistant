@@ -2,7 +2,7 @@
 name: "HiFi System: Media Metadata"
 unique_id: hifi_system_media_metadata
 state: >
-  {% if state_attr("media_player.hifi_system_avr", "source") == "HEOS Music" %}
+  {% if is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") %}
     {{ states("media_player.hifi_system_heos") }}
   {% else %}
     {{ states("media_player.hifi_system_avr") }}
@@ -10,7 +10,7 @@ state: >
 picture: >
   {%
     if (
-      state_attr("media_player.hifi_system_avr", "source") == "HEOS Music" and
+      is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
       states("media_player.hifi_system_heos") != "idle"
     )
   %}
@@ -22,7 +22,7 @@ attributes:
   media_album_name: >
     {%
       if (
-        state_attr("media_player.hifi_system_avr", "source") == "HEOS Music" and
+        is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
         states("media_player.hifi_system_heos") != "idle"
       )
     %}
@@ -31,7 +31,7 @@ attributes:
   media_artist: >
     {%
       if (
-        state_attr("media_player.hifi_system_avr", "source") == "HEOS Music" and
+        is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
         states("media_player.hifi_system_heos") != "idle"
       )
     %}
@@ -40,7 +40,7 @@ attributes:
   media_content_id: >
     {%
       if (
-        state_attr("media_player.hifi_system_avr", "source") == "HEOS Music" and
+        is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
         states("media_player.hifi_system_heos") != "idle"
       )
     %}
@@ -49,7 +49,7 @@ attributes:
   media_duration: >
     {%
       if (
-        state_attr("media_player.hifi_system_avr", "source") == "HEOS Music" and
+        is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
         states("media_player.hifi_system_heos") != "idle"
       )
     %}
@@ -58,7 +58,7 @@ attributes:
   media_title: >
     {%
       if (
-        state_attr("media_player.hifi_system_avr", "source") == "HEOS Music" and
+        is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
         states("media_player.hifi_system_heos") != "idle"
       )
     %}
@@ -67,7 +67,7 @@ attributes:
   media_shuffle: >
     {%
       if (
-        state_attr("media_player.hifi_system_avr", "source") == "HEOS Music" and
+        is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
         states("media_player.hifi_system_heos") != "idle"
       )
     %}

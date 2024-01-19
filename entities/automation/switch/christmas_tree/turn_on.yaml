@@ -13,8 +13,7 @@ trigger:
 condition:
   - alias: Check switch exists
     condition: template
-    value_template: >-
-      {{ states("switch.christmas_tree")  not in ["unknown", "unavailable", "none"] }}
+    value_template: "{{ has_value('switch.christmas_tree') }}"
 
 action:
   - service: switch.turn_on

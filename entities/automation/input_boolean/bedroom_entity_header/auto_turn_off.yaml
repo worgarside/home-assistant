@@ -21,7 +21,7 @@ trigger:
       - unknown
 condition: >
   {{
-    states('input_boolean.bedroom_entity_header') == 'on' and
+    is_state('input_boolean.bedroom_entity_header', 'on') and
     [
       states.light.bedroom_lights,
       states.media_player.bedroom_media_players,

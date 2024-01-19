@@ -18,7 +18,7 @@ trigger:
       - paused
       - playing
       - "on"
-condition: "{{ states('input_boolean.office_entity_header') == 'off' }}"
+condition: "{{ is_state('input_boolean.office_entity_header', 'off') }}"
 action:
   - service: automation.turn_off
     target:

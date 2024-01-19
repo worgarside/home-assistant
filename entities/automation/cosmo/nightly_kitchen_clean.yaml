@@ -9,12 +9,6 @@ trigger:
   platform: time
   at: '22:00:00'
 
-# TODO evaluate if this is necessary
-# condition:
-#   alias: Run every other day
-#   condition: template
-#   value_template: "{{ now().day % 2 == 0 }}"
-
 action:
   - service: script.cosmo_clean_room
     data:
