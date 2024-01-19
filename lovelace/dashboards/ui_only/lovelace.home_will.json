@@ -212,6 +212,16 @@
               "type": "custom:mini-graph-card",
               "entities": [
                 {
+                  "entity": "sensor.bedroom_temperature",
+                  "name": "Bedroom",
+                  "smoothing": true
+                },
+                {
+                  "entity": "sensor.hallway_temperature",
+                  "name": "Hallway",
+                  "smoothing": true
+                },
+                {
                   "entity": "sensor.kitchen_temperature",
                   "name": "Kitchen",
                   "smoothing": true
@@ -225,26 +235,23 @@
                   "entity": "sensor.office_temperature",
                   "name": "Office",
                   "smoothing": true
-                },
-                {
-                  "entity": "sensor.hallway_temperature",
-                  "name": "Hallway",
-                  "smoothing": true
                 }
               ],
               "hours_to_show": 12,
+              "hour24": true,
               "points_per_hour": 30,
               "line_width": 2,
               "animate": true,
+              "name": "Room Temperatures",
               "show": {
                 "fill": "fade",
-                "name": false,
                 "icon": false,
                 "state": false,
                 "legend": true,
                 "extrema": true,
                 "average": true,
-                "labels": true
+                "labels": true,
+                "graph": "bar"
               }
             },
             {
