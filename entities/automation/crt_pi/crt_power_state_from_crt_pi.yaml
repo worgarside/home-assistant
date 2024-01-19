@@ -15,7 +15,7 @@ action:
       entity_id: script.debug_persistent_notification
     data:
       variables:
-        title: Mini CRT Power State
+        notification_title: Mini CRT Power State
         message: '{{ trigger.payload }}'
         notification_id: crt_pi_crt_power_state_from_crt_pi
 

@@ -24,7 +24,7 @@ action:
       entity_id: script.debug_persistent_notification
     data:
       variables:
-        title: Git {{ ref_type }} deleted
+        notification_title: Git {{ ref_type }} deleted
         notification_id: "git_{{ ref_type }}_deleted_{{ ref }}"
         message: >-
           <img src="{{ img_url }}" width="24" height="24">

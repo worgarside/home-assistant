@@ -22,7 +22,7 @@ action:
       entity_id: script.debug_persistent_notification
     data:
       variables:
-        title: "GitHub Webhook Triggered"
+        notification_title: GitHub Webhook Triggered
         message: "`{{ sensor_name }}`"
         notification_id: webhook_update_pull_request_sensor
 
