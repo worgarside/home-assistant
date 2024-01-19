@@ -20,7 +20,7 @@ sequence:
       entity_id: script.debug_persistent_notification
     data:
       variables:
-        title: CRT Display Update
+        notification_title: CRT Display Update
         # yamllint disable rule:line-length
         message: |
           ```

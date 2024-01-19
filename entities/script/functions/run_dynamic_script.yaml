@@ -20,7 +20,7 @@ fields:
           "service": "persistent_notification.create",
           "target": {},
           "data": {
-            "title": "Sitting mode activated",
+            "notification_title": "Sitting mode activated",
             "message": "The office desk is now in sitting mode",
           }
         }
@@ -40,7 +40,7 @@ sequence:
             entity_id: script.debug_persistent_notification
           data:
             variables:
-              title: >-
+              notification_title: >-
                 Running Action #{{ repeat.index }} in dynamic script {{ script_id | default('') }}
               message: |
                 ```json

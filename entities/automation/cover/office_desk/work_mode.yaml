@@ -25,7 +25,7 @@ action:
       entity_id: script.debug_persistent_notification
     data:
       variables:
-        title: "Work Mode: Standing Target Not Met \U0001F621"
+        notification_title: "Work Mode: Standing Target Not Met \U0001F621"
         message: >-
           {{ states('sensor.office_desk_standing_time_remaining') }} minutes remaining...
         notification_id: cover_office_desk_work_mode

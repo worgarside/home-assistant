@@ -17,6 +17,6 @@ action:
       entity_id: script.debug_persistent_notification
     data:
       variables:
-        title: GH CLI Loaded
+        notification_title: GH CLI Loaded
         message: ":)"
         notification_id: homeassistant_load_gh_cli_on_start
