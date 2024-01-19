@@ -213,24 +213,29 @@
               "entities": [
                 {
                   "entity": "sensor.kitchen_temperature",
-                  "name": "Kitchen"
+                  "name": "Kitchen",
+                  "smoothing": true
                 },
                 {
                   "entity": "sensor.lounge_temperature",
-                  "name": "Lounge"
+                  "name": "Lounge",
+                  "smoothing": true
                 },
                 {
                   "entity": "sensor.office_temperature",
-                  "name": "Office"
+                  "name": "Office",
+                  "smoothing": true
                 },
                 {
                   "entity": "sensor.hallway_temperature",
-                  "name": "Hallway"
+                  "name": "Hallway",
+                  "smoothing": true
                 }
               ],
               "hours_to_show": 12,
               "points_per_hour": 30,
               "line_width": 2,
+              "animate": true,
               "show": {
                 "fill": "fade",
                 "name": false,
