@@ -1,0 +1,45 @@
+---
+alias: /media-player/topaz-sr10/on
+
+id: media_player_topaz_sr10_on
+
+description: >-
+  Automation to run when the Topaz SR10 is turned on by something other than the
+  `media_player.turn_on` service.
+
+mode: single
+
+trigger:
+  platform: state
+  entity_id: media_player.topaz_sr10
+  from: "off"
+
+variables:
+  switch_is_off_initially: "{{ is_state('switch.office_amp', 'off') }}"
+
+action:
+  - if: "{{ switch_is_off_initially | bool }}"
+
+    then:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.office_amp
+
+      - delay:
+          seconds: 5
+
+  - alias: Set Amp to Correct Input
+    service: media_player.select_source
+    target:
+      entity_id: media_player.topaz_sr10
+    data:
+      source: MP3/Aux
+
+  - if: "{{ switch_is_off_initially | bool }}"
+
+    then:
+      - alias: Initialize volume
+        repeat:
+          count: 15
+          sequence:
+            - service: script.topaz_sr10_volume_up
