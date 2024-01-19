@@ -36,7 +36,10 @@ action:
     data:
       variables:
         notification_title: "`automation.input_select_cosmo_picture_set_options`"
-        message: "{{ files | tojson(indent=2) }}"
+        message: |
+          ```json
+          {{ files | tojson(indent=2) }}
+          ```
         notification_id: input_select_cosmo_entity_picture_set_options
 
   - variables:
