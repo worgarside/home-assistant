@@ -9,10 +9,18 @@ state: >-
   {%
     elif (
       is_state("sensor.wills_macbook_pro_active_audio_output", "FiiO USB DAC-E10") and
-      is_state_attr("media_player.spotify_will", "source", "Will’s MacBook Pro")
+      is_state_attr(
+        "media_player.spotify_will",
+        "source",
+        device_attr(device_id('sensor.wills_macbook_pro_active_audio_output'), 'name')
+      )
     ) or (
       is_state("sensor.st_macbook_pro_active_audio_output", "FiiO USB DAC-E10") and
-      is_state_attr("media_player.spotify_will", "source", "K3QFMW509D")
+      is_state_attr(
+        "media_player.spotify_will",
+        "source",
+        device_attr(device_id('sensor.st_macbook_pro_active_audio_output'), 'name')
+      )
     )
   %}
     media_player.spotify_will
@@ -22,10 +30,16 @@ state: >-
 
 attributes:
   current_source: >-
-    {% if this.state == "media_player.spotify_will" %}
+    {% if is_state("switch.office_amp", "off") %}
+      {{ None }}
+    {% elif this.state == "media_player.spotify_will" %}
       Spotify ({{
         iif(is_state_attr("media_player.spotify_will", "source", "K3QFMW509D"), "Work", "Will's")
       }} MacBook Pro)
+    {% elif is_state("sensor.wills_macbook_pro_active_audio_output", "FiiO USB DAC-E10") %}
+      {{ device_attr(device_id('sensor.wills_macbook_pro_active_audio_output'), 'name') }}
+    {% elif is_state("sensor.st_macbook_pro_active_audio_output", "FiiO USB DAC-E10") %}
+      {{ device_attr(device_id('sensor.st_macbook_pro_active_audio_output'), 'name') }}
     {% else %}
       {{ this.state }}
     {% endif %}
