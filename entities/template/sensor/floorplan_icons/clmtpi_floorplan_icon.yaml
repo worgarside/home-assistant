@@ -2,7 +2,7 @@
 name: ClmtPi Floorplan Icon
 unique_id: clmtpi_floorplan_icon
 state: >
-  {%- if states('binary_sensor.clmtpi_online') == 'off' %}
+  {%- if is_state('binary_sensor.clmtpi_online', 'off') %}
     offline
   {%- elif states('sensor.clmtpi_ambient_temperature') | int <= 17.5 %}
     cold

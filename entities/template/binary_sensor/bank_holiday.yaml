@@ -7,6 +7,6 @@ icon: mdi:calendar-star
 
 state: >-
   {{
-    states('calendar.holidays_in_united_kingdom') == "on" and
+    is_state('calendar.holidays_in_united_kingdom', "on") and
     not state_attr('calendar.holidays_in_united_kingdom', 'message').endswith(" (Scotland)")
   }}

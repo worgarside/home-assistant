@@ -9,6 +9,6 @@ icon: >
   {% endif %}
 state: >
   {{
-    states('binary_sensor.office_desk_occupied') == 'on' and
-    states('binary_sensor.office_desk_standing_mode') == 'on'
+    is_state('binary_sensor.office_desk_occupied', 'on') and
+    is_state('binary_sensor.office_desk_standing_mode', "on")
   }}

@@ -1323,8 +1323,8 @@ pi_online_entity_template:
     entity: binary_sensor.[[slug]]_online
     type: custom:mushroom-template-card
     primary: "[[name]]"
-    secondary: "{{ 'Online' if states('binary_sensor.[[slug]]_online') == 'on' else 'Offline' }}"
-    icon_color: "{{ '[[color]]' if states('binary_sensor.[[slug]]_online') == 'on' }}"
+    secondary: "{{ iif(is_state('binary_sensor.[[slug]]_online', 'on'),  'Online', 'Offline') }}"
+    icon_color: "{{ '[[color]]' if is_state('binary_sensor.[[slug]]_online', 'on') }}"
     icon: mdi:raspberry-pi
     tap_action:
       action: more-info
@@ -1358,9 +1358,9 @@ addon_active_entity_template:
     entity: sensor.[[slug]]_status
     type: custom:mushroom-template-card
     primary: "[[name]]"
-    secondary: "{{ 'Running' if states('sensor.[[slug]]_status') == 'ok' else 'Stopped' }}"
-    icon_color: "{{ '[[color]]' if states('sensor.[[slug]]_status') == 'ok' }}"
-    icon: "{{ 'mdi:docker' if states('sensor.[[slug]]_status') == 'ok' else 'mdi:alert-octagon' }}"
+    secondary: "{{ iif(is_state('sensor.[[slug]]_status', 'ok'), 'Running', 'Stopped') }}"
+    icon_color: "{{ '[[color]]' if is_state('sensor.[[slug]]_status', 'ok') }}"
+    icon: "{{ iif(is_state('sensor.[[slug]]_status', 'ok') 'mdi:docker', 'mdi:alert-octagon') }}"
     tap_action:
       action: more-info
     card_mod:

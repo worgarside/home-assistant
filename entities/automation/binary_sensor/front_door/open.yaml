@@ -35,7 +35,7 @@ action:
         {%
           if (
             states('sensor.sun_elevation') | int(1) < 0 or
-            states('binary_sensor.quiet_hours') == "off"
+            is_state('binary_sensor.quiet_hours', "off")
           )
         %}
           127
