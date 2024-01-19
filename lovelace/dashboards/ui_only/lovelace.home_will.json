@@ -148,6 +148,11 @@
                                   "entity": "sensor.remote_git_branches"
                                 },
                                 {
+                                  "entity": "script.target_git_branch_set_options",
+                                  "name": "Update Available Options",
+                                  "icon": "mdi:source-branch-sync"
+                                },
+                                {
                                   "entity": "script.git_pull",
                                   "name": "Git Pull",
                                   "icon": "mdi:source-pull"
