@@ -44,6 +44,8 @@ attributes:
       {{ this.state }}
     {% endif %}
 
+  source_list: "{{ state_attr('input_select.topaz_sr10_source', 'options') }}"
+
   volume_level: >-
     {{
       iif(

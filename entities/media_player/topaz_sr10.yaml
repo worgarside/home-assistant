@@ -34,7 +34,7 @@ state_template: >-
   {% endif %}
 
 attributes:
-  source_list: input_select.topaz_sr10_source|options
+  source_list: sensor.topaz_sr10_active_child|source_list
   volume_level: sensor.topaz_sr10_active_child|volume_level
 
 commands:
