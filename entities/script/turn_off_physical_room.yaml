@@ -91,7 +91,7 @@ sequence:
 
               - service: cover.close_cover
                 target:
-                  entity_id: blinds_entity_id
+                  entity_id: "{{ blinds_entity_id }}"
 
           - alias: Don't continue on timeout
             conditions: >
@@ -106,9 +106,9 @@ sequence:
 
               - service: cover.close_cover
                 target:
-                  entity_id: blinds_entity_id
+                  entity_id: "{{ blinds_entity_id }}"
 
         default:
           - service: cover.close_cover
             target:
-              entity_id: blinds_entity_id
+              entity_id: "{{ blinds_entity_id }}"
