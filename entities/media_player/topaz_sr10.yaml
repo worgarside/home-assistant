@@ -35,7 +35,7 @@ state_template: >-
 
 attributes:
   source_list: sensor.topaz_sr10_active_child|source_list
-  volume_level: input_number.topaz_sr10_volume_level
+  volume_level: sensor.topaz_sr10_active_child|volume_level
 
 commands:
   turn_on:

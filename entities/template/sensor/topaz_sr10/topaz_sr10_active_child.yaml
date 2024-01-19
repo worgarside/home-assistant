@@ -45,3 +45,12 @@ attributes:
     {% endif %}
 
   source_list: "{{ [ 'FM', 'AM', 'CD', 'BD/DVD', 'MP3/Aux', 'Phono' ] }}"
+
+  volume_level: >-
+    {{
+      iif(
+        has_value('input_number.topaz_sr10_volume_level'),
+        states('input_number.topaz_sr10_volume_level') | float(0.0) / 100,
+        None
+      )
+    }}
