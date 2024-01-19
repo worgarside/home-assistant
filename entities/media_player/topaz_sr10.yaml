@@ -44,9 +44,30 @@ commands:
       entity_id: switch.office_amp
 
   turn_off:
-    service: switch.turn_off
-    target:
-      entity_id: switch.office_amp
+    service: script.run_dynamic_script
+    data:
+      script_id: script.topaz_sr10_turn_off
+      actions:
+        - alias: Stop media if applicable
+          if:
+            - not:
+              - condition: state
+                entity_id: sensor.topaz_sr10_active_child
+                  state:
+                    - none
+                    - None
+                    - "null"
+                    - unavailable
+                    - unknown
+
+          then:
+            - service: media_player.media_stop
+              target:
+                entity_id: media_player.topaz_sr10
+
+        - service: switch.turn_off
+          target:
+            entity_id: switch.office_amp
 
   select_source:
     service: script.ir_blaster_issue_command
