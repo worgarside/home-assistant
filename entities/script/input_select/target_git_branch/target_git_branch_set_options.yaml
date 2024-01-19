@@ -47,7 +47,7 @@ sequence:
           entity_id: script.debug_persistent_notification
         data:
           variables:
-            title: "Remote Git Branches Already Set"
+            notification_title: Remote Git Branches Already Set
             notification_id: remote_git_branches
             message: |
               `{{ now().strftime('%Y-%m-%d %H:%M:%S') }}`
@@ -63,7 +63,7 @@ sequence:
       entity_id: script.debug_persistent_notification
     data:
       variables:
-        title: "{{ branch_count }} Remote Git Branches"
+        notification_title: "{{ branch_count }} Remote Git Branches"
         notification_id: remote_git_branches
         message: |
           ```

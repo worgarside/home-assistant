@@ -17,7 +17,7 @@ sequence:
 
   - service: script.debug_persistent_notification
     data:
-      title: RGB LED Matrix Display Update
+      notification_title: RGB LED Matrix Display Update
         # yamllint disable rule:line-length
       message: |
         ```
