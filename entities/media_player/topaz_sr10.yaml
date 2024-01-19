@@ -35,6 +35,7 @@ state_template: >-
 
 attributes:
   source_list: sensor.topaz_sr10_active_child|source_list
+  volume_level: input_number.topaz_sr10_volume_level
 
 commands:
   turn_on:
@@ -65,14 +66,30 @@ commands:
         {{ source_code_mapping[source] }}
 
   volume_up:
-    service: script.ir_blaster_issue_command
+    service: script.run_dynamic_script
     data:
-      code: BxojaBFdAiMCwANAAcALBF0CewYjoANAC0ADQA/ABwUjAiMCXQJAAwR7Bl0CIyABAXsG4AEDASMCQBPgAQNAG4ABAV0CQANAD8ADB4ObGiOYCCMC
+      script_id: script.topaz_sr10_volume_up
+      actions:
+        - service: script.ir_blaster_issue_command
+          data:
+            code: BxojaBFdAiMCwANAAcALBF0CewYjoANAC0ADQA/ABwUjAiMCXQJAAwR7Bl0CIyABAXsG4AEDASMCQBPgAQNAG4ABAV0CQANAD8ADB4ObGiOYCCMC
+
+        - service: input_number.increment
+          target:
+            entity_id: input_number.topaz_sr10_volume_level
 
   volume_down:
-    service: script.ir_blaster_issue_command
+    service: script.run_dynamic_script
     data:
-      code: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC
+      script_id: script.topaz_sr10_volume_up
+      actions:
+        - service: script.ir_blaster_issue_command
+          data:
+            code: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC
+
+        - service: input_number.decrement
+          target:
+            entity_id: input_number.topaz_sr10_volume_level
 
   volume_set:
     service: script.topaz_sr10_volume_set
