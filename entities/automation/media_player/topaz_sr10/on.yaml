@@ -50,9 +50,9 @@ action:
     data:
       source: MP3/Aux
 
-    then:
-      - alias: Initialize volume
-        repeat:
-          count: 15
-          sequence:
-            - service: script.topaz_sr10_volume_up
+  - alias: Initialize volume
+    service: media_player.volume_set
+    target:
+      entity_id: media_player.topaz_sr10
+    data:
+      volume_level: 0.65
