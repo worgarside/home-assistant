@@ -8,6 +8,22 @@ fields:
     description: The IR code to send
     example: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC # yamllint disable-line rule:line-length
 
+  delay_ms:
+    description: >-
+      The delay in milliseconds to wait at the end of the script (ensures no overlap with other
+      commands)
+    example: "500"
+    default: 500
+
+  extra_service_calls:
+    description: A list of extra service calls to make after the IR command has been sent
+
+variables:
+  delay_ms: "{{ delay_ms | default(500) | int(500) }}"
+
+  true_response:
+    value: true
+
 sequence:
   - choose:
       - conditions: "{{ code is not defined or not code }}"
@@ -43,5 +59,16 @@ sequence:
       params:
         code: "{{ code }}"
 
+  - if: "{{ extra_service_calls is list and extra_service_calls | length > 0 }}"
+    then:
+      - service: script.run_dynamic_script
+        data:
+          script_id: script.ir_blaster_issue_command
+          actions: "{{ extra_service_calls }}"
+          suppress_debug_notifications: "{{ extra_service_calls | length > 3 }}"
+
   - delay:
-      milliseconds: 500
+      milliseconds: "{{ delay_ms }}"
+
+  - stop: End
+    response_variable: true_response

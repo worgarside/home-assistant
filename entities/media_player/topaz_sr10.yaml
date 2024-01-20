@@ -71,14 +71,10 @@ commands:
             entity_id: switch.office_amp
 
   select_source:
-    service: script.run_dynamic_script
+    service: script.ir_blaster_issue_command
     data:
-      script_id: script.topaz_sr10_select_source
-      actions:
-        - service: script.ir_blaster_issue_command
-          data:
-            code: >-
-              {%
+      code: >-
+        {%
                 set source_code_mapping = {
                   "CD": "B0AjSxFcAiICQAPAAUALQAMDIgJ2BkADAFygB8ALwA8DXAIiAoADQAtAA0APAnYGIiADA1wCIgJAA8ABgAvgARcEXAJ2BiIgA0AHEVwCQ5tAI6MIXAL//0AjowgiAg==",
                   "FM": "BzEjTBFmAjMCQAPAAeABCwF2BuAVA4ABQC9AA4ABwDNAAUALQAFAB8ADgAEBZgJADwEzAoAHB2mbMSOxCDMC",
@@ -87,10 +83,10 @@ commands:
                   "MP3/Aux": "BUwjQhEsAoABAV4CgANAAUALAywCeQbgCwMAXuAAFwMsAl4CgANAAQReAnkGLOAAAwEsAkAPAV4CgAcBLAJAAwEsAkAPgAEBeQaACwt5BiwCVJtMI6IILAI=",
                   "Phono": "BjYjahFoAidgAUAHQANAAUAHBGgCdAYnoAPgAwvAEwUnAicCaAJAA8ALAXQGQAMAJ2AHACcgAUALgAEBaAKACwJoAiegAQF0BoALC3QGaAJTmzYjpQgnAg==",
                 }
-              %}
+        %}
 
-              {{ source_code_mapping[source] }}
-
+        {{ source_code_mapping[source] }}
+      extra_service_calls:
         - service: input_select.select_option
           target:
             entity_id: input_select.topaz_sr10_source
@@ -98,30 +94,22 @@ commands:
             option: "{{ source }}"
 
   volume_up:
-    service: script.run_dynamic_script
+    service: script.ir_blaster_issue_command
     data:
-      script_id: script.topaz_sr10_volume_up
-      actions:
+      code: BxojaBFdAiMCwANAAcALBF0CewYjoANAC0ADQA/ABwUjAiMCXQJAAwR7Bl0CIyABAXsG4AEDASMCQBPgAQNAG4ABAV0CQANAD8ADB4ObGiOYCCMC
+      extra_service_calls:
         - service: input_number.increment
           target:
             entity_id: input_number.topaz_sr10_volume_level
 
-        - service: script.ir_blaster_issue_command
-          data:
-            code: BxojaBFdAiMCwANAAcALBF0CewYjoANAC0ADQA/ABwUjAiMCXQJAAwR7Bl0CIyABAXsG4AEDASMCQBPgAQNAG4ABAV0CQANAD8ADB4ObGiOYCCMC
-
   volume_down:
-    service: script.run_dynamic_script
+    service: script.ir_blaster_issue_command
     data:
-      script_id: script.topaz_sr10_volume_up
-      actions:
+      code: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC
+      extra_service_calls:
         - service: input_number.decrement
           target:
             entity_id: input_number.topaz_sr10_volume_level
-
-        - service: script.ir_blaster_issue_command
-          data:
-            code: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC
 
   volume_set:
     service: script.topaz_sr10_volume_set
