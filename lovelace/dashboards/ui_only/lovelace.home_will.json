@@ -148,6 +148,11 @@
                                   "entity": "sensor.remote_git_branches"
                                 },
                                 {
+                                  "entity": "script.target_git_branch_set_options",
+                                  "name": "Update Available Options",
+                                  "icon": "mdi:source-branch-sync"
+                                },
+                                {
                                   "entity": "script.git_pull",
                                   "name": "Git Pull",
                                   "icon": "mdi:source-pull"
@@ -212,29 +217,39 @@
               "type": "custom:mini-graph-card",
               "entities": [
                 {
-                  "entity": "sensor.kitchen_temperature",
-                  "name": "Kitchen"
-                },
-                {
-                  "entity": "sensor.lounge_temperature",
-                  "name": "Lounge"
-                },
-                {
-                  "entity": "sensor.office_temperature",
-                  "name": "Office"
+                  "entity": "sensor.bedroom_temperature",
+                  "name": "Bedroom",
+                  "smoothing": true
                 },
                 {
                   "entity": "sensor.hallway_temperature",
-                  "name": "Hallway"
+                  "name": "Hallway",
+                  "smoothing": true
+                },
+                {
+                  "entity": "sensor.kitchen_temperature",
+                  "name": "Kitchen",
+                  "smoothing": true
+                },
+                {
+                  "entity": "sensor.lounge_temperature",
+                  "name": "Lounge",
+                  "smoothing": true
+                },
+                {
+                  "entity": "sensor.office_temperature",
+                  "name": "Office",
+                  "smoothing": true
                 }
               ],
-              "hours_to_show": 4,
-              "points_per_hour": 30,
+              "hours_to_show": 24,
+              "hour24": true,
+              "points_per_hour": 20,
               "line_width": 2,
-              "lower_bound": 0,
+              "animate": true,
+              "name": "Room Temperatures",
               "show": {
                 "fill": "fade",
-                "name": false,
                 "icon": false,
                 "state": false,
                 "legend": true,
@@ -444,6 +459,10 @@
               ]
             },
             {
+              "type": "media-control",
+              "entity": "media_player.topaz_sr10"
+            },
+            {
               "type": "custom:layout-break"
             },
             {
@@ -546,6 +565,18 @@
                   },
                   "double_tap_action": {
                     "action": "none"
+                  }
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.topaz_sr10",
+                  "artwork": "cover",
+                  "group": false,
+                  "info": "scroll",
+                  "hide": {
+                    "name": true,
+                    "power_state": false,
+                    "icon_state": false
                   }
                 }
               ]
