@@ -1,0 +1,74 @@
+---
+mode: queued
+
+max: 100
+
+fields:
+  code:
+    description: The IR code to send
+    example: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC # yamllint disable-line rule:line-length
+
+  delay_ms:
+    description: >-
+      The delay in milliseconds to wait at the end of the script (ensures no overlap with other
+      commands)
+    example: "500"
+    default: 500
+
+  extra_service_calls:
+    description: A list of extra service calls to make after the IR command has been sent
+
+variables:
+  delay_ms: "{{ delay_ms | default(500) | int(500) }}"
+
+  true_response:
+    value: true
+
+sequence:
+  - choose:
+      - conditions: "{{ code is not string }}"
+
+        sequence:
+          - service: script.log_exception
+            data:
+              calling_entity: script.ir_blaster_topaz_sr10_issue_command
+              message: No IR Code provided to script
+
+          - stop: No code provided
+            error: true
+
+      - conditions: "{{ not is_state('switch.office_amp', 'on') }}"
+
+        sequence:
+          - service: script.log_exception
+            data:
+              calling_entity: script.ir_blaster_topaz_sr10_issue_command
+              message: Topaz SR10 not turned on
+
+          - stop: Topaz SR10 not turned on
+            error: true
+
+  - service: zha.issue_zigbee_cluster_command
+    data:
+      cluster_id: 57348
+      cluster_type: in
+      command: 2
+      command_type: server
+      endpoint_id: 1
+      ieee: dc:8e:95:ff:fe:f9:ad:13
+      params:
+        code: "{{ code }}"
+
+  - if: "{{ extra_service_calls is list and extra_service_calls | length > 0 }}"
+    then:
+      - service: script.run_dynamic_script
+        data:
+          script_id: script.ir_blaster_topaz_sr10_issue_command
+          actions: "{{ extra_service_calls }}"
+          suppress_debug_notifications: true
+
+  - delay:
+      milliseconds: "{{ delay_ms }}"
+
+  - stop: End
+    response_variable: true_response

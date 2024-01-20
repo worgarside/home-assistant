@@ -1,0 +1,45 @@
+---
+alias: /media-player/topaz-sr10/on
+
+id: media_player_topaz_sr10_on
+
+description: >-
+  Run when the Topaz SR10 is turned on, this ensures the plug is turned on and that the volume is
+  initialized to a reasonable level for the speakers.
+
+mode: single
+
+trigger:
+  platform: state
+  entity_id: media_player.topaz_sr10
+  from: "off"
+  to:
+    - "on"
+    - "playing"
+    - "paused"
+    - "idle"
+    - "standby"
+
+action:
+  - if: "{{ is_state('switch.office_amp', 'off') }}"
+
+    then:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.office_amp
+
+      - delay:
+          seconds: 5
+
+    else:
+      - delay:
+          seconds: 2.5
+
+  - alias: Initialize volume
+    repeat:
+      until: "{{ states('input_number.topaz_sr10_volume_level') | int(-35) >= -35 }}"
+
+      sequence:
+        - service: media_player.volume_up
+          target:
+            entity_id: media_player.topaz_sr10

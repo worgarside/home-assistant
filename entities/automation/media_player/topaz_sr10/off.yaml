@@ -1,0 +1,32 @@
+---
+alias: /media-player/topaz-sr10/off
+
+id: media_player_topaz_sr10_off
+
+description: >-
+  Run when the Topaz SR10 is turned off, this resets the `input_number.topaz_sr10_volume_level` to
+  -50 so that it is correct next time the amp is turned on.
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  platform: state
+  entity_id:
+    - media_player.topaz_sr10
+    - switch.office_amp
+  from: "on"
+  to: "off"
+
+action:
+  - parallel:
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.topaz_sr10_volume_level
+        data:
+          value: -50
+
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.topaz_sr10_is_volume_muted
