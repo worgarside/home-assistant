@@ -566,6 +566,18 @@
                   "double_tap_action": {
                     "action": "none"
                   }
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.topaz_sr10",
+                  "artwork": "cover",
+                  "group": true,
+                  "info": "scroll",
+                  "hide": {
+                    "name": true,
+                    "power_state": false,
+                    "icon_state": false
+                  }
                 }
               ]
             },
