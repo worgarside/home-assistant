@@ -44,11 +44,12 @@ attributes:
 
   source_list: "{{ state_attr('input_select.topaz_sr10_source', 'options') }}"
 
+  # Converted from -80db - 0db range to 0.00 - 1.00 value
   volume_level: >-
     {{
       iif(
-        has_value('input_number.topaz_sr10_volume_level'),
-        states('input_number.topaz_sr10_volume_level') | float(0.0),
+        is_number(states('input_number.topaz_sr10_volume_level')),
+        ((states('input_number.topaz_sr10_volume_level') | int + 80) / 80) | round(2),
         None
       )
     }}

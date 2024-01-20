@@ -1,12 +1,14 @@
 ---
 icon: mdi:volume-high
 
-max: 1
+max: 0
 
-min: 0.2  # 0.2 is the minimum volume for the SR10, sort of...
+min: -80
 
 mode: box
 
 name: Topaz SR10 Volume Level
 
-step: 0.01
+step: 1
+
+unit_of_measurement: dB
