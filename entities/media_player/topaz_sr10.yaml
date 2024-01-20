@@ -19,16 +19,18 @@ active_child_template: "{{ states('sensor.topaz_sr10_active_child') }}"
 state_template: >-
   {% if has_value('sensor.topaz_sr10_active_child') %}
     {{ states(states('sensor.topaz_sr10_active_child')) }}
-  {% elif is_state("switch.office_amp", "off") %}
-    off
   {%
     elif state_attr('sensor.topaz_sr10_active_child', 'current_source') not in (
-      None,
-      "unknown",
-      "unavailable"
+      state_attr('input_select.topaz_sr10_source', 'options') + [
+        None,
+        "unknown",
+        "unavailable"
+      ]
     )
   %}
     playing
+  {% elif is_state("switch.office_amp", "off") %}
+    off
   {% else %}
     on
   {% endif %}
