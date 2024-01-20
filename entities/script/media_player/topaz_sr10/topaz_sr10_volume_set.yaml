@@ -1,9 +1,7 @@
 ---
 description: Set the volume of the Topaz SR10 to a specific value
 
-mode: queued  # Otherwise the true value will be lost on script restart/ignore
-
-max: 50
+mode: restart
 
 fields:
   volume_level:
