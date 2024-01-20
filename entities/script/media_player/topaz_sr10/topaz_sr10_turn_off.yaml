@@ -1,0 +1,19 @@
+---
+description: Set the volume of the Topaz SR10 to a specific value
+
+mode: single
+
+max_exceeded: silent
+
+sequence:
+  - alias: Stop media if applicable
+    if: "{{ has_value('sensor.topaz_sr10_active_child') }}"
+
+    then:
+      - service: media_player.media_stop
+        target:
+          entity_id: media_player.topaz_sr10
+
+  - service: switch.turn_off
+    target:
+      entity_id: switch.office_amp

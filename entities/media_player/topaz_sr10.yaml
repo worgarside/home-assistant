@@ -45,17 +45,7 @@ commands:
       entity_id: switch.office_amp
 
   turn_off:
-    service: script.run_dynamic_script
-    data:
-      script_id: script.topaz_sr10_turn_off
-      actions:
-        - service: media_player.media_stop
-          target:
-            entity_id: "{{ states('sensor.topaz_sr10_active_child') }}"
-
-        - service: switch.turn_off
-          target:
-            entity_id: switch.office_amp
+    service: script.topaz_sr10_turn_off
 
   select_source:
     service: script.ir_blaster_issue_command
