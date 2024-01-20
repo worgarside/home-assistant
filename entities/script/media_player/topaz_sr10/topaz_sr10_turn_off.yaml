@@ -13,6 +13,7 @@ sequence:
       - service: media_player.media_stop
         target:
           entity_id: media_player.topaz_sr10
+        continue_on_error: true
 
   - service: switch.turn_off
     target:
