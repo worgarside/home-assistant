@@ -107,25 +107,3 @@ commands:
     service: script.ir_blaster_issue_command
     data:
       code: CRojYhEmAiYCZgKAA0AB4AELAW0GQAMAZuACB8ALQBcGJgImAmYCJmABQAfgBwNAAYATQCuAA+ANCw9NmxojmghmAv//GiOaCGYC
-
-  # media_play_pause:
-  #   if: "{{ is_state('sensor.topaz_sr10_active_child', 'media_player.spotify_will') }}"
-  #   then:
-  #     - service: media_player.media_play_pause
-  #       target:
-  #         entity_id: media_player.spotify_will
-
-  # media_play:
-  #   service: pyscript.yas_209_play
-
-  # media_pause:
-  #   service: pyscript.yas_209_pause
-
-  # media_stop:
-  #   service: pyscript.yas_209_stop
-
-  # media_next_track:
-  #   service: pyscript.yas_209_next_track
-
-  # media_previous_track:
-  #   service: pyscript.yas_209_previous_track
