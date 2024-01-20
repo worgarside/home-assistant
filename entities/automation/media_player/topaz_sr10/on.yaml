@@ -28,20 +28,12 @@ action:
         target:
           entity_id: switch.office_amp
 
-  - delay:
-      seconds: >-
-        {{
-          iif(
-            has_value('switch.office_amp'),
-            max(
-              5 + (
-                states.switch.office_amp.last_changed - utcnow()
-              ).total_seconds(),
-              0
-            ),
-            0
-          )
-        }}
+      - delay:
+          seconds: 5
+
+    else:
+      - delay:
+          seconds: 2.5
 
   - alias: Set Amp to Correct Input
     service: media_player.select_source
@@ -51,8 +43,10 @@ action:
       source: MP3/Aux
 
   - alias: Initialize volume
-    service: media_player.volume_set
-    target:
-      entity_id: media_player.topaz_sr10
-    data:
-      volume_level: 0.65
+    repeat:
+      until: "{{ states('input_number.topaz_sr10_volume_level') | int(-35) >= -35 }}"
+
+      sequence:
+        - service: media_player.volume_up
+          target:
+            entity_id: media_player.topaz_sr10
