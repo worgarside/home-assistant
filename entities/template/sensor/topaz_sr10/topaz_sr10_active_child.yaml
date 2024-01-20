@@ -36,14 +36,14 @@ attributes:
       }} MacBook Pro)
     {%
       elif (
-        is_state_attr("media_player.topaz_sr10", "source", "MP3/Aux") and
+        is_state("input_select.topaz_sr10_source", "MP3/Aux") and
         is_state("sensor.wills_macbook_pro_active_audio_output", "FiiO USB DAC-E10")
       )
     %}
       {{ device_attr(device_id("sensor.wills_macbook_pro_active_audio_output"), "name") }}
     {%
       elif (
-        is_state_attr("media_player.topaz_sr10", "source", "MP3/Aux") and
+        is_state("input_select.topaz_sr10_source", "MP3/Aux") and
         is_state("sensor.st_macbook_pro_active_audio_output", "FiiO USB DAC-E10")
       )
     %}
@@ -58,7 +58,10 @@ attributes:
   volume_level: >-
     {{
       iif(
-        is_number(states("input_number.topaz_sr10_volume_level")),
+        (
+          not is_state("media_player.topaz_sr10", "off") and
+          is_number(states("input_number.topaz_sr10_volume_level"))
+        ),
         ((states("input_number.topaz_sr10_volume_level") | int + 80) / 80) | round(2),
         None
       )
