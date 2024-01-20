@@ -35,13 +35,6 @@ action:
       - delay:
           seconds: 2.5
 
-  - alias: Set Amp to Correct Input
-    service: media_player.select_source
-    target:
-      entity_id: media_player.topaz_sr10
-    data:
-      source: MP3/Aux
-
   - alias: Initialize volume
     repeat:
       until: "{{ states('input_number.topaz_sr10_volume_level') | int(-35) >= -35 }}"
