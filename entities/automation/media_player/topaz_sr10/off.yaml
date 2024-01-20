@@ -3,27 +3,21 @@ alias: /media-player/topaz-sr10/off
 
 id: media_player_topaz_sr10_off
 
-description: >-
-  Automation to run when the Topaz SR10 is turned off by something other than the
-  `media_player.turn_off` service.
-
 mode: single
+
+max_exceeded: silent
 
 trigger:
   platform: state
-  entity_id: media_player.topaz_sr10
+  entity_id:
+    - media_player.topaz_sr10
+    - switch.office_amp
   from: "on"
   to: "off"
-  # Wait for 5 minutes to avoid rapid/unnecessary on/off cycles
-  for:
-    minutes: 5
-
-condition:
-  condition: state
-  entity_id: switch.office_amp
-  state: "on"
 
 action:
-  - service: switch.turn_off
+  - service: input_number.set_value
     target:
-      entity_id: switch.office_amp
+      entity_id: input_number.topaz_sr10_volume_level
+    data:
+      value: 0.5
