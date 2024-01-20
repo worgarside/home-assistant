@@ -1,0 +1,114 @@
+---
+# yamllint disable rule:line-length
+
+platform: universal
+
+id: media_player.topaz_sr10
+
+unique_id: media_player.topaz_sr10
+
+name: Topaz SR10
+
+device_class: speaker
+
+children:
+  - media_player.spotify_will
+
+active_child_template: "{{ states('sensor.topaz_sr10_active_child') }}"
+
+state_template: >-
+  {% if has_value('sensor.topaz_sr10_active_child') %}
+    {{ states(states('sensor.topaz_sr10_active_child')) }}
+  {%
+    elif state_attr('sensor.topaz_sr10_active_child', 'current_source') not in (
+      state_attr('sensor.topaz_sr10_active_child', 'source_list') + [
+        None,
+        "unknown",
+        "unavailable"
+      ]
+    )
+  %}
+    playing
+  {% elif is_state("switch.office_amp", "off") %}
+    off
+  {% else %}
+    on
+  {% endif %}
+
+attributes:
+  is_volume_muted: input_boolean.topaz_sr10_is_volume_muted
+  source: input_select.topaz_sr10_source
+  source_list: sensor.topaz_sr10_active_child|source_list
+  volume_level: sensor.topaz_sr10_active_child|volume_level
+
+commands:
+  turn_on:
+    service: switch.turn_on
+    target:
+      entity_id: switch.office_amp
+
+  turn_off:
+    service: script.topaz_sr10_turn_off
+
+  select_source:
+    service: script.ir_blaster_topaz_sr10_issue_command
+    data:
+      code: >-
+        {%
+          set source_code_mapping = {
+            "CD": "B0AjSxFcAiICQAPAAUALQAMDIgJ2BkADAFygB8ALwA8DXAIiAoADQAtAA0APAnYGIiADA1wCIgJAA8ABgAvgARcEXAJ2BiIgA0AHEVwCQ5tAI6MIXAL//0AjowgiAg==",
+            "FM": "BzEjTBFmAjMCQAPAAeABCwF2BuAVA4ABQC9AA4ABwDNAAUALQAFAB8ADgAEBZgJADwEzAoAHB2mbMSOxCDMC",
+            "AM": "BkUjQxFjAjNgAUAHQAPAAQRjAnIGM+AUA4ABgCcEMwJjAjMgAcAzAzMCYwJAC8ABQAtAAwQzAmMCMyABAXIGwAcJMwJUm0UjoAhjAg==",
+            "BD/DVD": "Bz0jTBFhAjQCQAPAAcALBGECcQY04AYD4AMTAmECNKABAXEG4AcDwBtAB0ADwAHgAQsBcQbgAQMPSJs9I5UINAL//z0jlQg0Ag==",
+            "MP3/Aux": "BUwjQhEsAoABAV4CgANAAUALAywCeQbgCwMAXuAAFwMsAl4CgANAAQReAnkGLOAAAwEsAkAPAV4CgAcBLAJAAwEsAkAPgAEBeQaACwt5BiwCVJtMI6IILAI=",
+            "Phono": "BjYjahFoAidgAUAHQANAAUAHBGgCdAYnoAPgAwvAEwUnAicCaAJAA8ALAXQGQAMAJ2AHACcgAUALgAEBaAKACwJoAiegAQF0BoALC3QGaAJTmzYjpQgnAg==",
+          }
+        %}
+
+        {{ source_code_mapping[source] }}
+      extra_service_calls:
+        - service: input_select.select_option
+          target:
+            entity_id: input_select.topaz_sr10_source
+          data:
+            option: "{{ source }}"
+
+  volume_up:
+    service: script.ir_blaster_topaz_sr10_issue_command
+    data:
+      code: BxojaBFdAiMCwANAAcALBF0CewYjoANAC0ADQA/ABwUjAiMCXQJAAwR7Bl0CIyABAXsG4AEDASMCQBPgAQNAG4ABAV0CQANAD8ADB4ObGiOYCCMC
+      extra_service_calls:
+        - service: input_number.increment
+          target:
+            entity_id: input_number.topaz_sr10_volume_level
+
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.topaz_sr10_is_volume_muted
+
+  volume_down:
+    service: script.ir_blaster_topaz_sr10_issue_command
+    data:
+      code: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC
+      extra_service_calls:
+        - service: input_number.decrement
+          target:
+            entity_id: input_number.topaz_sr10_volume_level
+
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.topaz_sr10_is_volume_muted
+
+  volume_set:
+    service: script.topaz_sr10_volume_set
+    data:
+      volume_level: "{{ volume_level }}"
+
+  volume_mute:
+    service: script.ir_blaster_topaz_sr10_issue_command
+    data:
+      code: CRojYhEmAiYCZgKAA0AB4AELAW0GQAMAZuACB8ALQBcGJgImAmYCJmABQAfgBwNAAYATQCuAA+ANCw9NmxojmghmAv//GiOaCGYC
+      extra_service_calls:
+        - service: input_boolean.toggle
+          target:
+            entity_id: input_boolean.topaz_sr10_is_volume_muted
