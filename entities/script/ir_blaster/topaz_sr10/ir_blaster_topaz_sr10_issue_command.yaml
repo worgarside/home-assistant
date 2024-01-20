@@ -65,7 +65,7 @@ sequence:
         data:
           script_id: script.ir_blaster_topaz_sr10_issue_command
           actions: "{{ extra_service_calls }}"
-          suppress_debug_notifications: "{{ extra_service_calls | length > 3 }}"
+          suppress_debug_notifications: true
 
   - delay:
       milliseconds: "{{ delay_ms }}"
