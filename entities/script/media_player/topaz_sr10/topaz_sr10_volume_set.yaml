@@ -14,7 +14,7 @@ sequence:
 
       up_or_down: "{{ iif( initial_level | float > volume_level | float, 'down', 'up') }}"
 
-      repeat_count: "{{ (initial_level | float - volume_level | float) | abs }}"
+      repeat_count: "{{ ( (initial_level | float - volume_level | float) | abs * 100 ) | int(0) }}"
 
   - repeat:
       count: "{{ repeat_count }}"
