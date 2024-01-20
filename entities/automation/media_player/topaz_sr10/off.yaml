@@ -3,6 +3,10 @@ alias: /media-player/topaz-sr10/off
 
 id: media_player_topaz_sr10_off
 
+description: >-
+  Run when the Topaz SR10 is turned off, this resets the `input_number.topaz_sr10_volume_level` to
+  -50 so that it is correct next time the amp is turned on.
+
 mode: single
 
 max_exceeded: silent

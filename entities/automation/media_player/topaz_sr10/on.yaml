@@ -4,8 +4,8 @@ alias: /media-player/topaz-sr10/on
 id: media_player_topaz_sr10_on
 
 description: >-
-  Automation to run when the Topaz SR10 is turned on by something other than the
-  `media_player.turn_on` service.
+  Run when the Topaz SR10 is turned on, this ensures the plug is turned on and that the volume is
+  initialized to a reasonable level for the speakers.
 
 mode: single
 
