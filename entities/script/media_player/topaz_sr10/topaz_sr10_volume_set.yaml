@@ -5,16 +5,16 @@ mode: restart
 
 fields:
   volume_level:
-    description: The volume level to set the Topaz SR10 to
+    description: The volume level to set the Topaz SR10 to; 0.0 - 1.0
     required: true
 
 sequence:
   - variables:
-      initial_level: "{{ state_attr('media_player.topaz_sr10', 'volume_level') | int(0) }}"
+      initial_level: "{{ state_attr('media_player.topaz_sr10', 'volume_level') | float(0) }}"
 
-      up_or_down: "{{ iif( initial_level | int > volume_level | int, 'down', 'up') }}"
+      up_or_down: "{{ iif( initial_level | float > volume_level | float, 'down', 'up') }}"
 
-      repeat_count: "{{ (initial_level | int - volume_level | int) | abs }}"
+      repeat_count: "{{ (initial_level | float - volume_level | float) | abs }}"
 
   - repeat:
       count: "{{ repeat_count }}"
