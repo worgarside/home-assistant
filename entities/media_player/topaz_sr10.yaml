@@ -21,7 +21,7 @@ state_template: >-
     {{ states(states('sensor.topaz_sr10_active_child')) }}
   {%
     elif state_attr('sensor.topaz_sr10_active_child', 'current_source') not in (
-      state_attr('input_select.topaz_sr10_source', 'options') + [
+      state_attr('sensor.topaz_sr10_active_child', 'source_list') + [
         None,
         "unknown",
         "unavailable"

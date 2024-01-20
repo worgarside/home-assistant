@@ -52,7 +52,7 @@ attributes:
       {{ state_attr("media_player.topaz_sr10", "source") }}
     {% endif %}
 
-  source_list: "{{ state_attr('input_select.topaz_sr10_source', 'options') }}"
+  source_list: "{{ state_attr('input_select.topaz_sr10_source', 'options') | default([]) }}"
 
   # Converted from -80db - 0db range to 0.00 - 1.00 value
   volume_level: >-
