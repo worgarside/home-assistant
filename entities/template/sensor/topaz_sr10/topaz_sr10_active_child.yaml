@@ -4,10 +4,8 @@ name: Topaz SR10 Active Child
 unique_id: topaz_sr10_active_child
 
 state: >-
-  {% if is_state("switch.office_amp", "off") %}
-    {{ None }}
   {%
-    elif is_state_attr("media_player.topaz_sr10", "source", "MP3/Aux") and (
+    if is_state("input_select.topaz_sr10_source", "MP3/Aux") and (
       (
         is_state("sensor.wills_macbook_pro_active_audio_output", "FiiO USB DAC-E10") and
         is_state_attr(
