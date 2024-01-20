@@ -48,7 +48,7 @@ commands:
     service: script.topaz_sr10_turn_off
 
   select_source:
-    service: script.ir_blaster_issue_command
+    service: script.ir_blaster_topaz_sr10_issue_command
     data:
       code: >-
         {%
@@ -71,7 +71,7 @@ commands:
             option: "{{ source }}"
 
   volume_up:
-    service: script.ir_blaster_issue_command
+    service: script.ir_blaster_topaz_sr10_issue_command
     data:
       code: BxojaBFdAiMCwANAAcALBF0CewYjoANAC0ADQA/ABwUjAiMCXQJAAwR7Bl0CIyABAXsG4AEDASMCQBPgAQNAG4ABAV0CQANAD8ADB4ObGiOYCCMC
       extra_service_calls:
@@ -80,7 +80,7 @@ commands:
             entity_id: input_number.topaz_sr10_volume_level
 
   volume_down:
-    service: script.ir_blaster_issue_command
+    service: script.ir_blaster_topaz_sr10_issue_command
     data:
       code: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC
       extra_service_calls:
@@ -94,6 +94,6 @@ commands:
       volume_level: "{{ volume_level }}"
 
   volume_mute:
-    service: script.ir_blaster_issue_command
+    service: script.ir_blaster_topaz_sr10_issue_command
     data:
       code: CRojYhEmAiYCZgKAA0AB4AELAW0GQAMAZuACB8ALQBcGJgImAmYCJmABQAfgBwNAAYATQCuAA+ANCw9NmxojmghmAv//GiOaCGYC

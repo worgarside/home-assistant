@@ -31,7 +31,7 @@ sequence:
         sequence:
           - service: script.log_exception
             data:
-              calling_entity: script.ir_blaster_issue_command
+              calling_entity: script.ir_blaster_topaz_sr10_issue_command
               message: No IR Code provided to script
 
           - stop: No code provided
@@ -42,7 +42,7 @@ sequence:
         sequence:
           - service: script.log_exception
             data:
-              calling_entity: script.ir_blaster_issue_command
+              calling_entity: script.ir_blaster_topaz_sr10_issue_command
               message: Topaz SR10 not turned on
 
           - stop: Topaz SR10 not turned on
@@ -63,7 +63,7 @@ sequence:
     then:
       - service: script.run_dynamic_script
         data:
-          script_id: script.ir_blaster_issue_command
+          script_id: script.ir_blaster_topaz_sr10_issue_command
           actions: "{{ extra_service_calls }}"
           suppress_debug_notifications: "{{ extra_service_calls | length > 3 }}"
 
