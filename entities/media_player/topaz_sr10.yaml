@@ -36,6 +36,7 @@ state_template: >-
   {% endif %}
 
 attributes:
+  is_volume_muted: input_boolean.topaz_sr10_is_volume_muted
   source: input_select.topaz_sr10_source
   source_list: sensor.topaz_sr10_active_child|source_list
   volume_level: sensor.topaz_sr10_active_child|volume_level
@@ -81,6 +82,10 @@ commands:
           target:
             entity_id: input_number.topaz_sr10_volume_level
 
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.topaz_sr10_is_volume_muted
+
   volume_down:
     service: script.ir_blaster_topaz_sr10_issue_command
     data:
@@ -89,6 +94,10 @@ commands:
         - service: input_number.decrement
           target:
             entity_id: input_number.topaz_sr10_volume_level
+
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.topaz_sr10_is_volume_muted
 
   volume_set:
     service: script.topaz_sr10_volume_set
@@ -99,3 +108,7 @@ commands:
     service: script.ir_blaster_topaz_sr10_issue_command
     data:
       code: CRojYhEmAiYCZgKAA0AB4AELAW0GQAMAZuACB8ALQBcGJgImAmYCJmABQAfgBwNAAYATQCuAA+ANCw9NmxojmghmAv//GiOaCGYC
+      extra_service_calls:
+        - service: input_boolean.toggle
+          target:
+            entity_id: input_boolean.topaz_sr10_is_volume_muted
