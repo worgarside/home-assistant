@@ -51,7 +51,7 @@ attributes:
     %}
       {{ device_attr(device_id("sensor.st_macbook_pro_active_audio_output"), "name") }}
     {% else %}
-      {{ this.state }}
+      {{ state_attr("media_player.topaz_sr10", "source") }}
     {% endif %}
 
   source_list: "{{ state_attr('input_select.topaz_sr10_source', 'options') }}"
