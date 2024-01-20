@@ -26,7 +26,7 @@ variables:
 
 sequence:
   - choose:
-      - conditions: "{{ code is not defined or not code }}"
+      - conditions: "{{ code is not string }}"
 
         sequence:
           - service: script.log_exception

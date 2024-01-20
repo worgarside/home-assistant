@@ -20,12 +20,13 @@ trigger:
   to: "off"
 
 action:
-  - service: input_number.set_value
-    target:
-      entity_id: input_number.topaz_sr10_volume_level
-    data:
-      value: -50
+  - parallel:
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.topaz_sr10_volume_level
+        data:
+          value: -50
 
-  - service: input_boolean.turn_off
-    target:
-      entity_id: input_boolean.topaz_sr10_is_volume_muted
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.topaz_sr10_is_volume_muted
