@@ -30,9 +30,7 @@ state: >-
 
 attributes:
   current_source: >-
-    {% if is_state("switch.office_amp", "off") %}
-      {{ None }}
-    {% elif this.state == "media_player.spotify_will" %}
+    {% if this.state == "media_player.spotify_will" %}
       Spotify ({{
         iif(is_state_attr("media_player.spotify_will", "source", "K3QFMW509D"), "Work", "Will's")
       }} MacBook Pro)
