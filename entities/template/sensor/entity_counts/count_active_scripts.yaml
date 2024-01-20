@@ -1,0 +1,10 @@
+---
+name: Count Active Scripts
+
+unique_id: count_active_scripts
+
+state: "{{ state_attr('sensor.count_scripts', 'active_count') }}"
+
+icon: mdi:robot-excited
+
+unit_of_measurement: ""

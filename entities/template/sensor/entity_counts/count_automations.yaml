@@ -1,6 +1,28 @@
 ---
 name: Count Automations
+
 unique_id: count_automations
-state: '{{ states.automation | list | length }}'
+
+state: "{{ states.automation | list | length }}"
+
 icon: mdi:robot-angry
-unit_of_measurement: ''
+
+unit_of_measurement: ""
+
+attributes:
+  active: >-
+    {{
+      states.automation |
+      selectattr("attributes.current", "defined") |
+      selectattr("attributes.current", "gt", 0) |
+      map(attribute="name") |
+      sort
+    }}
+
+  active_count: >-
+    {{
+      states.automation |
+      selectattr("attributes.current", "defined") |
+      selectattr("attributes.current", "gt", -1) |
+      sum(attribute="attributes.current")
+    }}
