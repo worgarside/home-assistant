@@ -21,15 +21,38 @@ sequence:
         error: true
 
   - variables:
-      initial_level: "{{ state_attr('media_player.topaz_sr10', 'volume_level') | float(0) }}"
-
-      up_or_down: "{{ iif( initial_level | float > volume_level | float, 'down', 'up') }}"
-
-      repeat_count: "{{ ( (initial_level | float - volume_level | float) | abs * 100 ) | int(0) }}"
+      too_far_direction: >-
+        {{
+          iif(
+            state_attr('media_player.topaz_sr10', 'volume_level') > volume_level,
+            "lt",
+            "gt"
+          )
+        }}
 
   - repeat:
-      count: "{{ repeat_count }}"
+      until: >-
+        {{
+          is_state_attr('media_player.topaz_sr10', 'volume_level', volume_level) or
+          iif(
+            too_far_direction == "lt",
+            state_attr('media_player.topaz_sr10', 'volume_level') < volume_level,
+            state_attr('media_player.topaz_sr10', 'volume_level') > volume_level
+          ) or
+          repeat.index >= 100
+        }}
+
       sequence:
+        - variables:
+            up_or_down: >-
+              {{
+                iif(
+                  state_attr('media_player.topaz_sr10', 'volume_level') > volume_level | float,
+                  'down',
+                  'up'
+                )
+              }}
+
         - service: media_player.volume_{{ up_or_down }}
           target:
             entity_id: media_player.topaz_sr10
