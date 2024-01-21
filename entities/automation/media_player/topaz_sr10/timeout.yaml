@@ -18,7 +18,8 @@ trigger:
 
 condition:
   or:
-    - and:
+    - alias: Source is MacBook, but MacBook is not active=
+      and:
         - condition: state
           entity_id: input_select.topaz_sr10_source
           state: MP3/Aux
@@ -26,13 +27,14 @@ condition:
         - condition: template
           value_template: >-
             {{
-              "FiiO USB DAC-E10" not in (
-                state_attr("sensor.wills_macbook_pro_active_audio_output", "All Audio Output") +
-                state_attr("sensor.st_macbook_pro_active_audio_output", "All Audio Output")
-              )
+                "FiiO USB DAC-E10" not in [
+                  states("sensor.st_macbook_pro_active_audio_output"),
+                  states("sensor.wills_macbook_pro_active_audio_output")
+                ]
             }}
 
-    - not:
+    - alias: Some other source selected (specifics to be added when needed)
+      not:
         - condition: state
           entity_id: input_select.topaz_sr10_source
           state: MP3/Aux
