@@ -27,10 +27,10 @@ condition:
         - condition: template
           value_template: >-
             {{
-                "FiiO USB DAC-E10" not in [
-                  states("sensor.st_macbook_pro_active_audio_output"),
-                  states("sensor.wills_macbook_pro_active_audio_output")
-                ]
+              "FiiO USB DAC-E10" not in [
+                states("sensor.st_macbook_pro_active_audio_output"),
+                states("sensor.wills_macbook_pro_active_audio_output")
+              ]
             }}
 
     - alias: Some other source selected (specifics to be added when needed)
