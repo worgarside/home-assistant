@@ -41,6 +41,14 @@ turn_off:
             entity_id: binary_sensor.octoprint_printing
             state: "on"
 
+      - condition: state
+        entity_id: input_number.prusa_i3_mk3_target_bed_temperature
+        state: "0"
+
+      - condition: state
+        entity_id: input_number.prusa_i3_mk3_target_hotend_temperature
+        state: "0"
+
   - service: switch.turn_off
     target:
       entity_id: switch.octoprint_connect_to_printer
