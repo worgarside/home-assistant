@@ -1,0 +1,43 @@
+---
+alias: /media-player/topaz-sr10/timeout
+
+id: media_player_topaz_sr10_timeout
+
+description: Artificially timeout the Topaz SR10 after a period of inactivity
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: media_player.topaz_sr10
+    to: "on" # Other states are a definite "no"
+    for:
+      minutes: 5
+
+condition:
+  or:
+    - and:
+        - condition: state
+          entity_id: input_select.topaz_sr10_source
+          state: MP3/Aux
+
+        - condition: template
+          value_template: >-
+            {{
+              "FiiO USB DAC-E10" not in (
+                state_attr("sensor.wills_macbook_pro_active_audio_output", "All Audio Output") +
+                state_attr("sensor.st_macbook_pro_active_audio_output", "All Audio Output")
+              )
+            }}
+
+    - not:
+        - condition: state
+          entity_id: input_select.topaz_sr10_source
+          state: MP3/Aux
+
+action:
+  - service: media_player.turn_off
+    target:
+      entity_id: media_player.topaz_sr10
