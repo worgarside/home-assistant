@@ -28,8 +28,8 @@ condition:
           value_template: >-
             {{
               "FiiO USB DAC-E10" not in [
+                states("sensor.wills_macbook_pro_active_audio_output"),
                 states("sensor.st_macbook_pro_active_audio_output"),
-                states("sensor.wills_macbook_pro_active_audio_output")
               ]
             }}
 
