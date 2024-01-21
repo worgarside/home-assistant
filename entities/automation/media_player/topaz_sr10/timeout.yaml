@@ -18,7 +18,7 @@ trigger:
 
 condition:
   or:
-    - alias: Source is MacBook, but MacBook is not active=
+    - alias: Source is MacBook, but MacBook is not active
       and:
         - condition: state
           entity_id: input_select.topaz_sr10_source
