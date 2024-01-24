@@ -43,7 +43,8 @@ turn_off:
     target:
       entity_id: switch.octoprint_connect_to_printer
 
-  - wait_template: "{{ is_state('sensor.octoprint_print_status', 'Offline') }}"
+  - wait_template: >-
+      {{ states('sensor.octoprint_print_status').casefold().startswith('offline') }}
     timeout:
       seconds: 30
 
@@ -61,14 +62,27 @@ turn_on:
       seconds: 5
 
   - repeat:
-      while: "{{ is_state('sensor.octoprint_print_status', 'Offline') and repeat.index < 6 }}"
+      while: >-
+        {{
+          states('sensor.octoprint_print_status').casefold().startswith('offline') and
+          repeat.index < 6
+        }}
 
       sequence:
         - service: switch.turn_on
           target:
             entity_id: switch.octoprint_connect_to_printer
 
-        - wait_template: "{{ not is_state('sensor.octoprint_print_status', 'Offline') }}"
+        - wait_template: >-
+            {{ not states('sensor.octoprint_print_status').casefold().startswith('offline') }}
           timeout:
             seconds: 5
           continue_on_timeout: true
+
+  - alias: Turn switch off if printer is not connected
+    condition: "{{ states('sensor.octoprint_print_status').casefold().startswith('offline') }}"
+
+    sequence:
+      - service: switch.turn_off
+        target:
+          entity_id: switch.prusa_i3_mk3
