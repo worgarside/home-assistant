@@ -31,23 +31,13 @@ icon_template: >-
 
 turn_off:
   - alias: Check power consumption is low and OctoPrint is not printing
-    condition:
-      - condition: numeric_state
-        entity_id: sensor.prusa_i3_mk3_current_consumption
-        below: 30
-
-      - not:
-          - condition: state
-            entity_id: binary_sensor.octoprint_printing
-            state: "on"
-
-      - condition: state
-        entity_id: input_number.prusa_i3_mk3_target_bed_temperature
-        state: "0"
-
-      - condition: state
-        entity_id: input_number.prusa_i3_mk3_target_hotend_temperature
-        state: "0"
+    condition: >-
+      {{
+        states("sensor.prusa_i3_mk3_current_consumption") | int(999) < 30 and
+        not is_state("binary_sensor.octoprint_printing", "on") and
+        states("input_number.prusa_i3_mk3_target_bed_temperature") | int == 0 and
+        states("input_number.prusa_i3_mk3_target_hotend_temperature") | int == 0
+      }}
 
   - service: switch.turn_off
     target:
