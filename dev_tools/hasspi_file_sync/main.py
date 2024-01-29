@@ -1,4 +1,5 @@
 """Syncs files from the home-assistant repository to the HAssPi."""
+
 from __future__ import annotations
 
 from datetime import datetime
@@ -112,10 +113,9 @@ class FileSyncHandler(FileSystemEventHandler):
 
     def _write_file_to_hasspi(
         self,
-        event: DirCreatedEvent
-        | DirModifiedEvent
-        | FileCreatedEvent
-        | FileModifiedEvent,
+        event: (
+            DirCreatedEvent | DirModifiedEvent | FileCreatedEvent | FileModifiedEvent
+        ),
     ) -> None:
         """Write a file to the HAssPi."""
         file_path = Path(event.src_path).relative_to(REPO_PATH)
