@@ -262,8 +262,9 @@ class ZosungIRTransmit(CustomCluster):
         hdr: foundation.ZCLHeader,
         args: list[Any],
         *,
-        dst_addressing: None
-        | (t.Addressing.Group | t.Addressing.IEEE | t.Addressing.NWK) = None,
+        dst_addressing: None | (
+            t.Addressing.Group | t.Addressing.IEEE | t.Addressing.NWK
+        ) = None,
     ):
         """Handle a cluster request."""
 
