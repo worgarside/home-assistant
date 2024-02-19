@@ -7,14 +7,14 @@ repos:
         language_version: python3.11
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
+    rev: v3.15.1
     hooks:
       - id: pyupgrade
         args:
           - --py311-plus
 
   - repo: https://github.com/psf/black
-    rev: 24.1.1
+    rev: 24.2.0
     hooks:
       - id: black
         language_version: python3.11
@@ -84,7 +84,7 @@ repos:
           - --preserve-quotes
 
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.33.0
+    rev: v1.35.1
     hooks:
       - id: yamllint
         args:
@@ -147,13 +147,13 @@ repos:
           - tomli
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.14
+    rev: v0.2.2
     hooks:
       - id: ruff
         language_version: python3.11
 
   - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: 1.4.1
+    rev: 2.0.1
     hooks:
       - id: validate-entities
         language_version: python3.11
