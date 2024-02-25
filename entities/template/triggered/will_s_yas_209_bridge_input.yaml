@@ -5,7 +5,7 @@ trigger:
     local_only: true
 sensor:
   - name: Will's YAS-209 Bridge Input
-    unique_id: wills_yas_209_bridge_input
+    unique_id: will_s_yas_209_bridge_input
     icon: mdi:soundbar
     state: "{{ trigger.json.state }}"
     picture: "{{ trigger.json.album_art_uri }}"

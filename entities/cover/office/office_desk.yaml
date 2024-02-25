@@ -28,4 +28,4 @@ stop_cover:
 set_cover_position:
   service: script.office_desk_set_position
   data_template:
-    position: "{{ position }}"
+    position: "{{ position }}"  # hacv disable: InvalidTemplateVar:position
