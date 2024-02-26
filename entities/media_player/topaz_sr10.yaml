@@ -53,7 +53,6 @@ commands:
   select_source:
     service: script.ir_blaster_topaz_sr10_issue_command
     data:
-      # hacv disable: InvalidTemplateVar:source
       code: >-
         {%
           set source_code_mapping = {
@@ -67,6 +66,7 @@ commands:
         %}
 
         {{ source_code_mapping[source] }}
+      # hacv disable: InvalidTemplateVar:source
       extra_service_calls:
         - service: input_select.select_option
           target:
