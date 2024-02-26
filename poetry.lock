@@ -447,26 +447,26 @@ watchmedo = ["PyYAML (>=3.10)"]
 
 [[package]]
 name = "wg-utilities"
-version = "5.8.4"
+version = "5.13.2"
 description = "Loads of useful stuff for the things I do :)"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "wg_utilities-5.8.4-py3-none-any.whl", hash = "sha256:e3c787471352af6e3b4d665d06146a43eadbe241ca9de962c9f9a0ca57b57015"},
-    {file = "wg_utilities-5.8.4.tar.gz", hash = "sha256:0ef5e119de60a787047dab907a40c53dd7912da78658be67aa3a029ffec809e1"},
+    {file = "wg_utilities-5.13.2-py3-none-any.whl", hash = "sha256:b18f8142d903a278e4972678d21a14fd21bf13a7cf1682f548656d8a07a2a35b"},
+    {file = "wg_utilities-5.13.2.tar.gz", hash = "sha256:e9977203ac175d593cba80b043e58eab5cb888b3d1260a8e0df5a96d2ffa1623"},
 ]
 
 [package.extras]
-clients = ["flask (>=2.0.2)", "pydantic (<3.0.0)", "pyjwt (>=2.6,<2.9)", "python-dotenv", "pytz (>=2022.1)", "requests (>=2.26.0)", "tzlocal"]
+clients = ["flask (>=2.0.2)", "pydantic (<3.0.0)", "pyjwt (>=2.6,<2.9)", "requests (>=2.26.0)", "tzlocal"]
 devices-dht22 = ["pigpio"]
 devices-epd = ["pillow", "rpi.gpio", "spidev"]
 devices-yamaha-yas-209 = ["async-upnp-client", "pydantic (<3.0.0)", "xmltodict"]
-exceptions = ["python-dotenv", "requests (>=2.26.0)"]
-functions = ["lxml (==5.1.0)", "pytz (>=2022.1)"]
-logging = ["pytz (>=2022.1)", "requests (>=2.26.0)"]
+exceptions = ["requests (>=2.26.0)"]
+functions = ["lxml (==5.1.0)"]
+logging = ["requests (>=2.26.0)"]
 testing = ["botocore"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "7ae701c22ce8983ef994bbadbde6e5d354b88b06245de58c59b626bdfd958ffe"
+content-hash = "93af0bcd5903b3f4f060de126d8bd689bf7b1e5910093b18aefd26f8bc03a2c3"
