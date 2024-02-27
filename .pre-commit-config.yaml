@@ -9,9 +9,7 @@ repos:
     rev: 3.0.1
     hooks:
       - id: generate-readme
-
       - id: validate-entities
-
         args:
           - --fix
           - --validate-all
