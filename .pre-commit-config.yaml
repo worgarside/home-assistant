@@ -1,34 +1,19 @@
 ---
 repos:
   - repo: https://github.com/worgarside/pre-commit-hooks-dependency-sync
-    rev: 1.0.1
+    rev: 1.1.0
     hooks:
       - id: sync-additional-dependencies
-        language_version: python3.11
 
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.2.2
     hooks:
-      - id: pyupgrade
+      - id: ruff
         args:
-          - --py311-plus
-
-  - repo: https://github.com/psf/black
-    rev: 24.1.1
-    hooks:
-      - id: black
-        language_version: python3.11
-
-  - repo: https://github.com/asottile/blacken-docs
-    rev: 1.16.0
-    hooks:
-      - id: blacken-docs
-        language_version: python3.11
-
-  - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: 1.7.0
-    hooks:
-      - id: pyproject-fmt
+          - --fix
+        exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
+      - id: ruff-format
+        exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
@@ -41,15 +26,12 @@ repos:
       - id: debug-statements
       - id: end-of-file-fixer
       - id: mixed-line-ending
-      - id: name-tests-test
-        args:
-          - --pytest-test-first
       - id: pretty-format-json
         args:
           - --no-sort-keys
           - --autofix
           - --indent
-          - '2'
+          - "2"
       - id: trailing-whitespace
 
   - repo: https://github.com/lovesegfault/beautysh
@@ -58,33 +40,23 @@ repos:
       - id: beautysh
         language_version: python3.11
 
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-        name: isort (python)
-        language_version: python3.11
-        args:
-          - -a
-          - from __future__ import annotations
-
   - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
     rev: 0.2.3
     hooks:
       - id: yamlfmt
         args:
           - --mapping
-          - '2'
+          - "2"
           - --sequence
-          - '4'
+          - "4"
           - --offset
-          - '2'
+          - "2"
           - --width
-          - '4096'
+          - "4096"
           - --preserve-quotes
 
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.33.0
+    rev: v1.35.1
     hooks:
       - id: yamllint
         args:
@@ -92,19 +64,11 @@ repos:
           - parsable
           - --strict
 
-  - repo: https://github.com/hadialqattan/pycln
-    rev: v2.4.0
-    hooks:
-      - id: pycln
-        language_version: python3.11
-        args:
-          - --all
-
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.8.0
     hooks:
       - id: mypy
-        language_version: python3.11
+
         args:
           - --strict
           - --show-error-codes
@@ -113,24 +77,6 @@ repos:
           - watchdog==3.0.0
           - wg-utilities==5.13.2
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
-
-  - repo: local
-    hooks:
-      - id: pylint
-        name: pylint
-        entry: pylint
-        language_version: python3.11
-        args:
-          - --disable=fixme
-          - --enable=useless-suppression
-          - --rcfile=.pylintrc
-          - --load-plugins=pylint_strict_informational
-        language: python
-        types:
-          - python
-        additional_dependencies:
-          - pylint<3.0.0
-          - pylint-strict-informational
 
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
@@ -146,21 +92,14 @@ repos:
         additional_dependencies:
           - tomli
 
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.14
-    hooks:
-      - id: ruff
-        language_version: python3.11
-
   - repo: https://github.com/worgarside/home-assistant-config-validator
     rev: 3.0.0
     hooks:
       - id: generate-readme
-        language_version: python3.11
+
       - id: validate-entities
-        language_version: python3.11
+
         args:
           - --fix
           - --validate-all
       - id: validate-lovelace
-        language_version: python3.11
