@@ -1,4 +1,6 @@
 ---
+alias: "Cosmo: Tag Scanned"
+
 description: Send Cosmo to work when an NFC tag is scanned
 
 mode: single
@@ -83,7 +85,7 @@ sequence:
                 {%
                   set message = (
                     "Hey Cosmo, stop dilly dallying and get over to the " ~
-                    tts_room ~
+                    room_name ~
                     " - stat! "
                   )
                 %}
@@ -131,7 +133,7 @@ sequence:
           cache: "{{ not low_battery }}"
           entity_id: "{{ tts_entity_id }}"
           message: >-
-            Cosmo is on his way to the {{ tts_room }}!
+            Cosmo is on his way to the {{ room_name }}!
             {{
               "He only has " ~
               states('sensor.cosmo_battery_level') ~

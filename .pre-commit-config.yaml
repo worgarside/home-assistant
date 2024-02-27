@@ -153,9 +153,14 @@ repos:
         language_version: python3.11
 
   - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: 2.0.1
+    rev: 3.0.0
     hooks:
+      - id: generate-readme
+        language_version: python3.11
       - id: validate-entities
         language_version: python3.11
+        args:
+          - --fix
+          - --validate-all
       - id: validate-lovelace
         language_version: python3.11

@@ -50,13 +50,13 @@ commands:
   volume_set:
     service: media_player.volume_set
     data:
-      volume_level: '{{ volume_level }}'
+      volume_level: "{{ volume_level }}" # hacv disable: InvalidTemplateVar:volume_level
     target:
       entity_id: media_player.hifi_system_avr
   volume_mute:
     service: media_player.volume_mute
     data:
-      is_volume_muted: '{{ is_volume_muted }}'
+      is_volume_muted: "{{ is_volume_muted }}" # hacv disable: InvalidTemplateVar:is_volume_muted
     target:
       entity_id: media_player.hifi_system_avr
   media_play_pause:
@@ -88,4 +88,4 @@ commands:
     target:
       entity_id: media_player.hifi_system_avr
     data:
-      source: "{{ source }}"
+      source: "{{ source }}" # hacv disable: InvalidTemplateVar:source

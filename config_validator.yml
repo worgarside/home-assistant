@@ -1,0 +1,296 @@
+---
+packages:
+  automation:
+    documentation:
+      description: description
+      name: alias
+      extra:
+        - alias
+        - id
+        - mode
+
+    validation:
+      should_exist:
+        - mode
+
+      should_match_filepath:
+        alias:
+          case: kebab
+          remove_package_path: true
+          ignore_chars: "/"
+          prefix: "/"
+          separator: "/"
+
+        id:
+          case: snake
+          separator: _
+
+  binary_sensor:
+    validation:
+      should_match_filename:
+        - name
+
+  command_line:
+    documentation:
+      name: $.sensor.name
+      id: $.sensor.unique_id
+      extra:
+        - $.sensor.command
+        - $.sensor.scan_interval
+
+    validation:
+      should_exist:
+        - $.sensor.command
+        - $.sensor.name
+        - $.sensor.unique_id
+
+  cover:
+    documentation:
+      name: friendly_name
+      id: unique_id
+
+    validation:
+      should_match_filename:
+        - friendly_name
+        - unique_id
+
+  device_tracker:
+    documentation:
+      id: __file__
+      extra:
+        - platform
+
+    validation:
+      should_exist:
+        - platform
+
+  frontend:
+    validation: {}
+
+  input_boolean:
+    documentation:
+      id: __file__
+      name: name
+      extra:
+        - icon
+
+    validation:
+      should_match_filename:
+        - name
+
+  input_button:
+    documentation:
+      id: __file__
+      extra:
+        - icon
+
+    validation:
+      should_match_filename:
+        - name
+
+  input_datetime:
+    documentation:
+      id: __file__
+      extra:
+        - has_date
+        - has_time
+        - icon
+
+    validation:
+      should_match_filename:
+        - name
+
+  input_number:
+    documentation:
+      id: __file__
+      extra:
+        - icon
+        - max
+        - min
+        - mode
+        - unit_of_measurement
+
+    validation:
+      should_match_filename:
+        - name
+
+  input_select:
+    documentation:
+      id: __file__
+      extra:
+        - icon
+
+    validation:
+      should_match_filename:
+        - name
+
+  input_text:
+    documentation:
+      id: __file__
+      extra:
+        - icon
+        - pattern
+
+    validation:
+      should_match_filename:
+        - name
+
+  media_player:
+    documentation:
+      extra:
+        - platform
+
+    validation:
+      should_be_equal:
+        -   - id
+            - unique_id
+
+      should_exist:
+        - commands
+
+      should_match_filename:
+        - name
+
+      should_match_filepath:
+        id:
+          case: snake
+          remove_package_path: false
+          separator: "."
+
+        name:
+          remove_package_path: true
+          separator: " "
+
+        unique_id:
+          case: snake
+          remove_package_path: false
+          separator: "."
+
+  mqtt:
+    documentation:
+      id: unique_id
+      extra:
+        - icon
+        - state_class
+        - state_topic
+        - unit_of_measurement
+
+    validation:
+      should_match_filepath:
+        name:
+          remove_package_path: true
+          separator: " "
+
+        unique_id:
+          case: snake
+          remove_package_path: true
+          separator: _
+
+  rest_command:
+    validation: {}
+
+  script:
+    documentation:
+      id: __file__
+      name: alias
+      description: description
+      extra:
+        - $.fields
+        - mode
+
+    validation:
+      should_exist:
+        - alias
+        - mode
+      should_match_filename:
+        - alias
+
+  sensor:
+    documentation:
+      id:
+        - entity_id
+        - __file__
+      extra:
+        - platform
+
+    validation:
+      should_match_filename:
+        - name
+
+  shell_command:
+    documentation:
+      id: __file__
+
+    validation:
+      invalid_template_variables: off
+
+  switch:
+    documentation:
+      name: friendly_name
+      id: unique_id
+
+    validation:
+      should_exist:
+        - friendly_name
+        - unique_id
+        - turn_off
+        - turn_on
+
+      should_match_filename:
+        - friendly_name
+        - unique_id
+
+  template:
+    documentation:
+      name: name
+      id: unique_id
+      extra:
+        - icon
+        - unit_of_measurement
+
+    validation:
+      should_exist:
+        - name
+        - unique_id
+
+      should_match_filename:
+        - name
+        - unique_id
+
+  template_triggered:
+    documentation:
+      name: $.sensor[0].name
+      id: $.sensor[0].unique_id
+      extra:
+        - $.sensor[0].icon
+        - $.sensor[0].unit_of_measurement
+
+    validation:
+      should_exist:
+        - trigger
+        - sensor
+        - $.sensor[0].name
+        - $.sensor[0].unique_id
+
+      should_match_filename:
+        - $.sensor[0].name
+        - $.sensor[0].unique_id
+
+  var:
+    documentation:
+      name: friendly_name
+      id: unique_id
+      extra:
+        - icon
+        - unit_of_measurement
+
+    validation:
+      should_exist:
+        - restore
+        - unique_id
+
+      should_match_filepath:
+        unique_id:
+          case: snake
+          remove_package_path: false
+          separator: _
