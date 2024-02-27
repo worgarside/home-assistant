@@ -31,6 +31,8 @@ state_template: >-
     playing
   {% elif is_state("switch.office_amp", "off") %}
     off
+  {% elif not has_value("switch.office_amp") %}
+    unknown
   {% else %}
     on
   {% endif %}
@@ -67,6 +69,7 @@ commands:
 
         {{ source_code_mapping[source] }}
       # hacv disable: InvalidTemplateVar:source
+
       extra_service_calls:
         - service: input_select.select_option
           target:
