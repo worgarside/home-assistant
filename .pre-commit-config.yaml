@@ -5,6 +5,16 @@ repos:
     hooks:
       - id: sync-additional-dependencies
 
+  - repo: https://github.com/worgarside/home-assistant-config-validator
+    rev: 3.0.1
+    hooks:
+      - id: generate-readme
+      - id: validate-entities
+        args:
+          - --fix
+          - --validate-all
+      - id: validate-lovelace
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.2.2
     hooks:
@@ -91,15 +101,3 @@ repos:
       - id: codespell
         additional_dependencies:
           - tomli
-
-  - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: 3.0.0
-    hooks:
-      - id: generate-readme
-
-      - id: validate-entities
-
-        args:
-          - --fix
-          - --validate-all
-      - id: validate-lovelace
