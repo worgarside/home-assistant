@@ -78,11 +78,3 @@ turn_on:
           timeout:
             seconds: 5
           continue_on_timeout: true
-
-  - alias: Turn switch off if printer is not connected
-    condition: "{{ states('sensor.octoprint_print_status').casefold().startswith('offline') }}"
-
-    sequence:
-      - service: switch.turn_off
-        target:
-          entity_id: switch.prusa_i3_mk3
