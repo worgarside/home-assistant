@@ -15,31 +15,38 @@ trigger:
   from: "off"
   to:
     - "on"
-    - "playing"
-    - "paused"
-    - "idle"
-    - "standby"
+    - playing
+    - paused
+    - idle
+    - standby
 
 action:
-  - if: "{{ is_state('switch.office_amp', 'off') }}"
-
-    then:
-      - service: switch.turn_on
-        target:
-          entity_id: switch.office_amp
-
-      - delay:
-          seconds: 5
-
-    else:
-      - delay:
-          seconds: 2.5
-
-  - alias: Initialize volume
-    repeat:
-      until: "{{ states('input_number.topaz_sr10_volume_level') | int(-35) >= -35 }}"
+  - repeat:
+      until: "{{ is_state('switch.office_amp', 'on') or repeat.index > 10 }}"
 
       sequence:
-        - service: media_player.volume_up
+        - service: switch.turn_on
           target:
-            entity_id: media_player.topaz_sr10
+            entity_id: switch.office_amp
+
+        - delay:
+            seconds: 1
+
+  - if: "{{ is_state('switch.office_amp', 'on') }}"
+
+    then:
+      - delay:
+          seconds: 3
+
+      - alias: Initialize volume
+        repeat:
+          until: >-
+            {{
+              states('input_number.topaz_sr10_volume_level') | int(-35) >= -35 or
+              repeat.index > 50
+            }}
+
+          sequence:
+            - service: media_player.volume_up
+              target:
+                entity_id: media_player.topaz_sr10
