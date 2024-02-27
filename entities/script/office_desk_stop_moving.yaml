@@ -1,5 +1,8 @@
 ---
+alias: "Office Desk: Stop Moving"
+
 mode: restart
+
 sequence:
   - if:
       condition: template

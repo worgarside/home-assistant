@@ -1,4 +1,6 @@
 ---
+alias: Notify Will
+
 description: Send a notification to Will's phone and the HA UI
 
 fields:
@@ -39,7 +41,7 @@ variables:
   clear_notification: >-
     {{
       message | default('') == 'clear_notification' or
-      clear_notification in ('true', 'True', 'TRUE', '1', 1, True, true)
+      clear_notification | bool
     }}
 
   notification_id: >-
