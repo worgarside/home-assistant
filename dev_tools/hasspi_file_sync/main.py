@@ -136,7 +136,7 @@ class FileSyncHandler(FileSystemEventHandler):
             for directory in target_path.parts[:-1]:
                 try:
                     self.sftp_client.chdir(directory)
-                except FileNotFoundError:
+                except FileNotFoundError:  # noqa: PERF203
                     LOGGER.debug("Creating directory: %s", directory)
                     self.sftp_client.mkdir(directory)
                     self.sftp_client.chdir(directory)
@@ -218,7 +218,7 @@ def create_ssh_client() -> SSHClient:
         SSHClient: The SSH client.
     """
     ssh_client = SSHClient()
-    ssh_client.set_missing_host_key_policy(AutoAddPolicy())
+    ssh_client.set_missing_host_key_policy(AutoAddPolicy())  # noqa: S507
 
     ssh_config = SSHConfig.from_path(Path("~/.ssh/config").expanduser().as_posix())
 
