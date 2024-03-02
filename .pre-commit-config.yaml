@@ -6,7 +6,7 @@ repos:
       - id: sync-additional-dependencies
 
   - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: 3.0.1
+    rev: 3.1.0
     hooks:
       - id: generate-readme
       - id: validate-entities
@@ -16,7 +16,7 @@ repos:
       - id: validate-lovelace
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.2.2
+    rev: v0.3.0
     hooks:
       - id: ruff
         args:
