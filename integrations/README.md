@@ -32,7 +32,7 @@ File: [`automation/automation/auto_reload_complete.yaml`](entities/automation/au
 
 <details><summary><code>/binary-sensor/front-door/open</code></summary>
 
-**Entity ID: `binary_sensor.binary_sensor_front_door_open`**
+**Entity ID: `automation.binary_sensor_front_door_open`**
 
 > *No description provided*
 
@@ -45,7 +45,7 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 
 <details><summary><code>/binary-sensor/hallway-motion-sensor/on</code></summary>
 
-**Entity ID: `binary_sensor.binary_sensor_hallway_motion_sensor_on`**
+**Entity ID: `automation.binary_sensor_hallway_motion_sensor_on`**
 
 > *No description provided*
 
@@ -58,7 +58,7 @@ File: [`automation/binary_sensor/hallway_motion_sensor/on.yaml`](entities/automa
 
 <details><summary><code>/binary-sensor/hallway-motion-sensor/timeout</code></summary>
 
-**Entity ID: `binary_sensor.binary_sensor_hallway_motion_sensor_timeout`**
+**Entity ID: `automation.binary_sensor_hallway_motion_sensor_timeout`**
 
 > *No description provided*
 
@@ -71,7 +71,7 @@ File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/a
 
 <details><summary><code>/binary-sensor/quiet-hours/on</code></summary>
 
-**Entity ID: `binary_sensor.binary_sensor_quiet_hours_on`**
+**Entity ID: `automation.binary_sensor_quiet_hours_on`**
 
 > *No description provided*
 
@@ -1241,7 +1241,7 @@ File: [`automation/script/mtrxpi_update_display/mqtt_trigger.yaml`](entities/aut
 
 <details><summary><code>/sensor/octoprint-bed-target/set</code></summary>
 
-**Entity ID: `sensor.sensor_octoprint_bed_target_set`**
+**Entity ID: `automation.sensor_octoprint_bed_target_set`**
 
 > *No description provided*
 
@@ -1254,7 +1254,7 @@ File: [`automation/sensor/octoprint_bed_target/set.yaml`](entities/automation/se
 
 <details><summary><code>/sensor/octoprint-tool-0-target/set</code></summary>
 
-**Entity ID: `sensor.sensor_octoprint_tool_0_target_set`**
+**Entity ID: `automation.sensor_octoprint_tool_0_target_set`**
 
 > *No description provided*
 
