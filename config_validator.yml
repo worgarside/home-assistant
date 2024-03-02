@@ -1,4 +1,17 @@
 ---
+validation:
+  validate_domain_consumption:
+    - automation
+    - input_boolean
+    - input_button
+    - input_datetime
+    - input_number
+    - input_select
+    - input_text
+    - script
+    - shell_command
+    - var
+
 packages:
   automation:
     documentation:
@@ -222,7 +235,10 @@ packages:
       id: __file__
 
     validation:
-      invalid_template_variables: off
+      disable:
+        - jinja2_templates
+
+      invalid_template_variables: true
 
   switch:
     documentation:
@@ -279,7 +295,7 @@ packages:
   var:
     documentation:
       name: friendly_name
-      id: unique_id
+      id: __file__
       extra:
         - icon
         - unit_of_measurement

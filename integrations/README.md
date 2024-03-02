@@ -1,11 +1,5 @@
 # Packages
 
-## Api
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
 ## Automation
 
 <details><summary><h3>Entities (122)</h3></summary>
@@ -1598,25 +1592,13 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 </details>
 
-## Binary Sensor
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Cloud
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
 ## Command Line
 
 <details><summary><h3>Entities (31)</h3></summary>
 
 <details><summary><strong>AdGuard Status</strong></summary>
 
-**Entity ID: `command_line.adguard_status`**
+**Entity ID: `sensor.adguard_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_adguard/stats`
 - Scan Interval: 60
@@ -1626,7 +1608,7 @@ File: [`command_line/sensor/adguard_status.yaml`](entities/command_line/sensor/a
 
 <details><summary><strong>AppDaemon Status</strong></summary>
 
-**Entity ID: `command_line.appdaemon_status`**
+**Entity ID: `sensor.appdaemon_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_appdaemon/stats`
 - Scan Interval: 60
@@ -1636,7 +1618,7 @@ File: [`command_line/sensor/appdaemon_status.yaml`](entities/command_line/sensor
 
 <details><summary><strong>Current Git Branch</strong></summary>
 
-**Entity ID: `command_line.current_git_branch`**
+**Entity ID: `sensor.current_git_branch`**
 
 - Command: `cd /config && git rev-parse --abbrev-ref HEAD`
 - Scan Interval: 120
@@ -1646,7 +1628,7 @@ File: [`command_line/sensor/current_git_branch.yaml`](entities/command_line/sens
 
 <details><summary><strong>Current Git Ref</strong></summary>
 
-**Entity ID: `command_line.current_git_ref`**
+**Entity ID: `sensor.current_git_ref`**
 
 - Command: `cd /config && git describe --tags --exact-match 2>/dev/null || git rev-parse --short HEAD`
 - Scan Interval: 120
@@ -1656,7 +1638,7 @@ File: [`command_line/sensor/current_git_ref.yaml`](entities/command_line/sensor/
 
 <details><summary><strong>ESPHome Add-on Status</strong></summary>
 
-**Entity ID: `command_line.esphome_add_on_status`**
+**Entity ID: `sensor.esphome_add_on_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/5c53de3b_esphome/stats`
 - Scan Interval: 60
@@ -1666,7 +1648,7 @@ File: [`command_line/sensor/esphome_add_on_status.yaml`](entities/command_line/s
 
 <details><summary><strong>Add-on: Item Warehouse Pull Requests</strong></summary>
 
-**Entity ID: `command_line.add_on_item_warehouse_pull_requests`**
+**Entity ID: `sensor.add_on_item_warehouse_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh addon-item-warehouse`
 - Scan Interval: 3600
@@ -1676,7 +1658,7 @@ File: [`command_line/sensor/github_pull_requests/add_on_item_warehouse.yaml`](en
 
 <details><summary><strong>Add-on: RSS Log Feed Pull Requests</strong></summary>
 
-**Entity ID: `command_line.add_on_rss_log_feed_pull_requests`**
+**Entity ID: `sensor.add_on_rss_log_feed_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh addon-rss-log-feed`
 - Scan Interval: 3600
@@ -1686,7 +1668,7 @@ File: [`command_line/sensor/github_pull_requests/add_on_rss_log_feed_pull_reques
 
 <details><summary><strong>Add-on: YAS-209 Bridge Pull Requests</strong></summary>
 
-**Entity ID: `command_line.add_on_yas_209_bridge_pull_requests`**
+**Entity ID: `sensor.add_on_yas_209_bridge_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh addon-yas-209-bridge`
 - Scan Interval: 3600
@@ -1696,7 +1678,7 @@ File: [`command_line/sensor/github_pull_requests/add_on_yas_209_bridge_pull_requ
 
 <details><summary><strong>GitHub Config Files Pull Requests</strong></summary>
 
-**Entity ID: `command_line.github_config_files_pull_requests`**
+**Entity ID: `sensor.github_config_files_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh github-config-files`
 - Scan Interval: 3600
@@ -1706,7 +1688,7 @@ File: [`command_line/sensor/github_pull_requests/github_config_files_pull_reques
 
 <details><summary><strong>Home Assistant Config Validator Pull Requests</strong></summary>
 
-**Entity ID: `command_line.home_assistant_config_validator_pull_requests`**
+**Entity ID: `sensor.home_assistant_config_validator_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh home-assistant-config-validator`
 - Scan Interval: 3600
@@ -1716,7 +1698,7 @@ File: [`command_line/sensor/github_pull_requests/home_assistant_config_validator
 
 <details><summary><strong>Home Assistant Pull Requests</strong></summary>
 
-**Entity ID: `command_line.home_assistant_pull_requests`**
+**Entity ID: `sensor.home_assistant_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh home-assistant`
 - Scan Interval: 3600
@@ -1726,7 +1708,7 @@ File: [`command_line/sensor/github_pull_requests/home_assistant_pull_requests.ya
 
 <details><summary><strong>LED Matrix Now Playing Pull Requests</strong></summary>
 
-**Entity ID: `command_line.led_matrix_now_playing_pull_requests`**
+**Entity ID: `sensor.led_matrix_now_playing_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh led-matrix-now-playing`
 - Scan Interval: 3600
@@ -1736,7 +1718,7 @@ File: [`command_line/sensor/github_pull_requests/led_matrix_now_playing_pull_req
 
 <details><summary><strong>Plant Monitor Pull Requests</strong></summary>
 
-**Entity ID: `command_line.plant_monitor_pull_requests`**
+**Entity ID: `sensor.plant_monitor_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh plant-monitor`
 - Scan Interval: 3600
@@ -1746,7 +1728,7 @@ File: [`command_line/sensor/github_pull_requests/plant_monitor_pull_requests.yam
 
 <details><summary><strong>Python Template Pull Requests</strong></summary>
 
-**Entity ID: `command_line.python_template_pull_requests`**
+**Entity ID: `sensor.python_template_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh python-template`
 - Scan Interval: 3600
@@ -1756,7 +1738,7 @@ File: [`command_line/sensor/github_pull_requests/python_template_pull_requests.y
 
 <details><summary><strong>Smart Mini CRT Interface Pull Requests</strong></summary>
 
-**Entity ID: `command_line.smart_mini_crt_interface_pull_requests`**
+**Entity ID: `sensor.smart_mini_crt_interface_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh smart-mini-crt-interface`
 - Scan Interval: 3600
@@ -1766,7 +1748,7 @@ File: [`command_line/sensor/github_pull_requests/smart_mini_crt_interface_pull_r
 
 <details><summary><strong>Very Slow Movie Player Pull Requests</strong></summary>
 
-**Entity ID: `command_line.very_slow_movie_player_pull_requests`**
+**Entity ID: `sensor.very_slow_movie_player_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh very-slow-movie-player`
 - Scan Interval: 3600
@@ -1776,7 +1758,7 @@ File: [`command_line/sensor/github_pull_requests/very_slow_movie_player_pull_req
 
 <details><summary><strong>WG Scripts Pull Requests</strong></summary>
 
-**Entity ID: `command_line.wg_scripts_pull_requests`**
+**Entity ID: `sensor.wg_scripts_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh wg-scripts`
 - Scan Interval: 3600
@@ -1786,7 +1768,7 @@ File: [`command_line/sensor/github_pull_requests/wg_scripts_pull_requests.yaml`]
 
 <details><summary><strong>WG Utilities Pull Requests</strong></summary>
 
-**Entity ID: `command_line.wg_utilities_pull_requests`**
+**Entity ID: `sensor.wg_utilities_pull_requests`**
 
 - Command: `sh /config/resources/shell_command/gh_cli/get_pull_requests.sh wg-utilities`
 - Scan Interval: 3600
@@ -1796,7 +1778,7 @@ File: [`command_line/sensor/github_pull_requests/wg_utilities_pull_requests.yaml
 
 <details><summary><strong>Google Drive Backup Add-on Status</strong></summary>
 
-**Entity ID: `command_line.google_drive_backup_add_on_status`**
+**Entity ID: `sensor.google_drive_backup_add_on_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/cebe7a76_hassio_google_drive_backup/stats`
 - Scan Interval: 60
@@ -1806,7 +1788,7 @@ File: [`command_line/sensor/google_drive_backup_add_on_status.yaml`](entities/co
 
 <details><summary><strong>HA Remote Logger Status</strong></summary>
 
-**Entity ID: `command_line.ha_remote_logger_status`**
+**Entity ID: `sensor.ha_remote_logger_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/4980fbd1_rss_log_feed/stats`
 - Scan Interval: 60
@@ -1816,7 +1798,7 @@ File: [`command_line/sensor/ha_remote_logger_status.yaml`](entities/command_line
 
 <details><summary><strong>Item Warehouse API Status</strong></summary>
 
-**Entity ID: `command_line.item_warehouse_api_status`**
+**Entity ID: `sensor.item_warehouse_api_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/431930c3_item_warehouse_api/stats`
 - Scan Interval: 60
@@ -1826,7 +1808,7 @@ File: [`command_line/sensor/item_warehouse_api.yaml`](entities/command_line/sens
 
 <details><summary><strong>Item Warehouse Website Status</strong></summary>
 
-**Entity ID: `command_line.item_warehouse_website_status`**
+**Entity ID: `sensor.item_warehouse_website_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/86912a13_item_warehouse_website/stats`
 - Scan Interval: 60
@@ -1836,7 +1818,7 @@ File: [`command_line/sensor/item_warehouse_website.yaml`](entities/command_line/
 
 <details><summary><strong>MariaDB Status</strong></summary>
 
-**Entity ID: `command_line.mariadb_status`**
+**Entity ID: `sensor.mariadb_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_mariadb/stats`
 - Scan Interval: 60
@@ -1846,7 +1828,7 @@ File: [`command_line/sensor/mariadb_status.yaml`](entities/command_line/sensor/m
 
 <details><summary><strong>Matter Server Status</strong></summary>
 
-**Entity ID: `command_line.matter_server_status`**
+**Entity ID: `sensor.matter_server_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_matter_server/stats`
 - Scan Interval: 60
@@ -1856,7 +1838,7 @@ File: [`command_line/sensor/matter_server_status.yaml`](entities/command_line/se
 
 <details><summary><strong>Mosquitto Broker Status</strong></summary>
 
-**Entity ID: `command_line.mosquitto_broker_status`**
+**Entity ID: `sensor.mosquitto_broker_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_mosquitto/stats`
 - Scan Interval: 60
@@ -1866,7 +1848,7 @@ File: [`command_line/sensor/mosquitto_broker_status.yaml`](entities/command_line
 
 <details><summary><strong>Plex Media Server Status</strong></summary>
 
-**Entity ID: `command_line.plex_media_server_status`**
+**Entity ID: `sensor.plex_media_server_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_plex/stats`
 - Scan Interval: 60
@@ -1876,7 +1858,7 @@ File: [`command_line/sensor/plex_media_server_status.yaml`](entities/command_lin
 
 <details><summary><strong>Remote Git Branches</strong></summary>
 
-**Entity ID: `command_line.remote_git_branches`**
+**Entity ID: `sensor.remote_git_branches`**
 
 - Command: `cd /config && git ls-remote --heads https://github.com/worgarside/home-assistant | awk '{print $2}' | sed 's/refs\/heads\///' | jq -R -s -c '{"branches": (split("\n")[:-1])}'`
 - Scan Interval: 1800
@@ -1886,7 +1868,7 @@ File: [`command_line/sensor/remote_git_branches.yaml`](entities/command_line/sen
 
 <details><summary><strong>Silicon Labs Multiprotocol Add-on Status</strong></summary>
 
-**Entity ID: `command_line.silicon_labs_multiprotocol_add_on_status`**
+**Entity ID: `sensor.silicon_labs_multiprotocol_add_on_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_silabs_multiprotocol/stats`
 - Scan Interval: 60
@@ -1896,7 +1878,7 @@ File: [`command_line/sensor/silicon_labs_multiprotocol_add_on_status.yaml`](enti
 
 <details><summary><strong>Terminal & SSH Add-on Status</strong></summary>
 
-**Entity ID: `command_line.terminal_ssh_add_on_status`**
+**Entity ID: `sensor.terminal_ssh_add_on_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_ssh/stats`
 - Scan Interval: 60
@@ -1906,7 +1888,7 @@ File: [`command_line/sensor/terminal_ssh_add_on_status.yaml`](entities/command_l
 
 <details><summary><strong>Visual Studio Code Add-on Status</strong></summary>
 
-**Entity ID: `command_line.visual_studio_code_add_on_status`**
+**Entity ID: `sensor.visual_studio_code_add_on_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_vscode/stats`
 - Scan Interval: 60
@@ -1916,19 +1898,13 @@ File: [`command_line/sensor/visual_studio_code_add_on_status.yaml`](entities/com
 
 <details><summary><strong>YAS-209 Bridge Status</strong></summary>
 
-**Entity ID: `command_line.yas_209_bridge_status`**
+**Entity ID: `sensor.yas_209_bridge_status`**
 
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/2c04ba34_yas_209_bridge/stats`
 - Scan Interval: 60
 
 File: [`command_line/sensor/yas_209_bridge_status.yaml`](entities/command_line/sensor/yas_209_bridge_status.yaml)
 </details>
-
-</details>
-
-## Config
-
-<details><summary><h3>Entities (0)</h3></summary>
 
 </details>
 
@@ -1955,36 +1931,6 @@ File: [`cover/office/office_desk.yaml`](entities/cover/office/office_desk.yaml)
 
 File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_tracker/google_maps/primary_gmail_address.yaml)
 </details>
-
-</details>
-
-## Folder Watcher
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Frontend
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Group
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Hardware
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## History
-
-<details><summary><h3>Entities (0)</h3></summary>
 
 </details>
 
@@ -2803,36 +2749,6 @@ File: [`input_text/auto_save_naughty_transaction_pattern.yaml`](entities/input_t
 
 </details>
 
-## Logbook
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Logger
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Lovelace
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Map
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Media Extractor
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
 ## Media Player
 
 <details><summary><h3>Entities (2)</h3></summary>
@@ -2857,25 +2773,13 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 </details>
 
-## Media Source
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Mobile App
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
 ## Mqtt
 
 <details><summary><h3>Entities (84)</h3></summary>
 
 <details><summary><strong>ClmtPi Active Git Ref</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_active_git_ref`**
+**Entity ID: `sensor.clmtpi_active_git_ref`**
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
@@ -2887,7 +2791,7 @@ File: [`mqtt/sensor/clmtpi/active_git_ref.yaml`](entities/mqtt/sensor/clmtpi/act
 
 <details><summary><strong>ClmtPi Ambient Humidity</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_ambient_humidity`**
+**Entity ID: `sensor.clmtpi_ambient_humidity`**
 
 - Icon: [`mdi:water-percent`](https://pictogrammers.com/library/mdi/icon/water-percent/)
 - State Class: `measurement`
@@ -2899,7 +2803,7 @@ File: [`mqtt/sensor/clmtpi/ambient_humidity.yaml`](entities/mqtt/sensor/clmtpi/a
 
 <details><summary><strong>ClmtPi Ambient Temperature</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_ambient_temperature`**
+**Entity ID: `sensor.clmtpi_ambient_temperature`**
 
 - Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
 - State Class: `measurement`
@@ -2911,7 +2815,7 @@ File: [`mqtt/sensor/clmtpi/ambient_temperature.yaml`](entities/mqtt/sensor/clmtp
 
 <details><summary><strong>ClmtPi Average Load (15 min)</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_average_load_15_min`**
+**Entity ID: `sensor.clmtpi_average_load_15_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -2923,7 +2827,7 @@ File: [`mqtt/sensor/clmtpi/average_load_15_min.yaml`](entities/mqtt/sensor/clmtp
 
 <details><summary><strong>ClmtPi Average Load (1 min)</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_average_load_1_min`**
+**Entity ID: `sensor.clmtpi_average_load_1_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -2935,7 +2839,7 @@ File: [`mqtt/sensor/clmtpi/average_load_1_min.yaml`](entities/mqtt/sensor/clmtpi
 
 <details><summary><strong>ClmtPi Average Load (5 min)</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_average_load_5_min`**
+**Entity ID: `sensor.clmtpi_average_load_5_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -2947,7 +2851,7 @@ File: [`mqtt/sensor/clmtpi/average_load_5_min.yaml`](entities/mqtt/sensor/clmtpi
 
 <details><summary><strong>ClmtPi Boot Time</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_boot_time`**
+**Entity ID: `sensor.clmtpi_boot_time`**
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
@@ -2959,7 +2863,7 @@ File: [`mqtt/sensor/clmtpi/boot_time.yaml`](entities/mqtt/sensor/clmtpi/boot_tim
 
 <details><summary><strong>ClmtPi CPU Temperature</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_cpu_temperature`**
+**Entity ID: `sensor.clmtpi_cpu_temperature`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -2971,7 +2875,7 @@ File: [`mqtt/sensor/clmtpi/cpu_temperature.yaml`](entities/mqtt/sensor/clmtpi/cp
 
 <details><summary><strong>ClmtPi CPU Usage</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_cpu_usage`**
+**Entity ID: `sensor.clmtpi_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
@@ -2983,7 +2887,7 @@ File: [`mqtt/sensor/clmtpi/cpu_usage.yaml`](entities/mqtt/sensor/clmtpi/cpu_usag
 
 <details><summary><strong>ClmtPi Disk Usage</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_disk_usage`**
+**Entity ID: `sensor.clmtpi_disk_usage`**
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
@@ -2995,7 +2899,7 @@ File: [`mqtt/sensor/clmtpi/disk_usage.yaml`](entities/mqtt/sensor/clmtpi/disk_us
 
 <details><summary><strong>ClmtPi Local Git Ref</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_local_git_ref`**
+**Entity ID: `sensor.clmtpi_local_git_ref`**
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
@@ -3007,7 +2911,7 @@ File: [`mqtt/sensor/clmtpi/local_git_ref.yaml`](entities/mqtt/sensor/clmtpi/loca
 
 <details><summary><strong>ClmtPi Memory Usage</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_memory_usage`**
+**Entity ID: `sensor.clmtpi_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3019,7 +2923,7 @@ File: [`mqtt/sensor/clmtpi/memory_usage.yaml`](entities/mqtt/sensor/clmtpi/memor
 
 <details><summary><strong>ClmtPi Uptime</strong></summary>
 
-**Entity ID: `mqtt.clmtpi_uptime`**
+**Entity ID: `sensor.clmtpi_uptime`**
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
@@ -3031,7 +2935,7 @@ File: [`mqtt/sensor/clmtpi/uptime.yaml`](entities/mqtt/sensor/clmtpi/uptime.yaml
 
 <details><summary><strong>CRT TV Internal Humidity</strong></summary>
 
-**Entity ID: `mqtt.crt_tv_internal_humidity`**
+**Entity ID: `sensor.crt_tv_internal_humidity`**
 
 - Icon: [`mdi:water-percent`](https://pictogrammers.com/library/mdi/icon/water-percent/)
 - State Class: `measurement`
@@ -3043,7 +2947,7 @@ File: [`mqtt/sensor/crt_tv/internal_humidity.yaml`](entities/mqtt/sensor/crt_tv/
 
 <details><summary><strong>CRT TV Internal Temperature</strong></summary>
 
-**Entity ID: `mqtt.crt_tv_internal_temperature`**
+**Entity ID: `sensor.crt_tv_internal_temperature`**
 
 - Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
 - State Class: `measurement`
@@ -3055,7 +2959,7 @@ File: [`mqtt/sensor/crt_tv/internal_temperature.yaml`](entities/mqtt/sensor/crt_
 
 <details><summary><strong>CRTPi Active Git Ref</strong></summary>
 
-**Entity ID: `mqtt.crtpi_active_git_ref`**
+**Entity ID: `sensor.crtpi_active_git_ref`**
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
@@ -3067,7 +2971,7 @@ File: [`mqtt/sensor/crtpi/active_git_ref.yaml`](entities/mqtt/sensor/crtpi/activ
 
 <details><summary><strong>CRTPi Average Load (15 min)</strong></summary>
 
-**Entity ID: `mqtt.crtpi_average_load_15_min`**
+**Entity ID: `sensor.crtpi_average_load_15_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3079,7 +2983,7 @@ File: [`mqtt/sensor/crtpi/average_load_15_min.yaml`](entities/mqtt/sensor/crtpi/
 
 <details><summary><strong>CRTPi Average Load (1 min)</strong></summary>
 
-**Entity ID: `mqtt.crtpi_average_load_1_min`**
+**Entity ID: `sensor.crtpi_average_load_1_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3091,7 +2995,7 @@ File: [`mqtt/sensor/crtpi/average_load_1_min.yaml`](entities/mqtt/sensor/crtpi/a
 
 <details><summary><strong>CRTPi Average Load (5 min)</strong></summary>
 
-**Entity ID: `mqtt.crtpi_average_load_5_min`**
+**Entity ID: `sensor.crtpi_average_load_5_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3103,7 +3007,7 @@ File: [`mqtt/sensor/crtpi/average_load_5_min.yaml`](entities/mqtt/sensor/crtpi/a
 
 <details><summary><strong>CrtPi Boot Time</strong></summary>
 
-**Entity ID: `mqtt.crtpi_boot_time`**
+**Entity ID: `sensor.crtpi_boot_time`**
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
@@ -3115,7 +3019,7 @@ File: [`mqtt/sensor/crtpi/boot_time.yaml`](entities/mqtt/sensor/crtpi/boot_time.
 
 <details><summary><strong>CRTPi CPU Temperature</strong></summary>
 
-**Entity ID: `mqtt.crtpi_cpu_temperature`**
+**Entity ID: `sensor.crtpi_cpu_temperature`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3127,7 +3031,7 @@ File: [`mqtt/sensor/crtpi/cpu_temperature.yaml`](entities/mqtt/sensor/crtpi/cpu_
 
 <details><summary><strong>CRTPi CPU Usage</strong></summary>
 
-**Entity ID: `mqtt.crtpi_cpu_usage`**
+**Entity ID: `sensor.crtpi_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
@@ -3139,7 +3043,7 @@ File: [`mqtt/sensor/crtpi/cpu_usage.yaml`](entities/mqtt/sensor/crtpi/cpu_usage.
 
 <details><summary><strong>CRTPi Disk Usage</strong></summary>
 
-**Entity ID: `mqtt.crtpi_disk_usage`**
+**Entity ID: `sensor.crtpi_disk_usage`**
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
@@ -3151,7 +3055,7 @@ File: [`mqtt/sensor/crtpi/disk_usage.yaml`](entities/mqtt/sensor/crtpi/disk_usag
 
 <details><summary><strong>CRTPi Local Git Ref</strong></summary>
 
-**Entity ID: `mqtt.crtpi_local_git_ref`**
+**Entity ID: `sensor.crtpi_local_git_ref`**
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
@@ -3163,7 +3067,7 @@ File: [`mqtt/sensor/crtpi/local_git_ref.yaml`](entities/mqtt/sensor/crtpi/local_
 
 <details><summary><strong>CRTPi Memory Usage</strong></summary>
 
-**Entity ID: `mqtt.crtpi_memory_usage`**
+**Entity ID: `sensor.crtpi_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3175,7 +3079,7 @@ File: [`mqtt/sensor/crtpi/memory_usage.yaml`](entities/mqtt/sensor/crtpi/memory_
 
 <details><summary><strong>CrtPi Uptime</strong></summary>
 
-**Entity ID: `mqtt.crtpi_uptime`**
+**Entity ID: `sensor.crtpi_uptime`**
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
@@ -3187,7 +3091,7 @@ File: [`mqtt/sensor/crtpi/uptime.yaml`](entities/mqtt/sensor/crtpi/uptime.yaml)
 
 <details><summary><strong>GrowPi Active Git Ref</strong></summary>
 
-**Entity ID: `mqtt.growpi_active_git_ref`**
+**Entity ID: `sensor.growpi_active_git_ref`**
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
@@ -3199,7 +3103,7 @@ File: [`mqtt/sensor/growpi/active_git_ref.yaml`](entities/mqtt/sensor/growpi/act
 
 <details><summary><strong>GrowPi Average Load (15 min)</strong></summary>
 
-**Entity ID: `mqtt.growpi_average_load_15_min`**
+**Entity ID: `sensor.growpi_average_load_15_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3211,7 +3115,7 @@ File: [`mqtt/sensor/growpi/average_load_15_min.yaml`](entities/mqtt/sensor/growp
 
 <details><summary><strong>GrowPi Average Load (1 min)</strong></summary>
 
-**Entity ID: `mqtt.growpi_average_load_1_min`**
+**Entity ID: `sensor.growpi_average_load_1_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3223,7 +3127,7 @@ File: [`mqtt/sensor/growpi/average_load_1_min.yaml`](entities/mqtt/sensor/growpi
 
 <details><summary><strong>GrowPi Average Load (5 min)</strong></summary>
 
-**Entity ID: `mqtt.growpi_average_load_5_min`**
+**Entity ID: `sensor.growpi_average_load_5_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3235,7 +3139,7 @@ File: [`mqtt/sensor/growpi/average_load_5_min.yaml`](entities/mqtt/sensor/growpi
 
 <details><summary><strong>GrowPi Boot Time</strong></summary>
 
-**Entity ID: `mqtt.growpi_boot_time`**
+**Entity ID: `sensor.growpi_boot_time`**
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
@@ -3247,7 +3151,7 @@ File: [`mqtt/sensor/growpi/boot_time.yaml`](entities/mqtt/sensor/growpi/boot_tim
 
 <details><summary><strong>GrowPi CPU Temperature</strong></summary>
 
-**Entity ID: `mqtt.growpi_cpu_temperature`**
+**Entity ID: `sensor.growpi_cpu_temperature`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3259,7 +3163,7 @@ File: [`mqtt/sensor/growpi/cpu_temperature.yaml`](entities/mqtt/sensor/growpi/cp
 
 <details><summary><strong>GrowPi CPU Usage</strong></summary>
 
-**Entity ID: `mqtt.growpi_cpu_usage`**
+**Entity ID: `sensor.growpi_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
@@ -3271,7 +3175,7 @@ File: [`mqtt/sensor/growpi/cpu_usage.yaml`](entities/mqtt/sensor/growpi/cpu_usag
 
 <details><summary><strong>GrowPi Disk Usage</strong></summary>
 
-**Entity ID: `mqtt.growpi_disk_usage`**
+**Entity ID: `sensor.growpi_disk_usage`**
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
@@ -3283,7 +3187,7 @@ File: [`mqtt/sensor/growpi/disk_usage.yaml`](entities/mqtt/sensor/growpi/disk_us
 
 <details><summary><strong>GrowPi Local Git Ref</strong></summary>
 
-**Entity ID: `mqtt.growpi_local_git_ref`**
+**Entity ID: `sensor.growpi_local_git_ref`**
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
@@ -3295,7 +3199,7 @@ File: [`mqtt/sensor/growpi/local_git_ref.yaml`](entities/mqtt/sensor/growpi/loca
 
 <details><summary><strong>GrowPi Memory Usage</strong></summary>
 
-**Entity ID: `mqtt.growpi_memory_usage`**
+**Entity ID: `sensor.growpi_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3307,7 +3211,7 @@ File: [`mqtt/sensor/growpi/memory_usage.yaml`](entities/mqtt/sensor/growpi/memor
 
 <details><summary><strong>GrowPi Uptime</strong></summary>
 
-**Entity ID: `mqtt.growpi_uptime`**
+**Entity ID: `sensor.growpi_uptime`**
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
@@ -3319,7 +3223,7 @@ File: [`mqtt/sensor/growpi/uptime.yaml`](entities/mqtt/sensor/growpi/uptime.yaml
 
 <details><summary><strong>MtrxPi Active Git Ref</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_active_git_ref`**
+**Entity ID: `sensor.mtrxpi_active_git_ref`**
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
@@ -3331,7 +3235,7 @@ File: [`mqtt/sensor/mtrxpi/active_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/act
 
 <details><summary><strong>MtrxPi Average Load (15 min)</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_average_load_15_min`**
+**Entity ID: `sensor.mtrxpi_average_load_15_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3343,7 +3247,7 @@ File: [`mqtt/sensor/mtrxpi/average_load_15_min.yaml`](entities/mqtt/sensor/mtrxp
 
 <details><summary><strong>MtrxPi Average Load (1 min)</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_average_load_1_min`**
+**Entity ID: `sensor.mtrxpi_average_load_1_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3355,7 +3259,7 @@ File: [`mqtt/sensor/mtrxpi/average_load_1_min.yaml`](entities/mqtt/sensor/mtrxpi
 
 <details><summary><strong>MtrxPi Average Load (5 min)</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_average_load_5_min`**
+**Entity ID: `sensor.mtrxpi_average_load_5_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3367,7 +3271,7 @@ File: [`mqtt/sensor/mtrxpi/average_load_5_min.yaml`](entities/mqtt/sensor/mtrxpi
 
 <details><summary><strong>MtrxPi Boot Time</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_boot_time`**
+**Entity ID: `sensor.mtrxpi_boot_time`**
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
@@ -3379,7 +3283,7 @@ File: [`mqtt/sensor/mtrxpi/boot_time.yaml`](entities/mqtt/sensor/mtrxpi/boot_tim
 
 <details><summary><strong>MtrxPi CPU Temperature</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_cpu_temperature`**
+**Entity ID: `sensor.mtrxpi_cpu_temperature`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3391,7 +3295,7 @@ File: [`mqtt/sensor/mtrxpi/cpu_temperature.yaml`](entities/mqtt/sensor/mtrxpi/cp
 
 <details><summary><strong>MtrxPi CPU Usage</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_cpu_usage`**
+**Entity ID: `sensor.mtrxpi_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
@@ -3403,7 +3307,7 @@ File: [`mqtt/sensor/mtrxpi/cpu_usage.yaml`](entities/mqtt/sensor/mtrxpi/cpu_usag
 
 <details><summary><strong>MtrxPi Disk Usage</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_disk_usage`**
+**Entity ID: `sensor.mtrxpi_disk_usage`**
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
@@ -3415,7 +3319,7 @@ File: [`mqtt/sensor/mtrxpi/disk_usage.yaml`](entities/mqtt/sensor/mtrxpi/disk_us
 
 <details><summary><strong>MtrxPi Local Git Ref</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_local_git_ref`**
+**Entity ID: `sensor.mtrxpi_local_git_ref`**
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
@@ -3427,7 +3331,7 @@ File: [`mqtt/sensor/mtrxpi/local_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/loca
 
 <details><summary><strong>MtrxPi Memory Usage</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_memory_usage`**
+**Entity ID: `sensor.mtrxpi_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3439,7 +3343,7 @@ File: [`mqtt/sensor/mtrxpi/memory_usage.yaml`](entities/mqtt/sensor/mtrxpi/memor
 
 <details><summary><strong>MtrxPi Uptime</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_uptime`**
+**Entity ID: `sensor.mtrxpi_uptime`**
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
@@ -3451,7 +3355,7 @@ File: [`mqtt/sensor/mtrxpi/uptime.yaml`](entities/mqtt/sensor/mtrxpi/uptime.yaml
 
 <details><summary><strong>OctoPi Active Git Ref</strong></summary>
 
-**Entity ID: `mqtt.octopi_active_git_ref`**
+**Entity ID: `sensor.octopi_active_git_ref`**
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
@@ -3463,7 +3367,7 @@ File: [`mqtt/sensor/octopi/active_git_ref.yaml`](entities/mqtt/sensor/octopi/act
 
 <details><summary><strong>OctoPi Ambient Humidity</strong></summary>
 
-**Entity ID: `mqtt.octopi_ambient_humidity`**
+**Entity ID: `sensor.octopi_ambient_humidity`**
 
 - Icon: [`mdi:water-percent`](https://pictogrammers.com/library/mdi/icon/water-percent/)
 - State Class: `measurement`
@@ -3475,7 +3379,7 @@ File: [`mqtt/sensor/octopi/ambient_humidity.yaml`](entities/mqtt/sensor/octopi/a
 
 <details><summary><strong>OctoPi Ambient Temperature</strong></summary>
 
-**Entity ID: `mqtt.octopi_ambient_temperature`**
+**Entity ID: `sensor.octopi_ambient_temperature`**
 
 - Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
 - State Class: `measurement`
@@ -3487,7 +3391,7 @@ File: [`mqtt/sensor/octopi/ambient_temperature.yaml`](entities/mqtt/sensor/octop
 
 <details><summary><strong>OctoPi Average Load (15 min)</strong></summary>
 
-**Entity ID: `mqtt.octopi_average_load_15_min`**
+**Entity ID: `sensor.octopi_average_load_15_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3499,7 +3403,7 @@ File: [`mqtt/sensor/octopi/average_load_15_min.yaml`](entities/mqtt/sensor/octop
 
 <details><summary><strong>OctoPi Average Load (1 min)</strong></summary>
 
-**Entity ID: `mqtt.octopi_average_load_1_min`**
+**Entity ID: `sensor.octopi_average_load_1_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3511,7 +3415,7 @@ File: [`mqtt/sensor/octopi/average_load_1_min.yaml`](entities/mqtt/sensor/octopi
 
 <details><summary><strong>OctoPi Average Load (5 min)</strong></summary>
 
-**Entity ID: `mqtt.octopi_average_load_5_min`**
+**Entity ID: `sensor.octopi_average_load_5_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3523,7 +3427,7 @@ File: [`mqtt/sensor/octopi/average_load_5_min.yaml`](entities/mqtt/sensor/octopi
 
 <details><summary><strong>OctoPi Boot Time</strong></summary>
 
-**Entity ID: `mqtt.octopi_boot_time`**
+**Entity ID: `sensor.octopi_boot_time`**
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
@@ -3535,7 +3439,7 @@ File: [`mqtt/sensor/octopi/boot_time.yaml`](entities/mqtt/sensor/octopi/boot_tim
 
 <details><summary><strong>OctoPi CPU Temperature</strong></summary>
 
-**Entity ID: `mqtt.octopi_cpu_temperature`**
+**Entity ID: `sensor.octopi_cpu_temperature`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3547,7 +3451,7 @@ File: [`mqtt/sensor/octopi/cpu_temperature.yaml`](entities/mqtt/sensor/octopi/cp
 
 <details><summary><strong>OctoPi CPU Usage</strong></summary>
 
-**Entity ID: `mqtt.octopi_cpu_usage`**
+**Entity ID: `sensor.octopi_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
@@ -3559,7 +3463,7 @@ File: [`mqtt/sensor/octopi/cpu_usage.yaml`](entities/mqtt/sensor/octopi/cpu_usag
 
 <details><summary><strong>OctoPi Disk Usage</strong></summary>
 
-**Entity ID: `mqtt.octopi_disk_usage`**
+**Entity ID: `sensor.octopi_disk_usage`**
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
@@ -3571,7 +3475,7 @@ File: [`mqtt/sensor/octopi/disk_usage.yaml`](entities/mqtt/sensor/octopi/disk_us
 
 <details><summary><strong>OctoPi Local Git Ref</strong></summary>
 
-**Entity ID: `mqtt.octopi_local_git_ref`**
+**Entity ID: `sensor.octopi_local_git_ref`**
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
@@ -3583,7 +3487,7 @@ File: [`mqtt/sensor/octopi/local_git_ref.yaml`](entities/mqtt/sensor/octopi/loca
 
 <details><summary><strong>OctoPi Memory Usage</strong></summary>
 
-**Entity ID: `mqtt.octopi_memory_usage`**
+**Entity ID: `sensor.octopi_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3595,7 +3499,7 @@ File: [`mqtt/sensor/octopi/memory_usage.yaml`](entities/mqtt/sensor/octopi/memor
 
 <details><summary><strong>OctoPi Uptime</strong></summary>
 
-**Entity ID: `mqtt.octopi_uptime`**
+**Entity ID: `sensor.octopi_uptime`**
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
@@ -3607,7 +3511,7 @@ File: [`mqtt/sensor/octopi/uptime.yaml`](entities/mqtt/sensor/octopi/uptime.yaml
 
 <details><summary><strong>RtroPi Active Git Ref</strong></summary>
 
-**Entity ID: `mqtt.rtropi_active_git_ref`**
+**Entity ID: `sensor.rtropi_active_git_ref`**
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
@@ -3619,7 +3523,7 @@ File: [`mqtt/sensor/rtropi/active_git_ref.yaml`](entities/mqtt/sensor/rtropi/act
 
 <details><summary><strong>RtroPi Average Load (15 min)</strong></summary>
 
-**Entity ID: `mqtt.rtropi_average_load_15_min`**
+**Entity ID: `sensor.rtropi_average_load_15_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3631,7 +3535,7 @@ File: [`mqtt/sensor/rtropi/average_load_15_min.yaml`](entities/mqtt/sensor/rtrop
 
 <details><summary><strong>RtroPi Average Load (1 min)</strong></summary>
 
-**Entity ID: `mqtt.rtropi_average_load_1_min`**
+**Entity ID: `sensor.rtropi_average_load_1_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3643,7 +3547,7 @@ File: [`mqtt/sensor/rtropi/average_load_1_min.yaml`](entities/mqtt/sensor/rtropi
 
 <details><summary><strong>RtroPi Average Load (5 min)</strong></summary>
 
-**Entity ID: `mqtt.rtropi_average_load_5_min`**
+**Entity ID: `sensor.rtropi_average_load_5_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3655,7 +3559,7 @@ File: [`mqtt/sensor/rtropi/average_load_5_min.yaml`](entities/mqtt/sensor/rtropi
 
 <details><summary><strong>RtroPi Boot Time</strong></summary>
 
-**Entity ID: `mqtt.rtropi_boot_time`**
+**Entity ID: `sensor.rtropi_boot_time`**
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
@@ -3667,7 +3571,7 @@ File: [`mqtt/sensor/rtropi/boot_time.yaml`](entities/mqtt/sensor/rtropi/boot_tim
 
 <details><summary><strong>RtroPi CPU Temperature</strong></summary>
 
-**Entity ID: `mqtt.rtropi_cpu_temperature`**
+**Entity ID: `sensor.rtropi_cpu_temperature`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3679,7 +3583,7 @@ File: [`mqtt/sensor/rtropi/cpu_temperature.yaml`](entities/mqtt/sensor/rtropi/cp
 
 <details><summary><strong>RtroPi CPU Usage</strong></summary>
 
-**Entity ID: `mqtt.rtropi_cpu_usage`**
+**Entity ID: `sensor.rtropi_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
@@ -3691,7 +3595,7 @@ File: [`mqtt/sensor/rtropi/cpu_usage.yaml`](entities/mqtt/sensor/rtropi/cpu_usag
 
 <details><summary><strong>RtroPi Disk Usage</strong></summary>
 
-**Entity ID: `mqtt.rtropi_disk_usage`**
+**Entity ID: `sensor.rtropi_disk_usage`**
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
@@ -3703,7 +3607,7 @@ File: [`mqtt/sensor/rtropi/disk_usage.yaml`](entities/mqtt/sensor/rtropi/disk_us
 
 <details><summary><strong>RtroPi Local Git Ref</strong></summary>
 
-**Entity ID: `mqtt.rtropi_local_git_ref`**
+**Entity ID: `sensor.rtropi_local_git_ref`**
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
@@ -3715,7 +3619,7 @@ File: [`mqtt/sensor/rtropi/local_git_ref.yaml`](entities/mqtt/sensor/rtropi/loca
 
 <details><summary><strong>RtroPi Memory Usage</strong></summary>
 
-**Entity ID: `mqtt.rtropi_memory_usage`**
+**Entity ID: `sensor.rtropi_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3727,7 +3631,7 @@ File: [`mqtt/sensor/rtropi/memory_usage.yaml`](entities/mqtt/sensor/rtropi/memor
 
 <details><summary><strong>RtroPi Uptime</strong></summary>
 
-**Entity ID: `mqtt.rtropi_uptime`**
+**Entity ID: `sensor.rtropi_uptime`**
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
@@ -3739,7 +3643,7 @@ File: [`mqtt/sensor/rtropi/uptime.yaml`](entities/mqtt/sensor/rtropi/uptime.yaml
 
 <details><summary><strong>VSMPPi Active Git Ref</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_active_git_ref`**
+**Entity ID: `sensor.vsmppi_active_git_ref`**
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
@@ -3751,7 +3655,7 @@ File: [`mqtt/sensor/vsmppi/active_git_ref.yaml`](entities/mqtt/sensor/vsmppi/act
 
 <details><summary><strong>VSMPPi Average Load (15 min)</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_average_load_15_min`**
+**Entity ID: `sensor.vsmppi_average_load_15_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3763,7 +3667,7 @@ File: [`mqtt/sensor/vsmppi/average_load_15_min.yaml`](entities/mqtt/sensor/vsmpp
 
 <details><summary><strong>VSMPPi Average Load (1 min)</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_average_load_1_min`**
+**Entity ID: `sensor.vsmppi_average_load_1_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3775,7 +3679,7 @@ File: [`mqtt/sensor/vsmppi/average_load_1_min.yaml`](entities/mqtt/sensor/vsmppi
 
 <details><summary><strong>VSMPPi Average Load (5 min)</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_average_load_5_min`**
+**Entity ID: `sensor.vsmppi_average_load_5_min`**
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
@@ -3787,7 +3691,7 @@ File: [`mqtt/sensor/vsmppi/average_load_5_min.yaml`](entities/mqtt/sensor/vsmppi
 
 <details><summary><strong>VSMPPi Boot Time</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_boot_time`**
+**Entity ID: `sensor.vsmppi_boot_time`**
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
@@ -3799,7 +3703,7 @@ File: [`mqtt/sensor/vsmppi/boot_time.yaml`](entities/mqtt/sensor/vsmppi/boot_tim
 
 <details><summary><strong>VSMPPi CPU Temperature</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_cpu_temperature`**
+**Entity ID: `sensor.vsmppi_cpu_temperature`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3811,7 +3715,7 @@ File: [`mqtt/sensor/vsmppi/cpu_temperature.yaml`](entities/mqtt/sensor/vsmppi/cp
 
 <details><summary><strong>VSMPPi CPU Usage</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_cpu_usage`**
+**Entity ID: `sensor.vsmppi_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
@@ -3823,7 +3727,7 @@ File: [`mqtt/sensor/vsmppi/cpu_usage.yaml`](entities/mqtt/sensor/vsmppi/cpu_usag
 
 <details><summary><strong>VSMPPi Disk Usage</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_disk_usage`**
+**Entity ID: `sensor.vsmppi_disk_usage`**
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
@@ -3835,7 +3739,7 @@ File: [`mqtt/sensor/vsmppi/disk_usage.yaml`](entities/mqtt/sensor/vsmppi/disk_us
 
 <details><summary><strong>VSMPPi Local Git Ref</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_local_git_ref`**
+**Entity ID: `sensor.vsmppi_local_git_ref`**
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
@@ -3847,7 +3751,7 @@ File: [`mqtt/sensor/vsmppi/local_git_ref.yaml`](entities/mqtt/sensor/vsmppi/loca
 
 <details><summary><strong>VSMPPi Memory Usage</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_memory_usage`**
+**Entity ID: `sensor.vsmppi_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
@@ -3859,7 +3763,7 @@ File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memor
 
 <details><summary><strong>VSMPPi Uptime</strong></summary>
 
-**Entity ID: `mqtt.vsmppi_uptime`**
+**Entity ID: `sensor.vsmppi_uptime`**
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
@@ -3871,7 +3775,7 @@ File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml
 
 <details><summary><strong>RGB LED Matrix</strong></summary>
 
-**Entity ID: `mqtt.rgb_led_matrix`**
+**Entity ID: `binary_sensor.rgb_led_matrix`**
 
 - Icon: [`mdi:square-opacity`](https://pictogrammers.com/library/mdi/icon/square-opacity/)
 - State Class:
@@ -3880,42 +3784,6 @@ File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml
 
 File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb_led_matrix.yaml)
 </details>
-
-</details>
-
-## My
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Network
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Person
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Recorder
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Rest Command
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Scene
-
-<details><summary><h3>Entities (0)</h3></summary>
 
 </details>
 
@@ -4657,24 +4525,6 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 </details>
 
-## Spotcast
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Ssdp
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Sun
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
 ## Switch
 
 <details><summary><h3>Entities (1)</h3></summary>
@@ -4688,31 +4538,13 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 </details>
 
-## System Health
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## System Log
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Tag
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
 ## Template
 
 <details><summary><h3>Entities (84)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
-**Entity ID: `template.adguard_cpu_usage`**
+**Entity ID: `sensor.adguard_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4722,7 +4554,7 @@ File: [`template/sensor/addon_stats/adguard_cpu_usage.yaml`](entities/template/s
 
 <details><summary><strong>AdGuard Memory Usage</strong></summary>
 
-**Entity ID: `template.adguard_memory_usage`**
+**Entity ID: `sensor.adguard_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4732,7 +4564,7 @@ File: [`template/sensor/addon_stats/adguard_memory_usage.yaml`](entities/templat
 
 <details><summary><strong>AppDaemon CPU Usage</strong></summary>
 
-**Entity ID: `template.appdaemon_cpu_usage`**
+**Entity ID: `sensor.appdaemon_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4742,7 +4574,7 @@ File: [`template/sensor/addon_stats/appdaemon_cpu_usage.yaml`](entities/template
 
 <details><summary><strong>AppDaemon Memory Usage</strong></summary>
 
-**Entity ID: `template.appdaemon_memory_usage`**
+**Entity ID: `sensor.appdaemon_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4752,7 +4584,7 @@ File: [`template/sensor/addon_stats/appdaemon_memory_usage.yaml`](entities/templ
 
 <details><summary><strong>ESPHome Add-on CPU Usage</strong></summary>
 
-**Entity ID: `template.esphome_add_on_cpu_usage`**
+**Entity ID: `sensor.esphome_add_on_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4762,7 +4594,7 @@ File: [`template/sensor/addon_stats/esphome_add_on_cpu_usage.yaml`](entities/tem
 
 <details><summary><strong>ESPHome Add-on Memory Usage</strong></summary>
 
-**Entity ID: `template.esphome_add_on_memory_usage`**
+**Entity ID: `sensor.esphome_add_on_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4772,7 +4604,7 @@ File: [`template/sensor/addon_stats/esphome_add_on_memory_usage.yaml`](entities/
 
 <details><summary><strong>Google Drive Backup Add-on CPU Usage</strong></summary>
 
-**Entity ID: `template.google_drive_backup_add_on_cpu_usage`**
+**Entity ID: `sensor.google_drive_backup_add_on_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4782,7 +4614,7 @@ File: [`template/sensor/addon_stats/google_drive_backup_add_on_cpu_usage.yaml`](
 
 <details><summary><strong>Google Drive Backup Add-on Memory Usage</strong></summary>
 
-**Entity ID: `template.google_drive_backup_add_on_memory_usage`**
+**Entity ID: `sensor.google_drive_backup_add_on_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4792,7 +4624,7 @@ File: [`template/sensor/addon_stats/google_drive_backup_add_on_memory_usage.yaml
 
 <details><summary><strong>HA Remote Logger CPU Usage</strong></summary>
 
-**Entity ID: `template.ha_remote_logger_cpu_usage`**
+**Entity ID: `sensor.ha_remote_logger_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4802,7 +4634,7 @@ File: [`template/sensor/addon_stats/ha_remote_logger_cpu_usage.yaml`](entities/t
 
 <details><summary><strong>HA Remote Logger Memory Usage</strong></summary>
 
-**Entity ID: `template.ha_remote_logger_memory_usage`**
+**Entity ID: `sensor.ha_remote_logger_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4812,7 +4644,7 @@ File: [`template/sensor/addon_stats/ha_remote_logger_memory_usage.yaml`](entitie
 
 <details><summary><strong>Item Warehouse API CPU Usage</strong></summary>
 
-**Entity ID: `template.item_warehouse_api_cpu_usage`**
+**Entity ID: `sensor.item_warehouse_api_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4822,7 +4654,7 @@ File: [`template/sensor/addon_stats/item_warehouse_api_cpu_usage.yaml`](entities
 
 <details><summary><strong>Item Warehouse API Memory Usage</strong></summary>
 
-**Entity ID: `template.item_warehouse_api_memory_usage`**
+**Entity ID: `sensor.item_warehouse_api_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4832,7 +4664,7 @@ File: [`template/sensor/addon_stats/item_warehouse_api_memory_usage.yaml`](entit
 
 <details><summary><strong>Item Warehouse Website CPU Usage</strong></summary>
 
-**Entity ID: `template.item_warehouse_website_cpu_usage`**
+**Entity ID: `sensor.item_warehouse_website_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4842,7 +4674,7 @@ File: [`template/sensor/addon_stats/item_warehouse_website_cpu_usage.yaml`](enti
 
 <details><summary><strong>Item Warehouse Website Memory Usage</strong></summary>
 
-**Entity ID: `template.item_warehouse_website_memory_usage`**
+**Entity ID: `sensor.item_warehouse_website_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4852,7 +4684,7 @@ File: [`template/sensor/addon_stats/item_warehouse_website_memory_usage.yaml`](e
 
 <details><summary><strong>MariaDB CPU Usage</strong></summary>
 
-**Entity ID: `template.mariadb_cpu_usage`**
+**Entity ID: `sensor.mariadb_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4862,7 +4694,7 @@ File: [`template/sensor/addon_stats/mariadb_cpu_usage.yaml`](entities/template/s
 
 <details><summary><strong>MariaDB Memory Usage</strong></summary>
 
-**Entity ID: `template.mariadb_memory_usage`**
+**Entity ID: `sensor.mariadb_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4872,7 +4704,7 @@ File: [`template/sensor/addon_stats/mariadb_memory_usage.yaml`](entities/templat
 
 <details><summary><strong>Matter Server CPU Usage</strong></summary>
 
-**Entity ID: `template.matter_server_cpu_usage`**
+**Entity ID: `sensor.matter_server_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4882,7 +4714,7 @@ File: [`template/sensor/addon_stats/matter_server_cpu_usage.yaml`](entities/temp
 
 <details><summary><strong>Matter Server Memory Usage</strong></summary>
 
-**Entity ID: `template.matter_server_memory_usage`**
+**Entity ID: `sensor.matter_server_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4892,7 +4724,7 @@ File: [`template/sensor/addon_stats/matter_server_memory_usage.yaml`](entities/t
 
 <details><summary><strong>Mosquitto Broker CPU Usage</strong></summary>
 
-**Entity ID: `template.mosquitto_broker_cpu_usage`**
+**Entity ID: `sensor.mosquitto_broker_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4902,7 +4734,7 @@ File: [`template/sensor/addon_stats/mosquitto_broker_cpu_usage.yaml`](entities/t
 
 <details><summary><strong>Mosquitto Broker Memory Usage</strong></summary>
 
-**Entity ID: `template.mosquitto_broker_memory_usage`**
+**Entity ID: `sensor.mosquitto_broker_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4912,7 +4744,7 @@ File: [`template/sensor/addon_stats/mosquitto_broker_memory_usage.yaml`](entitie
 
 <details><summary><strong>Plex Media Server CPU Usage</strong></summary>
 
-**Entity ID: `template.plex_media_server_cpu_usage`**
+**Entity ID: `sensor.plex_media_server_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4922,7 +4754,7 @@ File: [`template/sensor/addon_stats/plex_media_server_cpu_usage.yaml`](entities/
 
 <details><summary><strong>Plex Media Server Memory Usage</strong></summary>
 
-**Entity ID: `template.plex_media_server_memory_usage`**
+**Entity ID: `sensor.plex_media_server_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4932,7 +4764,7 @@ File: [`template/sensor/addon_stats/plex_media_server_memory_usage.yaml`](entiti
 
 <details><summary><strong>Silicon Labs Multiprotocol Add-on CPU Usage</strong></summary>
 
-**Entity ID: `template.silicon_labs_multiprotocol_add_on_cpu_usage`**
+**Entity ID: `sensor.silicon_labs_multiprotocol_add_on_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4942,7 +4774,7 @@ File: [`template/sensor/addon_stats/silicon_labs_multiprotocol_add_on_cpu_usage.
 
 <details><summary><strong>Silicon Labs Multiprotocol Add-on Memory Usage</strong></summary>
 
-**Entity ID: `template.silicon_labs_multiprotocol_add_on_memory_usage`**
+**Entity ID: `sensor.silicon_labs_multiprotocol_add_on_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4952,7 +4784,7 @@ File: [`template/sensor/addon_stats/silicon_labs_multiprotocol_add_on_memory_usa
 
 <details><summary><strong>Terminal & SSH Add-on CPU Usage</strong></summary>
 
-**Entity ID: `template.terminal_ssh_add_on_cpu_usage`**
+**Entity ID: `sensor.terminal_ssh_add_on_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4962,7 +4794,7 @@ File: [`template/sensor/addon_stats/terminal_ssh_add_on_cpu_usage.yaml`](entitie
 
 <details><summary><strong>Terminal & SSH Add-on Memory Usage</strong></summary>
 
-**Entity ID: `template.terminal_ssh_add_on_memory_usage`**
+**Entity ID: `sensor.terminal_ssh_add_on_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4972,7 +4804,7 @@ File: [`template/sensor/addon_stats/terminal_ssh_add_on_memory_usage.yaml`](enti
 
 <details><summary><strong>Visual Studio Code Add-on CPU Usage</strong></summary>
 
-**Entity ID: `template.visual_studio_code_add_on_cpu_usage`**
+**Entity ID: `sensor.visual_studio_code_add_on_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -4982,7 +4814,7 @@ File: [`template/sensor/addon_stats/visual_studio_code_add_on_cpu_usage.yaml`](e
 
 <details><summary><strong>Visual Studio Code Add-on Memory Usage</strong></summary>
 
-**Entity ID: `template.visual_studio_code_add_on_memory_usage`**
+**Entity ID: `sensor.visual_studio_code_add_on_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -4992,7 +4824,7 @@ File: [`template/sensor/addon_stats/visual_studio_code_add_on_memory_usage.yaml`
 
 <details><summary><strong>YAS-209 Bridge CPU Usage</strong></summary>
 
-**Entity ID: `template.yas_209_bridge_cpu_usage`**
+**Entity ID: `sensor.yas_209_bridge_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
@@ -5002,7 +4834,7 @@ File: [`template/sensor/addon_stats/yas_209_bridge_cpu_usage.yaml`](entities/tem
 
 <details><summary><strong>YAS-209 Bridge Memory Usage</strong></summary>
 
-**Entity ID: `template.yas_209_bridge_memory_usage`**
+**Entity ID: `sensor.yas_209_bridge_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
@@ -5012,7 +4844,7 @@ File: [`template/sensor/addon_stats/yas_209_bridge_memory_usage.yaml`](entities/
 
 <details><summary><strong>Address Line 1</strong></summary>
 
-**Entity ID: `template.address_line_1`**
+**Entity ID: `sensor.address_line_1`**
 
 - Icon: [`mdi:map-marker`](https://pictogrammers.com/library/mdi/icon/map-marker/)
 - Unit Of Measurement:
@@ -5022,7 +4854,7 @@ File: [`template/sensor/address_line_1.yaml`](entities/template/sensor/address_l
 
 <details><summary><strong>Vic and Will Distance</strong></summary>
 
-**Entity ID: `template.vic_and_will_distance`**
+**Entity ID: `sensor.vic_and_will_distance`**
 
 - Icon: [`mdi:map-marker-distance`](https://pictogrammers.com/library/mdi/icon/map-marker-distance/)
 - Unit Of Measurement: `miles`
@@ -5032,7 +4864,7 @@ File: [`template/sensor/distance/vic_and_will_distance.yaml`](entities/template/
 
 <details><summary><strong>Vic Distance from Home</strong></summary>
 
-**Entity ID: `template.vic_distance_from_home`**
+**Entity ID: `sensor.vic_distance_from_home`**
 
 - Icon: [`mdi:map-marker-distance`](https://pictogrammers.com/library/mdi/icon/map-marker-distance/)
 - Unit Of Measurement: `miles`
@@ -5042,7 +4874,7 @@ File: [`template/sensor/distance/vic_distance_from_home.yaml`](entities/template
 
 <details><summary><strong>Will Distance from Home</strong></summary>
 
-**Entity ID: `template.will_distance_from_home`**
+**Entity ID: `sensor.will_distance_from_home`**
 
 - Icon: [`mdi:map-marker-distance`](https://pictogrammers.com/library/mdi/icon/map-marker-distance/)
 - Unit Of Measurement: `miles`
@@ -5052,7 +4884,7 @@ File: [`template/sensor/distance/will_distance_from_home.yaml`](entities/templat
 
 <details><summary><strong>Count Active Automations</strong></summary>
 
-**Entity ID: `template.count_active_automations`**
+**Entity ID: `sensor.count_active_automations`**
 
 - Icon: [`mdi:robot-excited`](https://pictogrammers.com/library/mdi/icon/robot-excited/)
 - Unit Of Measurement:
@@ -5062,7 +4894,7 @@ File: [`template/sensor/entity_counts/count_active_automations.yaml`](entities/t
 
 <details><summary><strong>Count Active Scripts</strong></summary>
 
-**Entity ID: `template.count_active_scripts`**
+**Entity ID: `sensor.count_active_scripts`**
 
 - Icon: [`mdi:robot-excited`](https://pictogrammers.com/library/mdi/icon/robot-excited/)
 - Unit Of Measurement:
@@ -5072,7 +4904,7 @@ File: [`template/sensor/entity_counts/count_active_scripts.yaml`](entities/templ
 
 <details><summary><strong>Count Automations</strong></summary>
 
-**Entity ID: `template.count_automations`**
+**Entity ID: `sensor.count_automations`**
 
 - Icon: [`mdi:robot-angry`](https://pictogrammers.com/library/mdi/icon/robot-angry/)
 - Unit Of Measurement:
@@ -5082,7 +4914,7 @@ File: [`template/sensor/entity_counts/count_automations.yaml`](entities/template
 
 <details><summary><strong>Count Binary Sensors</strong></summary>
 
-**Entity ID: `template.count_binary_sensors`**
+**Entity ID: `sensor.count_binary_sensors`**
 
 - Icon: [`mdi:electric-switch`](https://pictogrammers.com/library/mdi/icon/electric-switch/)
 - Unit Of Measurement:
@@ -5092,7 +4924,7 @@ File: [`template/sensor/entity_counts/count_binary_sensors.yaml`](entities/templ
 
 <details><summary><strong>Count Device Trackers</strong></summary>
 
-**Entity ID: `template.count_device_trackers`**
+**Entity ID: `sensor.count_device_trackers`**
 
 - Icon: [`mdi:devices`](https://pictogrammers.com/library/mdi/icon/devices/)
 - Unit Of Measurement:
@@ -5102,7 +4934,7 @@ File: [`template/sensor/entity_counts/count_device_trackers.yaml`](entities/temp
 
 <details><summary><strong>Count Input Booleans</strong></summary>
 
-**Entity ID: `template.count_input_booleans`**
+**Entity ID: `sensor.count_input_booleans`**
 
 - Icon: [`mdi:toggle-switch-outline`](https://pictogrammers.com/library/mdi/icon/toggle-switch-outline/)
 - Unit Of Measurement:
@@ -5112,7 +4944,7 @@ File: [`template/sensor/entity_counts/count_input_booleans.yaml`](entities/templ
 
 <details><summary><strong>Count Input Datetimes</strong></summary>
 
-**Entity ID: `template.count_input_datetimes`**
+**Entity ID: `sensor.count_input_datetimes`**
 
 - Icon: [`mdi:calendar-edit`](https://pictogrammers.com/library/mdi/icon/calendar-edit/)
 - Unit Of Measurement:
@@ -5122,7 +4954,7 @@ File: [`template/sensor/entity_counts/count_input_datetimes.yaml`](entities/temp
 
 <details><summary><strong>Count Input Numbers</strong></summary>
 
-**Entity ID: `template.count_input_numbers`**
+**Entity ID: `sensor.count_input_numbers`**
 
 - Icon: [`mdi:numeric-1-box-multiple-outline`](https://pictogrammers.com/library/mdi/icon/numeric-1-box-multiple-outline/)
 - Unit Of Measurement:
@@ -5132,7 +4964,7 @@ File: [`template/sensor/entity_counts/count_input_numbers.yaml`](entities/templa
 
 <details><summary><strong>Count Input Selects</strong></summary>
 
-**Entity ID: `template.count_input_selects`**
+**Entity ID: `sensor.count_input_selects`**
 
 - Icon: [`mdi:form-dropdown`](https://pictogrammers.com/library/mdi/icon/form-dropdown/)
 - Unit Of Measurement:
@@ -5142,7 +4974,7 @@ File: [`template/sensor/entity_counts/count_input_selects.yaml`](entities/templa
 
 <details><summary><strong>Count Input Texts</strong></summary>
 
-**Entity ID: `template.count_input_texts`**
+**Entity ID: `sensor.count_input_texts`**
 
 - Icon: [`mdi:form-textbox`](https://pictogrammers.com/library/mdi/icon/form-textbox/)
 - Unit Of Measurement:
@@ -5152,7 +4984,7 @@ File: [`template/sensor/entity_counts/count_input_texts.yaml`](entities/template
 
 <details><summary><strong>Count Low Batteries</strong></summary>
 
-**Entity ID: `template.count_low_batteries`**
+**Entity ID: `sensor.count_low_batteries`**
 
 - Icon: {% set ns = namespace(total=0, count=0, average=0) %}
 {% for value in this.attributes.entities | default([]) | map(attribute="state") %}
@@ -5172,7 +5004,7 @@ File: [`template/sensor/entity_counts/count_low_batteries.yaml`](entities/templa
 
 <details><summary><strong>Count Scripts</strong></summary>
 
-**Entity ID: `template.count_scripts`**
+**Entity ID: `sensor.count_scripts`**
 
 - Icon: [`mdi:script-text`](https://pictogrammers.com/library/mdi/icon/script-text/)
 - Unit Of Measurement:
@@ -5182,7 +5014,7 @@ File: [`template/sensor/entity_counts/count_scripts.yaml`](entities/template/sen
 
 <details><summary><strong>Count Sensors</strong></summary>
 
-**Entity ID: `template.count_sensors`**
+**Entity ID: `sensor.count_sensors`**
 
 - Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
 - Unit Of Measurement:
@@ -5192,7 +5024,7 @@ File: [`template/sensor/entity_counts/count_sensors.yaml`](entities/template/sen
 
 <details><summary><strong>Count Stale Entities</strong></summary>
 
-**Entity ID: `template.count_stale_entities`**
+**Entity ID: `sensor.count_stale_entities`**
 
 - Icon: [`mdi:timer-sync`](https://pictogrammers.com/library/mdi/icon/timer-sync/)
 - Unit Of Measurement:
@@ -5202,7 +5034,7 @@ File: [`template/sensor/entity_counts/count_stale_entities.yaml`](entities/templ
 
 <details><summary><strong>Count Switches</strong></summary>
 
-**Entity ID: `template.count_switches`**
+**Entity ID: `sensor.count_switches`**
 
 - Icon: [`mdi:toggle-switch`](https://pictogrammers.com/library/mdi/icon/toggle-switch/)
 - Unit Of Measurement:
@@ -5212,7 +5044,7 @@ File: [`template/sensor/entity_counts/count_switches.yaml`](entities/template/se
 
 <details><summary><strong>Count Unavailable Entities</strong></summary>
 
-**Entity ID: `template.count_unavailable_entities`**
+**Entity ID: `sensor.count_unavailable_entities`**
 
 - Icon: [`mdi:lan-disconnect`](https://pictogrammers.com/library/mdi/icon/lan-disconnect/)
 - Unit Of Measurement:
@@ -5222,7 +5054,7 @@ File: [`template/sensor/entity_counts/count_unavailable_entities.yaml`](entities
 
 <details><summary><strong>Count Updates</strong></summary>
 
-**Entity ID: `template.count_updates`**
+**Entity ID: `sensor.count_updates`**
 
 - Icon: [`mdi:update`](https://pictogrammers.com/library/mdi/icon/update/)
 - Unit Of Measurement:
@@ -5232,7 +5064,7 @@ File: [`template/sensor/entity_counts/count_updates.yaml`](entities/template/sen
 
 <details><summary><strong>Count Zones</strong></summary>
 
-**Entity ID: `template.count_zones`**
+**Entity ID: `sensor.count_zones`**
 
 - Icon: [`mdi:map-marker-multiple`](https://pictogrammers.com/library/mdi/icon/map-marker-multiple/)
 - Unit Of Measurement:
@@ -5242,7 +5074,7 @@ File: [`template/sensor/entity_counts/count_zones.yaml`](entities/template/senso
 
 <details><summary><strong>ClmtPi Floorplan Icon</strong></summary>
 
-**Entity ID: `template.clmtpi_floorplan_icon`**
+**Entity ID: `sensor.clmtpi_floorplan_icon`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5252,7 +5084,7 @@ File: [`template/sensor/floorplan_icons/clmtpi_floorplan_icon.yaml`](entities/te
 
 <details><summary><strong>HiFi System: Media Metadata</strong></summary>
 
-**Entity ID: `template.hifi_system_media_metadata`**
+**Entity ID: `sensor.hifi_system_media_metadata`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5262,7 +5094,7 @@ File: [`template/sensor/hifi_system_media_metadata.yaml`](entities/template/sens
 
 <details><summary><strong>Office Desk Standing Mode Percentage</strong></summary>
 
-**Entity ID: `template.office_desk_standing_mode_percentage`**
+**Entity ID: `sensor.office_desk_standing_mode_percentage`**
 
 - Icon: [`mdi:percent`](https://pictogrammers.com/library/mdi/icon/percent/)
 - Unit Of Measurement: %
@@ -5272,7 +5104,7 @@ File: [`template/sensor/office_desk/office_desk_standing_mode_percentage.yaml`](
 
 <details><summary><strong>Office Desk Standing Time Remaining</strong></summary>
 
-**Entity ID: `template.office_desk_standing_time_remaining`**
+**Entity ID: `sensor.office_desk_standing_time_remaining`**
 
 - Icon: {% if this.state | float(default=0.0) > 0 %}
   mdi:timer-sand
@@ -5286,7 +5118,7 @@ File: [`template/sensor/office_desk/office_desk_standing_time_remaining.yaml`](e
 
 <details><summary><strong>Person Cosmo</strong></summary>
 
-**Entity ID: `template.person_cosmo`**
+**Entity ID: `sensor.person_cosmo`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5296,7 +5128,7 @@ File: [`template/sensor/person/person_cosmo.yaml`](entities/template/sensor/pers
 
 <details><summary><strong>Spotify Will Garside Media Album Artwork Internal URL</strong></summary>
 
-**Entity ID: `template.spotify_will_garside_media_album_artwork_internal_url`**
+**Entity ID: `sensor.spotify_will_garside_media_album_artwork_internal_url`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5306,7 +5138,7 @@ File: [`template/sensor/spotify/spotify_will_garside_media_album_artwork_interna
 
 <details><summary><strong>Spotify Will Garside Media Album Name</strong></summary>
 
-**Entity ID: `template.spotify_will_garside_media_album_name`**
+**Entity ID: `sensor.spotify_will_garside_media_album_name`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5316,7 +5148,7 @@ File: [`template/sensor/spotify/spotify_will_garside_media_album_name.yaml`](ent
 
 <details><summary><strong>Spotify Will Garside Media Artist</strong></summary>
 
-**Entity ID: `template.spotify_will_garside_media_artist`**
+**Entity ID: `sensor.spotify_will_garside_media_artist`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5326,7 +5158,7 @@ File: [`template/sensor/spotify/spotify_will_garside_media_artist.yaml`](entitie
 
 <details><summary><strong>Spotify Will Garside Media Title</strong></summary>
 
-**Entity ID: `template.spotify_will_garside_media_title`**
+**Entity ID: `sensor.spotify_will_garside_media_title`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5336,7 +5168,7 @@ File: [`template/sensor/spotify/spotify_will_garside_media_title.yaml`](entities
 
 <details><summary><strong>ST MacBook Pro Last Update</strong></summary>
 
-**Entity ID: `template.st_macbook_pro_last_update`**
+**Entity ID: `sensor.st_macbook_pro_last_update`**
 
 - Icon: [`mdi:clock`](https://pictogrammers.com/library/mdi/icon/clock/)
 - Unit Of Measurement: epoch-seconds
@@ -5346,7 +5178,7 @@ File: [`template/sensor/st_macbook_pro_last_update.yaml`](entities/template/sens
 
 <details><summary><strong>Sun Elevation</strong></summary>
 
-**Entity ID: `template.sun_elevation`**
+**Entity ID: `sensor.sun_elevation`**
 
 - Icon:
 - Unit Of Measurement: °
@@ -5356,7 +5188,7 @@ File: [`template/sensor/sun_elevation.yaml`](entities/template/sensor/sun_elevat
 
 <details><summary><strong>Topaz SR10 Active Child</strong></summary>
 
-**Entity ID: `template.topaz_sr10_active_child`**
+**Entity ID: `sensor.topaz_sr10_active_child`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5366,7 +5198,7 @@ File: [`template/sensor/topaz_sr10/topaz_sr10_active_child.yaml`](entities/templ
 
 <details><summary><strong>Will's MacBook Pro Last Update</strong></summary>
 
-**Entity ID: `template.will_s_macbook_pro_last_update`**
+**Entity ID: `sensor.will_s_macbook_pro_last_update`**
 
 - Icon: [`mdi:clock`](https://pictogrammers.com/library/mdi/icon/clock/)
 - Unit Of Measurement: epoch-seconds
@@ -5376,7 +5208,7 @@ File: [`template/sensor/will_s_macbook_pro_last_update.yaml`](entities/template/
 
 <details><summary><strong>YAS-209 Local IP</strong></summary>
 
-**Entity ID: `template.yas_209_local_ip`**
+**Entity ID: `sensor.yas_209_local_ip`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5386,7 +5218,7 @@ File: [`template/sensor/yas_209_local_ip.yaml`](entities/template/sensor/yas_209
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
-**Entity ID: `template.bank_holiday`**
+**Entity ID: `binary_sensor.bank_holiday`**
 
 - Icon: [`mdi:calendar-star`](https://pictogrammers.com/library/mdi/icon/calendar-star/)
 - Unit Of Measurement:
@@ -5396,7 +5228,7 @@ File: [`template/binary_sensor/bank_holiday.yaml`](entities/template/binary_sens
 
 <details><summary><strong>Hifi System: Is Volume Muted</strong></summary>
 
-**Entity ID: `template.hifi_system_is_volume_muted`**
+**Entity ID: `binary_sensor.hifi_system_is_volume_muted`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5406,7 +5238,7 @@ File: [`template/binary_sensor/hifi_system_is_volume_muted.yaml`](entities/templ
 
 <details><summary><strong>Office Desk Occupied</strong></summary>
 
-**Entity ID: `template.office_desk_occupied`**
+**Entity ID: `binary_sensor.office_desk_occupied`**
 
 - Icon: [`mdi:chair-rolling`](https://pictogrammers.com/library/mdi/icon/chair-rolling/)
 - Unit Of Measurement:
@@ -5416,7 +5248,7 @@ File: [`template/binary_sensor/office_desk_occupied.yaml`](entities/template/bin
 
 <details><summary><strong>Office Desk Standing and Occupied</strong></summary>
 
-**Entity ID: `template.office_desk_standing_and_occupied`**
+**Entity ID: `binary_sensor.office_desk_standing_and_occupied`**
 
 - Icon: {% if this.state == "on" %}
   mdi:human-handsup
@@ -5430,7 +5262,7 @@ File: [`template/binary_sensor/office_desk_standing_and_occupied.yaml`](entities
 
 <details><summary><strong>Office Desk Standing Mode</strong></summary>
 
-**Entity ID: `template.office_desk_standing_mode`**
+**Entity ID: `binary_sensor.office_desk_standing_mode`**
 
 - Icon: {% if this.state == "on" %}
   phu:desk-stand-alt
@@ -5444,7 +5276,7 @@ File: [`template/binary_sensor/office_desk_standing_mode.yaml`](entities/templat
 
 <details><summary><strong>Quiet Hours</strong></summary>
 
-**Entity ID: `template.quiet_hours`**
+**Entity ID: `binary_sensor.quiet_hours`**
 
 - Icon:
 - Unit Of Measurement:
@@ -5454,7 +5286,7 @@ File: [`template/binary_sensor/quiet_hours.yaml`](entities/template/binary_senso
 
 <details><summary><strong>ClmtPi Online</strong></summary>
 
-**Entity ID: `template.clmtpi_online`**
+**Entity ID: `binary_sensor.clmtpi_online`**
 
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 - Unit Of Measurement:
@@ -5464,7 +5296,7 @@ File: [`template/binary_sensor/raspberry_pi_online/clmtpi_online.yaml`](entities
 
 <details><summary><strong>CRTPi Online</strong></summary>
 
-**Entity ID: `template.crtpi_online`**
+**Entity ID: `binary_sensor.crtpi_online`**
 
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 - Unit Of Measurement:
@@ -5474,7 +5306,7 @@ File: [`template/binary_sensor/raspberry_pi_online/crtpi_online.yaml`](entities/
 
 <details><summary><strong>GrowPi Online</strong></summary>
 
-**Entity ID: `template.growpi_online`**
+**Entity ID: `binary_sensor.growpi_online`**
 
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 - Unit Of Measurement:
@@ -5484,7 +5316,7 @@ File: [`template/binary_sensor/raspberry_pi_online/growpi_online.yaml`](entities
 
 <details><summary><strong>MtrxPi Online</strong></summary>
 
-**Entity ID: `template.mtrxpi_online`**
+**Entity ID: `binary_sensor.mtrxpi_online`**
 
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 - Unit Of Measurement:
@@ -5494,7 +5326,7 @@ File: [`template/binary_sensor/raspberry_pi_online/mtrxpi_online.yaml`](entities
 
 <details><summary><strong>OctoPi Online</strong></summary>
 
-**Entity ID: `template.octopi_online`**
+**Entity ID: `binary_sensor.octopi_online`**
 
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 - Unit Of Measurement:
@@ -5504,7 +5336,7 @@ File: [`template/binary_sensor/raspberry_pi_online/octopi_online.yaml`](entities
 
 <details><summary><strong>RtroPi Online</strong></summary>
 
-**Entity ID: `template.rtropi_online`**
+**Entity ID: `binary_sensor.rtropi_online`**
 
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 - Unit Of Measurement:
@@ -5514,7 +5346,7 @@ File: [`template/binary_sensor/raspberry_pi_online/rtropi_online.yaml`](entities
 
 <details><summary><strong>VSMPPi Online</strong></summary>
 
-**Entity ID: `template.vsmppi_online`**
+**Entity ID: `binary_sensor.vsmppi_online`**
 
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 - Unit Of Measurement:
@@ -5524,7 +5356,7 @@ File: [`template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml`](entities
 
 <details><summary><strong>ST MacBook Pro Docked</strong></summary>
 
-**Entity ID: `template.st_macbook_pro_docked`**
+**Entity ID: `binary_sensor.st_macbook_pro_docked`**
 
 - Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
 - Unit Of Measurement:
@@ -5534,7 +5366,7 @@ File: [`template/binary_sensor/st_macbook_pro_docked.yaml`](entities/template/bi
 
 <details><summary><strong>Vic at Work</strong></summary>
 
-**Entity ID: `template.vic_at_work`**
+**Entity ID: `binary_sensor.vic_at_work`**
 
 - Icon: [`mdi:badge-account`](https://pictogrammers.com/library/mdi/icon/badge-account/)
 - Unit Of Measurement:
@@ -5544,7 +5376,7 @@ File: [`template/binary_sensor/vic_at_work.yaml`](entities/template/binary_senso
 
 <details><summary><strong>Weekday</strong></summary>
 
-**Entity ID: `template.weekday`**
+**Entity ID: `binary_sensor.weekday`**
 
 - Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
 - Unit Of Measurement:
@@ -5554,7 +5386,7 @@ File: [`template/binary_sensor/weekday.yaml`](entities/template/binary_sensor/we
 
 <details><summary><strong>Weekend</strong></summary>
 
-**Entity ID: `template.weekend`**
+**Entity ID: `binary_sensor.weekend`**
 
 - Icon: [`mdi:calendar-weekend`](https://pictogrammers.com/library/mdi/icon/calendar-weekend/)
 - Unit Of Measurement:
@@ -5564,7 +5396,7 @@ File: [`template/binary_sensor/weekend.yaml`](entities/template/binary_sensor/we
 
 <details><summary><strong>Will's MacBook Pro Docked</strong></summary>
 
-**Entity ID: `template.will_s_macbook_pro_docked`**
+**Entity ID: `binary_sensor.will_s_macbook_pro_docked`**
 
 - Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
 - Unit Of Measurement:
@@ -5585,7 +5417,7 @@ File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/templat
 - Icon: [`mdi:floor-plan`](https://pictogrammers.com/library/mdi/icon/floor-plan/)
 - Unit Of Measurement:
 
-File: [`template/triggered/cosmo_room_lookup.yaml`](entities/template/triggered/cosmo_room_lookup.yaml)
+File: [`template_triggered/sensor/cosmo_room_lookup.yaml`](entities/template_triggered/sensor/cosmo_room_lookup.yaml)
 </details>
 
 <details><summary><strong>System: Reloadable Files Changed</strong></summary>
@@ -5599,7 +5431,7 @@ File: [`template/triggered/cosmo_room_lookup.yaml`](entities/template/triggered/
 {% endif %}
 - Unit Of Measurement:
 
-File: [`template/triggered/system_reloadable_files_changed.yaml`](entities/template/triggered/system_reloadable_files_changed.yaml)
+File: [`template_triggered/sensor/system_reloadable_files_changed.yaml`](entities/template_triggered/sensor/system_reloadable_files_changed.yaml)
 </details>
 
 <details><summary><strong>System: Restart Required Files Changed</strong></summary>
@@ -5613,7 +5445,7 @@ File: [`template/triggered/system_reloadable_files_changed.yaml`](entities/templ
 {% endif %}
 - Unit Of Measurement:
 
-File: [`template/triggered/system_restart_required_files_changed.yaml`](entities/template/triggered/system_restart_required_files_changed.yaml)
+File: [`template_triggered/sensor/system_restart_required_files_changed.yaml`](entities/template_triggered/sensor/system_restart_required_files_changed.yaml)
 </details>
 
 <details><summary><strong>Will's YAS-209 Bridge Input</strong></summary>
@@ -5623,26 +5455,8 @@ File: [`template/triggered/system_restart_required_files_changed.yaml`](entities
 - Icon: [`mdi:soundbar`](https://pictogrammers.com/library/mdi/icon/soundbar/)
 - Unit Of Measurement:
 
-File: [`template/triggered/will_s_yas_209_bridge_input.yaml`](entities/template/triggered/will_s_yas_209_bridge_input.yaml)
+File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/template_triggered/sensor/will_s_yas_209_bridge_input.yaml)
 </details>
-
-</details>
-
-## Timer
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Tts
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Usb
-
-<details><summary><h3>Entities (0)</h3></summary>
 
 </details>
 
@@ -5652,7 +5466,7 @@ File: [`template/triggered/will_s_yas_209_bridge_input.yaml`](entities/template/
 
 <details><summary><strong>Auto-Save Amount</strong></summary>
 
-**Entity ID: `var.var_auto_save_amount`**
+**Entity ID: `var.auto_save_amount`**
 
 - Icon: [`mdi:piggy-bank`](https://pictogrammers.com/library/mdi/icon/piggy-bank/)
 - Unit Of Measurement: GBP
@@ -5662,7 +5476,7 @@ File: [`var/auto_save_amount.yaml`](entities/var/auto_save_amount.yaml)
 
 <details><summary><strong>Current AppDaemon Branch</strong></summary>
 
-**Entity ID: `var.var_current_appdaemon_branch`**
+**Entity ID: `var.current_appdaemon_branch`**
 
 - Icon: [`mdi:source-branch-plus`](https://pictogrammers.com/library/mdi/icon/source-branch-plus/)
 - Unit Of Measurement:
@@ -5672,7 +5486,7 @@ File: [`var/current_appdaemon_branch.yaml`](entities/var/current_appdaemon_branc
 
 <details><summary><strong>Current AppDaemon Ref</strong></summary>
 
-**Entity ID: `var.var_current_appdaemon_ref`**
+**Entity ID: `var.current_appdaemon_ref`**
 
 - Icon: [`mdi:application-parentheses`](https://pictogrammers.com/library/mdi/icon/application-parentheses/)
 - Unit Of Measurement:
@@ -5682,7 +5496,7 @@ File: [`var/current_appdaemon_ref.yaml`](entities/var/current_appdaemon_ref.yaml
 
 <details><summary><strong>Spotify Tempo (Will)</strong></summary>
 
-**Entity ID: `var.var_spotify_spotify_tempo_will`**
+**Entity ID: `var.spotify_tempo_will`**
 
 - Icon: [`mdi:metronome`](https://pictogrammers.com/library/mdi/icon/metronome/)
 - Unit Of Measurement: BPM
@@ -5692,7 +5506,7 @@ File: [`var/spotify/spotify_tempo_will.yaml`](entities/var/spotify/spotify_tempo
 
 <details><summary><strong>Pixel Now Playing (Tasker)</strong></summary>
 
-**Entity ID: `var.var_tasker_tasker_pixel_now_playing`**
+**Entity ID: `var.tasker_pixel_now_playing`**
 
 - Icon: [`mdi:cellphone-play`](https://pictogrammers.com/library/mdi/icon/cellphone-play/)
 - Unit Of Measurement:
@@ -5702,7 +5516,7 @@ File: [`var/tasker/tasker_pixel_now_playing.yaml`](entities/var/tasker/tasker_pi
 
 <details><summary><strong>Amex Balance</strong></summary>
 
-**Entity ID: `var.var_truelayer_truelayer_balance_amex`**
+**Entity ID: `var.truelayer_balance_amex`**
 
 - Icon: si:americanexpress
 - Unit Of Measurement: GBP
@@ -5712,7 +5526,7 @@ File: [`var/truelayer/truelayer_balance_amex.yaml`](entities/var/truelayer/truel
 
 <details><summary><strong>HSBC Current Account Balance</strong></summary>
 
-**Entity ID: `var.var_truelayer_truelayer_balance_hsbc_current_account`**
+**Entity ID: `var.truelayer_balance_hsbc_current_account`**
 
 - Icon: [`mdi:bank`](https://pictogrammers.com/library/mdi/icon/bank/)
 - Unit Of Measurement: GBP
@@ -5722,7 +5536,7 @@ File: [`var/truelayer/truelayer_balance_hsbc_current_account.yaml`](entities/var
 
 <details><summary><strong>Monzo Credit Cards Pot Balance</strong></summary>
 
-**Entity ID: `var.var_truelayer_truelayer_balance_monzo_credit_cards`**
+**Entity ID: `var.truelayer_balance_monzo_credit_cards`**
 
 - Icon: [`mdi:credit-card`](https://pictogrammers.com/library/mdi/icon/credit-card/)
 - Unit Of Measurement: GBP
@@ -5732,7 +5546,7 @@ File: [`var/truelayer/truelayer_balance_monzo_credit_cards.yaml`](entities/var/t
 
 <details><summary><strong>Monzo Current Account Balance</strong></summary>
 
-**Entity ID: `var.var_truelayer_truelayer_balance_monzo_current_account`**
+**Entity ID: `var.truelayer_balance_monzo_current_account`**
 
 - Icon: si:monzo
 - Unit Of Measurement: GBP
@@ -5742,7 +5556,7 @@ File: [`var/truelayer/truelayer_balance_monzo_current_account.yaml`](entities/va
 
 <details><summary><strong>Monzo Savings Pot Balance</strong></summary>
 
-**Entity ID: `var.var_truelayer_truelayer_balance_monzo_savings`**
+**Entity ID: `var.truelayer_balance_monzo_savings`**
 
 - Icon: [`mdi:piggy-bank`](https://pictogrammers.com/library/mdi/icon/piggy-bank/)
 - Unit Of Measurement: GBP
@@ -5752,7 +5566,7 @@ File: [`var/truelayer/truelayer_balance_monzo_savings.yaml`](entities/var/truela
 
 <details><summary><strong>Santander Current Account Balance</strong></summary>
 
-**Entity ID: `var.var_truelayer_truelayer_balance_santander_current_account`**
+**Entity ID: `var.truelayer_balance_santander_current_account`**
 
 - Icon: [`mdi:bank`](https://pictogrammers.com/library/mdi/icon/bank/)
 - Unit Of Measurement: GBP
@@ -5762,7 +5576,7 @@ File: [`var/truelayer/truelayer_balance_santander_current_account.yaml`](entitie
 
 <details><summary><strong>Santander Savings Account Balance</strong></summary>
 
-**Entity ID: `var.var_truelayer_truelayer_balance_santander_savings_account`**
+**Entity ID: `var.truelayer_balance_santander_savings_account`**
 
 - Icon: [`mdi:piggy-bank`](https://pictogrammers.com/library/mdi/icon/piggy-bank/)
 - Unit Of Measurement: GBP
@@ -5772,7 +5586,7 @@ File: [`var/truelayer/truelayer_balance_santander_savings_account.yaml`](entitie
 
 <details><summary><strong>Starling Current Account Balance</strong></summary>
 
-**Entity ID: `var.var_truelayer_truelayer_balance_starling_current_account`**
+**Entity ID: `var.truelayer_balance_starling_current_account`**
 
 - Icon: [`mdi:bank`](https://pictogrammers.com/library/mdi/icon/bank/)
 - Unit Of Measurement: GBP
@@ -5782,42 +5596,12 @@ File: [`var/truelayer/truelayer_balance_starling_current_account.yaml`](entities
 
 <details><summary><strong>Starling Joint Account Balance</strong></summary>
 
-**Entity ID: `var.var_truelayer_truelayer_balance_starling_joint_account`**
+**Entity ID: `var.truelayer_balance_starling_joint_account`**
 
 - Icon: [`mdi:bank`](https://pictogrammers.com/library/mdi/icon/bank/)
 - Unit Of Measurement: GBP
 
 File: [`var/truelayer/truelayer_balance_starling_joint_account.yaml`](entities/var/truelayer/truelayer_balance_starling_joint_account.yaml)
 </details>
-
-</details>
-
-## Webhook
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Websocket Api
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Zeroconf
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Zha
-
-<details><summary><h3>Entities (0)</h3></summary>
-
-</details>
-
-## Zone
-
-<details><summary><h3>Entities (0)</h3></summary>
 
 </details>
