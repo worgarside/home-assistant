@@ -8,12 +8,12 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 wg-utilities = "^5.13.2"
-watchdog = "^3.0.0"
+watchdog = "^4.0.0"
 paramiko = "^3.4.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "*"
-watchdog = "^3.0.0"
+watchdog = "^4.0.0"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
