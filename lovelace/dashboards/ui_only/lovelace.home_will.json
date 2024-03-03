@@ -246,6 +246,9 @@
               "hour24": true,
               "points_per_hour": 20,
               "line_width": 2,
+              "min_bound_range": 10,
+              "lower_bound": "~20",
+              "upper_bound": "~20",
               "animate": true,
               "name": "Room Temperatures",
               "show": {
@@ -563,18 +566,6 @@
                   },
                   "double_tap_action": {
                     "action": "none"
-                  }
-                },
-                {
-                  "type": "custom:mini-media-player",
-                  "entity": "media_player.topaz_sr10",
-                  "artwork": "cover",
-                  "group": false,
-                  "info": "scroll",
-                  "hide": {
-                    "name": true,
-                    "power_state": false,
-                    "icon_state": false
                   }
                 }
               ]
