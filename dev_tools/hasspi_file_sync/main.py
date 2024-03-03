@@ -15,8 +15,7 @@ from watchdog.events import (
     DirMovedEvent,
     FileCreatedEvent,
     FileDeletedEvent,
-    FileModifiedEvent,
-    FileMovedEvent,
+    FileSystemEvent,
     FileSystemEventHandler,
 )
 from watchdog.observers import Observer
@@ -51,7 +50,7 @@ class FileSyncHandler(FileSystemEventHandler):
 
     def _delete_file_from_hasspi(
         self,
-        event: DirDeletedEvent | FileDeletedEvent,
+        event: FileSystemEvent,
     ) -> None:
         """Delete a file from the HAssPi.
 
@@ -113,9 +112,7 @@ class FileSyncHandler(FileSystemEventHandler):
 
     def _write_file_to_hasspi(
         self,
-        event: (
-            DirCreatedEvent | DirModifiedEvent | FileCreatedEvent | FileModifiedEvent
-        ),
+        event: FileSystemEvent,
     ) -> None:
         """Write a file to the HAssPi."""
         file_path = Path(event.src_path).relative_to(REPO_PATH)
@@ -144,33 +141,33 @@ class FileSyncHandler(FileSystemEventHandler):
             self.sftp_client.put(event.src_path, target_path.as_posix())
             LOGGER.info("Wrote %s -> %s", file_path.as_posix(), target_path.as_posix())
 
-    def on_created(self, event: DirCreatedEvent | FileCreatedEvent) -> None:
+    def on_created(self, event: DirCreatedEvent | FileSystemEvent) -> None:
         """Handle a file or directory being created."""
         self._write_file_to_hasspi(event)
 
-    def on_deleted(self, event: DirDeletedEvent | FileDeletedEvent) -> None:
+    def on_deleted(self, event: DirDeletedEvent | FileSystemEvent) -> None:
         """Handle a file or directory being deleted."""
         self._delete_file_from_hasspi(event)
 
-    def on_modified(self, event: DirModifiedEvent | FileModifiedEvent) -> None:
+    def on_modified(self, event: DirModifiedEvent | FileSystemEvent) -> None:
         """Handle a file or directory being modified."""
         self._write_file_to_hasspi(event)
 
-    def on_moved(self, event: DirMovedEvent | FileMovedEvent) -> None:
+    def on_moved(self, event: DirMovedEvent | FileSystemEvent) -> None:
         """Handle a file or directory being moved."""
         if self._path_is_ignored(src_path=event.src_path):
             LOGGER.debug("Ignoring %s move", event.src_path)
             return
 
         delete_event: DirDeletedEvent | FileDeletedEvent = (
-            DirDeletedEvent(event.src_path)  # type: ignore[no-untyped-call]
+            DirDeletedEvent(event.src_path)
             if event.is_directory
-            else FileDeletedEvent(event.src_path)  # type: ignore[no-untyped-call]
+            else FileDeletedEvent(event.src_path)
         )
         write_event: DirCreatedEvent | FileCreatedEvent = (
-            DirCreatedEvent(event.dest_path)  # type: ignore[no-untyped-call]
+            DirCreatedEvent(event.dest_path)
             if event.is_directory
-            else FileCreatedEvent(event.dest_path)  # type: ignore[no-untyped-call]
+            else FileCreatedEvent(event.dest_path)
         )
 
         self._delete_file_from_hasspi(delete_event)
