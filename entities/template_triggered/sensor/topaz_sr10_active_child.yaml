@@ -1,0 +1,93 @@
+---
+trigger:
+  - platform: state
+    entity_id: sensor.st_macbook_pro_active_audio_output
+    for:
+      seconds: 2.5
+
+  - platform: state
+    entity_id: sensor.wills_macbook_pro_active_audio_output
+    for:
+      seconds: 2.5
+
+  - platform: state
+    entity_id: input_select.topaz_sr10_source
+
+  - platform: state
+    entity_id: media_player.spotify_will
+    attribute: source
+
+  - platform: state
+    entity_id: media_player.topaz_sr10
+
+  - platform: state
+    entity_id: input_number.topaz_sr10_volume_level
+
+sensor:
+  - name: Topaz SR10 Active Child
+
+    unique_id: topaz_sr10_active_child
+
+    state: >-
+      {%
+        if is_state("input_select.topaz_sr10_source", "MP3/Aux") and (
+          (
+            is_state("sensor.wills_macbook_pro_active_audio_output", "FiiO USB DAC-E10") and
+            is_state_attr(
+              "media_player.spotify_will",
+              "source",
+              device_attr(device_id("sensor.wills_macbook_pro_active_audio_output"), "name")
+            )
+          ) or (
+            is_state("sensor.st_macbook_pro_active_audio_output", "FiiO USB DAC-E10") and
+            is_state_attr(
+              "media_player.spotify_will",
+              "source",
+              device_attr(device_id("sensor.st_macbook_pro_active_audio_output"), "name")
+            )
+          )
+        )
+      %}
+        media_player.spotify_will
+      {% else %}
+        unknown
+      {% endif %}
+
+    attributes:
+      current_source: >-
+        {% if this.state == "media_player.spotify_will" %}
+          Spotify ({{
+            iif(is_state_attr("media_player.spotify_will", "source", "K3QFMW509D"), "Work", "Will's")
+          }} MacBook Pro)
+        {%
+          elif (
+            is_state("input_select.topaz_sr10_source", "MP3/Aux") and
+            is_state("sensor.wills_macbook_pro_active_audio_output", "FiiO USB DAC-E10")
+          )
+        %}
+          {{ device_attr(device_id("sensor.wills_macbook_pro_active_audio_output"), "name") }}
+        {%
+          elif (
+            is_state("input_select.topaz_sr10_source", "MP3/Aux") and
+            is_state("sensor.st_macbook_pro_active_audio_output", "FiiO USB DAC-E10")
+          )
+        %}
+          {{ device_attr(device_id("sensor.st_macbook_pro_active_audio_output"), "name") }}
+        {% else %}
+          {{ state_attr("media_player.topaz_sr10", "source") }}
+        {% endif %}
+
+      source_list: "{{ state_attr('input_select.topaz_sr10_source', 'options') | default([]) }}"
+
+    # Converted from -80db - 0db range to 0.00 - 1.00 value
+      volume_level: >-
+        {{
+          iif(
+            (
+              not is_state("media_player.topaz_sr10", "off") and
+              is_number(states("input_number.topaz_sr10_volume_level"))
+            ),
+            ((states("input_number.topaz_sr10_volume_level") | int + 80) / 80) | round(2),
+            None
+          )
+        }}

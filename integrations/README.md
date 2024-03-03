@@ -4540,7 +4540,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (84)</h3></summary>
+<details><summary><h3>Entities (83)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -5186,16 +5186,6 @@ File: [`template/sensor/st_macbook_pro_last_update.yaml`](entities/template/sens
 File: [`template/sensor/sun_elevation.yaml`](entities/template/sensor/sun_elevation.yaml)
 </details>
 
-<details><summary><strong>Topaz SR10 Active Child</strong></summary>
-
-**Entity ID: `sensor.topaz_sr10_active_child`**
-
-- Icon:
-- Unit Of Measurement:
-
-File: [`template/sensor/topaz_sr10/topaz_sr10_active_child.yaml`](entities/template/sensor/topaz_sr10/topaz_sr10_active_child.yaml)
-</details>
-
 <details><summary><strong>Will's MacBook Pro Last Update</strong></summary>
 
 **Entity ID: `sensor.will_s_macbook_pro_last_update`**
@@ -5408,7 +5398,7 @@ File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/templat
 
 ## Template
 
-<details><summary><h3>Entities (4)</h3></summary>
+<details><summary><h3>Entities (5)</h3></summary>
 
 <details><summary><strong>Cosmo Room Lookup</strong></summary>
 
@@ -5446,6 +5436,16 @@ File: [`template_triggered/sensor/system_reloadable_files_changed.yaml`](entitie
 - Unit Of Measurement:
 
 File: [`template_triggered/sensor/system_restart_required_files_changed.yaml`](entities/template_triggered/sensor/system_restart_required_files_changed.yaml)
+</details>
+
+<details><summary><strong>Topaz SR10 Active Child</strong></summary>
+
+**Entity ID: `template.topaz_sr10_active_child`**
+
+- Icon:
+- Unit Of Measurement:
+
+File: [`template_triggered/sensor/topaz_sr10_active_child.yaml`](entities/template_triggered/sensor/topaz_sr10_active_child.yaml)
 </details>
 
 <details><summary><strong>Will's YAS-209 Bridge Input</strong></summary>
