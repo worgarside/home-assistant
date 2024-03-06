@@ -18,9 +18,9 @@ cards:
 #          - type: custom:spotify-card
 #            account: default
 #            name: Spotify
-#            spotify_entity: media_player.spotify_will_garside
+#            spotify_entity: media_player.spotify_will
           - type: media-control
-            entity: media_player.spotify_will_garside
+            entity: media_player.spotify_will
       default:
         type: markdown
         content: >
