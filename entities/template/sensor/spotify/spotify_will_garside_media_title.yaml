@@ -1,4 +1,4 @@
 ---
 name: Spotify Will Garside Media Title
 unique_id: spotify_will_garside_media_title
-state: "{{ state_attr('media_player.spotify_will_garside', 'media_title') }}"
+state: "{{ state_attr('media_player.spotify_will', 'media_title') }}"
