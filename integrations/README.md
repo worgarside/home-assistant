@@ -1026,7 +1026,7 @@ File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation
 
 - Alias: /remote/kitchen
 - ID: `remote_kitchen`
-- Mode: `parallel`
+- Mode: `queued`
 
 File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml)
 </details>

@@ -5,7 +5,7 @@ id: remote_kitchen
 
 description: Control all kitchen spotlights with a single Hue remote
 
-mode: parallel
+mode: queued
 
 trigger:
   - platform: event
@@ -17,7 +17,7 @@ variables:
   brightness_step_pct: 10
   color_temp_kelvin: 2500
   command: "{{ trigger.event.data.command }}"
-  turn_off_transition: 0.5
+  turn_off_transition: 1
 
 action:
   - choose:
