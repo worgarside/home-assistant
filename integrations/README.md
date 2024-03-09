@@ -13,6 +13,7 @@
 - Alias: /automation/auto-reload
 - ID: `automation_auto_reload`
 - Mode: `single`
+- Variables:
 
 File: [`automation/automation/auto_reload.yaml`](entities/automation/automation/auto_reload.yaml)
 </details>
@@ -26,6 +27,7 @@ File: [`automation/automation/auto_reload.yaml`](entities/automation/automation/
 - Alias: /automation/auto-reload-complete
 - ID: `automation_auto_reload_complete`
 - Mode: `single`
+- Variables:
 
 File: [`automation/automation/auto_reload_complete.yaml`](entities/automation/automation/auto_reload_complete.yaml)
 </details>
@@ -39,6 +41,7 @@ File: [`automation/automation/auto_reload_complete.yaml`](entities/automation/au
 - Alias: /binary-sensor/front-door/open
 - ID: `binary_sensor_front_door_open`
 - Mode: `single`
+- Variables:
 
 File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/binary_sensor/front_door/open.yaml)
 </details>
@@ -52,7 +55,14 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 - Alias: /binary-sensor/hallway-motion-sensor/on
 - ID: `binary_sensor_hallway_motion_sensor_on`
 - Mode: `single`
+- Variables:
 
+```json
+{
+  "brightness": "{% if is_state('binary_sensor.quiet_hours', \"on\") %}\n  63\n{% elif states('sensor.sun_elevation') | int(default=1) < 0 %}\n  127\n{% else %}\n  255\n{% endif %}",
+  "delay": 1
+}
+```
 File: [`automation/binary_sensor/hallway_motion_sensor/on.yaml`](entities/automation/binary_sensor/hallway_motion_sensor/on.yaml)
 </details>
 
@@ -65,6 +75,7 @@ File: [`automation/binary_sensor/hallway_motion_sensor/on.yaml`](entities/automa
 - Alias: /binary-sensor/hallway-motion-sensor/timeout
 - ID: `binary_sensor_hallway_motion_sensor_timeout`
 - Mode: `single`
+- Variables:
 
 File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/hallway_motion_sensor/timeout.yaml)
 </details>
@@ -78,7 +89,14 @@ File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/a
 - Alias: /binary-sensor/quiet-hours/on
 - ID: `binary_sensor_quiet_hours_on`
 - Mode: `single`
+- Variables:
 
+```json
+{
+  "now_iso": "{{ now().isoformat() }}",
+  "now_ts": "{{ ( now_iso | as_datetime ).timestamp() }}"
+}
+```
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
 </details>
 
@@ -91,7 +109,13 @@ File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binar
 - Alias: /cosmo/clean-due
 - ID: `cosmo_clean_due`
 - Mode: `parallel`
+- Variables:
 
+```json
+{
+  "room": "{{\n  trigger.entity_id.removeprefix('input_datetime.cosmo_next_').removesuffix('_clean_due')\n}}"
+}
+```
 File: [`automation/cosmo/clean_due.yaml`](entities/automation/cosmo/clean_due.yaml)
 </details>
 
@@ -104,6 +128,7 @@ File: [`automation/cosmo/clean_due.yaml`](entities/automation/cosmo/clean_due.ya
 - Alias: /cosmo/clean-flat
 - ID: `cosmo_clean_flat`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cosmo/clean_flat.yaml`](entities/automation/cosmo/clean_flat.yaml)
 </details>
@@ -117,6 +142,7 @@ File: [`automation/cosmo/clean_flat.yaml`](entities/automation/cosmo/clean_flat.
 - Alias: /cosmo/nightly-kitchen-clean
 - ID: `cosmo_nightly_kitchen_clean`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cosmo/nightly_kitchen_clean.yaml`](entities/automation/cosmo/nightly_kitchen_clean.yaml)
 </details>
@@ -130,6 +156,7 @@ File: [`automation/cosmo/nightly_kitchen_clean.yaml`](entities/automation/cosmo/
 - Alias: /cover/bedroom-blinds/close-after-sunset
 - ID: `cover_bedroom_blinds_close_after_sunset`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cover/bedroom_blinds/close_after_sunset.yaml`](entities/automation/cover/bedroom_blinds/close_after_sunset.yaml)
 </details>
@@ -143,6 +170,7 @@ File: [`automation/cover/bedroom_blinds/close_after_sunset.yaml`](entities/autom
 - Alias: /cover/bedroom-blinds/open-before-sunrise
 - ID: `cover_bedroom_blinds_open_before_sunrise`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cover/bedroom_blinds/open_before_sunrise.yaml`](entities/automation/cover/bedroom_blinds/open_before_sunrise.yaml)
 </details>
@@ -156,6 +184,7 @@ File: [`automation/cover/bedroom_blinds/open_before_sunrise.yaml`](entities/auto
 - Alias: /cover/bedroom-blinds/register-stop-state
 - ID: `cover_bedroom_blinds_register_stop_state`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cover/bedroom_blinds/register_stop_state.yaml`](entities/automation/cover/bedroom_blinds/register_stop_state.yaml)
 </details>
@@ -169,6 +198,7 @@ File: [`automation/cover/bedroom_blinds/register_stop_state.yaml`](entities/auto
 - Alias: /cover/lounge-blinds/close-after-sunset
 - ID: `cover_lounge_blinds_close_after_sunset`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cover/lounge_blinds/close_after_sunset.yaml`](entities/automation/cover/lounge_blinds/close_after_sunset.yaml)
 </details>
@@ -182,6 +212,7 @@ File: [`automation/cover/lounge_blinds/close_after_sunset.yaml`](entities/automa
 - Alias: /cover/lounge-blinds/open-before-sunrise
 - ID: `cover_lounge_blinds_open_before_sunrise`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cover/lounge_blinds/open_before_sunrise.yaml`](entities/automation/cover/lounge_blinds/open_before_sunrise.yaml)
 </details>
@@ -195,6 +226,7 @@ File: [`automation/cover/lounge_blinds/open_before_sunrise.yaml`](entities/autom
 - Alias: /cover/lounge-blinds/register-stop-state
 - ID: `cover_lounge_blinds_register_stop_state`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cover/lounge_blinds/register_stop_state.yaml`](entities/automation/cover/lounge_blinds/register_stop_state.yaml)
 </details>
@@ -208,6 +240,7 @@ File: [`automation/cover/lounge_blinds/register_stop_state.yaml`](entities/autom
 - Alias: /cover/office-blinds/close-after-sunset
 - ID: `cover_office_blinds_close_after_sunset`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cover/office_blinds/close_after_sunset.yaml`](entities/automation/cover/office_blinds/close_after_sunset.yaml)
 </details>
@@ -221,6 +254,7 @@ File: [`automation/cover/office_blinds/close_after_sunset.yaml`](entities/automa
 - Alias: /cover/office-blinds/open-before-sunrise
 - ID: `cover_office_blinds_open_before_sunrise`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cover/office_blinds/open_before_sunrise.yaml`](entities/automation/cover/office_blinds/open_before_sunrise.yaml)
 </details>
@@ -234,6 +268,7 @@ File: [`automation/cover/office_blinds/open_before_sunrise.yaml`](entities/autom
 - Alias: /cover/office-blinds/register-stop-state
 - ID: `cover_office_blinds_register_stop_state`
 - Mode: `restart`
+- Variables:
 
 File: [`automation/cover/office_blinds/register_stop_state.yaml`](entities/automation/cover/office_blinds/register_stop_state.yaml)
 </details>
@@ -247,6 +282,7 @@ File: [`automation/cover/office_blinds/register_stop_state.yaml`](entities/autom
 - Alias: /cover/office-desk/work-mode
 - ID: `cover_office_desk_work_mode`
 - Mode: `single`
+- Variables:
 
 File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/office_desk/work_mode.yaml)
 </details>
@@ -260,6 +296,7 @@ File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/
 - Alias: /crt-pi/crt-power-state-from-crt-pi
 - ID: `crt_pi_crt_power_state_from_crt_pi`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/crt_pi/crt_power_state_from_crt_pi.yaml`](entities/automation/crt_pi/crt_power_state_from_crt_pi.yaml)
 </details>
@@ -273,6 +310,7 @@ File: [`automation/crt_pi/crt_power_state_from_crt_pi.yaml`](entities/automation
 - Alias: /crt-pi/crt-power-state-from-ha
 - ID: `crt_pi_crt_power_state_from_ha`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/crt_pi/crt_power_state_from_ha.yaml`](entities/automation/crt_pi/crt_power_state_from_ha.yaml)
 </details>
@@ -286,6 +324,7 @@ File: [`automation/crt_pi/crt_power_state_from_ha.yaml`](entities/automation/crt
 - Alias: /crt-pi/display-source-changed
 - ID: `crt_pi_display_source_changed`
 - Mode: `restart`
+- Variables:
 
 File: [`automation/crt_pi/display_source_changed.yaml`](entities/automation/crt_pi/display_source_changed.yaml)
 </details>
@@ -299,6 +338,7 @@ File: [`automation/crt_pi/display_source_changed.yaml`](entities/automation/crt_
 - Alias: /crt-pi/fan-control
 - ID: `crt_pi_fan_control`
 - Mode: `restart`
+- Variables:
 
 File: [`automation/crt_pi/fan_control.yaml`](entities/automation/crt_pi/fan_control.yaml)
 </details>
@@ -312,6 +352,7 @@ File: [`automation/crt_pi/fan_control.yaml`](entities/automation/crt_pi/fan_cont
 - Alias: /crt-pi/force-update-mini-crt-power-state
 - ID: `crt_pi_force_update_mini_crt_power_state`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/crt_pi/force_update_mini_crt_power_state.yaml`](entities/automation/crt_pi/force_update_mini_crt_power_state.yaml)
 </details>
@@ -325,6 +366,7 @@ File: [`automation/crt_pi/force_update_mini_crt_power_state.yaml`](entities/auto
 - Alias: /crt-pi/mqtt-sync-mini-crt-fan
 - ID: `crt_pi_mqtt_sync_mini_crt_fan`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/crt_pi/mqtt_sync_mini_crt_fan.yaml`](entities/automation/crt_pi/mqtt_sync_mini_crt_fan.yaml)
 </details>
@@ -338,6 +380,7 @@ File: [`automation/crt_pi/mqtt_sync_mini_crt_fan.yaml`](entities/automation/crt_
 - Alias: /crt-pi/update-display
 - ID: `crt_pi_update_display`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/crt_pi/update_display.yaml`](entities/automation/crt_pi/update_display.yaml)
 </details>
@@ -351,6 +394,7 @@ File: [`automation/crt_pi/update_display.yaml`](entities/automation/crt_pi/updat
 - Alias: /hassio/auto-restart-mariadb-add-on
 - ID: `hassio_auto_restart_mariadb_add_on`
 - Mode: `single`
+- Variables:
 
 File: [`automation/hassio/auto_restart_mariadb_add_on.yaml`](entities/automation/hassio/auto_restart_mariadb_add_on.yaml)
 </details>
@@ -364,6 +408,7 @@ File: [`automation/hassio/auto_restart_mariadb_add_on.yaml`](entities/automation
 - Alias: /hassio/auto-restart-silicon-labs-multiprotocol-add-on
 - ID: `hassio_auto_restart_silicon_labs_multiprotocol_add_on`
 - Mode: `single`
+- Variables:
 
 File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](entities/automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml)
 </details>
@@ -377,6 +422,7 @@ File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](
 - Alias: /homeassistant/load-gh-cli-on-start
 - ID: `homeassistant_load_gh_cli_on_start`
 - Mode: `single`
+- Variables:
 
 File: [`automation/homeassistant/load_gh_cli_on_start.yaml`](entities/automation/homeassistant/load_gh_cli_on_start.yaml)
 </details>
@@ -390,6 +436,7 @@ File: [`automation/homeassistant/load_gh_cli_on_start.yaml`](entities/automation
 - Alias: /hue-remote/lounge/button-1/press
 - ID: `hue_remote_lounge_button_1_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/hue_remote/lounge/button_1/press.yaml`](entities/automation/hue_remote/lounge/button_1/press.yaml)
 </details>
@@ -403,6 +450,7 @@ File: [`automation/hue_remote/lounge/button_1/press.yaml`](entities/automation/h
 - Alias: /hue-remote/lounge/button-4/long-press
 - ID: `hue_remote_lounge_button_4_long_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/hue_remote/lounge/button_4/long_press.yaml`](entities/automation/hue_remote/lounge/button_4/long_press.yaml)
 </details>
@@ -416,6 +464,7 @@ File: [`automation/hue_remote/lounge/button_4/long_press.yaml`](entities/automat
 - Alias: /hue-remote/lounge/button-4/press
 - ID: `hue_remote_lounge_button_4_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/hue_remote/lounge/button_4/press.yaml`](entities/automation/hue_remote/lounge/button_4/press.yaml)
 </details>
@@ -429,6 +478,7 @@ File: [`automation/hue_remote/lounge/button_4/press.yaml`](entities/automation/h
 - Alias: /hue-remote/office/button-1/short-press
 - ID: `hue_remote_office_button_1_short_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/hue_remote/office/button_1/short_press.yaml`](entities/automation/hue_remote/office/button_1/short_press.yaml)
 </details>
@@ -442,6 +492,7 @@ File: [`automation/hue_remote/office/button_1/short_press.yaml`](entities/automa
 - Alias: /hue-remote/office/button-4/long-press
 - ID: `hue_remote_office_button_4_long_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/hue_remote/office/button_4/long_press.yaml`](entities/automation/hue_remote/office/button_4/long_press.yaml)
 </details>
@@ -455,6 +506,7 @@ File: [`automation/hue_remote/office/button_4/long_press.yaml`](entities/automat
 - Alias: /hue-remote/office/button-4/short-press
 - ID: `hue_remote_office_button_4_short_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/hue_remote/office/button_4/short_press.yaml`](entities/automation/hue_remote/office/button_4/short_press.yaml)
 </details>
@@ -468,6 +520,7 @@ File: [`automation/hue_remote/office/button_4/short_press.yaml`](entities/automa
 - Alias: /input-boolean/bedroom-entity-header/auto-turn-off
 - ID: `input_boolean_bedroom_entity_header_auto_turn_off`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/bedroom_entity_header/auto_turn_off.yaml`](entities/automation/input_boolean/bedroom_entity_header/auto_turn_off.yaml)
 </details>
@@ -481,6 +534,7 @@ File: [`automation/input_boolean/bedroom_entity_header/auto_turn_off.yaml`](enti
 - Alias: /input-boolean/bedroom-entity-header/auto-turn-on
 - ID: `input_boolean_bedroom_entity_header_auto_turn_on`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/bedroom_entity_header/auto_turn_on.yaml`](entities/automation/input_boolean/bedroom_entity_header/auto_turn_on.yaml)
 </details>
@@ -494,6 +548,7 @@ File: [`automation/input_boolean/bedroom_entity_header/auto_turn_on.yaml`](entit
 - Alias: /input-boolean/bedroom-entity-header/off
 - ID: `input_boolean_bedroom_entity_header_off`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/bedroom_entity_header/off.yaml`](entities/automation/input_boolean/bedroom_entity_header/off.yaml)
 </details>
@@ -507,6 +562,7 @@ File: [`automation/input_boolean/bedroom_entity_header/off.yaml`](entities/autom
 - Alias: /input-boolean/bedroom-entity-header/on
 - ID: `input_boolean_bedroom_entity_header_on`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/bedroom_entity_header/on.yaml`](entities/automation/input_boolean/bedroom_entity_header/on.yaml)
 </details>
@@ -520,6 +576,7 @@ File: [`automation/input_boolean/bedroom_entity_header/on.yaml`](entities/automa
 - Alias: /input-boolean/lounge-entity-header/auto-turn-off
 - ID: `input_boolean_lounge_entity_header_auto_turn_off`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/lounge_entity_header/auto_turn_off.yaml`](entities/automation/input_boolean/lounge_entity_header/auto_turn_off.yaml)
 </details>
@@ -533,6 +590,7 @@ File: [`automation/input_boolean/lounge_entity_header/auto_turn_off.yaml`](entit
 - Alias: /input-boolean/lounge-entity-header/auto-turn-on
 - ID: `input_boolean_lounge_entity_header_auto_turn_on`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/lounge_entity_header/auto_turn_on.yaml`](entities/automation/input_boolean/lounge_entity_header/auto_turn_on.yaml)
 </details>
@@ -546,6 +604,7 @@ File: [`automation/input_boolean/lounge_entity_header/auto_turn_on.yaml`](entiti
 - Alias: /input-boolean/lounge-entity-header/off
 - ID: `input_boolean_lounge_entity_header_off`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/lounge_entity_header/off.yaml`](entities/automation/input_boolean/lounge_entity_header/off.yaml)
 </details>
@@ -559,6 +618,7 @@ File: [`automation/input_boolean/lounge_entity_header/off.yaml`](entities/automa
 - Alias: /input-boolean/lounge-entity-header/on
 - ID: `input_boolean_lounge_entity_header_on`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/lounge_entity_header/on.yaml`](entities/automation/input_boolean/lounge_entity_header/on.yaml)
 </details>
@@ -572,6 +632,7 @@ File: [`automation/input_boolean/lounge_entity_header/on.yaml`](entities/automat
 - Alias: /input-boolean/office-entity-header/auto-turn-off
 - ID: `input_boolean_office_entity_header_auto_turn_off`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/office_entity_header/auto_turn_off.yaml`](entities/automation/input_boolean/office_entity_header/auto_turn_off.yaml)
 </details>
@@ -585,6 +646,7 @@ File: [`automation/input_boolean/office_entity_header/auto_turn_off.yaml`](entit
 - Alias: /input-boolean/office-entity-header/auto-turn-on
 - ID: `input_boolean_office_entity_header_auto_turn_on`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/office_entity_header/auto_turn_on.yaml`](entities/automation/input_boolean/office_entity_header/auto_turn_on.yaml)
 </details>
@@ -598,6 +660,7 @@ File: [`automation/input_boolean/office_entity_header/auto_turn_on.yaml`](entiti
 - Alias: /input-boolean/office-entity-header/off
 - ID: `input_boolean_office_entity_header_off`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/office_entity_header/off.yaml`](entities/automation/input_boolean/office_entity_header/off.yaml)
 </details>
@@ -611,6 +674,7 @@ File: [`automation/input_boolean/office_entity_header/off.yaml`](entities/automa
 - Alias: /input-boolean/office-entity-header/on
 - ID: `input_boolean_office_entity_header_on`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_boolean/office_entity_header/on.yaml`](entities/automation/input_boolean/office_entity_header/on.yaml)
 </details>
@@ -624,7 +688,14 @@ File: [`automation/input_boolean/office_entity_header/on.yaml`](entities/automat
 - Alias: /input-datetime/cosmo/next-clean-due/set
 - ID: `input_datetime_cosmo_next_clean_due_set`
 - Mode: `parallel`
+- Variables:
 
+```json
+{
+  "new_datetime": "{{ trigger.to_state.state }}",
+  "hour": "{{ (new_datetime | as_datetime).hour | int }}"
+}
+```
 File: [`automation/input_datetime/cosmo/next_clean_due/set.yaml`](entities/automation/input_datetime/cosmo/next_clean_due/set.yaml)
 </details>
 
@@ -637,7 +708,15 @@ File: [`automation/input_datetime/cosmo/next_clean_due/set.yaml`](entities/autom
 - Alias: /input-datetime/cosmo/room-last-cleaned/set
 - ID: `input_datetime_cosmo_room_last_cleaned_set`
 - Mode: `parallel`
+- Variables:
 
+```json
+{
+  "room": "{{ trigger.entity_id.removeprefix('input_datetime.cosmo_last_').removesuffix('_clean') }}",
+  "timeout_hours": "{{ states('input_number.cosmo_room_timeout_' ~ room) | int(72) }}",
+  "next_clean": "{{ trigger.to_state.state | as_datetime + timedelta(hours=timeout_hours) }}"
+}
+```
 File: [`automation/input_datetime/cosmo/room_last_cleaned/set.yaml`](entities/automation/input_datetime/cosmo/room_last_cleaned/set.yaml)
 </details>
 
@@ -650,6 +729,7 @@ File: [`automation/input_datetime/cosmo/room_last_cleaned/set.yaml`](entities/au
 - Alias: /input-datetime/home-assistant-start-time/set-datetime
 - ID: `input_datetime_home_assistant_start_time_set_datetime`
 - Mode: `single`
+- Variables:
 
 File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](entities/automation/input_datetime/home_assistant_start_time/set_datetime.yaml)
 </details>
@@ -663,7 +743,16 @@ File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](
 - Alias: /input-number/cosmo/room-timeout/set
 - ID: `input_number_cosmo_room_timeout_set`
 - Mode: `parallel`
+- Variables:
 
+```json
+{
+  "room": "{{ trigger.entity_id.removeprefix('input_number.cosmo_room_timeout_') }}",
+  "timeout_hours": "{{ trigger.to_state.state | int(72) }}",
+  "last_clean": "{{ states('input_datetime.cosmo_last_' ~ room ~ '_clean') }}",
+  "next_clean": "{{ last_clean | as_datetime + timedelta(hours=timeout_hours) }}"
+}
+```
 File: [`automation/input_number/cosmo/room_timeout/set.yaml`](entities/automation/input_number/cosmo/room_timeout/set.yaml)
 </details>
 
@@ -676,7 +765,15 @@ File: [`automation/input_number/cosmo/room_timeout/set.yaml`](entities/automatio
 - Alias: /input-number/prusa-i3-mk3/bed-target/set
 - ID: `input_number_prusa_i3_mk3_bed_target_set`
 - Mode: `restart`
+- Variables:
 
+```json
+{
+  "payload": {
+    "value": "{{ trigger.to_state.state | int(-1) }}"
+  }
+}
+```
 File: [`automation/input_number/prusa_i3_mk3/bed_target/set.yaml`](entities/automation/input_number/prusa_i3_mk3/bed_target/set.yaml)
 </details>
 
@@ -689,7 +786,15 @@ File: [`automation/input_number/prusa_i3_mk3/bed_target/set.yaml`](entities/auto
 - Alias: /input-number/prusa-i3-mk3/tool-0-target/set
 - ID: `input_number_prusa_i3_mk3_tool_0_target_set`
 - Mode: `restart`
+- Variables:
 
+```json
+{
+  "payload": {
+    "value": "{{ trigger.to_state.state | int(-1) }}"
+  }
+}
+```
 File: [`automation/input_number/prusa_i3_mk3/tool_0_target/set.yaml`](entities/automation/input_number/prusa_i3_mk3/tool_0_target/set.yaml)
 </details>
 
@@ -702,6 +807,7 @@ File: [`automation/input_number/prusa_i3_mk3/tool_0_target/set.yaml`](entities/a
 - Alias: /input-number/rgb-led-matrix-brightness/update-mtrxpi
 - ID: `input_number_rgb_led_matrix_brightness_update_mtrxpi`
 - Mode: `restart`
+- Variables:
 
 File: [`automation/input_number/rgb_led_matrix_brightness/update_mtrxpi.yaml`](entities/automation/input_number/rgb_led_matrix_brightness/update_mtrxpi.yaml)
 </details>
@@ -715,7 +821,15 @@ File: [`automation/input_number/rgb_led_matrix_brightness/update_mtrxpi.yaml`](e
 - Alias: /input-select/cosmo-entity-picture/set-options
 - ID: `input_select_cosmo_entity_picture_set_options`
 - Mode: `restart`
+- Variables:
 
+```json
+{
+  "image_directory_lovelace": "/local/images/cosmo/",
+  "image_directory_real": "/config/www/images/cosmo",
+  "null_image": "/local/images/null.webp"
+}
+```
 File: [`automation/input_select/cosmo_entity_picture/set_options.yaml`](entities/automation/input_select/cosmo_entity_picture/set_options.yaml)
 </details>
 
@@ -728,6 +842,7 @@ File: [`automation/input_select/cosmo_entity_picture/set_options.yaml`](entities
 - Alias: /input-select/target-git-branch/option-selected
 - ID: `input_select_target_git_branch_option_selected`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/input_select/target_git_branch/option_selected.yaml`](entities/automation/input_select/target_git_branch/option_selected.yaml)
 </details>
@@ -741,6 +856,7 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 - Alias: /input-select/target-git-branch/set-options
 - ID: `input_select_target_git_branch_set_options`
 - Mode: `restart`
+- Variables:
 
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
@@ -754,6 +870,7 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 - Alias: /media-player/topaz-sr10/off
 - ID: `media_player_topaz_sr10_off`
 - Mode: `single`
+- Variables:
 
 File: [`automation/media_player/topaz_sr10/off.yaml`](entities/automation/media_player/topaz_sr10/off.yaml)
 </details>
@@ -767,6 +884,7 @@ File: [`automation/media_player/topaz_sr10/off.yaml`](entities/automation/media_
 - Alias: /media-player/topaz-sr10/on
 - ID: `media_player_topaz_sr10_on`
 - Mode: `single`
+- Variables:
 
 File: [`automation/media_player/topaz_sr10/on.yaml`](entities/automation/media_player/topaz_sr10/on.yaml)
 </details>
@@ -780,6 +898,7 @@ File: [`automation/media_player/topaz_sr10/on.yaml`](entities/automation/media_p
 - Alias: /media-player/topaz-sr10/timeout
 - ID: `media_player_topaz_sr10_timeout`
 - Mode: `single`
+- Variables:
 
 File: [`automation/media_player/topaz_sr10/timeout.yaml`](entities/automation/media_player/topaz_sr10/timeout.yaml)
 </details>
@@ -793,7 +912,13 @@ File: [`automation/media_player/topaz_sr10/timeout.yaml`](entities/automation/me
 - Alias: /mobile-app-notification-action/cosmo/clean-now
 - ID: `mobile_app_notification_action_cosmo_clean_now`
 - Mode: `restart`
+- Variables:
 
+```json
+{
+  "room": "{{ trigger.event.data.action.split(':')[2] }}"
+}
+```
 File: [`automation/mobile_app_notification_action/cosmo/clean_now.yaml`](entities/automation/mobile_app_notification_action/cosmo/clean_now.yaml)
 </details>
 
@@ -806,7 +931,13 @@ File: [`automation/mobile_app_notification_action/cosmo/clean_now.yaml`](entitie
 - Alias: /mobile-app-notification-action/cosmo/ignore-request
 - ID: `mobile_app_notification_action_cosmo_ignore_request`
 - Mode: `restart`
+- Variables:
 
+```json
+{
+  "room": "{{ trigger.event.data.action.split(':')[2] }}"
+}
+```
 File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](entities/automation/mobile_app_notification_action/cosmo/ignore_request.yaml)
 </details>
 
@@ -819,7 +950,13 @@ File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](en
 - Alias: /mobile-app-notification-action/cosmo/remind-later
 - ID: `mobile_app_notification_action_cosmo_remind_later`
 - Mode: `restart`
+- Variables:
 
+```json
+{
+  "room": "{{ trigger.event.data.action.split(':')[2] }}"
+}
+```
 File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](entities/automation/mobile_app_notification_action/cosmo/remind_later.yaml)
 </details>
 
@@ -832,6 +969,7 @@ File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](enti
 - Alias: /mtrxpi/display-source-changed
 - ID: `mtrxpi_display_source_changed`
 - Mode: `restart`
+- Variables:
 
 File: [`automation/mtrxpi/display_source_changed.yaml`](entities/automation/mtrxpi/display_source_changed.yaml)
 </details>
@@ -845,6 +983,7 @@ File: [`automation/mtrxpi/display_source_changed.yaml`](entities/automation/mtrx
 - Alias: /mtrxpi/update-display
 - ID: `mtrxpi_update_display`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/mtrxpi/update_display.yaml`](entities/automation/mtrxpi/update_display.yaml)
 </details>
@@ -858,6 +997,7 @@ File: [`automation/mtrxpi/update_display.yaml`](entities/automation/mtrxpi/updat
 - Alias: /notification/credit-card-top-up/send
 - ID: `notification_credit_card_top_up_send`
 - Mode: `single`
+- Variables:
 
 File: [`automation/notification/credit_card_top_up/send.yaml`](entities/automation/notification/credit_card_top_up/send.yaml)
 </details>
@@ -871,6 +1011,7 @@ File: [`automation/notification/credit_card_top_up/send.yaml`](entities/automati
 - Alias: /notification/system/reload-required/send
 - ID: `notification_system_reload_required_send`
 - Mode: `restart`
+- Variables:
 
 File: [`automation/notification/system/reload_required/send.yaml`](entities/automation/notification/system/reload_required/send.yaml)
 </details>
@@ -884,6 +1025,7 @@ File: [`automation/notification/system/reload_required/send.yaml`](entities/auto
 - Alias: /notification/system/restart-required/send
 - ID: `notification_system_restart_required_send`
 - Mode: `single`
+- Variables:
 
 File: [`automation/notification/system/restart_required/send.yaml`](entities/automation/notification/system/restart_required/send.yaml)
 </details>
@@ -897,7 +1039,15 @@ File: [`automation/notification/system/restart_required/send.yaml`](entities/aut
 - Alias: /octopi/fan-control
 - ID: `octopi_fan_control`
 - Mode: `restart`
+- Variables:
 
+```json
+{
+  "cpu_temp": "{{ states('sensor.octopi_cpu_temperature') | float }}",
+  "threshold": "{{ states('input_number.octopi_fan_auto_on_threshold') | int}}",
+  "should_be_on": "{{ cpu_temp | float > threshold | int }}"
+}
+```
 File: [`automation/octopi/fan_control.yaml`](entities/automation/octopi/fan_control.yaml)
 </details>
 
@@ -910,6 +1060,7 @@ File: [`automation/octopi/fan_control.yaml`](entities/automation/octopi/fan_cont
 - Alias: /octopi/send-fan-mqtt-message
 - ID: `octopi_send_fan_mqtt_message`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/octopi/send_fan_mqtt_message.yaml`](entities/automation/octopi/send_fan_mqtt_message.yaml)
 </details>
@@ -923,6 +1074,7 @@ File: [`automation/octopi/send_fan_mqtt_message.yaml`](entities/automation/octop
 - Alias: /person/nobody-home
 - ID: `person_nobody_home`
 - Mode: `restart`
+- Variables:
 
 File: [`automation/person/nobody_home.yaml`](entities/automation/person/nobody_home.yaml)
 </details>
@@ -936,6 +1088,7 @@ File: [`automation/person/nobody_home.yaml`](entities/automation/person/nobody_h
 - Alias: /person/vic/toggle-adguard
 - ID: `person_vic_toggle_adguard`
 - Mode: `single`
+- Variables:
 
 File: [`automation/person/vic/toggle_adguard.yaml`](entities/automation/person/vic/toggle_adguard.yaml)
 </details>
@@ -949,6 +1102,7 @@ File: [`automation/person/vic/toggle_adguard.yaml`](entities/automation/person/v
 - Alias: /person/will/home
 - ID: `person_will_home`
 - Mode: `single`
+- Variables:
 
 File: [`automation/person/will/home.yaml`](entities/automation/person/will/home.yaml)
 </details>
@@ -962,6 +1116,7 @@ File: [`automation/person/will/home.yaml`](entities/automation/person/will/home.
 - Alias: /person/will/leaving-work
 - ID: `person_will_leaving_work`
 - Mode: `single`
+- Variables:
 
 File: [`automation/person/will/leaving_work.yaml`](entities/automation/person/will/leaving_work.yaml)
 </details>
@@ -975,6 +1130,7 @@ File: [`automation/person/will/leaving_work.yaml`](entities/automation/person/wi
 - Alias: /prusa-i3-mk3/enclosure/send-fan-mqtt-message
 - ID: `prusa_i3_mk3_enclosure_send_fan_mqtt_message`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/prusa_i3_mk3/enclosure/send_fan_mqtt_message.yaml`](entities/automation/prusa_i3_mk3/enclosure/send_fan_mqtt_message.yaml)
 </details>
@@ -988,6 +1144,7 @@ File: [`automation/prusa_i3_mk3/enclosure/send_fan_mqtt_message.yaml`](entities/
 - Alias: /remote/bedroom-blinds/double-press
 - ID: `remote_bedroom_blinds_double_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/bedroom_blinds/double_press.yaml`](entities/automation/remote/bedroom_blinds/double_press.yaml)
 </details>
@@ -1001,6 +1158,7 @@ File: [`automation/remote/bedroom_blinds/double_press.yaml`](entities/automation
 - Alias: /remote/bedroom-blinds/hold
 - ID: `remote_bedroom_blinds_hold`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/bedroom_blinds/hold.yaml`](entities/automation/remote/bedroom_blinds/hold.yaml)
 </details>
@@ -1014,6 +1172,7 @@ File: [`automation/remote/bedroom_blinds/hold.yaml`](entities/automation/remote/
 - Alias: /remote/bedroom-blinds/single-press
 - ID: `remote_bedroom_blinds_single_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation/remote/bedroom_blinds/single_press.yaml)
 </details>
@@ -1027,6 +1186,7 @@ File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation
 - Alias: /remote/lounge-desk/double-press
 - ID: `remote_lounge_desk_double_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/lounge_desk/double_press.yaml`](entities/automation/remote/lounge_desk/double_press.yaml)
 </details>
@@ -1040,6 +1200,7 @@ File: [`automation/remote/lounge_desk/double_press.yaml`](entities/automation/re
 - Alias: /remote/lounge-desk/hold
 - ID: `remote_lounge_desk_hold`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/lounge_desk/hold.yaml`](entities/automation/remote/lounge_desk/hold.yaml)
 </details>
@@ -1053,6 +1214,7 @@ File: [`automation/remote/lounge_desk/hold.yaml`](entities/automation/remote/lou
 - Alias: /remote/lounge-desk/single-press
 - ID: `remote_lounge_desk_single_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/lounge_desk/single_press.yaml`](entities/automation/remote/lounge_desk/single_press.yaml)
 </details>
@@ -1066,6 +1228,7 @@ File: [`automation/remote/lounge_desk/single_press.yaml`](entities/automation/re
 - Alias: /remote/office/double-press
 - ID: `remote_office_double_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/office/double_press.yaml`](entities/automation/remote/office/double_press.yaml)
 </details>
@@ -1079,6 +1242,7 @@ File: [`automation/remote/office/double_press.yaml`](entities/automation/remote/
 - Alias: /remote/office/hold
 - ID: `remote_office_hold`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/office/hold.yaml`](entities/automation/remote/office/hold.yaml)
 </details>
@@ -1092,6 +1256,7 @@ File: [`automation/remote/office/hold.yaml`](entities/automation/remote/office/h
 - Alias: /remote/office/single-press
 - ID: `remote_office_single_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/office/single_press.yaml`](entities/automation/remote/office/single_press.yaml)
 </details>
@@ -1105,6 +1270,7 @@ File: [`automation/remote/office/single_press.yaml`](entities/automation/remote/
 - Alias: /remote/office-desk/double-press
 - ID: `remote_office_desk_double_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/office_desk/double_press.yaml`](entities/automation/remote/office_desk/double_press.yaml)
 </details>
@@ -1118,6 +1284,7 @@ File: [`automation/remote/office_desk/double_press.yaml`](entities/automation/re
 - Alias: /remote/office-desk/hold
 - ID: `remote_office_desk_hold`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/office_desk/hold.yaml`](entities/automation/remote/office_desk/hold.yaml)
 </details>
@@ -1131,6 +1298,7 @@ File: [`automation/remote/office_desk/hold.yaml`](entities/automation/remote/off
 - Alias: /remote/office-desk/single-press
 - ID: `remote_office_desk_single_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/office_desk/single_press.yaml`](entities/automation/remote/office_desk/single_press.yaml)
 </details>
@@ -1144,6 +1312,7 @@ File: [`automation/remote/office_desk/single_press.yaml`](entities/automation/re
 - Alias: /remote/prusa-i3-mk3-power/double-press
 - ID: `remote_prusa_i3_mk3_power_double_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/double_press.yaml)
 </details>
@@ -1157,6 +1326,7 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 - Alias: /remote/prusa-i3-mk3-power/single-press
 - ID: `remote_prusa_i3_mk3_power_single_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
 </details>
@@ -1170,6 +1340,7 @@ File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automa
 - Alias: /remote/vic-s-remote/double-press
 - ID: `remote_vic_s_remote_double_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/vic_s_remote/double_press.yaml`](entities/automation/remote/vic_s_remote/double_press.yaml)
 </details>
@@ -1183,6 +1354,7 @@ File: [`automation/remote/vic_s_remote/double_press.yaml`](entities/automation/r
 - Alias: /remote/vic-s-remote/hold
 - ID: `remote_vic_s_remote_hold`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/vic_s_remote/hold.yaml`](entities/automation/remote/vic_s_remote/hold.yaml)
 </details>
@@ -1196,6 +1368,7 @@ File: [`automation/remote/vic_s_remote/hold.yaml`](entities/automation/remote/vi
 - Alias: /remote/vic-s-remote/single-press
 - ID: `remote_vic_s_remote_single_press`
 - Mode: `single`
+- Variables:
 
 File: [`automation/remote/vic_s_remote/single_press.yaml`](entities/automation/remote/vic_s_remote/single_press.yaml)
 </details>
@@ -1209,6 +1382,7 @@ File: [`automation/remote/vic_s_remote/single_press.yaml`](entities/automation/r
 - Alias: /script/auto-reload
 - ID: `script_auto_reload`
 - Mode: `single`
+- Variables:
 
 File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_reload.yaml)
 </details>
@@ -1222,6 +1396,7 @@ File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_rel
 - Alias: /script/crt-pi-update-display/mqtt-trigger
 - ID: `script_crt_pi_update_display_mqtt_trigger`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/automation/script/crt_pi_update_display/mqtt_trigger.yaml)
 </details>
@@ -1235,6 +1410,7 @@ File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/aut
 - Alias: /script/mtrxpi-update-display/mqtt-trigger
 - ID: `script_mtrxpi_update_display_mqtt_trigger`
 - Mode: `single`
+- Variables:
 
 File: [`automation/script/mtrxpi_update_display/mqtt_trigger.yaml`](entities/automation/script/mtrxpi_update_display/mqtt_trigger.yaml)
 </details>
@@ -1248,6 +1424,7 @@ File: [`automation/script/mtrxpi_update_display/mqtt_trigger.yaml`](entities/aut
 - Alias: /sensor/octoprint-bed-target/set
 - ID: `sensor_octoprint_bed_target_set`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/sensor/octoprint_bed_target/set.yaml`](entities/automation/sensor/octoprint_bed_target/set.yaml)
 </details>
@@ -1261,6 +1438,7 @@ File: [`automation/sensor/octoprint_bed_target/set.yaml`](entities/automation/se
 - Alias: /sensor/octoprint-tool-0-target/set
 - ID: `sensor_octoprint_tool_0_target_set`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/sensor/octoprint_tool_0_target/set.yaml`](entities/automation/sensor/octoprint_tool_0_target/set.yaml)
 </details>
@@ -1274,6 +1452,7 @@ File: [`automation/sensor/octoprint_tool_0_target/set.yaml`](entities/automation
 - Alias: /switch/bedroom-scent-plug/turn-off-after-an-hour
 - ID: `switch_bedroom_scent_plug_turn_off_after_an_hour`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/bedroom_scent_plug/turn_off_after_an_hour.yaml`](entities/automation/switch/bedroom_scent_plug/turn_off_after_an_hour.yaml)
 </details>
@@ -1287,6 +1466,7 @@ File: [`automation/switch/bedroom_scent_plug/turn_off_after_an_hour.yaml`](entit
 - Alias: /switch/bedroom-scent-plug/turn-off-when-window-opened
 - ID: `switch_bedroom_scent_plug_turn_off_when_window_opened`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/bedroom_scent_plug/turn_off_when_window_opened.yaml`](entities/automation/switch/bedroom_scent_plug/turn_off_when_window_opened.yaml)
 </details>
@@ -1300,6 +1480,7 @@ File: [`automation/switch/bedroom_scent_plug/turn_off_when_window_opened.yaml`](
 - Alias: /switch/christmas-tree/turn-on
 - ID: `switch_christmas_tree_turn_on`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/christmas_tree/turn_on.yaml`](entities/automation/switch/christmas_tree/turn_on.yaml)
 </details>
@@ -1313,6 +1494,7 @@ File: [`automation/switch/christmas_tree/turn_on.yaml`](entities/automation/swit
 - Alias: /switch/lounge-scent-plug/turn-off-after-an-hour
 - ID: `switch_lounge_scent_plug_turn_off_after_an_hour`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/lounge_scent_plug/turn_off_after_an_hour.yaml`](entities/automation/switch/lounge_scent_plug/turn_off_after_an_hour.yaml)
 </details>
@@ -1326,6 +1508,7 @@ File: [`automation/switch/lounge_scent_plug/turn_off_after_an_hour.yaml`](entiti
 - Alias: /switch/lounge-scent-plug/turn-off-when-window-opened
 - ID: `switch_lounge_scent_plug_turn_off_when_window_opened`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/lounge_scent_plug/turn_off_when_window_opened.yaml`](entities/automation/switch/lounge_scent_plug/turn_off_when_window_opened.yaml)
 </details>
@@ -1339,6 +1522,7 @@ File: [`automation/switch/lounge_scent_plug/turn_off_when_window_opened.yaml`](e
 - Alias: /switch/prusa-i3-mk3-power/off
 - ID: `switch_prusa_i3_mk3_power_off`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/switch/prusa_i3_mk3_power/off.yaml)
 </details>
@@ -1352,6 +1536,7 @@ File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/swit
 - Alias: /switch/st-macbook-pro/turn-off-when-battery-full
 - ID: `switch_st_macbook_pro_turn_off_when_battery_full`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/st_macbook_pro/turn_off_when_battery_full.yaml`](entities/automation/switch/st_macbook_pro/turn_off_when_battery_full.yaml)
 </details>
@@ -1365,6 +1550,7 @@ File: [`automation/switch/st_macbook_pro/turn_off_when_battery_full.yaml`](entit
 - Alias: /switch/st-macbook-pro/turn-off-when-undocked
 - ID: `switch_st_macbook_pro_turn_off_when_undocked`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/st_macbook_pro/turn_off_when_undocked.yaml`](entities/automation/switch/st_macbook_pro/turn_off_when_undocked.yaml)
 </details>
@@ -1378,6 +1564,7 @@ File: [`automation/switch/st_macbook_pro/turn_off_when_undocked.yaml`](entities/
 - Alias: /switch/st-macbook-pro/turn-on-when-battery-low
 - ID: `switch_st_macbook_pro_turn_on_when_battery_low`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/st_macbook_pro/turn_on_when_battery_low.yaml`](entities/automation/switch/st_macbook_pro/turn_on_when_battery_low.yaml)
 </details>
@@ -1391,6 +1578,7 @@ File: [`automation/switch/st_macbook_pro/turn_on_when_battery_low.yaml`](entitie
 - Alias: /switch/st-macbook-pro/turn-on-when-docked
 - ID: `switch_st_macbook_pro_turn_on_when_docked`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/st_macbook_pro/turn_on_when_docked.yaml`](entities/automation/switch/st_macbook_pro/turn_on_when_docked.yaml)
 </details>
@@ -1404,6 +1592,7 @@ File: [`automation/switch/st_macbook_pro/turn_on_when_docked.yaml`](entities/aut
 - Alias: /switch/will-s-macbook-pro/turn-off-when-battery-full
 - ID: `switch_will_s_macbook_pro_turn_off_when_battery_full`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/will_s_macbook_pro/turn_off_when_battery_full.yaml`](entities/automation/switch/will_s_macbook_pro/turn_off_when_battery_full.yaml)
 </details>
@@ -1417,6 +1606,7 @@ File: [`automation/switch/will_s_macbook_pro/turn_off_when_battery_full.yaml`](e
 - Alias: /switch/will-s-macbook-pro/turn-off-when-undocked
 - ID: `switch_will_s_macbook_pro_turn_off_when_undocked`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/will_s_macbook_pro/turn_off_when_undocked.yaml`](entities/automation/switch/will_s_macbook_pro/turn_off_when_undocked.yaml)
 </details>
@@ -1430,6 +1620,7 @@ File: [`automation/switch/will_s_macbook_pro/turn_off_when_undocked.yaml`](entit
 - Alias: /switch/will-s-macbook-pro/turn-on-when-battery-low
 - ID: `switch_will_s_macbook_pro_turn_on_when_battery_low`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/will_s_macbook_pro/turn_on_when_battery_low.yaml`](entities/automation/switch/will_s_macbook_pro/turn_on_when_battery_low.yaml)
 </details>
@@ -1443,6 +1634,7 @@ File: [`automation/switch/will_s_macbook_pro/turn_on_when_battery_low.yaml`](ent
 - Alias: /switch/will-s-macbook-pro/turn-on-when-docked
 - ID: `switch_will_s_macbook_pro_turn_on_when_docked`
 - Mode: `single`
+- Variables:
 
 File: [`automation/switch/will_s_macbook_pro/turn_on_when_docked.yaml`](entities/automation/switch/will_s_macbook_pro/turn_on_when_docked.yaml)
 </details>
@@ -1456,6 +1648,7 @@ File: [`automation/switch/will_s_macbook_pro/turn_on_when_docked.yaml`](entities
 - Alias: /tag/cosmo/bedroom
 - ID: `tag_cosmo_bedroom`
 - Mode: `single`
+- Variables:
 
 File: [`automation/tag/cosmo/bedroom.yaml`](entities/automation/tag/cosmo/bedroom.yaml)
 </details>
@@ -1469,6 +1662,7 @@ File: [`automation/tag/cosmo/bedroom.yaml`](entities/automation/tag/cosmo/bedroo
 - Alias: /tag/cosmo/en-suite
 - ID: `tag_cosmo_en_suite`
 - Mode: `single`
+- Variables:
 
 File: [`automation/tag/cosmo/en_suite.yaml`](entities/automation/tag/cosmo/en_suite.yaml)
 </details>
@@ -1482,6 +1676,7 @@ File: [`automation/tag/cosmo/en_suite.yaml`](entities/automation/tag/cosmo/en_su
 - Alias: /tag/cosmo/hallway
 - ID: `tag_cosmo_hallway`
 - Mode: `single`
+- Variables:
 
 File: [`automation/tag/cosmo/hallway.yaml`](entities/automation/tag/cosmo/hallway.yaml)
 </details>
@@ -1495,6 +1690,7 @@ File: [`automation/tag/cosmo/hallway.yaml`](entities/automation/tag/cosmo/hallwa
 - Alias: /tag/cosmo/kitchen
 - ID: `tag_cosmo_kitchen`
 - Mode: `single`
+- Variables:
 
 File: [`automation/tag/cosmo/kitchen.yaml`](entities/automation/tag/cosmo/kitchen.yaml)
 </details>
@@ -1508,6 +1704,7 @@ File: [`automation/tag/cosmo/kitchen.yaml`](entities/automation/tag/cosmo/kitche
 - Alias: /tag/cosmo/lounge
 - ID: `tag_cosmo_lounge`
 - Mode: `single`
+- Variables:
 
 File: [`automation/tag/cosmo/lounge.yaml`](entities/automation/tag/cosmo/lounge.yaml)
 </details>
@@ -1521,6 +1718,7 @@ File: [`automation/tag/cosmo/lounge.yaml`](entities/automation/tag/cosmo/lounge.
 - Alias: /tag/cosmo/office
 - ID: `tag_cosmo_office`
 - Mode: `single`
+- Variables:
 
 File: [`automation/tag/cosmo/office.yaml`](entities/automation/tag/cosmo/office.yaml)
 </details>
@@ -1534,6 +1732,7 @@ File: [`automation/tag/cosmo/office.yaml`](entities/automation/tag/cosmo/office.
 - Alias: /tag/cosmo/return-to-base
 - ID: `tag_cosmo_return_to_base`
 - Mode: `single`
+- Variables:
 
 File: [`automation/tag/cosmo/return_to_base.yaml`](entities/automation/tag/cosmo/return_to_base.yaml)
 </details>
@@ -1547,6 +1746,7 @@ File: [`automation/tag/cosmo/return_to_base.yaml`](entities/automation/tag/cosmo
 - Alias: /webhook/get-latest-appdaemon-release
 - ID: `webhook_get_latest_appdaemon_release`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/webhook/get_latest_appdaemon_release.yaml`](entities/automation/webhook/get_latest_appdaemon_release.yaml)
 </details>
@@ -1560,7 +1760,17 @@ File: [`automation/webhook/get_latest_appdaemon_release.yaml`](entities/automati
 - Alias: /webhook/git-branch-or-tag-created
 - ID: `webhook_git_branch_or_tag_created`
 - Mode: `queued`
+- Variables:
 
+```json
+{
+  "img_url": "{{ trigger.json[\"sender\"][\"avatar_url\"] }}",
+  "repository": "{{ trigger.json[\"repository\"][\"name\"] }}",
+  "ref": "{{ trigger.json[\"ref\"] }}",
+  "ref_type": "{{ trigger.json[\"ref_type\"] }}",
+  "repo_url": "{{ trigger.json[\"repository\"][\"html_url\"] }}"
+}
+```
 File: [`automation/webhook/git_branch_or_tag_created.yaml`](entities/automation/webhook/git_branch_or_tag_created.yaml)
 </details>
 
@@ -1573,7 +1783,16 @@ File: [`automation/webhook/git_branch_or_tag_created.yaml`](entities/automation/
 - Alias: /webhook/git-branch-or-tag-deleted
 - ID: `webhook_git_branch_or_tag_deleted`
 - Mode: `queued`
+- Variables:
 
+```json
+{
+  "img_url": "{{ trigger.json[\"sender\"][\"avatar_url\"] }}",
+  "repository": "{{ trigger.json[\"repository\"][\"name\"] }}",
+  "ref": "{{ trigger.json[\"ref\"] }}",
+  "ref_type": "{{ trigger.json[\"ref_type\"] }}"
+}
+```
 File: [`automation/webhook/git_branch_or_tag_deleted.yaml`](entities/automation/webhook/git_branch_or_tag_deleted.yaml)
 </details>
 
@@ -1586,6 +1805,7 @@ File: [`automation/webhook/git_branch_or_tag_deleted.yaml`](entities/automation/
 - Alias: /webhook/update-pull-request-sensor
 - ID: `webhook_update_pull_request_sensor`
 - Mode: `queued`
+- Variables:
 
 File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation/webhook/update_pull_request_sensor.yaml)
 </details>
@@ -3799,6 +4019,7 @@ File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb
 
 - Fields:
 - Mode: `single`
+- Variables:
 
 File: [`script/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/script/appdaemon_trigger/ad_monzo_auto_save.yaml)
 </details>
@@ -3834,7 +4055,21 @@ File: [`script/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/script/appda
 ```
 
 - Mode: `restart`
+- Variables:
 
+```json
+{
+  "doors_open_timeout": "{{ doors_open_timeout | default(120) | int(120) }}",
+  "repeats": "{{ max(min(repeats | default(3) | int(3), 3), 1) }}",
+  "suction_level": "{{ max(min(suction_level | default(2) | int(2), 3), 0) }}",
+  "true_response": {
+    "value": true
+  },
+  "false_response": {
+    "value": false
+  }
+}
+```
 File: [`script/cosmo/cosmo_clean_room.yaml`](entities/script/cosmo/cosmo_clean_room.yaml)
 </details>
 
@@ -3856,7 +4091,13 @@ File: [`script/cosmo/cosmo_clean_room.yaml`](entities/script/cosmo/cosmo_clean_r
 ```
 
 - Mode: `parallel`
+- Variables:
 
+```json
+{
+  "result": "{% set lookup = states('sensor.cosmo_room_lookup') | from_json %} {% set key = lookup_value | string | lower | regex_replace(\"[^A-Za-z0-9]\", \"\") %}\n{% if key in lookup %}\n  {{ lookup[key] }}\n{% else %}\n  ERROR: {{ key | default(\"null\") }} not found in lookup: {{ lookup | tojson(indent=2) }}\n{% endif %}"
+}
+```
 File: [`script/cosmo/cosmo_get_room_id_or_name.yaml`](entities/script/cosmo/cosmo_get_room_id_or_name.yaml)
 </details>
 
@@ -3878,6 +4119,7 @@ File: [`script/cosmo/cosmo_get_room_id_or_name.yaml`](entities/script/cosmo/cosm
 ```
 
 - Mode: `queued`
+- Variables:
 
 File: [`script/cosmo/cosmo_send_clean_requests.yaml`](entities/script/cosmo/cosmo_send_clean_requests.yaml)
 </details>
@@ -3900,6 +4142,7 @@ File: [`script/cosmo/cosmo_send_clean_requests.yaml`](entities/script/cosmo/cosm
 ```
 
 - Mode: `restart`
+- Variables:
 
 File: [`script/cosmo/cosmo_set_cleaning_sequence.yaml`](entities/script/cosmo/cosmo_set_cleaning_sequence.yaml)
 </details>
@@ -3928,6 +4171,7 @@ File: [`script/cosmo/cosmo_set_cleaning_sequence.yaml`](entities/script/cosmo/co
 ```
 
 - Mode: `single`
+- Variables:
 
 File: [`script/cosmo/cosmo_tag_scanned.yaml`](entities/script/cosmo/cosmo_tag_scanned.yaml)
 </details>
@@ -3940,6 +4184,7 @@ File: [`script/cosmo/cosmo_tag_scanned.yaml`](entities/script/cosmo/cosmo_tag_sc
 
 - Fields:
 - Mode: `parallel`
+- Variables:
 
 File: [`script/crt_pi_update_display.yaml`](entities/script/crt_pi_update_display.yaml)
 </details>
@@ -3970,6 +4215,7 @@ File: [`script/crt_pi_update_display.yaml`](entities/script/crt_pi_update_displa
 ```
 
 - Mode: `parallel`
+- Variables:
 
 File: [`script/debug_persistent_notification.yaml`](entities/script/debug_persistent_notification.yaml)
 </details>
@@ -3996,7 +4242,15 @@ File: [`script/debug_persistent_notification.yaml`](entities/script/debug_persis
 ```
 
 - Mode: `parallel`
+- Variables:
 
+```json
+{
+  "entity_domain": "{{ calling_entity.split('.')[0] }}",
+  "entity_id": "{{ calling_entity.split('.')[1] }}",
+  "timestamp": "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+}
+```
 File: [`script/functions/log_exception.yaml`](entities/script/functions/log_exception.yaml)
 </details>
 
@@ -4027,7 +4281,13 @@ File: [`script/functions/log_exception.yaml`](entities/script/functions/log_exce
 ```
 
 - Mode: `parallel`
+- Variables:
 
+```json
+{
+  "suppress_debug_notifications": "{{ suppress_debug_notifications | default(false) }}"
+}
+```
 File: [`script/functions/run_dynamic_script.yaml`](entities/script/functions/run_dynamic_script.yaml)
 </details>
 
@@ -4049,6 +4309,7 @@ File: [`script/functions/run_dynamic_script.yaml`](entities/script/functions/run
 ```
 
 - Mode: `restart`
+- Variables:
 
 File: [`script/input_select/target_git_branch/target_git_branch_set_options.yaml`](entities/script/input_select/target_git_branch/target_git_branch_set_options.yaml)
 </details>
@@ -4079,7 +4340,16 @@ File: [`script/input_select/target_git_branch/target_git_branch_set_options.yaml
 ```
 
 - Mode: `queued`
+- Variables:
 
+```json
+{
+  "delay_ms": "{{ delay_ms | default(500) | int(500) }}",
+  "true_response": {
+    "value": true
+  }
+}
+```
 File: [`script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml`](entities/script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml)
 </details>
 
@@ -4091,6 +4361,7 @@ File: [`script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml`](
 
 - Fields:
 - Mode: `single`
+- Variables:
 
 File: [`script/media_player/topaz_sr10/topaz_sr10_turn_off.yaml`](entities/script/media_player/topaz_sr10/topaz_sr10_turn_off.yaml)
 </details>
@@ -4113,6 +4384,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_turn_off.yaml`](entities/scrip
 ```
 
 - Mode: `restart`
+- Variables:
 
 File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml)
 </details>
@@ -4125,6 +4397,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
 
 - Fields:
 - Mode: `restart`
+- Variables:
 
 File: [`script/mtrxpi_update_display.yaml`](entities/script/mtrxpi_update_display.yaml)
 </details>
@@ -4169,7 +4442,18 @@ File: [`script/mtrxpi_update_display.yaml`](entities/script/mtrxpi_update_displa
 ```
 
 - Mode: `queued`
+- Variables:
 
+```json
+{
+  "actions": "{{ actions | default([]) }}",
+  "clear_notification": "{{\n  message | default('') == 'clear_notification' or\n  clear_notification | default(False) | bool\n}}",
+  "notification_id": "{% if clear_notification %}\n  {{ notification_id | default(None) }}\n{% else %}\n  {{ notification_id | default('notify_vic_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}\n{% endif %}",
+  "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message }}\n{% endif %}",
+  "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
+  "notif_title": "{{ title | default(' ') }}"
+}
+```
 File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
 </details>
 
@@ -4214,7 +4498,18 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
 ```
 
 - Mode: `queued`
+- Variables:
 
+```json
+{
+  "actions": "{{ actions | default([]) }}",
+  "clear_notification": "{{\n  message | default('') == 'clear_notification' or\n  clear_notification | bool\n}}",
+  "notification_id": "{% if clear_notification %}\n  {{ notification_id | default(None) }}\n{% else %}\n  {{ notification_id | default('notify_will_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}\n{% endif %}",
+  "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message }}\n{% endif %}",
+  "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
+  "notif_title": "{{ title | default(' ') }}"
+}
+```
 File: [`script/notify_will.yaml`](entities/script/notify_will.yaml)
 </details>
 
@@ -4244,6 +4539,7 @@ File: [`script/notify_will.yaml`](entities/script/notify_will.yaml)
 ```
 
 - Mode: `restart`
+- Variables:
 
 File: [`script/office_desk_set_position.yaml`](entities/script/office_desk_set_position.yaml)
 </details>
@@ -4267,6 +4563,7 @@ File: [`script/office_desk_set_position.yaml`](entities/script/office_desk_set_p
 ```
 
 - Mode: `single`
+- Variables:
 
 File: [`script/office_desk_sitting_mode.yaml`](entities/script/office_desk_sitting_mode.yaml)
 </details>
@@ -4290,6 +4587,7 @@ File: [`script/office_desk_sitting_mode.yaml`](entities/script/office_desk_sitti
 ```
 
 - Mode: `single`
+- Variables:
 
 File: [`script/office_desk_standing_mode.yaml`](entities/script/office_desk_standing_mode.yaml)
 </details>
@@ -4302,6 +4600,7 @@ File: [`script/office_desk_standing_mode.yaml`](entities/script/office_desk_stan
 
 - Fields:
 - Mode: `restart`
+- Variables:
 
 File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_moving.yaml)
 </details>
@@ -4314,6 +4613,7 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
 
 - Fields:
 - Mode: `single`
+- Variables:
 
 File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/git/git_pull.yaml)
 </details>
@@ -4326,6 +4626,7 @@ File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/g
 
 - Fields:
 - Mode: `single`
+- Variables:
 
 File: [`script/system/reset_reloadable_files_changed.yaml`](entities/script/system/reset_reloadable_files_changed.yaml)
 </details>
@@ -4338,6 +4639,7 @@ File: [`script/system/reset_reloadable_files_changed.yaml`](entities/script/syst
 
 - Fields:
 - Mode: `single`
+- Variables:
 
 File: [`script/system/reset_restart_required_files_changed.yaml`](entities/script/system/reset_restart_required_files_changed.yaml)
 </details>
@@ -4364,6 +4666,7 @@ File: [`script/system/reset_restart_required_files_changed.yaml`](entities/scrip
 ```
 
 - Mode: `parallel`
+- Variables:
 
 File: [`script/system/script_response_debugger.yaml`](entities/script/system/script_response_debugger.yaml)
 </details>
@@ -4411,6 +4714,7 @@ File: [`script/system/script_response_debugger.yaml`](entities/script/system/scr
 ```
 
 - Mode: `restart`
+- Variables:
 
 File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_room.yaml)
 </details>

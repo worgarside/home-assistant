@@ -21,6 +21,7 @@ packages:
         - alias
         - id
         - mode
+        - variables
 
     validation:
       should_exist:
@@ -208,8 +209,9 @@ packages:
       name: alias
       description: description
       extra:
-        - $.fields
+        - fields
         - mode
+        - variables
 
     validation:
       should_exist:
