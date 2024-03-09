@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (122)</h3></summary>
+<details><summary><h3>Entities (123)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1016,6 +1016,19 @@ File: [`automation/remote/bedroom_blinds/hold.yaml`](entities/automation/remote/
 - Mode: `single`
 
 File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation/remote/bedroom_blinds/single_press.yaml)
+</details>
+
+<details><summary><code>/remote/kitchen</code></summary>
+
+**Entity ID: `automation.remote_kitchen`**
+
+> Control all kitchen spotlights with a single Hue remote
+
+- Alias: /remote/kitchen
+- ID: `remote_kitchen`
+- Mode: `parallel`
+
+File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml)
 </details>
 
 <details><summary><code>/remote/lounge-desk/double-press</code></summary>
