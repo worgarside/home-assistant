@@ -1186,7 +1186,16 @@ File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation
 - Alias: /remote/kitchen
 - ID: `remote_kitchen`
 - Mode: `queued`
+- Variables:
 
+```json
+{
+  "brightness_step_pct": 10,
+  "color_temp_kelvin": 2500,
+  "command": "{{ trigger.event.data.command }}",
+  "turn_off_transition": 1
+}
+```
 File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml)
 </details>
 
