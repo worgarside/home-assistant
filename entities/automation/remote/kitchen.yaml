@@ -1,0 +1,139 @@
+---
+alias: /remote/kitchen
+
+id: remote_kitchen
+
+description: Control all kitchen spotlights with a single Hue remote
+
+mode: queued
+
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_ieee: 00:17:88:01:06:34:c5:98
+
+variables:
+  brightness_step_pct: 10
+  color_temp_kelvin: 2500
+  command: "{{ trigger.event.data.command }}"
+  turn_off_transition: 1
+
+action:
+  - choose:
+      - alias: Single Press | Button 1
+        conditions: "{{ command == 'on_press' }}"
+
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.kitchen_spotlight_1
+                - light.kitchen_spotlight_2
+                - light.kitchen_spotlight_3
+                - light.kitchen_spotlight_4
+                - light.kitchen_spotlight_5
+                - light.kitchen_spotlight_6
+                - light.kitchen_spotlight_7
+                - light.kitchen_spotlight_8
+            data:
+              brightness_pct: 100
+              color_temp_kelvin: "{{ color_temp_kelvin }}"
+
+      - alias: Single Press | Button 2
+        conditions: "{{ command == 'up_press' }}"
+
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.kitchen_spotlight_1
+                - light.kitchen_spotlight_2
+                - light.kitchen_spotlight_3
+                - light.kitchen_spotlight_4
+                - light.kitchen_spotlight_5
+                - light.kitchen_spotlight_6
+                - light.kitchen_spotlight_7
+                - light.kitchen_spotlight_8
+            data:
+              brightness_step_pct: "{{ brightness_step_pct }}"
+
+      - alias: Single Press | Button 3
+        conditions: "{{ command == 'down_press' }}"
+
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.kitchen_spotlight_1
+                - light.kitchen_spotlight_2
+                - light.kitchen_spotlight_3
+                - light.kitchen_spotlight_4
+                - light.kitchen_spotlight_5
+                - light.kitchen_spotlight_6
+                - light.kitchen_spotlight_7
+                - light.kitchen_spotlight_8
+            data:
+              brightness_step_pct: "-{{ brightness_step_pct }}"
+
+      - alias: Single Press | Button 4
+        conditions: "{{ command == 'off_press' }}"
+
+        sequence:
+          - service: light.turn_off
+            target:
+              entity_id:
+                - light.kitchen_spotlight_6
+                - light.kitchen_spotlight_7
+                - light.kitchen_spotlight_8
+            data:
+              transition: "{{ turn_off_transition }}"
+
+          - service: light.turn_off
+            target:
+              entity_id:
+                - light.kitchen_spotlight_4
+                - light.kitchen_spotlight_5
+            data:
+              transition: "{{ turn_off_transition }}"
+
+          - service: light.turn_off
+            target:
+              entity_id:
+                - light.kitchen_spotlight_2
+                - light.kitchen_spotlight_3
+            data:
+              transition: "{{ turn_off_transition }}"
+
+          - service: light.turn_off
+            target:
+              entity_id:
+                - light.kitchen_spotlight_1
+            data:
+              transition: "{{ turn_off_transition }}"
+
+      - alias: Double Press | Button 1
+        conditions: "{{ command == 'on_double_press' }}"
+
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.kitchen_spotlight_6
+                - light.kitchen_spotlight_7
+            data:
+              brightness_pct: 100
+              color_temp_kelvin: "{{ color_temp_kelvin }}"
+
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.kitchen_spotlight_1
+                - light.kitchen_spotlight_2
+                - light.kitchen_spotlight_3
+                - light.kitchen_spotlight_4
+                - light.kitchen_spotlight_5
+                - light.kitchen_spotlight_8
+            data:
+              brightness_pct: 10
+              color_temp_kelvin: "{{ color_temp_kelvin }}"
