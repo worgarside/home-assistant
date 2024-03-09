@@ -27,7 +27,15 @@ action:
         sequence:
           - service: light.turn_on
             target:
-              area_id: kitchen
+              entity_id:
+                - light.kitchen_spotlight_1
+                - light.kitchen_spotlight_2
+                - light.kitchen_spotlight_3
+                - light.kitchen_spotlight_4
+                - light.kitchen_spotlight_5
+                - light.kitchen_spotlight_6
+                - light.kitchen_spotlight_7
+                - light.kitchen_spotlight_8
             data:
               brightness_pct: 100
               color_temp_kelvin: "{{ color_temp_kelvin }}"
@@ -38,7 +46,15 @@ action:
         sequence:
           - service: light.turn_on
             target:
-              area_id: kitchen
+              entity_id:
+                - light.kitchen_spotlight_1
+                - light.kitchen_spotlight_2
+                - light.kitchen_spotlight_3
+                - light.kitchen_spotlight_4
+                - light.kitchen_spotlight_5
+                - light.kitchen_spotlight_6
+                - light.kitchen_spotlight_7
+                - light.kitchen_spotlight_8
             data:
               brightness_step_pct: "{{ brightness_step_pct }}"
 
@@ -48,7 +64,15 @@ action:
         sequence:
           - service: light.turn_on
             target:
-              area_id: kitchen
+              entity_id:
+                - light.kitchen_spotlight_1
+                - light.kitchen_spotlight_2
+                - light.kitchen_spotlight_3
+                - light.kitchen_spotlight_4
+                - light.kitchen_spotlight_5
+                - light.kitchen_spotlight_6
+                - light.kitchen_spotlight_7
+                - light.kitchen_spotlight_8
             data:
               brightness_step_pct: "-{{ brightness_step_pct }}"
 
