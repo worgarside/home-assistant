@@ -1193,7 +1193,8 @@ File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation
   "brightness_step_pct": 10,
   "color_temp_kelvin": 2500,
   "command": "{{ trigger.event.data.command }}",
-  "turn_off_transition": 1
+  "turn_off_transition": 1,
+  "swap_primary_mode": "{{ states('sensor.sun_elevation') | int(0) < -3 }}"
 }
 ```
 File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml)

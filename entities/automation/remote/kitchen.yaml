@@ -18,11 +18,19 @@ variables:
   color_temp_kelvin: 2500
   command: "{{ trigger.event.data.command }}"
   turn_off_transition: 1
+  swap_primary_mode: "{{ states('sensor.sun_elevation') | int(0) < -3 }}"
 
 action:
   - choose:
-      - alias: Single Press | Button 1
-        conditions: "{{ command == 'on_press' }}"
+      - alias: Single Press | Button 1 OR Double Press | Button 1 (when swap_primary_mode is true)
+        conditions: >-
+          {{
+            (
+              command is match('^on(_double)?_press$')
+            ) and (
+              swap_primary_mode == ('double' in command)
+            )
+          }}
 
         sequence:
           - service: light.turn_on
@@ -112,8 +120,15 @@ action:
             data:
               transition: "{{ turn_off_transition }}"
 
-      - alias: Double Press | Button 1
-        conditions: "{{ command == 'on_double_press' }}"
+      - alias: Double Press | Button 1 OR Single Press | Button 1 (when swap_primary_mode is true)
+        conditions: >-
+          {{
+            (
+              command is match('^on(_double)?_press$')
+            ) and (
+              swap_primary_mode == ('double' not in command)
+            )
+          }}
 
         sequence:
           - service: light.turn_on
