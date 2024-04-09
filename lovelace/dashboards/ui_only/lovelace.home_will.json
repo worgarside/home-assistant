@@ -209,7 +209,7 @@
             },
             {
               "type": "custom:clock-weather-card",
-              "entity": "sensor.met_office_fulham_weather_3_hourly",
+              "entity": "weather.met_office_fulham_daily",
               "date_pattern": "DDDD",
               "time_pattern": "HH:mm:ss"
             },
