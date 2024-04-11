@@ -1,0 +1,8 @@
+---
+name: Before Midday
+
+unique_id: before_midday
+
+icon: mdi:clock-time-twelve-outline
+
+state: "{{ states('sensor.time') < '12:00' }}"
