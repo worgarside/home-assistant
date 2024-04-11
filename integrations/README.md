@@ -4867,7 +4867,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (83)</h3></summary>
+<details><summary><h3>Entities (84)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -5541,6 +5541,16 @@ File: [`template/sensor/yas_209_local_ip.yaml`](entities/template/sensor/yas_209
 - Unit Of Measurement:
 
 File: [`template/binary_sensor/bank_holiday.yaml`](entities/template/binary_sensor/bank_holiday.yaml)
+</details>
+
+<details><summary><strong>Before Midday</strong></summary>
+
+**Entity ID: `binary_sensor.before_midday`**
+
+- Icon: [`mdi:clock-time-twelve-outline`](https://pictogrammers.com/library/mdi/icon/clock-time-twelve-outline/)
+- Unit Of Measurement:
+
+File: [`template/binary_sensor/before_midday.yaml`](entities/template/binary_sensor/before_midday.yaml)
 </details>
 
 <details><summary><strong>Hifi System: Is Volume Muted</strong></summary>
