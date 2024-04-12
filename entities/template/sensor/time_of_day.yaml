@@ -4,8 +4,8 @@ name: Time of Day
 unique_id: time_of_day
 
 state: >-
-  {% set sun = states('sensor.sun_elevation') | float(None) %}
-  {% set hour = states('sensor.current_hour') | int(None) %}
+  {% set sun = states("sensor.sun_elevation") | float(None) %}
+  {% set hour = states("sensor.current_hour") | int(None) %}
 
   {% if sun is none or hour is none %}
     Unknown
@@ -34,3 +34,19 @@ state: >-
   {% else %}
     Night
   {% endif %}
+
+icon: >-
+  {{
+    {
+      "Morning": "mdi:weather-sunset-up",
+      "Afternoon": "mdi:weather-sunny",
+      "Evening": "mdi:weather-sunset-down",
+      "Sunrise": "mdi:weather-sunset-up",
+      "Sunset": "mdi:weather-sunset-down",
+      "Twilight": "mdi:weather-sunset",
+      "Dawn": "mdi:weather-sunset-up",
+      "Dusk": "mdi:weather-sunset-down",
+      "Night": "mdi:weather-night",
+      "Unknown": "mdi:help-rhombus-outline"
+    }[this.state]
+  }}

@@ -5543,7 +5543,20 @@ File: [`template/sensor/sun_elevation.yaml`](entities/template/sensor/sun_elevat
 
 **Entity ID: `sensor.time_of_day`**
 
-- Icon:
+- Icon: {{
+  {
+    "Morning": "mdi:weather-sunset-up",
+    "Afternoon": "mdi:weather-sunny",
+    "Evening": "mdi:weather-sunset-down",
+    "Sunrise": "mdi:weather-sunset-up",
+    "Sunset": "mdi:weather-sunset-down",
+    "Twilight": "mdi:weather-sunset",
+    "Dawn": "mdi:weather-sunset-up",
+    "Dusk": "mdi:weather-sunset-down",
+    "Night": "mdi:weather-night",
+    "Unknown": "mdi:help-rhombus-outline"
+  }[this.state]
+}}
 - Unit Of Measurement:
 
 File: [`template/sensor/time_of_day.yaml`](entities/template/sensor/time_of_day.yaml)
