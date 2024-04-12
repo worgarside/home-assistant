@@ -5183,7 +5183,23 @@ File: [`template/sensor/address_line_1.yaml`](entities/template/sensor/address_l
 
 **Entity ID: `sensor.current_hour`**
 
-- Icon:
+- Icon: {%
+  set hours = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+  ] * 2
+%}
+mdi:clock-time-{{ hours[this.state | int(12) - 1] }}-outline
 - Unit Of Measurement:
 
 File: [`template/sensor/current_hour.yaml`](entities/template/sensor/current_hour.yaml)
