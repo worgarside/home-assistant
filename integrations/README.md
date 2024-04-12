@@ -4032,7 +4032,7 @@ File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb
 
 ## Script
 
-<details><summary><h3>Entities (26)</h3></summary>
+<details><summary><h3>Entities (27)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -4374,6 +4374,25 @@ File: [`script/input_select/target_git_branch/target_git_branch_set_options.yaml
 }
 ```
 File: [`script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml`](entities/script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml)
+</details>
+
+<details><summary><strong>Turn On Kitchen Spotlights</strong></summary>
+
+**Entity ID: `script.turn_on_kitchen_spotlights`**
+
+> Turn on the kitchen lights at varying brightness levels, depending on the time of day
+
+- Fields:
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "color_temp_kelvin": 2500,
+  "time_of_day": "{{ states('sensor.time_of_day') }}"
+}
+```
+File: [`script/light/kitchen_spotlights/turn_on_kitchen_spotlights.yaml`](entities/script/light/kitchen_spotlights/turn_on_kitchen_spotlights.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10: Turn Off</strong></summary>
