@@ -4867,7 +4867,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (84)</h3></summary>
+<details><summary><h3>Entities (85)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -5177,6 +5177,32 @@ File: [`template/sensor/addon_stats/yas_209_bridge_memory_usage.yaml`](entities/
 - Unit Of Measurement:
 
 File: [`template/sensor/address_line_1.yaml`](entities/template/sensor/address_line_1.yaml)
+</details>
+
+<details><summary><strong>Current Hour</strong></summary>
+
+**Entity ID: `sensor.current_hour`**
+
+- Icon: {%
+  set hours = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+  ] * 2
+%}
+mdi:clock-time-{{ hours[this.state | int(12) - 1] }}-outline
+- Unit Of Measurement:
+
+File: [`template/sensor/current_hour.yaml`](entities/template/sensor/current_hour.yaml)
 </details>
 
 <details><summary><strong>Vic and Will Distance</strong></summary>
