@@ -1,0 +1,36 @@
+---
+name: Time of Day
+
+unique_id: time_of_day
+
+state: >-
+  {% set sun = states('sensor.sun_elevation') | float(None) %}
+  {% set hour = states('sensor.current_hour') | int(None) %}
+
+  {% if sun is none or hour is none %}
+    Unknown
+  {% elif sun >= 2 %}
+    {% if hour < 12 %}
+      Morning
+    {% elif hour < 18 %}
+      Afternoon
+    {% else %}
+      Evening
+    {% endif %}
+  {% elif sun >= -1 %}
+    {% if hour < 12 %}
+      Sunrise
+    {% else %}
+      Sunset
+    {% endif %}
+  {% elif sun >= -6 %}
+    Twilight
+  {% elif sun >= -18 %}
+    {% if hour < 12 %}
+      Dawn
+    {% else %}
+      Dusk
+    {% endif %}
+  {% else %}
+    Night
+  {% endif %}

@@ -4867,7 +4867,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (85)</h3></summary>
+<details><summary><h3>Entities (86)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -5537,6 +5537,16 @@ File: [`template/sensor/st_macbook_pro_last_update.yaml`](entities/template/sens
 - Unit Of Measurement: °
 
 File: [`template/sensor/sun_elevation.yaml`](entities/template/sensor/sun_elevation.yaml)
+</details>
+
+<details><summary><strong>Time of Day</strong></summary>
+
+**Entity ID: `sensor.time_of_day`**
+
+- Icon:
+- Unit Of Measurement:
+
+File: [`template/sensor/time_of_day.yaml`](entities/template/sensor/time_of_day.yaml)
 </details>
 
 <details><summary><strong>Will's MacBook Pro Last Update</strong></summary>
