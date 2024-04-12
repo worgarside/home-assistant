@@ -6,7 +6,7 @@ unique_id: current_hour
 state: "{{ states('sensor.time').split(':')[0] }}"
 
 icon_template: >-
-  {% 
+  {%
     set hours = [
       "one",
       "two",
