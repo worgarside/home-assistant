@@ -1,0 +1,26 @@
+---
+name: Current Hour
+
+unique_id: current_hour
+
+state: "{{ states('sensor.time').split(':')[0] }}"
+
+icon: >-
+  {%
+    set hours = [
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+      "ten",
+      "eleven",
+      "twelve",
+    ] * 2
+  %}
+
+  mdi:clock-time-{{ hours[this.state | int(12) - 1] }}-outline
