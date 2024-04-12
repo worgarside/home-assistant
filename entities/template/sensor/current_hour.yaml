@@ -20,19 +20,7 @@ icon_template: >-
       "ten",
       "eleven",
       "twelve",
-      "one",
-      "two",
-      "three",
-      "four",
-      "five",
-      "six",
-      "seven",
-      "eight",
-      "nine",
-      "ten",
-      "eleven",
-      "twelve",
-    ]
+    ] * 2
   %}
 
   mdi:clock-time-{{ hours[this.state | int(12) - 1] }}-outline
