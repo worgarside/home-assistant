@@ -50,3 +50,16 @@ icon: >-
       "Unknown": "mdi:help-rhombus-outline"
     }[this.state]
   }}
+
+attributes:
+  states:
+    - Morning
+    - Afternoon
+    - Evening
+    - Sunrise
+    - Sunset
+    - Twilight
+    - Dawn
+    - Dusk
+    - Night
+    - Unknown
