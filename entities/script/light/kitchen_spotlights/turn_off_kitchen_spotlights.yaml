@@ -7,9 +7,6 @@ mode: single
 
 max_exceeded: silent
 
-variables:
-  turn_off_transition: 1
-
 sequence:
   - service: var.set
     target:
@@ -17,35 +14,9 @@ sequence:
     data:
       value: "off"
 
-  - parallel:
-      - service: light.turn_off
-        target:
-          entity_id:
-            - light.kitchen_spotlight_8
-            - light.kitchen_spotlight_7
-            - light.kitchen_spotlight_6
-        data:
-          transition: "{{ turn_off_transition }}"
-
-      - service: light.turn_off
-        target:
-          entity_id:
-            - light.kitchen_spotlight_5
-            - light.kitchen_spotlight_4
-        data:
-          transition: "{{ turn_off_transition * 2 }}"
-
-      - service: light.turn_off
-        target:
-          entity_id:
-            - light.kitchen_spotlight_3
-            - light.kitchen_spotlight_2
-        data:
-          transition: "{{ turn_off_transition * 3 }}"
-
-      - service: light.turn_off
-        target:
-          entity_id:
-            - light.kitchen_spotlight_1
-        data:
-          transition: "{{ turn_off_transition * 4 }}"
+  - repeat:
+      count: 8
+      sequence:
+        - service: light.turn_off
+          target:
+            entity_id: light.kitchen_spotlight_{{ 9 - repeat.index }}

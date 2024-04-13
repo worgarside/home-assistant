@@ -4388,11 +4388,6 @@ File: [`script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml`](
 - Mode: `single`
 - Variables:
 
-```json
-{
-  "turn_off_transition": 1
-}
-```
 File: [`script/light/kitchen_spotlights/turn_off_kitchen_spotlights.yaml`](entities/script/light/kitchen_spotlights/turn_off_kitchen_spotlights.yaml)
 </details>
 

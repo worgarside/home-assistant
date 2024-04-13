@@ -33,7 +33,7 @@ sequence:
       sequence:
         - service: light.turn_on
           target:
-            entity_id: "light.kitchen_spotlight_{{ 9 - repeat.index }}"
+            entity_id: light.kitchen_spotlight_{{ 9 - repeat.index }}
           data:
             brightness_pct: "{{ brightness_values[-repeat.index] }}"
             color_temp_kelvin: "{{ color_temp_kelvin }}"
