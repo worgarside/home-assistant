@@ -18,120 +18,23 @@ sequence:
     data:
       value: "on"
 
-  - alias: Get brightness configuration
-    choose:
-      - conditions: "{{ time_of_day == 'Night' }}"
-        sequence:
-          - variables:
-              l1: 10
-              l2: 10
-              l3: 10
-              l4: 10
-              l5: 10
-              l6: 10
-              l7: 10
-              l8: 10
+  - variables:
+      brightness_values: >-
+        {% set l1, l2, l3, l4, l5, l6, l7, l8 =
+           ( 10,  10,  10,  10,  10,  10,  10,  10) if time_of_day == 'Night' else
+           ( 10,  10,  10,  10,  10,  50,  50,  10) if time_of_day in ('Dawn', 'Dusk') else
+           ( 10,  10,  10,  10,  10,  75,  75,  10) if time_of_day == 'Twilight' else
+           ( 50,  50,  50,  50,  50,  85,  85,  50) if time_of_day in ('Sunrise', 'Sunset') else
+           (100, 100, 100, 100, 100, 100, 100, 100)
+        %}
+        {{ [l1, l2, l3, l4, l5, l6, l7, l8] }}
 
-      - conditions: "{{ time_of_day in ('Dawn', 'Dusk') }}"
-        sequence:
-          - variables:
-              l1: 10
-              l2: 10
-              l3: 10
-              l4: 10
-              l5: 10
-              l6: 50
-              l7: 50
-              l8: 10
-
-      - conditions: "{{ time_of_day == 'Twilight' }}"
-        sequence:
-          - variables:
-              l1: 10
-              l2: 10
-              l3: 10
-              l4: 10
-              l5: 10
-              l6: 75
-              l7: 75
-              l8: 10
-
-      - conditions: "{{ time_of_day in ('Sunrise', 'Sunset') }}"
-        sequence:
-          - variables:
-              l1: 50
-              l2: 50
-              l3: 50
-              l4: 50
-              l5: 50
-              l6: 85
-              l7: 85
-              l8: 50
-
-    default:
-      - variables:
-          l1: 100
-          l2: 100
-          l3: 100
-          l4: 100
-          l5: 100
-          l6: 100
-          l7: 100
-          l8: 100
-
-  - parallel:
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_spotlight_1
-        data:
-          brightness_pct: "{{ l1 }}"
-          color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_spotlight_2
-        data:
-          brightness_pct: "{{ l2 }}"
-          color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_spotlight_3
-        data:
-          brightness_pct: "{{ l3 }}"
-          color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_spotlight_4
-        data:
-          brightness_pct: "{{ l4 }}"
-          color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_spotlight_5
-        data:
-          brightness_pct: "{{ l5 }}"
-          color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_spotlight_6
-        data:
-          brightness_pct: "{{ l6 }}"
-          color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_spotlight_7
-        data:
-          brightness_pct: "{{ l7 }}"
-          color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_spotlight_8
-        data:
-          brightness_pct: "{{ l8 }}"
-          color_temp_kelvin: "{{ color_temp_kelvin }}"
+  - repeat:
+      count: 8
+      sequence:
+        - service: light.turn_on
+          target:
+            entity_id: "light.kitchen_spotlight_{{ repeat.index }}"
+          data:
+            brightness_pct: "{{ brightness_values[repeat.index - 1] }}"
+            color_temp_kelvin: "{{ color_temp_kelvin }}"
