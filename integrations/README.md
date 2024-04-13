@@ -5183,7 +5183,10 @@ File: [`template/sensor/address_line_1.yaml`](entities/template/sensor/address_l
 
 **Entity ID: `sensor.current_hour`**
 
-- Icon: {%
+- Icon:
+
+```jinja
+{%
   set hours = [
     "one",
     "two",
@@ -5200,6 +5203,8 @@ File: [`template/sensor/address_line_1.yaml`](entities/template/sensor/address_l
   ] * 2
 %}
 mdi:clock-time-{{ hours[this.state | int(12) - 1] }}-outline
+```
+
 - Unit Of Measurement:
 
 File: [`template/sensor/current_hour.yaml`](entities/template/sensor/current_hour.yaml)
@@ -5339,7 +5344,10 @@ File: [`template/sensor/entity_counts/count_input_texts.yaml`](entities/template
 
 **Entity ID: `sensor.count_low_batteries`**
 
-- Icon: {% set ns = namespace(total=0, count=0, average=0) %}
+- Icon:
+
+```jinja
+{% set ns = namespace(total=0, count=0, average=0) %}
 {% for value in this.attributes.entities | default([]) | map(attribute="state") %}
   {% set ns.total = ns.total + value %}
   {% set ns.count = ns.count + 1 %}
@@ -5350,6 +5358,9 @@ File: [`template/sensor/entity_counts/count_input_texts.yaml`](entities/template
 {% else %}
   mdi:battery
 {% endif %}
+
+```
+
 - Unit Of Measurement:
 
 File: [`template/sensor/entity_counts/count_low_batteries.yaml`](entities/template/sensor/entity_counts/count_low_batteries.yaml)
@@ -5459,11 +5470,17 @@ File: [`template/sensor/office_desk/office_desk_standing_mode_percentage.yaml`](
 
 **Entity ID: `sensor.office_desk_standing_time_remaining`**
 
-- Icon: {% if this.state | float(default=0.0) > 0 %}
+- Icon:
+
+```jinja
+{% if this.state | float(default=0.0) > 0 %}
   mdi:timer-sand
 {% else %}
   mdi:timer-sand-complete
 {% endif %}
+
+```
+
 - Unit Of Measurement: `min`
 
 File: [`template/sensor/office_desk/office_desk_standing_time_remaining.yaml`](entities/template/sensor/office_desk/office_desk_standing_time_remaining.yaml)
@@ -5543,7 +5560,10 @@ File: [`template/sensor/sun_elevation.yaml`](entities/template/sensor/sun_elevat
 
 **Entity ID: `sensor.time_of_day`**
 
-- Icon: {{
+- Icon:
+
+```jinja
+{{
   {
     "Morning": "mdi:weather-sunset-up",
     "Afternoon": "mdi:weather-sunny",
@@ -5557,6 +5577,8 @@ File: [`template/sensor/sun_elevation.yaml`](entities/template/sensor/sun_elevat
     "Unknown": "mdi:help-rhombus-outline"
   }[this.state]
 }}
+```
+
 - Unit Of Measurement:
 
 File: [`template/sensor/time_of_day.yaml`](entities/template/sensor/time_of_day.yaml)
@@ -5626,11 +5648,17 @@ File: [`template/binary_sensor/office_desk_occupied.yaml`](entities/template/bin
 
 **Entity ID: `binary_sensor.office_desk_standing_and_occupied`**
 
-- Icon: {% if this.state == "on" %}
+- Icon:
+
+```jinja
+{% if this.state == "on" %}
   mdi:human-handsup
 {% else %}
   mdi:human-handsdown
 {% endif %}
+
+```
+
 - Unit Of Measurement:
 
 File: [`template/binary_sensor/office_desk_standing_and_occupied.yaml`](entities/template/binary_sensor/office_desk_standing_and_occupied.yaml)
@@ -5640,11 +5668,17 @@ File: [`template/binary_sensor/office_desk_standing_and_occupied.yaml`](entities
 
 **Entity ID: `binary_sensor.office_desk_standing_mode`**
 
-- Icon: {% if this.state == "on" %}
+- Icon:
+
+```jinja
+{% if this.state == "on" %}
   phu:desk-stand-alt
 {% else %}
   phu:desk-sit-alt
 {% endif %}
+
+```
+
 - Unit Of Measurement:
 
 File: [`template/binary_sensor/office_desk_standing_mode.yaml`](entities/template/binary_sensor/office_desk_standing_mode.yaml)
@@ -5800,11 +5834,17 @@ File: [`template_triggered/sensor/cosmo_room_lookup.yaml`](entities/template_tri
 
 **Entity ID: `template.system_reloadable_files_changed`**
 
-- Icon: {% if this.state | int(default=0) > 0 %}
+- Icon:
+
+```jinja
+{% if this.state | int(default=0) > 0 %}
   mdi:reload-alert
 {% else %}
   mdi:reload
 {% endif %}
+
+```
+
 - Unit Of Measurement:
 
 File: [`template_triggered/sensor/system_reloadable_files_changed.yaml`](entities/template_triggered/sensor/system_reloadable_files_changed.yaml)
@@ -5814,11 +5854,17 @@ File: [`template_triggered/sensor/system_reloadable_files_changed.yaml`](entitie
 
 **Entity ID: `template.system_restart_required_files_changed`**
 
-- Icon: {% if this.state | int(default=0) > 0 %}
+- Icon:
+
+```jinja
+{% if this.state | int(default=0) > 0 %}
   mdi:restart-alert
 {% else %}
   mdi:restart
 {% endif %}
+
+```
+
 - Unit Of Measurement:
 
 File: [`template_triggered/sensor/system_restart_required_files_changed.yaml`](entities/template_triggered/sensor/system_restart_required_files_changed.yaml)
