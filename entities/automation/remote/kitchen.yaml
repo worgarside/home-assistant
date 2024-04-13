@@ -52,6 +52,12 @@ action:
               brightness_pct: 100
               color_temp_kelvin: 2500
 
+          - service: var.set
+            target:
+              entity_id: var.boolean_flag_kitchen_lights
+            data:
+              value: "on"
+
       - alias: "Triple Press: Alert Will"
 
         conditions: "{{ press_type == presses.triple }}"

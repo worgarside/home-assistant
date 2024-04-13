@@ -20,21 +20,20 @@ sequence:
 
   - variables:
       brightness_values: >-
-        {% set l1, l2, l3, l4, l5, l6, l7, l8 =
-           ( 10,  10,  10,  10,  10,  10,  10,  10) if time_of_day == 'Night' else
-           ( 10,  10,  10,  10,  10,  50,  50,  10) if time_of_day in ('Dawn', 'Dusk') else
-           ( 10,  10,  10,  10,  10,  75,  75,  10) if time_of_day == 'Twilight' else
-           ( 50,  50,  50,  50,  50,  85,  85,  50) if time_of_day in ('Sunrise', 'Sunset') else
-           (100, 100, 100, 100, 100, 100, 100, 100)
-        %}
-        {{ [l1, l2, l3, l4, l5, l6, l7, l8] }}
+        {{
+          ( 10,  10,  10,  10,  10,  10,  10,  10) if time_of_day == "Night" else
+          ( 10,  10,  10,  10,  10,  50,  50,  10) if time_of_day in ("Dawn", "Dusk") else
+          ( 10,  10,  10,  10,  10,  75,  75,  10) if time_of_day == "Twilight" else
+          ( 50,  50,  50,  50,  50,  85,  85,  50) if time_of_day in ("Sunrise", "Sunset") else
+          (100, 100, 100, 100, 100, 100, 100, 100)
+        }}
 
   - repeat:
       count: 8
       sequence:
         - service: light.turn_on
           target:
-            entity_id: "light.kitchen_spotlight_{{ repeat.index }}"
+            entity_id: "light.kitchen_spotlight_{{ 9 - repeat.index }}"
           data:
-            brightness_pct: "{{ brightness_values[repeat.index - 1] }}"
+            brightness_pct: "{{ brightness_values[-repeat.index] }}"
             color_temp_kelvin: "{{ color_temp_kelvin }}"
