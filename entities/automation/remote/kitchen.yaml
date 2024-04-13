@@ -37,7 +37,7 @@ action:
             target:
               entity_id: >-
                 script.turn_
-                {{ 'off' if states('var.boolean_flag_kitchen_lights') | bool(false) else 'on' }}
+                {{- 'off' if states('var.boolean_flag_kitchen_lights') | bool(false) else 'on' -}}
                 _kitchen_spotlights
 
       - alias: "Double Press: Set to 100%"
@@ -75,4 +75,5 @@ action:
             target:
               entity_id: script.turn_off_physical_room
             data:
-              room: kitchen
+              variables:
+                room: kitchen
