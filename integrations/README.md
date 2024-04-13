@@ -5931,7 +5931,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (14)</h3></summary>
+<details><summary><h3>Entities (15)</h3></summary>
 
 <details><summary><strong>Auto-Save Amount</strong></summary>
 
@@ -5941,6 +5941,16 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 - Unit Of Measurement: GBP
 
 File: [`var/auto_save_amount.yaml`](entities/var/auto_save_amount.yaml)
+</details>
+
+<details><summary><strong>Boolean Flag: Kitchen Lights</strong></summary>
+
+**Entity ID: `var.boolean_flag_kitchen_lights`**
+
+- Icon:
+- Unit Of Measurement:
+
+File: [`var/boolean_flags/boolean_flag_kitchen_lights.yaml`](entities/var/boolean_flags/boolean_flag_kitchen_lights.yaml)
 </details>
 
 <details><summary><strong>Current AppDaemon Branch</strong></summary>
