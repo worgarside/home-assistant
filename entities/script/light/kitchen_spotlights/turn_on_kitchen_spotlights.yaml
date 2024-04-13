@@ -12,7 +12,6 @@ variables:
   time_of_day: "{{ states('sensor.time_of_day') }}"
 
 sequence:
-
   - alias: Get brightness configuration
     choose:
       - conditions: "{{ time_of_day == 'Night' }}"
@@ -80,60 +79,58 @@ sequence:
                 l8: 100
 
   - parallel:
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_spotlight_1
+        data:
+          brightness_pct: "{{ brightness.l1 }}"
+          color_temp_kelvin: "{{ color_temp_kelvin }}"
 
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_spotlight_2
+        data:
+          brightness_pct: "{{ brightness.l2 }}"
+          color_temp_kelvin: "{{ color_temp_kelvin }}"
 
-  - service: light.turn_on
-    target:
-      entity_id: light.kitchen_spotlight_1
-    data:
-      brightness_pct: "{{ brightness.l1 }}"
-      color_temp_kelvin: "{{ color_temp_kelvin }}"
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_spotlight_3
+        data:
+          brightness_pct: "{{ brightness.l3 }}"
+          color_temp_kelvin: "{{ color_temp_kelvin }}"
 
-  - service: light.turn_on
-    target:
-      entity_id: light.kitchen_spotlight_2
-    data:
-      brightness_pct: "{{ brightness.l2 }}"
-      color_temp_kelvin: "{{ color_temp_kelvin }}"
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_spotlight_4
+        data:
+          brightness_pct: "{{ brightness.l4 }}"
+          color_temp_kelvin: "{{ color_temp_kelvin }}"
 
-  - service: light.turn_on
-    target:
-      entity_id: light.kitchen_spotlight_3
-    data:
-      brightness_pct: "{{ brightness.l3 }}"
-      color_temp_kelvin: "{{ color_temp_kelvin }}"
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_spotlight_5
+        data:
+          brightness_pct: "{{ brightness.l5 }}"
+          color_temp_kelvin: "{{ color_temp_kelvin }}"
 
-  - service: light.turn_on
-    target:
-      entity_id: light.kitchen_spotlight_4
-    data:
-      brightness_pct: "{{ brightness.l4 }}"
-      color_temp_kelvin: "{{ color_temp_kelvin }}"
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_spotlight_6
+        data:
+          brightness_pct: "{{ brightness.l6 }}"
+          color_temp_kelvin: "{{ color_temp_kelvin }}"
 
-  - service: light.turn_on
-    target:
-      entity_id: light.kitchen_spotlight_5
-    data:
-      brightness_pct: "{{ brightness.l5 }}"
-      color_temp_kelvin: "{{ color_temp_kelvin }}"
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_spotlight_7
+        data:
+          brightness_pct: "{{ brightness.l7 }}"
+          color_temp_kelvin: "{{ color_temp_kelvin }}"
 
-  - service: light.turn_on
-    target:
-      entity_id: light.kitchen_spotlight_6
-    data:
-      brightness_pct: "{{ brightness.l6 }}"
-      color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-  - service: light.turn_on
-    target:
-      entity_id: light.kitchen_spotlight_7
-    data:
-      brightness_pct: "{{ brightness.l7 }}"
-      color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-  - service: light.turn_on
-    target:
-      entity_id: light.kitchen_spotlight_8
-    data:
-      brightness_pct: "{{ brightness.l8 }}"
-      color_temp_kelvin: "{{ color_temp_kelvin }}"
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_spotlight_8
+        data:
+          brightness_pct: "{{ brightness.l8 }}"
+          color_temp_kelvin: "{{ color_temp_kelvin }}"
