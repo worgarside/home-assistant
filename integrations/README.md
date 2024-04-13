@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (123)</h3></summary>
+<details><summary><h3>Entities (125)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1536,6 +1536,34 @@ File: [`automation/switch/lounge_scent_plug/turn_off_after_an_hour.yaml`](entiti
 - Variables:
 
 File: [`automation/switch/lounge_scent_plug/turn_off_when_window_opened.yaml`](entities/automation/switch/lounge_scent_plug/turn_off_when_window_opened.yaml)
+</details>
+
+<details><summary><code>/switch/mtrxpi-power/off</code></summary>
+
+**Entity ID: `automation.switch_mtrxpi_power_off`**
+
+> *No description provided*
+
+- Alias: /switch/mtrxpi-power/off
+- ID: `switch_mtrxpi_power_off`
+- Mode: `single`
+- Variables:
+
+File: [`automation/switch/mtrxpi_power/off.yaml`](entities/automation/switch/mtrxpi_power/off.yaml)
+</details>
+
+<details><summary><code>/switch/mtrxpi-power/on</code></summary>
+
+**Entity ID: `automation.switch_mtrxpi_power_on`**
+
+> *No description provided*
+
+- Alias: /switch/mtrxpi-power/on
+- ID: `switch_mtrxpi_power_on`
+- Mode: `single`
+- Variables:
+
+File: [`automation/switch/mtrxpi_power/on.yaml`](entities/automation/switch/mtrxpi_power/on.yaml)
 </details>
 
 <details><summary><code>/switch/prusa-i3-mk3-power/off</code></summary>

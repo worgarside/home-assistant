@@ -7,9 +7,21 @@ availability_template: >-
   {{ has_value('switch.led_matrix_power') and has_value('switch.mtrxpi_raspberry_pi_power') }}
 
 value_template: >-
-  {{
-    is_state('switch.led_matrix_power', 'on') or is_state('switch.mtrxpi_raspberry_pi_power', 'on')
-  }}
+  {% if (
+      is_state('switch.led_matrix_power', 'on') or
+      is_state('switch.mtrxpi_raspberry_pi_power', 'on')
+    )
+  %}
+    on
+  {% elif (
+      is_state('switch.led_matrix_power', 'off') and
+      is_state('switch.mtrxpi_raspberry_pi_power', 'off')
+    )
+  %}
+    off
+  {% else %}
+    unknown
+  {% endif %}
 
 icon_template: >-
   {%

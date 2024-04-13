@@ -1,0 +1,20 @@
+---
+alias: /switch/mtrxpi-power/on
+
+id: switch_mtrxpi_power_on
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  platform: state
+  entity_id: switch.mtrxpi_power
+  to: "on"
+
+action:
+  - service: switch.turn_on
+    target:
+      entity_id:
+        - switch.led_matrix_power
+        - switch.mtrxpi_raspberry_pi_power
