@@ -1,6 +1,11 @@
 """Aqara H1-series wireless remote.
 
-Sourced from: https://gist.github.com/xuxiaoqiao/6ed8dcb950f26337218d0507733970a0
+https://github.com/zigpy/zha-device-handlers/issues/940#issuecomment-1001107154
+https://gist.github.com/xuxiaoqiao/6ed8dcb950f26337218d0507733970a0
+https://github.com/zigpy/zha-device-handlers/issues/940#issuecomment-1793421210
+
+> If you want to change click_mode, you have to tap 5 times the left button
+> If you want to change operation_mode, you have to tap 5 times the right button
 """
 from zigpy.profiles import zha
 import zigpy.types as t
@@ -399,7 +404,10 @@ class RemoteH1DoubleRocker3(XiaomiCustomDevice):
 
 
 class RemoteH1DoubleRocker5(XiaomiCustomDevice):
-    """Aqara H1 Wireless Remote Double Rocker Version WRS-R02, variant 5."""
+    """Aqara H1 Wireless Remote Double Rocker Version WRS-R02, variant 5.
+
+    https://github.com/zigpy/zha-device-handlers/issues/940#issuecomment-1052262694
+    """
 
     signature = {
         MODELS_INFO: [(None, None)],
