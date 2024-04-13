@@ -1181,20 +1181,22 @@ File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation
 
 **Entity ID: `automation.remote_kitchen`**
 
-> Control all kitchen spotlights with a single Hue remote
+> Control all kitchen spotlights with a single switch
 
 - Alias: /remote/kitchen
 - ID: `remote_kitchen`
-- Mode: `queued`
+- Mode: `single`
 - Variables:
 
 ```json
 {
-  "brightness_step_pct": 10,
-  "color_temp_kelvin": 2500,
-  "command": "{{ trigger.event.data.command }}",
-  "turn_off_transition": 1,
-  "swap_primary_mode": "{{ states('sensor.sun_elevation') | int(0) < -3 }}"
+  "press_type": "{{ trigger.event.data.args.press_type }}",
+  "presses": {
+    "single": "single",
+    "double": "double",
+    "triple": "triple",
+    "hold": "hold"
+  }
 }
 ```
 File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml)

@@ -11,6 +11,12 @@ variables:
   turn_off_transition: 1
 
 sequence:
+  - service: var.set
+    target:
+      entity_id: var.boolean_flag_kitchen_lights
+    data:
+      value: "off"
+
   - parallel:
       - service: light.turn_off
         target:
