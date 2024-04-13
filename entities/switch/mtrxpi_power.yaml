@@ -1,0 +1,41 @@
+---
+friendly_name: MtrxPi Power
+
+unique_id: mtrxpi_power
+
+availability_template: >-
+  {{ has_value('switch.led_matrix_power') and has_value('switch.mtrxpi_raspberry_pi_power') }}
+
+value_template: >-
+  {{
+    is_state('switch.led_matrix_power', 'on') or is_state('switch.mtrxpi_raspberry_pi_power', 'on')
+  }}
+
+icon_template: >-
+  {%
+    if this.state | bool(false)
+  %}
+    mdi:checkbox-blank-outline
+  {% else %}
+    mdi:data-matrix-scan
+  {% endif %}
+
+turn_off:
+  - parallel:
+      - service: switch.turn_off
+        target:
+          entity_id: switch.led_matrix_power
+
+      - service: switch.turn_off
+        target:
+          entity_id: switch.mtrxpi_raspberry_pi_power
+
+turn_on:
+  - parallel:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.led_matrix_power
+
+      - service: switch.turn_on
+        target:
+          entity_id: switch.mtrxpi_raspberry_pi_power

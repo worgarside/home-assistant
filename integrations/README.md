@@ -4888,7 +4888,14 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Switch
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (2)</h3></summary>
+
+<details><summary><strong>MtrxPi Power</strong></summary>
+
+**Entity ID: `switch.mtrxpi_power`**
+
+File: [`switch/mtrxpi_power.yaml`](entities/switch/mtrxpi_power.yaml)
+</details>
 
 <details><summary><strong>Prusa i3 MK3 Power</strong></summary>
 
