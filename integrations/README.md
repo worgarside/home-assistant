@@ -4032,7 +4032,7 @@ File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb
 
 ## Script
 
-<details><summary><h3>Entities (27)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -4374,6 +4374,24 @@ File: [`script/input_select/target_git_branch/target_git_branch_set_options.yaml
 }
 ```
 File: [`script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml`](entities/script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml)
+</details>
+
+<details><summary><strong>Turn Off Kitchen Spotlights</strong></summary>
+
+**Entity ID: `script.turn_off_kitchen_spotlights`**
+
+> Turn off the kitchen lights with a nice transition
+
+- Fields:
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "turn_off_transition": 1
+}
+```
+File: [`script/light/kitchen_spotlights/turn_off_kitchen_spotlights.yaml`](entities/script/light/kitchen_spotlights/turn_off_kitchen_spotlights.yaml)
 </details>
 
 <details><summary><strong>Turn On Kitchen Spotlights</strong></summary>
@@ -5913,7 +5931,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (14)</h3></summary>
+<details><summary><h3>Entities (15)</h3></summary>
 
 <details><summary><strong>Auto-Save Amount</strong></summary>
 
@@ -5923,6 +5941,16 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 - Unit Of Measurement: GBP
 
 File: [`var/auto_save_amount.yaml`](entities/var/auto_save_amount.yaml)
+</details>
+
+<details><summary><strong>Boolean Flag: Kitchen Lights</strong></summary>
+
+**Entity ID: `var.boolean_flag_kitchen_lights`**
+
+- Icon:
+- Unit Of Measurement:
+
+File: [`var/boolean_flags/boolean_flag_kitchen_lights.yaml`](entities/var/boolean_flags/boolean_flag_kitchen_lights.yaml)
 </details>
 
 <details><summary><strong>Current AppDaemon Branch</strong></summary>

@@ -1,0 +1,45 @@
+---
+alias: Turn Off Kitchen Spotlights
+
+description: Turn off the kitchen lights with a nice transition
+
+mode: single
+
+max_exceeded: silent
+
+variables:
+  turn_off_transition: 1
+
+sequence:
+  - parallel:
+      - service: light.turn_off
+        target:
+          entity_id:
+            - light.kitchen_spotlight_8
+            - light.kitchen_spotlight_7
+            - light.kitchen_spotlight_6
+        data:
+          transition: "{{ turn_off_transition }}"
+
+      - service: light.turn_off
+        target:
+          entity_id:
+            - light.kitchen_spotlight_5
+            - light.kitchen_spotlight_4
+        data:
+          transition: "{{ turn_off_transition * 2 }}"
+
+      - service: light.turn_off
+        target:
+          entity_id:
+            - light.kitchen_spotlight_3
+            - light.kitchen_spotlight_2
+        data:
+          transition: "{{ turn_off_transition * 3 }}"
+
+      - service: light.turn_off
+        target:
+          entity_id:
+            - light.kitchen_spotlight_1
+        data:
+          transition: "{{ turn_off_transition * 4 }}"

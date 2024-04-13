@@ -12,6 +12,9 @@ wg-utilities = "^5.14.2"
 watchdog = "^4.0.0"
 paramiko = "^3.4.0"
 
+[tool.poetry.group.dev]
+optional = true
+
 [tool.poetry.group.dev.dependencies]
 pre-commit = "*"
 watchdog = "^4.0.0"

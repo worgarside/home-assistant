@@ -27,7 +27,7 @@ sequence:
                 l7: 10
                 l8: 10
 
-      - conditions: "{{ time_of_day in {'Dawn', 'Dusk'} }}"
+      - conditions: "{{ time_of_day in ('Dawn', 'Dusk') }}"
         sequence:
           - variables:
               brightness:
@@ -53,7 +53,7 @@ sequence:
                 l7: 75
                 l8: 10
 
-      - conditions: "{{ time_of_day in {'Sunrise', 'Sunset'} }}"
+      - conditions: "{{ time_of_day in ('Sunrise', 'Sunset') }}"
         sequence:
           - variables:
               brightness:
