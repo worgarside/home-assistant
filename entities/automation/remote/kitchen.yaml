@@ -3,152 +3,83 @@ alias: /remote/kitchen
 
 id: remote_kitchen
 
-description: Control all kitchen spotlights with a single Hue remote
+description: Control all kitchen spotlights with a single switch
 
-mode: queued
+mode: single
+
+max_exceeded: silent
 
 trigger:
   - platform: event
     event_type: zha_event
     event_data:
-      device_ieee: 00:17:88:01:06:34:c5:98
+      device_ieee: 54:ef:44:10:00:9f:a9:95
+      args:
+        button: 1 # Left Button on switch
 
 variables:
-  brightness_step_pct: 10
-  color_temp_kelvin: 2500
-  command: "{{ trigger.event.data.command }}"
-  turn_off_transition: 1
-  swap_primary_mode: "{{ states('sensor.sun_elevation') | int(0) < -3 }}"
+  press_type: "{{ trigger.event.data.args.press_type }}"
+  presses:
+    single: single
+    double: double
+    triple: triple
+    hold: hold
 
 action:
   - choose:
-      - alias: Single Press | Button 1 OR Double Press | Button 1 (when swap_primary_mode is true)
-        conditions: >-
-          {{
-            (
-              command is match('^on(_double)?_press$')
-            ) and (
-              swap_primary_mode == ('double' in command)
-            )
-          }}
+      - alias: "Single Press: Toggle Kitchen Spotlights"
+
+        conditions: "{{ press_type == presses.single }}"
+
+        sequence:
+          - alias: Toggle Spotlights
+            service: script.turn_on
+            target:
+              entity_id: >-
+                script.turn_
+                {{- 'off' if states('var.boolean_flag_kitchen_lights') | bool(false) else 'on' -}}
+                _kitchen_spotlights
+
+      - alias: "Double Press: Set to 100%"
+
+        conditions: "{{ press_type == presses.double }}"
 
         sequence:
           - service: light.turn_on
             target:
-              entity_id:
-                - light.kitchen_spotlight_1
-                - light.kitchen_spotlight_2
-                - light.kitchen_spotlight_3
-                - light.kitchen_spotlight_4
-                - light.kitchen_spotlight_5
-                - light.kitchen_spotlight_6
-                - light.kitchen_spotlight_7
-                - light.kitchen_spotlight_8
+              entity_id: light.kitchen_spotlights
             data:
               brightness_pct: 100
-              color_temp_kelvin: "{{ color_temp_kelvin }}"
+              color_temp_kelvin: 2500
 
-      - alias: Single Press | Button 2
-        conditions: "{{ command == 'up_press' }}"
+          - service: var.set
+            target:
+              entity_id: var.boolean_flag_kitchen_lights
+            data:
+              value: "on"
+
+      - alias: "Triple Press: Alert Will"
+
+        conditions: "{{ press_type == presses.triple }}"
 
         sequence:
-          - service: light.turn_on
+          - service: script.turn_on
             target:
-              entity_id:
-                - light.kitchen_spotlight_1
-                - light.kitchen_spotlight_2
-                - light.kitchen_spotlight_3
-                - light.kitchen_spotlight_4
-                - light.kitchen_spotlight_5
-                - light.kitchen_spotlight_6
-                - light.kitchen_spotlight_7
-                - light.kitchen_spotlight_8
+              entity_id: script.notify_will
             data:
-              brightness_step_pct: "{{ brightness_step_pct }}"
+              clear_notification: true
+              message: Kitchen Triple Press
+              notification_id: kitchen_triple_press
+              mobile_notification_icon: mdi:fridge-outline
 
-      - alias: Single Press | Button 3
-        conditions: "{{ command == 'down_press' }}"
+      - alias: "Hold: Turn Off Kitchen"
+
+        conditions: "{{ press_type == presses.hold }}"
 
         sequence:
-          - service: light.turn_on
+          - service: script.turn_on
             target:
-              entity_id:
-                - light.kitchen_spotlight_1
-                - light.kitchen_spotlight_2
-                - light.kitchen_spotlight_3
-                - light.kitchen_spotlight_4
-                - light.kitchen_spotlight_5
-                - light.kitchen_spotlight_6
-                - light.kitchen_spotlight_7
-                - light.kitchen_spotlight_8
+              entity_id: script.turn_off_physical_room
             data:
-              brightness_step_pct: "-{{ brightness_step_pct }}"
-
-      - alias: Single Press | Button 4
-        conditions: "{{ command == 'off_press' }}"
-
-        sequence:
-          - service: light.turn_off
-            target:
-              entity_id:
-                - light.kitchen_spotlight_6
-                - light.kitchen_spotlight_7
-                - light.kitchen_spotlight_8
-            data:
-              transition: "{{ turn_off_transition }}"
-
-          - service: light.turn_off
-            target:
-              entity_id:
-                - light.kitchen_spotlight_4
-                - light.kitchen_spotlight_5
-            data:
-              transition: "{{ turn_off_transition }}"
-
-          - service: light.turn_off
-            target:
-              entity_id:
-                - light.kitchen_spotlight_2
-                - light.kitchen_spotlight_3
-            data:
-              transition: "{{ turn_off_transition }}"
-
-          - service: light.turn_off
-            target:
-              entity_id:
-                - light.kitchen_spotlight_1
-            data:
-              transition: "{{ turn_off_transition }}"
-
-      - alias: Double Press | Button 1 OR Single Press | Button 1 (when swap_primary_mode is true)
-        conditions: >-
-          {{
-            (
-              command is match('^on(_double)?_press$')
-            ) and (
-              swap_primary_mode == ('double' not in command)
-            )
-          }}
-
-        sequence:
-          - service: light.turn_on
-            target:
-              entity_id:
-                - light.kitchen_spotlight_6
-                - light.kitchen_spotlight_7
-            data:
-              brightness_pct: 100
-              color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-          - service: light.turn_on
-            target:
-              entity_id:
-                - light.kitchen_spotlight_1
-                - light.kitchen_spotlight_2
-                - light.kitchen_spotlight_3
-                - light.kitchen_spotlight_4
-                - light.kitchen_spotlight_5
-                - light.kitchen_spotlight_8
-            data:
-              brightness_pct: 10
-              color_temp_kelvin: "{{ color_temp_kelvin }}"
+              variables:
+                room: kitchen

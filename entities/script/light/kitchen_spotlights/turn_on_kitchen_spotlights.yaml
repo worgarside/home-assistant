@@ -1,0 +1,39 @@
+---
+alias: Turn On Kitchen Spotlights
+
+description: Turn on the kitchen lights at varying brightness levels, depending on the time of day
+
+mode: single
+
+max_exceeded: silent
+
+variables:
+  color_temp_kelvin: 2500
+  time_of_day: "{{ states('sensor.time_of_day') }}"
+
+sequence:
+  - service: var.set
+    target:
+      entity_id: var.boolean_flag_kitchen_lights
+    data:
+      value: "on"
+
+  - variables:
+      brightness_values: >-
+        {{
+          ( 10,  10,  10,  10,  10,  10,  10,  10) if time_of_day == "Night" else
+          ( 10,  10,  10,  10,  10,  50,  50,  10) if time_of_day in ("Dawn", "Dusk") else
+          ( 10,  10,  10,  10,  10,  75,  75,  10) if time_of_day == "Twilight" else
+          ( 50,  50,  50,  50,  50,  85,  85,  50) if time_of_day in ("Sunrise", "Sunset") else
+          (100, 100, 100, 100, 100, 100, 100, 100)
+        }}
+
+  - repeat:
+      count: 8
+      sequence:
+        - service: light.turn_on
+          target:
+            entity_id: light.kitchen_spotlight_{{ 9 - repeat.index }}
+          data:
+            brightness_pct: "{{ brightness_values[-repeat.index] }}"
+            color_temp_kelvin: "{{ color_temp_kelvin }}"

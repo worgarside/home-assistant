@@ -1,0 +1,22 @@
+---
+alias: Turn Off Kitchen Spotlights
+
+description: Turn off the kitchen lights with a nice transition
+
+mode: single
+
+max_exceeded: silent
+
+sequence:
+  - service: var.set
+    target:
+      entity_id: var.boolean_flag_kitchen_lights
+    data:
+      value: "off"
+
+  - repeat:
+      count: 8
+      sequence:
+        - service: light.turn_off
+          target:
+            entity_id: light.kitchen_spotlight_{{ 9 - repeat.index }}

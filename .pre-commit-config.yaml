@@ -52,6 +52,7 @@ repos:
     rev: v6.2.1
     hooks:
       - id: beautysh
+        language_version: python3.11 # Uses pkg_resources -.-
 
   - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
     rev: 0.2.3
