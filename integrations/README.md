@@ -861,18 +861,18 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
-<details><summary><code>/light/kitchen-spotlights/on</code></summary>
+<details><summary><code>/light/kitchen-spotlights/on-off</code></summary>
 
-**Entity ID: `automation.light_kitchen_spotlights_on`**
+**Entity ID: `automation.light_kitchen_spotlights_on_off`**
 
-> *No description provided*
+> Keeps `var.boolean_flag_kitchen_lights` in sync with `light.kitchen_spotlights` in case they're turned on/off outside of the main automation/script(s).
 
-- Alias: /light/kitchen-spotlights/on
-- ID: `light_kitchen_spotlights_on`
+- Alias: /light/kitchen-spotlights/on-off
+- ID: `light_kitchen_spotlights_on_off`
 - Mode: `single`
 - Variables:
 
-File: [`automation/light/kitchen_spotlights/on.yaml`](entities/automation/light/kitchen_spotlights/on.yaml)
+File: [`automation/light/kitchen_spotlights/on_off.yaml`](entities/automation/light/kitchen_spotlights/on_off.yaml)
 </details>
 
 <details><summary><code>/media-player/topaz-sr10/off</code></summary>
