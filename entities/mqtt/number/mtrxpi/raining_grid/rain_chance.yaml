@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Raining Grid: Rain Chance"
+
+unique_id: mtrxpi_raining_grid_rain_chance
+
+command_topic: /mtrxpi/raining-grid/parameter/rain-chance/set
+
+icon: mdi:cloud-percent-outline
+
+min: 0
+
+max: 1
+
+mode: box
+
+retain: true
+
+state_topic: /mtrxpi/raining-grid/parameter/rain-chance/get
+
+step: 0.001
+
+unit_of_measurement: "%"

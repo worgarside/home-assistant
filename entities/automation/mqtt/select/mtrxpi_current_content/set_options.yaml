@@ -1,0 +1,18 @@
+---
+alias: /mqtt/select/mtrxpi-current-content/set-options
+
+id: mqtt_select_mtrxpi_current_content_set_options
+
+description: Set the options for the `MtrxPi | Current Content` select entity
+
+mode: restart
+
+trigger:
+  - platform: mqtt
+    topic: /homeassistant/select/mtrxpi-current-content/set-options
+
+action:
+  - service: input_select.set_options
+    data:
+      entity_id: input_select.mtrxpi_current_content  # hacv disable: InvalidEntityConsumed
+      options: "{{ trigger.payload_json }}"
