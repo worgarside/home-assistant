@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (125)</h3></summary>
+<details><summary><h3>Entities (126)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -859,6 +859,20 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 - Variables:
 
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
+</details>
+
+<details><summary><code>/light/kitchen-spotlights/on</code></summary>
+
+**Entity ID: `automation.light_kitchen_spotlights_on`**
+
+> *No description provided*
+
+- Alias: /light/kitchen-spotlights/on
+- ID: `light_kitchen_spotlights_on`
+- Mode: `single`
+- Variables:
+
+File: [`automation/light/kitchen_spotlights/on.yaml`](entities/automation/light/kitchen_spotlights/on.yaml)
 </details>
 
 <details><summary><code>/media-player/topaz-sr10/off</code></summary>

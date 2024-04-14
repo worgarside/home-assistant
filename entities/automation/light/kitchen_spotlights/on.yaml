@@ -1,0 +1,20 @@
+---
+alias: /light/kitchen-spotlights/on
+
+id: light_kitchen_spotlights_on
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: light.kitchen_spotlights
+    to: "on"
+
+action:
+  - service: var.set
+    target:
+      entity_id: var.boolean_flag_kitchen_lights
+    data:
+      value: "on"
