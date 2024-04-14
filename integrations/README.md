@@ -869,7 +869,7 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 
 - Alias: /light/kitchen-spotlights/on-off
 - ID: `light_kitchen_spotlights_on_off`
-- Mode: `single`
+- Mode: `restart`
 - Variables:
 
 File: [`automation/light/kitchen_spotlights/on_off.yaml`](entities/automation/light/kitchen_spotlights/on_off.yaml)
