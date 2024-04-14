@@ -1,0 +1,24 @@
+---
+alias: /light/kitchen-spotlights/on-off
+
+description: >-
+  Keeps `var.boolean_flag_kitchen_lights` in sync with `light.kitchen_spotlights` in case they're
+  turned on/off outside of the main automation/script(s).
+
+id: light_kitchen_spotlights_on_off
+
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: light.kitchen_spotlights
+    to:
+      - "on"
+      - "off"
+
+action:
+  - service: var.set
+    target:
+      entity_id: var.boolean_flag_kitchen_lights
+    data:
+      value: "{{ trigger.to_state.state }}"
