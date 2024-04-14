@@ -27,9 +27,9 @@ icon_template: >-
   {%
     if this.state | bool(false)
   %}
-    mdi:checkbox-blank-outline
-  {% else %}
     mdi:data-matrix-scan
+  {% else %}
+    mdi:checkbox-blank-outline
   {% endif %}
 
 turn_off:
