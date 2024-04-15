@@ -12,5 +12,3 @@ options: [] # Set by automation /mqtt/select/mtrxpi-current-content/set-options
 retain: true
 
 state_topic: /mtrxpi/matrix/current-content/get
-
-unit_of_measurement: ticks

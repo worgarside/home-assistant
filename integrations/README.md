@@ -3007,7 +3007,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number
 - Icon: [`mdi:animation-play-outline`](https://pictogrammers.com/library/mdi/icon/animation-play-outline/)
 - State Class:
 - State Topic: /mtrxpi/matrix/current-content/get
-- Unit Of Measurement: `ticks`
+- Unit Of Measurement:
 
 File: [`mqtt/select/mtrxpi/current_content.yaml`](entities/mqtt/select/mtrxpi/current_content.yaml)
 </details>
