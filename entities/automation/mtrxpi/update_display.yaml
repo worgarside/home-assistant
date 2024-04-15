@@ -6,13 +6,10 @@ trigger:
   - platform: state
     entity_id:
       - media_player.all_speakers
-      - media_player.downstairs_speakers
       - media_player.hifi_system
-      - media_player.kitchen_nest_mini
       - media_player.lounge_chromecast
       - media_player.spotify_will
       - media_player.upstairs_speakers
-      - media_player.will_s_yas_209
 condition: |
   {{
     is_state('input_select.mtrxpi_display_source', trigger.to_state.entity_id) and

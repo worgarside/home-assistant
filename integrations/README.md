@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (126)</h3></summary>
+<details><summary><h3>Entities (117)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1230,20 +1230,6 @@ File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml
 File: [`automation/remote/lounge_desk/double_press.yaml`](entities/automation/remote/lounge_desk/double_press.yaml)
 </details>
 
-<details><summary><code>/remote/lounge-desk/hold</code></summary>
-
-**Entity ID: `automation.remote_lounge_desk_hold`**
-
-> *No description provided*
-
-- Alias: /remote/lounge-desk/hold
-- ID: `remote_lounge_desk_hold`
-- Mode: `single`
-- Variables:
-
-File: [`automation/remote/lounge_desk/hold.yaml`](entities/automation/remote/lounge_desk/hold.yaml)
-</details>
-
 <details><summary><code>/remote/lounge-desk/single-press</code></summary>
 
 **Entity ID: `automation.remote_lounge_desk_single_press`**
@@ -1592,118 +1578,6 @@ File: [`automation/switch/mtrxpi_power/on.yaml`](entities/automation/switch/mtrx
 - Variables:
 
 File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/switch/prusa_i3_mk3_power/off.yaml)
-</details>
-
-<details><summary><code>/switch/st-macbook-pro/turn-off-when-battery-full</code></summary>
-
-**Entity ID: `automation.switch_st_macbook_pro_turn_off_when_battery_full`**
-
-> *No description provided*
-
-- Alias: /switch/st-macbook-pro/turn-off-when-battery-full
-- ID: `switch_st_macbook_pro_turn_off_when_battery_full`
-- Mode: `single`
-- Variables:
-
-File: [`automation/switch/st_macbook_pro/turn_off_when_battery_full.yaml`](entities/automation/switch/st_macbook_pro/turn_off_when_battery_full.yaml)
-</details>
-
-<details><summary><code>/switch/st-macbook-pro/turn-off-when-undocked</code></summary>
-
-**Entity ID: `automation.switch_st_macbook_pro_turn_off_when_undocked`**
-
-> *No description provided*
-
-- Alias: /switch/st-macbook-pro/turn-off-when-undocked
-- ID: `switch_st_macbook_pro_turn_off_when_undocked`
-- Mode: `single`
-- Variables:
-
-File: [`automation/switch/st_macbook_pro/turn_off_when_undocked.yaml`](entities/automation/switch/st_macbook_pro/turn_off_when_undocked.yaml)
-</details>
-
-<details><summary><code>/switch/st-macbook-pro/turn-on-when-battery-low</code></summary>
-
-**Entity ID: `automation.switch_st_macbook_pro_turn_on_when_battery_low`**
-
-> *No description provided*
-
-- Alias: /switch/st-macbook-pro/turn-on-when-battery-low
-- ID: `switch_st_macbook_pro_turn_on_when_battery_low`
-- Mode: `single`
-- Variables:
-
-File: [`automation/switch/st_macbook_pro/turn_on_when_battery_low.yaml`](entities/automation/switch/st_macbook_pro/turn_on_when_battery_low.yaml)
-</details>
-
-<details><summary><code>/switch/st-macbook-pro/turn-on-when-docked</code></summary>
-
-**Entity ID: `automation.switch_st_macbook_pro_turn_on_when_docked`**
-
-> *No description provided*
-
-- Alias: /switch/st-macbook-pro/turn-on-when-docked
-- ID: `switch_st_macbook_pro_turn_on_when_docked`
-- Mode: `single`
-- Variables:
-
-File: [`automation/switch/st_macbook_pro/turn_on_when_docked.yaml`](entities/automation/switch/st_macbook_pro/turn_on_when_docked.yaml)
-</details>
-
-<details><summary><code>/switch/will-s-macbook-pro/turn-off-when-battery-full</code></summary>
-
-**Entity ID: `automation.switch_will_s_macbook_pro_turn_off_when_battery_full`**
-
-> *No description provided*
-
-- Alias: /switch/will-s-macbook-pro/turn-off-when-battery-full
-- ID: `switch_will_s_macbook_pro_turn_off_when_battery_full`
-- Mode: `single`
-- Variables:
-
-File: [`automation/switch/will_s_macbook_pro/turn_off_when_battery_full.yaml`](entities/automation/switch/will_s_macbook_pro/turn_off_when_battery_full.yaml)
-</details>
-
-<details><summary><code>/switch/will-s-macbook-pro/turn-off-when-undocked</code></summary>
-
-**Entity ID: `automation.switch_will_s_macbook_pro_turn_off_when_undocked`**
-
-> *No description provided*
-
-- Alias: /switch/will-s-macbook-pro/turn-off-when-undocked
-- ID: `switch_will_s_macbook_pro_turn_off_when_undocked`
-- Mode: `single`
-- Variables:
-
-File: [`automation/switch/will_s_macbook_pro/turn_off_when_undocked.yaml`](entities/automation/switch/will_s_macbook_pro/turn_off_when_undocked.yaml)
-</details>
-
-<details><summary><code>/switch/will-s-macbook-pro/turn-on-when-battery-low</code></summary>
-
-**Entity ID: `automation.switch_will_s_macbook_pro_turn_on_when_battery_low`**
-
-> *No description provided*
-
-- Alias: /switch/will-s-macbook-pro/turn-on-when-battery-low
-- ID: `switch_will_s_macbook_pro_turn_on_when_battery_low`
-- Mode: `single`
-- Variables:
-
-File: [`automation/switch/will_s_macbook_pro/turn_on_when_battery_low.yaml`](entities/automation/switch/will_s_macbook_pro/turn_on_when_battery_low.yaml)
-</details>
-
-<details><summary><code>/switch/will-s-macbook-pro/turn-on-when-docked</code></summary>
-
-**Entity ID: `automation.switch_will_s_macbook_pro_turn_on_when_docked`**
-
-> *No description provided*
-
-- Alias: /switch/will-s-macbook-pro/turn-on-when-docked
-- ID: `switch_will_s_macbook_pro_turn_on_when_docked`
-- Mode: `single`
-- Variables:
-
-File: [`automation/switch/will_s_macbook_pro/turn_on_when_docked.yaml`](entities/automation/switch/will_s_macbook_pro/turn_on_when_docked.yaml)
 </details>
 
 <details><summary><code>/tag/cosmo/bedroom</code></summary>
@@ -4950,7 +4824,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (86)</h3></summary>
+<details><summary><h3>Entities (85)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -5675,16 +5549,6 @@ File: [`template/sensor/time_of_day.yaml`](entities/template/sensor/time_of_day.
 - Unit Of Measurement: epoch-seconds
 
 File: [`template/sensor/will_s_macbook_pro_last_update.yaml`](entities/template/sensor/will_s_macbook_pro_last_update.yaml)
-</details>
-
-<details><summary><strong>YAS-209 Local IP</strong></summary>
-
-**Entity ID: `sensor.yas_209_local_ip`**
-
-- Icon:
-- Unit Of Measurement:
-
-File: [`template/sensor/yas_209_local_ip.yaml`](entities/template/sensor/yas_209_local_ip.yaml)
 </details>
 
 <details><summary><strong>Bank Holiday</strong></summary>
