@@ -1348,8 +1348,9 @@
           ]
         },
         {
-          "path": "led-matrix-controller2",
-          "icon": "",
+          "title": "LED Matrix Controller",
+          "path": "led-matrix-controller",
+          "icon": "mdi:data-matrix",
           "cards": [
             {
               "type": "entities",
@@ -1393,6 +1394,19 @@
               "type": "iframe",
               "url": "http://localhost:8888",
               "aspect_ratio": "200%"
+            }
+          ]
+        },
+        {
+          "title": "LED Matrix Controller",
+          "path": "led-matrix-controller5",
+          "icon": "mdi:data-matrix",
+          "type": "sections",
+          "max_columns": 4,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": []
             }
           ]
         }
