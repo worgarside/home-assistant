@@ -14,5 +14,5 @@ trigger:
 action:
   - service: input_select.set_options
     data:
-      entity_id: input_select.mtrxpi_current_content  # hacv disable: InvalidEntityConsumed
+      entity_id: select.mtrxpi_current_content
       options: "{{ trigger.payload_json }}"
