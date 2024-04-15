@@ -1444,7 +1444,13 @@
             },
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "iframe",
+                  "url": "http://localhost:8888",
+                  "aspect_ratio": "200%"
+                }
+              ]
             }
           ],
           "cards": []
