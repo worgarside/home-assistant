@@ -5,11 +5,9 @@ mode: queued
 trigger:
   - platform: state
     entity_id:
-      - media_player.all_speakers
       - media_player.hifi_system
       - media_player.lounge_chromecast
       - media_player.spotify_will
-      - media_player.upstairs_speakers
 condition: |
   {{
     is_state('input_select.crt_pi_display_source', trigger.to_state.entity_id) and
