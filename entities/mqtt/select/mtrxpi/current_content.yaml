@@ -7,7 +7,9 @@ command_topic: /mtrxpi/matrix/current-content/set
 
 icon: mdi:animation-play-outline
 
-options: [] # Set by automation /mqtt/select/mtrxpi-current-content/set-options
+options:
+  - image-door-closed
+  - raining-grid
 
 retain: true
 
