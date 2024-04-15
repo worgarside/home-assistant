@@ -1349,51 +1349,6 @@
         },
         {
           "title": "LED Matrix Controller",
-          "path": "led-matrix-controller1",
-          "icon": "mdi:data-matrix",
-          "cards": [
-            {
-              "type": "entities",
-              "entities": [
-                "select.mtrxpi_current_content"
-              ],
-              "title": "Content"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "number.mtrxpi_raining_grid_rain_chance",
-                  "name": "Rain Chance"
-                },
-                {
-                  "entity": "number.mtrxpi_raining_grid_rain_speed",
-                  "name": "Rain Speed"
-                },
-                {
-                  "entity": "number.mtrxpi_raining_grid_splash_speed",
-                  "name": "Splash Speed"
-                }
-              ],
-              "show_header_toggle": false,
-              "state_color": false,
-              "title": "Raining Grid"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "switch.mtrxpi_power"
-                },
-                {
-                  "entity": "automation.mqtt_select_mtrxpi_current_content_set_options"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "LED Matrix Controller",
           "path": "led-matrix-controller",
           "icon": "mdi:data-matrix",
           "type": "sections",
