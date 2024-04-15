@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (118)</h3></summary>
+<details><summary><h3>Entities (117)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -972,20 +972,6 @@ File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](en
 }
 ```
 File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](entities/automation/mobile_app_notification_action/cosmo/remind_later.yaml)
-</details>
-
-<details><summary><code>/mqtt/select/mtrxpi-current-content/set-options</code></summary>
-
-**Entity ID: `automation.mqtt_select_mtrxpi_current_content_set_options`**
-
-> Set the options for the `MtrxPi | Current Content` select entity
-
-- Alias: /mqtt/select/mtrxpi-current-content/set-options
-- ID: `mqtt_select_mtrxpi_current_content_set_options`
-- Mode: `restart`
-- Variables:
-
-File: [`automation/mqtt/select/mtrxpi_current_content/set_options.yaml`](entities/automation/mqtt/select/mtrxpi_current_content/set_options.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/display-source-changed</code></summary>
