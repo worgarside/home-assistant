@@ -1406,7 +1406,15 @@
           "sections": [
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    "select.mtrxpi_current_content"
+                  ],
+                  "title": "Content"
+                }
+              ]
             }
           ],
           "cards": []
