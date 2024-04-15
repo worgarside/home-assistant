@@ -1382,7 +1382,12 @@
             {
               "type": "entities",
               "entities": [
-                "switch.mtrxpi_power"
+                {
+                  "entity": "switch.mtrxpi_power"
+                },
+                {
+                  "entity": "automation.mqtt_select_mtrxpi_current_content_set_options"
+                }
               ]
             }
           ]
