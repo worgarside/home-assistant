@@ -39,37 +39,37 @@ value_template: >-
       7101: "Heavy Ice Pellets",
       7102: "Light Ice Pellets",
       8000: "Thunderstorm"
-    }[value_json.data.values.weatherCode]
+    }[value_json.get("data", {}).get("values", {}).get("weatherCode", 0)]
   }}
 
 icon: >-
   {{
     {
-      0: "mdi:weather-sunny",
-      1000: "mdi:weather-sunny",
-      1100: "mdi:weather-partly-cloudy",
-      1101: "mdi:weather-partly-cloudy",
-      1102: "mdi:weather-cloudy",
-      1001: "mdi:weather-cloudy",
-      2000: "mdi:weather-fog",
-      2100: "mdi:weather-fog",
-      4000: "mdi:weather-rainy",
-      4001: "mdi:weather-pouring",
-      4200: "mdi:weather-rainy",
-      4201: "mdi:weather-pouring",
-      5000: "mdi:weather-snowy",
-      5001: "mdi:weather-snowy",
-      5100: "mdi:weather-snowy",
-      5101: "mdi:weather-snowy",
-      6000: "mdi:weather-snowy-rainy",
-      6001: "mdi:weather-snowy-rainy",
-      6200: "mdi:weather-snowy-rainy",
-      6201: "mdi:weather-snowy-rainy",
-      7000: "mdi:weather-snowy-rainy",
-      7101: "mdi:weather-snowy-rainy",
-      7102: "mdi:weather-snowy-rainy",
-      8000: "mdi:weather-lightning"
-    }[value_json.data.values.weatherCode]
+      "Unknown": "mdi:help",
+      "Clear, Sunny": "mdi:weather-sunny",
+      "Mostly Clear": "mdi:weather-sunny",
+      "Partly Cloudy": "mdi:weather-partly-cloudy",
+      "Mostly Cloudy": "mdi:weather-cloudy",
+      "Cloudy": "mdi:weather-cloudy",
+      "Fog": "mdi:weather-fog",
+      "Light Fog": "mdi:weather-fog",
+      "Drizzle": "mdi:weather-rainy",
+      "Rain": "mdi:weather-pouring",
+      "Light Rain": "mdi:weather-rainy",
+      "Heavy Rain": "mdi:weather-pouring",
+      "Snow": "mdi:weather-snowy",
+      "Flurries": "mdi:weather-snowy",
+      "Light Snow": "mdi:weather-snowy",
+      "Heavy Snow": "mdi:weather-snowy",
+      "Freezing Drizzle": "mdi:weather-snowy",
+      "Freezing Rain": "mdi:weather-snowy",
+      "Light Freezing Rain": "mdi:weather-snowy",
+      "Heavy Freezing Rain": "mdi:weather-snowy",
+      "Ice Pellets": "mdi:weather-snowy",
+      "Heavy Ice Pellets": "mdi:weather-snowy",
+      "Light Ice Pellets": "mdi:weather-snowy",
+      "Thunderstorm": "mdi:weather-lightning"
+    }[this.state]
   }}
 
 method: GET
