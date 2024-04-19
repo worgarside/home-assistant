@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Cloud Cover"
+
+unique_id: tomorrow_io_cloud_cover
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'cloudCover') }}"
+
+unit_of_measurement: "%"
+
+icon: mdi:cloud-percent-outline

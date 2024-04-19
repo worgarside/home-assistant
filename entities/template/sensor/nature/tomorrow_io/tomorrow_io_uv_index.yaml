@@ -1,0 +1,27 @@
+---
+name: "Tomorrow.io: UV Index"
+
+unique_id: tomorrow_io_uv_index
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'uvIndex') }}"
+
+icon: mdi:sun-wireless-outline
+
+attributes:
+  mapping: >-
+    {{
+      {
+        0: "Low",
+        1: "Low",
+        2: "Low",
+        3: "Moderate",
+        4: "Moderate",
+        5: "Moderate",
+        6: "High",
+        7: "High",
+        8: "Very High",
+        9: "Very High",
+        10: "Very High",
+        11: "Extreme"
+      } | tojson
+    }}

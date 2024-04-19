@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Precipitation Probability"
+
+unique_id: tomorrow_io_precipitation_probability
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'precipitationProbability') }}"
+
+unit_of_measurement: "%"
+
+icon: mdi:cloud-percent-outline
