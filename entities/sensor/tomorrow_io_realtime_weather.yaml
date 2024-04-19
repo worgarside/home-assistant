@@ -1,0 +1,111 @@
+---
+# https://docs.tomorrow.io/reference/realtime-weather
+
+name: Tomorrow.io Realtime Weather
+
+platform: rest
+
+resource: https://api.tomorrow.io/v4/weather/realtime
+
+unique_id: tomorrow_io_realtime_weather
+
+scan_interval: 150
+
+# https://docs.tomorrow.io/reference/data-layers-weather-codes
+value_template: >-
+  {{
+    {
+      0: "Unknown",
+      1000: "Clear, Sunny",
+      1100: "Mostly Clear",
+      1101: "Partly Cloudy",
+      1102: "Mostly Cloudy",
+      1001: "Cloudy",
+      2000: "Fog",
+      2100: "Light Fog",
+      4000: "Drizzle",
+      4001: "Rain",
+      4200: "Light Rain",
+      4201: "Heavy Rain",
+      5000: "Snow",
+      5001: "Flurries",
+      5100: "Light Snow",
+      5101: "Heavy Snow",
+      6000: "Freezing Drizzle",
+      6001: "Freezing Rain",
+      6200: "Light Freezing Rain",
+      6201: "Heavy Freezing Rain",
+      7000: "Ice Pellets",
+      7101: "Heavy Ice Pellets",
+      7102: "Light Ice Pellets",
+      8000: "Thunderstorm"
+    }[value_json.data.values.weatherCode]
+  }}
+
+icon: >-
+  {{
+    {
+      0: "mdi:weather-sunny",
+      1000: "mdi:weather-sunny",
+      1100: "mdi:weather-partly-cloudy",
+      1101: "mdi:weather-partly-cloudy",
+      1102: "mdi:weather-cloudy",
+      1001: "mdi:weather-cloudy",
+      2000: "mdi:weather-fog",
+      2100: "mdi:weather-fog",
+      4000: "mdi:weather-rainy",
+      4001: "mdi:weather-pouring",
+      4200: "mdi:weather-rainy",
+      4201: "mdi:weather-pouring",
+      5000: "mdi:weather-snowy",
+      5001: "mdi:weather-snowy",
+      5100: "mdi:weather-snowy",
+      5101: "mdi:weather-snowy",
+      6000: "mdi:weather-snowy-rainy",
+      6001: "mdi:weather-snowy-rainy",
+      6200: "mdi:weather-snowy-rainy",
+      6201: "mdi:weather-snowy-rainy",
+      7000: "mdi:weather-snowy-rainy",
+      7101: "mdi:weather-snowy-rainy",
+      7102: "mdi:weather-snowy-rainy",
+      8000: "mdi:weather-lightning"
+    }[value_json.data.values.weatherCode]
+  }}
+
+method: GET
+
+params:
+  apikey: !secret tomorrow_io_api_key
+
+  location: !secret address_postcode
+
+  units: metric
+
+force_update: true
+
+headers:
+  accept: application/json
+
+json_attributes_path: $.data.values
+
+json_attributes:
+  - cloudBase
+  - cloudCeiling
+  - cloudCover
+  - dewPoint
+  - freezingRainIntensity
+  - humidity
+  - precipitationProbability
+  - pressureSurfaceLevel
+  - rainIntensity
+  - sleetIntensity
+  - snowIntensity
+  - temperature
+  - temperatureApparent
+  - uvHealthConcern
+  - uvIndex
+  - visibility
+  - weatherCode
+  - windDirection
+  - windGust
+  - windSpeed

@@ -4696,7 +4696,7 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
 
 <details><summary><strong>External IP</strong></summary>
 
@@ -4737,6 +4737,15 @@ File: [`sensor/office_desk_standing_occupied_cumulative_time.yaml`](entities/sen
 - Platform: `time_date`
 
 File: [`sensor/time_date.yaml`](entities/sensor/time_date.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io Realtime Weather</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_realtime_weather`**
+
+- Platform: `rest`
+
+File: [`sensor/tomorrow_io_realtime_weather.yaml`](entities/sensor/tomorrow_io_realtime_weather.yaml)
 </details>
 
 </details>
