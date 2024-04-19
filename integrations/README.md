@@ -5451,7 +5451,7 @@ File: [`template/sensor/nature/sun_elevation.yaml`](entities/template/sensor/nat
     "Dusk": "mdi:weather-sunset-down",
     "Night": "mdi:weather-night",
     "Unknown": "mdi:help-rhombus-outline"
-  }[this.state]
+  }.get(this.state, "Unknown")
 }}
 ```
 
@@ -5638,7 +5638,7 @@ File: [`template/sensor/nature/tomorrow_io/tomorrow_io_visibility.yaml`](entitie
 ```jinja
 {{
   {
-    "Unknown": "mdi:help",
+    "Unknown": "mdi:help-rhombus-outline",
     "Clear, Sunny": "mdi:weather-sunny",
     "Mostly Clear": "mdi:weather-sunny",
     "Partly Cloudy": "mdi:weather-partly-cloudy",
@@ -5662,7 +5662,7 @@ File: [`template/sensor/nature/tomorrow_io/tomorrow_io_visibility.yaml`](entitie
     "Heavy Ice Pellets": "mdi:weather-snowy",
     "Light Ice Pellets": "mdi:weather-snowy",
     "Thunderstorm": "mdi:weather-lightning"
-  }[this.state]
+  }.get(this.state, "Unknown")
 }}
 ```
 

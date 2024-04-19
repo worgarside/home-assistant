@@ -8,7 +8,7 @@ state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'weatherCode') }}"
 icon: >-
   {{
     {
-      "Unknown": "mdi:help",
+      "Unknown": "mdi:help-rhombus-outline",
       "Clear, Sunny": "mdi:weather-sunny",
       "Mostly Clear": "mdi:weather-sunny",
       "Partly Cloudy": "mdi:weather-partly-cloudy",
@@ -32,7 +32,7 @@ icon: >-
       "Heavy Ice Pellets": "mdi:weather-snowy",
       "Light Ice Pellets": "mdi:weather-snowy",
       "Thunderstorm": "mdi:weather-lightning"
-    }[this.state]
+    }.get(this.state, "Unknown")
   }}
 
 attributes:
