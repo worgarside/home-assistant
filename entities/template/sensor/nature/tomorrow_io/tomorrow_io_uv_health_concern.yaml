@@ -23,5 +23,5 @@ attributes:
         9: "Very High",
         10: "Very High",
         11: "Extreme"
-      }
+      } | tojson
     }}
