@@ -1,0 +1,67 @@
+---
+name: "Tomorrow.io: Weather Code"
+
+unique_id: tomorrow_io_weather_code
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'weatherCode') }}"
+
+icon: >-
+  {{
+    {
+      "Unknown": "mdi:help-rhombus-outline",
+      "Clear, Sunny": "mdi:weather-sunny",
+      "Mostly Clear": "mdi:weather-sunny",
+      "Partly Cloudy": "mdi:weather-partly-cloudy",
+      "Mostly Cloudy": "mdi:weather-cloudy",
+      "Cloudy": "mdi:weather-cloudy",
+      "Fog": "mdi:weather-fog",
+      "Light Fog": "mdi:weather-fog",
+      "Drizzle": "mdi:weather-rainy",
+      "Rain": "mdi:weather-pouring",
+      "Light Rain": "mdi:weather-rainy",
+      "Heavy Rain": "mdi:weather-pouring",
+      "Snow": "mdi:weather-snowy",
+      "Flurries": "mdi:weather-snowy",
+      "Light Snow": "mdi:weather-snowy",
+      "Heavy Snow": "mdi:weather-snowy",
+      "Freezing Drizzle": "mdi:weather-snowy",
+      "Freezing Rain": "mdi:weather-snowy",
+      "Light Freezing Rain": "mdi:weather-snowy",
+      "Heavy Freezing Rain": "mdi:weather-snowy",
+      "Ice Pellets": "mdi:weather-snowy",
+      "Heavy Ice Pellets": "mdi:weather-snowy",
+      "Light Ice Pellets": "mdi:weather-snowy",
+      "Thunderstorm": "mdi:weather-lightning"
+    }.get(this.state, "Unknown")
+  }}
+
+attributes:
+  mapping: >-
+    {{
+      {
+        0: "Unknown",
+        1000: "Clear, Sunny",
+        1100: "Mostly Clear",
+        1101: "Partly Cloudy",
+        1102: "Mostly Cloudy",
+        1001: "Cloudy",
+        2000: "Fog",
+        2100: "Light Fog",
+        4000: "Drizzle",
+        4001: "Rain",
+        4200: "Light Rain",
+        4201: "Heavy Rain",
+        5000: "Snow",
+        5001: "Flurries",
+        5100: "Light Snow",
+        5101: "Heavy Snow",
+        6000: "Freezing Drizzle",
+        6001: "Freezing Rain",
+        6200: "Light Freezing Rain",
+        6201: "Heavy Freezing Rain",
+        7000: "Ice Pellets",
+        7101: "Heavy Ice Pellets",
+        7102: "Light Ice Pellets",
+        8000: "Thunderstorm"
+      } | tojson
+    }}

@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Dew Point"
+
+unique_id: tomorrow_io_dew_point
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'dewPoint') }}"
+
+unit_of_measurement: "°C"
+
+icon: mdi:water-thermometer-outline
