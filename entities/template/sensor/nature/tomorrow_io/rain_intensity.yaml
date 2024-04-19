@@ -1,0 +1,8 @@
+---
+name: "Tomorrow.io: Rain Intensity"
+
+unique_id: tomorrow_io_rain_intensity
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'rainIntensity') | int(None) }}"
+
+unit_of_measurement: mm/hr

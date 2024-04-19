@@ -4833,7 +4833,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (85)</h3></summary>
+<details><summary><h3>Entities (89)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -5420,6 +5420,64 @@ File: [`template/sensor/floorplan_icons/clmtpi_floorplan_icon.yaml`](entities/te
 - Unit Of Measurement:
 
 File: [`template/sensor/hifi_system_media_metadata.yaml`](entities/template/sensor/hifi_system_media_metadata.yaml)
+</details>
+
+<details><summary><strong>Sun Elevation</strong></summary>
+
+**Entity ID: `sensor.sun_elevation`**
+
+- Icon:
+- Unit Of Measurement: °
+
+File: [`template/sensor/nature/sun_elevation.yaml`](entities/template/sensor/nature/sun_elevation.yaml)
+</details>
+
+<details><summary><strong>Time of Day</strong></summary>
+
+**Entity ID: `sensor.time_of_day`**
+
+- Icon:
+
+```jinja
+{{
+  {
+    "Morning": "mdi:weather-sunset-up",
+    "Afternoon": "mdi:weather-sunny",
+    "Evening": "mdi:weather-sunset-down",
+    "Sunrise": "mdi:weather-sunset-up",
+    "Sunset": "mdi:weather-sunset-down",
+    "Twilight": "mdi:weather-sunset",
+    "Dawn": "mdi:weather-sunset-up",
+    "Dusk": "mdi:weather-sunset-down",
+    "Night": "mdi:weather-night",
+    "Unknown": "mdi:help-rhombus-outline"
+  }[this.state]
+}}
+```
+
+- Unit Of Measurement:
+
+File: [`template/sensor/nature/time_of_day.yaml`](entities/template/sensor/nature/time_of_day.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Rain Intensity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_rain_intensity`**
+
+- Icon:
+- Unit Of Measurement: mm/hr
+
+File: [`template/sensor/nature/tomorrow_io/rain_intensity.yaml`](entities/template/sensor/nature/tomorrow_io/rain_intensity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Rain Intensity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_rain_intensity`**
+
+- Icon:
+- Unit Of Measurement: mm/hr
+
+File: [`template/sensor/nature/tomorrow_io/temperature.yaml`](entities/template/sensor/nature/tomorrow_io/temperature.yaml)
 </details>
 
 <details><summary><strong>Office Desk Standing Mode Percentage</strong></summary>
