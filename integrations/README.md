@@ -4772,7 +4772,7 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
 
 <details><summary><strong>External IP</strong></summary>
 
@@ -4813,6 +4813,15 @@ File: [`sensor/office_desk_standing_occupied_cumulative_time.yaml`](entities/sen
 - Platform: `time_date`
 
 File: [`sensor/time_date.yaml`](entities/sensor/time_date.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io Realtime Weather</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_realtime_weather`**
+
+- Platform: `rest`
+
+File: [`sensor/tomorrow_io_realtime_weather.yaml`](entities/sensor/tomorrow_io_realtime_weather.yaml)
 </details>
 
 </details>
@@ -4900,7 +4909,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (85)</h3></summary>
+<details><summary><h3>Entities (105)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -5489,6 +5498,285 @@ File: [`template/sensor/floorplan_icons/clmtpi_floorplan_icon.yaml`](entities/te
 File: [`template/sensor/hifi_system_media_metadata.yaml`](entities/template/sensor/hifi_system_media_metadata.yaml)
 </details>
 
+<details><summary><strong>Sun Elevation</strong></summary>
+
+**Entity ID: `sensor.sun_elevation`**
+
+- Icon:
+- Unit Of Measurement: °
+
+File: [`template/sensor/nature/sun_elevation.yaml`](entities/template/sensor/nature/sun_elevation.yaml)
+</details>
+
+<details><summary><strong>Time of Day</strong></summary>
+
+**Entity ID: `sensor.time_of_day`**
+
+- Icon:
+
+```jinja
+{{
+  {
+    "Morning": "mdi:weather-sunset-up",
+    "Afternoon": "mdi:weather-sunny",
+    "Evening": "mdi:weather-sunset-down",
+    "Sunrise": "mdi:weather-sunset-up",
+    "Sunset": "mdi:weather-sunset-down",
+    "Twilight": "mdi:weather-sunset",
+    "Dawn": "mdi:weather-sunset-up",
+    "Dusk": "mdi:weather-sunset-down",
+    "Night": "mdi:weather-night",
+    "Unknown": "mdi:help-rhombus-outline"
+  }.get(this.state, "Unknown")
+}}
+```
+
+- Unit Of Measurement:
+
+File: [`template/sensor/nature/time_of_day.yaml`](entities/template/sensor/nature/time_of_day.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Cloud Base</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_cloud_base`**
+
+- Icon: [`mdi:cloud-arrow-down-outline`](https://pictogrammers.com/library/mdi/icon/cloud-arrow-down-outline/)
+- Unit Of Measurement: `km`
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_cloud_base.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_cloud_base.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Cloud Ceiling</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_cloud_ceiling`**
+
+- Icon: [`mdi:cloud-arrow-up-outline`](https://pictogrammers.com/library/mdi/icon/cloud-arrow-up-outline/)
+- Unit Of Measurement: `km`
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_cloud_ceiling.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_cloud_ceiling.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Cloud Cover</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_cloud_cover`**
+
+- Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_cloud_cover.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_cloud_cover.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Dew Point</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_dew_point`**
+
+- Icon: [`mdi:water-thermometer-outline`](https://pictogrammers.com/library/mdi/icon/water-thermometer-outline/)
+- Unit Of Measurement: °C
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_dew_point.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_dew_point.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Freezing Rain Intensity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_freezing_rain_intensity`**
+
+- Icon: [`mdi:weather-snowy-rainy`](https://pictogrammers.com/library/mdi/icon/weather-snowy-rainy/)
+- Unit Of Measurement: mm/hr
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_freezing_rain_intensity.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_freezing_rain_intensity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Humidity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_humidity`**
+
+- Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_humidity.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_humidity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Precipitation Probability</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_precipitation_probability`**
+
+- Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_precipitation_probability.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_precipitation_probability.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Pressure Surface Level</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_pressure_surface_level`**
+
+- Icon: [`mdi:gauge`](https://pictogrammers.com/library/mdi/icon/gauge/)
+- Unit Of Measurement: hPa
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_pressure_surface_level.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_pressure_surface_level.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Rain Intensity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_rain_intensity`**
+
+- Icon:
+
+```jinja
+{% if this.state | float > 0 %}
+  mdi:weather-rainy
+{% else %}
+  mdi:cloud-outline
+{% endif %}
+```
+
+- Unit Of Measurement: mm/hr
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_rain_intensity.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_rain_intensity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Sleet Intensity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_sleet_intensity`**
+
+- Icon: [`mdi:weather-snowy-rainy`](https://pictogrammers.com/library/mdi/icon/weather-snowy-rainy/)
+- Unit Of Measurement: mm/hr
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_sleet_intensity.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_sleet_intensity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Snow Intensity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_snow_intensity`**
+
+- Icon: [`mdi:weather-snowy`](https://pictogrammers.com/library/mdi/icon/weather-snowy/)
+- Unit Of Measurement: mm/hr
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_snow_intensity.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_snow_intensity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Temperature</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_temperature`**
+
+- Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
+- Unit Of Measurement: °C
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_temperature.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_temperature.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Temperature Apparent</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_temperature_apparent`**
+
+- Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
+- Unit Of Measurement: °C
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_temperature_apparent.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_temperature_apparent.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: UV Health Concern</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_uv_health_concern`**
+
+- Icon: [`mdi:sun-wireless-outline`](https://pictogrammers.com/library/mdi/icon/sun-wireless-outline/)
+- Unit Of Measurement:
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_uv_health_concern.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_uv_health_concern.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: UV Index</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_uv_index`**
+
+- Icon: [`mdi:sun-wireless-outline`](https://pictogrammers.com/library/mdi/icon/sun-wireless-outline/)
+- Unit Of Measurement:
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_uv_index.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_uv_index.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Visibility</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_visibility`**
+
+- Icon: [`mdi:weather-hazy`](https://pictogrammers.com/library/mdi/icon/weather-hazy/)
+- Unit Of Measurement: `km`
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_visibility.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_visibility.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Weather Code</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_weather_code`**
+
+- Icon:
+
+```jinja
+{{
+  {
+    "Unknown": "mdi:help-rhombus-outline",
+    "Clear, Sunny": "mdi:weather-sunny",
+    "Mostly Clear": "mdi:weather-sunny",
+    "Partly Cloudy": "mdi:weather-partly-cloudy",
+    "Mostly Cloudy": "mdi:weather-cloudy",
+    "Cloudy": "mdi:weather-cloudy",
+    "Fog": "mdi:weather-fog",
+    "Light Fog": "mdi:weather-fog",
+    "Drizzle": "mdi:weather-rainy",
+    "Rain": "mdi:weather-pouring",
+    "Light Rain": "mdi:weather-rainy",
+    "Heavy Rain": "mdi:weather-pouring",
+    "Snow": "mdi:weather-snowy",
+    "Flurries": "mdi:weather-snowy",
+    "Light Snow": "mdi:weather-snowy",
+    "Heavy Snow": "mdi:weather-snowy",
+    "Freezing Drizzle": "mdi:weather-snowy",
+    "Freezing Rain": "mdi:weather-snowy",
+    "Light Freezing Rain": "mdi:weather-snowy",
+    "Heavy Freezing Rain": "mdi:weather-snowy",
+    "Ice Pellets": "mdi:weather-snowy",
+    "Heavy Ice Pellets": "mdi:weather-snowy",
+    "Light Ice Pellets": "mdi:weather-snowy",
+    "Thunderstorm": "mdi:weather-lightning"
+  }.get(this.state, "Unknown")
+}}
+```
+
+- Unit Of Measurement:
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_weather_code.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_weather_code.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Wind Direction</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_wind_direction`**
+
+- Icon: [`mdi:compass-outline`](https://pictogrammers.com/library/mdi/icon/compass-outline/)
+- Unit Of Measurement: °
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_wind_direction.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_wind_direction.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Wind Gust</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_wind_gust`**
+
+- Icon: [`mdi:weather-windy`](https://pictogrammers.com/library/mdi/icon/weather-windy/)
+- Unit Of Measurement: m/s
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_wind_gust.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_wind_gust.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Wind Speed</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_wind_speed`**
+
+- Icon: [`mdi:weather-windy`](https://pictogrammers.com/library/mdi/icon/weather-windy/)
+- Unit Of Measurement: m/s
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_wind_speed.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_wind_speed.yaml)
+</details>
+
 <details><summary><strong>Office Desk Standing Mode Percentage</strong></summary>
 
 **Entity ID: `sensor.office_desk_standing_mode_percentage`**
@@ -5577,44 +5865,6 @@ File: [`template/sensor/spotify/spotify_will_garside_media_title.yaml`](entities
 - Unit Of Measurement: epoch-seconds
 
 File: [`template/sensor/st_macbook_pro_last_update.yaml`](entities/template/sensor/st_macbook_pro_last_update.yaml)
-</details>
-
-<details><summary><strong>Sun Elevation</strong></summary>
-
-**Entity ID: `sensor.sun_elevation`**
-
-- Icon:
-- Unit Of Measurement: °
-
-File: [`template/sensor/sun_elevation.yaml`](entities/template/sensor/sun_elevation.yaml)
-</details>
-
-<details><summary><strong>Time of Day</strong></summary>
-
-**Entity ID: `sensor.time_of_day`**
-
-- Icon:
-
-```jinja
-{{
-  {
-    "Morning": "mdi:weather-sunset-up",
-    "Afternoon": "mdi:weather-sunny",
-    "Evening": "mdi:weather-sunset-down",
-    "Sunrise": "mdi:weather-sunset-up",
-    "Sunset": "mdi:weather-sunset-down",
-    "Twilight": "mdi:weather-sunset",
-    "Dawn": "mdi:weather-sunset-up",
-    "Dusk": "mdi:weather-sunset-down",
-    "Night": "mdi:weather-night",
-    "Unknown": "mdi:help-rhombus-outline"
-  }[this.state]
-}}
-```
-
-- Unit Of Measurement:
-
-File: [`template/sensor/time_of_day.yaml`](entities/template/sensor/time_of_day.yaml)
 </details>
 
 <details><summary><strong>Will's MacBook Pro Last Update</strong></summary>

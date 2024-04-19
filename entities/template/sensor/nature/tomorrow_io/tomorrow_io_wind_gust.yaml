@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Wind Gust"
+
+unique_id: tomorrow_io_wind_gust
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'windGust') }}"
+
+unit_of_measurement: m/s
+
+icon: mdi:weather-windy
