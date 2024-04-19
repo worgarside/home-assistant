@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Visibility"
+
+unique_id: tomorrow_io_visibility
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'visibility') }}"
+
+unit_of_measurement: km
+
+icon: mdi:weather-hazy

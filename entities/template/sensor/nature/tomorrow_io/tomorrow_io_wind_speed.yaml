@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Wind Speed"
+
+unique_id: tomorrow_io_wind_speed
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'windSpeed') }}"
+
+unit_of_measurement: m/s
+
+icon: mdi:weather-windy

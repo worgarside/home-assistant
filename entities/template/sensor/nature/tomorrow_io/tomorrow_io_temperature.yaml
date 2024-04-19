@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Temperature"
+
+unique_id: tomorrow_io_temperature
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'temperature') }}"
+
+unit_of_measurement: "°C"
+
+icon: mdi:thermometer

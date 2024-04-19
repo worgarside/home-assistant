@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Pressure Surface Level"
+
+unique_id: tomorrow_io_pressure_surface_level
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'pressureSurfaceLevel') }}"
+
+unit_of_measurement: hPa
+
+icon: mdi:gauge
