@@ -3,7 +3,7 @@ alias: "MtrxPi: Queue Content"
 
 description: Add content to the queue with a priority
 
-mode: parallel
+mode: queued
 
 fields:
   id:

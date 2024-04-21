@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (117)</h3></summary>
+<details><summary><h3>Entities (118)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -972,6 +972,20 @@ File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](en
 }
 ```
 File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](entities/automation/mobile_app_notification_action/cosmo/remind_later.yaml)
+</details>
+
+<details><summary><code>/mtrxpi/content-trigger/gif-door-animated</code></summary>
+
+**Entity ID: `automation.mtrxpi_content_trigger_gif_door_animated`**
+
+> *No description provided*
+
+- Alias: /mtrxpi/content-trigger/gif-door-animated
+- ID: `mtrxpi_content_trigger_gif_door_animated`
+- Mode: `queued`
+- Variables:
+
+File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/automation/mtrxpi/content_trigger/gif_door_animated.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/display-source-changed</code></summary>
@@ -4431,7 +4445,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
 }
 ```
 
-- Mode: `parallel`
+- Mode: `queued`
 - Variables:
 
 File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_queue_content.yaml)
