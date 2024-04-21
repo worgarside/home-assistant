@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (118)</h3></summary>
+<details><summary><h3>Entities (115)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -988,34 +988,6 @@ File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](enti
 File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/automation/mtrxpi/content_trigger/gif_door_animated.yaml)
 </details>
 
-<details><summary><code>/mtrxpi/display-source-changed</code></summary>
-
-**Entity ID: `automation.mtrxpi_display_source_changed`**
-
-> *No description provided*
-
-- Alias: /mtrxpi/display-source-changed
-- ID: `mtrxpi_display_source_changed`
-- Mode: `restart`
-- Variables:
-
-File: [`automation/mtrxpi/display_source_changed.yaml`](entities/automation/mtrxpi/display_source_changed.yaml)
-</details>
-
-<details><summary><code>/mtrxpi/update-display</code></summary>
-
-**Entity ID: `automation.mtrxpi_update_display`**
-
-> *No description provided*
-
-- Alias: /mtrxpi/update-display
-- ID: `mtrxpi_update_display`
-- Mode: `queued`
-- Variables:
-
-File: [`automation/mtrxpi/update_display.yaml`](entities/automation/mtrxpi/update_display.yaml)
-</details>
-
 <details><summary><code>/notification/credit-card-top-up/send</code></summary>
 
 **Entity ID: `automation.notification_credit_card_top_up_send`**
@@ -1438,20 +1410,6 @@ File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_rel
 - Variables:
 
 File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/automation/script/crt_pi_update_display/mqtt_trigger.yaml)
-</details>
-
-<details><summary><code>/script/mtrxpi-update-display/mqtt-trigger</code></summary>
-
-**Entity ID: `automation.script_mtrxpi_update_display_mqtt_trigger`**
-
-> *No description provided*
-
-- Alias: /script/mtrxpi-update-display/mqtt-trigger
-- ID: `script_mtrxpi_update_display_mqtt_trigger`
-- Mode: `single`
-- Variables:
-
-File: [`automation/script/mtrxpi_update_display/mqtt_trigger.yaml`](entities/automation/script/mtrxpi_update_display/mqtt_trigger.yaml)
 </details>
 
 <details><summary><code>/sensor/octoprint-bed-target/set</code></summary>
@@ -2813,7 +2771,7 @@ File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/in
 
 ## Input Select
 
-<details><summary><h3>Entities (9)</h3></summary>
+<details><summary><h3>Entities (8)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -2849,15 +2807,6 @@ File: [`input_select/crt_pi_display_source.yaml`](entities/input_select/crt_pi_d
 - Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
 
 File: [`input_select/lounge_shapes_artwork_mapping_source.yaml`](entities/input_select/lounge_shapes_artwork_mapping_source.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Display Source</strong></summary>
-
-**Entity ID: `input_select.mtrxpi_display_source`**
-
-- Icon: [`mdi:square-opacity`](https://pictogrammers.com/library/mdi/icon/square-opacity/)
-
-File: [`input_select/mtrxpi_display_source.yaml`](entities/input_select/mtrxpi_display_source.yaml)
 </details>
 
 <details><summary><strong>Office Shapes Artwork Mapping Source</strong></summary>
@@ -4096,7 +4045,7 @@ File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml
 
 ## Script
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -4533,19 +4482,6 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
 - Variables:
 
 File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_queue_content.yaml)
-</details>
-
-<details><summary><strong>MtrxPi: Update Display</strong></summary>
-
-**Entity ID: `script.mtrxpi_update_display`**
-
-> Update the MtrxPi display from the chosen media player's track
-
-- Fields:
-- Mode: `restart`
-- Variables:
-
-File: [`script/mtrxpi_update_display.yaml`](entities/script/mtrxpi_update_display.yaml)
 </details>
 
 <details><summary><strong>Notify Vic</strong></summary>
