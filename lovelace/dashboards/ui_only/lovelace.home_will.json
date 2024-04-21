@@ -1411,6 +1411,17 @@
                           "cards": [
                             {
                               "type": "custom:mushroom-entity-card",
+                              "entity": "sensor.mtrxpi_boot_time",
+                              "name": "Last Boot Time",
+                              "icon_color": "green"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-entity-card",
                               "entity": "sensor.mtrxpi_cpu_usage",
                               "icon_color": "red",
                               "name": "CPU Usage"
