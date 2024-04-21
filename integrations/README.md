@@ -2950,7 +2950,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (88)</h3></summary>
+<details><summary><h3>Entities (95)</h3></summary>
 
 <details><summary><strong>RGB LED Matrix</strong></summary>
 
@@ -3011,7 +3011,6 @@ File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number
 
 File: [`mqtt/select/mtrxpi/current_content.yaml`](entities/mqtt/select/mtrxpi/current_content.yaml)
 </details>
-<details><summary><h3>Entities (91)</h3></summary>
 
 <details><summary><strong>ClmtPi Active Git Ref</strong></summary>
 
