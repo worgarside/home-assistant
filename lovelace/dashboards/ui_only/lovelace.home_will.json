@@ -1428,9 +1428,9 @@
                           "cards": [
                             {
                               "type": "custom:mushroom-entity-card",
-                              "entity": "sensor.mtrxpi_cpu_usage",
-                              "icon_color": "red",
-                              "name": "CPU Usage"
+                              "entity": "sensor.mtrxpi_boot_time",
+                              "name": "Last Boot Time",
+                              "icon_color": "green"
                             },
                             {
                               "type": "custom:mushroom-entity-card",
@@ -1457,53 +1457,6 @@
                               "icon": "mdi:thermometer-lines"
                             }
                           ]
-                        },
-                        {
-                          "type": "custom:mini-graph-card",
-                          "name": "6 Hour History",
-                          "entities": [
-                            {
-                              "entity": "sensor.mtrxpi_cpu_usage",
-                              "name": "CPU",
-                              "color": "#F54336"
-                            },
-                            {
-                              "entity": "sensor.mtrxpi_memory_usage",
-                              "name": "Memory",
-                              "color": "#2096F3"
-                            },
-                            {
-                              "entity": "sensor.mtrxpi_disk_usage",
-                              "name": "Memory",
-                              "color": "#4DAF50"
-                            },
-                            {
-                              "entity": "sensor.mtrxpi_cpu_temperature",
-                              "name": "CPU Temperature",
-                              "color": "#FF9901",
-                              "y_axis": "secondary"
-                            }
-                          ],
-                          "show": {
-                            "state": false,
-                            "legend": false,
-                            "fill": "fade",
-                            "name": true,
-                            "icon": false,
-                            "labels": true,
-                            "labels_secondary": true,
-                            "unit": true
-                          },
-                          "hours_to_show": 6,
-                          "points_per_hour": 60,
-                          "lower_bound": 0,
-                          "upper_bound": "~50",
-                          "lower_bound_secondary": "~40",
-                          "upper_bound_secondary": "~60",
-                          "height": 150,
-                          "animate": true,
-                          "hour24": true,
-                          "line_width": 2
                         }
                       ]
                     }
