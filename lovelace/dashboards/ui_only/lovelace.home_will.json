@@ -1421,31 +1421,53 @@
                   "type": "horizontal-stack",
                   "cards": [
                     {
-                      "type": "custom:mini-graph-card",
-                      "entities": [
+                      "type": "vertical-stack",
+                      "cards": [
                         {
-                          "entity": "sensor.mtrxpi_cpu_usage",
-                          "name": "CPU",
-                          "color": "red"
+                          "type": "custom:mushroom-chips-card",
+                          "chips": [
+                            {
+                              "type": "entity",
+                              "entity": "sensor.mtrxpi_cpu_usage",
+                              "icon_color": "red",
+                              "name": "CPU",
+                              "use_entity_picture": false
+                            },
+                            {
+                              "type": "entity",
+                              "entity": "sensor.mtrxpi_memory_usage",
+                              "icon_color": "blue"
+                            }
+                          ]
                         },
                         {
-                          "entity": "sensor.mtrxpi_memory_usage",
-                          "name": "Memory",
-                          "color": "blue"
+                          "type": "custom:mini-graph-card",
+                          "entities": [
+                            {
+                              "entity": "sensor.mtrxpi_cpu_usage",
+                              "name": "CPU",
+                              "color": "#F54336"
+                            },
+                            {
+                              "entity": "sensor.mtrxpi_memory_usage",
+                              "name": "Memory",
+                              "color": "#2096F3"
+                            }
+                          ],
+                          "show": {
+                            "state": false,
+                            "legend": false,
+                            "fill": "fade",
+                            "name": false,
+                            "icon": false
+                          },
+                          "hours_to_show": 6,
+                          "points_per_hour": 60,
+                          "lower_bound": 0,
+                          "upper_bound": "~50",
+                          "height": 150
                         }
-                      ],
-                      "show": {
-                        "state": false,
-                        "legend": false,
-                        "fill": "fade",
-                        "name": false,
-                        "icon": false
-                      },
-                      "hours_to_show": 12,
-                      "points_per_hour": 160,
-                      "lower_bound": 0,
-                      "upper_bound": "~50",
-                      "height": 150
+                      ]
                     }
                   ]
                 },
