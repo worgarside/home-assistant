@@ -1,0 +1,12 @@
+---
+force_update: true
+
+icon: mdi:ip-network-outline
+
+name: OctoPi Local IP Address
+
+state_topic: /homeassistant/octopi/stats
+
+unique_id: octopi_local_ip_address
+
+value_template: "{{ value_json.local_ip }}"

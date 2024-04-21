@@ -3011,6 +3011,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number
 
 File: [`mqtt/select/mtrxpi/current_content.yaml`](entities/mqtt/select/mtrxpi/current_content.yaml)
 </details>
+<details><summary><h3>Entities (91)</h3></summary>
 
 <details><summary><strong>ClmtPi Active Git Ref</strong></summary>
 
@@ -3142,6 +3143,18 @@ File: [`mqtt/sensor/clmtpi/disk_usage.yaml`](entities/mqtt/sensor/clmtpi/disk_us
 - Unit Of Measurement:
 
 File: [`mqtt/sensor/clmtpi/local_git_ref.yaml`](entities/mqtt/sensor/clmtpi/local_git_ref.yaml)
+</details>
+
+<details><summary><strong>ClmtPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.clmtpi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/clmtpi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/clmtpi/local_ip_address.yaml`](entities/mqtt/sensor/clmtpi/local_ip_address.yaml)
 </details>
 
 <details><summary><strong>ClmtPi Memory Usage</strong></summary>
@@ -3300,6 +3313,18 @@ File: [`mqtt/sensor/crtpi/disk_usage.yaml`](entities/mqtt/sensor/crtpi/disk_usag
 File: [`mqtt/sensor/crtpi/local_git_ref.yaml`](entities/mqtt/sensor/crtpi/local_git_ref.yaml)
 </details>
 
+<details><summary><strong>CrtPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.crtpi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/crt-pi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/crtpi/local_ip_address.yaml`](entities/mqtt/sensor/crtpi/local_ip_address.yaml)
+</details>
+
 <details><summary><strong>CRTPi Memory Usage</strong></summary>
 
 **Entity ID: `sensor.crtpi_memory_usage`**
@@ -3432,6 +3457,18 @@ File: [`mqtt/sensor/growpi/disk_usage.yaml`](entities/mqtt/sensor/growpi/disk_us
 File: [`mqtt/sensor/growpi/local_git_ref.yaml`](entities/mqtt/sensor/growpi/local_git_ref.yaml)
 </details>
 
+<details><summary><strong>GrowPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.growpi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/growpi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/growpi/local_ip_address.yaml`](entities/mqtt/sensor/growpi/local_ip_address.yaml)
+</details>
+
 <details><summary><strong>GrowPi Memory Usage</strong></summary>
 
 **Entity ID: `sensor.growpi_memory_usage`**
@@ -3562,6 +3599,18 @@ File: [`mqtt/sensor/mtrxpi/disk_usage.yaml`](entities/mqtt/sensor/mtrxpi/disk_us
 - Unit Of Measurement:
 
 File: [`mqtt/sensor/mtrxpi/local_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/local_git_ref.yaml)
+</details>
+
+<details><summary><strong>MtrxPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/mtrxpi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/mtrxpi/local_ip_address.yaml`](entities/mqtt/sensor/mtrxpi/local_ip_address.yaml)
 </details>
 
 <details><summary><strong>MtrxPi Memory Usage</strong></summary>
@@ -3720,6 +3769,18 @@ File: [`mqtt/sensor/octopi/disk_usage.yaml`](entities/mqtt/sensor/octopi/disk_us
 File: [`mqtt/sensor/octopi/local_git_ref.yaml`](entities/mqtt/sensor/octopi/local_git_ref.yaml)
 </details>
 
+<details><summary><strong>OctoPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.octopi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/octopi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/octopi/local_ip_address.yaml`](entities/mqtt/sensor/octopi/local_ip_address.yaml)
+</details>
+
 <details><summary><strong>OctoPi Memory Usage</strong></summary>
 
 **Entity ID: `sensor.octopi_memory_usage`**
@@ -3852,6 +3913,18 @@ File: [`mqtt/sensor/rtropi/disk_usage.yaml`](entities/mqtt/sensor/rtropi/disk_us
 File: [`mqtt/sensor/rtropi/local_git_ref.yaml`](entities/mqtt/sensor/rtropi/local_git_ref.yaml)
 </details>
 
+<details><summary><strong>RtroPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.rtropi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/rtropi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/rtropi/local_ip_address.yaml`](entities/mqtt/sensor/rtropi/local_ip_address.yaml)
+</details>
+
 <details><summary><strong>RtroPi Memory Usage</strong></summary>
 
 **Entity ID: `sensor.rtropi_memory_usage`**
@@ -3982,6 +4055,18 @@ File: [`mqtt/sensor/vsmppi/disk_usage.yaml`](entities/mqtt/sensor/vsmppi/disk_us
 - Unit Of Measurement:
 
 File: [`mqtt/sensor/vsmppi/local_git_ref.yaml`](entities/mqtt/sensor/vsmppi/local_git_ref.yaml)
+</details>
+
+<details><summary><strong>VSMPPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.vsmppi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/vsmppi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/vsmppi/local_ip_address.yaml`](entities/mqtt/sensor/vsmppi/local_ip_address.yaml)
 </details>
 
 <details><summary><strong>VSMPPi Memory Usage</strong></summary>
