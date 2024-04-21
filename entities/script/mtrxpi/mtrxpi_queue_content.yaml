@@ -36,5 +36,5 @@ sequence:
       payload: >-
         {
           "id": "{{ id }}",
-          "priority": {{ priority }}
+          "priority": {{ priority | default(null) }}
         }
