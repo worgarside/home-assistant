@@ -1407,19 +1407,32 @@
                       "type": "vertical-stack",
                       "cards": [
                         {
-                          "type": "custom:mushroom-chips-card",
-                          "chips": [
+                          "type": "horizontal-stack",
+                          "cards": [
                             {
-                              "type": "entity",
+                              "type": "custom:mushroom-entity-card",
                               "entity": "sensor.mtrxpi_cpu_usage",
                               "icon_color": "red",
-                              "name": "CPU",
-                              "use_entity_picture": false
+                              "name": "CPU"
                             },
                             {
-                              "type": "entity",
+                              "type": "custom:mushroom-entity-card",
                               "entity": "sensor.mtrxpi_memory_usage",
-                              "icon_color": "blue"
+                              "icon_color": "blue",
+                              "name": "RAM"
+                            },
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "sensor.mtrxpi_cpu_temperature",
+                              "icon_color": "orange",
+                              "name": "Temp",
+                              "icon": "mdi:thermometer-lines"
+                            },
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "sensor.mtrxpi_disk_usage",
+                              "icon_color": "green",
+                              "name": "Disk"
                             }
                           ]
                         },
