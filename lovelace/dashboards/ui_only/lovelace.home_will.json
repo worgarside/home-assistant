@@ -1399,7 +1399,22 @@
             },
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.mtrxpi_cpu_usage",
+                      "name": "CPU Usage"
+                    }
+                  ],
+                  "show": {
+                    "state": true,
+                    "legend": false,
+                    "fill": "fade"
+                  }
+                }
+              ]
             }
           ],
           "cards": []
