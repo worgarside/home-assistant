@@ -1529,6 +1529,12 @@
                   "entity": "sensor.mtrxpi_local_ip_address",
                   "icon_color": "yellow",
                   "name": "IP Address"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.mtrxpi_local_ip_address",
+                  "icon_color": "yellow",
+                  "name": "IP Address"
                 }
               ]
             }
