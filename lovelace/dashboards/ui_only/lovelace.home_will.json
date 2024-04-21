@@ -1401,6 +1401,11 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "markdown",
+                  "content": "Boot Time:  `{{ states('sensor.mtrxpi_boot_time') }}`\nIP Address: `{{ states('sensor.mtrxpi_local_ip_address') or \"Unknown\" }}`\n",
+                  "title": "MtrxPi"
+                },
+                {
                   "type": "horizontal-stack",
                   "cards": [
                     {
@@ -1508,11 +1513,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "type": "markdown",
-                  "content": "Boot Time:  `{{ states('sensor.mtrxpi_boot_time') }}`\nIP Address: `{{ states('sensor.mtrxpi_local_ip_address') or \"Unknown\" }}`\n",
-                  "title": "MtrxPi"
                 }
               ]
             }
