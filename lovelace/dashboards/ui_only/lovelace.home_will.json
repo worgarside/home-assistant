@@ -1413,6 +1413,20 @@
                     "legend": false,
                     "fill": "fade"
                   }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.mtrxpi_memory_usage",
+                      "name": "Memory Usage"
+                    }
+                  ],
+                  "show": {
+                    "state": true,
+                    "legend": false,
+                    "fill": "fade"
+                  }
                 }
               ]
             }
