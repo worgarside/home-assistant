@@ -1,0 +1,12 @@
+---
+force_update: true
+
+icon: mdi:ip-network-outline
+
+name: ClmtPi Local IP Address
+
+state_topic: /homeassistant/clmtpi/stats
+
+unique_id: clmtpi_local_ip_address
+
+value_template: "{{ value_json.local_ip }}"
