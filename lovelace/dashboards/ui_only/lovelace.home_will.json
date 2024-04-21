@@ -1443,6 +1443,23 @@
                   "entity": "sensor.mtrxpi_local_git_ref",
                   "name": "WG Scripts Version",
                   "icon_color": "amber"
+                },
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.mtrxpi_cpu_usage",
+                      "icon_color": "red",
+                      "name": "CPU",
+                      "use_entity_picture": false
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.mtrxpi_memory_usage",
+                      "icon_color": "blue"
+                    }
+                  ]
                 }
               ],
               "title": "MtrxPi"
