@@ -2899,7 +2899,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (94)</h3></summary>
+<details><summary><h3>Entities (95)</h3></summary>
 
 <details><summary><strong>RGB LED Matrix</strong></summary>
 
@@ -3511,6 +3511,18 @@ File: [`mqtt/sensor/mtrxpi/cpu_temperature.yaml`](entities/mqtt/sensor/mtrxpi/cp
 - Unit Of Measurement: %
 
 File: [`mqtt/sensor/mtrxpi/cpu_usage.yaml`](entities/mqtt/sensor/mtrxpi/cpu_usage.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Current Content</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_current_content`**
+
+- Icon: [`mdi:animation-play-outline`](https://pictogrammers.com/library/mdi/icon/animation-play-outline/)
+- State Class:
+- State Topic: /mtrxpi/matrix/current-content
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/mtrxpi/current_content.yaml`](entities/mqtt/sensor/mtrxpi/current_content.yaml)
 </details>
 
 <details><summary><strong>MtrxPi Disk Usage</strong></summary>
