@@ -1432,6 +1432,12 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.mtrxpi_boot_time",
+                  "name": "Last Boot Time",
+                  "icon_color": "green"
                 }
               ]
             }
