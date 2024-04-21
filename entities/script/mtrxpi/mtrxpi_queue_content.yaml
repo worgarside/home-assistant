@@ -1,12 +1,12 @@
 ---
-alias: "MtrxPi: Set Content"
+alias: "MtrxPi: Queue Content"
 
 description: Add content to the queue with a priority
 
 mode: parallel
 
 fields:
-  content_id:
+  id:
     description: The ID of the content to add to the queue
     example: raining-grid
 
@@ -14,8 +14,7 @@ fields:
     description: >-
       The priority of the content in the queue. `None` will remove the content from the queue if it
       exists. `0` is the highest priority, and the higher the number, the lower the priority.
-    example: 1
-    default:
+    example: "1"
 
 sequence:
   - service: script.turn_on
@@ -33,9 +32,9 @@ sequence:
 
   - service: mqtt.publish
     data:
-      topic: /mtrxpi/matrix/content/set
+      topic: /mtrxpi/matrix/queue-content
       payload: >-
         {
-          "content_id": "{{ content_id }}",
+          "id": "{{ content_id }}",
           "priority": {{ priority }}
         }

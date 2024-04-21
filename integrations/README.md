@@ -4410,9 +4410,9 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_turn_off.yaml`](entities/scrip
 File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml)
 </details>
 
-<details><summary><strong>MtrxPi: Set Content</strong></summary>
+<details><summary><strong>MtrxPi: Queue Content</strong></summary>
 
-**Entity ID: `script.mtrxpi_set_content`**
+**Entity ID: `script.mtrxpi_queue_content`**
 
 > Add content to the queue with a priority
 
@@ -4420,14 +4420,13 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
 
 ```json
 {
-  "content_id": {
+  "id": {
     "description": "The ID of the content to add to the queue",
     "example": "raining-grid"
   },
   "priority": {
     "description": "The priority of the content in the queue. `None` will remove the content from the queue if it exists. `0` is the highest priority, and the higher the number, the lower the priority.",
-    "example": 1,
-    "default": null
+    "example": "1"
   }
 }
 ```
@@ -4435,7 +4434,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
 - Mode: `parallel`
 - Variables:
 
-File: [`script/mtrxpi/mtrxpi_set_content.yaml`](entities/script/mtrxpi/mtrxpi_set_content.yaml)
+File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_queue_content.yaml)
 </details>
 
 <details><summary><strong>MtrxPi: Update Display</strong></summary>
