@@ -1410,9 +1410,9 @@
                             },
                             {
                               "type": "custom:mushroom-entity-card",
-                              "entity": "sensor.mtrxpi_active_git_ref",
-                              "name": "WG Scripts",
-                              "icon_color": "blue-grey"
+                              "entity": "sensor.mtrxpi_current_content",
+                              "icon_color": "teal",
+                              "name": "Current Content"
                             }
                           ]
                         },
@@ -1427,9 +1427,9 @@
                             },
                             {
                               "type": "custom:mushroom-entity-card",
-                              "entity": "sensor.mtrxpi_current_content",
-                              "icon_color": "teal",
-                              "name": "Current Content"
+                              "entity": "sensor.mtrxpi_active_git_ref",
+                              "name": "WG Scripts",
+                              "icon_color": "blue-grey"
                             }
                           ]
                         }
