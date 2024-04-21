@@ -1409,17 +1409,7 @@
                         {
                           "entity": "sensor.mtrxpi_cpu_usage",
                           "name": "CPU Usage"
-                        }
-                      ],
-                      "show": {
-                        "state": true,
-                        "legend": false,
-                        "fill": "fade"
-                      }
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "entities": [
+                        },
                         {
                           "entity": "sensor.mtrxpi_memory_usage",
                           "name": "Memory Usage"
@@ -1429,7 +1419,12 @@
                         "state": true,
                         "legend": false,
                         "fill": "fade"
-                      }
+                      },
+                      "hours_to_show": 12,
+                      "points_per_hour": 160,
+                      "lower_bound": 0,
+                      "upper_bound": "~50",
+                      "height": 200
                     }
                   ]
                 },
