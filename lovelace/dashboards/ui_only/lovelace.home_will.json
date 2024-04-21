@@ -1427,6 +1427,39 @@
                     "legend": false,
                     "fill": "fade"
                   }
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "entities": [
+                        {
+                          "entity": "sensor.mtrxpi_cpu_usage",
+                          "name": "CPU Usage"
+                        }
+                      ],
+                      "show": {
+                        "state": true,
+                        "legend": false,
+                        "fill": "fade"
+                      }
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "entities": [
+                        {
+                          "entity": "sensor.mtrxpi_memory_usage",
+                          "name": "Memory Usage"
+                        }
+                      ],
+                      "show": {
+                        "state": true,
+                        "legend": false,
+                        "fill": "fade"
+                      }
+                    }
+                  ]
                 }
               ]
             }
