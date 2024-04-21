@@ -25,7 +25,7 @@ sequence:
         notification_title: Queuing MtrxPi Content
         message: |
           ```
-          Content ID: {{ content_id }}
+          Content ID: {{ id }}
           Priority:   {{ priority }}
           Time:       {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
           ```
@@ -35,6 +35,6 @@ sequence:
       topic: /mtrxpi/matrix/queue-content
       payload: >-
         {
-          "id": "{{ content_id }}",
+          "id": "{{ id }}",
           "priority": {{ priority }}
         }
