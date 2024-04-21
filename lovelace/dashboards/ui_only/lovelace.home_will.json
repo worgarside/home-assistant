@@ -1404,6 +1404,23 @@
                   "type": "horizontal-stack",
                   "cards": [
                     {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_boot_time",
+                      "name": "Last Boot Time",
+                      "icon_color": "green"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_active_git_ref",
+                      "name": "WG Scripts ",
+                      "icon_color": "blue-grey"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
                       "type": "vertical-stack",
                       "cards": [
                         {
