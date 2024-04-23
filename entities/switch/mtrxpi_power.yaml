@@ -8,13 +8,13 @@ availability_template: >-
 
 value_template: >-
   {% if (
-      is_state('switch.led_matrix_power', 'on') or
+      is_state('switch.led_matrix_power', 'on') and
       is_state('switch.mtrxpi_raspberry_pi_power', 'on')
     )
   %}
     on
   {% elif (
-      is_state('switch.led_matrix_power', 'off') and
+      is_state('switch.led_matrix_power', 'off') or
       is_state('switch.mtrxpi_raspberry_pi_power', 'off')
     )
   %}
