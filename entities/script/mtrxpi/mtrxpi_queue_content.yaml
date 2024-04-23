@@ -26,7 +26,7 @@ sequence:
         message: |
           ```
           Content ID: {{ id }}
-          Priority:   {{ priority }}
+          Priority:   {{ priority | default("null") }}
           Time:       {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
           ```
 
@@ -36,5 +36,5 @@ sequence:
       payload: >-
         {
           "id": "{{ id }}",
-          "priority": {{ priority | default(null) }}
+          "priority": {{ priority | default("null") }}
         }
