@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (115)</h3></summary>
+<details><summary><h3>Entities (116)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -986,6 +986,26 @@ File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](enti
 - Variables:
 
 File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/automation/mtrxpi/content_trigger/gif_door_animated.yaml)
+</details>
+
+<details><summary><code>/mtrxpi/content-trigger/raining-grid</code></summary>
+
+**Entity ID: `automation.mtrxpi_content_trigger_raining_grid`**
+
+> *No description provided*
+
+- Alias: /mtrxpi/content-trigger/raining-grid
+- ID: `mtrxpi_content_trigger_raining_grid`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "content_id": "raining-grid",
+  "rain": "{{ trigger.to_state.state | float(0) }}"
+}
+```
+File: [`automation/mtrxpi/content_trigger/raining_grid.yaml`](entities/automation/mtrxpi/content_trigger/raining_grid.yaml)
 </details>
 
 <details><summary><code>/notification/credit-card-top-up/send</code></summary>
@@ -5560,7 +5580,7 @@ File: [`template/sensor/nature/sun_elevation.yaml`](entities/template/sensor/nat
     "Dusk": "mdi:weather-sunset-down",
     "Night": "mdi:weather-night",
     "Unknown": "mdi:help-rhombus-outline"
-  }.get(this.state, "Unknown")
+  }.get(this.state, "mdi:help-rhombus-outline")
 }}
 ```
 
@@ -5656,7 +5676,7 @@ File: [`template/sensor/nature/tomorrow_io/tomorrow_io_pressure_surface_level.ya
 - Icon:
 
 ```jinja
-{% if this.state | float > 0 %}
+{% if this.state | float(1) > 0 %}
   mdi:weather-rainy
 {% else %}
   mdi:cloud-outline
@@ -5771,7 +5791,7 @@ File: [`template/sensor/nature/tomorrow_io/tomorrow_io_visibility.yaml`](entitie
     "Heavy Ice Pellets": "mdi:weather-snowy",
     "Light Ice Pellets": "mdi:weather-snowy",
     "Thunderstorm": "mdi:weather-lightning"
-  }.get(this.state, "Unknown")
+  }.get(this.state, "mdi:help-rhombus-outline")
 }}
 ```
 

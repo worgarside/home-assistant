@@ -1,0 +1,44 @@
+---
+alias: /mtrxpi/content-trigger/raining-grid
+
+id: mtrxpi_content_trigger_raining_grid
+
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: sensor.tomorrow_io_rain_intensity
+    to:
+
+variables:
+  content_id: "raining-grid"
+  rain: "{{ trigger.to_state.state | float(0) }}"
+
+action:
+  - choose:
+      - alias: Rain has stopped
+        conditions: "{{ rain | float(0) == 0 }}"
+        sequence:
+          - service: script.mtrxpi_queue_content
+            data:
+              id: "{{ content_id }}"
+              priority: "null"
+
+      - alias: It is raining
+        conditions: "{{ rain | float(-1) > 0 }}"
+        sequence:
+          - alias: Set rain volume
+            service: number.set_value
+            target:
+              entity_id: number.mtrxpi_raining_grid_rain_chance
+            data:
+              # 1mm = 100%
+              value: "{{ rain }}"
+
+          - alias: Queue content if it is not already running
+            if: "{{ states('sensor.mtrxpi_current_content') != 'raining-grid' }}"
+            then:
+              - service: script.mtrxpi_queue_content
+                data:
+                  id: "{{ content_id }}"
+                  priority: 100
