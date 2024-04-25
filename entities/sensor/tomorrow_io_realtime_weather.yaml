@@ -9,7 +9,7 @@ resource: https://api.tomorrow.io/v4/weather/realtime
 
 unique_id: tomorrow_io_realtime_weather
 
-scan_interval: 150
+scan_interval: 180
 
 # https://docs.tomorrow.io/reference/data-layers-weather-codes
 value_template: >-
