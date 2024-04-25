@@ -1150,13 +1150,13 @@ multidict = ">=4.0"
 
 [[package]]
 name = "zha-quirks"
-version = "0.0.114"
+version = "0.0.115"
 description = "Library implementing Zigpy quirks for ZHA in Home Assistant"
 optional = false
 python-versions = ">=3.12"
 files = [
-    {file = "zha-quirks-0.0.114.tar.gz", hash = "sha256:6a1c78022effed3b2a49e0a7de256b9cf651eb9449e23fbdb475911831e32517"},
-    {file = "zha_quirks-0.0.114-py3-none-any.whl", hash = "sha256:7175ff1c9028855629f741cd5faea174765706ee41a5a65b2d96c9331ab88615"},
+    {file = "zha_quirks-0.0.115-py3-none-any.whl", hash = "sha256:2bec54152a4467eb59931801169046ebff55ee2f49a883de636c19dfdeb882e2"},
+    {file = "zha_quirks-0.0.115.tar.gz", hash = "sha256:b497aec3b4ab22ba1ec44729b12112dc3e54cdd2f4c5f136c12a946163050a45"},
 ]
 
 [package.dependencies]
@@ -1167,13 +1167,13 @@ testing = ["pytest"]
 
 [[package]]
 name = "zigpy"
-version = "0.63.5"
+version = "0.64.0"
 description = "Library implementing a Zigbee stack"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "zigpy-0.63.5-py3-none-any.whl", hash = "sha256:54accc20dd0e3f081ea3dc90f76a33d057fe790bd5ec75bedec28b888d83da64"},
-    {file = "zigpy-0.63.5.tar.gz", hash = "sha256:d55f15b85827cd2f0a3a3b95f63a8d87f5aec479ffd6c47dc683ba94e1c28000"},
+    {file = "zigpy-0.64.0-py3-none-any.whl", hash = "sha256:350123ba8dbabe2b1f2e2dae917776193f1ca5f2619ab3e6f82625422780fdb6"},
+    {file = "zigpy-0.64.0.tar.gz", hash = "sha256:3fda2c85e52d6eb24539e128b32bdec0933e44961ca4f724006fe9dea2b2bce5"},
 ]
 
 [package.dependencies]
@@ -1192,9 +1192,9 @@ typing-extensions = "*"
 voluptuous = "*"
 
 [package.extras]
-testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-binary", "pytest", "pytest-asyncio", "pytest-cov", "pytest-timeout", "ruff (==0.0.261)", "tomli"]
+testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-binary", "pytest", "pytest-asyncio", "pytest-cov", "pytest-timeout", "tomli"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<4.0"
-content-hash = "7403b59a338ad679d8e091cdb8572ef6f8018abc6245ec5c8ef7963bce4671f4"
+content-hash = "49c09f6f62785f433924c3a55b1d7d79aa89f72809f61fee2bca1958a95ac151"
