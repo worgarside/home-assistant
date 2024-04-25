@@ -1167,13 +1167,13 @@ testing = ["pytest"]
 
 [[package]]
 name = "zigpy"
-version = "0.63.5"
+version = "0.64.0"
 description = "Library implementing a Zigbee stack"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "zigpy-0.63.5-py3-none-any.whl", hash = "sha256:54accc20dd0e3f081ea3dc90f76a33d057fe790bd5ec75bedec28b888d83da64"},
-    {file = "zigpy-0.63.5.tar.gz", hash = "sha256:d55f15b85827cd2f0a3a3b95f63a8d87f5aec479ffd6c47dc683ba94e1c28000"},
+    {file = "zigpy-0.64.0-py3-none-any.whl", hash = "sha256:350123ba8dbabe2b1f2e2dae917776193f1ca5f2619ab3e6f82625422780fdb6"},
+    {file = "zigpy-0.64.0.tar.gz", hash = "sha256:3fda2c85e52d6eb24539e128b32bdec0933e44961ca4f724006fe9dea2b2bce5"},
 ]
 
 [package.dependencies]
@@ -1192,9 +1192,9 @@ typing-extensions = "*"
 voluptuous = "*"
 
 [package.extras]
-testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-binary", "pytest", "pytest-asyncio", "pytest-cov", "pytest-timeout", "ruff (==0.0.261)", "tomli"]
+testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-binary", "pytest", "pytest-asyncio", "pytest-cov", "pytest-timeout", "tomli"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<4.0"
-content-hash = "7403b59a338ad679d8e091cdb8572ef6f8018abc6245ec5c8ef7963bce4671f4"
+content-hash = "9d25f09c81d9e855af6c6d3d0c32df87315e36e38cf20c6675430ea531d46cc3"
