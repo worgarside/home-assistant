@@ -1,0 +1,21 @@
+---
+
+name: "MtrxPi | Raining Grid: Rain Speed"
+
+unique_id: mtrxpi_raining_grid_rain_speed
+
+command_topic: /mtrxpi/raining-grid/frequency/rain-speed
+
+icon: mdi:speedometer
+
+min: 1
+
+max: 1000
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: ticks

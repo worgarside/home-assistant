@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (117)</h3></summary>
+<details><summary><h3>Entities (116)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -974,32 +974,38 @@ File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](en
 File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](entities/automation/mobile_app_notification_action/cosmo/remind_later.yaml)
 </details>
 
-<details><summary><code>/mtrxpi/display-source-changed</code></summary>
+<details><summary><code>/mtrxpi/content-trigger/gif-door-animated</code></summary>
 
-**Entity ID: `automation.mtrxpi_display_source_changed`**
-
-> *No description provided*
-
-- Alias: /mtrxpi/display-source-changed
-- ID: `mtrxpi_display_source_changed`
-- Mode: `restart`
-- Variables:
-
-File: [`automation/mtrxpi/display_source_changed.yaml`](entities/automation/mtrxpi/display_source_changed.yaml)
-</details>
-
-<details><summary><code>/mtrxpi/update-display</code></summary>
-
-**Entity ID: `automation.mtrxpi_update_display`**
+**Entity ID: `automation.mtrxpi_content_trigger_gif_door_animated`**
 
 > *No description provided*
 
-- Alias: /mtrxpi/update-display
-- ID: `mtrxpi_update_display`
+- Alias: /mtrxpi/content-trigger/gif-door-animated
+- ID: `mtrxpi_content_trigger_gif_door_animated`
 - Mode: `queued`
 - Variables:
 
-File: [`automation/mtrxpi/update_display.yaml`](entities/automation/mtrxpi/update_display.yaml)
+File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/automation/mtrxpi/content_trigger/gif_door_animated.yaml)
+</details>
+
+<details><summary><code>/mtrxpi/content-trigger/raining-grid</code></summary>
+
+**Entity ID: `automation.mtrxpi_content_trigger_raining_grid`**
+
+> *No description provided*
+
+- Alias: /mtrxpi/content-trigger/raining-grid
+- ID: `mtrxpi_content_trigger_raining_grid`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "content_id": "raining-grid",
+  "rain": "{{ trigger.to_state.state | float(0) }}"
+}
+```
+File: [`automation/mtrxpi/content_trigger/raining_grid.yaml`](entities/automation/mtrxpi/content_trigger/raining_grid.yaml)
 </details>
 
 <details><summary><code>/notification/credit-card-top-up/send</code></summary>
@@ -1424,20 +1430,6 @@ File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_rel
 - Variables:
 
 File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/automation/script/crt_pi_update_display/mqtt_trigger.yaml)
-</details>
-
-<details><summary><code>/script/mtrxpi-update-display/mqtt-trigger</code></summary>
-
-**Entity ID: `automation.script_mtrxpi_update_display_mqtt_trigger`**
-
-> *No description provided*
-
-- Alias: /script/mtrxpi-update-display/mqtt-trigger
-- ID: `script_mtrxpi_update_display_mqtt_trigger`
-- Mode: `single`
-- Variables:
-
-File: [`automation/script/mtrxpi_update_display/mqtt_trigger.yaml`](entities/automation/script/mtrxpi_update_display/mqtt_trigger.yaml)
 </details>
 
 <details><summary><code>/sensor/octoprint-bed-target/set</code></summary>
@@ -2799,7 +2791,7 @@ File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/in
 
 ## Input Select
 
-<details><summary><h3>Entities (9)</h3></summary>
+<details><summary><h3>Entities (8)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -2835,15 +2827,6 @@ File: [`input_select/crt_pi_display_source.yaml`](entities/input_select/crt_pi_d
 - Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
 
 File: [`input_select/lounge_shapes_artwork_mapping_source.yaml`](entities/input_select/lounge_shapes_artwork_mapping_source.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Display Source</strong></summary>
-
-**Entity ID: `input_select.mtrxpi_display_source`**
-
-- Icon: [`mdi:square-opacity`](https://pictogrammers.com/library/mdi/icon/square-opacity/)
-
-File: [`input_select/mtrxpi_display_source.yaml`](entities/input_select/mtrxpi_display_source.yaml)
 </details>
 
 <details><summary><strong>Office Shapes Artwork Mapping Source</strong></summary>
@@ -2936,7 +2919,55 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (84)</h3></summary>
+<details><summary><h3>Entities (95)</h3></summary>
+
+<details><summary><strong>RGB LED Matrix</strong></summary>
+
+**Entity ID: `binary_sensor.rgb_led_matrix`**
+
+- Icon: [`mdi:square-opacity`](https://pictogrammers.com/library/mdi/icon/square-opacity/)
+- State Class:
+- State Topic: /homeassistant/led_matrix/state
+- Unit Of Measurement:
+
+File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb_led_matrix.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Rain Chance</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_rain_chance`**
+
+- Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
+- State Class:
+- State Topic:
+- Unit Of Measurement: %
+
+File: [`mqtt/number/mtrxpi/raining_grid/rain_chance.yaml`](entities/mqtt/number/mtrxpi/raining_grid/rain_chance.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Rain Speed</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_rain_speed`**
+
+- Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
+- State Class:
+- State Topic:
+- Unit Of Measurement: `ticks`
+
+File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/rain_speed.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Splash Speed</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_splash_speed`**
+
+- Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
+- State Class:
+- State Topic:
+- Unit Of Measurement: `ticks`
+
+File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/splash_speed.yaml)
+</details>
 
 <details><summary><strong>ClmtPi Active Git Ref</strong></summary>
 
@@ -3068,6 +3099,18 @@ File: [`mqtt/sensor/clmtpi/disk_usage.yaml`](entities/mqtt/sensor/clmtpi/disk_us
 - Unit Of Measurement:
 
 File: [`mqtt/sensor/clmtpi/local_git_ref.yaml`](entities/mqtt/sensor/clmtpi/local_git_ref.yaml)
+</details>
+
+<details><summary><strong>ClmtPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.clmtpi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/clmtpi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/clmtpi/local_ip_address.yaml`](entities/mqtt/sensor/clmtpi/local_ip_address.yaml)
 </details>
 
 <details><summary><strong>ClmtPi Memory Usage</strong></summary>
@@ -3226,6 +3269,18 @@ File: [`mqtt/sensor/crtpi/disk_usage.yaml`](entities/mqtt/sensor/crtpi/disk_usag
 File: [`mqtt/sensor/crtpi/local_git_ref.yaml`](entities/mqtt/sensor/crtpi/local_git_ref.yaml)
 </details>
 
+<details><summary><strong>CrtPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.crtpi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/crt-pi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/crtpi/local_ip_address.yaml`](entities/mqtt/sensor/crtpi/local_ip_address.yaml)
+</details>
+
 <details><summary><strong>CRTPi Memory Usage</strong></summary>
 
 **Entity ID: `sensor.crtpi_memory_usage`**
@@ -3358,6 +3413,18 @@ File: [`mqtt/sensor/growpi/disk_usage.yaml`](entities/mqtt/sensor/growpi/disk_us
 File: [`mqtt/sensor/growpi/local_git_ref.yaml`](entities/mqtt/sensor/growpi/local_git_ref.yaml)
 </details>
 
+<details><summary><strong>GrowPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.growpi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/growpi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/growpi/local_ip_address.yaml`](entities/mqtt/sensor/growpi/local_ip_address.yaml)
+</details>
+
 <details><summary><strong>GrowPi Memory Usage</strong></summary>
 
 **Entity ID: `sensor.growpi_memory_usage`**
@@ -3466,6 +3533,18 @@ File: [`mqtt/sensor/mtrxpi/cpu_temperature.yaml`](entities/mqtt/sensor/mtrxpi/cp
 File: [`mqtt/sensor/mtrxpi/cpu_usage.yaml`](entities/mqtt/sensor/mtrxpi/cpu_usage.yaml)
 </details>
 
+<details><summary><strong>MtrxPi | Current Content</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_current_content`**
+
+- Icon: [`mdi:animation-play-outline`](https://pictogrammers.com/library/mdi/icon/animation-play-outline/)
+- State Class:
+- State Topic: /mtrxpi/matrix/current-content
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/mtrxpi/current_content.yaml`](entities/mqtt/sensor/mtrxpi/current_content.yaml)
+</details>
+
 <details><summary><strong>MtrxPi Disk Usage</strong></summary>
 
 **Entity ID: `sensor.mtrxpi_disk_usage`**
@@ -3488,6 +3567,18 @@ File: [`mqtt/sensor/mtrxpi/disk_usage.yaml`](entities/mqtt/sensor/mtrxpi/disk_us
 - Unit Of Measurement:
 
 File: [`mqtt/sensor/mtrxpi/local_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/local_git_ref.yaml)
+</details>
+
+<details><summary><strong>MtrxPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/mtrxpi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/mtrxpi/local_ip_address.yaml`](entities/mqtt/sensor/mtrxpi/local_ip_address.yaml)
 </details>
 
 <details><summary><strong>MtrxPi Memory Usage</strong></summary>
@@ -3646,6 +3737,18 @@ File: [`mqtt/sensor/octopi/disk_usage.yaml`](entities/mqtt/sensor/octopi/disk_us
 File: [`mqtt/sensor/octopi/local_git_ref.yaml`](entities/mqtt/sensor/octopi/local_git_ref.yaml)
 </details>
 
+<details><summary><strong>OctoPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.octopi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/octopi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/octopi/local_ip_address.yaml`](entities/mqtt/sensor/octopi/local_ip_address.yaml)
+</details>
+
 <details><summary><strong>OctoPi Memory Usage</strong></summary>
 
 **Entity ID: `sensor.octopi_memory_usage`**
@@ -3776,6 +3879,18 @@ File: [`mqtt/sensor/rtropi/disk_usage.yaml`](entities/mqtt/sensor/rtropi/disk_us
 - Unit Of Measurement:
 
 File: [`mqtt/sensor/rtropi/local_git_ref.yaml`](entities/mqtt/sensor/rtropi/local_git_ref.yaml)
+</details>
+
+<details><summary><strong>RtroPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.rtropi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/rtropi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/rtropi/local_ip_address.yaml`](entities/mqtt/sensor/rtropi/local_ip_address.yaml)
 </details>
 
 <details><summary><strong>RtroPi Memory Usage</strong></summary>
@@ -3910,6 +4025,18 @@ File: [`mqtt/sensor/vsmppi/disk_usage.yaml`](entities/mqtt/sensor/vsmppi/disk_us
 File: [`mqtt/sensor/vsmppi/local_git_ref.yaml`](entities/mqtt/sensor/vsmppi/local_git_ref.yaml)
 </details>
 
+<details><summary><strong>VSMPPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.vsmppi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Class:
+- State Topic: /homeassistant/vsmppi/stats
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/vsmppi/local_ip_address.yaml`](entities/mqtt/sensor/vsmppi/local_ip_address.yaml)
+</details>
+
 <details><summary><strong>VSMPPi Memory Usage</strong></summary>
 
 **Entity ID: `sensor.vsmppi_memory_usage`**
@@ -3932,18 +4059,6 @@ File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memor
 - Unit Of Measurement: `s`
 
 File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml)
-</details>
-
-<details><summary><strong>RGB LED Matrix</strong></summary>
-
-**Entity ID: `binary_sensor.rgb_led_matrix`**
-
-- Icon: [`mdi:square-opacity`](https://pictogrammers.com/library/mdi/icon/square-opacity/)
-- State Class:
-- State Topic: /homeassistant/led_matrix/state
-- Unit Of Measurement:
-
-File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb_led_matrix.yaml)
 </details>
 
 </details>
@@ -4362,17 +4477,31 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_turn_off.yaml`](entities/scrip
 File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml)
 </details>
 
-<details><summary><strong>MtrxPi: Update Display</strong></summary>
+<details><summary><strong>MtrxPi: Queue Content</strong></summary>
 
-**Entity ID: `script.mtrxpi_update_display`**
+**Entity ID: `script.mtrxpi_queue_content`**
 
-> Update the MtrxPi display from the chosen media player's track
+> Add content to the queue with a priority
 
 - Fields:
-- Mode: `restart`
+
+```json
+{
+  "id": {
+    "description": "The ID of the content to add to the queue",
+    "example": "raining-grid"
+  },
+  "priority": {
+    "description": "The priority of the content in the queue. `None` will remove the content from the queue if it exists. `0` is the highest priority, and the higher the number, the lower the priority.",
+    "example": "1"
+  }
+}
+```
+
+- Mode: `queued`
 - Variables:
 
-File: [`script/mtrxpi_update_display.yaml`](entities/script/mtrxpi_update_display.yaml)
+File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_queue_content.yaml)
 </details>
 
 <details><summary><strong>Notify Vic</strong></summary>
@@ -4696,7 +4825,7 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
 
 <details><summary><strong>External IP</strong></summary>
 
@@ -4737,6 +4866,15 @@ File: [`sensor/office_desk_standing_occupied_cumulative_time.yaml`](entities/sen
 - Platform: `time_date`
 
 File: [`sensor/time_date.yaml`](entities/sensor/time_date.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io Realtime Weather</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_realtime_weather`**
+
+- Platform: `rest`
+
+File: [`sensor/tomorrow_io_realtime_weather.yaml`](entities/sensor/tomorrow_io_realtime_weather.yaml)
 </details>
 
 </details>
@@ -4824,7 +4962,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (85)</h3></summary>
+<details><summary><h3>Entities (105)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -5413,6 +5551,285 @@ File: [`template/sensor/floorplan_icons/clmtpi_floorplan_icon.yaml`](entities/te
 File: [`template/sensor/hifi_system_media_metadata.yaml`](entities/template/sensor/hifi_system_media_metadata.yaml)
 </details>
 
+<details><summary><strong>Sun Elevation</strong></summary>
+
+**Entity ID: `sensor.sun_elevation`**
+
+- Icon:
+- Unit Of Measurement: °
+
+File: [`template/sensor/nature/sun_elevation.yaml`](entities/template/sensor/nature/sun_elevation.yaml)
+</details>
+
+<details><summary><strong>Time of Day</strong></summary>
+
+**Entity ID: `sensor.time_of_day`**
+
+- Icon:
+
+```jinja
+{{
+  {
+    "Morning": "mdi:weather-sunset-up",
+    "Afternoon": "mdi:weather-sunny",
+    "Evening": "mdi:weather-sunset-down",
+    "Sunrise": "mdi:weather-sunset-up",
+    "Sunset": "mdi:weather-sunset-down",
+    "Twilight": "mdi:weather-sunset",
+    "Dawn": "mdi:weather-sunset-up",
+    "Dusk": "mdi:weather-sunset-down",
+    "Night": "mdi:weather-night",
+    "Unknown": "mdi:help-rhombus-outline"
+  }.get(this.state, "mdi:help-rhombus-outline")
+}}
+```
+
+- Unit Of Measurement:
+
+File: [`template/sensor/nature/time_of_day.yaml`](entities/template/sensor/nature/time_of_day.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Cloud Base</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_cloud_base`**
+
+- Icon: [`mdi:cloud-arrow-down-outline`](https://pictogrammers.com/library/mdi/icon/cloud-arrow-down-outline/)
+- Unit Of Measurement: `km`
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_cloud_base.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_cloud_base.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Cloud Ceiling</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_cloud_ceiling`**
+
+- Icon: [`mdi:cloud-arrow-up-outline`](https://pictogrammers.com/library/mdi/icon/cloud-arrow-up-outline/)
+- Unit Of Measurement: `km`
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_cloud_ceiling.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_cloud_ceiling.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Cloud Cover</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_cloud_cover`**
+
+- Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_cloud_cover.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_cloud_cover.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Dew Point</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_dew_point`**
+
+- Icon: [`mdi:water-thermometer-outline`](https://pictogrammers.com/library/mdi/icon/water-thermometer-outline/)
+- Unit Of Measurement: °C
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_dew_point.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_dew_point.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Freezing Rain Intensity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_freezing_rain_intensity`**
+
+- Icon: [`mdi:weather-snowy-rainy`](https://pictogrammers.com/library/mdi/icon/weather-snowy-rainy/)
+- Unit Of Measurement: mm/hr
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_freezing_rain_intensity.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_freezing_rain_intensity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Humidity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_humidity`**
+
+- Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_humidity.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_humidity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Precipitation Probability</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_precipitation_probability`**
+
+- Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_precipitation_probability.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_precipitation_probability.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Pressure Surface Level</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_pressure_surface_level`**
+
+- Icon: [`mdi:gauge`](https://pictogrammers.com/library/mdi/icon/gauge/)
+- Unit Of Measurement: hPa
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_pressure_surface_level.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_pressure_surface_level.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Rain Intensity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_rain_intensity`**
+
+- Icon:
+
+```jinja
+{% if this.state | float(1) > 0 %}
+  mdi:weather-rainy
+{% else %}
+  mdi:cloud-outline
+{% endif %}
+```
+
+- Unit Of Measurement: mm/hr
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_rain_intensity.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_rain_intensity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Sleet Intensity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_sleet_intensity`**
+
+- Icon: [`mdi:weather-snowy-rainy`](https://pictogrammers.com/library/mdi/icon/weather-snowy-rainy/)
+- Unit Of Measurement: mm/hr
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_sleet_intensity.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_sleet_intensity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Snow Intensity</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_snow_intensity`**
+
+- Icon: [`mdi:weather-snowy`](https://pictogrammers.com/library/mdi/icon/weather-snowy/)
+- Unit Of Measurement: mm/hr
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_snow_intensity.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_snow_intensity.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Temperature</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_temperature`**
+
+- Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
+- Unit Of Measurement: °C
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_temperature.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_temperature.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Temperature Apparent</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_temperature_apparent`**
+
+- Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
+- Unit Of Measurement: °C
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_temperature_apparent.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_temperature_apparent.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: UV Health Concern</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_uv_health_concern`**
+
+- Icon: [`mdi:sun-wireless-outline`](https://pictogrammers.com/library/mdi/icon/sun-wireless-outline/)
+- Unit Of Measurement:
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_uv_health_concern.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_uv_health_concern.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: UV Index</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_uv_index`**
+
+- Icon: [`mdi:sun-wireless-outline`](https://pictogrammers.com/library/mdi/icon/sun-wireless-outline/)
+- Unit Of Measurement:
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_uv_index.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_uv_index.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Visibility</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_visibility`**
+
+- Icon: [`mdi:weather-hazy`](https://pictogrammers.com/library/mdi/icon/weather-hazy/)
+- Unit Of Measurement: `km`
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_visibility.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_visibility.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Weather Code</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_weather_code`**
+
+- Icon:
+
+```jinja
+{{
+  {
+    "Unknown": "mdi:help-rhombus-outline",
+    "Clear, Sunny": "mdi:weather-sunny",
+    "Mostly Clear": "mdi:weather-sunny",
+    "Partly Cloudy": "mdi:weather-partly-cloudy",
+    "Mostly Cloudy": "mdi:weather-cloudy",
+    "Cloudy": "mdi:weather-cloudy",
+    "Fog": "mdi:weather-fog",
+    "Light Fog": "mdi:weather-fog",
+    "Drizzle": "mdi:weather-rainy",
+    "Rain": "mdi:weather-pouring",
+    "Light Rain": "mdi:weather-rainy",
+    "Heavy Rain": "mdi:weather-pouring",
+    "Snow": "mdi:weather-snowy",
+    "Flurries": "mdi:weather-snowy",
+    "Light Snow": "mdi:weather-snowy",
+    "Heavy Snow": "mdi:weather-snowy",
+    "Freezing Drizzle": "mdi:weather-snowy",
+    "Freezing Rain": "mdi:weather-snowy",
+    "Light Freezing Rain": "mdi:weather-snowy",
+    "Heavy Freezing Rain": "mdi:weather-snowy",
+    "Ice Pellets": "mdi:weather-snowy",
+    "Heavy Ice Pellets": "mdi:weather-snowy",
+    "Light Ice Pellets": "mdi:weather-snowy",
+    "Thunderstorm": "mdi:weather-lightning"
+  }.get(this.state, "mdi:help-rhombus-outline")
+}}
+```
+
+- Unit Of Measurement:
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_weather_code.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_weather_code.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Wind Direction</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_wind_direction`**
+
+- Icon: [`mdi:compass-outline`](https://pictogrammers.com/library/mdi/icon/compass-outline/)
+- Unit Of Measurement: °
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_wind_direction.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_wind_direction.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Wind Gust</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_wind_gust`**
+
+- Icon: [`mdi:weather-windy`](https://pictogrammers.com/library/mdi/icon/weather-windy/)
+- Unit Of Measurement: m/s
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_wind_gust.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_wind_gust.yaml)
+</details>
+
+<details><summary><strong>Tomorrow.io: Wind Speed</strong></summary>
+
+**Entity ID: `sensor.tomorrow_io_wind_speed`**
+
+- Icon: [`mdi:weather-windy`](https://pictogrammers.com/library/mdi/icon/weather-windy/)
+- Unit Of Measurement: m/s
+
+File: [`template/sensor/nature/tomorrow_io/tomorrow_io_wind_speed.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_wind_speed.yaml)
+</details>
+
 <details><summary><strong>Office Desk Standing Mode Percentage</strong></summary>
 
 **Entity ID: `sensor.office_desk_standing_mode_percentage`**
@@ -5501,44 +5918,6 @@ File: [`template/sensor/spotify/spotify_will_garside_media_title.yaml`](entities
 - Unit Of Measurement: epoch-seconds
 
 File: [`template/sensor/st_macbook_pro_last_update.yaml`](entities/template/sensor/st_macbook_pro_last_update.yaml)
-</details>
-
-<details><summary><strong>Sun Elevation</strong></summary>
-
-**Entity ID: `sensor.sun_elevation`**
-
-- Icon:
-- Unit Of Measurement: °
-
-File: [`template/sensor/sun_elevation.yaml`](entities/template/sensor/sun_elevation.yaml)
-</details>
-
-<details><summary><strong>Time of Day</strong></summary>
-
-**Entity ID: `sensor.time_of_day`**
-
-- Icon:
-
-```jinja
-{{
-  {
-    "Morning": "mdi:weather-sunset-up",
-    "Afternoon": "mdi:weather-sunny",
-    "Evening": "mdi:weather-sunset-down",
-    "Sunrise": "mdi:weather-sunset-up",
-    "Sunset": "mdi:weather-sunset-down",
-    "Twilight": "mdi:weather-sunset",
-    "Dawn": "mdi:weather-sunset-up",
-    "Dusk": "mdi:weather-sunset-down",
-    "Night": "mdi:weather-night",
-    "Unknown": "mdi:help-rhombus-outline"
-  }[this.state]
-}}
-```
-
-- Unit Of Measurement:
-
-File: [`template/sensor/time_of_day.yaml`](entities/template/sensor/time_of_day.yaml)
 </details>
 
 <details><summary><strong>Will's MacBook Pro Last Update</strong></summary>

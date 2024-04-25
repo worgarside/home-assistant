@@ -1,9 +1,0 @@
----
-alias: /mtrxpi/display-source-changed
-id: mtrxpi_display_source_changed
-mode: restart
-trigger:
-  - platform: state
-    entity_id: input_select.mtrxpi_display_source
-action:
-  - service: script.mtrxpi_update_display

@@ -1,0 +1,40 @@
+---
+alias: "MtrxPi: Queue Content"
+
+description: Add content to the queue with a priority
+
+mode: queued
+
+fields:
+  id:
+    description: The ID of the content to add to the queue
+    example: raining-grid
+
+  priority:
+    description: >-
+      The priority of the content in the queue. `None` will remove the content from the queue if it
+      exists. `0` is the highest priority, and the higher the number, the lower the priority.
+    example: "1"
+
+sequence:
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      variables:
+        notification_title: Queuing MtrxPi Content
+        message: |
+          ```
+          Content ID: {{ id }}
+          Priority:   {{ priority | default("null") }}
+          Time:       {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
+          ```
+
+  - service: mqtt.publish
+    data:
+      topic: /mtrxpi/matrix/queue-content
+      payload: >-
+        {
+          "id": "{{ id }}",
+          "priority": {{ priority | default("null") }}
+        }

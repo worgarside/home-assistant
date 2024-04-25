@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Sleet Intensity"
+
+unique_id: tomorrow_io_sleet_intensity
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'sleetIntensity') }}"
+
+unit_of_measurement: mm/hr
+
+icon: mdi:weather-snowy-rainy
