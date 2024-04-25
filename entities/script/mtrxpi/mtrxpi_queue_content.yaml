@@ -23,6 +23,7 @@ sequence:
     data:
       variables:
         notification_title: Queuing MtrxPi Content
+        notification_id: mtrxpi_queue_content
         message: |
           ```
           Content ID: {{ id }}
