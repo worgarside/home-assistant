@@ -32,7 +32,7 @@ icon: >-
       "Heavy Ice Pellets": "mdi:weather-snowy",
       "Light Ice Pellets": "mdi:weather-snowy",
       "Thunderstorm": "mdi:weather-lightning"
-    }.get(this.state, "Unknown")
+    }.get(this.state, "mdi:help-rhombus-outline")
   }}
 
 attributes:

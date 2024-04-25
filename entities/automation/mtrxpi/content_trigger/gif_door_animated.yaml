@@ -1,0 +1,18 @@
+---
+alias: /mtrxpi/content-trigger/gif-door-animated
+
+id: mtrxpi_content_trigger_gif_door_animated
+
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.office_door
+    from: "off"
+    to: "on"
+
+action:
+  - service: script.mtrxpi_queue_content
+    data:
+      id: gif-door-animated
+      priority: 1

@@ -39,7 +39,7 @@ value_template: >-
       7101: "Heavy Ice Pellets",
       7102: "Light Ice Pellets",
       8000: "Thunderstorm"
-    }[value_json.get("data", {}).get("values", {}).get("weatherCode", 0)]
+    }[value_json.get("data", {}).get("values", {}).get("weatherCode", "Unknown")]
   }}
 
 icon: >-
@@ -69,7 +69,7 @@ icon: >-
       "Heavy Ice Pellets": "mdi:weather-snowy",
       "Light Ice Pellets": "mdi:weather-snowy",
       "Thunderstorm": "mdi:weather-lightning"
-    }.get(this.state, "Unknown")
+    }.get(this.state, "mdi:help-rhombus-outline")
   }}
 
 method: GET

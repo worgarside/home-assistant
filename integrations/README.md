@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (117)</h3></summary>
+<details><summary><h3>Entities (116)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -974,32 +974,38 @@ File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](en
 File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](entities/automation/mobile_app_notification_action/cosmo/remind_later.yaml)
 </details>
 
-<details><summary><code>/mtrxpi/display-source-changed</code></summary>
+<details><summary><code>/mtrxpi/content-trigger/gif-door-animated</code></summary>
 
-**Entity ID: `automation.mtrxpi_display_source_changed`**
-
-> *No description provided*
-
-- Alias: /mtrxpi/display-source-changed
-- ID: `mtrxpi_display_source_changed`
-- Mode: `restart`
-- Variables:
-
-File: [`automation/mtrxpi/display_source_changed.yaml`](entities/automation/mtrxpi/display_source_changed.yaml)
-</details>
-
-<details><summary><code>/mtrxpi/update-display</code></summary>
-
-**Entity ID: `automation.mtrxpi_update_display`**
+**Entity ID: `automation.mtrxpi_content_trigger_gif_door_animated`**
 
 > *No description provided*
 
-- Alias: /mtrxpi/update-display
-- ID: `mtrxpi_update_display`
+- Alias: /mtrxpi/content-trigger/gif-door-animated
+- ID: `mtrxpi_content_trigger_gif_door_animated`
 - Mode: `queued`
 - Variables:
 
-File: [`automation/mtrxpi/update_display.yaml`](entities/automation/mtrxpi/update_display.yaml)
+File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/automation/mtrxpi/content_trigger/gif_door_animated.yaml)
+</details>
+
+<details><summary><code>/mtrxpi/content-trigger/raining-grid</code></summary>
+
+**Entity ID: `automation.mtrxpi_content_trigger_raining_grid`**
+
+> *No description provided*
+
+- Alias: /mtrxpi/content-trigger/raining-grid
+- ID: `mtrxpi_content_trigger_raining_grid`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "content_id": "raining-grid",
+  "rain": "{{ trigger.to_state.state | float(0) }}"
+}
+```
+File: [`automation/mtrxpi/content_trigger/raining_grid.yaml`](entities/automation/mtrxpi/content_trigger/raining_grid.yaml)
 </details>
 
 <details><summary><code>/notification/credit-card-top-up/send</code></summary>
@@ -1424,20 +1430,6 @@ File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_rel
 - Variables:
 
 File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/automation/script/crt_pi_update_display/mqtt_trigger.yaml)
-</details>
-
-<details><summary><code>/script/mtrxpi-update-display/mqtt-trigger</code></summary>
-
-**Entity ID: `automation.script_mtrxpi_update_display_mqtt_trigger`**
-
-> *No description provided*
-
-- Alias: /script/mtrxpi-update-display/mqtt-trigger
-- ID: `script_mtrxpi_update_display_mqtt_trigger`
-- Mode: `single`
-- Variables:
-
-File: [`automation/script/mtrxpi_update_display/mqtt_trigger.yaml`](entities/automation/script/mtrxpi_update_display/mqtt_trigger.yaml)
 </details>
 
 <details><summary><code>/sensor/octoprint-bed-target/set</code></summary>
@@ -2799,7 +2791,7 @@ File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/in
 
 ## Input Select
 
-<details><summary><h3>Entities (9)</h3></summary>
+<details><summary><h3>Entities (8)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -2835,15 +2827,6 @@ File: [`input_select/crt_pi_display_source.yaml`](entities/input_select/crt_pi_d
 - Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
 
 File: [`input_select/lounge_shapes_artwork_mapping_source.yaml`](entities/input_select/lounge_shapes_artwork_mapping_source.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Display Source</strong></summary>
-
-**Entity ID: `input_select.mtrxpi_display_source`**
-
-- Icon: [`mdi:square-opacity`](https://pictogrammers.com/library/mdi/icon/square-opacity/)
-
-File: [`input_select/mtrxpi_display_source.yaml`](entities/input_select/mtrxpi_display_source.yaml)
 </details>
 
 <details><summary><strong>Office Shapes Artwork Mapping Source</strong></summary>
@@ -2936,7 +2919,55 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (91)</h3></summary>
+<details><summary><h3>Entities (95)</h3></summary>
+
+<details><summary><strong>RGB LED Matrix</strong></summary>
+
+**Entity ID: `binary_sensor.rgb_led_matrix`**
+
+- Icon: [`mdi:square-opacity`](https://pictogrammers.com/library/mdi/icon/square-opacity/)
+- State Class:
+- State Topic: /homeassistant/led_matrix/state
+- Unit Of Measurement:
+
+File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb_led_matrix.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Rain Chance</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_rain_chance`**
+
+- Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
+- State Class:
+- State Topic:
+- Unit Of Measurement: %
+
+File: [`mqtt/number/mtrxpi/raining_grid/rain_chance.yaml`](entities/mqtt/number/mtrxpi/raining_grid/rain_chance.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Rain Speed</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_rain_speed`**
+
+- Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
+- State Class:
+- State Topic:
+- Unit Of Measurement: `ticks`
+
+File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/rain_speed.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Splash Speed</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_splash_speed`**
+
+- Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
+- State Class:
+- State Topic:
+- Unit Of Measurement: `ticks`
+
+File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/splash_speed.yaml)
+</details>
 
 <details><summary><strong>ClmtPi Active Git Ref</strong></summary>
 
@@ -3502,6 +3533,18 @@ File: [`mqtt/sensor/mtrxpi/cpu_temperature.yaml`](entities/mqtt/sensor/mtrxpi/cp
 File: [`mqtt/sensor/mtrxpi/cpu_usage.yaml`](entities/mqtt/sensor/mtrxpi/cpu_usage.yaml)
 </details>
 
+<details><summary><strong>MtrxPi | Current Content</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_current_content`**
+
+- Icon: [`mdi:animation-play-outline`](https://pictogrammers.com/library/mdi/icon/animation-play-outline/)
+- State Class:
+- State Topic: /mtrxpi/matrix/current-content
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/mtrxpi/current_content.yaml`](entities/mqtt/sensor/mtrxpi/current_content.yaml)
+</details>
+
 <details><summary><strong>MtrxPi Disk Usage</strong></summary>
 
 **Entity ID: `sensor.mtrxpi_disk_usage`**
@@ -4018,18 +4061,6 @@ File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memor
 File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml)
 </details>
 
-<details><summary><strong>RGB LED Matrix</strong></summary>
-
-**Entity ID: `binary_sensor.rgb_led_matrix`**
-
-- Icon: [`mdi:square-opacity`](https://pictogrammers.com/library/mdi/icon/square-opacity/)
-- State Class:
-- State Topic: /homeassistant/led_matrix/state
-- Unit Of Measurement:
-
-File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb_led_matrix.yaml)
-</details>
-
 </details>
 
 ## Script
@@ -4446,17 +4477,31 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_turn_off.yaml`](entities/scrip
 File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml)
 </details>
 
-<details><summary><strong>MtrxPi: Update Display</strong></summary>
+<details><summary><strong>MtrxPi: Queue Content</strong></summary>
 
-**Entity ID: `script.mtrxpi_update_display`**
+**Entity ID: `script.mtrxpi_queue_content`**
 
-> Update the MtrxPi display from the chosen media player's track
+> Add content to the queue with a priority
 
 - Fields:
-- Mode: `restart`
+
+```json
+{
+  "id": {
+    "description": "The ID of the content to add to the queue",
+    "example": "raining-grid"
+  },
+  "priority": {
+    "description": "The priority of the content in the queue. `None` will remove the content from the queue if it exists. `0` is the highest priority, and the higher the number, the lower the priority.",
+    "example": "1"
+  }
+}
+```
+
+- Mode: `queued`
 - Variables:
 
-File: [`script/mtrxpi_update_display.yaml`](entities/script/mtrxpi_update_display.yaml)
+File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_queue_content.yaml)
 </details>
 
 <details><summary><strong>Notify Vic</strong></summary>
@@ -5535,7 +5580,7 @@ File: [`template/sensor/nature/sun_elevation.yaml`](entities/template/sensor/nat
     "Dusk": "mdi:weather-sunset-down",
     "Night": "mdi:weather-night",
     "Unknown": "mdi:help-rhombus-outline"
-  }.get(this.state, "Unknown")
+  }.get(this.state, "mdi:help-rhombus-outline")
 }}
 ```
 
@@ -5631,7 +5676,7 @@ File: [`template/sensor/nature/tomorrow_io/tomorrow_io_pressure_surface_level.ya
 - Icon:
 
 ```jinja
-{% if this.state | float > 0 %}
+{% if this.state | float(1) > 0 %}
   mdi:weather-rainy
 {% else %}
   mdi:cloud-outline
@@ -5746,7 +5791,7 @@ File: [`template/sensor/nature/tomorrow_io/tomorrow_io_visibility.yaml`](entitie
     "Heavy Ice Pellets": "mdi:weather-snowy",
     "Light Ice Pellets": "mdi:weather-snowy",
     "Thunderstorm": "mdi:weather-lightning"
-  }.get(this.state, "Unknown")
+  }.get(this.state, "mdi:help-rhombus-outline")
 }}
 ```
 

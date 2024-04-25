@@ -48,5 +48,5 @@ icon: >-
       "Dusk": "mdi:weather-sunset-down",
       "Night": "mdi:weather-night",
       "Unknown": "mdi:help-rhombus-outline"
-    }.get(this.state, "Unknown")
+    }.get(this.state, "mdi:help-rhombus-outline")
   }}
