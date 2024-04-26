@@ -2460,7 +2460,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (25)</h3></summary>
+<details><summary><h3>Entities (24)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2707,19 +2707,6 @@ File: [`input_number/prusa_i3_mk3/prusa_i3_mk3_target_bed_temperature.yaml`](ent
 - Unit Of Measurement: °C
 
 File: [`input_number/prusa_i3_mk3/prusa_i3_mk3_target_hotend_temperature.yaml`](entities/input_number/prusa_i3_mk3/prusa_i3_mk3_target_hotend_temperature.yaml)
-</details>
-
-<details><summary><strong>RGB LED Matrix Brightness</strong></summary>
-
-**Entity ID: `input_number.rgb_led_matrix_brightness`**
-
-- Icon:
-- Max: 100
-- Min:
-- Mode: `box`
-- Unit Of Measurement: %
-
-File: [`input_number/rgb_led_matrix_brightness.yaml`](entities/input_number/rgb_led_matrix_brightness.yaml)
 </details>
 
 <details><summary><strong>ST MacBook Pro Full Battery Threshold</strong></summary>
