@@ -2919,7 +2919,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (95)</h3></summary>
+<details><summary><h3>Entities (96)</h3></summary>
 
 <details><summary><strong>RGB LED Matrix</strong></summary>
 
@@ -2931,6 +2931,18 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 - Unit Of Measurement:
 
 File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb_led_matrix.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_matrix_brightness`**
+
+- Icon: [`mdi:brightness-percent`](https://pictogrammers.com/library/mdi/icon/brightness-percent/)
+- State Class:
+- State Topic:
+- Unit Of Measurement: %
+
+File: [`mqtt/number/mtrxpi/brightness.yaml`](entities/mqtt/number/mtrxpi/brightness.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Raining Grid: Rain Chance</strong></summary>
