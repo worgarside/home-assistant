@@ -7,7 +7,6 @@ fields:
   clear_notification:
     description: Clear the persistent notification
     example: "true"
-    default: false
 
   message:
     description: The message body of the notification
@@ -29,7 +28,6 @@ fields:
   mobile_notification_icon:
     description: Optional icon for the phone notification
     example: mdi:alert
-    default: mdi:home-assistant
 
 mode: queued
 
@@ -41,7 +39,7 @@ variables:
   clear_notification: >-
     {{
       message | default('') == 'clear_notification' or
-      clear_notification | bool
+      clear_notification | default(False) | bool
     }}
 
   notification_id: >-
@@ -55,7 +53,7 @@ variables:
     {% if clear_notification %}
       clear_notification
     {% else %}
-      {{ message }}
+      {{ message | default("") }}
     {% endif %}
 
   mobile_notification_icon: "{{ mobile_notification_icon | default('mdi:home-assistant') }}"

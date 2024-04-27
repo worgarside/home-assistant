@@ -7,7 +7,6 @@ fields:
   clear_notification:
     description: Clear the persistent notification
     example: "true"
-    default: false
 
   message:
     description: The message body of the notification
@@ -54,7 +53,7 @@ variables:
     {% if clear_notification %}
       clear_notification
     {% else %}
-      {{ message }}
+      {{ message | default("") }}
     {% endif %}
 
   mobile_notification_icon: "{{ mobile_notification_icon | default('mdi:home-assistant') }}"
