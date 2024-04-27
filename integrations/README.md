@@ -2900,6 +2900,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 - Icon: [`mdi:brightness-percent`](https://pictogrammers.com/library/mdi/icon/brightness-percent/)
 - State Class:
+- Command Topic: /mtrxpi/matrix/parameter/brightness
 - State Topic:
 - Unit Of Measurement: %
 
@@ -2912,6 +2913,7 @@ File: [`mqtt/number/mtrxpi/matrix/brightness.yaml`](entities/mqtt/number/mtrxpi/
 
 - Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
 - State Class:
+- Command Topic: /mtrxpi/raining-grid/parameter/rain-chance
 - State Topic:
 - Unit Of Measurement: %
 
@@ -2924,6 +2926,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/rain_chance.yaml`](entities/mqtt/number/
 
 - Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
 - State Class:
+- Command Topic: /mtrxpi/raining-grid/frequency/rain-speed
 - State Topic:
 - Unit Of Measurement: `ticks`
 
@@ -2936,6 +2939,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/m
 
 - Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
 - State Class:
+- Command Topic: /mtrxpi/raining-grid/frequency/splash-speed
 - State Topic:
 - Unit Of Measurement: `ticks`
 
@@ -2948,6 +2952,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement:
 
@@ -2960,6 +2965,7 @@ File: [`mqtt/sensor/clmtpi/active_git_ref.yaml`](entities/mqtt/sensor/clmtpi/act
 
 - Icon: [`mdi:water-percent`](https://pictogrammers.com/library/mdi/icon/water-percent/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/dht22
 - Unit Of Measurement: %
 
@@ -2972,6 +2978,7 @@ File: [`mqtt/sensor/clmtpi/ambient_humidity.yaml`](entities/mqtt/sensor/clmtpi/a
 
 - Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/dht22
 - Unit Of Measurement: °C
 
@@ -2984,6 +2991,7 @@ File: [`mqtt/sensor/clmtpi/ambient_temperature.yaml`](entities/mqtt/sensor/clmtp
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement:
 
@@ -2996,6 +3004,7 @@ File: [`mqtt/sensor/clmtpi/average_load_15_min.yaml`](entities/mqtt/sensor/clmtp
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement:
 
@@ -3008,6 +3017,7 @@ File: [`mqtt/sensor/clmtpi/average_load_1_min.yaml`](entities/mqtt/sensor/clmtpi
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement:
 
@@ -3020,6 +3030,7 @@ File: [`mqtt/sensor/clmtpi/average_load_5_min.yaml`](entities/mqtt/sensor/clmtpi
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement:
 
@@ -3032,6 +3043,7 @@ File: [`mqtt/sensor/clmtpi/boot_time.yaml`](entities/mqtt/sensor/clmtpi/boot_tim
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement: °C
 
@@ -3044,6 +3056,7 @@ File: [`mqtt/sensor/clmtpi/cpu_temperature.yaml`](entities/mqtt/sensor/clmtpi/cp
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement: %
 
@@ -3056,6 +3069,7 @@ File: [`mqtt/sensor/clmtpi/cpu_usage.yaml`](entities/mqtt/sensor/clmtpi/cpu_usag
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement: %
 
@@ -3068,6 +3082,7 @@ File: [`mqtt/sensor/clmtpi/disk_usage.yaml`](entities/mqtt/sensor/clmtpi/disk_us
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement:
 
@@ -3080,6 +3095,7 @@ File: [`mqtt/sensor/clmtpi/local_git_ref.yaml`](entities/mqtt/sensor/clmtpi/loca
 
 - Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement:
 
@@ -3092,6 +3108,7 @@ File: [`mqtt/sensor/clmtpi/local_ip_address.yaml`](entities/mqtt/sensor/clmtpi/l
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement: %
 
@@ -3104,6 +3121,7 @@ File: [`mqtt/sensor/clmtpi/memory_usage.yaml`](entities/mqtt/sensor/clmtpi/memor
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/clmtpi/stats
 - Unit Of Measurement: `s`
 
@@ -3116,6 +3134,7 @@ File: [`mqtt/sensor/clmtpi/uptime.yaml`](entities/mqtt/sensor/clmtpi/uptime.yaml
 
 - Icon: [`mdi:water-percent`](https://pictogrammers.com/library/mdi/icon/water-percent/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/crtpi/dht22
 - Unit Of Measurement: %
 
@@ -3128,6 +3147,7 @@ File: [`mqtt/sensor/crt_tv/internal_humidity.yaml`](entities/mqtt/sensor/crt_tv/
 
 - Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/crtpi/dht22
 - Unit Of Measurement: °C
 
@@ -3140,6 +3160,7 @@ File: [`mqtt/sensor/crt_tv/internal_temperature.yaml`](entities/mqtt/sensor/crt_
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement:
 
@@ -3152,6 +3173,7 @@ File: [`mqtt/sensor/crtpi/active_git_ref.yaml`](entities/mqtt/sensor/crtpi/activ
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement:
 
@@ -3164,6 +3186,7 @@ File: [`mqtt/sensor/crtpi/average_load_15_min.yaml`](entities/mqtt/sensor/crtpi/
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement:
 
@@ -3176,6 +3199,7 @@ File: [`mqtt/sensor/crtpi/average_load_1_min.yaml`](entities/mqtt/sensor/crtpi/a
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement:
 
@@ -3188,6 +3212,7 @@ File: [`mqtt/sensor/crtpi/average_load_5_min.yaml`](entities/mqtt/sensor/crtpi/a
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement:
 
@@ -3200,6 +3225,7 @@ File: [`mqtt/sensor/crtpi/boot_time.yaml`](entities/mqtt/sensor/crtpi/boot_time.
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement: °C
 
@@ -3212,6 +3238,7 @@ File: [`mqtt/sensor/crtpi/cpu_temperature.yaml`](entities/mqtt/sensor/crtpi/cpu_
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement: %
 
@@ -3224,6 +3251,7 @@ File: [`mqtt/sensor/crtpi/cpu_usage.yaml`](entities/mqtt/sensor/crtpi/cpu_usage.
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement: %
 
@@ -3236,6 +3264,7 @@ File: [`mqtt/sensor/crtpi/disk_usage.yaml`](entities/mqtt/sensor/crtpi/disk_usag
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement:
 
@@ -3248,6 +3277,7 @@ File: [`mqtt/sensor/crtpi/local_git_ref.yaml`](entities/mqtt/sensor/crtpi/local_
 
 - Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement:
 
@@ -3260,6 +3290,7 @@ File: [`mqtt/sensor/crtpi/local_ip_address.yaml`](entities/mqtt/sensor/crtpi/loc
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement: %
 
@@ -3272,6 +3303,7 @@ File: [`mqtt/sensor/crtpi/memory_usage.yaml`](entities/mqtt/sensor/crtpi/memory_
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/crt-pi/stats
 - Unit Of Measurement: `s`
 
@@ -3284,6 +3316,7 @@ File: [`mqtt/sensor/crtpi/uptime.yaml`](entities/mqtt/sensor/crtpi/uptime.yaml)
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement:
 
@@ -3296,6 +3329,7 @@ File: [`mqtt/sensor/growpi/active_git_ref.yaml`](entities/mqtt/sensor/growpi/act
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement:
 
@@ -3308,6 +3342,7 @@ File: [`mqtt/sensor/growpi/average_load_15_min.yaml`](entities/mqtt/sensor/growp
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement:
 
@@ -3320,6 +3355,7 @@ File: [`mqtt/sensor/growpi/average_load_1_min.yaml`](entities/mqtt/sensor/growpi
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement:
 
@@ -3332,6 +3368,7 @@ File: [`mqtt/sensor/growpi/average_load_5_min.yaml`](entities/mqtt/sensor/growpi
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement:
 
@@ -3344,6 +3381,7 @@ File: [`mqtt/sensor/growpi/boot_time.yaml`](entities/mqtt/sensor/growpi/boot_tim
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement: °C
 
@@ -3356,6 +3394,7 @@ File: [`mqtt/sensor/growpi/cpu_temperature.yaml`](entities/mqtt/sensor/growpi/cp
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement: %
 
@@ -3368,6 +3407,7 @@ File: [`mqtt/sensor/growpi/cpu_usage.yaml`](entities/mqtt/sensor/growpi/cpu_usag
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement: %
 
@@ -3380,6 +3420,7 @@ File: [`mqtt/sensor/growpi/disk_usage.yaml`](entities/mqtt/sensor/growpi/disk_us
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement:
 
@@ -3392,6 +3433,7 @@ File: [`mqtt/sensor/growpi/local_git_ref.yaml`](entities/mqtt/sensor/growpi/loca
 
 - Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement:
 
@@ -3404,6 +3446,7 @@ File: [`mqtt/sensor/growpi/local_ip_address.yaml`](entities/mqtt/sensor/growpi/l
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement: %
 
@@ -3416,6 +3459,7 @@ File: [`mqtt/sensor/growpi/memory_usage.yaml`](entities/mqtt/sensor/growpi/memor
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/growpi/stats
 - Unit Of Measurement: `s`
 
@@ -3428,6 +3472,7 @@ File: [`mqtt/sensor/growpi/uptime.yaml`](entities/mqtt/sensor/growpi/uptime.yaml
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement:
 
@@ -3440,6 +3485,7 @@ File: [`mqtt/sensor/mtrxpi/active_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/act
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement:
 
@@ -3452,6 +3498,7 @@ File: [`mqtt/sensor/mtrxpi/average_load_15_min.yaml`](entities/mqtt/sensor/mtrxp
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement:
 
@@ -3464,6 +3511,7 @@ File: [`mqtt/sensor/mtrxpi/average_load_1_min.yaml`](entities/mqtt/sensor/mtrxpi
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement:
 
@@ -3476,6 +3524,7 @@ File: [`mqtt/sensor/mtrxpi/average_load_5_min.yaml`](entities/mqtt/sensor/mtrxpi
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement:
 
@@ -3488,6 +3537,7 @@ File: [`mqtt/sensor/mtrxpi/boot_time.yaml`](entities/mqtt/sensor/mtrxpi/boot_tim
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement: °C
 
@@ -3500,6 +3550,7 @@ File: [`mqtt/sensor/mtrxpi/cpu_temperature.yaml`](entities/mqtt/sensor/mtrxpi/cp
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement: %
 
@@ -3512,6 +3563,7 @@ File: [`mqtt/sensor/mtrxpi/cpu_usage.yaml`](entities/mqtt/sensor/mtrxpi/cpu_usag
 
 - Icon: [`mdi:animation-play-outline`](https://pictogrammers.com/library/mdi/icon/animation-play-outline/)
 - State Class:
+- Command Topic:
 - State Topic: /mtrxpi/matrix/current-content
 - Unit Of Measurement:
 
@@ -3524,6 +3576,7 @@ File: [`mqtt/sensor/mtrxpi/current_content.yaml`](entities/mqtt/sensor/mtrxpi/cu
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement: %
 
@@ -3536,6 +3589,7 @@ File: [`mqtt/sensor/mtrxpi/disk_usage.yaml`](entities/mqtt/sensor/mtrxpi/disk_us
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement:
 
@@ -3548,6 +3602,7 @@ File: [`mqtt/sensor/mtrxpi/local_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/loca
 
 - Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement:
 
@@ -3560,6 +3615,7 @@ File: [`mqtt/sensor/mtrxpi/local_ip_address.yaml`](entities/mqtt/sensor/mtrxpi/l
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement: %
 
@@ -3572,6 +3628,7 @@ File: [`mqtt/sensor/mtrxpi/memory_usage.yaml`](entities/mqtt/sensor/mtrxpi/memor
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/mtrxpi/stats
 - Unit Of Measurement: `s`
 
@@ -3584,6 +3641,7 @@ File: [`mqtt/sensor/mtrxpi/uptime.yaml`](entities/mqtt/sensor/mtrxpi/uptime.yaml
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement:
 
@@ -3596,6 +3654,7 @@ File: [`mqtt/sensor/octopi/active_git_ref.yaml`](entities/mqtt/sensor/octopi/act
 
 - Icon: [`mdi:water-percent`](https://pictogrammers.com/library/mdi/icon/water-percent/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/octopi/dht22
 - Unit Of Measurement: %
 
@@ -3608,6 +3667,7 @@ File: [`mqtt/sensor/octopi/ambient_humidity.yaml`](entities/mqtt/sensor/octopi/a
 
 - Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/octopi/dht22
 - Unit Of Measurement: °C
 
@@ -3620,6 +3680,7 @@ File: [`mqtt/sensor/octopi/ambient_temperature.yaml`](entities/mqtt/sensor/octop
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement:
 
@@ -3632,6 +3693,7 @@ File: [`mqtt/sensor/octopi/average_load_15_min.yaml`](entities/mqtt/sensor/octop
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement:
 
@@ -3644,6 +3706,7 @@ File: [`mqtt/sensor/octopi/average_load_1_min.yaml`](entities/mqtt/sensor/octopi
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement:
 
@@ -3656,6 +3719,7 @@ File: [`mqtt/sensor/octopi/average_load_5_min.yaml`](entities/mqtt/sensor/octopi
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement:
 
@@ -3668,6 +3732,7 @@ File: [`mqtt/sensor/octopi/boot_time.yaml`](entities/mqtt/sensor/octopi/boot_tim
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement: °C
 
@@ -3680,6 +3745,7 @@ File: [`mqtt/sensor/octopi/cpu_temperature.yaml`](entities/mqtt/sensor/octopi/cp
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement: %
 
@@ -3692,6 +3758,7 @@ File: [`mqtt/sensor/octopi/cpu_usage.yaml`](entities/mqtt/sensor/octopi/cpu_usag
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement: %
 
@@ -3704,6 +3771,7 @@ File: [`mqtt/sensor/octopi/disk_usage.yaml`](entities/mqtt/sensor/octopi/disk_us
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement:
 
@@ -3716,6 +3784,7 @@ File: [`mqtt/sensor/octopi/local_git_ref.yaml`](entities/mqtt/sensor/octopi/loca
 
 - Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement:
 
@@ -3728,6 +3797,7 @@ File: [`mqtt/sensor/octopi/local_ip_address.yaml`](entities/mqtt/sensor/octopi/l
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement: %
 
@@ -3740,6 +3810,7 @@ File: [`mqtt/sensor/octopi/memory_usage.yaml`](entities/mqtt/sensor/octopi/memor
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/octopi/stats
 - Unit Of Measurement: `s`
 
@@ -3752,6 +3823,7 @@ File: [`mqtt/sensor/octopi/uptime.yaml`](entities/mqtt/sensor/octopi/uptime.yaml
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement:
 
@@ -3764,6 +3836,7 @@ File: [`mqtt/sensor/rtropi/active_git_ref.yaml`](entities/mqtt/sensor/rtropi/act
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement:
 
@@ -3776,6 +3849,7 @@ File: [`mqtt/sensor/rtropi/average_load_15_min.yaml`](entities/mqtt/sensor/rtrop
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement:
 
@@ -3788,6 +3862,7 @@ File: [`mqtt/sensor/rtropi/average_load_1_min.yaml`](entities/mqtt/sensor/rtropi
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement:
 
@@ -3800,6 +3875,7 @@ File: [`mqtt/sensor/rtropi/average_load_5_min.yaml`](entities/mqtt/sensor/rtropi
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement:
 
@@ -3812,6 +3888,7 @@ File: [`mqtt/sensor/rtropi/boot_time.yaml`](entities/mqtt/sensor/rtropi/boot_tim
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement: °C
 
@@ -3824,6 +3901,7 @@ File: [`mqtt/sensor/rtropi/cpu_temperature.yaml`](entities/mqtt/sensor/rtropi/cp
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement: %
 
@@ -3836,6 +3914,7 @@ File: [`mqtt/sensor/rtropi/cpu_usage.yaml`](entities/mqtt/sensor/rtropi/cpu_usag
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement: %
 
@@ -3848,6 +3927,7 @@ File: [`mqtt/sensor/rtropi/disk_usage.yaml`](entities/mqtt/sensor/rtropi/disk_us
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement:
 
@@ -3860,6 +3940,7 @@ File: [`mqtt/sensor/rtropi/local_git_ref.yaml`](entities/mqtt/sensor/rtropi/loca
 
 - Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement:
 
@@ -3872,6 +3953,7 @@ File: [`mqtt/sensor/rtropi/local_ip_address.yaml`](entities/mqtt/sensor/rtropi/l
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement: %
 
@@ -3884,6 +3966,7 @@ File: [`mqtt/sensor/rtropi/memory_usage.yaml`](entities/mqtt/sensor/rtropi/memor
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/rtropi/stats
 - Unit Of Measurement: `s`
 
@@ -3896,6 +3979,7 @@ File: [`mqtt/sensor/rtropi/uptime.yaml`](entities/mqtt/sensor/rtropi/uptime.yaml
 
 - Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement:
 
@@ -3908,6 +3992,7 @@ File: [`mqtt/sensor/vsmppi/active_git_ref.yaml`](entities/mqtt/sensor/vsmppi/act
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement:
 
@@ -3920,6 +4005,7 @@ File: [`mqtt/sensor/vsmppi/average_load_15_min.yaml`](entities/mqtt/sensor/vsmpp
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement:
 
@@ -3932,6 +4018,7 @@ File: [`mqtt/sensor/vsmppi/average_load_1_min.yaml`](entities/mqtt/sensor/vsmppi
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement:
 
@@ -3944,6 +4031,7 @@ File: [`mqtt/sensor/vsmppi/average_load_5_min.yaml`](entities/mqtt/sensor/vsmppi
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement:
 
@@ -3956,6 +4044,7 @@ File: [`mqtt/sensor/vsmppi/boot_time.yaml`](entities/mqtt/sensor/vsmppi/boot_tim
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement: °C
 
@@ -3968,6 +4057,7 @@ File: [`mqtt/sensor/vsmppi/cpu_temperature.yaml`](entities/mqtt/sensor/vsmppi/cp
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement: %
 
@@ -3980,6 +4070,7 @@ File: [`mqtt/sensor/vsmppi/cpu_usage.yaml`](entities/mqtt/sensor/vsmppi/cpu_usag
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement: %
 
@@ -3992,6 +4083,7 @@ File: [`mqtt/sensor/vsmppi/disk_usage.yaml`](entities/mqtt/sensor/vsmppi/disk_us
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement:
 
@@ -4004,6 +4096,7 @@ File: [`mqtt/sensor/vsmppi/local_git_ref.yaml`](entities/mqtt/sensor/vsmppi/loca
 
 - Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
 - State Class:
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement:
 
@@ -4016,6 +4109,7 @@ File: [`mqtt/sensor/vsmppi/local_ip_address.yaml`](entities/mqtt/sensor/vsmppi/l
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement: %
 
@@ -4028,6 +4122,7 @@ File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memor
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
+- Command Topic:
 - State Topic: /homeassistant/vsmppi/stats
 - Unit Of Measurement: `s`
 
