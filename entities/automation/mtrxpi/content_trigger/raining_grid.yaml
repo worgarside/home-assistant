@@ -32,8 +32,8 @@ action:
             target:
               entity_id: number.mtrxpi_raining_grid_rain_chance
             data:
-              # 1mm = 100%
-              value: "{{ rain }}"
+              # 10 mm/hr = 100% on Matrix
+              value: "{{ rain | float(0) * 10 }}"
 
           - alias: Queue content if it is not already running
             if: "{{ states('sensor.mtrxpi_current_content') != 'raining-grid' }}"
