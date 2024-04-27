@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (116)</h3></summary>
+<details><summary><h3>Entities (115)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -796,20 +796,6 @@ File: [`automation/input_number/prusa_i3_mk3/bed_target/set.yaml`](entities/auto
 }
 ```
 File: [`automation/input_number/prusa_i3_mk3/tool_0_target/set.yaml`](entities/automation/input_number/prusa_i3_mk3/tool_0_target/set.yaml)
-</details>
-
-<details><summary><code>/input-number/rgb-led-matrix-brightness/update-mtrxpi</code></summary>
-
-**Entity ID: `automation.input_number_rgb_led_matrix_brightness_update_mtrxpi`**
-
-> *No description provided*
-
-- Alias: /input-number/rgb-led-matrix-brightness/update-mtrxpi
-- ID: `input_number_rgb_led_matrix_brightness_update_mtrxpi`
-- Mode: `restart`
-- Variables:
-
-File: [`automation/input_number/rgb_led_matrix_brightness/update_mtrxpi.yaml`](entities/automation/input_number/rgb_led_matrix_brightness/update_mtrxpi.yaml)
 </details>
 
 <details><summary><code>/input-select/cosmo-entity-picture/set-options</code></summary>
@@ -2906,19 +2892,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (96)</h3></summary>
-
-<details><summary><strong>RGB LED Matrix</strong></summary>
-
-**Entity ID: `binary_sensor.rgb_led_matrix`**
-
-- Icon: [`mdi:square-opacity`](https://pictogrammers.com/library/mdi/icon/square-opacity/)
-- State Class:
-- State Topic: /homeassistant/led_matrix/state
-- Unit Of Measurement:
-
-File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb_led_matrix.yaml)
-</details>
+<details><summary><h3>Entities (95)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -2929,7 +2903,7 @@ File: [`mqtt/binary_sensor/rgb_led_matrix.yaml`](entities/mqtt/binary_sensor/rgb
 - State Topic:
 - Unit Of Measurement: %
 
-File: [`mqtt/number/mtrxpi/brightness.yaml`](entities/mqtt/number/mtrxpi/brightness.yaml)
+File: [`mqtt/number/mtrxpi/matrix/brightness.yaml`](entities/mqtt/number/mtrxpi/matrix/brightness.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Raining Grid: Rain Chance</strong></summary>
