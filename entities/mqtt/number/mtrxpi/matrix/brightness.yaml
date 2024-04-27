@@ -1,0 +1,20 @@
+---
+name: "MtrxPi | Matrix: Brightness"
+
+unique_id: mtrxpi_matrix_brightness
+
+command_topic: /mtrxpi/matrix/parameter/brightness
+
+icon: mdi:brightness-percent
+
+min: 1
+
+max: 100
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: "%"
