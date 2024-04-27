@@ -4609,8 +4609,7 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
 {
   "clear_notification": {
     "description": "Clear the persistent notification",
-    "example": "true",
-    "default": false
+    "example": "true"
   },
   "message": {
     "description": "The message body of the notification",
@@ -4644,7 +4643,7 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
   "actions": "{{ actions | default([]) }}",
   "clear_notification": "{{\n  message | default('') == 'clear_notification' or\n  clear_notification | default(False) | bool\n}}",
   "notification_id": "{% if clear_notification %}\n  {{ notification_id | default(None) }}\n{% else %}\n  {{ notification_id | default('notify_vic_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}\n{% endif %}",
-  "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message }}\n{% endif %}",
+  "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message | default(\"\") }}\n{% endif %}",
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
   "notif_title": "{{ title | default(' ') }}"
 }
@@ -4664,8 +4663,7 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
 {
   "clear_notification": {
     "description": "Clear the persistent notification",
-    "example": "true",
-    "default": false
+    "example": "true"
   },
   "message": {
     "description": "The message body of the notification",
@@ -4686,8 +4684,7 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   },
   "mobile_notification_icon": {
     "description": "Optional icon for the phone notification",
-    "example": "mdi:alert",
-    "default": "mdi:home-assistant"
+    "example": "mdi:alert"
   }
 }
 ```
@@ -4698,9 +4695,9 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
 ```json
 {
   "actions": "{{ actions | default([]) }}",
-  "clear_notification": "{{\n  message | default('') == 'clear_notification' or\n  clear_notification | bool\n}}",
+  "clear_notification": "{{\n  message | default('') == 'clear_notification' or\n  clear_notification | default(False) | bool\n}}",
   "notification_id": "{% if clear_notification %}\n  {{ notification_id | default(None) }}\n{% else %}\n  {{ notification_id | default('notify_will_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}\n{% endif %}",
-  "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message }}\n{% endif %}",
+  "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message | default(\"\") }}\n{% endif %}",
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
   "notif_title": "{{ title | default(' ') }}"
 }
