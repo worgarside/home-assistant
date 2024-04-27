@@ -1,0 +1,75 @@
+---
+alias: /remote/lounge
+
+id: remote_lounge
+
+description: Control lounge lights with a single switch
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_ieee: 54:ef:44:10:00:9f:a9:95
+      args:
+        button: 2 # Right Button on switch
+
+variables:
+  press_type: "{{ trigger.event.data.args.press_type }}"
+  presses:
+    single: single
+    double: double
+    triple: triple
+    hold: hold
+
+action:
+  - choose:
+      - alias: "Single Press: Toggle Lounge Lights"
+
+        conditions: "{{ press_type == presses.single }}"
+
+        sequence:
+          - alias: Toggle Lights
+            service: light.toggle
+            target:
+              area_id: lounge
+
+      - alias: "Double Press: Set to 100%"
+
+        conditions: "{{ press_type == presses.double }}"
+
+        sequence:
+          - service: light.turn_on
+            target:
+              area_id: lounge
+            data:
+              brightness_pct: 100
+
+      - alias: "Triple Press: Alert Vic"
+
+        conditions: "{{ press_type == presses.triple }}"
+
+        sequence:
+          - service: script.turn_on
+            target:
+              entity_id: script.notify_vic
+            data:
+              clear_notification: true
+              message: Kitchen Triple Press
+              notification_id: kitchen_triple_press
+              mobile_notification_icon: mdi:fridge-outline
+
+      - alias: "Hold: Turn Off Lounge"
+
+        conditions: "{{ press_type == presses.hold }}"
+
+        sequence:
+          - service: script.turn_on
+            target:
+              entity_id: script.turn_off_physical_room
+            data:
+              variables:
+                room: lounge
