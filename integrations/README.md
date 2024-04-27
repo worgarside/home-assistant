@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (115)</h3></summary>
+<details><summary><h3>Entities (116)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1206,6 +1206,31 @@ File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation
 }
 ```
 File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml)
+</details>
+
+<details><summary><code>/remote/lounge</code></summary>
+
+**Entity ID: `automation.remote_lounge`**
+
+> Control lounge lights with a single switch
+
+- Alias: /remote/lounge
+- ID: `remote_lounge`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "press_type": "{{ trigger.event.data.args.press_type }}",
+  "presses": {
+    "single": "single",
+    "double": "double",
+    "triple": "triple",
+    "hold": "hold"
+  }
+}
+```
+File: [`automation/remote/lounge.yaml`](entities/automation/remote/lounge.yaml)
 </details>
 
 <details><summary><code>/remote/lounge-desk/double-press</code></summary>
