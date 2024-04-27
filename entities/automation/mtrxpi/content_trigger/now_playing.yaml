@@ -11,7 +11,7 @@ trigger:
 
 variables:
   album_artwork_url: >-
-    {%- set url = state_attr('media_player.topaz_sr10', 'entity_picture') or "" -%}
+    {%- set url = state_attr('media_player.topaz_sr10', 'entity_picture') -%}
 
     {%-
       set host = (
@@ -23,7 +23,7 @@ variables:
 
     {{-
       "http://" ~ host ~ ":8123" ~ url
-      if url.startswith("/api/")
+      if url is string and url.startswith("/api/")
       else url
     -}}
 
