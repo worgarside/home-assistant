@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (116)</h3></summary>
+<details><summary><h3>Entities (117)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -972,6 +972,25 @@ File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](enti
 - Variables:
 
 File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/automation/mtrxpi/content_trigger/gif_door_animated.yaml)
+</details>
+
+<details><summary><code>/mtrxpi/content-trigger/now-playing</code></summary>
+
+**Entity ID: `automation.mtrxpi_content_trigger_now_playing`**
+
+> *No description provided*
+
+- Alias: /mtrxpi/content-trigger/now-playing
+- ID: `mtrxpi_content_trigger_now_playing`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "album_artwork_url": "{%- set url = state_attr('media_player.topaz_sr10', 'entity_picture') or \"\" -%}\n{%-\n  set host = (\n    states('sensor.local_ip')\n    if has_value('sensor.local_ip')\n    else \"homeassistant.local\"\n  )\n-%}\n{{-\n  \"http://\" ~ host ~ \":8123\" ~ url\n  if url.startswith(\"/api/\")\n  else url\n-}}"
+}
+```
+File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation/mtrxpi/content_trigger/now_playing.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/raining-grid</code></summary>
@@ -4587,6 +4606,10 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
   "priority": {
     "description": "The priority of the content in the queue. `None` will remove the content from the queue if it exists. `0` is the highest priority, and the higher the number, the lower the priority.",
     "example": "1"
+  },
+  "parameters": {
+    "description": "Additional parameters to pass to the content",
+    "example": "{\"color\": \"red\"}"
   }
 }
 ```

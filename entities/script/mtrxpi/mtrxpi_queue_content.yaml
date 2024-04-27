@@ -16,6 +16,10 @@ fields:
       exists. `0` is the highest priority, and the higher the number, the lower the priority.
     example: "1"
 
+  parameters:
+    description: Additional parameters to pass to the content
+    example: '{"color": "red"}'
+
 sequence:
   - service: script.turn_on
     target:
@@ -37,5 +41,6 @@ sequence:
       payload: >-
         {
           "id": "{{ id }}",
-          "priority": {{ priority | default("null") }}
+          "priority": {{ priority | default("null") }},
+          "parameters": {{ parameters | default("{}") }}
         }

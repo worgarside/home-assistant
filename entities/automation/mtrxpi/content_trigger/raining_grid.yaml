@@ -11,7 +11,7 @@ trigger:
     to:
 
 variables:
-  content_id: "raining-grid"
+  content_id: raining-grid
   rain: "{{ trigger.to_state.state | float(0) }}"
 
 action:

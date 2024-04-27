@@ -1,0 +1,40 @@
+---
+alias: /mtrxpi/content-trigger/now-playing
+
+id: mtrxpi_content_trigger_now_playing
+
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: media_player.topaz_sr10
+
+variables:
+  album_artwork_url: >-
+    {%- set url = state_attr('media_player.topaz_sr10', 'entity_picture') or "" -%}
+
+    {%-
+      set host = (
+        states('sensor.local_ip')
+        if has_value('sensor.local_ip')
+        else "homeassistant.local"
+      )
+    -%}
+
+    {{-
+      "http://" ~ host ~ ":8123" ~ url
+      if url.startswith("/api/")
+      else url
+    -}}
+
+action:
+  - service: script.mtrxpi_queue_content
+    data:
+      id: now-playing
+      priority: 1
+      parameters:
+        album: "{{ state_attr('media_player.topaz_sr10', 'media_album_name') }}"
+        album_artwork_url: "{{ album_artwork_url }}"
+        artist: "{{ state_attr('media_player.topaz_sr10', 'media_artist') }}"
+        state: "{{ states('media_player.topaz_sr10') }}"
+        title: "{{ state_attr('media_player.topaz_sr10', 'media_title') }}"
