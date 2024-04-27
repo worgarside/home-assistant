@@ -4617,6 +4617,13 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
 - Mode: `queued`
 - Variables:
 
+```json
+{
+  "id": "{{ id | default(None) }}",
+  "parameters": "{{ parameters | default({}) }}",
+  "priority": "{{ priority | default(None) }}"
+}
+```
 File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_queue_content.yaml)
 </details>
 

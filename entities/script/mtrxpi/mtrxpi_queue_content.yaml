@@ -20,6 +20,13 @@ fields:
     description: Additional parameters to pass to the content
     example: '{"color": "red"}'
 
+variables:
+  id: "{{ id | default(None) }}"
+
+  parameters: "{{ parameters | default({}) }}"
+
+  priority: "{{ priority | default(None) }}"
+
 sequence:
   - service: script.turn_on
     target:
@@ -30,17 +37,20 @@ sequence:
         notification_id: mtrxpi_queue_content
         message: |
           ```
-          Content ID: {{ id }}
-          Priority:   {{ priority | default("null") }}
           Time:       {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
+          Content ID: {{ id }}
+          Priority:   {{ priority }}
+          {% if parameters %}Parameters: {{ parameters }}{% endif %}
           ```
 
   - service: mqtt.publish
     data:
       topic: /mtrxpi/matrix/queue-content
       payload: >-
-        {
-          "id": "{{ id }}",
-          "priority": {{ priority | default("null") }},
-          "parameters": {{ parameters | default("{}") }}
-        }
+        {{
+          {
+            "id": id,
+            "priority": priority,
+            "parameters": parameters
+          } | to_json
+        }}
