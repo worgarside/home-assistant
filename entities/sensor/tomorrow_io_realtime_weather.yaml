@@ -39,7 +39,7 @@ value_template: >-
       7101: "Heavy Ice Pellets",
       7102: "Light Ice Pellets",
       8000: "Thunderstorm"
-    }[value_json.get("data", {}).get("values", {}).get("weatherCode", "Unknown")]
+    }[value_json.get("data", {}).get("values", {}).get("weatherCode", 0)]
   }}
 
 icon: >-
