@@ -22,7 +22,6 @@ action:
           - service: script.mtrxpi_queue_content
             data:
               id: "{{ content_id }}"
-              priority: "null"
 
       - alias: It is raining
         conditions: "{{ rain | float(-1) > 0 }}"
