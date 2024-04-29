@@ -1026,13 +1026,13 @@ watchmedo = ["PyYAML (>=3.10)"]
 
 [[package]]
 name = "wg-utilities"
-version = "5.14.2"
+version = "5.15.1"
 description = "Loads of useful stuff for the things I do :)"
 optional = false
 python-versions = "<4.0,>=3.11"
 files = [
-    {file = "wg_utilities-5.14.2-py3-none-any.whl", hash = "sha256:740575108a09fb2f36f7240ce6a084329234dc80f520bc17fbfafb38bc0a1f87"},
-    {file = "wg_utilities-5.14.2.tar.gz", hash = "sha256:30804bb0441e5065d49a6cbf10bc18d3beba31de96e5626976a30849b85b5dec"},
+    {file = "wg_utilities-5.15.1-py3-none-any.whl", hash = "sha256:56381252a7fd377e0089c1209e5a324331061e13b4799dc0fde6ce3424ccee26"},
+    {file = "wg_utilities-5.15.1.tar.gz", hash = "sha256:658e6ea5c704efdae8786598ebda1db0fc55fc9849ce4097737071b41513b558"},
 ]
 
 [package.extras]
@@ -1197,4 +1197,4 @@ testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-b
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<4.0"
-content-hash = "49c09f6f62785f433924c3a55b1d7d79aa89f72809f61fee2bca1958a95ac151"
+content-hash = "8bb753f41c89388879e68a12e266dd0bd15dbc409f1f17c35998c9c5ba289df6"

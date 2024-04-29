@@ -88,7 +88,7 @@ repos:
         additional_dependencies:
           - types-paramiko
           - watchdog==4.0.0
-          - wg-utilities==5.14.2
+          - wg-utilities==5.15.1
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
   - repo: https://github.com/pre-commit/pygrep-hooks
