@@ -987,7 +987,8 @@ File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/auto
 
 ```json
 {
-  "album_artwork_url": "{%- set url = state_attr('media_player.topaz_sr10', 'entity_picture') -%}\n{%-\n  set host = (\n    states('sensor.local_ip')\n    if has_value('sensor.local_ip')\n    else \"homeassistant.local\"\n  )\n-%}\n{{-\n  \"http://\" ~ host ~ \":8123\" ~ url\n  if url is string and url.startswith(\"/api/\")\n  else url\n-}}"
+  "from_attrs": "{{ trigger.from_state.attributes }}",
+  "to_attrs": "{{ trigger.to_state.attributes }}"
 }
 ```
 File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation/mtrxpi/content_trigger/now_playing.yaml)
