@@ -24,7 +24,7 @@ action:
           qos: 1
           retain: true
           payload_template: >-
-            {%- set url = trigger.to_state.attributes.entity_picture -%}
+            {%- set url = trigger.to_state.attributes.entity_picture | default(None) -%}
             {%-
               set host = (
                 states('sensor.local_ip')
@@ -34,9 +34,9 @@ action:
             -%}
             {{
               {
-                "title": trigger.to_state.attributes.media_title,
-                "album": trigger.to_state.attributes.media_album_name,
-                "artist": trigger.to_state.attributes.media_artist,
+                "title": trigger.to_state.attributes.media_title | default(None),
+                "album": trigger.to_state.attributes.media_album_name | default(None),
+                "artist": trigger.to_state.attributes.media_artist | default(None),
                 "artwork_uri": (
                   "http://" ~ host ~ ":8123" ~ url
                   if url is string and url.startswith("/api/")
