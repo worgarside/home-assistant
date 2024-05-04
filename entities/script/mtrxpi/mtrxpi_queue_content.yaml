@@ -16,10 +16,6 @@ fields:
       exists. `0` is the highest priority, and the higher the number, the lower the priority.
     example: "1"
 
-  parameters:
-    description: Additional parameters to pass to the content
-    example: '{"color": "red"}'
-
 variables:
   id: "{{ id | default(None) }}"
 
@@ -51,6 +47,5 @@ sequence:
           {
             "id": id,
             "priority": priority,
-            "parameters": parameters
           } | to_json
         }}
