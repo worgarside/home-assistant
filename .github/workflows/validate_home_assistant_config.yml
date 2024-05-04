@@ -67,7 +67,6 @@ jobs:
         run: |
           mkdir -p ./.storage
 
-          sed -i 's/\/config/\/github\/workspace/g' integrations/folder_watcher.yaml
           sed -i 's/\/config/\/github\/workspace/g' integrations/zha.yaml
 
           sed -i 's/\/config/\/github\/workspace/g' configuration.yaml
