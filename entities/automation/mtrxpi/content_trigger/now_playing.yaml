@@ -18,57 +18,45 @@ action:
               id: now-playing
               priority: 10
 
-      - if: >-
-          {{ trigger.from_state.attributes.media_title != trigger.to_state.attributes.media_title }}
-        then:
-          - service: mqtt.publish
-            data_template:
-              topic: /mtrxpi/now-playing/parameter/title
-              payload: "{{ trigger.to_state.attributes.media_title | to_json }}"
+      - service: mqtt.publish
+        data:
+          topic: /mtrxpi/now-playing/parameter/title
+          payload_template: "{{ trigger.to_state.attributes.media_title | to_json }}"
+          qos: 1
+          retain: true
 
-      - if: >-
-          {{
-            trigger.from_state.attributes.media_artist != trigger.to_state.attributes.media_artist
-          }}
-        then:
-          - service: mqtt.publish
-            data_template:
-              topic: /mtrxpi/now-playing/parameter/artist
-              payload: "{{ trigger.to_state.attributes.media_artist | to_json }}"
+      - service: mqtt.publish
+        data:
+          topic: /mtrxpi/now-playing/parameter/artist
+          payload_template: "{{ trigger.to_state.attributes.media_artist | to_json }}"
+          qos: 1
+          retain: true
 
-      - if: >-
-          {{
-            trigger.from_state.attributes.media_album_name !=
-            trigger.to_state.attributes.media_album_name
-          }}
-        then:
-          - service: mqtt.publish
-            data_template:
-              topic: /mtrxpi/now-playing/parameter/album
-              payload: "{{ trigger.to_state.attributes.media_album_name | to_json }}"
+      - service: mqtt.publish
+        data:
+          topic: /mtrxpi/now-playing/parameter/album
+          payload_template: "{{ trigger.to_state.attributes.media_album_name | to_json }}"
+          qos: 1
+          retain: true
 
-      - if: >-
-          {{
-            trigger.from_state.attributes.entity_picture !=
-            trigger.to_state.attributes.entity_picture
-          }}
-        then:
-          - service: mqtt.publish
-            data_template:
-              topic: /mtrxpi/now-playing/parameter/artwork-uri
-              payload: >-
-                {%- set url = state_attr('media_player.topaz_sr10', 'entity_picture') -%}
-                {%-
-                  set host = (
-                    states('sensor.local_ip')
-                    if has_value('sensor.local_ip')
-                    else "homeassistant.local"
-                  )
-                -%}
-                {{-
-                  (
-                    "http://" ~ host ~ ":8123" ~ url
-                    if url is string and url.startswith("/api/")
-                    else url
-                  ) | to_json
-                -}}
+      - service: mqtt.publish
+        data:
+          topic: /mtrxpi/now-playing/parameter/artwork-uri
+          payload_template: >-
+            {%- set url = trigger.to_state.attributes.entity_picture -%}
+            {%-
+              set host = (
+                states('sensor.local_ip')
+                if has_value('sensor.local_ip')
+                else "homeassistant.local"
+              )
+            -%}
+            {{-
+              (
+                "http://" ~ host ~ ":8123" ~ url
+                if url is string and url.startswith("/api/")
+                else url
+              ) | to_json
+            -}}
+          qos: 1
+          retain: true
