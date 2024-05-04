@@ -10,8 +10,8 @@ trigger:
     entity_id: media_player.topaz_sr10
 
 variables:
-  from_attrs: "{{ trigger.from_state.attributes }}"
-  to_attrs: "{{ trigger.to_state.attributes }}"
+  from_attrs: "{{ trigger.from_state.attributes | to_json }}"
+  to_attrs: "{{ trigger.to_state.attributes | to_json }}"
 
 action:
   - parallel:

@@ -987,8 +987,8 @@ File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/auto
 
 ```json
 {
-  "from_attrs": "{{ trigger.from_state.attributes }}",
-  "to_attrs": "{{ trigger.to_state.attributes }}"
+  "from_attrs": "{{ trigger.from_state.attributes | to_json }}",
+  "to_attrs": "{{ trigger.to_state.attributes | to_json }}"
 }
 ```
 File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation/mtrxpi/content_trigger/now_playing.yaml)
