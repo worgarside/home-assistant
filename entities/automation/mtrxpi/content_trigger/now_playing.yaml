@@ -20,28 +20,9 @@ action:
 
       - service: mqtt.publish
         data:
-          topic: /mtrxpi/now-playing/parameter/title
-          payload_template: "{{ trigger.to_state.attributes.media_title | to_json }}"
+          topic: /mtrxpi/now-playing/parameter/track-metadata
           qos: 1
           retain: true
-
-      - service: mqtt.publish
-        data:
-          topic: /mtrxpi/now-playing/parameter/artist
-          payload_template: "{{ trigger.to_state.attributes.media_artist | to_json }}"
-          qos: 1
-          retain: true
-
-      - service: mqtt.publish
-        data:
-          topic: /mtrxpi/now-playing/parameter/album
-          payload_template: "{{ trigger.to_state.attributes.media_album_name | to_json }}"
-          qos: 1
-          retain: true
-
-      - service: mqtt.publish
-        data:
-          topic: /mtrxpi/now-playing/parameter/artwork-uri
           payload_template: >-
             {%- set url = trigger.to_state.attributes.entity_picture -%}
             {%-
@@ -51,12 +32,15 @@ action:
                 else "homeassistant.local"
               )
             -%}
-            {{-
-              (
-                "http://" ~ host ~ ":8123" ~ url
-                if url is string and url.startswith("/api/")
-                else url
-              ) | to_json
-            -}}
-          qos: 1
-          retain: true
+            {{
+              {
+                "title": trigger.to_state.attributes.media_title,
+                "album": trigger.to_state.attributes.media_album_name,
+                "artist": trigger.to_state.attributes.media_artist,
+                "artwork_uri": (
+                  "http://" ~ host ~ ":8123" ~ url
+                  if url is string and url.startswith("/api/")
+                  else url
+                )
+              } | to_json
+            }}
