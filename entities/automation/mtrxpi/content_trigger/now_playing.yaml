@@ -9,6 +9,17 @@ trigger:
   - platform: state
     entity_id: media_player.topaz_sr10
 
+condition: >-
+  {% set from_attrs = trigger.from_state.attributes %}
+  {% set to_attrs = trigger.to_state.attributes %}
+  {{
+    trigger.from_state.state != trigger.to_state.state or
+    from_attrs.get("media_title") != to_attrs.get("media_title") or
+    from_attrs.get("media_album_name") != to_attrs.get("media_album_name") or
+    from_attrs.get("media_artist") != to_attrs.get("media_artist") or
+    from_attrs.get("entity_picture") != to_attrs.get("entity_picture")
+  }}
+
 action:
   - parallel:
       - if: "{{ states('sensor.mtrxpi_current_content') != 'now-playing' }}"
