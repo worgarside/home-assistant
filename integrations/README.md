@@ -987,7 +987,6 @@ File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/auto
 
 ```json
 {
-  "content_id": "raining-grid",
   "rain": "{{ trigger.to_state.state | float(0) }}"
 }
 ```
