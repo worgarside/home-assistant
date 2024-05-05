@@ -1001,7 +1001,6 @@ File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation
 
 ```json
 {
-  "content_id": "raining-grid",
   "rain": "{{ trigger.to_state.state | float(0) }}"
 }
 ```
