@@ -1336,6 +1336,12 @@
                       "entity": "input_number.prusa_i3_mk3_target_hotend_temperature",
                       "name": "Hotend Target",
                       "icon_color": "purple"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octopi_local_ip_address",
+                      "name": "OctoPi IP",
+                      "icon_color": "blue"
                     }
                   ],
                   "columns": 2
