@@ -2802,7 +2802,7 @@ File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/in
 
 ## Input Select
 
-<details><summary><h3>Entities (8)</h3></summary>
+<details><summary><h3>Entities (9)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -2838,6 +2838,15 @@ File: [`input_select/crt_pi_display_source.yaml`](entities/input_select/crt_pi_d
 - Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
 
 File: [`input_select/lounge_shapes_artwork_mapping_source.yaml`](entities/input_select/lounge_shapes_artwork_mapping_source.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Media Player Source</strong></summary>
+
+**Entity ID: `input_select.mtrxpi_media_player_source`**
+
+- Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
+
+File: [`input_select/mtrxpi/mtrxpi_media_player_source.yaml`](entities/input_select/mtrxpi/mtrxpi_media_player_source.yaml)
 </details>
 
 <details><summary><strong>Office Shapes Artwork Mapping Source</strong></summary>
