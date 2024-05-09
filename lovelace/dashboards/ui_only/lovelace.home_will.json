@@ -1549,6 +1549,13 @@
                       "line_width": 2
                     }
                   ]
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.spotify_will",
+                  "toggle_power": true,
+                  "group": false,
+                  "volume_stateless": false
                 }
               ]
             }
