@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (116)</h3></summary>
+<details><summary><h3>Entities (117)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -972,6 +972,20 @@ File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](enti
 - Variables:
 
 File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/automation/mtrxpi/content_trigger/gif_door_animated.yaml)
+</details>
+
+<details><summary><code>/mtrxpi/content-trigger/now-playing</code></summary>
+
+**Entity ID: `automation.mtrxpi_content_trigger_now_playing`**
+
+> *No description provided*
+
+- Alias: /mtrxpi/content-trigger/now-playing
+- ID: `mtrxpi_content_trigger_now_playing`
+- Mode: `restart`
+- Variables:
+
+File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation/mtrxpi/content_trigger/now_playing.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/raining-grid</code></summary>
@@ -2788,7 +2802,7 @@ File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/in
 
 ## Input Select
 
-<details><summary><h3>Entities (8)</h3></summary>
+<details><summary><h3>Entities (9)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -2824,6 +2838,15 @@ File: [`input_select/crt_pi_display_source.yaml`](entities/input_select/crt_pi_d
 - Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
 
 File: [`input_select/lounge_shapes_artwork_mapping_source.yaml`](entities/input_select/lounge_shapes_artwork_mapping_source.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Media Player Source</strong></summary>
+
+**Entity ID: `input_select.mtrxpi_media_player_source`**
+
+- Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
+
+File: [`input_select/mtrxpi/mtrxpi_media_player_source.yaml`](entities/input_select/mtrxpi/mtrxpi_media_player_source.yaml)
 </details>
 
 <details><summary><strong>Office Shapes Artwork Mapping Source</strong></summary>
@@ -4593,6 +4616,13 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
 - Mode: `queued`
 - Variables:
 
+```json
+{
+  "id": "{{ id | default(None) }}",
+  "parameters": "{{ parameters | default({}) }}",
+  "priority": "{{ priority | default(None) }}"
+}
+```
 File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_queue_content.yaml)
 </details>
 
