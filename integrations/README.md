@@ -2484,7 +2484,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (24)</h3></summary>
+<details><summary><h3>Entities (25)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2759,7 +2759,20 @@ File: [`input_number/st_macbook_pro_full_battery_threshold.yaml`](entities/input
 File: [`input_number/st_macbook_pro_low_battery_threshold.yaml`](entities/input_number/st_macbook_pro_low_battery_threshold.yaml)
 </details>
 
-<details><summary><strong>Topaz SR10 Volume Level</strong></summary>
+<details><summary><strong>Topaz SR10 | Power Off Timeout</strong></summary>
+
+**Entity ID: `input_number.topaz_sr10_power_off_timeout`**
+
+- Icon: [`mdi:timer-music-outline`](https://pictogrammers.com/library/mdi/icon/timer-music-outline/)
+- Max: 120
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: `minutes`
+
+File: [`input_number/topaz_sr10/topaz_sr10_power_off_timeout.yaml`](entities/input_number/topaz_sr10/topaz_sr10_power_off_timeout.yaml)
+</details>
+
+<details><summary><strong>Topaz SR10 | Volume Level</strong></summary>
 
 **Entity ID: `input_number.topaz_sr10_volume_level`**
 
