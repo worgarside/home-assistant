@@ -1394,6 +1394,23 @@
                     },
                     {
                       "entity": "number.mtrxpi_matrix_brightness"
+                    },
+                    {
+                      "entity": "input_select.mtrxpi_media_player_source"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "automation.mtrxpi_content_trigger_gif_door_animated"
+                    },
+                    {
+                      "entity": "automation.mtrxpi_content_trigger_now_playing"
+                    },
+                    {
+                      "entity": "automation.mtrxpi_content_trigger_raining_grid"
                     }
                   ]
                 }
@@ -1532,6 +1549,13 @@
                       "line_width": 2
                     }
                   ]
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.spotify_will",
+                  "toggle_power": true,
+                  "group": false,
+                  "volume_stateless": false
                 }
               ]
             }
