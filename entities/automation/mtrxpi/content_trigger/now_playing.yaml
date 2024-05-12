@@ -33,37 +33,36 @@ condition: >-
   }}
 
 action:
-  - parallel:
-      - if: "{{ states('sensor.mtrxpi_current_content') != 'now-playing' }}"
-        then:
-          - service: script.mtrxpi_queue_content
-            data:
-              id: now-playing
-              priority: 10
+  - service: mqtt.publish
+    data:
+      topic: /mtrxpi/now-playing/parameter/track-metadata
+      qos: 1
+      retain: true
+      payload_template: >-
+        {%- set url = trigger.to_state.attributes.entity_picture | default(None) -%}
+        {%-
+          set host = (
+            states('sensor.local_ip')
+            if has_value('sensor.local_ip')
+            else "homeassistant.local"
+          )
+        -%}
+        {{
+          {
+            "title": trigger.to_state.attributes.media_title | default(None),
+            "album": trigger.to_state.attributes.media_album_name | default(None),
+            "artist": trigger.to_state.attributes.media_artist | default(None),
+            "artwork_uri": (
+              "http://" ~ host ~ ":8123" ~ url
+              if url is string and url.startswith("/api/")
+              else url
+            )
+          } | to_json
+        }}
 
-      - service: mqtt.publish
+  - if: "{{ states('sensor.mtrxpi_current_content') != 'now-playing' }}"
+    then:
+      - service: script.mtrxpi_queue_content
         data:
-          topic: /mtrxpi/now-playing/parameter/track-metadata
-          qos: 1
-          retain: true
-          payload_template: >-
-            {%- set url = trigger.to_state.attributes.entity_picture | default(None) -%}
-            {%-
-              set host = (
-                states('sensor.local_ip')
-                if has_value('sensor.local_ip')
-                else "homeassistant.local"
-              )
-            -%}
-            {{
-              {
-                "title": trigger.to_state.attributes.media_title | default(None),
-                "album": trigger.to_state.attributes.media_album_name | default(None),
-                "artist": trigger.to_state.attributes.media_artist | default(None),
-                "artwork_uri": (
-                  "http://" ~ host ~ ":8123" ~ url
-                  if url is string and url.startswith("/api/")
-                  else url
-                )
-              } | to_json
-            }}
+          id: now-playing
+          priority: 10
