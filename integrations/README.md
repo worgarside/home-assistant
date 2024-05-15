@@ -2902,7 +2902,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (2)</h3></summary>
+<details><summary><h3>Entities (3)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -2911,7 +2911,17 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 - Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
 - Pattern: ^\d+\.\d+\.\d+$
 
-File: [`input_text/appdaemon_trigger/ad_get_latest_release.yaml`](entities/input_text/appdaemon_trigger/ad_get_latest_release.yaml)
+File: [`input_text/appdaemon/ad_get_latest_release.yaml`](entities/input_text/appdaemon/ad_get_latest_release.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Auth Token (Amex)</strong></summary>
+
+**Entity ID: `input_text.truelayer_auth_token_amex`**
+
+- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
+- Pattern:
+
+File: [`input_text/appdaemon/truelayer_auth_token_amex.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex.yaml)
 </details>
 
 <details><summary><strong>Auto-Save Naughty Transaction Pattern</strong></summary>
