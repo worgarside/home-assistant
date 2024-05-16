@@ -2902,7 +2902,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (3)</h3></summary>
+<details><summary><h3>Entities (8)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -2922,6 +2922,56 @@ File: [`input_text/appdaemon/ad_get_latest_release.yaml`](entities/input_text/ap
 - Pattern:
 
 File: [`input_text/appdaemon/truelayer_auth_token_amex.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Auth Token (HSBC)</strong></summary>
+
+**Entity ID: `input_text.truelayer_auth_token_hsbc`**
+
+- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
+- Pattern:
+
+File: [`input_text/appdaemon/truelayer_auth_token_hsbc.yaml`](entities/input_text/appdaemon/truelayer_auth_token_hsbc.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Auth Token (Monzo)</strong></summary>
+
+**Entity ID: `input_text.truelayer_auth_token_monzo`**
+
+- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
+- Pattern:
+
+File: [`input_text/appdaemon/truelayer_auth_token_monzo.yaml`](entities/input_text/appdaemon/truelayer_auth_token_monzo.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Auth Token (Santander)</strong></summary>
+
+**Entity ID: `input_text.truelayer_auth_token_santander`**
+
+- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
+- Pattern:
+
+File: [`input_text/appdaemon/truelayer_auth_token_santander.yaml`](entities/input_text/appdaemon/truelayer_auth_token_santander.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Auth Token (Starling)</strong></summary>
+
+**Entity ID: `input_text.truelayer_auth_token_starling`**
+
+- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
+- Pattern:
+
+File: [`input_text/appdaemon/truelayer_auth_token_starling.yaml`](entities/input_text/appdaemon/truelayer_auth_token_starling.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Auth Token (Starling Joint)</strong></summary>
+
+**Entity ID: `input_text.truelayer_auth_token_starling_joint`**
+
+- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
+- Pattern:
+
+File: [`input_text/appdaemon/truelayer_auth_token_starling_joint.yaml`](entities/input_text/appdaemon/truelayer_auth_token_starling_joint.yaml)
 </details>
 
 <details><summary><strong>Auto-Save Naughty Transaction Pattern</strong></summary>
