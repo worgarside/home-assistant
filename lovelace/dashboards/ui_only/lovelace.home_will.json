@@ -338,14 +338,18 @@
                         "icon_color": "#FF4F40",
                         "layout": "vertical",
                         "name": "Current Account",
-                        "style": "ha-card.type-custom-mushroom-entity-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-right: 0.25em !important;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card.type-custom-mushroom-entity-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-right: 0.25em !important;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:mushroom-entity-card",
                         "entity": "var.truelayer_balance_amex",
                         "icon_color": "#036ED0",
                         "layout": "vertical",
-                        "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:mushroom-entity-card",
@@ -353,7 +357,9 @@
                         "icon_color": "#4D3926",
                         "layout": "vertical",
                         "name": "Credit Cards",
-                        "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:mushroom-entity-card",
@@ -361,7 +367,9 @@
                         "icon_color": "amber",
                         "layout": "vertical",
                         "name": "Savings",
-                        "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                        }
                       }
                     ]
                   },
