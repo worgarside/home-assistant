@@ -9,7 +9,7 @@ repos:
       - id: sync-additional-dependencies
 
   - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: 4.0.2
+    rev: 4.0.3
     hooks:
       - id: generate-readme
       - id: validate-entities
