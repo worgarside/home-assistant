@@ -338,7 +338,7 @@
                         "icon_color": "#FF4F40",
                         "layout": "vertical",
                         "name": "Current Account",
-                        "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-right: 0.25em !important;\n}\n"
+                        "style": "ha-card.type-custom-mushroom-entity-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-right: 0.25em !important;\n}\n"
                       },
                       {
                         "type": "custom:mushroom-entity-card",
