@@ -2902,7 +2902,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (8)</h3></summary>
+<details><summary><h3>Entities (10)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -2914,6 +2914,16 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 File: [`input_text/appdaemon/ad_get_latest_release.yaml`](entities/input_text/appdaemon/ad_get_latest_release.yaml)
 </details>
 
+<details><summary><strong>Monzo Auth Token (Auto Saver)</strong></summary>
+
+**Entity ID: `input_text.monzo_auth_token_auto_saver`**
+
+- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
+- Pattern:
+
+File: [`input_text/appdaemon/monzo_auth_token_auto_saver.yaml`](entities/input_text/appdaemon/monzo_auth_token_auto_saver.yaml)
+</details>
+
 <details><summary><strong>TrueLayer Auth Token (Amex)</strong></summary>
 
 **Entity ID: `input_text.truelayer_auth_token_amex`**
@@ -2922,6 +2932,16 @@ File: [`input_text/appdaemon/ad_get_latest_release.yaml`](entities/input_text/ap
 - Pattern:
 
 File: [`input_text/appdaemon/truelayer_auth_token_amex.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Auth Token (Amex Auto Saver)</strong></summary>
+
+**Entity ID: `input_text.truelayer_auth_token_amex_auto_saver`**
+
+- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
+- Pattern:
+
+File: [`input_text/appdaemon/truelayer_auth_token_amex_auto_saver.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex_auto_saver.yaml)
 </details>
 
 <details><summary><strong>TrueLayer Auth Token (HSBC)</strong></summary>
