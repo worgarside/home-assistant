@@ -74,7 +74,7 @@ sequence:
                 - closed
                 - open
               for:
-                seconds: 1
+                seconds: 2.5
           timeout: "00:00:30"
           continue_on_timeout: true
 
