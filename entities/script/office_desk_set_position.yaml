@@ -57,13 +57,10 @@ sequence:
             entity_id: cover.office_desk_esphome
             position: "{{ position | int }}"
 
-        - alias: "Wait for desk to stop moving"
+        - alias: Wait for desk to stop moving
           wait_for_trigger:
-            - platform: state
-              entity_id: cover.office_desk_esphome
-              to:
-                - closed
-                - open
+            - platform: template
+              value_template: "{{ states('cover.office_desk_esphome') in ('closed', 'open') }}"
               for:
                 seconds: 1
           timeout: 00:00:30
@@ -77,8 +74,8 @@ sequence:
               notification_title: >-
                 {%
                   set current = state_attr(
-                    'cover.office_desk_esphome',
-                    'current_position',
+                    "cover.office_desk_esphome",
+                    "current_position",
                   ) | int(None)
                 %}
                 {% set target = position | int(None) %}
