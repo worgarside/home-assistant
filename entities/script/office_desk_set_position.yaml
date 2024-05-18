@@ -73,6 +73,8 @@ sequence:
               to:
                 - closed
                 - open
+              for:
+                seconds: 1
           timeout: "00:00:30"
           continue_on_timeout: true
 
