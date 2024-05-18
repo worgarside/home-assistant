@@ -27,27 +27,18 @@ sequence:
         condition: template
 
         value_template: >
-          {{
-            state_attr("cover.office_desk_esphome", "current_position") | int ==
-            position | int
-          }}
+          {% set current = state_attr('cover.office_desk_esphome', 'current_position') | int(None) %}
+          {% set target = position | int(None) %}
+          {{ current is none or target is none or (target - 1) <= current <= (target + 1) }}
 
       sequence:
-        - alias: Delay for 0.2s if it's not the first iteration
+        - alias: Delay for 0.1s if it's not the first iteration
 
           if: "{{ repeat.index > 1 }}"
 
           then:
             - delay:
-                milliseconds: 200
-
-            - service: script.turn_on
-              target:
-                entity_id: script.debug_persistent_notification
-              data:
-                variables:
-                  notification_title: "Desk Move Delay (Target Position: {{ position }}%)"
-                  message: "Delaying for 0.2s in loop iteration {{ repeat.index }}"
+                milliseconds: 100
 
         - alias: Send debug notification
           service: script.turn_on
@@ -73,7 +64,9 @@ sequence:
               to:
                 - closed
                 - open
-          timeout: "00:00:30"
+              for:
+                seconds: 1
+          timeout: 00:00:30
           continue_on_timeout: true
 
         - service: script.turn_on
@@ -82,14 +75,22 @@ sequence:
           data:
             variables:
               notification_title: >-
+                {%
+                  set current = state_attr(
+                    'cover.office_desk_esphome',
+                    'current_position',
+                  ) | int(None)
+                %}
+                {% set target = position | int(None) %}
+
                 Desk Move {{
                   iif(
-                    is_state_attr('cover.office_desk_esphome', 'current_position', position | int),
+                    current and target and (target - 1) <= current <= (target + 1),
                     'Complete',
                     'Failed'
                   )
                 }}
-                (Target Position: {{ position }}%)
               message: |
+                Target: {{ position }}%
                 Final position: {{ state_attr('cover.office_desk_esphome', 'current_position') }}%
-                Final state: {{ states('cover.office_desk_esphome')}}
+                Final state: `{{ states('cover.office_desk_esphome')}}`
