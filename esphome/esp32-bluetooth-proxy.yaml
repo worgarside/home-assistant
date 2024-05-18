@@ -1,0 +1,20 @@
+substitutions:
+  name: esp32-bluetooth-proxy
+  friendly_name: Bluetooth Proxy (Office Desk)
+
+packages:
+  esphome.bluetooth-proxy: github://esphome/firmware/bluetooth-proxy/esp32-generic.yaml@main
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+api:
+  encryption:
+    key: JKa5GXZhdKyjQ80VZn13SKA8KUUWcR7shKoJoZnM9NA=
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
