@@ -32,5 +32,5 @@ action:
       title: Cube Rotated
       message: |
         ```json
-        {{ trigger.event.data | to_json }}
+        {{ trigger.event.data }}
         ```
