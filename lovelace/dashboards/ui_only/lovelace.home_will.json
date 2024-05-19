@@ -1654,7 +1654,13 @@
               "cards": [
                 {
                   "type": "tile",
-                  "entity": "sensor.cube_active_face"
+                  "entity": "sensor.cube_active_face",
+                  "vertical": false,
+                  "hide_state": false,
+                  "state_content": [
+                    "last-changed",
+                    "command"
+                  ]
                 }
               ]
             }
