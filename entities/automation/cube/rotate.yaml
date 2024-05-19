@@ -16,6 +16,7 @@ trigger:
 variables:
   active_face: "{{ states('sensor.cube_active_face') }}"
   target_entity: "{{ states('input_text.cube_entity_' ~ active_face ) }}"
+  target_domain: "{{ target_entity.split('.')[0] }}"
 
 condition: >-
   {{
@@ -31,5 +32,5 @@ action:
       title: Cube Rotated
       message: |
         ```json
-        {{ trigger.event.data | to_json(indent=2) }}
+        {{ trigger.event.data | to_json }}
         ```
