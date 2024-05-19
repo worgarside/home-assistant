@@ -1651,7 +1651,12 @@
             },
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "tile",
+                  "entity": "sensor.cube_active_face"
+                }
+              ]
             }
           ]
         }
