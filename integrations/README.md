@@ -399,7 +399,7 @@ File: [`automation/crt_pi/update_display.yaml`](entities/automation/crt_pi/updat
 ```json
 {
   "active_face": "{{ states('sensor.cube_active_face') }}",
-  "target_entity": "{{ states('input_text.cube_entity_' ~ active_face ) }}",
+  "target_entity": "{{ states('input_text.cube_entity_' ~ active_face ) | lower }}",
   "target_domain": "{{ target_entity.split('.')[0] }}"
 }
 ```
