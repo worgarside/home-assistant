@@ -29,8 +29,9 @@ action:
     target:
       entity_id: script.debug_persistent_notification
     data:
-      notification_title: Cube Rotated
-      message: |
-        ```json
-        {{ trigger.event.data }}
-        ```
+      variables:
+        notification_title: Cube Rotated
+        message: |
+          ```json
+          {{ trigger.event.data }}
+          ```
