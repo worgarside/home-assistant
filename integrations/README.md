@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (118)</h3></summary>
+<details><summary><h3>Entities (119)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -383,6 +383,27 @@ File: [`automation/crt_pi/mqtt_sync_mini_crt_fan.yaml`](entities/automation/crt_
 - Variables:
 
 File: [`automation/crt_pi/update_display.yaml`](entities/automation/crt_pi/update_display.yaml)
+</details>
+
+<details><summary><code>/cube/rotate</code></summary>
+
+**Entity ID: `automation.cube_rotate`**
+
+> *No description provided*
+
+- Alias: /cube/rotate
+- ID: `cube_rotate`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "active_face": "{{ states('sensor.cube_active_face') }}",
+  "target_entity": "{{ states('input_text.cube_entity_' ~ active_face ) | lower }}",
+  "target_domain": "{{ target_entity.split('.')[0] }}"
+}
+```
+File: [`automation/cube/knock.yaml`](entities/automation/cube/knock.yaml)
 </details>
 
 <details><summary><code>/cube/rotate</code></summary>
@@ -6447,7 +6468,7 @@ File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/templat
 
 ## Template
 
-<details><summary><h3>Entities (6)</h3></summary>
+<details><summary><h3>Entities (7)</h3></summary>
 
 <details><summary><strong>Cosmo Room Lookup</strong></summary>
 
@@ -6467,6 +6488,16 @@ File: [`template_triggered/sensor/cosmo_room_lookup.yaml`](entities/template_tri
 - Unit Of Measurement:
 
 File: [`template_triggered/sensor/cube_active_face.yaml`](entities/template_triggered/sensor/cube_active_face.yaml)
+</details>
+
+<details><summary><strong>Cube | Latest Event</strong></summary>
+
+**Entity ID: `template.cube_latest_event`**
+
+- Icon: [`mdi:history`](https://pictogrammers.com/library/mdi/icon/history/)
+- Unit Of Measurement:
+
+File: [`template_triggered/sensor/cube_latest_event.yaml`](entities/template_triggered/sensor/cube_latest_event.yaml)
 </details>
 
 <details><summary><strong>System: Reloadable Files Changed</strong></summary>

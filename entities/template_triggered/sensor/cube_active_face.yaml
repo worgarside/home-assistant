@@ -37,3 +37,5 @@ sensor:
       flip_degrees: "{{ trigger.event.data.args.flip_degrees | default(0) }}"
 
       time_fired: "{{ trigger.event.time_fired }}"
+
+      context_id: "{{ trigger.context.id }}"
