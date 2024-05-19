@@ -385,14 +385,14 @@ File: [`automation/crt_pi/mqtt_sync_mini_crt_fan.yaml`](entities/automation/crt_
 File: [`automation/crt_pi/update_display.yaml`](entities/automation/crt_pi/update_display.yaml)
 </details>
 
-<details><summary><code>/cube/rotate</code></summary>
+<details><summary><code>/cube/knock</code></summary>
 
-**Entity ID: `automation.cube_rotate`**
+**Entity ID: `automation.cube_knock`**
 
 > *No description provided*
 
-- Alias: /cube/rotate
-- ID: `cube_rotate`
+- Alias: /cube/knock
+- ID: `cube_knock`
 - Mode: `queued`
 - Variables:
 
