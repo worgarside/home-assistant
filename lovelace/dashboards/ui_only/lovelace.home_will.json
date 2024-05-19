@@ -1610,15 +1610,15 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "input_text.cube_entity_2"
-                },
-                {
                   "type": "tile",
                   "entity": "input_text.cube_entity_1",
                   "vertical": false
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": []
             }
           ]
         }
