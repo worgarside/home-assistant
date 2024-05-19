@@ -2902,7 +2902,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (11)</h3></summary>
+<details><summary><h3>Entities (17)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -3012,6 +3012,66 @@ File: [`input_text/appdaemon/truelayer_auth_token_starling_joint.yaml`](entities
 - Pattern:
 
 File: [`input_text/auto_save_naughty_transaction_pattern.yaml`](entities/input_text/auto_save_naughty_transaction_pattern.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 1</strong></summary>
+
+**Entity ID: `input_text.cube_entity_1`**
+
+- Icon: [`mdi:numeric-1-box`](https://pictogrammers.com/library/mdi/icon/numeric-1-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_1.yaml`](entities/input_text/cube/cube_entity_1.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 2</strong></summary>
+
+**Entity ID: `input_text.cube_entity_2`**
+
+- Icon: [`mdi:numeric-2-box`](https://pictogrammers.com/library/mdi/icon/numeric-2-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_2.yaml`](entities/input_text/cube/cube_entity_2.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 3</strong></summary>
+
+**Entity ID: `input_text.cube_entity_3`**
+
+- Icon: [`mdi:numeric-3-box`](https://pictogrammers.com/library/mdi/icon/numeric-3-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_3.yaml`](entities/input_text/cube/cube_entity_3.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 4</strong></summary>
+
+**Entity ID: `input_text.cube_entity_4`**
+
+- Icon: [`mdi:numeric-4-box`](https://pictogrammers.com/library/mdi/icon/numeric-4-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_4.yaml`](entities/input_text/cube/cube_entity_4.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 5</strong></summary>
+
+**Entity ID: `input_text.cube_entity_5`**
+
+- Icon: [`mdi:numeric-5-box`](https://pictogrammers.com/library/mdi/icon/numeric-5-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entity_5.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 6</strong></summary>
+
+**Entity ID: `input_text.cube_entity_6`**
+
+- Icon: [`mdi:numeric-6-box`](https://pictogrammers.com/library/mdi/icon/numeric-6-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
 </details>
 
 </details>
