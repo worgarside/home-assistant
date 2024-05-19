@@ -1615,37 +1615,34 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.auto_save_amount",
-                      "name": "Current Amount",
-                      "icon_color": "orange"
+                      "entity": "input_text.cube_entity_1",
+                      "icon_color": "indigo",
+                      "fill_container": false
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.last_auto_save",
+                      "entity": "input_text.cube_entity_2",
+                      "icon_color": "blue"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.cube_entity_3",
+                      "icon_color": "light-blue"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.cube_entity_4",
+                      "icon_color": "cyan"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.cube_entity_5",
+                      "icon_color": "teal"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.cube_entity_6",
                       "icon_color": "green"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.auto_save_debit_transaction_percentage",
-                      "name": "Income Percentage",
-                      "icon_color": "lime"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.auto_save_minimum",
-                      "icon_color": "deep-orange"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.auto_save_naughty_transaction_percentage",
-                      "name": "Naughty Percentage",
-                      "icon_color": "red"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_text.auto_save_naughty_transaction_pattern",
-                      "name": "Naughty Pattern",
-                      "icon_color": "pink"
                     }
                   ],
                   "columns": 2
