@@ -6382,7 +6382,7 @@ File: [`template_triggered/sensor/cosmo_room_lookup.yaml`](entities/template_tri
 
 **Entity ID: `template.cube_active_face`**
 
-- Icon: `mdi:dice-{{ this.state }}`
+- Icon: `mdi:dice-{{ trigger.event.data.args.activated_face }}`
 - Unit Of Measurement:
 
 File: [`template_triggered/sensor/cube_active_face.yaml`](entities/template_triggered/sensor/cube_active_face.yaml)
