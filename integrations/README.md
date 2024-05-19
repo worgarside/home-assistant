@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (117)</h3></summary>
+<details><summary><h3>Entities (118)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -383,6 +383,26 @@ File: [`automation/crt_pi/mqtt_sync_mini_crt_fan.yaml`](entities/automation/crt_
 - Variables:
 
 File: [`automation/crt_pi/update_display.yaml`](entities/automation/crt_pi/update_display.yaml)
+</details>
+
+<details><summary><code>/cube/rotate</code></summary>
+
+**Entity ID: `automation.cube_rotate`**
+
+> *No description provided*
+
+- Alias: /cube/rotate
+- ID: `cube_rotate`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "active_face": "{{ states('sensor.cube_active_face') }}",
+  "target_entity": "{{ states('input_text.cube_entity_' ~ active_face ) }}"
+}
+```
+File: [`automation/cube/rotate.yaml`](entities/automation/cube/rotate.yaml)
 </details>
 
 <details><summary><code>/hassio/auto-restart-mariadb-add-on</code></summary>

@@ -1,0 +1,35 @@
+---
+alias: /cube/rotate
+
+id: cube_rotate
+
+mode: queued
+
+max: 255
+
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: 9fb3a3a8b909705eca6e5f2027270388
+
+variables:
+  active_face: "{{ states('sensor.cube_active_face') }}"
+  target_entity: "{{ states('input_text.cube_entity_' ~ active_face ) }}"
+
+condition: >-
+  {{
+    trigger.event.data.command.startswith('rotate_') and
+    has_value(target_entity)
+  }}
+
+action:
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      title: Cube Rotated
+      message: |
+        ```json
+        {{ trigger.event.data | to_json(indent=2) }}
+        ```
