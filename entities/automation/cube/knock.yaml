@@ -41,7 +41,7 @@ action:
             target:
               entity_id: "{{ target_entity }}"
 
-      - default:
-          - service: homeassistant.toggle
-            target:
-              entity_id: "{{ target_entity }}"
+    default:
+      - service: homeassistant.toggle
+        target:
+          entity_id: "{{ target_entity }}"
