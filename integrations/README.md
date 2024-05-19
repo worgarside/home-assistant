@@ -6366,7 +6366,7 @@ File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/templat
 
 ## Template
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
 
 <details><summary><strong>Cosmo Room Lookup</strong></summary>
 
@@ -6376,6 +6376,16 @@ File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/templat
 - Unit Of Measurement:
 
 File: [`template_triggered/sensor/cosmo_room_lookup.yaml`](entities/template_triggered/sensor/cosmo_room_lookup.yaml)
+</details>
+
+<details><summary><strong>Cube | Active Face</strong></summary>
+
+**Entity ID: `template.cube_active_face`**
+
+- Icon: `mdi:dice-{{ this.state }}`
+- Unit Of Measurement:
+
+File: [`template_triggered/sensor/cube_active_face.yaml`](entities/template_triggered/sensor/cube_active_face.yaml)
 </details>
 
 <details><summary><strong>System: Reloadable Files Changed</strong></summary>
