@@ -17,3 +17,5 @@ sensor:
 
     attributes:
       deactivated_face: "{{ trigger.event.data.args.deactivated_face }}"
+
+      time_fired: "{{ trigger.event.time_fired }}"
