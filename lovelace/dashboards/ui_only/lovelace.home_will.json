@@ -1608,7 +1608,12 @@
           "sections": [
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_text.cube_entity_1"
+                }
+              ]
             }
           ]
         }
