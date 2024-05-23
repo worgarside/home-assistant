@@ -65,7 +65,8 @@ action:
                 {{
                   max(
                     min(
-                      states(target_entity) | int(0) + ( pct_delta | round(0) ),
+                      state_attr(target_entity, 'current_position') | int(0) +
+                        ( pct_delta | round(0) ),
                       100
                     ),
                     0
