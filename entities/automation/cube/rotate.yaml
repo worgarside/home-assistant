@@ -21,7 +21,7 @@ variables:
 condition: >-
   {{
     trigger.event.data.command.startswith('rotate_') and
-    states(target_entity) not in ('unavailable', 'unknown', 'off')
+    states(target_entity) not in ('unavailable', 'unknown')
   }}
 
 action:
@@ -79,7 +79,7 @@ action:
         sequence:
           - service: media_player.volume_set
             target:
-              entity_id: "{{ target_entity }}"
+              entity_id: "{{ target_entity and states(target_entity) != 'off' }}"
             data:
               volume_level: >-
                 {{

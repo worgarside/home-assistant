@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (119)</h3></summary>
+<details><summary><h3>Entities (120)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -425,6 +425,27 @@ File: [`automation/cube/knock.yaml`](entities/automation/cube/knock.yaml)
 }
 ```
 File: [`automation/cube/rotate.yaml`](entities/automation/cube/rotate.yaml)
+</details>
+
+<details><summary><code>/cube/slide</code></summary>
+
+**Entity ID: `automation.cube_slide`**
+
+> *No description provided*
+
+- Alias: /cube/slide
+- ID: `cube_slide`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "active_face": "{{ states('sensor.cube_active_face') }}",
+  "target_entity": "{{ states('input_text.cube_entity_' ~ active_face ) | lower }}",
+  "target_domain": "{{ target_entity.split('.')[0] }}"
+}
+```
+File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
 </details>
 
 <details><summary><code>/hassio/auto-restart-mariadb-add-on</code></summary>
