@@ -4,12 +4,12 @@ default_language_version:
 
 repos:
   - repo: https://github.com/worgarside/pre-commit-hooks-dependency-sync
-    rev: 1.1.0
+    rev: 1.1.1
     hooks:
       - id: sync-additional-dependencies
 
   - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: 4.0.3
+    rev: 4.1.0
     hooks:
       - id: generate-readme
       - id: validate-entities
