@@ -1599,6 +1599,84 @@
               ]
             }
           ]
+        },
+        {
+          "title": "Cube",
+          "path": "cube",
+          "icon": "phu:aqara-cube",
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.cube_entity_1",
+                      "icon_color": "blue",
+                      "fill_container": false
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.cube_entity_2",
+                      "icon_color": "light-blue"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.cube_entity_3",
+                      "icon_color": "cyan"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.cube_entity_4",
+                      "icon_color": "teal"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.cube_entity_5",
+                      "icon_color": "green"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_text.cube_entity_6",
+                      "icon_color": "light-green"
+                    }
+                  ],
+                  "columns": 2
+                },
+                {
+                  "type": "tile",
+                  "entity": "automation.cube_rotate"
+                },
+                {
+                  "type": "tile",
+                  "entity": "automation.cube_knock"
+                },
+                {
+                  "type": "tile",
+                  "entity": "automation.cube_slide"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "tile",
+                  "entity": "sensor.cube_active_face",
+                  "vertical": false,
+                  "hide_state": false,
+                  "state_content": [
+                    "last-changed",
+                    "command"
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     }
