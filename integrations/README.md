@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (117)</h3></summary>
+<details><summary><h3>Entities (118)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -256,6 +256,19 @@ File: [`automation/cover/office_blinds/open_before_sunrise.yaml`](entities/autom
 - Mode: `restart`
 
 File: [`automation/cover/office_blinds/register_stop_state.yaml`](entities/automation/cover/office_blinds/register_stop_state.yaml)
+</details>
+
+<details><summary><code>/cover/office-desk/keepalive</code></summary>
+
+**Entity ID: `automation.cover_office_desk_keepalive`**
+
+> *No description provided*
+
+- Alias: /cover/office-desk/keepalive
+- ID: `cover_office_desk_keepalive`
+- Mode: `single`
+
+File: [`automation/cover/office_desk/keepalive.yaml`](entities/automation/cover/office_desk/keepalive.yaml)
 </details>
 
 <details><summary><code>/cover/office-desk/work-mode</code></summary>
