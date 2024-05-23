@@ -1,0 +1,24 @@
+---
+alias: /cover/office-desk/keepalive
+
+id: cover_office_desk_keepalive
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: time_pattern
+    minutes: /5
+
+  - platform: state
+    entity_id: cover.office_desk_esphome
+    to:
+      - unavailable
+      - unknown
+
+action:
+  - alias: Re/Connect to Idasen Desk
+    service: button.press
+    target:
+      entity_id: button.office_desk_esphome_connect
