@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (118)</h3></summary>
+<details><summary><h3>Entities (121)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -373,6 +373,69 @@ File: [`automation/crt_pi/mqtt_sync_mini_crt_fan.yaml`](entities/automation/crt_
 - Mode: `queued`
 
 File: [`automation/crt_pi/update_display.yaml`](entities/automation/crt_pi/update_display.yaml)
+</details>
+
+<details><summary><code>/cube/knock</code></summary>
+
+**Entity ID: `automation.cube_knock`**
+
+> *No description provided*
+
+- Alias: /cube/knock
+- ID: `cube_knock`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "active_face": "{{ states('sensor.cube_active_face') }}",
+  "target_entity": "{{ states('input_text.cube_entity_' ~ active_face ) | lower }}",
+  "target_domain": "{{ target_entity.split('.')[0] }}"
+}
+```
+File: [`automation/cube/knock.yaml`](entities/automation/cube/knock.yaml)
+</details>
+
+<details><summary><code>/cube/rotate</code></summary>
+
+**Entity ID: `automation.cube_rotate`**
+
+> *No description provided*
+
+- Alias: /cube/rotate
+- ID: `cube_rotate`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "active_face": "{{ states('sensor.cube_active_face') }}",
+  "target_entity": "{{ states('input_text.cube_entity_' ~ active_face ) | lower }}",
+  "target_domain": "{{ target_entity.split('.')[0] }}"
+}
+```
+File: [`automation/cube/rotate.yaml`](entities/automation/cube/rotate.yaml)
+</details>
+
+<details><summary><code>/cube/slide</code></summary>
+
+**Entity ID: `automation.cube_slide`**
+
+> *No description provided*
+
+- Alias: /cube/slide
+- ID: `cube_slide`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "active_face": "{{ states('sensor.cube_active_face') }}",
+  "target_entity": "{{ states('input_text.cube_entity_' ~ active_face ) | lower }}",
+  "target_domain": "{{ target_entity.split('.')[0] }}"
+}
+```
+File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
 </details>
 
 <details><summary><code>/hassio/auto-restart-mariadb-add-on</code></summary>
@@ -2787,7 +2850,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (11)</h3></summary>
+<details><summary><h3>Entities (17)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -2887,6 +2950,66 @@ File: [`input_text/appdaemon/truelayer_auth_token_starling_joint.yaml`](entities
 - Icon: [`mdi:regex`](https://pictogrammers.com/library/mdi/icon/regex/)
 
 File: [`input_text/auto_save_naughty_transaction_pattern.yaml`](entities/input_text/auto_save_naughty_transaction_pattern.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 1</strong></summary>
+
+**Entity ID: `input_text.cube_entity_1`**
+
+- Icon: [`mdi:numeric-1-box`](https://pictogrammers.com/library/mdi/icon/numeric-1-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_1.yaml`](entities/input_text/cube/cube_entity_1.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 2</strong></summary>
+
+**Entity ID: `input_text.cube_entity_2`**
+
+- Icon: [`mdi:numeric-2-box`](https://pictogrammers.com/library/mdi/icon/numeric-2-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_2.yaml`](entities/input_text/cube/cube_entity_2.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 3</strong></summary>
+
+**Entity ID: `input_text.cube_entity_3`**
+
+- Icon: [`mdi:numeric-3-box`](https://pictogrammers.com/library/mdi/icon/numeric-3-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_3.yaml`](entities/input_text/cube/cube_entity_3.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 4</strong></summary>
+
+**Entity ID: `input_text.cube_entity_4`**
+
+- Icon: [`mdi:numeric-4-box`](https://pictogrammers.com/library/mdi/icon/numeric-4-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_4.yaml`](entities/input_text/cube/cube_entity_4.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 5</strong></summary>
+
+**Entity ID: `input_text.cube_entity_5`**
+
+- Icon: [`mdi:numeric-5-box`](https://pictogrammers.com/library/mdi/icon/numeric-5-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entity_5.yaml)
+</details>
+
+<details><summary><strong>Cube | Entity 6</strong></summary>
+
+**Entity ID: `input_text.cube_entity_6`**
+
+- Icon: [`mdi:numeric-6-box`](https://pictogrammers.com/library/mdi/icon/numeric-6-box/)
+- Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
+
+File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
 </details>
 
 </details>
@@ -5954,7 +6077,7 @@ File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/templat
 
 ## Template
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (7)</h3></summary>
 
 <details><summary><strong>Cosmo Room Lookup</strong></summary>
 
@@ -5963,6 +6086,24 @@ File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/templat
 - Icon: [`mdi:floor-plan`](https://pictogrammers.com/library/mdi/icon/floor-plan/)
 
 File: [`template_triggered/sensor/cosmo_room_lookup.yaml`](entities/template_triggered/sensor/cosmo_room_lookup.yaml)
+</details>
+
+<details><summary><strong>Cube | Active Face</strong></summary>
+
+**Entity ID: `template.cube_active_face`**
+
+- Icon: `mdi:dice-{{ trigger.event.data.args.activated_face }}`
+
+File: [`template_triggered/sensor/cube_active_face.yaml`](entities/template_triggered/sensor/cube_active_face.yaml)
+</details>
+
+<details><summary><strong>Cube | Latest Event</strong></summary>
+
+**Entity ID: `template.cube_latest_event`**
+
+- Icon: [`mdi:history`](https://pictogrammers.com/library/mdi/icon/history/)
+
+File: [`template_triggered/sensor/cube_latest_event.yaml`](entities/template_triggered/sensor/cube_latest_event.yaml)
 </details>
 
 <details><summary><strong>System: Reloadable Files Changed</strong></summary>

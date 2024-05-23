@@ -1,0 +1,18 @@
+---
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: 9fb3a3a8b909705eca6e5f2027270388
+
+sensor:
+  - name: Cube | Latest Event
+
+    unique_id: cube_latest_event
+
+    icon: mdi:history
+
+    state: "{{ trigger.event.data.command }}"
+
+    attributes:
+      event: "{{ trigger.event }}"

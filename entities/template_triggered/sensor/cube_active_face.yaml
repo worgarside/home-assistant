@@ -1,0 +1,41 @@
+---
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: 9fb3a3a8b909705eca6e5f2027270388
+      command: flip
+
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: 9fb3a3a8b909705eca6e5f2027270388
+      command: knock
+
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: 9fb3a3a8b909705eca6e5f2027270388
+      command: slide
+
+sensor:
+  - name: Cube | Active Face
+
+    unique_id: cube_active_face
+
+    icon: mdi:dice-{{ trigger.event.data.args.activated_face }}
+
+    state: "{{ trigger.event.data.args.activated_face }}"
+
+    attributes:
+      activated_face: "{{ trigger.event.data.args.activated_face }}"
+
+      command: "{{ trigger.event.data.command }}"
+
+      deactivated_face: "{{ trigger.event.data.args.deactivated_face | default(0) }}"
+
+      flip_degrees: "{{ trigger.event.data.args.flip_degrees | default(0) }}"
+
+      time_fired: "{{ trigger.event.time_fired }}"
+
+      context_id: "{{ trigger.context.id }}"
