@@ -6506,7 +6506,6 @@ File: [`template_triggered/sensor/cosmo_room_lookup.yaml`](entities/template_tri
 **Entity ID: `template.cube_active_face`**
 
 - Icon: `mdi:dice-{{ trigger.event.data.args.activated_face }}`
-- Unit Of Measurement:
 
 File: [`template_triggered/sensor/cube_active_face.yaml`](entities/template_triggered/sensor/cube_active_face.yaml)
 </details>
@@ -6516,7 +6515,6 @@ File: [`template_triggered/sensor/cube_active_face.yaml`](entities/template_trig
 **Entity ID: `template.cube_latest_event`**
 
 - Icon: [`mdi:history`](https://pictogrammers.com/library/mdi/icon/history/)
-- Unit Of Measurement:
 
 File: [`template_triggered/sensor/cube_latest_event.yaml`](entities/template_triggered/sensor/cube_latest_event.yaml)
 </details>
