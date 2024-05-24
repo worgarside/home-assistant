@@ -37,7 +37,7 @@ action:
         notification_title: Cube Rotated ({{ pct_delta | round(2) }}%)
         message: |
           ```json
-          {{ trigger.event.data | tojson(indent=2) }}
+          {{ trigger.event | tojson(indent=2) }}
           ```
 
   - choose:

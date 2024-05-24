@@ -28,7 +28,7 @@ action:
         notification_title: Cube Knocked
         message: |
           ```json
-          {{ trigger.event.data | tojson(indent=2) }}
+          {{ trigger.event | tojson(indent=2) }}
           ```
 
   - choose:
