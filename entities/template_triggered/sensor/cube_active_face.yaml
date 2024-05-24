@@ -38,4 +38,4 @@ sensor:
 
       time_fired: "{{ trigger.event.time_fired }}"
 
-      context_id: "{{ trigger.context.id }}"
+      context: "{{ trigger.context | default(None) }}"
