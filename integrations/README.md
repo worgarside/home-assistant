@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (121)</h3></summary>
+<details><summary><h3>Entities (120)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1028,19 +1028,6 @@ File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation
 }
 ```
 File: [`automation/mtrxpi/content_trigger/raining_grid.yaml`](entities/automation/mtrxpi/content_trigger/raining_grid.yaml)
-</details>
-
-<details><summary><code>/notification/credit-card-top-up/send</code></summary>
-
-**Entity ID: `automation.notification_credit_card_top_up_send`**
-
-> *No description provided*
-
-- Alias: /notification/credit-card-top-up/send
-- ID: `notification_credit_card_top_up_send`
-- Mode: `single`
-
-File: [`automation/notification/credit_card_top_up/send.yaml`](entities/automation/notification/credit_card_top_up/send.yaml)
 </details>
 
 <details><summary><code>/notification/system/reload-required/send</code></summary>
