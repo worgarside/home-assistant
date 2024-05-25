@@ -2453,7 +2453,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (25)</h3></summary>
+<details><summary><h3>Entities (27)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2489,6 +2489,30 @@ File: [`input_number/auto_save_minimum.yaml`](entities/input_number/auto_save_mi
 - Unit Of Measurement: %
 
 File: [`input_number/auto_save_naughty_transaction_percentage.yaml`](entities/input_number/auto_save_naughty_transaction_percentage.yaml)
+</details>
+
+<details><summary><strong>Credit Card Pot Top-Up | Maximum Auto Top-Up</strong></summary>
+
+**Entity ID: `input_number.credit_card_pot_top_up_maximum_auto_top_up`**
+
+- Icon: [`mdi:bank-transfer`](https://pictogrammers.com/library/mdi/icon/bank-transfer/)
+- Max: 10000
+- Mode: `box`
+- Unit Of Measurement: GBP
+
+File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_maximum_auto_top_up.yaml`](entities/input_number/cc_pot_top_up/credit_card_pot_top_up_maximum_auto_top_up.yaml)
+</details>
+
+<details><summary><strong>Credit Card Pot Top-Up | Minimum Remainder</strong></summary>
+
+**Entity ID: `input_number.credit_card_pot_top_up_minimum_remainder`**
+
+- Icon: [`mdi:download-multiple`](https://pictogrammers.com/library/mdi/icon/download-multiple/)
+- Max: 10000
+- Mode: `box`
+- Unit Of Measurement: GBP
+
+File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml`](entities/input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml)
 </details>
 
 <details><summary><strong>Cosmo Room Timeout: Bathroom</strong></summary>
