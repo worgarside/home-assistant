@@ -1,6 +1,0 @@
----
-name: Count Device Trackers
-unique_id: count_device_trackers
-state: '{{ states.device_tracker | list | length }}'
-icon: mdi:devices
-unit_of_measurement: ''

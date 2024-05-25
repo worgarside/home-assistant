@@ -1,6 +1,0 @@
----
-name: Count Input Texts
-unique_id: count_input_texts
-state: '{{ states.input_text | list | length }}'
-icon: mdi:form-textbox
-unit_of_measurement: ''

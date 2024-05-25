@@ -4976,7 +4976,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (105)</h3></summary>
+<details><summary><h3>Entities (89)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -5345,99 +5345,9 @@ File: [`template/sensor/distance/vic_distance_from_home.yaml`](entities/template
 File: [`template/sensor/distance/will_distance_from_home.yaml`](entities/template/sensor/distance/will_distance_from_home.yaml)
 </details>
 
-<details><summary><strong>Count Active Automations</strong></summary>
+<details><summary><strong>Low Batteries</strong></summary>
 
-**Entity ID: `sensor.count_active_automations`**
-
-- Icon: [`mdi:robot-excited`](https://pictogrammers.com/library/mdi/icon/robot-excited/)
-
-File: [`template/sensor/entity_counts/count_active_automations.yaml`](entities/template/sensor/entity_counts/count_active_automations.yaml)
-</details>
-
-<details><summary><strong>Count Active Scripts</strong></summary>
-
-**Entity ID: `sensor.count_active_scripts`**
-
-- Icon: [`mdi:robot-excited`](https://pictogrammers.com/library/mdi/icon/robot-excited/)
-
-File: [`template/sensor/entity_counts/count_active_scripts.yaml`](entities/template/sensor/entity_counts/count_active_scripts.yaml)
-</details>
-
-<details><summary><strong>Count Automations</strong></summary>
-
-**Entity ID: `sensor.count_automations`**
-
-- Icon: [`mdi:robot-angry`](https://pictogrammers.com/library/mdi/icon/robot-angry/)
-
-File: [`template/sensor/entity_counts/count_automations.yaml`](entities/template/sensor/entity_counts/count_automations.yaml)
-</details>
-
-<details><summary><strong>Count Binary Sensors</strong></summary>
-
-**Entity ID: `sensor.count_binary_sensors`**
-
-- Icon: [`mdi:electric-switch`](https://pictogrammers.com/library/mdi/icon/electric-switch/)
-
-File: [`template/sensor/entity_counts/count_binary_sensors.yaml`](entities/template/sensor/entity_counts/count_binary_sensors.yaml)
-</details>
-
-<details><summary><strong>Count Device Trackers</strong></summary>
-
-**Entity ID: `sensor.count_device_trackers`**
-
-- Icon: [`mdi:devices`](https://pictogrammers.com/library/mdi/icon/devices/)
-
-File: [`template/sensor/entity_counts/count_device_trackers.yaml`](entities/template/sensor/entity_counts/count_device_trackers.yaml)
-</details>
-
-<details><summary><strong>Count Input Booleans</strong></summary>
-
-**Entity ID: `sensor.count_input_booleans`**
-
-- Icon: [`mdi:toggle-switch-outline`](https://pictogrammers.com/library/mdi/icon/toggle-switch-outline/)
-
-File: [`template/sensor/entity_counts/count_input_booleans.yaml`](entities/template/sensor/entity_counts/count_input_booleans.yaml)
-</details>
-
-<details><summary><strong>Count Input Datetimes</strong></summary>
-
-**Entity ID: `sensor.count_input_datetimes`**
-
-- Icon: [`mdi:calendar-edit`](https://pictogrammers.com/library/mdi/icon/calendar-edit/)
-
-File: [`template/sensor/entity_counts/count_input_datetimes.yaml`](entities/template/sensor/entity_counts/count_input_datetimes.yaml)
-</details>
-
-<details><summary><strong>Count Input Numbers</strong></summary>
-
-**Entity ID: `sensor.count_input_numbers`**
-
-- Icon: [`mdi:numeric-1-box-multiple-outline`](https://pictogrammers.com/library/mdi/icon/numeric-1-box-multiple-outline/)
-
-File: [`template/sensor/entity_counts/count_input_numbers.yaml`](entities/template/sensor/entity_counts/count_input_numbers.yaml)
-</details>
-
-<details><summary><strong>Count Input Selects</strong></summary>
-
-**Entity ID: `sensor.count_input_selects`**
-
-- Icon: [`mdi:form-dropdown`](https://pictogrammers.com/library/mdi/icon/form-dropdown/)
-
-File: [`template/sensor/entity_counts/count_input_selects.yaml`](entities/template/sensor/entity_counts/count_input_selects.yaml)
-</details>
-
-<details><summary><strong>Count Input Texts</strong></summary>
-
-**Entity ID: `sensor.count_input_texts`**
-
-- Icon: [`mdi:form-textbox`](https://pictogrammers.com/library/mdi/icon/form-textbox/)
-
-File: [`template/sensor/entity_counts/count_input_texts.yaml`](entities/template/sensor/entity_counts/count_input_texts.yaml)
-</details>
-
-<details><summary><strong>Count Low Batteries</strong></summary>
-
-**Entity ID: `sensor.count_low_batteries`**
+**Entity ID: `sensor.low_batteries`**
 
 - Icon:
 
@@ -5455,70 +5365,16 @@ File: [`template/sensor/entity_counts/count_input_texts.yaml`](entities/template
 {% endif %}
 
 ```
-File: [`template/sensor/entity_counts/count_low_batteries.yaml`](entities/template/sensor/entity_counts/count_low_batteries.yaml)
+File: [`template/sensor/entity_counts/low_batteries.yaml`](entities/template/sensor/entity_counts/low_batteries.yaml)
 </details>
 
-<details><summary><strong>Count Scripts</strong></summary>
+<details><summary><strong>Unavailable Entities</strong></summary>
 
-**Entity ID: `sensor.count_scripts`**
-
-- Icon: [`mdi:script-text`](https://pictogrammers.com/library/mdi/icon/script-text/)
-
-File: [`template/sensor/entity_counts/count_scripts.yaml`](entities/template/sensor/entity_counts/count_scripts.yaml)
-</details>
-
-<details><summary><strong>Count Sensors</strong></summary>
-
-**Entity ID: `sensor.count_sensors`**
-
-- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
-
-File: [`template/sensor/entity_counts/count_sensors.yaml`](entities/template/sensor/entity_counts/count_sensors.yaml)
-</details>
-
-<details><summary><strong>Count Stale Entities</strong></summary>
-
-**Entity ID: `sensor.count_stale_entities`**
-
-- Icon: [`mdi:timer-sync`](https://pictogrammers.com/library/mdi/icon/timer-sync/)
-
-File: [`template/sensor/entity_counts/count_stale_entities.yaml`](entities/template/sensor/entity_counts/count_stale_entities.yaml)
-</details>
-
-<details><summary><strong>Count Switches</strong></summary>
-
-**Entity ID: `sensor.count_switches`**
-
-- Icon: [`mdi:toggle-switch`](https://pictogrammers.com/library/mdi/icon/toggle-switch/)
-
-File: [`template/sensor/entity_counts/count_switches.yaml`](entities/template/sensor/entity_counts/count_switches.yaml)
-</details>
-
-<details><summary><strong>Count Unavailable Entities</strong></summary>
-
-**Entity ID: `sensor.count_unavailable_entities`**
+**Entity ID: `sensor.unavailable_entities`**
 
 - Icon: [`mdi:lan-disconnect`](https://pictogrammers.com/library/mdi/icon/lan-disconnect/)
 
-File: [`template/sensor/entity_counts/count_unavailable_entities.yaml`](entities/template/sensor/entity_counts/count_unavailable_entities.yaml)
-</details>
-
-<details><summary><strong>Count Updates</strong></summary>
-
-**Entity ID: `sensor.count_updates`**
-
-- Icon: [`mdi:update`](https://pictogrammers.com/library/mdi/icon/update/)
-
-File: [`template/sensor/entity_counts/count_updates.yaml`](entities/template/sensor/entity_counts/count_updates.yaml)
-</details>
-
-<details><summary><strong>Count Zones</strong></summary>
-
-**Entity ID: `sensor.count_zones`**
-
-- Icon: [`mdi:map-marker-multiple`](https://pictogrammers.com/library/mdi/icon/map-marker-multiple/)
-
-File: [`template/sensor/entity_counts/count_zones.yaml`](entities/template/sensor/entity_counts/count_zones.yaml)
+File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/template/sensor/entity_counts/unavailable_entities.yaml)
 </details>
 
 <details><summary><strong>ClmtPi Floorplan Icon</strong></summary>

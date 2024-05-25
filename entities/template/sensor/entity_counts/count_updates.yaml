@@ -1,6 +1,0 @@
----
-name: Count Updates
-unique_id: count_updates
-state: "{{ states.update | selectattr('state', 'eq', 'on') | list | length }}"
-icon: mdi:update
-unit_of_measurement: ""
