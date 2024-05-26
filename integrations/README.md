@@ -4810,13 +4810,15 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
 ```json
 {
   "issue_title": {
+    "name": "Issue Title",
     "description": "The title of the issue",
     "required": true,
     "selector": {
       "text": null
     }
   },
-  "message": {
+  "body": {
+    "name": "Issue Body",
     "description": "The main body of the issue",
     "selector": {
       "text": {
@@ -4824,7 +4826,8 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
       }
     }
   },
-  "label": {
+  "labels": {
+    "name": "Labels",
     "description": "Add one or more labels to the issue",
     "selector": {
       "select": {
@@ -4843,6 +4846,7 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
     }
   },
   "assignee": {
+    "name": "Assignee",
     "description": "Who to assign the issue to",
     "default": "@worgarside",
     "selector": {
@@ -4854,8 +4858,10 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
     }
   },
   "repository": {
+    "name": "Repository",
     "description": "The repo to open the issue in",
     "default": "home-assistant",
+    "required": true,
     "selector": {
       "select": {
         "multiple": false,
@@ -4879,7 +4885,7 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
 
 ```json
 {
-  "message_args": "-t \"{{- issue_title -}}\" -m \"{{- message -}}\" {%- if label -%}\n  -l \"{{- label | default([]) | join(',') -}}\"\n{%- endif -%} -a \"{{- assignee | default('@worgarside') -}}\" --repo \"worgarside/{{- repository | default('home-assistant') -}}\""
+  "message_args": "--title \"{{- issue_title -}}\" --body \"{{- body -}}\" {%- if labels -%}\n  --label \"{{- labels | default([]) | join(',') -}}\"\n{%- endif -%} --assignee \"{{- assignee | default('@worgarside') -}}\" --repo \"worgarside/{{- repository | default('home-assistant') -}}\""
 }
 ```
 File: [`script/shell_command/gh_cli/gh_issue_create.yaml`](entities/script/shell_command/gh_cli/gh_issue_create.yaml)

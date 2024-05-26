@@ -7,18 +7,21 @@ mode: queued
 
 fields:
   issue_title:
+    name: Issue Title
     description: The title of the issue
     required: true
     selector:
       text:
 
-  message:
+  body:
+    name: Issue Body
     description: The main body of the issue
     selector:
       text:
         multiline: true
 
-  label:
+  labels:
+    name: Labels
     description: Add one or more labels to the issue
     selector:
       select:
@@ -34,6 +37,7 @@ fields:
           - tools
 
   assignee:
+    name: Assignee
     description: Who to assign the issue to
     default: "@worgarside"
     selector:
@@ -42,8 +46,10 @@ fields:
           - "@worgarside"
 
   repository:
+    name: Repository
     description: The repo to open the issue in
     default: home-assistant
+    required: true
     selector:
       select:
         multiple: false
@@ -58,12 +64,12 @@ fields:
 
 variables:
   message_args: >-
-    -t "{{- issue_title -}}"
-    -m "{{- message -}}"
-    {%- if label -%}
-      -l "{{- label | default([]) | join(',') -}}"
+    --title "{{- issue_title -}}"
+    --body "{{- body -}}"
+    {%- if labels -%}
+      --label "{{- labels | default([]) | join(',') -}}"
     {%- endif -%}
-    -a "{{- assignee | default('@worgarside') -}}"
+    --assignee "{{- assignee | default('@worgarside') -}}"
     --repo "worgarside/{{- repository | default('home-assistant') -}}"
 
 sequence:
