@@ -4840,6 +4840,7 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
   "body": {
     "name": "Issue Body",
     "description": "The main body of the issue",
+    "required": true,
     "selector": {
       "text": {
         "multiline": true

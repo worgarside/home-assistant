@@ -33,6 +33,7 @@ fields:
   body:
     name: Issue Body
     description: The main body of the issue
+    required: true
     selector:
       text:
         multiline: true
