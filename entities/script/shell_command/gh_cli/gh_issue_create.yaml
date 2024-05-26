@@ -13,7 +13,7 @@ fields:
     selector:
       text:
 
-  labels:
+  issue_labels:
     name: Labels
     description: Add one or more labels to the issue
     required: true
@@ -66,13 +66,13 @@ fields:
 
 variables:
   message_args: >
-    --title "{{- issue_title -}}"
-    --body "{{- body -}}"
-    {%- if labels -%}
-      --label "{{- labels | join(',') -}}"
-    {%- endif -%}
-    --assignee "{{- assignee | default('@worgarside') -}}"
-    --repo "worgarside/{{- repository | default('home-assistant') -}}"
+    --title "{{ issue_title }}"
+    --body "{{ body }}"
+    {% if issue_labels %}
+      --label "{{ issue_labels | join(',') }}"
+    {% endif %}
+    --assignee "{{ assignee | default('@worgarside') }}"
+    --repo "worgarside/{{ repository | default('home-assistant') }}"
 
 sequence:
   - service: shell_command.gh
