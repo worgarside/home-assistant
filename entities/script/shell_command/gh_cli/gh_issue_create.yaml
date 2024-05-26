@@ -66,13 +66,11 @@ fields:
 
 variables:
   message_args: >
-    --title "{{ issue_title }}"
-    --body "{{ body }}"
-    {% if issue_labels %}
-      --label "{{ issue_labels | join(',') }}"
-    {% endif %}
-    --assignee "{{ assignee | default('@worgarside') }}"
-    --repo "worgarside/{{ repository | default('home-assistant') }}"
+    --title {{ issue_title | tojson }}
+    --body {{ body | tojson }}
+    {% if issue_labels %}--label {{ issue_labels | join(',') | tojson }}{% endif %}
+    --assignee {{ assignee | default('@worgarside') | tojson }}
+    --repo "worgarside/{{ repository | default('home-assistant') | tojson }}
 
 sequence:
   - service: shell_command.gh
