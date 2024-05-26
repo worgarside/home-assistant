@@ -4817,18 +4817,10 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
       "text": null
     }
   },
-  "body": {
-    "name": "Issue Body",
-    "description": "The main body of the issue",
-    "selector": {
-      "text": {
-        "multiline": true
-      }
-    }
-  },
   "labels": {
     "name": "Labels",
     "description": "Add one or more labels to the issue",
+    "required": true,
     "selector": {
       "select": {
         "multiple": true,
@@ -4842,6 +4834,15 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
           "patch",
           "tools"
         ]
+      }
+    }
+  },
+  "body": {
+    "name": "Issue Body",
+    "description": "The main body of the issue",
+    "selector": {
+      "text": {
+        "multiline": true
       }
     }
   },
@@ -4885,7 +4886,7 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
 
 ```json
 {
-  "message_args": "--title \"{{- issue_title -}}\" --body \"{{- body -}}\" {%- if labels -%}\n  --label \"{{- labels | default([]) | join(',') -}}\"\n{%- endif -%} --assignee \"{{- assignee | default('@worgarside') -}}\" --repo \"worgarside/{{- repository | default('home-assistant') -}}\""
+  "message_args": "--title \"{{- issue_title -}}\" --body \"{{- body -}}\" {%- if labels -%}\n  --label \"{{- labels | join(',') -}}\"\n{%- endif -%} --assignee \"{{- assignee | default('@worgarside') -}}\" --repo \"worgarside/{{- repository | default('home-assistant') -}}\""
 }
 ```
 File: [`script/shell_command/gh_cli/gh_issue_create.yaml`](entities/script/shell_command/gh_cli/gh_issue_create.yaml)

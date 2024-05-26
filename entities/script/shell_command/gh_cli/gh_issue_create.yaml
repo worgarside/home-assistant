@@ -13,16 +13,10 @@ fields:
     selector:
       text:
 
-  body:
-    name: Issue Body
-    description: The main body of the issue
-    selector:
-      text:
-        multiline: true
-
   labels:
     name: Labels
     description: Add one or more labels to the issue
+    required: true
     selector:
       select:
         multiple: true
@@ -35,6 +29,13 @@ fields:
           - minor
           - patch
           - tools
+
+  body:
+    name: Issue Body
+    description: The main body of the issue
+    selector:
+      text:
+        multiline: true
 
   assignee:
     name: Assignee
@@ -67,7 +68,7 @@ variables:
     --title "{{- issue_title -}}"
     --body "{{- body -}}"
     {%- if labels -%}
-      --label "{{- labels | default([]) | join(',') -}}"
+      --label "{{- labels | join(',') -}}"
     {%- endif -%}
     --assignee "{{- assignee | default('@worgarside') -}}"
     --repo "worgarside/{{- repository | default('home-assistant') -}}"
