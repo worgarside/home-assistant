@@ -1,2 +1,2 @@
 ---
-write_file: echo -e "{{ body.strip('"') }}" >> "resources/tmp/{{ file.strip('/"') }}"
+write_file: bash -c "echo -e '{{ body.strip('"') }}' >> 'resources/tmp/{{ file.strip('/"') }}'"
