@@ -4127,7 +4127,7 @@ File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml
 
 ## Script
 
-<details><summary><h3>Entities (28)</h3></summary>
+<details><summary><h3>Entities (29)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -4751,6 +4751,92 @@ File: [`script/office_desk_standing_mode.yaml`](entities/script/office_desk_stan
 - Mode: `restart`
 
 File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_moving.yaml)
+</details>
+
+<details><summary><strong>GH Issue Create</strong></summary>
+
+**Entity ID: `script.gh_issue_create`**
+
+> Create a new issue on GitHub
+
+- Fields:
+
+```json
+{
+  "issue_title": {
+    "description": "The title of the issue",
+    "required": true,
+    "selector": {
+      "text": null
+    }
+  },
+  "message": {
+    "description": "The main body of the issue",
+    "selector": {
+      "text": {
+        "multiline": true
+      }
+    }
+  },
+  "label": {
+    "description": "Add one or more labels to the issue",
+    "selector": {
+      "select": {
+        "multiple": true,
+        "options": [
+          "bug",
+          "chore",
+          "feature-request",
+          "refactor",
+          "major",
+          "minor",
+          "patch",
+          "tools"
+        ]
+      }
+    }
+  },
+  "assignee": {
+    "description": "Who to assign the issue to",
+    "default": "@worgarside",
+    "selector": {
+      "select": {
+        "options": [
+          "@worgarside"
+        ]
+      }
+    }
+  },
+  "repository": {
+    "description": "The repo to open the issue in",
+    "default": "home-assistant",
+    "selector": {
+      "select": {
+        "multiple": false,
+        "options": [
+          "github-config-files",
+          "home-assistant",
+          "home-assistant-appdaemon",
+          "home-assistant-config-validator",
+          "led-matrix-controller",
+          "wg-scripts",
+          "wg-utilities"
+        ]
+      }
+    }
+  }
+}
+```
+
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "message_args": "-t \"{{- issue_title -}}\" -m \"{{- message -}}\" {%- if label -%}\n  -l \"{{- label | default([]) | join(',') -}}\"\n{%- endif -%} -a \"{{- assignee | default('@worgarside') -}}\" --repo \"worgarside/{{- repository | default('home-assistant') -}}\""
+}
+```
+File: [`script/shell_command/gh_cli/gh_issue_create.yaml`](entities/script/shell_command/gh_cli/gh_issue_create.yaml)
 </details>
 
 <details><summary><strong>Git Pull</strong></summary>

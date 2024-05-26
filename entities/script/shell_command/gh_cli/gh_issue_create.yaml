@@ -1,0 +1,73 @@
+---
+alias: GH Issue Create
+
+description: Create a new issue on GitHub
+
+mode: queued
+
+fields:
+  issue_title:
+    description: The title of the issue
+    required: true
+    selector:
+      text:
+
+  message:
+    description: The main body of the issue
+    selector:
+      text:
+        multiline: true
+
+  label:
+    description: Add one or more labels to the issue
+    selector:
+      select:
+        multiple: true
+        options:
+          - bug
+          - chore
+          - feature-request
+          - refactor
+          - major
+          - minor
+          - patch
+          - tools
+
+  assignee:
+    description: Who to assign the issue to
+    default: "@worgarside"
+    selector:
+      select:
+        options:
+          - "@worgarside"
+
+  repository:
+    description: The repo to open the issue in
+    default: home-assistant
+    selector:
+      select:
+        multiple: false
+        options:
+          - github-config-files
+          - home-assistant
+          - home-assistant-appdaemon
+          - home-assistant-config-validator
+          - led-matrix-controller
+          - wg-scripts
+          - wg-utilities
+
+variables:
+  message_args: >-
+    -t "{{- issue_title -}}"
+    -m "{{- message -}}"
+    {%- if label -%}
+      -l "{{- label | default([]) | join(',') -}}"
+    {%- endif -%}
+    -a "{{- assignee | default('@worgarside') -}}"
+    --repo "worgarside/{{- repository | default('home-assistant') -}}"
+
+sequence:
+  - service: shell_command.gh
+    data:
+      command: issue create
+      args: "{{ message_args }}"
