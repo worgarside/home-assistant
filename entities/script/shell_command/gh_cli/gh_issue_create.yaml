@@ -64,15 +64,21 @@ fields:
           - wg-scripts
           - wg-utilities
 
-variables:
-  message_args: >
-    --title {{ issue_title | tojson }}
-    --body {{ body | tojson }}
-    {% if issue_labels %}--label {{ issue_labels | join(',') | tojson }}{% endif %}
-    --assignee {{ assignee | default('worgarside') | tojson }}
-    --repo "worgarside/{{ repository | default('home-assistant') }}"
-
 sequence:
+  - alias: Write body to file
+    service: shell_command.write_file
+    data:
+      body: "{{ body }}"
+      file: gh_issue_body.txt
+
+  - variables:
+      message_args: >
+        --title {{ issue_title | tojson }}
+        --body-file resources/tmp/gh_issue_body.txt
+        {% if issue_labels %}--label {{ issue_labels | join(',') | tojson }}{% endif %}
+        --assignee {{ assignee | default('worgarside') | tojson }}
+        --repo "worgarside/{{ repository | default('home-assistant') }}"
+
   - service: shell_command.gh
     data:
       command: issue create
@@ -84,6 +90,10 @@ sequence:
         stdout: "{{ gh_cli_response['stdout'] }}"
         stderr: "{{ gh_cli_response['stderr'] }}"
         returncode: "{{ gh_cli_response['returncode'] }}"
+
+  - service: shell_command.delete_file
+    data:
+      file: gh_issue_body.txt
 
   - stop: Return response
     response_variable: response
