@@ -4887,7 +4887,7 @@ File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_m
 
 ```json
 {
-  "message_args": "--title {{ issue_title | tojson }} --body {{ body | tojson }} {% if issue_labels %}--label {{ issue_labels | join(',') | tojson }}{% endif %} --assignee {{ assignee | default('@worgarside') | tojson }} --repo \"worgarside/{{ repository | default('home-assistant') | tojson }}\n"
+  "message_args": "--title {{ issue_title | tojson }} --body {{ body | tojson }} {% if issue_labels %}--label {{ issue_labels | join(',') | tojson }}{% endif %} --assignee {{ assignee | default('@worgarside') | tojson }} --repo \"worgarside/{{ repository | default('home-assistant') }}\"\n"
 }
 ```
 File: [`script/shell_command/gh_cli/gh_issue_create.yaml`](entities/script/shell_command/gh_cli/gh_issue_create.yaml)

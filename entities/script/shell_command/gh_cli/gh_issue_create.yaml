@@ -70,7 +70,7 @@ variables:
     --body {{ body | tojson }}
     {% if issue_labels %}--label {{ issue_labels | join(',') | tojson }}{% endif %}
     --assignee {{ assignee | default('@worgarside') | tojson }}
-    --repo "worgarside/{{ repository | default('home-assistant') | tojson }}
+    --repo "worgarside/{{ repository | default('home-assistant') }}"
 
 sequence:
   - service: shell_command.gh
