@@ -1,0 +1,2 @@
+---
+delete_file: rm -f "resources/tmp/{{ file.strip('/"') }}"
