@@ -4568,30 +4568,53 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
 
 ```json
 {
-  "clear_notification": {
-    "description": "Clear the persistent notification",
-    "example": "true"
-  },
-  "message": {
-    "description": "The message body of the notification",
-    "example": "A thing has happened, thought you ought to know"
-  },
   "title": {
     "description": "The title of the notification",
     "example": "Something Important!",
-    "default": " "
+    "default": " ",
+    "selector": {
+      "text": null
+    }
+  },
+  "message": {
+    "description": "The message body of the notification",
+    "example": "A thing has happened, thought you ought to know",
+    "required": true,
+    "selector": {
+      "text": {
+        "multiline": true
+      }
+    }
+  },
+  "clear_notification": {
+    "description": "Clear the persistent notification",
+    "example": "true",
+    "selector": {
+      "boolean": null
+    }
   },
   "notification_id": {
     "description": "Optional ID for the persistent notification",
-    "example": "important_thing_happened"
+    "example": "important_thing_happened",
+    "selector": {
+      "text": null
+    }
   },
   "actions": {
     "description": "Optional actions for the phone notification",
-    "example": "[{\"action\": \"URI\", \"title\": \"View More\", \"uri\": \"https://example.com\"}]"
+    "example": "[{\"action\": \"URI\", \"title\": \"View More\", \"uri\": \"https://example.com\"}]",
+    "selector": {
+      "object": null
+    }
   },
   "mobile_notification_icon": {
     "description": "Optional icon for the phone notification",
-    "example": "mdi:alert"
+    "example": "mdi:alert",
+    "selector": {
+      "icon": {
+        "placeholder": "mdi:bell"
+      }
+    }
   }
 }
 ```
@@ -4622,30 +4645,53 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
 
 ```json
 {
-  "clear_notification": {
-    "description": "Clear the persistent notification",
-    "example": "true"
-  },
-  "message": {
-    "description": "The message body of the notification",
-    "example": "A thing has happened, thought you ought to know"
-  },
   "title": {
     "description": "The title of the notification",
     "example": "Something Important!",
-    "default": " "
+    "default": " ",
+    "selector": {
+      "text": null
+    }
+  },
+  "message": {
+    "description": "The message body of the notification",
+    "example": "A thing has happened, thought you ought to know",
+    "required": true,
+    "selector": {
+      "text": {
+        "multiline": true
+      }
+    }
+  },
+  "clear_notification": {
+    "description": "Clear the persistent notification",
+    "example": "true",
+    "selector": {
+      "boolean": null
+    }
   },
   "notification_id": {
     "description": "Optional ID for the persistent notification",
-    "example": "important_thing_happened"
+    "example": "important_thing_happened",
+    "selector": {
+      "text": null
+    }
   },
   "actions": {
     "description": "Optional actions for the phone notification",
-    "example": "[{\"action\": \"URI\", \"title\": \"View More\", \"uri\": \"https://example.com\"}]"
+    "example": "[{\"action\": \"URI\", \"title\": \"View More\", \"uri\": \"https://example.com\"}]",
+    "selector": {
+      "object": null
+    }
   },
   "mobile_notification_icon": {
     "description": "Optional icon for the phone notification",
-    "example": "mdi:alert"
+    "example": "mdi:alert",
+    "selector": {
+      "icon": {
+        "placeholder": "mdi:bell"
+      }
+    }
   }
 }
 ```
