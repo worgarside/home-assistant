@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (120)</h3></summary>
+<details><summary><h3>Entities (121)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1489,6 +1489,19 @@ File: [`automation/switch/bedroom_scent_plug/turn_off_after_an_hour.yaml`](entit
 - Mode: `single`
 
 File: [`automation/switch/bedroom_scent_plug/turn_off_when_window_opened.yaml`](entities/automation/switch/bedroom_scent_plug/turn_off_when_window_opened.yaml)
+</details>
+
+<details><summary><code>/switch/charging-hub/turn-off</code></summary>
+
+**Entity ID: `automation.switch_charging_hub_turn_off`**
+
+> Turn off the charging hub when everything has finished charging
+
+- Alias: /switch/charging-hub/turn-off
+- ID: `switch_charging_hub_turn_off`
+- Mode: `single`
+
+File: [`automation/switch/charging_hub/turn_off.yaml`](entities/automation/switch/charging_hub/turn_off.yaml)
 </details>
 
 <details><summary><code>/switch/christmas-tree/turn-on</code></summary>
