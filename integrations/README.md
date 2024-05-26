@@ -4919,7 +4919,7 @@ File: [`sensor/tomorrow_io_realtime_weather.yaml`](entities/sensor/tomorrow_io_r
 
 ## Shell Command
 
-<details><summary><h3>Entities (11)</h3></summary>
+<details><summary><h3>Entities (12)</h3></summary>
 
 <details><summary><code>shell_command.approve_pull_request</code></summary>
 
@@ -4939,6 +4939,11 @@ File: [`shell_command/comment_on_pr.yaml`](entities/shell_command/comment_on_pr.
 <details><summary><code>shell_command.get_gh_cli</code></summary>
 
 File: [`shell_command/get_gh_cli.yaml`](entities/shell_command/get_gh_cli.yaml)
+</details>
+
+<details><summary><code>shell_command.gh</code></summary>
+
+File: [`shell_command/gh.yaml`](entities/shell_command/gh.yaml)
 </details>
 
 <details><summary><code>shell_command.ls</code></summary>
