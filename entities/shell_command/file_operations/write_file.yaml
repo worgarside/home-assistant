@@ -1,0 +1,2 @@
+---
+write_file: echo -e "{{ body.strip('"') }}" >> "resources/tmp/{{ file.strip('/"') }}"
