@@ -65,7 +65,7 @@ fields:
           - wg-utilities
 
 variables:
-  message_args: >-
+  message_args: >
     --title "{{- issue_title -}}"
     --body "{{- body -}}"
     {%- if labels -%}
@@ -79,7 +79,13 @@ sequence:
     data:
       command: issue create
       args: "{{ message_args }}"
-    response_variable: response
+    response_variable: gh_cli_response
+
+  - variables:
+      response:
+        stdout: "{{ gh_cli_response['stdout'] }}"
+        stderr: "{{ gh_cli_response['stderr'] }}"
+        returncode: "{{ gh_cli_response['returncode'] }}"
 
   - stop: Return response
     response_variable: response
