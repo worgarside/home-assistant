@@ -78,3 +78,7 @@ sequence:
     data:
       command: issue create
       args: "{{ message_args }}"
+    response_variable: response
+
+  - stop: Return response
+    response_variable: response
