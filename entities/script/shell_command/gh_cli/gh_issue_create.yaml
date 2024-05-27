@@ -95,10 +95,10 @@ sequence:
     data:
       file: gh_issue_body.txt
 
-  - stop: Return response
-    response_variable: response
-
   - service: persistent_notification.create
     data:
       title: "GitHub Issue #{{gh_cli_response['stdout'].split('/')[-1] }} Created"
       message: "[{{ issue_title }}]({{ gh_cli_response['stdout'] }})"
+
+  - stop: Return response
+    response_variable: response
