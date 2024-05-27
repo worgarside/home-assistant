@@ -4738,7 +4738,13 @@ File: [`script/notify_will.yaml`](entities/script/notify_will.yaml)
 ```
 
 - Mode: `restart`
+- Variables:
 
+```json
+{
+  "tolerance": 2
+}
+```
 File: [`script/office_desk_set_position.yaml`](entities/script/office_desk_set_position.yaml)
 </details>
 
