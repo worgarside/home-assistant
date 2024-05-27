@@ -13,6 +13,9 @@ fields:
         max: 100
         step: 1
 
+variables:
+  tolerance: 2
+
 sequence:
   - alias: Check desk isn't already at height
     condition: template
@@ -29,7 +32,7 @@ sequence:
         value_template: >
           {% set current = state_attr('cover.office_desk_esphome', 'current_position') | int(None) %}
           {% set target = position | int(None) %}
-          {{ current is none or target is none or (target - 1) <= current <= (target + 1) }}
+          {{ current is none or target is none or (current - target) | abs <= tolerance }}
 
       sequence:
         - alias: Delay for 0.1s if it's not the first iteration
@@ -82,12 +85,13 @@ sequence:
 
                 Desk Move {{
                   iif(
-                    current and target and (target - 1) <= current <= (target + 1),
+                    current and target and (current - target) | abs <= tolerance,
                     'Complete',
                     'Failed'
                   )
                 }}
               message: |
                 Target: {{ position }}%
+                Tolerance: {{ tolerance }}%
                 Final position: {{ state_attr('cover.office_desk_esphome', 'current_position') }}%
                 Final state: `{{ states('cover.office_desk_esphome')}}`
