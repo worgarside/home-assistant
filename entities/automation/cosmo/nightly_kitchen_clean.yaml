@@ -10,6 +10,19 @@ trigger:
   at: '22:00:00'
 
 action:
+  - alias: Wait for lights out
+    wait_template: >-
+      {{
+        expand((area_entities('lounge') + area_entities('kitchen')) | select('match', '^light\.')) |
+        selectattr('state', 'eq', 'on') |
+        list |
+        count == 0
+      }}
+    # hacv disable: InvalidTemplateVar:area_entities,expand
+
+  - delay:
+      minutes: 10
+
   - service: script.cosmo_clean_room
     data:
       room_name: kitchen
