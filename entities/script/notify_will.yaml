@@ -4,30 +4,45 @@ alias: Notify Will
 description: Send a notification to Will's phone and the HA UI
 
 fields:
-  clear_notification:
-    description: Clear the persistent notification
-    example: "true"
-
-  message:
-    description: The message body of the notification
-    example: A thing has happened, thought you ought to know
-
   title:
     description: The title of the notification
     example: Something Important!
     default: " "
+    selector:
+      text:
+
+  message:
+    description: The message body of the notification
+    example: A thing has happened, thought you ought to know
+    required: true
+    selector:
+      text:
+        multiline: true
+
+  clear_notification:
+    description: Clear the persistent notification
+    example: "true"
+    selector:
+      boolean:
 
   notification_id:
     description: Optional ID for the persistent notification
     example: important_thing_happened
+    selector:
+      text:
 
   actions:
     description: Optional actions for the phone notification
     example: '[{"action": "URI", "title": "View More", "uri": "https://example.com"}]'
+    selector:
+      object:
 
   mobile_notification_icon:
     description: Optional icon for the phone notification
     example: mdi:alert
+    selector:
+      icon:
+        placeholder: mdi:bell
 
 mode: queued
 

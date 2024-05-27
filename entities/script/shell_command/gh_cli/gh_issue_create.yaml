@@ -1,0 +1,104 @@
+---
+alias: GH Issue Create
+
+description: Create a new issue on GitHub
+
+mode: queued
+
+fields:
+  issue_title:
+    name: Issue Title
+    description: The title of the issue
+    required: true
+    selector:
+      text:
+
+  issue_labels:
+    name: Labels
+    description: Add one or more labels to the issue
+    required: true
+    selector:
+      select:
+        multiple: true
+        options:
+          - bug
+          - chore
+          - feature-request
+          - refactor
+          - major
+          - minor
+          - patch
+          - tools
+
+  body:
+    name: Issue Body
+    description: The main body of the issue
+    required: true
+    selector:
+      text:
+        multiline: true
+
+  assignee:
+    name: Assignee
+    description: Who to assign the issue to
+    default: worgarside
+    selector:
+      select:
+        options:
+          - worgarside
+
+  repository:
+    name: Repository
+    description: The repo to open the issue in
+    default: home-assistant
+    required: true
+    selector:
+      select:
+        multiple: false
+        options:
+          - github-config-files
+          - home-assistant
+          - home-assistant-appdaemon
+          - home-assistant-config-validator
+          - led-matrix-controller
+          - wg-scripts
+          - wg-utilities
+
+sequence:
+  - alias: Write body to file
+    service: shell_command.write_file
+    data:
+      body: "{{ body }}"
+      file: gh_issue_body.txt
+
+  - variables:
+      message_args: >
+        --title {{ issue_title | tojson }}
+        --body-file resources/tmp/gh_issue_body.txt
+        {% if issue_labels %}--label {{ issue_labels | join(',') | tojson }}{% endif %}
+        --assignee {{ assignee | default('worgarside') | tojson }}
+        --repo "worgarside/{{ repository | default('home-assistant') }}"
+
+  - service: shell_command.gh
+    data:
+      command: issue create
+      args: "{{ message_args }}"
+    response_variable: gh_cli_response
+
+  - variables:
+      response:
+        stdout: "{{ gh_cli_response['stdout'] }}"
+        stderr: "{{ gh_cli_response['stderr'] }}"
+        returncode: "{{ gh_cli_response['returncode'] }}"
+
+  - service: shell_command.delete_file
+    data:
+      file: gh_issue_body.txt
+
+  - service: persistent_notification.create
+    data:
+      title: "GitHub Issue #{{gh_cli_response['stdout'].split('/')[-1] }} Created"
+      message: "[{{ issue_title }}]({{ gh_cli_response['stdout'] }})"
+
+  - stop: Return response
+    response_variable: response

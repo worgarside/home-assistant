@@ -4127,7 +4127,7 @@ File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml
 
 ## Script
 
-<details><summary><h3>Entities (28)</h3></summary>
+<details><summary><h3>Entities (29)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -4569,30 +4569,53 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
 
 ```json
 {
-  "clear_notification": {
-    "description": "Clear the persistent notification",
-    "example": "true"
-  },
-  "message": {
-    "description": "The message body of the notification",
-    "example": "A thing has happened, thought you ought to know"
-  },
   "title": {
     "description": "The title of the notification",
     "example": "Something Important!",
-    "default": " "
+    "default": " ",
+    "selector": {
+      "text": null
+    }
+  },
+  "message": {
+    "description": "The message body of the notification",
+    "example": "A thing has happened, thought you ought to know",
+    "required": true,
+    "selector": {
+      "text": {
+        "multiline": true
+      }
+    }
+  },
+  "clear_notification": {
+    "description": "Clear the persistent notification",
+    "example": "true",
+    "selector": {
+      "boolean": null
+    }
   },
   "notification_id": {
     "description": "Optional ID for the persistent notification",
-    "example": "important_thing_happened"
+    "example": "important_thing_happened",
+    "selector": {
+      "text": null
+    }
   },
   "actions": {
     "description": "Optional actions for the phone notification",
-    "example": "[{\"action\": \"URI\", \"title\": \"View More\", \"uri\": \"https://example.com\"}]"
+    "example": "[{\"action\": \"URI\", \"title\": \"View More\", \"uri\": \"https://example.com\"}]",
+    "selector": {
+      "object": null
+    }
   },
   "mobile_notification_icon": {
     "description": "Optional icon for the phone notification",
-    "example": "mdi:alert"
+    "example": "mdi:alert",
+    "selector": {
+      "icon": {
+        "placeholder": "mdi:bell"
+      }
+    }
   }
 }
 ```
@@ -4623,30 +4646,53 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
 
 ```json
 {
-  "clear_notification": {
-    "description": "Clear the persistent notification",
-    "example": "true"
-  },
-  "message": {
-    "description": "The message body of the notification",
-    "example": "A thing has happened, thought you ought to know"
-  },
   "title": {
     "description": "The title of the notification",
     "example": "Something Important!",
-    "default": " "
+    "default": " ",
+    "selector": {
+      "text": null
+    }
+  },
+  "message": {
+    "description": "The message body of the notification",
+    "example": "A thing has happened, thought you ought to know",
+    "required": true,
+    "selector": {
+      "text": {
+        "multiline": true
+      }
+    }
+  },
+  "clear_notification": {
+    "description": "Clear the persistent notification",
+    "example": "true",
+    "selector": {
+      "boolean": null
+    }
   },
   "notification_id": {
     "description": "Optional ID for the persistent notification",
-    "example": "important_thing_happened"
+    "example": "important_thing_happened",
+    "selector": {
+      "text": null
+    }
   },
   "actions": {
     "description": "Optional actions for the phone notification",
-    "example": "[{\"action\": \"URI\", \"title\": \"View More\", \"uri\": \"https://example.com\"}]"
+    "example": "[{\"action\": \"URI\", \"title\": \"View More\", \"uri\": \"https://example.com\"}]",
+    "selector": {
+      "object": null
+    }
   },
   "mobile_notification_icon": {
     "description": "Optional icon for the phone notification",
-    "example": "mdi:alert"
+    "example": "mdi:alert",
+    "selector": {
+      "icon": {
+        "placeholder": "mdi:bell"
+      }
+    }
   }
 }
 ```
@@ -4758,6 +4804,94 @@ File: [`script/office_desk_standing_mode.yaml`](entities/script/office_desk_stan
 - Mode: `restart`
 
 File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_moving.yaml)
+</details>
+
+<details><summary><strong>GH Issue Create</strong></summary>
+
+**Entity ID: `script.gh_issue_create`**
+
+> Create a new issue on GitHub
+
+- Fields:
+
+```json
+{
+  "issue_title": {
+    "name": "Issue Title",
+    "description": "The title of the issue",
+    "required": true,
+    "selector": {
+      "text": null
+    }
+  },
+  "issue_labels": {
+    "name": "Labels",
+    "description": "Add one or more labels to the issue",
+    "required": true,
+    "selector": {
+      "select": {
+        "multiple": true,
+        "options": [
+          "bug",
+          "chore",
+          "feature-request",
+          "refactor",
+          "major",
+          "minor",
+          "patch",
+          "tools"
+        ]
+      }
+    }
+  },
+  "body": {
+    "name": "Issue Body",
+    "description": "The main body of the issue",
+    "required": true,
+    "selector": {
+      "text": {
+        "multiline": true
+      }
+    }
+  },
+  "assignee": {
+    "name": "Assignee",
+    "description": "Who to assign the issue to",
+    "default": "worgarside",
+    "selector": {
+      "select": {
+        "options": [
+          "worgarside"
+        ]
+      }
+    }
+  },
+  "repository": {
+    "name": "Repository",
+    "description": "The repo to open the issue in",
+    "default": "home-assistant",
+    "required": true,
+    "selector": {
+      "select": {
+        "multiple": false,
+        "options": [
+          "github-config-files",
+          "home-assistant",
+          "home-assistant-appdaemon",
+          "home-assistant-config-validator",
+          "led-matrix-controller",
+          "wg-scripts",
+          "wg-utilities"
+        ]
+      }
+    }
+  }
+}
+```
+
+- Mode: `queued`
+
+File: [`script/shell_command/gh_cli/gh_issue_create.yaml`](entities/script/shell_command/gh_cli/gh_issue_create.yaml)
 </details>
 
 <details><summary><strong>Git Pull</strong></summary>
