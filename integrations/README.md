@@ -4178,7 +4178,7 @@ File: [`script/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/script/appda
   "doors_open_timeout": "{{ doors_open_timeout | default(120) | int(120) }}",
   "repeats": "{{ max(min(repeats | default(3) | int(3), 3), 1) }}",
   "suction_level": "{{ max(min(suction_level | default(2) | int(2), 3), 0) }}",
-  "suction_level_str": "{{ ['Quiet', 'Standard', 'Strong', 'Turbo'][suction_level] }}",
+  "suction_level_str": "{{ ['quiet', 'standard', 'strong', 'turbo'][suction_level] }}",
   "true_response": {
     "value": true
   },

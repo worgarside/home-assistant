@@ -33,7 +33,7 @@ variables:
 
   suction_level: "{{ max(min(suction_level | default(2) | int(2), 3), 0) }}"
 
-  suction_level_str: "{{ ['Quiet', 'Standard', 'Strong', 'Turbo'][suction_level] }}"
+  suction_level_str: "{{ ['quiet', 'standard', 'strong', 'turbo'][suction_level] }}"
 
   true_response:
     value: true
