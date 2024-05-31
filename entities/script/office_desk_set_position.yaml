@@ -29,7 +29,7 @@ sequence:
       until:
         condition: template
 
-        value_template: >
+        value_template: >-
           {% set current = state_attr('cover.office_desk_esphome', 'current_position') | int(None) %}
           {% set target = position | int(None) %}
           {{ current is none or target is none or (current - target) | abs <= tolerance }}
@@ -60,16 +60,25 @@ sequence:
             entity_id: cover.office_desk_esphome
             position: "{{ position | int }}"
 
-        - alias: Wait for desk to stop moving
-          wait_for_trigger:
-            - platform: template
-              value_template: "{{ states('cover.office_desk_esphome') in ('closed', 'open') }}"
-              for:
-                seconds: 1
+        - alias: Stop following template returning `true` if the desk hasn't started moving yet
+          delay:
+            milliseconds: 100
+
+        - alias: Wait for desk to reach target position
+          wait_template: >-
+            {% set curr = state_attr('cover.office_desk_esphome', 'current_position') | int(None) %}
+            {% set target = position | int(None) %}
+            {{ curr is none or target is none or (curr - target) | abs <= tolerance }}
           timeout: 00:00:30
           continue_on_timeout: true
 
-        - service: script.turn_on
+        - alias: If not stopped, send stop signal (prevent moving too far)
+          if: "{{ states('cover.office_desk_esphome') not in ('closed', 'open') }}"
+          then:
+            - service: script.office_desk_stop_moving
+
+        - alias: Send Debug Notification
+          service: script.turn_on
           target:
             entity_id: script.debug_persistent_notification
           data:
