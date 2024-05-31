@@ -16,6 +16,10 @@ trigger:
     for:
       minutes: "{{ states('input_number.topaz_sr10_power_off_timeout') | int(30) }}"
 
+  - platform: state
+    entity_id: sensor.wills_macbook_pro_active_audio_output
+    attribute: All Audio Output
+
 condition:
   or:
     - alias: Source is MacBook, but MacBook is not active
