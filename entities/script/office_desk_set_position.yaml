@@ -72,11 +72,6 @@ sequence:
           timeout: 00:00:30
           continue_on_timeout: true
 
-        - alias: If not stopped, send stop signal (prevent moving too far)
-          if: "{{ states('cover.office_desk_esphome') not in ('closed', 'open') }}"
-          then:
-            - service: script.office_desk_stop_moving
-
         - alias: Send Debug Notification
           service: script.turn_on
           target:
@@ -104,3 +99,8 @@ sequence:
                 Tolerance: {{ tolerance }}%
                 Final position: {{ state_attr('cover.office_desk_esphome', 'current_position') }}%
                 Final state: `{{ states('cover.office_desk_esphome')}}`
+
+        - alias: If not timed out, send stop signal (prevent moving too far/extra retries)
+          if: "{{ wait.completed }}"
+          then:
+            - service: script.office_desk_stop_moving
