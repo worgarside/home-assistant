@@ -1,2 +1,3 @@
 ---
-write_file: bash -c "echo -e '{{ body.strip('"') }}' >> 'resources/tmp/{{ file.strip('/"') }}'"
+# yamllint disable rule:line-length
+write_file: bash -c "echo -e \"{{ body.replace('\"', '\\"').replace('\\', '\\\\') }}\" >> 'resources/tmp/{{ file.strip('/"') }}'"
