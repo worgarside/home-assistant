@@ -5004,7 +5004,7 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (6)</h3></summary>
+<details><summary><h3>Entities (5)</h3></summary>
 
 <details><summary><strong>External IP</strong></summary>
 
@@ -5013,13 +5013,6 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 - Platform: `rest`
 
 File: [`sensor/external_ip.yaml`](entities/sensor/external_ip.yaml)
-</details>
-
-<details><summary><code>sensor.london_air</code></summary>
-
-- Platform: `london_air`
-
-File: [`sensor/london_air.yaml`](entities/sensor/london_air.yaml)
 </details>
 
 <details><summary><strong>Office Desk Occupied Cumulative Time</strong></summary>
