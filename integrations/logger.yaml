@@ -15,3 +15,5 @@ logger:
     charset_normalizer: warning
     idasen: critical
     idasen_ha.connection_manager: critical
+    pychromecast.socket_client: error
+    homeassistant.components.androidtv_remote: error
