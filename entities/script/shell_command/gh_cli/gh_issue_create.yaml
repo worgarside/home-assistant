@@ -78,7 +78,9 @@ sequence:
       - service: script.log_exception
         data:
           calling_entity: script.gh_issue_create
-          message: Failed writing body content to temp file
+          message: >-
+            Failed writing body content to temp file (return code:
+            {{ write_file_response.get('returncode') }})
 
       - stop: Write File Failure
         error: true
@@ -103,7 +105,7 @@ sequence:
       - service: script.log_exception
         data:
           calling_entity: script.gh_issue_create
-          message: Failed to create
+          message: "Failed to create issue (return code: {{ gh_cli_response.get('returncode') }})"
 
       - stop: Issue Create Failure
         error: true
@@ -125,7 +127,9 @@ sequence:
       - service: script.log_exception
         data:
           calling_entity: script.gh_issue_create
-          message: Failed deleting body content in temp file
+          message: >-
+            Failed deleting body content in temp file (return code:
+            {{ delete_file_response.get('returncode') }})
 
       - stop: Delete File Failure
         error: true
