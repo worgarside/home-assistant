@@ -70,6 +70,20 @@ sequence:
     data:
       body: "{{ body }}"
       file: gh_issue_body.txt
+    response_variable: write_file_response
+
+  - alias: Check write file response
+    if: "{{ write_file_response.get('returncode') | int(None) != 0 }}"
+    then:
+      - service: script.log_exception
+        data:
+          calling_entity: script.gh_issue_create
+          message: >-
+            Failed writing body content to temp file (return code:
+            {{ write_file_response.get('returncode') }})
+
+      - stop: Write File Failure
+        error: true
 
   - variables:
       message_args: >
@@ -85,6 +99,17 @@ sequence:
       args: "{{ message_args }}"
     response_variable: gh_cli_response
 
+  - alias: Check gh issue create response
+    if: "{{ gh_cli_response.get('returncode') | int(None) != 0 }}"
+    then:
+      - service: script.log_exception
+        data:
+          calling_entity: script.gh_issue_create
+          message: "Failed to create issue (return code: {{ gh_cli_response.get('returncode') }})"
+
+      - stop: Issue Create Failure
+        error: true
+
   - variables:
       response:
         stdout: "{{ gh_cli_response['stdout'] }}"
@@ -94,6 +119,20 @@ sequence:
   - service: shell_command.delete_file
     data:
       file: gh_issue_body.txt
+    response_variable: delete_file_response
+
+  - alias: Check delete file response
+    if: "{{ delete_file_response.get('returncode') | int(None) != 0 }}"
+    then:
+      - service: script.log_exception
+        data:
+          calling_entity: script.gh_issue_create
+          message: >-
+            Failed deleting body content in temp file (return code:
+            {{ delete_file_response.get('returncode') }})
+
+      - stop: Delete File Failure
+        error: true
 
   - service: persistent_notification.create
     data:
