@@ -1583,37 +1583,6 @@
           "cards": []
         },
         {
-          "title": "Internet",
-          "path": "internet",
-          "icon": "mdi:microsoft-internet-explorer",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:mini-graph-card",
-                  "hours_to_show": 12,
-                  "points_per_hour": 6,
-                  "line_width": 2,
-                  "show": {
-                    "labels": false,
-                    "fill": "fade",
-                    "icon": false,
-                    "state": false
-                  },
-                  "entities": [
-                    {
-                      "entity": "device_tracker.homeassistant",
-                      "attribute": "up_kilobytes_per_s"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           "title": "Cube",
           "path": "cube",
           "icon": "phu:aqara-cube",
