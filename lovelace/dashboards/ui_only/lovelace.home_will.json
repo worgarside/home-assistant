@@ -509,7 +509,7 @@
               ]
             },
             {
-              "type": "custom:vertical-stack-in-card",
+              "type": "vertical-stack",
               "cards": [
                 {
                   "type": "custom:mushroom-light-card",
@@ -517,9 +517,6 @@
                   "show_brightness_control": true,
                   "layout": "horizontal",
                   "use_light_color": true,
-                  "hold_action": {
-                    "action": "more-info"
-                  },
                   "double_tap_action": {
                     "action": "toggle"
                   },
@@ -533,9 +530,6 @@
                   "show_brightness_control": true,
                   "layout": "horizontal",
                   "use_light_color": true,
-                  "hold_action": {
-                    "action": "more-info"
-                  },
                   "double_tap_action": {
                     "action": "toggle"
                   },
@@ -549,9 +543,6 @@
                   "show_brightness_control": true,
                   "layout": "horizontal",
                   "use_light_color": true,
-                  "hold_action": {
-                    "action": "more-info"
-                  },
                   "double_tap_action": {
                     "action": "toggle"
                   },
@@ -567,11 +558,8 @@
                   "tap_action": {
                     "action": "more-info"
                   },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
                   "double_tap_action": {
-                    "action": "more-info"
+                    "action": "toggle"
                   }
                 },
                 {
@@ -582,8 +570,8 @@
                   "tap_action": {
                     "action": "more-info"
                   },
-                  "hold_action": {
-                    "action": "more-info"
+                  "double_tap_action": {
+                    "action": "toggle"
                   }
                 },
                 {
@@ -594,12 +582,27 @@
                   "tap_action": {
                     "action": "more-info"
                   },
-                  "hold_action": {
+                  "double_tap_action": {
                     "action": "toggle"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.charging_hub",
+                  "primary_info": "name",
+                  "secondary_info": "state",
+                  "tap_action": {
+                    "action": "more-info"
                   },
                   "double_tap_action": {
-                    "action": "none"
+                    "action": "toggle"
                   }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.charging_hub_current_consumption"
+                  ]
                 }
               ]
             },
