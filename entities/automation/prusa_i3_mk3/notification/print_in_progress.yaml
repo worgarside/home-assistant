@@ -1,0 +1,33 @@
+---
+alias: /prusa-i3-mk3/notification/print-in-progress
+
+id: prusa_i3_mk3_notification_print_in_progress
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.octoprint_approximate_completion_time
+    not_to:
+      - unknown
+      - unavailable
+
+variables:
+  from_ts: "{{ trigger.from_state.state | as_timestamp(default=0) }}"
+  to_ts: "{{ trigger.to_state.state | as_timestamp(default=0) }}"
+
+  delta: "{{ ( to_ts - from_ts ) | abs }}"
+
+condition: "{{ delta > 120  }}"
+
+action:
+  - service: notify.mobile_app_will_s_pixel_6_pro
+    data:
+      title: Print in Progress
+      message: >-
+        ETA for {{ states('sensor.octoprint_print_file') }} is at
+        {{ (trigger.to_state.state | as_datetime).strftime("%H:%m") }}
+      data:
+        chronometer: true
+        when: "{{ to_ts }}"
+        notification_id: prusa_i3_mk3_notification_print_in_progress

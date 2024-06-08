@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (121)</h3></summary>
+<details><summary><h3>Entities (122)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1153,6 +1153,27 @@ File: [`automation/person/will/leaving_work.yaml`](entities/automation/person/wi
 - Mode: `queued`
 
 File: [`automation/prusa_i3_mk3/enclosure/send_fan_mqtt_message.yaml`](entities/automation/prusa_i3_mk3/enclosure/send_fan_mqtt_message.yaml)
+</details>
+
+<details><summary><code>/prusa-i3-mk3/notification/print-in-progress</code></summary>
+
+**Entity ID: `automation.prusa_i3_mk3_notification_print_in_progress`**
+
+> *No description provided*
+
+- Alias: /prusa-i3-mk3/notification/print-in-progress
+- ID: `prusa_i3_mk3_notification_print_in_progress`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "from_ts": "{{ trigger.from_state.state | as_timestamp(default=0) }}",
+  "to_ts": "{{ trigger.to_state.state | as_timestamp(default=0) }}",
+  "delta": "{{ ( to_ts - from_ts ) | abs }}"
+}
+```
+File: [`automation/prusa_i3_mk3/notification/print_in_progress.yaml`](entities/automation/prusa_i3_mk3/notification/print_in_progress.yaml)
 </details>
 
 <details><summary><code>/remote/bedroom-blinds/double-press</code></summary>
