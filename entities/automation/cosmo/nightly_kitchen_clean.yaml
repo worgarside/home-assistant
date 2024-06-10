@@ -39,6 +39,14 @@ action:
 
   - if: "{{ carpet_boost | bool }}"
     then:
+      - delay:
+          minutes: 1
+
+      - wait_for_trigger:
+          platform: state
+          entity_id: vacuum.cosmo
+          to: docked
+
       - service: switch.turn_on
         target:
           entity_id: switch.cosmo_carpet_boost
