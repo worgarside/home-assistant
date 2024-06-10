@@ -26,7 +26,7 @@ action:
       title: Print in Progress
       message: >-
         ETA for {{ states('sensor.octoprint_print_file') }} is at
-        {{ (trigger.to_state.state | as_datetime).strftime("%H:%m") }}
+        {{ (trigger.to_state.state | as_datetime).strftime("%H:%M") }}
       data:
         chronometer: true
         when: "{{ to_ts }}"
