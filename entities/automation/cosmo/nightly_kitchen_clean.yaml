@@ -7,24 +7,37 @@ mode: single
 
 trigger:
   platform: time
-  at: '22:00:00'
+  at: "22:00:00"
+
+variables:
+  carpet_boost: "{{ states('switch.cosmo_carpet_boost') }}"
+
+  lights_on: >-
+    {{
+      expand((area_entities('lounge') + area_entities('kitchen')) | select('match', '^light\.')) |
+      selectattr('state', 'eq', 'on') |
+      list |
+      count > 0
+    }}
 
 action:
-  - alias: Wait for lights out
-    wait_template: >-
-      {{
-        expand((area_entities('lounge') + area_entities('kitchen')) | select('match', '^light\.')) |
-        selectattr('state', 'eq', 'on') |
-        list |
-        count == 0
-      }}
-    # hacv disable: InvalidTemplateVar:area_entities,expand
+  - if: "{{ lights_on }}"
 
-  - delay:
-      minutes: 10
+    then:
+      - alias: Wait for lights out
+        timeout:
+          hours: 1
+        wait_template: >-
+          {{
+            expand((area_entities('lounge') + area_entities('kitchen')) |
+            select('match', '^light\.')) |
+            selectattr('state', 'eq', 'on') |
+            list |
+            count == 0
+          }}
 
-  - variables:
-      carpet_boost: "{{ states('switch.cosmo_carpet_boost') }}"
+      - delay:
+          minutes: 15
 
   - if: "{{ carpet_boost | bool }}"
     then:
