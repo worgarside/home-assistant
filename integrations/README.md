@@ -137,7 +137,14 @@ File: [`automation/cosmo/clean_flat.yaml`](entities/automation/cosmo/clean_flat.
 - Alias: /cosmo/nightly-kitchen-clean
 - ID: `cosmo_nightly_kitchen_clean`
 - Mode: `single`
+- Variables:
 
+```json
+{
+  "carpet_boost": "{{ states('switch.cosmo_carpet_boost') }}",
+  "lights_on": "{{\n  expand((area_entities('lounge') + area_entities('kitchen')) | select('match', '^light\\.')) |\n  selectattr('state', 'eq', 'on') |\n  list |\n  count > 0\n}}"
+}
+```
 File: [`automation/cosmo/nightly_kitchen_clean.yaml`](entities/automation/cosmo/nightly_kitchen_clean.yaml)
 </details>
 
