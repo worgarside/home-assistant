@@ -1124,6 +1124,13 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.current_version",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon": "mdi:home-assistant"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "script.gh_issue_create",
                   "icon": "mdi:github",
                   "name": "Open an Issue",
@@ -1294,13 +1301,6 @@
                     "legend": true,
                     "labels": true
                   }
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.current_version",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon": "mdi:home-assistant"
                 }
               ]
             },
