@@ -1639,6 +1639,48 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "Cosmo",
+                      "title_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/home-will/cosmo"
+                      }
+                    },
+                    {
+                      "type": "custom:xiaomi-vacuum-map-card",
+                      "map_source": {
+                        "camera": "camera.cosmo_map"
+                      },
+                      "calibration_source": {
+                        "camera": true
+                      },
+                      "entity": "vacuum.cosmo",
+                      "vacuum_platform": "Tasshack/dreame-vacuum",
+                      "title": "",
+                      "two_finger_pan": false,
+                      "map_modes": [
+                        {
+                          "template": "vacuum_clean_segment"
+                        },
+                        {
+                          "template": "vacuum_clean_zone"
+                        },
+                        {
+                          "template": "vacuum_clean_point"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
