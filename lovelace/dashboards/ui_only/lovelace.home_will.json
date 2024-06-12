@@ -1294,6 +1294,13 @@
                     "legend": true,
                     "labels": true
                   }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.current_version",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon": "mdi:home-assistant"
                 }
               ]
             },
