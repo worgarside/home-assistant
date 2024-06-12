@@ -1529,6 +1529,149 @@
                       "columns": 2
                     }
                   ]
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:expander-card",
+                      "title-card": {
+                        "type": "horizontal-stack",
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "var.truelayer_balance_monzo_current_account",
+                            "icon_color": "#FF4F40",
+                            "layout": "vertical",
+                            "name": "Current Account",
+                            "card_mod": {
+                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-right: 0.25em !important;\n}\n"
+                            }
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "var.truelayer_balance_amex",
+                            "icon_color": "#036ED0",
+                            "layout": "vertical",
+                            "card_mod": {
+                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                            }
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "var.truelayer_balance_monzo_credit_cards",
+                            "icon_color": "#4D3926",
+                            "layout": "vertical",
+                            "name": "Credit Cards",
+                            "card_mod": {
+                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                            }
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "var.truelayer_balance_monzo_savings",
+                            "icon_color": "amber",
+                            "layout": "vertical",
+                            "name": "Savings",
+                            "card_mod": {
+                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                            }
+                          }
+                        ]
+                      },
+                      "cards": [
+                        {
+                          "type": "custom:mini-graph-card",
+                          "entities": [
+                            {
+                              "entity": "var.truelayer_balance_monzo_current_account",
+                              "color": "#FF4F40"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_amex",
+                              "color": "#036ED0"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_monzo_credit_cards",
+                              "color": "#4D3926"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_monzo_savings",
+                              "color": "#FFC007"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_starling_current_account",
+                              "color": "#6633CC"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_starling_joint_account",
+                              "color": "purple"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_santander_current_account",
+                              "color": "red"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_hsbc_current_account",
+                              "color": "white"
+                            }
+                          ],
+                          "show": {
+                            "state": false,
+                            "icon": false,
+                            "legend": false,
+                            "labels": true,
+                            "fill": "fade",
+                            "name": false
+                          },
+                          "hours_to_show": 168,
+                          "points_per_hour": 1,
+                          "lower_bound": 0,
+                          "height": 200,
+                          "line_width": 2,
+                          "font_size": 75
+                        }
+                      ],
+                      "padding": 0,
+                      "child-padding": 0,
+                      "title-card-button-overlay": false
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "var.truelayer_balance_starling_current_account",
+                          "icon_color": "#6633CC",
+                          "layout": "vertical",
+                          "icon": "si:starlingbank",
+                          "name": "Current Account"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "var.truelayer_balance_starling_joint_account",
+                          "icon_color": "purple",
+                          "layout": "vertical",
+                          "icon": "si:starlingbank",
+                          "name": "Joint Account"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "var.truelayer_balance_santander_current_account",
+                          "icon_color": "red",
+                          "layout": "vertical",
+                          "name": "Santander"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "var.truelayer_balance_hsbc_current_account",
+                          "icon_color": "white",
+                          "layout": "vertical",
+                          "name": "HSBC"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
