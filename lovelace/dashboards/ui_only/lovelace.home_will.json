@@ -19,52 +19,6 @@
           "icon": "mdi:home",
           "cards": [
             {
-              "type": "custom:mini-graph-card",
-              "entities": [
-                {
-                  "entity": "sensor.bedroom_temperature",
-                  "name": "Bedroom",
-                  "smoothing": true
-                },
-                {
-                  "entity": "sensor.hallway_temperature",
-                  "name": "Hallway",
-                  "smoothing": true
-                },
-                {
-                  "entity": "sensor.kitchen_temperature",
-                  "name": "Kitchen",
-                  "smoothing": true
-                },
-                {
-                  "entity": "sensor.lounge_temperature",
-                  "name": "Lounge",
-                  "smoothing": true
-                },
-                {
-                  "entity": "sensor.office_temperature",
-                  "name": "Office",
-                  "smoothing": true
-                }
-              ],
-              "hours_to_show": 24,
-              "hour24": true,
-              "points_per_hour": 20,
-              "line_width": 2,
-              "min_bound_range": 10,
-              "lower_bound": "~20",
-              "upper_bound": "~20",
-              "animate": true,
-              "name": "Room Temperatures",
-              "show": {
-                "fill": "fade",
-                "icon": false,
-                "state": false,
-                "legend": true,
-                "labels": true
-              }
-            },
-            {
               "type": "custom:layout-break"
             },
             {
