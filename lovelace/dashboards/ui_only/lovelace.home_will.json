@@ -1599,7 +1599,79 @@
           "sections": [
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.vic",
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "icon_type": "entity-picture"
+                    },
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "sensor.person_cosmo",
+                      "fill_container": false,
+                      "icon_type": "entity-picture",
+                      "layout": "vertical",
+                      "tap_action": {
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "vertical-stack",
+                              "cards": [
+                                {
+                                  "type": "custom:card-templater",
+                                  "entities": [
+                                    "input_select.cosmo_entity_picture"
+                                  ],
+                                  "card": {
+                                    "type": "picture",
+                                    "image_template": "{{ states('input_select.cosmo_entity_picture') }}"
+                                  }
+                                },
+                                {
+                                  "type": "entities",
+                                  "entities": [
+                                    {
+                                      "type": "custom:mushroom-entity-card",
+                                      "entity": "sensor.person_cosmo",
+                                      "name": "Cosmo"
+                                    },
+                                    {
+                                      "type": "custom:mushroom-entity-card",
+                                      "entity": "vacuum.cosmo",
+                                      "name": "Cosmo"
+                                    },
+                                    {
+                                      "type": "custom:mushroom-select-card",
+                                      "entity": "input_select.cosmo_entity_picture"
+                                    },
+                                    {
+                                      "entity": "automation.input_select_cosmo_entity_picture_set_options"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.will",
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "icon_type": "entity-picture"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
