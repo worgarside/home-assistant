@@ -1127,15 +1127,6 @@
                   "chips": [
                     {
                       "type": "entity",
-                      "entity": "sensor.current_version",
-                      "icon": "mdi:home-assistant",
-                      "icon_color": "#0EBEF2"
-                    },
-                    {
-                      "type": "spacer"
-                    },
-                    {
-                      "type": "entity",
                       "entity": "sensor.current_git_ref",
                       "icon": "mdi:git",
                       "icon_color": "#E84D32",
