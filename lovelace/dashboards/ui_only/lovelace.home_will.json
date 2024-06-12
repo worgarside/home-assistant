@@ -1657,6 +1657,19 @@
                     }
                   ],
                   "alignment": "justify"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "script.gh_issue_create",
+                  "icon": "mdi:github",
+                  "name": "Open an Issue",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "fill_container": false,
+                  "secondary_info": "none",
+                  "icon_color": "blue",
+                  "icon_type": "icon"
                 }
               ]
             }
