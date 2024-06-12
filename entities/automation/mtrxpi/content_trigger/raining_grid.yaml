@@ -20,12 +20,26 @@ action:
       entity_id: number.mtrxpi_raining_grid_rain_chance
     data:
       # 10 mm/hr = 100% on Matrix
-      value: "{{ ( rain | float(0) * 10 ) | round(3) }}"
+      value: "{{ ( rain | float * 10 ) | round(3) }}"
 
-  - alias: Queue content if it is not already running
-    if: "{{ states('sensor.mtrxpi_current_content') != 'raining-grid' and rain | float(-1) > 0 }}"
-    then:
-      - service: script.mtrxpi_queue_content
-        data:
-          id: raining-grid
-          priority: 100
+  - choose:
+      - alias: Queue content if it is not already running
+
+        conditions: >-
+          {{ states('sensor.mtrxpi_current_content') != 'raining-grid' and rain | float > 0 }}
+
+        sequence:
+          - service: script.mtrxpi_queue_content
+            data:
+              id: raining-grid
+              priority: 100
+
+      - alias: Remove content from queue if rain is 0
+
+        conditions: "{{ rain | float == 0 }}"
+
+        sequence:
+          - service: script.mtrxpi_queue_content
+            data:
+              id: raining-grid
+              priority:
