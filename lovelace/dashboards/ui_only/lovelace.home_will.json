@@ -1294,6 +1294,17 @@
                     "legend": true,
                     "labels": true
                   }
+                },
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.current_version",
+                      "icon_color": "primary",
+                      "icon": "mdi:home-assistant"
+                    }
+                  ]
                 }
               ]
             },
