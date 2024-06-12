@@ -9,12 +9,23 @@ fields:
   id:
     description: The ID of the content to add to the queue
     example: raining-grid
+    selector:
+      text:
 
   priority:
     description: >-
       The priority of the content in the queue. `None` will remove the content from the queue if it
       exists. `0` is the highest priority, and the higher the number, the lower the priority.
     example: "1"
+    required: false
+    default:
+    selector:
+      number:
+        min: 0
+        max: 99999
+        step: any
+        mode: box
+
 
 variables:
   id: "{{ id | default(None) }}"
