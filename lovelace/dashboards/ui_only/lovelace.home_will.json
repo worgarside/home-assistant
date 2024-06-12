@@ -23,15 +23,6 @@
               "entity": "media_player.topaz_sr10"
             },
             {
-              "type": "custom:layout-break"
-            },
-            {
-              "type": "custom:mushroom-entity-card",
-              "entity": "binary_sensor.front_door",
-              "secondary_info": "last-changed",
-              "name": "Front Door"
-            },
-            {
               "type": "horizontal-stack",
               "cards": [
                 {
