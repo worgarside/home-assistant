@@ -1665,6 +1665,17 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.front_door",
+                  "secondary_info": "last-changed",
+                  "name": "Front Door"
+                }
+              ]
             }
           ]
         }
