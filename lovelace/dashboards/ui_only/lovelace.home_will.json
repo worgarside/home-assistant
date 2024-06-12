@@ -1664,6 +1664,12 @@
                   "secondary_info": "none",
                   "icon_color": "blue",
                   "icon_type": "icon"
+                },
+                {
+                  "type": "custom:clock-weather-card",
+                  "entity": "weather.met_office_fulham_daily",
+                  "date_pattern": "DDDD",
+                  "time_pattern": "HH:mm:ss"
                 }
               ]
             }
