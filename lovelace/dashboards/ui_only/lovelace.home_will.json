@@ -21,43 +21,6 @@
             {
               "type": "media-control",
               "entity": "media_player.topaz_sr10"
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "custom:mushroom-title-card",
-                  "title": "Cosmo",
-                  "title_tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/home-will/cosmo"
-                  }
-                },
-                {
-                  "type": "custom:xiaomi-vacuum-map-card",
-                  "map_source": {
-                    "camera": "camera.cosmo_map"
-                  },
-                  "calibration_source": {
-                    "camera": true
-                  },
-                  "entity": "vacuum.cosmo",
-                  "vacuum_platform": "Tasshack/dreame-vacuum",
-                  "title": "",
-                  "two_finger_pan": false,
-                  "map_modes": [
-                    {
-                      "template": "vacuum_clean_segment"
-                    },
-                    {
-                      "template": "vacuum_clean_zone"
-                    },
-                    {
-                      "template": "vacuum_clean_point"
-                    }
-                  ]
-                }
-              ]
             }
           ]
         },
@@ -1574,6 +1537,104 @@
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.st_macbook_pro_internal_battery_level",
                       "name": "SigTech MacBook Pro"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.office_shapes",
+                      "show_brightness_control": true,
+                      "layout": "horizontal",
+                      "use_light_color": true,
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.desk_lamp",
+                      "show_brightness_control": true,
+                      "layout": "horizontal",
+                      "use_light_color": true,
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.mushroom_lamp",
+                      "show_brightness_control": true,
+                      "layout": "horizontal",
+                      "use_light_color": true,
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-cover-card",
+                      "entity": "cover.office_desk",
+                      "show_position_control": true,
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-cover-card",
+                      "entity": "cover.office_blinds",
+                      "show_position_control": true,
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-fan-card",
+                      "entity": "fan.desk_fan",
+                      "name": "Desk Fan",
+                      "icon_animation": true,
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "switch.charging_hub",
+                      "primary_info": "name",
+                      "secondary_info": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "entities": [
+                        "sensor.charging_hub_current_consumption"
+                      ]
                     }
                   ]
                 }
