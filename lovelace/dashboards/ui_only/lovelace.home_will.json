@@ -25,6 +25,636 @@
           ]
         },
         {
+          "title": "Home",
+          "path": "home",
+          "icon": "mdi:home-assistant",
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.vic",
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "icon_type": "entity-picture"
+                    },
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "sensor.person_cosmo",
+                      "fill_container": false,
+                      "icon_type": "entity-picture",
+                      "layout": "vertical",
+                      "tap_action": {
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "vertical-stack",
+                              "cards": [
+                                {
+                                  "type": "custom:card-templater",
+                                  "entities": [
+                                    "input_select.cosmo_entity_picture"
+                                  ],
+                                  "card": {
+                                    "type": "picture",
+                                    "image_template": "{{ states('input_select.cosmo_entity_picture') }}"
+                                  }
+                                },
+                                {
+                                  "type": "entities",
+                                  "entities": [
+                                    {
+                                      "type": "custom:mushroom-entity-card",
+                                      "entity": "sensor.person_cosmo",
+                                      "name": "Cosmo"
+                                    },
+                                    {
+                                      "type": "custom:mushroom-entity-card",
+                                      "entity": "vacuum.cosmo",
+                                      "name": "Cosmo"
+                                    },
+                                    {
+                                      "type": "custom:mushroom-select-card",
+                                      "entity": "input_select.cosmo_entity_picture"
+                                    },
+                                    {
+                                      "entity": "automation.input_select_cosmo_entity_picture_set_options"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.will",
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "icon_type": "entity-picture"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.current_version",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon": "mdi:home-assistant"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "script.gh_issue_create",
+                  "icon": "mdi:github",
+                  "name": "Open an Issue",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "fill_container": false,
+                  "secondary_info": "none",
+                  "icon_color": "blue",
+                  "icon_type": "icon"
+                },
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.current_git_ref",
+                      "icon": "mdi:git",
+                      "icon_color": "#E84D32",
+                      "double_tap_action": {
+                        "action": "url",
+                        "url_path": "https://github.com/worgarside/home-assistant/releases"
+                      },
+                      "hold_action": {
+                        "action": "call-service",
+                        "service": "homeassistant.update_entity",
+                        "target": {
+                          "entity_id": "sensor.current_git_ref"
+                        }
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.current_git_branch",
+                      "icon": "mdi:source-branch",
+                      "icon_color": "#AD20ED",
+                      "double_tap_action": {
+                        "action": "url",
+                        "url_path": "https://github.com/worgarside/home-assistant"
+                      },
+                      "tap_action": {
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "custom:vertical-stack-in-card",
+                              "cards": [
+                                {
+                                  "type": "entities",
+                                  "entities": [
+                                    {
+                                      "type": "custom:mushroom-select-card",
+                                      "entity": "input_select.target_git_branch",
+                                      "secondary_info": "last-updated"
+                                    },
+                                    {
+                                      "entity": "sensor.remote_git_branches"
+                                    },
+                                    {
+                                      "entity": "script.target_git_branch_set_options",
+                                      "name": "Update Available Options",
+                                      "icon": "mdi:source-branch-sync"
+                                    },
+                                    {
+                                      "entity": "script.git_pull",
+                                      "name": "Git Pull",
+                                      "icon": "mdi:source-pull"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "markdown",
+                                  "content": "{% set current_branch = states('sensor.current_git_branch') %}\n- [{{ current_branch }}](https://github.com/worgarside/home-assistant/tree/{{ current_branch }})\n---\n{%- for branch in state_attr('sensor.remote_git_branches', 'branches') if branch != current_branch %}\n- [{{ branch }}](https://github.com/worgarside/home-assistant/tree/{{ branch }})\n{%- endfor %}"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "spacer"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "var.current_appdaemon_ref",
+                      "icon_color": "#01A9F4",
+                      "double_tap_action": {
+                        "action": "url",
+                        "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
+                      },
+                      "hold_action": {
+                        "action": "call-service",
+                        "service": "homeassistant.update_entity",
+                        "target": {
+                          "entity_id": "sensor.current_appdaemon_ref"
+                        }
+                      }
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "var.current_appdaemon_branch",
+                      "icon_color": "#AD20ED",
+                      "double_tap_action": {
+                        "action": "url",
+                        "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
+                      },
+                      "hold_action": {
+                        "action": "call-service",
+                        "service": "homeassistant.update_entity",
+                        "target": {
+                          "entity_id": "sensor.current_appdaemon_branch"
+                        }
+                      }
+                    }
+                  ],
+                  "alignment": "justify"
+                },
+                {
+                  "type": "custom:clock-weather-card",
+                  "entity": "weather.met_office_fulham_daily",
+                  "date_pattern": "DDDD",
+                  "time_pattern": "HH:mm:ss"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.bedroom_temperature",
+                      "name": "Bedroom",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.hallway_temperature",
+                      "name": "Hallway",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.kitchen_temperature",
+                      "name": "Kitchen",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.lounge_temperature",
+                      "name": "Lounge",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.office_temperature",
+                      "name": "Office",
+                      "smoothing": true
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "hour24": true,
+                  "points_per_hour": 20,
+                  "line_width": 2,
+                  "min_bound_range": 10,
+                  "lower_bound": "~20",
+                  "upper_bound": "~20",
+                  "animate": true,
+                  "name": "Room Temperatures",
+                  "show": {
+                    "fill": "fade",
+                    "icon": false,
+                    "state": false,
+                    "legend": true,
+                    "labels": true
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "script.ad_monzo_auto_save",
+                          "name": "Auto-Save",
+                          "card_mod": {
+                            "style": {
+                              "hui-generic-entity-row": {
+                                "$": "state-badge {\n  display: none;\n}\n:host {\n  font-size: 24px;\n  font-weight: 600;\n  line-height: 32px;\n}\n"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "var.auto_save_amount",
+                          "name": "Current Amount",
+                          "icon_color": "orange"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_datetime.last_auto_save",
+                          "icon_color": "green"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_number.auto_save_debit_transaction_percentage",
+                          "name": "Income Percentage",
+                          "icon_color": "lime"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_number.auto_save_minimum",
+                          "icon_color": "deep-orange"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_number.auto_save_naughty_transaction_percentage",
+                          "name": "Naughty Percentage",
+                          "icon_color": "red"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_text.auto_save_naughty_transaction_pattern",
+                          "name": "Naughty Pattern",
+                          "icon_color": "pink"
+                        }
+                      ],
+                      "columns": 2
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:expander-card",
+                      "title-card": {
+                        "type": "horizontal-stack",
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "var.truelayer_balance_monzo_current_account",
+                            "icon_color": "#FF4F40",
+                            "layout": "vertical",
+                            "name": "Current Account",
+                            "card_mod": {
+                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-right: 0.25em !important;\n}\n"
+                            }
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "var.truelayer_balance_amex",
+                            "icon_color": "#036ED0",
+                            "layout": "vertical",
+                            "card_mod": {
+                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                            }
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "var.truelayer_balance_monzo_credit_cards",
+                            "icon_color": "#4D3926",
+                            "layout": "vertical",
+                            "name": "Credit Cards",
+                            "card_mod": {
+                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                            }
+                          },
+                          {
+                            "type": "custom:mushroom-entity-card",
+                            "entity": "var.truelayer_balance_monzo_savings",
+                            "icon_color": "amber",
+                            "layout": "vertical",
+                            "name": "Savings",
+                            "card_mod": {
+                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+                            }
+                          }
+                        ]
+                      },
+                      "cards": [
+                        {
+                          "type": "custom:mini-graph-card",
+                          "entities": [
+                            {
+                              "entity": "var.truelayer_balance_monzo_current_account",
+                              "color": "#FF4F40"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_amex",
+                              "color": "#036ED0"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_monzo_credit_cards",
+                              "color": "#4D3926"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_monzo_savings",
+                              "color": "#FFC007"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_starling_current_account",
+                              "color": "#6633CC"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_starling_joint_account",
+                              "color": "purple"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_santander_current_account",
+                              "color": "red"
+                            },
+                            {
+                              "entity": "var.truelayer_balance_hsbc_current_account",
+                              "color": "white"
+                            }
+                          ],
+                          "show": {
+                            "state": false,
+                            "icon": false,
+                            "legend": false,
+                            "labels": true,
+                            "fill": "fade",
+                            "name": false
+                          },
+                          "hours_to_show": 168,
+                          "points_per_hour": 1,
+                          "lower_bound": 0,
+                          "height": 200,
+                          "line_width": 2,
+                          "font_size": 75
+                        }
+                      ],
+                      "padding": 0,
+                      "child-padding": 0,
+                      "title-card-button-overlay": false
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "var.truelayer_balance_starling_current_account",
+                          "icon_color": "#6633CC",
+                          "layout": "vertical",
+                          "icon": "si:starlingbank",
+                          "name": "Current Account"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "var.truelayer_balance_starling_joint_account",
+                          "icon_color": "purple",
+                          "layout": "vertical",
+                          "icon": "si:starlingbank",
+                          "name": "Joint Account"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "var.truelayer_balance_santander_current_account",
+                          "icon_color": "red",
+                          "layout": "vertical",
+                          "name": "Santander"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "var.truelayer_balance_hsbc_current_account",
+                          "icon_color": "white",
+                          "layout": "vertical",
+                          "name": "HSBC"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.front_door",
+                  "secondary_info": "last-changed",
+                  "name": "Front Door"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wills_macbook_pro_internal_battery_level",
+                  "name": "MacBook Pro"
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.office_shapes",
+                      "show_brightness_control": true,
+                      "layout": "horizontal",
+                      "use_light_color": true,
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.desk_lamp",
+                      "show_brightness_control": true,
+                      "layout": "horizontal",
+                      "use_light_color": true,
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.mushroom_lamp",
+                      "show_brightness_control": true,
+                      "layout": "horizontal",
+                      "use_light_color": true,
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-cover-card",
+                      "entity": "cover.office_desk",
+                      "show_position_control": true,
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-cover-card",
+                      "entity": "cover.office_blinds",
+                      "show_position_control": true,
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-fan-card",
+                      "entity": "fan.desk_fan",
+                      "name": "Desk Fan",
+                      "icon_animation": true,
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "switch.charging_hub",
+                      "primary_info": "name",
+                      "secondary_info": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "entities": [
+                        "sensor.charging_hub_current_consumption"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "Cosmo",
+                      "title_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/home-will/cosmo"
+                      }
+                    },
+                    {
+                      "type": "custom:xiaomi-vacuum-map-card",
+                      "map_source": {
+                        "camera": "camera.cosmo_map"
+                      },
+                      "calibration_source": {
+                        "camera": true
+                      },
+                      "entity": "vacuum.cosmo",
+                      "vacuum_platform": "Tasshack/dreame-vacuum",
+                      "title": "",
+                      "two_finger_pan": false,
+                      "map_modes": [
+                        {
+                          "template": "vacuum_clean_segment"
+                        },
+                        {
+                          "template": "vacuum_clean_zone"
+                        },
+                        {
+                          "template": "vacuum_clean_point"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "title": "Mobile",
           "type": "custom:vertical-layout",
           "path": "mobile",
@@ -963,636 +1593,6 @@
             }
           ],
           "cards": []
-        },
-        {
-          "title": "Home",
-          "path": "home",
-          "icon": "mdi:home-assistant",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.vic",
-                      "fill_container": false,
-                      "layout": "vertical",
-                      "icon_type": "entity-picture"
-                    },
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "sensor.person_cosmo",
-                      "fill_container": false,
-                      "icon_type": "entity-picture",
-                      "layout": "vertical",
-                      "tap_action": {
-                        "action": "fire-dom-event",
-                        "browser_mod": {
-                          "service": "browser_mod.popup",
-                          "data": {
-                            "content": {
-                              "type": "vertical-stack",
-                              "cards": [
-                                {
-                                  "type": "custom:card-templater",
-                                  "entities": [
-                                    "input_select.cosmo_entity_picture"
-                                  ],
-                                  "card": {
-                                    "type": "picture",
-                                    "image_template": "{{ states('input_select.cosmo_entity_picture') }}"
-                                  }
-                                },
-                                {
-                                  "type": "entities",
-                                  "entities": [
-                                    {
-                                      "type": "custom:mushroom-entity-card",
-                                      "entity": "sensor.person_cosmo",
-                                      "name": "Cosmo"
-                                    },
-                                    {
-                                      "type": "custom:mushroom-entity-card",
-                                      "entity": "vacuum.cosmo",
-                                      "name": "Cosmo"
-                                    },
-                                    {
-                                      "type": "custom:mushroom-select-card",
-                                      "entity": "input_select.cosmo_entity_picture"
-                                    },
-                                    {
-                                      "entity": "automation.input_select_cosmo_entity_picture_set_options"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.will",
-                      "fill_container": false,
-                      "layout": "vertical",
-                      "icon_type": "entity-picture"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.current_version",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon": "mdi:home-assistant"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "script.gh_issue_create",
-                  "icon": "mdi:github",
-                  "name": "Open an Issue",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "fill_container": false,
-                  "secondary_info": "none",
-                  "icon_color": "blue",
-                  "icon_type": "icon"
-                },
-                {
-                  "type": "custom:mushroom-chips-card",
-                  "chips": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.current_git_ref",
-                      "icon": "mdi:git",
-                      "icon_color": "#E84D32",
-                      "double_tap_action": {
-                        "action": "url",
-                        "url_path": "https://github.com/worgarside/home-assistant/releases"
-                      },
-                      "hold_action": {
-                        "action": "call-service",
-                        "service": "homeassistant.update_entity",
-                        "target": {
-                          "entity_id": "sensor.current_git_ref"
-                        }
-                      }
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.current_git_branch",
-                      "icon": "mdi:source-branch",
-                      "icon_color": "#AD20ED",
-                      "double_tap_action": {
-                        "action": "url",
-                        "url_path": "https://github.com/worgarside/home-assistant"
-                      },
-                      "tap_action": {
-                        "action": "fire-dom-event",
-                        "browser_mod": {
-                          "service": "browser_mod.popup",
-                          "data": {
-                            "content": {
-                              "type": "custom:vertical-stack-in-card",
-                              "cards": [
-                                {
-                                  "type": "entities",
-                                  "entities": [
-                                    {
-                                      "type": "custom:mushroom-select-card",
-                                      "entity": "input_select.target_git_branch",
-                                      "secondary_info": "last-updated"
-                                    },
-                                    {
-                                      "entity": "sensor.remote_git_branches"
-                                    },
-                                    {
-                                      "entity": "script.target_git_branch_set_options",
-                                      "name": "Update Available Options",
-                                      "icon": "mdi:source-branch-sync"
-                                    },
-                                    {
-                                      "entity": "script.git_pull",
-                                      "name": "Git Pull",
-                                      "icon": "mdi:source-pull"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "markdown",
-                                  "content": "{% set current_branch = states('sensor.current_git_branch') %}\n- [{{ current_branch }}](https://github.com/worgarside/home-assistant/tree/{{ current_branch }})\n---\n{%- for branch in state_attr('sensor.remote_git_branches', 'branches') if branch != current_branch %}\n- [{{ branch }}](https://github.com/worgarside/home-assistant/tree/{{ branch }})\n{%- endfor %}"
-                                }
-                              ]
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "type": "spacer"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "var.current_appdaemon_ref",
-                      "icon_color": "#01A9F4",
-                      "double_tap_action": {
-                        "action": "url",
-                        "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
-                      },
-                      "hold_action": {
-                        "action": "call-service",
-                        "service": "homeassistant.update_entity",
-                        "target": {
-                          "entity_id": "sensor.current_appdaemon_ref"
-                        }
-                      }
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "var.current_appdaemon_branch",
-                      "icon_color": "#AD20ED",
-                      "double_tap_action": {
-                        "action": "url",
-                        "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
-                      },
-                      "hold_action": {
-                        "action": "call-service",
-                        "service": "homeassistant.update_entity",
-                        "target": {
-                          "entity_id": "sensor.current_appdaemon_branch"
-                        }
-                      }
-                    }
-                  ],
-                  "alignment": "justify"
-                },
-                {
-                  "type": "custom:clock-weather-card",
-                  "entity": "weather.met_office_fulham_daily",
-                  "date_pattern": "DDDD",
-                  "time_pattern": "HH:mm:ss"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "entities": [
-                    {
-                      "entity": "sensor.bedroom_temperature",
-                      "name": "Bedroom",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.hallway_temperature",
-                      "name": "Hallway",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.kitchen_temperature",
-                      "name": "Kitchen",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.lounge_temperature",
-                      "name": "Lounge",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.office_temperature",
-                      "name": "Office",
-                      "smoothing": true
-                    }
-                  ],
-                  "hours_to_show": 24,
-                  "hour24": true,
-                  "points_per_hour": 20,
-                  "line_width": 2,
-                  "min_bound_range": 10,
-                  "lower_bound": "~20",
-                  "upper_bound": "~20",
-                  "animate": true,
-                  "name": "Room Temperatures",
-                  "show": {
-                    "fill": "fade",
-                    "icon": false,
-                    "state": false,
-                    "legend": true,
-                    "labels": true
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "entities",
-                      "entities": [
-                        {
-                          "entity": "script.ad_monzo_auto_save",
-                          "name": "Auto-Save",
-                          "card_mod": {
-                            "style": {
-                              "hui-generic-entity-row": {
-                                "$": "state-badge {\n  display: none;\n}\n:host {\n  font-size: 24px;\n  font-weight: 600;\n  line-height: 32px;\n}\n"
-                              }
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.auto_save_amount",
-                          "name": "Current Amount",
-                          "icon_color": "orange"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_datetime.last_auto_save",
-                          "icon_color": "green"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_number.auto_save_debit_transaction_percentage",
-                          "name": "Income Percentage",
-                          "icon_color": "lime"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_number.auto_save_minimum",
-                          "icon_color": "deep-orange"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_number.auto_save_naughty_transaction_percentage",
-                          "name": "Naughty Percentage",
-                          "icon_color": "red"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_text.auto_save_naughty_transaction_pattern",
-                          "name": "Naughty Pattern",
-                          "icon_color": "pink"
-                        }
-                      ],
-                      "columns": 2
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "custom:expander-card",
-                      "title-card": {
-                        "type": "horizontal-stack",
-                        "cards": [
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_monzo_current_account",
-                            "icon_color": "#FF4F40",
-                            "layout": "vertical",
-                            "name": "Current Account",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          },
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_amex",
-                            "icon_color": "#036ED0",
-                            "layout": "vertical",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          },
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_monzo_credit_cards",
-                            "icon_color": "#4D3926",
-                            "layout": "vertical",
-                            "name": "Credit Cards",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          },
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_monzo_savings",
-                            "icon_color": "amber",
-                            "layout": "vertical",
-                            "name": "Savings",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          }
-                        ]
-                      },
-                      "cards": [
-                        {
-                          "type": "custom:mini-graph-card",
-                          "entities": [
-                            {
-                              "entity": "var.truelayer_balance_monzo_current_account",
-                              "color": "#FF4F40"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_amex",
-                              "color": "#036ED0"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_monzo_credit_cards",
-                              "color": "#4D3926"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_monzo_savings",
-                              "color": "#FFC007"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_starling_current_account",
-                              "color": "#6633CC"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_starling_joint_account",
-                              "color": "purple"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_santander_current_account",
-                              "color": "red"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_hsbc_current_account",
-                              "color": "white"
-                            }
-                          ],
-                          "show": {
-                            "state": false,
-                            "icon": false,
-                            "legend": false,
-                            "labels": true,
-                            "fill": "fade",
-                            "name": false
-                          },
-                          "hours_to_show": 168,
-                          "points_per_hour": 1,
-                          "lower_bound": 0,
-                          "height": 200,
-                          "line_width": 2,
-                          "font_size": 75
-                        }
-                      ],
-                      "padding": 0,
-                      "child-padding": 0,
-                      "title-card-button-overlay": false
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_starling_current_account",
-                          "icon_color": "#6633CC",
-                          "layout": "vertical",
-                          "icon": "si:starlingbank",
-                          "name": "Current Account"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_starling_joint_account",
-                          "icon_color": "purple",
-                          "layout": "vertical",
-                          "icon": "si:starlingbank",
-                          "name": "Joint Account"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_santander_current_account",
-                          "icon_color": "red",
-                          "layout": "vertical",
-                          "name": "Santander"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_hsbc_current_account",
-                          "icon_color": "white",
-                          "layout": "vertical",
-                          "name": "HSBC"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.front_door",
-                  "secondary_info": "last-changed",
-                  "name": "Front Door"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.wills_macbook_pro_internal_battery_level",
-                  "name": "MacBook Pro"
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.office_shapes",
-                      "show_brightness_control": true,
-                      "layout": "horizontal",
-                      "use_light_color": true,
-                      "double_tap_action": {
-                        "action": "toggle"
-                      },
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.desk_lamp",
-                      "show_brightness_control": true,
-                      "layout": "horizontal",
-                      "use_light_color": true,
-                      "double_tap_action": {
-                        "action": "toggle"
-                      },
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.mushroom_lamp",
-                      "show_brightness_control": true,
-                      "layout": "horizontal",
-                      "use_light_color": true,
-                      "double_tap_action": {
-                        "action": "toggle"
-                      },
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-cover-card",
-                      "entity": "cover.office_desk",
-                      "show_position_control": true,
-                      "layout": "horizontal",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-cover-card",
-                      "entity": "cover.office_blinds",
-                      "show_position_control": true,
-                      "layout": "horizontal",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-fan-card",
-                      "entity": "fan.desk_fan",
-                      "name": "Desk Fan",
-                      "icon_animation": true,
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "switch.charging_hub",
-                      "primary_info": "name",
-                      "secondary_info": "state",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
-                      }
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "entities": [
-                        "sensor.charging_hub_current_consumption"
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Cosmo",
-                      "title_tap_action": {
-                        "action": "navigate",
-                        "navigation_path": "/home-will/cosmo"
-                      }
-                    },
-                    {
-                      "type": "custom:xiaomi-vacuum-map-card",
-                      "map_source": {
-                        "camera": "camera.cosmo_map"
-                      },
-                      "calibration_source": {
-                        "camera": true
-                      },
-                      "entity": "vacuum.cosmo",
-                      "vacuum_platform": "Tasshack/dreame-vacuum",
-                      "title": "",
-                      "two_finger_pan": false,
-                      "map_modes": [
-                        {
-                          "template": "vacuum_clean_segment"
-                        },
-                        {
-                          "template": "vacuum_clean_zone"
-                        },
-                        {
-                          "template": "vacuum_clean_point"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
         },
         {
           "title": "Cube",
