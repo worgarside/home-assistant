@@ -1140,6 +1140,17 @@
                   "chips": [
                     {
                       "type": "entity",
+                      "entity": "sensor.current_version",
+                      "icon_color": "primary",
+                      "icon": "mdi:home-assistant"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
                       "entity": "sensor.current_git_ref",
                       "icon": "mdi:git",
                       "icon_color": "#E84D32",
@@ -1294,17 +1305,6 @@
                     "legend": true,
                     "labels": true
                   }
-                },
-                {
-                  "type": "custom:mushroom-chips-card",
-                  "chips": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.current_version",
-                      "icon_color": "primary",
-                      "icon": "mdi:home-assistant"
-                    }
-                  ]
                 }
               ]
             },
