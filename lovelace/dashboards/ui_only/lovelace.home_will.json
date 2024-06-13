@@ -96,7 +96,8 @@
                   "entity": "sensor.current_version",
                   "primary_info": "state",
                   "secondary_info": "name",
-                  "icon": "mdi:home-assistant"
+                  "icon": "mdi:home-assistant",
+                  "fill_container": true
                 },
                 {
                   "type": "custom:mushroom-entity-card",
