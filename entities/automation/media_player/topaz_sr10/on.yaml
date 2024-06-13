@@ -4,8 +4,8 @@ alias: /media-player/topaz-sr10/on
 id: media_player_topaz_sr10_on
 
 description: >-
-  Run when the Topaz SR10 is turned on, this ensures the plug is turned on and that the volume is
-  initialized to a reasonable level for the speakers.
+  Run when the Topaz SR10 media player entity is turned on, this ensures the plug is turned on and
+  that the volume is initialized to a reasonable level for the speakers.
 
 mode: single
 
@@ -30,7 +30,7 @@ action:
             entity_id: switch.office_amp
 
         - delay:
-            seconds: 1
+            seconds: 2
 
   - if: "{{ is_state('switch.office_amp', 'on') }}"
 
