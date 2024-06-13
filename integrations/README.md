@@ -913,7 +913,7 @@ File: [`automation/media_player/topaz_sr10/off.yaml`](entities/automation/media_
 
 **Entity ID: `automation.media_player_topaz_sr10_on`**
 
-> Run when the Topaz SR10 is turned on, this ensures the plug is turned on and that the volume is initialized to a reasonable level for the speakers.
+> Run when the Topaz SR10 media player entity is turned on, this ensures the plug is turned on and that the volume is initialized to a reasonable level for the speakers.
 
 - Alias: /media-player/topaz-sr10/on
 - ID: `media_player_topaz_sr10_on`
@@ -4524,7 +4524,7 @@ File: [`script/light/kitchen_spotlights/turn_on_kitchen_spotlights.yaml`](entiti
 
 **Entity ID: `script.topaz_sr10_turn_off`**
 
-> Set the volume of the Topaz SR10 to a specific value
+> Turn the Topaz SR10 off. Exists as a script because you can't have multi-step commands
 
 - Mode: `single`
 
