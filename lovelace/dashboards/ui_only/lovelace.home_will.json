@@ -1728,6 +1728,12 @@
                   "entity": "number.prusa_i3_target_bed_temperature",
                   "name": "Bed Target",
                   "icon_color": "purple"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "number.prusa_i3_target_hotend_temperature",
+                  "name": "Hotend Target",
+                  "icon_color": "purple"
                 }
               ]
             }
