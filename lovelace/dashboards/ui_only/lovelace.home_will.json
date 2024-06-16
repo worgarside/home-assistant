@@ -1667,6 +1667,10 @@
                   "type": "custom:mushroom-entity-card",
                   "entity": "switch.prusa_i3_mk3_power",
                   "icon_color": "blue"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.time"
                 }
               ]
             }
