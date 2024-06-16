@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (120)</h3></summary>
+<details><summary><h3>Entities (119)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1082,19 +1082,6 @@ File: [`automation/notification/system/restart_required/send.yaml`](entities/aut
 }
 ```
 File: [`automation/octopi/fan_control.yaml`](entities/automation/octopi/fan_control.yaml)
-</details>
-
-<details><summary><code>/octopi/send-fan-mqtt-message</code></summary>
-
-**Entity ID: `automation.octopi_send_fan_mqtt_message`**
-
-> *No description provided*
-
-- Alias: /octopi/send-fan-mqtt-message
-- ID: `octopi_send_fan_mqtt_message`
-- Mode: `queued`
-
-File: [`automation/octopi/send_fan_mqtt_message.yaml`](entities/automation/octopi/send_fan_mqtt_message.yaml)
 </details>
 
 <details><summary><code>/person/nobody-home</code></summary>
@@ -3049,7 +3036,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (95)</h3></summary>
+<details><summary><h3>Entities (97)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -3093,6 +3080,30 @@ File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/m
 - Unit Of Measurement: `ticks`
 
 File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/splash_speed.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 | Target Bed Temperature</strong></summary>
+
+**Entity ID: `mqtt.prusa_i3_target_bed_temperature`**
+
+- Icon: [`mdi:grid`](https://pictogrammers.com/library/mdi/icon/grid/)
+- Command Topic: /octopi/prusa-i3/target-bed-temperature
+- State Topic: octoPrint/temperature/bed
+- Unit Of Measurement: °C
+
+File: [`mqtt/number/octopi/prusa_i3/target_bed_temperature.yaml`](entities/mqtt/number/octopi/prusa_i3/target_bed_temperature.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 | Target Hotend Temperature</strong></summary>
+
+**Entity ID: `mqtt.prusa_i3_target_hotend_temperature`**
+
+- Icon: [`mdi:printer-3d-nozzle-heat`](https://pictogrammers.com/library/mdi/icon/printer-3d-nozzle-heat/)
+- Command Topic: /octopi/prusa-i3/target-hotend-temperature
+- State Topic: octoPrint/temperature/tool0
+- Unit Of Measurement: °C
+
+File: [`mqtt/number/octopi/prusa_i3/target_tool0_temperature.yaml`](entities/mqtt/number/octopi/prusa_i3/target_tool0_temperature.yaml)
 </details>
 
 <details><summary><strong>ClmtPi Active Git Ref</strong></summary>
