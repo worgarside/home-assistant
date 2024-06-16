@@ -1692,6 +1692,12 @@
                   "entity": "switch.prusa_i3_enclosure_fan",
                   "name": "Enclosure Fan",
                   "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octopi_ambient_temperature",
+                  "name": "Ambient Temperature",
+                  "icon_color": "pink"
                 }
               ]
             }
