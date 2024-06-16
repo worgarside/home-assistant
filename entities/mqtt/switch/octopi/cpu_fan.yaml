@@ -5,11 +5,9 @@ name: OctoPi CPU Fan
 
 command_topic: /octopi/gpio/cpu-fan
 
-payload_on:
-  value: "On"
+payload_on: '{"value": "On"}'
 
-payload_off:
-  value: "Off"
+payload_off: '{"value": "Off"}'
 
 qos: 0
 
@@ -17,8 +15,6 @@ retain: true
 
 state_topic: /octopi/gpio/cpu-fan
 
-state_on:
-  value: "On"
+state_on: '{"value": "On"}'
 
-state_off:
-  value: "Off"
+state_off: '{"value": "Off"}'
