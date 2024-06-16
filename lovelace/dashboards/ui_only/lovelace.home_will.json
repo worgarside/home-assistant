@@ -1716,6 +1716,12 @@
                   "entity": "sensor.octopi_cpu_temperature",
                   "name": "OctoPi CPU Temp",
                   "icon_color": "pink"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octoprint_approximate_completion_time",
+                  "name": "Print Completion Time",
+                  "icon_color": "purple"
                 }
               ]
             }
