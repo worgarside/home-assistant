@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (121)</h3></summary>
+<details><summary><h3>Entities (120)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1149,19 +1149,6 @@ File: [`automation/person/will/home.yaml`](entities/automation/person/will/home.
 File: [`automation/person/will/leaving_work.yaml`](entities/automation/person/will/leaving_work.yaml)
 </details>
 
-<details><summary><code>/prusa-i3-mk3/enclosure/send-fan-mqtt-message</code></summary>
-
-**Entity ID: `automation.prusa_i3_mk3_enclosure_send_fan_mqtt_message`**
-
-> *No description provided*
-
-- Alias: /prusa-i3-mk3/enclosure/send-fan-mqtt-message
-- ID: `prusa_i3_mk3_enclosure_send_fan_mqtt_message`
-- Mode: `queued`
-
-File: [`automation/prusa_i3_mk3/enclosure/send_fan_mqtt_message.yaml`](entities/automation/prusa_i3_mk3/enclosure/send_fan_mqtt_message.yaml)
-</details>
-
 <details><summary><code>/remote/bedroom-blinds/double-press</code></summary>
 
 **Entity ID: `automation.remote_bedroom_blinds_double_press`**
@@ -2097,7 +2084,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (13)</h3></summary>
+<details><summary><h3>Entities (12)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -2188,15 +2175,6 @@ File: [`input_boolean/office_entity_header.yaml`](entities/input_boolean/office_
 - Icon: [`mdi:album`](https://pictogrammers.com/library/mdi/icon/album/)
 
 File: [`input_boolean/office_shapes_artwork_mapping_active.yaml`](entities/input_boolean/office_shapes_artwork_mapping_active.yaml)
-</details>
-
-<details><summary><strong>Prusa i3 MK3 Enclosure Fan</strong></summary>
-
-**Entity ID: `input_boolean.prusa_i3_mk3_enclosure_fan`**
-
-- Icon: [`mdi:fan`](https://pictogrammers.com/library/mdi/icon/fan/)
-
-File: [`input_boolean/prusa_i3_mk3_enclosure_fan.yaml`](entities/input_boolean/prusa_i3_mk3_enclosure_fan.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10: Is Volume Muted</strong></summary>

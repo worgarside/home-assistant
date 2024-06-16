@@ -1,0 +1,24 @@
+---
+unique_id: octopi_cpu_fan
+
+name: OctoPi CPU Fan
+
+command_topic: /octopi/gpio/cpu-fan
+
+payload_on:
+  value: "On"
+
+payload_off:
+  value: "Off"
+
+qos: 0
+
+retain: true
+
+state_topic: /octopi/gpio/cpu-fan
+
+state_on:
+  value: "On"
+
+state_off:
+  value: "Off"
