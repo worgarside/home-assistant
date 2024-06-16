@@ -1249,6 +1249,108 @@
           ]
         },
         {
+          "title": "Makerspace",
+          "path": "makerspace2",
+          "icon": "mdi:printer-3d",
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "camera_view": "live",
+                  "type": "picture-glance",
+                  "entities": [],
+                  "camera_image": "camera.octoprint_camera",
+                  "aspect_ratio": "1.333333",
+                  "entity": "binary_sensor.octoprint_connected",
+                  "theme": "Mushroom",
+                  "view_layout": {
+                    "grid-area": "cam"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.prusa_i3_mk3_power",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octopi_local_ip_address",
+                  "name": "OctoPi IP",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.prusa_i3_mk3_current_consumption",
+                  "name": "Current Power Draw",
+                  "icon_color": "yellow"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octopi_cpu_temperature",
+                  "name": "OctoPi CPU Temp",
+                  "icon_color": "pink"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "number.prusa_i3_target_hotend_temperature",
+                  "name": "Hotend Target",
+                  "icon_color": "purple"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octoprint_tool_0_temperature",
+                  "name": "Hotend Temperature",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "number.prusa_i3_target_bed_temperature",
+                  "name": "Bed Target",
+                  "icon_color": "deep-purple"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octoprint_bed_temperature",
+                  "name": "Bed Temperature",
+                  "icon_color": "deep-orange",
+                  "icon": "mdi:grid"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.prusa_i3_enclosure_fan",
+                  "name": "Enclosure Fan",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octopi_ambient_temperature",
+                  "name": "Ambient Temperature",
+                  "icon_color": "pink"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.octopi_cpu_fan",
+                  "name": "CPU Fan",
+                  "icon_color": "yellow"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octoprint_approximate_completion_time",
+                  "name": "Print Completion Time",
+                  "icon_color": "purple"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "title": "LED Matrix Controller",
           "path": "led-matrix-controller",
           "icon": "mdi:data-matrix",
@@ -1458,121 +1560,6 @@
           "cards": []
         },
         {
-          "title": "Design Lab",
-          "path": "makerspace",
-          "icon": "mdi:printer-3d",
-          "layout": {
-            "grid-template-areas": "\"cam cam amb\"\n\"cam cam 3dp\"\n"
-          },
-          "badges": [],
-          "cards": [
-            {
-              "camera_view": "live",
-              "type": "picture-glance",
-              "entities": [
-                {
-                  "entity": "binary_sensor.octoprint_printing"
-                }
-              ],
-              "camera_image": "camera.octoprint_camera",
-              "aspect_ratio": "1.333333",
-              "entity": "binary_sensor.octoprint_connected",
-              "theme": "Mushroom",
-              "view_layout": {
-                "grid-area": "cam"
-              }
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "square": false,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "switch.prusa_i3_mk3_power",
-                      "icon_color": "blue"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_tool_0_temperature",
-                      "name": "Hotend Temperature",
-                      "icon_color": "orange",
-                      "icon": ""
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_bed_temperature",
-                      "name": "Bed Temperature",
-                      "icon_color": "lime",
-                      "icon": "mdi:grid"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "switch.prusa_i3_enclosure_fan",
-                      "name": "Enclosure Fan",
-                      "icon_color": "red"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octopi_ambient_temperature",
-                      "name": "Ambient Temperature",
-                      "icon_color": "pink"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.prusa_i3_mk3_current_consumption",
-                      "name": "Current Power Draw",
-                      "icon_color": "yellow"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_boolean.octopi_fan",
-                      "name": "OctoPi Fan",
-                      "icon_color": "yellow"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octopi_cpu_temperature",
-                      "name": "OctoPi CPU Temp",
-                      "icon_color": "pink"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_approximate_completion_time",
-                      "name": "Print Completion Time",
-                      "icon_color": "purple"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "number.prusa_i3_target_bed_temperature",
-                      "name": "Bed Target",
-                      "icon_color": "purple"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "number.prusa_i3_target_hotend_temperature",
-                      "name": "Hotend Target",
-                      "icon_color": "purple"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octopi_local_ip_address",
-                      "name": "OctoPi IP",
-                      "icon_color": "blue"
-                    }
-                  ],
-                  "columns": 2
-                }
-              ],
-              "view_layout": {
-                "grid-area": "3dp"
-              }
-            }
-          ]
-        },
-        {
           "title": "Cube",
           "path": "cube",
           "icon": "phu:aqara-cube",
@@ -1645,108 +1632,6 @@
                     "last-changed",
                     "command"
                   ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Makerspace",
-          "path": "makerspace2",
-          "icon": "mdi:printer-3d",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "camera_view": "live",
-                  "type": "picture-glance",
-                  "entities": [],
-                  "camera_image": "camera.octoprint_camera",
-                  "aspect_ratio": "1.333333",
-                  "entity": "binary_sensor.octoprint_connected",
-                  "theme": "Mushroom",
-                  "view_layout": {
-                    "grid-area": "cam"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "switch.prusa_i3_mk3_power",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octopi_local_ip_address",
-                  "name": "OctoPi IP",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.prusa_i3_mk3_current_consumption",
-                  "name": "Current Power Draw",
-                  "icon_color": "yellow"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octopi_cpu_temperature",
-                  "name": "OctoPi CPU Temp",
-                  "icon_color": "pink"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "number.prusa_i3_target_hotend_temperature",
-                  "name": "Hotend Target",
-                  "icon_color": "purple"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octoprint_tool_0_temperature",
-                  "name": "Hotend Temperature",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "number.prusa_i3_target_bed_temperature",
-                  "name": "Bed Target",
-                  "icon_color": "deep-purple"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octoprint_bed_temperature",
-                  "name": "Bed Temperature",
-                  "icon_color": "deep-orange",
-                  "icon": "mdi:grid"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "switch.prusa_i3_enclosure_fan",
-                  "name": "Enclosure Fan",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octopi_ambient_temperature",
-                  "name": "Ambient Temperature",
-                  "icon_color": "pink"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "switch.octopi_cpu_fan",
-                  "name": "CPU Fan",
-                  "icon_color": "yellow"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octoprint_approximate_completion_time",
-                  "name": "Print Completion Time",
-                  "icon_color": "purple"
                 }
               ]
             }
