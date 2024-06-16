@@ -1704,6 +1704,12 @@
                   "entity": "sensor.prusa_i3_mk3_current_consumption",
                   "name": "Current Power Draw",
                   "icon_color": "yellow"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.octopi_cpu_fan",
+                  "name": "CPU Fan",
+                  "icon_color": "yellow"
                 }
               ]
             }
