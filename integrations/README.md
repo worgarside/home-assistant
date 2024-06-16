@@ -2944,7 +2944,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (97)</h3></summary>
+<details><summary><h3>Entities (99)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -4025,6 +4025,26 @@ File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memor
 - Unit Of Measurement: `s`
 
 File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml)
+</details>
+
+<details><summary><strong>OctoPi CPU Fan</strong></summary>
+
+**Entity ID: `mqtt.octopi_cpu_fan`**
+
+- Command Topic: /octopi/gpio/cpu-fan
+- State Topic: /octopi/gpio/cpu-fan
+
+File: [`mqtt/switch/octopi/cpu_fan.yaml`](entities/mqtt/switch/octopi/cpu_fan.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 Enclosure Fan</strong></summary>
+
+**Entity ID: `mqtt.prusa_i3_enclosure_fan`**
+
+- Command Topic: /prusa-i3-mk3/enclosure/fan
+- State Topic: /prusa-i3-mk3/enclosure/fan
+
+File: [`mqtt/switch/prusa_i3/enclosure_fan.yaml`](entities/mqtt/switch/prusa_i3/enclosure_fan.yaml)
 </details>
 
 </details>
