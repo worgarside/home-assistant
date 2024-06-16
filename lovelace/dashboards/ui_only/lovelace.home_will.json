@@ -1686,6 +1686,12 @@
                   "name": "Bed Temperature",
                   "icon_color": "lime",
                   "icon": "mdi:grid"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.prusa_i3_enclosure_fan",
+                  "name": "Enclosure Fan",
+                  "icon_color": "red"
                 }
               ]
             }
