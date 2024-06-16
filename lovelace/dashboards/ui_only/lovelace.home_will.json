@@ -1294,12 +1294,6 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "icon_color": "green",
-                      "name": "Hotend Target",
-                      "entity": "sensor.octoprint_tool_0_target"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_bed_temperature",
                       "name": "Bed Temperature",
                       "icon_color": "lime",
@@ -1307,14 +1301,7 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_bed_target",
-                      "icon_color": "deep-orange",
-                      "name": "Bed Target",
-                      "icon": "mdi:grid"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_boolean.prusa_i3_mk3_enclosure_fan",
+                      "entity": "switch.prusa_i3_enclosure_fan",
                       "name": "Enclosure Fan",
                       "icon_color": "red"
                     },
@@ -1350,13 +1337,13 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.prusa_i3_mk3_target_bed_temperature",
+                      "entity": "number.prusa_i3_target_bed_temperature",
                       "name": "Bed Target",
                       "icon_color": "purple"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.prusa_i3_mk3_target_hotend_temperature",
+                      "entity": "number.prusa_i3_target_hotend_temperature",
                       "name": "Hotend Target",
                       "icon_color": "purple"
                     },
