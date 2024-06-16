@@ -1679,6 +1679,13 @@
                   "entity": "sensor.octoprint_tool_0_temperature",
                   "name": "Hotend Temperature",
                   "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octoprint_bed_temperature",
+                  "name": "Bed Temperature",
+                  "icon_color": "lime",
+                  "icon": "mdi:grid"
                 }
               ]
             }
