@@ -1662,11 +1662,7 @@
                 {
                   "camera_view": "live",
                   "type": "picture-glance",
-                  "entities": [
-                    {
-                      "entity": "binary_sensor.octoprint_printing"
-                    }
-                  ],
+                  "entities": [],
                   "camera_image": "camera.octoprint_camera",
                   "aspect_ratio": "1.333333",
                   "entity": "binary_sensor.octoprint_connected",
