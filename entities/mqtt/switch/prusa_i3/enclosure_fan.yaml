@@ -18,3 +18,9 @@ state_topic: /prusa-i3-mk3/enclosure/fan
 state_on: '{"value": "On"}'
 
 state_off: '{"value": "Off"}'
+
+availability_template: "{{ states('switch.prusa_i3_mk3_power') | bool }}"
+
+payload_available: true
+
+payload_not_available: false
