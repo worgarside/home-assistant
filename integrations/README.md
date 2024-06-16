@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (119)</h3></summary>
+<details><summary><h3>Entities (115)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -794,48 +794,6 @@ File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](
 File: [`automation/input_number/cosmo/room_timeout/set.yaml`](entities/automation/input_number/cosmo/room_timeout/set.yaml)
 </details>
 
-<details><summary><code>/input-number/prusa-i3-mk3/bed-target/set</code></summary>
-
-**Entity ID: `automation.input_number_prusa_i3_mk3_bed_target_set`**
-
-> *No description provided*
-
-- Alias: /input-number/prusa-i3-mk3/bed-target/set
-- ID: `input_number_prusa_i3_mk3_bed_target_set`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "payload": {
-    "value": "{{ trigger.to_state.state | int(-1) }}"
-  }
-}
-```
-File: [`automation/input_number/prusa_i3_mk3/bed_target/set.yaml`](entities/automation/input_number/prusa_i3_mk3/bed_target/set.yaml)
-</details>
-
-<details><summary><code>/input-number/prusa-i3-mk3/tool-0-target/set</code></summary>
-
-**Entity ID: `automation.input_number_prusa_i3_mk3_tool_0_target_set`**
-
-> *No description provided*
-
-- Alias: /input-number/prusa-i3-mk3/tool-0-target/set
-- ID: `input_number_prusa_i3_mk3_tool_0_target_set`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "payload": {
-    "value": "{{ trigger.to_state.state | int(-1) }}"
-  }
-}
-```
-File: [`automation/input_number/prusa_i3_mk3/tool_0_target/set.yaml`](entities/automation/input_number/prusa_i3_mk3/tool_0_target/set.yaml)
-</details>
-
 <details><summary><code>/input-select/cosmo-entity-picture/set-options</code></summary>
 
 **Entity ID: `automation.input_select_cosmo_entity_picture_set_options`**
@@ -1418,32 +1376,6 @@ File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_rel
 - Mode: `queued`
 
 File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/automation/script/crt_pi_update_display/mqtt_trigger.yaml)
-</details>
-
-<details><summary><code>/sensor/octoprint-bed-target/set</code></summary>
-
-**Entity ID: `automation.sensor_octoprint_bed_target_set`**
-
-> *No description provided*
-
-- Alias: /sensor/octoprint-bed-target/set
-- ID: `sensor_octoprint_bed_target_set`
-- Mode: `queued`
-
-File: [`automation/sensor/octoprint_bed_target/set.yaml`](entities/automation/sensor/octoprint_bed_target/set.yaml)
-</details>
-
-<details><summary><code>/sensor/octoprint-tool-0-target/set</code></summary>
-
-**Entity ID: `automation.sensor_octoprint_tool_0_target_set`**
-
-> *No description provided*
-
-- Alias: /sensor/octoprint-tool-0-target/set
-- ID: `sensor_octoprint_tool_0_target_set`
-- Mode: `queued`
-
-File: [`automation/sensor/octoprint_tool_0_target/set.yaml`](entities/automation/sensor/octoprint_tool_0_target/set.yaml)
 </details>
 
 <details><summary><code>/switch/bedroom-scent-plug/turn-off-after-an-hour</code></summary>
@@ -2425,7 +2357,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (27)</h3></summary>
+<details><summary><h3>Entities (25)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2656,30 +2588,6 @@ File: [`input_number/office_desk_standing_height.yaml`](entities/input_number/of
 - Unit Of Measurement: %
 
 File: [`input_number/office_desk_standing_mode_percentage_target.yaml`](entities/input_number/office_desk_standing_mode_percentage_target.yaml)
-</details>
-
-<details><summary><strong>Prusa i3 MK3 Target Bed Temperature</strong></summary>
-
-**Entity ID: `input_number.prusa_i3_mk3_target_bed_temperature`**
-
-- Icon: [`mdi:grid`](https://pictogrammers.com/library/mdi/icon/grid/)
-- Max: 100
-- Mode: `box`
-- Unit Of Measurement: °C
-
-File: [`input_number/prusa_i3_mk3/prusa_i3_mk3_target_bed_temperature.yaml`](entities/input_number/prusa_i3_mk3/prusa_i3_mk3_target_bed_temperature.yaml)
-</details>
-
-<details><summary><strong>Prusa i3 MK3 Target Hotend Temperature</strong></summary>
-
-**Entity ID: `input_number.prusa_i3_mk3_target_hotend_temperature`**
-
-- Icon: [`mdi:printer-3d-nozzle-heat`](https://pictogrammers.com/library/mdi/icon/printer-3d-nozzle-heat/)
-- Max: 300
-- Mode: `box`
-- Unit Of Measurement: °C
-
-File: [`input_number/prusa_i3_mk3/prusa_i3_mk3_target_hotend_temperature.yaml`](entities/input_number/prusa_i3_mk3/prusa_i3_mk3_target_hotend_temperature.yaml)
 </details>
 
 <details><summary><strong>ST MacBook Pro Full Battery Threshold</strong></summary>
@@ -3091,7 +2999,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number
 - State Topic: octoPrint/temperature/bed
 - Unit Of Measurement: °C
 
-File: [`mqtt/number/octopi/prusa_i3/target_bed_temperature.yaml`](entities/mqtt/number/octopi/prusa_i3/target_bed_temperature.yaml)
+File: [`mqtt/number/prusa_i3/target_bed_temperature.yaml`](entities/mqtt/number/prusa_i3/target_bed_temperature.yaml)
 </details>
 
 <details><summary><strong>Prusa i3 | Target Hotend Temperature</strong></summary>
@@ -3103,7 +3011,7 @@ File: [`mqtt/number/octopi/prusa_i3/target_bed_temperature.yaml`](entities/mqtt/
 - State Topic: octoPrint/temperature/tool0
 - Unit Of Measurement: °C
 
-File: [`mqtt/number/octopi/prusa_i3/target_tool0_temperature.yaml`](entities/mqtt/number/octopi/prusa_i3/target_tool0_temperature.yaml)
+File: [`mqtt/number/prusa_i3/target_hotend_temperature.yaml`](entities/mqtt/number/prusa_i3/target_hotend_temperature.yaml)
 </details>
 
 <details><summary><strong>ClmtPi Active Git Ref</strong></summary>

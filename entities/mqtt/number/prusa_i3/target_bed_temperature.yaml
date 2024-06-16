@@ -1,0 +1,26 @@
+---
+icon: mdi:grid
+
+max: 100
+
+min: 0
+
+mode: box
+
+name: Prusa i3 | Target Bed Temperature
+
+step: 1
+
+unit_of_measurement: "°C"
+
+unique_id: prusa_i3_target_bed_temperature
+
+command_topic: /octopi/prusa-i3/target-bed-temperature
+
+command_template: "{{ {'value': value | int} | tojson }}"  # hacv disable: InvalidTemplateVar:value
+
+retain: true
+
+state_topic: octoPrint/temperature/bed
+
+value_template: "{{ value_json.target }}"
