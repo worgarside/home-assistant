@@ -1658,7 +1658,24 @@
           "sections": [
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "camera_view": "live",
+                  "type": "picture-glance",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.octoprint_printing"
+                    }
+                  ],
+                  "camera_image": "camera.octoprint_camera",
+                  "aspect_ratio": "1.333333",
+                  "entity": "binary_sensor.octoprint_connected",
+                  "theme": "Mushroom",
+                  "view_layout": {
+                    "grid-area": "cam"
+                  }
+                }
+              ]
             },
             {
               "type": "grid",
