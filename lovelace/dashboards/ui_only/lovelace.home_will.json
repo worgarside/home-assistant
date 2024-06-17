@@ -1357,7 +1357,95 @@
             },
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_cpu_usage",
+                          "icon_color": "red",
+                          "name": "CPU Usage"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_memory_usage",
+                          "icon_color": "blue",
+                          "name": "Memory Usage"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_disk_usage",
+                          "icon_color": "green",
+                          "name": "Disk Usage"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_cpu_temperature",
+                          "icon_color": "orange",
+                          "name": "CPU Temperature",
+                          "icon": "mdi:thermometer-lines"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "6 Hour History",
+                      "entities": [
+                        {
+                          "entity": "sensor.octopi_cpu_usage",
+                          "name": "CPU",
+                          "color": "#F54336"
+                        },
+                        {
+                          "entity": "sensor.octopi_memory_usage",
+                          "name": "Memory",
+                          "color": "#2096F3"
+                        },
+                        {
+                          "entity": "sensor.octopi_disk_usage",
+                          "name": "Disk Usage",
+                          "color": "#4DAF50"
+                        },
+                        {
+                          "entity": "sensor.octopi_cpu_temperature",
+                          "name": "CPU Temperature",
+                          "color": "#FF9901",
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "show": {
+                        "state": false,
+                        "legend": false,
+                        "fill": "fade",
+                        "name": true,
+                        "icon": false,
+                        "labels": true,
+                        "labels_secondary": true,
+                        "unit": true
+                      },
+                      "hours_to_show": 6,
+                      "points_per_hour": 60,
+                      "lower_bound": 0,
+                      "upper_bound": "~50",
+                      "lower_bound_secondary": "~40",
+                      "upper_bound_secondary": "~70",
+                      "height": 150,
+                      "animate": true,
+                      "hour24": true,
+                      "line_width": 2
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
