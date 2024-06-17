@@ -1268,6 +1268,12 @@
                   "view_layout": {
                     "grid-area": "cam"
                   }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.prusa_i3_mk3_current_consumption",
+                  "name": "Current Power Draw",
+                  "icon_color": "yellow"
                 }
               ]
             },
@@ -1303,12 +1309,6 @@
                       "icon_color": "blue-grey"
                     }
                   ]
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.prusa_i3_mk3_current_consumption",
-                  "name": "Current Power Draw",
-                  "icon_color": "yellow"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
