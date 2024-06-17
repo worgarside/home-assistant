@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (121)</h3></summary>
+<details><summary><h3>Entities (115)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -794,48 +794,6 @@ File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](
 File: [`automation/input_number/cosmo/room_timeout/set.yaml`](entities/automation/input_number/cosmo/room_timeout/set.yaml)
 </details>
 
-<details><summary><code>/input-number/prusa-i3-mk3/bed-target/set</code></summary>
-
-**Entity ID: `automation.input_number_prusa_i3_mk3_bed_target_set`**
-
-> *No description provided*
-
-- Alias: /input-number/prusa-i3-mk3/bed-target/set
-- ID: `input_number_prusa_i3_mk3_bed_target_set`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "payload": {
-    "value": "{{ trigger.to_state.state | int(-1) }}"
-  }
-}
-```
-File: [`automation/input_number/prusa_i3_mk3/bed_target/set.yaml`](entities/automation/input_number/prusa_i3_mk3/bed_target/set.yaml)
-</details>
-
-<details><summary><code>/input-number/prusa-i3-mk3/tool-0-target/set</code></summary>
-
-**Entity ID: `automation.input_number_prusa_i3_mk3_tool_0_target_set`**
-
-> *No description provided*
-
-- Alias: /input-number/prusa-i3-mk3/tool-0-target/set
-- ID: `input_number_prusa_i3_mk3_tool_0_target_set`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "payload": {
-    "value": "{{ trigger.to_state.state | int(-1) }}"
-  }
-}
-```
-File: [`automation/input_number/prusa_i3_mk3/tool_0_target/set.yaml`](entities/automation/input_number/prusa_i3_mk3/tool_0_target/set.yaml)
-</details>
-
 <details><summary><code>/input-select/cosmo-entity-picture/set-options</code></summary>
 
 **Entity ID: `automation.input_select_cosmo_entity_picture_set_options`**
@@ -1063,14 +1021,14 @@ File: [`automation/notification/system/reload_required/send.yaml`](entities/auto
 File: [`automation/notification/system/restart_required/send.yaml`](entities/automation/notification/system/restart_required/send.yaml)
 </details>
 
-<details><summary><code>/octopi/fan-control</code></summary>
+<details><summary><code>/octopi/cpu-fan-control</code></summary>
 
-**Entity ID: `automation.octopi_fan_control`**
+**Entity ID: `automation.octopi_cpu_fan_control`**
 
 > *No description provided*
 
-- Alias: /octopi/fan-control
-- ID: `octopi_fan_control`
+- Alias: /octopi/cpu-fan-control
+- ID: `octopi_cpu_fan_control`
 - Mode: `restart`
 - Variables:
 
@@ -1081,20 +1039,7 @@ File: [`automation/notification/system/restart_required/send.yaml`](entities/aut
   "should_be_on": "{{ cpu_temp | float > threshold | int }}"
 }
 ```
-File: [`automation/octopi/fan_control.yaml`](entities/automation/octopi/fan_control.yaml)
-</details>
-
-<details><summary><code>/octopi/send-fan-mqtt-message</code></summary>
-
-**Entity ID: `automation.octopi_send_fan_mqtt_message`**
-
-> *No description provided*
-
-- Alias: /octopi/send-fan-mqtt-message
-- ID: `octopi_send_fan_mqtt_message`
-- Mode: `queued`
-
-File: [`automation/octopi/send_fan_mqtt_message.yaml`](entities/automation/octopi/send_fan_mqtt_message.yaml)
+File: [`automation/octopi/cpu_fan_control.yaml`](entities/automation/octopi/cpu_fan_control.yaml)
 </details>
 
 <details><summary><code>/person/nobody-home</code></summary>
@@ -1147,19 +1092,6 @@ File: [`automation/person/will/home.yaml`](entities/automation/person/will/home.
 - Mode: `single`
 
 File: [`automation/person/will/leaving_work.yaml`](entities/automation/person/will/leaving_work.yaml)
-</details>
-
-<details><summary><code>/prusa-i3-mk3/enclosure/send-fan-mqtt-message</code></summary>
-
-**Entity ID: `automation.prusa_i3_mk3_enclosure_send_fan_mqtt_message`**
-
-> *No description provided*
-
-- Alias: /prusa-i3-mk3/enclosure/send-fan-mqtt-message
-- ID: `prusa_i3_mk3_enclosure_send_fan_mqtt_message`
-- Mode: `queued`
-
-File: [`automation/prusa_i3_mk3/enclosure/send_fan_mqtt_message.yaml`](entities/automation/prusa_i3_mk3/enclosure/send_fan_mqtt_message.yaml)
 </details>
 
 <details><summary><code>/remote/bedroom-blinds/double-press</code></summary>
@@ -1444,32 +1376,6 @@ File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_rel
 - Mode: `queued`
 
 File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/automation/script/crt_pi_update_display/mqtt_trigger.yaml)
-</details>
-
-<details><summary><code>/sensor/octoprint-bed-target/set</code></summary>
-
-**Entity ID: `automation.sensor_octoprint_bed_target_set`**
-
-> *No description provided*
-
-- Alias: /sensor/octoprint-bed-target/set
-- ID: `sensor_octoprint_bed_target_set`
-- Mode: `queued`
-
-File: [`automation/sensor/octoprint_bed_target/set.yaml`](entities/automation/sensor/octoprint_bed_target/set.yaml)
-</details>
-
-<details><summary><code>/sensor/octoprint-tool-0-target/set</code></summary>
-
-**Entity ID: `automation.sensor_octoprint_tool_0_target_set`**
-
-> *No description provided*
-
-- Alias: /sensor/octoprint-tool-0-target/set
-- ID: `sensor_octoprint_tool_0_target_set`
-- Mode: `queued`
-
-File: [`automation/sensor/octoprint_tool_0_target/set.yaml`](entities/automation/sensor/octoprint_tool_0_target/set.yaml)
 </details>
 
 <details><summary><code>/switch/bedroom-scent-plug/turn-off-after-an-hour</code></summary>
@@ -2097,7 +2003,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (13)</h3></summary>
+<details><summary><h3>Entities (12)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -2188,15 +2094,6 @@ File: [`input_boolean/office_entity_header.yaml`](entities/input_boolean/office_
 - Icon: [`mdi:album`](https://pictogrammers.com/library/mdi/icon/album/)
 
 File: [`input_boolean/office_shapes_artwork_mapping_active.yaml`](entities/input_boolean/office_shapes_artwork_mapping_active.yaml)
-</details>
-
-<details><summary><strong>Prusa i3 MK3 Enclosure Fan</strong></summary>
-
-**Entity ID: `input_boolean.prusa_i3_mk3_enclosure_fan`**
-
-- Icon: [`mdi:fan`](https://pictogrammers.com/library/mdi/icon/fan/)
-
-File: [`input_boolean/prusa_i3_mk3_enclosure_fan.yaml`](entities/input_boolean/prusa_i3_mk3_enclosure_fan.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10: Is Volume Muted</strong></summary>
@@ -2460,7 +2357,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (27)</h3></summary>
+<details><summary><h3>Entities (25)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2691,30 +2588,6 @@ File: [`input_number/office_desk_standing_height.yaml`](entities/input_number/of
 - Unit Of Measurement: %
 
 File: [`input_number/office_desk_standing_mode_percentage_target.yaml`](entities/input_number/office_desk_standing_mode_percentage_target.yaml)
-</details>
-
-<details><summary><strong>Prusa i3 MK3 Target Bed Temperature</strong></summary>
-
-**Entity ID: `input_number.prusa_i3_mk3_target_bed_temperature`**
-
-- Icon: [`mdi:grid`](https://pictogrammers.com/library/mdi/icon/grid/)
-- Max: 100
-- Mode: `box`
-- Unit Of Measurement: °C
-
-File: [`input_number/prusa_i3_mk3/prusa_i3_mk3_target_bed_temperature.yaml`](entities/input_number/prusa_i3_mk3/prusa_i3_mk3_target_bed_temperature.yaml)
-</details>
-
-<details><summary><strong>Prusa i3 MK3 Target Hotend Temperature</strong></summary>
-
-**Entity ID: `input_number.prusa_i3_mk3_target_hotend_temperature`**
-
-- Icon: [`mdi:printer-3d-nozzle-heat`](https://pictogrammers.com/library/mdi/icon/printer-3d-nozzle-heat/)
-- Max: 300
-- Mode: `box`
-- Unit Of Measurement: °C
-
-File: [`input_number/prusa_i3_mk3/prusa_i3_mk3_target_hotend_temperature.yaml`](entities/input_number/prusa_i3_mk3/prusa_i3_mk3_target_hotend_temperature.yaml)
 </details>
 
 <details><summary><strong>ST MacBook Pro Full Battery Threshold</strong></summary>
@@ -3071,7 +2944,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (95)</h3></summary>
+<details><summary><h3>Entities (99)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -3115,6 +2988,30 @@ File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/m
 - Unit Of Measurement: `ticks`
 
 File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/splash_speed.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 | Target Bed Temperature</strong></summary>
+
+**Entity ID: `mqtt.prusa_i3_target_bed_temperature`**
+
+- Icon: [`mdi:grid`](https://pictogrammers.com/library/mdi/icon/grid/)
+- Command Topic: /octopi/prusa-i3/target-bed-temperature
+- State Topic: octoPrint/temperature/bed
+- Unit Of Measurement: °C
+
+File: [`mqtt/number/prusa_i3/target_bed_temperature.yaml`](entities/mqtt/number/prusa_i3/target_bed_temperature.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 | Target Hotend Temperature</strong></summary>
+
+**Entity ID: `mqtt.prusa_i3_target_hotend_temperature`**
+
+- Icon: [`mdi:printer-3d-nozzle-heat`](https://pictogrammers.com/library/mdi/icon/printer-3d-nozzle-heat/)
+- Command Topic: /octopi/prusa-i3/target-hotend-temperature
+- State Topic: octoPrint/temperature/tool0
+- Unit Of Measurement: °C
+
+File: [`mqtt/number/prusa_i3/target_hotend_temperature.yaml`](entities/mqtt/number/prusa_i3/target_hotend_temperature.yaml)
 </details>
 
 <details><summary><strong>ClmtPi Active Git Ref</strong></summary>
@@ -4128,6 +4025,26 @@ File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memor
 - Unit Of Measurement: `s`
 
 File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml)
+</details>
+
+<details><summary><strong>OctoPi CPU Fan</strong></summary>
+
+**Entity ID: `mqtt.octopi_cpu_fan`**
+
+- Command Topic: /octopi/gpio/cpu-fan
+- State Topic: /octopi/gpio/cpu-fan
+
+File: [`mqtt/switch/octopi/cpu_fan.yaml`](entities/mqtt/switch/octopi/cpu_fan.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 Enclosure Fan</strong></summary>
+
+**Entity ID: `mqtt.prusa_i3_enclosure_fan`**
+
+- Command Topic: /prusa-i3-mk3/enclosure/fan
+- State Topic: /prusa-i3-mk3/enclosure/fan
+
+File: [`mqtt/switch/prusa_i3/enclosure_fan.yaml`](entities/mqtt/switch/prusa_i3/enclosure_fan.yaml)
 </details>
 
 </details>
