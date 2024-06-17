@@ -1400,11 +1400,12 @@
                           "type": "custom:mushroom-entity-card",
                           "entity": "fan.prusa_i3_enclosure_fan",
                           "name": "Fan",
-                          "icon_color": "red",
+                          "icon_color": "teal",
                           "fill_container": false,
                           "double_tap_action": {
                             "action": "toggle"
-                          }
+                          },
+                          "layout": "horizontal"
                         }
                       ]
                     }
