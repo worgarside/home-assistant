@@ -1333,10 +1333,28 @@
                   "icon_color": "yellow"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octopi_ambient_temperature",
-                  "name": "Ambient Temperature",
-                  "icon_color": "pink"
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "columns": 2,
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_ambient_humidity",
+                          "name": "Enclosure Humidity",
+                          "icon_color": "light-green"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_ambient_temperature",
+                          "name": "Enclosure Temperature",
+                          "icon_color": "red"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             },
