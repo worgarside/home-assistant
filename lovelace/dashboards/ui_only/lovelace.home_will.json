@@ -92,6 +92,7 @@
                   ]
                 },
                 {
+                  "square": true,
                   "type": "grid",
                   "cards": [
                     {
@@ -114,7 +115,8 @@
                       "icon_color": "blue",
                       "icon_type": "icon"
                     }
-                  ]
+                  ],
+                  "columns": 2
                 },
                 {
                   "type": "custom:mushroom-entity-card",
