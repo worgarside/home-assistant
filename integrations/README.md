@@ -1021,14 +1021,14 @@ File: [`automation/notification/system/reload_required/send.yaml`](entities/auto
 File: [`automation/notification/system/restart_required/send.yaml`](entities/automation/notification/system/restart_required/send.yaml)
 </details>
 
-<details><summary><code>/octopi/fan-control</code></summary>
+<details><summary><code>/octopi/cpu-fan-control</code></summary>
 
-**Entity ID: `automation.octopi_fan_control`**
+**Entity ID: `automation.octopi_cpu_fan_control`**
 
 > *No description provided*
 
-- Alias: /octopi/fan-control
-- ID: `octopi_fan_control`
+- Alias: /octopi/cpu-fan-control
+- ID: `octopi_cpu_fan_control`
 - Mode: `restart`
 - Variables:
 
@@ -1039,7 +1039,7 @@ File: [`automation/notification/system/restart_required/send.yaml`](entities/aut
   "should_be_on": "{{ cpu_temp | float > threshold | int }}"
 }
 ```
-File: [`automation/octopi/fan_control.yaml`](entities/automation/octopi/fan_control.yaml)
+File: [`automation/octopi/cpu_fan_control.yaml`](entities/automation/octopi/cpu_fan_control.yaml)
 </details>
 
 <details><summary><code>/person/nobody-home</code></summary>
