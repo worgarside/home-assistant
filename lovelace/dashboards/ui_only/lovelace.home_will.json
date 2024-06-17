@@ -1312,12 +1312,6 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octopi_cpu_temperature",
-                  "name": "OctoPi CPU Temp",
-                  "icon_color": "pink"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
                   "entity": "number.prusa_i3_target_hotend_temperature",
                   "name": "Hotend Target",
                   "icon_color": "purple"
