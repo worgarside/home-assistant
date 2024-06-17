@@ -1352,7 +1352,12 @@
                       "state_not": "unavailable"
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
                 {
                   "type": "vertical-stack",
                   "cards": [
@@ -1558,10 +1563,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "type": "grid",
-              "cards": []
             }
           ],
           "max_columns": 4,
