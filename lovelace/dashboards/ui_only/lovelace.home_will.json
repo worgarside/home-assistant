@@ -1388,6 +1388,19 @@
                       "animate": true,
                       "hour24": true,
                       "line_width": 2
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "fan.prusa_i3_enclosure_fan",
+                          "name": "Fan",
+                          "icon_color": "red",
+                          "fill_container": false
+                        }
+                      ]
                     }
                   ]
                 }
