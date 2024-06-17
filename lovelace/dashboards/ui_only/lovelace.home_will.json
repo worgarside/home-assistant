@@ -1250,7 +1250,7 @@
         },
         {
           "title": "Makerspace",
-          "path": "makerspace2",
+          "path": "makerspace",
           "icon": "mdi:printer-3d",
           "type": "sections",
           "sections": [
@@ -1547,7 +1547,9 @@
                 }
               ]
             }
-          ]
+          ],
+          "max_columns": 4,
+          "cards": []
         },
         {
           "title": "LED Matrix Controller",
