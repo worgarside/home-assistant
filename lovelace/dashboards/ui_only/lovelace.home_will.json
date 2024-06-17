@@ -1276,6 +1276,19 @@
                   "icon_color": "yellow"
                 },
                 {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octoprint_approximate_completion_time",
+                  "name": "Print Completion Time",
+                  "icon_color": "purple",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.octoprint_approximate_completion_time",
+                      "state_not": "unavailable"
+                    }
+                  ]
+                },
+                {
                   "square": false,
                   "type": "grid",
                   "cards": [
@@ -1324,19 +1337,6 @@
                   "entity": "sensor.octopi_ambient_temperature",
                   "name": "Ambient Temperature",
                   "icon_color": "pink"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octoprint_approximate_completion_time",
-                  "name": "Print Completion Time",
-                  "icon_color": "purple",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.octoprint_approximate_completion_time",
-                      "state_not": "unavailable"
-                    }
-                  ]
                 }
               ]
             },
