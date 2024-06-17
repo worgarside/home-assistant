@@ -1306,12 +1306,6 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octopi_local_ip_address",
-                  "name": "OctoPi IP",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.prusa_i3_mk3_current_consumption",
                   "name": "Current Power Draw",
                   "icon_color": "yellow"
