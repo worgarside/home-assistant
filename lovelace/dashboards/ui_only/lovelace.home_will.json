@@ -1344,19 +1344,6 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "number.prusa_i3_target_bed_temperature",
-                  "name": "Bed Target",
-                  "icon_color": "deep-purple"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octoprint_bed_temperature",
-                  "name": "Bed Temperature",
-                  "icon_color": "deep-orange",
-                  "icon": "mdi:grid"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
                   "entity": "switch.prusa_i3_enclosure_fan",
                   "name": "Enclosure Fan",
                   "icon_color": "red"
