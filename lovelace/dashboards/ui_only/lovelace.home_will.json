@@ -1324,7 +1324,10 @@
                   "type": "custom:mushroom-entity-card",
                   "entity": "fan.octopi_cpu_fan",
                   "name": "CPU Fan",
-                  "icon_color": "yellow"
+                  "icon_color": "yellow",
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
                 },
                 {
                   "type": "vertical-stack",
