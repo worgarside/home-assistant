@@ -1276,6 +1276,12 @@
                   "icon_color": "yellow"
                 },
                 {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "number.prusa_i3_target_hotend_temperature",
+                  "name": "Hotend Target",
+                  "icon_color": "purple"
+                },
+                {
                   "type": "grid",
                   "cards": []
                 }
@@ -1313,12 +1319,6 @@
                       "icon_color": "blue-grey"
                     }
                   ]
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "number.prusa_i3_target_hotend_temperature",
-                  "name": "Hotend Target",
-                  "icon_color": "purple"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
