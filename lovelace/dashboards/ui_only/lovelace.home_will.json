@@ -1306,12 +1306,7 @@
                     }
                   ],
                   "columns": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
+                },
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "switch.prusa_i3_enclosure_fan",
@@ -1320,16 +1315,21 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octopi_ambient_temperature",
-                  "name": "Ambient Temperature",
-                  "icon_color": "pink"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
                   "entity": "switch.octopi_cpu_fan",
                   "name": "CPU Fan",
                   "icon_color": "yellow"
                 },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octopi_ambient_temperature",
+                  "name": "Ambient Temperature",
+                  "icon_color": "pink"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.octoprint_approximate_completion_time",
