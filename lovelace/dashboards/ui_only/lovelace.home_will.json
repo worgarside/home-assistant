@@ -1290,6 +1290,12 @@
                       "entity": "sensor.octoprint_tool_0_temperature",
                       "name": "Hotend Temperature",
                       "icon_color": "orange"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "number.prusa_i3_target_bed_temperature",
+                      "name": "Bed Target",
+                      "icon_color": "deep-purple"
                     }
                   ],
                   "columns": 2
