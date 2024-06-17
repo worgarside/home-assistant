@@ -1276,19 +1276,6 @@
                   "icon_color": "yellow"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octoprint_approximate_completion_time",
-                  "name": "Print Completion Time",
-                  "icon_color": "purple",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.octoprint_approximate_completion_time",
-                      "state_not": "unavailable"
-                    }
-                  ]
-                },
-                {
                   "square": false,
                   "type": "grid",
                   "cards": [
@@ -1328,6 +1315,19 @@
                   "double_tap_action": {
                     "action": "toggle"
                   }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octoprint_approximate_completion_time",
+                  "name": "Print Completion Time",
+                  "icon_color": "purple",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.octoprint_approximate_completion_time",
+                      "state_not": "unavailable"
+                    }
+                  ]
                 },
                 {
                   "type": "vertical-stack",
