@@ -1249,33 +1249,26 @@
           ]
         },
         {
-          "title": "Design Lab",
+          "title": "Makerspace",
           "path": "makerspace",
           "icon": "mdi:printer-3d",
-          "layout": {
-            "grid-template-areas": "\"cam cam amb\"\n\"cam cam 3dp\"\n"
-          },
-          "badges": [],
-          "cards": [
+          "type": "sections",
+          "sections": [
             {
-              "camera_view": "live",
-              "type": "picture-glance",
-              "entities": [
-                {
-                  "entity": "binary_sensor.octoprint_printing"
-                }
-              ],
-              "camera_image": "camera.octoprint_camera",
-              "aspect_ratio": "1.333333",
-              "entity": "binary_sensor.octoprint_connected",
-              "theme": "Mushroom",
-              "view_layout": {
-                "grid-area": "cam"
-              }
-            },
-            {
-              "type": "custom:vertical-stack-in-card",
+              "type": "grid",
               "cards": [
+                {
+                  "camera_view": "live",
+                  "type": "picture-glance",
+                  "entities": [],
+                  "camera_image": "camera.octoprint_camera",
+                  "aspect_ratio": "1.333333",
+                  "entity": "binary_sensor.octoprint_connected",
+                  "theme": "Mushroom",
+                  "view_layout": {
+                    "grid-area": "cam"
+                  }
+                },
                 {
                   "square": false,
                   "type": "grid",
@@ -1283,98 +1276,280 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "switch.prusa_i3_mk3_power",
-                      "icon_color": "blue"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_tool_0_temperature",
-                      "name": "Hotend Temperature",
-                      "icon_color": "orange",
-                      "icon": ""
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "icon_color": "green",
-                      "name": "Hotend Target",
-                      "entity": "sensor.octoprint_tool_0_target"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_bed_temperature",
-                      "name": "Bed Temperature",
-                      "icon_color": "lime",
-                      "icon": "mdi:grid"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_bed_target",
-                      "icon_color": "deep-orange",
-                      "name": "Bed Target",
-                      "icon": "mdi:grid"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_boolean.prusa_i3_mk3_enclosure_fan",
-                      "name": "Enclosure Fan",
-                      "icon_color": "red"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octopi_ambient_temperature",
-                      "name": "Ambient Temperature",
-                      "icon_color": "pink"
+                      "icon_color": "orange"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.prusa_i3_mk3_current_consumption",
                       "name": "Current Power Draw",
                       "icon_color": "yellow"
-                    },
+                    }
+                  ],
+                  "columns": 2
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "input_boolean.octopi_fan",
-                      "name": "OctoPi Fan",
-                      "icon_color": "yellow"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octopi_cpu_temperature",
-                      "name": "OctoPi CPU Temp",
-                      "icon_color": "pink"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_approximate_completion_time",
-                      "name": "Print Completion Time",
-                      "icon_color": "purple"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.prusa_i3_mk3_target_bed_temperature",
-                      "name": "Bed Target",
-                      "icon_color": "purple"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.prusa_i3_mk3_target_hotend_temperature",
+                      "entity": "number.prusa_i3_target_hotend_temperature",
                       "name": "Hotend Target",
                       "icon_color": "purple"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octopi_local_ip_address",
-                      "name": "OctoPi IP",
-                      "icon_color": "blue"
+                      "entity": "sensor.octoprint_tool_0_temperature",
+                      "name": "Hotend Temperature",
+                      "icon_color": "orange"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "number.prusa_i3_target_bed_temperature",
+                      "name": "Bed Target",
+                      "icon_color": "deep-purple"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_bed_temperature",
+                      "name": "Bed Temperature",
+                      "icon_color": "deep-orange",
+                      "icon": "mdi:grid"
                     }
                   ],
                   "columns": 2
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "fan.octopi_cpu_fan",
+                  "name": "CPU Fan",
+                  "icon_color": "yellow",
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.octoprint_approximate_completion_time",
+                  "name": "Print Completion Time",
+                  "icon_color": "purple",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.octoprint_approximate_completion_time",
+                      "state_not": "unavailable"
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "Enclosure Stats"
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "columns": 2,
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_ambient_temperature",
+                          "name": "Temperature",
+                          "icon_color": "red"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_ambient_humidity",
+                          "name": "Humidity",
+                          "icon_color": "light-green"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "6 Hour History",
+                      "entities": [
+                        {
+                          "entity": "sensor.octopi_ambient_temperature",
+                          "name": "CPU",
+                          "color": "#F54336"
+                        },
+                        {
+                          "entity": "sensor.octopi_ambient_humidity",
+                          "name": "Humidity",
+                          "color": "#8BC34A",
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "show": {
+                        "state": false,
+                        "legend": false,
+                        "fill": "fade",
+                        "name": true,
+                        "icon": false,
+                        "labels": true,
+                        "labels_secondary": true,
+                        "unit": true
+                      },
+                      "hours_to_show": 6,
+                      "points_per_hour": 60,
+                      "lower_bound": "~20",
+                      "upper_bound": "~40",
+                      "lower_bound_secondary": "~30",
+                      "upper_bound_secondary": "~60",
+                      "height": 150,
+                      "animate": true,
+                      "hour24": true,
+                      "line_width": 2
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "fan.prusa_i3_enclosure_fan",
+                          "name": "Fan",
+                          "icon_color": "teal",
+                          "fill_container": false,
+                          "double_tap_action": {
+                            "action": "toggle"
+                          },
+                          "layout": "horizontal"
+                        }
+                      ]
+                    }
+                  ]
                 }
-              ],
-              "view_layout": {
-                "grid-area": "3dp"
-              }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octopi_boot_time",
+                      "name": "Last Boot Time",
+                      "icon_color": "green"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "switch.prusa_i3_mk3_power",
+                      "icon_color": "accent"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octopi_local_ip_address",
+                      "icon_color": "yellow",
+                      "name": "IP Address"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octopi_active_git_ref",
+                      "name": "WG Scripts",
+                      "icon_color": "blue-grey"
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_cpu_usage",
+                          "icon_color": "red",
+                          "name": "CPU Usage"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_memory_usage",
+                          "icon_color": "blue",
+                          "name": "Memory Usage"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_disk_usage",
+                          "icon_color": "green",
+                          "name": "Disk Usage"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_cpu_temperature",
+                          "icon_color": "orange",
+                          "name": "CPU Temperature",
+                          "icon": "mdi:thermometer-lines"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "6 Hour History",
+                      "entities": [
+                        {
+                          "entity": "sensor.octopi_cpu_usage",
+                          "name": "CPU",
+                          "color": "#F54336"
+                        },
+                        {
+                          "entity": "sensor.octopi_memory_usage",
+                          "name": "Memory",
+                          "color": "#2096F3"
+                        },
+                        {
+                          "entity": "sensor.octopi_disk_usage",
+                          "name": "Disk Usage",
+                          "color": "#4DAF50"
+                        },
+                        {
+                          "entity": "sensor.octopi_cpu_temperature",
+                          "name": "CPU Temperature",
+                          "color": "#FF9901",
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "show": {
+                        "state": false,
+                        "legend": false,
+                        "fill": "fade",
+                        "name": true,
+                        "icon": false,
+                        "labels": true,
+                        "labels_secondary": true,
+                        "unit": true
+                      },
+                      "hours_to_show": 6,
+                      "points_per_hour": 60,
+                      "lower_bound": 0,
+                      "upper_bound": "~50",
+                      "lower_bound_secondary": "~40",
+                      "upper_bound_secondary": "~70",
+                      "height": 150,
+                      "animate": true,
+                      "hour24": true,
+                      "line_width": 2
+                    }
+                  ]
+                }
+              ]
             }
-          ]
+          ],
+          "max_columns": 4,
+          "cards": []
         },
         {
           "title": "LED Matrix Controller",
@@ -1443,54 +1618,43 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "horizontal-stack",
+                  "square": false,
+                  "type": "grid",
                   "cards": [
                     {
-                      "type": "vertical-stack",
-                      "cards": [
-                        {
-                          "type": "horizontal-stack",
-                          "cards": [
-                            {
-                              "type": "custom:mushroom-entity-card",
-                              "entity": "sensor.mtrxpi_boot_time",
-                              "name": "Last Boot Time",
-                              "icon_color": "green"
-                            },
-                            {
-                              "type": "custom:mushroom-entity-card",
-                              "entity": "sensor.mtrxpi_current_content",
-                              "icon_color": "teal",
-                              "name": "Current Content"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "horizontal-stack",
-                          "cards": [
-                            {
-                              "type": "custom:mushroom-entity-card",
-                              "entity": "sensor.mtrxpi_local_ip_address",
-                              "icon_color": "yellow",
-                              "name": "IP Address"
-                            },
-                            {
-                              "type": "custom:mushroom-entity-card",
-                              "entity": "sensor.mtrxpi_active_git_ref",
-                              "name": "WG Scripts",
-                              "icon_color": "blue-grey"
-                            }
-                          ]
-                        }
-                      ]
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_boot_time",
+                      "name": "Last Boot Time",
+                      "icon_color": "green"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_current_content",
+                      "icon_color": "teal",
+                      "name": "Current Content"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_local_ip_address",
+                      "icon_color": "yellow",
+                      "name": "IP Address"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_active_git_ref",
+                      "name": "WG Scripts",
+                      "icon_color": "blue-grey"
                     }
-                  ]
+                  ],
+                  "columns": 2
                 },
                 {
                   "type": "vertical-stack",
                   "cards": [
                     {
-                      "type": "horizontal-stack",
+                      "square": false,
+                      "type": "grid",
+                      "columns": 2,
                       "cards": [
                         {
                           "type": "custom:mushroom-entity-card",
@@ -1503,12 +1667,7 @@
                           "entity": "sensor.mtrxpi_memory_usage",
                           "icon_color": "blue",
                           "name": "Memory Usage"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
+                        },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.mtrxpi_disk_usage",
