@@ -1401,7 +1401,10 @@
                           "entity": "fan.prusa_i3_enclosure_fan",
                           "name": "Fan",
                           "icon_color": "red",
-                          "fill_container": false
+                          "fill_container": false,
+                          "double_tap_action": {
+                            "action": "toggle"
+                          }
                         }
                       ]
                     }
