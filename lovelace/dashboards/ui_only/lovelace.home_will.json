@@ -1296,6 +1296,13 @@
                       "entity": "number.prusa_i3_target_bed_temperature",
                       "name": "Bed Target",
                       "icon_color": "deep-purple"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_bed_temperature",
+                      "name": "Bed Temperature",
+                      "icon_color": "deep-orange",
+                      "icon": "mdi:grid"
                     }
                   ],
                   "columns": 2
