@@ -1336,23 +1336,64 @@
                   "type": "vertical-stack",
                   "cards": [
                     {
+                      "type": "custom:mushroom-title-card",
+                      "title": "Enclosure Stats"
+                    },
+                    {
                       "square": false,
                       "type": "grid",
                       "columns": 2,
                       "cards": [
                         {
                           "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.octopi_ambient_humidity",
-                          "name": "Enclosure Humidity",
-                          "icon_color": "light-green"
+                          "entity": "sensor.octopi_ambient_temperature",
+                          "name": "Temperature",
+                          "icon_color": "red"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.octopi_ambient_temperature",
-                          "name": "Enclosure Temperature",
-                          "icon_color": "red"
+                          "entity": "sensor.octopi_ambient_humidity",
+                          "name": "Humidity",
+                          "icon_color": "light-green"
                         }
                       ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "6 Hour History",
+                      "entities": [
+                        {
+                          "entity": "sensor.octopi_ambient_temperature",
+                          "name": "CPU",
+                          "color": "#F54336"
+                        },
+                        {
+                          "entity": "sensor.octopi_ambient_humidity",
+                          "name": "Humidity",
+                          "color": "#8BC34A",
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "show": {
+                        "state": false,
+                        "legend": false,
+                        "fill": "fade",
+                        "name": true,
+                        "icon": false,
+                        "labels": true,
+                        "labels_secondary": true,
+                        "unit": true
+                      },
+                      "hours_to_show": 6,
+                      "points_per_hour": 60,
+                      "lower_bound": "~20",
+                      "upper_bound": "~40",
+                      "lower_bound_secondary": "~30",
+                      "upper_bound_secondary": "~60",
+                      "height": 150,
+                      "animate": true,
+                      "hour24": true,
+                      "line_width": 2
                     }
                   ]
                 }
