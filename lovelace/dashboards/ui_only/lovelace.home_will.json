@@ -611,6 +611,12 @@
                 {
                   "type": "media-control",
                   "entity": "media_player.topaz_sr10"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.charging_hub_current_consumption"
+                  ]
                 }
               ]
             },
