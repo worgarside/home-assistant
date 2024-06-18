@@ -1340,7 +1340,15 @@
                       "entity": "sensor.octoprint_bed_temperature",
                       "name": "Bed Temperature",
                       "icon_color": "deep-orange",
-                      "icon": "mdi:grid"
+                      "icon": "mdi:grid",
+                      "visibility": [
+                        {
+                          "condition": "user",
+                          "users": [
+                            "8f996a70fc1d4c9ea269be0e7d85befe"
+                          ]
+                        }
+                      ]
                     }
                   ],
                   "columns": 2
