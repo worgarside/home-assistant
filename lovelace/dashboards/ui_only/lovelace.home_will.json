@@ -1441,17 +1441,17 @@
                       "type": "grid",
                       "cards": [
                         {
-                          "type": "custom:mushroom-entity-card",
+                          "type": "custom:mushroom-fan-card",
                           "entity": "fan.prusa_i3_enclosure_fan",
                           "name": "Fan",
-                          "icon_color": "teal",
                           "fill_container": false,
                           "double_tap_action": {
                             "action": "toggle"
                           },
                           "layout": "horizontal"
                         }
-                      ]
+                      ],
+                      "columns": 1
                     }
                   ]
                 }
