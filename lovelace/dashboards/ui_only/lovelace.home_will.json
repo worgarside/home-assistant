@@ -1367,6 +1367,19 @@
                       "state_not": "unavailable"
                     }
                   ]
+                },
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "person.will"
+                    },
+                    {
+                      "type": "menu",
+                      "icon": "mdi:account"
+                    }
+                  ]
                 }
               ]
             },
