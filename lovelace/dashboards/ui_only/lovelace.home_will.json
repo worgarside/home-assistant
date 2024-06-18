@@ -517,9 +517,7 @@
                   ]
                 },
                 {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 1,
+                  "type": "custom:vertical-stack-in-card",
                   "cards": [
                     {
                       "type": "custom:mushroom-light-card",
@@ -562,6 +560,20 @@
                         "action": "more-info"
                       },
                       "name": "Mushroom"
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.pegboard_spotlight",
+                      "show_brightness_control": true,
+                      "layout": "horizontal",
+                      "use_light_color": true,
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "name": "Pegboard Spotlight"
                     },
                     {
                       "type": "custom:mushroom-cover-card",
