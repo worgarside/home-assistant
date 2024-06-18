@@ -1373,11 +1373,16 @@
                   "chips": [
                     {
                       "type": "entity",
-                      "entity": "person.will"
-                    },
-                    {
-                      "type": "menu",
-                      "icon": "mdi:account"
+                      "entity": "button.octoprint_restart_server",
+                      "hold_action": {
+                        "action": "call-service",
+                        "service": "button.press",
+                        "target": {
+                          "entity_id": "button.octoprint_restart_server"
+                        }
+                      },
+                      "content_info": "name",
+                      "name": "Restart Server"
                     }
                   ]
                 }
