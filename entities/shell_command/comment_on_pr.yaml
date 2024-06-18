@@ -3,7 +3,7 @@ comment_on_pr: >-
   bash -c '
   /config/resources/gh_cli/bin/gh auth switch --user {{ user | default("worgarside") }}
   &&
-  /config/resources/gh_cli/bin/gh pr comment {{ url }} --body '{{ comment.replace("\'", "\\'") }}'
+  /config/resources/gh_cli/bin/gh pr comment {{ url }} --body "{{ comment }}"
   ;
   /config/resources/gh_cli/bin/gh auth switch --user worgarside-hass
   '
