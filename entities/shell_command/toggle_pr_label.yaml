@@ -1,16 +1,8 @@
 ---
 toggle_pr_label: >-
   bash -c '
-    /config/resources/gh_cli/bin/gh
-    auth
-    switch
-    --user
-    {{ user | default("worgarside-hass") }}
-    &&
-    /config/resources/gh_cli/bin/gh
-    pr
-    edit
-    {{ url }}
-    --{{ add_remove }}-label
-    "{{ label }}"
+  /config/resources/gh_cli/bin/gh auth switch --user {{ user | default("worgarside-hass") }}
+  &&
+  /config/resources/gh_cli/bin/gh pr edit {{ url }}
+  --{{ add_remove }}-label "{{ label }}"
   '
