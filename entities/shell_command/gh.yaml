@@ -1,2 +1,2 @@
 ---
-gh: /config/resources/gh_cli/bin/gh {{ command }} {{ args }}
+gh: /config/resources/gh_cli/bin/gh {{ command }} {{ args | default("") }}
