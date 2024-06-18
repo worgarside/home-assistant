@@ -510,7 +510,9 @@
                   "name": "MacBook Pro"
                 },
                 {
-                  "type": "custom:vertical-stack-in-card",
+                  "square": false,
+                  "type": "grid",
+                  "columns": 1,
                   "cards": [
                     {
                       "type": "custom:mushroom-light-card",
@@ -523,7 +525,8 @@
                       },
                       "tap_action": {
                         "action": "more-info"
-                      }
+                      },
+                      "name": "Shapes"
                     },
                     {
                       "type": "custom:mushroom-light-card",
@@ -536,7 +539,8 @@
                       },
                       "tap_action": {
                         "action": "more-info"
-                      }
+                      },
+                      "name": "Lamp"
                     },
                     {
                       "type": "custom:mushroom-light-card",
@@ -549,7 +553,8 @@
                       },
                       "tap_action": {
                         "action": "more-info"
-                      }
+                      },
+                      "name": "Mushroom"
                     },
                     {
                       "type": "custom:mushroom-cover-card",
@@ -561,7 +566,8 @@
                       },
                       "double_tap_action": {
                         "action": "toggle"
-                      }
+                      },
+                      "name": "Desk"
                     },
                     {
                       "type": "custom:mushroom-cover-card",
@@ -573,12 +579,13 @@
                       },
                       "double_tap_action": {
                         "action": "toggle"
-                      }
+                      },
+                      "name": "Blinds"
                     },
                     {
                       "type": "custom:mushroom-fan-card",
                       "entity": "fan.desk_fan",
-                      "name": "Desk Fan",
+                      "name": "Fan",
                       "icon_animation": true,
                       "tap_action": {
                         "action": "more-info"
@@ -598,12 +605,6 @@
                       "double_tap_action": {
                         "action": "toggle"
                       }
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "entities": [
-                        "sensor.charging_hub_current_consumption"
-                      ]
                     }
                   ]
                 },
