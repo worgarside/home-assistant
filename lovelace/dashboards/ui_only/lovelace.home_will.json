@@ -1346,13 +1346,14 @@
                   "columns": 2
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-fan-card",
                   "entity": "fan.octopi_cpu_fan",
                   "name": "CPU Fan",
-                  "icon_color": "yellow",
                   "double_tap_action": {
                     "action": "toggle"
-                  }
+                  },
+                  "icon_animation": true,
+                  "show_percentage_control": false
                 },
                 {
                   "type": "custom:mushroom-entity-card",
