@@ -1131,7 +1131,7 @@ addon_active_entity_template:
     primary: "[[name]]"
     secondary: "{{ iif(is_state('sensor.[[slug]]_status', 'ok'), 'Running', 'Stopped') }}"
     icon_color: "{{ '[[color]]' if is_state('sensor.[[slug]]_status', 'ok') }}"
-    icon: "{{ iif(is_state('sensor.[[slug]]_status', 'ok') 'mdi:docker', 'mdi:alert-octagon') }}"
+    icon: "{{ iif(is_state('sensor.[[slug]]_status', 'ok'), 'mdi:docker', 'mdi:alert-octagon') }}"
     tap_action:
       action: more-info
     card_mod:
