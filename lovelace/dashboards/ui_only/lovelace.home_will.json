@@ -499,18 +499,27 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.front_door",
-                  "secondary_info": "last-changed",
-                  "name": "Front Door"
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.front_door",
+                      "secondary_info": "last-changed",
+                      "name": "Front Door"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.wills_macbook_pro_internal_battery_level",
+                      "name": "MacBook Pro"
+                    }
+                  ]
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.wills_macbook_pro_internal_battery_level",
-                  "name": "MacBook Pro"
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
+                  "square": false,
+                  "type": "grid",
+                  "columns": 1,
                   "cards": [
                     {
                       "type": "custom:mushroom-light-card",
@@ -523,7 +532,8 @@
                       },
                       "tap_action": {
                         "action": "more-info"
-                      }
+                      },
+                      "name": "Shapes"
                     },
                     {
                       "type": "custom:mushroom-light-card",
@@ -536,7 +546,8 @@
                       },
                       "tap_action": {
                         "action": "more-info"
-                      }
+                      },
+                      "name": "Lamp"
                     },
                     {
                       "type": "custom:mushroom-light-card",
@@ -549,7 +560,8 @@
                       },
                       "tap_action": {
                         "action": "more-info"
-                      }
+                      },
+                      "name": "Mushroom"
                     },
                     {
                       "type": "custom:mushroom-cover-card",
@@ -561,7 +573,8 @@
                       },
                       "double_tap_action": {
                         "action": "toggle"
-                      }
+                      },
+                      "name": "Desk"
                     },
                     {
                       "type": "custom:mushroom-cover-card",
@@ -573,12 +586,13 @@
                       },
                       "double_tap_action": {
                         "action": "toggle"
-                      }
+                      },
+                      "name": "Blinds"
                     },
                     {
                       "type": "custom:mushroom-fan-card",
                       "entity": "fan.desk_fan",
-                      "name": "Desk Fan",
+                      "name": "Fan",
                       "icon_animation": true,
                       "tap_action": {
                         "action": "more-info"
@@ -598,13 +612,13 @@
                       "double_tap_action": {
                         "action": "toggle"
                       }
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "entities": [
-                        "sensor.charging_hub_current_consumption"
-                      ]
                     }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.charging_hub_current_consumption"
                   ]
                 },
                 {
@@ -1332,13 +1346,14 @@
                   "columns": 2
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-fan-card",
                   "entity": "fan.octopi_cpu_fan",
                   "name": "CPU Fan",
-                  "icon_color": "yellow",
                   "double_tap_action": {
                     "action": "toggle"
-                  }
+                  },
+                  "icon_animation": true,
+                  "show_percentage_control": false
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -1350,6 +1365,46 @@
                       "condition": "state",
                       "entity": "sensor.octoprint_approximate_completion_time",
                       "state_not": "unavailable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "button.octoprint_restart_server",
+                      "hold_action": {
+                        "action": "call-service",
+                        "service": "button.press",
+                        "target": {
+                          "entity_id": "button.octoprint_restart_server"
+                        }
+                      },
+                      "content_info": "name",
+                      "name": "Restart Server",
+                      "icon_color": "orange"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "button.octoprint_reboot_system",
+                      "hold_action": {
+                        "action": "call-service",
+                        "service": "button.press",
+                        "target": {
+                          "entity_id": "button.octoprint_reboot_system"
+                        }
+                      },
+                      "content_info": "name",
+                      "name": "Reboot System",
+                      "icon_color": "red"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.prusa_i3_mk3_power",
+                      "state": "off"
                     }
                   ]
                 }
@@ -1426,17 +1481,18 @@
                       "type": "grid",
                       "cards": [
                         {
-                          "type": "custom:mushroom-entity-card",
+                          "type": "custom:mushroom-fan-card",
                           "entity": "fan.prusa_i3_enclosure_fan",
                           "name": "Fan",
-                          "icon_color": "teal",
                           "fill_container": false,
                           "double_tap_action": {
                             "action": "toggle"
                           },
-                          "layout": "horizontal"
+                          "layout": "horizontal",
+                          "icon_animation": true
                         }
-                      ]
+                      ],
+                      "columns": 1
                     }
                   ]
                 }
