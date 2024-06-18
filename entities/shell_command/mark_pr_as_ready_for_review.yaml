@@ -1,6 +1,9 @@
 ---
-mark_pr_as_ready_for_review: >
-  bash
-  /config/resources/shell_command/gh_cli/mark_pr_as_ready_for_review.sh
-  -u {{ url }}
-  -d {{ draft }}
+mark_pr_as_ready_for_review: >-
+  bash -c '
+  /config/resources/gh_cli/bin/gh auth switch --user worgarside
+  &&
+  /config/resources/gh_cli/bin/gh pr ready {{ url }}{{ ' --undo' if draft }}
+  ;
+  /config/resources/gh_cli/bin/gh auth switch --user worgarside-hass
+  '

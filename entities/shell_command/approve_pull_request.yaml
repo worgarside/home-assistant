@@ -1,5 +1,11 @@
 ---
-approve_pull_request: >
-  bash
-  /config/resources/shell_command/gh_cli/approve_pull_request.sh
-  -u {{ url }}
+# User is hardcoded because worgarside-hass doesn't have approval perms
+approve_pull_request: >-
+  bash -c '
+  /config/resources/gh_cli/bin/gh auth switch --user worgarside
+  &&
+  /config/resources/gh_cli/bin/gh pr review {{ url }} --approve
+  --body "Approved via Home Assistant"
+  ;
+  /config/resources/gh_cli/bin/gh auth switch --user worgarside-hass
+  '
