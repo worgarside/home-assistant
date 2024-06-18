@@ -1382,7 +1382,22 @@
                         }
                       },
                       "content_info": "name",
-                      "name": "Restart Server"
+                      "name": "Restart Server",
+                      "icon_color": "orange"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "button.octoprint_reboot_system",
+                      "hold_action": {
+                        "action": "call-service",
+                        "service": "button.press",
+                        "target": {
+                          "entity_id": "button.octoprint_reboot_system"
+                        }
+                      },
+                      "content_info": "name",
+                      "name": "Reboot System",
+                      "icon_color": "red"
                     }
                   ]
                 }
