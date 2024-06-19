@@ -602,28 +602,35 @@
                       "name": "Blinds"
                     },
                     {
-                      "type": "custom:mushroom-fan-card",
-                      "entity": "fan.desk_fan",
-                      "name": "Fan",
-                      "icon_animation": true,
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "switch.charging_hub",
-                      "primary_info": "name",
-                      "secondary_info": "state",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
-                      }
+                      "type": "grid",
+                      "columns": 2,
+                      "square": false,
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-fan-card",
+                          "entity": "fan.desk_fan",
+                          "name": "Fan",
+                          "icon_animation": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "double_tap_action": {
+                            "action": "toggle"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "switch.charging_hub",
+                          "primary_info": "name",
+                          "secondary_info": "state",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "double_tap_action": {
+                            "action": "toggle"
+                          }
+                        }
+                      ]
                     }
                   ]
                 },
