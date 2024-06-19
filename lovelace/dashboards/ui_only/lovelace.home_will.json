@@ -1644,6 +1644,18 @@
           "cards": []
         },
         {
+          "icon": "phu:raspberry-pi",
+          "title": "HAssPi",
+          "path": "hasspi",
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": []
+            }
+          ]
+        },
+        {
           "title": "LED Matrix Controller",
           "path": "led-matrix-controller",
           "icon": "mdi:data-matrix",
@@ -1835,18 +1847,6 @@
             }
           ],
           "cards": []
-        },
-        {
-          "icon": "phu:raspberry-pi",
-          "title": "HAssPi",
-          "path": "hasspi",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": []
-            }
-          ]
         },
         {
           "title": "Cube",
