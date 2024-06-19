@@ -1492,16 +1492,26 @@
                         {
                           "type": "custom:mushroom-fan-card",
                           "entity": "fan.prusa_i3_enclosure_fan",
-                          "name": "Fan",
+                          "name": "Enclosure",
                           "fill_container": false,
                           "double_tap_action": {
                             "action": "toggle"
                           },
                           "layout": "horizontal",
                           "icon_animation": true
+                        },
+                        {
+                          "type": "custom:mushroom-fan-card",
+                          "entity": "fan.octopi_cpu_fan",
+                          "name": "CPU",
+                          "double_tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_animation": true,
+                          "show_percentage_control": false
                         }
                       ],
-                      "columns": 1
+                      "columns": 2
                     }
                   ]
                 },
