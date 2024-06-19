@@ -1837,6 +1837,18 @@
           "cards": []
         },
         {
+          "icon": "phu:raspberry-pi",
+          "title": "HAssPi",
+          "path": "hasspi",
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": []
+            }
+          ]
+        },
+        {
           "title": "Cube",
           "path": "cube",
           "icon": "phu:aqara-cube",
@@ -1911,18 +1923,6 @@
                   ]
                 }
               ]
-            }
-          ]
-        },
-        {
-          "icon": "phu:raspberry-pi",
-          "title": "HAssPi",
-          "path": "hasspi",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": []
             }
           ]
         }
