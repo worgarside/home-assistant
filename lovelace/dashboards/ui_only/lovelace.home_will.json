@@ -1554,7 +1554,9 @@
                   "type": "vertical-stack",
                   "cards": [
                     {
-                      "type": "horizontal-stack",
+                      "type": "grid",
+                      "columns": 2,
+                      "square": false,
                       "cards": [
                         {
                           "type": "custom:mushroom-entity-card",
@@ -1567,12 +1569,7 @@
                           "entity": "sensor.octopi_memory_usage",
                           "icon_color": "blue",
                           "name": "Memory Usage"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
+                        },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_disk_usage",
