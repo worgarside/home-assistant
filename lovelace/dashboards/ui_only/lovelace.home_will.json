@@ -1790,9 +1790,8 @@
                   ]
                 },
                 {
-                  "type": "grid",
-                  "columns": 3,
                   "square": false,
+                  "type": "grid",
                   "cards": [
                     {
                       "type": "custom:decluttering-card",
@@ -2019,7 +2018,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "columns": 3
                 }
               ]
             }
