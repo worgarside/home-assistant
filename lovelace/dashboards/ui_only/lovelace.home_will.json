@@ -1651,7 +1651,33 @@
           "sections": [
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Last Boot Time",
+                      "secondary": "{{ states('sensor.uptime').removesuffix(\"+00:00\").replace(\"T\", \" \") }}",
+                      "icon": "mdi:console",
+                      "entity": "sensor.uptime",
+                      "icon_color": "green",
+                      "multiline_secondary": false,
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.local_ip",
+                      "icon_color": "yellow",
+                      "name": "IP Address"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
