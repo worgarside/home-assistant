@@ -1,0 +1,6 @@
+---
+icon: mdi:cpu-32-bit
+name: Grafana CPU Usage
+state: "{{ state_attr('sensor.grafana_status', 'data').cpu_percent | default(0) }}"
+unique_id: grafana_cpu_usage
+unit_of_measurement: '%'

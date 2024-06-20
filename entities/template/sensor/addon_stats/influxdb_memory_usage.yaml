@@ -1,0 +1,6 @@
+---
+icon: mdi:memory
+name: InfluxDB Memory Usage
+state: "{{ state_attr('sensor.influxdb_status', 'data').memory_percent | default(0) }}"
+unique_id: influxdb_memory_usage
+unit_of_measurement: '%'

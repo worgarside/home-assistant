@@ -1,12 +1,6 @@
 ---
 icon: mdi:memory
 name: ESPHome Add-on Memory Usage
-state: >
-  {% set data = state_attr('sensor.esphome_add_on_status', 'data') %}
-  {% if data %}
-    {{ data.memory_percent | float }}
-  {% else %}
-    0
-  {% endif %}
+state: "{{ state_attr('sensor.esphome_add_on_status', 'data').memory_percent | default(0) }}"
 unique_id: esphome_add_on_memory_usage
 unit_of_measurement: '%'
