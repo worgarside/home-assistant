@@ -1788,7 +1788,12 @@
                       "line_width": 2
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
                 {
                   "square": false,
                   "type": "grid",
@@ -2022,10 +2027,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "type": "grid",
-              "cards": []
             }
           ],
           "max_columns": 4,
