@@ -1,0 +1,9 @@
+---
+sensor:
+  command: !secret addon_stats_command_influxdb
+  json_attributes:
+    - data
+  name: InfluxDB Status
+  scan_interval: 60
+  unique_id: influxdb_status
+  value_template: "{{ value_json.result }}"

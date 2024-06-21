@@ -1,0 +1,6 @@
+---
+icon: mdi:cpu-32-bit
+name: InfluxDB CPU Usage
+state: "{{ state_attr('sensor.influxdb_status', 'data').cpu_percent | default(0) }}"
+unique_id: influxdb_cpu_usage
+unit_of_measurement: '%'
