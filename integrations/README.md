@@ -1661,7 +1661,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (31)</h3></summary>
+<details><summary><h3>Entities (32)</h3></summary>
 
 <details><summary><strong>AdGuard Status</strong></summary>
 
@@ -1670,7 +1670,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_adguard/stats`
 - Scan Interval: 60
 
-File: [`command_line/sensor/adguard_status.yaml`](entities/command_line/sensor/adguard_status.yaml)
+File: [`command_line/sensor/addons/adguard_status.yaml`](entities/command_line/sensor/addons/adguard_status.yaml)
 </details>
 
 <details><summary><strong>AppDaemon Status</strong></summary>
@@ -1680,7 +1680,147 @@ File: [`command_line/sensor/adguard_status.yaml`](entities/command_line/sensor/a
 - Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_appdaemon/stats`
 - Scan Interval: 60
 
-File: [`command_line/sensor/appdaemon_status.yaml`](entities/command_line/sensor/appdaemon_status.yaml)
+File: [`command_line/sensor/addons/appdaemon_status.yaml`](entities/command_line/sensor/addons/appdaemon_status.yaml)
+</details>
+
+<details><summary><strong>ESPHome Add-on Status</strong></summary>
+
+**Entity ID: `sensor.esphome_add_on_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/5c53de3b_esphome/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/esphome_add_on_status.yaml`](entities/command_line/sensor/addons/esphome_add_on_status.yaml)
+</details>
+
+<details><summary><strong>Google Drive Backup Add-on Status</strong></summary>
+
+**Entity ID: `sensor.google_drive_backup_add_on_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/cebe7a76_hassio_google_drive_backup/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/google_drive_backup_add_on_status.yaml`](entities/command_line/sensor/addons/google_drive_backup_add_on_status.yaml)
+</details>
+
+<details><summary><strong>Grafana Status</strong></summary>
+
+**Entity ID: `sensor.grafana_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_grafana/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/grafana_status.yaml`](entities/command_line/sensor/addons/grafana_status.yaml)
+</details>
+
+<details><summary><strong>InfluxDB Status</strong></summary>
+
+**Entity ID: `sensor.influxdb_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_influxdb/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/influxdb_status.yaml`](entities/command_line/sensor/addons/influxdb_status.yaml)
+</details>
+
+<details><summary><strong>Item Warehouse API Status</strong></summary>
+
+**Entity ID: `sensor.item_warehouse_api_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/431930c3_item_warehouse_api/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/item_warehouse_api.yaml`](entities/command_line/sensor/addons/item_warehouse_api.yaml)
+</details>
+
+<details><summary><strong>Item Warehouse Website Status</strong></summary>
+
+**Entity ID: `sensor.item_warehouse_website_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/86912a13_item_warehouse_website/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/item_warehouse_website.yaml`](entities/command_line/sensor/addons/item_warehouse_website.yaml)
+</details>
+
+<details><summary><strong>MariaDB Status</strong></summary>
+
+**Entity ID: `sensor.mariadb_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_mariadb/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/mariadb_status.yaml`](entities/command_line/sensor/addons/mariadb_status.yaml)
+</details>
+
+<details><summary><strong>Matter Server Status</strong></summary>
+
+**Entity ID: `sensor.matter_server_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_matter_server/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/matter_server_status.yaml`](entities/command_line/sensor/addons/matter_server_status.yaml)
+</details>
+
+<details><summary><strong>Mosquitto Broker Status</strong></summary>
+
+**Entity ID: `sensor.mosquitto_broker_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_mosquitto/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/mosquitto_broker_status.yaml`](entities/command_line/sensor/addons/mosquitto_broker_status.yaml)
+</details>
+
+<details><summary><strong>Plex Media Server Status</strong></summary>
+
+**Entity ID: `sensor.plex_media_server_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_plex/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/plex_media_server_status.yaml`](entities/command_line/sensor/addons/plex_media_server_status.yaml)
+</details>
+
+<details><summary><strong>Silicon Labs Multiprotocol Add-on Status</strong></summary>
+
+**Entity ID: `sensor.silicon_labs_multiprotocol_add_on_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_silabs_multiprotocol/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/silicon_labs_multiprotocol_add_on_status.yaml`](entities/command_line/sensor/addons/silicon_labs_multiprotocol_add_on_status.yaml)
+</details>
+
+<details><summary><strong>Terminal & SSH Add-on Status</strong></summary>
+
+**Entity ID: `sensor.terminal_ssh_add_on_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_ssh/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/terminal_ssh_add_on_status.yaml`](entities/command_line/sensor/addons/terminal_ssh_add_on_status.yaml)
+</details>
+
+<details><summary><strong>Visual Studio Code Add-on Status</strong></summary>
+
+**Entity ID: `sensor.visual_studio_code_add_on_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_vscode/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/visual_studio_code_add_on_status.yaml`](entities/command_line/sensor/addons/visual_studio_code_add_on_status.yaml)
+</details>
+
+<details><summary><strong>YAS-209 Bridge Status</strong></summary>
+
+**Entity ID: `sensor.yas_209_bridge_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/2c04ba34_yas_209_bridge/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/yas_209_bridge_status.yaml`](entities/command_line/sensor/addons/yas_209_bridge_status.yaml)
 </details>
 
 <details><summary><strong>Current Git Branch</strong></summary>
@@ -1701,16 +1841,6 @@ File: [`command_line/sensor/current_git_branch.yaml`](entities/command_line/sens
 - Scan Interval: 120
 
 File: [`command_line/sensor/current_git_ref.yaml`](entities/command_line/sensor/current_git_ref.yaml)
-</details>
-
-<details><summary><strong>ESPHome Add-on Status</strong></summary>
-
-**Entity ID: `sensor.esphome_add_on_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/5c53de3b_esphome/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/esphome_add_on_status.yaml`](entities/command_line/sensor/esphome_add_on_status.yaml)
 </details>
 
 <details><summary><strong>Add-on: Item Warehouse Pull Requests</strong></summary>
@@ -1843,86 +1973,6 @@ File: [`command_line/sensor/github_pull_requests/wg_scripts_pull_requests.yaml`]
 File: [`command_line/sensor/github_pull_requests/wg_utilities_pull_requests.yaml`](entities/command_line/sensor/github_pull_requests/wg_utilities_pull_requests.yaml)
 </details>
 
-<details><summary><strong>Google Drive Backup Add-on Status</strong></summary>
-
-**Entity ID: `sensor.google_drive_backup_add_on_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/cebe7a76_hassio_google_drive_backup/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/google_drive_backup_add_on_status.yaml`](entities/command_line/sensor/google_drive_backup_add_on_status.yaml)
-</details>
-
-<details><summary><strong>HA Remote Logger Status</strong></summary>
-
-**Entity ID: `sensor.ha_remote_logger_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/4980fbd1_rss_log_feed/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/ha_remote_logger_status.yaml`](entities/command_line/sensor/ha_remote_logger_status.yaml)
-</details>
-
-<details><summary><strong>Item Warehouse API Status</strong></summary>
-
-**Entity ID: `sensor.item_warehouse_api_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/431930c3_item_warehouse_api/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/item_warehouse_api.yaml`](entities/command_line/sensor/item_warehouse_api.yaml)
-</details>
-
-<details><summary><strong>Item Warehouse Website Status</strong></summary>
-
-**Entity ID: `sensor.item_warehouse_website_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/86912a13_item_warehouse_website/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/item_warehouse_website.yaml`](entities/command_line/sensor/item_warehouse_website.yaml)
-</details>
-
-<details><summary><strong>MariaDB Status</strong></summary>
-
-**Entity ID: `sensor.mariadb_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_mariadb/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/mariadb_status.yaml`](entities/command_line/sensor/mariadb_status.yaml)
-</details>
-
-<details><summary><strong>Matter Server Status</strong></summary>
-
-**Entity ID: `sensor.matter_server_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_matter_server/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/matter_server_status.yaml`](entities/command_line/sensor/matter_server_status.yaml)
-</details>
-
-<details><summary><strong>Mosquitto Broker Status</strong></summary>
-
-**Entity ID: `sensor.mosquitto_broker_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_mosquitto/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/mosquitto_broker_status.yaml`](entities/command_line/sensor/mosquitto_broker_status.yaml)
-</details>
-
-<details><summary><strong>Plex Media Server Status</strong></summary>
-
-**Entity ID: `sensor.plex_media_server_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_plex/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/plex_media_server_status.yaml`](entities/command_line/sensor/plex_media_server_status.yaml)
-</details>
-
 <details><summary><strong>Remote Git Branches</strong></summary>
 
 **Entity ID: `sensor.remote_git_branches`**
@@ -1931,46 +1981,6 @@ File: [`command_line/sensor/plex_media_server_status.yaml`](entities/command_lin
 - Scan Interval: 1800
 
 File: [`command_line/sensor/remote_git_branches.yaml`](entities/command_line/sensor/remote_git_branches.yaml)
-</details>
-
-<details><summary><strong>Silicon Labs Multiprotocol Add-on Status</strong></summary>
-
-**Entity ID: `sensor.silicon_labs_multiprotocol_add_on_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_silabs_multiprotocol/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/silicon_labs_multiprotocol_add_on_status.yaml`](entities/command_line/sensor/silicon_labs_multiprotocol_add_on_status.yaml)
-</details>
-
-<details><summary><strong>Terminal & SSH Add-on Status</strong></summary>
-
-**Entity ID: `sensor.terminal_ssh_add_on_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_ssh/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/terminal_ssh_add_on_status.yaml`](entities/command_line/sensor/terminal_ssh_add_on_status.yaml)
-</details>
-
-<details><summary><strong>Visual Studio Code Add-on Status</strong></summary>
-
-**Entity ID: `sensor.visual_studio_code_add_on_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_vscode/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/visual_studio_code_add_on_status.yaml`](entities/command_line/sensor/visual_studio_code_add_on_status.yaml)
-</details>
-
-<details><summary><strong>YAS-209 Bridge Status</strong></summary>
-
-**Entity ID: `sensor.yas_209_bridge_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/2c04ba34_yas_209_bridge/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/yas_209_bridge_status.yaml`](entities/command_line/sensor/yas_209_bridge_status.yaml)
 </details>
 
 </details>
@@ -5091,7 +5101,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (89)</h3></summary>
+<details><summary><h3>Entities (91)</h3></summary>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -5173,24 +5183,44 @@ File: [`template/sensor/addon_stats/google_drive_backup_add_on_cpu_usage.yaml`](
 File: [`template/sensor/addon_stats/google_drive_backup_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/google_drive_backup_add_on_memory_usage.yaml)
 </details>
 
-<details><summary><strong>HA Remote Logger CPU Usage</strong></summary>
+<details><summary><strong>Grafana CPU Usage</strong></summary>
 
-**Entity ID: `sensor.ha_remote_logger_cpu_usage`**
+**Entity ID: `sensor.grafana_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
 
-File: [`template/sensor/addon_stats/ha_remote_logger_cpu_usage.yaml`](entities/template/sensor/addon_stats/ha_remote_logger_cpu_usage.yaml)
+File: [`template/sensor/addon_stats/grafana_cpu_usage.yaml`](entities/template/sensor/addon_stats/grafana_cpu_usage.yaml)
 </details>
 
-<details><summary><strong>HA Remote Logger Memory Usage</strong></summary>
+<details><summary><strong>Grafana Memory Usage</strong></summary>
 
-**Entity ID: `sensor.ha_remote_logger_memory_usage`**
+**Entity ID: `sensor.grafana_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
 
-File: [`template/sensor/addon_stats/ha_remote_logger_memory_usage.yaml`](entities/template/sensor/addon_stats/ha_remote_logger_memory_usage.yaml)
+File: [`template/sensor/addon_stats/grafana_memory_usage.yaml`](entities/template/sensor/addon_stats/grafana_memory_usage.yaml)
+</details>
+
+<details><summary><strong>InfluxDB CPU Usage</strong></summary>
+
+**Entity ID: `sensor.influxdb_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/influxdb_cpu_usage.yaml`](entities/template/sensor/addon_stats/influxdb_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>InfluxDB Memory Usage</strong></summary>
+
+**Entity ID: `sensor.influxdb_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/influxdb_memory_usage.yaml`](entities/template/sensor/addon_stats/influxdb_memory_usage.yaml)
 </details>
 
 <details><summary><strong>Item Warehouse API CPU Usage</strong></summary>

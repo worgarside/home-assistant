@@ -1,12 +1,6 @@
 ---
 icon: mdi:memory
 name: AdGuard Memory Usage
-state: >
-  {% set data = state_attr('sensor.adguard_status', 'data') %}
-  {% if data %}
-    {{ data.memory_percent | float }}
-  {% else %}
-    0
-  {% endif %}
+state: "{{ state_attr('sensor.adguard_status', 'data').memory_percent | default(0) }}"
 unique_id: adguard_memory_usage
 unit_of_measurement: '%'
