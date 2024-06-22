@@ -6161,7 +6161,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (15)</h3></summary>
+<details><summary><h3>Entities (16)</h3></summary>
 
 <details><summary><strong>Auto-Save Amount</strong></summary>
 
@@ -6171,6 +6171,16 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 - Unit Of Measurement: GBP
 
 File: [`var/auto_save_amount.yaml`](entities/var/auto_save_amount.yaml)
+</details>
+
+<details><summary><strong>Auto-Save Cumulative Total</strong></summary>
+
+**Entity ID: `var.auto_save_cumulative_total`**
+
+- Icon: [`mdi:chart-timeline-variant-shimmer`](https://pictogrammers.com/library/mdi/icon/chart-timeline-variant-shimmer/)
+- Unit Of Measurement: GBP
+
+File: [`var/auto_save_cumulative_total.yaml`](entities/var/auto_save_cumulative_total.yaml)
 </details>
 
 <details><summary><strong>Boolean Flag: Kitchen Lights</strong></summary>
