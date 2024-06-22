@@ -1,2479 +1,1560 @@
-{
-  "version": 1,
-  "minor_version": 1,
-  "key": "lovelace.home_will",
-  "data": {
-    "config": {
-      "swipe_nav": {
-        "wrap": true,
-        "enable_mouse_swipe": true,
-        "animate": "swipe",
-        "swipe_amount": 30
-      },
-      "decluttering_templates": {
-        "addon_active_entity_template": {
-          "card": {
-            "entity": "sensor.[[slug]]_status",
-            "type": "custom:mushroom-template-card",
-            "primary": "[[name]]",
-            "secondary": "{{ iif(is_state('sensor.[[slug]]_status', 'ok'), 'Running', 'Stopped') }}",
-            "icon_color": "{{ '[[color]]' if is_state('sensor.[[slug]]_status', 'ok') }}",
-            "icon": "{{ iif(is_state('sensor.[[slug]]_status', 'ok'), 'mdi:docker', 'mdi:alert-octagon') }}",
-            "tap_action": {
-              "action": "more-info"
-            },
-            "card_mod": {
-              "style": "ha-card {\n  padding-top: 0.25rem !important;\n  padding-bottom: 0.25rem !important;\n  box-shadow: none;\n  border: none;\n}\n"
-            }
-          }
-        }
-      },
-      "views": [
-        {
-          "title": "Home",
-          "path": "home",
-          "icon": "mdi:home-assistant",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.vic",
-                      "fill_container": false,
-                      "layout": "vertical",
-                      "icon_type": "entity-picture"
-                    },
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "sensor.person_cosmo",
-                      "fill_container": false,
-                      "icon_type": "entity-picture",
-                      "layout": "vertical",
-                      "tap_action": {
-                        "action": "fire-dom-event",
-                        "browser_mod": {
-                          "service": "browser_mod.popup",
-                          "data": {
-                            "content": {
-                              "type": "vertical-stack",
-                              "cards": [
-                                {
-                                  "type": "custom:card-templater",
-                                  "entities": [
-                                    "input_select.cosmo_entity_picture"
-                                  ],
-                                  "card": {
-                                    "type": "picture",
-                                    "image_template": "{{ states('input_select.cosmo_entity_picture') }}"
-                                  }
-                                },
-                                {
-                                  "type": "entities",
-                                  "entities": [
-                                    {
-                                      "type": "custom:mushroom-entity-card",
-                                      "entity": "sensor.person_cosmo",
-                                      "name": "Cosmo"
-                                    },
-                                    {
-                                      "type": "custom:mushroom-entity-card",
-                                      "entity": "vacuum.cosmo",
-                                      "name": "Cosmo"
-                                    },
-                                    {
-                                      "type": "custom:mushroom-select-card",
-                                      "entity": "input_select.cosmo_entity_picture"
-                                    },
-                                    {
-                                      "entity": "automation.input_select_cosmo_entity_picture_set_options"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.will",
-                      "fill_container": false,
-                      "layout": "vertical",
-                      "icon_type": "entity-picture"
-                    }
-                  ]
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.current_version",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "icon": "mdi:home-assistant"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "script.gh_issue_create",
-                          "icon": "mdi:github",
-                          "name": "Open an Issue",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "fill_container": false,
-                          "secondary_info": "none",
-                          "icon_color": "blue",
-                          "icon_type": "icon"
-                        }
-                      ],
-                      "columns": 2
-                    },
-                    {
-                      "type": "custom:mushroom-chips-card",
-                      "chips": [
-                        {
-                          "type": "entity",
-                          "entity": "sensor.current_git_ref",
-                          "icon": "mdi:git",
-                          "icon_color": "#E84D32",
-                          "double_tap_action": {
-                            "action": "url",
-                            "url_path": "https://github.com/worgarside/home-assistant/releases"
-                          },
-                          "hold_action": {
-                            "action": "call-service",
-                            "service": "homeassistant.update_entity",
-                            "target": {
-                              "entity_id": "sensor.current_git_ref"
-                            }
-                          }
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.current_git_branch",
-                          "icon": "mdi:source-branch",
-                          "icon_color": "#AD20ED",
-                          "double_tap_action": {
-                            "action": "url",
-                            "url_path": "https://github.com/worgarside/home-assistant"
-                          },
-                          "tap_action": {
-                            "action": "fire-dom-event",
-                            "browser_mod": {
-                              "service": "browser_mod.popup",
-                              "data": {
-                                "content": {
-                                  "type": "custom:vertical-stack-in-card",
-                                  "cards": [
-                                    {
-                                      "type": "entities",
-                                      "entities": [
-                                        {
-                                          "type": "custom:mushroom-select-card",
-                                          "entity": "input_select.target_git_branch",
-                                          "secondary_info": "last-updated"
-                                        },
-                                        {
-                                          "entity": "sensor.remote_git_branches"
-                                        },
-                                        {
-                                          "entity": "script.target_git_branch_set_options",
-                                          "name": "Update Available Options",
-                                          "icon": "mdi:source-branch-sync"
-                                        },
-                                        {
-                                          "entity": "script.git_pull",
-                                          "name": "Git Pull",
-                                          "icon": "mdi:source-pull"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "markdown",
-                                      "content": "{% set current_branch = states('sensor.current_git_branch') %}\n- [{{ current_branch }}](https://github.com/worgarside/home-assistant/tree/{{ current_branch }})\n---\n{%- for branch in state_attr('sensor.remote_git_branches', 'branches') if branch != current_branch %}\n- [{{ branch }}](https://github.com/worgarside/home-assistant/tree/{{ branch }})\n{%- endfor %}"
-                                    }
-                                  ]
-                                }
-                              }
-                            }
-                          }
-                        },
-                        {
-                          "type": "spacer"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "var.current_appdaemon_ref",
-                          "icon_color": "#01A9F4",
-                          "double_tap_action": {
-                            "action": "url",
-                            "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
-                          },
-                          "hold_action": {
-                            "action": "call-service",
-                            "service": "homeassistant.update_entity",
-                            "target": {
-                              "entity_id": "sensor.current_appdaemon_ref"
-                            }
-                          }
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "var.current_appdaemon_branch",
-                          "icon_color": "#AD20ED",
-                          "double_tap_action": {
-                            "action": "url",
-                            "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
-                          },
-                          "hold_action": {
-                            "action": "call-service",
-                            "service": "homeassistant.update_entity",
-                            "target": {
-                              "entity_id": "sensor.current_appdaemon_branch"
-                            }
-                          }
-                        }
-                      ],
-                      "alignment": "justify"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:clock-weather-card",
-                  "entity": "weather.met_office_fulham_daily",
-                  "date_pattern": "DDDD",
-                  "time_pattern": "HH:mm:ss"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "entities": [
-                    {
-                      "entity": "sensor.bedroom_temperature",
-                      "name": "Bedroom",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.hallway_temperature",
-                      "name": "Hallway",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.kitchen_temperature",
-                      "name": "Kitchen",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.lounge_temperature",
-                      "name": "Lounge",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.office_temperature",
-                      "name": "Office",
-                      "smoothing": true
-                    }
-                  ],
-                  "hours_to_show": 24,
-                  "hour24": true,
-                  "points_per_hour": 20,
-                  "line_width": 2,
-                  "min_bound_range": 10,
-                  "lower_bound": "~20",
-                  "upper_bound": "~20",
-                  "animate": true,
-                  "name": "Room Temperatures",
-                  "show": {
-                    "fill": "fade",
-                    "icon": false,
-                    "state": false,
-                    "legend": true,
-                    "labels": true
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "entities",
-                      "entities": [
-                        {
-                          "entity": "script.ad_monzo_auto_save",
-                          "name": "Auto-Save",
-                          "card_mod": {
-                            "style": {
-                              "hui-generic-entity-row": {
-                                "$": "state-badge {\n  display: none;\n}\n:host {\n  font-size: 24px;\n  font-weight: 600;\n  line-height: 32px;\n}\n"
-                              }
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.auto_save_amount",
-                          "name": "Current Amount",
-                          "icon_color": "orange"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_datetime.last_auto_save",
-                          "icon_color": "green"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_number.auto_save_debit_transaction_percentage",
-                          "name": "Income Percentage",
-                          "icon_color": "lime"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_number.auto_save_minimum",
-                          "icon_color": "deep-orange"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_number.auto_save_naughty_transaction_percentage",
-                          "name": "Naughty Percentage",
-                          "icon_color": "red"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_text.auto_save_naughty_transaction_pattern",
-                          "name": "Naughty Pattern",
-                          "icon_color": "pink"
-                        }
-                      ],
-                      "columns": 2
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "custom:expander-card",
-                      "title-card": {
-                        "type": "horizontal-stack",
-                        "cards": [
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_monzo_current_account",
-                            "icon_color": "#FF4F40",
-                            "layout": "vertical",
-                            "name": "Current Account",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          },
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_amex",
-                            "icon_color": "#036ED0",
-                            "layout": "vertical",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          },
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_monzo_credit_cards",
-                            "icon_color": "#4D3926",
-                            "layout": "vertical",
-                            "name": "Credit Cards",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          },
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_monzo_savings",
-                            "icon_color": "amber",
-                            "layout": "vertical",
-                            "name": "Savings",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          }
-                        ]
-                      },
-                      "cards": [
-                        {
-                          "type": "custom:mini-graph-card",
-                          "entities": [
-                            {
-                              "entity": "var.truelayer_balance_monzo_current_account",
-                              "color": "#FF4F40"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_amex",
-                              "color": "#036ED0"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_monzo_credit_cards",
-                              "color": "#4D3926"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_monzo_savings",
-                              "color": "#FFC007"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_starling_current_account",
-                              "color": "#6633CC"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_starling_joint_account",
-                              "color": "purple"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_santander_current_account",
-                              "color": "red"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_hsbc_current_account",
-                              "color": "white"
-                            }
-                          ],
-                          "show": {
-                            "state": false,
-                            "icon": false,
-                            "legend": false,
-                            "labels": true,
-                            "fill": "fade",
-                            "name": false
-                          },
-                          "hours_to_show": 168,
-                          "points_per_hour": 1,
-                          "lower_bound": 0,
-                          "height": 200,
-                          "line_width": 2,
-                          "font_size": 75
-                        }
-                      ],
-                      "padding": 0,
-                      "child-padding": 0,
-                      "title-card-button-overlay": false
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_starling_current_account",
-                          "icon_color": "#6633CC",
-                          "layout": "vertical",
-                          "icon": "si:starlingbank",
-                          "name": "Current Account"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_starling_joint_account",
-                          "icon_color": "purple",
-                          "layout": "vertical",
-                          "icon": "si:starlingbank",
-                          "name": "Joint Account"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_santander_current_account",
-                          "icon_color": "red",
-                          "layout": "vertical",
-                          "name": "Santander"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_hsbc_current_account",
-                          "icon_color": "white",
-                          "layout": "vertical",
-                          "name": "HSBC"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 2,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.front_door",
-                      "secondary_info": "last-changed",
-                      "name": "Front Door"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.wills_macbook_pro_internal_battery_level",
-                      "name": "MacBook Pro"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.office_shapes",
-                      "show_brightness_control": true,
-                      "layout": "horizontal",
-                      "use_light_color": true,
-                      "double_tap_action": {
-                        "action": "toggle"
-                      },
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "name": "Shapes"
-                    },
-                    {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.desk_lamp",
-                      "show_brightness_control": true,
-                      "layout": "horizontal",
-                      "use_light_color": true,
-                      "double_tap_action": {
-                        "action": "toggle"
-                      },
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "name": "Lamp"
-                    },
-                    {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.mushroom_lamp",
-                      "show_brightness_control": true,
-                      "layout": "horizontal",
-                      "use_light_color": true,
-                      "double_tap_action": {
-                        "action": "toggle"
-                      },
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "name": "Mushroom"
-                    },
-                    {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.pegboard_spotlight",
-                      "show_brightness_control": true,
-                      "layout": "horizontal",
-                      "use_light_color": true,
-                      "double_tap_action": {
-                        "action": "toggle"
-                      },
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "name": "Pegboard Spotlight"
-                    },
-                    {
-                      "type": "custom:mushroom-cover-card",
-                      "entity": "cover.office_desk",
-                      "show_position_control": true,
-                      "layout": "horizontal",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
-                      },
-                      "name": "Desk"
-                    },
-                    {
-                      "type": "custom:mushroom-cover-card",
-                      "entity": "cover.office_blinds",
-                      "show_position_control": true,
-                      "layout": "horizontal",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
-                      },
-                      "name": "Blinds"
-                    },
-                    {
-                      "type": "grid",
-                      "columns": 2,
-                      "square": false,
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-fan-card",
-                          "entity": "fan.desk_fan",
-                          "name": "Fan",
-                          "icon_animation": true,
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "double_tap_action": {
-                            "action": "toggle"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "switch.charging_hub",
-                          "primary_info": "name",
-                          "secondary_info": "state",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "double_tap_action": {
-                            "action": "toggle"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "entities": [
-                    "sensor.charging_hub_current_consumption"
-                  ]
-                },
-                {
-                  "type": "media-control",
-                  "entity": "media_player.topaz_sr10"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Cosmo",
-                      "title_tap_action": {
-                        "action": "navigate",
-                        "navigation_path": "/home-will/cosmo"
-                      }
-                    },
-                    {
-                      "type": "custom:xiaomi-vacuum-map-card",
-                      "map_source": {
-                        "camera": "camera.cosmo_map"
-                      },
-                      "calibration_source": {
-                        "camera": true
-                      },
-                      "entity": "vacuum.cosmo",
-                      "vacuum_platform": "Tasshack/dreame-vacuum",
-                      "title": "",
-                      "two_finger_pan": false,
-                      "map_modes": [
-                        {
-                          "template": "vacuum_clean_segment"
-                        },
-                        {
-                          "template": "vacuum_clean_zone"
-                        },
-                        {
-                          "template": "vacuum_clean_point"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Mobile",
-          "type": "custom:vertical-layout",
-          "path": "mobile",
-          "visible": [],
-          "badges": [],
-          "cards": [
-            {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:mushroom-person-card",
-                  "entity": "person.vic",
-                  "fill_container": false,
-                  "layout": "horizontal",
-                  "icon_type": "entity-picture"
-                },
-                {
-                  "type": "custom:mushroom-person-card",
-                  "entity": "person.will",
-                  "fill_container": false,
-                  "layout": "horizontal",
-                  "icon_type": "entity-picture"
-                }
-              ]
-            },
-            {
-              "type": "custom:mushroom-title-card",
-              "title": "Bedroom",
-              "alignment": "center"
-            },
-            {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "switch.bedroom_scent_plug",
-                  "name": "Air Freshener",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  },
-                  "layout": "vertical"
-                },
-                {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.fan",
-                  "name": "Will's Fan",
-                  "icon_animation": true,
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  },
-                  "layout": "vertical"
-                },
-                {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.vic_s_fan",
-                  "name": "Vic's Fan",
-                  "icon_animation": true,
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  },
-                  "layout": "vertical"
-                }
-              ]
-            },
-            {
-              "type": "custom:mushroom-light-card",
-              "entity": "light.glowstick",
-              "fill_container": false,
-              "use_light_color": false,
-              "show_brightness_control": true,
-              "show_color_temp_control": false,
-              "collapsible_controls": false,
-              "layout": "horizontal",
-              "hold_action": {
-                "action": "more-info"
-              },
-              "double_tap_action": {
-                "action": "none"
-              }
-            },
-            {
-              "type": "custom:mushroom-cover-card",
-              "entity": "cover.bedroom_blinds",
-              "name": "Blinds",
-              "show_position_control": true,
-              "hold_action": {
-                "action": "more-info"
-              },
-              "double_tap_action": {
-                "action": "none"
-              },
-              "layout": "horizontal"
-            },
-            {
-              "type": "custom:mushroom-entity-card",
-              "entity": "binary_sensor.bedroom_window",
-              "name": "Window"
-            },
-            {
-              "type": "custom:mushroom-title-card",
-              "title": "Lounge",
-              "alignment": "center"
-            },
-            {
-              "type": "custom:mushroom-cover-card",
-              "entity": "cover.lounge_blinds",
-              "name": "Blinds",
-              "show_position_control": true,
-              "hold_action": {
-                "action": "more-info"
-              },
-              "double_tap_action": {
-                "action": "more-info"
-              },
-              "layout": "horizontal"
-            },
-            {
-              "type": "custom:mushroom-light-card",
-              "entity": "light.lounge_shapes",
-              "fill_container": false,
-              "use_light_color": false,
-              "show_brightness_control": true,
-              "show_color_temp_control": false,
-              "collapsible_controls": false,
-              "layout": "horizontal",
-              "hold_action": {
-                "action": "more-info"
-              },
-              "double_tap_action": {
-                "action": "toggle"
-              },
-              "name": "Shapes",
-              "tap_action": {
-                "action": "more-info"
-              }
-            },
-            {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:mushroom-light-card",
-                  "entity": "light.mini_lamp",
-                  "layout": "vertical",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  }
-                },
-                {
-                  "type": "custom:mushroom-light-card",
-                  "entity": "light.shelf_lamp",
-                  "layout": "vertical",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  }
-                },
-                {
-                  "type": "custom:mushroom-light-card",
-                  "entity": "light.table_lamp",
-                  "layout": "vertical",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Cosmo",
-          "path": "cosmo",
-          "subview": true,
-          "type": "custom:grid-layout",
-          "layout": {
-            "grid-template-columns": "75% auto",
-            "grid-template-rows": "auto",
-            "grid-template-areas": "\"left middle right\"\n"
-          },
-          "badges": [],
-          "cards": [
-            {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:hui-element",
-                      "card_mod": {
-                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
-                      },
-                      "card_type": "markdown",
-                      "content": " "
-                    },
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Last Clean",
-                      "alignment": "center",
-                      "subtitle": ""
-                    },
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Clean Timeout",
-                      "alignment": "center"
-                    },
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Next Clean Due",
-                      "alignment": "center"
-                    },
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "",
-                      "alignment": "center"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:hui-element",
-                      "card_mod": {
-                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
-                      },
-                      "card_type": "markdown",
-                      "content": "### Bathroom"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_last_bathroom_clean",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.cosmo_room_timeout_bathroom",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_next_bathroom_clean_due",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "script.cosmo_clean_room",
-                      "name": "Clean Now",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "script.cosmo_clean_room",
-                        "target": {},
-                        "data": {
-                          "room_name": "bathroom"
-                        }
-                      },
-                      "icon": "mdi:robot-vacuum",
-                      "icon_color": "green"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:hui-element",
-                      "card_mod": {
-                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
-                      },
-                      "card_type": "markdown",
-                      "content": "### Bedroom"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_last_bedroom_clean",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.cosmo_room_timeout_bedroom",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_next_bedroom_clean_due",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "script.cosmo_clean_room",
-                      "name": "Clean Now",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "script.cosmo_clean_room",
-                        "target": {},
-                        "data": {
-                          "room_name": "bedroom"
-                        }
-                      },
-                      "icon": "mdi:robot-vacuum",
-                      "icon_color": "green"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:hui-element",
-                      "card_mod": {
-                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
-                      },
-                      "card_type": "markdown",
-                      "content": "### En-Suite"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_last_en_suite_clean",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.cosmo_room_timeout_en_suite",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_next_en_suite_clean_due",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "script.cosmo_clean_room",
-                      "name": "Clean Now",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "script.cosmo_clean_room",
-                        "target": {},
-                        "data": {
-                          "room_name": "en_suite"
-                        }
-                      },
-                      "icon": "mdi:robot-vacuum",
-                      "icon_color": "green"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:hui-element",
-                      "card_mod": {
-                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
-                      },
-                      "card_type": "markdown",
-                      "content": "### Hallway"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_last_hallway_clean",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.cosmo_room_timeout_hallway",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_next_hallway_clean_due",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "script.cosmo_clean_room",
-                      "name": "Clean Now",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "script.cosmo_clean_room",
-                        "target": {},
-                        "data": {
-                          "room_name": "hallway"
-                        }
-                      },
-                      "icon": "mdi:robot-vacuum",
-                      "icon_color": "green"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:hui-element",
-                      "card_mod": {
-                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
-                      },
-                      "card_type": "markdown",
-                      "content": "### Kitchen"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_last_kitchen_clean",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.cosmo_room_timeout_kitchen",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_next_kitchen_clean_due",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "script.cosmo_clean_room",
-                      "name": "Clean Now",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "script.cosmo_clean_room",
-                        "target": {},
-                        "data": {
-                          "room_name": "kitchen"
-                        }
-                      },
-                      "icon": "mdi:robot-vacuum",
-                      "icon_color": "green"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:hui-element",
-                      "card_mod": {
-                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
-                      },
-                      "card_type": "markdown",
-                      "content": "### Lounge"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_last_lounge_clean",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.cosmo_room_timeout_lounge",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_next_lounge_clean_due",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "script.cosmo_clean_room",
-                      "name": "Clean Now",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "script.cosmo_clean_room",
-                        "target": {},
-                        "data": {
-                          "room_name": "lounge"
-                        }
-                      },
-                      "icon": "mdi:robot-vacuum",
-                      "icon_color": "green"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:hui-element",
-                      "card_mod": {
-                        "style": "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow: none;\n  border: none;\n}\n"
-                      },
-                      "card_type": "markdown",
-                      "content": "### Office"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_last_office_clean",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.cosmo_room_timeout_office",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_datetime.cosmo_next_office_clean_due",
-                      "primary_info": "state",
-                      "secondary_info": "none"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "script.cosmo_clean_room",
-                      "name": "Clean Now",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "script.cosmo_clean_room",
-                        "target": {},
-                        "data": {
-                          "room_name": "office"
-                        }
-                      },
-                      "icon": "mdi:robot-vacuum",
-                      "icon_color": "green"
-                    }
-                  ]
-                }
-              ],
-              "view_layout": {
-                "grid-area": "left"
-              }
-            },
-            {
-              "type": "custom:xiaomi-vacuum-map-card",
-              "view_layout": {
-                "grid-area": "middle"
-              },
-              "map_source": {
-                "camera": "camera.cosmo_map"
-              },
-              "calibration_source": {
-                "camera": true
-              },
-              "entity": "vacuum.cosmo",
-              "vacuum_platform": "Tasshack/dreame-vacuum",
-              "title": "",
-              "two_finger_pan": false,
-              "map_modes": [
-                {
-                  "template": "vacuum_clean_segment"
-                },
-                {
-                  "template": "vacuum_clean_zone"
-                },
-                {
-                  "template": "vacuum_clean_point"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Makerspace",
-          "path": "makerspace",
-          "icon": "mdi:printer-3d",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "camera_view": "live",
-                  "type": "picture-glance",
-                  "entities": [],
-                  "camera_image": "camera.octoprint_camera",
-                  "aspect_ratio": "1.333333",
-                  "entity": "binary_sensor.octoprint_connected",
-                  "theme": "Mushroom",
-                  "view_layout": {
-                    "grid-area": "cam"
-                  }
-                },
-                {
-                  "square": false,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "switch.prusa_i3_mk3_power",
-                      "icon_color": "orange"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.prusa_i3_mk3_current_consumption",
-                      "name": "Current Power Draw",
-                      "icon_color": "yellow"
-                    }
-                  ],
-                  "columns": 2
-                },
-                {
-                  "square": false,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "number.prusa_i3_target_hotend_temperature",
-                      "name": "Hotend Target",
-                      "icon_color": "purple"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_tool_0_temperature",
-                      "name": "Hotend Temperature",
-                      "icon_color": "orange"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "number.prusa_i3_target_bed_temperature",
-                      "name": "Bed Target",
-                      "icon_color": "deep-purple"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_bed_temperature",
-                      "name": "Bed Temperature",
-                      "icon_color": "deep-orange",
-                      "icon": "mdi:grid"
-                    }
-                  ],
-                  "columns": 2
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octoprint_approximate_completion_time",
-                  "name": "Print Completion Time",
-                  "icon_color": "purple",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.octoprint_approximate_completion_time",
-                      "state_not": "unavailable"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mushroom-chips-card",
-                  "chips": [
-                    {
-                      "type": "entity",
-                      "entity": "button.octoprint_restart_server",
-                      "hold_action": {
-                        "action": "call-service",
-                        "service": "button.press",
-                        "target": {
-                          "entity_id": "button.octoprint_restart_server"
-                        }
-                      },
-                      "content_info": "name",
-                      "name": "Restart Server",
-                      "icon_color": "orange"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "button.octoprint_reboot_system",
-                      "hold_action": {
-                        "action": "call-service",
-                        "service": "button.press",
-                        "target": {
-                          "entity_id": "button.octoprint_reboot_system"
-                        }
-                      },
-                      "content_info": "name",
-                      "name": "Reboot System",
-                      "icon_color": "red"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "switch.prusa_i3_mk3_power",
-                      "state": "off"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Enclosure Stats"
-                    },
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "columns": 2,
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.octopi_ambient_temperature",
-                          "name": "Temperature",
-                          "icon_color": "red"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.octopi_ambient_humidity",
-                          "name": "Humidity",
-                          "icon_color": "light-green"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "6 Hour History",
-                      "entities": [
-                        {
-                          "entity": "sensor.octopi_ambient_temperature",
-                          "name": "Temperature",
-                          "color": "#F54336"
-                        },
-                        {
-                          "entity": "sensor.octopi_ambient_humidity",
-                          "name": "Humidity",
-                          "color": "#8BC34A",
-                          "y_axis": "secondary"
-                        }
-                      ],
-                      "show": {
-                        "state": false,
-                        "legend": false,
-                        "fill": "fade",
-                        "name": true,
-                        "icon": false,
-                        "labels": true,
-                        "labels_secondary": true,
-                        "unit": true
-                      },
-                      "hours_to_show": 6,
-                      "points_per_hour": 60,
-                      "lower_bound": "~20",
-                      "upper_bound": "~40",
-                      "lower_bound_secondary": "~30",
-                      "upper_bound_secondary": "~60",
-                      "height": 150,
-                      "animate": true,
-                      "hour24": true,
-                      "line_width": 2
-                    },
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-fan-card",
-                          "entity": "fan.octopi_cpu_fan",
-                          "name": "CPU",
-                          "double_tap_action": {
-                            "action": "toggle"
-                          },
-                          "icon_animation": true,
-                          "show_percentage_control": false
-                        },
-                        {
-                          "type": "custom:mushroom-fan-card",
-                          "entity": "fan.prusa_i3_enclosure_fan",
-                          "name": "Enclosure",
-                          "fill_container": false,
-                          "double_tap_action": {
-                            "action": "toggle"
-                          },
-                          "layout": "horizontal",
-                          "icon_animation": true
-                        }
-                      ],
-                      "columns": 2
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 2,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octopi_boot_time",
-                      "name": "Last Boot Time",
-                      "icon_color": "green"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "switch.prusa_i3_mk3_power",
-                      "icon_color": "accent"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octopi_local_ip_address",
-                      "icon_color": "yellow",
-                      "name": "IP Address"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octopi_active_git_ref",
-                      "name": "WG Scripts",
-                      "icon_color": "blue-grey"
-                    }
-                  ]
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "grid",
-                      "columns": 2,
-                      "square": false,
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.octopi_cpu_usage",
-                          "icon_color": "red",
-                          "name": "CPU Usage"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.octopi_memory_usage",
-                          "icon_color": "blue",
-                          "name": "Memory Usage"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.octopi_disk_usage",
-                          "icon_color": "green",
-                          "name": "Disk Usage"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.octopi_cpu_temperature",
-                          "icon_color": "orange",
-                          "name": "CPU Temperature",
-                          "icon": "mdi:thermometer-lines"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "6 Hour History",
-                      "entities": [
-                        {
-                          "entity": "sensor.octopi_cpu_usage",
-                          "name": "CPU",
-                          "color": "#F54336"
-                        },
-                        {
-                          "entity": "sensor.octopi_memory_usage",
-                          "name": "Memory",
-                          "color": "#2096F3"
-                        },
-                        {
-                          "entity": "sensor.octopi_disk_usage",
-                          "name": "Disk Usage",
-                          "color": "#4DAF50"
-                        },
-                        {
-                          "entity": "sensor.octopi_cpu_temperature",
-                          "name": "CPU Temperature",
-                          "color": "#FF9901",
-                          "y_axis": "secondary"
-                        }
-                      ],
-                      "show": {
-                        "state": false,
-                        "legend": false,
-                        "fill": "fade",
-                        "name": true,
-                        "icon": false,
-                        "labels": true,
-                        "labels_secondary": true,
-                        "unit": true
-                      },
-                      "hours_to_show": 6,
-                      "points_per_hour": 60,
-                      "lower_bound": 0,
-                      "upper_bound": "~50",
-                      "lower_bound_secondary": "~40",
-                      "upper_bound_secondary": "~70",
-                      "height": 150,
-                      "animate": true,
-                      "hour24": true,
-                      "line_width": 2
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-          "max_columns": 4,
-          "cards": []
-        },
-        {
-          "icon": "mdi:raspberry-pi",
-          "title": "HAssPi",
-          "path": "hasspi",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 2,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-template-card",
-                      "primary": "Last Boot Time",
-                      "secondary": "{{ states('sensor.uptime').removesuffix(\"+00:00\").replace(\"T\", \" \") }}",
-                      "icon": "mdi:console",
-                      "entity": "sensor.uptime",
-                      "icon_color": "green",
-                      "multiline_secondary": false,
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-template-card",
-                      "primary": "{{ states('sensor.backup_state').replace(\"_\", \" \").title() }}",
-                      "secondary": "{{ ( state_attr('sensor.backup_state', \"last_backup\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\")  }}",
-                      "icon": "mdi:cloud-upload-outline",
-                      "entity": "sensor.backup_state",
-                      "icon_color": "teal",
-                      "multiline_secondary": false,
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.local_ip",
-                      "icon_color": "yellow",
-                      "name": "IP Address",
-                      "icon": "mdi:ip-network-outline"
-                    }
-                  ]
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "grid",
-                      "columns": 2,
-                      "square": false,
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.processor_use",
-                          "icon_color": "red",
-                          "name": "CPU Usage"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.memory_use_percent",
-                          "icon_color": "blue",
-                          "name": "Memory Usage"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.disk_use_percent",
-                          "icon_color": "green",
-                          "name": "Disk Usage"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.processor_temperature",
-                          "icon_color": "orange",
-                          "name": "CPU Temperature",
-                          "icon": "mdi:thermometer-lines"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "6 Hour History",
-                      "entities": [
-                        {
-                          "entity": "sensor.processor_use",
-                          "name": "CPU",
-                          "color": "#F54336"
-                        },
-                        {
-                          "entity": "sensor.memory_use_percent",
-                          "name": "Memory",
-                          "color": "#2096F3"
-                        },
-                        {
-                          "entity": "sensor.disk_use_percent",
-                          "name": "Disk Usage",
-                          "color": "#4DAF50"
-                        },
-                        {
-                          "entity": "sensor.processor_temperature",
-                          "name": "CPU Temperature",
-                          "color": "#FF9901",
-                          "y_axis": "secondary"
-                        }
-                      ],
-                      "show": {
-                        "state": false,
-                        "legend": false,
-                        "fill": "fade",
-                        "name": true,
-                        "icon": false,
-                        "labels": true,
-                        "labels_secondary": true,
-                        "unit": true
-                      },
-                      "hours_to_show": 6,
-                      "points_per_hour": 60,
-                      "lower_bound": 0,
-                      "upper_bound": "~70",
-                      "lower_bound_secondary": "~35",
-                      "upper_bound_secondary": "~50",
-                      "height": 150,
-                      "animate": true,
-                      "hour24": true,
-                      "line_width": 2
-                    }
-                  ]
-                }
-              ],
-              "title": "System Monitor"
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 3,
-                  "cards": [
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E51919"
-                        },
-                        {
-                          "name": "AdGuard"
-                        },
-                        {
-                          "slug": "adguard"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E56B19"
-                        },
-                        {
-                          "name": "AppDaemon"
-                        },
-                        {
-                          "slug": "appdaemon"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E5BC19"
-                        },
-                        {
-                          "name": "ESPHome"
-                        },
-                        {
-                          "slug": "esphome_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#BCE519"
-                        },
-                        {
-                          "name": "Grafana"
-                        },
-                        {
-                          "slug": "grafana"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#6BE519"
-                        },
-                        {
-                          "name": "InfluxDB"
-                        },
-                        {
-                          "slug": "influxdb"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#19E519"
-                        },
-                        {
-                          "name": "Google Drive Backup"
-                        },
-                        {
-                          "slug": "google_drive_backup_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#19E56B"
-                        },
-                        {
-                          "name": "Item Warehouse API"
-                        },
-                        {
-                          "slug": "item_warehouse_api"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#19E5BC"
-                        },
-                        {
-                          "name": "Item Warehouse Website"
-                        },
-                        {
-                          "slug": "item_warehouse_website"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#19BCE5"
-                        },
-                        {
-                          "name": "MariaDB"
-                        },
-                        {
-                          "slug": "mariadb"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#196BE5"
-                        },
-                        {
-                          "name": "Matter Server"
-                        },
-                        {
-                          "slug": "matter_server"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#1919E5"
-                        },
-                        {
-                          "name": "Mosquitto Broker"
-                        },
-                        {
-                          "slug": "mosquitto_broker"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#6B19E5"
-                        },
-                        {
-                          "name": "Silicon Labs Multiprotocol"
-                        },
-                        {
-                          "slug": "silicon_labs_multiprotocol_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#BC19E5"
-                        },
-                        {
-                          "name": "Terminal & SSH"
-                        },
-                        {
-                          "slug": "terminal_ssh_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E519BC"
-                        },
-                        {
-                          "name": "VSCode"
-                        },
-                        {
-                          "slug": "visual_studio_code_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E5196B"
-                        },
-                        {
-                          "name": "YAS-209 Bridge"
-                        },
-                        {
-                          "slug": "yas_209_bridge"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU Usage",
-                  "entities": [
-                    {
-                      "entity": "sensor.adguard_cpu_usage",
-                      "color": "#E51919"
-                    },
-                    {
-                      "entity": "sensor.appdaemon_cpu_usage",
-                      "color": "#E56B19"
-                    },
-                    {
-                      "entity": "sensor.esphome_add_on_cpu_usage",
-                      "color": "#E5BC19"
-                    },
-                    {
-                      "entity": "sensor.grafana_cpu_usage",
-                      "color": "#BCE519"
-                    },
-                    {
-                      "entity": "sensor.influxdb_cpu_usage",
-                      "color": "#6BE519"
-                    },
-                    {
-                      "entity": "sensor.google_drive_backup_add_on_cpu_usage",
-                      "color": "#19E519"
-                    },
-                    {
-                      "entity": "sensor.item_warehouse_api_cpu_usage",
-                      "color": "#19E56B"
-                    },
-                    {
-                      "entity": "sensor.item_warehouse_website_cpu_usage",
-                      "color": "#19E5BC"
-                    },
-                    {
-                      "entity": "sensor.mariadb_cpu_usage",
-                      "color": "#19BCE5"
-                    },
-                    {
-                      "entity": "sensor.matter_server_cpu_usage",
-                      "color": "#196BE5"
-                    },
-                    {
-                      "entity": "sensor.mosquitto_broker_cpu_usage",
-                      "color": "#1919E5"
-                    },
-                    {
-                      "entity": "sensor.silicon_labs_multiprotocol_add_on_cpu_usage",
-                      "color": "#6B19E5"
-                    },
-                    {
-                      "entity": "sensor.terminal_ssh_add_on_cpu_usage",
-                      "color": "#BC19E5"
-                    },
-                    {
-                      "entity": "sensor.visual_studio_code_add_on_cpu_usage",
-                      "color": "#E519BC"
-                    },
-                    {
-                      "entity": "sensor.yas_209_bridge_cpu_usage",
-                      "color": "#E5196B"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "legend": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "labels_secondary": true,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 60,
-                  "lower_bound": 0,
-                  "upper_bound": "~10",
-                  "height": 150,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "Memory Usage",
-                  "entities": [
-                    {
-                      "entity": "sensor.adguard_memory_usage",
-                      "color": "#E51919"
-                    },
-                    {
-                      "entity": "sensor.appdaemon_memory_usage",
-                      "color": "#E56B19"
-                    },
-                    {
-                      "entity": "sensor.esphome_add_on_memory_usage",
-                      "color": "#E5BC19"
-                    },
-                    {
-                      "entity": "sensor.grafana_memory_usage",
-                      "color": "#BCE519"
-                    },
-                    {
-                      "entity": "sensor.influxdb_memory_usage",
-                      "color": "#6BE519"
-                    },
-                    {
-                      "entity": "sensor.google_drive_backup_add_on_memory_usage",
-                      "color": "#19E519"
-                    },
-                    {
-                      "entity": "sensor.item_warehouse_api_memory_usage",
-                      "color": "#19E56B"
-                    },
-                    {
-                      "entity": "sensor.item_warehouse_website_memory_usage",
-                      "color": "#19E5BC"
-                    },
-                    {
-                      "entity": "sensor.mariadb_memory_usage",
-                      "color": "#19BCE5"
-                    },
-                    {
-                      "entity": "sensor.matter_server_memory_usage",
-                      "color": "#196BE5"
-                    },
-                    {
-                      "entity": "sensor.mosquitto_broker_memory_usage",
-                      "color": "#1919E5"
-                    },
-                    {
-                      "entity": "sensor.silicon_labs_multiprotocol_add_on_memory_usage",
-                      "color": "#6B19E5"
-                    },
-                    {
-                      "entity": "sensor.terminal_ssh_add_on_memory_usage",
-                      "color": "#BC19E5"
-                    },
-                    {
-                      "entity": "sensor.visual_studio_code_add_on_memory_usage",
-                      "color": "#E519BC"
-                    },
-                    {
-                      "entity": "sensor.yas_209_bridge_memory_usage",
-                      "color": "#E5196B"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "legend": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "labels_secondary": true,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 60,
-                  "lower_bound": 0,
-                  "upper_bound": "~10",
-                  "height": 150,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ],
-              "title": "Add-Ons"
-            }
-          ],
-          "max_columns": 4,
-          "cards": []
-        },
-        {
-          "title": "LED Matrix Controller",
-          "path": "led-matrix-controller",
-          "icon": "mdi:data-matrix",
-          "type": "sections",
-          "max_columns": 4,
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "number.mtrxpi_raining_grid_rain_chance",
-                      "name": "Rain Chance"
-                    },
-                    {
-                      "entity": "number.mtrxpi_raining_grid_rain_speed",
-                      "name": "Rain Speed"
-                    },
-                    {
-                      "entity": "number.mtrxpi_raining_grid_splash_speed",
-                      "name": "Splash Speed"
-                    }
-                  ],
-                  "show_header_toggle": false,
-                  "state_color": false,
-                  "title": "Raining Grid"
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "switch.mtrxpi_power"
-                    },
-                    {
-                      "entity": "script.mtrxpi_queue_content"
-                    },
-                    {
-                      "entity": "number.mtrxpi_matrix_brightness"
-                    },
-                    {
-                      "entity": "input_select.mtrxpi_media_player_source"
-                    }
-                  ]
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "automation.mtrxpi_content_trigger_gif_door_animated"
-                    },
-                    {
-                      "entity": "automation.mtrxpi_content_trigger_now_playing"
-                    },
-                    {
-                      "entity": "automation.mtrxpi_content_trigger_raining_grid"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "square": false,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.mtrxpi_boot_time",
-                      "name": "Last Boot Time",
-                      "icon_color": "green"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.mtrxpi_current_content",
-                      "icon_color": "teal",
-                      "name": "Current Content"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.mtrxpi_local_ip_address",
-                      "icon_color": "yellow",
-                      "name": "IP Address"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.mtrxpi_active_git_ref",
-                      "name": "WG Scripts",
-                      "icon_color": "blue-grey"
-                    }
-                  ],
-                  "columns": 2
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "columns": 2,
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.mtrxpi_cpu_usage",
-                          "icon_color": "red",
-                          "name": "CPU Usage"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.mtrxpi_memory_usage",
-                          "icon_color": "blue",
-                          "name": "Memory Usage"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.mtrxpi_disk_usage",
-                          "icon_color": "green",
-                          "name": "Disk Usage"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.mtrxpi_cpu_temperature",
-                          "icon_color": "orange",
-                          "name": "CPU Temperature",
-                          "icon": "mdi:thermometer-lines"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "6 Hour History",
-                      "entities": [
-                        {
-                          "entity": "sensor.mtrxpi_cpu_usage",
-                          "name": "CPU",
-                          "color": "#F54336"
-                        },
-                        {
-                          "entity": "sensor.mtrxpi_memory_usage",
-                          "name": "Memory",
-                          "color": "#2096F3"
-                        },
-                        {
-                          "entity": "sensor.mtrxpi_disk_usage",
-                          "name": "Disk Usage",
-                          "color": "#4DAF50"
-                        },
-                        {
-                          "entity": "sensor.mtrxpi_cpu_temperature",
-                          "name": "CPU Temperature",
-                          "color": "#FF9901",
-                          "y_axis": "secondary"
-                        }
-                      ],
-                      "show": {
-                        "state": false,
-                        "legend": false,
-                        "fill": "fade",
-                        "name": true,
-                        "icon": false,
-                        "labels": true,
-                        "labels_secondary": true,
-                        "unit": true
-                      },
-                      "hours_to_show": 6,
-                      "points_per_hour": 60,
-                      "lower_bound": 0,
-                      "upper_bound": "~50",
-                      "lower_bound_secondary": "~40",
-                      "upper_bound_secondary": "~70",
-                      "height": 150,
-                      "animate": true,
-                      "hour24": true,
-                      "line_width": 2
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mini-media-player",
-                  "entity": "media_player.spotify_will",
-                  "toggle_power": true,
-                  "group": false,
-                  "volume_stateless": false
-                }
-              ]
-            }
-          ],
-          "cards": []
-        },
-        {
-          "title": "Cube",
-          "path": "cube",
-          "icon": "phu:aqara-cube",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "square": false,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_text.cube_entity_1",
-                      "icon_color": "blue",
-                      "fill_container": false
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_text.cube_entity_2",
-                      "icon_color": "light-blue"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_text.cube_entity_3",
-                      "icon_color": "cyan"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_text.cube_entity_4",
-                      "icon_color": "teal"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_text.cube_entity_5",
-                      "icon_color": "green"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_text.cube_entity_6",
-                      "icon_color": "light-green"
-                    }
-                  ],
-                  "columns": 2
-                },
-                {
-                  "type": "tile",
-                  "entity": "automation.cube_rotate"
-                },
-                {
-                  "type": "tile",
-                  "entity": "automation.cube_knock"
-                },
-                {
-                  "type": "tile",
-                  "entity": "automation.cube_slide"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "tile",
-                  "entity": "sensor.cube_active_face",
-                  "vertical": false,
-                  "hide_state": false,
-                  "state_content": [
-                    "last-changed",
-                    "command"
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  }
-}
+version: 1
+minor_version: 1
+key: lovelace.home_will
+data:
+  config:
+    swipe_nav:
+      wrap: true
+      enable_mouse_swipe: true
+      animate: swipe
+      swipe_amount: 30
+    decluttering_templates:
+      addon_active_entity_template:
+        card:
+          entity: sensor.[[slug]]_status
+          type: custom:mushroom-template-card
+          primary: '[[name]]'
+          secondary: '{{ iif(is_state(''sensor.[[slug]]_status'', ''ok''), ''Running'',
+            ''Stopped'') }}'
+          icon_color: '{{ ''[[color]]'' if is_state(''sensor.[[slug]]_status'', ''ok'')
+            }}'
+          icon: '{{ iif(is_state(''sensor.[[slug]]_status'', ''ok''), ''mdi:docker'',
+            ''mdi:alert-octagon'') }}'
+          tap_action:
+            action: more-info
+          card_mod:
+            style: "ha-card {\n  padding-top: 0.25rem !important;\n  padding-bottom:\
+              \ 0.25rem !important;\n  box-shadow: none;\n  border: none;\n}\n"
+    views:
+    - title: Home
+      path: home
+      icon: mdi:home-assistant
+      type: sections
+      sections:
+      - type: grid
+        cards:
+        - type: horizontal-stack
+          cards:
+          - type: custom:mushroom-person-card
+            entity: person.vic
+            fill_container: false
+            layout: vertical
+            icon_type: entity-picture
+          - type: custom:mushroom-person-card
+            entity: sensor.person_cosmo
+            fill_container: false
+            icon_type: entity-picture
+            layout: vertical
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  content:
+                    type: vertical-stack
+                    cards:
+                    - type: custom:card-templater
+                      entities:
+                      - input_select.cosmo_entity_picture
+                      card:
+                        type: picture
+                        image_template: '{{ states(''input_select.cosmo_entity_picture'')
+                          }}'
+                    - type: entities
+                      entities:
+                      - type: custom:mushroom-entity-card
+                        entity: sensor.person_cosmo
+                        name: Cosmo
+                      - type: custom:mushroom-entity-card
+                        entity: vacuum.cosmo
+                        name: Cosmo
+                      - type: custom:mushroom-select-card
+                        entity: input_select.cosmo_entity_picture
+                      - entity: automation.input_select_cosmo_entity_picture_set_options
+          - type: custom:mushroom-person-card
+            entity: person.will
+            fill_container: false
+            layout: vertical
+            icon_type: entity-picture
+        - type: vertical-stack
+          cards:
+          - square: false
+            type: grid
+            cards:
+            - type: custom:mushroom-entity-card
+              entity: sensor.current_version
+              primary_info: state
+              secondary_info: name
+              icon: mdi:home-assistant
+            - type: custom:mushroom-entity-card
+              entity: script.gh_issue_create
+              icon: mdi:github
+              name: Open an Issue
+              tap_action:
+                action: more-info
+              fill_container: false
+              secondary_info: none
+              icon_color: blue
+              icon_type: icon
+            columns: 2
+          - type: custom:mushroom-chips-card
+            chips:
+            - type: entity
+              entity: sensor.current_git_ref
+              icon: mdi:git
+              icon_color: '#E84D32'
+              double_tap_action:
+                action: url
+                url_path: https://github.com/worgarside/home-assistant/releases
+              hold_action:
+                action: call-service
+                service: homeassistant.update_entity
+                target:
+                  entity_id: sensor.current_git_ref
+            - type: entity
+              entity: sensor.current_git_branch
+              icon: mdi:source-branch
+              icon_color: '#AD20ED'
+              double_tap_action:
+                action: url
+                url_path: https://github.com/worgarside/home-assistant
+              tap_action:
+                action: fire-dom-event
+                browser_mod:
+                  service: browser_mod.popup
+                  data:
+                    content:
+                      type: custom:vertical-stack-in-card
+                      cards:
+                      - type: entities
+                        entities:
+                        - type: custom:mushroom-select-card
+                          entity: input_select.target_git_branch
+                          secondary_info: last-updated
+                        - entity: sensor.remote_git_branches
+                        - entity: script.target_git_branch_set_options
+                          name: Update Available Options
+                          icon: mdi:source-branch-sync
+                        - entity: script.git_pull
+                          name: Git Pull
+                          icon: mdi:source-pull
+                      - type: markdown
+                        content: '{% set current_branch = states(''sensor.current_git_branch'')
+                          %}
+
+                          - [{{ current_branch }}](https://github.com/worgarside/home-assistant/tree/{{
+                          current_branch }})
+
+                          ---
+
+                          {%- for branch in state_attr(''sensor.remote_git_branches'',
+                          ''branches'') if branch != current_branch %}
+
+                          - [{{ branch }}](https://github.com/worgarside/home-assistant/tree/{{
+                          branch }})
+
+                          {%- endfor %}'
+            - type: spacer
+            - type: entity
+              entity: var.current_appdaemon_ref
+              icon_color: '#01A9F4'
+              double_tap_action:
+                action: url
+                url_path: https://github.com/worgarside/home-assistant-appdaemon
+              hold_action:
+                action: call-service
+                service: homeassistant.update_entity
+                target:
+                  entity_id: sensor.current_appdaemon_ref
+            - type: entity
+              entity: var.current_appdaemon_branch
+              icon_color: '#AD20ED'
+              double_tap_action:
+                action: url
+                url_path: https://github.com/worgarside/home-assistant-appdaemon
+              hold_action:
+                action: call-service
+                service: homeassistant.update_entity
+                target:
+                  entity_id: sensor.current_appdaemon_branch
+            alignment: justify
+        - type: custom:clock-weather-card
+          entity: weather.met_office_fulham_daily
+          date_pattern: DDDD
+          time_pattern: HH:mm:ss
+        - type: custom:mini-graph-card
+          entities:
+          - entity: sensor.bedroom_temperature
+            name: Bedroom
+            smoothing: true
+          - entity: sensor.hallway_temperature
+            name: Hallway
+            smoothing: true
+          - entity: sensor.kitchen_temperature
+            name: Kitchen
+            smoothing: true
+          - entity: sensor.lounge_temperature
+            name: Lounge
+            smoothing: true
+          - entity: sensor.office_temperature
+            name: Office
+            smoothing: true
+          hours_to_show: 24
+          hour24: true
+          points_per_hour: 20
+          line_width: 2
+          min_bound_range: 10
+          lower_bound: ~20
+          upper_bound: ~20
+          animate: true
+          name: Room Temperatures
+          show:
+            fill: fade
+            icon: false
+            state: false
+            legend: true
+            labels: true
+      - type: grid
+        cards:
+        - type: custom:vertical-stack-in-card
+          cards:
+          - type: entities
+            entities:
+            - entity: script.ad_monzo_auto_save
+              name: Auto-Save
+              card_mod:
+                style:
+                  hui-generic-entity-row:
+                    $: "state-badge {\n  display: none;\n}\n:host {\n  font-size:\
+                      \ 24px;\n  font-weight: 600;\n  line-height: 32px;\n}\n"
+          - square: false
+            type: grid
+            cards:
+            - type: custom:mushroom-entity-card
+              entity: var.auto_save_amount
+              name: Current Amount
+              icon_color: orange
+            - type: custom:mushroom-entity-card
+              entity: input_datetime.last_auto_save
+              icon_color: green
+            - type: custom:mushroom-entity-card
+              entity: input_number.auto_save_debit_transaction_percentage
+              name: Income Percentage
+              icon_color: lime
+            - type: custom:mushroom-entity-card
+              entity: input_number.auto_save_minimum
+              icon_color: deep-orange
+            - type: custom:mushroom-entity-card
+              entity: input_number.auto_save_naughty_transaction_percentage
+              name: Naughty Percentage
+              icon_color: red
+            - type: custom:mushroom-entity-card
+              entity: input_text.auto_save_naughty_transaction_pattern
+              name: Naughty Pattern
+              icon_color: pink
+            columns: 2
+        - type: custom:vertical-stack-in-card
+          cards:
+          - type: custom:expander-card
+            title-card:
+              type: horizontal-stack
+              cards:
+              - type: custom:mushroom-entity-card
+                entity: var.truelayer_balance_monzo_current_account
+                icon_color: '#FF4F40'
+                layout: vertical
+                name: Current Account
+                card_mod:
+                  style: "ha-card {\n  border: none !important;\n  margin-left: 0px\
+                    \ !important;\n  margin-right: 0px !important;\n  padding-right:\
+                    \ 0.25em !important;\n}\n"
+              - type: custom:mushroom-entity-card
+                entity: var.truelayer_balance_amex
+                icon_color: '#036ED0'
+                layout: vertical
+                card_mod:
+                  style: "ha-card {\n  border: none !important;\n  margin-left: 0px\
+                    \ !important;\n  margin-right: 0px !important;\n  padding-left:\
+                    \ 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+              - type: custom:mushroom-entity-card
+                entity: var.truelayer_balance_monzo_credit_cards
+                icon_color: '#4D3926'
+                layout: vertical
+                name: Credit Cards
+                card_mod:
+                  style: "ha-card {\n  border: none !important;\n  margin-left: 0px\
+                    \ !important;\n  margin-right: 0px !important;\n  padding-left:\
+                    \ 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+              - type: custom:mushroom-entity-card
+                entity: var.truelayer_balance_monzo_savings
+                icon_color: amber
+                layout: vertical
+                name: Savings
+                card_mod:
+                  style: "ha-card {\n  border: none !important;\n  margin-left: 0px\
+                    \ !important;\n  margin-right: 0px !important;\n  padding-left:\
+                    \ 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
+            cards:
+            - type: custom:mini-graph-card
+              entities:
+              - entity: var.truelayer_balance_monzo_current_account
+                color: '#FF4F40'
+              - entity: var.truelayer_balance_amex
+                color: '#036ED0'
+              - entity: var.truelayer_balance_monzo_credit_cards
+                color: '#4D3926'
+              - entity: var.truelayer_balance_monzo_savings
+                color: '#FFC007'
+              - entity: var.truelayer_balance_starling_current_account
+                color: '#6633CC'
+              - entity: var.truelayer_balance_starling_joint_account
+                color: purple
+              - entity: var.truelayer_balance_santander_current_account
+                color: red
+              - entity: var.truelayer_balance_hsbc_current_account
+                color: white
+              show:
+                state: false
+                icon: false
+                legend: false
+                labels: true
+                fill: fade
+                name: false
+              hours_to_show: 168
+              points_per_hour: 1
+              lower_bound: 0
+              height: 200
+              line_width: 2
+              font_size: 75
+            padding: 0
+            child-padding: 0
+            title-card-button-overlay: false
+          - type: horizontal-stack
+            cards:
+            - type: custom:mushroom-entity-card
+              entity: var.truelayer_balance_starling_current_account
+              icon_color: '#6633CC'
+              layout: vertical
+              icon: si:starlingbank
+              name: Current Account
+            - type: custom:mushroom-entity-card
+              entity: var.truelayer_balance_starling_joint_account
+              icon_color: purple
+              layout: vertical
+              icon: si:starlingbank
+              name: Joint Account
+            - type: custom:mushroom-entity-card
+              entity: var.truelayer_balance_santander_current_account
+              icon_color: red
+              layout: vertical
+              name: Santander
+            - type: custom:mushroom-entity-card
+              entity: var.truelayer_balance_hsbc_current_account
+              icon_color: white
+              layout: vertical
+              name: HSBC
+      - type: grid
+        cards:
+        - square: false
+          type: grid
+          columns: 2
+          cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.front_door
+            secondary_info: last-changed
+            name: Front Door
+          - type: custom:mushroom-entity-card
+            entity: sensor.wills_macbook_pro_internal_battery_level
+            name: MacBook Pro
+        - type: custom:vertical-stack-in-card
+          cards:
+          - type: custom:mushroom-light-card
+            entity: light.office_shapes
+            show_brightness_control: true
+            layout: horizontal
+            use_light_color: true
+            double_tap_action:
+              action: toggle
+            tap_action:
+              action: more-info
+            name: Shapes
+          - type: custom:mushroom-light-card
+            entity: light.desk_lamp
+            show_brightness_control: true
+            layout: horizontal
+            use_light_color: true
+            double_tap_action:
+              action: toggle
+            tap_action:
+              action: more-info
+            name: Lamp
+          - type: custom:mushroom-light-card
+            entity: light.mushroom_lamp
+            show_brightness_control: true
+            layout: horizontal
+            use_light_color: true
+            double_tap_action:
+              action: toggle
+            tap_action:
+              action: more-info
+            name: Mushroom
+          - type: custom:mushroom-light-card
+            entity: light.pegboard_spotlight
+            show_brightness_control: true
+            layout: horizontal
+            use_light_color: true
+            double_tap_action:
+              action: toggle
+            tap_action:
+              action: more-info
+            name: Pegboard Spotlight
+          - type: custom:mushroom-cover-card
+            entity: cover.office_desk
+            show_position_control: true
+            layout: horizontal
+            tap_action:
+              action: more-info
+            double_tap_action:
+              action: toggle
+            name: Desk
+          - type: custom:mushroom-cover-card
+            entity: cover.office_blinds
+            show_position_control: true
+            layout: horizontal
+            tap_action:
+              action: more-info
+            double_tap_action:
+              action: toggle
+            name: Blinds
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+            - type: custom:mushroom-fan-card
+              entity: fan.desk_fan
+              name: Fan
+              icon_animation: true
+              tap_action:
+                action: more-info
+              double_tap_action:
+                action: toggle
+            - type: custom:mushroom-entity-card
+              entity: switch.charging_hub
+              primary_info: name
+              secondary_info: state
+              tap_action:
+                action: more-info
+              double_tap_action:
+                action: toggle
+        - type: custom:mini-graph-card
+          entities:
+          - sensor.charging_hub_current_consumption
+        - type: media-control
+          entity: media_player.topaz_sr10
+      - type: grid
+        cards:
+        - type: custom:vertical-stack-in-card
+          cards:
+          - type: custom:mushroom-title-card
+            title: Cosmo
+            title_tap_action:
+              action: navigate
+              navigation_path: /home-will/cosmo
+          - type: custom:xiaomi-vacuum-map-card
+            map_source:
+              camera: camera.cosmo_map
+            calibration_source:
+              camera: true
+            entity: vacuum.cosmo
+            vacuum_platform: Tasshack/dreame-vacuum
+            title: ''
+            two_finger_pan: false
+            map_modes:
+            - template: vacuum_clean_segment
+            - template: vacuum_clean_zone
+            - template: vacuum_clean_point
+    - title: Mobile
+      type: custom:vertical-layout
+      path: mobile
+      visible: []
+      badges: []
+      cards:
+      - type: horizontal-stack
+        cards:
+        - type: custom:mushroom-person-card
+          entity: person.vic
+          fill_container: false
+          layout: horizontal
+          icon_type: entity-picture
+        - type: custom:mushroom-person-card
+          entity: person.will
+          fill_container: false
+          layout: horizontal
+          icon_type: entity-picture
+      - type: custom:mushroom-title-card
+        title: Bedroom
+        alignment: center
+      - type: horizontal-stack
+        cards:
+        - type: custom:mushroom-entity-card
+          entity: switch.bedroom_scent_plug
+          name: Air Freshener
+          tap_action:
+            action: toggle
+          hold_action:
+            action: more-info
+          double_tap_action:
+            action: more-info
+          layout: vertical
+        - type: custom:mushroom-fan-card
+          entity: fan.fan
+          name: Will's Fan
+          icon_animation: true
+          hold_action:
+            action: more-info
+          double_tap_action:
+            action: more-info
+          layout: vertical
+        - type: custom:mushroom-fan-card
+          entity: fan.vic_s_fan
+          name: Vic's Fan
+          icon_animation: true
+          hold_action:
+            action: more-info
+          double_tap_action:
+            action: more-info
+          layout: vertical
+      - type: custom:mushroom-light-card
+        entity: light.glowstick
+        fill_container: false
+        use_light_color: false
+        show_brightness_control: true
+        show_color_temp_control: false
+        collapsible_controls: false
+        layout: horizontal
+        hold_action:
+          action: more-info
+        double_tap_action:
+          action: none
+      - type: custom:mushroom-cover-card
+        entity: cover.bedroom_blinds
+        name: Blinds
+        show_position_control: true
+        hold_action:
+          action: more-info
+        double_tap_action:
+          action: none
+        layout: horizontal
+      - type: custom:mushroom-entity-card
+        entity: binary_sensor.bedroom_window
+        name: Window
+      - type: custom:mushroom-title-card
+        title: Lounge
+        alignment: center
+      - type: custom:mushroom-cover-card
+        entity: cover.lounge_blinds
+        name: Blinds
+        show_position_control: true
+        hold_action:
+          action: more-info
+        double_tap_action:
+          action: more-info
+        layout: horizontal
+      - type: custom:mushroom-light-card
+        entity: light.lounge_shapes
+        fill_container: false
+        use_light_color: false
+        show_brightness_control: true
+        show_color_temp_control: false
+        collapsible_controls: false
+        layout: horizontal
+        hold_action:
+          action: more-info
+        double_tap_action:
+          action: toggle
+        name: Shapes
+        tap_action:
+          action: more-info
+      - type: horizontal-stack
+        cards:
+        - type: custom:mushroom-light-card
+          entity: light.mini_lamp
+          layout: vertical
+          tap_action:
+            action: more-info
+          hold_action:
+            action: more-info
+          double_tap_action:
+            action: toggle
+        - type: custom:mushroom-light-card
+          entity: light.shelf_lamp
+          layout: vertical
+          tap_action:
+            action: more-info
+          hold_action:
+            action: more-info
+          double_tap_action:
+            action: toggle
+        - type: custom:mushroom-light-card
+          entity: light.table_lamp
+          layout: vertical
+          tap_action:
+            action: more-info
+          hold_action:
+            action: more-info
+          double_tap_action:
+            action: toggle
+    - title: Cosmo
+      path: cosmo
+      subview: true
+      type: custom:grid-layout
+      layout:
+        grid-template-columns: 75% auto
+        grid-template-rows: auto
+        grid-template-areas: '"left middle right"
+
+          '
+      badges: []
+      cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+        - type: horizontal-stack
+          cards:
+          - type: custom:hui-element
+            card_mod:
+              style: "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow:\
+                \ none;\n  border: none;\n}\n"
+            card_type: markdown
+            content: ' '
+          - type: custom:mushroom-title-card
+            title: Last Clean
+            alignment: center
+            subtitle: ''
+          - type: custom:mushroom-title-card
+            title: Clean Timeout
+            alignment: center
+          - type: custom:mushroom-title-card
+            title: Next Clean Due
+            alignment: center
+          - type: custom:mushroom-title-card
+            title: ''
+            alignment: center
+        - type: horizontal-stack
+          cards:
+          - type: custom:hui-element
+            card_mod:
+              style: "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow:\
+                \ none;\n  border: none;\n}\n"
+            card_type: markdown
+            content: '### Bathroom'
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_last_bathroom_clean
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_number.cosmo_room_timeout_bathroom
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_next_bathroom_clean_due
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: script.cosmo_clean_room
+            name: Clean Now
+            tap_action:
+              action: call-service
+              service: script.cosmo_clean_room
+              target: {}
+              data:
+                room_name: bathroom
+            icon: mdi:robot-vacuum
+            icon_color: green
+        - type: horizontal-stack
+          cards:
+          - type: custom:hui-element
+            card_mod:
+              style: "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow:\
+                \ none;\n  border: none;\n}\n"
+            card_type: markdown
+            content: '### Bedroom'
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_last_bedroom_clean
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_number.cosmo_room_timeout_bedroom
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_next_bedroom_clean_due
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: script.cosmo_clean_room
+            name: Clean Now
+            tap_action:
+              action: call-service
+              service: script.cosmo_clean_room
+              target: {}
+              data:
+                room_name: bedroom
+            icon: mdi:robot-vacuum
+            icon_color: green
+        - type: horizontal-stack
+          cards:
+          - type: custom:hui-element
+            card_mod:
+              style: "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow:\
+                \ none;\n  border: none;\n}\n"
+            card_type: markdown
+            content: '### En-Suite'
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_last_en_suite_clean
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_number.cosmo_room_timeout_en_suite
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_next_en_suite_clean_due
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: script.cosmo_clean_room
+            name: Clean Now
+            tap_action:
+              action: call-service
+              service: script.cosmo_clean_room
+              target: {}
+              data:
+                room_name: en_suite
+            icon: mdi:robot-vacuum
+            icon_color: green
+        - type: horizontal-stack
+          cards:
+          - type: custom:hui-element
+            card_mod:
+              style: "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow:\
+                \ none;\n  border: none;\n}\n"
+            card_type: markdown
+            content: '### Hallway'
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_last_hallway_clean
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_number.cosmo_room_timeout_hallway
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_next_hallway_clean_due
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: script.cosmo_clean_room
+            name: Clean Now
+            tap_action:
+              action: call-service
+              service: script.cosmo_clean_room
+              target: {}
+              data:
+                room_name: hallway
+            icon: mdi:robot-vacuum
+            icon_color: green
+        - type: horizontal-stack
+          cards:
+          - type: custom:hui-element
+            card_mod:
+              style: "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow:\
+                \ none;\n  border: none;\n}\n"
+            card_type: markdown
+            content: '### Kitchen'
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_last_kitchen_clean
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_number.cosmo_room_timeout_kitchen
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_next_kitchen_clean_due
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: script.cosmo_clean_room
+            name: Clean Now
+            tap_action:
+              action: call-service
+              service: script.cosmo_clean_room
+              target: {}
+              data:
+                room_name: kitchen
+            icon: mdi:robot-vacuum
+            icon_color: green
+        - type: horizontal-stack
+          cards:
+          - type: custom:hui-element
+            card_mod:
+              style: "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow:\
+                \ none;\n  border: none;\n}\n"
+            card_type: markdown
+            content: '### Lounge'
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_last_lounge_clean
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_number.cosmo_room_timeout_lounge
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_next_lounge_clean_due
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: script.cosmo_clean_room
+            name: Clean Now
+            tap_action:
+              action: call-service
+              service: script.cosmo_clean_room
+              target: {}
+              data:
+                room_name: lounge
+            icon: mdi:robot-vacuum
+            icon_color: green
+        - type: horizontal-stack
+          cards:
+          - type: custom:hui-element
+            card_mod:
+              style: "ha-card {\n  width: 120px;\n  margin-left: auto;\n  box-shadow:\
+                \ none;\n  border: none;\n}\n"
+            card_type: markdown
+            content: '### Office'
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_last_office_clean
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_number.cosmo_room_timeout_office
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: input_datetime.cosmo_next_office_clean_due
+            primary_info: state
+            secondary_info: none
+          - type: custom:mushroom-entity-card
+            entity: script.cosmo_clean_room
+            name: Clean Now
+            tap_action:
+              action: call-service
+              service: script.cosmo_clean_room
+              target: {}
+              data:
+                room_name: office
+            icon: mdi:robot-vacuum
+            icon_color: green
+        view_layout:
+          grid-area: left
+      - type: custom:xiaomi-vacuum-map-card
+        view_layout:
+          grid-area: middle
+        map_source:
+          camera: camera.cosmo_map
+        calibration_source:
+          camera: true
+        entity: vacuum.cosmo
+        vacuum_platform: Tasshack/dreame-vacuum
+        title: ''
+        two_finger_pan: false
+        map_modes:
+        - template: vacuum_clean_segment
+        - template: vacuum_clean_zone
+        - template: vacuum_clean_point
+    - title: Makerspace
+      path: makerspace
+      icon: mdi:printer-3d
+      type: sections
+      sections:
+      - type: grid
+        cards:
+        - camera_view: live
+          type: picture-glance
+          entities: []
+          camera_image: camera.octoprint_camera
+          aspect_ratio: '1.333333'
+          entity: binary_sensor.octoprint_connected
+          theme: Mushroom
+          view_layout:
+            grid-area: cam
+        - square: false
+          type: grid
+          cards:
+          - type: custom:mushroom-entity-card
+            entity: switch.prusa_i3_mk3_power
+            icon_color: orange
+          - type: custom:mushroom-entity-card
+            entity: sensor.prusa_i3_mk3_current_consumption
+            name: Current Power Draw
+            icon_color: yellow
+          columns: 2
+        - square: false
+          type: grid
+          cards:
+          - type: custom:mushroom-entity-card
+            entity: number.prusa_i3_target_hotend_temperature
+            name: Hotend Target
+            icon_color: purple
+          - type: custom:mushroom-entity-card
+            entity: sensor.octoprint_tool_0_temperature
+            name: Hotend Temperature
+            icon_color: orange
+          - type: custom:mushroom-entity-card
+            entity: number.prusa_i3_target_bed_temperature
+            name: Bed Target
+            icon_color: deep-purple
+          - type: custom:mushroom-entity-card
+            entity: sensor.octoprint_bed_temperature
+            name: Bed Temperature
+            icon_color: deep-orange
+            icon: mdi:grid
+          columns: 2
+        - type: custom:mushroom-entity-card
+          entity: sensor.octoprint_approximate_completion_time
+          name: Print Completion Time
+          icon_color: purple
+          visibility:
+          - condition: state
+            entity: sensor.octoprint_approximate_completion_time
+            state_not: unavailable
+        - type: custom:mushroom-chips-card
+          chips:
+          - type: entity
+            entity: button.octoprint_restart_server
+            hold_action:
+              action: call-service
+              service: button.press
+              target:
+                entity_id: button.octoprint_restart_server
+            content_info: name
+            name: Restart Server
+            icon_color: orange
+          - type: entity
+            entity: button.octoprint_reboot_system
+            hold_action:
+              action: call-service
+              service: button.press
+              target:
+                entity_id: button.octoprint_reboot_system
+            content_info: name
+            name: Reboot System
+            icon_color: red
+          visibility:
+          - condition: state
+            entity: switch.prusa_i3_mk3_power
+            state: 'off'
+      - type: grid
+        cards:
+        - type: vertical-stack
+          cards:
+          - type: custom:mushroom-title-card
+            title: Enclosure Stats
+          - square: false
+            type: grid
+            columns: 2
+            cards:
+            - type: custom:mushroom-entity-card
+              entity: sensor.octopi_ambient_temperature
+              name: Temperature
+              icon_color: red
+            - type: custom:mushroom-entity-card
+              entity: sensor.octopi_ambient_humidity
+              name: Humidity
+              icon_color: light-green
+          - type: custom:mini-graph-card
+            name: 6 Hour History
+            entities:
+            - entity: sensor.octopi_ambient_temperature
+              name: Temperature
+              color: '#F54336'
+            - entity: sensor.octopi_ambient_humidity
+              name: Humidity
+              color: '#8BC34A'
+              y_axis: secondary
+            show:
+              state: false
+              legend: false
+              fill: fade
+              name: true
+              icon: false
+              labels: true
+              labels_secondary: true
+              unit: true
+            hours_to_show: 6
+            points_per_hour: 60
+            lower_bound: ~20
+            upper_bound: ~40
+            lower_bound_secondary: ~30
+            upper_bound_secondary: ~60
+            height: 150
+            animate: true
+            hour24: true
+            line_width: 2
+          - square: false
+            type: grid
+            cards:
+            - type: custom:mushroom-fan-card
+              entity: fan.octopi_cpu_fan
+              name: CPU
+              double_tap_action:
+                action: toggle
+              icon_animation: true
+              show_percentage_control: false
+            - type: custom:mushroom-fan-card
+              entity: fan.prusa_i3_enclosure_fan
+              name: Enclosure
+              fill_container: false
+              double_tap_action:
+                action: toggle
+              layout: horizontal
+              icon_animation: true
+            columns: 2
+      - type: grid
+        cards:
+        - square: false
+          type: grid
+          columns: 2
+          cards:
+          - type: custom:mushroom-entity-card
+            entity: sensor.octopi_boot_time
+            name: Last Boot Time
+            icon_color: green
+          - type: custom:mushroom-entity-card
+            entity: switch.prusa_i3_mk3_power
+            icon_color: accent
+          - type: custom:mushroom-entity-card
+            entity: sensor.octopi_local_ip_address
+            icon_color: yellow
+            name: IP Address
+          - type: custom:mushroom-entity-card
+            entity: sensor.octopi_active_git_ref
+            name: WG Scripts
+            icon_color: blue-grey
+        - type: vertical-stack
+          cards:
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+            - type: custom:mushroom-entity-card
+              entity: sensor.octopi_cpu_usage
+              icon_color: red
+              name: CPU Usage
+            - type: custom:mushroom-entity-card
+              entity: sensor.octopi_memory_usage
+              icon_color: blue
+              name: Memory Usage
+            - type: custom:mushroom-entity-card
+              entity: sensor.octopi_disk_usage
+              icon_color: green
+              name: Disk Usage
+            - type: custom:mushroom-entity-card
+              entity: sensor.octopi_cpu_temperature
+              icon_color: orange
+              name: CPU Temperature
+              icon: mdi:thermometer-lines
+          - type: custom:mini-graph-card
+            name: 6 Hour History
+            entities:
+            - entity: sensor.octopi_cpu_usage
+              name: CPU
+              color: '#F54336'
+            - entity: sensor.octopi_memory_usage
+              name: Memory
+              color: '#2096F3'
+            - entity: sensor.octopi_disk_usage
+              name: Disk Usage
+              color: '#4DAF50'
+            - entity: sensor.octopi_cpu_temperature
+              name: CPU Temperature
+              color: '#FF9901'
+              y_axis: secondary
+            show:
+              state: false
+              legend: false
+              fill: fade
+              name: true
+              icon: false
+              labels: true
+              labels_secondary: true
+              unit: true
+            hours_to_show: 6
+            points_per_hour: 60
+            lower_bound: 0
+            upper_bound: ~50
+            lower_bound_secondary: ~40
+            upper_bound_secondary: ~70
+            height: 150
+            animate: true
+            hour24: true
+            line_width: 2
+      max_columns: 4
+      cards: []
+    - icon: mdi:raspberry-pi
+      title: HAssPi
+      path: hasspi
+      type: sections
+      sections:
+      - type: grid
+        cards:
+        - square: false
+          type: grid
+          columns: 2
+          cards:
+          - type: custom:mushroom-template-card
+            primary: Last Boot Time
+            secondary: '{{ states(''sensor.uptime'').removesuffix("+00:00").replace("T",
+              " ") }}'
+            icon: mdi:console
+            entity: sensor.uptime
+            icon_color: green
+            multiline_secondary: false
+            tap_action:
+              action: more-info
+          - type: custom:mushroom-template-card
+            primary: '{{ states(''sensor.backup_state'').replace("_", " ").title()
+              }}'
+            secondary: '{{ ( state_attr(''sensor.backup_state'', "last_backup") |
+              as_datetime | as_local ).strftime("%Y-%m-%d %H:%M:%S")  }}'
+            icon: mdi:cloud-upload-outline
+            entity: sensor.backup_state
+            icon_color: teal
+            multiline_secondary: false
+            tap_action:
+              action: more-info
+          - type: custom:mushroom-entity-card
+            entity: sensor.local_ip
+            icon_color: yellow
+            name: IP Address
+            icon: mdi:ip-network-outline
+        - type: vertical-stack
+          cards:
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+            - type: custom:mushroom-entity-card
+              entity: sensor.processor_use
+              icon_color: red
+              name: CPU Usage
+            - type: custom:mushroom-entity-card
+              entity: sensor.memory_use_percent
+              icon_color: blue
+              name: Memory Usage
+            - type: custom:mushroom-entity-card
+              entity: sensor.disk_use_percent
+              icon_color: green
+              name: Disk Usage
+            - type: custom:mushroom-entity-card
+              entity: sensor.processor_temperature
+              icon_color: orange
+              name: CPU Temperature
+              icon: mdi:thermometer-lines
+          - type: custom:mini-graph-card
+            name: 6 Hour History
+            entities:
+            - entity: sensor.processor_use
+              name: CPU
+              color: '#F54336'
+            - entity: sensor.memory_use_percent
+              name: Memory
+              color: '#2096F3'
+            - entity: sensor.disk_use_percent
+              name: Disk Usage
+              color: '#4DAF50'
+            - entity: sensor.processor_temperature
+              name: CPU Temperature
+              color: '#FF9901'
+              y_axis: secondary
+            show:
+              state: false
+              legend: false
+              fill: fade
+              name: true
+              icon: false
+              labels: true
+              labels_secondary: true
+              unit: true
+            hours_to_show: 6
+            points_per_hour: 60
+            lower_bound: 0
+            upper_bound: ~70
+            lower_bound_secondary: ~35
+            upper_bound_secondary: ~50
+            height: 150
+            animate: true
+            hour24: true
+            line_width: 2
+        title: System Monitor
+      - type: grid
+        cards:
+        - square: false
+          type: grid
+          columns: 3
+          cards:
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#E51919'
+            - name: AdGuard
+            - slug: adguard
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#E56B19'
+            - name: AppDaemon
+            - slug: appdaemon
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#E5BC19'
+            - name: ESPHome
+            - slug: esphome_add_on
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#BCE519'
+            - name: Grafana
+            - slug: grafana
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#6BE519'
+            - name: InfluxDB
+            - slug: influxdb
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#19E519'
+            - name: Google Drive Backup
+            - slug: google_drive_backup_add_on
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#19E56B'
+            - name: Item Warehouse API
+            - slug: item_warehouse_api
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#19E5BC'
+            - name: Item Warehouse Website
+            - slug: item_warehouse_website
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#19BCE5'
+            - name: MariaDB
+            - slug: mariadb
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#196BE5'
+            - name: Matter Server
+            - slug: matter_server
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#1919E5'
+            - name: Mosquitto Broker
+            - slug: mosquitto_broker
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#6B19E5'
+            - name: Silicon Labs Multiprotocol
+            - slug: silicon_labs_multiprotocol_add_on
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#BC19E5'
+            - name: Terminal & SSH
+            - slug: terminal_ssh_add_on
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#E519BC'
+            - name: VSCode
+            - slug: visual_studio_code_add_on
+          - type: custom:decluttering-card
+            template: addon_active_entity_template
+            variables:
+            - color: '#E5196B'
+            - name: YAS-209 Bridge
+            - slug: yas_209_bridge
+        - type: custom:mini-graph-card
+          name: CPU Usage
+          entities:
+          - entity: sensor.adguard_cpu_usage
+            color: '#E51919'
+          - entity: sensor.appdaemon_cpu_usage
+            color: '#E56B19'
+          - entity: sensor.esphome_add_on_cpu_usage
+            color: '#E5BC19'
+          - entity: sensor.grafana_cpu_usage
+            color: '#BCE519'
+          - entity: sensor.influxdb_cpu_usage
+            color: '#6BE519'
+          - entity: sensor.google_drive_backup_add_on_cpu_usage
+            color: '#19E519'
+          - entity: sensor.item_warehouse_api_cpu_usage
+            color: '#19E56B'
+          - entity: sensor.item_warehouse_website_cpu_usage
+            color: '#19E5BC'
+          - entity: sensor.mariadb_cpu_usage
+            color: '#19BCE5'
+          - entity: sensor.matter_server_cpu_usage
+            color: '#196BE5'
+          - entity: sensor.mosquitto_broker_cpu_usage
+            color: '#1919E5'
+          - entity: sensor.silicon_labs_multiprotocol_add_on_cpu_usage
+            color: '#6B19E5'
+          - entity: sensor.terminal_ssh_add_on_cpu_usage
+            color: '#BC19E5'
+          - entity: sensor.visual_studio_code_add_on_cpu_usage
+            color: '#E519BC'
+          - entity: sensor.yas_209_bridge_cpu_usage
+            color: '#E5196B'
+          show:
+            state: false
+            legend: false
+            fill: fade
+            name: true
+            icon: false
+            labels: true
+            labels_secondary: true
+            unit: true
+          hours_to_show: 6
+          points_per_hour: 60
+          lower_bound: 0
+          upper_bound: ~10
+          height: 150
+          animate: true
+          hour24: true
+          line_width: 2
+        - type: custom:mini-graph-card
+          name: Memory Usage
+          entities:
+          - entity: sensor.adguard_memory_usage
+            color: '#E51919'
+          - entity: sensor.appdaemon_memory_usage
+            color: '#E56B19'
+          - entity: sensor.esphome_add_on_memory_usage
+            color: '#E5BC19'
+          - entity: sensor.grafana_memory_usage
+            color: '#BCE519'
+          - entity: sensor.influxdb_memory_usage
+            color: '#6BE519'
+          - entity: sensor.google_drive_backup_add_on_memory_usage
+            color: '#19E519'
+          - entity: sensor.item_warehouse_api_memory_usage
+            color: '#19E56B'
+          - entity: sensor.item_warehouse_website_memory_usage
+            color: '#19E5BC'
+          - entity: sensor.mariadb_memory_usage
+            color: '#19BCE5'
+          - entity: sensor.matter_server_memory_usage
+            color: '#196BE5'
+          - entity: sensor.mosquitto_broker_memory_usage
+            color: '#1919E5'
+          - entity: sensor.silicon_labs_multiprotocol_add_on_memory_usage
+            color: '#6B19E5'
+          - entity: sensor.terminal_ssh_add_on_memory_usage
+            color: '#BC19E5'
+          - entity: sensor.visual_studio_code_add_on_memory_usage
+            color: '#E519BC'
+          - entity: sensor.yas_209_bridge_memory_usage
+            color: '#E5196B'
+          show:
+            state: false
+            legend: false
+            fill: fade
+            name: true
+            icon: false
+            labels: true
+            labels_secondary: true
+            unit: true
+          hours_to_show: 6
+          points_per_hour: 60
+          lower_bound: 0
+          upper_bound: ~10
+          height: 150
+          animate: true
+          hour24: true
+          line_width: 2
+        title: Add-Ons
+      max_columns: 4
+      cards: []
+    - title: LED Matrix Controller
+      path: led-matrix-controller
+      icon: mdi:data-matrix
+      type: sections
+      max_columns: 4
+      sections:
+      - type: grid
+        cards:
+        - type: entities
+          entities:
+          - entity: number.mtrxpi_raining_grid_rain_chance
+            name: Rain Chance
+          - entity: number.mtrxpi_raining_grid_rain_speed
+            name: Rain Speed
+          - entity: number.mtrxpi_raining_grid_splash_speed
+            name: Splash Speed
+          show_header_toggle: false
+          state_color: false
+          title: Raining Grid
+        - type: entities
+          entities:
+          - entity: switch.mtrxpi_power
+          - entity: script.mtrxpi_queue_content
+          - entity: number.mtrxpi_matrix_brightness
+          - entity: input_select.mtrxpi_media_player_source
+        - type: entities
+          entities:
+          - entity: automation.mtrxpi_content_trigger_gif_door_animated
+          - entity: automation.mtrxpi_content_trigger_now_playing
+          - entity: automation.mtrxpi_content_trigger_raining_grid
+      - type: grid
+        cards:
+        - square: false
+          type: grid
+          cards:
+          - type: custom:mushroom-entity-card
+            entity: sensor.mtrxpi_boot_time
+            name: Last Boot Time
+            icon_color: green
+          - type: custom:mushroom-entity-card
+            entity: sensor.mtrxpi_current_content
+            icon_color: teal
+            name: Current Content
+          - type: custom:mushroom-entity-card
+            entity: sensor.mtrxpi_local_ip_address
+            icon_color: yellow
+            name: IP Address
+          - type: custom:mushroom-entity-card
+            entity: sensor.mtrxpi_active_git_ref
+            name: WG Scripts
+            icon_color: blue-grey
+          columns: 2
+        - type: vertical-stack
+          cards:
+          - square: false
+            type: grid
+            columns: 2
+            cards:
+            - type: custom:mushroom-entity-card
+              entity: sensor.mtrxpi_cpu_usage
+              icon_color: red
+              name: CPU Usage
+            - type: custom:mushroom-entity-card
+              entity: sensor.mtrxpi_memory_usage
+              icon_color: blue
+              name: Memory Usage
+            - type: custom:mushroom-entity-card
+              entity: sensor.mtrxpi_disk_usage
+              icon_color: green
+              name: Disk Usage
+            - type: custom:mushroom-entity-card
+              entity: sensor.mtrxpi_cpu_temperature
+              icon_color: orange
+              name: CPU Temperature
+              icon: mdi:thermometer-lines
+          - type: custom:mini-graph-card
+            name: 6 Hour History
+            entities:
+            - entity: sensor.mtrxpi_cpu_usage
+              name: CPU
+              color: '#F54336'
+            - entity: sensor.mtrxpi_memory_usage
+              name: Memory
+              color: '#2096F3'
+            - entity: sensor.mtrxpi_disk_usage
+              name: Disk Usage
+              color: '#4DAF50'
+            - entity: sensor.mtrxpi_cpu_temperature
+              name: CPU Temperature
+              color: '#FF9901'
+              y_axis: secondary
+            show:
+              state: false
+              legend: false
+              fill: fade
+              name: true
+              icon: false
+              labels: true
+              labels_secondary: true
+              unit: true
+            hours_to_show: 6
+            points_per_hour: 60
+            lower_bound: 0
+            upper_bound: ~50
+            lower_bound_secondary: ~40
+            upper_bound_secondary: ~70
+            height: 150
+            animate: true
+            hour24: true
+            line_width: 2
+        - type: custom:mini-media-player
+          entity: media_player.spotify_will
+          toggle_power: true
+          group: false
+          volume_stateless: false
+      cards: []
+    - title: Cube
+      path: cube
+      icon: phu:aqara-cube
+      type: sections
+      sections:
+      - type: grid
+        cards:
+        - square: false
+          type: grid
+          cards:
+          - type: custom:mushroom-entity-card
+            entity: input_text.cube_entity_1
+            icon_color: blue
+            fill_container: false
+          - type: custom:mushroom-entity-card
+            entity: input_text.cube_entity_2
+            icon_color: light-blue
+          - type: custom:mushroom-entity-card
+            entity: input_text.cube_entity_3
+            icon_color: cyan
+          - type: custom:mushroom-entity-card
+            entity: input_text.cube_entity_4
+            icon_color: teal
+          - type: custom:mushroom-entity-card
+            entity: input_text.cube_entity_5
+            icon_color: green
+          - type: custom:mushroom-entity-card
+            entity: input_text.cube_entity_6
+            icon_color: light-green
+          columns: 2
+        - type: tile
+          entity: automation.cube_rotate
+        - type: tile
+          entity: automation.cube_knock
+        - type: tile
+          entity: automation.cube_slide
+      - type: grid
+        cards:
+        - type: tile
+          entity: sensor.cube_active_face
+          vertical: false
+          hide_state: false
+          state_content:
+          - last-changed
+          - command
