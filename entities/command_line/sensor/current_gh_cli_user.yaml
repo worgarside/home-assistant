@@ -1,0 +1,11 @@
+---
+sensor:
+  command: /config/resources/gh_cli/bin/gh api user -q .login
+
+  name: Current GH CLI User
+
+  scan_interval: 120
+
+  unique_id: current_gh_cli_user
+
+  icon: mdi:github

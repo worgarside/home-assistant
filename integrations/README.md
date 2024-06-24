@@ -1661,7 +1661,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (32)</h3></summary>
+<details><summary><h3>Entities (33)</h3></summary>
 
 <details><summary><strong>AdGuard Status</strong></summary>
 
@@ -1821,6 +1821,16 @@ File: [`command_line/sensor/addons/visual_studio_code_add_on_status.yaml`](entit
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/yas_209_bridge_status.yaml`](entities/command_line/sensor/addons/yas_209_bridge_status.yaml)
+</details>
+
+<details><summary><strong>Current GH CLI User</strong></summary>
+
+**Entity ID: `sensor.current_gh_cli_user`**
+
+- Command: `/config/resources/gh_cli/bin/gh api user -q .login`
+- Scan Interval: 120
+
+File: [`command_line/sensor/current_gh_cli_user.yaml`](entities/command_line/sensor/current_gh_cli_user.yaml)
 </details>
 
 <details><summary><strong>Current Git Branch</strong></summary>
