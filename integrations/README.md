@@ -5010,11 +5010,16 @@ File: [`sensor/tomorrow_io_realtime_weather.yaml`](entities/sensor/tomorrow_io_r
 
 ## Shell Command
 
-<details><summary><h3>Entities (15)</h3></summary>
+<details><summary><h3>Entities (17)</h3></summary>
 
 <details><summary><code>shell_command.approve_pull_request</code></summary>
 
 File: [`shell_command/approve_pull_request.yaml`](entities/shell_command/approve_pull_request.yaml)
+</details>
+
+<details><summary><code>shell_command.bash_subshell</code></summary>
+
+File: [`shell_command/bash_subshell.yaml`](entities/shell_command/bash_subshell.yaml)
 </details>
 
 <details><summary><code>shell_command.checkout_git_branch</code></summary>
@@ -5060,6 +5065,11 @@ File: [`shell_command/ls.yaml`](entities/shell_command/ls.yaml)
 <details><summary><code>shell_command.mark_pr_as_ready_for_review</code></summary>
 
 File: [`shell_command/mark_pr_as_ready_for_review.yaml`](entities/shell_command/mark_pr_as_ready_for_review.yaml)
+</details>
+
+<details><summary><code>shell_command.python_subshell</code></summary>
+
+File: [`shell_command/python_subshell.yaml`](entities/shell_command/python_subshell.yaml)
 </details>
 
 <details><summary><code>shell_command.run_custom_file_1</code></summary>
