@@ -1257,7 +1257,8 @@
                 },
                 {
                   "type": "custom:mushroom-select-card",
-                  "entity": "input_select.gh_cli_active_user"
+                  "entity": "input_select.gh_cli_active_user",
+                  "fill_container": true
                 }
               ],
               "title": "System Monitor"
