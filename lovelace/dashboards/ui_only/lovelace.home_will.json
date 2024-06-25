@@ -1274,14 +1274,6 @@
                     }
                   ],
                   "columns": 2
-                },
-                {
-                  "type": "custom:mushroom-select-card",
-                  "entity": "input_select.gh_cli_active_user",
-                  "fill_container": true,
-                  "secondary_info": "last-changed",
-                  "layout": "horizontal",
-                  "name": "Set Active User"
                 }
               ],
               "title": "System Monitor"
