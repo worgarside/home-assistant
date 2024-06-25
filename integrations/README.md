@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (116)</h3></summary>
+<details><summary><h3>Entities (117)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -445,6 +445,19 @@ File: [`automation/cube/rotate.yaml`](entities/automation/cube/rotate.yaml)
 File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
 </details>
 
+<details><summary><code>/gh-cli/user-updated</code></summary>
+
+**Entity ID: `automation.gh_cli_user_updated`**
+
+> Keep the input select up to date (e.g. if the user is changed in a different way)
+
+- Alias: /gh-cli/user-updated
+- ID: `gh_cli_user_updated`
+- Mode: `restart`
+
+File: [`automation/gh_cli/user_updated.yaml`](entities/automation/gh_cli/user_updated.yaml)
+</details>
+
 <details><summary><code>/hassio/auto-restart-mariadb-add-on</code></summary>
 
 **Entity ID: `automation.hassio_auto_restart_mariadb_add_on`**
@@ -819,7 +832,7 @@ File: [`automation/input_select/cosmo_entity_picture/set_options.yaml`](entities
 
 **Entity ID: `automation.input_select_gh_cli_active_user_option_selected`**
 
-> *No description provided*
+> Change the active user in the GH CLI and update the current user command line sensor
 
 - Alias: /input-select/gh-cli-active-user/option-selected
 - ID: `input_select_gh_cli_active_user_option_selected`

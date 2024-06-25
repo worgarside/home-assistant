@@ -1,6 +1,8 @@
 ---
 alias: /input-select/gh-cli-active-user/option-selected
 
+description: Change the active user in the GH CLI and update the current user command line sensor
+
 id: input_select_gh_cli_active_user_option_selected
 
 mode: queued
@@ -12,11 +14,7 @@ trigger:
     - unavailable
     - unknown
 
-condition:
-  and:
-    - alias: Validate new user selected
-      condition: template
-      value_template: "{{ trigger.to_state.state != states('sensor.current_gh_cli_user') }}"
+condition: "{{ trigger.to_state.state != states('sensor.current_gh_cli_user') }}"
 
 action:
   - service: shell_command.gh
