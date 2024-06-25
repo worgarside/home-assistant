@@ -126,7 +126,15 @@ action:
     variables:
       issue_number: "{{ gh_cli_response.stdout.strip() | int(0) }}"
 
-  - if: "{{ event_type == 'remove' and issue_number | int(0) > 0 }}"
+  - alias: Close issue if repair removed - and the current branch is `main` (safety check)
+
+    if: >-
+      {{
+        event_type == 'remove' and
+        issue_number | int(0) > 0 and
+        states('sensor.current_git_branch') == 'main'
+      }}
+
     then:
       - service: shell_command.gh
         data:
