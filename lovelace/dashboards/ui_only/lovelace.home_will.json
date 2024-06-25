@@ -312,7 +312,7 @@
                     {
                       "type": "custom:mushroom-template-card",
                       "primary": "Auto-Save",
-                      "secondary": "Total saved: \u00a3{{ states('var.auto_save_cumulative_total') }}",
+                      "secondary": "Total saved: £{{ states('var.auto_save_cumulative_total') }}",
                       "icon": "mdi:chart-timeline-variant-shimmer",
                       "icon_color": "blue",
                       "fill_container": true,
@@ -1256,8 +1256,24 @@
                   ]
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.current_gh_cli_user"
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.current_gh_cli_user",
+                      "fill_container": true,
+                      "layout": "vertical"
+                    },
+                    {
+                      "type": "custom:mushroom-select-card",
+                      "entity": "input_select.gh_cli_active_user",
+                      "fill_container": true,
+                      "secondary_info": "last-changed",
+                      "name": "Change Active User"
+                    }
+                  ],
+                  "columns": 2
                 },
                 {
                   "type": "custom:mushroom-select-card",
