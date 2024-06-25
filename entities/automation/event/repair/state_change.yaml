@@ -119,8 +119,8 @@ action:
       args: >
         -A worgarside-hass
         -s open
-        --json body
-        --jq 'map(select(.body | contains("both")) | .number) | first'
+        --json body,number
+        --jq 'map(select(.body | contains("\"issue_id\": \"{{ issue_id }}\"")) | .number) | first'
 
   - alias: Get Issue Number
     variables:
