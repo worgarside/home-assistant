@@ -91,6 +91,7 @@ action:
 
       issue_entity: '{{ issue_id.removeprefix("{}_{}_".format(issue_domain, issue_type)) }}'
 
+      # yamllint disable rule:line-length
       longform_message: |
         Repair of type `{{ issue_type }}` {{ event_type }}d for entity `{{ issue_entity }}`{% if not issue_entity.startswith("{}.".format(issue_domain)) %} in domain `{{ issue_domain }}`{% endif %}.
 
@@ -99,6 +100,7 @@ action:
         ```
 
         [![Open your Home Assistant instance and show your repairs.](https://my.home-assistant.io/badges/repairs.svg)](https://my.home-assistant.io/redirect/repairs/)
+      # yamllint enable rule:line-length
 
   - alias: Debug Notification
     service: script.turn_on
@@ -153,4 +155,5 @@ action:
       - service: persistent_notification.create
         data:
           title: Repair issue already logged
+        # yamllint disable-line rule:line-length
           message: Issue for `{{ issue_id }}` already [exists](https://github.com/worgarside/home-assistant/issues/{{ issue_number }}).
