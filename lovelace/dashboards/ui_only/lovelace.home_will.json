@@ -1416,7 +1416,7 @@
                   "columns": 2
                 }
               ],
-              "title": "System Monitor"
+              "title": "HAssPi System Monitor"
             },
             {
               "type": "grid",
@@ -1952,7 +1952,8 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "title": "Prusa i3 Mk3"
             },
             {
               "type": "grid",
@@ -1960,10 +1961,6 @@
                 {
                   "type": "vertical-stack",
                   "cards": [
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Enclosure Stats"
-                    },
                     {
                       "square": false,
                       "type": "grid",
@@ -1980,6 +1977,20 @@
                           "entity": "sensor.octopi_ambient_humidity",
                           "name": "Humidity",
                           "icon_color": "light-green"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_cpu_temperature",
+                          "icon_color": "orange",
+                          "name": "CPU Temperature",
+                          "icon": "mdi:thermometer-lines"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_number.octopi_fan_auto_on_threshold",
+                          "icon_color": "#9F9E9C",
+                          "name": "CPU Fan Threshold",
+                          "icon": "mdi:thermometer-auto"
                         }
                       ]
                     },
@@ -1991,6 +2002,16 @@
                           "entity": "sensor.octopi_ambient_temperature",
                           "name": "Temperature",
                           "color": "#F54336"
+                        },
+                        {
+                          "entity": "sensor.octopi_cpu_temperature",
+                          "name": "CPU Temperature",
+                          "color": "#FF9901"
+                        },
+                        {
+                          "entity": "input_number.octopi_fan_auto_on_threshold",
+                          "show_line": false,
+                          "color": "#9F9E9C"
                         },
                         {
                           "entity": "sensor.octopi_ambient_humidity",
@@ -2050,7 +2071,8 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "title": "Enclosure Stats"
             },
             {
               "type": "grid",
@@ -2169,7 +2191,8 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "title": "OctoPi System Monitor"
             }
           ],
           "max_columns": 4,
