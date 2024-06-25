@@ -498,6 +498,7 @@ File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
     "zone"
   ],
   "issue_types": [
+    "deprecated_yaml",
     "unknown_source",
     "unknown_members",
     "unknown_area_references",
@@ -508,7 +509,7 @@ File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
     "unknown_service_references"
   ],
   "issue_id": "{{ trigger.to_state.attributes.issue_id }}",
-  "event_type": "{{ trigger.to_state.attributes.event_type }}"
+  "event_type": "{{ trigger.to_state.attributes.event_type or 'something-e' }}"
 }
 ```
 File: [`automation/event/repair/state_change.yaml`](entities/automation/event/repair/state_change.yaml)

@@ -61,6 +61,7 @@ variables:
     - zone
 
   issue_types:
+    - deprecated_yaml
     - unknown_source
     - unknown_members
     - unknown_area_references
@@ -72,7 +73,7 @@ variables:
 
   issue_id: "{{ trigger.to_state.attributes.issue_id }}"
 
-  event_type: "{{ trigger.to_state.attributes.event_type }}"
+  event_type: "{{ trigger.to_state.attributes.event_type or 'something-e' }}"
 
 action:
   - alias: Get Issue Parts
@@ -93,7 +94,7 @@ action:
 
       # yamllint disable rule:line-length
       longform_message: |
-        Repair of type `{{ issue_type }}` {{ event_type }}d for entity `{{ issue_entity }}`{% if not issue_entity.startswith("{}.".format(issue_domain)) %} in domain `{{ issue_domain }}`{% endif %}.
+        Repair of type `{{ issue_type or "?" }}` {{ event_type }}d for entity `{{ issue_entity }}`{% if not issue_entity.startswith("{}.".format(issue_domain)) %} in domain `{{ issue_domain }}`{% endif %}.
 
         ```json
         {{ trigger.to_state.attributes | tojson(indent=2) }}
@@ -152,7 +153,8 @@ action:
           entity_id: script.gh_issue_create
         data:
           variables:
-            issue_title: "{{ issue_type.replace('_', ' ').title() }}: `{{ issue_entity }}`"
+            issue_title: >-
+              {{ issue_type.replace('_', ' ').title() or 'HA Repair' }}: `{{ issue_entity }}`
             issue_labels:
               - bug
             body: "{{ longform_message }}"
