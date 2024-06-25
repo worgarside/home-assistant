@@ -50,3 +50,7 @@ icon: >-
       "Unknown": "mdi:help-rhombus-outline"
     }.get(this.state, "mdi:help-rhombus-outline")
   }}
+
+attributes:
+  # yamllint disable rule:line-length
+  states: ["Morning", "Afternoon", "Evening", "Sunrise", "Sunset", "Twilight", "Dawn", "Dusk", "Night", "Unknown"]
