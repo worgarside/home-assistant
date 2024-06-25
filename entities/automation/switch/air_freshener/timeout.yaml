@@ -1,0 +1,17 @@
+---
+alias: /switch/air-freshener/timeout
+
+id: switch_air_freshener_timeout
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: switch.air_freshener
+    to: "on"
+    for:
+      minutes: "{{ states('input_number.air_freshener_timeout') | int(60) }}"
+
+action:
+  - service: switch.turn_off
+    entity_id: switch.air_freshener
