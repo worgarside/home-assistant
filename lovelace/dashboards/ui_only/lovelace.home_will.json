@@ -312,7 +312,7 @@
                     {
                       "type": "custom:mushroom-template-card",
                       "primary": "Auto-Save",
-                      "secondary": "Total saved: \u00a3{{ states('var.auto_save_cumulative_total') }}",
+                      "secondary": "Total saved: £{{ states('var.auto_save_cumulative_total') }}",
                       "icon": "mdi:chart-timeline-variant-shimmer",
                       "icon_color": "blue",
                       "fill_container": true,
@@ -1416,7 +1416,7 @@
                   "columns": 2
                 }
               ],
-              "title": "System Monitor"
+              "title": "HAssPi System Monitor"
             },
             {
               "type": "grid",
