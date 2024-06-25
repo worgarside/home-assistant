@@ -1863,24 +1863,6 @@
                       "entity": "sensor.prusa_i3_mk3_current_consumption",
                       "name": "Current Power Draw",
                       "icon_color": "yellow"
-                    }
-                  ],
-                  "columns": 2
-                },
-                {
-                  "square": false,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "switch.prusa_i3_mk3_power",
-                      "icon_color": "orange"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.prusa_i3_mk3_current_consumption",
-                      "name": "Current Power Draw",
-                      "icon_color": "yellow"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
