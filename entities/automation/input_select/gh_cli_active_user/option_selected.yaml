@@ -31,7 +31,7 @@ action:
           entity_id: script.log_exception
         data:
           variables:
-            notification_title: GH CLI Error
+            calling_entity: automation.input_select_gh_cli_active_user_option_selected
             message: |
               ```json
               {{ gh_res | tojson(indent=2) }}
