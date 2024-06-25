@@ -94,7 +94,7 @@ action:
 
       # yamllint disable rule:line-length
       longform_message: |
-        Repair of type `{{ issue_type or "?" }}` {{ event_type }}d for entity `{{ issue_entity }}`{% if not issue_entity.startswith("{}.".format(issue_domain)) %} in domain `{{ issue_domain }}`{% endif %}.
+        Repair of type `{{ issue_type or "?" }}` {{ event_type }}d for entity `{{ issue_entity }}`{% if issue_domain and not issue_entity.startswith("{}.".format(issue_domain)) %} in domain `{{ issue_domain }}`{% endif %}.
 
         ```json
         {{ trigger.to_state.attributes | tojson(indent=2) }}
