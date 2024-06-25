@@ -1,2 +1,2 @@
 ---
-read_file: cat "resources/tmp/{{ file.strip('/"') }}"
+read_file: base64 -d 'resources/tmp/{{ file.strip('/"') }}'
