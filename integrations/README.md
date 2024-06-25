@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (118)</h3></summary>
+<details><summary><h3>Entities (116)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1471,32 +1471,6 @@ File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_rel
 - Mode: `queued`
 
 File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/automation/script/crt_pi_update_display/mqtt_trigger.yaml)
-</details>
-
-<details><summary><code>/switch/bedroom-scent-plug/turn-off-after-an-hour</code></summary>
-
-**Entity ID: `automation.switch_bedroom_scent_plug_turn_off_after_an_hour`**
-
-> *No description provided*
-
-- Alias: /switch/bedroom-scent-plug/turn-off-after-an-hour
-- ID: `switch_bedroom_scent_plug_turn_off_after_an_hour`
-- Mode: `single`
-
-File: [`automation/switch/bedroom_scent_plug/turn_off_after_an_hour.yaml`](entities/automation/switch/bedroom_scent_plug/turn_off_after_an_hour.yaml)
-</details>
-
-<details><summary><code>/switch/bedroom-scent-plug/turn-off-when-window-opened</code></summary>
-
-**Entity ID: `automation.switch_bedroom_scent_plug_turn_off_when_window_opened`**
-
-> *No description provided*
-
-- Alias: /switch/bedroom-scent-plug/turn-off-when-window-opened
-- ID: `switch_bedroom_scent_plug_turn_off_when_window_opened`
-- Mode: `single`
-
-File: [`automation/switch/bedroom_scent_plug/turn_off_when_window_opened.yaml`](entities/automation/switch/bedroom_scent_plug/turn_off_when_window_opened.yaml)
 </details>
 
 <details><summary><code>/switch/charging-hub/turn-off</code></summary>
