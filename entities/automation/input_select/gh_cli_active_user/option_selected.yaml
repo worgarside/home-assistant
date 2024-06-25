@@ -37,6 +37,8 @@ action:
           variables:
             calling_entity: automation.input_select_gh_cli_active_user_option_selected
             message: |
+              Error switching GH CLI user to `{{ trigger.to_state.state }}`
+
               ```json
               {{ gh_res | tojson(indent=2) }}
               ```
