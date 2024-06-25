@@ -52,14 +52,5 @@ icon: >-
   }}
 
 attributes:
-  states:
-    - Morning
-    - Afternoon
-    - Evening
-    - Sunrise
-    - Sunset
-    - Twilight
-    - Dawn
-    - Dusk
-    - Night
-    - Unknown
+  # yamllint disable rule:line-length
+  states: ["Morning", "Afternoon", "Evening", "Sunrise", "Sunset", "Twilight", "Dawn", "Dusk", "Night", "Unknown"]
