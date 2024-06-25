@@ -1261,6 +1261,10 @@
                   "fill_container": true,
                   "secondary_info": "last-changed",
                   "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.current_gh_cli_user"
                 }
               ],
               "title": "System Monitor"
