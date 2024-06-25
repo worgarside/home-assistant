@@ -77,6 +77,8 @@ jobs:
           path: .
           secrets: secrets.fake.yaml
           version: ${{ matrix.version }}
-          catch_error_logs: ${{ matrix.version == needs.get-current-version.outputs.version }}
+          catch_error_logs: >-
+            matrix.version == needs.get-current-version.outputs.version ||
+            matrix.version == 'stable'
           ignore_error_log_pattern: >-
             '/hue-remote/(lounge|office)/button-[0-9]/((long|short)-)?press'
