@@ -1,0 +1,24 @@
+---
+alias: /gh-cli/user-updated
+
+description: Keep the input select up to date (e.g. if the user is changed in a different way)
+
+id: gh_cli_user_updated
+
+mode: restart
+
+trigger:
+  platform: state
+  entity_id: sensor.current_gh_cli_user
+  not_to:
+    - unavailable
+    - unknown
+
+condition: "{{ trigger.to_state.state != states('input_select.gh_cli_active_user') }}"
+
+action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.gh_cli_active_user
+    data:
+      option: "{{ trigger.to_state.state }}"
