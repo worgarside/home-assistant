@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (117)</h3></summary>
+<details><summary><h3>Entities (118)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -443,6 +443,75 @@ File: [`automation/cube/rotate.yaml`](entities/automation/cube/rotate.yaml)
 }
 ```
 File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
+</details>
+
+<details><summary><code>/event/repair/state-change</code></summary>
+
+**Entity ID: `automation.event_repair_state_change`**
+
+> Get Cosmo to clean a room immediately, triggered from a mobile notification
+
+- Alias: /event/repair/state-change
+- ID: `event_repair_state_change`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "domains": [
+    "group",
+    "lovelace",
+    "switch_as_x",
+    "automation",
+    "binary_sensor",
+    "button",
+    "calendar",
+    "camera",
+    "conversation",
+    "cover",
+    "device_tracker",
+    "event",
+    "fan",
+    "input_boolean",
+    "input_button",
+    "input_datetime",
+    "input_number",
+    "input_select",
+    "input_text",
+    "light",
+    "media_player",
+    "number",
+    "person",
+    "remote",
+    "script",
+    "select",
+    "sensor",
+    "stt",
+    "sun",
+    "switch",
+    "tag",
+    "tts",
+    "update",
+    "vacuum",
+    "var",
+    "weather",
+    "zone"
+  ],
+  "issue_types": [
+    "unknown_source",
+    "unknown_members",
+    "unknown_area_references",
+    "unknown_device_references",
+    "unknown_entity_references",
+    "unknown_floor_references",
+    "unknown_label_references",
+    "unknown_service_references"
+  ],
+  "issue_id": "{{ trigger.to_state.attributes.issue_id }}",
+  "event_type": "{{ trigger.to_state.attributes.event_type }}"
+}
+```
+File: [`automation/event/repair/state_change.yaml`](entities/automation/event/repair/state_change.yaml)
 </details>
 
 <details><summary><code>/gh-cli/user-updated</code></summary>
@@ -5045,7 +5114,7 @@ File: [`sensor/tomorrow_io_realtime_weather.yaml`](entities/sensor/tomorrow_io_r
 
 ## Shell Command
 
-<details><summary><h3>Entities (17)</h3></summary>
+<details><summary><h3>Entities (19)</h3></summary>
 
 <details><summary><code>shell_command.approve_pull_request</code></summary>
 
@@ -5065,6 +5134,16 @@ File: [`shell_command/checkout_git_branch.yaml`](entities/shell_command/checkout
 <details><summary><code>shell_command.comment_on_pr</code></summary>
 
 File: [`shell_command/comment_on_pr.yaml`](entities/shell_command/comment_on_pr.yaml)
+</details>
+
+<details><summary><code>shell_command.base64_decode_file</code></summary>
+
+File: [`shell_command/file_operations/base64_decode_file.yaml`](entities/shell_command/file_operations/base64_decode_file.yaml)
+</details>
+
+<details><summary><code>shell_command.base64_encode_file</code></summary>
+
+File: [`shell_command/file_operations/base64_encode_file.yaml`](entities/shell_command/file_operations/base64_encode_file.yaml)
 </details>
 
 <details><summary><code>shell_command.delete_file</code></summary>
