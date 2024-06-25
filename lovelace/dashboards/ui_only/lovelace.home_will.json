@@ -1256,26 +1256,6 @@
                   ]
                 },
                 {
-                  "square": false,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.current_gh_cli_user",
-                      "fill_container": true,
-                      "layout": "vertical"
-                    },
-                    {
-                      "type": "custom:mushroom-select-card",
-                      "entity": "input_select.gh_cli_active_user",
-                      "fill_container": true,
-                      "secondary_info": "last-changed",
-                      "name": "Change Active User"
-                    }
-                  ],
-                  "columns": 2
-                },
-                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -1414,6 +1394,26 @@
                       "alignment": "justify"
                     }
                   ]
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.current_gh_cli_user",
+                      "fill_container": true,
+                      "layout": "vertical"
+                    },
+                    {
+                      "type": "custom:mushroom-select-card",
+                      "entity": "input_select.gh_cli_active_user",
+                      "fill_container": true,
+                      "secondary_info": "last-changed",
+                      "name": "Change Active User"
+                    }
+                  ],
+                  "columns": 2
                 }
               ],
               "title": "System Monitor"
