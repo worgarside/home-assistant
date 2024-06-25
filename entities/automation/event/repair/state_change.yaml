@@ -1,0 +1,159 @@
+---
+alias: /event/repair/state-change
+
+description: Get Cosmo to clean a room immediately, triggered from a mobile notification
+
+id: event_repair_state_change
+
+mode: queued
+
+max: 100
+
+trigger:
+  platform: state
+  entity_id: event.repair
+
+# {% set ns = namespace(d=[]) %}
+# {% for state in states %}
+# {% set ns.d = ns.d + [state.domain] %}
+# {% endfor %}
+# {{ set(ns.d) | sort }}
+
+variables:
+  domains:
+    - group
+    - lovelace
+    - switch_as_x
+
+    - automation
+    - binary_sensor
+    - button
+    - calendar
+    - camera
+    - conversation
+    - cover
+    - device_tracker
+    - event
+    - fan
+    - input_boolean
+    - input_button
+    - input_datetime
+    - input_number
+    - input_select
+    - input_text
+    - light
+    - media_player
+    - number
+    - person
+    - remote
+    - script
+    - select
+    - sensor
+    - stt
+    - sun
+    - switch
+    - tag
+    - tts
+    - update
+    - vacuum
+    - var
+    - weather
+    - zone
+
+  issue_types:
+    - unknown_source
+    - unknown_members
+    - unknown_area_references
+    - unknown_device_references
+    - unknown_entity_references
+    - unknown_floor_references
+    - unknown_label_references
+    - unknown_service_references
+
+  issue_id: "{{ trigger.to_state.attributes.issue_id }}"
+
+  event_type: "{{ trigger.to_state.attributes.event_type }}"
+
+action:
+  - alias: Get Issue Parts
+    variables:
+      issue_domain: >-
+        {% for d in domains if issue_id.startswith("{}_".format(d)) %}
+        {{ d }}{% break %}
+        {% endfor %}
+
+      issue_type: >-
+        {% set trimmed = issue_id.removeprefix("{}_".format(issue_domain)) %}
+
+        {% for t in issue_types if trimmed.startswith("{}_".format(t)) %}
+        {{ t }}
+        {% endfor %}
+
+      issue_entity: '{{ issue_id.removeprefix("{}_{}_".format(issue_domain, issue_type)) }}'
+
+      # yamllint disable rule:line-length
+      longform_message: |
+        Repair of type `{{ issue_type }}` {{ event_type }}d for entity `{{ issue_entity }}`{% if not issue_entity.startswith("{}.".format(issue_domain)) %} in domain `{{ issue_domain }}`{% endif %}.
+
+        ```json
+        {{ trigger.to_state.attributes | tojson(indent=2) }}
+        ```
+
+        [![Open your Home Assistant instance and show your repairs.](https://my.home-assistant.io/badges/repairs.svg)](https://my.home-assistant.io/redirect/repairs/)
+      # yamllint enable rule:line-length
+
+  - alias: Debug Notification
+    service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      variables:
+        notification_title: Repair {{ event_type | title }}d
+        message: "{{ longform_message }}"
+
+  - alias: Check for existing issue
+    service: shell_command.gh
+    response_variable: gh_cli_response
+    data:
+      command: issue list
+      args: >
+        -A worgarside-hass
+        -s open
+        --json body
+        --jq 'map(select(.body | contains("both")) | .number) | first'
+
+  - alias: Get Issue Number
+    variables:
+      issue_number: "{{ gh_cli_response.stdout.strip() | int(0) }}"
+
+  - if: "{{ event_type == 'remove' and issue_number | int(0) > 0 }}"
+    then:
+      - service: shell_command.gh
+        data:
+          command: issue close
+          args: "{{ issue_number }} -c '{{ longform_message }}' -r completed"
+        response_variable: gh_issue_close_response
+
+      - stop: Issue Closed
+
+  - alias: Create issue if no match found
+    if: "{{ not issue_number | int(0) }}"
+    then:
+      - service: script.turn_on
+        target:
+          entity_id: script.gh_issue_create
+        data:
+          variables:
+            issue_title: "{{ issue_type.replace('_', ' ').title() }}: `{{ issue_entity }}`"
+            issue_labels:
+              - bug
+            body: "{{ longform_message }}"
+            assignee: worgarside
+            repository: home-assistant
+
+    else:
+      - service: persistent_notification.create
+        data:
+          title: Repair issue already logged
+        # yamllint disable-line rule:line-length
+          message: Issue for `{{ issue_id }}` already [exists](https://github.com/worgarside/home-assistant/issues/{{ issue_number }}).
