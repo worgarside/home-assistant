@@ -24,6 +24,6 @@ action:
       position: "{{ states('input_number.lounge_blinds_button_height') }}"
     target:
       entity_id: cover.lounge_blinds
-  - service: switch.turn_on
-    target:
-      entity_id: switch.christmas_tree
+  # - service: switch.turn_on
+  #   target:
+  #     entity_id: switch.christmas_tree

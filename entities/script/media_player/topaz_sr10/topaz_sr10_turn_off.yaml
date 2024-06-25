@@ -1,7 +1,7 @@
 ---
 alias: "Topaz SR10: Turn Off"
 
-description: Set the volume of the Topaz SR10 to a specific value
+description: Turn the Topaz SR10 off. Exists as a script because you can't have multi-step commands
 
 mode: single
 
@@ -29,6 +29,19 @@ sequence:
             target:
               entity_id: media_player.topaz_sr10
             continue_on_error: true
+
+  - alias: Ensure it's been switched on for >5 seconds to avoid rapid power cycling
+    if: >-
+      {{
+        (
+          now() | as_timestamp(default=0) -
+          states.switch.office_amp.last_changed | as_timestamp(default=0)
+        ) | int(0) < 5
+      }}
+
+    then:
+      - delay:
+          seconds: 5
 
   - service: switch.turn_off
     target:

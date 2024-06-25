@@ -1,0 +1,50 @@
+---
+alias: /input-select/gh-cli-active-user/option-selected
+
+description: Change the active user in the GH CLI and update the current user command line sensor
+
+id: input_select_gh_cli_active_user_option_selected
+
+mode: queued
+
+trigger:
+  platform: state
+  entity_id: input_select.gh_cli_active_user
+  not_to:
+    - unavailable
+    - unknown
+
+condition: "{{ trigger.to_state.state != states('sensor.current_gh_cli_user') }}"
+
+action:
+  - service: shell_command.gh
+    response_variable: gh_res
+    data:
+      command: auth switch
+      args: --user {{ trigger.to_state.state }}
+
+  - service: homeassistant.update_entity
+    target:
+      entity_id: sensor.current_gh_cli_user
+
+  - if: "{{ gh_res.returncode | int(-1) != 0 }}"
+
+    then:
+      - service: script.turn_on
+        target:
+          entity_id: script.log_exception
+        data:
+          variables:
+            calling_entity: automation.input_select_gh_cli_active_user_option_selected
+            message: |
+              Error switching GH CLI user to `{{ trigger.to_state.state }}`
+
+              ```json
+              {{ gh_res | tojson(indent=2) }}
+              ```
+
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.gh_cli_active_user
+        data:
+          option: "{{ states('sensor.current_gh_cli_user') }}"

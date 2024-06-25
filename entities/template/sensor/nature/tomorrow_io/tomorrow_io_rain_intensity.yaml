@@ -1,0 +1,15 @@
+---
+name: "Tomorrow.io: Rain Intensity"
+
+unique_id: tomorrow_io_rain_intensity
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'rainIntensity') }}"
+
+unit_of_measurement: mm/hr
+
+icon: >-
+  {% if this.state | float(1) > 0 %}
+    mdi:weather-rainy
+  {% else %}
+    mdi:cloud-outline
+  {% endif %}

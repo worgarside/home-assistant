@@ -1,6 +1,0 @@
----
-name: Count Input Booleans
-unique_id: count_input_booleans
-state: '{{ states.input_boolean | list | length }}'
-icon: mdi:toggle-switch-outline
-unit_of_measurement: ''

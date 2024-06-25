@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Humidity"
+
+unique_id: tomorrow_io_humidity
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'humidity') }}"
+
+unit_of_measurement: "%"
+
+icon: mdi:cloud-percent-outline

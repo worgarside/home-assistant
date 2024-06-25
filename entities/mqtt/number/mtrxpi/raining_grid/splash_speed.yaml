@@ -1,0 +1,21 @@
+---
+
+name: "MtrxPi | Raining Grid: Splash Speed"
+
+unique_id: mtrxpi_raining_grid_splash_speed
+
+command_topic: /mtrxpi/raining-grid/frequency/splash-speed
+
+icon: mdi:speedometer
+
+min: 1
+
+max: 1000
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: ticks

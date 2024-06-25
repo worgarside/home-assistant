@@ -1,0 +1,6 @@
+---
+icon: mdi:memory
+name: Grafana Memory Usage
+state: "{{ state_attr('sensor.grafana_status', 'data').memory_percent | default(0) }}"
+unique_id: grafana_memory_usage
+unit_of_measurement: '%'

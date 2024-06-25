@@ -1,0 +1,2 @@
+---
+read_file: base64 -d 'resources/tmp/{{ file.strip('/"') }}'

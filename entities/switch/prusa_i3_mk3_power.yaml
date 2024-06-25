@@ -35,8 +35,8 @@ turn_off:
       {{
         states("sensor.prusa_i3_mk3_current_consumption") | int(999) < 30 and
         not is_state("binary_sensor.octoprint_printing", "on") and
-        states("input_number.prusa_i3_mk3_target_bed_temperature") | int == 0 and
-        states("input_number.prusa_i3_mk3_target_hotend_temperature") | int == 0
+        states("number.prusa_i3_target_bed_temperature") | int == 0 and
+        states("number.prusa_i3_target_hotend_temperature") | int == 0
       }}
 
   - service: switch.turn_off

@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Cloud Base"
+
+unique_id: tomorrow_io_cloud_base
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'cloudBase') }}"
+
+unit_of_measurement: km
+
+icon: mdi:cloud-arrow-down-outline

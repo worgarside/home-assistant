@@ -33,6 +33,8 @@ variables:
 
   suction_level: "{{ max(min(suction_level | default(2) | int(2), 3), 0) }}"
 
+  suction_level_str: "{{ ['quiet', 'standard', 'strong', 'turbo'][suction_level] }}"
+
   true_response:
     value: true
 
@@ -150,6 +152,13 @@ sequence:
         then:
           - stop: Clean session not started
             response_variable: false_response
+
+  - alias: Set suction level
+    service: select.select_option
+    target:
+      entity_id: select.cosmo_suction_level
+    data:
+      option: "{{ suction_level_str }}"
 
   - service: dreame_vacuum.vacuum_clean_segment
     target:

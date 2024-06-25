@@ -1,0 +1,16 @@
+---
+# Boolean value to act as intermediary in kitchen light automations
+# Helps avoid unexpected on-off behaviour if the lights are toggled too quickly
+
+friendly_name: "Boolean Flag: Kitchen Lights"
+
+restore: true
+
+unique_id: var_boolean_flags_boolean_flag_kitchen_lights
+
+icon_template: >-
+  {% if is_state('var.boolean_flag_kitchen_lights', 'on') %}
+    mdi:checkbox-intermediate
+  {% else %}
+    mdi:checkbox-blank-outline
+  {% endif %}

@@ -1,9 +1,0 @@
----
-name: YAS-209 Local IP
-unique_id: yas_209_local_ip
-state: >
-  {{
-    state_attr("binary_sensor.will_s_yas_209", "url") |
-    replace("http://", "") |
-    replace(":49152/description.xml", "")
-  }}

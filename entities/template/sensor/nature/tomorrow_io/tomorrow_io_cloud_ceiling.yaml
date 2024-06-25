@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Cloud Ceiling"
+
+unique_id: tomorrow_io_cloud_ceiling
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'cloudCeiling') }}"
+
+unit_of_measurement: km
+
+icon: mdi:cloud-arrow-up-outline

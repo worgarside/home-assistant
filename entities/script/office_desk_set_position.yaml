@@ -13,6 +13,9 @@ fields:
         max: 100
         step: 1
 
+variables:
+  tolerance: 2
+
 sequence:
   - alias: Check desk isn't already at height
     condition: template
@@ -26,28 +29,19 @@ sequence:
       until:
         condition: template
 
-        value_template: >
-          {{
-            state_attr("cover.office_desk_esphome", "current_position") | int ==
-            position | int
-          }}
+        value_template: >-
+          {% set current = state_attr('cover.office_desk_esphome', 'current_position') | int(None) %}
+          {% set target = position | int(None) %}
+          {{ current is none or target is none or (current - target) | abs <= tolerance }}
 
       sequence:
-        - alias: Delay for 0.2s if it's not the first iteration
+        - alias: Delay for 0.1s if it's not the first iteration
 
           if: "{{ repeat.index > 1 }}"
 
           then:
             - delay:
-                milliseconds: 200
-
-            - service: script.turn_on
-              target:
-                entity_id: script.debug_persistent_notification
-              data:
-                variables:
-                  notification_title: "Desk Move Delay (Target Position: {{ position }}%)"
-                  message: "Delaying for 0.2s in loop iteration {{ repeat.index }}"
+                milliseconds: 100
 
         - alias: Send debug notification
           service: script.turn_on
@@ -66,30 +60,47 @@ sequence:
             entity_id: cover.office_desk_esphome
             position: "{{ position | int }}"
 
-        - alias: "Wait for desk to stop moving"
-          wait_for_trigger:
-            - platform: state
-              entity_id: cover.office_desk_esphome
-              to:
-                - closed
-                - open
-          timeout: "00:00:30"
+        - alias: Stop following template returning `true` if the desk hasn't started moving yet
+          delay:
+            milliseconds: 100
+
+        - alias: Wait for desk to reach target position
+          wait_template: >-
+            {% set curr = state_attr('cover.office_desk_esphome', 'current_position') | int(None) %}
+            {% set target = position | int(None) %}
+            {{ curr is none or target is none or (curr - target) | abs <= tolerance }}
+          timeout: 00:00:30
           continue_on_timeout: true
 
-        - service: script.turn_on
+        - alias: Send Debug Notification
+          service: script.turn_on
           target:
             entity_id: script.debug_persistent_notification
           data:
             variables:
               notification_title: >-
+                {%
+                  set current = state_attr(
+                    "cover.office_desk_esphome",
+                    "current_position",
+                  ) | int(None)
+                %}
+                {% set target = position | int(None) %}
+
                 Desk Move {{
                   iif(
-                    is_state_attr('cover.office_desk_esphome', 'current_position', position | int),
+                    current and target and (current - target) | abs <= tolerance,
                     'Complete',
                     'Failed'
                   )
                 }}
-                (Target Position: {{ position }}%)
               message: |
+                Target: {{ position }}%
+                Tolerance: {{ tolerance }}%
                 Final position: {{ state_attr('cover.office_desk_esphome', 'current_position') }}%
-                Final state: {{ states('cover.office_desk_esphome')}}
+                Final state: `{{ states('cover.office_desk_esphome')}}`
+
+        - alias: If not timed out, send stop signal (prevent moving too far/extra retries)
+          if: "{{ wait.completed }}"
+          then:
+            - service: script.office_desk_stop_moving

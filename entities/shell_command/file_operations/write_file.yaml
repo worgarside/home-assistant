@@ -1,0 +1,3 @@
+---
+# yamllint disable rule:line-length
+write_file: bash -c "echo -e \"{{ body | base64_encode }}\" >> 'resources/tmp/{{ file.strip('/"') }}'"

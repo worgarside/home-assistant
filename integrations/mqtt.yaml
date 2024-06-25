@@ -3,5 +3,8 @@
 # https://www.home-assistant.io/integrations/mqtt
 
 mqtt:
-  sensor: !include_dir_list ../entities/mqtt/sensor
   binary_sensor: !include_dir_list ../entities/mqtt/binary_sensor
+  number: !include_dir_list ../entities/mqtt/number
+  select: !include_dir_list ../entities/mqtt/select
+  sensor: !include_dir_list ../entities/mqtt/sensor
+  switch: !include_dir_list ../entities/mqtt/switch

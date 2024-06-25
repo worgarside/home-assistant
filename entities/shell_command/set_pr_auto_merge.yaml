@@ -1,5 +1,9 @@
 ---
-set_pr_auto_merge: >
-  bash
-  /config/resources/shell_command/gh_cli/set_pr_auto_merge.sh
-  -u {{ url }}
+set_pr_auto_merge: >-
+  bash -c '
+  /config/resources/gh_cli/bin/gh auth switch --user worgarside
+  &&
+  /config/resources/gh_cli/bin/gh pr merge {{ url }} --squash --auto
+  ;
+  /config/resources/gh_cli/bin/gh auth switch --user worgarside-hass
+  '

@@ -1,0 +1,10 @@
+---
+name: "Tomorrow.io: Wind Direction"
+
+unique_id: tomorrow_io_wind_direction
+
+state: "{{ state_attr('sensor.tomorrow_io_realtime_weather', 'windDirection') }}"
+
+unit_of_measurement: °
+
+icon: mdi:compass-outline

@@ -41,20 +41,6 @@ cards:
         - type: custom:decluttering-card
           template: active_media_player_template
           variables:
-            - media_player: all_speakers
-            - binary_sensor_name: all_speakers
-            - icon: speaker-multiple
-
-        - type: custom:decluttering-card
-          template: active_media_player_template
-          variables:
-            - media_player: downstairs_speakers
-            - binary_sensor_name: downstairs_speakers
-            - icon: speaker-multiple
-
-        - type: custom:decluttering-card
-          template: active_media_player_template
-          variables:
             - media_player: hifi_system
             - binary_sensor_name: hifi_system
 
@@ -78,13 +64,6 @@ cards:
             - media_player: lounge_bravia_tv
             - binary_sensor_name: lounge_tv
             - icon: television
-
-        - type: custom:decluttering-card
-          template: active_media_player_template
-          variables:
-            - media_player: upstairs_speakers
-            - binary_sensor_name: upstairs_speakers
-            - icon: speaker-multiple
 
         - type: custom:decluttering-card
           template: active_media_player_template

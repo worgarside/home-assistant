@@ -39,14 +39,14 @@ action:
       - stop: Timeout
         error: true
 
-  - service: input_number.set_value
+  - service: number.set_value
     target:
-      entity_id: input_number.prusa_i3_mk3_target_bed_temperature
+      entity_id: number.prusa_i3_target_bed_temperature
     data:
       value: 60
 
-  - service: input_number.set_value
+  - service: number.set_value
     target:
-      entity_id: input_number.prusa_i3_mk3_target_hotend_temperature
+      entity_id: number.prusa_i3_target_hotend_temperature
     data:
       value: 180

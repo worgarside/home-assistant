@@ -14,7 +14,11 @@ trigger:
     entity_id: media_player.topaz_sr10
     to: "on" # Other states are a definite "no"
     for:
-      minutes: 5
+      minutes: "{{ states('input_number.topaz_sr10_power_off_timeout') | int(30) }}"
+
+  - platform: state
+    entity_id: sensor.wills_macbook_pro_active_audio_output
+    attribute: All Audio Output
 
 condition:
   or:

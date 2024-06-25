@@ -1,0 +1,26 @@
+---
+icon: mdi:printer-3d-nozzle-heat
+
+max: 300
+
+min: 0
+
+mode: box
+
+name: Prusa i3 | Target Hotend Temperature
+
+step: 1
+
+unit_of_measurement: "°C"
+
+unique_id: prusa_i3_target_hotend_temperature
+
+command_topic: /octopi/prusa-i3/target-hotend-temperature
+
+command_template: "{{ {'value': value | int} | tojson }}"  # hacv disable: InvalidTemplateVar:value
+
+retain: true
+
+state_topic: octoPrint/temperature/tool0
+
+value_template: "{{ value_json.target }}"

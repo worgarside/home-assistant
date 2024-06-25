@@ -2,15 +2,14 @@
 default_language_version:
   python: python3.12
 
-
 repos:
   - repo: https://github.com/worgarside/pre-commit-hooks-dependency-sync
-    rev: 1.1.0
+    rev: 1.1.1
     hooks:
       - id: sync-additional-dependencies
 
   - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: 3.1.1
+    rev: 4.1.1
     hooks:
       - id: generate-readme
       - id: validate-entities
@@ -20,7 +19,7 @@ repos:
       - id: validate-lovelace
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.5
+    rev: v0.4.10
     hooks:
       - id: ruff
         args:
@@ -52,6 +51,7 @@ repos:
     rev: v6.2.1
     hooks:
       - id: beautysh
+        language_version: python3.11 # Uses pkg_resources -.-
 
   - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
     rev: 0.2.3
@@ -78,7 +78,7 @@ repos:
           - --strict
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.9.0
+    rev: v1.10.0
     hooks:
       - id: mypy
 
@@ -87,8 +87,8 @@ repos:
           - --show-error-codes
         additional_dependencies:
           - types-paramiko
-          - watchdog==4.0.0
-          - wg-utilities==5.14.2
+          - watchdog==4.0.1
+          - wg-utilities==5.15.3
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
   - repo: https://github.com/pre-commit/pygrep-hooks
@@ -99,7 +99,7 @@ repos:
       - id: python-check-mock-methods
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.3.0
     hooks:
       - id: codespell
         additional_dependencies:
