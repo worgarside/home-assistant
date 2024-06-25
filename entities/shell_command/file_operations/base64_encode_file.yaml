@@ -1,5 +1,3 @@
 ---
-base64_decode_file: >-
-  base64 -w 0
-  'resources/tmp/{{ file.strip('/"') }}' >
-  'resources/tmp/{{ iif(output is string, output, "{}.decoded".format(file.strip('/"'))) }}'
+# yamllint disable rule:line-length
+base64_encode_file: base64 -w 0 'resources/tmp/{{ file.strip('/"') }}' > 'resources/tmp/{{ iif(output is string, output, "{}.decoded".format(file.strip('/"'))) }}'
