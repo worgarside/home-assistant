@@ -1902,18 +1902,18 @@
                 {
                   "square": false,
                   "type": "grid",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.octoprint_approximate_completion_time",
+                      "state_not": "unavailable"
+                    }
+                  ],
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_approximate_completion_time",
                       "icon_color": "purple",
-                      "visibility": [
-                        {
-                          "condition": "state",
-                          "entity": "sensor.octoprint_approximate_completion_time",
-                          "state_not": "unavailable"
-                        }
-                      ],
                       "name": "Estimated Finish Time"
                     },
                     {
