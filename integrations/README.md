@@ -3,6 +3,7 @@
 ## Automation
 
 <details><summary><h3>Entities (114)</h3></summary>
+<details><summary><h3>Entities (117)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1473,6 +1474,19 @@ File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_rel
 File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/automation/script/crt_pi_update_display/mqtt_trigger.yaml)
 </details>
 
+<details><summary><code>/switch/air-freshener/timeout</code></summary>
+
+**Entity ID: `automation.switch_air_freshener_timeout`**
+
+> *No description provided*
+
+- Alias: /switch/air-freshener/timeout
+- ID: `switch_air_freshener_timeout`
+- Mode: `single`
+
+File: [`automation/switch/air_freshener/timeout.yaml`](entities/automation/switch/air_freshener/timeout.yaml)
+</details>
+
 <details><summary><code>/switch/charging-hub/turn-off</code></summary>
 
 **Entity ID: `automation.switch_charging_hub_turn_off`**
@@ -2411,7 +2425,20 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (25)</h3></summary>
+<details><summary><h3>Entities (26)</h3></summary>
+
+<details><summary><strong>Air Freshener | Timeout</strong></summary>
+
+**Entity ID: `input_number.air_freshener_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 300
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/air_freshener_timeout.yaml`](entities/input_number/air_freshener_timeout.yaml)
+</details>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
