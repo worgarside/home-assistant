@@ -1905,8 +1905,8 @@
                   "visibility": [
                     {
                       "condition": "state",
-                      "entity": "sensor.octoprint_approximate_completion_time",
-                      "state_not": "unavailable"
+                      "entity": "sensor.octoprint_current_state",
+                      "state": "Printing"
                     }
                   ],
                   "cards": [
