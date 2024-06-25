@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (117)</h3></summary>
+<details><summary><h3>Entities (115)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1510,32 +1510,6 @@ File: [`automation/switch/charging_hub/turn_off.yaml`](entities/automation/switc
 - Mode: `single`
 
 File: [`automation/switch/christmas_tree/turn_on.yaml`](entities/automation/switch/christmas_tree/turn_on.yaml)
-</details>
-
-<details><summary><code>/switch/lounge-scent-plug/turn-off-after-an-hour</code></summary>
-
-**Entity ID: `automation.switch_lounge_scent_plug_turn_off_after_an_hour`**
-
-> *No description provided*
-
-- Alias: /switch/lounge-scent-plug/turn-off-after-an-hour
-- ID: `switch_lounge_scent_plug_turn_off_after_an_hour`
-- Mode: `single`
-
-File: [`automation/switch/lounge_scent_plug/turn_off_after_an_hour.yaml`](entities/automation/switch/lounge_scent_plug/turn_off_after_an_hour.yaml)
-</details>
-
-<details><summary><code>/switch/lounge-scent-plug/turn-off-when-window-opened</code></summary>
-
-**Entity ID: `automation.switch_lounge_scent_plug_turn_off_when_window_opened`**
-
-> *No description provided*
-
-- Alias: /switch/lounge-scent-plug/turn-off-when-window-opened
-- ID: `switch_lounge_scent_plug_turn_off_when_window_opened`
-- Mode: `single`
-
-File: [`automation/switch/lounge_scent_plug/turn_off_when_window_opened.yaml`](entities/automation/switch/lounge_scent_plug/turn_off_when_window_opened.yaml)
 </details>
 
 <details><summary><code>/switch/mtrxpi-power/off</code></summary>
