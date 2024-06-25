@@ -312,7 +312,7 @@
                     {
                       "type": "custom:mushroom-template-card",
                       "primary": "Auto-Save",
-                      "secondary": "Total saved: \u00a3{{ states('var.auto_save_cumulative_total') }}",
+                      "secondary": "Total saved: £{{ states('var.auto_save_cumulative_total') }}",
                       "icon": "mdi:chart-timeline-variant-shimmer",
                       "icon_color": "blue",
                       "fill_container": true,
@@ -1961,10 +1961,6 @@
                   "type": "vertical-stack",
                   "cards": [
                     {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Enclosure Stats"
-                    },
-                    {
                       "square": false,
                       "type": "grid",
                       "columns": 2,
@@ -1980,8 +1976,26 @@
                           "entity": "sensor.octopi_ambient_humidity",
                           "name": "Humidity",
                           "icon_color": "light-green"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octopi_cpu_temperature",
+                          "icon_color": "orange",
+                          "name": "CPU Temperature",
+                          "icon": "mdi:thermometer-lines"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_number.octopi_fan_auto_on_threshold",
+                          "icon_color": "#9F9E9C",
+                          "name": "CPU Fan Threshold",
+                          "icon": "mdi:thermometer-auto"
                         }
                       ]
+                    },
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "Enclosure Stats"
                     },
                     {
                       "type": "custom:mini-graph-card",
@@ -1993,15 +2007,20 @@
                           "color": "#F54336"
                         },
                         {
+                          "entity": "sensor.octopi_cpu_temperature",
+                          "name": "CPU Temperature",
+                          "color": "#FF9901"
+                        },
+                        {
+                          "entity": "input_number.octopi_fan_auto_on_threshold",
+                          "show_line": false,
+                          "color": "#9F9E9C"
+                        },
+                        {
                           "entity": "sensor.octopi_ambient_humidity",
                           "name": "Humidity",
                           "color": "#8BC34A",
                           "y_axis": "secondary"
-                        },
-                        {
-                          "entity": "sensor.octopi_cpu_temperature",
-                          "name": "CPU Temperature",
-                          "color": "#FF9901"
                         }
                       ],
                       "show": {
