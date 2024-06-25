@@ -2092,7 +2092,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (12)</h3></summary>
+<details><summary><h3>Entities (11)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -2158,15 +2158,6 @@ File: [`input_boolean/mini_crt_fan.yaml`](entities/input_boolean/mini_crt_fan.ya
 - Icon: [`mdi:television-classic`](https://pictogrammers.com/library/mdi/icon/television-classic/)
 
 File: [`input_boolean/mini_crt_power.yaml`](entities/input_boolean/mini_crt_power.yaml)
-</details>
-
-<details><summary><strong>OctoPi Fan</strong></summary>
-
-**Entity ID: `input_boolean.octopi_fan`**
-
-- Icon: [`mdi:fan`](https://pictogrammers.com/library/mdi/icon/fan/)
-
-File: [`input_boolean/octopi_fan.yaml`](entities/input_boolean/octopi_fan.yaml)
 </details>
 
 <details><summary><strong>Office Entity Header</strong></summary>
