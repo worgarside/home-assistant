@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (115)</h3></summary>
+<details><summary><h3>Entities (116)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -813,6 +813,19 @@ File: [`automation/input_number/cosmo/room_timeout/set.yaml`](entities/automatio
 }
 ```
 File: [`automation/input_select/cosmo_entity_picture/set_options.yaml`](entities/automation/input_select/cosmo_entity_picture/set_options.yaml)
+</details>
+
+<details><summary><code>/input-select/gh-cli-active-user/option-selected</code></summary>
+
+**Entity ID: `automation.input_select_gh_cli_active_user_option_selected`**
+
+> *No description provided*
+
+- Alias: /input-select/gh-cli-active-user/option-selected
+- ID: `input_select_gh_cli_active_user_option_selected`
+- Mode: `queued`
+
+File: [`automation/input_select/gh_cli_active_user/option_selected.yaml`](entities/automation/input_select/gh_cli_active_user/option_selected.yaml)
 </details>
 
 <details><summary><code>/input-select/target-git-branch/option-selected</code></summary>
@@ -2687,7 +2700,7 @@ File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/in
 
 ## Input Select
 
-<details><summary><h3>Entities (9)</h3></summary>
+<details><summary><h3>Entities (10)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -2714,6 +2727,15 @@ File: [`input_select/cosmo_entity_picture.yaml`](entities/input_select/cosmo_ent
 - Icon: [`mdi:monitor-small`](https://pictogrammers.com/library/mdi/icon/monitor-small/)
 
 File: [`input_select/crt_pi_display_source.yaml`](entities/input_select/crt_pi_display_source.yaml)
+</details>
+
+<details><summary><strong>GH CLI | Active User</strong></summary>
+
+**Entity ID: `input_select.gh_cli_active_user`**
+
+- Icon: [`mdi:badge-account-outline`](https://pictogrammers.com/library/mdi/icon/badge-account-outline/)
+
+File: [`input_select/gh_cli_active_user.yaml`](entities/input_select/gh_cli_active_user.yaml)
 </details>
 
 <details><summary><strong>Lounge Shapes Artwork Mapping Source</strong></summary>
