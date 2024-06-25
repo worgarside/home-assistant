@@ -1900,17 +1900,38 @@
                   "columns": 2
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.octoprint_approximate_completion_time",
-                  "name": "Print Completion Time",
-                  "icon_color": "purple",
-                  "visibility": [
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
                     {
-                      "condition": "state",
+                      "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_approximate_completion_time",
-                      "state_not": "unavailable"
+                      "icon_color": "purple",
+                      "visibility": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.octoprint_approximate_completion_time",
+                          "state_not": "unavailable"
+                        }
+                      ],
+                      "name": "Estimated Finish Time"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_print_file",
+                      "icon_color": "pink",
+                      "visibility": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.octoprint_approximate_completion_time",
+                          "state_not": "unavailable"
+                        }
+                      ],
+                      "name": "Current Print File",
+                      "icon": "mdi:file-cad"
                     }
-                  ]
+                  ],
+                  "columns": 1
                 },
                 {
                   "type": "custom:mushroom-chips-card",
