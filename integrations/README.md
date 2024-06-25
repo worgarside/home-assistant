@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (116)</h3></summary>
+<details><summary><h3>Entities (117)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1474,6 +1474,19 @@ File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_rel
 File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/automation/script/crt_pi_update_display/mqtt_trigger.yaml)
 </details>
 
+<details><summary><code>/switch/air-freshener/timeout</code></summary>
+
+**Entity ID: `automation.switch_air_freshener_timeout`**
+
+> *No description provided*
+
+- Alias: /switch/air-freshener/timeout
+- ID: `switch_air_freshener_timeout`
+- Mode: `single`
+
+File: [`automation/switch/air_freshener/timeout.yaml`](entities/automation/switch/air_freshener/timeout.yaml)
+</details>
+
 <details><summary><code>/switch/charging-hub/turn-off</code></summary>
 
 **Entity ID: `automation.switch_charging_hub_turn_off`**
@@ -2093,7 +2106,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (12)</h3></summary>
+<details><summary><h3>Entities (11)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -2159,15 +2172,6 @@ File: [`input_boolean/mini_crt_fan.yaml`](entities/input_boolean/mini_crt_fan.ya
 - Icon: [`mdi:television-classic`](https://pictogrammers.com/library/mdi/icon/television-classic/)
 
 File: [`input_boolean/mini_crt_power.yaml`](entities/input_boolean/mini_crt_power.yaml)
-</details>
-
-<details><summary><strong>OctoPi Fan</strong></summary>
-
-**Entity ID: `input_boolean.octopi_fan`**
-
-- Icon: [`mdi:fan`](https://pictogrammers.com/library/mdi/icon/fan/)
-
-File: [`input_boolean/octopi_fan.yaml`](entities/input_boolean/octopi_fan.yaml)
 </details>
 
 <details><summary><strong>Office Entity Header</strong></summary>
@@ -2447,7 +2451,20 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (25)</h3></summary>
+<details><summary><h3>Entities (26)</h3></summary>
+
+<details><summary><strong>Air Freshener | Timeout</strong></summary>
+
+**Entity ID: `input_number.air_freshener_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 300
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/air_freshener_timeout.yaml`](entities/input_number/air_freshener_timeout.yaml)
+</details>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
