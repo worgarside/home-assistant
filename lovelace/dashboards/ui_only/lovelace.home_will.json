@@ -2226,7 +2226,7 @@
                   ],
                   "show_header_toggle": false,
                   "state_color": false,
-                  "title": "Raining Grid"
+                  "title": "Raining Grid Parameters"
                 },
                 {
                   "type": "entities",
@@ -2257,9 +2257,11 @@
                     {
                       "entity": "automation.mtrxpi_content_trigger_raining_grid"
                     }
-                  ]
+                  ],
+                  "title": "Content Triggers"
                 }
-              ]
+              ],
+              "title": "LED Matrix Controller"
             },
             {
               "type": "grid",
@@ -2386,7 +2388,8 @@
                   "group": false,
                   "volume_stateless": false
                 }
-              ]
+              ],
+              "title": "MtrxPi System Monitor"
             }
           ],
           "cards": []
