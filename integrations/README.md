@@ -5045,7 +5045,7 @@ File: [`sensor/tomorrow_io_realtime_weather.yaml`](entities/sensor/tomorrow_io_r
 
 ## Shell Command
 
-<details><summary><h3>Entities (17)</h3></summary>
+<details><summary><h3>Entities (19)</h3></summary>
 
 <details><summary><code>shell_command.approve_pull_request</code></summary>
 
@@ -5065,6 +5065,16 @@ File: [`shell_command/checkout_git_branch.yaml`](entities/shell_command/checkout
 <details><summary><code>shell_command.comment_on_pr</code></summary>
 
 File: [`shell_command/comment_on_pr.yaml`](entities/shell_command/comment_on_pr.yaml)
+</details>
+
+<details><summary><code>shell_command.base64_decode_file</code></summary>
+
+File: [`shell_command/file_operations/base64_decode_file.yaml`](entities/shell_command/file_operations/base64_decode_file.yaml)
+</details>
+
+<details><summary><code>shell_command.base64_encode_file</code></summary>
+
+File: [`shell_command/file_operations/base64_encode_file.yaml`](entities/shell_command/file_operations/base64_encode_file.yaml)
 </details>
 
 <details><summary><code>shell_command.delete_file</code></summary>
