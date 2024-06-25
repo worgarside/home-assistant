@@ -1,5 +1,5 @@
 ---
-base64_decode_file: >-
-  {% set file = file.strip('/"') %}
-  {% set output = iif(output is string, output, "{}.decoded".format(file)) %}
-  base64 -d 'resources/tmp/{{ file }}' > 'resources/tmp/{{ output }}'
+base64_decode_file: >
+  base64 -d
+  'resources/tmp/{{ file.strip('/"') }}' >
+  'resources/tmp/{{ iif(output is string, output, "{}.decoded".format(file.strip('/"'))) }}'
