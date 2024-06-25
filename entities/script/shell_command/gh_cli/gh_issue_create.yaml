@@ -69,21 +69,53 @@ sequence:
     service: shell_command.write_file
     data:
       body: "{{ body }}"
-      file: gh_issue_body.txt
+      file: gh_issue_body.b64
     response_variable: write_file_response
 
   - alias: Check write file response
-    if: "{{ write_file_response.get('returncode') | int(None) != 0 }}"
+    if: "{{ write_file_response.returncode | int(None) != 0 }}"
     then:
       - service: script.log_exception
         data:
           calling_entity: script.gh_issue_create
-          message: >-
-            Failed writing body content to temp file (return code:
-            {{ write_file_response.get('returncode') }})
+          message: |
+            Failed writing body content to temp file
+
+            ```json
+            {{ write_file_response | tojson(indent=2) }}
+            ```
 
       - stop: Write File Failure
         error: true
+
+  - alias: Decode File
+    service: shell_command.base64_decode_file
+    response_variable: decode_file_response
+    data:
+      file: gh_issue_body.b64
+      output: gh_issue_body.txt
+
+  - alias: Check decode file response
+    if: "{{ decode_file_response.returncode | int(None) != 0 }}"
+    then:
+      - service: script.log_exception
+        data:
+          calling_entity: script.gh_issue_create
+          message: |
+            Failed decoding body content from temp file
+
+            ```json
+            {{ decode_file_response | tojson(indent=2) }}
+            ```
+
+      - stop: Decode File Failure
+        error: true
+
+  - alias: Switch GH CLI user to `worgarside-hass`
+    service: shell_command.gh
+    data:
+      command: auth switch
+      args: --user worgarside-hass
 
   - variables:
       message_args: >
@@ -93,19 +125,26 @@ sequence:
         --assignee {{ assignee | default('worgarside') | tojson }}
         --repo "worgarside/{{ repository | default('home-assistant') }}"
 
-  - service: shell_command.gh
+  - alias: Create issue
+    service: shell_command.gh
     data:
       command: issue create
       args: "{{ message_args }}"
     response_variable: gh_cli_response
 
   - alias: Check gh issue create response
-    if: "{{ gh_cli_response.get('returncode') | int(None) != 0 }}"
+    if: "{{ gh_cli_response.returncode | int(None) != 0 }}"
     then:
       - service: script.log_exception
         data:
           calling_entity: script.gh_issue_create
-          message: "Failed to create issue (return code: {{ gh_cli_response.get('returncode') }})"
+          message: |
+            ### Failed to create issue
+            #### {{ issue_title }}
+
+            ```json
+            {{ gh_cli_response | tojson(indent=2) }}
+            ```
 
       - stop: Issue Create Failure
         error: true
@@ -116,23 +155,28 @@ sequence:
         stderr: "{{ gh_cli_response['stderr'] }}"
         returncode: "{{ gh_cli_response['returncode'] }}"
 
-  - service: shell_command.delete_file
-    data:
-      file: gh_issue_body.txt
-    response_variable: delete_file_response
+  - repeat:
+      for_each:
+        - gh_issue_body.b64
+        - gh_issue_body.txt
+      sequence:
+        - service: shell_command.delete_file
+          data:
+            file: "{{ repeat.item }}"
+          response_variable: delete_file_response
 
-  - alias: Check delete file response
-    if: "{{ delete_file_response.get('returncode') | int(None) != 0 }}"
-    then:
-      - service: script.log_exception
-        data:
-          calling_entity: script.gh_issue_create
-          message: >-
-            Failed deleting body content in temp file (return code:
-            {{ delete_file_response.get('returncode') }})
+        - alias: Check delete file response
+          if: "{{ delete_file_response.returncode | int(None) != 0 }}"
+          then:
+            - service: script.log_exception
+              data:
+                calling_entity: script.gh_issue_create
+                message: |
+                  Failed to delete file `{{ repeat.item }}`
 
-      - stop: Delete File Failure
-        error: true
+                  ```json
+                  {{ delete_file_response | tojson(indent=2) }}
+                  ```
 
   - service: persistent_notification.create
     data:
