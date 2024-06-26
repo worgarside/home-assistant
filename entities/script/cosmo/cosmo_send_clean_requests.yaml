@@ -68,7 +68,7 @@ sequence:
   - alias: Conditionally send a request to Vic and Will
     repeat:
       for_each:
-        - vic
+        # - vic
         - will
 
       sequence:
