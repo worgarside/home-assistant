@@ -2163,26 +2163,34 @@
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_cpu_usage",
                           "icon_color": "red",
-                          "name": "CPU Usage"
+                          "name": "CPU Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_memory_usage",
                           "icon_color": "blue",
-                          "name": "Memory Usage"
+                          "name": "Memory Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_disk_usage",
                           "icon_color": "green",
-                          "name": "Disk Usage"
+                          "name": "Disk Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_cpu_temperature",
                           "icon_color": "orange",
                           "name": "CPU Temperature",
-                          "icon": "mdi:thermometer-lines"
+                          "icon": "mdi:thermometer-lines",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         }
                       ]
                     },
