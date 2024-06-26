@@ -2013,19 +2013,25 @@
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_ambient_temperature",
                           "name": "Temperature",
-                          "icon_color": "red"
+                          "icon_color": "red",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_ambient_humidity",
                           "name": "Humidity",
-                          "icon_color": "light-green"
+                          "icon_color": "light-green",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_cpu_temperature",
                           "icon_color": "orange",
                           "name": "CPU Temperature",
+                          "primary_info": "state",
+                          "secondary_info": "name",
                           "icon": "mdi:thermometer-lines"
                         },
                         {
@@ -2033,7 +2039,9 @@
                           "entity": "input_number.octopi_fan_auto_on_threshold",
                           "icon_color": "#9F9E9C",
                           "name": "CPU Fan Threshold",
-                          "icon": "mdi:thermometer-auto"
+                          "icon": "mdi:thermometer-auto",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         }
                       ]
                     },
@@ -2096,13 +2104,16 @@
                             "action": "toggle"
                           },
                           "icon_animation": true,
+                          "primary_info": "state",
+                          "secondary_info": "name",
                           "show_percentage_control": false
                         },
                         {
                           "type": "custom:mushroom-fan-card",
                           "entity": "fan.prusa_i3_enclosure_fan",
                           "name": "Enclosure",
-                          "fill_container": false,
+                          "primary_info": "state",
+                          "secondary_info": "name",
                           "double_tap_action": {
                             "action": "toggle"
                           },
