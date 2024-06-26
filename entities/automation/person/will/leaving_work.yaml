@@ -31,13 +31,17 @@ action:
       entity_id: media_player.lounge_nest_hub
       cache: true
 
-  - service: media_player.turn_off
-    target:
-      entity_id: media_player.lounge_nest_hub
-
   - service: script.notify_vic
     data:
       title: Will's on his way home
       message: See you soon! x
       notification_id: will_leaving_work
       mobile_notification_icon: mdi:email-open-heart-outline
+
+  - delay:
+      seconds: 5
+
+  - alias: Ensure nest hub isn't left on
+    service: media_player.turn_off
+    target:
+      entity_id: media_player.lounge_nest_hub
