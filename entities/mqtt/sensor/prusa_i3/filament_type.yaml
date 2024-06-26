@@ -1,0 +1,10 @@
+---
+force_update: false
+
+icon: mdi:printer-3d-nozzle
+
+name: Prusa i3 Filament Type
+
+state_topic: octoPrint/metadata/slicer_settings.filament_type
+
+unique_id: prusa_i3_filament_type
