@@ -145,36 +145,36 @@ sequence:
             actions: "{{ actions }}"
             tag: "{{ notification_id }}"
 
-  - alias: Work MacBook Pro
-    if:
-      or:
-        - alias: Work MBP is active
-          condition: state
-          entity_id: binary_sensor.st_macbook_pro_active
-          state: "on"
+  # - alias: Work MacBook Pro
+  #   if:
+  #     or:
+  #       - alias: Work MBP is active
+  #         condition: state
+  #         entity_id: binary_sensor.st_macbook_pro_active
+  #         state: "on"
 
-        - alias: Will is at the office
-          condition: state
-          entity_id: person.will
-          state: SigTech
+  #       - alias: Will is at the office
+  #         condition: state
+  #         entity_id: person.will
+  #         state: SigTech
 
-        - alias: Clear Notification
-          condition: template
-          value_template: "{{ clear_notification }}"
+  #       - alias: Clear Notification
+  #         condition: template
+  #         value_template: "{{ clear_notification }}"
 
-        # - and:
-        #   - alias: It's a workday
-        #     condition: state
-        #     entity_id: binary_sensor.workday
-        #     state: "on"
+  #       # - and:
+  #       #   - alias: It's a workday
+  #       #     condition: state
+  #       #     entity_id: binary_sensor.workday
+  #       #     state: "on"
 
-        #   - alias: Will not on A/L - TODO
+  #       #   - alias: Will not on A/L - TODO
 
-    then:
-      - service: notify.mobile_app_k3qfmw509d
-        data:
-          message: "{{ message }}"
-          title: "{{ notif_title }}"
-          data:
-            actions: "{{ actions }}"
-            tag: "{{ notification_id }}"
+  #   then:
+  #     - service: notify.mobile_app_k3qfmw509d
+  #       data:
+  #         message: "{{ message }}"
+  #         title: "{{ notif_title }}"
+  #         data:
+  #           actions: "{{ actions }}"
+  #           tag: "{{ notification_id }}"

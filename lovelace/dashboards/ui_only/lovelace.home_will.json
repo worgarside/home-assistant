@@ -1856,58 +1856,86 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "switch.prusa_i3_mk3_power",
-                      "icon_color": "orange"
+                      "icon_color": "orange",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.prusa_i3_mk3_current_consumption",
                       "name": "Current Power Draw",
-                      "icon_color": "yellow"
+                      "icon_color": "yellow",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "number.prusa_i3_target_hotend_temperature",
                       "name": "Hotend Target",
-                      "icon_color": "purple"
+                      "icon_color": "purple",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_tool_0_temperature",
                       "name": "Hotend Temperature",
-                      "icon_color": "orange"
+                      "icon_color": "orange",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "number.prusa_i3_target_bed_temperature",
                       "name": "Bed Target",
-                      "icon_color": "deep-purple"
+                      "icon_color": "deep-purple",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_bed_temperature",
                       "name": "Bed Temperature",
                       "icon_color": "deep-orange",
-                      "icon": "mdi:grid"
+                      "icon": "mdi:grid",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     }
                   ],
                   "columns": 2
                 },
                 {
-                  "square": false,
-                  "type": "grid",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.octoprint_current_state",
-                      "state": "Printing"
-                    }
-                  ],
+                  "type": "vertical-stack",
                   "cards": [
                     {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_approximate_completion_time",
-                      "icon_color": "purple",
-                      "name": "Estimated Finish Time"
+                      "square": false,
+                      "type": "grid",
+                      "visibility": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.octoprint_current_state",
+                          "state": "Printing"
+                        }
+                      ],
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octoprint_approximate_completion_time",
+                          "icon_color": "purple",
+                          "name": "Estimated Finish Time",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.prusa_i3_filament_type",
+                          "icon_color": "red",
+                          "name": "Filament Type",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ],
+                      "columns": 2
                     },
                     {
                       "type": "custom:mushroom-entity-card",
@@ -1921,10 +1949,11 @@
                         }
                       ],
                       "name": "Current Print File",
-                      "icon": "mdi:file-cad"
+                      "icon": "mdi:file-cad",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     }
-                  ],
-                  "columns": 1
+                  ]
                 },
                 {
                   "type": "custom:mushroom-chips-card",
@@ -1984,19 +2013,25 @@
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_ambient_temperature",
                           "name": "Temperature",
-                          "icon_color": "red"
+                          "icon_color": "red",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_ambient_humidity",
                           "name": "Humidity",
-                          "icon_color": "light-green"
+                          "icon_color": "light-green",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_cpu_temperature",
                           "icon_color": "orange",
                           "name": "CPU Temperature",
+                          "primary_info": "state",
+                          "secondary_info": "name",
                           "icon": "mdi:thermometer-lines"
                         },
                         {
@@ -2004,7 +2039,9 @@
                           "entity": "input_number.octopi_fan_auto_on_threshold",
                           "icon_color": "#9F9E9C",
                           "name": "CPU Fan Threshold",
-                          "icon": "mdi:thermometer-auto"
+                          "icon": "mdi:thermometer-auto",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         }
                       ]
                     },
@@ -2067,13 +2104,16 @@
                             "action": "toggle"
                           },
                           "icon_animation": true,
+                          "primary_info": "state",
+                          "secondary_info": "name",
                           "show_percentage_control": false
                         },
                         {
                           "type": "custom:mushroom-fan-card",
                           "entity": "fan.prusa_i3_enclosure_fan",
                           "name": "Enclosure",
-                          "fill_container": false,
+                          "primary_info": "state",
+                          "secondary_info": "name",
                           "double_tap_action": {
                             "action": "toggle"
                           },
@@ -2100,25 +2140,33 @@
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octopi_boot_time",
                       "name": "Last Boot Time",
-                      "icon_color": "green"
+                      "icon_color": "green",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_current_state",
                       "icon_color": "amber",
+                      "primary_info": "state",
+                      "secondary_info": "name",
                       "name": "Current State"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octopi_local_ip_address",
                       "icon_color": "yellow",
-                      "name": "IP Address"
+                      "name": "IP Address",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octopi_active_git_ref",
                       "name": "WG Scripts",
-                      "icon_color": "blue-grey"
+                      "icon_color": "blue-grey",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     }
                   ]
                 },
@@ -2134,26 +2182,34 @@
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_cpu_usage",
                           "icon_color": "red",
-                          "name": "CPU Usage"
+                          "name": "CPU Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_memory_usage",
                           "icon_color": "blue",
-                          "name": "Memory Usage"
+                          "name": "Memory Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_disk_usage",
                           "icon_color": "green",
-                          "name": "Disk Usage"
+                          "name": "Disk Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.octopi_cpu_temperature",
                           "icon_color": "orange",
                           "name": "CPU Temperature",
-                          "icon": "mdi:thermometer-lines"
+                          "icon": "mdi:thermometer-lines",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         }
                       ]
                     },
