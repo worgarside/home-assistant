@@ -1,0 +1,16 @@
+---
+alias: /fan/prusa-i3-enclosure-fan/turn-on
+
+id: fan_prusa_i3_enclosure_fan_turn_on
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.prusa_i3_filament_type
+    to: PLA
+
+action:
+  - service: fan.turn_on
+    target:
+      entity_id: fan.prusa_i3_enclosure_fan
