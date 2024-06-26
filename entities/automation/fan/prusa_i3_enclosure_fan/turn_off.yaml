@@ -1,0 +1,22 @@
+---
+alias: /fan/prusa-i3-enclosure-fan/turn-off
+
+id: fan_prusa_i3_enclosure_fan_turn_off
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: sensor.octoprint_current_state
+    from: Printing
+
+  - platform: state
+    entity_id: switch.prusa_i3_mk3_power
+    to: "off"
+
+action:
+  - service: fan.turn_off
+    target:
+      entity_id: fan.prusa_i3_enclosure_fan

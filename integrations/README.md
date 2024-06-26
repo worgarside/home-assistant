@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (115)</h3></summary>
+<details><summary><h3>Entities (117)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -513,6 +513,32 @@ File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
 }
 ```
 File: [`automation/event/repair/state_change.yaml`](entities/automation/event/repair/state_change.yaml)
+</details>
+
+<details><summary><code>/fan/prusa-i3-enclosure-fan/turn-off</code></summary>
+
+**Entity ID: `automation.fan_prusa_i3_enclosure_fan_turn_off`**
+
+> *No description provided*
+
+- Alias: /fan/prusa-i3-enclosure-fan/turn-off
+- ID: `fan_prusa_i3_enclosure_fan_turn_off`
+- Mode: `single`
+
+File: [`automation/fan/prusa_i3_enclosure_fan/turn_off.yaml`](entities/automation/fan/prusa_i3_enclosure_fan/turn_off.yaml)
+</details>
+
+<details><summary><code>/fan/prusa-i3-enclosure-fan/turn-on</code></summary>
+
+**Entity ID: `automation.fan_prusa_i3_enclosure_fan_turn_on`**
+
+> *No description provided*
+
+- Alias: /fan/prusa-i3-enclosure-fan/turn-on
+- ID: `fan_prusa_i3_enclosure_fan_turn_on`
+- Mode: `single`
+
+File: [`automation/fan/prusa_i3_enclosure_fan/turn_on.yaml`](entities/automation/fan/prusa_i3_enclosure_fan/turn_on.yaml)
 </details>
 
 <details><summary><code>/gh-cli/user-updated</code></summary>
