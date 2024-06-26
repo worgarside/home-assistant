@@ -17,10 +17,11 @@ variables:
 
 condition: >
   {{
-    (
-      is_state('switch.octopi_cpu_fan', "on") != should_be_on
-    ) and (
-      states.switch.octopi_cpu_fan.last_changed < ( utcnow() - timedelta(minutes=5) )
+    is_state("switch.octopi_cpu_fan", "on") != should_be_on and
+    states.switch.octopi_cpu_fan.last_changed < ( utcnow() - timedelta(minutes=5) )
+    and not (
+      states("sensor.octoprint_current_state") == "Printing" and
+      states("switch.octopi_cpu_fan") | bool
     )
   }}
 
