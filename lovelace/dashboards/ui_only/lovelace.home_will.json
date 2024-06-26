@@ -1856,38 +1856,50 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "switch.prusa_i3_mk3_power",
-                      "icon_color": "orange"
+                      "icon_color": "orange",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.prusa_i3_mk3_current_consumption",
                       "name": "Current Power Draw",
-                      "icon_color": "yellow"
+                      "icon_color": "yellow",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "number.prusa_i3_target_hotend_temperature",
                       "name": "Hotend Target",
-                      "icon_color": "purple"
+                      "icon_color": "purple",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_tool_0_temperature",
                       "name": "Hotend Temperature",
-                      "icon_color": "orange"
+                      "icon_color": "orange",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "number.prusa_i3_target_bed_temperature",
                       "name": "Bed Target",
-                      "icon_color": "deep-purple"
+                      "icon_color": "deep-purple",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_bed_temperature",
                       "name": "Bed Temperature",
                       "icon_color": "deep-orange",
-                      "icon": "mdi:grid"
+                      "icon": "mdi:grid",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     }
                   ],
                   "columns": 2
