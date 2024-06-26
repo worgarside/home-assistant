@@ -3034,7 +3034,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (99)</h3></summary>
+<details><summary><h3>Entities (100)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -3849,6 +3849,16 @@ File: [`mqtt/sensor/octopi/memory_usage.yaml`](entities/mqtt/sensor/octopi/memor
 - Unit Of Measurement: `s`
 
 File: [`mqtt/sensor/octopi/uptime.yaml`](entities/mqtt/sensor/octopi/uptime.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 Filament Type</strong></summary>
+
+**Entity ID: `sensor.prusa_i3_filament_type`**
+
+- Icon: [`mdi:printer-3d-nozzle`](https://pictogrammers.com/library/mdi/icon/printer-3d-nozzle/)
+- State Topic: octoPrint/metadata/slicer_settings.filament_type
+
+File: [`mqtt/sensor/prusa_i3/filament_type.yaml`](entities/mqtt/sensor/prusa_i3/filament_type.yaml)
 </details>
 
 <details><summary><strong>RtroPi Active Git Ref</strong></summary>
