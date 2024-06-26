@@ -1893,21 +1893,37 @@
                   "columns": 2
                 },
                 {
-                  "square": false,
-                  "type": "grid",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.octoprint_current_state",
-                      "state": "Printing"
-                    }
-                  ],
+                  "type": "vertical-stack",
                   "cards": [
                     {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_approximate_completion_time",
-                      "icon_color": "purple",
-                      "name": "Estimated Finish Time"
+                      "square": false,
+                      "type": "grid",
+                      "visibility": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.octoprint_current_state",
+                          "state": "Printing"
+                        }
+                      ],
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octoprint_approximate_completion_time",
+                          "icon_color": "purple",
+                          "name": "Estimated Finish Time",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.prusa_i3_filament_type",
+                          "icon_color": "red",
+                          "name": "Filament Type",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ],
+                      "columns": 2
                     },
                     {
                       "type": "custom:mushroom-entity-card",
@@ -1921,10 +1937,11 @@
                         }
                       ],
                       "name": "Current Print File",
-                      "icon": "mdi:file-cad"
+                      "icon": "mdi:file-cad",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     }
-                  ],
-                  "columns": 1
+                  ]
                 },
                 {
                   "type": "custom:mushroom-chips-card",
