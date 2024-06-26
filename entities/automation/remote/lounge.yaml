@@ -57,10 +57,11 @@ action:
             target:
               entity_id: script.notify_vic
             data:
-              clear_notification: true
-              message: Kitchen Triple Press
-              notification_id: kitchen_triple_press
-              mobile_notification_icon: mdi:fridge-outline
+              variables:
+                title: Vic, come to the kitchen!
+                message: Kitchen Triple Press
+                notification_id: kitchen_triple_press
+                mobile_notification_icon: mdi:fridge-outline
 
       - alias: "Hold: Turn Off Lounge"
 
