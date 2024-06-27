@@ -26,6 +26,618 @@
               "style": "ha-card {\n  padding-top: 0.25rem !important;\n  padding-bottom: 0.25rem !important;\n  box-shadow: none;\n  border: none;\n}\n"
             }
           }
+        },
+        "repo_pr_list_card_template": {
+          "card": {
+            "type": "conditional",
+            "conditions": [
+              {
+                "entity": "sensor.[[repo_slug]]_pull_requests",
+                "state_not": "0"
+              }
+            ],
+            "card": {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_header_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "[[repo_name]]"
+                    },
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "pr_summary_card_template",
+                  "variables": [
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    },
+                    {
+                      "pr_count_id": "0"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "pr_summary_card_template",
+                  "variables": [
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    },
+                    {
+                      "pr_count_id": "1"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "pr_summary_card_template",
+                  "variables": [
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    },
+                    {
+                      "pr_count_id": "2"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "pr_summary_card_template",
+                  "variables": [
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    },
+                    {
+                      "pr_count_id": "3"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "pr_summary_card_template",
+                  "variables": [
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    },
+                    {
+                      "pr_count_id": "4"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "pr_summary_card_template",
+                  "variables": [
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    },
+                    {
+                      "pr_count_id": "5"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "pr_summary_card_template",
+                  "variables": [
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    },
+                    {
+                      "pr_count_id": "6"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "pr_summary_card_template",
+                  "variables": [
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    },
+                    {
+                      "pr_count_id": "7"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "pr_summary_card_template",
+                  "variables": [
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    },
+                    {
+                      "pr_count_id": "8"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "pr_summary_card_template",
+                  "variables": [
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    },
+                    {
+                      "pr_count_id": "9"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "empty_repo_pr_list_card_template": {
+          "card": {
+            "type": "conditional",
+            "conditions": [
+              {
+                "entity": "sensor.[[repo_slug]]_pull_requests",
+                "state": "0"
+              }
+            ],
+            "card": {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_header_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "[[repo_name]]"
+                    },
+                    {
+                      "repo_slug": "[[repo_slug]]"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "markdown",
+                  "content": "### No open pull requests",
+                  "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
+                }
+              ]
+            }
+          }
+        },
+        "repo_pr_list_header_card_template": {
+          "card": {
+            "type": "custom:button-card",
+            "tap_action": {
+              "action": "call-service",
+              "service": "homeassistant.update_entity",
+              "service_data": {
+                "entity_id": "sensor.[[repo_slug]]_pull_requests"
+              }
+            },
+            "styles": {
+              "grid": [
+                {
+                  "grid-template-areas": "\"content\"\n"
+                }
+              ]
+            },
+            "custom_fields": {
+              "content": "<div style=\"display: flex; align-items: center; justify-content: center;\">\n  <ha-icon\n    icon=\"mdi:github\"\n    style=\"\n      width: 36px;\n      height: 36px;\n      margin: 0 10px 0 0;\n    \"\n  ></ha-icon>\n  <h2\n    style = \"margin: 0;\"\n  >[[repo_name]]</h2>\n</div>\n"
+            }
+          }
+        },
+        "pr_summary_card_template": {
+          "card": {
+            "type": "custom:state-switch",
+            "entity": "{{ state_attr('sensor.[[repo_slug]]_pull_requests', '[[pr_count_id]]') is none }}",
+            "states": {
+              "false": {
+                "type": "custom:button-card",
+                "tap_action": {
+                  "action": "fire-dom-event",
+                  "browser_mod": {
+                    "service": "browser_mod.popup",
+                    "data": {
+                      "content": {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "type": "custom:hui-element",
+                            "card_mod": {
+                              "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
+                            },
+                            "card_type": "markdown",
+                            "content": "### Pull Request Controls\n"
+                          },
+                          {
+                            "type": "custom:state-switch",
+                            "entity": "{%\n  set pr = state_attr(\n    'sensor.[[repo_slug]]_pull_requests',\n    '[[pr_count_id]]'\n  )\n%} {{\n  pr and not pr.isDraft and pr.reviewDecision != \"APPROVED\"\n}}\n",
+                            "states": {
+                              "true": {
+                                "type": "custom:button-card",
+                                "card_mod": {
+                                  "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  padding: 2% 0 !important;\n}\n"
+                                },
+                                "tap_action": {
+                                  "action": "call-service",
+                                  "service": "shell_command.approve_pull_request",
+                                  "service_data": {
+                                    "url": "[[[\n  return states[\n    \"sensor.[[repo_slug]]_pull_requests\"\n  ].attributes[\"[[pr_count_id]]\"].url\n]]]\n"
+                                  }
+                                },
+                                "styles": {
+                                  "grid": [
+                                    {
+                                      "grid-template-areas": "\"content\"\n"
+                                    }
+                                  ]
+                                },
+                                "custom_fields": {
+                                  "content": "<div style=\"\n  display: flex;\n  justify-content: space-between;\n  max-width: 300px;\n  margin: 0 auto;\n\">\n  <h4 style=\"\n    margin: 0;\n    padding-top: 3px;\n  \">Approve Pull Request</h4>\n  <ha-icon\n    icon=\"mdi:stamper\"\n    style=\"\n      width: 28px;\n      height: 28px;\n      margin: 0 0 0 auto;\n    \"\n  ></ha-icon>\n</div>\n"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "custom:state-switch",
+                            "entity": "{%\n  set pr = state_attr(\n    'sensor.[[repo_slug]]_pull_requests',\n    '[[pr_count_id]]'\n  )\n%} {{\n  pr and not pr.isDraft and not pr.autoMergeRequest\n}}\n",
+                            "states": {
+                              "true": {
+                                "type": "custom:button-card",
+                                "card_mod": {
+                                  "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  padding: 2% 0 !important;\n}\n"
+                                },
+                                "tap_action": {
+                                  "action": "call-service",
+                                  "service": "shell_command.set_pr_auto_merge",
+                                  "service_data": {
+                                    "url": "[[[\n  return states[\n    \"sensor.[[repo_slug]]_pull_requests\"\n  ].attributes[\"[[pr_count_id]]\"].url\n]]]\n"
+                                  }
+                                },
+                                "styles": {
+                                  "grid": [
+                                    {
+                                      "grid-template-areas": "\"content\"\n"
+                                    }
+                                  ]
+                                },
+                                "custom_fields": {
+                                  "content": "<div style=\"\n  display: flex;\n  justify-content: space-between;\n  max-width: 300px;\n  margin: 0 auto;\n\">\n  <h4 style=\"\n    margin: 0;\n    padding-top: 3px;\n  \">(Auto) Merge  Pull Request</h4>\n  <ha-icon\n    icon=\"mdi:source-merge\"\n    style=\"\n      width: 28px;\n      height: 28px;\n      margin: 0 0 0 auto;\n    \"\n  ></ha-icon>\n</div>\n"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "custom:button-card",
+                            "card_mod": {
+                              "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  padding: 2% 0 !important;\n}\n"
+                            },
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "shell_command.mark_pr_as_ready_for_review",
+                              "service_data": {
+                                "url": "[[[\n  return states[\n    \"sensor.[[repo_slug]]_pull_requests\"\n  ].attributes[\"[[pr_count_id]]\"].url\n]]]\n",
+                                "draft": "[[[\n  return states[\n    \"sensor.[[repo_slug]]_pull_requests\"\n  ].attributes[\"[[pr_count_id]]\"].isDraft\n]]]\n"
+                              }
+                            },
+                            "styles": {
+                              "grid": [
+                                {
+                                  "grid-template-areas": "\"content\"\n"
+                                }
+                              ]
+                            },
+                            "custom_fields": {
+                              "content": "[[[\n  const isDraft = states[\"sensor.[[repo_slug]]_pull_requests\"]\n    .attributes[\"[[pr_count_id]]\"]\n    .isDraft;\n\n  const label = isDraft ? \"Ready for review\" : \"Mark as draft\";\n  const icon = isDraft ? \"mdi:file-find\" : \"mdi:note-edit\";\n\n  return `\n    <div style=\"\n      display: flex;\n      justify-content: space-between;\n      max-width: 300px;\n      margin: 0 auto;\n    \">\n      <h4 style=\"\n        margin: 0;\n        padding-top: 3px;\n      \">${label}</h4>\n      <ha-icon\n        icon=\"${icon}\"\n        style=\"\n          width: 28px;\n          height: 28px;\n          margin: 0 0 0 auto;\n        \"\n      ></ha-icon>\n    </div>\n  `\n]]]\n"
+                            }
+                          },
+                          {
+                            "type": "divider"
+                          },
+                          {
+                            "type": "custom:hui-element",
+                            "card_mod": {
+                              "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
+                            },
+                            "card_type": "markdown",
+                            "content": "### Set Labels\n"
+                          },
+                          {
+                            "type": "custom:decluttering-card",
+                            "template": "semver_label_toggler_card_template",
+                            "variables": [
+                              {
+                                "label": "major"
+                              },
+                              {
+                                "repo_slug": "[[repo_slug]]"
+                              },
+                              {
+                                "pr_count_id": "[[pr_count_id]]"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "custom:decluttering-card",
+                            "template": "semver_label_toggler_card_template",
+                            "variables": [
+                              {
+                                "label": "minor"
+                              },
+                              {
+                                "repo_slug": "[[repo_slug]]"
+                              },
+                              {
+                                "pr_count_id": "[[pr_count_id]]"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "custom:decluttering-card",
+                            "template": "semver_label_toggler_card_template",
+                            "variables": [
+                              {
+                                "label": "patch"
+                              },
+                              {
+                                "repo_slug": "[[repo_slug]]"
+                              },
+                              {
+                                "pr_count_id": "[[pr_count_id]]"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "custom:decluttering-card",
+                            "template": "semver_label_toggler_card_template",
+                            "variables": [
+                              {
+                                "label": "bot:keep-updated"
+                              },
+                              {
+                                "repo_slug": "[[repo_slug]]"
+                              },
+                              {
+                                "pr_count_id": "[[pr_count_id]]"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "custom:decluttering-card",
+                            "template": "semver_label_toggler_card_template",
+                            "variables": [
+                              {
+                                "label": "non-functional"
+                              },
+                              {
+                                "repo_slug": "[[repo_slug]]"
+                              },
+                              {
+                                "pr_count_id": "[[pr_count_id]]"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "custom:state-switch",
+                            "entity": "{{\n  state_attr('sensor.[[repo_slug]]_pull_requests', '[[pr_count_id]]').author\n  == 'app/dependabot'\n}}\n",
+                            "states": {
+                              "true": {
+                                "type": "custom:vertical-stack-in-card",
+                                "card_mod": {
+                                  "style": "ha-card {\n  border-top: 1px solid var(\n    --entities-divider-color, var(--divider-color)\n  );\n  border-bottom: none;\n  border-left: none;\n  border-right: none;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n"
+                                },
+                                "cards": [
+                                  {
+                                    "type": "markdown",
+                                    "content": "### Dependabot Commands\n"
+                                  },
+                                  {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                      {
+                                        "type": "custom:decluttering-card",
+                                        "template": "comment_on_pr_card_template",
+                                        "variables": [
+                                          {
+                                            "url": "[[[\n  return states[\n    \"sensor.[[repo_slug]]_pull_requests\"\n  ].attributes[\"[[pr_count_id]]\"].url\n]]]\n"
+                                          },
+                                          {
+                                            "comment": "@dependabot rebase"
+                                          },
+                                          {
+                                            "name": "Rebase"
+                                          },
+                                          {
+                                            "icon": "mdi:source-branch-refresh"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "custom:decluttering-card",
+                                        "template": "comment_on_pr_card_template",
+                                        "variables": [
+                                          {
+                                            "url": "[[[\n  return states[\n    \"sensor.[[repo_slug]]_pull_requests\"\n  ].attributes[\"[[pr_count_id]]\"].url\n]]]\n"
+                                          },
+                                          {
+                                            "comment": "@dependabot recreate"
+                                          },
+                                          {
+                                            "name": "Recreate"
+                                          },
+                                          {
+                                            "icon": "mdi:source-branch-sync"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "double_tap_action": {
+                  "action": "url",
+                  "url_path": "[[[ return variables.pr.url ]]]"
+                },
+                "card_mod": {
+                  "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
+                },
+                "styles": {
+                  "custom_fields": {
+                    "subtitle": [
+                      {
+                        "justify-self": "start"
+                      },
+                      {
+                        "margin-left": "10px"
+                      },
+                      {
+                        "margin-top": "5px"
+                      },
+                      {
+                        "color": "grey"
+                      },
+                      {
+                        "font-size": "14px"
+                      }
+                    ],
+                    "title": [
+                      {
+                        "justify-self": "start"
+                      },
+                      {
+                        "max-width": "calc(100% - 20px)"
+                      },
+                      {
+                        "margin-left": "10px"
+                      },
+                      {
+                        "margin-right": "10px"
+                      }
+                    ],
+                    "labels": [
+                      {
+                        "margin-top": "5px"
+                      },
+                      {
+                        "margin-left": "10px"
+                      },
+                      {
+                        "margin-right": "10px"
+                      }
+                    ]
+                  },
+                  "grid": [
+                    {
+                      "grid-template-areas": "\"title title\" \"subtitle subtitle\" \"labels labels\"\n"
+                    }
+                  ]
+                },
+                "variables": {
+                  "pr": "[[[\n  return states[\"sensor.[[repo_slug]]_pull_requests\"].attributes[\"[[pr_count_id]]\"]\n]]]\n",
+                  "time_since_pr": "[[[\n  const pr = states[\"sensor.[[repo_slug]]_pull_requests\"].attributes[\"[[pr_count_id]]\"];\n\n  if (!pr) {return null;}\n\n  const utcnow = Date.now();\n  const createdAt = new Date(pr.createdAt).getTime();\n  const mins_since_pr = (utcnow - createdAt) / (1000 * 60);\n\n  let time_since_pr;\n\n  if (mins_since_pr < 60) {\n    time_since_pr = `${Math.floor(mins_since_pr)} minutes ago`;\n  } else if (mins_since_pr < 60 * 24) {\n    time_since_pr = `${Math.floor(mins_since_pr / 60)} hours ago`;\n  } else {\n    time_since_pr = `${Math.floor(mins_since_pr / (60 * 24))} days ago`;\n  }\n\n  return time_since_pr;\n]]]\n"
+                },
+                "custom_fields": {
+                  "subtitle": "[[[\n  if (!variables.pr) {return null;}\n\n  return `\n    #${variables.pr.number} opened\n    ${variables.time_since_pr} by\n    @${variables.pr.author.replace(/^app\\//, \"\")}\n  `\n]]]\n",
+                  "title": "[[[\n  if (!variables.pr) {return null;}\n\n  function replaceBackticksWithCodeTags(inputString) {\n    let codeTagOpen = false;\n\n    return inputString.replace(\n      /`/g, () => (codeTagOpen = !codeTagOpen) ? '<code>' : '</code>'\n    );\n  }\n\n  const { title, isDraft, statusCheckRollup, autoMergeRequest } = variables.pr;\n\n  const prIcon = isDraft ? `\n    <svg\n      style=\"bottom: 0;\"\n      width=\"22\"\n      height=\"22\"\n      viewBox=\"0 0 22 22\"\n      fill=\"none\"\n      xmlns=\"http://www.w3.org/2000/svg\"\n    >\n      <path d=\"M4.46876 1.375C5.19903 1.37438 5.90598 1.6321 6.46451 2.10257C7.02304 2.57303 7.39715 3.22591 7.52062 3.94567C7.64409 4.66543 7.50897 5.40566 7.13917 6.03538C6.76937 6.6651 6.18874 7.1437 5.50001 7.3865V14.6135C6.18846 14.8568 6.76873 15.3356 7.13825 15.9654C7.50778 16.5951 7.64277 17.3353 7.51935 18.0549C7.39593 18.7746 7.02206 19.4274 6.46382 19.8981C5.90559 20.3688 5.19893 20.6269 4.46876 20.6269C3.73859 20.6269 3.03193 20.3688 2.47369 19.8981C1.91545 19.4274 1.54158 18.7746 1.41817 18.0549C1.29475 17.3353 1.42973 16.5951 1.79926 15.9654C2.16879 15.3356 2.74906 14.8568 3.43751 14.6135V7.3865C2.7504 7.14228 2.17159 6.66329 1.80313 6.034C1.43468 5.40471 1.30024 4.66553 1.42354 3.94681C1.54683 3.22809 1.91994 2.57597 2.47706 2.10546C3.03418 1.63495 3.73954 1.37626 4.46876 1.375ZM17.5313 20.625C16.7107 20.625 15.9238 20.2991 15.3436 19.7189C14.7635 19.1387 14.4375 18.3518 14.4375 17.5313C14.4375 16.7107 14.7635 15.9238 15.3436 15.3436C15.9238 14.7634 16.7107 14.4375 17.5313 14.4375C18.3518 14.4375 19.1387 14.7634 19.7189 15.3436C20.2991 15.9238 20.625 16.7107 20.625 17.5313C20.625 18.3518 20.2991 19.1387 19.7189 19.7189C19.1387 20.2991 18.3518 20.625 17.5313 20.625ZM3.43751 4.46875C3.43751 4.74226 3.54616 5.00456 3.73955 5.19795C3.93295 5.39135 4.19525 5.5 4.46876 5.5C4.74226 5.5 5.00457 5.39135 5.19796 5.19795C5.39136 5.00456 5.50001 4.74226 5.50001 4.46875C5.50001 4.19525 5.39136 3.93294 5.19796 3.73955C5.00457 3.54615 4.74226 3.4375 4.46876 3.4375C4.19525 3.4375 3.93295 3.54615 3.73955 3.73955C3.54616 3.93294 3.43751 4.19525 3.43751 4.46875ZM4.46876 16.5C4.19525 16.5 3.93295 16.6087 3.73955 16.802C3.54616 16.9954 3.43751 17.2577 3.43751 17.5313C3.43751 17.8048 3.54616 18.0671 3.73955 18.2605C3.93295 18.4539 4.19525 18.5625 4.46876 18.5625C4.74226 18.5625 5.00457 18.4539 5.19796 18.2605C5.39136 18.0671 5.50001 17.8048 5.50001 17.5313C5.50001 17.2577 5.39136 16.9954 5.19796 16.802C5.00457 16.6087 4.74226 16.5 4.46876 16.5ZM17.5313 16.5C17.2578 16.5 16.9955 16.6087 16.8021 16.802C16.6087 16.9954 16.5 17.2577 16.5 17.5313C16.5 17.8048 16.6087 18.0671 16.8021 18.2605C16.9955 18.4539 17.2578 18.5625 17.5313 18.5625C17.8048 18.5625 18.0671 18.4539 18.2605 18.2605C18.4539 18.0671 18.5625 17.8048 18.5625 17.5313C18.5625 17.2577 18.4539 16.9954 18.2605 16.802C18.0671 16.6087 17.8048 16.5 17.5313 16.5ZM19.25 10.3125C19.25 10.7683 19.0689 11.2055 18.7466 11.5278C18.4243 11.8502 17.9871 12.0313 17.5313 12.0313C17.0754 12.0313 16.6382 11.8502 16.3159 11.5278C15.9936 11.2055 15.8125 10.7683 15.8125 10.3125C15.8125 9.85666 15.9936 9.41949 16.3159 9.09716C16.6382 8.77483 17.0754 8.59375 17.5313 8.59375C17.9871 8.59375 18.4243 8.77483 18.7466 9.09716C19.0689 9.41949 19.25 9.85666 19.25 10.3125ZM19.25 4.46875C19.25 4.92459 19.0689 5.36176 18.7466 5.68409C18.4243 6.00642 17.9871 6.1875 17.5313 6.1875C17.0754 6.1875 16.6382 6.00642 16.3159 5.68409C15.9936 5.36176 15.8125 4.92459 15.8125 4.46875C15.8125 4.01291 15.9936 3.57574 16.3159 3.25341C16.6382 2.93108 17.0754 2.75 17.5313 2.75C17.9871 2.75 18.4243 2.93108 18.7466 3.25341C19.0689 3.57574 19.25 4.01291 19.25 4.46875Z\" fill=\"#808080\"/>\n    </svg>\n  ` : `\n    <ha-icon\n      icon=\"mdi:source-pull\"\n      style=\"width: 24px; height: 24px; color: #57AB5A;\"\n    ></ha-icon>\n  `;\n\n  const titleSpan = `\n    <span style=\"\n      overflow: hidden;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      flex: 1;\n      padding-left: 5px;\n      padding-right: 2px;\n    \">${replaceBackticksWithCodeTags(title)}</span>\n  `;\n\n  let statusIcon;\n  if (statusCheckRollup.includes(\"IN_PROGRESS\")) {\n    statusIcon = `\n      <ha-icon\n        icon=\"mdi:circle\"\n        style=\"\n          width: 14px;\n          height: 14px;\n          color: #DBAB0A;\n          display: flex;\n        \"\n      ></ha-icon>\n    `;\n  } else if (statusCheckRollup.includes(\"FAILURE\")) {\n    statusIcon = `\n      <ha-icon\n        icon=\"mdi:close-thick\"\n        style=\"\n          width: 15px;\n          height: 15px;\n          color: #E5534B;\n          display: flex;\n        \"\n      ></ha-icon>\n    `;\n  } else {\n    const checkIconColor = autoMergeRequest ? '#57AB5A' : '#7E867F';\n    statusIcon = `\n      <ha-icon\n        icon=\"mdi:check-bold\"\n        style=\"\n          width: 15px;\n          height: 15px;\n          color: ${checkIconColor};\n          display: flex;\n        \"\n      ></ha-icon>\n    `;\n  }\n\n  return `\n    <div style=\"display: flex; align-items: center;\">\n      ${prIcon}\n      ${titleSpan}\n      ${statusIcon}\n    </div>\n  `;\n]]]\n",
+                  "labels": "[[[\n  if (!variables.pr) {return null;}\n\n  const labelColors = {\n    'bug': {'font': '#EA9CA5', 'background': '#D73A4A2D'},\n    'chore': {'font': '#E48545', 'background': '#8B45132D'},\n    'bot:delete-on-merge': {'font': '#FF8181', 'background': '#8B00002D'},\n    'bot:keep-updated': {'font': '#84F9A3', 'background': '#87FAA62D'},\n    'dependencies': {'font': '#59A8FC', 'background': '#0366D62D'},\n    'documentation': {'font': '#35AAFF', 'background': '#0075CA2D'},\n    'enhancement': {'font': '#9FEEEE', 'background': '#A2EEEF2D'},\n    'feature-request': {'font': '#9FEEEE', 'background': '#A2EEEF2D'},\n    'github-actions': {'font': '#999999', 'background': '#0000002D'},\n    'hasspi-sync': {'font': '#51C2EF', 'background': '#53C2F12D'},\n    'hotfix': {'font': '#EA9CA5', 'background': '#D73A4A2D'},\n    'major': {'font': '#FFC5C5', 'background': '#FF00002D'},\n    'minor': {'font': '#FFA100', 'background': '#FFA5002D'},\n    'non-functional': {'font': '#FFFFFF', 'background': '#FFFFFF2D'},\n    'patch': {'font': '#FEFF00', 'background': '#FFFF002D'},\n    'python': {'font': '#7DA5E2', 'background': '#2B67C62D'},\n    'release': {'font': '#F687F8', 'background': '#C30AC62D'},\n    'skip-changelog': {'font': '#FFFFFF', 'background': '#FFFFFF2D'},\n    'sync': {'font': '#EAEAEA', 'background': '#EDEDED2D'},\n    'tests': {'font': '#17DF21', 'background': '#0E8A162D'},\n    'tools': {'font': '#979797', 'background': '#4141412D'},\n    'ha:appdaemon': {'font': '#F5ADAD', 'background': '#E519192D'},\n    'ha:automations': {'font': '#EF8C70', 'background': '#E548192D'},\n    'ha:config': {'font': '#E88534', 'background': '#E577192D'},\n    'ha:command-line': {'font': '#E0A118', 'background': '#E5A6192D'},\n    'ha:cover': {'font': '#E0D018', 'background': '#E5D5192D'},\n    'ha:custom-components': {'font': '#C2E018', 'background': '#C6E5192D'},\n    'ha:device-tracker': {'font': '#97E018', 'background': '#97E5192D'},\n    'ha:groups': {'font': '#65E018', 'background': '#67E5192D'},\n    'ha:input-boolean': {'font': '#3AE018', 'background': '#38E5192D'},\n    'ha:input-button': {'font': '#18E026', 'background': '#19E5292D'},\n    'ha:input-datetime': {'font': '#18E054', 'background': '#19E5582D'},\n    'ha:input-number': {'font': '#18E083', 'background': '#19E5872D'},\n    'ha:input-select': {'font': '#18E0B2', 'background': '#19E5B62D'},\n    'ha:input-text': {'font': '#18E0E0', 'background': '#19E5E52D'},\n    'ha:lovelace': {'font': '#19B7E2', 'background': '#19B6E52D'},\n    'ha:media-player': {'font': '#53A7EB', 'background': '#1987E52D'},\n    'ha:mqtt': {'font': '#8FAFF2', 'background': '#1958E52D'},\n    'ha:pyscript': {'font': '#CCCFF9', 'background': '#1929E52D'},\n    'ha:rest-command': {'font': '#DAD4FA', 'background': '#3819E52D'},\n    'ha:scenes': {'font': '#D6C2F8', 'background': '#6719E52D'},\n    'ha:scripts': {'font': '#DBB0F6', 'background': '#9719E52D'},\n    'ha:sensors': {'font': '#E69EF4', 'background': '#C619E52D'},\n    'ha:shell-command': {'font': '#F394EC', 'background': '#E519D52D'},\n    'ha:switch': {'font': '#F39AD9', 'background': '#E519A62D'},\n    'ha:template': {'font': '#F4A1C8', 'background': '#E519772D'},\n    'ha:variables': {'font': '#F5A7B9', 'background': '#E519482D'}\n  };\n\n  const defaultColor = {\n    background: '#CCCCCC',\n    font: '#000000',\n  };\n\n  const labelsHTML = variables.pr.labels.sort().map((label) => {\n    const color = labelColors[label.trim()] || defaultColor;\n\n    return `\n      <span\n        style=\"\n          display: inline-block;\n          margin: 1px;\n          padding: 2px 7px;\n          background-color: ${color.background};\n          color: ${color.font};\n          border-radius: 2em;\n          border: 1px solid ${color.font}4B;\n          font-size: 10px;\n          font-weight: 500;\n        \">${label.trim()}</span>`;\n  }).join('');\n\n  return `\n    <div\n      style=\"overflow-x: auto; white-space: nowrap; text-align: left;\"\n    >${labelsHTML}</div>`;\n]]]\n"
+                }
+              }
+            }
+          }
+        },
+        "semver_label_toggler_card_template": {
+          "card": {
+            "type": "custom:button-card",
+            "card_mod": {
+              "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  padding: 2% 0 !important;\n}\n"
+            },
+            "tap_action": {
+              "action": "call-service",
+              "service": "shell_command.toggle_pr_label",
+              "service_data": {
+                "url": "[[[\n  return states[\n    \"sensor.[[repo_slug]]_pull_requests\"\n  ].attributes[\"[[pr_count_id]]\"].url\n]]]\n",
+                "label": "[[label]]",
+                "add_remove": "[[[\n  return states[\n    \"sensor.[[repo_slug]]_pull_requests\"\n  ]\n    .attributes[\"[[pr_count_id]]\"]\n    .labels\n    .includes(\"[[label]]\") ? \"remove\" : \"add\"\n]]]\n"
+              }
+            },
+            "styles": {
+              "grid": [
+                {
+                  "grid-template-areas": "\"content\"\n"
+                }
+              ]
+            },
+            "custom_fields": {
+              "content": "[[[\n  const hasLabel = states[\n    \"sensor.[[repo_slug]]_pull_requests\"\n  ]\n    .attributes[\"[[pr_count_id]]\"]\n    .labels\n    .includes(\"[[label]]\");\n\n  const addRemove = hasLabel ? \"Remove\" : \"Add\"\n  const icon = hasLabel ? \"mdi:label-off\" : \"mdi:label\";\n  const label = '[[label]]';\n\n  return `\n    <div style=\"\n      display: flex;\n      justify-content: space-between;\n      max-width: 300px;\n      margin: 0 auto;\n    \">\n      <h4 style=\"\n        margin: 0;\n        padding-top: 3px;\n      \">${addRemove} <code>${label}</code> label</h4>\n      <ha-icon\n        icon=\"${icon}\"\n        style=\"\n          width: 28px;\n          height: 28px;\n          margin: 0 0 0 auto;\n        \"\n      ></ha-icon>\n    </div>\n  `\n]]]\n"
+            }
+          }
+        },
+        "comment_on_pr_card_template": {
+          "card": {
+            "type": "custom:button-card",
+            "tap_action": {
+              "action": "call-service",
+              "service": "shell_command.comment_on_pr",
+              "service_data": {
+                "url": "[[url]]",
+                "comment": "[[comment]]"
+              }
+            },
+            "styles": {
+              "grid": [
+                {
+                  "grid-template-areas": "\"content\"\n"
+                }
+              ]
+            },
+            "custom_fields": {
+              "content": "<div style=\"display: flex; align-items: center; justify-content: center;\">\n  <ha-icon\n    icon=\"[[icon]]\"\n    style=\"\n      width: 28px;\n      height: 28px;\n      margin: 0 10px 0 0;\n    \"\n  ></ha-icon>\n  <span>[[name]]</span>\n</div>\n"
+            }
+          }
         }
       },
       "views": [
@@ -2621,6 +3233,584 @@
                   ]
                 }
               ]
+            }
+          ]
+        },
+        {
+          "title": "GitHub",
+          "icon": "mdi:github",
+          "path": "github",
+          "type": "panel",
+          "cards": [
+            {
+              "type": "custom:swipe-card",
+              "parameters": {
+                "slidesPerGroup": 1,
+                "speed": 75,
+                "slidesPerView": 1,
+                "breakpoints": {
+                  "640": {
+                    "slidesPerView": 2,
+                    "spaceBetween": 20
+                  },
+                  "1280": {
+                    "slidesPerView": 3,
+                    "spaceBetween": 30
+                  },
+                  "1920": {
+                    "slidesPerView": 4,
+                    "spaceBetween": 40
+                  },
+                  "2560": {
+                    "slidesPerView": 5,
+                    "spaceBetween": 50
+                  }
+                },
+                "scrollbar": {
+                  "enabled": true,
+                  "hide": false,
+                  "draggable": true,
+                  "snapOnRelease": true
+                }
+              },
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Add-on: Item Warehouse"
+                    },
+                    {
+                      "repo_slug": "add_on_item_warehouse"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "GitHub Config Files"
+                    },
+                    {
+                      "repo_slug": "github_config_files"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Home Assistant"
+                    },
+                    {
+                      "repo_slug": "home_assistant"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Home Assistant Config Validator"
+                    },
+                    {
+                      "repo_slug": "home_assistant_config_validator"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "LED Matrix Controller"
+                    },
+                    {
+                      "repo_slug": "led_matrix_now_playing"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Python Template"
+                    },
+                    {
+                      "repo_slug": "python_template"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Very Slow Movie Player"
+                    },
+                    {
+                      "repo_slug": "very_slow_movie_player"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "WG Scripts"
+                    },
+                    {
+                      "repo_slug": "wg_scripts"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "WG Utilities"
+                    },
+                    {
+                      "repo_slug": "wg_utilities"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Mobile",
+          "path": "mobile",
+          "icon": "mdi:cellphone",
+          "type": "sections",
+          "max_columns": 4,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-cover-card",
+                      "entity": "cover.bedroom_blinds",
+                      "show_position_control": true,
+                      "show_buttons_control": true,
+                      "show_tilt_position_control": false,
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "layout": "horizontal",
+                      "name": "Blinds",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      }
+                    },
+                    {
+                      "square": false,
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-fan-card",
+                          "entity": "fan.vic_s_fan",
+                          "icon_animation": true,
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-fan-card",
+                          "entity": "fan.will_s_fan",
+                          "icon_animation": true,
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ],
+                      "columns": 2
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "entity": "light.glowstick",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "show_color_control": false,
+                      "show_color_temp_control": false,
+                      "collapsible_controls": true,
+                      "layout": "horizontal"
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "entity": "media_player.bedroom_speakers",
+                      "artwork": "material",
+                      "hide": {
+                        "power": true,
+                        "source": true,
+                        "volume": true
+                      },
+                      "group": false,
+                      "volume_stateless": false,
+                      "toggle_power": true
+                    },
+                    {
+                      "type": "custom:mushroom-media-player-card",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "entity": "media_player.bedroom_chromecast",
+                      "use_media_info": true,
+                      "show_volume_level": false,
+                      "volume_controls": [],
+                      "media_controls": [
+                        "on_off",
+                        "play_pause_stop"
+                      ],
+                      "layout": "horizontal",
+                      "collapsible_controls": true,
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Chromecast"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "entity": "binary_sensor.bedroom_window",
+                      "name": "Window",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "layout": "horizontal"
+                    }
+                  ]
+                }
+              ],
+              "title": "Bedroom"
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-cover-card",
+                      "entity": "cover.lounge_blinds",
+                      "show_position_control": true,
+                      "show_buttons_control": true,
+                      "show_tilt_position_control": false,
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "layout": "horizontal",
+                      "name": "Blinds",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-media-player-card",
+                      "entity": "media_player.lounge_chromecast",
+                      "use_media_info": true,
+                      "show_volume_level": false,
+                      "volume_controls": [],
+                      "media_controls": [
+                        "on_off",
+                        "play_pause_stop"
+                      ],
+                      "layout": "horizontal",
+                      "collapsible_controls": true,
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Chromecast",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      }
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.mini_lamp",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.lounge_shapes",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "name": "Shapes",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.shelf_lamp",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.table_lamp",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "use_light_color": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "show_brightness_control": true
+                        }
+                      ],
+                      "columns": 2
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.lounge_speakers",
+                      "artwork": "material",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "hide": {
+                        "power": true,
+                        "source": true,
+                        "volume": true
+                      },
+                      "group": false,
+                      "volume_stateless": false,
+                      "toggle_power": true
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.lounge_window",
+                      "name": "Window",
+                      "primary_info": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "secondary_info": "name",
+                      "layout": "horizontal"
+                    }
+                  ]
+                }
+              ],
+              "title": "Lounge"
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-cover-card",
+                      "entity": "cover.office_blinds",
+                      "show_position_control": true,
+                      "show_buttons_control": true,
+                      "show_tilt_position_control": false,
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "name": "Blinds"
+                    },
+                    {
+                      "type": "custom:mushroom-cover-card",
+                      "entity": "cover.office_desk",
+                      "show_position_control": true,
+                      "show_buttons_control": true,
+                      "show_tilt_position_control": false,
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "name": "Desk"
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.desk_lamp",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "fill_container": false,
+                          "use_light_color": true
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.mushroom_lamp",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "use_light_color": true
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.office_shapes",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "name": "Shapes",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "show_brightness_control": true,
+                          "use_light_color": true
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.pegboard_spotlight",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "name": "Spotlight",
+                          "show_brightness_control": true,
+                          "use_light_color": true
+                        }
+                      ],
+                      "columns": 2
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.topaz_sr10",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "artwork": "material",
+                      "hide": {
+                        "power": true,
+                        "source": true,
+                        "volume": true
+                      },
+                      "group": false,
+                      "volume_stateless": false,
+                      "toggle_power": true
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.office_window",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "name": "Window",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "layout": "horizontal"
+                    }
+                  ]
+                }
+              ],
+              "title": "Office"
             }
           ]
         }
