@@ -3397,8 +3397,7 @@
               "type": "grid",
               "cards": [
                 {
-                  "square": true,
-                  "type": "grid",
+                  "type": "vertical-stack",
                   "cards": [
                     {
                       "type": "custom:mushroom-cover-card",
@@ -3409,9 +3408,45 @@
                       "primary_info": "state",
                       "secondary_info": "name",
                       "layout": "horizontal"
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-fan-card",
+                          "entity": "fan.vic_s_fan",
+                          "icon_animation": true,
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-fan-card",
+                          "entity": "fan.will_s_fan",
+                          "icon_animation": true,
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ],
+                      "columns": 2
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.glowstick",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "show_color_control": false,
+                      "show_color_temp_control": false,
+                      "collapsible_controls": true,
+                      "layout": "horizontal"
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.bedroom_speakers"
                     }
-                  ],
-                  "columns": 1
+                  ]
                 }
               ],
               "title": "Bedroom"
