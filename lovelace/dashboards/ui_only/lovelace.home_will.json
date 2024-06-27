@@ -1953,6 +1953,13 @@
                       "primary_info": "state",
                       "secondary_info": "name"
                     }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.octoprint_current_state",
+                      "state": "Printing"
+                    }
                   ]
                 },
                 {
