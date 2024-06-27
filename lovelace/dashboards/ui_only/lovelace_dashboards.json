@@ -5,20 +5,11 @@
   "data": {
     "items": [
       {
-        "id": "dashboard_sandbox",
-        "show_in_sidebar": true,
-        "icon": "si:codesandbox",
-        "title": "Sandbox",
-        "require_admin": true,
-        "mode": "storage",
-        "url_path": "dashboard-sandbox"
-      },
-      {
         "id": "home_will",
         "show_in_sidebar": true,
         "icon": "mdi:home-city",
         "title": "Home",
-        "require_admin": true,
+        "require_admin": false,
         "mode": "storage",
         "url_path": "home-will"
       },
