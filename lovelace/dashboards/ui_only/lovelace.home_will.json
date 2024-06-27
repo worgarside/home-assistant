@@ -3510,26 +3510,34 @@
                           "type": "custom:mushroom-light-card",
                           "entity": "light.mini_lamp",
                           "primary_info": "state",
-                          "secondary_info": "name"
+                          "secondary_info": "name",
+                          "use_light_color": true,
+                          "show_brightness_control": true
                         },
                         {
                           "type": "custom:mushroom-light-card",
                           "entity": "light.lounge_shapes",
                           "primary_info": "state",
                           "secondary_info": "name",
-                          "name": "Shapes"
+                          "name": "Shapes",
+                          "use_light_color": true,
+                          "show_brightness_control": true
                         },
                         {
                           "type": "custom:mushroom-light-card",
                           "entity": "light.shelf_lamp",
                           "primary_info": "state",
-                          "secondary_info": "name"
+                          "secondary_info": "name",
+                          "use_light_color": true,
+                          "show_brightness_control": true
                         },
                         {
                           "type": "custom:mushroom-light-card",
                           "entity": "light.table_lamp",
                           "primary_info": "state",
-                          "secondary_info": "name"
+                          "secondary_info": "name",
+                          "use_light_color": true,
+                          "show_brightness_control": true
                         }
                       ],
                       "columns": 2
