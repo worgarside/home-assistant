@@ -3503,6 +3503,22 @@
                       "name": "Blinds"
                     },
                     {
+                      "type": "custom:mushroom-media-player-card",
+                      "entity": "media_player.lounge_chromecast",
+                      "use_media_info": true,
+                      "show_volume_level": false,
+                      "volume_controls": [],
+                      "media_controls": [
+                        "on_off",
+                        "play_pause_stop"
+                      ],
+                      "layout": "horizontal",
+                      "collapsible_controls": true,
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Chromecast"
+                    },
+                    {
                       "square": false,
                       "type": "grid",
                       "cards": [
@@ -3554,22 +3570,6 @@
                       "group": false,
                       "volume_stateless": false,
                       "toggle_power": true
-                    },
-                    {
-                      "type": "custom:mushroom-media-player-card",
-                      "entity": "media_player.lounge_chromecast",
-                      "use_media_info": true,
-                      "show_volume_level": false,
-                      "volume_controls": [],
-                      "media_controls": [
-                        "on_off",
-                        "play_pause_stop"
-                      ],
-                      "layout": "horizontal",
-                      "collapsible_controls": true,
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "name": "Chromecast"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
