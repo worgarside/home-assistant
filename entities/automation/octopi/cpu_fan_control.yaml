@@ -20,8 +20,8 @@ condition: >
     is_state("switch.octopi_cpu_fan", "on") != should_be_on and
     states.switch.octopi_cpu_fan.last_changed < ( utcnow() - timedelta(minutes=5) )
     and not (
-      states("binary_sensor.octoprint_printing") | bool and
-      states("switch.octopi_cpu_fan") | bool
+      states("binary_sensor.octoprint_printing") | bool(false) and
+      states("switch.octopi_cpu_fan") | bool(false)
     )
   }}
 
