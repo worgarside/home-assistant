@@ -3408,10 +3408,22 @@
                       "primary_info": "state",
                       "secondary_info": "name",
                       "layout": "horizontal",
-                      "name": "Blinds"
+                      "name": "Blinds",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      }
                     },
                     {
                       "square": false,
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
                       "type": "grid",
                       "cards": [
                         {
@@ -3433,6 +3445,12 @@
                     },
                     {
                       "type": "custom:mushroom-light-card",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
                       "entity": "light.glowstick",
                       "primary_info": "state",
                       "secondary_info": "name",
@@ -3445,6 +3463,12 @@
                     },
                     {
                       "type": "custom:mini-media-player",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
                       "entity": "media_player.bedroom_speakers",
                       "artwork": "material",
                       "hide": {
@@ -3458,6 +3482,12 @@
                     },
                     {
                       "type": "custom:mushroom-media-player-card",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
                       "entity": "media_player.bedroom_chromecast",
                       "use_media_info": true,
                       "show_volume_level": false,
@@ -3474,6 +3504,12 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
                       "entity": "binary_sensor.bedroom_window",
                       "name": "Window",
                       "primary_info": "state",
