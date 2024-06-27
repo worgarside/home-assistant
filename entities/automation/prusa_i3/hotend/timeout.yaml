@@ -1,0 +1,20 @@
+---
+alias: /prusa-i3/hotend/timeout
+
+id: prusa_i3_hotend_timeout
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.octoprint_printing
+    to: "off"
+    for:
+      minutes: "{{ states('input_number.prusa_i3_hotend_timeout') | int(10) }}"
+
+action:
+  - service: number.set_value
+    target:
+      entity_id: number.prusa_i3_target_hotend_temperature
+    data:
+      value: 0
