@@ -121,7 +121,7 @@ sequence:
       message_args: >
         --title {{ issue_title | tojson }}
         --body-file resources/tmp/gh_issue_body.txt
-        {% if issue_labels %}--label {{ issue_labels | join(',') | tojson }}{% endif %}
+        {% if issue_labels is defined %}--label {{ issue_labels | join(',') | tojson }}{% endif %}
         --assignee {{ assignee | default('worgarside') | tojson }}
         --repo "worgarside/{{ repository | default('home-assistant') }}"
 
