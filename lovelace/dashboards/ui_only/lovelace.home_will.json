@@ -2642,8 +2642,8 @@
                   "visibility": [
                     {
                       "condition": "state",
-                      "entity": "sensor.octoprint_current_state",
-                      "state": "Printing"
+                      "entity": "binary_sensor.octoprint_printing",
+                      "state": "on"
                     }
                   ]
                 },
