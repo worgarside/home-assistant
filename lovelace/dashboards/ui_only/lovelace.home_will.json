@@ -2625,11 +2625,358 @@
           ]
         },
         {
-          "type": "panel",
           "title": "GitHub",
-          "path": "github",
           "icon": "mdi:github",
-          "cards": []
+          "path": "github",
+          "type": "panel",
+          "cards": [
+            {
+              "type": "custom:swipe-card",
+              "parameters": {
+                "slidesPerGroup": 1,
+                "speed": 75,
+                "slidesPerView": 1,
+                "breakpoints": {
+                  "640": {
+                    "slidesPerView": 2,
+                    "spaceBetween": 20
+                  },
+                  "1280": {
+                    "slidesPerView": 3,
+                    "spaceBetween": 30
+                  },
+                  "1920": {
+                    "slidesPerView": 4,
+                    "spaceBetween": 40
+                  },
+                  "2560": {
+                    "slidesPerView": 5,
+                    "spaceBetween": 50
+                  }
+                },
+                "scrollbar": {
+                  "enabled": true,
+                  "hide": false,
+                  "draggable": true,
+                  "snapOnRelease": true
+                }
+              },
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Add-on: Item Warehouse"
+                    },
+                    {
+                      "repo_slug": "add_on_item_warehouse"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Add-on: RSS Log Feed"
+                    },
+                    {
+                      "repo_slug": "add_on_rss_log_feed"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Add-on: YAS-209 Bridge"
+                    },
+                    {
+                      "repo_slug": "add_on_yas_209_bridge"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "GitHub Config Files"
+                    },
+                    {
+                      "repo_slug": "github_config_files"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Home Assistant"
+                    },
+                    {
+                      "repo_slug": "home_assistant"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Home Assistant Config Validator"
+                    },
+                    {
+                      "repo_slug": "home_assistant_config_validator"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "LED Matrix Now Playing"
+                    },
+                    {
+                      "repo_slug": "led_matrix_now_playing"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Plant Monitor"
+                    },
+                    {
+                      "repo_slug": "plant_monitor"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Python Template"
+                    },
+                    {
+                      "repo_slug": "python_template"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Smart Mini CRT Interface"
+                    },
+                    {
+                      "repo_slug": "smart_mini_crt_interface"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Very Slow Movie Player"
+                    },
+                    {
+                      "repo_slug": "very_slow_movie_player"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "WG Scripts"
+                    },
+                    {
+                      "repo_slug": "wg_scripts"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "WG Utilities"
+                    },
+                    {
+                      "repo_slug": "wg_utilities"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Add-on: Item Warehouse"
+                    },
+                    {
+                      "repo_slug": "add_on_item_warehouse"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Add-on: RSS Log Feed"
+                    },
+                    {
+                      "repo_slug": "add_on_rss_log_feed"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Add-on: YAS-209 Bridge"
+                    },
+                    {
+                      "repo_slug": "add_on_yas_209_bridge"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "GitHub Config Files"
+                    },
+                    {
+                      "repo_slug": "github_config_files"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Home Assistant"
+                    },
+                    {
+                      "repo_slug": "home_assistant"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Home Assistant Config Validator"
+                    },
+                    {
+                      "repo_slug": "home_assistant_config_validator"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "LED Matrix Now Playing"
+                    },
+                    {
+                      "repo_slug": "led_matrix_now_playing"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Plant Monitor"
+                    },
+                    {
+                      "repo_slug": "plant_monitor"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Python Template"
+                    },
+                    {
+                      "repo_slug": "python_template"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Smart Mini CRT Interface"
+                    },
+                    {
+                      "repo_slug": "smart_mini_crt_interface"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Very Slow Movie Player"
+                    },
+                    {
+                      "repo_slug": "very_slow_movie_player"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "WG Scripts"
+                    },
+                    {
+                      "repo_slug": "wg_scripts"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "empty_repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "WG Utilities"
+                    },
+                    {
+                      "repo_slug": "wg_utilities"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     }
