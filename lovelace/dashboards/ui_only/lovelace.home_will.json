@@ -3446,12 +3446,15 @@
                     {
                       "type": "custom:mini-media-player",
                       "entity": "media_player.bedroom_speakers",
-                      "artwork": "cover",
+                      "artwork": "material",
                       "hide": {
                         "power": true,
                         "source": true,
                         "volume": true
-                      }
+                      },
+                      "group": false,
+                      "volume_stateless": false,
+                      "toggle_power": true
                     },
                     {
                       "type": "custom:mushroom-media-player-card",
