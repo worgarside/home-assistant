@@ -3683,6 +3683,12 @@
                       "primary_info": "state",
                       "secondary_info": "name",
                       "layout": "horizontal",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
                       "name": "Blinds"
                     },
                     {
@@ -3694,6 +3700,12 @@
                       "primary_info": "state",
                       "secondary_info": "name",
                       "layout": "horizontal",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
                       "name": "Desk"
                     },
                     {
@@ -3706,6 +3718,12 @@
                           "primary_info": "state",
                           "secondary_info": "name",
                           "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
                           "fill_container": false,
                           "use_light_color": true
                         },
@@ -3715,6 +3733,12 @@
                           "primary_info": "state",
                           "secondary_info": "name",
                           "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
                           "use_light_color": true
                         },
                         {
@@ -3723,6 +3747,12 @@
                           "primary_info": "state",
                           "secondary_info": "name",
                           "name": "Shapes",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
                           "show_brightness_control": true,
                           "use_light_color": true
                         },
@@ -3731,6 +3761,12 @@
                           "entity": "light.pegboard_spotlight",
                           "primary_info": "state",
                           "secondary_info": "name",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
                           "name": "Spotlight",
                           "show_brightness_control": true,
                           "use_light_color": true
@@ -3741,6 +3777,12 @@
                     {
                       "type": "custom:mini-media-player",
                       "entity": "media_player.topaz_sr10",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
                       "artwork": "material",
                       "hide": {
                         "power": true,
@@ -3754,6 +3796,12 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "binary_sensor.office_window",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
                       "name": "Window",
                       "primary_info": "state",
                       "secondary_info": "name",
