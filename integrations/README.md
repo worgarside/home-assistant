@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (117)</h3></summary>
+<details><summary><h3>Entities (120)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1216,6 +1216,32 @@ File: [`automation/person/will/home.yaml`](entities/automation/person/will/home.
 File: [`automation/person/will/leaving_work.yaml`](entities/automation/person/will/leaving_work.yaml)
 </details>
 
+<details><summary><code>/prusa-i3/bed/timeout</code></summary>
+
+**Entity ID: `automation.prusa_i3_bed_timeout`**
+
+> *No description provided*
+
+- Alias: /prusa-i3/bed/timeout
+- ID: `prusa_i3_bed_timeout`
+- Mode: `single`
+
+File: [`automation/prusa_i3/bed/timeout.yaml`](entities/automation/prusa_i3/bed/timeout.yaml)
+</details>
+
+<details><summary><code>/prusa-i3/hotend/timeout</code></summary>
+
+**Entity ID: `automation.prusa_i3_hotend_timeout`**
+
+> *No description provided*
+
+- Alias: /prusa-i3/hotend/timeout
+- ID: `prusa_i3_hotend_timeout`
+- Mode: `single`
+
+File: [`automation/prusa_i3/hotend/timeout.yaml`](entities/automation/prusa_i3/hotend/timeout.yaml)
+</details>
+
 <details><summary><code>/remote/bedroom-blinds/double-press</code></summary>
 
 **Entity ID: `automation.remote_bedroom_blinds_double_press`**
@@ -1576,6 +1602,28 @@ File: [`automation/switch/mtrxpi_power/on.yaml`](entities/automation/switch/mtrx
 - Mode: `single`
 
 File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/switch/prusa_i3_mk3_power/off.yaml)
+</details>
+
+<details><summary><code>/switch/prusa-i3-mk3-power/timeout</code></summary>
+
+**Entity ID: `automation.switch_prusa_i3_mk3_power_timeout`**
+
+> *No description provided*
+
+- Alias: /switch/prusa-i3-mk3-power/timeout
+- ID: `switch_prusa_i3_mk3_power_timeout`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "timeout_mins": "{{ states('input_number.prusa_i3_power_timeout') | int(15) }}",
+  "last_change_bed": "{{ states.number.prusa_i3_target_bed_temperature.last_updated | default(utcnow()) }}",
+  "last_change_hotend": "{{ states.number.prusa_i3_target_hotend_temperature.last_updated | default(utcnow()) }}",
+  "change_threshold": "{{ now() - timedelta(minutes=timeout_mins) }}"
+}
+```
+File: [`automation/switch/prusa_i3_mk3_power/timeout.yaml`](entities/automation/switch/prusa_i3_mk3_power/timeout.yaml)
 </details>
 
 <details><summary><code>/tag/cosmo/bedroom</code></summary>
@@ -2451,20 +2499,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (26)</h3></summary>
-
-<details><summary><strong>Air Freshener | Timeout</strong></summary>
-
-**Entity ID: `input_number.air_freshener_timeout`**
-
-- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
-- Max: 300
-- Min: 10
-- Mode: `box`
-- Unit Of Measurement: `mins`
-
-File: [`input_number/air_freshener_timeout.yaml`](entities/input_number/air_freshener_timeout.yaml)
-</details>
+<details><summary><h3>Entities (29)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2622,19 +2657,6 @@ File: [`input_number/cosmo/cosmo_room_timeout_office.yaml`](entities/input_numbe
 File: [`input_number/crt_tv_fan_auto_on_threshold.yaml`](entities/input_number/crt_tv_fan_auto_on_threshold.yaml)
 </details>
 
-<details><summary><strong>Hallway Lights Timeout</strong></summary>
-
-**Entity ID: `input_number.hallway_lights_timeout`**
-
-- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
-- Max: 300
-- Min: 10
-- Mode: `box`
-- Unit Of Measurement: `s`
-
-File: [`input_number/hallway_lights_timeout.yaml`](entities/input_number/hallway_lights_timeout.yaml)
-</details>
-
 <details><summary><strong>Lounge Blinds Button Height</strong></summary>
 
 **Entity ID: `input_number.lounge_blinds_button_height`**
@@ -2719,6 +2741,71 @@ File: [`input_number/st_macbook_pro_full_battery_threshold.yaml`](entities/input
 - Unit Of Measurement: %
 
 File: [`input_number/st_macbook_pro_low_battery_threshold.yaml`](entities/input_number/st_macbook_pro_low_battery_threshold.yaml)
+</details>
+
+<details><summary><strong>Air Freshener | Timeout</strong></summary>
+
+**Entity ID: `input_number.air_freshener_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 300
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/timeout/air_freshener_timeout.yaml`](entities/input_number/timeout/air_freshener_timeout.yaml)
+</details>
+
+<details><summary><strong>Hallway Lights | Timeout</strong></summary>
+
+**Entity ID: `input_number.hallway_lights_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 300
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: `s`
+
+File: [`input_number/timeout/hallway_lights_timeout.yaml`](entities/input_number/timeout/hallway_lights_timeout.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 Bed | Timeout</strong></summary>
+
+**Entity ID: `input_number.prusa_i3_bed_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 60
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/timeout/prusa_i3_bed_timeout.yaml`](entities/input_number/timeout/prusa_i3_bed_timeout.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 Hotend | Timeout</strong></summary>
+
+**Entity ID: `input_number.prusa_i3_hotend_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 60
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/timeout/prusa_i3_hotend_timeout.yaml`](entities/input_number/timeout/prusa_i3_hotend_timeout.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 Power | Timeout</strong></summary>
+
+**Entity ID: `input_number.prusa_i3_power_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 300
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/timeout/prusa_i3_power_timeout.yaml`](entities/input_number/timeout/prusa_i3_power_timeout.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10 | Power Off Timeout</strong></summary>

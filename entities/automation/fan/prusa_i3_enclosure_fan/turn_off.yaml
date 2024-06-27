@@ -9,8 +9,8 @@ max_exceeded: silent
 
 trigger:
   - platform: state
-    entity_id: sensor.octoprint_current_state
-    from: Printing
+    entity_id: binary_sensor.octoprint_printing
+    to: "off"
 
   - platform: state
     entity_id: switch.prusa_i3_mk3_power

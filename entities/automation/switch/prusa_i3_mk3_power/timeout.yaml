@@ -1,0 +1,36 @@
+---
+alias: /switch/prusa-i3-mk3-power/timeout
+
+id: switch_prusa_i3_mk3_power_timeout
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.octoprint_printing
+    to: "off"
+    for:
+      minutes: "{{ states('input_number.prusa_i3_power_timeout') | int(15) }}"
+
+
+variables:
+  timeout_mins: "{{ states('input_number.prusa_i3_power_timeout') | int(15) }}"
+
+  last_change_bed: >-
+    {{ states.number.prusa_i3_target_bed_temperature.last_updated | default(utcnow()) }}
+
+  last_change_hotend: >-
+    {{ states.number.prusa_i3_target_hotend_temperature.last_updated | default(utcnow()) }}
+
+  change_threshold: "{{ now() - timedelta(minutes=timeout_mins) }}"
+
+condition: >-
+  {{
+    states('switch.prusa_i3_mk3_power') | bool(false) and
+    last_change_bed < change_threshold and
+    last_change_hotend < change_threshold
+  }}
+
+action:
+  - service: switch.turn_off
+    entity_id: switch.prusa_i3_mk3_power
