@@ -2226,11 +2226,12 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_current_state",
+                      "entity": "sensor.octoprint_print_status",
                       "icon_color": "amber",
                       "primary_info": "state",
                       "secondary_info": "name",
-                      "name": "Current State"
+                      "name": "Current State",
+                      "icon": "mdi:printer-3d"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
