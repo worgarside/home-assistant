@@ -44,6 +44,22 @@ fields:
       icon:
         placeholder: mdi:bell
 
+  url:
+    description: |-
+      URL to open when the notification is selected
+      https://companion.home-assistant.io/docs/notifications/notifications-basic/#opening-a-url
+    example: /home-will/makerspace
+    required: false
+    selector:
+      text:
+
+  group:
+    description: Combine notifications together visually
+    example: example-notification-group
+    required: false
+    selector:
+      text:
+
 mode: queued
 
 max: 50
@@ -75,17 +91,21 @@ variables:
 
   notif_title: "{{ title | default(' ') }}"
 
+  url: "{{ url | default('') }}"
+
+  group: "{{ group | default('') }}"
+
+  sticky: "{{ sticky | default(false) }}"
+
 sequence:
-  - if:
-      - condition: template
-        value_template: >-
-          {{
-            clear_notification is true and
-            (
-              notification_id is undefined or
-              not notification_id
-            )
-          }}
+  - if: >-
+      {{
+        clear_notification is true and
+        (
+          notification_id is undefined or
+          not notification_id
+        )
+      }}
 
     then:
       - stop: Invalid usage, clear_notification is true but notification_id is not set
@@ -100,6 +120,8 @@ sequence:
         actions: "{{ actions }}"
         tag: "{{ notification_id }}"
         notification_icon: "{{ mobile_notification_icon }}"
+        url: "{{ url }}"
+        group: "{{ group }}"
 
   - alias: iPad
     service: notify.mobile_app_ipad
@@ -110,6 +132,8 @@ sequence:
         actions: "{{ actions }}"
         tag: "{{ notification_id }}"
         notification_icon: "{{ mobile_notification_icon }}"
+        url: "{{ url }}"
+        group: "{{ group }}"
 
   - alias: MacBook Air
     if:
@@ -131,3 +155,5 @@ sequence:
           data:
             actions: "{{ actions }}"
             tag: "{{ notification_id }}"
+            url: "{{ url }}"
+            group: "{{ group }}"
