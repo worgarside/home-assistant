@@ -21,6 +21,15 @@
         "require_admin": false,
         "mode": "storage",
         "show_in_sidebar": true
+      },
+      {
+        "id": "dashboard_octoprint",
+        "show_in_sidebar": true,
+        "icon": "mdi:printer-3d",
+        "title": "OctoPrint",
+        "require_admin": false,
+        "mode": "storage",
+        "url_path": "dashboard-octoprint"
       }
     ]
   }
