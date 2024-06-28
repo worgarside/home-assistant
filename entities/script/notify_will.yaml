@@ -44,6 +44,26 @@ fields:
       icon:
         placeholder: mdi:bell
 
+  group:
+    description: Combine notifications together visually
+    example: example-notification-group
+    required: false
+    selector:
+      text:
+
+  sticky:
+    description: Whether to dismiss the notification upon selecting it or not
+    required: false
+    selector:
+      boolean:
+
+  persistent:
+    description: >-
+      Block dismissing the notification via the "Clear All" button or when the device is locked
+    required: false
+    selector:
+      boolean:
+
 mode: queued
 
 max: 50
@@ -75,25 +95,27 @@ variables:
 
   notif_title: "{{ title | default(' ') }}"
 
+  group: "{{ group | default('') }}"
+
+  sticky: "{{ sticky | default(false) }}"
+
+  persistent: "{{ persistent | default(false) }}"
+
 sequence:
-  - if:
-      - condition: template
-        value_template: >-
-          {{
-            clear_notification is true and
-            (
-              notification_id is undefined or
-              not notification_id
-            )
-          }}
+  - if: >-
+      {{
+        clear_notification is true and
+        (
+          notification_id is undefined or
+          not notification_id
+        )
+      }}
 
     then:
       - stop: Invalid usage, clear_notification is true but notification_id is not set
         error: true
 
-  - if:
-      - condition: template
-        value_template: "{{ clear_notification }}"
+  - if: "{{ clear_notification }}"
 
     then:
       - alias: Remove HA Notification
@@ -118,6 +140,9 @@ sequence:
         actions: "{{ actions }}"
         tag: "{{ notification_id }}"
         notification_icon: "{{ mobile_notification_icon }}"
+        group: "{{ group }}"
+        sticky: "{{ sticky }}"
+        persistent: "{{ persistent }}"
 
   - alias: Personal MacBook Pro
     if:
@@ -126,11 +151,6 @@ sequence:
           condition: state
           entity_id: binary_sensor.wills_macbook_pro_active
           state: "on"
-
-        - alias: Will is at home
-          condition: state
-          entity_id: person.will
-          state: home
 
         - alias: Clear Notification
           condition: template
@@ -144,6 +164,7 @@ sequence:
           data:
             actions: "{{ actions }}"
             tag: "{{ notification_id }}"
+            group: "{{ group }}"
 
   # - alias: Work MacBook Pro
   #   if:

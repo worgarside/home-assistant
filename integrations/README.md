@@ -4766,6 +4766,14 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
         "placeholder": "mdi:bell"
       }
     }
+  },
+  "group": {
+    "description": "Combine notifications together visually",
+    "example": "example-notification-group",
+    "required": false,
+    "selector": {
+      "text": null
+    }
   }
 }
 ```
@@ -4780,7 +4788,9 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
   "notification_id": "{% if clear_notification %}\n  {{ notification_id | default(None) }}\n{% else %}\n  {{ notification_id | default('notify_vic_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}\n{% endif %}",
   "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message | default(\"\") }}\n{% endif %}",
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
-  "notif_title": "{{ title | default(' ') }}"
+  "notif_title": "{{ title | default(' ') }}",
+  "group": "{{ group | default('') }}",
+  "sticky": "{{ sticky | default(false) }}"
 }
 ```
 File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
@@ -4843,6 +4853,28 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
         "placeholder": "mdi:bell"
       }
     }
+  },
+  "group": {
+    "description": "Combine notifications together visually",
+    "example": "example-notification-group",
+    "required": false,
+    "selector": {
+      "text": null
+    }
+  },
+  "sticky": {
+    "description": "Whether to dismiss the notification upon selecting it or not",
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
+  },
+  "persistent": {
+    "description": "Block dismissing the notification via the \"Clear All\" button or when the device is locked",
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
   }
 }
 ```
@@ -4857,7 +4889,10 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "notification_id": "{% if clear_notification %}\n  {{ notification_id | default(None) }}\n{% else %}\n  {{ notification_id | default('notify_will_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}\n{% endif %}",
   "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message | default(\"\") }}\n{% endif %}",
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
-  "notif_title": "{{ title | default(' ') }}"
+  "notif_title": "{{ title | default(' ') }}",
+  "group": "{{ group | default('') }}",
+  "sticky": "{{ sticky | default(false) }}",
+  "persistent": "{{ persistent | default(false) }}"
 }
 ```
 File: [`script/notify_will.yaml`](entities/script/notify_will.yaml)
