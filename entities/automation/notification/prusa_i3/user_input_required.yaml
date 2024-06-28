@@ -1,0 +1,29 @@
+---
+alias: /notification/prusa-i3/user-input-required
+
+id: notification_prusa_i3_user_input_required
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: sensor.octoprint_last_event
+    to: PausedForUser
+
+action:
+  - service: script.notify_will
+    data:
+      title: "Prusa i3: User Input Required!"
+      message: The Prusa i3 is waiting for user input.
+      notification_id: prusa_i3_user_input_required
+      mobile_notification_icon: mdi:printer-3d-nozzle-alert-outline
+      url: /home-will/makerspace
+      group: prusa-i3
+      persistent: true
+      sticky: true
+
+  - alias: Prevent rapid notifications
+    delay:
+      minutes: 1

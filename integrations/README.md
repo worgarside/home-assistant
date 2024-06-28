@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (120)</h3></summary>
+<details><summary><h3>Entities (121)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1115,6 +1115,19 @@ File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation
 }
 ```
 File: [`automation/mtrxpi/content_trigger/raining_grid.yaml`](entities/automation/mtrxpi/content_trigger/raining_grid.yaml)
+</details>
+
+<details><summary><code>/notification/prusa-i3/user-input-required</code></summary>
+
+**Entity ID: `automation.notification_prusa_i3_user_input_required`**
+
+> *No description provided*
+
+- Alias: /notification/prusa-i3/user-input-required
+- ID: `notification_prusa_i3_user_input_required`
+- Mode: `single`
+
+File: [`automation/notification/prusa_i3/user_input_required.yaml`](entities/automation/notification/prusa_i3/user_input_required.yaml)
 </details>
 
 <details><summary><code>/notification/system/reload-required/send</code></summary>
