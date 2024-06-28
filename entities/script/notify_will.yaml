@@ -44,6 +44,15 @@ fields:
       icon:
         placeholder: mdi:bell
 
+  url:
+    description: |-
+      URL to open when the notification is selected
+      https://companion.home-assistant.io/docs/notifications/notifications-basic/#opening-a-url
+    example: /home-will/makerspace
+    required: false
+    selector:
+      text:
+
   group:
     description: Combine notifications together visually
     example: example-notification-group
@@ -95,6 +104,8 @@ variables:
 
   notif_title: "{{ title | default(' ') }}"
 
+  url: "{{ url | default('') }}"
+
   group: "{{ group | default('') }}"
 
   sticky: "{{ sticky | default(false) }}"
@@ -140,6 +151,7 @@ sequence:
         actions: "{{ actions }}"
         tag: "{{ notification_id }}"
         notification_icon: "{{ mobile_notification_icon }}"
+        url: "{{ url }}"
         group: "{{ group }}"
         sticky: "{{ sticky }}"
         persistent: "{{ persistent }}"
@@ -165,6 +177,7 @@ sequence:
             actions: "{{ actions }}"
             tag: "{{ notification_id }}"
             group: "{{ group }}"
+            url: "{{ url }}"
 
   # - alias: Work MacBook Pro
   #   if:

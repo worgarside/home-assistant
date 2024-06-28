@@ -4767,6 +4767,14 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
       }
     }
   },
+  "url": {
+    "description": "URL to open when the notification is selected\nhttps://companion.home-assistant.io/docs/notifications/notifications-basic/#opening-a-url",
+    "example": "/home-will/makerspace",
+    "required": false,
+    "selector": {
+      "text": null
+    }
+  },
   "group": {
     "description": "Combine notifications together visually",
     "example": "example-notification-group",
@@ -4789,6 +4797,7 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
   "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message | default(\"\") }}\n{% endif %}",
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
   "notif_title": "{{ title | default(' ') }}",
+  "url": "{{ url | default('') }}",
   "group": "{{ group | default('') }}",
   "sticky": "{{ sticky | default(false) }}"
 }
@@ -4854,6 +4863,14 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
       }
     }
   },
+  "url": {
+    "description": "URL to open when the notification is selected\nhttps://companion.home-assistant.io/docs/notifications/notifications-basic/#opening-a-url",
+    "example": "/home-will/makerspace",
+    "required": false,
+    "selector": {
+      "text": null
+    }
+  },
   "group": {
     "description": "Combine notifications together visually",
     "example": "example-notification-group",
@@ -4890,6 +4907,7 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message | default(\"\") }}\n{% endif %}",
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
   "notif_title": "{{ title | default(' ') }}",
+  "url": "{{ url | default('') }}",
   "group": "{{ group | default('') }}",
   "sticky": "{{ sticky | default(false) }}",
   "persistent": "{{ persistent | default(false) }}"
