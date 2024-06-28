@@ -1,0 +1,44 @@
+---
+alias: /remote/coffee-table/single-press
+
+id: remote_coffee_table_single_press
+
+mode: single
+
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      command: single
+      device_ieee: 00:15:8d:00:07:6b:66:8b
+
+action:
+  - parallel:
+      - if: "{{ not states('remote.lounge_tv') | bool }}"
+
+        then:
+          - service: remote.turn_on
+            target:
+              entity_id: remote.lounge_tv
+
+      - if: "{{ not states('remote.lounge_chromecast') | bool }}"
+
+        then:
+          - service: switch.turn_off
+            entity_id: switch.lounge_chromecast_outlet
+
+          - delay:
+              seconds: 2.5
+
+          - service: switch.turn_on
+            entity_id: switch.lounge_chromecast_outlet
+
+      - service: light.turn_on
+        target:
+          area_id: lounge
+        data:
+          brightness_pct: 50
+
+      - service: light.turn_off
+        target:
+          area_id: kitchen

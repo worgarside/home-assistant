@@ -1,0 +1,18 @@
+---
+alias: /remote/coffee-table/double-press
+
+id: remote_coffee_table_double_press
+
+mode: single
+
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      command: double
+      device_ieee: 00:15:8d:00:07:6b:66:8b
+
+action:
+  - service: homeassistant.turn_off
+    target:
+      area_id: lounge

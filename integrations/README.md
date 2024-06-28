@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (118)</h3></summary>
+<details><summary><h3>Entities (121)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1292,6 +1292,45 @@ File: [`automation/remote/bedroom_blinds/hold.yaml`](entities/automation/remote/
 - Mode: `single`
 
 File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation/remote/bedroom_blinds/single_press.yaml)
+</details>
+
+<details><summary><code>/remote/coffee-table/double-press</code></summary>
+
+**Entity ID: `automation.remote_coffee_table_double_press`**
+
+> *No description provided*
+
+- Alias: /remote/coffee-table/double-press
+- ID: `remote_coffee_table_double_press`
+- Mode: `single`
+
+File: [`automation/remote/coffee_table/double_press.yaml`](entities/automation/remote/coffee_table/double_press.yaml)
+</details>
+
+<details><summary><code>/remote/coffee-table/hold</code></summary>
+
+**Entity ID: `automation.remote_coffee_table_hold`**
+
+> *No description provided*
+
+- Alias: /remote/coffee-table/hold
+- ID: `remote_coffee_table_hold`
+- Mode: `single`
+
+File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/coffee_table/hold.yaml)
+</details>
+
+<details><summary><code>/remote/coffee-table/single-press</code></summary>
+
+**Entity ID: `automation.remote_coffee_table_single_press`**
+
+> *No description provided*
+
+- Alias: /remote/coffee-table/single-press
+- ID: `remote_coffee_table_single_press`
+- Mode: `single`
+
+File: [`automation/remote/coffee_table/single_press.yaml`](entities/automation/remote/coffee_table/single_press.yaml)
 </details>
 
 <details><summary><code>/remote/kitchen</code></summary>
