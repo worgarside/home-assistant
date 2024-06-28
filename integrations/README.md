@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (121)</h3></summary>
+<details><summary><h3>Entities (118)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1511,45 +1511,6 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
-</details>
-
-<details><summary><code>/remote/vic-s-remote/double-press</code></summary>
-
-**Entity ID: `automation.remote_vic_s_remote_double_press`**
-
-> *No description provided*
-
-- Alias: /remote/vic-s-remote/double-press
-- ID: `remote_vic_s_remote_double_press`
-- Mode: `single`
-
-File: [`automation/remote/vic_s_remote/double_press.yaml`](entities/automation/remote/vic_s_remote/double_press.yaml)
-</details>
-
-<details><summary><code>/remote/vic-s-remote/hold</code></summary>
-
-**Entity ID: `automation.remote_vic_s_remote_hold`**
-
-> *No description provided*
-
-- Alias: /remote/vic-s-remote/hold
-- ID: `remote_vic_s_remote_hold`
-- Mode: `single`
-
-File: [`automation/remote/vic_s_remote/hold.yaml`](entities/automation/remote/vic_s_remote/hold.yaml)
-</details>
-
-<details><summary><code>/remote/vic-s-remote/single-press</code></summary>
-
-**Entity ID: `automation.remote_vic_s_remote_single_press`**
-
-> *No description provided*
-
-- Alias: /remote/vic-s-remote/single-press
-- ID: `remote_vic_s_remote_single_press`
-- Mode: `single`
-
-File: [`automation/remote/vic_s_remote/single_press.yaml`](entities/automation/remote/vic_s_remote/single_press.yaml)
 </details>
 
 <details><summary><code>/script/auto-reload</code></summary>
