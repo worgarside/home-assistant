@@ -98,16 +98,14 @@ variables:
   sticky: "{{ sticky | default(false) }}"
 
 sequence:
-  - if:
-      - condition: template
-        value_template: >-
-          {{
-            clear_notification is true and
-            (
-              notification_id is undefined or
-              not notification_id
-            )
-          }}
+  - if: >-
+      {{
+        clear_notification is true and
+        (
+          notification_id is undefined or
+          not notification_id
+        )
+      }}
 
     then:
       - stop: Invalid usage, clear_notification is true but notification_id is not set
