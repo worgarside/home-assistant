@@ -227,6 +227,9 @@
                           },
                           "hold_action": {
                             "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "toggle"
                           }
                         },
                         {
@@ -242,6 +245,9 @@
                           },
                           "hold_action": {
                             "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "toggle"
                           }
                         },
                         {
@@ -256,6 +262,9 @@
                           },
                           "hold_action": {
                             "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "toggle"
                           }
                         },
                         {
@@ -270,7 +279,10 @@
                           "hold_action": {
                             "action": "none"
                           },
-                          "show_brightness_control": true
+                          "show_brightness_control": true,
+                          "double_tap_action": {
+                            "action": "toggle"
+                          }
                         }
                       ],
                       "columns": 2
