@@ -10,38 +10,34 @@ mode: single
 max_exceeded: silent
 
 trigger:
-  - platform: state
+  - id: actual-timeout
+    platform: state
     entity_id: media_player.topaz_sr10
     to: "on" # Other states are a definite "no"
     for:
       minutes: "{{ states('input_number.topaz_sr10_power_off_timeout') | int(30) }}"
 
-  - platform: state
+  - id: audio-options-changed
+    platform: state
     entity_id: sensor.wills_macbook_pro_active_audio_output
     attribute: All Audio Output
 
-condition:
-  or:
-    - alias: Source is MacBook, but MacBook is not active
-      and:
-        - condition: state
-          entity_id: input_select.topaz_sr10_source
-          state: MP3/Aux
-
-        - condition: template
-          value_template: >-
-            {{
-              "FiiO USB DAC-E10" not in [
-                states("sensor.wills_macbook_pro_active_audio_output"),
-                states("sensor.st_macbook_pro_active_audio_output"),
-              ]
-            }}
-
-    - alias: Some other source selected (specifics to be added when needed)
-      not:
-        - condition: state
-          entity_id: input_select.topaz_sr10_source
-          state: MP3/Aux
+condition: >-
+  {{
+    (
+      trigger.id == "actual-timeout" and
+      "FiiO USB DAC-E10" not in [
+        states("sensor.wills_macbook_pro_active_audio_output"),
+        states("sensor.work_macbook_pro_active_audio_output"),
+      ]
+    ) or (
+      trigger.id == "audio-options-changed" and
+      "FiiO USB DAC-E10" not in (
+        (state_attr('sensor.wills_macbook_pro_active_audio_output', 'All Audio Output') or []) +
+        (state_attr("sensor.work_macbook_pro_active_audio_output", 'All Audio Output') or [])
+      )
+    )
+  }}
 
 action:
   - service: media_player.turn_off
