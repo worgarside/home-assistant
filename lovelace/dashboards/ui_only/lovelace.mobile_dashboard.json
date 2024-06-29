@@ -81,7 +81,10 @@
                           "show_brightness_control": true,
                           "show_color_control": false,
                           "show_color_temp_control": false,
-                          "collapsible_controls": false
+                          "collapsible_controls": false,
+                          "double_tap_action": {
+                            "action": "toggle"
+                          }
                         },
                         {
                           "type": "custom:mushroom-light-card",
@@ -95,7 +98,10 @@
                           "hold_action": {
                             "action": "none"
                           },
-                          "show_brightness_control": true
+                          "show_brightness_control": true,
+                          "double_tap_action": {
+                            "action": "toggle"
+                          }
                         }
                       ],
                       "columns": 2
