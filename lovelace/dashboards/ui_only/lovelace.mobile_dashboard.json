@@ -63,22 +63,42 @@
                       "columns": 2
                     },
                     {
-                      "type": "custom:mushroom-light-card",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "entity": "light.glowstick",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "use_light_color": true,
-                      "show_brightness_control": true,
-                      "show_color_control": false,
-                      "show_color_temp_control": false,
-                      "collapsible_controls": true,
-                      "layout": "horizontal"
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "entity": "light.glowstick",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "show_color_control": false,
+                          "show_color_temp_control": false,
+                          "collapsible_controls": false
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.moomin_box",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "use_light_color": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "show_brightness_control": true
+                        }
+                      ],
+                      "columns": 2
                     },
                     {
                       "type": "custom:mini-media-player",
