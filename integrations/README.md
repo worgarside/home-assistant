@@ -5442,7 +5442,199 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (91)</h3></summary>
+<details><summary><h3>Entities (92)</h3></summary>
+
+<details><summary><strong>Bank Holiday</strong></summary>
+
+**Entity ID: `binary_sensor.bank_holiday`**
+
+- Icon: [`mdi:calendar-star`](https://pictogrammers.com/library/mdi/icon/calendar-star/)
+
+File: [`template/binary_sensor/bank_holiday.yaml`](entities/template/binary_sensor/bank_holiday.yaml)
+</details>
+
+<details><summary><strong>Before Midday</strong></summary>
+
+**Entity ID: `binary_sensor.before_midday`**
+
+- Icon: [`mdi:clock-time-twelve-outline`](https://pictogrammers.com/library/mdi/icon/clock-time-twelve-outline/)
+
+File: [`template/binary_sensor/before_midday.yaml`](entities/template/binary_sensor/before_midday.yaml)
+</details>
+
+<details><summary><strong>Hifi System: Is Volume Muted</strong></summary>
+
+**Entity ID: `binary_sensor.hifi_system_is_volume_muted`**
+
+File: [`template/binary_sensor/hifi_system_is_volume_muted.yaml`](entities/template/binary_sensor/hifi_system_is_volume_muted.yaml)
+</details>
+
+<details><summary><strong>Office Desk Occupied</strong></summary>
+
+**Entity ID: `binary_sensor.office_desk_occupied`**
+
+- Icon: [`mdi:chair-rolling`](https://pictogrammers.com/library/mdi/icon/chair-rolling/)
+
+File: [`template/binary_sensor/office_desk_occupied.yaml`](entities/template/binary_sensor/office_desk_occupied.yaml)
+</details>
+
+<details><summary><strong>Office Desk Standing and Occupied</strong></summary>
+
+**Entity ID: `binary_sensor.office_desk_standing_and_occupied`**
+
+- Icon:
+
+```jinja
+{% if this.state == "on" %}
+  mdi:human-handsup
+{% else %}
+  mdi:human-handsdown
+{% endif %}
+
+```
+File: [`template/binary_sensor/office_desk_standing_and_occupied.yaml`](entities/template/binary_sensor/office_desk_standing_and_occupied.yaml)
+</details>
+
+<details><summary><strong>Office Desk Standing Mode</strong></summary>
+
+**Entity ID: `binary_sensor.office_desk_standing_mode`**
+
+- Icon:
+
+```jinja
+{% if this.state == "on" %}
+  phu:desk-stand-alt
+{% else %}
+  phu:desk-sit-alt
+{% endif %}
+
+```
+File: [`template/binary_sensor/office_desk_standing_mode.yaml`](entities/template/binary_sensor/office_desk_standing_mode.yaml)
+</details>
+
+<details><summary><strong>Quiet Hours</strong></summary>
+
+**Entity ID: `binary_sensor.quiet_hours`**
+
+File: [`template/binary_sensor/quiet_hours.yaml`](entities/template/binary_sensor/quiet_hours.yaml)
+</details>
+
+<details><summary><strong>ClmtPi Online</strong></summary>
+
+**Entity ID: `binary_sensor.clmtpi_online`**
+
+- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
+
+File: [`template/binary_sensor/raspberry_pi_online/clmtpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/clmtpi_online.yaml)
+</details>
+
+<details><summary><strong>CRTPi Online</strong></summary>
+
+**Entity ID: `binary_sensor.crtpi_online`**
+
+- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
+
+File: [`template/binary_sensor/raspberry_pi_online/crtpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/crtpi_online.yaml)
+</details>
+
+<details><summary><strong>GrowPi Online</strong></summary>
+
+**Entity ID: `binary_sensor.growpi_online`**
+
+- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
+
+File: [`template/binary_sensor/raspberry_pi_online/growpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/growpi_online.yaml)
+</details>
+
+<details><summary><strong>MtrxPi Online</strong></summary>
+
+**Entity ID: `binary_sensor.mtrxpi_online`**
+
+- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
+
+File: [`template/binary_sensor/raspberry_pi_online/mtrxpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/mtrxpi_online.yaml)
+</details>
+
+<details><summary><strong>OctoPi Online</strong></summary>
+
+**Entity ID: `binary_sensor.octopi_online`**
+
+- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
+
+File: [`template/binary_sensor/raspberry_pi_online/octopi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/octopi_online.yaml)
+</details>
+
+<details><summary><strong>RtroPi Online</strong></summary>
+
+**Entity ID: `binary_sensor.rtropi_online`**
+
+- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
+
+File: [`template/binary_sensor/raspberry_pi_online/rtropi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/rtropi_online.yaml)
+</details>
+
+<details><summary><strong>VSMPPi Online</strong></summary>
+
+**Entity ID: `binary_sensor.vsmppi_online`**
+
+- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
+
+File: [`template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml)
+</details>
+
+<details><summary><strong>ST MacBook Pro Docked</strong></summary>
+
+**Entity ID: `binary_sensor.st_macbook_pro_docked`**
+
+- Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
+
+File: [`template/binary_sensor/st_macbook_pro_docked.yaml`](entities/template/binary_sensor/st_macbook_pro_docked.yaml)
+</details>
+
+<details><summary><strong>Vic at Work</strong></summary>
+
+**Entity ID: `binary_sensor.vic_at_work`**
+
+- Icon: [`mdi:badge-account`](https://pictogrammers.com/library/mdi/icon/badge-account/)
+
+File: [`template/binary_sensor/vic_at_work.yaml`](entities/template/binary_sensor/vic_at_work.yaml)
+</details>
+
+<details><summary><strong>Weekday</strong></summary>
+
+**Entity ID: `binary_sensor.weekday`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+
+File: [`template/binary_sensor/weekday.yaml`](entities/template/binary_sensor/weekday.yaml)
+</details>
+
+<details><summary><strong>Weekend</strong></summary>
+
+**Entity ID: `binary_sensor.weekend`**
+
+- Icon: [`mdi:calendar-weekend`](https://pictogrammers.com/library/mdi/icon/calendar-weekend/)
+
+File: [`template/binary_sensor/weekend.yaml`](entities/template/binary_sensor/weekend.yaml)
+</details>
+
+<details><summary><strong>Will's MacBook Pro Docked</strong></summary>
+
+**Entity ID: `binary_sensor.will_s_macbook_pro_docked`**
+
+- Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
+
+File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/template/binary_sensor/will_s_macbook_pro_docked.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 Thumbnail</strong></summary>
+
+**Entity ID: `template.prusa_i3_thumbnail`**
+
+- Icon: [`mdi:monitor-screenshot`](https://pictogrammers.com/library/mdi/icon/monitor-screenshot/)
+
+File: [`template/image/prusa_i3_thumbnail.yaml`](entities/template/image/prusa_i3_thumbnail.yaml)
+</details>
 
 <details><summary><strong>AdGuard CPU Usage</strong></summary>
 
@@ -6230,189 +6422,6 @@ File: [`template/sensor/st_macbook_pro_last_update.yaml`](entities/template/sens
 - Unit Of Measurement: epoch-seconds
 
 File: [`template/sensor/will_s_macbook_pro_last_update.yaml`](entities/template/sensor/will_s_macbook_pro_last_update.yaml)
-</details>
-
-<details><summary><strong>Bank Holiday</strong></summary>
-
-**Entity ID: `binary_sensor.bank_holiday`**
-
-- Icon: [`mdi:calendar-star`](https://pictogrammers.com/library/mdi/icon/calendar-star/)
-
-File: [`template/binary_sensor/bank_holiday.yaml`](entities/template/binary_sensor/bank_holiday.yaml)
-</details>
-
-<details><summary><strong>Before Midday</strong></summary>
-
-**Entity ID: `binary_sensor.before_midday`**
-
-- Icon: [`mdi:clock-time-twelve-outline`](https://pictogrammers.com/library/mdi/icon/clock-time-twelve-outline/)
-
-File: [`template/binary_sensor/before_midday.yaml`](entities/template/binary_sensor/before_midday.yaml)
-</details>
-
-<details><summary><strong>Hifi System: Is Volume Muted</strong></summary>
-
-**Entity ID: `binary_sensor.hifi_system_is_volume_muted`**
-
-File: [`template/binary_sensor/hifi_system_is_volume_muted.yaml`](entities/template/binary_sensor/hifi_system_is_volume_muted.yaml)
-</details>
-
-<details><summary><strong>Office Desk Occupied</strong></summary>
-
-**Entity ID: `binary_sensor.office_desk_occupied`**
-
-- Icon: [`mdi:chair-rolling`](https://pictogrammers.com/library/mdi/icon/chair-rolling/)
-
-File: [`template/binary_sensor/office_desk_occupied.yaml`](entities/template/binary_sensor/office_desk_occupied.yaml)
-</details>
-
-<details><summary><strong>Office Desk Standing and Occupied</strong></summary>
-
-**Entity ID: `binary_sensor.office_desk_standing_and_occupied`**
-
-- Icon:
-
-```jinja
-{% if this.state == "on" %}
-  mdi:human-handsup
-{% else %}
-  mdi:human-handsdown
-{% endif %}
-
-```
-File: [`template/binary_sensor/office_desk_standing_and_occupied.yaml`](entities/template/binary_sensor/office_desk_standing_and_occupied.yaml)
-</details>
-
-<details><summary><strong>Office Desk Standing Mode</strong></summary>
-
-**Entity ID: `binary_sensor.office_desk_standing_mode`**
-
-- Icon:
-
-```jinja
-{% if this.state == "on" %}
-  phu:desk-stand-alt
-{% else %}
-  phu:desk-sit-alt
-{% endif %}
-
-```
-File: [`template/binary_sensor/office_desk_standing_mode.yaml`](entities/template/binary_sensor/office_desk_standing_mode.yaml)
-</details>
-
-<details><summary><strong>Quiet Hours</strong></summary>
-
-**Entity ID: `binary_sensor.quiet_hours`**
-
-File: [`template/binary_sensor/quiet_hours.yaml`](entities/template/binary_sensor/quiet_hours.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Online</strong></summary>
-
-**Entity ID: `binary_sensor.clmtpi_online`**
-
-- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
-
-File: [`template/binary_sensor/raspberry_pi_online/clmtpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/clmtpi_online.yaml)
-</details>
-
-<details><summary><strong>CRTPi Online</strong></summary>
-
-**Entity ID: `binary_sensor.crtpi_online`**
-
-- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
-
-File: [`template/binary_sensor/raspberry_pi_online/crtpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/crtpi_online.yaml)
-</details>
-
-<details><summary><strong>GrowPi Online</strong></summary>
-
-**Entity ID: `binary_sensor.growpi_online`**
-
-- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
-
-File: [`template/binary_sensor/raspberry_pi_online/growpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/growpi_online.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Online</strong></summary>
-
-**Entity ID: `binary_sensor.mtrxpi_online`**
-
-- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
-
-File: [`template/binary_sensor/raspberry_pi_online/mtrxpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/mtrxpi_online.yaml)
-</details>
-
-<details><summary><strong>OctoPi Online</strong></summary>
-
-**Entity ID: `binary_sensor.octopi_online`**
-
-- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
-
-File: [`template/binary_sensor/raspberry_pi_online/octopi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/octopi_online.yaml)
-</details>
-
-<details><summary><strong>RtroPi Online</strong></summary>
-
-**Entity ID: `binary_sensor.rtropi_online`**
-
-- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
-
-File: [`template/binary_sensor/raspberry_pi_online/rtropi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/rtropi_online.yaml)
-</details>
-
-<details><summary><strong>VSMPPi Online</strong></summary>
-
-**Entity ID: `binary_sensor.vsmppi_online`**
-
-- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
-
-File: [`template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml)
-</details>
-
-<details><summary><strong>ST MacBook Pro Docked</strong></summary>
-
-**Entity ID: `binary_sensor.st_macbook_pro_docked`**
-
-- Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
-
-File: [`template/binary_sensor/st_macbook_pro_docked.yaml`](entities/template/binary_sensor/st_macbook_pro_docked.yaml)
-</details>
-
-<details><summary><strong>Vic at Work</strong></summary>
-
-**Entity ID: `binary_sensor.vic_at_work`**
-
-- Icon: [`mdi:badge-account`](https://pictogrammers.com/library/mdi/icon/badge-account/)
-
-File: [`template/binary_sensor/vic_at_work.yaml`](entities/template/binary_sensor/vic_at_work.yaml)
-</details>
-
-<details><summary><strong>Weekday</strong></summary>
-
-**Entity ID: `binary_sensor.weekday`**
-
-- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
-
-File: [`template/binary_sensor/weekday.yaml`](entities/template/binary_sensor/weekday.yaml)
-</details>
-
-<details><summary><strong>Weekend</strong></summary>
-
-**Entity ID: `binary_sensor.weekend`**
-
-- Icon: [`mdi:calendar-weekend`](https://pictogrammers.com/library/mdi/icon/calendar-weekend/)
-
-File: [`template/binary_sensor/weekend.yaml`](entities/template/binary_sensor/weekend.yaml)
-</details>
-
-<details><summary><strong>Will's MacBook Pro Docked</strong></summary>
-
-**Entity ID: `binary_sensor.will_s_macbook_pro_docked`**
-
-- Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
-
-File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/template/binary_sensor/will_s_macbook_pro_docked.yaml)
 </details>
 
 </details>

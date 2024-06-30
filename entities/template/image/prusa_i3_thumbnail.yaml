@@ -1,0 +1,22 @@
+---
+url: >-
+  {% if states('binary_sensor.octoprint_printing') | bool %}
+    {% set ip = states('sensor.octopi_local_ip_address') %}
+    {%
+      set file = (
+        states('sensor.octoprint_print_file')
+        | string
+      ).removesuffix(".gcode")
+      | urlencode
+    %}
+    {% set ts = now() | as_timestamp | int %}
+    https://{{ ip }}/plugin/prusaslicerthumbnails/thumbnail/{{ file }}.png?{{ ts }}
+  {% else %}
+    /local/images/null.webp
+  {% endif %}
+
+name: Prusa i3 Thumbnail
+
+unique_id: prusa_i3_thumbnail
+
+icon: mdi:monitor-screenshot
