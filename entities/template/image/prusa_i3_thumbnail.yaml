@@ -1,4 +1,6 @@
 ---
+# https://plugins.octoprint.org/plugins/prusaslicerthumbnails/
+
 url: >-
   {% if states('binary_sensor.octoprint_printing') | bool %}
     {% set ip = states('sensor.octopi_local_ip_address') %}
