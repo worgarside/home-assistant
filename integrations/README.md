@@ -152,7 +152,7 @@ File: [`automation/cosmo/nightly_kitchen_clean.yaml`](entities/automation/cosmo/
 
 **Entity ID: `automation.cover_bedroom_blinds_close_after_sunset`**
 
-> Close the bedroom blinds either when the Sun sets past -6' or at 21:30
+> Close the bedroom blinds either when the Sun sets past -3' or at 21:30
 
 - Alias: /cover/bedroom-blinds/close-after-sunset
 - ID: `cover_bedroom_blinds_close_after_sunset`

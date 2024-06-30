@@ -7,7 +7,7 @@ max_exceeded: silent
 
 mode: single
 
-description: Close the bedroom blinds either when the Sun sets past -6' or at 21:30
+description: Close the bedroom blinds either when the Sun sets past -3' or at 21:30
 
 trigger:
   - platform: numeric_state
@@ -17,13 +17,11 @@ trigger:
   - platform: time
     at: "21:30:00"
 
-condition:
-  - condition: template
-    value_template: >
-      {{
-        trigger.platform == "time" or
-        trigger.from_state.state | float(default=999) != 999
-      }}
+condition: >-
+  {{
+    trigger.platform == "time" or
+    trigger.from_state.state | float(default=999) != 999
+  }}
 
 action:
   - wait_template: "{{ is_state('binary_sensor.bedroom_window', 'off') }}"
@@ -33,3 +31,10 @@ action:
   - service: cover.close_cover
     target:
       entity_id: cover.bedroom_blinds
+
+  - service: light.turn_on
+    target:
+      entity_id: light.moomin_box
+    data:
+      brightness_pct: 60
+      kelvin: 2000
