@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (121)</h3></summary>
+<details><summary><h3>Entities (125)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -591,6 +591,58 @@ File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](
 - Mode: `single`
 
 File: [`automation/homeassistant/load_gh_cli_on_start.yaml`](entities/automation/homeassistant/load_gh_cli_on_start.yaml)
+</details>
+
+<details><summary><code>/hue-remote/bedroom/button-1/long-press</code></summary>
+
+**Entity ID: `automation.hue_remote_bedroom_button_1_long_press`**
+
+> *No description provided*
+
+- Alias: /hue-remote/bedroom/button-1/long-press
+- ID: `hue_remote_bedroom_button_1_long_press`
+- Mode: `single`
+
+File: [`automation/hue_remote/bedroom/button_1/long_press.yaml`](entities/automation/hue_remote/bedroom/button_1/long_press.yaml)
+</details>
+
+<details><summary><code>/hue-remote/bedroom/button-1/press</code></summary>
+
+**Entity ID: `automation.hue_remote_bedroom_button_1_press`**
+
+> *No description provided*
+
+- Alias: /hue-remote/bedroom/button-1/press
+- ID: `hue_remote_bedroom_button_1_press`
+- Mode: `single`
+
+File: [`automation/hue_remote/bedroom/button_1/press.yaml`](entities/automation/hue_remote/bedroom/button_1/press.yaml)
+</details>
+
+<details><summary><code>/hue-remote/bedroom/button-4/long-press</code></summary>
+
+**Entity ID: `automation.hue_remote_bedroom_button_4_long_press`**
+
+> *No description provided*
+
+- Alias: /hue-remote/bedroom/button-4/long-press
+- ID: `hue_remote_bedroom_button_4_long_press`
+- Mode: `single`
+
+File: [`automation/hue_remote/bedroom/button_4/long_press.yaml`](entities/automation/hue_remote/bedroom/button_4/long_press.yaml)
+</details>
+
+<details><summary><code>/hue-remote/bedroom/button-4/press</code></summary>
+
+**Entity ID: `automation.hue_remote_bedroom_button_4_press`**
+
+> *No description provided*
+
+- Alias: /hue-remote/bedroom/button-4/press
+- ID: `hue_remote_bedroom_button_4_press`
+- Mode: `single`
+
+File: [`automation/hue_remote/bedroom/button_4/press.yaml`](entities/automation/hue_remote/bedroom/button_4/press.yaml)
 </details>
 
 <details><summary><code>/hue-remote/lounge/button-1/press</code></summary>
