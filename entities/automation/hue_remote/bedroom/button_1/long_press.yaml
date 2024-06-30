@@ -1,0 +1,27 @@
+---
+alias: /hue-remote/bedroom/button-1/long-press
+
+id: hue_remote_bedroom_button_1_long_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - device_id: e3f173c8f45e900d5fbb650b8631585c
+    domain: hue
+    platform: device
+    type: long_press
+    subtype: 1
+
+action:
+  - service: hue.activate_scene
+    target:
+      entity_id: scene.bedroom_gummy
+    data:
+      brightness: 255
+
+  - service: light.turn_on
+    target:
+      area_id: bedroom
+    brightness_pct: 100
