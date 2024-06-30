@@ -81,4 +81,4 @@ jobs:
             matrix.version == needs.get-current-version.outputs.version ||
             matrix.version == 'stable'
           ignore_error_log_pattern: >-
-            '/hue-remote/(lounge|office)/button-[0-9]/((long|short)-)?press'
+            '/hue-remote/(bedroom|kitchen|lounge|office)/button-[0-9]/((long|short)-)?press'
