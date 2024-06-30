@@ -1,0 +1,22 @@
+---
+alias: /hue-remote/bedroom/button-4/long-press
+
+id: hue_remote_bedroom_button_4_long_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - device_id: e3f173c8f45e900d5fbb650b8631585c
+    domain: hue
+    platform: device
+    type: long_press
+    subtype: 4
+
+action:
+  - service: script.turn_off_physical_room
+    data:
+      room: bedroom
+      close_blinds: true
+      close_blinds_with_open_window_after_delay: true
