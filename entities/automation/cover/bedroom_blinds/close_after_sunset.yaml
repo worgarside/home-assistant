@@ -32,9 +32,12 @@ action:
     target:
       entity_id: cover.bedroom_blinds
 
-  - service: light.turn_on
-    target:
-      entity_id: light.moomin_box
-    data:
-      brightness_pct: 60
-      kelvin: 2000
+  - if: "{{ states('zone.home') | int(0) > 0 }}"
+
+    then:
+      - service: light.turn_on
+        target:
+          entity_id: light.moomin_box
+        data:
+          brightness_pct: 60
+          kelvin: 2000
