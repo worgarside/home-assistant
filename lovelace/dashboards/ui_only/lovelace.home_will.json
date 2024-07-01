@@ -2952,13 +2952,6 @@
                       "primary_info": "state",
                       "secondary_info": "name"
                     }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "binary_sensor.octoprint_printing",
-                      "state": "on"
-                    }
                   ]
                 }
               ],
