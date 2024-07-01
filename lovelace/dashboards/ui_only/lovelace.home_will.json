@@ -2961,6 +2961,14 @@
                     }
                   ]
                 }
+              ],
+              "title": "Current Print",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.octoprint_printing",
+                  "state": "on"
+                }
               ]
             }
           ],
