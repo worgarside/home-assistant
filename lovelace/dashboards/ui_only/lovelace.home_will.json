@@ -2590,64 +2590,6 @@
                   "columns": 2
                 },
                 {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "visibility": [
-                        {
-                          "condition": "state",
-                          "entity": "sensor.octoprint_current_state",
-                          "state": "Printing"
-                        }
-                      ],
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.octoprint_approximate_completion_time",
-                          "icon_color": "purple",
-                          "name": "Estimated Finish Time",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.prusa_i3_filament_type",
-                          "icon_color": "red",
-                          "name": "Filament Type",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        }
-                      ],
-                      "columns": 2
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_print_file",
-                      "icon_color": "pink",
-                      "visibility": [
-                        {
-                          "condition": "state",
-                          "entity": "sensor.octoprint_approximate_completion_time",
-                          "state_not": "unavailable"
-                        }
-                      ],
-                      "name": "Current Print File",
-                      "icon": "mdi:file-cad",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "binary_sensor.octoprint_printing",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
                   "type": "custom:mushroom-chips-card",
                   "chips": [
                     {
@@ -2824,6 +2766,74 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "visibility": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.octoprint_current_state",
+                          "state": "Printing"
+                        }
+                      ],
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.octoprint_approximate_completion_time",
+                          "icon_color": "purple",
+                          "name": "Estimated Finish Time",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.prusa_i3_filament_type",
+                          "icon_color": "red",
+                          "name": "Filament Type",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ],
+                      "columns": 2
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.octoprint_print_file",
+                      "icon_color": "pink",
+                      "visibility": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.octoprint_approximate_completion_time",
+                          "state_not": "unavailable"
+                        }
+                      ],
+                      "name": "Current Print File",
+                      "icon": "mdi:file-cad",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ]
+                },
+                {
+                  "type": "picture",
+                  "image_entity": "image.prusa_i3_thumbnail"
+                }
+              ],
+              "title": "Current Print",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.octoprint_printing",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
                   "square": false,
                   "type": "grid",
                   "columns": 2,
@@ -2959,7 +2969,7 @@
               "title": "OctoPi System Monitor"
             }
           ],
-          "max_columns": 4,
+          "max_columns": 3,
           "cards": []
         },
         {
