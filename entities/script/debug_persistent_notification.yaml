@@ -7,14 +7,21 @@ fields:
   message:
     description: The notification's message body
     example: More detail about this thing
+    selector:
+      text:
+        multiline: true
 
   notification_title:
     description: The notification's title
     example: Something has happened!
+    selector:
+      text:
 
   notification_id:
     description: Optional ID for the persistent notification
     example: important_thing_happened
+    selector:
+      text:
 
 mode: parallel
 

@@ -10,6 +10,8 @@ fields:
     description: "Sync blinds with desk position"
     example: "false"
     required: false
+    selector:
+      boolean:
 
 sequence:
   - service: script.turn_on

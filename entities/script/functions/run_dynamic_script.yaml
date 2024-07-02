@@ -27,14 +27,21 @@ fields:
           }
         }
       ]
+    selector:
+      action:
 
   script_id:
     description: The name of the script to run
     required: false
+    selector:
+      entity:
+        domain: script
 
   suppress_debug_notifications:
     description: If true, the debug notification(s) will not be shown
     required: false
+    selector:
+      boolean:
 
 variables:
   suppress_debug_notifications: "{{ suppress_debug_notifications | default(false) }}"
