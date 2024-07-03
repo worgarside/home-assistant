@@ -181,6 +181,41 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-light-card",
+                      "entity": "light.hallway",
+                      "name": "Spotlights",
+                      "show_brightness_control": true,
+                      "layout": "horizontal"
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "binary_sensor.front_door"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.hallway_temperature"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.hallway_humidity"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "title": "Hallway"
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
                       "entity": "light.kitchen_spotlights",
                       "name": "Spotlights",
                       "show_brightness_control": true,
@@ -532,41 +567,6 @@
                 }
               ],
               "title": "Office"
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.hallway",
-                      "name": "Spotlights",
-                      "show_brightness_control": true,
-                      "layout": "horizontal"
-                    },
-                    {
-                      "type": "custom:mushroom-chips-card",
-                      "chips": [
-                        {
-                          "type": "entity",
-                          "entity": "binary_sensor.front_door"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.hallway_temperature"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.hallway_humidity"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "title": "Hallway"
             }
           ],
           "cards": []
