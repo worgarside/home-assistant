@@ -182,6 +182,19 @@
                   "name": "Spotlights",
                   "show_brightness_control": true,
                   "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "person.will"
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.time"
                 }
               ],
               "title": "Kitchen"
