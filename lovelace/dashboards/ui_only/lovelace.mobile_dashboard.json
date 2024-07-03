@@ -175,7 +175,13 @@
             },
             {
               "type": "grid",
-              "cards": [],
+              "cards": [
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.kitchen_spotlights",
+                  "name": "Spotlights"
+                }
+              ],
               "title": "Kitchen"
             },
             {
