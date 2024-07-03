@@ -3539,7 +3539,14 @@
           "title": "Will",
           "path": "will",
           "icon": "mdi:human-male",
-          "cards": []
+          "cards": [],
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": []
+            }
+          ]
         }
       ]
     }
