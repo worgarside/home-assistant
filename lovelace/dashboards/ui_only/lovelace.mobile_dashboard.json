@@ -179,7 +179,9 @@
                 {
                   "type": "custom:mushroom-light-card",
                   "entity": "light.kitchen_spotlights",
-                  "name": "Spotlights"
+                  "name": "Spotlights",
+                  "show_brightness_control": true,
+                  "layout": "horizontal"
                 }
               ],
               "title": "Kitchen"
