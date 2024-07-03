@@ -7,8 +7,10 @@ mode: parallel
 
 fields:
   lookup_value:
-    description: The value to look up
+    description: The value to look up (area or numeric ID)
     required: true
+    selector:
+      text:
 
 variables:
   result: >-

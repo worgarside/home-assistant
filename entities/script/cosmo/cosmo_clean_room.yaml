@@ -13,25 +13,46 @@ fields:
   room_name:
     description: The name of the room to clean
     required: true
+    selector:
+      area:
 
   doors_open_timeout:
     description: How long to wait for doors to be open (defaults to 120 minutes)
     required: false
+    default: 120
+    selector:
+      number:
+        min: 0
+        max: 100
+        unit_of_measurement: minutes
+        mode: slider
 
   repeats:
     description: How many times to repeat the clean (defaults to 3)
     required: false
+    default: 3
+    selector:
+      number:
+        min: 1
+        max: 3
+        mode: slider
 
   suction_level:
     description: The suction level to use (defaults to 2)
     required: false
+    default: 2
+    selector:
+      number:
+        min: 0
+        max: 3
+        mode: slider
 
 variables:
-  doors_open_timeout: "{{ doors_open_timeout | default(120) | int(120) }}"
+  doors_open_timeout: "{{ doors_open_timeout | int(120) }}"
 
-  repeats: "{{ max(min(repeats | default(3) | int(3), 3), 1) }}"
+  repeats: "{{ repeats | int(3) }}"
 
-  suction_level: "{{ max(min(suction_level | default(2) | int(2), 3), 0) }}"
+  suction_level: "{{ suction_level | int(2) }}"
 
   suction_level_str: "{{ ['quiet', 'standard', 'strong', 'turbo'][suction_level] }}"
 

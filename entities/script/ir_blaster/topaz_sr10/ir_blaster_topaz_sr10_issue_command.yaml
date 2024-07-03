@@ -8,6 +8,8 @@ fields:
   code:
     description: The IR code to send
     example: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC # yamllint disable-line rule:line-length
+    selector:
+      text:
 
   delay_ms:
     description: >-
@@ -15,9 +17,18 @@ fields:
       commands)
     example: "500"
     default: 500
+    selector:
+      number:
+        min: 0
+        max: 1000
+        unit_of_measurement: milliseconds
+        mode: slider
 
   extra_service_calls:
     description: A list of extra service calls to make after the IR command has been sent
+    required: false
+    selector:
+      action:
 
 variables:
   delay_ms: "{{ delay_ms | default(500) | int(500) }}"
