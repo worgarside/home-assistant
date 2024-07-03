@@ -161,6 +161,10 @@
                         {
                           "type": "entity",
                           "entity": "sensor.bedroom_humidity"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "binary_sensor.bedroom_door"
                         }
                       ]
                     }
