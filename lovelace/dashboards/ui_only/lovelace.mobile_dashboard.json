@@ -508,18 +508,25 @@
                       "toggle_power": true
                     },
                     {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.office_window",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "name": "Window",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "layout": "horizontal"
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "binary_sensor.office_door"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "binary_sensor.office_window"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.office_temperature"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.office_humidity"
+                        }
+                      ]
                     }
                   ]
                 }
