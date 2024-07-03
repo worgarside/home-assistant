@@ -9,6 +9,9 @@ fields:
   rooms:
     description: List of rooms to clean
     required: false
+    selector:
+      area:
+        multiple: true
 
 sequence:
   - variables:

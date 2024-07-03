@@ -11,6 +11,8 @@ fields:
   room:
     description: The room to send the request for
     required: true
+    selector:
+      area:
 
 sequence:
   - if:

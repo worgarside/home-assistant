@@ -9,6 +9,8 @@ fields:
     description: The room to turn off
     example: "office"
     required: true
+    selector:
+      area:
 
   extra_service_calls:
     name: Extra Service Calls
@@ -22,22 +24,30 @@ fields:
           "entity_id": "script.office_desk_sitting_mode"
         }
       ]
+    selector:
+      action:
 
   close_blinds:
     name: Close Blinds
     description: Whether to close the blinds
     required: false
+    selector:
+      boolean:
 
   close_blinds_window_delay:
     name: Close Blinds Window Delay
     description: The delay before closing the blinds if the window is open
     example: "00:01:00"
     required: false
+    selector:
+      time:
 
   close_blinds_with_open_window_after_delay:
     name: Close Blinds With Open Window After Delay
     description: Whether to close the blinds if the window is open after a delay
     required: false
+    selector:
+      boolean:
 
 sequence:
   - variables:

@@ -1,5 +1,9 @@
 ---
 validation:
+  extra_rules:
+    script:
+      - selector_is_required
+
   validate_domain_consumption:
     - automation
     - input_boolean
