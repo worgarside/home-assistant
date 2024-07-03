@@ -2503,6 +2503,35 @@
                         "state": false,
                         "legend": false
                       }
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.adguard_home_dns_queries_blocked_ratio",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "name": "Block Ratio"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.adguard_home_average_processing_speed",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "name": "Avg. Latency"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.adguard_home_dns_queries",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "name": "Queries"
+                        }
+                      ],
+                      "title": "AdGuard Home",
+                      "columns": 3
                     }
                   ]
                 }
