@@ -2505,6 +2505,13 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.adguard_home_dns_queries_blocked_ratio",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Block Ratio"
                 }
               ],
               "title": "Network Monitor"
