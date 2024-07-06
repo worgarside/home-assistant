@@ -2443,6 +2443,14 @@
                   "type": "vertical-stack",
                   "cards": [
                     {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.external_ip",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Public IP",
+                      "icon": "mdi:ip-outline"
+                    },
+                    {
                       "type": "horizontal-stack",
                       "cards": [
                         {
