@@ -3,10 +3,10 @@ force_update: false
 
 icon: mdi:console
 
-name: ClmtPi Boot Time
+name: FlmtPi Boot Time
 
-state_topic: /homeassistant/clmtpi/stats
+state_topic: /homeassistant/flmtpi/stats
 
-unique_id: clmtpi_boot_time
+unique_id: flmtpi_boot_time
 
 value_template: "{{ value_json.boot_time }}"

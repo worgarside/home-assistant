@@ -3,10 +3,10 @@ force_update: false
 
 icon: mdi:source-branch-sync
 
-name: ClmtPi Active Git Ref
+name: FlmtPi Active Git Ref
 
-state_topic: /homeassistant/clmtpi/stats
+state_topic: /homeassistant/flmtpi/stats
 
-unique_id: clmtpi_active_git_ref
+unique_id: flmtpi_active_git_ref
 
 value_template: "{{ value_json.active_git_ref }}"

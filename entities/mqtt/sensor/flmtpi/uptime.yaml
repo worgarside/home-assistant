@@ -3,13 +3,13 @@ force_update: false
 
 icon: mdi:timer-cog-outline
 
-name: ClmtPi Uptime
+name: FlmtPi Uptime
 
 state_class: measurement
 
-state_topic: /homeassistant/clmtpi/stats
+state_topic: /homeassistant/flmtpi/stats
 
-unique_id: clmtpi_uptime
+unique_id: flmtpi_uptime
 
 unit_of_measurement: s
 
