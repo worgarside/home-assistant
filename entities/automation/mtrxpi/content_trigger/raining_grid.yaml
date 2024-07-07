@@ -7,7 +7,7 @@ mode: queued
 
 trigger:
   - platform: state
-    entity_id: sensor.tomorrow_io_rain_intensity
+    entity_id: sensor.tomorrow_io_rain_intensity  # mm/hr
     to:
 
 variables:
@@ -19,8 +19,8 @@ action:
     target:
       entity_id: number.mtrxpi_raining_grid_rain_chance
     data:
-      # 10 mm/hr = 100% on Matrix
-      value: "{{ ( rain | float * 10 ) | round(3) }}"
+      # 20 mm/hr == 100% on Matrix
+      value: "{{ min(( rain | float * (100/20) ), 100) | round(2) }}"
 
   - choose:
       - alias: Queue content if it is not already running
