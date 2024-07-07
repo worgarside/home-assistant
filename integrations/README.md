@@ -1163,7 +1163,9 @@ File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation
 
 ```json
 {
-  "rain": "{{ trigger.to_state.state | float(0) }}"
+  "rain": "{{ trigger.to_state.state | float(0) }}",
+  "limit": "{{ states('input_number.mtrxpi_raining_grid_maximum_rain_intensity') | float(15) }}",
+  "rain_chance": "{{ ( rain | float * (100 / limit) ) | round(2) }}"
 }
 ```
 File: [`automation/mtrxpi/content_trigger/raining_grid.yaml`](entities/automation/mtrxpi/content_trigger/raining_grid.yaml)
@@ -2564,7 +2566,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (30)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2732,6 +2734,19 @@ File: [`input_number/crt_tv_fan_auto_on_threshold.yaml`](entities/input_number/c
 - Unit Of Measurement: %
 
 File: [`input_number/lounge_blinds_button_height.yaml`](entities/input_number/lounge_blinds_button_height.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Maximum Rain Intensity</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_raining_grid_maximum_rain_intensity`**
+
+- Icon: [`mdi:weather-pouring`](https://pictogrammers.com/library/mdi/icon/weather-pouring/)
+- Max: 1000
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: mm/hr
+
+File: [`input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml`](entities/input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml)
 </details>
 
 <details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
