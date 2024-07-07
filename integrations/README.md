@@ -3297,163 +3297,6 @@ File: [`mqtt/number/prusa_i3/target_bed_temperature.yaml`](entities/mqtt/number/
 File: [`mqtt/number/prusa_i3/target_hotend_temperature.yaml`](entities/mqtt/number/prusa_i3/target_hotend_temperature.yaml)
 </details>
 
-<details><summary><strong>ClmtPi Active Git Ref</strong></summary>
-
-**Entity ID: `sensor.clmtpi_active_git_ref`**
-
-- Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/active_git_ref.yaml`](entities/mqtt/sensor/clmtpi/active_git_ref.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Ambient Humidity</strong></summary>
-
-**Entity ID: `sensor.clmtpi_ambient_humidity`**
-
-- Icon: [`mdi:water-percent`](https://pictogrammers.com/library/mdi/icon/water-percent/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/dht22
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/clmtpi/ambient_humidity.yaml`](entities/mqtt/sensor/clmtpi/ambient_humidity.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Ambient Temperature</strong></summary>
-
-**Entity ID: `sensor.clmtpi_ambient_temperature`**
-
-- Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/dht22
-- Unit Of Measurement: °C
-
-File: [`mqtt/sensor/clmtpi/ambient_temperature.yaml`](entities/mqtt/sensor/clmtpi/ambient_temperature.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Average Load (15 min)</strong></summary>
-
-**Entity ID: `sensor.clmtpi_average_load_15_min`**
-
-- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/average_load_15_min.yaml`](entities/mqtt/sensor/clmtpi/average_load_15_min.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Average Load (1 min)</strong></summary>
-
-**Entity ID: `sensor.clmtpi_average_load_1_min`**
-
-- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/average_load_1_min.yaml`](entities/mqtt/sensor/clmtpi/average_load_1_min.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Average Load (5 min)</strong></summary>
-
-**Entity ID: `sensor.clmtpi_average_load_5_min`**
-
-- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/average_load_5_min.yaml`](entities/mqtt/sensor/clmtpi/average_load_5_min.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Boot Time</strong></summary>
-
-**Entity ID: `sensor.clmtpi_boot_time`**
-
-- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/boot_time.yaml`](entities/mqtt/sensor/clmtpi/boot_time.yaml)
-</details>
-
-<details><summary><strong>ClmtPi CPU Temperature</strong></summary>
-
-**Entity ID: `sensor.clmtpi_cpu_temperature`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-- Unit Of Measurement: °C
-
-File: [`mqtt/sensor/clmtpi/cpu_temperature.yaml`](entities/mqtt/sensor/clmtpi/cpu_temperature.yaml)
-</details>
-
-<details><summary><strong>ClmtPi CPU Usage</strong></summary>
-
-**Entity ID: `sensor.clmtpi_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/clmtpi/cpu_usage.yaml`](entities/mqtt/sensor/clmtpi/cpu_usage.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Disk Usage</strong></summary>
-
-**Entity ID: `sensor.clmtpi_disk_usage`**
-
-- Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/clmtpi/disk_usage.yaml`](entities/mqtt/sensor/clmtpi/disk_usage.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Local Git Ref</strong></summary>
-
-**Entity ID: `sensor.clmtpi_local_git_ref`**
-
-- Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/local_git_ref.yaml`](entities/mqtt/sensor/clmtpi/local_git_ref.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Local IP Address</strong></summary>
-
-**Entity ID: `sensor.clmtpi_local_ip_address`**
-
-- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/local_ip_address.yaml`](entities/mqtt/sensor/clmtpi/local_ip_address.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Memory Usage</strong></summary>
-
-**Entity ID: `sensor.clmtpi_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/clmtpi/memory_usage.yaml`](entities/mqtt/sensor/clmtpi/memory_usage.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Uptime</strong></summary>
-
-**Entity ID: `sensor.clmtpi_uptime`**
-
-- Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-- Unit Of Measurement: `s`
-
-File: [`mqtt/sensor/clmtpi/uptime.yaml`](entities/mqtt/sensor/clmtpi/uptime.yaml)
-</details>
-
 <details><summary><strong>CRT TV Internal Humidity</strong></summary>
 
 **Entity ID: `sensor.crt_tv_internal_humidity`**
@@ -3609,6 +3452,163 @@ File: [`mqtt/sensor/crtpi/memory_usage.yaml`](entities/mqtt/sensor/crtpi/memory_
 - Unit Of Measurement: `s`
 
 File: [`mqtt/sensor/crtpi/uptime.yaml`](entities/mqtt/sensor/crtpi/uptime.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Active Git Ref</strong></summary>
+
+**Entity ID: `sensor.flmtpi_active_git_ref`**
+
+- Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
+- State Topic: /homeassistant/flmtpi/stats
+
+File: [`mqtt/sensor/flmtpi/active_git_ref.yaml`](entities/mqtt/sensor/flmtpi/active_git_ref.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Ambient Humidity</strong></summary>
+
+**Entity ID: `sensor.flmtpi_ambient_humidity`**
+
+- Icon: [`mdi:water-percent`](https://pictogrammers.com/library/mdi/icon/water-percent/)
+- State Class: `measurement`
+- State Topic: /homeassistant/flmtpi/dht22
+- Unit Of Measurement: %
+
+File: [`mqtt/sensor/flmtpi/ambient_humidity.yaml`](entities/mqtt/sensor/flmtpi/ambient_humidity.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Ambient Temperature</strong></summary>
+
+**Entity ID: `sensor.flmtpi_ambient_temperature`**
+
+- Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
+- State Class: `measurement`
+- State Topic: /homeassistant/flmtpi/dht22
+- Unit Of Measurement: °C
+
+File: [`mqtt/sensor/flmtpi/ambient_temperature.yaml`](entities/mqtt/sensor/flmtpi/ambient_temperature.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Average Load (15 min)</strong></summary>
+
+**Entity ID: `sensor.flmtpi_average_load_15_min`**
+
+- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
+- State Class: `measurement`
+- State Topic: /homeassistant/flmtpi/stats
+
+File: [`mqtt/sensor/flmtpi/average_load_15_min.yaml`](entities/mqtt/sensor/flmtpi/average_load_15_min.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Average Load (1 min)</strong></summary>
+
+**Entity ID: `sensor.flmtpi_average_load_1_min`**
+
+- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
+- State Class: `measurement`
+- State Topic: /homeassistant/flmtpi/stats
+
+File: [`mqtt/sensor/flmtpi/average_load_1_min.yaml`](entities/mqtt/sensor/flmtpi/average_load_1_min.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Average Load (5 min)</strong></summary>
+
+**Entity ID: `sensor.flmtpi_average_load_5_min`**
+
+- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
+- State Class: `measurement`
+- State Topic: /homeassistant/flmtpi/stats
+
+File: [`mqtt/sensor/flmtpi/average_load_5_min.yaml`](entities/mqtt/sensor/flmtpi/average_load_5_min.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Boot Time</strong></summary>
+
+**Entity ID: `sensor.flmtpi_boot_time`**
+
+- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
+- State Topic: /homeassistant/flmtpi/stats
+
+File: [`mqtt/sensor/flmtpi/boot_time.yaml`](entities/mqtt/sensor/flmtpi/boot_time.yaml)
+</details>
+
+<details><summary><strong>FlmtPi CPU Temperature</strong></summary>
+
+**Entity ID: `sensor.flmtpi_cpu_temperature`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- State Class: `measurement`
+- State Topic: /homeassistant/flmtpi/stats
+- Unit Of Measurement: °C
+
+File: [`mqtt/sensor/flmtpi/cpu_temperature.yaml`](entities/mqtt/sensor/flmtpi/cpu_temperature.yaml)
+</details>
+
+<details><summary><strong>FlmtPi CPU Usage</strong></summary>
+
+**Entity ID: `sensor.flmtpi_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- State Class: `measurement`
+- State Topic: /homeassistant/flmtpi/stats
+- Unit Of Measurement: %
+
+File: [`mqtt/sensor/flmtpi/cpu_usage.yaml`](entities/mqtt/sensor/flmtpi/cpu_usage.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Disk Usage</strong></summary>
+
+**Entity ID: `sensor.flmtpi_disk_usage`**
+
+- Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
+- State Class: `measurement`
+- State Topic: /homeassistant/flmtpi/stats
+- Unit Of Measurement: %
+
+File: [`mqtt/sensor/flmtpi/disk_usage.yaml`](entities/mqtt/sensor/flmtpi/disk_usage.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Local Git Ref</strong></summary>
+
+**Entity ID: `sensor.flmtpi_local_git_ref`**
+
+- Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
+- State Topic: /homeassistant/flmtpi/stats
+
+File: [`mqtt/sensor/flmtpi/local_git_ref.yaml`](entities/mqtt/sensor/flmtpi/local_git_ref.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Local IP Address</strong></summary>
+
+**Entity ID: `sensor.flmtpi_local_ip_address`**
+
+- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
+- State Topic: /homeassistant/flmtpi/stats
+
+File: [`mqtt/sensor/flmtpi/local_ip_address.yaml`](entities/mqtt/sensor/flmtpi/local_ip_address.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Memory Usage</strong></summary>
+
+**Entity ID: `sensor.flmtpi_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- State Class: `measurement`
+- State Topic: /homeassistant/flmtpi/stats
+- Unit Of Measurement: %
+
+File: [`mqtt/sensor/flmtpi/memory_usage.yaml`](entities/mqtt/sensor/flmtpi/memory_usage.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Uptime</strong></summary>
+
+**Entity ID: `sensor.flmtpi_uptime`**
+
+- Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
+- State Class: `measurement`
+- State Topic: /homeassistant/flmtpi/stats
+- Unit Of Measurement: `s`
+
+File: [`mqtt/sensor/flmtpi/uptime.yaml`](entities/mqtt/sensor/flmtpi/uptime.yaml)
 </details>
 
 <details><summary><strong>GrowPi Active Git Ref</strong></summary>
@@ -5592,7 +5592,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (92)</h3></summary>
+<details><summary><h3>Entities (91)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -5669,15 +5669,6 @@ File: [`template/binary_sensor/office_desk_standing_mode.yaml`](entities/templat
 File: [`template/binary_sensor/quiet_hours.yaml`](entities/template/binary_sensor/quiet_hours.yaml)
 </details>
 
-<details><summary><strong>ClmtPi Online</strong></summary>
-
-**Entity ID: `binary_sensor.clmtpi_online`**
-
-- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
-
-File: [`template/binary_sensor/raspberry_pi_online/clmtpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/clmtpi_online.yaml)
-</details>
-
 <details><summary><strong>CRTPi Online</strong></summary>
 
 **Entity ID: `binary_sensor.crtpi_online`**
@@ -5685,6 +5676,15 @@ File: [`template/binary_sensor/raspberry_pi_online/clmtpi_online.yaml`](entities
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 
 File: [`template/binary_sensor/raspberry_pi_online/crtpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/crtpi_online.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Online</strong></summary>
+
+**Entity ID: `binary_sensor.flmtpi_online`**
+
+- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
+
+File: [`template/binary_sensor/raspberry_pi_online/flmtpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/flmtpi_online.yaml)
 </details>
 
 <details><summary><strong>GrowPi Online</strong></summary>
@@ -6203,13 +6203,6 @@ File: [`template/sensor/entity_counts/low_batteries.yaml`](entities/template/sen
 - Icon: [`mdi:lan-disconnect`](https://pictogrammers.com/library/mdi/icon/lan-disconnect/)
 
 File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/template/sensor/entity_counts/unavailable_entities.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Floorplan Icon</strong></summary>
-
-**Entity ID: `sensor.clmtpi_floorplan_icon`**
-
-File: [`template/sensor/floorplan_icons/clmtpi_floorplan_icon.yaml`](entities/template/sensor/floorplan_icons/clmtpi_floorplan_icon.yaml)
 </details>
 
 <details><summary><strong>HiFi System: Media Metadata</strong></summary>
