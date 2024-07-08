@@ -3227,7 +3227,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (100)</h3></summary>
+<details><summary><h3>Entities (101)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -4318,6 +4318,16 @@ File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memor
 - Unit Of Measurement: `s`
 
 File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml)
+</details>
+
+<details><summary><strong>FlmtPi Dehumidifier</strong></summary>
+
+**Entity ID: `mqtt.flmtpi_dehumidifier`**
+
+- Command Topic: /flmtpi/gpio/dehumidifier
+- State Topic: /flmtpi/gpio/dehumidifier
+
+File: [`mqtt/switch/flmtpi/dehumidifier.yaml`](entities/mqtt/switch/flmtpi/dehumidifier.yaml)
 </details>
 
 <details><summary><strong>OctoPi CPU Fan</strong></summary>
