@@ -3389,6 +3389,14 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-entity-card",
+                          "entity": "switch.flmtpi_dehumidifier",
+                          "icon_color": "light-blue",
+                          "name": "Dehumidifier",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
                           "entity": "sensor.flmtpi_ambient_humidity",
                           "icon_color": "green",
                           "name": "Humidity",
