@@ -18,7 +18,7 @@ repos:
           - --validate-all
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.0
+    rev: v0.5.1
     hooks:
       - id: ruff
         args:
@@ -87,7 +87,7 @@ repos:
         additional_dependencies:
           - types-paramiko
           - watchdog==4.0.1
-          - wg-utilities==5.15.3
+          - wg-utilities==5.15.4
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
   - repo: https://github.com/pre-commit/pygrep-hooks
