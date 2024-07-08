@@ -1,9 +1,16 @@
 ---
 force_update: true
+
 icon: mdi:thermometer
+
 name: FlmtPi Ambient Temperature
+
 state_class: measurement
+
 state_topic: /homeassistant/flmtpi/dht22
+
 unique_id: flmtpi_ambient_temperature
+
 unit_of_measurement: "°C"
-value_template: '{{ value_json.temperature }}'
+
+value_template: "{{ iif(0 < value_json.temperature | int(-999) < 100, value_json.humidity, None) }}"
