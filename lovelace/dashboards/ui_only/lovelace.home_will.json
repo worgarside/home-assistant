@@ -3376,6 +3376,82 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "entity",
+                  "entity": "switch.flmtpi_dehumidifier"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "grid",
+                      "columns": 2,
+                      "square": false,
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.flmtpi_ambient_humidity",
+                          "icon_color": "green",
+                          "name": "Humidity",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.flmtpi_ambient_temperature",
+                          "icon_color": "orange",
+                          "name": "Temperature",
+                          "icon": "mdi:thermometer-lines",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "6 Hour History",
+                      "entities": [
+                        {
+                          "entity": "sensor.flmtpi_ambient_humidity",
+                          "name": "Humidity",
+                          "color": "#4DAF50"
+                        },
+                        {
+                          "entity": "sensor.flmtpi_ambient_temperature",
+                          "name": "Temperature",
+                          "color": "#FF9901",
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "show": {
+                        "state": false,
+                        "legend": false,
+                        "fill": "fade",
+                        "name": true,
+                        "icon": false,
+                        "labels": true,
+                        "labels_secondary": true,
+                        "unit": true
+                      },
+                      "hours_to_show": 6,
+                      "points_per_hour": 60,
+                      "lower_bound": 40,
+                      "upper_bound": "~70",
+                      "lower_bound_secondary": 0,
+                      "upper_bound_secondary": "~60",
+                      "height": 150,
+                      "animate": true,
+                      "hour24": true,
+                      "line_width": 2
+                    }
+                  ]
+                }
+              ],
+              "title": "Filament Dry Box"
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
                   "square": false,
                   "type": "grid",
                   "columns": 2,
@@ -3500,82 +3576,6 @@
                 }
               ],
               "title": "FlmtPi System Monitor"
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "entity",
-                  "entity": "switch.flmtpi_dehumidifier"
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "grid",
-                      "columns": 2,
-                      "square": false,
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.flmtpi_ambient_humidity",
-                          "icon_color": "green",
-                          "name": "Humidity",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.flmtpi_ambient_temperature",
-                          "icon_color": "orange",
-                          "name": "Temperature",
-                          "icon": "mdi:thermometer-lines",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "6 Hour History",
-                      "entities": [
-                        {
-                          "entity": "sensor.flmtpi_ambient_humidity",
-                          "name": "Humidity",
-                          "color": "#4DAF50"
-                        },
-                        {
-                          "entity": "sensor.flmtpi_ambient_temperature",
-                          "name": "Temperature",
-                          "color": "#FF9901",
-                          "y_axis": "secondary"
-                        }
-                      ],
-                      "show": {
-                        "state": false,
-                        "legend": false,
-                        "fill": "fade",
-                        "name": true,
-                        "icon": false,
-                        "labels": true,
-                        "labels_secondary": true,
-                        "unit": true
-                      },
-                      "hours_to_show": 6,
-                      "points_per_hour": 60,
-                      "lower_bound": 40,
-                      "upper_bound": "~70",
-                      "lower_bound_secondary": 0,
-                      "upper_bound_secondary": "~60",
-                      "height": 150,
-                      "animate": true,
-                      "hour24": true,
-                      "line_width": 2
-                    }
-                  ]
-                }
-              ],
-              "title": "Filament Dry Box"
             }
           ],
           "cards": []
