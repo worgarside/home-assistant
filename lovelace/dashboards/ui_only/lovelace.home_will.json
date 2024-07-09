@@ -2152,6 +2152,130 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.external_ip",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Public IP",
+                      "icon": "mdi:ip-outline"
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "entity": "sensor.speedtest_download",
+                          "type": "custom:mushroom-entity-card",
+                          "name": "Download",
+                          "icon_color": "green",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "entity": "sensor.speedtest_upload",
+                          "type": "custom:mushroom-entity-card",
+                          "name": "Upload",
+                          "icon_color": "pink",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "entity": "sensor.speedtest_ping",
+                          "type": "custom:mushroom-entity-card",
+                          "name": "Ping",
+                          "icon_color": "yellow",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "entities": [
+                        {
+                          "entity": "sensor.speedtest_download",
+                          "name": "Download",
+                          "color": "var(--green-color)"
+                        },
+                        {
+                          "entity": "sensor.speedtest_upload",
+                          "name": "Upload",
+                          "color": "var(--pink-color)"
+                        },
+                        {
+                          "entity": "sensor.speedtest_ping",
+                          "name": "Ping",
+                          "color": "var(--yellow-color)",
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "hours_to_show": 24,
+                      "points_per_hour": 2,
+                      "line_width": 2,
+                      "animate": true,
+                      "show": {
+                        "labels": false,
+                        "fill": "fade",
+                        "name": false,
+                        "icon": false,
+                        "state": false,
+                        "legend": false
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "AdGuard Home"
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "switch.adguard_home_protection",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "name": "AdGuard Active",
+                          "icon_color": "light-grey"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.adguard_home_dns_queries_blocked_ratio",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "name": "Block Ratio",
+                          "icon_color": "grey"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.adguard_home_average_processing_speed",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "name": "Avg. Latency",
+                          "icon_color": "dark-grey"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.adguard_home_dns_queries",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "name": "Queries",
+                          "icon_color": "blue-grey"
+                        }
+                      ],
+                      "columns": 2
+                    }
+                  ]
+                }
+              ],
+              "title": "Network Monitor"
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
                   "square": false,
                   "type": "grid",
                   "columns": 2,
@@ -2445,130 +2569,6 @@
                 }
               ],
               "title": "HAssPi System Monitor"
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.external_ip",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "name": "Public IP",
-                      "icon": "mdi:ip-outline"
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "entity": "sensor.speedtest_download",
-                          "type": "custom:mushroom-entity-card",
-                          "name": "Download",
-                          "icon_color": "green",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        },
-                        {
-                          "entity": "sensor.speedtest_upload",
-                          "type": "custom:mushroom-entity-card",
-                          "name": "Upload",
-                          "icon_color": "pink",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        },
-                        {
-                          "entity": "sensor.speedtest_ping",
-                          "type": "custom:mushroom-entity-card",
-                          "name": "Ping",
-                          "icon_color": "yellow",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "entities": [
-                        {
-                          "entity": "sensor.speedtest_download",
-                          "name": "Download",
-                          "color": "var(--green-color)"
-                        },
-                        {
-                          "entity": "sensor.speedtest_upload",
-                          "name": "Upload",
-                          "color": "var(--pink-color)"
-                        },
-                        {
-                          "entity": "sensor.speedtest_ping",
-                          "name": "Ping",
-                          "color": "var(--yellow-color)",
-                          "y_axis": "secondary"
-                        }
-                      ],
-                      "hours_to_show": 24,
-                      "points_per_hour": 2,
-                      "line_width": 2,
-                      "animate": true,
-                      "show": {
-                        "labels": false,
-                        "fill": "fade",
-                        "name": false,
-                        "icon": false,
-                        "state": false,
-                        "legend": false
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "AdGuard Home"
-                    },
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "switch.adguard_home_protection",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "name": "AdGuard Active",
-                          "icon_color": "light-grey"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.adguard_home_dns_queries_blocked_ratio",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "name": "Block Ratio",
-                          "icon_color": "grey"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.adguard_home_average_processing_speed",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "name": "Avg. Latency",
-                          "icon_color": "dark-grey"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.adguard_home_dns_queries",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "name": "Queries",
-                          "icon_color": "blue-grey"
-                        }
-                      ],
-                      "columns": 2
-                    }
-                  ]
-                }
-              ],
-              "title": "Network Monitor"
             }
           ],
           "max_columns": 4,
