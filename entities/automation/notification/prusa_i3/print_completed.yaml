@@ -1,0 +1,23 @@
+---
+alias: /notification/prusa-i3/print-completed
+
+id: notification_prusa_i3_print_completed
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: sensor.octoprint_last_event
+    to: PrintDone
+
+action:
+  - service: script.notify_will
+    data:
+      title: "Prusa i3: Print Complete!"
+      message: "{{ states('sensor.octoprint_print_file') }} is complete."
+      notification_id: prusa_i3_complete_{{ states('sensor.octoprint_print_file') }}
+      mobile_notification_icon: mdi:printer-3d
+      url: /home-will/makerspace
+      group: prusa-i3
