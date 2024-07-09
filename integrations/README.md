@@ -4263,9 +4263,9 @@ File: [`script/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/script/appda
 
 ```json
 {
-  "doors_open_timeout": "{{ doors_open_timeout | int(120) }}",
-  "repeats": "{{ repeats | int(3) }}",
-  "suction_level": "{{ suction_level | int(2) }}",
+  "doors_open_timeout": "{{ doors_open_timeout | default(120) | int(120) }}",
+  "repeats": "{{ repeats | default(3) | int(3) }}",
+  "suction_level": "{{ suction_level | default(2) | int(2) }}",
   "suction_level_str": "{{ ['quiet', 'standard', 'strong', 'turbo'][suction_level] }}",
   "true_response": {
     "value": true
