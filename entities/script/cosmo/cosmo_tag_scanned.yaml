@@ -10,11 +10,17 @@ fields:
     description: The room name to use for the ID lookup and in in the TTS message
     example: bedroom
     required: true
+    selector:
+      area:
 
   tts_entity_id:
     description: The entity ID of the TTS device to use
     example: media_player.bedroom_nest_mini
     required: true
+    selector:
+      entity:
+        filter:
+          domain: media_player
 
 sequence:
   - alias: Get Room ID

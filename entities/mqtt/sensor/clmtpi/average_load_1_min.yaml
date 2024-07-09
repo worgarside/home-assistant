@@ -1,9 +1,0 @@
----
-force_update: true
-icon: mdi:weight
-name: ClmtPi Average Load (1 min)
-state_class: measurement
-state_topic: /homeassistant/clmtpi/stats
-unique_id: clmtpi_average_load_1_min
-unit_of_measurement: ""
-value_template: "{{ value_json.load_1m }}"

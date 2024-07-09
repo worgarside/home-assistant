@@ -9,6 +9,8 @@ fields:
   update_remote_branches:
     description: Update the remote branches sensor
     required: false
+    selector:
+      boolean:
 
 sequence:
   - alias: Update `sensor.remote_git_branches`

@@ -9,14 +9,19 @@ fields:
   script_name:
     description: Name of the script to run
     required: true
+    selector:
+      entity:
+        domain: script
 
   script_args:
     description: Arguments to pass to the script (object)
     required: false
+    selector:
+      action:
 
 sequence:
   - alias: Run script
-    service: script.{{ script_name }}
+    service: "{{ script_name }}"
     data: "{{ script_args }}"
     response_variable: script_response
 

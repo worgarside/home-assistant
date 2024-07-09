@@ -1,9 +1,0 @@
----
-force_update: true
-icon: mdi:thermometer
-name: ClmtPi Ambient Temperature
-state_class: measurement
-state_topic: /homeassistant/clmtpi/dht22
-unique_id: clmtpi_ambient_temperature
-unit_of_measurement: "°C"
-value_template: '{{ value_json.temperature }}'

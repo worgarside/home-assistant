@@ -1163,7 +1163,9 @@ File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation
 
 ```json
 {
-  "rain": "{{ trigger.to_state.state | float(0) }}"
+  "rain": "{{ trigger.to_state.state | float(0) }}",
+  "limit": "{{ states('input_number.mtrxpi_raining_grid_maximum_rain_intensity') | float(15) }}",
+  "rain_chance": "{{ ( rain | float * (100 / limit) ) | round(2) }}"
 }
 ```
 File: [`automation/mtrxpi/content_trigger/raining_grid.yaml`](entities/automation/mtrxpi/content_trigger/raining_grid.yaml)
@@ -2577,7 +2579,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (30)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2745,6 +2747,19 @@ File: [`input_number/crt_tv_fan_auto_on_threshold.yaml`](entities/input_number/c
 - Unit Of Measurement: %
 
 File: [`input_number/lounge_blinds_button_height.yaml`](entities/input_number/lounge_blinds_button_height.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Maximum Rain Intensity</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_raining_grid_maximum_rain_intensity`**
+
+- Icon: [`mdi:weather-pouring`](https://pictogrammers.com/library/mdi/icon/weather-pouring/)
+- Max: 1000
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: mm/hr
+
+File: [`input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml`](entities/input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml)
 </details>
 
 <details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
@@ -3225,7 +3240,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (100)</h3></summary>
+<details><summary><h3>Entities (86)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -3293,163 +3308,6 @@ File: [`mqtt/number/prusa_i3/target_bed_temperature.yaml`](entities/mqtt/number/
 - Unit Of Measurement: °C
 
 File: [`mqtt/number/prusa_i3/target_hotend_temperature.yaml`](entities/mqtt/number/prusa_i3/target_hotend_temperature.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Active Git Ref</strong></summary>
-
-**Entity ID: `sensor.clmtpi_active_git_ref`**
-
-- Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/active_git_ref.yaml`](entities/mqtt/sensor/clmtpi/active_git_ref.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Ambient Humidity</strong></summary>
-
-**Entity ID: `sensor.clmtpi_ambient_humidity`**
-
-- Icon: [`mdi:water-percent`](https://pictogrammers.com/library/mdi/icon/water-percent/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/dht22
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/clmtpi/ambient_humidity.yaml`](entities/mqtt/sensor/clmtpi/ambient_humidity.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Ambient Temperature</strong></summary>
-
-**Entity ID: `sensor.clmtpi_ambient_temperature`**
-
-- Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/dht22
-- Unit Of Measurement: °C
-
-File: [`mqtt/sensor/clmtpi/ambient_temperature.yaml`](entities/mqtt/sensor/clmtpi/ambient_temperature.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Average Load (15 min)</strong></summary>
-
-**Entity ID: `sensor.clmtpi_average_load_15_min`**
-
-- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/average_load_15_min.yaml`](entities/mqtt/sensor/clmtpi/average_load_15_min.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Average Load (1 min)</strong></summary>
-
-**Entity ID: `sensor.clmtpi_average_load_1_min`**
-
-- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/average_load_1_min.yaml`](entities/mqtt/sensor/clmtpi/average_load_1_min.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Average Load (5 min)</strong></summary>
-
-**Entity ID: `sensor.clmtpi_average_load_5_min`**
-
-- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/average_load_5_min.yaml`](entities/mqtt/sensor/clmtpi/average_load_5_min.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Boot Time</strong></summary>
-
-**Entity ID: `sensor.clmtpi_boot_time`**
-
-- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/boot_time.yaml`](entities/mqtt/sensor/clmtpi/boot_time.yaml)
-</details>
-
-<details><summary><strong>ClmtPi CPU Temperature</strong></summary>
-
-**Entity ID: `sensor.clmtpi_cpu_temperature`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-- Unit Of Measurement: °C
-
-File: [`mqtt/sensor/clmtpi/cpu_temperature.yaml`](entities/mqtt/sensor/clmtpi/cpu_temperature.yaml)
-</details>
-
-<details><summary><strong>ClmtPi CPU Usage</strong></summary>
-
-**Entity ID: `sensor.clmtpi_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/clmtpi/cpu_usage.yaml`](entities/mqtt/sensor/clmtpi/cpu_usage.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Disk Usage</strong></summary>
-
-**Entity ID: `sensor.clmtpi_disk_usage`**
-
-- Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/clmtpi/disk_usage.yaml`](entities/mqtt/sensor/clmtpi/disk_usage.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Local Git Ref</strong></summary>
-
-**Entity ID: `sensor.clmtpi_local_git_ref`**
-
-- Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/local_git_ref.yaml`](entities/mqtt/sensor/clmtpi/local_git_ref.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Local IP Address</strong></summary>
-
-**Entity ID: `sensor.clmtpi_local_ip_address`**
-
-- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
-- State Topic: /homeassistant/clmtpi/stats
-
-File: [`mqtt/sensor/clmtpi/local_ip_address.yaml`](entities/mqtt/sensor/clmtpi/local_ip_address.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Memory Usage</strong></summary>
-
-**Entity ID: `sensor.clmtpi_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/clmtpi/memory_usage.yaml`](entities/mqtt/sensor/clmtpi/memory_usage.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Uptime</strong></summary>
-
-**Entity ID: `sensor.clmtpi_uptime`**
-
-- Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
-- State Class: `measurement`
-- State Topic: /homeassistant/clmtpi/stats
-- Unit Of Measurement: `s`
-
-File: [`mqtt/sensor/clmtpi/uptime.yaml`](entities/mqtt/sensor/clmtpi/uptime.yaml)
 </details>
 
 <details><summary><strong>CRT TV Internal Humidity</strong></summary>
@@ -4368,19 +4226,47 @@ File: [`script/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/script/appda
 {
   "room_name": {
     "description": "The name of the room to clean",
-    "required": true
+    "required": true,
+    "selector": {
+      "area": null
+    }
   },
   "doors_open_timeout": {
     "description": "How long to wait for doors to be open (defaults to 120 minutes)",
-    "required": false
+    "required": false,
+    "default": 120,
+    "selector": {
+      "number": {
+        "min": 0,
+        "max": 100,
+        "unit_of_measurement": "minutes",
+        "mode": "slider"
+      }
+    }
   },
   "repeats": {
     "description": "How many times to repeat the clean (defaults to 3)",
-    "required": false
+    "required": false,
+    "default": 3,
+    "selector": {
+      "number": {
+        "min": 1,
+        "max": 3,
+        "mode": "slider"
+      }
+    }
   },
   "suction_level": {
     "description": "The suction level to use (defaults to 2)",
-    "required": false
+    "required": false,
+    "default": 2,
+    "selector": {
+      "number": {
+        "min": 0,
+        "max": 3,
+        "mode": "slider"
+      }
+    }
   }
 }
 ```
@@ -4391,8 +4277,8 @@ File: [`script/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/script/appda
 ```json
 {
   "doors_open_timeout": "{{ doors_open_timeout | default(120) | int(120) }}",
-  "repeats": "{{ max(min(repeats | default(3) | int(3), 3), 1) }}",
-  "suction_level": "{{ max(min(suction_level | default(2) | int(2), 3), 0) }}",
+  "repeats": "{{ repeats | default(3) | int(3) }}",
+  "suction_level": "{{ suction_level | default(2) | int(2) }}",
   "suction_level_str": "{{ ['quiet', 'standard', 'strong', 'turbo'][suction_level] }}",
   "true_response": {
     "value": true
@@ -4416,8 +4302,11 @@ File: [`script/cosmo/cosmo_clean_room.yaml`](entities/script/cosmo/cosmo_clean_r
 ```json
 {
   "lookup_value": {
-    "description": "The value to look up",
-    "required": true
+    "description": "The value to look up (area or numeric ID)",
+    "required": true,
+    "selector": {
+      "text": null
+    }
   }
 }
 ```
@@ -4445,7 +4334,10 @@ File: [`script/cosmo/cosmo_get_room_id_or_name.yaml`](entities/script/cosmo/cosm
 {
   "room": {
     "description": "The room to send the request for",
-    "required": true
+    "required": true,
+    "selector": {
+      "area": null
+    }
   }
 }
 ```
@@ -4467,7 +4359,12 @@ File: [`script/cosmo/cosmo_send_clean_requests.yaml`](entities/script/cosmo/cosm
 {
   "rooms": {
     "description": "List of rooms to clean",
-    "required": false
+    "required": false,
+    "selector": {
+      "area": {
+        "multiple": true
+      }
+    }
   }
 }
 ```
@@ -4490,12 +4387,22 @@ File: [`script/cosmo/cosmo_set_cleaning_sequence.yaml`](entities/script/cosmo/co
   "room_name": {
     "description": "The room name to use for the ID lookup and in in the TTS message",
     "example": "bedroom",
-    "required": true
+    "required": true,
+    "selector": {
+      "area": null
+    }
   },
   "tts_entity_id": {
     "description": "The entity ID of the TTS device to use",
     "example": "media_player.bedroom_nest_mini",
-    "required": true
+    "required": true,
+    "selector": {
+      "entity": {
+        "filter": {
+          "domain": "media_player"
+        }
+      }
+    }
   }
 }
 ```
@@ -4528,15 +4435,26 @@ File: [`script/crt_pi_update_display.yaml`](entities/script/crt_pi_update_displa
 {
   "message": {
     "description": "The notification's message body",
-    "example": "More detail about this thing"
+    "example": "More detail about this thing",
+    "selector": {
+      "text": {
+        "multiline": true
+      }
+    }
   },
   "notification_title": {
     "description": "The notification's title",
-    "example": "Something has happened!"
+    "example": "Something has happened!",
+    "selector": {
+      "text": null
+    }
   },
   "notification_id": {
     "description": "Optional ID for the persistent notification",
-    "example": "important_thing_happened"
+    "example": "important_thing_happened",
+    "selector": {
+      "text": null
+    }
   }
 }
 ```
@@ -4558,11 +4476,19 @@ File: [`script/debug_persistent_notification.yaml`](entities/script/debug_persis
 {
   "calling_entity": {
     "description": "The entity that called this service",
-    "required": true
+    "required": true,
+    "selector": {
+      "entity": null
+    }
   },
   "message": {
     "description": "The message to be logged",
-    "required": true
+    "required": true,
+    "selector": {
+      "text": {
+        "multiline": true
+      }
+    }
   }
 }
 ```
@@ -4593,15 +4519,26 @@ File: [`script/functions/log_exception.yaml`](entities/script/functions/log_exce
   "actions": {
     "description": "A list of services/actions to run",
     "required": true,
-    "example": "[\n  {\n    \"service\": \"script.turn_on\",\n    \"target\": {\n      \"entity_id\": \"script.debug_persistent_notification\"\n    },\n    \"data\": {}\n  },\n  {\n    \"service\": \"persistent_notification.create\",\n    \"target\": {},\n    \"data\": {\n      \"notification_title\": \"Sitting mode activated\",\n      \"message\": \"The office desk is now in sitting mode\",\n    }\n  }\n]\n"
+    "example": "[\n  {\n    \"service\": \"script.turn_on\",\n    \"target\": {\n      \"entity_id\": \"script.debug_persistent_notification\"\n    },\n    \"data\": {}\n  },\n  {\n    \"service\": \"persistent_notification.create\",\n    \"target\": {},\n    \"data\": {\n      \"notification_title\": \"Sitting mode activated\",\n      \"message\": \"The office desk is now in sitting mode\",\n    }\n  }\n]\n",
+    "selector": {
+      "action": null
+    }
   },
   "script_id": {
     "description": "The name of the script to run",
-    "required": false
+    "required": false,
+    "selector": {
+      "entity": {
+        "domain": "script"
+      }
+    }
   },
   "suppress_debug_notifications": {
     "description": "If true, the debug notification(s) will not be shown",
-    "required": false
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
   }
 }
 ```
@@ -4629,7 +4566,10 @@ File: [`script/functions/run_dynamic_script.yaml`](entities/script/functions/run
 {
   "update_remote_branches": {
     "description": "Update the remote branches sensor",
-    "required": false
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
   }
 }
 ```
@@ -4651,15 +4591,30 @@ File: [`script/input_select/target_git_branch/target_git_branch_set_options.yaml
 {
   "code": {
     "description": "The IR code to send",
-    "example": "BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC"
+    "example": "BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC",
+    "selector": {
+      "text": null
+    }
   },
   "delay_ms": {
     "description": "The delay in milliseconds to wait at the end of the script (ensures no overlap with other commands)",
     "example": "500",
-    "default": 500
+    "default": 500,
+    "selector": {
+      "number": {
+        "min": 0,
+        "max": 1000,
+        "unit_of_measurement": "milliseconds",
+        "mode": "slider"
+      }
+    }
   },
   "extra_service_calls": {
-    "description": "A list of extra service calls to make after the IR command has been sent"
+    "description": "A list of extra service calls to make after the IR command has been sent",
+    "required": false,
+    "selector": {
+      "action": null
+    }
   }
 }
 ```
@@ -4730,7 +4685,16 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_turn_off.yaml`](entities/scrip
 {
   "volume_level": {
     "description": "The volume level to set the Topaz SR10 to; 0.0 - 1.0",
-    "required": true
+    "required": true,
+    "example": "0.5",
+    "selector": {
+      "number": {
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "unit_of_measurement": "%"
+      }
+    }
   }
 }
 ```
@@ -5043,7 +5007,10 @@ File: [`script/office_desk_set_position.yaml`](entities/script/office_desk_set_p
   "sync_blinds": {
     "description": "Sync blinds with desk position",
     "example": "false",
-    "required": false
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
   }
 }
 ```
@@ -5066,7 +5033,10 @@ File: [`script/office_desk_sitting_mode.yaml`](entities/script/office_desk_sitti
   "sync_blinds": {
     "description": "Sync blinds with desk position",
     "example": "false",
-    "required": false
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
   }
 }
 ```
@@ -5220,11 +5190,19 @@ File: [`script/system/reset_restart_required_files_changed.yaml`](entities/scrip
 {
   "script_name": {
     "description": "Name of the script to run",
-    "required": true
+    "required": true,
+    "selector": {
+      "entity": {
+        "domain": "script"
+      }
+    }
   },
   "script_args": {
     "description": "Arguments to pass to the script (object)",
-    "required": false
+    "required": false,
+    "selector": {
+      "action": null
+    }
   }
 }
 ```
@@ -5248,30 +5226,45 @@ File: [`script/system/script_response_debugger.yaml`](entities/script/system/scr
     "name": "Room",
     "description": "The room to turn off",
     "example": "office",
-    "required": true
+    "required": true,
+    "selector": {
+      "area": null
+    }
   },
   "extra_service_calls": {
     "name": "Extra Service Calls",
     "description": "Extra services to call (default service is `homeassistant.turn_off`)",
     "default": [],
     "required": false,
-    "example": "[\n  {\n    \"service_call\": \"script.turn_on\",\n    \"entity_id\": \"script.office_desk_sitting_mode\"\n  }\n]\n"
+    "example": "[\n  {\n    \"service_call\": \"script.turn_on\",\n    \"entity_id\": \"script.office_desk_sitting_mode\"\n  }\n]\n",
+    "selector": {
+      "action": null
+    }
   },
   "close_blinds": {
     "name": "Close Blinds",
     "description": "Whether to close the blinds",
-    "required": false
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
   },
   "close_blinds_window_delay": {
     "name": "Close Blinds Window Delay",
     "description": "The delay before closing the blinds if the window is open",
     "example": "00:01:00",
-    "required": false
+    "required": false,
+    "selector": {
+      "time": null
+    }
   },
   "close_blinds_with_open_window_after_delay": {
     "name": "Close Blinds With Open Window After Delay",
     "description": "Whether to close the blinds if the window is open after a delay",
-    "required": false
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
   }
 }
 ```
@@ -5455,7 +5448,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (92)</h3></summary>
+<details><summary><h3>Entities (90)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -5530,15 +5523,6 @@ File: [`template/binary_sensor/office_desk_standing_mode.yaml`](entities/templat
 **Entity ID: `binary_sensor.quiet_hours`**
 
 File: [`template/binary_sensor/quiet_hours.yaml`](entities/template/binary_sensor/quiet_hours.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Online</strong></summary>
-
-**Entity ID: `binary_sensor.clmtpi_online`**
-
-- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
-
-File: [`template/binary_sensor/raspberry_pi_online/clmtpi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/clmtpi_online.yaml)
 </details>
 
 <details><summary><strong>CRTPi Online</strong></summary>
@@ -6066,13 +6050,6 @@ File: [`template/sensor/entity_counts/low_batteries.yaml`](entities/template/sen
 - Icon: [`mdi:lan-disconnect`](https://pictogrammers.com/library/mdi/icon/lan-disconnect/)
 
 File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/template/sensor/entity_counts/unavailable_entities.yaml)
-</details>
-
-<details><summary><strong>ClmtPi Floorplan Icon</strong></summary>
-
-**Entity ID: `sensor.clmtpi_floorplan_icon`**
-
-File: [`template/sensor/floorplan_icons/clmtpi_floorplan_icon.yaml`](entities/template/sensor/floorplan_icons/clmtpi_floorplan_icon.yaml)
 </details>
 
 <details><summary><strong>HiFi System: Media Metadata</strong></summary>

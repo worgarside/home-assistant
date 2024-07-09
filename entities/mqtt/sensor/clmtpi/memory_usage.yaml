@@ -1,9 +1,0 @@
----
-force_update: true
-icon: mdi:memory
-name: ClmtPi Memory Usage
-state_class: measurement
-state_topic: /homeassistant/clmtpi/stats
-unique_id: clmtpi_memory_usage
-unit_of_measurement: '%'
-value_template: '{{ value_json.memory_usage }}'
