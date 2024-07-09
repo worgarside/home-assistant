@@ -2828,17 +2828,17 @@
               "cards": [
                 {
                   "type": "vertical-stack",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.octoprint_approximate_completion_time",
+                      "state_not": "unavailable"
+                    }
+                  ],
                   "cards": [
                     {
                       "square": false,
                       "type": "grid",
-                      "visibility": [
-                        {
-                          "condition": "state",
-                          "entity": "sensor.octoprint_current_state",
-                          "state": "Printing"
-                        }
-                      ],
                       "cards": [
                         {
                           "type": "custom:mushroom-entity-card",
@@ -2863,13 +2863,6 @@
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_print_file",
                       "icon_color": "pink",
-                      "visibility": [
-                        {
-                          "condition": "state",
-                          "entity": "sensor.octoprint_approximate_completion_time",
-                          "state_not": "unavailable"
-                        }
-                      ],
                       "name": "Current Print File",
                       "icon": "mdi:file-cad",
                       "primary_info": "state",
@@ -3028,6 +3021,86 @@
                 }
               ],
               "title": "OctoPi System Monitor"
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "switch.dry_box_dehumidifier",
+                      "icon_color": "light-blue",
+                      "name": "Dehumidifier",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "grid",
+                      "columns": 2,
+                      "square": false,
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.dry_box_humidity",
+                          "icon_color": "green",
+                          "name": "Humidity",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.dry_box_temperature",
+                          "icon_color": "orange",
+                          "name": "Temperature",
+                          "icon": "mdi:thermometer-lines",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "6 Hour History",
+                      "entities": [
+                        {
+                          "entity": "sensor.dry_box_humidity",
+                          "name": "Humidity",
+                          "color": "#4DAF50"
+                        },
+                        {
+                          "entity": "sensor.dry_box_temperature",
+                          "name": "Temperature",
+                          "color": "#FF9901",
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "show": {
+                        "state": false,
+                        "legend": false,
+                        "fill": "fade",
+                        "name": true,
+                        "icon": false,
+                        "labels": true,
+                        "labels_secondary": true,
+                        "unit": true
+                      },
+                      "hours_to_show": 6,
+                      "points_per_hour": 60,
+                      "lower_bound": "~30",
+                      "upper_bound": "~50",
+                      "lower_bound_secondary": "~20",
+                      "upper_bound_secondary": "~40",
+                      "height": 150,
+                      "animate": true,
+                      "hour24": true,
+                      "line_width": 2
+                    }
+                  ]
+                }
+              ],
+              "title": "Filament Dry Box"
             }
           ],
           "max_columns": 3,
@@ -3385,234 +3458,6 @@
                 }
               ],
               "title": "VSMPPi System Monitor"
-            }
-          ],
-          "cards": []
-        },
-        {
-          "title": "FlmtPi",
-          "path": "flmtpi",
-          "layout": {},
-          "icon": "mdi:air-humidifier",
-          "type": "sections",
-          "max_columns": 3,
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "switch.flmtpi_dehumidifier",
-                      "icon_color": "light-blue",
-                      "name": "Dehumidifier",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "grid",
-                      "columns": 2,
-                      "square": false,
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.flmtpi_ambient_humidity",
-                          "icon_color": "green",
-                          "name": "Humidity",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.flmtpi_ambient_temperature",
-                          "icon_color": "orange",
-                          "name": "Temperature",
-                          "icon": "mdi:thermometer-lines",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "6 Hour History",
-                      "entities": [
-                        {
-                          "entity": "sensor.flmtpi_ambient_humidity",
-                          "name": "Humidity",
-                          "color": "#4DAF50"
-                        },
-                        {
-                          "entity": "sensor.flmtpi_ambient_temperature",
-                          "name": "Temperature",
-                          "color": "#FF9901",
-                          "y_axis": "secondary"
-                        }
-                      ],
-                      "show": {
-                        "state": false,
-                        "legend": false,
-                        "fill": "fade",
-                        "name": true,
-                        "icon": false,
-                        "labels": true,
-                        "labels_secondary": true,
-                        "unit": true
-                      },
-                      "hours_to_show": 6,
-                      "points_per_hour": 60,
-                      "lower_bound": "~30",
-                      "upper_bound": "~50",
-                      "lower_bound_secondary": "~20",
-                      "upper_bound_secondary": "~40",
-                      "height": 150,
-                      "animate": true,
-                      "hour24": true,
-                      "line_width": 2
-                    }
-                  ]
-                }
-              ],
-              "title": "Filament Dry Box"
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 2,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.flmtpi_boot_time",
-                      "name": "Last Boot Time",
-                      "icon_color": "green",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "switch.flmtpi_dehumidifier",
-                      "icon_color": "light-blue",
-                      "name": "Dehumidifier",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.flmtpi_local_ip_address",
-                      "icon_color": "yellow",
-                      "name": "IP Address",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.flmtpi_active_git_ref",
-                      "name": "WG Scripts",
-                      "icon_color": "blue-grey",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    }
-                  ]
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "grid",
-                      "columns": 2,
-                      "square": false,
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.flmtpi_cpu_usage",
-                          "icon_color": "red",
-                          "name": "CPU Usage",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.flmtpi_memory_usage",
-                          "icon_color": "blue",
-                          "name": "Memory Usage",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.flmtpi_disk_usage",
-                          "icon_color": "green",
-                          "name": "Disk Usage",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.flmtpi_cpu_temperature",
-                          "icon_color": "orange",
-                          "name": "CPU Temperature",
-                          "icon": "mdi:thermometer-lines",
-                          "primary_info": "state",
-                          "secondary_info": "name"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "6 Hour History",
-                      "entities": [
-                        {
-                          "entity": "sensor.flmtpi_cpu_usage",
-                          "name": "CPU",
-                          "color": "#F54336"
-                        },
-                        {
-                          "entity": "sensor.flmtpi_memory_usage",
-                          "name": "Memory",
-                          "color": "#2096F3"
-                        },
-                        {
-                          "entity": "sensor.flmtpi_disk_usage",
-                          "name": "Disk Usage",
-                          "color": "#4DAF50"
-                        },
-                        {
-                          "entity": "sensor.flmtpi_cpu_temperature",
-                          "name": "CPU Temperature",
-                          "color": "#FF9901",
-                          "y_axis": "secondary"
-                        }
-                      ],
-                      "show": {
-                        "state": false,
-                        "legend": false,
-                        "fill": "fade",
-                        "name": true,
-                        "icon": false,
-                        "labels": true,
-                        "labels_secondary": true,
-                        "unit": true
-                      },
-                      "hours_to_show": 6,
-                      "points_per_hour": 60,
-                      "lower_bound": 0,
-                      "upper_bound": "~50",
-                      "lower_bound_secondary": "~40",
-                      "upper_bound_secondary": "~70",
-                      "height": 150,
-                      "animate": true,
-                      "hour24": true,
-                      "line_width": 2
-                    }
-                  ]
-                }
-              ],
-              "title": "FlmtPi System Monitor"
             }
           ],
           "cards": []
