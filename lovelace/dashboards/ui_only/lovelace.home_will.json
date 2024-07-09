@@ -2158,8 +2158,8 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-template-card",
-                      "primary": "Last Boot Time",
-                      "secondary": "{{ states('sensor.uptime').removesuffix(\"+00:00\").replace(\"T\", \" \") }}",
+                      "primary": "{{ states('sensor.uptime').removesuffix(\"+00:00\").replace(\"T\", \" \") }}",
+                      "secondary": "Last Boot Time",
                       "icon": "mdi:console",
                       "entity": "sensor.uptime",
                       "icon_color": "green",
@@ -2170,8 +2170,8 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "primary": "{{ states('sensor.backup_state').replace(\"_\", \" \").title() }}",
-                      "secondary": "{{ ( state_attr('sensor.backup_state', \"last_backup\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\")  }}",
+                      "primary": "{{ ( state_attr('sensor.backup_state', \"last_backup\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\")  }}",
+                      "secondary": "{{ states('sensor.backup_state').replace(\"_\", \" \").title() }}",
                       "icon": "mdi:cloud-upload-outline",
                       "entity": "sensor.backup_state",
                       "icon_color": "teal",
@@ -2184,6 +2184,8 @@
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.local_ip",
                       "icon_color": "yellow",
+                      "primary_info": "state",
+                      "secondary_info": "name",
                       "name": "IP Address",
                       "icon": "mdi:ip-network-outline"
                     }
