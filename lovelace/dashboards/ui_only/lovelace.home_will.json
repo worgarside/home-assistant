@@ -2532,24 +2532,35 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-entity-card",
+                          "entity": "switch.adguard_home_protection",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "name": "AdGuard Active",
+                          "icon_color": "light-grey"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
                           "entity": "sensor.adguard_home_dns_queries_blocked_ratio",
                           "primary_info": "state",
                           "secondary_info": "name",
-                          "name": "Block Ratio"
+                          "name": "Block Ratio",
+                          "icon_color": "grey"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.adguard_home_average_processing_speed",
                           "primary_info": "state",
                           "secondary_info": "name",
-                          "name": "Avg. Latency"
+                          "name": "Avg. Latency",
+                          "icon_color": "dark-grey"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "sensor.adguard_home_dns_queries",
                           "primary_info": "state",
                           "secondary_info": "name",
-                          "name": "Queries"
+                          "name": "Queries",
+                          "icon_color": "blue-grey"
                         }
                       ],
                       "columns": 2
