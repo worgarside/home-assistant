@@ -1,9 +1,0 @@
----
-force_update: true
-icon: mdi:memory
-name: FlmtPi CPU Temperature
-state_class: measurement
-state_topic: /homeassistant/flmtpi/stats
-unique_id: flmtpi_cpu_temperature
-unit_of_measurement: "°C"
-value_template: '{{ value_json.temperature }}'
