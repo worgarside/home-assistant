@@ -1,9 +1,0 @@
----
-force_update: true
-icon: mdi:memory
-name: FlmtPi Memory Usage
-state_class: measurement
-state_topic: /homeassistant/flmtpi/stats
-unique_id: flmtpi_memory_usage
-unit_of_measurement: '%'
-value_template: '{{ value_json.memory_usage }}'

@@ -1,0 +1,51 @@
+---
+substitutions:
+  name: esp32-filament-dry-box
+  friendly_name: Filament Dry Box
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+  platform: ESP32
+  board: esp32dev
+
+logger:
+
+api:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+output:
+  - platform: gpio
+    pin: GPIO23
+    id: solenoid_output
+
+sensor:
+  - platform: dht
+    pin: GPIO22
+    temperature:
+      name: Dry Box Temperature
+    humidity:
+      name: Dry Box Humidity
+    update_interval: 30s
+
+switch:
+  - platform: template
+    name: Dry Box Dehumidifier
+    icon: mdi:air-humidifier
+    optimistic: true
+    turn_on_action:
+      - output.turn_on: solenoid_output
+      - delay: 1s
+      - output.turn_off: solenoid_output
+    turn_off_action:
+      - output.turn_on: solenoid_output
+      - delay: 1s
+      - output.turn_off: solenoid_output

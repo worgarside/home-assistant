@@ -150,7 +150,7 @@ pi_stats_graph_card_template:
         }
     entities:
       - entity: sensor.flmtpi[[sensor_suffix]]
-        name: Clmt Pi
+        name: Flmt Pi
         color: "#E51919"
       - entity: sensor.crtpi[[sensor_suffix]]
         name: CRT Pi
