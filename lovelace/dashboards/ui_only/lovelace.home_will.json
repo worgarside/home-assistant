@@ -3398,7 +3398,7 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "switch.flmtpi_dehumidifier",
+                      "entity": "switch.dry_box_dehumidifier",
                       "icon_color": "light-blue",
                       "name": "Dehumidifier",
                       "primary_info": "state",
@@ -3411,7 +3411,7 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.flmtpi_ambient_humidity",
+                          "entity": "sensor.dry_box_humidity",
                           "icon_color": "green",
                           "name": "Humidity",
                           "primary_info": "state",
@@ -3419,7 +3419,7 @@
                         },
                         {
                           "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.flmtpi_ambient_temperature",
+                          "entity": "sensor.dry_box_temperature",
                           "icon_color": "orange",
                           "name": "Temperature",
                           "icon": "mdi:thermometer-lines",
@@ -3433,12 +3433,12 @@
                       "name": "6 Hour History",
                       "entities": [
                         {
-                          "entity": "sensor.flmtpi_ambient_humidity",
+                          "entity": "sensor.dry_box_humidity",
                           "name": "Humidity",
                           "color": "#4DAF50"
                         },
                         {
-                          "entity": "sensor.flmtpi_ambient_temperature",
+                          "entity": "sensor.dry_box_temperature",
                           "name": "Temperature",
                           "color": "#FF9901",
                           "y_axis": "secondary"
