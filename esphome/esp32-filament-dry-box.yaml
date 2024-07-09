@@ -1,0 +1,25 @@
+---
+substitutions:
+  name: esp32-filament-dry-box
+  friendly_name: Filament Dry Box
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+api:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+switch:
+  - platform: gpio
+    pin: GPIO23
+    id: relay
+    name: Dry Box Dehumidifier
+    icon: mdi:air-humidifier
+    on_turn_on:
+      - delay: 1000ms
+      - switch.turn_off: relay
