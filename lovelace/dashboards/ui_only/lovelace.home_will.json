@@ -2828,17 +2828,17 @@
               "cards": [
                 {
                   "type": "vertical-stack",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.octoprint_approximate_completion_time",
+                      "state_not": "unavailable"
+                    }
+                  ],
                   "cards": [
                     {
                       "square": false,
                       "type": "grid",
-                      "visibility": [
-                        {
-                          "condition": "state",
-                          "entity": "sensor.octoprint_current_state",
-                          "state": "Printing"
-                        }
-                      ],
                       "cards": [
                         {
                           "type": "custom:mushroom-entity-card",
@@ -2863,13 +2863,6 @@
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.octoprint_print_file",
                       "icon_color": "pink",
-                      "visibility": [
-                        {
-                          "condition": "state",
-                          "entity": "sensor.octoprint_approximate_completion_time",
-                          "state_not": "unavailable"
-                        }
-                      ],
                       "name": "Current Print File",
                       "icon": "mdi:file-cad",
                       "primary_info": "state",
