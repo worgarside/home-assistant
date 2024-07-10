@@ -1,0 +1,20 @@
+---
+alias: /switch/dry-box-dehumidifier/timeout
+
+id: switch_dry_box_dehumidifier_timeout
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: switch.dry_box_dehumidifier
+    to: "on"
+    for:
+      minutes: "{{ states('input_number.dry_box_dehumidifier_timeout') | int(120) }}"
+
+# No need to ensure the current humidity is low enough; it'll be updated in 30 seconds and
+# the dehumidifier will turn on if it's still too high
+
+action:
+  - service: switch.turn_off
+    entity_id: switch.dry_box_dehumidifier
