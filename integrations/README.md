@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (126)</h3></summary>
+<details><summary><h3>Entities (128)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -1645,6 +1645,32 @@ File: [`automation/switch/charging_hub/turn_off.yaml`](entities/automation/switc
 File: [`automation/switch/christmas_tree/turn_on.yaml`](entities/automation/switch/christmas_tree/turn_on.yaml)
 </details>
 
+<details><summary><code>/switch/dry-box-dehumidifier/timeout</code></summary>
+
+**Entity ID: `automation.switch_dry_box_dehumidifier_timeout`**
+
+> *No description provided*
+
+- Alias: /switch/dry-box-dehumidifier/timeout
+- ID: `switch_dry_box_dehumidifier_timeout`
+- Mode: `single`
+
+File: [`automation/switch/dry_box_dehumidifier/timeout.yaml`](entities/automation/switch/dry_box_dehumidifier/timeout.yaml)
+</details>
+
+<details><summary><code>/switch/dry-box-dehumidifier/turn-on</code></summary>
+
+**Entity ID: `automation.switch_dry_box_dehumidifier_turn_on`**
+
+> Turn the dry box dehumidifier on when the humidity is above the threshold
+
+- Alias: /switch/dry-box-dehumidifier/turn-on
+- ID: `switch_dry_box_dehumidifier_turn_on`
+- Mode: `single`
+
+File: [`automation/switch/dry_box_dehumidifier/turn_on.yaml`](entities/automation/switch/dry_box_dehumidifier/turn_on.yaml)
+</details>
+
 <details><summary><code>/switch/mtrxpi-power/off</code></summary>
 
 **Entity ID: `automation.switch_mtrxpi_power_off`**
@@ -2579,7 +2605,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (30)</h3></summary>
+<details><summary><h3>Entities (32)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2737,6 +2763,17 @@ File: [`input_number/cosmo/cosmo_room_timeout_office.yaml`](entities/input_numbe
 File: [`input_number/crt_tv_fan_auto_on_threshold.yaml`](entities/input_number/crt_tv_fan_auto_on_threshold.yaml)
 </details>
 
+<details><summary><strong>Dry Box | Max Humidity</strong></summary>
+
+**Entity ID: `input_number.dry_box_max_humidity`**
+
+- Max: 100
+- Mode: `box`
+- Unit Of Measurement: %
+
+File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/dry_box/dry_box_max_humidity.yaml)
+</details>
+
 <details><summary><strong>Lounge Blinds Button Height</strong></summary>
 
 **Entity ID: `input_number.lounge_blinds_button_height`**
@@ -2847,6 +2884,19 @@ File: [`input_number/st_macbook_pro_low_battery_threshold.yaml`](entities/input_
 - Unit Of Measurement: `mins`
 
 File: [`input_number/timeout/air_freshener_timeout.yaml`](entities/input_number/timeout/air_freshener_timeout.yaml)
+</details>
+
+<details><summary><strong>Dry Box | Dehumidifier Timeout</strong></summary>
+
+**Entity ID: `input_number.dry_box_dehumidifier_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 720
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/timeout/dry_box_dehumidifier_timeout.yaml`](entities/input_number/timeout/dry_box_dehumidifier_timeout.yaml)
 </details>
 
 <details><summary><strong>Hallway Lights | Timeout</strong></summary>

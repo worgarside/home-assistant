@@ -1,0 +1,18 @@
+---
+alias: /switch/dry-box-dehumidifier/turn-on
+
+id: switch_dry_box_dehumidifier_turn_on
+
+description: Turn the dry box dehumidifier on when the humidity is above the threshold
+
+mode: single
+
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.dry_box_humidity
+    above: input_number.dry_box_max_humidity
+
+action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.dry_box_dehumidifier
