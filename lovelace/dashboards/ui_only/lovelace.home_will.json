@@ -2620,6 +2620,13 @@
                 {
                   "square": false,
                   "type": "grid",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.prusa_i3_mk3_power",
+                      "state": "off"
+                    }
+                  ],
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
