@@ -23,6 +23,18 @@ picture: >-
   {% endif %}
 
 attributes:
+  is_volume_muted: >-
+    {%
+      if (
+        is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
+        not is_state("media_player.hifi_system_heos", "idle")
+      )
+    %}
+      {{ state_attr("media_player.hifi_system_heos", "is_volume_muted") }}
+    {% else %}
+      {{ state_attr("media_player.hifi_system_avr", "is_volume_muted") }}
+    {% endif %}
+
   media_album_name: >-
     {%
       if (

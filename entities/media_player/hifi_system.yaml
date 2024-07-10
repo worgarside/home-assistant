@@ -23,7 +23,7 @@ children:
 
 attributes:
   state: sensor.hifi_system_media_metadata
-  is_volume_muted: binary_sensor.hifi_system_is_volume_muted
+  is_volume_muted: sensor.hifi_system_media_metadata|is_volume_muted
   media_album_name: sensor.hifi_system_media_metadata|media_album_name
   media_artist: sensor.hifi_system_media_metadata|media_artist
   media_content_id: sensor.hifi_system_media_metadata|media_content_id
