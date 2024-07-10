@@ -2618,46 +2618,6 @@
                   "columns": 2
                 },
                 {
-                  "type": "custom:mushroom-chips-card",
-                  "chips": [
-                    {
-                      "type": "entity",
-                      "entity": "button.octoprint_restart_server",
-                      "hold_action": {
-                        "action": "call-service",
-                        "service": "button.press",
-                        "target": {
-                          "entity_id": "button.octoprint_restart_server"
-                        }
-                      },
-                      "content_info": "name",
-                      "name": "Restart Server",
-                      "icon_color": "orange"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "button.octoprint_reboot_system",
-                      "hold_action": {
-                        "action": "call-service",
-                        "service": "button.press",
-                        "target": {
-                          "entity_id": "button.octoprint_reboot_system"
-                        }
-                      },
-                      "content_info": "name",
-                      "name": "Reboot System",
-                      "icon_color": "red"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "switch.prusa_i3_mk3_power",
-                      "state": "off"
-                    }
-                  ]
-                },
-                {
                   "square": false,
                   "type": "grid",
                   "cards": [
@@ -2696,6 +2656,46 @@
                     }
                   ],
                   "columns": 2
+                },
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "button.octoprint_restart_server",
+                      "hold_action": {
+                        "action": "call-service",
+                        "service": "button.press",
+                        "target": {
+                          "entity_id": "button.octoprint_restart_server"
+                        }
+                      },
+                      "content_info": "name",
+                      "name": "Restart Server",
+                      "icon_color": "orange"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "button.octoprint_reboot_system",
+                      "hold_action": {
+                        "action": "call-service",
+                        "service": "button.press",
+                        "target": {
+                          "entity_id": "button.octoprint_reboot_system"
+                        }
+                      },
+                      "content_info": "name",
+                      "name": "Reboot System",
+                      "icon_color": "red"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.prusa_i3_mk3_power",
+                      "state": "off"
+                    }
+                  ]
                 }
               ],
               "title": "Prusa i3 Mk3"
