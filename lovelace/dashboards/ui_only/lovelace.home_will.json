@@ -2835,13 +2835,6 @@
               "cards": [
                 {
                   "type": "vertical-stack",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.octoprint_approximate_completion_time",
-                      "state_not": "unavailable"
-                    }
-                  ],
                   "cards": [
                     {
                       "square": false,
