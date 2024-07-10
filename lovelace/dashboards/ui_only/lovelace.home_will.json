@@ -2613,7 +2613,21 @@
                       "icon_color": "yellow",
                       "primary_info": "state",
                       "secondary_info": "name"
-                    },
+                    }
+                  ],
+                  "columns": 2
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.prusa_i3_mk3_power",
+                      "state": "on"
+                    }
+                  ],
+                  "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "number.prusa_i3_target_hotend_temperature",
@@ -2828,13 +2842,6 @@
               "cards": [
                 {
                   "type": "vertical-stack",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.octoprint_approximate_completion_time",
-                      "state_not": "unavailable"
-                    }
-                  ],
                   "cards": [
                     {
                       "square": false,
