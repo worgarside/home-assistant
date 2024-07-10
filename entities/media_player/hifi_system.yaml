@@ -32,6 +32,7 @@ attributes:
   media_title: sensor.hifi_system_media_metadata|media_title
   shuffle: sensor.hifi_system_media_metadata|shuffle
   source: media_player.hifi_system_avr|source
+  source_list: media_player.hifi_system_avr|source_list
   volume_level: media_player.hifi_system_avr|volume_level
 
 commands:
