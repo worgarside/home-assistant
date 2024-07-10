@@ -24,4 +24,5 @@ action:
   - service: light.turn_on
     target:
       area_id: bedroom
-    brightness_pct: 100
+    data:
+      brightness_pct: 100
