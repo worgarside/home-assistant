@@ -1,6 +1,8 @@
 ---
 alias: /remote/coffee-table/single-press
 
+description: Set the scene for watching TV
+
 id: remote_coffee_table_single_press
 
 mode: single
@@ -33,12 +35,23 @@ action:
           - service: switch.turn_on
             entity_id: switch.lounge_chromecast_outlet
 
+      - service: media_player.select_source
+        target:
+          entity_id: media_player.hifi_system
+        data:
+          source: Lounge Chromec
+
       - service: light.turn_on
         target:
-          area_id: lounge
+          entity_id:
+            - light.lounge_shapes
+            - light.shelf_lamp
+            - light.mini_lamp
         data:
           brightness_pct: 50
 
       - service: light.turn_off
         target:
-          area_id: kitchen
+          area_id:
+            - hallway
+            - kitchen

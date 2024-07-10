@@ -1365,7 +1365,7 @@ File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation
 
 **Entity ID: `automation.remote_coffee_table_double_press`**
 
-> *No description provided*
+> Turn off the lounge
 
 - Alias: /remote/coffee-table/double-press
 - ID: `remote_coffee_table_double_press`
@@ -1378,7 +1378,7 @@ File: [`automation/remote/coffee_table/double_press.yaml`](entities/automation/r
 
 **Entity ID: `automation.remote_coffee_table_hold`**
 
-> *No description provided*
+> Toggle the lounge Chromecast outlet when the hold button is pressed on the remote
 
 - Alias: /remote/coffee-table/hold
 - ID: `remote_coffee_table_hold`
@@ -1391,7 +1391,7 @@ File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/co
 
 **Entity ID: `automation.remote_coffee_table_single_press`**
 
-> *No description provided*
+> Set the scene for watching TV
 
 - Alias: /remote/coffee-table/single-press
 - ID: `remote_coffee_table_single_press`

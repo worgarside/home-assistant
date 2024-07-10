@@ -1,6 +1,8 @@
 ---
 name: "Hifi System: Is Volume Muted"
+
 unique_id: hifi_system_is_volume_muted
+
 state: >
   {%
     if (
