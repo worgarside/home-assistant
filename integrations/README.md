@@ -1396,7 +1396,14 @@ File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/co
 - Alias: /remote/coffee-table/single-press
 - ID: `remote_coffee_table_single_press`
 - Mode: `single`
+- Variables:
 
+```json
+{
+  "hifi_system_source": "Lounge Chromec",
+  "available_sources": "{{ state_attr('media_player.hifi_system', 'source_list') or [] }}"
+}
+```
 File: [`automation/remote/coffee_table/single_press.yaml`](entities/automation/remote/coffee_table/single_press.yaml)
 </details>
 
