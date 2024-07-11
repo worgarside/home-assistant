@@ -5258,7 +5258,7 @@ File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/g
 ```json
 {
   "ip_addr_entity_id": "sensor.{{ host }}_local_ip_address",
-  "prefix": "-i /config/.ssh/{{ host }} pi@{{ states(ip_addr_entity_id) }}"
+  "prefix": "-o StrictHostKeyChecking=no -i /config/.ssh/{{ host }} pi@{{ states(ip_addr_entity_id) }}"
 }
 ```
 File: [`script/ssh.yaml`](entities/script/ssh.yaml)
