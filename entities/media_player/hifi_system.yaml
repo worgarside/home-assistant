@@ -108,6 +108,6 @@ commands:
   select_source:
     service: media_player.select_source
     target:
-      entity_id: media_player.hifi_system_avr
+      entity_id: media_player.hifi_system_heos
     data:
       source: "{{ source }}" # hacv disable: InvalidTemplateVar:source
