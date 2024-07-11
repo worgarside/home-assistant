@@ -19,10 +19,11 @@ fields:
     example: mtrxpi
     required: true
     selector:
-      options:
-        - mtrxpi
-        - octopi
-        - vsmppi
+      select:
+        options:
+          - mtrxpi
+          - octopi
+          - vsmppi
 
   user:
     description: The user to run the command as

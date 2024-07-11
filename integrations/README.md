@@ -5231,11 +5231,13 @@ File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/g
     "example": "mtrxpi",
     "required": true,
     "selector": {
-      "options": [
-        "mtrxpi",
-        "octopi",
-        "vsmppi"
-      ]
+      "select": {
+        "options": [
+          "mtrxpi",
+          "octopi",
+          "vsmppi"
+        ]
+      }
     }
   },
   "user": {
