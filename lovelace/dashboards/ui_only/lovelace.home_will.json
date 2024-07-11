@@ -2282,7 +2282,7 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-template-card",
-                      "primary": "{{ states('sensor.uptime').removesuffix(\"+00:00\").replace(\"T\", \" \") }}",
+                      "primary": "{{ ( states(\"sensor.uptime\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\") }}",
                       "secondary": "Last Boot Time",
                       "icon": "mdi:console",
                       "entity": "sensor.uptime",
