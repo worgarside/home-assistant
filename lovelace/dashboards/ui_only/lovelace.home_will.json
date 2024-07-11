@@ -3341,6 +3341,19 @@
               "type": "grid",
               "cards": [
                 {
+                  "show_state": false,
+                  "show_name": false,
+                  "camera_view": "auto",
+                  "type": "picture-entity",
+                  "camera_image": "camera.google_photos_very_slow_movie_player_media",
+                  "entity": "camera.google_photos_very_slow_movie_player_media"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
                   "square": false,
                   "type": "grid",
                   "columns": 2,
@@ -3465,19 +3478,6 @@
                 }
               ],
               "title": "VSMPPi System Monitor"
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "show_state": false,
-                  "show_name": false,
-                  "camera_view": "auto",
-                  "type": "picture-entity",
-                  "camera_image": "camera.google_photos_very_slow_movie_player_media",
-                  "entity": "camera.google_photos_very_slow_movie_player_media"
-                }
-              ]
             }
           ],
           "cards": []
