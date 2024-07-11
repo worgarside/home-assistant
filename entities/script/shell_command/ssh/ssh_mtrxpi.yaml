@@ -1,0 +1,32 @@
+---
+alias: "`ssh mtrxpi`"
+
+description: Run a command on MtrxPi
+
+mode: parallel
+
+fields:
+  command:
+    description: The command to run
+    example: cd wg-scripts && make update && make restart-all
+    required: true
+    selector:
+      text:
+        multiline: true
+
+  user:
+    description: The user to run the command as
+    example: pi
+    default: pi
+    required: true
+    selector:
+      text:
+
+sequence:
+  - service: shell_command.ssh
+    response_variable: ssh_response
+    data:
+      command: -i /config/.ssh/mtrxpi pi@{{ states("sensor.mtrxpi_local_ip_address") }} "{{ command.replace('\n', ' ') }}"
+
+  - stop: Complete
+    response_variable: ssh_response
