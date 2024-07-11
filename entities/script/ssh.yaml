@@ -1,7 +1,7 @@
 ---
-alias: "`ssh mtrxpi`"
+alias: "`ssh`"
 
-description: Run a command on MtrxPi
+description: Run a command on Pi
 
 mode: parallel
 
@@ -14,6 +14,16 @@ fields:
       text:
         multiline: true
 
+  host:
+    description: The host to run the command on
+    example: mtrxpi
+    required: true
+    selector:
+      options:
+        - mtrxpi
+        - octopi
+        - vsmppi
+
   user:
     description: The user to run the command as
     example: pi
@@ -22,11 +32,16 @@ fields:
     selector:
       text:
 
+variables:
+  ip_addr_entity_id: sensor.{{ host }}_local_ip_address
+
+  prefix: -i /config/.ssh/{{ host }} pi@{{ states(ip_addr_entity_id) }}
+
 sequence:
   - service: shell_command.ssh
     response_variable: ssh_response
     data:
-      command: -i /config/.ssh/mtrxpi pi@{{ states("sensor.mtrxpi_local_ip_address") }} "{{ command.replace('\n', ' ') }}"
+      command: '{{ prefix }} "{{ command.replace(''\n'', '' '') }}"'
 
   - stop: Complete
     response_variable: ssh_response

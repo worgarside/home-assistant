@@ -5206,11 +5206,11 @@ File: [`script/shell_command/gh_cli/gh_issue_create.yaml`](entities/script/shell
 File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/git/git_pull.yaml)
 </details>
 
-<details><summary><strong>`ssh mtrxpi`</strong></summary>
+<details><summary><strong>`ssh`</strong></summary>
 
-**Entity ID: `script.ssh_mtrxpi`**
+**Entity ID: `script.ssh`**
 
-> Run a command on MtrxPi
+> Run a command on Pi
 
 - Fields:
 
@@ -5226,6 +5226,18 @@ File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/g
       }
     }
   },
+  "host": {
+    "description": "The host to run the command on",
+    "example": "mtrxpi",
+    "required": true,
+    "selector": {
+      "options": [
+        "mtrxpi",
+        "octopi",
+        "vsmppi"
+      ]
+    }
+  },
   "user": {
     "description": "The user to run the command as",
     "example": "pi",
@@ -5239,8 +5251,15 @@ File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/g
 ```
 
 - Mode: `parallel`
+- Variables:
 
-File: [`script/shell_command/ssh/ssh_mtrxpi.yaml`](entities/script/shell_command/ssh/ssh_mtrxpi.yaml)
+```json
+{
+  "ip_addr_entity_id": "sensor.{{ host }}_local_ip_address",
+  "prefix": "-i /config/.ssh/{{ host }} pi@{{ states(ip_addr_entity_id) }}"
+}
+```
+File: [`script/ssh.yaml`](entities/script/ssh.yaml)
 </details>
 
 <details><summary><strong>Reset Reloadable Files Changed</strong></summary>
