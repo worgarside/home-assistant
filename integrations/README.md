@@ -5377,7 +5377,7 @@ File: [`sensor/tomorrow_io_realtime_weather.yaml`](entities/sensor/tomorrow_io_r
 
 ## Shell Command
 
-<details><summary><h3>Entities (19)</h3></summary>
+<details><summary><h3>Entities (20)</h3></summary>
 
 <details><summary><code>shell_command.approve_pull_request</code></summary>
 
@@ -5467,6 +5467,11 @@ File: [`shell_command/run_custom_file_3.yaml`](entities/shell_command/run_custom
 <details><summary><code>shell_command.set_pr_auto_merge</code></summary>
 
 File: [`shell_command/set_pr_auto_merge.yaml`](entities/shell_command/set_pr_auto_merge.yaml)
+</details>
+
+<details><summary><code>shell_command.ssh</code></summary>
+
+File: [`shell_command/ssh.yaml`](entities/shell_command/ssh.yaml)
 </details>
 
 <details><summary><code>shell_command.toggle_pr_label</code></summary>
