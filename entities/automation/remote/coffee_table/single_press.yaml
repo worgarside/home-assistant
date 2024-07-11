@@ -78,3 +78,11 @@ action:
           area_id:
             - hallway
             - kitchen
+          entity_id:
+            - light.disco_light
+            - light.globe_lamp
+            - light.table_lamp
+
+      - service: media_player.media_stop
+        target:
+          entity_id: media_player.lounge_speakers
