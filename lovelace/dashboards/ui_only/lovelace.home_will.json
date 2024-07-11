@@ -3190,12 +3190,16 @@
                   "type": "grid",
                   "cards": [
                     {
-                      "type": "custom:mushroom-entity-card",
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{{ ( states(\"sensor.mtrxpi_boot_time\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\") }}",
+                      "secondary": "Last Boot Time",
+                      "icon": "mdi:console",
                       "entity": "sensor.mtrxpi_boot_time",
-                      "name": "Last Boot Time",
                       "icon_color": "green",
-                      "primary_info": "state",
-                      "secondary_info": "name"
+                      "multiline_secondary": false,
+                      "tap_action": {
+                        "action": "more-info"
+                      }
                     },
                     {
                       "type": "custom:mushroom-entity-card",
