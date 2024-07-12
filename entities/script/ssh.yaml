@@ -1,5 +1,5 @@
 ---
-alias: "`ssh`"
+alias: ssh
 
 description: Run a command on Pi
 
@@ -21,8 +21,11 @@ fields:
     selector:
       select:
         options:
+          - crtpi
+          - flmtpi
           - mtrxpi
           - octopi
+          - rtropi
           - vsmppi
 
   user:
@@ -36,13 +39,17 @@ fields:
 variables:
   ip_addr_entity_id: sensor.{{ host }}_local_ip_address
 
-  prefix: -o StrictHostKeyChecking=no -i /config/.ssh/{{ host }} pi@{{ states(ip_addr_entity_id) }}
+  prefix: -o StrictHostKeyChecking=no -i /config/.ssh/{{ host }}
 
 sequence:
+  - alias: Check Pi exists/is available
+    condition: "{{ has_value(ip_addr_entity_id) }}"
+
   - service: shell_command.ssh
     response_variable: ssh_response
     data:
-      command: '{{ prefix }} "{{ command.replace(''\n'', '' '') }}"'
+      command: >
+        {{ prefix }} {{ user }}@{{ states(ip_addr_entity_id) }} "{{ command.replace('\n', ' ') }}"
 
   - stop: Complete
     response_variable: ssh_response

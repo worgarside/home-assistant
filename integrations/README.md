@@ -5206,7 +5206,7 @@ File: [`script/shell_command/gh_cli/gh_issue_create.yaml`](entities/script/shell
 File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/git/git_pull.yaml)
 </details>
 
-<details><summary><strong>`ssh`</strong></summary>
+<details><summary><strong>ssh</strong></summary>
 
 **Entity ID: `script.ssh`**
 
@@ -5233,8 +5233,11 @@ File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/g
     "selector": {
       "select": {
         "options": [
+          "crtpi",
+          "flmtpi",
           "mtrxpi",
           "octopi",
+          "rtropi",
           "vsmppi"
         ]
       }
@@ -5258,7 +5261,7 @@ File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/g
 ```json
 {
   "ip_addr_entity_id": "sensor.{{ host }}_local_ip_address",
-  "prefix": "-o StrictHostKeyChecking=no -i /config/.ssh/{{ host }} pi@{{ states(ip_addr_entity_id) }}"
+  "prefix": "-o StrictHostKeyChecking=no -i /config/.ssh/{{ host }}"
 }
 ```
 File: [`script/ssh.yaml`](entities/script/ssh.yaml)
