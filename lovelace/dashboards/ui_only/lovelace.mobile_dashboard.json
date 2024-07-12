@@ -169,6 +169,14 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "remote.bedroom_chromecast"
+                },
+                {
+                  "type": "tile",
+                  "entity": "remote.bedroom_tv"
                 }
               ],
               "title": "Bedroom"
@@ -422,6 +430,14 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "remote.lounge_chromecast"
+                },
+                {
+                  "type": "tile",
+                  "entity": "remote.lounge_tv"
                 }
               ],
               "title": "Lounge"
