@@ -1,6 +1,8 @@
 ---
 alias: /remote/coffee-table/single-press
 
+description: Set the scene for watching TV
+
 id: remote_coffee_table_single_press
 
 mode: single
@@ -11,6 +13,11 @@ trigger:
     event_data:
       command: single
       device_ieee: 00:15:8d:00:07:6b:66:8b
+
+variables:
+  # Truncated to 14 characters
+  hifi_system_source: Lounge Chromec
+  available_sources: "{{ state_attr('media_player.hifi_system', 'source_list') or [] }}"
 
 action:
   - parallel:
@@ -33,12 +40,49 @@ action:
           - service: switch.turn_on
             entity_id: switch.lounge_chromecast_outlet
 
+      - if: "{{ states('media_player.hifi_system') == 'off' }}"
+
+        then:
+          - service: media_player.turn_on
+            target:
+              entity_id: media_player.hifi_system
+
+      - if: "{{ hifi_system_source not in available_sources }}"
+
+        then:
+          - service: script.log_exception
+            data:
+              calling_entity: automation.remote_coffee_table_single_press
+              message: >-
+                Invalid `source` value: got "{{ hifi_system_source }}"; must be one of
+                "{{ available_sources | join('", "') }}"
+
+        else:
+          - service: media_player.select_source
+            target:
+              entity_id: media_player.hifi_system
+            data:
+              source: "{{ hifi_system_source }}"
+
       - service: light.turn_on
         target:
-          area_id: lounge
+          entity_id:
+            - light.lounge_shapes
+            - light.shelf_lamp
+            - light.mini_lamp
         data:
           brightness_pct: 50
 
       - service: light.turn_off
         target:
-          area_id: kitchen
+          area_id:
+            - hallway
+            - kitchen
+          entity_id:
+            - light.disco_light
+            - light.globe_lamp
+            - light.table_lamp
+
+      - service: media_player.media_stop
+        target:
+          entity_id: media_player.lounge_speakers

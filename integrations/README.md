@@ -1365,7 +1365,7 @@ File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation
 
 **Entity ID: `automation.remote_coffee_table_double_press`**
 
-> *No description provided*
+> Turn off the lounge
 
 - Alias: /remote/coffee-table/double-press
 - ID: `remote_coffee_table_double_press`
@@ -1378,7 +1378,7 @@ File: [`automation/remote/coffee_table/double_press.yaml`](entities/automation/r
 
 **Entity ID: `automation.remote_coffee_table_hold`**
 
-> *No description provided*
+> Toggle the lounge Chromecast outlet when the hold button is pressed on the remote
 
 - Alias: /remote/coffee-table/hold
 - ID: `remote_coffee_table_hold`
@@ -1391,12 +1391,19 @@ File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/co
 
 **Entity ID: `automation.remote_coffee_table_single_press`**
 
-> *No description provided*
+> Set the scene for watching TV
 
 - Alias: /remote/coffee-table/single-press
 - ID: `remote_coffee_table_single_press`
 - Mode: `single`
+- Variables:
 
+```json
+{
+  "hifi_system_source": "Lounge Chromec",
+  "available_sources": "{{ state_attr('media_player.hifi_system', 'source_list') or [] }}"
+}
+```
 File: [`automation/remote/coffee_table/single_press.yaml`](entities/automation/remote/coffee_table/single_press.yaml)
 </details>
 
@@ -5503,7 +5510,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (90)</h3></summary>
+<details><summary><h3>Entities (89)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -5521,13 +5528,6 @@ File: [`template/binary_sensor/bank_holiday.yaml`](entities/template/binary_sens
 - Icon: [`mdi:clock-time-twelve-outline`](https://pictogrammers.com/library/mdi/icon/clock-time-twelve-outline/)
 
 File: [`template/binary_sensor/before_midday.yaml`](entities/template/binary_sensor/before_midday.yaml)
-</details>
-
-<details><summary><strong>Hifi System: Is Volume Muted</strong></summary>
-
-**Entity ID: `binary_sensor.hifi_system_is_volume_muted`**
-
-File: [`template/binary_sensor/hifi_system_is_volume_muted.yaml`](entities/template/binary_sensor/hifi_system_is_volume_muted.yaml)
 </details>
 
 <details><summary><strong>Office Desk Occupied</strong></summary>

@@ -1,13 +1,16 @@
 ---
 name: "HiFi System: Media Metadata"
+
 unique_id: hifi_system_media_metadata
-state: >
+
+state: >-
   {% if is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") %}
     {{ states("media_player.hifi_system_heos") }}
   {% else %}
     {{ states("media_player.hifi_system_avr") }}
   {% endif %}
-picture: >
+
+picture: >-
   {%
     if (
       is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
@@ -18,8 +21,21 @@ picture: >
   {% else %}
     {{ state_attr("media_player.hifi_system_avr", "entity_picture") }}
   {% endif %}
+
 attributes:
-  media_album_name: >
+  is_volume_muted: >-
+    {%
+      if (
+        is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
+        not is_state("media_player.hifi_system_heos", "idle")
+      )
+    %}
+      {{ state_attr("media_player.hifi_system_heos", "is_volume_muted") }}
+    {% else %}
+      {{ state_attr("media_player.hifi_system_avr", "is_volume_muted") }}
+    {% endif %}
+
+  media_album_name: >-
     {%
       if (
         is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
@@ -28,7 +44,8 @@ attributes:
     %}
       {{ state_attr("media_player.hifi_system_heos", "media_album_name") }}
     {% endif %}
-  media_artist: >
+
+  media_artist: >-
     {%
       if (
         is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
@@ -37,7 +54,8 @@ attributes:
     %}
       {{ state_attr("media_player.hifi_system_heos", "media_artist") }}
     {% endif %}
-  media_content_id: >
+
+  media_content_id: >-
     {%
       if (
         is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
@@ -46,7 +64,8 @@ attributes:
     %}
       {{ state_attr("media_player.hifi_system_heos", "media_content_id") }}
     {% endif %}
-  media_duration: >
+
+  media_duration: >-
     {%
       if (
         is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
@@ -55,7 +74,8 @@ attributes:
     %}
       {{ state_attr("media_player.hifi_system_heos", "media_duration") }}
     {% endif %}
-  media_title: >
+
+  media_title: >-
     {%
       if (
         is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
@@ -64,7 +84,8 @@ attributes:
     %}
       {{ state_attr("media_player.hifi_system_heos", "media_title") }}
     {% endif %}
-  media_shuffle: >
+
+  media_shuffle: >-
     {%
       if (
         is_state_attr("media_player.hifi_system_avr", "source", "HEOS Music") and
