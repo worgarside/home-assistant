@@ -1,0 +1,55 @@
+---
+alias: ssh
+
+description: Run a command on Pi
+
+mode: parallel
+
+fields:
+  command:
+    description: The command to run
+    example: cd wg-scripts && make update && make restart-all
+    required: true
+    selector:
+      text:
+        multiline: true
+
+  host:
+    description: The host to run the command on
+    example: mtrxpi
+    required: true
+    selector:
+      select:
+        options:
+          - crtpi
+          - flmtpi
+          - mtrxpi
+          - octopi
+          - rtropi
+          - vsmppi
+
+  user:
+    description: The user to run the command as
+    example: pi
+    default: pi
+    required: true
+    selector:
+      text:
+
+variables:
+  ip_addr_entity_id: sensor.{{ host }}_local_ip_address
+
+  prefix: -o StrictHostKeyChecking=no -i /config/.ssh/{{ host }}
+
+sequence:
+  - alias: Check Pi exists/is available
+    condition: "{{ has_value(ip_addr_entity_id) }}"
+
+  - service: shell_command.ssh
+    response_variable: ssh_response
+    data:
+      command: >
+        {{ prefix }} {{ user }}@{{ states(ip_addr_entity_id) }} "{{ command.replace('\n', ' ') }}"
+
+  - stop: Complete
+    response_variable: ssh_response

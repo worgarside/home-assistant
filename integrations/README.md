@@ -4257,7 +4257,7 @@ File: [`mqtt/switch/prusa_i3/enclosure_fan.yaml`](entities/mqtt/switch/prusa_i3/
 
 ## Script
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (30)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5211,6 +5211,67 @@ File: [`script/shell_command/gh_cli/gh_issue_create.yaml`](entities/script/shell
 - Mode: `single`
 
 File: [`script/shell_command/git/git_pull.yaml`](entities/script/shell_command/git/git_pull.yaml)
+</details>
+
+<details><summary><strong>ssh</strong></summary>
+
+**Entity ID: `script.ssh`**
+
+> Run a command on Pi
+
+- Fields:
+
+```json
+{
+  "command": {
+    "description": "The command to run",
+    "example": "cd wg-scripts && make update && make restart-all",
+    "required": true,
+    "selector": {
+      "text": {
+        "multiline": true
+      }
+    }
+  },
+  "host": {
+    "description": "The host to run the command on",
+    "example": "mtrxpi",
+    "required": true,
+    "selector": {
+      "select": {
+        "options": [
+          "crtpi",
+          "flmtpi",
+          "mtrxpi",
+          "octopi",
+          "rtropi",
+          "vsmppi"
+        ]
+      }
+    }
+  },
+  "user": {
+    "description": "The user to run the command as",
+    "example": "pi",
+    "default": "pi",
+    "required": true,
+    "selector": {
+      "text": null
+    }
+  }
+}
+```
+
+- Mode: `parallel`
+- Variables:
+
+```json
+{
+  "ip_addr_entity_id": "sensor.{{ host }}_local_ip_address",
+  "prefix": "-o StrictHostKeyChecking=no -i /config/.ssh/{{ host }}"
+}
+```
+File: [`script/ssh.yaml`](entities/script/ssh.yaml)
 </details>
 
 <details><summary><strong>Reset Reloadable Files Changed</strong></summary>
