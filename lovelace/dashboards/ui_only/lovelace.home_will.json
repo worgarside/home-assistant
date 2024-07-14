@@ -1156,7 +1156,9 @@
                   ]
                 },
                 {
-                  "type": "custom:vertical-stack-in-card",
+                  "type": "grid",
+                  "columns": 1,
+                  "square": false,
                   "cards": [
                     {
                       "type": "custom:mushroom-light-card",
@@ -1170,7 +1172,8 @@
                       "tap_action": {
                         "action": "more-info"
                       },
-                      "name": "Shapes"
+                      "name": "Shapes",
+                      "fill_container": false
                     },
                     {
                       "type": "custom:mushroom-light-card",
