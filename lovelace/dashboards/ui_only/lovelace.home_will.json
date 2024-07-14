@@ -779,6 +779,17 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.charging_hub_current_consumption"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
                   "type": "grid",
                   "columns": 1,
                   "square": false,
@@ -917,17 +928,6 @@
                     }
                   ]
                 },
-                {
-                  "type": "custom:mini-graph-card",
-                  "entities": [
-                    "sensor.charging_hub_current_consumption"
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
                 {
                   "type": "custom:vertical-stack-in-card",
                   "cards": [
@@ -3587,7 +3587,8 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "title": "Finances"
             }
           ]
         }
