@@ -18,7 +18,7 @@ optional = true
 [tool.poetry.group.dev.dependencies]
 pre-commit = "*"
 watchdog = "^4.0.1"
-zigpy = "^0.64.1"
+zigpy = "^0.64.3"
 zha-quirks = "^0.0.117"
 
 [build-system]
