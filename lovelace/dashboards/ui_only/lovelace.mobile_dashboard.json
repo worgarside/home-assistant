@@ -192,7 +192,13 @@
                       "entity": "light.hallway",
                       "name": "Spotlights",
                       "show_brightness_control": true,
-                      "layout": "horizontal"
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
                     },
                     {
                       "type": "custom:mushroom-chips-card",
