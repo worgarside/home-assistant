@@ -395,6 +395,41 @@
                           "double_tap_action": {
                             "action": "toggle"
                           }
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.globe_lamp",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "use_light_color": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "show_brightness_control": false,
+                          "double_tap_action": {
+                            "action": "toggle"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.disco_light",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "use_light_color": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "show_brightness_control": false,
+                          "double_tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon": ""
                         }
                       ],
                       "columns": 2
