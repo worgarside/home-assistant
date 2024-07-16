@@ -3591,6 +3591,11 @@
                 {
                   "type": "markdown",
                   "content": "{{  states.sensor.habitica_worgarside_dailys.attributes.values() | selectattr(\"text\", \"defined\") | selectattr(\"is_due\") | map(attribute=\"text\") | sort  }}"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.habitica_pending_dailys",
+                  "fill_container": false
                 }
               ]
             }
