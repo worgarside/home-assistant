@@ -5571,7 +5571,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (89)</h3></summary>
+<details><summary><h3>Entities (90)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6166,6 +6166,16 @@ File: [`template/sensor/entity_counts/low_batteries.yaml`](entities/template/sen
 - Icon: [`mdi:lan-disconnect`](https://pictogrammers.com/library/mdi/icon/lan-disconnect/)
 
 File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/template/sensor/entity_counts/unavailable_entities.yaml)
+</details>
+
+<details><summary><strong>Habitica: Pending Dailys</strong></summary>
+
+**Entity ID: `sensor.habitica_pending_dailys`**
+
+- Icon: [`mdi:list-status`](https://pictogrammers.com/library/mdi/icon/list-status/)
+- Unit Of Measurement: `n_of_tasks`
+
+File: [`template/sensor/habitica/habitica_pending_dailys.yaml`](entities/template/sensor/habitica/habitica_pending_dailys.yaml)
 </details>
 
 <details><summary><strong>HiFi System: Media Metadata</strong></summary>
