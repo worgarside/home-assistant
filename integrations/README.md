@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (128)</h3></summary>
+<details><summary><h3>Entities (129)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -552,6 +552,26 @@ File: [`automation/fan/prusa_i3_enclosure_fan/turn_on.yaml`](entities/automation
 - Mode: `restart`
 
 File: [`automation/gh_cli/user_updated.yaml`](entities/automation/gh_cli/user_updated.yaml)
+</details>
+
+<details><summary><code>/habitica/brush-teeth</code></summary>
+
+**Entity ID: `automation.habitica_brush_teeth`**
+
+> *No description provided*
+
+- Alias: /habitica/brush-teeth
+- ID: `habitica_brush_teeth`
+- Mode: `parallel`
+- Variables:
+
+```json
+{
+  "am_uuid": "e3b5acd6-8341-4ecb-a367-4045e8f173f3",
+  "pm_uuid": "25e94aa2-e609-49ec-b7b8-ffe88e00b54c"
+}
+```
+File: [`automation/habitica/brush_teeth.yaml`](entities/automation/habitica/brush_teeth.yaml)
 </details>
 
 <details><summary><code>/hassio/auto-restart-mariadb-add-on</code></summary>
@@ -6173,7 +6193,7 @@ File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/templ
 **Entity ID: `sensor.habitica_pending_dailys`**
 
 - Icon: [`mdi:list-status`](https://pictogrammers.com/library/mdi/icon/list-status/)
-- Unit Of Measurement: `n_of_tasks`
+- Unit Of Measurement: `tasks`
 
 File: [`template/sensor/habitica/habitica_pending_dailys.yaml`](entities/template/sensor/habitica/habitica_pending_dailys.yaml)
 </details>

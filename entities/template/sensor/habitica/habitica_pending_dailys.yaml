@@ -5,7 +5,7 @@ unique_id: habitica_pending_dailys
 
 icon: mdi:list-status
 
-unit_of_measurement: n_of_tasks
+unit_of_measurement: tasks
 
 state: "{{ this.attributes.tasks | default([]) | list | count }}"
 

@@ -1,0 +1,31 @@
+---
+alias: /habitica/brush-teeth
+
+id: habitica_brush_teeth
+
+mode: parallel
+
+trigger:
+  - platform: state
+    entity_id: sensor.will_s_toothbrush_toothbrush_state
+    to: running
+    for:
+      # I do brush my teeth for 2 minutes, this is to avoid false negatives! ;_;
+      seconds: 30
+
+variables:
+  am_uuid: e3b5acd6-8341-4ecb-a367-4045e8f173f3
+  pm_uuid: 25e94aa2-e609-49ec-b7b8-ffe88e00b54c
+
+action:
+  - service: habitica.api_call
+    data:
+      name: worgarside
+      path:
+        - tasks
+        - brush-teeth
+        - checklist
+        - "{{ iif(now().hour >= 20, am_uuid, pm_uuid) }}"
+        - post
+      args:
+        completed: true
