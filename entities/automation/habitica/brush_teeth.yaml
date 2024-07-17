@@ -7,25 +7,36 @@ mode: parallel
 
 trigger:
   - platform: state
-    entity_id: sensor.will_s_toothbrush_toothbrush_state
+    entity_id:
+      - sensor.will_s_toothbrush_toothbrush_state
+      - sensor.vic_s_toothbrush
     to: running
     for:
       # I do brush my teeth for 2 minutes, this is to avoid false negatives! ;_;
       seconds: 30
 
 variables:
-  am_uuid: e3b5acd6-8341-4ecb-a367-4045e8f173f3
-  pm_uuid: 25e94aa2-e609-49ec-b7b8-ffe88e00b54c
+  vic:
+    am_uuid: eb5248fe-c15f-45e2-b3a1-56578550a1b1
+    pm_uuid: 4798e4a9-8306-4990-9226-4fd24c0ac668
+    username: !secret vic_habitica_username
+
+  will:
+    am_uuid: e3b5acd6-8341-4ecb-a367-4045e8f173f3
+    pm_uuid: 25e94aa2-e609-49ec-b7b8-ffe88e00b54c
+    username: worgarside
+
+  target_user: "{{ iif('will' in trigger.entity_id, will.username, vic.username) }}"
 
 action:
   - service: habitica.api_call
     data:
-      name: worgarside
+      name: "{{ target_user }}"
       path:
         - tasks
         - brush-teeth
         - checklist
         - "{{ iif(now().hour >= 20, am_uuid, pm_uuid) }}"
-        - post
+        - put
       args:
         completed: true

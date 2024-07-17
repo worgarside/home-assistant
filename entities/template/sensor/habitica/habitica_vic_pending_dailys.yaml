@@ -1,0 +1,20 @@
+---
+name: "Habitica (Voc): Pending Dailys"
+
+unique_id: habitica_voc_pending_dailys
+
+icon: mdi:list-status
+
+unit_of_measurement: tasks
+
+state: "{{ this.attributes.tasks | default([]) | list | count }}"
+
+attributes:
+  tasks: >-
+    {{
+      states.sensor.habitica_vic_dailys.attributes.values()
+      | selectattr("text", "defined")
+      | rejectattr("completed", "defined")
+      | map(attribute="text")
+      | sort
+    }}

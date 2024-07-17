@@ -1,7 +1,7 @@
 ---
-name: "Habitica: Pending Dailys"
+name: "Habitica (Will): Pending Dailys"
 
-unique_id: habitica_pending_dailys
+unique_id: habitica_will_pending_dailys
 
 icon: mdi:list-status
 
@@ -14,7 +14,7 @@ attributes:
     {{
       states.sensor.habitica_worgarside_dailys.attributes.values()
       | selectattr("text", "defined")
-      | rejectattr("completed")
+      | rejectattr("completed", "defined")
       | map(attribute="text")
       | sort
     }}
