@@ -12,7 +12,7 @@ state: "{{ this.attributes.tasks | default([]) | list | count }}"
 attributes:
   tasks: >-
     {{
-      states.sensor.habitica_worgarside_dailys.attributes.values()
+      (states.sensor.habitica_worgarside_dailys.attributes | default({})).values()
       | selectattr("text", "defined")
       | rejectattr("completed", "defined")
       | map(attribute="text")
