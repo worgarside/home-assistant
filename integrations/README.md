@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (128)</h3></summary>
+<details><summary><h3>Entities (129)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -552,6 +552,37 @@ File: [`automation/fan/prusa_i3_enclosure_fan/turn_on.yaml`](entities/automation
 - Mode: `restart`
 
 File: [`automation/gh_cli/user_updated.yaml`](entities/automation/gh_cli/user_updated.yaml)
+</details>
+
+<details><summary><code>/habitica/brush-teeth</code></summary>
+
+**Entity ID: `automation.habitica_brush_teeth`**
+
+> *No description provided*
+
+- Alias: /habitica/brush-teeth
+- ID: `habitica_brush_teeth`
+- Mode: `parallel`
+- Variables:
+
+```json
+{
+  "vic": {
+    "am_uuid": "eb5248fe-c15f-45e2-b3a1-56578550a1b1",
+    "pm_uuid": "4798e4a9-8306-4990-9226-4fd24c0ac668",
+    "username": "vic"
+  },
+  "will": {
+    "am_uuid": "e3b5acd6-8341-4ecb-a367-4045e8f173f3",
+    "pm_uuid": "25e94aa2-e609-49ec-b7b8-ffe88e00b54c",
+    "username": "worgarside"
+  },
+  "target_user": "{{ iif('will' in trigger.entity_id, will.username, vic.username) }}",
+  "am_or_pm": "{{ iif(now().hour >= 20, 'pm', 'am') }}",
+  "target_uuid": "{{\n  iif(\n    target_user == will.username,\n    iif(am_or_pm == 'am', will.am_uuid, will.pm_uuid),\n    iif(am_or_pm == 'am', vic.am_uuid, vic.pm_uuid)\n  )\n}}"
+}
+```
+File: [`automation/habitica/brush_teeth.yaml`](entities/automation/habitica/brush_teeth.yaml)
 </details>
 
 <details><summary><code>/hassio/auto-restart-mariadb-add-on</code></summary>
@@ -5571,7 +5602,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (89)</h3></summary>
+<details><summary><h3>Entities (91)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6166,6 +6197,26 @@ File: [`template/sensor/entity_counts/low_batteries.yaml`](entities/template/sen
 - Icon: [`mdi:lan-disconnect`](https://pictogrammers.com/library/mdi/icon/lan-disconnect/)
 
 File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/template/sensor/entity_counts/unavailable_entities.yaml)
+</details>
+
+<details><summary><strong>Habitica (Vic): Pending Dailys</strong></summary>
+
+**Entity ID: `sensor.habitica_vic_pending_dailys`**
+
+- Icon: [`mdi:list-status`](https://pictogrammers.com/library/mdi/icon/list-status/)
+- Unit Of Measurement: `tasks`
+
+File: [`template/sensor/habitica/habitica_vic_pending_dailys.yaml`](entities/template/sensor/habitica/habitica_vic_pending_dailys.yaml)
+</details>
+
+<details><summary><strong>Habitica (Will): Pending Dailys</strong></summary>
+
+**Entity ID: `sensor.habitica_will_pending_dailys`**
+
+- Icon: [`mdi:list-status`](https://pictogrammers.com/library/mdi/icon/list-status/)
+- Unit Of Measurement: `tasks`
+
+File: [`template/sensor/habitica/habitica_will_pending_dailys.yaml`](entities/template/sensor/habitica/habitica_will_pending_dailys.yaml)
 </details>
 
 <details><summary><strong>HiFi System: Media Metadata</strong></summary>
