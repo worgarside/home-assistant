@@ -28,6 +28,17 @@ variables:
 
   target_user: "{{ iif('will' in trigger.entity_id, will.username, vic.username) }}"
 
+  am_or_pm: "{{ iif(now().hour >= 20, 'pm', 'am') }}"
+
+  target_uuid: >-
+    {{
+      iif(
+        target_user == will.username,
+        iif(am_or_pm == 'am', will.am_uuid, will.pm_uuid),
+        iif(am_or_pm == 'am', vic.am_uuid, vic.pm_uuid)
+      )
+    }}
+
 action:
   - service: habitica.api_call
     data:
@@ -36,7 +47,7 @@ action:
         - tasks
         - brush-teeth
         - checklist
-        - "{{ iif(now().hour >= 20, am_uuid, pm_uuid) }}"
+        - "{{ target_uuid }}"
         - put
       args:
         completed: true
