@@ -3599,6 +3599,14 @@
                   "primary_info": "state",
                   "secondary_info": "name",
                   "name": "Pending Dailys"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.habitica_vic_pending_dailys",
+                  "fill_container": false,
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Pending Dailys"
                 }
               ]
             }
