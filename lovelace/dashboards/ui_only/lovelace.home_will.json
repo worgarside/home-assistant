@@ -2803,7 +2803,14 @@
                   ],
                   "show_header_toggle": false,
                   "state_color": false,
-                  "title": "Sorter Parameters"
+                  "title": "Sorter Parameters",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.mtrxpi_current_content",
+                      "state": "sorter"
+                    }
+                  ]
                 },
                 {
                   "type": "entities",
