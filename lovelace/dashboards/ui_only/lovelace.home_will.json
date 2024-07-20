@@ -2817,6 +2817,18 @@
                     }
                   ],
                   "title": "Content Triggers"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "select.mtrxpi_sorter_algorithm",
+                      "name": "Algorithm"
+                    }
+                  ],
+                  "show_header_toggle": false,
+                  "state_color": false,
+                  "title": "Sorter Parameters"
                 }
               ],
               "title": "LED Matrix Controller"
