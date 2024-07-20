@@ -5,9 +5,11 @@ name: "MtrxPi | Sorter: Randomize Algorithm"
 
 command_topic: /mtrxpi/sorter/parameter/randomize-algorithm
 
-payload_on: true
+icon: mdi:shuffle
 
-payload_off: false
+payload_on: "true"
+
+payload_off: "false"
 
 qos: 0
 
@@ -15,6 +17,6 @@ retain: true
 
 state_topic: /mtrxpi/sorter/parameter/randomize-algorithm
 
-state_on: true
+state_on: "true"
 
-state_off: false
+state_off: "false"

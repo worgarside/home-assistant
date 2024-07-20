@@ -4303,6 +4303,7 @@ File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml
 
 **Entity ID: `mqtt.mtrxpi_sorter_randomize_algorithm`**
 
+- Icon: [`mdi:shuffle`](https://pictogrammers.com/library/mdi/icon/shuffle/)
 - Command Topic: /mtrxpi/sorter/parameter/randomize-algorithm
 - State Topic: /mtrxpi/sorter/parameter/randomize-algorithm
 
