@@ -3328,7 +3328,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (89)</h3></summary>
+<details><summary><h3>Entities (90)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -3380,6 +3380,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number
 
 - Icon: [`mdi:presentation-play`](https://pictogrammers.com/library/mdi/icon/presentation-play/)
 - Command Topic: /mtrxpi/sorter/parameter/completion-display-time
+- State Topic: /mtrxpi/sorter/parameter/completion-display-time
 - Unit Of Measurement: `s`
 
 File: [`mqtt/number/mtrxpi/sorter/completion_display_time.yaml`](entities/mqtt/number/mtrxpi/sorter/completion_display_time.yaml)
@@ -3391,6 +3392,7 @@ File: [`mqtt/number/mtrxpi/sorter/completion_display_time.yaml`](entities/mqtt/n
 
 - Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
 - Command Topic: /mtrxpi/sorter/parameter/iterations
+- State Topic: /mtrxpi/sorter/parameter/iterations
 - Unit Of Measurement: `iteration`
 
 File: [`mqtt/number/mtrxpi/sorter/iterations.yaml`](entities/mqtt/number/mtrxpi/sorter/iterations.yaml)
@@ -4295,6 +4297,16 @@ File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memor
 - Unit Of Measurement: `s`
 
 File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Sorter: Randomize Algorithm</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_sorter_randomize_algorithm`**
+
+- Command Topic: /mtrxpi/sorter/parameter/randomize-algorithm
+- State Topic: /mtrxpi/sorter/parameter/randomize-algorithm
+
+File: [`mqtt/switch/mtrxpi/sorter/randomize_algorithm.yaml`](entities/mqtt/switch/mtrxpi/sorter/randomize_algorithm.yaml)
 </details>
 
 <details><summary><strong>OctoPi CPU Fan</strong></summary>

@@ -1,0 +1,20 @@
+---
+unique_id: mtrxpi_sorter_randomize_algorithm
+
+name: "MtrxPi | Sorter: Randomize Algorithm"
+
+command_topic: /mtrxpi/sorter/parameter/randomize-algorithm
+
+payload_on: true
+
+payload_off: false
+
+qos: 0
+
+retain: true
+
+state_topic: /mtrxpi/sorter/parameter/randomize-algorithm
+
+state_on: true
+
+state_off: false
