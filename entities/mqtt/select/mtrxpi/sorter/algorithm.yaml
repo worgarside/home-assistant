@@ -22,3 +22,5 @@ options:
   - Timsort
 
 state_topic: /mtrxpi/sorter/parameter/algorithm
+
+value_template: "{{ value_json.replace('_', ' ') | title }}"
