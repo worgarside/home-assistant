@@ -23,4 +23,4 @@ options:
 
 state_topic: /mtrxpi/sorter/parameter/algorithm
 
-value_template: "{{ value_json.replace('_', ' ') | title }}"
+value_template: "{{ value.replace('_', ' ') | title }}"  # hacv disable: InvalidTemplateVar:value
