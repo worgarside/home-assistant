@@ -3328,7 +3328,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (87)</h3></summary>
+<details><summary><h3>Entities (89)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -3374,6 +3374,28 @@ File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/m
 File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/splash_speed.yaml)
 </details>
 
+<details><summary><strong>MtrxPi | Sorter: Completion Display Time</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_sorter_completion_display_time`**
+
+- Icon: [`mdi:presentation-play`](https://pictogrammers.com/library/mdi/icon/presentation-play/)
+- Command Topic: /mtrxpi/sorter/parameter/completion-display-time
+- Unit Of Measurement: `s`
+
+File: [`mqtt/number/mtrxpi/sorter/completion_display_time.yaml`](entities/mqtt/number/mtrxpi/sorter/completion_display_time.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Sorter: Iterations</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_sorter_iterations`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+- Command Topic: /mtrxpi/sorter/parameter/iterations
+- Unit Of Measurement: `iteration`
+
+File: [`mqtt/number/mtrxpi/sorter/iterations.yaml`](entities/mqtt/number/mtrxpi/sorter/iterations.yaml)
+</details>
+
 <details><summary><strong>Prusa i3 | Target Bed Temperature</strong></summary>
 
 **Entity ID: `mqtt.prusa_i3_target_bed_temperature`**
@@ -3402,6 +3424,7 @@ File: [`mqtt/number/prusa_i3/target_hotend_temperature.yaml`](entities/mqtt/numb
 
 **Entity ID: `mqtt.mtrxpi_sorter_algorithm`**
 
+- Icon: [`mdi:sort`](https://pictogrammers.com/library/mdi/icon/sort/)
 - Command Topic: /mtrxpi/sorter/parameter/algorithm
 - State Topic: /mtrxpi/sorter/parameter/algorithm
 
