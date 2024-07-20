@@ -9,4 +9,4 @@ state_topic: /homeassistant/rtropi/stats
 
 unique_id: rtropi_local_ip_address
 
-value_template: "{{ value_json.local_ip }}"
+value_template: "{{ value_json.local_ip | default('rtropi.local') }}"
