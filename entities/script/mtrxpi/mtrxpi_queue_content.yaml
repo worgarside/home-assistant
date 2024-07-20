@@ -10,7 +10,13 @@ fields:
     description: The ID of the content to add to the queue
     example: raining-grid
     selector:
-      text:
+      select:
+        options:
+          - gif-door-animated
+          - image-door-closed
+          - now-playing
+          - raining-grid
+          - sorter
 
   priority:
     description: >-

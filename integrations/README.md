@@ -3328,7 +3328,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (86)</h3></summary>
+<details><summary><h3>Entities (87)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -3396,6 +3396,16 @@ File: [`mqtt/number/prusa_i3/target_bed_temperature.yaml`](entities/mqtt/number/
 - Unit Of Measurement: °C
 
 File: [`mqtt/number/prusa_i3/target_hotend_temperature.yaml`](entities/mqtt/number/prusa_i3/target_hotend_temperature.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Sorter: Algorithm</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_sorter_algorithm`**
+
+- Command Topic: /mtrxpi/sorter/parameter/algorithm
+- State Topic: /mtrxpi/sorter/parameter/algorithm
+
+File: [`mqtt/select/mtrxpi/sorter/algorithm.yaml`](entities/mqtt/select/mtrxpi/sorter/algorithm.yaml)
 </details>
 
 <details><summary><strong>CRT TV Internal Humidity</strong></summary>
@@ -4806,7 +4816,15 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
     "description": "The ID of the content to add to the queue",
     "example": "raining-grid",
     "selector": {
-      "text": null
+      "select": {
+        "options": [
+          "gif-door-animated",
+          "image-door-closed",
+          "now-playing",
+          "raining-grid",
+          "sorter"
+        ]
+      }
     }
   },
   "priority": {
