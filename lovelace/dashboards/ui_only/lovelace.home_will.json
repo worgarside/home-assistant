@@ -2808,7 +2808,7 @@
                     {
                       "condition": "state",
                       "entity": "sensor.mtrxpi_current_content",
-                      "state": "sorter"
+                      "state_not": "sorter2"
                     }
                   ]
                 },
