@@ -2784,7 +2784,14 @@
                   ],
                   "show_header_toggle": false,
                   "state_color": false,
-                  "title": "Raining Grid Parameters"
+                  "title": "Raining Grid Parameters",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.mtrxpi_current_content",
+                      "state": "raining-grid"
+                    }
+                  ]
                 },
                 {
                   "type": "entities",
