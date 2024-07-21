@@ -2763,16 +2763,11 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "grid",
-                  "columns": 1,
-                  "square": false,
-                  "cards": [
+                  "type": "entities",
+                  "entities": [
                     {
                       "type": "custom:expander-card",
-                      "title-card": {
-                        "type": "markdown",
-                        "content": "## Raining Grid"
-                      },
+                      "title": "Raining Grid",
                       "cards": [
                         {
                           "type": "entities",
@@ -2798,15 +2793,16 @@
                           "state_color": true
                         }
                       ],
-                      "clear": false,
-                      "title-card-button-overlay": false
+                      "clear": true,
+                      "title-card-button-overlay": false,
+                      "gap": "",
+                      "expanded": false,
+                      "padding": "",
+                      "child-padding": ""
                     },
                     {
                       "type": "custom:expander-card",
-                      "title-card": {
-                        "type": "markdown",
-                        "content": "## Sorter"
-                      },
+                      "title": "Sorter",
                       "cards": [
                         {
                           "type": "entities",
@@ -2829,8 +2825,12 @@
                           "state_color": true
                         }
                       ],
-                      "clear": false,
-                      "title-card-button-overlay": false
+                      "clear": true,
+                      "title-card-button-overlay": false,
+                      "gap": "",
+                      "expanded": false,
+                      "padding": "",
+                      "child-padding": ""
                     }
                   ]
                 },
