@@ -2765,6 +2765,7 @@
                 {
                   "type": "grid",
                   "columns": 1,
+                  "square": false,
                   "cards": [
                     {
                       "type": "custom:expander-card",
@@ -2791,6 +2792,37 @@
                             {
                               "entity": "number.mtrxpi_raining_grid_splash_speed",
                               "name": "Splash Speed"
+                            }
+                          ],
+                          "show_header_toggle": false,
+                          "state_color": true
+                        }
+                      ],
+                      "clear": false,
+                      "title-card-button-overlay": false
+                    },
+                    {
+                      "type": "custom:expander-card",
+                      "title-card": {
+                        "type": "markdown",
+                        "content": "## Sorter"
+                      },
+                      "cards": [
+                        {
+                          "type": "entities",
+                          "entities": [
+                            {
+                              "entity": "select.mtrxpi_sorter_algorithm",
+                              "name": "Algorithm"
+                            },
+                            {
+                              "entity": "number.mtrxpi_sorter_completion_display_time"
+                            },
+                            {
+                              "entity": "number.mtrxpi_sorter_iterations"
+                            },
+                            {
+                              "entity": "switch.mtrxpi_sorter_randomize_algorithm"
                             }
                           ],
                           "show_header_toggle": false,
