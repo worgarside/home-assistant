@@ -2852,6 +2852,20 @@
                     }
                   ],
                   "title": "Content Triggers"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "type": "custom:fold-entity-row",
+                      "head": "light.bed_light",
+                      "entities": [
+                        "light.bed_light",
+                        "light.ceiling_lights",
+                        "light.kitchen_lights"
+                      ]
+                    }
+                  ]
                 }
               ],
               "title": "LED Matrix Controller"
