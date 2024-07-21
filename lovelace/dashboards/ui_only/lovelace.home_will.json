@@ -2797,24 +2797,27 @@
                   "type": "custom:expander-card",
                   "title-card": {
                     "type": "markdown",
-                    "content": "## Sorter"
+                    "content": "## Raining Grid"
                   },
                   "cards": [
                     {
                       "type": "entities",
                       "entities": [
                         {
-                          "entity": "select.mtrxpi_sorter_algorithm",
-                          "name": "Algorithm"
+                          "entity": "number.mtrxpi_raining_grid_rain_chance",
+                          "name": "Rain Chance"
                         },
                         {
-                          "entity": "number.mtrxpi_sorter_completion_display_time"
+                          "entity": "input_number.mtrxpi_raining_grid_maximum_rain_intensity",
+                          "name": "Max. Intensity"
                         },
                         {
-                          "entity": "number.mtrxpi_sorter_iterations"
+                          "entity": "number.mtrxpi_raining_grid_rain_speed",
+                          "name": "Rain Speed"
                         },
                         {
-                          "entity": "switch.mtrxpi_sorter_randomize_algorithm"
+                          "entity": "number.mtrxpi_raining_grid_splash_speed",
+                          "name": "Splash Speed"
                         }
                       ],
                       "show_header_toggle": false,
