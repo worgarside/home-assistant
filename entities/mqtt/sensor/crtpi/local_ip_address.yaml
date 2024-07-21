@@ -9,4 +9,4 @@ state_topic: /homeassistant/crt-pi/stats
 
 unique_id: crtpi_local_ip_address
 
-value_template: "{{ value_json.local_ip }}"
+value_template: "{{ value_json.local_ip | default('crtpi.local') }}"
