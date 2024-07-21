@@ -1,0 +1,28 @@
+---
+name: "MtrxPi | Sorter: Algorithm"
+
+unique_id: mtrxpi_sorter_algorithm
+
+command_topic: /mtrxpi/sorter/parameter/algorithm
+
+command_template: "{{ slugify(value) | tojson }}" # hacv disable: InvalidTemplateVar:value,slugify
+
+icon: mdi:sort
+
+retain: true
+
+options:
+  - Binary Insertion Sort
+  - Bubblesort
+  - Cocktail Shaker Sort
+  - Comb Sort
+  - Gnome Sort
+  - Odd Even Sort
+  - Pancake Sort
+  - Slow Sort
+  - Stooge Sort
+  - Timsort
+
+state_topic: /mtrxpi/sorter/parameter/algorithm
+
+value_template: "{{ value_json.replace('_', ' ').title() }}"

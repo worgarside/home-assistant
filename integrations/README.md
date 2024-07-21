@@ -3328,7 +3328,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (86)</h3></summary>
+<details><summary><h3>Entities (90)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -3374,6 +3374,30 @@ File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/m
 File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/splash_speed.yaml)
 </details>
 
+<details><summary><strong>MtrxPi | Sorter: Completion Display Time</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_sorter_completion_display_time`**
+
+- Icon: [`mdi:presentation-play`](https://pictogrammers.com/library/mdi/icon/presentation-play/)
+- Command Topic: /mtrxpi/sorter/parameter/completion-display-time
+- State Topic: /mtrxpi/sorter/parameter/completion-display-time
+- Unit Of Measurement: `s`
+
+File: [`mqtt/number/mtrxpi/sorter/completion_display_time.yaml`](entities/mqtt/number/mtrxpi/sorter/completion_display_time.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Sorter: Iterations</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_sorter_iterations`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+- Command Topic: /mtrxpi/sorter/parameter/iterations
+- State Topic: /mtrxpi/sorter/parameter/iterations
+- Unit Of Measurement: `iteration`
+
+File: [`mqtt/number/mtrxpi/sorter/iterations.yaml`](entities/mqtt/number/mtrxpi/sorter/iterations.yaml)
+</details>
+
 <details><summary><strong>Prusa i3 | Target Bed Temperature</strong></summary>
 
 **Entity ID: `mqtt.prusa_i3_target_bed_temperature`**
@@ -3396,6 +3420,17 @@ File: [`mqtt/number/prusa_i3/target_bed_temperature.yaml`](entities/mqtt/number/
 - Unit Of Measurement: °C
 
 File: [`mqtt/number/prusa_i3/target_hotend_temperature.yaml`](entities/mqtt/number/prusa_i3/target_hotend_temperature.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Sorter: Algorithm</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_sorter_algorithm`**
+
+- Icon: [`mdi:sort`](https://pictogrammers.com/library/mdi/icon/sort/)
+- Command Topic: /mtrxpi/sorter/parameter/algorithm
+- State Topic: /mtrxpi/sorter/parameter/algorithm
+
+File: [`mqtt/select/mtrxpi/sorter/algorithm.yaml`](entities/mqtt/select/mtrxpi/sorter/algorithm.yaml)
 </details>
 
 <details><summary><strong>CRT TV Internal Humidity</strong></summary>
@@ -4264,6 +4299,17 @@ File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memor
 File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml)
 </details>
 
+<details><summary><strong>MtrxPi | Sorter: Randomize Algorithm</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_sorter_randomize_algorithm`**
+
+- Icon: [`mdi:shuffle`](https://pictogrammers.com/library/mdi/icon/shuffle/)
+- Command Topic: /mtrxpi/sorter/parameter/randomize-algorithm
+- State Topic: /mtrxpi/sorter/parameter/randomize-algorithm
+
+File: [`mqtt/switch/mtrxpi/sorter/randomize_algorithm.yaml`](entities/mqtt/switch/mtrxpi/sorter/randomize_algorithm.yaml)
+</details>
+
 <details><summary><strong>OctoPi CPU Fan</strong></summary>
 
 **Entity ID: `mqtt.octopi_cpu_fan`**
@@ -4806,7 +4852,15 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
     "description": "The ID of the content to add to the queue",
     "example": "raining-grid",
     "selector": {
-      "text": null
+      "select": {
+        "options": [
+          "gif-door-animated",
+          "image-door-closed",
+          "now-playing",
+          "raining-grid",
+          "sorter"
+        ]
+      }
     }
   },
   "priority": {

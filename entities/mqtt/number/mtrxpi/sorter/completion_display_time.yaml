@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Sorter: Completion Display Time"
+
+unique_id: mtrxpi_sorter_completion_display_time
+
+command_topic: /mtrxpi/sorter/parameter/completion-display-time
+
+icon: mdi:presentation-play
+
+min: 0
+
+max: 30
+
+mode: slider
+
+retain: true
+
+step: 0.01
+
+unit_of_measurement: s
+
+state_topic: /mtrxpi/sorter/parameter/completion-display-time
