@@ -2811,15 +2811,8 @@
                     }
                   ],
                   "show_header_toggle": false,
-                  "state_color": false,
-                  "title": "Sorter Parameters",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.mtrxpi_current_content",
-                      "state_not": "sorter2"
-                    }
-                  ]
+                  "state_color": true,
+                  "title": "Sorter Parameters"
                 },
                 {
                   "type": "entities",
