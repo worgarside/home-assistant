@@ -2803,37 +2803,6 @@
                   ]
                 },
                 {
-                  "type": "custom:expander-card",
-                  "title-card": {
-                    "type": "markdown",
-                    "content": "## Sorter"
-                  },
-                  "cards": [
-                    {
-                      "type": "entities",
-                      "entities": [
-                        {
-                          "entity": "select.mtrxpi_sorter_algorithm",
-                          "name": "Algorithm"
-                        },
-                        {
-                          "entity": "number.mtrxpi_sorter_completion_display_time"
-                        },
-                        {
-                          "entity": "number.mtrxpi_sorter_iterations"
-                        },
-                        {
-                          "entity": "switch.mtrxpi_sorter_randomize_algorithm"
-                        }
-                      ],
-                      "show_header_toggle": false,
-                      "state_color": true
-                    }
-                  ],
-                  "clear": false,
-                  "title-card-button-overlay": false
-                },
-                {
                   "type": "entities",
                   "entities": [
                     {
