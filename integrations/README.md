@@ -2737,16 +2737,16 @@ File: [`input_number/cosmo/cosmo_room_timeout_lounge.yaml`](entities/input_numbe
 File: [`input_number/cosmo/cosmo_room_timeout_office.yaml`](entities/input_number/cosmo/cosmo_room_timeout_office.yaml)
 </details>
 
-<details><summary><strong>CRT TV Fan Auto-On Threshold</strong></summary>
+<details><summary><strong>CRTPi: Fan Auto-On Threshold</strong></summary>
 
-**Entity ID: `input_number.crt_tv_fan_auto_on_threshold`**
+**Entity ID: `input_number.crtpi_fan_auto_on_threshold`**
 
 - Max: 100
 - Min: 20
 - Mode: `box`
 - Unit Of Measurement: °C
 
-File: [`input_number/crt_tv_fan_auto_on_threshold.yaml`](entities/input_number/crt_tv_fan_auto_on_threshold.yaml)
+File: [`input_number/crtpi_fan_auto_on_threshold.yaml`](entities/input_number/crtpi_fan_auto_on_threshold.yaml)
 </details>
 
 <details><summary><strong>Dry Box | Max Humidity</strong></summary>
