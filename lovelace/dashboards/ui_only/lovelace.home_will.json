@@ -3424,6 +3424,18 @@
           ]
         },
         {
+          "title": "CRT Pi",
+          "path": "crtpi",
+          "icon": "mdi:television-classic",
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": []
+            }
+          ]
+        },
+        {
           "title": "Will",
           "path": "will",
           "icon": "mdi:human-male",
@@ -3674,18 +3686,6 @@
                   "name": "Pending Dailys"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "title": "CRT Pi",
-          "path": "crtpi",
-          "icon": "mdi:television-classic",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": []
             }
           ]
         }
