@@ -3,7 +3,7 @@ force_update: true
 icon: mdi:weight
 name: CRTPi Average Load (5 min)
 state_class: measurement
-state_topic: /homeassistant/crt-pi/stats
+state_topic: /homeassistant/crtpi/stats
 unique_id: crtpi_average_load_5_min
 unit_of_measurement: ""
 value_template: "{{ value_json.load_5m }}"

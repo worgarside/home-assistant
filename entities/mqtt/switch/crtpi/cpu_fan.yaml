@@ -1,0 +1,22 @@
+---
+unique_id: crtpi_cpu_fan
+
+name: CRTPi CPU Fan
+
+command_topic: /homeassistant/crtpi/gpio/cpu-fan
+
+icon: mdi:fan
+
+payload_on: "true"
+
+payload_off: "false"
+
+qos: 2
+
+retain: true
+
+state_topic: /homeassistant/crtpi/gpio/cpu-fan
+
+state_on: "true"
+
+state_off: "false"

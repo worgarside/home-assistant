@@ -1,9 +1,16 @@
 ---
 force_update: true
+
 icon: mdi:thermometer
-name: CRT TV Internal Temperature
+
+name: CRTPi Ambient Temperature
+
 state_class: measurement
+
 state_topic: /homeassistant/crtpi/dht22
-unique_id: crt_tv_internal_temperature
+
+unique_id: crtpi_ambient_temperature
+
 unit_of_measurement: "°C"
-value_template: '{{ value_json.temperature }}'
+
+value_template: "{{ value_json.temperature }}"

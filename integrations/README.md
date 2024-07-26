@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (129)</h3></summary>
+<details><summary><h3>Entities (125)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -291,95 +291,43 @@ File: [`automation/cover/office_desk/keepalive.yaml`](entities/automation/cover/
 File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/office_desk/work_mode.yaml)
 </details>
 
-<details><summary><code>/crt-pi/crt-power-state-from-crt-pi</code></summary>
+<details><summary><code>/crtpi/display-source-changed</code></summary>
 
-**Entity ID: `automation.crt_pi_crt_power_state_from_crt_pi`**
-
-> *No description provided*
-
-- Alias: /crt-pi/crt-power-state-from-crt-pi
-- ID: `crt_pi_crt_power_state_from_crt_pi`
-- Mode: `queued`
-
-File: [`automation/crt_pi/crt_power_state_from_crt_pi.yaml`](entities/automation/crt_pi/crt_power_state_from_crt_pi.yaml)
-</details>
-
-<details><summary><code>/crt-pi/crt-power-state-from-ha</code></summary>
-
-**Entity ID: `automation.crt_pi_crt_power_state_from_ha`**
+**Entity ID: `automation.crtpi_display_source_changed`**
 
 > *No description provided*
 
-- Alias: /crt-pi/crt-power-state-from-ha
-- ID: `crt_pi_crt_power_state_from_ha`
-- Mode: `queued`
-
-File: [`automation/crt_pi/crt_power_state_from_ha.yaml`](entities/automation/crt_pi/crt_power_state_from_ha.yaml)
-</details>
-
-<details><summary><code>/crt-pi/display-source-changed</code></summary>
-
-**Entity ID: `automation.crt_pi_display_source_changed`**
-
-> *No description provided*
-
-- Alias: /crt-pi/display-source-changed
-- ID: `crt_pi_display_source_changed`
+- Alias: /crtpi/display-source-changed
+- ID: `crtpi_display_source_changed`
 - Mode: `restart`
 
-File: [`automation/crt_pi/display_source_changed.yaml`](entities/automation/crt_pi/display_source_changed.yaml)
+File: [`automation/crtpi/display_source_changed.yaml`](entities/automation/crtpi/display_source_changed.yaml)
 </details>
 
-<details><summary><code>/crt-pi/fan-control</code></summary>
+<details><summary><code>/crtpi/force-update-mini-crt-power-state</code></summary>
 
-**Entity ID: `automation.crt_pi_fan_control`**
+**Entity ID: `automation.crtpi_force_update_mini_crt_power_state`**
 
 > *No description provided*
 
-- Alias: /crt-pi/fan-control
-- ID: `crt_pi_fan_control`
-- Mode: `restart`
+- Alias: /crtpi/force-update-mini-crt-power-state
+- ID: `crtpi_force_update_mini_crt_power_state`
+- Mode: `queued`
 
-File: [`automation/crt_pi/fan_control.yaml`](entities/automation/crt_pi/fan_control.yaml)
+File: [`automation/crtpi/force_update_mini_crt_power_state.yaml`](entities/automation/crtpi/force_update_mini_crt_power_state.yaml)
 </details>
 
-<details><summary><code>/crt-pi/force-update-mini-crt-power-state</code></summary>
+<details><summary><code>/crtpi/update-display</code></summary>
 
-**Entity ID: `automation.crt_pi_force_update_mini_crt_power_state`**
+**Entity ID: `automation.crtpi_update_display`**
 
 > *No description provided*
 
-- Alias: /crt-pi/force-update-mini-crt-power-state
-- ID: `crt_pi_force_update_mini_crt_power_state`
+- Alias: /crtpi/update-display
+- ID: `crtpi_update_display`
 - Mode: `queued`
 
-File: [`automation/crt_pi/force_update_mini_crt_power_state.yaml`](entities/automation/crt_pi/force_update_mini_crt_power_state.yaml)
-</details>
-
-<details><summary><code>/crt-pi/mqtt-sync-mini-crt-fan</code></summary>
-
-**Entity ID: `automation.crt_pi_mqtt_sync_mini_crt_fan`**
-
-> Sync the state of `input_boolean.mini_crt_fan` with `crt-pi`
-
-- Alias: /crt-pi/mqtt-sync-mini-crt-fan
-- ID: `crt_pi_mqtt_sync_mini_crt_fan`
-- Mode: `queued`
-
-File: [`automation/crt_pi/mqtt_sync_mini_crt_fan.yaml`](entities/automation/crt_pi/mqtt_sync_mini_crt_fan.yaml)
-</details>
-
-<details><summary><code>/crt-pi/update-display</code></summary>
-
-**Entity ID: `automation.crt_pi_update_display`**
-
-> *No description provided*
-
-- Alias: /crt-pi/update-display
-- ID: `crt_pi_update_display`
-- Mode: `queued`
-
-File: [`automation/crt_pi/update_display.yaml`](entities/automation/crt_pi/update_display.yaml)
+File: [`automation/crtpi/update_display.yaml`](entities/automation/crtpi/update_display.yaml)
 </details>
 
 <details><summary><code>/cube/knock</code></summary>
@@ -3328,7 +3276,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (90)</h3></summary>
+<details><summary><h3>Entities (92)</h3></summary>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -3433,38 +3381,38 @@ File: [`mqtt/number/prusa_i3/target_hotend_temperature.yaml`](entities/mqtt/numb
 File: [`mqtt/select/mtrxpi/sorter/algorithm.yaml`](entities/mqtt/select/mtrxpi/sorter/algorithm.yaml)
 </details>
 
-<details><summary><strong>CRT TV Internal Humidity</strong></summary>
+<details><summary><strong>CRTPi Active Git Ref</strong></summary>
 
-**Entity ID: `sensor.crt_tv_internal_humidity`**
+**Entity ID: `sensor.crtpi_active_git_ref`**
+
+- Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
+- State Topic: /homeassistant/crtpi/stats
+
+File: [`mqtt/sensor/crtpi/active_git_ref.yaml`](entities/mqtt/sensor/crtpi/active_git_ref.yaml)
+</details>
+
+<details><summary><strong>CRTPi Ambient Humidity</strong></summary>
+
+**Entity ID: `sensor.crtpi_ambient_humidity`**
 
 - Icon: [`mdi:water-percent`](https://pictogrammers.com/library/mdi/icon/water-percent/)
 - State Class: `measurement`
 - State Topic: /homeassistant/crtpi/dht22
 - Unit Of Measurement: %
 
-File: [`mqtt/sensor/crt_tv/internal_humidity.yaml`](entities/mqtt/sensor/crt_tv/internal_humidity.yaml)
+File: [`mqtt/sensor/crtpi/ambient_humidity.yaml`](entities/mqtt/sensor/crtpi/ambient_humidity.yaml)
 </details>
 
-<details><summary><strong>CRT TV Internal Temperature</strong></summary>
+<details><summary><strong>CRTPi Ambient Temperature</strong></summary>
 
-**Entity ID: `sensor.crt_tv_internal_temperature`**
+**Entity ID: `sensor.crtpi_ambient_temperature`**
 
 - Icon: [`mdi:thermometer`](https://pictogrammers.com/library/mdi/icon/thermometer/)
 - State Class: `measurement`
 - State Topic: /homeassistant/crtpi/dht22
 - Unit Of Measurement: °C
 
-File: [`mqtt/sensor/crt_tv/internal_temperature.yaml`](entities/mqtt/sensor/crt_tv/internal_temperature.yaml)
-</details>
-
-<details><summary><strong>CRTPi Active Git Ref</strong></summary>
-
-**Entity ID: `sensor.crtpi_active_git_ref`**
-
-- Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
-- State Topic: /homeassistant/crt-pi/stats
-
-File: [`mqtt/sensor/crtpi/active_git_ref.yaml`](entities/mqtt/sensor/crtpi/active_git_ref.yaml)
+File: [`mqtt/sensor/crtpi/ambient_temperature.yaml`](entities/mqtt/sensor/crtpi/ambient_temperature.yaml)
 </details>
 
 <details><summary><strong>CRTPi Average Load (15 min)</strong></summary>
@@ -3473,7 +3421,7 @@ File: [`mqtt/sensor/crtpi/active_git_ref.yaml`](entities/mqtt/sensor/crtpi/activ
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 
 File: [`mqtt/sensor/crtpi/average_load_15_min.yaml`](entities/mqtt/sensor/crtpi/average_load_15_min.yaml)
 </details>
@@ -3484,7 +3432,7 @@ File: [`mqtt/sensor/crtpi/average_load_15_min.yaml`](entities/mqtt/sensor/crtpi/
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 
 File: [`mqtt/sensor/crtpi/average_load_1_min.yaml`](entities/mqtt/sensor/crtpi/average_load_1_min.yaml)
 </details>
@@ -3495,7 +3443,7 @@ File: [`mqtt/sensor/crtpi/average_load_1_min.yaml`](entities/mqtt/sensor/crtpi/a
 
 - Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
 - State Class: `measurement`
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 
 File: [`mqtt/sensor/crtpi/average_load_5_min.yaml`](entities/mqtt/sensor/crtpi/average_load_5_min.yaml)
 </details>
@@ -3505,7 +3453,7 @@ File: [`mqtt/sensor/crtpi/average_load_5_min.yaml`](entities/mqtt/sensor/crtpi/a
 **Entity ID: `sensor.crtpi_boot_time`**
 
 - Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 
 File: [`mqtt/sensor/crtpi/boot_time.yaml`](entities/mqtt/sensor/crtpi/boot_time.yaml)
 </details>
@@ -3516,7 +3464,7 @@ File: [`mqtt/sensor/crtpi/boot_time.yaml`](entities/mqtt/sensor/crtpi/boot_time.
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 - Unit Of Measurement: °C
 
 File: [`mqtt/sensor/crtpi/cpu_temperature.yaml`](entities/mqtt/sensor/crtpi/cpu_temperature.yaml)
@@ -3528,7 +3476,7 @@ File: [`mqtt/sensor/crtpi/cpu_temperature.yaml`](entities/mqtt/sensor/crtpi/cpu_
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - State Class: `measurement`
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 - Unit Of Measurement: %
 
 File: [`mqtt/sensor/crtpi/cpu_usage.yaml`](entities/mqtt/sensor/crtpi/cpu_usage.yaml)
@@ -3540,7 +3488,7 @@ File: [`mqtt/sensor/crtpi/cpu_usage.yaml`](entities/mqtt/sensor/crtpi/cpu_usage.
 
 - Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
 - State Class: `measurement`
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 - Unit Of Measurement: %
 
 File: [`mqtt/sensor/crtpi/disk_usage.yaml`](entities/mqtt/sensor/crtpi/disk_usage.yaml)
@@ -3551,7 +3499,7 @@ File: [`mqtt/sensor/crtpi/disk_usage.yaml`](entities/mqtt/sensor/crtpi/disk_usag
 **Entity ID: `sensor.crtpi_local_git_ref`**
 
 - Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 
 File: [`mqtt/sensor/crtpi/local_git_ref.yaml`](entities/mqtt/sensor/crtpi/local_git_ref.yaml)
 </details>
@@ -3561,7 +3509,7 @@ File: [`mqtt/sensor/crtpi/local_git_ref.yaml`](entities/mqtt/sensor/crtpi/local_
 **Entity ID: `sensor.crtpi_local_ip_address`**
 
 - Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 
 File: [`mqtt/sensor/crtpi/local_ip_address.yaml`](entities/mqtt/sensor/crtpi/local_ip_address.yaml)
 </details>
@@ -3572,7 +3520,7 @@ File: [`mqtt/sensor/crtpi/local_ip_address.yaml`](entities/mqtt/sensor/crtpi/loc
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - State Class: `measurement`
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 - Unit Of Measurement: %
 
 File: [`mqtt/sensor/crtpi/memory_usage.yaml`](entities/mqtt/sensor/crtpi/memory_usage.yaml)
@@ -3584,7 +3532,7 @@ File: [`mqtt/sensor/crtpi/memory_usage.yaml`](entities/mqtt/sensor/crtpi/memory_
 
 - Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
 - State Class: `measurement`
-- State Topic: /homeassistant/crt-pi/stats
+- State Topic: /homeassistant/crtpi/stats
 - Unit Of Measurement: `s`
 
 File: [`mqtt/sensor/crtpi/uptime.yaml`](entities/mqtt/sensor/crtpi/uptime.yaml)
@@ -4299,6 +4247,28 @@ File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memor
 File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml)
 </details>
 
+<details><summary><strong>CRTPi CPU Fan</strong></summary>
+
+**Entity ID: `mqtt.crtpi_cpu_fan`**
+
+- Icon: [`mdi:fan`](https://pictogrammers.com/library/mdi/icon/fan/)
+- Command Topic: /homeassistant/crtpi/gpio/cpu-fan
+- State Topic: /homeassistant/crtpi/gpio/cpu-fan
+
+File: [`mqtt/switch/crtpi/cpu_fan.yaml`](entities/mqtt/switch/crtpi/cpu_fan.yaml)
+</details>
+
+<details><summary><strong>CRTPi CRT TV Power</strong></summary>
+
+**Entity ID: `mqtt.crtpi_crt_tv_power`**
+
+- Icon: [`mdi:television-classic`](https://pictogrammers.com/library/mdi/icon/television-classic/)
+- Command Topic: /homeassistant/crtpi/gpio/crt-tv
+- State Topic: /homeassistant/crtpi/gpio/crt-tv
+
+File: [`mqtt/switch/crtpi/crt_tv_power.yaml`](entities/mqtt/switch/crtpi/crt_tv_power.yaml)
+</details>
+
 <details><summary><strong>MtrxPi | Sorter: Randomize Algorithm</strong></summary>
 
 **Entity ID: `mqtt.mtrxpi_sorter_randomize_algorithm`**
@@ -4314,6 +4284,7 @@ File: [`mqtt/switch/mtrxpi/sorter/randomize_algorithm.yaml`](entities/mqtt/switc
 
 **Entity ID: `mqtt.octopi_cpu_fan`**
 
+- Icon: [`mdi:fan`](https://pictogrammers.com/library/mdi/icon/fan/)
 - Command Topic: /octopi/gpio/cpu-fan
 - State Topic: /octopi/gpio/cpu-fan
 
@@ -4324,6 +4295,7 @@ File: [`mqtt/switch/octopi/cpu_fan.yaml`](entities/mqtt/switch/octopi/cpu_fan.ya
 
 **Entity ID: `mqtt.prusa_i3_enclosure_fan`**
 
+- Icon: [`mdi:fan`](https://pictogrammers.com/library/mdi/icon/fan/)
 - Command Topic: /prusa-i3-mk3/enclosure/fan
 - State Topic: /prusa-i3-mk3/enclosure/fan
 
@@ -4550,7 +4522,7 @@ File: [`script/cosmo/cosmo_tag_scanned.yaml`](entities/script/cosmo/cosmo_tag_sc
 
 **Entity ID: `script.crt_pi_update_display`**
 
-> Update the CRT Pi display from the chosen media player's track
+> Update the CRTPi display from the chosen media player's track
 
 - Mode: `parallel`
 

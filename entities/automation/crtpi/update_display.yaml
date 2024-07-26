@@ -1,13 +1,17 @@
 ---
-alias: /crt-pi/update-display
-id: crt_pi_update_display
+alias: /crtpi/update-display
+
+id: crtpi_update_display
+
 mode: queued
+
 trigger:
   - platform: state
     entity_id:
       - media_player.hifi_system
       - media_player.lounge_chromecast
       - media_player.spotify_will
+
 condition: |
   {{
     is_state('input_select.crt_pi_display_source', trigger.to_state.entity_id) and
@@ -26,5 +30,6 @@ condition: |
       )
     )
   }}
+
 action:
   - service: script.crt_pi_update_display

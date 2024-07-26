@@ -5,11 +5,13 @@ name: Prusa i3 Enclosure Fan
 
 command_topic: /prusa-i3-mk3/enclosure/fan
 
+icon: mdi:fan
+
 payload_on: '{"value": "On"}'
 
 payload_off: '{"value": "Off"}'
 
-qos: 0
+qos: 2
 
 retain: true
 
