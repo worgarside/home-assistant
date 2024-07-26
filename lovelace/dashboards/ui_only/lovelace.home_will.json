@@ -3196,6 +3196,18 @@
           "cards": []
         },
         {
+          "title": "CRT Pi",
+          "path": "crtpi",
+          "icon": "mdi:television-classic",
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": []
+            }
+          ]
+        },
+        {
           "title": "GitHub",
           "icon": "mdi:github",
           "path": "github",
@@ -3420,18 +3432,6 @@
                   ]
                 }
               ]
-            }
-          ]
-        },
-        {
-          "title": "CRT Pi",
-          "path": "crtpi",
-          "icon": "mdi:television-classic",
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": []
             }
           ]
         },
