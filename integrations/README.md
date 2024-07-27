@@ -4253,7 +4253,6 @@ File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml
 
 - Icon: [`mdi:fan`](https://pictogrammers.com/library/mdi/icon/fan/)
 - Command Topic: /homeassistant/crtpi/gpio/cpu-fan
-- State Topic: /homeassistant/crtpi/gpio/cpu-fan
 
 File: [`mqtt/switch/crtpi/cpu_fan.yaml`](entities/mqtt/switch/crtpi/cpu_fan.yaml)
 </details>
@@ -4264,7 +4263,6 @@ File: [`mqtt/switch/crtpi/cpu_fan.yaml`](entities/mqtt/switch/crtpi/cpu_fan.yaml
 
 - Icon: [`mdi:television-classic`](https://pictogrammers.com/library/mdi/icon/television-classic/)
 - Command Topic: /homeassistant/crtpi/gpio/crt-tv
-- State Topic: /homeassistant/crtpi/gpio/crt-tv
 
 File: [`mqtt/switch/crtpi/crt_tv_power.yaml`](entities/mqtt/switch/crtpi/crt_tv_power.yaml)
 </details>
