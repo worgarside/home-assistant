@@ -3309,7 +3309,10 @@
                           "icon_animation": true,
                           "primary_info": "state",
                           "secondary_info": "name",
-                          "show_percentage_control": false
+                          "show_percentage_control": false,
+                          "tap_action": {
+                            "action": "more-info"
+                          }
                         }
                       ],
                       "columns": 2
