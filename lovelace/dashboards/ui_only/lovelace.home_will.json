@@ -3354,6 +3354,13 @@
                       "icon_color": "blue-grey",
                       "primary_info": "state",
                       "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "switch.crtpi_crt_tv_power",
+                      "name": "CRT TV",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     }
                   ]
                 },
