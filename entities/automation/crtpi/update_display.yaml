@@ -7,29 +7,48 @@ mode: queued
 
 trigger:
   - platform: state
-    entity_id:
-      - media_player.hifi_system
-      - media_player.lounge_chromecast
-      - media_player.spotify_will
+    entity_id: media_player.lounge_speakers
 
-condition: |
-  {{
-    is_state('input_select.crt_pi_display_source', trigger.to_state.entity_id) and
-    trigger.to_state.state not in ('unavailable', 'unknown') and
-    (
-      (
-        trigger.to_state.attributes.media_title !=
-          trigger.from_state.attributes.media_title or
-        trigger.to_state.attributes.media_artist !=
-          trigger.from_state.attributes.media_artist or
-        trigger.to_state.attributes.media_album_name !=
-          trigger.from_state.attributes.media_album_name or
-        trigger.to_state.attributes.entity_picture !=
-          trigger.from_state.attributes.entity_picture or
-        trigger.to_state.state != trigger.from_state.state
-      )
-    )
-  }}
+variables:
+  media_player: media_player.lounge_speakers
+
+  album_artwork_url_prefix: |
+    {% set url = state_attr(media_player, 'entity_picture') %}
+    {{
+      "http://homeassistant.local:8123"
+      if url and url.startswith('/api/')
+      else ""
+    }}
+
+  payload: >-
+    {{
+      {
+        "title": state_attr(media_player, 'media_title'),
+        "artist": state_attr(media_player, 'media_artist'),
+        "album": state_attr(media_player, 'media_album_name'),
+        "album_artwork_url": album_artwork_url_prefix ~ state_attr(media_player, 'entity_picture'),
+        "state": states(media_player)
+      }
+    }}
 
 action:
-  - service: script.crt_pi_update_display
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      variables:
+        notification_title: CRT Display Update
+        message: |
+          ```json
+          {{ payload | tojson(indent=2) }}
+          ```
+
+          ```
+          Topic:   /crtpi/crt-interface/content
+          Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
+          ```
+
+  - service: mqtt.publish
+    data:
+      topic: /crtpi/crt-interface/content
+      payload: "{{ payload | tojson }}"
