@@ -3,7 +3,7 @@ force_update: true
 icon: mdi:harddisk
 name: CRTPi Disk Usage
 state_class: measurement
-state_topic: /homeassistant/crt-pi/stats
+state_topic: /homeassistant/crtpi/stats
 unique_id: crtpi_disk_usage
 unit_of_measurement: '%'
 value_template: '{{ value_json.disk_usage_percent }}'

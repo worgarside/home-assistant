@@ -1,0 +1,16 @@
+---
+unique_id: crtpi_crt_tv_power
+
+name: CRTPi CRT TV Power
+
+command_topic: /homeassistant/crtpi/gpio/crt-tv
+
+icon: mdi:television-classic
+
+payload_on: true
+
+payload_off: false
+
+qos: 2
+
+retain: true

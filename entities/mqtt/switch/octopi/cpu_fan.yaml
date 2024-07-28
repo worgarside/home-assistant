@@ -5,11 +5,13 @@ name: OctoPi CPU Fan
 
 command_topic: /octopi/gpio/cpu-fan
 
+icon: mdi:fan
+
 payload_on: '{"value": "On"}'
 
 payload_off: '{"value": "Off"}'
 
-qos: 0
+qos: 2
 
 retain: true
 
