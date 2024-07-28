@@ -2666,6 +2666,19 @@
                           "name": "Temperature",
                           "color": "#FF9901",
                           "y_axis": "secondary"
+                        },
+                        {
+                          "entity": "sensor.office_humidity",
+                          "name": "Office Humidity",
+                          "color": "#4DAF50",
+                          "show_line": false
+                        },
+                        {
+                          "entity": "sensor.office_temperature",
+                          "name": "Office Temperature",
+                          "color": "#FF9901",
+                          "y_axis": "secondary",
+                          "show_line": false
                         }
                       ],
                       "show": {
@@ -2681,7 +2694,7 @@
                       "hours_to_show": 6,
                       "points_per_hour": 60,
                       "lower_bound": "~30",
-                      "upper_bound": "~50",
+                      "upper_bound": "~60",
                       "lower_bound_secondary": "~20",
                       "upper_bound_secondary": "~40",
                       "height": 150,
