@@ -24,7 +24,17 @@ sequence:
 
   - alias: Set variables
     variables:
-      branches: "{{ state_attr('sensor.remote_git_branches', 'branches') }}"
+      # `main` branch should always be first: if the current branch is removed, `main` should be
+      # the chosen fallback
+      # Don't include the `chore/lovelace-ui-dashboards` branch - it's never useful
+      branches: >-
+        {{
+          ["main"] + (
+            state_attr("sensor.remote_git_branches", "branches")
+            | reject("in", ("chore/lovelace-ui-dashboards", "main"))
+            | list
+          )
+        }}
 
       branch_count: "{{ branches | length }}"
 
