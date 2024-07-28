@@ -1,7 +1,7 @@
 ---
 alias: "CRT Pi: Update Display"
 
-description: Update the CRT Pi display from the chosen media player's track
+description: Update the CRTPi display from the chosen media player's track
 
 mode: parallel
 
@@ -32,14 +32,14 @@ sequence:
           Artwork: {{ album_artwork_url_prefix }}{{ state_attr(media_player, 'entity_picture') }}
           State:   {{ states(media_player) }}
 
-          Topic:   /crt-pi/display/update_display
+          Topic:   /crtpi/display/update_display
           Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
           ```
         # yamllint enable rule:line-length
 
   - service: mqtt.publish
     data:
-      topic: /crt-pi/display/update_display
+      topic: /crtpi/display/update_display
       # yamllint disable rule:line-length
       payload: |
         {
