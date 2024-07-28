@@ -291,6 +291,27 @@ File: [`automation/cover/office_desk/keepalive.yaml`](entities/automation/cover/
 File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/office_desk/work_mode.yaml)
 </details>
 
+<details><summary><code>/crtpi/cpu-fan-control</code></summary>
+
+**Entity ID: `automation.crtpi_cpu_fan_control`**
+
+> *No description provided*
+
+- Alias: /crtpi/cpu-fan-control
+- ID: `crtpi_cpu_fan_control`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "cpu_temp": "{{ states('sensor.crtpi_cpu_temperature') | float }}",
+  "threshold": "{{ states('input_number.crtpi_fan_auto_on_threshold') | int}}",
+  "should_be_on": "{{ cpu_temp | float > threshold | int }}"
+}
+```
+File: [`automation/crtpi/cpu_fan_control.yaml`](entities/automation/crtpi/cpu_fan_control.yaml)
+</details>
+
 <details><summary><code>/crtpi/display-source-changed</code></summary>
 
 **Entity ID: `automation.crtpi_display_source_changed`**
@@ -302,19 +323,6 @@ File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/
 - Mode: `restart`
 
 File: [`automation/crtpi/display_source_changed.yaml`](entities/automation/crtpi/display_source_changed.yaml)
-</details>
-
-<details><summary><code>/crtpi/force-update-mini-crt-power-state</code></summary>
-
-**Entity ID: `automation.crtpi_force_update_mini_crt_power_state`**
-
-> *No description provided*
-
-- Alias: /crtpi/force-update-mini-crt-power-state
-- ID: `crtpi_force_update_mini_crt_power_state`
-- Mode: `queued`
-
-File: [`automation/crtpi/force_update_mini_crt_power_state.yaml`](entities/automation/crtpi/force_update_mini_crt_power_state.yaml)
 </details>
 
 <details><summary><code>/crtpi/update-display</code></summary>
