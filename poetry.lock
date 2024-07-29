@@ -1028,13 +1028,13 @@ watchmedo = ["PyYAML (>=3.10)"]
 
 [[package]]
 name = "wg-utilities"
-version = "5.15.4"
+version = "5.16.0"
 description = "Loads of useful stuff for the things I do :)"
 optional = false
 python-versions = "<4.0,>=3.11"
 files = [
-    {file = "wg_utilities-5.15.4-py3-none-any.whl", hash = "sha256:c1d415ef3acc9df94452a10513bdd599d45292b5399b7c9c8b607d86806517d5"},
-    {file = "wg_utilities-5.15.4.tar.gz", hash = "sha256:74a0a3e273fa02696e5ad9984d805d4c16f603d19d592c6e75e93fc55a1a4290"},
+    {file = "wg_utilities-5.16.0-py3-none-any.whl", hash = "sha256:18ddb8f65645d2afde27a6612a31ce32e5527ee8954110d723ce0a15d0115439"},
+    {file = "wg_utilities-5.16.0.tar.gz", hash = "sha256:ba58f5499dcd24f08d86e6f8dc072c76926a5e613405c2587518e01596b4160b"},
 ]
 
 [package.extras]
@@ -1044,7 +1044,9 @@ devices-epd = ["pillow", "rpi.gpio", "spidev"]
 devices-yamaha-yas-209 = ["async-upnp-client", "pydantic (<3.0.0)", "xmltodict"]
 exceptions = ["requests (>=2.26.0)"]
 functions = ["lxml (==5.2.2)"]
+loggers = ["requests (>=2.26.0)"]
 logging = ["requests (>=2.26.0)"]
+mqtt = ["paho-mqtt (>=2.1.0,<3.0.0)"]
 testing = ["botocore"]
 
 [[package]]
@@ -1199,4 +1201,4 @@ testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-b
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<4.0"
-content-hash = "6fc394d32c278bb2f4415d3e13a80e832e4cf61abe7fd31dd377756e19a37ceb"
+content-hash = "56f609eef937b51634fd26fb712ed6ccb4f040b7024bf402ba7efb371a48ab24"
