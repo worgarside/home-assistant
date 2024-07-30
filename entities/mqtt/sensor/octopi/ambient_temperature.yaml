@@ -14,3 +14,5 @@ unique_id: octopi_ambient_temperature
 unit_of_measurement: "°C"
 
 value_template: "{{ value_json.temperature }}"
+
+json_attributes_topic: /homeassistant/octopi/dht22
