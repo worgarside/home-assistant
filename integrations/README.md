@@ -326,8 +326,9 @@ File: [`automation/crtpi/cpu_fan_control.yaml`](entities/automation/crtpi/cpu_fa
 ```json
 {
   "media_player": "{{ states('input_select.crtpi_media_player_source') }}",
-  "album_artwork_url_prefix": "{% set url = state_attr(media_player, 'entity_picture') %}\n{{\n  \"http://homeassistant.local:8123\"\n  if url and url.startswith('/api/')\n  else \"\"\n}}\n",
-  "payload": "{{\n  {\n    \"title\": trigger.to_state.attributes.media_title,\n    \"artist\": trigger.to_state.attributes.media_artist,\n    \"album\": trigger.to_state.attributes.media_album_name,\n    \"album_artwork_url\": album_artwork_url_prefix ~ trigger.to_state.attributes.entity_picture,\n    \"state\": trigger.to_state.state,\n  }\n}}"
+  "entity_picture": "{{ trigger.to_state.attributes.entity_picture | default('') }}",
+  "album_artwork_url_prefix": "{{\n  \"http://homeassistant.local:8123\"\n  if entity_picture and entity_picture.startswith('/api/')\n  else \"\"\n}}",
+  "payload": "{% set url = trigger.to_state.attributes.entity_picture %} {{\n  {\n    \"title\": trigger.to_state.attributes.media_title,\n    \"artist\": trigger.to_state.attributes.media_artist,\n    \"album\": trigger.to_state.attributes.media_album_name,\n    \"album_artwork_url\": album_artwork_url_prefix ~ entity_picture,\n    \"state\": trigger.to_state.state,\n  }\n}}"
 }
 ```
 File: [`automation/crtpi/update_display.yaml`](entities/automation/crtpi/update_display.yaml)

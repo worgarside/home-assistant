@@ -63,21 +63,23 @@ trigger:
 variables:
   media_player: "{{ states('input_select.crtpi_media_player_source') }}"
 
-  album_artwork_url_prefix: |
-    {% set url = state_attr(media_player, 'entity_picture') %}
+  entity_picture: "{{ trigger.to_state.attributes.entity_picture | default('') }}"
+
+  album_artwork_url_prefix: >-
     {{
       "http://homeassistant.local:8123"
-      if url and url.startswith('/api/')
+      if entity_picture and entity_picture.startswith('/api/')
       else ""
     }}
 
   payload: >-
+    {% set url = trigger.to_state.attributes.entity_picture %}
     {{
       {
         "title": trigger.to_state.attributes.media_title,
         "artist": trigger.to_state.attributes.media_artist,
         "album": trigger.to_state.attributes.media_album_name,
-        "album_artwork_url": album_artwork_url_prefix ~ trigger.to_state.attributes.entity_picture,
+        "album_artwork_url": album_artwork_url_prefix ~ entity_picture,
         "state": trigger.to_state.state,
       }
     }}
