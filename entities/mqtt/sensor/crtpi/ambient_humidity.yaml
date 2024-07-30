@@ -14,3 +14,5 @@ unique_id: crtpi_ambient_humidity
 unit_of_measurement: "%"
 
 value_template: "{{ value_json.humidity }}"
+
+json_attributes_topic: /homeassistant/crtpi/dht22
