@@ -3479,10 +3479,12 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "custom:mushroom-select-card",
-                  "entity": "input_select.crtpi_media_player_source",
-                  "layout": "horizontal",
-                  "fill_container": false
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "input_select.crtpi_media_player_source"
+                    }
+                  ]
                 }
               ]
             }
