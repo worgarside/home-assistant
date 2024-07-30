@@ -10,7 +10,7 @@ trigger:
     entity_id: media_player.lounge_speakers
 
 variables:
-  media_player: media_player.lounge_speakers
+  media_player: "{{ states('input_select.crtpi_media_player_source') }}"
 
   album_artwork_url_prefix: |
     {% set url = state_attr(media_player, 'entity_picture') %}

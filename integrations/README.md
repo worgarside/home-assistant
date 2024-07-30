@@ -325,7 +325,7 @@ File: [`automation/crtpi/cpu_fan_control.yaml`](entities/automation/crtpi/cpu_fa
 
 ```json
 {
-  "media_player": "media_player.lounge_speakers",
+  "media_player": "{{ states('input_select.crtpi_media_player_source') }}",
   "album_artwork_url_prefix": "{% set url = state_attr(media_player, 'entity_picture') %}\n{{\n  \"http://homeassistant.local:8123\"\n  if url and url.startswith('/api/')\n  else \"\"\n}}\n",
   "payload": "{{\n  {\n    \"title\": state_attr(media_player, 'media_title'),\n    \"artist\": state_attr(media_player, 'media_artist'),\n    \"album\": state_attr(media_player, 'media_album_name'),\n    \"album_artwork_url\": album_artwork_url_prefix ~ state_attr(media_player, 'entity_picture'),\n    \"state\": states(media_player)\n  }\n}}"
 }
@@ -2980,7 +2980,7 @@ File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/in
 
 ## Input Select
 
-<details><summary><h3>Entities (9)</h3></summary>
+<details><summary><h3>Entities (10)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -2998,6 +2998,15 @@ File: [`input_select/add_on_stats_legend_sensor_type.yaml`](entities/input_selec
 - Icon: [`mdi:robot-vacuum`](https://pictogrammers.com/library/mdi/icon/robot-vacuum/)
 
 File: [`input_select/cosmo_entity_picture.yaml`](entities/input_select/cosmo_entity_picture.yaml)
+</details>
+
+<details><summary><strong>CRTPi | Media Player Source</strong></summary>
+
+**Entity ID: `input_select.crtpi_media_player_source`**
+
+- Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
+
+File: [`input_select/crtpi/crtpi_media_player_source.yaml`](entities/input_select/crtpi/crtpi_media_player_source.yaml)
 </details>
 
 <details><summary><strong>GH CLI | Active User</strong></summary>
