@@ -7,7 +7,9 @@ mode: restart
 
 trigger:
   - platform: state
-    entity_id: sensor.crtpi_cpu_temperature
+    entity_id:
+      - input_number.crtpi_fan_auto_on_threshold
+      - sensor.crtpi_cpu_temperature
 
 variables:
   cpu_temp: "{{ states('sensor.crtpi_cpu_temperature') | float }}"
