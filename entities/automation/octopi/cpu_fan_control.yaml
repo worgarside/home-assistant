@@ -7,7 +7,9 @@ mode: restart
 
 trigger:
   - platform: state
-    entity_id: sensor.octopi_cpu_temperature
+    entity_id:
+      - input_number.octopi_fan_auto_on_threshold
+      - sensor.octopi_cpu_temperature
 
 variables:
   cpu_temp: "{{ states('sensor.octopi_cpu_temperature') | float }}"
