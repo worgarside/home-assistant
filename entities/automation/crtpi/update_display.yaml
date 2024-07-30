@@ -5,9 +5,60 @@ id: crtpi_update_display
 
 mode: queued
 
+# Trigger on all relevant states and attributes of all potential media players
 trigger:
   - platform: state
-    entity_id: media_player.lounge_speakers
+    entity_id:
+      - media_player.bedroom_speakers
+      - media_player.hifi_system
+      - media_player.lounge_speakers
+      - media_player.spotify_vic
+      - media_player.spotify_will
+      - media_player.topaz_sr10
+    not_to:
+      - unavailable
+      - unknown
+
+  - platform: state
+    entity_id:
+      - media_player.bedroom_speakers
+      - media_player.hifi_system
+      - media_player.lounge_speakers
+      - media_player.spotify_vic
+      - media_player.spotify_will
+      - media_player.topaz_sr10
+    attribute: media_title
+
+  - platform: state
+    entity_id:
+      - media_player.bedroom_speakers
+      - media_player.hifi_system
+      - media_player.lounge_speakers
+      - media_player.spotify_vic
+      - media_player.spotify_will
+      - media_player.topaz_sr10
+    attribute: media_artist
+
+  - platform: state
+    entity_id:
+      - media_player.bedroom_speakers
+      - media_player.hifi_system
+      - media_player.lounge_speakers
+      - media_player.spotify_vic
+      - media_player.spotify_will
+      - media_player.topaz_sr10
+    attribute: media_album_name
+
+  - platform: state
+    entity_id:
+      - media_player.bedroom_speakers
+      - media_player.hifi_system
+      - media_player.lounge_speakers
+      - media_player.spotify_vic
+      - media_player.spotify_will
+      - media_player.topaz_sr10
+    attribute: entity_picture
+
 
 variables:
   media_player: "{{ states('input_select.crtpi_media_player_source') }}"
@@ -23,13 +74,16 @@ variables:
   payload: >-
     {{
       {
-        "title": state_attr(media_player, 'media_title'),
-        "artist": state_attr(media_player, 'media_artist'),
-        "album": state_attr(media_player, 'media_album_name'),
-        "album_artwork_url": album_artwork_url_prefix ~ state_attr(media_player, 'entity_picture'),
-        "state": states(media_player)
+        "title": trigger.to_state.attributes.media_title,
+        "artist": trigger.to_state.attributes.media_artist,
+        "album": trigger.to_state.attributes.media_album_name,
+        "album_artwork_url": album_artwork_url_prefix ~ trigger.to_state.attributes.entity_picture,
+        "state": trigger.to_state.state,
       }
     }}
+
+
+condition: "{{ is_state(media_player, trigger.to_state.entity_id) }}"
 
 action:
   - service: script.turn_on

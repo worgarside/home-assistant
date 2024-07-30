@@ -327,7 +327,7 @@ File: [`automation/crtpi/cpu_fan_control.yaml`](entities/automation/crtpi/cpu_fa
 {
   "media_player": "{{ states('input_select.crtpi_media_player_source') }}",
   "album_artwork_url_prefix": "{% set url = state_attr(media_player, 'entity_picture') %}\n{{\n  \"http://homeassistant.local:8123\"\n  if url and url.startswith('/api/')\n  else \"\"\n}}\n",
-  "payload": "{{\n  {\n    \"title\": state_attr(media_player, 'media_title'),\n    \"artist\": state_attr(media_player, 'media_artist'),\n    \"album\": state_attr(media_player, 'media_album_name'),\n    \"album_artwork_url\": album_artwork_url_prefix ~ state_attr(media_player, 'entity_picture'),\n    \"state\": states(media_player)\n  }\n}}"
+  "payload": "{{\n  {\n    \"title\": trigger.to_state.attributes.media_title,\n    \"artist\": trigger.to_state.attributes.media_artist,\n    \"album\": trigger.to_state.attributes.media_album_name,\n    \"album_artwork_url\": album_artwork_url_prefix ~ trigger.to_state.attributes.entity_picture,\n    \"state\": trigger.to_state.state,\n  }\n}}"
 }
 ```
 File: [`automation/crtpi/update_display.yaml`](entities/automation/crtpi/update_display.yaml)
