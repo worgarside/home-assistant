@@ -2654,7 +2654,7 @@
                     },
                     {
                       "type": "custom:mini-graph-card",
-                      "name": "6 Hour History",
+                      "name": "24 Hour History",
                       "entities": [
                         {
                           "entity": "sensor.dry_box_humidity",
@@ -2666,6 +2666,19 @@
                           "name": "Temperature",
                           "color": "#FF9901",
                           "y_axis": "secondary"
+                        },
+                        {
+                          "entity": "sensor.office_humidity",
+                          "name": "Office Humidity",
+                          "color": "#4DAF50",
+                          "show_line": false
+                        },
+                        {
+                          "entity": "sensor.office_temperature",
+                          "name": "Office Temperature",
+                          "color": "#FF9901",
+                          "y_axis": "secondary",
+                          "show_line": false
                         }
                       ],
                       "show": {
@@ -2678,10 +2691,10 @@
                         "labels_secondary": true,
                         "unit": true
                       },
-                      "hours_to_show": 6,
-                      "points_per_hour": 60,
+                      "hours_to_show": 24,
+                      "points_per_hour": 10,
                       "lower_bound": "~30",
-                      "upper_bound": "~50",
+                      "upper_bound": "~60",
                       "lower_bound_secondary": "~20",
                       "upper_bound_secondary": "~40",
                       "height": 150,
@@ -3289,7 +3302,7 @@
                       "lower_bound": "~20",
                       "upper_bound": "~40",
                       "lower_bound_secondary": "~30",
-                      "upper_bound_secondary": "~60",
+                      "upper_bound_secondary": "~50",
                       "height": 150,
                       "animate": true,
                       "hour24": true,
@@ -3461,6 +3474,26 @@
                 }
               ],
               "title": "CRT Pi System Monitor"
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "input_select.crtpi_media_player_source"
+                    },
+                    {
+                      "entity": "automation.crtpi_update_display"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.spotify_will"
+                }
+              ]
             }
           ]
         },
