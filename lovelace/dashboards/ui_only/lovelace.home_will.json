@@ -3477,7 +3477,12 @@
             },
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "tile",
+                  "entity": "input_select.crtpi_media_player_source"
+                }
+              ]
             }
           ]
         },
