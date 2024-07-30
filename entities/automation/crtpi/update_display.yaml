@@ -85,7 +85,7 @@ variables:
     }}
 
 
-condition: "{{ is_state(media_player, trigger.to_state.entity_id) }}"
+condition: "{{ media_player == trigger.to_state.entity_id }}"
 
 action:
   - service: script.turn_on
