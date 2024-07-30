@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (125)</h3></summary>
+<details><summary><h3>Entities (123)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -312,19 +312,6 @@ File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/
 File: [`automation/crtpi/cpu_fan_control.yaml`](entities/automation/crtpi/cpu_fan_control.yaml)
 </details>
 
-<details><summary><code>/crtpi/display-source-changed</code></summary>
-
-**Entity ID: `automation.crtpi_display_source_changed`**
-
-> *No description provided*
-
-- Alias: /crtpi/display-source-changed
-- ID: `crtpi_display_source_changed`
-- Mode: `restart`
-
-File: [`automation/crtpi/display_source_changed.yaml`](entities/automation/crtpi/display_source_changed.yaml)
-</details>
-
 <details><summary><code>/crtpi/update-display</code></summary>
 
 **Entity ID: `automation.crtpi_update_display`**
@@ -334,7 +321,16 @@ File: [`automation/crtpi/display_source_changed.yaml`](entities/automation/crtpi
 - Alias: /crtpi/update-display
 - ID: `crtpi_update_display`
 - Mode: `queued`
+- Variables:
 
+```json
+{
+  "media_player": "{{ states('input_select.crtpi_media_player_source') }}",
+  "entity_picture": "{{ trigger.to_state.attributes.entity_picture | default('') }}",
+  "album_artwork_url_prefix": "{{\n  \"http://homeassistant.local:8123\"\n  if entity_picture and entity_picture.startswith('/api/')\n  else \"\"\n}}",
+  "payload": "{% set url = trigger.to_state.attributes.entity_picture %} {{\n  {\n    \"title\": trigger.to_state.attributes.media_title,\n    \"artist\": trigger.to_state.attributes.media_artist,\n    \"album\": trigger.to_state.attributes.media_album_name,\n    \"album_artwork_url\": album_artwork_url_prefix ~ entity_picture,\n    \"state\": trigger.to_state.state,\n  }\n}}"
+}
+```
 File: [`automation/crtpi/update_display.yaml`](entities/automation/crtpi/update_display.yaml)
 </details>
 
@@ -1585,19 +1581,6 @@ File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_reload.yaml)
-</details>
-
-<details><summary><code>/script/crt-pi-update-display/mqtt-trigger</code></summary>
-
-**Entity ID: `automation.script_crt_pi_update_display_mqtt_trigger`**
-
-> *No description provided*
-
-- Alias: /script/crt-pi-update-display/mqtt-trigger
-- ID: `script_crt_pi_update_display_mqtt_trigger`
-- Mode: `queued`
-
-File: [`automation/script/crt_pi_update_display/mqtt_trigger.yaml`](entities/automation/script/crt_pi_update_display/mqtt_trigger.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>
@@ -3018,13 +3001,13 @@ File: [`input_select/add_on_stats_legend_sensor_type.yaml`](entities/input_selec
 File: [`input_select/cosmo_entity_picture.yaml`](entities/input_select/cosmo_entity_picture.yaml)
 </details>
 
-<details><summary><strong>CRT-Pi Display Source</strong></summary>
+<details><summary><strong>CRTPi | Media Player Source</strong></summary>
 
-**Entity ID: `input_select.crt_pi_display_source`**
+**Entity ID: `input_select.crtpi_media_player_source`**
 
-- Icon: [`mdi:monitor-small`](https://pictogrammers.com/library/mdi/icon/monitor-small/)
+- Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
 
-File: [`input_select/crt_pi_display_source.yaml`](entities/input_select/crt_pi_display_source.yaml)
+File: [`input_select/crtpi/crtpi_media_player_source.yaml`](entities/input_select/crtpi/crtpi_media_player_source.yaml)
 </details>
 
 <details><summary><strong>GH CLI | Active User</strong></summary>
@@ -4312,7 +4295,7 @@ File: [`mqtt/switch/prusa_i3/enclosure_fan.yaml`](entities/mqtt/switch/prusa_i3/
 
 ## Script
 
-<details><summary><h3>Entities (30)</h3></summary>
+<details><summary><h3>Entities (29)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -4522,17 +4505,6 @@ File: [`script/cosmo/cosmo_set_cleaning_sequence.yaml`](entities/script/cosmo/co
 - Mode: `single`
 
 File: [`script/cosmo/cosmo_tag_scanned.yaml`](entities/script/cosmo/cosmo_tag_scanned.yaml)
-</details>
-
-<details><summary><strong>CRT Pi: Update Display</strong></summary>
-
-**Entity ID: `script.crt_pi_update_display`**
-
-> Update the CRTPi display from the chosen media player's track
-
-- Mode: `parallel`
-
-File: [`script/crt_pi_update_display.yaml`](entities/script/crt_pi_update_display.yaml)
 </details>
 
 <details><summary><strong>Debug Persistent Notification</strong></summary>

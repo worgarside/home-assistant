@@ -5,31 +5,106 @@ id: crtpi_update_display
 
 mode: queued
 
+# Trigger on all relevant states and attributes of all potential media players
 trigger:
   - platform: state
     entity_id:
+      - media_player.bedroom_speakers
       - media_player.hifi_system
-      - media_player.lounge_chromecast
+      - media_player.lounge_speakers
+      - media_player.spotify_vic
       - media_player.spotify_will
+      - media_player.topaz_sr10
+    not_to:
+      - unavailable
+      - unknown
 
-condition: |
-  {{
-    is_state('input_select.crt_pi_display_source', trigger.to_state.entity_id) and
-    trigger.to_state.state not in ('unavailable', 'unknown') and
-    (
-      (
-        trigger.to_state.attributes.media_title !=
-          trigger.from_state.attributes.media_title or
-        trigger.to_state.attributes.media_artist !=
-          trigger.from_state.attributes.media_artist or
-        trigger.to_state.attributes.media_album_name !=
-          trigger.from_state.attributes.media_album_name or
-        trigger.to_state.attributes.entity_picture !=
-          trigger.from_state.attributes.entity_picture or
-        trigger.to_state.state != trigger.from_state.state
-      )
-    )
-  }}
+  - platform: state
+    entity_id:
+      - media_player.bedroom_speakers
+      - media_player.hifi_system
+      - media_player.lounge_speakers
+      - media_player.spotify_vic
+      - media_player.spotify_will
+      - media_player.topaz_sr10
+    attribute: media_title
+
+  - platform: state
+    entity_id:
+      - media_player.bedroom_speakers
+      - media_player.hifi_system
+      - media_player.lounge_speakers
+      - media_player.spotify_vic
+      - media_player.spotify_will
+      - media_player.topaz_sr10
+    attribute: media_artist
+
+  - platform: state
+    entity_id:
+      - media_player.bedroom_speakers
+      - media_player.hifi_system
+      - media_player.lounge_speakers
+      - media_player.spotify_vic
+      - media_player.spotify_will
+      - media_player.topaz_sr10
+    attribute: media_album_name
+
+  - platform: state
+    entity_id:
+      - media_player.bedroom_speakers
+      - media_player.hifi_system
+      - media_player.lounge_speakers
+      - media_player.spotify_vic
+      - media_player.spotify_will
+      - media_player.topaz_sr10
+    attribute: entity_picture
+
+
+variables:
+  media_player: "{{ states('input_select.crtpi_media_player_source') }}"
+
+  entity_picture: "{{ trigger.to_state.attributes.entity_picture | default('') }}"
+
+  album_artwork_url_prefix: >-
+    {{
+      "http://homeassistant.local:8123"
+      if entity_picture and entity_picture.startswith('/api/')
+      else ""
+    }}
+
+  payload: >-
+    {% set url = trigger.to_state.attributes.entity_picture %}
+    {{
+      {
+        "title": trigger.to_state.attributes.media_title,
+        "artist": trigger.to_state.attributes.media_artist,
+        "album": trigger.to_state.attributes.media_album_name,
+        "album_artwork_url": album_artwork_url_prefix ~ entity_picture,
+        "state": trigger.to_state.state,
+      }
+    }}
+
+
+condition: "{{ media_player == trigger.to_state.entity_id }}"
 
 action:
-  - service: script.crt_pi_update_display
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      variables:
+        notification_title: CRT Display Update
+        message: |
+          ```json
+          {{ payload | tojson(indent=2) }}
+          ```
+
+          ```
+          Topic:   /crtpi/crt-interface/content
+          Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
+          ```
+
+  - service: mqtt.publish
+    data:
+      topic: /crtpi/crt-interface/content
+      payload: "{{ payload | tojson }}"
