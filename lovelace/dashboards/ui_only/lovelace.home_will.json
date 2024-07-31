@@ -3491,7 +3491,7 @@
                 },
                 {
                   "type": "custom:mini-media-player",
-                  "entity": "{{ states('input_select.crtpi_media_player_source') }}"
+                  "entity": "media_player.lounge_speakers"
                 }
               ]
             }
