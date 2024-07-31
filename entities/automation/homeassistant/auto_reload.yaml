@@ -1,0 +1,74 @@
+---
+alias: /homeassistant/auto-reload
+
+id: homeassistant_auto_reload
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  platform: event
+  event_type: folder_watcher
+  event_data:
+    event_type: modified
+
+condition: "{{ trigger.event.data.path.startswith('/config/entities') }}"
+
+variables:
+  domain: "{{ trigger.event.data.path.split('/')[3] }}"
+
+  service_mapping:
+    media_player: universal
+    template_triggered: template
+
+  service: "{{ service_mapping.get(domain, domain) }}"
+
+action:
+  - choose:
+      - conditions: >-
+          {{
+            service in (
+              "automation",
+              "command_line",
+              "conversation",
+              "group",
+              "input_boolean",
+              "input_button",
+              "input_datetime",
+              "input_number",
+              "input_select",
+              "input_text",
+              "mqtt",
+              "rest",
+              "rest_command",
+              "scene",
+              "schedule",
+              "script",
+              "template",
+              "timer",
+              "universal",
+              "var",
+              "zone"
+            )
+          }}
+        sequence:
+          - service: script.turn_on
+            target:
+              entity_id: script.debug_persistent_notification
+            data:
+              variables:
+                notification_title: "{{ service.replace('_', ' ') | title }} Auto-Reload"
+                message: Reloading {{ service }} entities
+                notification_id: "{{ service }}_auto_reload"
+
+          - service: "{{ service }}.reload"
+
+    default:
+      - service: script.turn_on
+        target:
+          entity_id: script.log_exception
+        data:
+          variables:
+            message: "Unknown service: {{ service }}"
+            calling_entity: automation.homeassistant_auto_reload

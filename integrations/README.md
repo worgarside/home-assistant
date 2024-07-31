@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (123)</h3></summary>
+<details><summary><h3>Entities (124)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -561,6 +561,30 @@ File: [`automation/hassio/auto_restart_mariadb_add_on.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](entities/automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml)
+</details>
+
+<details><summary><code>/homeassistant/auto-reload</code></summary>
+
+**Entity ID: `automation.homeassistant_auto_reload`**
+
+> *No description provided*
+
+- Alias: /homeassistant/auto-reload
+- ID: `homeassistant_auto_reload`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "domain": "{{ trigger.event.data.path.split('/')[3] }}",
+  "service_mapping": {
+    "media_player": "universal",
+    "template_triggered": "template"
+  },
+  "service": "{{ service_mapping.get(domain, domain) }}"
+}
+```
+File: [`automation/homeassistant/auto_reload.yaml`](entities/automation/homeassistant/auto_reload.yaml)
 </details>
 
 <details><summary><code>/homeassistant/load-gh-cli-on-start</code></summary>
