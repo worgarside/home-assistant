@@ -2,20 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (124)</h3></summary>
-
-<details><summary><code>/automation/auto-reload</code></summary>
-
-**Entity ID: `automation.automation_auto_reload`**
-
-> *No description provided*
-
-- Alias: /automation/auto-reload
-- ID: `automation_auto_reload`
-- Mode: `single`
-
-File: [`automation/automation/auto_reload.yaml`](entities/automation/automation/auto_reload.yaml)
-</details>
+<details><summary><h3>Entities (120)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1204,32 +1191,6 @@ File: [`automation/notification/prusa_i3/print_completed.yaml`](entities/automat
 File: [`automation/notification/prusa_i3/user_input_required.yaml`](entities/automation/notification/prusa_i3/user_input_required.yaml)
 </details>
 
-<details><summary><code>/notification/system/reload-required/send</code></summary>
-
-**Entity ID: `automation.notification_system_reload_required_send`**
-
-> *No description provided*
-
-- Alias: /notification/system/reload-required/send
-- ID: `notification_system_reload_required_send`
-- Mode: `restart`
-
-File: [`automation/notification/system/reload_required/send.yaml`](entities/automation/notification/system/reload_required/send.yaml)
-</details>
-
-<details><summary><code>/notification/system/restart-required/send</code></summary>
-
-**Entity ID: `automation.notification_system_restart_required_send`**
-
-> *No description provided*
-
-- Alias: /notification/system/restart-required/send
-- ID: `notification_system_restart_required_send`
-- Mode: `single`
-
-File: [`automation/notification/system/restart_required/send.yaml`](entities/automation/notification/system/restart_required/send.yaml)
-</details>
-
 <details><summary><code>/octopi/cpu-fan-control</code></summary>
 
 **Entity ID: `automation.octopi_cpu_fan_control`**
@@ -1592,19 +1553,6 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
-</details>
-
-<details><summary><code>/script/auto-reload</code></summary>
-
-**Entity ID: `automation.script_auto_reload`**
-
-> *No description provided*
-
-- Alias: /script/auto-reload
-- ID: `script_auto_reload`
-- Mode: `single`
-
-File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_reload.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>

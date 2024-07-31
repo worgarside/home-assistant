@@ -59,7 +59,9 @@ action:
             data:
               variables:
                 notification_title: "{{ service.replace('_', ' ') | title }} Auto-Reload"
-                message: Reloading {{ service }} entities
+                message: >-
+                  Reloading {{ service }} entities. Triggered by`{{ trigger.event.data.folder }}/
+                  {{ trigger.event.data.file}}`
                 notification_id: "{{ service }}_auto_reload"
 
           - service: "{{ service }}.reload"
