@@ -8,3 +8,10 @@ icon: mdi:reload
 restore: true
 
 unique_id: var_auto_reload_queue
+
+initial_value: 0
+
+attributes:
+  files: []
+
+  service_queue: []
