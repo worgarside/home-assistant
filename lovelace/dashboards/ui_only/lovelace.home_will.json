@@ -1379,7 +1379,148 @@
           "sections": [
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.current_version",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "icon": "mdi:home-assistant"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "script.gh_issue_create",
+                          "icon": "mdi:github",
+                          "name": "Open an Issue",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "fill_container": false,
+                          "secondary_info": "none",
+                          "icon_color": "blue",
+                          "icon_type": "icon"
+                        }
+                      ],
+                      "columns": 2
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "sensor.current_git_ref",
+                          "icon": "mdi:git",
+                          "icon_color": "#E84D32",
+                          "double_tap_action": {
+                            "action": "url",
+                            "url_path": "https://github.com/worgarside/home-assistant/releases"
+                          },
+                          "hold_action": {
+                            "action": "call-service",
+                            "service": "homeassistant.update_entity",
+                            "target": {
+                              "entity_id": "sensor.current_git_ref"
+                            }
+                          }
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.current_git_branch",
+                          "icon": "mdi:source-branch",
+                          "icon_color": "#AD20ED",
+                          "double_tap_action": {
+                            "action": "url",
+                            "url_path": "https://github.com/worgarside/home-assistant"
+                          },
+                          "tap_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "content": {
+                                  "type": "custom:vertical-stack-in-card",
+                                  "cards": [
+                                    {
+                                      "type": "entities",
+                                      "entities": [
+                                        {
+                                          "type": "custom:mushroom-select-card",
+                                          "entity": "input_select.target_git_branch",
+                                          "secondary_info": "last-updated"
+                                        },
+                                        {
+                                          "entity": "sensor.remote_git_branches"
+                                        },
+                                        {
+                                          "entity": "script.target_git_branch_set_options",
+                                          "name": "Update Available Options",
+                                          "icon": "mdi:source-branch-sync"
+                                        },
+                                        {
+                                          "entity": "script.git_pull",
+                                          "name": "Git Pull",
+                                          "icon": "mdi:source-pull"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "markdown",
+                                      "content": "{% set current_branch = states('sensor.current_git_branch') %}\n- [{{ current_branch }}](https://github.com/worgarside/home-assistant/tree/{{ current_branch }})\n---\n{%- for branch in state_attr('sensor.remote_git_branches', 'branches') if branch != current_branch %}\n- [{{ branch }}](https://github.com/worgarside/home-assistant/tree/{{ branch }})\n{%- endfor %}"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "spacer"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "var.current_appdaemon_ref",
+                          "icon_color": "#01A9F4",
+                          "double_tap_action": {
+                            "action": "url",
+                            "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
+                          },
+                          "hold_action": {
+                            "action": "call-service",
+                            "service": "homeassistant.update_entity",
+                            "target": {
+                              "entity_id": "sensor.current_appdaemon_ref"
+                            }
+                          }
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "var.current_appdaemon_branch",
+                          "icon_color": "#AD20ED",
+                          "double_tap_action": {
+                            "action": "url",
+                            "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
+                          },
+                          "hold_action": {
+                            "action": "call-service",
+                            "service": "homeassistant.update_entity",
+                            "target": {
+                              "entity_id": "sensor.current_appdaemon_branch"
+                            }
+                          }
+                        }
+                      ],
+                      "alignment": "justify"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "type": "grid",
@@ -1637,146 +1778,6 @@
                       "animate": true,
                       "hour24": true,
                       "line_width": 2
-                    }
-                  ]
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.current_version",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "icon": "mdi:home-assistant"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "script.gh_issue_create",
-                          "icon": "mdi:github",
-                          "name": "Open an Issue",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "fill_container": false,
-                          "secondary_info": "none",
-                          "icon_color": "blue",
-                          "icon_type": "icon"
-                        }
-                      ],
-                      "columns": 2
-                    },
-                    {
-                      "type": "custom:mushroom-chips-card",
-                      "chips": [
-                        {
-                          "type": "entity",
-                          "entity": "sensor.current_git_ref",
-                          "icon": "mdi:git",
-                          "icon_color": "#E84D32",
-                          "double_tap_action": {
-                            "action": "url",
-                            "url_path": "https://github.com/worgarside/home-assistant/releases"
-                          },
-                          "hold_action": {
-                            "action": "call-service",
-                            "service": "homeassistant.update_entity",
-                            "target": {
-                              "entity_id": "sensor.current_git_ref"
-                            }
-                          }
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.current_git_branch",
-                          "icon": "mdi:source-branch",
-                          "icon_color": "#AD20ED",
-                          "double_tap_action": {
-                            "action": "url",
-                            "url_path": "https://github.com/worgarside/home-assistant"
-                          },
-                          "tap_action": {
-                            "action": "fire-dom-event",
-                            "browser_mod": {
-                              "service": "browser_mod.popup",
-                              "data": {
-                                "content": {
-                                  "type": "custom:vertical-stack-in-card",
-                                  "cards": [
-                                    {
-                                      "type": "entities",
-                                      "entities": [
-                                        {
-                                          "type": "custom:mushroom-select-card",
-                                          "entity": "input_select.target_git_branch",
-                                          "secondary_info": "last-updated"
-                                        },
-                                        {
-                                          "entity": "sensor.remote_git_branches"
-                                        },
-                                        {
-                                          "entity": "script.target_git_branch_set_options",
-                                          "name": "Update Available Options",
-                                          "icon": "mdi:source-branch-sync"
-                                        },
-                                        {
-                                          "entity": "script.git_pull",
-                                          "name": "Git Pull",
-                                          "icon": "mdi:source-pull"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "markdown",
-                                      "content": "{% set current_branch = states('sensor.current_git_branch') %}\n- [{{ current_branch }}](https://github.com/worgarside/home-assistant/tree/{{ current_branch }})\n---\n{%- for branch in state_attr('sensor.remote_git_branches', 'branches') if branch != current_branch %}\n- [{{ branch }}](https://github.com/worgarside/home-assistant/tree/{{ branch }})\n{%- endfor %}"
-                                    }
-                                  ]
-                                }
-                              }
-                            }
-                          }
-                        },
-                        {
-                          "type": "spacer"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "var.current_appdaemon_ref",
-                          "icon_color": "#01A9F4",
-                          "double_tap_action": {
-                            "action": "url",
-                            "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
-                          },
-                          "hold_action": {
-                            "action": "call-service",
-                            "service": "homeassistant.update_entity",
-                            "target": {
-                              "entity_id": "sensor.current_appdaemon_ref"
-                            }
-                          }
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "var.current_appdaemon_branch",
-                          "icon_color": "#AD20ED",
-                          "double_tap_action": {
-                            "action": "url",
-                            "url_path": "https://github.com/worgarside/home-assistant-appdaemon"
-                          },
-                          "hold_action": {
-                            "action": "call-service",
-                            "service": "homeassistant.update_entity",
-                            "target": {
-                              "entity_id": "sensor.current_appdaemon_branch"
-                            }
-                          }
-                        }
-                      ],
-                      "alignment": "justify"
                     }
                   ]
                 },
