@@ -550,15 +550,28 @@ File: [`automation/hassio/auto_restart_mariadb_add_on.yaml`](entities/automation
 File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](entities/automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml)
 </details>
 
-<details><summary><code>/homeassistant/auto-reload</code></summary>
+<details><summary><code>/homeassistant/load-gh-cli-on-start</code></summary>
 
-**Entity ID: `automation.homeassistant_auto_reload`**
+**Entity ID: `automation.homeassistant_load_gh_cli_on_start`**
 
 > *No description provided*
 
-- Alias: /homeassistant/auto-reload
-- ID: `homeassistant_auto_reload`
+- Alias: /homeassistant/load-gh-cli-on-start
+- ID: `homeassistant_load_gh_cli_on_start`
 - Mode: `single`
+
+File: [`automation/homeassistant/load_gh_cli_on_start.yaml`](entities/automation/homeassistant/load_gh_cli_on_start.yaml)
+</details>
+
+<details><summary><code>/homeassistant/queue-service-reload</code></summary>
+
+**Entity ID: `automation.homeassistant_queue_service_reload`**
+
+> *No description provided*
+
+- Alias: /homeassistant/queue-service-reload
+- ID: `homeassistant_queue_service_reload`
+- Mode: `queued`
 - Variables:
 
 ```json
@@ -571,20 +584,7 @@ File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](
   "service": "{{ service_mapping.get(domain, domain) }}"
 }
 ```
-File: [`automation/homeassistant/auto_reload.yaml`](entities/automation/homeassistant/auto_reload.yaml)
-</details>
-
-<details><summary><code>/homeassistant/load-gh-cli-on-start</code></summary>
-
-**Entity ID: `automation.homeassistant_load_gh_cli_on_start`**
-
-> *No description provided*
-
-- Alias: /homeassistant/load-gh-cli-on-start
-- ID: `homeassistant_load_gh_cli_on_start`
-- Mode: `single`
-
-File: [`automation/homeassistant/load_gh_cli_on_start.yaml`](entities/automation/homeassistant/load_gh_cli_on_start.yaml)
+File: [`automation/homeassistant/queue_service_reload.yaml`](entities/automation/homeassistant/queue_service_reload.yaml)
 </details>
 
 <details><summary><code>/hue-remote/bedroom/button-1/long-press</code></summary>

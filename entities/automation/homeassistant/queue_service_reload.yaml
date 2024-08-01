@@ -1,11 +1,9 @@
 ---
-alias: /homeassistant/auto-reload
+alias: /homeassistant/queue-service-reload
 
-id: homeassistant_auto_reload
+id: homeassistant_queue_service_reload
 
-mode: single
-
-max_exceeded: silent
+mode: queued
 
 trigger:
   platform: event
@@ -89,4 +87,4 @@ action:
         data:
           variables:
             message: "Unknown service: {{ service }}"
-            calling_entity: automation.homeassistant_auto_reload
+            calling_entity: automation.homeassistant_queue_service_reload
