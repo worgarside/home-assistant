@@ -1379,6 +1379,10 @@
           "sections": [
             {
               "type": "grid",
+              "cards": []
+            },
+            {
+              "type": "grid",
               "cards": [
                 {
                   "square": false,
@@ -2204,10 +2208,6 @@
                 }
               ],
               "title": "HAssPi System Monitor"
-            },
-            {
-              "type": "grid",
-              "cards": []
             }
           ],
           "max_columns": 3,
