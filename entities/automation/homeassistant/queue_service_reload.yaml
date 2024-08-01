@@ -63,22 +63,38 @@ action:
                 notification_id: "{{ service }}_auto_reload"
 
           - variables:
-              files: >-
-                {% set files = state_attr('var.auto_reload_queue', 'files') | default([]) %}
-                {{ iif(trigger.event.data.file in files, files, files + [trigger.event.data.file]) }}
+              files:
+                orig: "{{ state_attr('var.auto_reload_queue', 'files') or [] }}"
 
-              service_queue: >-
-                {% set queue = state_attr('var.auto_reload_queue', 'service_queue') | default([]) %}
-                {{ iif(service in queue, queue, queue + [service]) }}
+                new: >-
+                  {{
+                    iif(
+                      trigger.event.data.file in files.orig | from_json,
+                      files.orig,
+                      ( files.orig | from_json ) + [trigger.event.data.file]
+                    )
+                  }}
+
+              service_queue:
+                orig: "{{ state_attr('var.auto_reload_queue', 'service_queue') or [] }}"
+
+                new: >-
+                  {{
+                    iif(
+                      service in service_queue.orig | from_json,
+                      service_queue.orig,
+                      ( service_queue.orig | from_json ) + [service]
+                    )
+                  }}
 
           - service: var.set
             target:
               entity_id: var.auto_reload_queue
             data:
-              value: "{{ files | length }}"
+              value: "{{ files.new | length }}"
               attributes:
-                files: "{{ files }}"
-                service_queue: "{{ service_queue }}"
+                files: "{{ files.new | tojson }}"
+                service_queue: "{{ service_queue.new | tojson }}"
 
     default:
       - service: script.turn_on
