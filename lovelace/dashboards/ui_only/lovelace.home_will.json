@@ -1539,6 +1539,18 @@
                     }
                   ],
                   "columns": 2
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states(\"var.auto_reload_queue\") | int(0) }} entities",
+                  "secondary": "{{ state_attr(\"var.auto_reload_queue\", \"service_queue\") | tojson }} ",
+                  "icon": "mdi:reload{% if states(\"var.auto_reload_queue\") | int(0) != 0 %}-alert{% endif %}",
+                  "entity": "var.auto_reload_queue",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "",
+                  "multiline_secondary": false
                 }
               ]
             },
