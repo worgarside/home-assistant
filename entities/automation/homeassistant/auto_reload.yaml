@@ -65,6 +65,10 @@ action:
                 notification_id: "{{ service }}_auto_reload"
 
           - variables:
+              files: >-
+                {% set files = state_attr('var.auto_reload_queue', 'files') | default([]) %}
+                {{ iif(trigger.event.data.file in files, files, files + [trigger.event.data.file]) }}
+
               service_queue: >-
                 {% set queue = state_attr('var.auto_reload_queue', 'service_queue') | default([]) %}
                 {{ iif(service in queue, queue, queue + [service]) }}
@@ -73,9 +77,10 @@ action:
             target:
               entity_id: var.auto_reload_queue
             data:
-              value: "{{ service_queue | length }}"
+              value: "{{ files | length }}"
               attributes:
-                queue: "{{ service_queue }}"
+                files: "{{ files }}"
+                service_queue: "{{ service_queue }}"
 
     default:
       - service: script.turn_on
