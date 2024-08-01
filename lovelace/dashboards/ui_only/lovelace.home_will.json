@@ -3043,6 +3043,13 @@
                   "toggle_power": true,
                   "group": false,
                   "volume_stateless": false
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.spotify_vic",
+                  "toggle_power": true,
+                  "group": false,
+                  "volume_stateless": false
                 }
               ],
               "title": "MtrxPi System Monitor"
