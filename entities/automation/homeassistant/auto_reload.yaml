@@ -58,13 +58,24 @@ action:
               entity_id: script.debug_persistent_notification
             data:
               variables:
-                notification_title: "{{ service.replace('_', ' ') | title }} Auto-Reload"
+                notification_title: Auto-Reloading `{{ service }}` Entities
                 message: >-
-                  Reloading {{ service }} entities. Triggered by`{{ trigger.event.data.folder }}/
-                  {{ trigger.event.data.file}}`
+                  Reloading {{ service }} entities. Triggered by
+                  `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
                 notification_id: "{{ service }}_auto_reload"
 
-          - service: "{{ service }}.reload"
+          - variables:
+              service_queue: >-
+                {% set queue = state_attr('var.auto_reload_queue', 'service_queue') | default([]) %}
+                {{ iif(service in queue, queue, queue + [service]) }}
+
+          - service: var.set
+            target:
+              entity_id: var.auto_reload_queue
+            data:
+              value: "{{ service_queue | length }}"
+              attributes:
+                queue: "{{ service_queue }}"
 
     default:
       - service: script.turn_on

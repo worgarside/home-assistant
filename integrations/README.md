@@ -6644,7 +6644,17 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (16)</h3></summary>
+<details><summary><h3>Entities (17)</h3></summary>
+
+<details><summary><strong>Auto-Reload Queue</strong></summary>
+
+**Entity ID: `var.auto_reload_queue`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+- Unit Of Measurement: `entities`
+
+File: [`var/auto_reload_queue.yaml`](entities/var/auto_reload_queue.yaml)
+</details>
 
 <details><summary><strong>Auto-Save Amount</strong></summary>
 
