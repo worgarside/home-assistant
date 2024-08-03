@@ -326,9 +326,7 @@ File: [`automation/crtpi/cpu_fan_control.yaml`](entities/automation/crtpi/cpu_fa
 ```json
 {
   "media_player": "{{ states('input_select.crtpi_media_player_source') }}",
-  "entity_picture": "{{ trigger.to_state.attributes.entity_picture | default('') }}",
-  "album_artwork_url_prefix": "{{\n  \"http://homeassistant.local:8123\"\n  if entity_picture and entity_picture.startswith('/api/')\n  else \"\"\n}}",
-  "payload": "{% set url = trigger.to_state.attributes.entity_picture %} {{\n  {\n    \"title\": trigger.to_state.attributes.media_title,\n    \"artist\": trigger.to_state.attributes.media_artist,\n    \"album\": trigger.to_state.attributes.media_album_name,\n    \"album_artwork_url\": album_artwork_url_prefix ~ entity_picture,\n    \"state\": trigger.to_state.state,\n  }\n}}"
+  "artwork_uri": "{% set url = trigger.to_state.attributes.entity_picture | default(None) %} {%\n  set host = (\n    states('sensor.local_ip')\n    if has_value('sensor.local_ip')\n    else \"homeassistant.local\"\n  )\n%} {{\n  \"http://\" ~ host ~ \":8123\" ~ url\n  if url is string and url.startswith(\"/api/\")\n  else url\n}}"
 }
 ```
 File: [`automation/crtpi/update_display.yaml`](entities/automation/crtpi/update_display.yaml)
@@ -1128,8 +1126,15 @@ File: [`automation/mtrxpi/content_trigger/gif_door_animated.yaml`](entities/auto
 
 - Alias: /mtrxpi/content-trigger/now-playing
 - ID: `mtrxpi_content_trigger_now_playing`
-- Mode: `restart`
+- Mode: `queued`
+- Variables:
 
+```json
+{
+  "media_player": "{{ states('input_select.mtrxpi_media_player_source') }}",
+  "artwork_uri": "{% set url = trigger.to_state.attributes.entity_picture | default(None) %} {%\n  set host = (\n    states('sensor.local_ip')\n    if has_value('sensor.local_ip')\n    else \"homeassistant.local\"\n  )\n%} {{\n  \"http://\" ~ host ~ \":8123\" ~ url\n  if url is string and url.startswith(\"/api/\")\n  else url\n}}"
+}
+```
 File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation/mtrxpi/content_trigger/now_playing.yaml)
 </details>
 
