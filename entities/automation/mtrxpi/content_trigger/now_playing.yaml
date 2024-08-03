@@ -3,27 +3,41 @@ alias: /mtrxpi/content-trigger/now-playing
 
 id: mtrxpi_content_trigger_now_playing
 
-mode: restart
+mode: queued
 
 trigger:
   - platform: state
     entity_id:
       - media_player.bedroom_speakers
-      - media_player.bedroom_chromecast
-      - media_player.bedroom_tv
       - media_player.hifi_system
       - media_player.lounge_speakers
-      - media_player.lounge_chromecast
-      - media_player.lounge_tv
-      # - media_player.spotify_vic
+      - media_player.spotify_vic
       - media_player.spotify_will
       - media_player.topaz_sr10
+
+variables:
+  media_player: "{{ states('input_select.mtrxpi_media_player_source') }}"
+
+  artwork_uri: >-
+    {% set url = trigger.to_state.attributes.entity_picture | default(None) %}
+    {%
+      set host = (
+        states('sensor.local_ip')
+        if has_value('sensor.local_ip')
+        else "homeassistant.local"
+      )
+    %}
+    {{
+      "http://" ~ host ~ ":8123" ~ url
+      if url is string and url.startswith("/api/")
+      else url
+    }}
 
 condition: >-
   {% set from_attrs = trigger.from_state.attributes %}
   {% set to_attrs = trigger.to_state.attributes %}
   {{
-    states("input_select.mtrxpi_media_player_source") == trigger.entity_id and (
+    media_player == trigger.entity_id and (
       trigger.from_state.state != trigger.to_state.state or
       from_attrs.get("media_title") != to_attrs.get("media_title") or
       from_attrs.get("media_album_name") != to_attrs.get("media_album_name") or
@@ -38,26 +52,15 @@ action:
       topic: /mtrxpi/now-playing/parameter/track-metadata
       qos: 1
       retain: true
-      payload_template: >-
-        {%- set url = trigger.to_state.attributes.entity_picture | default(None) -%}
-        {%-
-          set host = (
-            states('sensor.local_ip')
-            if has_value('sensor.local_ip')
-            else "homeassistant.local"
-          )
-        -%}
+      payload: >-
         {{
           {
-            "title": trigger.to_state.attributes.media_title | default(None),
-            "album": trigger.to_state.attributes.media_album_name | default(None),
-            "artist": trigger.to_state.attributes.media_artist | default(None),
-            "artwork_uri": (
-              "http://" ~ host ~ ":8123" ~ url
-              if url is string and url.startswith("/api/")
-              else url
-            )
-          } | to_json
+            "title": trigger.to_state.attributes.media_title,
+            "artist": trigger.to_state.attributes.media_artist,
+            "album": trigger.to_state.attributes.media_album_name,
+            "album_artwork_url": artwork_uri,
+            "state": trigger.to_state.state,
+          } | tojson
         }}
 
   - if: "{{ states('sensor.mtrxpi_current_content') != 'now-playing' }}"
