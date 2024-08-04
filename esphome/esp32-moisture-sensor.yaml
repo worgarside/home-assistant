@@ -42,11 +42,11 @@ sensor:
   - platform: adc
     pin: GPIO34 # A2
     id: moisture
-    update_interval: 5s
+    update_interval: 1s
     name: Moisture Sensor Voltage
     accuracy_decimals: 3
     unit_of_measurement: V
     filters:
       - sliding_window_moving_average:
-          window_size: 16 # 1 minute + last third of the previous run
-          send_every: 12 # 1 minute
+          window_size: 60 # 1 minute
+          send_every: 60 # 1 minute
