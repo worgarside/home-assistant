@@ -34,7 +34,7 @@ sensor:
     id: battery_voltage
     pin: GPIO35 # A13
     name: ESP32 Battery Voltage
-    update_interval: 30s
+    update_interval: 60s
     attenuation: 11db
     filters:
       - lambda: return (x / 3.9) * 2 * 3.3 * 1.1;
@@ -42,11 +42,11 @@ sensor:
   - platform: adc
     pin: GPIO34 # A2
     id: moisture
-    update_interval: 10s
+    update_interval: 5s
     name: Moisture Sensor Voltage
     accuracy_decimals: 3
     unit_of_measurement: V
     filters:
       - sliding_window_moving_average:
-          window_size: 6
-          send_every: 2
+          window_size: 16 # 1 minute + last third of the previous run
+          send_every: 12 # 1 minute
