@@ -4014,6 +4014,78 @@
               ]
             }
           ]
+        },
+        {
+          "title": "ESP Dashboard",
+          "path": "esp-dashboard",
+          "icon": "mdi:chip",
+          "type": "sections",
+          "max_columns": 3,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.soil_moisture_sensor_esp32_battery_voltage",
+                      "name": "Battery Voltage",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon_color": "#F54336"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.soil_moisture_sensor_moisture_sensor_voltage",
+                      "name": "Sensor Output",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon_color": "#43F536"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "24 Hour History",
+                  "entities": [
+                    {
+                      "entity": "sensor.soil_moisture_sensor_esp32_battery_voltage",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.soil_moisture_sensor_moisture_sensor_voltage",
+                      "color": "#43F536"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "labels_secondary": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 10,
+                  "lower_bound": 0,
+                  "upper_bound": "~3.7",
+                  "lower_bound_secondary": "~35",
+                  "upper_bound_secondary": "~50",
+                  "height": 150,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ],
+              "title": "Soil Moisture Sensor"
+            }
+          ]
         }
       ]
     }
