@@ -3,7 +3,7 @@ substitutions:
   name: soil-moisture-sensor-2
   friendly_name: Soil Moisture Sensor 2
 
-  moisture_sensor_pin: GPIO26
+  moisture_sensor_pin: GPIO33
 
 esphome:
   name: ${name}
