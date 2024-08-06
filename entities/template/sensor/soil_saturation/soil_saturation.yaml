@@ -1,0 +1,16 @@
+---
+name: Soil Saturation
+
+unique_id: soil_saturation
+
+state: >-
+  {% set lower_limit = states("input_number.soil_moisture_sensor_lower_limit") | float(0.0) %}
+  {% set upper_limit = states("input_number.soil_moisture_sensor_upper_limit") | float(1) %}
+  {% set reading = states("sensor.soil_moisture_sensor_moisture_sensor_voltage") | float(0) %}
+  {% if reading > upper_limit %}
+    0
+  {% elif reading < lower_limit %}
+    100
+  {% else %}
+
+  {% endif %}

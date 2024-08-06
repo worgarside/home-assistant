@@ -1,0 +1,16 @@
+---
+# https://murt.is/articles/2021-02/huzzah32-battery-monitoring-esphome.html
+platform: adc
+
+id: battery_voltage
+
+pin: ${battery_pin}
+
+name: ESP32 Battery Voltage
+
+update_interval: 60s
+
+attenuation: 11db
+
+filters:
+  - lambda: return (x / 3.9) * 2 * 3.3 * 1.1;
