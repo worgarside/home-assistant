@@ -26,6 +26,6 @@ deep_sleep:
 <<: !include common/wifi.yaml
 
 sensor:
-  - !include common/sensor/battery_voltage.yaml
+  - !include common/sensor/esp32_battery_voltage.yaml
 
   - !include common/sensor/soil_moisture_sensor_voltage.yaml
