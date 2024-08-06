@@ -4032,7 +4032,7 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.soil_moisture_sensor_esp32_battery_voltage",
+                      "entity": "sensor.soil_moisture_sensor_1_esp32_battery_voltage",
                       "name": "Battery Voltage",
                       "primary_info": "state",
                       "secondary_info": "name",
@@ -4040,7 +4040,7 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.soil_moisture_sensor_moisture_sensor_voltage",
+                      "entity": "sensor.soil_moisture_sensor_1_moisture_sensor_voltage",
                       "name": "Sensor Output",
                       "primary_info": "state",
                       "secondary_info": "name",
