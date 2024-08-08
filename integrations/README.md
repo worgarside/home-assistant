@@ -6594,12 +6594,16 @@ File: [`template/sensor/person/person_cosmo.yaml`](entities/template/sensor/pers
 
 **Entity ID: `sensor.soil_saturation_1`**
 
+- Icon: [`mdi:watering-can-outline`](https://pictogrammers.com/library/mdi/icon/watering-can-outline/)
+
 File: [`template/sensor/soil_saturation/soil_saturation_1.yaml`](entities/template/sensor/soil_saturation/soil_saturation_1.yaml)
 </details>
 
 <details><summary><strong>Soil Saturation 2</strong></summary>
 
 **Entity ID: `sensor.soil_saturation_2`**
+
+- Icon: [`mdi:watering-can-outline`](https://pictogrammers.com/library/mdi/icon/watering-can-outline/)
 
 File: [`template/sensor/soil_saturation/soil_saturation_2.yaml`](entities/template/sensor/soil_saturation/soil_saturation_2.yaml)
 </details>

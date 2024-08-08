@@ -3,6 +3,8 @@ name: Soil Saturation 2
 
 unique_id: soil_saturation_2
 
+icon: mdi:watering-can-outline
+
 state: >-
   {% set lower_limit = states("input_number.soil_moisture_sensor_1_lower_limit") | float(0.0) %}
   {% set upper_limit = states("input_number.soil_moisture_sensor_1_upper_limit") | float(1) %}
