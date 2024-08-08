@@ -4127,12 +4127,12 @@
                 {
                   "square": false,
                   "type": "grid",
-                  "columns": 2,
+                  "columns": 3,
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.soil_moisture_sensor_2_esp32_battery_voltage",
-                      "name": "Battery Voltage",
+                      "name": "Battery",
                       "primary_info": "state",
                       "secondary_info": "name",
                       "icon_color": "#F54336"
@@ -4140,10 +4140,18 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.soil_moisture_sensor_2_moisture_sensor_voltage",
-                      "name": "Sensor Output",
+                      "name": "Sensor",
                       "primary_info": "state",
                       "secondary_info": "name",
                       "icon_color": "#43F536"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.soil_saturation_2",
+                      "name": "Saturation",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon_color": "blue"
                     }
                   ]
                 },
@@ -4152,8 +4160,17 @@
                   "name": "24 Hour History",
                   "entities": [
                     {
+                      "entity": "sensor.soil_moisture_sensor_2_esp32_battery_voltage",
+                      "color": "#F54336"
+                    },
+                    {
                       "entity": "sensor.soil_moisture_sensor_2_moisture_sensor_voltage",
                       "color": "#43F536"
+                    },
+                    {
+                      "entity": "sensor.soil_saturation_2",
+                      "color": "var(--blue-color)",
+                      "y_axis": "secondary"
                     }
                   ],
                   "show": {
@@ -4170,12 +4187,35 @@
                   "points_per_hour": 10,
                   "lower_bound": 0,
                   "upper_bound": "~4",
-                  "lower_bound_secondary": "~35",
-                  "upper_bound_secondary": "~50",
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100,
                   "height": 150,
                   "animate": true,
                   "hour24": true,
                   "line_width": 2
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.soil_moisture_sensor_2_lower_limit",
+                      "name": "Lower Limit (Wet)",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon_color": "light-blue"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.soil_moisture_sensor_2_upper_limit",
+                      "name": "Upper Limit (Dry)",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon_color": "brown"
+                    }
+                  ]
                 }
               ],
               "title": "Soil Moisture Sensor 2"
