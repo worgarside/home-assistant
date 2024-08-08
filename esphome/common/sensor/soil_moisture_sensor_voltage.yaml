@@ -1,0 +1,20 @@
+---
+platform: adc
+
+pin: ${moisture_sensor_pin}
+
+id: moisture
+
+update_interval: 1s
+
+name: Moisture Sensor Voltage
+
+accuracy_decimals: 3
+
+unit_of_measurement: V
+
+filters:
+  - sliding_window_moving_average:
+      window_size: 60 # 1 minute
+      send_every: 60 # 1 minute
+      send_first_at: 15

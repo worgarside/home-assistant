@@ -1,0 +1,31 @@
+---
+substitutions:
+  name: soil-moisture-sensor-1
+  friendly_name: Soil Moisture Sensor 1
+
+  battery_pin: GPIO35 # A13
+  moisture_sensor_pin: GPIO34 # A2
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+# https://learn.adafruit.com/adafruit-huzzah32-esp32-feather
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+deep_sleep:
+  run_duration: 80s
+  sleep_duration: 10min
+
+<<: !include common/api.yaml
+<<: !include common/ota.yaml
+<<: !include common/wifi.yaml
+
+sensor:
+  - !include common/sensor/esp32_battery_voltage.yaml
+
+  - !include common/sensor/soil_moisture_sensor_voltage.yaml
