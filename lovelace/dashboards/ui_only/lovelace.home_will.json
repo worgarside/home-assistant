@@ -4028,12 +4028,12 @@
                 {
                   "square": false,
                   "type": "grid",
-                  "columns": 2,
+                  "columns": 3,
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.soil_moisture_sensor_1_esp32_battery_voltage",
-                      "name": "Battery Voltage",
+                      "name": "Battery",
                       "primary_info": "state",
                       "secondary_info": "name",
                       "icon_color": "#F54336"
@@ -4041,10 +4041,18 @@
                     {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.soil_moisture_sensor_1_moisture_sensor_voltage",
-                      "name": "Sensor Output",
+                      "name": "Sensor",
                       "primary_info": "state",
                       "secondary_info": "name",
                       "icon_color": "#43F536"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.soil_saturation_1",
+                      "name": "Saturation",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon_color": "blue"
                     }
                   ]
                 },
