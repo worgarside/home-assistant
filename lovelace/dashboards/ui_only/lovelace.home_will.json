@@ -1689,23 +1689,32 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-template-card",
-                      "primary": "{{ ( states(\"sensor.uptime\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\") }}",
-                      "secondary": "Last Boot Time",
-                      "icon": "mdi:console",
-                      "entity": "sensor.uptime",
-                      "icon_color": "green",
+                      "primary": "{{ ( state_attr('sensor.backup_state', \"last_backup\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\")  }}",
+                      "secondary": "{{ states('sensor.backup_state').replace(\"_\", \" \").title() }}",
+                      "icon": "mdi:cloud-upload-outline",
+                      "entity": "sensor.backup_state",
+                      "icon_color": "teal",
                       "multiline_secondary": false,
                       "tap_action": {
                         "action": "more-info"
                       }
                     },
                     {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.database_size",
+                      "icon_color": "pink",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon": "",
+                      "name": "Database Size"
+                    },
+                    {
                       "type": "custom:mushroom-template-card",
-                      "primary": "{{ ( state_attr('sensor.backup_state', \"last_backup\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\")  }}",
-                      "secondary": "{{ states('sensor.backup_state').replace(\"_\", \" \").title() }}",
-                      "icon": "mdi:cloud-upload-outline",
-                      "entity": "sensor.backup_state",
-                      "icon_color": "teal",
+                      "primary": "{{ ( states(\"sensor.uptime\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\") }}",
+                      "secondary": "Last Boot Time",
+                      "icon": "mdi:console",
+                      "entity": "sensor.uptime",
+                      "icon_color": "green",
                       "multiline_secondary": false,
                       "tap_action": {
                         "action": "more-info"
