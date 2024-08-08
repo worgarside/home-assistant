@@ -5,7 +5,6 @@ id: crtpi_update_display
 
 mode: queued
 
-# Trigger on all relevant states and attributes of all potential media players
 trigger:
   - platform: state
     entity_id:
@@ -15,96 +14,51 @@ trigger:
       - media_player.spotify_vic
       - media_player.spotify_will
       - media_player.topaz_sr10
-    not_to:
-      - unavailable
-      - unknown
-
-  - platform: state
-    entity_id:
-      - media_player.bedroom_speakers
-      - media_player.hifi_system
-      - media_player.lounge_speakers
-      - media_player.spotify_vic
-      - media_player.spotify_will
-      - media_player.topaz_sr10
-    attribute: media_title
-
-  - platform: state
-    entity_id:
-      - media_player.bedroom_speakers
-      - media_player.hifi_system
-      - media_player.lounge_speakers
-      - media_player.spotify_vic
-      - media_player.spotify_will
-      - media_player.topaz_sr10
-    attribute: media_artist
-
-  - platform: state
-    entity_id:
-      - media_player.bedroom_speakers
-      - media_player.hifi_system
-      - media_player.lounge_speakers
-      - media_player.spotify_vic
-      - media_player.spotify_will
-      - media_player.topaz_sr10
-    attribute: media_album_name
-
-  - platform: state
-    entity_id:
-      - media_player.bedroom_speakers
-      - media_player.hifi_system
-      - media_player.lounge_speakers
-      - media_player.spotify_vic
-      - media_player.spotify_will
-      - media_player.topaz_sr10
-    attribute: entity_picture
-
 
 variables:
   media_player: "{{ states('input_select.crtpi_media_player_source') }}"
 
-  entity_picture: "{{ trigger.to_state.attributes.entity_picture | default('') }}"
-
-  album_artwork_url_prefix: >-
+  artwork_uri: >-
+    {% set url = trigger.to_state.attributes.entity_picture | default(None) %}
+    {%
+      set host = (
+        states('sensor.local_ip')
+        if has_value('sensor.local_ip')
+        else "homeassistant.local"
+      )
+    %}
     {{
-      "http://homeassistant.local:8123"
-      if entity_picture and entity_picture.startswith('/api/')
-      else ""
+      "http://" ~ host ~ ":8123" ~ url
+      if url is string and url.startswith("/api/")
+      else url
     }}
 
-  payload: >-
-    {% set url = trigger.to_state.attributes.entity_picture %}
-    {{
-      {
-        "title": trigger.to_state.attributes.media_title,
-        "artist": trigger.to_state.attributes.media_artist,
-        "album": trigger.to_state.attributes.media_album_name,
-        "album_artwork_url": album_artwork_url_prefix ~ entity_picture,
-        "state": trigger.to_state.state,
-      }
-    }}
-
-
-condition: "{{ media_player == trigger.to_state.entity_id }}"
+condition: >-
+  {% set from_attrs = trigger.from_state.attributes %}
+  {% set to_attrs = trigger.to_state.attributes %}
+  {{
+    media_player == trigger.entity_id and (
+      trigger.from_state.state != trigger.to_state.state or
+      from_attrs.get("media_title") != to_attrs.get("media_title") or
+      from_attrs.get("media_album_name") != to_attrs.get("media_album_name") or
+      from_attrs.get("media_artist") != to_attrs.get("media_artist") or
+      from_attrs.get("entity_picture") != to_attrs.get("entity_picture")
+    )
+  }}
 
 action:
-  - service: script.turn_on
-    target:
-      entity_id: script.debug_persistent_notification
-    data:
-      variables:
-        notification_title: CRT Display Update
-        message: |
-          ```json
-          {{ payload | tojson(indent=2) }}
-          ```
-
-          ```
-          Topic:   /crtpi/crt-interface/content
-          Time:    {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
-          ```
-
   - service: mqtt.publish
     data:
       topic: /crtpi/crt-interface/content
-      payload: "{{ payload | tojson }}"
+      qos: 1
+      retain: true
+      payload: >-
+        {{
+          {
+            "title": trigger.to_state.attributes.media_title,
+            "artist": trigger.to_state.attributes.media_artist,
+            "album": trigger.to_state.attributes.media_album_name,
+            "album_artwork_url": artwork_uri,
+            "state": trigger.to_state.state,
+          } | tojson
+        }}

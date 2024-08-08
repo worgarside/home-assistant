@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "home-assistant"
-version = "2.76.0"
+version = "2.78.0"
 description = ""
 authors = ["Will Garside <worgarside@gmail.com>"]
 readme = "README.md"
@@ -18,8 +18,8 @@ optional = true
 [tool.poetry.group.dev.dependencies]
 pre-commit = "*"
 watchdog = "^4.0.1"
-zigpy = "^0.65.0"
-zha-quirks = "^0.0.117"
+zigpy = "^0.65.3"
+zha-quirks = "^0.0.118"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
