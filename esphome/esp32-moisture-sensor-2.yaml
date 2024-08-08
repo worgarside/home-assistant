@@ -1,0 +1,23 @@
+---
+substitutions:
+  name: soil-moisture-sensor-2
+  friendly_name: Soil Moisture Sensor 2
+
+  battery_pin: GPIO36
+  moisture_sensor_pin: GPIO33
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+  platform: ESP32
+  board: esp32dev
+
+<<: !include common/api.yaml
+<<: !include common/ota.yaml
+<<: !include common/wifi.yaml
+
+sensor:
+  - !include common/sensor/esp32_battery_voltage.yaml
+
+  - !include common/sensor/soil_moisture_sensor_voltage.yaml

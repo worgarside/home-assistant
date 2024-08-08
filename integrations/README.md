@@ -2587,7 +2587,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (32)</h3></summary>
+<details><summary><h3>Entities (36)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2829,6 +2829,54 @@ File: [`input_number/office_desk_standing_height.yaml`](entities/input_number/of
 - Unit Of Measurement: %
 
 File: [`input_number/office_desk_standing_mode_percentage_target.yaml`](entities/input_number/office_desk_standing_mode_percentage_target.yaml)
+</details>
+
+<details><summary><strong>Soil Moisture Sensor 1 | Lower Limit</strong></summary>
+
+**Entity ID: `input_number.soil_moisture_sensor_1_lower_limit`**
+
+- Icon: [`mdi:arrow-collapse-down`](https://pictogrammers.com/library/mdi/icon/arrow-collapse-down/)
+- Max: 1
+- Mode: `box`
+- Unit Of Measurement: V
+
+File: [`input_number/soil_moisture_threshold/sensor_1/soil_moisture_sensor_1_lower_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_1/soil_moisture_sensor_1_lower_limit.yaml)
+</details>
+
+<details><summary><strong>Soil Moisture Sensor 1 | Upper Limit</strong></summary>
+
+**Entity ID: `input_number.soil_moisture_sensor_1_upper_limit`**
+
+- Icon: [`mdi:arrow-collapse-up`](https://pictogrammers.com/library/mdi/icon/arrow-collapse-up/)
+- Max: 1
+- Mode: `box`
+- Unit Of Measurement: V
+
+File: [`input_number/soil_moisture_threshold/sensor_1/soil_moisture_sensor_1_upper_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_1/soil_moisture_sensor_1_upper_limit.yaml)
+</details>
+
+<details><summary><strong>Soil Moisture Sensor 2 | Lower Limit</strong></summary>
+
+**Entity ID: `input_number.soil_moisture_sensor_2_lower_limit`**
+
+- Icon: [`mdi:arrow-collapse-down`](https://pictogrammers.com/library/mdi/icon/arrow-collapse-down/)
+- Max: 1
+- Mode: `box`
+- Unit Of Measurement: V
+
+File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_lower_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_lower_limit.yaml)
+</details>
+
+<details><summary><strong>Soil Moisture Sensor 2 | Upper Limit</strong></summary>
+
+**Entity ID: `input_number.soil_moisture_sensor_2_upper_limit`**
+
+- Icon: [`mdi:arrow-collapse-up`](https://pictogrammers.com/library/mdi/icon/arrow-collapse-up/)
+- Max: 1
+- Mode: `box`
+- Unit Of Measurement: V
+
+File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml)
 </details>
 
 <details><summary><strong>ST MacBook Pro Full Battery Threshold</strong></summary>
@@ -5611,7 +5659,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (91)</h3></summary>
+<details><summary><h3>Entities (93)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6540,6 +6588,26 @@ File: [`template/sensor/office_desk/office_desk_standing_time_remaining.yaml`](e
 **Entity ID: `sensor.person_cosmo`**
 
 File: [`template/sensor/person/person_cosmo.yaml`](entities/template/sensor/person/person_cosmo.yaml)
+</details>
+
+<details><summary><strong>Soil Saturation 1</strong></summary>
+
+**Entity ID: `sensor.soil_saturation_1`**
+
+- Icon: [`mdi:watering-can-outline`](https://pictogrammers.com/library/mdi/icon/watering-can-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/soil_saturation/soil_saturation_1.yaml`](entities/template/sensor/soil_saturation/soil_saturation_1.yaml)
+</details>
+
+<details><summary><strong>Soil Saturation 2</strong></summary>
+
+**Entity ID: `sensor.soil_saturation_2`**
+
+- Icon: [`mdi:watering-can-outline`](https://pictogrammers.com/library/mdi/icon/watering-can-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/soil_saturation/soil_saturation_2.yaml`](entities/template/sensor/soil_saturation/soil_saturation_2.yaml)
 </details>
 
 <details><summary><strong>Spotify Will Garside Media Album Artwork Internal URL</strong></summary>
