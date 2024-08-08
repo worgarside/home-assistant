@@ -18,5 +18,5 @@ state: >-
   {% elif reading < lower_limit %}
     100
   {% else %}
-    {{ ((reading - upper_limit) / (lower_limit - upper_limit)) * 100 }}
+    {{ ( ( (reading - upper_limit) / (lower_limit - upper_limit) ) * 100 ) | round(2) }}
   {% endif %}
