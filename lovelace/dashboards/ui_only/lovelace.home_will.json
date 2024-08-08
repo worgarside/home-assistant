@@ -4081,6 +4081,29 @@
                   "animate": true,
                   "hour24": true,
                   "line_width": 2
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.soil_moisture_sensor_1_lower_limit",
+                      "name": "Lower Limit (Wet)",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon_color": "light-blue"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.soil_moisture_sensor_2_upper_limit",
+                      "name": "Upper Limit (Dry)",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon_color": "brown"
+                    }
+                  ]
                 }
               ],
               "title": "Soil Moisture Sensor 1"
