@@ -2,20 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (123)</h3></summary>
-
-<details><summary><code>/automation/auto-reload</code></summary>
-
-**Entity ID: `automation.automation_auto_reload`**
-
-> *No description provided*
-
-- Alias: /automation/auto-reload
-- ID: `automation_auto_reload`
-- Mode: `single`
-
-File: [`automation/automation/auto_reload.yaml`](entities/automation/automation/auto_reload.yaml)
-</details>
+<details><summary><h3>Entities (120)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -572,6 +559,30 @@ File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](
 - Mode: `single`
 
 File: [`automation/homeassistant/load_gh_cli_on_start.yaml`](entities/automation/homeassistant/load_gh_cli_on_start.yaml)
+</details>
+
+<details><summary><code>/homeassistant/queue-service-reload</code></summary>
+
+**Entity ID: `automation.homeassistant_queue_service_reload`**
+
+> *No description provided*
+
+- Alias: /homeassistant/queue-service-reload
+- ID: `homeassistant_queue_service_reload`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "domain": "{{ trigger.event.data.path.split('/')[3] }}",
+  "service_mapping": {
+    "media_player": "universal",
+    "template_triggered": "template"
+  },
+  "service": "{{ service_mapping.get(domain, domain) }}"
+}
+```
+File: [`automation/homeassistant/queue_service_reload.yaml`](entities/automation/homeassistant/queue_service_reload.yaml)
 </details>
 
 <details><summary><code>/hue-remote/bedroom/button-1/long-press</code></summary>
@@ -1185,32 +1196,6 @@ File: [`automation/notification/prusa_i3/print_completed.yaml`](entities/automat
 File: [`automation/notification/prusa_i3/user_input_required.yaml`](entities/automation/notification/prusa_i3/user_input_required.yaml)
 </details>
 
-<details><summary><code>/notification/system/reload-required/send</code></summary>
-
-**Entity ID: `automation.notification_system_reload_required_send`**
-
-> *No description provided*
-
-- Alias: /notification/system/reload-required/send
-- ID: `notification_system_reload_required_send`
-- Mode: `restart`
-
-File: [`automation/notification/system/reload_required/send.yaml`](entities/automation/notification/system/reload_required/send.yaml)
-</details>
-
-<details><summary><code>/notification/system/restart-required/send</code></summary>
-
-**Entity ID: `automation.notification_system_restart_required_send`**
-
-> *No description provided*
-
-- Alias: /notification/system/restart-required/send
-- ID: `notification_system_restart_required_send`
-- Mode: `single`
-
-File: [`automation/notification/system/restart_required/send.yaml`](entities/automation/notification/system/restart_required/send.yaml)
-</details>
-
 <details><summary><code>/octopi/cpu-fan-control</code></summary>
 
 **Entity ID: `automation.octopi_cpu_fan_control`**
@@ -1573,19 +1558,6 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
-</details>
-
-<details><summary><code>/script/auto-reload</code></summary>
-
-**Entity ID: `automation.script_auto_reload`**
-
-> *No description provided*
-
-- Alias: /script/auto-reload
-- ID: `script_auto_reload`
-- Mode: `single`
-
-File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_reload.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>
@@ -6745,7 +6717,17 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (16)</h3></summary>
+<details><summary><h3>Entities (17)</h3></summary>
+
+<details><summary><strong>Auto-Reload Queue</strong></summary>
+
+**Entity ID: `var.auto_reload_queue`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+- Unit Of Measurement: `entities`
+
+File: [`var/auto_reload_queue.yaml`](entities/var/auto_reload_queue.yaml)
+</details>
 
 <details><summary><strong>Auto-Save Amount</strong></summary>
 
