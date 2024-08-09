@@ -1552,7 +1552,8 @@
                   "icon_color": "",
                   "multiline_secondary": false
                 }
-              ]
+              ],
+              "title": "Version Control"
             },
             {
               "type": "grid",
@@ -1718,6 +1719,15 @@
                       "secondary_info": "name",
                       "name": "IP Address",
                       "icon": "mdi:ip-network-outline"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.database_size",
+                      "icon_color": "pink",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon": "",
+                      "name": "Database Size"
                     }
                   ]
                 },
