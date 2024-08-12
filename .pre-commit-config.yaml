@@ -87,7 +87,7 @@ repos:
           - --show-error-codes
         additional_dependencies:
           - types-paramiko
-          - watchdog==4.0.1
+          - watchdog==4.0.2
           - wg-utilities==5.16.0
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
