@@ -10,7 +10,7 @@ package-mode = false
 python = ">=3.12,<4.0"
 wg-utilities = "^5.16.0"
 watchdog = "^4.0.2"
-paramiko = "^3.4.0"
+paramiko = "^3.4.1"
 
 [tool.poetry.group.dev]
 optional = true
