@@ -1216,13 +1216,13 @@ testing = ["pytest"]
 
 [[package]]
 name = "zigpy"
-version = "0.65.3"
+version = "0.65.4"
 description = "Library implementing a Zigbee stack"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "zigpy-0.65.3-py3-none-any.whl", hash = "sha256:75ee165c47b7b70e3342bab9c8c0780e8b8d86bfa9b964ddf436e5315c1ad9a6"},
-    {file = "zigpy-0.65.3.tar.gz", hash = "sha256:295001c311223b6b804c7f62de57d46ee4e02614dfb154de1224d6dc5a613837"},
+    {file = "zigpy-0.65.4-py3-none-any.whl", hash = "sha256:fc719d7800e728532ab3783102bc32bccfa9ff340eb46ddec56290e38ea999ff"},
+    {file = "zigpy-0.65.4.tar.gz", hash = "sha256:37eacfa5b0eaa5592eb87ec7630d7500e23d42c9fcc14b211e55170e7af53906"},
 ]
 
 [package.dependencies]
@@ -1247,4 +1247,4 @@ testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-b
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<4.0"
-content-hash = "e45e11fe2251f7def657957bc71025ac95b49be81f8eae5af50705c01c9f5b4a"
+content-hash = "c04426c67dd02c51eab08c2dbb849b83df335a0dd159a1dc2ff9531a718e9c5d"
