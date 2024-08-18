@@ -2,14 +2,53 @@
 
 from __future__ import annotations
 
-from colorsys import hls_to_rgb
+import colorsys
+from pathlib import Path
+
+import matplotlib.colors as mc
+from yaml import safe_load
+
+LABELS = safe_load(
+    Path(__file__).parents[1].joinpath(".github/repo_labels.yml").read_text(),
+)
+
+
+def rgba_to_hex(r: int, g: int, b: int, a: float = -1) -> str:
+    """Convert an RGBA tuple to a HEX string."""
+    if a == -1:
+        return f"#{int(r):02x}{int(g):02x}{int(b):02x}".upper()
+
+    return f"#{int(r):02x}{int(g):02x}{int(b):02x}{int(a * 255):02x}".upper()
 
 
 def hls_to_hex(hue: float, lightness: float, saturation: float, /) -> str:
     """Convert HLS to HEX."""
-    r, g, b = hls_to_rgb(hue / 360.0, lightness, saturation)
+    r, g, b = colorsys.hls_to_rgb(hue / 360.0, lightness, saturation)
 
     return f"{int(r * 255):02x}{int(g * 255):02x}{int(b * 255):02x}"
+
+
+def lighten_color(color: str, amount: float) -> str:
+    """Lighten the given color by multiplying (1-luminosity) by the given amount.
+
+    Examples:
+    >> lighten_color('F034A3', 0.6)
+    """
+    color = "#" + color
+
+    try:
+        c = mc.cnames[color]
+    except Exception:
+        c = color
+
+    c = colorsys.rgb_to_hls(*mc.to_rgb(c))
+    r, g, b = colorsys.hls_to_rgb(c[0], 1 - amount * (1 - c[1]), c[2])
+
+    r = int(r * 255)
+    g = int(g * 255)
+    b = int(b * 255)
+
+    return f"{r:02x}{g:02x}{b:02x}".upper()
 
 
 def generate_unique_colors(n: int) -> list[str]:
@@ -97,6 +136,88 @@ line_width: 2
 """)
 
 
+def gen_github_label_colors() -> None:
+    """Generate color mappings for use in a decluttering template, for GitHub label colors."""
+    lightness_threshold = 0.6
+    background_alpha = 0.18
+    border_alpha = 0.298
+
+    colors = {lbl["name"]: lbl["color"] for lbl in LABELS}
+    output = {}
+    for label_name, orig in colors.items():
+        label_r, label_g, label_b = (int(i * 255) for i in mc.to_rgb("#" + orig))
+        label_h, label_l, label_s = colorsys.rgb_to_hls(
+            r=(label_r / 255),
+            g=(label_g / 255),
+            b=(label_b / 255),
+        )
+
+        label_h = int(label_h * 360)
+        label_s = int(label_s * 100)
+        label_l = int(label_l * 100)
+
+        perceived_lightness = (
+            (label_r * 0.2126) + (label_g * 0.7152) + (label_b * 0.0722)
+        ) / 255
+        lightness_switch = max(
+            0,
+            min((1 / (lightness_threshold - perceived_lightness)), 1),
+        )
+        lighten_by = (
+            (lightness_threshold - perceived_lightness) * 100
+        ) * lightness_switch
+
+        color_hsl = (
+            label_h,
+            (label_s * 0.01),
+            ((label_l + lighten_by) * 0.01),
+        )
+
+        color_rgb = tuple(
+            int(i * 255)
+            for i in colorsys.hls_to_rgb(
+                h=(label_h / 360),
+                l=((label_l + lighten_by) * 0.01),
+                s=(label_s * 0.01),
+            )
+        )
+        background_rgba = (label_r, label_g, label_b, background_alpha)
+        border_rgba = (
+            *tuple(
+                int(i * 255)
+                for i in colorsys.hls_to_rgb(
+                    h=(label_h / 360),
+                    l=((label_l + lighten_by) * 0.01),
+                    s=(label_s * 0.01),
+                )
+            ),
+            border_alpha,
+        )
+
+        output[label_name] = {
+            "lighten-by": lighten_by,
+            # "font": f"rgb{str(color_rgb)}",  # noqa: ERA001
+            "font": f"hsl{color_hsl!s}",
+            "background": f"rgba{background_rgba!s}",
+            "border": f"rgba{border_rgba!s}",
+        }
+
+        output[label_name] = {
+            "font": rgba_to_hex(*color_rgb),
+            "background": rgba_to_hex(*background_rgba),
+            # "border": rgba_to_hex(*border_rgba)
+        }
+
+    output_str = "                const labelColors = {\n"
+
+    for label_name, colors in output.items():
+        output_str += f"                  '{label_name}': {colors},\n"
+
+    output_str += "                };\n"
+
+    print(output_str)
+
+
 def get_repo_label_colors() -> None:
     """Generate colors for the repository labels."""
     repo_labels = (
@@ -107,6 +228,7 @@ def get_repo_label_colors() -> None:
         ("ha:cover", "Window blinds, curtains, and garage doors"),
         ("ha:custom-components", "Custom Components added to Home Assistant"),
         ("ha:device-tracker", "Track device locations and presence"),
+        ("ha:esphome", "ESPHome configuration files"),
         ("ha:groups", "Group entities together for easy control"),
         ("ha:input-boolean", "Binary on/off input controls"),
         ("ha:input-button", "Momentary push button input controls"),
@@ -141,4 +263,4 @@ def get_repo_label_colors() -> None:
 
 if __name__ == "__main__":
     print("\n\n\n")
-    get_addon_colors()
+    gen_github_label_colors()
