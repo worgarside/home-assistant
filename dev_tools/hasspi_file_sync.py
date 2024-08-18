@@ -29,7 +29,7 @@ REPO_PATH = Path(__file__).parents[2]
 
 
 if REPO_PATH.name != "home-assistant" or not REPO_PATH.is_dir():
-    raise RuntimeError(  # noqa: TRY003
+    raise RuntimeError(
         "Unable to locate the `home-assistant` repository."
         f" Current path is: {REPO_PATH!s}",
     )
@@ -71,8 +71,8 @@ class FileSyncHandler(FileSystemEventHandler):
         except FileNotFoundError as exc:
             LOGGER.debug("Delete failed successfully? %r", exc)
 
+    @staticmethod
     def _path_is_ignored(
-        self,
         *,
         file_path: Path | None = None,
         src_path: str | None = None,
@@ -95,14 +95,14 @@ class FileSyncHandler(FileSystemEventHandler):
             file_path = Path(src_path).relative_to(REPO_PATH)
 
         if not file_path:
-            raise ValueError(  # noqa: TRY003
+            raise ValueError(
                 "Must provide either `file_path` or `src_path`",
             )
 
-        if file_path.as_posix().startswith(".") or file_path.suffix in (
+        if file_path.as_posix().startswith(".") or file_path.suffix in {
             ".pyc",
             ".isorted",
-        ):
+        }:
             return True
 
         if must_exist:
@@ -193,7 +193,7 @@ class FileSyncHandler(FileSystemEventHandler):
         if self._last_sftp_use < int(time()) - 60:
             LOGGER.debug(
                 "Checking SFTP connection. Last use: %s",
-                datetime.fromtimestamp(self._last_sftp_use).isoformat(),
+                datetime.fromtimestamp(self._last_sftp_use).isoformat(),  # noqa: DTZ006
             )
             try:
                 self._sftp_client.stat(".")

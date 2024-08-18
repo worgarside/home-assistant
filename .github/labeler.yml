@@ -79,6 +79,10 @@ labels:
     files:
       - ^entities/device_tracker/.+\.yaml$
 
+  - label: ha:esphome
+    files:
+      - ^esphome/.+\.yaml$
+
   - label: ha:groups
     files:
       - ^entities/group/.+\.yaml$
