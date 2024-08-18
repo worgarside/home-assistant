@@ -81,7 +81,7 @@ def get_addon_colors() -> None:
         ("MariaDB", "mariadb"),
         ("Matter Server", "matter_server"),
         ("Mosquitto Broker", "mosquitto_broker"),
-        # ("Plex Media Server", "plex_media_server"),  # noqa: ERA001
+        # ("Plex Media Server", "plex_media_server"),
         ("Silicon Labs Multiprotocol", "silicon_labs_multiprotocol_add_on"),
         ("Terminal & SSH", "terminal_ssh_add_on"),
         ("VSCode", "visual_studio_code_add_on"),
@@ -140,7 +140,7 @@ def gen_github_label_colors() -> None:
     """Generate color mappings for use in a decluttering template, for GitHub label colors."""
     lightness_threshold = 0.6
     background_alpha = 0.18
-    border_alpha = 0.298
+    # border_alpha = 0.298
 
     colors = {lbl["name"]: lbl["color"] for lbl in LABELS}
     output = {}
@@ -167,11 +167,11 @@ def gen_github_label_colors() -> None:
             (lightness_threshold - perceived_lightness) * 100
         ) * lightness_switch
 
-        color_hsl = (
-            label_h,
-            (label_s * 0.01),
-            ((label_l + lighten_by) * 0.01),
-        )
+        # color_hsl = (
+        #     label_h,
+        #     (label_s * 0.01),
+        #     ((label_l + lighten_by) * 0.01),
+        # )
 
         color_rgb = tuple(
             int(i * 255)
@@ -182,25 +182,25 @@ def gen_github_label_colors() -> None:
             )
         )
         background_rgba = (label_r, label_g, label_b, background_alpha)
-        border_rgba = (
-            *tuple(
-                int(i * 255)
-                for i in colorsys.hls_to_rgb(
-                    h=(label_h / 360),
-                    l=((label_l + lighten_by) * 0.01),
-                    s=(label_s * 0.01),
-                )
-            ),
-            border_alpha,
-        )
+        # border_rgba = (
+        #     *tuple(
+        #         int(i * 255)
+        #         for i in colorsys.hls_to_rgb(
+        #             h=(label_h / 360),
+        #             l=((label_l + lighten_by) * 0.01),
+        #             s=(label_s * 0.01),
+        #         )
+        #     ),
+        #     border_alpha,
+        # )
 
-        output[label_name] = {
-            "lighten-by": lighten_by,
-            # "font": f"rgb{str(color_rgb)}",  # noqa: ERA001
-            "font": f"hsl{color_hsl!s}",
-            "background": f"rgba{background_rgba!s}",
-            "border": f"rgba{border_rgba!s}",
-        }
+        # output[label_name] = {
+        #     "lighten-by": lighten_by,
+        #     # "font": f"rgb{str(color_rgb)}",
+        #     "font": f"hsl{color_hsl!s}",
+        #     "background": f"rgba{background_rgba!s}",
+        #     "border": f"rgba{border_rgba!s}",
+        # }
 
         output[label_name] = {
             "font": rgba_to_hex(*color_rgb),

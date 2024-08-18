@@ -100,6 +100,7 @@ lint.ignore = []
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["D104"]
+"dev_tools/color_generator.py" = ["ERA001"]
 
 [tool.ruff.lint.pycodestyle]
 max-line-length = 115
