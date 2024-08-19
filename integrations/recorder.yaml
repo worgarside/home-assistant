@@ -8,7 +8,6 @@ recorder:
     domains:
       - automation
     entities:
-      - sensor.database_size
       - sensor.date
       - sensor.date_time
       - sensor.date_time_iso
