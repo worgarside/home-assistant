@@ -9,6 +9,13 @@ recorder:
       - automation
     entities:
       - sensor.database_size
+      - sensor.date
+      - sensor.date_time
+      - sensor.date_time_iso
+      - sensor.date_time_utc
+      - sensor.time
+      - sensor.time_date
+      - sensor.time_utc
     entity_globs:
       - sensor.*_table_record_count
       - sensor.*_table_size
