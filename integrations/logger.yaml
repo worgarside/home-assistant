@@ -11,6 +11,8 @@ logger:
       - Error communicating with socket, resetting connection
     idasen:
       - Connection failed
+    denonavr.api:
+      - Unexpected exception on telnet reconnect
   logs:
     charset_normalizer: warning
     idasen: critical
