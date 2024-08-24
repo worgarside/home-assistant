@@ -12,6 +12,7 @@ fields:
     selector:
       select:
         options:
+          - clock
           - gif-door-animated
           - image-door-closed
           - now-playing
@@ -27,7 +28,7 @@ fields:
     default:
     selector:
       number:
-        min: 0
+        min: -1000
         max: 99999
         step: any
         mode: box

@@ -1,0 +1,20 @@
+---
+name: "MtrxPi | Raining Grid: Y Pos"
+
+unique_id: mtrxpi_raining_grid_y_pos
+
+command_topic: /mtrxpi/raining-grid/parameter/y-pos
+
+icon: mdi:arrow-left-right
+
+min: 0
+
+max: 63
+
+mode: slider
+
+retain: true
+
+step: 1
+
+unit_of_measurement: " "

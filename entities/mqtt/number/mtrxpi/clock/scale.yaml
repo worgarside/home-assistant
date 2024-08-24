@@ -1,0 +1,20 @@
+---
+name: "MtrxPi | Clock: Scale"
+
+unique_id: mtrxpi_clock_scale
+
+command_topic: /mtrxpi/clock/parameter/scale
+
+icon: mdi:relative-scale
+
+min: 1
+
+max: 2
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: " "

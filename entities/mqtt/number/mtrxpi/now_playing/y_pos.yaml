@@ -1,0 +1,20 @@
+---
+name: "MtrxPi | Now Playing: Y Pos"
+
+unique_id: mtrxpi_now_playing_y_pos
+
+command_topic: /mtrxpi/now-playing/parameter/y-pos
+
+icon: mdi:arrow-left-right
+
+min: 0
+
+max: 63
+
+mode: slider
+
+retain: true
+
+step: 1
+
+unit_of_measurement: " "
