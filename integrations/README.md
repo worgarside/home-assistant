@@ -304,9 +304,9 @@ File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/
 
 ```json
 {
-  "cpu_temp": "{{ states('sensor.crtpi_cpu_temperature') | float }}",
-  "threshold": "{{ states('input_number.crtpi_fan_auto_on_threshold') | int}}",
-  "should_be_on": "{{ cpu_temp | float > threshold | int }}"
+  "cpu_temp": "{{ states('sensor.crtpi_cpu_temperature') | float(None) }}",
+  "threshold": "{{ states('input_number.crtpi_fan_auto_on_threshold') | int(999)}}",
+  "should_be_on": "{{ cpu_temp | float(0) > threshold | int(999) }}"
 }
 ```
 File: [`automation/crtpi/cpu_fan_control.yaml`](entities/automation/crtpi/cpu_fan_control.yaml)
@@ -1225,8 +1225,8 @@ File: [`automation/notification/system/restart_required/send.yaml`](entities/aut
 ```json
 {
   "cpu_temp": "{{ states('sensor.octopi_cpu_temperature') | float }}",
-  "threshold": "{{ states('input_number.octopi_fan_auto_on_threshold') | int}}",
-  "should_be_on": "{{ cpu_temp | float > threshold | int }}"
+  "threshold": "{{ states('input_number.octopi_fan_auto_on_threshold') | int(999) }}",
+  "should_be_on": "{{ cpu_temp | float > threshold | int(999) }}"
 }
 ```
 File: [`automation/octopi/cpu_fan_control.yaml`](entities/automation/octopi/cpu_fan_control.yaml)
@@ -6238,7 +6238,7 @@ File: [`template/sensor/distance/will_distance_from_home.yaml`](entities/templat
   {% set ns.average = ns.total / ns.count %}
 {% endfor %}
 {% if ns.average > 0 %}
-  mdi:battery-{{ ns.average | round(-1) | int or 10 }}
+  mdi:battery-{{ ns.average | round(-1) | int(10) or 10 }}
 {% else %}
   mdi:battery
 {% endif %}
