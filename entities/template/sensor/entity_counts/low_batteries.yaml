@@ -15,7 +15,7 @@ icon: >
   {% endfor %}
 
   {% if ns.average > 0 %}
-    mdi:battery-{{ ns.average | round(-1) | int or 10 }}
+    mdi:battery-{{ ns.average | round(-1) | int(10) or 10 }}
   {% else %}
     mdi:battery
   {% endif %}
@@ -40,7 +40,7 @@ attributes:
     %}
       {%
         set ns.low_batteries = ns.low_batteries + [
-          { "entity_id": s.entity_id, "state": s.state | int }
+          { "entity_id": s.entity_id, "state": s.state | int(-1) }
         ]
       %}
     {% endfor %}

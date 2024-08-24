@@ -31,7 +31,7 @@ action:
             entity_id: input_datetime.cosmo_next_{{ repeat.item }}_clean_due
             next_clean_timestamp: "{{ states(entity_id) | as_timestamp }}"
 
-        - if: "{{ next_clean_timestamp | float < now_ts | float }}"
+        - if: "{{ next_clean_timestamp | float(999999) < now_ts | float(0) }}"
 
           then:
             - variables:

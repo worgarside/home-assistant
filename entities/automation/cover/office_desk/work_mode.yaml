@@ -34,4 +34,4 @@ action:
     service: script.office_desk_standing_mode
     data:
       sync_blinds: >
-        {{ 67 <= ( state_attr("cover.office_blinds", "current_position") | int ) <= 69 }}
+        {{ 67 <= ( state_attr("cover.office_blinds", "current_position") | int(-1) ) <= 69 }}
