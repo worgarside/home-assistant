@@ -2892,38 +2892,6 @@
                   "title": "Content Parameters"
                 },
                 {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "switch.mtrxpi_power"
-                    },
-                    {
-                      "entity": "script.mtrxpi_queue_content"
-                    },
-                    {
-                      "entity": "number.mtrxpi_matrix_brightness"
-                    },
-                    {
-                      "entity": "input_select.mtrxpi_media_player_source"
-                    }
-                  ]
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "automation.mtrxpi_content_trigger_gif_door_animated"
-                    },
-                    {
-                      "entity": "automation.mtrxpi_content_trigger_now_playing"
-                    },
-                    {
-                      "entity": "automation.mtrxpi_content_trigger_raining_grid"
-                    }
-                  ],
-                  "title": "Content Triggers"
-                },
-                {
                   "type": "custom:tabbed-card",
                   "options": {},
                   "tabs": [
@@ -2981,6 +2949,38 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "switch.mtrxpi_power"
+                    },
+                    {
+                      "entity": "script.mtrxpi_queue_content"
+                    },
+                    {
+                      "entity": "number.mtrxpi_matrix_brightness"
+                    },
+                    {
+                      "entity": "input_select.mtrxpi_media_player_source"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "automation.mtrxpi_content_trigger_gif_door_animated"
+                    },
+                    {
+                      "entity": "automation.mtrxpi_content_trigger_now_playing"
+                    },
+                    {
+                      "entity": "automation.mtrxpi_content_trigger_raining_grid"
+                    }
+                  ],
+                  "title": "Content Triggers"
                 }
               ],
               "title": "LED Matrix Controller"
