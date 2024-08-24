@@ -12,10 +12,10 @@ trigger:
       - sensor.octopi_cpu_temperature
 
 variables:
-  cpu_temp: "{{ states('sensor.octopi_cpu_temperature') | float }}"
+  cpu_temp: "{{ states('sensor.octopi_cpu_temperature') | float(0) }}"
   threshold: "{{ states('input_number.octopi_fan_auto_on_threshold') | int(999) }}"
 
-  should_be_on: "{{ cpu_temp | float > threshold | int(999) }}"
+  should_be_on: "{{ cpu_temp | float(0) > threshold | int(999) }}"
 
 condition: >
   {{

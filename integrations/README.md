@@ -304,8 +304,8 @@ File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/
 
 ```json
 {
-  "cpu_temp": "{{ states('sensor.crtpi_cpu_temperature') | float(None) }}",
-  "threshold": "{{ states('input_number.crtpi_fan_auto_on_threshold') | int(999)}}",
+  "cpu_temp": "{{ states('sensor.crtpi_cpu_temperature') | float(0) }}",
+  "threshold": "{{ states('input_number.crtpi_fan_auto_on_threshold') | int(999) }}",
   "should_be_on": "{{ cpu_temp | float(0) > threshold | int(999) }}"
 }
 ```
@@ -874,7 +874,7 @@ File: [`automation/input_boolean/office_entity_header/on.yaml`](entities/automat
 ```json
 {
   "new_datetime": "{{ trigger.to_state.state }}",
-  "hour": "{{ (new_datetime | as_datetime).hour | int }}"
+  "hour": "{{ (new_datetime | as_datetime).hour | int(12) }}"
 }
 ```
 File: [`automation/input_datetime/cosmo/next_clean_due/set.yaml`](entities/automation/input_datetime/cosmo/next_clean_due/set.yaml)
@@ -1153,7 +1153,7 @@ File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation
 {
   "rain": "{{ trigger.to_state.state | float(0) }}",
   "limit": "{{ states('input_number.mtrxpi_raining_grid_maximum_rain_intensity') | float(15) }}",
-  "rain_chance": "{{ ( rain | float * (100 / limit) ) | round(2) }}"
+  "rain_chance": "{{ ( rain | float(0) * (100 / limit) ) | round(2) }}"
 }
 ```
 File: [`automation/mtrxpi/content_trigger/raining_grid.yaml`](entities/automation/mtrxpi/content_trigger/raining_grid.yaml)
@@ -1224,9 +1224,9 @@ File: [`automation/notification/system/restart_required/send.yaml`](entities/aut
 
 ```json
 {
-  "cpu_temp": "{{ states('sensor.octopi_cpu_temperature') | float }}",
+  "cpu_temp": "{{ states('sensor.octopi_cpu_temperature') | float(0) }}",
   "threshold": "{{ states('input_number.octopi_fan_auto_on_threshold') | int(999) }}",
-  "should_be_on": "{{ cpu_temp | float > threshold | int(999) }}"
+  "should_be_on": "{{ cpu_temp | float(0) > threshold | int(999) }}"
 }
 ```
 File: [`automation/octopi/cpu_fan_control.yaml`](entities/automation/octopi/cpu_fan_control.yaml)

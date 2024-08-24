@@ -21,7 +21,7 @@ icon_template: >-
   {%
     if (
       is_state("switch.prusa_i3_mk3", "on") and
-      states("sensor.prusa_i3_mk3_current_consumption") | float > 0
+      states("sensor.prusa_i3_mk3_current_consumption") | float(-1) > 0
     )
   %}
     mdi:printer-3d

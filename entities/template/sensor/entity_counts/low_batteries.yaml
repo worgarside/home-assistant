@@ -40,7 +40,7 @@ attributes:
     %}
       {%
         set ns.low_batteries = ns.low_batteries + [
-          { "entity_id": s.entity_id, "state": s.state | int }
+          { "entity_id": s.entity_id, "state": s.state | int(-1) }
         ]
       %}
     {% endfor %}
