@@ -2807,6 +2807,31 @@
                   "options": {},
                   "tabs": [
                     {
+                      "attributes": {
+                        "label": "Clock"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "number.mtrxpi_clock_scale",
+                            "name": "Scale"
+                          },
+                          {
+                            "entity": "number.mtrxpi_clock_x_pos",
+                            "name": "X Pos"
+                          },
+                          {
+                            "entity": "number.mtrxpi_clock_y_pos",
+                            "name": "Y Pos"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "attributes": {
+                        "label": "Raining Grid"
+                      },
                       "card": {
                         "type": "entities",
                         "entities": [
@@ -2837,9 +2862,6 @@
                         ],
                         "show_header_toggle": false,
                         "state_color": true
-                      },
-                      "attributes": {
-                        "label": "Raining Grid"
                       }
                     },
                     {
