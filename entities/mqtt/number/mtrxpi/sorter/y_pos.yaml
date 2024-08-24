@@ -5,7 +5,7 @@ unique_id: mtrxpi_sorter_y_pos
 
 command_topic: /mtrxpi/sorter/parameter/y-pos
 
-icon: mdi:arrow-left-right
+icon: mdi:arrow-up-down
 
 min: 0
 
@@ -18,3 +18,5 @@ retain: true
 step: 1
 
 unit_of_measurement: " "
+
+state_topic: /mtrxpi/sorter/parameter/y-pos

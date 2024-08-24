@@ -3328,6 +3328,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 - Icon: [`mdi:relative-scale`](https://pictogrammers.com/library/mdi/icon/relative-scale/)
 - Command Topic: /mtrxpi/clock/parameter/scale
+- State Topic: /mtrxpi/clock/parameter/scale
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/clock/scale.yaml`](entities/mqtt/number/mtrxpi/clock/scale.yaml)
@@ -3337,8 +3338,9 @@ File: [`mqtt/number/mtrxpi/clock/scale.yaml`](entities/mqtt/number/mtrxpi/clock/
 
 **Entity ID: `mqtt.mtrxpi_clock_x_pos`**
 
-- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
 - Command Topic: /mtrxpi/clock/parameter/x-pos
+- State Topic: /mtrxpi/clock/parameter/x-pos
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/clock/x_pos.yaml`](entities/mqtt/number/mtrxpi/clock/x_pos.yaml)
@@ -3348,8 +3350,9 @@ File: [`mqtt/number/mtrxpi/clock/x_pos.yaml`](entities/mqtt/number/mtrxpi/clock/
 
 **Entity ID: `mqtt.mtrxpi_clock_y_pos`**
 
-- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
 - Command Topic: /mtrxpi/clock/parameter/y-pos
+- State Topic: /mtrxpi/clock/parameter/y-pos
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/clock/y_pos.yaml`](entities/mqtt/number/mtrxpi/clock/y_pos.yaml)
@@ -3359,8 +3362,9 @@ File: [`mqtt/number/mtrxpi/clock/y_pos.yaml`](entities/mqtt/number/mtrxpi/clock/
 
 **Entity ID: `mqtt.mtrxpi_combination_x_pos`**
 
-- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
 - Command Topic: /mtrxpi/combination/parameter/x-pos
+- State Topic: /mtrxpi/combination/parameter/x-pos
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/combination/x_pos.yaml`](entities/mqtt/number/mtrxpi/combination/x_pos.yaml)
@@ -3370,8 +3374,9 @@ File: [`mqtt/number/mtrxpi/combination/x_pos.yaml`](entities/mqtt/number/mtrxpi/
 
 **Entity ID: `mqtt.mtrxpi_combination_y_pos`**
 
-- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
 - Command Topic: /mtrxpi/combination/parameter/y-pos
+- State Topic: /mtrxpi/combination/parameter/y-pos
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/combination/y_pos.yaml`](entities/mqtt/number/mtrxpi/combination/y_pos.yaml)
@@ -3392,8 +3397,9 @@ File: [`mqtt/number/mtrxpi/matrix/brightness.yaml`](entities/mqtt/number/mtrxpi/
 
 **Entity ID: `mqtt.mtrxpi_now_playing_x_pos`**
 
-- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
 - Command Topic: /mtrxpi/now-playing/parameter/x-pos
+- State Topic: /mtrxpi/now-playing/parameter/x-pos
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/now_playing/x_pos.yaml`](entities/mqtt/number/mtrxpi/now_playing/x_pos.yaml)
@@ -3403,8 +3409,9 @@ File: [`mqtt/number/mtrxpi/now_playing/x_pos.yaml`](entities/mqtt/number/mtrxpi/
 
 **Entity ID: `mqtt.mtrxpi_now_playing_y_pos`**
 
-- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
 - Command Topic: /mtrxpi/now-playing/parameter/y-pos
+- State Topic: /mtrxpi/now-playing/parameter/y-pos
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/now_playing/y_pos.yaml`](entities/mqtt/number/mtrxpi/now_playing/y_pos.yaml)
@@ -3416,6 +3423,7 @@ File: [`mqtt/number/mtrxpi/now_playing/y_pos.yaml`](entities/mqtt/number/mtrxpi/
 
 - Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
 - Command Topic: /mtrxpi/raining-grid/parameter/rain-chance
+- State Topic: /mtrxpi/raining-grid/parameter/rain-chance
 - Unit Of Measurement: %
 
 File: [`mqtt/number/mtrxpi/raining_grid/rain_chance.yaml`](entities/mqtt/number/mtrxpi/raining_grid/rain_chance.yaml)
@@ -3427,6 +3435,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/rain_chance.yaml`](entities/mqtt/number/
 
 - Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
 - Command Topic: /mtrxpi/raining-grid/frequency/rain-speed
+- State Topic: /mtrxpi/raining-grid/frequency/rain-speed
 - Unit Of Measurement: `ticks`
 
 File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/rain_speed.yaml)
@@ -3438,6 +3447,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/m
 
 - Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
 - Command Topic: /mtrxpi/raining-grid/frequency/splash-speed
+- State Topic: /mtrxpi/raining-grid/frequency/splash-speed
 - Unit Of Measurement: `ticks`
 
 File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/splash_speed.yaml)
@@ -3447,8 +3457,9 @@ File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number
 
 **Entity ID: `mqtt.mtrxpi_raining_grid_x_pos`**
 
-- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
 - Command Topic: /mtrxpi/raining-grid/parameter/x-pos
+- State Topic: /mtrxpi/raining-grid/parameter/x-pos
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/raining_grid/x_pos.yaml`](entities/mqtt/number/mtrxpi/raining_grid/x_pos.yaml)
@@ -3458,8 +3469,9 @@ File: [`mqtt/number/mtrxpi/raining_grid/x_pos.yaml`](entities/mqtt/number/mtrxpi
 
 **Entity ID: `mqtt.mtrxpi_raining_grid_y_pos`**
 
-- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
 - Command Topic: /mtrxpi/raining-grid/parameter/y-pos
+- State Topic: /mtrxpi/raining-grid/parameter/y-pos
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/raining_grid/y_pos.yaml`](entities/mqtt/number/mtrxpi/raining_grid/y_pos.yaml)
@@ -3471,6 +3483,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/y_pos.yaml`](entities/mqtt/number/mtrxpi
 
 - Icon: [`mdi:presentation-play`](https://pictogrammers.com/library/mdi/icon/presentation-play/)
 - Command Topic: /mtrxpi/sorter/parameter/completion-display-time
+- State Topic: /mtrxpi/sorter/parameter/completion-display-time
 - Unit Of Measurement: `s`
 
 File: [`mqtt/number/mtrxpi/sorter/completion_display_time.yaml`](entities/mqtt/number/mtrxpi/sorter/completion_display_time.yaml)
@@ -3482,6 +3495,7 @@ File: [`mqtt/number/mtrxpi/sorter/completion_display_time.yaml`](entities/mqtt/n
 
 - Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
 - Command Topic: /mtrxpi/sorter/parameter/iterations
+- State Topic: /mtrxpi/sorter/parameter/iterations
 - Unit Of Measurement: `iterations`
 
 File: [`mqtt/number/mtrxpi/sorter/iterations.yaml`](entities/mqtt/number/mtrxpi/sorter/iterations.yaml)
@@ -3491,8 +3505,9 @@ File: [`mqtt/number/mtrxpi/sorter/iterations.yaml`](entities/mqtt/number/mtrxpi/
 
 **Entity ID: `mqtt.mtrxpi_sorter_x_pos`**
 
-- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
 - Command Topic: /mtrxpi/sorter/parameter/x-pos
+- State Topic: /mtrxpi/sorter/parameter/x-pos
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/sorter/x_pos.yaml`](entities/mqtt/number/mtrxpi/sorter/x_pos.yaml)
@@ -3502,8 +3517,9 @@ File: [`mqtt/number/mtrxpi/sorter/x_pos.yaml`](entities/mqtt/number/mtrxpi/sorte
 
 **Entity ID: `mqtt.mtrxpi_sorter_y_pos`**
 
-- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
 - Command Topic: /mtrxpi/sorter/parameter/y-pos
+- State Topic: /mtrxpi/sorter/parameter/y-pos
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/sorter/y_pos.yaml`](entities/mqtt/number/mtrxpi/sorter/y_pos.yaml)

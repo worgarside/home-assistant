@@ -5,7 +5,7 @@ unique_id: mtrxpi_combination_x_pos
 
 command_topic: /mtrxpi/combination/parameter/x-pos
 
-icon: mdi:arrow-up-down
+icon: mdi:arrow-left-right
 
 min: 0
 
@@ -18,3 +18,5 @@ retain: true
 step: 1
 
 unit_of_measurement: " "
+
+state_topic: /mtrxpi/combination/parameter/x-pos
