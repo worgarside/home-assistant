@@ -1,17 +1,15 @@
 ---
-unique_id: mtrxpi_sorter_randomize_algorithm
-
 name: "MtrxPi | Sorter: Randomize Algorithm"
+
+unique_id: mtrxpi_sorter_randomize_algorithm
 
 command_topic: /mtrxpi/sorter/parameter/randomize-algorithm
 
-icon: mdi:shuffle
+icon: mdi:shuffle-variant
 
 payload_on: "true"
 
 payload_off: "false"
-
-qos: 0
 
 retain: true
 

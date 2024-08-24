@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Now Playing: X Pos"
+
+unique_id: mtrxpi_now_playing_x_pos
+
+command_topic: /mtrxpi/now-playing/parameter/x-pos
+
+icon: mdi:arrow-left-right
+
+min: 0
+
+max: 63
+
+mode: slider
+
+retain: true
+
+step: 1
+
+unit_of_measurement: " "
+
+state_topic: /mtrxpi/now-playing/parameter/x-pos
