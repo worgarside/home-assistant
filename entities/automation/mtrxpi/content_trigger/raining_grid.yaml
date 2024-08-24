@@ -15,7 +15,7 @@ variables:
 
   limit: "{{ states('input_number.mtrxpi_raining_grid_maximum_rain_intensity') | float(15) }}"
 
-  rain_chance: "{{ ( rain | float * (100 / limit) ) | round(2) }}"
+  rain_chance: "{{ ( rain | float(0) * (100 / limit) ) | round(2) }}"
 
 action:
   - alias: Set rain volume
@@ -29,7 +29,7 @@ action:
       - alias: Queue content if it is not already running
 
         conditions: >-
-          {{ states('sensor.mtrxpi_current_content') != 'raining-grid' and rain | float > 0 }}
+          {{ states('sensor.mtrxpi_current_content') != 'raining-grid' and rain | float(-1) > 0 }}
 
         sequence:
           - service: script.mtrxpi_queue_content
@@ -39,7 +39,7 @@ action:
 
       - alias: Remove content from queue if rain is 0
 
-        conditions: "{{ rain | float == 0 }}"
+        conditions: "{{ rain | float(-1) == 0 }}"
 
         sequence:
           - service: script.mtrxpi_queue_content

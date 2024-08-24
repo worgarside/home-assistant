@@ -5,7 +5,7 @@ unique_id: office_desk
 
 value_template: "{{ states('cover.office_desk_esphome') }}"
 
-position_template: "{{ state_attr('cover.office_desk_esphome', 'current_position') | int }}"
+position_template: "{{ state_attr('cover.office_desk_esphome', 'current_position') | int(-1) }}"
 
 icon_template: >-
   {%

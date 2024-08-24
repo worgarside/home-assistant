@@ -21,7 +21,7 @@ sequence:
     condition: template
     value_template: >
       {{
-        state_attr("cover.office_desk_esphome", "current_position") | int !=
+        state_attr("cover.office_desk_esphome", "current_position") | int(-1) !=
         position | int
       }}
 
@@ -58,7 +58,7 @@ sequence:
         - service: cover.set_cover_position
           data:
             entity_id: cover.office_desk_esphome
-            position: "{{ position | int }}"
+            position: "{{ position }}"
 
         - alias: Stop following template returning `true` if the desk hasn't started moving yet
           delay:

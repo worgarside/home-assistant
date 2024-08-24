@@ -87,7 +87,7 @@ sensor:
               not is_state("media_player.topaz_sr10", "off") and
               is_number(states("input_number.topaz_sr10_volume_level"))
             ),
-            ((states("input_number.topaz_sr10_volume_level") | int + 80) / 80) | round(2),
+            ((states("input_number.topaz_sr10_volume_level") | int(0) + 80) / 80) | round(2),
             None
           )
         }}
