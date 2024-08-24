@@ -2922,6 +2922,21 @@
                     }
                   ],
                   "title": "Content Triggers"
+                },
+                {
+                  "type": "custom:tabbed-card",
+                  "options": {},
+                  "tabs": [
+                    {
+                      "card": {
+                        "type": "entity",
+                        "entity": "sun.sun"
+                      },
+                      "attributes": {
+                        "label": "Sun"
+                      }
+                    }
+                  ]
                 }
               ],
               "title": "LED Matrix Controller"
