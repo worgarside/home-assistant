@@ -1,0 +1,14 @@
+---
+force_update: true
+
+icon: mdi:plus-box-multiple
+
+name: MtrxPi | Content Queue
+
+state_topic: /mtrxpi/matrix/content-queue/state
+
+unique_id: mtrxpi_content_queue
+
+json_attributes_topic: /mtrxpi/matrix/content-queue/attributes
+
+unit_of_measurement: items
