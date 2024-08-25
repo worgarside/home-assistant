@@ -2803,6 +2803,20 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "switch.mtrxpi_power"
+                    },
+                    {
+                      "entity": "script.mtrxpi_queue_content"
+                    },
+                    {
+                      "entity": "number.mtrxpi_matrix_brightness"
+                    }
+                  ]
+                },
+                {
                   "type": "custom:tabbed-card",
                   "options": {},
                   "tabs": [
@@ -2913,20 +2927,6 @@
                         "show_header_toggle": false,
                         "state_color": true
                       }
-                    }
-                  ]
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "switch.mtrxpi_power"
-                    },
-                    {
-                      "entity": "script.mtrxpi_queue_content"
-                    },
-                    {
-                      "entity": "number.mtrxpi_matrix_brightness"
                     }
                   ]
                 },
