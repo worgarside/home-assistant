@@ -2944,6 +2944,10 @@
                     }
                   ],
                   "title": "Content Triggers"
+                },
+                {
+                  "type": "markdown",
+                  "content": "{% for k, v in state_attr('sensor.mtrxpi_content_queue', 'queue') . items() %}\n### {{ v[\"id\"] }} | {{ k | float }}\n  ```json\n  {{ v[\"parameters\"] | tojson(indent=2) }}\n  ```\n{% endfor %}"
                 }
               ],
               "title": "LED Matrix Controller"
