@@ -2830,6 +2830,22 @@
                     },
                     {
                       "attributes": {
+                        "label": "Now Playing"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_select.mtrxpi_media_player_source",
+                            "name": "Media Player Source"
+                          }
+                        ],
+                        "show_header_toggle": false,
+                        "state_color": true
+                      }
+                    },
+                    {
+                      "attributes": {
                         "label": "Raining Grid"
                       },
                       "card": {
@@ -2911,6 +2927,9 @@
                     },
                     {
                       "entity": "number.mtrxpi_matrix_brightness"
+                    },
+                    {
+                      "entity": "input_select.mtrxpi_media_player_source"
                     }
                   ]
                 },
