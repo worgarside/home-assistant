@@ -3320,7 +3320,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (103)</h3></summary>
+<details><summary><h3>Entities (104)</h3></summary>
 
 <details><summary><strong>MtrxPi | Clock: Scale</strong></summary>
 
@@ -3901,6 +3901,17 @@ File: [`mqtt/sensor/mtrxpi/average_load_5_min.yaml`](entities/mqtt/sensor/mtrxpi
 - State Topic: /homeassistant/mtrxpi/stats
 
 File: [`mqtt/sensor/mtrxpi/boot_time.yaml`](entities/mqtt/sensor/mtrxpi/boot_time.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Content Queue</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_content_queue`**
+
+- Icon: [`mdi:plus-box-multiple`](https://pictogrammers.com/library/mdi/icon/plus-box-multiple/)
+- State Topic: /mtrxpi/matrix/content-queue/state
+- Unit Of Measurement: `items`
+
+File: [`mqtt/sensor/mtrxpi/content_queue.yaml`](entities/mqtt/sensor/mtrxpi/content_queue.yaml)
 </details>
 
 <details><summary><strong>MtrxPi CPU Temperature</strong></summary>
