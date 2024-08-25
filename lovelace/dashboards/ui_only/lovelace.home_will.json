@@ -3099,17 +3099,19 @@
                   "toggle_power": true,
                   "group": false,
                   "volume_stateless": false
-                },
-                {
-                  "type": "markdown",
-                  "content": "{% set qsize = states('sensor.mtrxpi_content_queue') | int(0) %}\n{% if qsize %}\n## {{ qsize }} item{% if qsize > 1 %}s{% endif %} in queue\n{% endif %}\n\n{% for k, v in state_attr('sensor.mtrxpi_content_queue', 'queue') . items() %}\n### {{ v[\"id\"] }} | {{ k | float }}\n  ```json\n  {{ v[\"parameters\"] | tojson(indent=2) }}\n  ```\n{% endfor %}"
                 }
               ],
               "title": "MtrxPi System Monitor"
             },
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "{% set qsize = states('sensor.mtrxpi_content_queue') | int(0) %}\n{% if qsize %}\n## {{ qsize }} item{% if qsize > 1 %}s{% endif %} in queue\n{% endif %}\n\n{% for k, v in state_attr('sensor.mtrxpi_content_queue', 'queue') . items() %}\n### {{ v[\"id\"] }} | {{ k | float }}\n  ```json\n  {{ v[\"parameters\"] | tojson(indent=2) }}\n  ```\n{% endfor %}"
+                }
+              ],
+              "title": "Content Queue"
             }
           ],
           "cards": []
