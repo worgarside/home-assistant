@@ -11,4 +11,6 @@ unique_id: mtrxpi_content_queue
 
 json_attributes_topic: /mtrxpi/matrix/content-queue/attributes
 
+json_attributes_template: "{{ { 'queue': value_json } | tojson }}"
+
 unit_of_measurement: items
