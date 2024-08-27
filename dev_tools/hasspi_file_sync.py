@@ -57,7 +57,7 @@ class FileSyncHandler(FileSystemEventHandler):
         Args:
             event (DirDeletedEvent | FileDeletedEvent): The event.
         """
-        file_path = Path(event.src_path).relative_to(REPO_PATH)
+        file_path = Path(str(event.src_path)).relative_to(REPO_PATH)
 
         if self._path_is_ignored(file_path=file_path):
             LOGGER.debug("Ignoring %s deletion", file_path.as_posix())
@@ -75,7 +75,7 @@ class FileSyncHandler(FileSystemEventHandler):
     def _path_is_ignored(
         *,
         file_path: Path | None = None,
-        src_path: str | None = None,
+        src_path: str | bytes | None = None,
         must_exist: bool = False,
     ) -> bool:
         """Check if a path should be ignored.
@@ -92,7 +92,7 @@ class FileSyncHandler(FileSystemEventHandler):
             ValueError: If neither `file_path` or `src_path` are provided.
         """
         if src_path:
-            file_path = Path(src_path).relative_to(REPO_PATH)
+            file_path = Path(str(src_path)).relative_to(REPO_PATH)
 
         if not file_path:
             raise ValueError(
@@ -115,7 +115,7 @@ class FileSyncHandler(FileSystemEventHandler):
         event: FileSystemEvent,
     ) -> None:
         """Write a file to the HAssPi."""
-        file_path = Path(event.src_path).relative_to(REPO_PATH)
+        file_path = Path(str(event.src_path)).relative_to(REPO_PATH)
 
         if event.is_directory or self._path_is_ignored(
             file_path=file_path,
@@ -243,18 +243,18 @@ def main() -> None:
     ssh_client = create_ssh_client()
 
     event_handler = FileSyncHandler(ssh_client)
-    OBSERVER.schedule(  # type: ignore[no-untyped-call]
+    OBSERVER.schedule(
         event_handler,
-        path=REPO_PATH,
+        path=REPO_PATH.as_posix(),
         recursive=True,
     )
-    OBSERVER.start()  # type: ignore[no-untyped-call]
+    OBSERVER.start()
     LOGGER.info("Watching %s", REPO_PATH)
     try:
         while True:
             sleep(1)
     except KeyboardInterrupt:
-        OBSERVER.stop()  # type: ignore[no-untyped-call]
+        OBSERVER.stop()
     ssh_client.close()
     OBSERVER.join()
 
