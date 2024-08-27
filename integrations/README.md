@@ -2587,7 +2587,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (36)</h3></summary>
+<details><summary><h3>Entities (42)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2779,6 +2779,84 @@ File: [`input_number/lounge_blinds_button_height.yaml`](entities/input_number/lo
 - Unit Of Measurement: mm/hr
 
 File: [`input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml`](entities/input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Clock: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_clock_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_clock_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_clock_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | GIF (Door Animated): Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_gif_door_animated_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_gif_door_animated_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_gif_door_animated_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Image (Door Closed): Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_image_door_closed_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_image_door_closed_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_image_door_closed_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Now Playing: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_now_playing_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_now_playing_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_now_playing_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_raining_grid_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Sorter: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_sorter_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml)
 </details>
 
 <details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
