@@ -5078,6 +5078,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
   "id": {
     "description": "The ID of the content to add to the queue",
     "example": "raining-grid",
+    "required": true,
     "selector": {
       "select": {
         "options": [
@@ -5113,9 +5114,9 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
 
 ```json
 {
-  "id": "{{ id | default(None) }}",
+  "id": "{{ id | default('') }}",
   "parameters": "{{ parameters | default({}) }}",
-  "priority": "{{ priority | default(None) }}"
+  "priority": "{{\n  priority\n  | default(\n    states(\"input_number.mtrxpi_\" ~ id.replace(\"-\", \"_\") ~ \"_queue_position\")\n    | default(None)\n  )\n}}"
 }
 ```
 File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_queue_content.yaml)

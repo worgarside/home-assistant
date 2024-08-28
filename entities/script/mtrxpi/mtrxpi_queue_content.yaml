@@ -9,6 +9,7 @@ fields:
   id:
     description: The ID of the content to add to the queue
     example: raining-grid
+    required: true
     selector:
       select:
         options:
@@ -35,11 +36,19 @@ fields:
 
 
 variables:
-  id: "{{ id | default(None) }}"
+  id: "{{ id | default('') }}"
 
   parameters: "{{ parameters | default({}) }}"
 
-  priority: "{{ priority | default(None) }}"
+  priority: >-
+    {{
+      priority
+      | default(
+        states("input_number.mtrxpi_" ~ id.replace("-", "_") ~ "_queue_position")
+        | default(None)
+      )
+    }}
+
 
 sequence:
   - service: script.turn_on
@@ -51,7 +60,6 @@ sequence:
         notification_id: mtrxpi_queue_content
         message: |
           ```
-          Time:       {{ now().strftime('%Y-%m-%d %H:%M:%S.%f') }}
           Content ID: {{ id }}
           Priority:   {{ priority }}
           {% if parameters %}Parameters: {{ parameters }}{% endif %}
