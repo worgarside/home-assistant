@@ -2838,6 +2838,10 @@
                           {
                             "entity": "number.mtrxpi_clock_y_pos",
                             "name": "Y Pos"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_clock_queue_position",
+                            "name": "Queue Position"
                           }
                         ]
                       }
