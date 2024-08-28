@@ -15,4 +15,4 @@ action:
   - service: script.mtrxpi_queue_content
     data:
       id: gif-door-animated
-      priority: 1
+      priority: "{{ states('input_number.mtrxpi_gif_door_animated_queue_position') }}"
