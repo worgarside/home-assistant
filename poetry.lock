@@ -1725,13 +1725,13 @@ multidict = ">=4.0"
 
 [[package]]
 name = "zha-quirks"
-version = "0.0.119"
+version = "0.0.120"
 description = "Library implementing Zigpy quirks for ZHA in Home Assistant"
 optional = false
 python-versions = ">=3.12"
 files = [
-    {file = "zha_quirks-0.0.119-py3-none-any.whl", hash = "sha256:7a5c69d204cb0e495ae9d627139f2168f68767f167f9da06ab7de66a362f6cdc"},
-    {file = "zha_quirks-0.0.119.tar.gz", hash = "sha256:71bee4645f7010942acc01a5bf894f29c7f04211ac1e24a10c3feff8801c3b13"},
+    {file = "zha_quirks-0.0.120-py3-none-any.whl", hash = "sha256:d56bdff22055848fbafbacf581b272cb647d954c2ccd39bb28fa6cc62734a0ab"},
+    {file = "zha_quirks-0.0.120.tar.gz", hash = "sha256:398b11b163554bd2f03b55ac7f625c39f486dd7b0736b545121cae857dfedb07"},
 ]
 
 [package.dependencies]
@@ -1773,4 +1773,4 @@ testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-b
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<4.0"
-content-hash = "dd09669703ca40fd9ea29f8ce995ac5a31a76a530db4ff0ba4c7590ef2d4c128"
+content-hash = "15822c8963462e37329f338449ac0f99d79c288912905b0ead5cc4dc0f641bc9"
