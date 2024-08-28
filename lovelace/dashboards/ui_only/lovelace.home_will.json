@@ -2952,8 +2952,14 @@
                         "type": "entities",
                         "entities": [
                           {
+                            "entity": "automation.mtrxpi_content_trigger_gif_door_animated"
+                          },
+                          {
                             "entity": "input_number.mtrxpi_gif_door_animated_queue_position",
                             "name": "GIF (Door Animated): Queue Position"
+                          },
+                          {
+                            "type": "divider"
                           },
                           {
                             "entity": "input_number.mtrxpi_image_door_closed_queue_position",
