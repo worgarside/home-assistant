@@ -3231,7 +3231,7 @@
                 {
                   "condition": "state",
                   "entity": "sensor.mtrxpi_current_content",
-                  "state": "unavailable"
+                  "state_not": "unavailable"
                 }
               ]
             }
