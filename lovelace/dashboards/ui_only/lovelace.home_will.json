@@ -2860,6 +2860,10 @@
                           {
                             "entity": "input_number.mtrxpi_now_playing_queue_position",
                             "name": "Queue Position"
+                          },
+                          {
+                            "entity": "automation.mtrxpi_content_trigger_now_playing",
+                            "name": "Content Trigger"
                           }
                         ],
                         "show_header_toggle": false,
