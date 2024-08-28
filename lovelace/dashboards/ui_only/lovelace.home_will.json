@@ -2892,6 +2892,10 @@
                           {
                             "entity": "number.mtrxpi_raining_grid_y_pos",
                             "name": "Y Position"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_raining_grid_queue_position",
+                            "name": "Queue Position"
                           }
                         ],
                         "show_header_toggle": false,
@@ -2926,6 +2930,10 @@
                           {
                             "entity": "number.mtrxpi_sorter_y_pos",
                             "name": "Y Position"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_sorter_queue_position",
+                            "name": "Queue Position"
                           }
                         ],
                         "show_header_toggle": false,
