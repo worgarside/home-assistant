@@ -2856,6 +2856,10 @@
                           {
                             "entity": "input_select.mtrxpi_media_player_source",
                             "name": "Media Player Source"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_now_playing_queue_position",
+                            "name": "Queue Position"
                           }
                         ],
                         "show_header_toggle": false,
