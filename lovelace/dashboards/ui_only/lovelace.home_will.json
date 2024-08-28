@@ -2842,6 +2842,18 @@
                           {
                             "entity": "input_number.mtrxpi_clock_queue_position",
                             "name": "Queue Position"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "clock"
+                              }
+                            }
                           }
                         ]
                       }
@@ -2864,6 +2876,18 @@
                           {
                             "entity": "automation.mtrxpi_content_trigger_now_playing",
                             "name": "Content Trigger"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "now-playing"
+                              }
+                            }
                           }
                         ],
                         "show_header_toggle": false,
@@ -2908,6 +2932,18 @@
                           {
                             "entity": "automation.mtrxpi_content_trigger_raining_grid",
                             "name": "Content Trigger"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "raining-grid"
+                              }
+                            }
                           }
                         ],
                         "show_header_toggle": false,
@@ -2946,6 +2982,18 @@
                           {
                             "entity": "input_number.mtrxpi_sorter_queue_position",
                             "name": "Queue Position"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "sorter"
+                              }
+                            }
                           }
                         ],
                         "show_header_toggle": false,
@@ -2967,11 +3015,35 @@
                             "name": "GIF (Door Animated): Queue Position"
                           },
                           {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "gif-door-animated"
+                              }
+                            }
+                          },
+                          {
                             "type": "divider"
                           },
                           {
                             "entity": "input_number.mtrxpi_image_door_closed_queue_position",
                             "name": "Image (Door Closed): Queue Position"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "image-door-closed"
+                              }
+                            }
                           }
                         ]
                       }
