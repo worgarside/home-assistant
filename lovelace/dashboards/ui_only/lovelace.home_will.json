@@ -2943,6 +2943,24 @@
                         "show_header_toggle": false,
                         "state_color": true
                       }
+                    },
+                    {
+                      "attributes": {
+                        "label": "Other"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_number.mtrxpi_gif_door_animated_queue_position",
+                            "name": "GIF (Door Animated): Queue Position"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_image_door_closed_queue_position",
+                            "name": "Image (Door Closed): Queue Position"
+                          }
+                        ]
+                      }
                     }
                   ]
                 },
