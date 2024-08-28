@@ -3141,19 +3141,7 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "### Current content is `{{ states('sensor.mtrxpi_current_content') }}` with priority {{ state_attr('sensor.mtrxpi_current_content', 'priority') }}\n\n{% set qsize = states('sensor.mtrxpi_content_queue') | int(0) %}\n{% if qsize %}\n## {{ qsize }} item{% if qsize > 1 %}s{% endif %} in queue\n{% endif %}\n\n{% for k, v in state_attr('sensor.mtrxpi_content_queue', 'queue') . items() %}\n### {{ v[\"id\"] }} | {{ k | float }}\n  ```json\n  {{ v[\"parameters\"] | tojson(indent=2) }}\n  ```\n{% endfor %}",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.mtrxpi_current_content",
-                      "state_not": ""
-                    },
-                    {
-                      "condition": "state",
-                      "entity": "sensor.mtrxpi_current_content",
-                      "state": "unavailable"
-                    }
-                  ]
+                  "content": "### Current content is `{{ states('sensor.mtrxpi_current_content') }}` with priority {{ state_attr('sensor.mtrxpi_current_content', 'priority') }}\n\n{% set qsize = states('sensor.mtrxpi_content_queue') | int(0) %}\n{% if qsize %}\n## {{ qsize }} item{% if qsize > 1 %}s{% endif %} in queue\n{% endif %}\n\n{% for k, v in state_attr('sensor.mtrxpi_content_queue', 'queue') . items() %}\n### {{ v[\"id\"] }} | {{ k | float }}\n  ```json\n  {{ v[\"parameters\"] | tojson(indent=2) }}\n  ```\n{% endfor %}"
                 }
               ],
               "title": "Content Queue",
