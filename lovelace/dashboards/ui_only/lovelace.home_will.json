@@ -2904,6 +2904,10 @@
                           {
                             "entity": "input_number.mtrxpi_raining_grid_queue_position",
                             "name": "Queue Position"
+                          },
+                          {
+                            "entity": "automation.mtrxpi_content_trigger_raining_grid",
+                            "name": "Content Trigger"
                           }
                         ],
                         "show_header_toggle": false,
