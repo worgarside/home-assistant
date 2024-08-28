@@ -5096,7 +5096,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
     "description": "The priority of the content in the queue. `None` will remove the content from the queue if it exists. `0` is the highest priority, and the higher the number, the lower the priority.",
     "example": "1",
     "required": false,
-    "default": null,
+    "default": "null",
     "selector": {
       "number": {
         "min": -1000,
