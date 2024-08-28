@@ -3149,7 +3149,17 @@
                 {
                   "condition": "state",
                   "entity": "sensor.mtrxpi_current_content",
-                  "state": "unknown"
+                  "state_not": "unknown"
+                },
+                {
+                  "condition": "state",
+                  "entity": "sensor.mtrxpi_current_content",
+                  "state_not": ""
+                },
+                {
+                  "condition": "state",
+                  "entity": "sensor.mtrxpi_current_content",
+                  "state": "unavailable"
                 }
               ]
             }
