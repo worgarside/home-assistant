@@ -1702,7 +1702,9 @@
                       "hash": "#kitchen",
                       "name": "Kitchen",
                       "icon": "mdi:fridge",
-                      "entity": "light.kitchen_spotlights"
+                      "entity": "light.kitchen_spotlights",
+                      "margin_top_mobile": "calc(100vh - 400px)",
+                      "margin_top_desktop": "calc(100vh - 400px)"
                     }
                   ]
                 }
