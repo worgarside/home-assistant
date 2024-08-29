@@ -70,7 +70,7 @@ variables:
   clear_notification: >-
     {{
       message | default('') == 'clear_notification' or
-      clear_notification | default(False) | bool
+      clear_notification | default(False) | bool(False)
     }}
 
   notification_id: >-

@@ -39,7 +39,7 @@ action:
       - delay:
           minutes: 15
 
-  - if: "{{ carpet_boost | bool }}"
+  - if: "{{ carpet_boost | bool(true) }}"
     then:
       - service: switch.turn_off
         target:
@@ -50,7 +50,7 @@ action:
       room_name: kitchen
       suction_level: 0
 
-  - if: "{{ carpet_boost | bool }}"
+  - if: "{{ carpet_boost | bool(true) }}"
     then:
       - delay:
           minutes: 1

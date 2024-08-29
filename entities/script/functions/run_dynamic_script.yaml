@@ -51,7 +51,7 @@ sequence:
       for_each: "{{ actions }}"
 
       sequence:
-        - if: "{{ not suppress_debug_notifications | bool }}"
+        - if: "{{ not ( suppress_debug_notifications | bool(False) ) }}"
 
           then:
             - service: script.turn_on
