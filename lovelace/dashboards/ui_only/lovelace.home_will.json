@@ -1669,7 +1669,20 @@
                           "primary_info": "state",
                           "secondary_info": "name",
                           "name": "Queries",
-                          "icon_color": "blue-grey"
+                          "icon_color": "blue-grey",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "browser_mod.popup",
+                            "target": {},
+                            "data": {
+                              "dismissable": true,
+                              "autoclose": false,
+                              "content": {
+                                "type": "iframe",
+                                "url": "/api/hassio_ingress/bSQ6mbQ3eJmh9ly2Tb8BE69LlikC2se-5093w1tvOlA/d-solo/bdfpycmiw5u68f/d1?orgId=1&panelId=2&from=now-2d&to=now&refresh=5m"
+                              }
+                            }
+                          }
                         }
                       ],
                       "columns": 2
