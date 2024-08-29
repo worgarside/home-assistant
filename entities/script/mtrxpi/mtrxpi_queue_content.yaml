@@ -22,8 +22,8 @@ fields:
 
   priority:
     description: >-
-      The priority of the content in the queue. `"clear"` will remove the content from the queue if it
-      exists. The higher the number, the lower the priority.
+      The priority of the content in the queue. `"clear"` will remove the content from the queue if
+      it exists. The higher the number, the lower the priority.
     example: "1"
     required: false
     default: clear
