@@ -1692,6 +1692,19 @@
                       "navigation_path": "#kitchen"
                     }
                   }
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#kitchen",
+                      "name": "Kitchen",
+                      "icon": "mdi:fridge",
+                      "entity": "light.kitchen_spotlights"
+                    }
+                  ]
                 }
               ],
               "title": "Network Monitor"
