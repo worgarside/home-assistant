@@ -68,4 +68,4 @@ action:
       - service: script.mtrxpi_queue_content
         data:
           id: now-playing
-          priority: 10
+          priority: "{{ states('input_number.mtrxpi_now_playing_queue_position') }}"

@@ -2587,7 +2587,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (36)</h3></summary>
+<details><summary><h3>Entities (42)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2779,6 +2779,84 @@ File: [`input_number/lounge_blinds_button_height.yaml`](entities/input_number/lo
 - Unit Of Measurement: mm/hr
 
 File: [`input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml`](entities/input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Clock: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_clock_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_clock_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_clock_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | GIF (Door Animated): Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_gif_door_animated_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_gif_door_animated_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_gif_door_animated_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Image (Door Closed): Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_image_door_closed_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_image_door_closed_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_image_door_closed_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Now Playing: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_now_playing_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_now_playing_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_now_playing_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_raining_grid_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Sorter: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_sorter_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml)
 </details>
 
 <details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
@@ -5000,6 +5078,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
   "id": {
     "description": "The ID of the content to add to the queue",
     "example": "raining-grid",
+    "required": true,
     "selector": {
       "select": {
         "options": [
@@ -5014,10 +5093,10 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
     }
   },
   "priority": {
-    "description": "The priority of the content in the queue. `None` will remove the content from the queue if it exists. `0` is the highest priority, and the higher the number, the lower the priority.",
+    "description": "The priority of the content in the queue. `\"clear\"` will remove the content from the queue if it exists. The higher the number, the lower the priority.",
     "example": "1",
     "required": false,
-    "default": null,
+    "default": "clear",
     "selector": {
       "number": {
         "min": -1000,
@@ -5035,9 +5114,9 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
 
 ```json
 {
-  "id": "{{ id | default(None) }}",
+  "id": "{{ id | default('') }}",
   "parameters": "{{ parameters | default({}) }}",
-  "priority": "{{ priority | default(None) }}"
+  "priority": "{{\n  priority\n  | default(\n    states(\"input_number.mtrxpi_\" ~ id.replace(\"-\", \"_\") ~ \"_queue_position\")\n    | default(None)\n  )\n}}"
 }
 ```
 File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_queue_content.yaml)

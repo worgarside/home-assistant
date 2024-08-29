@@ -35,7 +35,7 @@ action:
           - service: script.mtrxpi_queue_content
             data:
               id: raining-grid
-              priority: 100
+              priority: "{{ states('input_number.mtrxpi_raining_grid_queue_position') }}"
 
       - alias: Remove content from queue if rain is 0
 
@@ -45,4 +45,4 @@ action:
           - service: script.mtrxpi_queue_content
             data:
               id: raining-grid
-              priority:
+              priority: clear
