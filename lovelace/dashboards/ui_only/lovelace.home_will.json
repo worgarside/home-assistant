@@ -2797,7 +2797,7 @@
           "path": "mtrxpi",
           "icon": "mdi:data-matrix",
           "type": "sections",
-          "max_columns": 4,
+          "max_columns": 3,
           "sections": [
             {
               "type": "grid",
@@ -2838,6 +2838,22 @@
                           {
                             "entity": "number.mtrxpi_clock_y_pos",
                             "name": "Y Pos"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_clock_queue_position",
+                            "name": "Queue Position"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "clock"
+                              }
+                            }
                           }
                         ]
                       }
@@ -2852,6 +2868,26 @@
                           {
                             "entity": "input_select.mtrxpi_media_player_source",
                             "name": "Media Player Source"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_now_playing_queue_position",
+                            "name": "Queue Position"
+                          },
+                          {
+                            "entity": "automation.mtrxpi_content_trigger_now_playing",
+                            "name": "Content Trigger"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "now-playing"
+                              }
+                            }
                           }
                         ],
                         "show_header_toggle": false,
@@ -2888,6 +2924,26 @@
                           {
                             "entity": "number.mtrxpi_raining_grid_y_pos",
                             "name": "Y Position"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_raining_grid_queue_position",
+                            "name": "Queue Position"
+                          },
+                          {
+                            "entity": "automation.mtrxpi_content_trigger_raining_grid",
+                            "name": "Content Trigger"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "raining-grid"
+                              }
+                            }
                           }
                         ],
                         "show_header_toggle": false,
@@ -2922,28 +2978,77 @@
                           {
                             "entity": "number.mtrxpi_sorter_y_pos",
                             "name": "Y Position"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_sorter_queue_position",
+                            "name": "Queue Position"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "sorter"
+                              }
+                            }
                           }
                         ],
                         "show_header_toggle": false,
                         "state_color": true
                       }
+                    },
+                    {
+                      "attributes": {
+                        "label": "Other"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "automation.mtrxpi_content_trigger_gif_door_animated"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_gif_door_animated_queue_position",
+                            "name": "GIF (Door Animated): Queue Position"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "gif-door-animated"
+                              }
+                            }
+                          },
+                          {
+                            "type": "divider"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_image_door_closed_queue_position",
+                            "name": "Image (Door Closed): Queue Position"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "image-door-closed"
+                              }
+                            }
+                          }
+                        ]
+                      }
                     }
                   ]
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "automation.mtrxpi_content_trigger_gif_door_animated"
-                    },
-                    {
-                      "entity": "automation.mtrxpi_content_trigger_now_playing"
-                    },
-                    {
-                      "entity": "automation.mtrxpi_content_trigger_raining_grid"
-                    }
-                  ],
-                  "title": "Content Triggers"
                 }
               ],
               "title": "LED Matrix Controller"
@@ -3108,10 +3213,27 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "### Current content is `{{ states('sensor.mtrxpi_current_content') }}` with priority {{ state_attr('sensor.mtrxpi_current_content', 'priority') }}\n\n{% set qsize = states('sensor.mtrxpi_content_queue') | int(0) %}\n{% if qsize %}\n## {{ qsize }} item{% if qsize > 1 %}s{% endif %} in queue\n{% endif %}\n\n{% for k, v in state_attr('sensor.mtrxpi_content_queue', 'queue') . items() %}\n### {{ v[\"id\"] }} | {{ k | float }}\n  ```json\n  {{ v[\"parameters\"] | tojson(indent=2) }}\n  ```\n{% endfor %}"
+                  "content": "### Current content is `{{ states('sensor.mtrxpi_current_content') }}` with priority {{ state_attr('sensor.mtrxpi_current_content', 'priority') }}\n\n{% if states(\"sensor.mtrxpi_current_content\") == \"combination\" %}\nCombined: `{{ state_attr('sensor.mtrxpi_current_content', 'content') | map(attribute=\"id\") | join(\"`, `\") }}`\n{% endif %}\n\n{% set qsize = states('sensor.mtrxpi_content_queue') | int(0) %}\n\n{% if qsize %}\n---\n## {{ qsize }} item{% if qsize > 1 %}s{% endif %} in queue\n{% endif %}\n\n{% for k, v in state_attr('sensor.mtrxpi_content_queue', 'queue') . items() %}\n### {{ v[\"id\"] }} | {{ k | float }}\n  ```json\n  {{ v[\"parameters\"] | tojson(indent=2) }}\n  ```\n{% endfor %}"
                 }
               ],
-              "title": "Content Queue"
+              "title": "Content Queue",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "sensor.mtrxpi_current_content",
+                  "state_not": "unknown"
+                },
+                {
+                  "condition": "state",
+                  "entity": "sensor.mtrxpi_current_content",
+                  "state_not": ""
+                },
+                {
+                  "condition": "state",
+                  "entity": "sensor.mtrxpi_current_content",
+                  "state_not": "unavailable"
+                }
+              ]
             }
           ],
           "cards": []
