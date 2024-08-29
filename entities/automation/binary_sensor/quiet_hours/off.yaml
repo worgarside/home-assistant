@@ -1,0 +1,19 @@
+---
+alias: /binary-sensor/quiet-hours/off
+
+id: binary_sensor_quiet_hours_off
+
+mode: single
+
+trigger:
+  platform: state
+  entity_id: binary_sensor.quiet_hours
+  from: "on"
+  to: "off"
+
+action:
+  - service: number.set_value
+    target:
+      entity_id: number.mtrxpi_matrix_brightness
+    data:
+      value: 100

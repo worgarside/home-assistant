@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (124)</h3></summary>
+<details><summary><h3>Entities (125)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -74,6 +74,19 @@ File: [`automation/binary_sensor/hallway_motion_sensor/on.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/hallway_motion_sensor/timeout.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/quiet-hours/off</code></summary>
+
+**Entity ID: `automation.binary_sensor_quiet_hours_off`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/quiet-hours/off
+- ID: `binary_sensor_quiet_hours_off`
+- Mode: `single`
+
+File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/binary_sensor/quiet_hours/off.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/quiet-hours/on</code></summary>

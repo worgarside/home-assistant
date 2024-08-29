@@ -62,3 +62,9 @@ action:
                 entity_id: "{{ entity_id }}"
               data:
                 datetime: "{{ new_dttm }}"
+
+  - service: number.set_value
+    target:
+      entity_id: number.mtrxpi_matrix_brightness
+    data:
+      value: 50
