@@ -3,10 +3,11 @@
 
 recorder:
   db_url: !secret mariadb_db_url
-  purge_keep_days: 720
+  purge_keep_days: 60
   exclude:
     domains:
       - automation
+      - script
     entities:
       - sensor.date
       - sensor.date_time
@@ -15,6 +16,11 @@ recorder:
       - sensor.time
       - sensor.time_date
       - sensor.time_utc
+
+      - sensor.octoprint_current_z
+      - sensor.octoprint_approximate_completion_time
+      - sensor.octoprint_print_time_left
+      - sensor.octoprint_print_time
     entity_globs:
       - sensor.*_table_record_count
       - sensor.*_table_size
