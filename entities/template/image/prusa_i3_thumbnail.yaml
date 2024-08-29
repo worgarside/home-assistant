@@ -2,7 +2,7 @@
 # https://plugins.octoprint.org/plugins/prusaslicerthumbnails/
 
 url: >-
-  {% if states('binary_sensor.octoprint_printing') | bool %}
+  {% if states('binary_sensor.octoprint_printing') | bool(false) %}
     {% set ip = states('sensor.octopi_local_ip_address') %}
     {%
       set file = (

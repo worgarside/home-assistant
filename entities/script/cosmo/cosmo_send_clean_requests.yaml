@@ -94,7 +94,7 @@ sequence:
 
                   - alias: "{{ person_name }} is not miles away"
                     condition: template
-                    value_template: "{{ not ( miles_away | bool ) }}"
+                    value_template: "{{ not ( miles_away | bool(True) ) }}"
 
           then:
             - service: script.notify_{{ person_name }}
