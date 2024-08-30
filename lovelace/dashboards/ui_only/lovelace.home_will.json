@@ -2856,6 +2856,10 @@
                             "name": "Queue Position"
                           },
                           {
+                            "entity": "automation.mtrxpi_content_trigger_clock",
+                            "name": "Content Trigger"
+                          },
+                          {
                             "type": "button",
                             "entity": "script.mtrxpi_queue_content",
                             "name": "Queue Content",
