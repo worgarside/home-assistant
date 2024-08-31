@@ -1,0 +1,39 @@
+---
+friendly_name: MtrxPi LED Matrix
+
+unique_id: mtrxpi_led_matrix
+
+level_template: "{{ states('number.mtrxpi_matrix_brightness') | int(None) }}"
+
+value_template: >-
+  {{
+    iif(
+      has_value("sensor.mtrxpi_current_content") and
+      (states("sensor.mtrxpi_current_content") | default(None) or None) is not none,
+      "on",
+      "off"
+    )
+  }}
+
+icon_template: mdi:brightness-percent
+
+availability_template: "{{ states('switch.mtrxpi_power') | bool(false) }}"
+
+turn_on:
+  service: script.log_exception
+  data:
+    calling_entity: light.mtrxpi_led_matrix
+    message: Do not turn on the MtrxPi LED Matrix directly, use the content controls instead
+
+turn_off:
+  service: script.log_exception
+  data:
+    calling_entity: light.mtrxpi_led_matrix
+    message: Do not turn off the MtrxPi LED Matrix directly, use the content controls instead
+
+set_level:
+  service: number.set_value
+  target:
+    entity_id: number.mtrxpi_matrix_brightness
+  data:
+    brightness: "{{ brightness }}" # hacv disable: InvalidTemplateVar:brightness
