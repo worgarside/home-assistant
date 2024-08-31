@@ -37,4 +37,4 @@ set_level:
   target:
     entity_id: number.mtrxpi_matrix_brightness
   data:
-    value: "{{ brightness / 255 | int }}" # hacv disable: InvalidTemplateVar:brightness
+    value: "{{ (100 * (brightness / 255)) | int }}" # hacv disable: InvalidTemplateVar:brightness
