@@ -21,7 +21,7 @@ sequence:
   - variables:
       brightness_values: >-
         {{
-          ( 10,  10,  10,  10,  10,  10,  10,  10) if time_of_day == "Night" else
+          ( 0, 2, 0, 2, 0, 2, 0, 2) if time_of_day == "Night" else
           ( 10,  10,  10,  10,  10,  50,  50,  10) if time_of_day in ("Dawn", "Dusk") else
           ( 10,  10,  10,  10,  10,  75,  75,  10) if time_of_day == "Twilight" else
           ( 50,  50,  50,  50,  50,  85,  85,  50) if time_of_day in ("Sunrise", "Sunset") else

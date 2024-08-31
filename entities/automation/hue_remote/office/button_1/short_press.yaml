@@ -1,20 +1,28 @@
 ---
 alias: /hue-remote/office/button-1/short-press
+
 id: hue_remote_office_button_1_short_press
+
 mode: single
+
 max_exceeded: silent
+
 trigger:
   - device_id: 143de217ee3f684c339353a371764642
     domain: hue
     platform: device
     subtype: 1
     type: short_press
+
   - device_id: 143de217ee3f684c339353a371764642
     domain: hue
     platform: device
     subtype: 1
     type: short_release
+
 action:
   - service: light.turn_on
     target:
       area_id: office
+    data:
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
