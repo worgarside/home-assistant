@@ -153,6 +153,16 @@ packages:
       should_match_filename:
         - name
 
+  light:
+    documentation:
+      name: friendly_name
+      id: unique_id
+
+    validation:
+      should_match_filename:
+        - friendly_name
+        - unique_id
+
   media_player:
     documentation:
       extra:
