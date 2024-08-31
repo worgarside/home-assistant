@@ -56,7 +56,7 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 
 ```json
 {
-  "brightness": "{% if is_state('binary_sensor.quiet_hours', \"on\") %}\n  63\n{% elif states('sensor.sun_elevation') | int(default=1) < 0 %}\n  127\n{% else %}\n  255\n{% endif %}",
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}",
   "delay": 1
 }
 ```
@@ -5740,7 +5740,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (93)</h3></summary>
+<details><summary><h3>Entities (94)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6362,6 +6362,16 @@ File: [`template/sensor/habitica/habitica_will_pending_dailys.yaml`](entities/te
 **Entity ID: `sensor.hifi_system_media_metadata`**
 
 File: [`template/sensor/hifi_system_media_metadata.yaml`](entities/template/sensor/hifi_system_media_metadata.yaml)
+</details>
+
+<details><summary><strong>Lighting Modifier</strong></summary>
+
+**Entity ID: `sensor.lighting_modifier`**
+
+- Icon: [`mdi:brightness-percent`](https://pictogrammers.com/library/mdi/icon/brightness-percent/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/lighting_modifier.yaml`](entities/template/sensor/lighting_modifier.yaml)
 </details>
 
 <details><summary><strong>Sun Elevation</strong></summary>

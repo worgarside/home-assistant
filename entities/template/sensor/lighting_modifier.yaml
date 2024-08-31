@@ -1,0 +1,28 @@
+---
+name: Lighting Modifier
+
+unique_id: lighting_modifier
+
+unit_of_measurement: "%"
+
+icon: mdi:brightness-percent
+
+# End of PM Twilight roughly aligns with the blinds closing
+
+state: >-
+  {% set tod = states("sensor.time_of_day") %}
+  {% set quiet_hours = states("binary_sensor.quiet_hours") | bool(false) %}
+
+  {% if tod in ("Morning", "Afternoon") %}
+    {{ iif(quiet_hours, 75, 100) }}
+  {% elif tod in ("Evening", "Sunset", "Sunrise") %}
+    60
+  {% elif tod == "Twilight" %}
+    50
+  {% elif tod in ("Dusk", "Dawn") %}
+    30
+  {% elif tod == "Night" %}
+    {{ iif(quiet_hours, 5, 25) }}
+  {% else %}
+    100
+  {% endif %}
