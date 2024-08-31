@@ -3218,11 +3218,11 @@ File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entit
 
 <details><summary><h3>Entities (1)</h3></summary>
 
-<details><summary><strong>MtrxPi LED Matrix</strong></summary>
+<details><summary><strong>MtrxPi LED Matrix Brightness</strong></summary>
 
-**Entity ID: `light.mtrxpi_led_matrix`**
+**Entity ID: `light.mtrxpi_led_matrix_brightness`**
 
-File: [`light/mtrxpi_led_matrix.yaml`](entities/light/mtrxpi_led_matrix.yaml)
+File: [`light/mtrxpi_led_matrix_brightness.yaml`](entities/light/mtrxpi_led_matrix_brightness.yaml)
 </details>
 
 </details>
