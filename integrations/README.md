@@ -2613,7 +2613,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (42)</h3></summary>
+<details><summary><h3>Entities (43)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2780,6 +2780,18 @@ File: [`input_number/crtpi_fan_auto_on_threshold.yaml`](entities/input_number/cr
 - Unit Of Measurement: %
 
 File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/dry_box/dry_box_max_humidity.yaml)
+</details>
+
+<details><summary><strong>Lighting Modifier</strong></summary>
+
+**Entity ID: `input_number.lighting_modifier`**
+
+- Icon: [`mdi:brightness-percent`](https://pictogrammers.com/library/mdi/icon/brightness-percent/)
+- Max: 100
+- Mode: `box`
+- Unit Of Measurement: %
+
+File: [`input_number/lighting_modifier.yaml`](entities/input_number/lighting_modifier.yaml)
 </details>
 
 <details><summary><strong>Lounge Blinds Button Height</strong></summary>
