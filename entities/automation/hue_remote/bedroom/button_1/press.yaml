@@ -22,3 +22,5 @@ action:
   - service: light.turn_on
     target:
       area_id: bedroom
+    data:
+      brightness_pct: "{{ states('input_number.lighting_modifier') | int(70) }}"

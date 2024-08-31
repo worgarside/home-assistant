@@ -36,6 +36,8 @@ action:
             service: light.toggle
             target:
               area_id: lounge
+            data:
+              brightness_pct: "{{ states('input_number.lighting_modifier') | int(70) }}"
 
       - alias: "Double Press: Set to 100%"
 

@@ -18,35 +18,31 @@ condition:
   state: "off"
 
 variables:
-  brightness: >-
-    {% if is_state('binary_sensor.quiet_hours', "on") %}
-      63
-    {% elif states('sensor.sun_elevation') | int(default=1) < 0 %}
-      127
-    {% else %}
-      255
-    {% endif %}
+  brightness: "{{ states('input_number.lighting_modifier') | int(70) }}"
   delay: 1
 
 action:
   - service: light.turn_on
-    entity_id: light.hallway_1
+    target:
+      entity_id: light.hallway_1
     data:
-      brightness: "{{ brightness }}"
+      brightness_pct: "{{ brightness }}"
       transition: "{{ delay }}"
 
   - delay: "{{ delay }}"
 
   - service: light.turn_on
-    entity_id: light.hallway_2
+    target:
+      entity_id: light.hallway_2
     data:
-      brightness: "{{ brightness }}"
+      brightness_pct: "{{ brightness }}"
       transition: "{{ delay }}"
 
   - delay: "{{ delay }}"
 
   - service: light.turn_on
-    entity_id: light.hallway_3
+    target:
+      entity_id: light.hallway_3
     data:
-      brightness: "{{ brightness }}"
+      brightness_pct: "{{ brightness }}"
       transition: "{{ delay }}"

@@ -56,7 +56,7 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 
 ```json
 {
-  "brightness": "{% if is_state('binary_sensor.quiet_hours', \"on\") %}\n  63\n{% elif states('sensor.sun_elevation') | int(default=1) < 0 %}\n  127\n{% else %}\n  255\n{% endif %}",
+  "brightness": "{{ states('input_number.lighting_modifier') | int(70) }}",
   "delay": 1
 }
 ```
