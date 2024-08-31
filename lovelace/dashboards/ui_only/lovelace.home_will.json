@@ -772,6 +772,16 @@
                     "legend": true,
                     "labels": true
                   }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states('sensor.vic_and_will_distance') }} miles apart",
+                  "secondary": "",
+                  "icon": "mdi:map-marker-distance",
+                  "entity": "sensor.vic_and_will_distance",
+                  "tap_action": {
+                    "action": "more-info"
+                  }
                 }
               ]
             },
