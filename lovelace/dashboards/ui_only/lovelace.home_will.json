@@ -722,6 +722,27 @@
                   ]
                 },
                 {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states('sensor.vic_and_will_distance') }} miles apart",
+                  "secondary": "",
+                  "icon": "mdi:map-marker-distance",
+                  "entity": "sensor.vic_and_will_distance",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 1
+                  },
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.vic_and_will_distance",
+                      "state_not": "0"
+                    }
+                  ]
+                },
+                {
                   "type": "custom:clock-weather-card",
                   "entity": "weather.met_office_fulham_daily",
                   "date_pattern": "DDDD",
