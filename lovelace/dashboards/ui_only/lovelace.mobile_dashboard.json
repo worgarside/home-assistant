@@ -214,27 +214,17 @@
                         {
                           "type": "entity",
                           "entity": "sensor.hallway_humidity"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "switch.air_freshener",
+                          "tap_action": {
+                            "action": "toggle"
+                          }
                         }
                       ]
                     }
                   ]
-                },
-                {
-                  "square": true,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "switch.air_freshener",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
-                      }
-                    }
-                  ],
-                  "columns": 2
                 }
               ],
               "title": "Hallway"
