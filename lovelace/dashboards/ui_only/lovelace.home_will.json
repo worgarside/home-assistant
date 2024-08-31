@@ -2823,7 +2823,13 @@
             },
             {
               "type": "grid",
-              "cards": [],
+              "cards": [
+                {
+                  "type": "iframe",
+                  "url": "/api/hassio_ingress/bSQ6mbQ3eJmh9ly2Tb8BE69LlikC2se-5093w1tvOlA/d-solo/adwhw66pv203kb/prusa-dashboard?orgId=1&from=now-6h&to=now&refresh=5m&panelId=1",
+                  "aspect_ratio": "50%"
+                }
+              ],
               "title": "Print Stats"
             }
           ],
