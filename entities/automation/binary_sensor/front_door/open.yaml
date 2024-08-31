@@ -31,7 +31,7 @@ condition:
 
 action:
   - variables:
-      brightness: "{{ states('input_number.lighting_modifier') | int(70) }}"
+      brightness: "{{ states('sensor.lighting_modifier') | int(70) }}"
       delay: 1
 
   - service: light.turn_on
