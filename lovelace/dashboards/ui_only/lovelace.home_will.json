@@ -2820,6 +2820,17 @@
                   "state": "on"
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "iframe",
+                  "url": "/api/hassio_ingress/bSQ6mbQ3eJmh9ly2Tb8BE69LlikC2se-5093w1tvOlA/d-solo/adwhw66pv203kb/prusa-dashboard?orgId=1&from=now-6h&to=now&refresh=5m&panelId=1",
+                  "aspect_ratio": "50%"
+                }
+              ],
+              "title": "Print Stats"
             }
           ],
           "max_columns": 3,
@@ -2843,11 +2854,28 @@
                     },
                     {
                       "entity": "script.mtrxpi_queue_content"
-                    },
-                    {
-                      "entity": "number.mtrxpi_matrix_brightness"
                     }
                   ]
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.mtrxpi_led_matrix",
+                  "name": "Brightness",
+                  "use_light_color": false,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "fill_container": true,
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  }
                 },
                 {
                   "type": "custom:tabbed-card",
