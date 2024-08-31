@@ -3,7 +3,17 @@ friendly_name: MtrxPi LED Matrix
 
 unique_id: mtrxpi_led_matrix
 
-level_template: "{{ states('number.mtrxpi_matrix_brightness') | int(None) }}"
+level_template: >-
+  {%
+    set b = iif(
+      has_value("number.mtrxpi_matrix_brightness"),
+      states("number.mtrxpi_matrix_brightness") | int(None),
+      None
+    )
+  %}
+  {% if b %}
+    {{ (b * 255 / 100) | int }}
+  {% endif %}
 
 value_template: >-
   {{
