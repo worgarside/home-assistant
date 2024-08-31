@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (125)</h3></summary>
+<details><summary><h3>Entities (113)</h3></summary>
 
 <details><summary><code>/automation/auto-reload</code></summary>
 
@@ -715,162 +715,6 @@ File: [`automation/hue_remote/office/button_4/long_press.yaml`](entities/automat
 - Mode: `single`
 
 File: [`automation/hue_remote/office/button_4/short_press.yaml`](entities/automation/hue_remote/office/button_4/short_press.yaml)
-</details>
-
-<details><summary><code>/input-boolean/bedroom-entity-header/auto-turn-off</code></summary>
-
-**Entity ID: `automation.input_boolean_bedroom_entity_header_auto_turn_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/bedroom-entity-header/auto-turn-off
-- ID: `input_boolean_bedroom_entity_header_auto_turn_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/bedroom_entity_header/auto_turn_off.yaml`](entities/automation/input_boolean/bedroom_entity_header/auto_turn_off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/bedroom-entity-header/auto-turn-on</code></summary>
-
-**Entity ID: `automation.input_boolean_bedroom_entity_header_auto_turn_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/bedroom-entity-header/auto-turn-on
-- ID: `input_boolean_bedroom_entity_header_auto_turn_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/bedroom_entity_header/auto_turn_on.yaml`](entities/automation/input_boolean/bedroom_entity_header/auto_turn_on.yaml)
-</details>
-
-<details><summary><code>/input-boolean/bedroom-entity-header/off</code></summary>
-
-**Entity ID: `automation.input_boolean_bedroom_entity_header_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/bedroom-entity-header/off
-- ID: `input_boolean_bedroom_entity_header_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/bedroom_entity_header/off.yaml`](entities/automation/input_boolean/bedroom_entity_header/off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/bedroom-entity-header/on</code></summary>
-
-**Entity ID: `automation.input_boolean_bedroom_entity_header_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/bedroom-entity-header/on
-- ID: `input_boolean_bedroom_entity_header_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/bedroom_entity_header/on.yaml`](entities/automation/input_boolean/bedroom_entity_header/on.yaml)
-</details>
-
-<details><summary><code>/input-boolean/lounge-entity-header/auto-turn-off</code></summary>
-
-**Entity ID: `automation.input_boolean_lounge_entity_header_auto_turn_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/lounge-entity-header/auto-turn-off
-- ID: `input_boolean_lounge_entity_header_auto_turn_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/lounge_entity_header/auto_turn_off.yaml`](entities/automation/input_boolean/lounge_entity_header/auto_turn_off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/lounge-entity-header/auto-turn-on</code></summary>
-
-**Entity ID: `automation.input_boolean_lounge_entity_header_auto_turn_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/lounge-entity-header/auto-turn-on
-- ID: `input_boolean_lounge_entity_header_auto_turn_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/lounge_entity_header/auto_turn_on.yaml`](entities/automation/input_boolean/lounge_entity_header/auto_turn_on.yaml)
-</details>
-
-<details><summary><code>/input-boolean/lounge-entity-header/off</code></summary>
-
-**Entity ID: `automation.input_boolean_lounge_entity_header_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/lounge-entity-header/off
-- ID: `input_boolean_lounge_entity_header_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/lounge_entity_header/off.yaml`](entities/automation/input_boolean/lounge_entity_header/off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/lounge-entity-header/on</code></summary>
-
-**Entity ID: `automation.input_boolean_lounge_entity_header_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/lounge-entity-header/on
-- ID: `input_boolean_lounge_entity_header_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/lounge_entity_header/on.yaml`](entities/automation/input_boolean/lounge_entity_header/on.yaml)
-</details>
-
-<details><summary><code>/input-boolean/office-entity-header/auto-turn-off</code></summary>
-
-**Entity ID: `automation.input_boolean_office_entity_header_auto_turn_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/office-entity-header/auto-turn-off
-- ID: `input_boolean_office_entity_header_auto_turn_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/office_entity_header/auto_turn_off.yaml`](entities/automation/input_boolean/office_entity_header/auto_turn_off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/office-entity-header/auto-turn-on</code></summary>
-
-**Entity ID: `automation.input_boolean_office_entity_header_auto_turn_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/office-entity-header/auto-turn-on
-- ID: `input_boolean_office_entity_header_auto_turn_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/office_entity_header/auto_turn_on.yaml`](entities/automation/input_boolean/office_entity_header/auto_turn_on.yaml)
-</details>
-
-<details><summary><code>/input-boolean/office-entity-header/off</code></summary>
-
-**Entity ID: `automation.input_boolean_office_entity_header_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/office-entity-header/off
-- ID: `input_boolean_office_entity_header_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/office_entity_header/off.yaml`](entities/automation/input_boolean/office_entity_header/off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/office-entity-header/on</code></summary>
-
-**Entity ID: `automation.input_boolean_office_entity_header_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/office-entity-header/on
-- ID: `input_boolean_office_entity_header_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/office_entity_header/on.yaml`](entities/automation/input_boolean/office_entity_header/on.yaml)
 </details>
 
 <details><summary><code>/input-datetime/cosmo/next-clean-due/set</code></summary>
@@ -2268,7 +2112,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (11)</h3></summary>
+<details><summary><h3>Entities (7)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -2279,13 +2123,6 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 File: [`input_boolean/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/input_boolean/appdaemon_trigger/ad_monzo_auto_save.yaml)
 </details>
 
-<details><summary><strong>Bedroom Entity Header</strong></summary>
-
-**Entity ID: `input_boolean.bedroom_entity_header`**
-
-File: [`input_boolean/bedroom_entity_header.yaml`](entities/input_boolean/bedroom_entity_header.yaml)
-</details>
-
 <details><summary><strong>Debug with Persistent Notifications</strong></summary>
 
 **Entity ID: `input_boolean.debug_with_persistent_notifications`**
@@ -2293,20 +2130,6 @@ File: [`input_boolean/bedroom_entity_header.yaml`](entities/input_boolean/bedroo
 - Icon: [`mdi:message-badge-outline`](https://pictogrammers.com/library/mdi/icon/message-badge-outline/)
 
 File: [`input_boolean/debug_with_persistent_notifications.yaml`](entities/input_boolean/debug_with_persistent_notifications.yaml)
-</details>
-
-<details><summary><strong>Hallway Entity Header</strong></summary>
-
-**Entity ID: `input_boolean.hallway_entity_header`**
-
-File: [`input_boolean/hallway_entity_header.yaml`](entities/input_boolean/hallway_entity_header.yaml)
-</details>
-
-<details><summary><strong>Lounge Entity Header</strong></summary>
-
-**Entity ID: `input_boolean.lounge_entity_header`**
-
-File: [`input_boolean/lounge_entity_header.yaml`](entities/input_boolean/lounge_entity_header.yaml)
 </details>
 
 <details><summary><strong>Lounge Shapes Artwork Mapping Active</strong></summary>
@@ -2334,13 +2157,6 @@ File: [`input_boolean/mini_crt_fan.yaml`](entities/input_boolean/mini_crt_fan.ya
 - Icon: [`mdi:television-classic`](https://pictogrammers.com/library/mdi/icon/television-classic/)
 
 File: [`input_boolean/mini_crt_power.yaml`](entities/input_boolean/mini_crt_power.yaml)
-</details>
-
-<details><summary><strong>Office Entity Header</strong></summary>
-
-**Entity ID: `input_boolean.office_entity_header`**
-
-File: [`input_boolean/office_entity_header.yaml`](entities/input_boolean/office_entity_header.yaml)
 </details>
 
 <details><summary><strong>Office Shapes Artwork Mapping Active</strong></summary>
