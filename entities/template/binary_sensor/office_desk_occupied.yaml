@@ -8,24 +8,24 @@ delay_off: '00:02:00'
 icon: mdi:chair-rolling
 
 state: >-
-  {% set threshold = ( now() - timedelta(minutes=2) ) | as_timestamp %}
+  {% set mbp_active = not(
+    state_attr('binary_sensor.wills_macbook_pro_active', 'Locked') or
+    state_attr('binary_sensor.wills_macbook_pro_active', 'Screensaver') or
+    state_attr('binary_sensor.wills_macbook_pro_active', 'Screen Off')
+  ) %}
+  {% set work_mbp_active = not (
+    state_attr('binary_sensor.st_macbook_pro_active', 'Locked') or
+    state_attr('binary_sensor.st_macbook_pro_active', 'Screensaver') or
+    state_attr('binary_sensor.st_macbook_pro_active', 'Screen Off')
+  ) %}
 
   {{
+    states("binary_sensor.will_s_desk_occupancy") | bool(true) and
     (
-      is_state('binary_sensor.will_s_macbook_pro_docked', 'on') and
-      states('sensor.will_s_macbook_pro_last_update') | int(0) > threshold and
-      not (
-        state_attr('binary_sensor.wills_macbook_pro_active', 'Locked') or
-        state_attr('binary_sensor.wills_macbook_pro_active', 'Screensaver') or
-        state_attr('binary_sensor.wills_macbook_pro_active', 'Screen Off')
-      )
+      states('binary_sensor.will_s_macbook_pro_docked') | bool(false) and
+      mbp_active
     ) or (
-      is_state('binary_sensor.st_macbook_pro_docked', 'on') and
-      states('sensor.st_macbook_pro_last_update') | int(0) > threshold and
-      not (
-        state_attr('binary_sensor.st_macbook_pro_active', 'Locked') or
-        state_attr('binary_sensor.st_macbook_pro_active', 'Screensaver') or
-        state_attr('binary_sensor.st_macbook_pro_active', 'Screen Off')
-      )
+      states('binary_sensor.st_macbook_pro_docked') | bool(false) and
+      work_mbp_active
     )
   }}
