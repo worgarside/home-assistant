@@ -5740,7 +5740,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (94)</h3></summary>
+<details><summary><h3>Entities (92)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6727,26 +6727,6 @@ File: [`template/sensor/spotify/spotify_will_garside_media_artist.yaml`](entitie
 **Entity ID: `sensor.spotify_will_garside_media_title`**
 
 File: [`template/sensor/spotify/spotify_will_garside_media_title.yaml`](entities/template/sensor/spotify/spotify_will_garside_media_title.yaml)
-</details>
-
-<details><summary><strong>ST MacBook Pro Last Update</strong></summary>
-
-**Entity ID: `sensor.st_macbook_pro_last_update`**
-
-- Icon: [`mdi:clock`](https://pictogrammers.com/library/mdi/icon/clock/)
-- Unit Of Measurement: epoch-seconds
-
-File: [`template/sensor/st_macbook_pro_last_update.yaml`](entities/template/sensor/st_macbook_pro_last_update.yaml)
-</details>
-
-<details><summary><strong>Will's MacBook Pro Last Update</strong></summary>
-
-**Entity ID: `sensor.will_s_macbook_pro_last_update`**
-
-- Icon: [`mdi:clock`](https://pictogrammers.com/library/mdi/icon/clock/)
-- Unit Of Measurement: epoch-seconds
-
-File: [`template/sensor/will_s_macbook_pro_last_update.yaml`](entities/template/sensor/will_s_macbook_pro_last_update.yaml)
 </details>
 
 </details>
