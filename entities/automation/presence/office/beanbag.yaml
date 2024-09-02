@@ -24,7 +24,7 @@ action:
         target:
           entity_id: light.mushroom_lamp
         data:
-          value: "{{ states('sensor.lighting_modifier') | int(70) }}"
+          brightness: "{{ states('sensor.lighting_modifier') | int(70) }}"
 
     else:
       - service: light.turn_off
