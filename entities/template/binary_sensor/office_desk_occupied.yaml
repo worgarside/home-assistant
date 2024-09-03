@@ -22,10 +22,12 @@ state: >-
   {{
     states("binary_sensor.will_s_desk_occupancy") | bool(true) and
     (
-      states('binary_sensor.will_s_macbook_pro_docked') | bool(false) and
-      mbp_active
-    ) or (
-      states('binary_sensor.st_macbook_pro_docked') | bool(false) and
-      work_mbp_active
+      (
+        states('binary_sensor.will_s_macbook_pro_docked') | bool(false) and
+        mbp_active
+      ) or (
+        states('binary_sensor.st_macbook_pro_docked') | bool(false) and
+        work_mbp_active
+      )
     )
   }}
