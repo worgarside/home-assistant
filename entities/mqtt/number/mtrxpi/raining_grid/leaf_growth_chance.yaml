@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Raining Grid: Leaf Growth Chance"
+
+unique_id: mtrxpi_raining_grid_leaf_growth_chance
+
+command_topic: /mtrxpi/raining-grid/parameter/leaf-growth-chance
+
+icon: mdi:flower
+
+min: 0
+
+max: 100
+
+mode: box
+
+retain: true
+
+step: 0.01
+
+unit_of_measurement: "%"
+
+state_topic: /mtrxpi/raining-grid/parameter/leaf-growth-chance

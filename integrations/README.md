@@ -3266,7 +3266,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (104)</h3></summary>
+<details><summary><h3>Entities (109)</h3></summary>
 
 <details><summary><strong>MtrxPi | Clock: Scale</strong></summary>
 
@@ -3361,6 +3361,66 @@ File: [`mqtt/number/mtrxpi/now_playing/x_pos.yaml`](entities/mqtt/number/mtrxpi/
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/now_playing/y_pos.yaml`](entities/mqtt/number/mtrxpi/now_playing/y_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Distance Between Plants</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_distance_between_plants`**
+
+- Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
+- Command Topic: /mtrxpi/raining-grid/parameter/distance-between-plants
+- State Topic: /mtrxpi/raining-grid/parameter/distance-between-plants
+- Unit Of Measurement: `pixels`
+
+File: [`mqtt/number/mtrxpi/raining_grid/distance_between_plants.yaml`](entities/mqtt/number/mtrxpi/raining_grid/distance_between_plants.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Leaf Growth Chance</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_leaf_growth_chance`**
+
+- Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
+- Command Topic: /mtrxpi/raining-grid/parameter/leaf-growth-chance
+- State Topic: /mtrxpi/raining-grid/parameter/leaf-growth-chance
+- Unit Of Measurement: %
+
+File: [`mqtt/number/mtrxpi/raining_grid/leaf_growth_chance.yaml`](entities/mqtt/number/mtrxpi/raining_grid/leaf_growth_chance.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Plant Death Propagation Speed</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_plant_death_propagation_speed`**
+
+- Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
+- Command Topic: /mtrxpi/raining-grid/parameter/plant-death-propagation-speed
+- State Topic: /mtrxpi/raining-grid/parameter/plant-death-propagation-speed
+- Unit Of Measurement: `ticks`
+
+File: [`mqtt/number/mtrxpi/raining_grid/plant_death_propagation_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/plant_death_propagation_speed.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Plant Growth Chance</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_plant_growth_chance`**
+
+- Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
+- Command Topic: /mtrxpi/raining-grid/parameter/plant-growth-chance
+- State Topic: /mtrxpi/raining-grid/parameter/plant-growth-chance
+- Unit Of Measurement: %
+
+File: [`mqtt/number/mtrxpi/raining_grid/plant_growth_chance.yaml`](entities/mqtt/number/mtrxpi/raining_grid/plant_growth_chance.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Plant Limit</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_plant_limit`**
+
+- Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
+- Command Topic: /mtrxpi/raining-grid/parameter/plant-limit
+- State Topic: /mtrxpi/raining-grid/parameter/plant-limit
+- Unit Of Measurement: `plants`
+
+File: [`mqtt/number/mtrxpi/raining_grid/plant_limit.yaml`](entities/mqtt/number/mtrxpi/raining_grid/plant_limit.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Raining Grid: Rain Chance</strong></summary>
