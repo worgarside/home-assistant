@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Raining Grid: Plant Limit"
+
+unique_id: mtrxpi_raining_grid_plant_limit
+
+command_topic: /mtrxpi/raining-grid/parameter/plant-limit
+
+icon: mdi:flower
+
+min: 0
+
+max: 64
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: plants
+
+state_topic: /mtrxpi/raining-grid/parameter/plant-limit
