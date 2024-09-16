@@ -2991,6 +2991,26 @@
                             "name": "Y Position"
                           },
                           {
+                            "entity": "number.mtrxpi_raining_grid_distance_between_plants",
+                            "name": "Plant Spacing"
+                          },
+                          {
+                            "entity": "number.mtrxpi_raining_grid_plant_growth_chance",
+                            "name": "Plant Growth Chance"
+                          },
+                          {
+                            "entity": "number.mtrxpi_raining_grid_leaf_growth_chance",
+                            "name": "Leaf Growth Chance"
+                          },
+                          {
+                            "entity": "number.mtrxpi_raining_grid_plant_death_propagation_speed",
+                            "name": "Plant Decay Speed"
+                          },
+                          {
+                            "entity": "number.mtrxpi_raining_grid_plant_limit",
+                            "name": "Plant Limit"
+                          },
+                          {
                             "entity": "input_number.mtrxpi_raining_grid_queue_position",
                             "name": "Queue Position"
                           },
