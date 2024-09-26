@@ -63,38 +63,36 @@ action:
                 notification_id: "{{ service }}_auto_reload"
 
           - variables:
-              files:
-                orig: "{{ state_attr('var.auto_reload_queue', 'files') or [] }}"
+              orig_files: "{{ state_attr('var.auto_reload_queue', 'files') or [] }}"
 
-                new: >-
-                  {{
-                    iif(
-                      trigger.event.data.file in files.orig | from_json,
-                      files.orig,
-                      ( files.orig | from_json ) + [trigger.event.data.file]
-                    )
-                  }}
+              new_files: >-
+                {{
+                  iif(
+                    trigger.event.data.file in orig_files | from_json,
+                    orig_files,
+                    ( orig_files | from_json ) + [trigger.event.data.file]
+                  )
+                }}
 
-              service_queue:
-                orig: "{{ state_attr('var.auto_reload_queue', 'service_queue') or [] }}"
+              orig_service_queue: "{{ state_attr('var.auto_reload_queue', 'service_queue') or [] }}"
 
-                new: >-
-                  {{
-                    iif(
-                      service in service_queue.orig | from_json,
-                      service_queue.orig,
-                      ( service_queue.orig | from_json ) + [service]
-                    )
-                  }}
+              new_service_queue: >-
+                {{
+                  iif(
+                    service in orig_service_queue | from_json,
+                    orig_service_queue,
+                    ( orig_service_queue | from_json ) + [service]
+                  )
+                }}
 
           - service: var.set
             target:
               entity_id: var.auto_reload_queue
             data:
-              value: "{{ files.new | length }}"
+              value: "{{ new_files | length }}"
               attributes:
-                files: "{{ files.new | tojson }}"
-                service_queue: "{{ service_queue.new | tojson }}"
+                files: "{{ new_files | tojson }}"
+                service_queue: "{{ new_service_queue | tojson }}"
 
     default:
       - service: script.turn_on

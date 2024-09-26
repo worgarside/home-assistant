@@ -399,7 +399,7 @@ File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
 
 **Entity ID: `automation.event_repair_state_change`**
 
-> Get Cosmo to clean a room immediately, triggered from a mobile notification
+> Log repairs to the Home Assistant GitHub repository
 
 - Alias: /event/repair/state-change
 - ID: `event_repair_state_change`
