@@ -1,0 +1,24 @@
+---
+alias: /mtrxpi/content-trigger/clock
+
+id: mtrxpi_content_trigger_clock
+
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.office_desk_occupied
+    to:
+      - "on"
+      - "off"
+
+action:
+  - service: script.mtrxpi_queue_content
+    data:
+      id: clock
+      priority: >-
+        {% if trigger.to_state.state == 'on' %}
+          {{ states('input_number.mtrxpi_clock_queue_position') }}
+        {% else %}
+          clear
+        {% endif %}

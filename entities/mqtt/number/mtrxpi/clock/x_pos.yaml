@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Clock: X Pos"
+
+unique_id: mtrxpi_clock_x_pos
+
+command_topic: /mtrxpi/clock/parameter/x-pos
+
+icon: mdi:arrow-left-right
+
+min: 0
+
+max: 63
+
+mode: slider
+
+retain: true
+
+step: 1
+
+unit_of_measurement: " "
+
+state_topic: /mtrxpi/clock/parameter/x-pos

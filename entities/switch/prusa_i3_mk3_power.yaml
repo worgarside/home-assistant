@@ -21,7 +21,7 @@ icon_template: >-
   {%
     if (
       is_state("switch.prusa_i3_mk3", "on") and
-      states("sensor.prusa_i3_mk3_current_consumption") | float > 0
+      states("sensor.prusa_i3_mk3_current_consumption") | float(-1) > 0
     )
   %}
     mdi:printer-3d
@@ -35,8 +35,8 @@ turn_off:
       {{
         states("sensor.prusa_i3_mk3_current_consumption") | int(999) < 30 and
         not is_state("binary_sensor.octoprint_printing", "on") and
-        states("number.prusa_i3_target_bed_temperature") | int == 0 and
-        states("number.prusa_i3_target_hotend_temperature") | int == 0
+        states("number.prusa_i3_target_bed_temperature") | int(-1) == 0 and
+        states("number.prusa_i3_target_hotend_temperature") | int(-1) == 0
       }}
 
   - service: switch.turn_off

@@ -21,14 +21,14 @@ variables:
 
 action:
   - parallel:
-      - if: "{{ not states('remote.lounge_tv') | bool }}"
+      - if: "{{ not ( states('remote.lounge_tv') | bool(false) ) }}"
 
         then:
           - service: remote.turn_on
             target:
               entity_id: remote.lounge_tv
 
-      - if: "{{ not states('remote.lounge_chromecast') | bool }}"
+      - if: "{{ not ( states('remote.lounge_chromecast') | bool(false) ) }}"
 
         then:
           - service: switch.turn_off

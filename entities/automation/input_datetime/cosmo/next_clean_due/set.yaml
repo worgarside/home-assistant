@@ -19,7 +19,7 @@ trigger:
 variables:
   new_datetime: "{{ trigger.to_state.state }}"
   hour: >-
-    {{ (new_datetime | as_datetime).hour | int }}
+    {{ (new_datetime | as_datetime).hour | int(12) }}
 
 condition:
   condition: template

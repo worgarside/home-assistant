@@ -9,11 +9,16 @@ logger:
     pychromecast.socket_client:
       - Failed to connect to service ServiceInfo
       - Error communicating with socket, resetting connection
+    pychromecast.controllers:
+      - STOP command requested but no session is active.
     idasen:
       - Connection failed
+    denonavr.api:
+      - Unexpected exception on telnet reconnect
   logs:
     charset_normalizer: warning
     idasen: critical
     idasen_ha.connection_manager: critical
     pychromecast.socket_client: error
     homeassistant.components.androidtv_remote: error
+    custom_components.dreame_vacuum.dreame.device: error

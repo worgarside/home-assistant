@@ -4,7 +4,7 @@ mark_pr_as_ready_for_review: >-
   /config/resources/gh_cli/bin/gh auth switch --user worgarside
   &&
   /config/resources/gh_cli/bin/gh pr ready
-  {{ url }}{{ ' --undo' if not draft | default(true) | bool }}
+  {{ url }}{{ ' --undo' if not draft | default(true) | bool(true) }}
   ;
   /config/resources/gh_cli/bin/gh auth switch --user worgarside-hass
   '

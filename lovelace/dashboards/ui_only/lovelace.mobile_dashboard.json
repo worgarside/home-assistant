@@ -214,6 +214,13 @@
                         {
                           "type": "entity",
                           "entity": "sensor.hallway_humidity"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "switch.air_freshener",
+                          "tap_action": {
+                            "action": "toggle"
+                          }
                         }
                       ]
                     }

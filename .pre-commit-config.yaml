@@ -4,7 +4,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/worgarside/pre-commit-hooks-dependency-sync
-    rev: 1.1.2
+    rev: 1.2.0
     hooks:
       - id: sync-additional-dependencies
 
@@ -18,7 +18,7 @@ repos:
           - --validate-all
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.6
+    rev: v0.6.7
     hooks:
       - id: ruff
         args:
@@ -78,18 +78,19 @@ repos:
           - --strict
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.11.1
+    rev: v1.11.2
     hooks:
       - id: mypy
-
+        exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
         args:
           - --strict
           - --show-error-codes
         additional_dependencies:
           - types-paramiko
-          - watchdog==4.0.1
-          - wg-utilities==5.16.0
-        exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
+          - watchdog==5.0.2
+          - wg-utilities==5.16.1
+          - matplotlib==3.9.2
+          - types-PyYAML
 
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0

@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Sorter: Y Pos"
+
+unique_id: mtrxpi_sorter_y_pos
+
+command_topic: /mtrxpi/sorter/parameter/y-pos
+
+icon: mdi:arrow-up-down
+
+min: 0
+
+max: 63
+
+mode: slider
+
+retain: true
+
+step: 1
+
+unit_of_measurement: " "
+
+state_topic: /mtrxpi/sorter/parameter/y-pos

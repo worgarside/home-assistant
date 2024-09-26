@@ -21,7 +21,7 @@ state_on: '{"value": "On"}'
 
 state_off: '{"value": "Off"}'
 
-availability_template: "{{ states('switch.prusa_i3_mk3_power') | bool }}"
+availability_template: "{{ states('switch.prusa_i3_mk3_power') | bool(false) }}"
 
 payload_available: true
 

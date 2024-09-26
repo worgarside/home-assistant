@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Raining Grid: Distance Between Plants"
+
+unique_id: mtrxpi_raining_grid_distance_between_plants
+
+command_topic: /mtrxpi/raining-grid/parameter/distance-between-plants
+
+icon: mdi:flower
+
+min: 0
+
+max: 61
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: pixels
+
+state_topic: /mtrxpi/raining-grid/parameter/distance-between-plants

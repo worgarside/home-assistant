@@ -1,0 +1,50 @@
+---
+friendly_name: MtrxPi LED Matrix Brightness
+
+unique_id: mtrxpi_led_matrix_brightness
+
+level_template: >-
+  {%
+    set b = iif(
+      has_value("number.mtrxpi_matrix_brightness"),
+      states("number.mtrxpi_matrix_brightness") | int(None),
+      None
+    )
+  %}
+  {% if b %}
+    {{ (b * 255 / 100) | int }}
+  {% endif %}
+
+value_template: >-
+  {{
+    iif(
+      has_value("sensor.mtrxpi_current_content") and
+      (states("sensor.mtrxpi_current_content") | default(None) or None) is not none,
+      "on",
+      "off"
+    )
+  }}
+
+icon_template: mdi:brightness-percent
+
+availability_template: "{{ states('switch.mtrxpi_power') | bool(false) }}"
+
+turn_on:
+  service: number.set_value
+  target:
+    entity_id: number.mtrxpi_matrix_brightness
+  data:
+    value: "{{ states('sensor.lighting_modifier') | int(80) }}"
+
+turn_off:
+  service: script.log_exception
+  data:
+    calling_entity: light.mtrxpi_led_matrix_brightness
+    message: Do not turn off the MtrxPi LED Matrix directly, use the content controls instead
+
+set_level:
+  service: number.set_value
+  target:
+    entity_id: number.mtrxpi_matrix_brightness
+  data:
+    value: "{{ (100 * (brightness / 255)) | int }}" # hacv disable: InvalidTemplateVar:brightness

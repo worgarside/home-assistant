@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (120)</h3></summary>
+<details><summary><h3>Entities (111)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -43,7 +43,7 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 
 ```json
 {
-  "brightness": "{% if is_state('binary_sensor.quiet_hours', \"on\") %}\n  63\n{% elif states('sensor.sun_elevation') | int(default=1) < 0 %}\n  127\n{% else %}\n  255\n{% endif %}",
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}",
   "delay": 1
 }
 ```
@@ -61,6 +61,19 @@ File: [`automation/binary_sensor/hallway_motion_sensor/on.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/hallway_motion_sensor/timeout.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/quiet-hours/off</code></summary>
+
+**Entity ID: `automation.binary_sensor_quiet_hours_off`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/quiet-hours/off
+- ID: `binary_sensor_quiet_hours_off`
+- Mode: `single`
+
+File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/binary_sensor/quiet_hours/off.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/quiet-hours/on</code></summary>
@@ -291,9 +304,9 @@ File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/
 
 ```json
 {
-  "cpu_temp": "{{ states('sensor.crtpi_cpu_temperature') | float }}",
-  "threshold": "{{ states('input_number.crtpi_fan_auto_on_threshold') | int}}",
-  "should_be_on": "{{ cpu_temp | float > threshold | int }}"
+  "cpu_temp": "{{ states('sensor.crtpi_cpu_temperature') | float(0) }}",
+  "threshold": "{{ states('input_number.crtpi_fan_auto_on_threshold') | int(999) }}",
+  "should_be_on": "{{ cpu_temp | float(0) > threshold | int(999) }}"
 }
 ```
 File: [`automation/crtpi/cpu_fan_control.yaml`](entities/automation/crtpi/cpu_fan_control.yaml)
@@ -715,162 +728,6 @@ File: [`automation/hue_remote/office/button_4/long_press.yaml`](entities/automat
 File: [`automation/hue_remote/office/button_4/short_press.yaml`](entities/automation/hue_remote/office/button_4/short_press.yaml)
 </details>
 
-<details><summary><code>/input-boolean/bedroom-entity-header/auto-turn-off</code></summary>
-
-**Entity ID: `automation.input_boolean_bedroom_entity_header_auto_turn_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/bedroom-entity-header/auto-turn-off
-- ID: `input_boolean_bedroom_entity_header_auto_turn_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/bedroom_entity_header/auto_turn_off.yaml`](entities/automation/input_boolean/bedroom_entity_header/auto_turn_off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/bedroom-entity-header/auto-turn-on</code></summary>
-
-**Entity ID: `automation.input_boolean_bedroom_entity_header_auto_turn_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/bedroom-entity-header/auto-turn-on
-- ID: `input_boolean_bedroom_entity_header_auto_turn_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/bedroom_entity_header/auto_turn_on.yaml`](entities/automation/input_boolean/bedroom_entity_header/auto_turn_on.yaml)
-</details>
-
-<details><summary><code>/input-boolean/bedroom-entity-header/off</code></summary>
-
-**Entity ID: `automation.input_boolean_bedroom_entity_header_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/bedroom-entity-header/off
-- ID: `input_boolean_bedroom_entity_header_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/bedroom_entity_header/off.yaml`](entities/automation/input_boolean/bedroom_entity_header/off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/bedroom-entity-header/on</code></summary>
-
-**Entity ID: `automation.input_boolean_bedroom_entity_header_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/bedroom-entity-header/on
-- ID: `input_boolean_bedroom_entity_header_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/bedroom_entity_header/on.yaml`](entities/automation/input_boolean/bedroom_entity_header/on.yaml)
-</details>
-
-<details><summary><code>/input-boolean/lounge-entity-header/auto-turn-off</code></summary>
-
-**Entity ID: `automation.input_boolean_lounge_entity_header_auto_turn_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/lounge-entity-header/auto-turn-off
-- ID: `input_boolean_lounge_entity_header_auto_turn_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/lounge_entity_header/auto_turn_off.yaml`](entities/automation/input_boolean/lounge_entity_header/auto_turn_off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/lounge-entity-header/auto-turn-on</code></summary>
-
-**Entity ID: `automation.input_boolean_lounge_entity_header_auto_turn_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/lounge-entity-header/auto-turn-on
-- ID: `input_boolean_lounge_entity_header_auto_turn_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/lounge_entity_header/auto_turn_on.yaml`](entities/automation/input_boolean/lounge_entity_header/auto_turn_on.yaml)
-</details>
-
-<details><summary><code>/input-boolean/lounge-entity-header/off</code></summary>
-
-**Entity ID: `automation.input_boolean_lounge_entity_header_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/lounge-entity-header/off
-- ID: `input_boolean_lounge_entity_header_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/lounge_entity_header/off.yaml`](entities/automation/input_boolean/lounge_entity_header/off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/lounge-entity-header/on</code></summary>
-
-**Entity ID: `automation.input_boolean_lounge_entity_header_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/lounge-entity-header/on
-- ID: `input_boolean_lounge_entity_header_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/lounge_entity_header/on.yaml`](entities/automation/input_boolean/lounge_entity_header/on.yaml)
-</details>
-
-<details><summary><code>/input-boolean/office-entity-header/auto-turn-off</code></summary>
-
-**Entity ID: `automation.input_boolean_office_entity_header_auto_turn_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/office-entity-header/auto-turn-off
-- ID: `input_boolean_office_entity_header_auto_turn_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/office_entity_header/auto_turn_off.yaml`](entities/automation/input_boolean/office_entity_header/auto_turn_off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/office-entity-header/auto-turn-on</code></summary>
-
-**Entity ID: `automation.input_boolean_office_entity_header_auto_turn_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/office-entity-header/auto-turn-on
-- ID: `input_boolean_office_entity_header_auto_turn_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/office_entity_header/auto_turn_on.yaml`](entities/automation/input_boolean/office_entity_header/auto_turn_on.yaml)
-</details>
-
-<details><summary><code>/input-boolean/office-entity-header/off</code></summary>
-
-**Entity ID: `automation.input_boolean_office_entity_header_off`**
-
-> *No description provided*
-
-- Alias: /input-boolean/office-entity-header/off
-- ID: `input_boolean_office_entity_header_off`
-- Mode: `single`
-
-File: [`automation/input_boolean/office_entity_header/off.yaml`](entities/automation/input_boolean/office_entity_header/off.yaml)
-</details>
-
-<details><summary><code>/input-boolean/office-entity-header/on</code></summary>
-
-**Entity ID: `automation.input_boolean_office_entity_header_on`**
-
-> *No description provided*
-
-- Alias: /input-boolean/office-entity-header/on
-- ID: `input_boolean_office_entity_header_on`
-- Mode: `single`
-
-File: [`automation/input_boolean/office_entity_header/on.yaml`](entities/automation/input_boolean/office_entity_header/on.yaml)
-</details>
-
 <details><summary><code>/input-datetime/cosmo/next-clean-due/set</code></summary>
 
 **Entity ID: `automation.input_datetime_cosmo_next_clean_due_set`**
@@ -885,7 +742,7 @@ File: [`automation/input_boolean/office_entity_header/on.yaml`](entities/automat
 ```json
 {
   "new_datetime": "{{ trigger.to_state.state }}",
-  "hour": "{{ (new_datetime | as_datetime).hour | int }}"
+  "hour": "{{ (new_datetime | as_datetime).hour | int(12) }}"
 }
 ```
 File: [`automation/input_datetime/cosmo/next_clean_due/set.yaml`](entities/automation/input_datetime/cosmo/next_clean_due/set.yaml)
@@ -1116,6 +973,19 @@ File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](en
 File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](entities/automation/mobile_app_notification_action/cosmo/remind_later.yaml)
 </details>
 
+<details><summary><code>/mtrxpi/content-trigger/clock</code></summary>
+
+**Entity ID: `automation.mtrxpi_content_trigger_clock`**
+
+> *No description provided*
+
+- Alias: /mtrxpi/content-trigger/clock
+- ID: `mtrxpi_content_trigger_clock`
+- Mode: `queued`
+
+File: [`automation/mtrxpi/content_trigger/clock.yaml`](entities/automation/mtrxpi/content_trigger/clock.yaml)
+</details>
+
 <details><summary><code>/mtrxpi/content-trigger/gif-door-animated</code></summary>
 
 **Entity ID: `automation.mtrxpi_content_trigger_gif_door_animated`**
@@ -1164,7 +1034,7 @@ File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation
 {
   "rain": "{{ trigger.to_state.state | float(0) }}",
   "limit": "{{ states('input_number.mtrxpi_raining_grid_maximum_rain_intensity') | float(15) }}",
-  "rain_chance": "{{ ( rain | float * (100 / limit) ) | round(2) }}"
+  "rain_chance": "{{ ( rain | float(0) * (100 / limit) ) | round(2) }}"
 }
 ```
 File: [`automation/mtrxpi/content_trigger/raining_grid.yaml`](entities/automation/mtrxpi/content_trigger/raining_grid.yaml)
@@ -1209,9 +1079,9 @@ File: [`automation/notification/prusa_i3/user_input_required.yaml`](entities/aut
 
 ```json
 {
-  "cpu_temp": "{{ states('sensor.octopi_cpu_temperature') | float }}",
-  "threshold": "{{ states('input_number.octopi_fan_auto_on_threshold') | int}}",
-  "should_be_on": "{{ cpu_temp | float > threshold | int }}"
+  "cpu_temp": "{{ states('sensor.octopi_cpu_temperature') | float(0) }}",
+  "threshold": "{{ states('input_number.octopi_fan_auto_on_threshold') | int(999) }}",
+  "should_be_on": "{{ cpu_temp | float(0) > threshold | int(999) }}"
 }
 ```
 File: [`automation/octopi/cpu_fan_control.yaml`](entities/automation/octopi/cpu_fan_control.yaml)
@@ -1267,6 +1137,19 @@ File: [`automation/person/will/home.yaml`](entities/automation/person/will/home.
 - Mode: `single`
 
 File: [`automation/person/will/leaving_work.yaml`](entities/automation/person/will/leaving_work.yaml)
+</details>
+
+<details><summary><code>/presence/office/beanbag</code></summary>
+
+**Entity ID: `automation.presence_office_beanbag`**
+
+> *No description provided*
+
+- Alias: /presence/office/beanbag
+- ID: `presence_office_beanbag`
+- Mode: `single`
+
+File: [`automation/presence/office/beanbag.yaml`](entities/automation/presence/office/beanbag.yaml)
 </details>
 
 <details><summary><code>/prusa-i3/bed/timeout</code></summary>
@@ -2214,7 +2097,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (11)</h3></summary>
+<details><summary><h3>Entities (7)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -2225,13 +2108,6 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 File: [`input_boolean/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/input_boolean/appdaemon_trigger/ad_monzo_auto_save.yaml)
 </details>
 
-<details><summary><strong>Bedroom Entity Header</strong></summary>
-
-**Entity ID: `input_boolean.bedroom_entity_header`**
-
-File: [`input_boolean/bedroom_entity_header.yaml`](entities/input_boolean/bedroom_entity_header.yaml)
-</details>
-
 <details><summary><strong>Debug with Persistent Notifications</strong></summary>
 
 **Entity ID: `input_boolean.debug_with_persistent_notifications`**
@@ -2239,20 +2115,6 @@ File: [`input_boolean/bedroom_entity_header.yaml`](entities/input_boolean/bedroo
 - Icon: [`mdi:message-badge-outline`](https://pictogrammers.com/library/mdi/icon/message-badge-outline/)
 
 File: [`input_boolean/debug_with_persistent_notifications.yaml`](entities/input_boolean/debug_with_persistent_notifications.yaml)
-</details>
-
-<details><summary><strong>Hallway Entity Header</strong></summary>
-
-**Entity ID: `input_boolean.hallway_entity_header`**
-
-File: [`input_boolean/hallway_entity_header.yaml`](entities/input_boolean/hallway_entity_header.yaml)
-</details>
-
-<details><summary><strong>Lounge Entity Header</strong></summary>
-
-**Entity ID: `input_boolean.lounge_entity_header`**
-
-File: [`input_boolean/lounge_entity_header.yaml`](entities/input_boolean/lounge_entity_header.yaml)
 </details>
 
 <details><summary><strong>Lounge Shapes Artwork Mapping Active</strong></summary>
@@ -2280,13 +2142,6 @@ File: [`input_boolean/mini_crt_fan.yaml`](entities/input_boolean/mini_crt_fan.ya
 - Icon: [`mdi:television-classic`](https://pictogrammers.com/library/mdi/icon/television-classic/)
 
 File: [`input_boolean/mini_crt_power.yaml`](entities/input_boolean/mini_crt_power.yaml)
-</details>
-
-<details><summary><strong>Office Entity Header</strong></summary>
-
-**Entity ID: `input_boolean.office_entity_header`**
-
-File: [`input_boolean/office_entity_header.yaml`](entities/input_boolean/office_entity_header.yaml)
 </details>
 
 <details><summary><strong>Office Shapes Artwork Mapping Active</strong></summary>
@@ -2559,7 +2414,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (36)</h3></summary>
+<details><summary><h3>Entities (42)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2751,6 +2606,84 @@ File: [`input_number/lounge_blinds_button_height.yaml`](entities/input_number/lo
 - Unit Of Measurement: mm/hr
 
 File: [`input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml`](entities/input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Clock: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_clock_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_clock_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_clock_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | GIF (Door Animated): Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_gif_door_animated_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_gif_door_animated_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_gif_door_animated_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Image (Door Closed): Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_image_door_closed_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_image_door_closed_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_image_door_closed_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Now Playing: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_now_playing_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_now_playing_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_now_playing_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_raining_grid_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Sorter: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_sorter_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml)
 </details>
 
 <details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
@@ -3266,6 +3199,19 @@ File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entit
 
 </details>
 
+## Light
+
+<details><summary><h3>Entities (1)</h3></summary>
+
+<details><summary><strong>MtrxPi LED Matrix Brightness</strong></summary>
+
+**Entity ID: `light.mtrxpi_led_matrix_brightness`**
+
+File: [`light/mtrxpi_led_matrix_brightness.yaml`](entities/light/mtrxpi_led_matrix_brightness.yaml)
+</details>
+
+</details>
+
 ## Media Player
 
 <details><summary><h3>Entities (2)</h3></summary>
@@ -3292,7 +3238,67 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (92)</h3></summary>
+<details><summary><h3>Entities (109)</h3></summary>
+
+<details><summary><strong>MtrxPi | Clock: Scale</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_clock_scale`**
+
+- Icon: [`mdi:relative-scale`](https://pictogrammers.com/library/mdi/icon/relative-scale/)
+- Command Topic: /mtrxpi/clock/parameter/scale
+- State Topic: /mtrxpi/clock/parameter/scale
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/clock/scale.yaml`](entities/mqtt/number/mtrxpi/clock/scale.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Clock: X Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_clock_x_pos`**
+
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Command Topic: /mtrxpi/clock/parameter/x-pos
+- State Topic: /mtrxpi/clock/parameter/x-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/clock/x_pos.yaml`](entities/mqtt/number/mtrxpi/clock/x_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Clock: Y Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_clock_y_pos`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/clock/parameter/y-pos
+- State Topic: /mtrxpi/clock/parameter/y-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/clock/y_pos.yaml`](entities/mqtt/number/mtrxpi/clock/y_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Combination: X Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_combination_x_pos`**
+
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Command Topic: /mtrxpi/combination/parameter/x-pos
+- State Topic: /mtrxpi/combination/parameter/x-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/combination/x_pos.yaml`](entities/mqtt/number/mtrxpi/combination/x_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Combination: Y Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_combination_y_pos`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/combination/parameter/y-pos
+- State Topic: /mtrxpi/combination/parameter/y-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/combination/y_pos.yaml`](entities/mqtt/number/mtrxpi/combination/y_pos.yaml)
+</details>
 
 <details><summary><strong>MtrxPi | Matrix: Brightness</strong></summary>
 
@@ -3305,12 +3311,97 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 File: [`mqtt/number/mtrxpi/matrix/brightness.yaml`](entities/mqtt/number/mtrxpi/matrix/brightness.yaml)
 </details>
 
+<details><summary><strong>MtrxPi | Now Playing: X Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_now_playing_x_pos`**
+
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Command Topic: /mtrxpi/now-playing/parameter/x-pos
+- State Topic: /mtrxpi/now-playing/parameter/x-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/now_playing/x_pos.yaml`](entities/mqtt/number/mtrxpi/now_playing/x_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Now Playing: Y Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_now_playing_y_pos`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/now-playing/parameter/y-pos
+- State Topic: /mtrxpi/now-playing/parameter/y-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/now_playing/y_pos.yaml`](entities/mqtt/number/mtrxpi/now_playing/y_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Distance Between Plants</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_distance_between_plants`**
+
+- Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
+- Command Topic: /mtrxpi/raining-grid/parameter/distance-between-plants
+- State Topic: /mtrxpi/raining-grid/parameter/distance-between-plants
+- Unit Of Measurement: `pixels`
+
+File: [`mqtt/number/mtrxpi/raining_grid/distance_between_plants.yaml`](entities/mqtt/number/mtrxpi/raining_grid/distance_between_plants.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Leaf Growth Chance</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_leaf_growth_chance`**
+
+- Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
+- Command Topic: /mtrxpi/raining-grid/parameter/leaf-growth-chance
+- State Topic: /mtrxpi/raining-grid/parameter/leaf-growth-chance
+- Unit Of Measurement: %
+
+File: [`mqtt/number/mtrxpi/raining_grid/leaf_growth_chance.yaml`](entities/mqtt/number/mtrxpi/raining_grid/leaf_growth_chance.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Plant Death Propagation Speed</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_plant_death_propagation_speed`**
+
+- Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
+- Command Topic: /mtrxpi/raining-grid/parameter/plant-death-propagation-speed
+- State Topic: /mtrxpi/raining-grid/parameter/plant-death-propagation-speed
+- Unit Of Measurement: `ticks`
+
+File: [`mqtt/number/mtrxpi/raining_grid/plant_death_propagation_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/plant_death_propagation_speed.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Plant Growth Chance</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_plant_growth_chance`**
+
+- Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
+- Command Topic: /mtrxpi/raining-grid/parameter/plant-growth-chance
+- State Topic: /mtrxpi/raining-grid/parameter/plant-growth-chance
+- Unit Of Measurement: %
+
+File: [`mqtt/number/mtrxpi/raining_grid/plant_growth_chance.yaml`](entities/mqtt/number/mtrxpi/raining_grid/plant_growth_chance.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Plant Limit</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_plant_limit`**
+
+- Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
+- Command Topic: /mtrxpi/raining-grid/parameter/plant-limit
+- State Topic: /mtrxpi/raining-grid/parameter/plant-limit
+- Unit Of Measurement: `plants`
+
+File: [`mqtt/number/mtrxpi/raining_grid/plant_limit.yaml`](entities/mqtt/number/mtrxpi/raining_grid/plant_limit.yaml)
+</details>
+
 <details><summary><strong>MtrxPi | Raining Grid: Rain Chance</strong></summary>
 
 **Entity ID: `mqtt.mtrxpi_raining_grid_rain_chance`**
 
 - Icon: [`mdi:cloud-percent-outline`](https://pictogrammers.com/library/mdi/icon/cloud-percent-outline/)
 - Command Topic: /mtrxpi/raining-grid/parameter/rain-chance
+- State Topic: /mtrxpi/raining-grid/parameter/rain-chance
 - Unit Of Measurement: %
 
 File: [`mqtt/number/mtrxpi/raining_grid/rain_chance.yaml`](entities/mqtt/number/mtrxpi/raining_grid/rain_chance.yaml)
@@ -3322,6 +3413,7 @@ File: [`mqtt/number/mtrxpi/raining_grid/rain_chance.yaml`](entities/mqtt/number/
 
 - Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
 - Command Topic: /mtrxpi/raining-grid/frequency/rain-speed
+- State Topic: /mtrxpi/raining-grid/frequency/rain-speed
 - Unit Of Measurement: `ticks`
 
 File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/rain_speed.yaml)
@@ -3333,9 +3425,34 @@ File: [`mqtt/number/mtrxpi/raining_grid/rain_speed.yaml`](entities/mqtt/number/m
 
 - Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
 - Command Topic: /mtrxpi/raining-grid/frequency/splash-speed
+- State Topic: /mtrxpi/raining-grid/frequency/splash-speed
 - Unit Of Measurement: `ticks`
 
 File: [`mqtt/number/mtrxpi/raining_grid/splash_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/splash_speed.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: X Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_x_pos`**
+
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Command Topic: /mtrxpi/raining-grid/parameter/x-pos
+- State Topic: /mtrxpi/raining-grid/parameter/x-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/raining_grid/x_pos.yaml`](entities/mqtt/number/mtrxpi/raining_grid/x_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Raining Grid: Y Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_raining_grid_y_pos`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/raining-grid/parameter/y-pos
+- State Topic: /mtrxpi/raining-grid/parameter/y-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/raining_grid/y_pos.yaml`](entities/mqtt/number/mtrxpi/raining_grid/y_pos.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Sorter: Completion Display Time</strong></summary>
@@ -3357,9 +3474,33 @@ File: [`mqtt/number/mtrxpi/sorter/completion_display_time.yaml`](entities/mqtt/n
 - Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
 - Command Topic: /mtrxpi/sorter/parameter/iterations
 - State Topic: /mtrxpi/sorter/parameter/iterations
-- Unit Of Measurement: `iteration`
+- Unit Of Measurement: `iterations`
 
 File: [`mqtt/number/mtrxpi/sorter/iterations.yaml`](entities/mqtt/number/mtrxpi/sorter/iterations.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Sorter: X Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_sorter_x_pos`**
+
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Command Topic: /mtrxpi/sorter/parameter/x-pos
+- State Topic: /mtrxpi/sorter/parameter/x-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/sorter/x_pos.yaml`](entities/mqtt/number/mtrxpi/sorter/x_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Sorter: Y Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_sorter_y_pos`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/sorter/parameter/y-pos
+- State Topic: /mtrxpi/sorter/parameter/y-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/sorter/y_pos.yaml`](entities/mqtt/number/mtrxpi/sorter/y_pos.yaml)
 </details>
 
 <details><summary><strong>Prusa i3 | Target Bed Temperature</strong></summary>
@@ -3738,6 +3879,17 @@ File: [`mqtt/sensor/mtrxpi/average_load_5_min.yaml`](entities/mqtt/sensor/mtrxpi
 - State Topic: /homeassistant/mtrxpi/stats
 
 File: [`mqtt/sensor/mtrxpi/boot_time.yaml`](entities/mqtt/sensor/mtrxpi/boot_time.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Content Queue</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_content_queue`**
+
+- Icon: [`mdi:plus-box-multiple`](https://pictogrammers.com/library/mdi/icon/plus-box-multiple/)
+- State Topic: /mtrxpi/matrix/content-queue/state
+- Unit Of Measurement: `items`
+
+File: [`mqtt/sensor/mtrxpi/content_queue.yaml`](entities/mqtt/sensor/mtrxpi/content_queue.yaml)
 </details>
 
 <details><summary><strong>MtrxPi CPU Temperature</strong></summary>
@@ -4287,7 +4439,7 @@ File: [`mqtt/switch/crtpi/crt_tv_power.yaml`](entities/mqtt/switch/crtpi/crt_tv_
 
 **Entity ID: `mqtt.mtrxpi_sorter_randomize_algorithm`**
 
-- Icon: [`mdi:shuffle`](https://pictogrammers.com/library/mdi/icon/shuffle/)
+- Icon: [`mdi:shuffle-variant`](https://pictogrammers.com/library/mdi/icon/shuffle-variant/)
 - Command Topic: /mtrxpi/sorter/parameter/randomize-algorithm
 - State Topic: /mtrxpi/sorter/parameter/randomize-algorithm
 
@@ -4826,9 +4978,11 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
   "id": {
     "description": "The ID of the content to add to the queue",
     "example": "raining-grid",
+    "required": true,
     "selector": {
       "select": {
         "options": [
+          "clock",
           "gif-door-animated",
           "image-door-closed",
           "now-playing",
@@ -4839,13 +4993,13 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
     }
   },
   "priority": {
-    "description": "The priority of the content in the queue. `None` will remove the content from the queue if it exists. `0` is the highest priority, and the higher the number, the lower the priority.",
+    "description": "The priority of the content in the queue. `\"clear\"` will remove the content from the queue if it exists. The higher the number, the lower the priority.",
     "example": "1",
     "required": false,
-    "default": null,
+    "default": "clear",
     "selector": {
       "number": {
-        "min": 0,
+        "min": -1000,
         "max": 99999,
         "step": "any",
         "mode": "box"
@@ -4860,9 +5014,9 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
 
 ```json
 {
-  "id": "{{ id | default(None) }}",
+  "id": "{{ id | default('') }}",
   "parameters": "{{ parameters | default({}) }}",
-  "priority": "{{ priority | default(None) }}"
+  "priority": "{{\n  priority\n  | default(\n    states(\"input_number.mtrxpi_\" ~ id.replace(\"-\", \"_\") ~ \"_queue_position\")\n    | default(None)\n  )\n}}"
 }
 ```
 File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_queue_content.yaml)
@@ -4951,7 +5105,7 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
 ```json
 {
   "actions": "{{ actions | default([]) }}",
-  "clear_notification": "{{\n  message | default('') == 'clear_notification' or\n  clear_notification | default(False) | bool\n}}",
+  "clear_notification": "{{\n  message | default('') == 'clear_notification' or\n  clear_notification | default(False) | bool(False)\n}}",
   "notification_id": "{% if clear_notification %}\n  {{ notification_id | default(None) }}\n{% else %}\n  {{ notification_id | default('notify_vic_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}\n{% endif %}",
   "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message | default(\"\") }}\n{% endif %}",
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
@@ -5061,7 +5215,7 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
 ```json
 {
   "actions": "{{ actions | default([]) }}",
-  "clear_notification": "{{\n  message | default('') == 'clear_notification' or\n  clear_notification | default(False) | bool\n}}",
+  "clear_notification": "{{\n  message | default('') == 'clear_notification' or\n  clear_notification | default(False) | bool(False)\n}}",
   "notification_id": "{% if clear_notification %}\n  {{ notification_id | default(None) }}\n{% else %}\n  {{ notification_id | default('notify_will_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}\n{% endif %}",
   "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message | default(\"\") }}\n{% endif %}",
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
@@ -5631,7 +5785,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (93)</h3></summary>
+<details><summary><h3>Entities (92)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6210,7 +6364,7 @@ File: [`template/sensor/distance/will_distance_from_home.yaml`](entities/templat
   {% set ns.average = ns.total / ns.count %}
 {% endfor %}
 {% if ns.average > 0 %}
-  mdi:battery-{{ ns.average | round(-1) | int or 10 }}
+  mdi:battery-{{ ns.average | round(-1) | int(10) or 10 }}
 {% else %}
   mdi:battery
 {% endif %}
@@ -6253,6 +6407,16 @@ File: [`template/sensor/habitica/habitica_will_pending_dailys.yaml`](entities/te
 **Entity ID: `sensor.hifi_system_media_metadata`**
 
 File: [`template/sensor/hifi_system_media_metadata.yaml`](entities/template/sensor/hifi_system_media_metadata.yaml)
+</details>
+
+<details><summary><strong>Lighting Modifier</strong></summary>
+
+**Entity ID: `sensor.lighting_modifier`**
+
+- Icon: [`mdi:brightness-percent`](https://pictogrammers.com/library/mdi/icon/brightness-percent/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/lighting_modifier.yaml`](entities/template/sensor/lighting_modifier.yaml)
 </details>
 
 <details><summary><strong>Sun Elevation</strong></summary>
@@ -6608,26 +6772,6 @@ File: [`template/sensor/spotify/spotify_will_garside_media_artist.yaml`](entitie
 **Entity ID: `sensor.spotify_will_garside_media_title`**
 
 File: [`template/sensor/spotify/spotify_will_garside_media_title.yaml`](entities/template/sensor/spotify/spotify_will_garside_media_title.yaml)
-</details>
-
-<details><summary><strong>ST MacBook Pro Last Update</strong></summary>
-
-**Entity ID: `sensor.st_macbook_pro_last_update`**
-
-- Icon: [`mdi:clock`](https://pictogrammers.com/library/mdi/icon/clock/)
-- Unit Of Measurement: epoch-seconds
-
-File: [`template/sensor/st_macbook_pro_last_update.yaml`](entities/template/sensor/st_macbook_pro_last_update.yaml)
-</details>
-
-<details><summary><strong>Will's MacBook Pro Last Update</strong></summary>
-
-**Entity ID: `sensor.will_s_macbook_pro_last_update`**
-
-- Icon: [`mdi:clock`](https://pictogrammers.com/library/mdi/icon/clock/)
-- Unit Of Measurement: epoch-seconds
-
-File: [`template/sensor/will_s_macbook_pro_last_update.yaml`](entities/template/sensor/will_s_macbook_pro_last_update.yaml)
 </details>
 
 </details>

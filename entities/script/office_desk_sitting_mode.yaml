@@ -21,7 +21,7 @@ sequence:
       variables:
         position: "{{ states('input_number.office_desk_sitting_height') | int(default=27) }}"
 
-  - condition: "{{ sync_blinds is defined and sync_blinds | bool }}"
+  - condition: "{{ sync_blinds is defined and sync_blinds | bool(False) }}"
 
   - service: cover.set_cover_position
     data:

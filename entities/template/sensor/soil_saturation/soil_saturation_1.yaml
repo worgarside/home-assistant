@@ -11,12 +11,14 @@ state: >-
   {% set lower_limit = states("input_number.soil_moisture_sensor_1_lower_limit") | float(0.0) %}
   {% set upper_limit = states("input_number.soil_moisture_sensor_1_upper_limit") | float(1) %}
 
-  {% set reading = states("sensor.soil_moisture_sensor_1_moisture_sensor_voltage") | float(0) %}
+  {% set reading = states("sensor.soil_moisture_sensor_1_moisture_sensor_voltage") | float(-1) %}
 
-  {% if reading > upper_limit %}
-    0
-  {% elif reading < lower_limit %}
-    100
-  {% else %}
-    {{ ( ( (reading - upper_limit) / (lower_limit - upper_limit) ) * 100 ) | round(2) }}
+  {% if reading != -1 %}
+    {% if reading > upper_limit %}
+      0
+    {% elif reading < lower_limit %}
+      100
+    {% else %}
+      {{ ( ( (reading - upper_limit) / (lower_limit - upper_limit) ) * 100 ) | round(2) }}
+    {% endif %}
   {% endif %}

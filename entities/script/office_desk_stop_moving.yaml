@@ -17,9 +17,9 @@ sequence:
           position: >
             {% set desk_state = states('cover.office_desk_esphome') %}
             {% if desk_state == 'opening' %}
-              {{ state_attr('cover.office_desk_esphome', 'current_position') | int - 1 }}
+              {{ state_attr('cover.office_desk_esphome', 'current_position') | int(0) - 1 }}
             {% elif desk_state == 'closing' %}
-              {{ state_attr('cover.office_desk_esphome', 'current_position') | int + 1 }}
+              {{ state_attr('cover.office_desk_esphome', 'current_position') | int(-2) + 1 }}
             {% endif %}
 
   - service: script.turn_off
