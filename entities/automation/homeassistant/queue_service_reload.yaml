@@ -68,9 +68,9 @@ action:
               new_files: >-
                 {{
                   iif(
-                    trigger.event.data.file in orig_files | from_json,
+                    trigger.event.data.file in orig_files,
                     orig_files,
-                    ( orig_files | from_json ) + [trigger.event.data.file]
+                    orig_files + [trigger.event.data.file]
                   )
                 }}
 
@@ -79,9 +79,9 @@ action:
               new_service_queue: >-
                 {{
                   iif(
-                    service in orig_service_queue | from_json,
+                    service in orig_service_queue,
                     orig_service_queue,
-                    ( orig_service_queue | from_json ) + [service]
+                    orig_service_queue + [service]
                   )
                 }}
 
@@ -90,9 +90,13 @@ action:
               entity_id: var.auto_reload_queue
             data:
               value: "{{ new_files | length }}"
-              attributes:
-                files: "{{ new_files | tojson }}"
-                service_queue: "{{ new_service_queue | tojson }}"
+              attributes: >-
+                {{
+                  {
+                    "files":  new_files | to_json,
+                    "service_queue": new_service_queue | to_json
+                  }
+                }}
 
     default:
       - service: script.turn_on
