@@ -2,21 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (111)</h3></summary>
-<details><summary><h3>Entities (115)</h3></summary>
-
-<details><summary><code>/automation/auto-reload</code></summary>
-
-**Entity ID: `automation.automation_auto_reload`**
-
-> *No description provided*
-
-- Alias: /automation/auto-reload
-- ID: `automation_auto_reload`
-- Mode: `single`
-
-File: [`automation/automation/auto_reload.yaml`](entities/automation/automation/auto_reload.yaml)
-</details>
+<details><summary><h3>Entities (112)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
