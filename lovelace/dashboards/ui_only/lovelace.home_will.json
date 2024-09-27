@@ -2267,7 +2267,76 @@
             },
             {
               "type": "grid",
-              "cards": [],
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "input_boolean.auto_reload_automation"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_command_line"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_conversation"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_group"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_input_boolean"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_input_button"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_input_datetime"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_input_number"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_input_select"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_input_text"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_mqtt"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_rest"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_rest_command"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_scene"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_schedule"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_script"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_template"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_timer"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_universal"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_var"
+                    },
+                    {
+                      "entity": "input_boolean.auto_reload_zone"
+                    }
+                  ]
+                }
+              ],
               "title": "Auto-Reloading",
               "column_span": 1
             }
