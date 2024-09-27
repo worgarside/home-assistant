@@ -6920,7 +6920,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 **Entity ID: `var.auto_reload_queue`**
 
 - Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
-- Unit Of Measurement: `entities`
+- Unit Of Measurement: `domains`
 
 File: [`var/auto_reload_queue.yaml`](entities/var/auto_reload_queue.yaml)
 </details>
