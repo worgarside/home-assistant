@@ -11,15 +11,25 @@ trigger:
   event_data:
     service: reload
 
+variables:
+  domain: "{{ trigger.event.data.domain }}"
+
+  service_queue: "{{ state_attr('var.auto_reload_queue', 'service_queue') | default([]) }}"
+
+condition: "{{ domain in service_queue }}"
+
 action:
-  - service: script.turn_on
+  - variables:
+      new_service_queue: "{{ service_queue | reject('eq', domain) | list }}"
+
+  - service: var.set
     target:
-      entity_id: script.debug_persistent_notification
+      entity_id: var.auto_reload_queue
     data:
-      variables:
-        notification_title: Domain Reloaded
-        notification_id: domain_reloaded
-        message: |
-          ```json
-          {{ trigger.event | tojson(indent=2) }}
-          ```
+      value: "{{ new_service_queue | length }}"
+      attributes: >-
+        {{
+          {
+            "service_queue": new_service_queue | to_json
+          }
+        }}

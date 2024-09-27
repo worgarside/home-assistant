@@ -570,7 +570,14 @@ File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](
 - Alias: /homeassistant/clear-queued-service-reload
 - ID: `homeassistant_clear_queued_service_reload`
 - Mode: `queued`
+- Variables:
 
+```json
+{
+  "domain": "{{ trigger.event.data.domain }}",
+  "service_queue": "{{ state_attr('var.auto_reload_queue', 'service_queue') | default([]) }}"
+}
+```
 File: [`automation/homeassistant/clear_queued_service_reload.yaml`](entities/automation/homeassistant/clear_queued_service_reload.yaml)
 </details>
 
