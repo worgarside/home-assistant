@@ -5,7 +5,7 @@ unit_of_measurement: entities
 
 icon: mdi:reload
 
-restore: false
+restore: true  # Otherwise `var.reload` will reset it
 
 unique_id: var_auto_reload_queue
 
