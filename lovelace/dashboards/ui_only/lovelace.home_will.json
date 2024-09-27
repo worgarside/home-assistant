@@ -2272,67 +2272,88 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "input_boolean.auto_reload_automation"
+                      "entity": "input_boolean.auto_reload_automation",
+                      "name": "Automation"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_command_line"
+                      "entity": "input_boolean.auto_reload_command_line",
+                      "name": "Command Line"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_conversation"
+                      "entity": "input_boolean.auto_reload_conversation",
+                      "name": "Conversation"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_group"
+                      "entity": "input_boolean.auto_reload_group",
+                      "name": "Group"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_input_boolean"
+                      "entity": "input_boolean.auto_reload_input_boolean",
+                      "name": "Input Boolean"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_input_button"
+                      "entity": "input_boolean.auto_reload_input_button",
+                      "name": "Input Button"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_input_datetime"
+                      "entity": "input_boolean.auto_reload_input_datetime",
+                      "name": "Input Datetime"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_input_number"
+                      "entity": "input_boolean.auto_reload_input_number",
+                      "name": "Input Number"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_input_select"
+                      "entity": "input_boolean.auto_reload_input_select",
+                      "name": "Input Select"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_input_text"
+                      "entity": "input_boolean.auto_reload_input_text",
+                      "name": "Input Text"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_mqtt"
+                      "entity": "input_boolean.auto_reload_mqtt",
+                      "name": "MQTT"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_rest"
+                      "entity": "input_boolean.auto_reload_rest",
+                      "name": "REST"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_rest_command"
+                      "entity": "input_boolean.auto_reload_rest_command",
+                      "name": "REST Command"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_scene"
+                      "entity": "input_boolean.auto_reload_scene",
+                      "name": "Scene"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_schedule"
+                      "entity": "input_boolean.auto_reload_schedule",
+                      "name": "Schedule"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_script"
+                      "entity": "input_boolean.auto_reload_script",
+                      "name": "Script"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_template"
+                      "entity": "input_boolean.auto_reload_template",
+                      "name": "Template"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_timer"
+                      "entity": "input_boolean.auto_reload_timer",
+                      "name": "Timer"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_universal"
+                      "entity": "input_boolean.auto_reload_universal",
+                      "name": "Universal"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_var"
+                      "entity": "input_boolean.auto_reload_var",
+                      "name": "Variable"
                     },
                     {
-                      "entity": "input_boolean.auto_reload_zone"
+                      "entity": "input_boolean.auto_reload_zone",
+                      "name": "Zone"
                     }
                   ]
                 }
