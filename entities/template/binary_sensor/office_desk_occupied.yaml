@@ -14,9 +14,9 @@ state: >-
     state_attr('binary_sensor.wills_macbook_pro_active', 'Screen Off')
   ) %}
   {% set work_mbp_active = not (
-    state_attr('binary_sensor.st_macbook_pro_active', 'Locked') or
-    state_attr('binary_sensor.st_macbook_pro_active', 'Screensaver') or
-    state_attr('binary_sensor.st_macbook_pro_active', 'Screen Off')
+    state_attr('binary_sensor.work_macbook_pro_active', 'Locked') or
+    state_attr('binary_sensor.work_macbook_pro_active', 'Screensaver') or
+    state_attr('binary_sensor.work_macbook_pro_active', 'Screen Off')
   ) %}
 
   {{
@@ -26,7 +26,7 @@ state: >-
         states('binary_sensor.will_s_macbook_pro_docked') | bool(false) and
         mbp_active
       ) or (
-        states('binary_sensor.st_macbook_pro_docked') | bool(false) and
+        states('binary_sensor.work_macbook_pro_docked') | bool(false) and
         work_mbp_active
       )
     )
