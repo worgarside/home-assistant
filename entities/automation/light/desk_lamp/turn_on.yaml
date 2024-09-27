@@ -34,6 +34,8 @@ action:
       - platform: state
         entity_id: binary_sensor.will_s_desk_occupancy
         to: "off"
+        for:
+          seconds: 5
     timeout:
       minutes: 15
     continue_on_timeout: false
