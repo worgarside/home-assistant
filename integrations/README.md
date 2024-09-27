@@ -2149,7 +2149,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (7)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -2158,6 +2158,195 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 - Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
 
 File: [`input_boolean/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/input_boolean/appdaemon_trigger/ad_monzo_auto_save.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Automation</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_automation`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_automation.yaml`](entities/input_boolean/auto_reload/auto_reload_automation.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Command Line</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_command_line`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_command_line.yaml`](entities/input_boolean/auto_reload/auto_reload_command_line.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Conversation</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_conversation`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_conversation.yaml`](entities/input_boolean/auto_reload/auto_reload_conversation.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Group</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_group`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_group.yaml`](entities/input_boolean/auto_reload/auto_reload_group.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Boolean</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_boolean`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_boolean.yaml`](entities/input_boolean/auto_reload/auto_reload_input_boolean.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Button</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_button`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_button.yaml`](entities/input_boolean/auto_reload/auto_reload_input_button.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Datetime</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_datetime`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_datetime.yaml`](entities/input_boolean/auto_reload/auto_reload_input_datetime.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Number</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_number`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_number.yaml`](entities/input_boolean/auto_reload/auto_reload_input_number.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Select</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_select`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_select.yaml`](entities/input_boolean/auto_reload/auto_reload_input_select.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Text</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_text`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_text.yaml`](entities/input_boolean/auto_reload/auto_reload_input_text.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | MQTT</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_mqtt`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_mqtt.yaml`](entities/input_boolean/auto_reload/auto_reload_mqtt.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | REST</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_rest`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_rest.yaml`](entities/input_boolean/auto_reload/auto_reload_rest.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | REST Command</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_rest_command`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_rest_command.yaml`](entities/input_boolean/auto_reload/auto_reload_rest_command.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Scene</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_scene`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_scene.yaml`](entities/input_boolean/auto_reload/auto_reload_scene.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Schedule</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_schedule`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_schedule.yaml`](entities/input_boolean/auto_reload/auto_reload_schedule.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Script</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_script`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_script.yaml`](entities/input_boolean/auto_reload/auto_reload_script.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Template</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_template`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_template.yaml`](entities/input_boolean/auto_reload/auto_reload_template.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Timer</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_timer`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_timer.yaml`](entities/input_boolean/auto_reload/auto_reload_timer.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Universal</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_universal`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_universal.yaml`](entities/input_boolean/auto_reload/auto_reload_universal.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Var</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_var`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_var.yaml`](entities/input_boolean/auto_reload/auto_reload_var.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Zone</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_zone`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_zone.yaml`](entities/input_boolean/auto_reload/auto_reload_zone.yaml)
 </details>
 
 <details><summary><strong>Debug with Persistent Notifications</strong></summary>
