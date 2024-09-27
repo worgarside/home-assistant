@@ -1,0 +1,115 @@
+---
+alias: /homeassistant/handle-service-reload
+
+id: homeassistant_handle_service_reload
+
+mode: queued
+
+trigger:
+  platform: event
+  event_type: folder_watcher
+  event_data:
+    event_type: modified
+
+variables:
+  domain: "{{ trigger.event.data.path.split('/')[3] }}"
+
+  service_mapping:
+    media_player: universal
+    template_triggered: template
+
+  service: "{{ service_mapping.get(domain, domain) }}"
+
+  orig_service_queue: "{{ state_attr('var.auto_reload_queue', 'service_queue') or [] }}"
+
+  reloadable_services:
+    - automation
+    - command_line
+    - conversation
+    - group
+    - input_boolean
+    - input_button
+    - input_datetime
+    - input_number
+    - input_select
+    - input_text
+    - mqtt
+    - rest
+    - rest_command
+    - scene
+    - schedule
+    - script
+    - template
+    - timer
+    - universal
+    - var
+    - zone
+
+  auto_reload_boolean: input_boolean.auto_reload_{{ service }}
+
+condition: >-
+  {{
+    trigger.event.data.path.startswith('/config/entities') and
+    service in reloadable_services
+  }}
+
+action:
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      variables:
+        notification_title: Auto-Reload Required for `{{ service }}`
+        message: >-
+          Triggered by `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
+        notification_id: "{{ service }}_auto_reload_required"
+
+  - variables:
+      orig_files: "{{ state_attr('var.auto_reload_queue', 'files') or [] }}"
+
+      new_files: >-
+        {{
+          iif(
+            trigger.event.data.file in orig_files,
+            orig_files,
+            orig_files + [trigger.event.data.file]
+          )
+        }}
+
+      new_service_queue: >-
+        {{
+          iif(
+            service in orig_service_queue,
+            orig_service_queue,
+            orig_service_queue + [service]
+          )
+        }}
+
+  - service: var.set
+    target:
+      entity_id: var.auto_reload_queue
+    data:
+      value: "{{ new_service_queue | length }}"
+      attributes: >-
+        {{
+          {
+            "files":  new_files | to_json,
+            "service_queue": new_service_queue | to_json
+          }
+        }}
+
+  - if: "{{ is_state(auto_reload_boolean, 'on') }}"
+
+    then:
+      - service: script.turn_on
+        target:
+          entity_id: script.debug_persistent_notification
+        data:
+          variables:
+            notification_title: Auto-Reloading `{{ service }}` Entities
+            message: >-
+              Reloading {{ service }} entities. Triggered by
+              `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
+            notification_id: "{{ service }}_auto_reload"
+
+      - service: "{{ service }}.reload"

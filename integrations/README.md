@@ -600,6 +600,55 @@ File: [`automation/homeassistant/clear_queued_service_reload.yaml`](entities/aut
 File: [`automation/homeassistant/clear_service_reload_queue_on_start.yaml`](entities/automation/homeassistant/clear_service_reload_queue_on_start.yaml)
 </details>
 
+<details><summary><code>/homeassistant/handle-service-reload</code></summary>
+
+**Entity ID: `automation.homeassistant_handle_service_reload`**
+
+> *No description provided*
+
+- Alias: /homeassistant/handle-service-reload
+- ID: `homeassistant_handle_service_reload`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "domain": "{{ trigger.event.data.path.split('/')[3] }}",
+  "service_mapping": {
+    "media_player": "universal",
+    "template_triggered": "template"
+  },
+  "service": "{{ service_mapping.get(domain, domain) }}",
+  "orig_service_queue": "{{ state_attr('var.auto_reload_queue', 'service_queue') or [] }}",
+  "reloadable_services": [
+    "automation",
+    "command_line",
+    "conversation",
+    "group",
+    "input_boolean",
+    "input_button",
+    "input_datetime",
+    "input_number",
+    "input_select",
+    "input_text",
+    "mqtt",
+    "rest",
+    "rest_command",
+    "scene",
+    "schedule",
+    "script",
+    "template",
+    "timer",
+    "universal",
+    "var",
+    "zone"
+  ],
+  "auto_reload_boolean": "input_boolean.auto_reload_{{ service }}"
+}
+```
+File: [`automation/homeassistant/handle_service_reload.yaml`](entities/automation/homeassistant/handle_service_reload.yaml)
+</details>
+
 <details><summary><code>/homeassistant/load-gh-cli-on-start</code></summary>
 
 **Entity ID: `automation.homeassistant_load_gh_cli_on_start`**
@@ -611,30 +660,6 @@ File: [`automation/homeassistant/clear_service_reload_queue_on_start.yaml`](enti
 - Mode: `single`
 
 File: [`automation/homeassistant/load_gh_cli_on_start.yaml`](entities/automation/homeassistant/load_gh_cli_on_start.yaml)
-</details>
-
-<details><summary><code>/homeassistant/queue-service-reload</code></summary>
-
-**Entity ID: `automation.homeassistant_queue_service_reload`**
-
-> *No description provided*
-
-- Alias: /homeassistant/queue-service-reload
-- ID: `homeassistant_queue_service_reload`
-- Mode: `queued`
-- Variables:
-
-```json
-{
-  "domain": "{{ trigger.event.data.path.split('/')[3] }}",
-  "service_mapping": {
-    "media_player": "universal",
-    "template_triggered": "template"
-  },
-  "service": "{{ service_mapping.get(domain, domain) }}"
-}
-```
-File: [`automation/homeassistant/queue_service_reload.yaml`](entities/automation/homeassistant/queue_service_reload.yaml)
 </details>
 
 <details><summary><code>/hue-remote/bedroom/button-1/long-press</code></summary>
