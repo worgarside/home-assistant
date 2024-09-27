@@ -5937,15 +5937,6 @@ File: [`template/binary_sensor/raspberry_pi_online/rtropi_online.yaml`](entities
 File: [`template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml)
 </details>
 
-<details><summary><strong>ST MacBook Pro Docked</strong></summary>
-
-**Entity ID: `binary_sensor.st_macbook_pro_docked`**
-
-- Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
-
-File: [`template/binary_sensor/st_macbook_pro_docked.yaml`](entities/template/binary_sensor/st_macbook_pro_docked.yaml)
-</details>
-
 <details><summary><strong>Vic at Work</strong></summary>
 
 **Entity ID: `binary_sensor.vic_at_work`**
@@ -5980,6 +5971,15 @@ File: [`template/binary_sensor/weekend.yaml`](entities/template/binary_sensor/we
 - Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
 
 File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/template/binary_sensor/will_s_macbook_pro_docked.yaml)
+</details>
+
+<details><summary><strong>Work MacBook Pro Docked</strong></summary>
+
+**Entity ID: `binary_sensor.work_macbook_pro_docked`**
+
+- Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
+
+File: [`template/binary_sensor/work_macbook_pro_docked.yaml`](entities/template/binary_sensor/work_macbook_pro_docked.yaml)
 </details>
 
 <details><summary><strong>Prusa i3 Thumbnail</strong></summary>
