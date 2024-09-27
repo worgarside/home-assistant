@@ -3,6 +3,20 @@
 ## Automation
 
 <details><summary><h3>Entities (111)</h3></summary>
+<details><summary><h3>Entities (115)</h3></summary>
+
+<details><summary><code>/automation/auto-reload</code></summary>
+
+**Entity ID: `automation.automation_auto_reload`**
+
+> *No description provided*
+
+- Alias: /automation/auto-reload
+- ID: `automation_auto_reload`
+- Mode: `single`
+
+File: [`automation/automation/auto_reload.yaml`](entities/automation/automation/auto_reload.yaml)
+</details>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -862,6 +876,19 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 - Mode: `restart`
 
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
+</details>
+
+<details><summary><code>/light/desk-lamp/turn-on</code></summary>
+
+**Entity ID: `automation.light_desk_lamp_turn_on`**
+
+> Turn the desk lamp on when someone enters the room, all of the lights are off, and the blinds are down
+
+- Alias: /light/desk-lamp/turn-on
+- ID: `light_desk_lamp_turn_on`
+- Mode: `single`
+
+File: [`automation/light/desk_lamp/turn_on.yaml`](entities/automation/light/desk_lamp/turn_on.yaml)
 </details>
 
 <details><summary><code>/light/kitchen-spotlights/on-off</code></summary>
