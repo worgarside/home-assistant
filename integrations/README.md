@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (113)</h3></summary>
+<details><summary><h3>Entities (114)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -579,6 +579,25 @@ File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](
 }
 ```
 File: [`automation/homeassistant/clear_queued_service_reload.yaml`](entities/automation/homeassistant/clear_queued_service_reload.yaml)
+</details>
+
+<details><summary><code>/homeassistant/clear-service-reload-queue-on-start</code></summary>
+
+**Entity ID: `automation.homeassistant_clear_service_reload_queue_on_start`**
+
+> *No description provided*
+
+- Alias: /homeassistant/clear-service-reload-queue-on-start
+- ID: `homeassistant_clear_service_reload_queue_on_start`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "empty_list": []
+}
+```
+File: [`automation/homeassistant/clear_service_reload_queue_on_start.yaml`](entities/automation/homeassistant/clear_service_reload_queue_on_start.yaml)
 </details>
 
 <details><summary><code>/homeassistant/load-gh-cli-on-start</code></summary>
