@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (112)</h3></summary>
+<details><summary><h3>Entities (113)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -559,6 +559,19 @@ File: [`automation/hassio/auto_restart_mariadb_add_on.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](entities/automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml)
+</details>
+
+<details><summary><code>/homeassistant/clear-queued-service-reload</code></summary>
+
+**Entity ID: `automation.homeassistant_clear_queued_service_reload`**
+
+> *No description provided*
+
+- Alias: /homeassistant/clear-queued-service-reload
+- ID: `homeassistant_clear_queued_service_reload`
+- Mode: `queued`
+
+File: [`automation/homeassistant/clear_queued_service_reload.yaml`](entities/automation/homeassistant/clear_queued_service_reload.yaml)
 </details>
 
 <details><summary><code>/homeassistant/load-gh-cli-on-start</code></summary>

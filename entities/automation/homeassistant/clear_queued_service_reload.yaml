@@ -1,0 +1,25 @@
+---
+alias: /homeassistant/clear-queued-service-reload
+
+id: homeassistant_clear_queued_service_reload
+
+mode: queued
+
+trigger:
+  platform: event
+  event_type: call_service
+  event_data:
+    service: reload
+
+action:
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      variables:
+        notification_title: Domain Reloaded
+        notification_id: domain_reloaded
+        message: |
+          ```json
+          {{ trigger.event | tojson(indent=2) }}
+          ```
