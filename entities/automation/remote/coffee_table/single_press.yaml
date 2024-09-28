@@ -80,7 +80,6 @@ action:
             - kitchen
           entity_id:
             - light.disco_light
-            - light.globe_lamp
             - light.table_lamp
 
       - service: media_player.media_stop
@@ -91,5 +90,10 @@ action:
 
         then:
           - service: light.turn_on
+            target:
+              entity_id: light.globe_lamp
+
+        else:
+          - service: light.turn_off
             target:
               entity_id: light.globe_lamp
