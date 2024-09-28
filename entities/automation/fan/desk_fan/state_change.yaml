@@ -7,7 +7,7 @@ mode: single
 
 trigger:
   - platform: state
-    entity_id: fan.desk
+    entity_id: fan.desk_fan
     to:
       - "on"
       - "off"
