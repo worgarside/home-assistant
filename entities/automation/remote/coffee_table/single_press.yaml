@@ -86,3 +86,10 @@ action:
       - service: media_player.media_stop
         target:
           entity_id: media_player.lounge_speakers
+
+      - if: "{{ is_state('cover.lounge_blinds', 'closed') }}"
+
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.globe_lamp
