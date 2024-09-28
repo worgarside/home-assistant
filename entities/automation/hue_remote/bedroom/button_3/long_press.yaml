@@ -1,0 +1,42 @@
+---
+alias: /hue-remote/bedroom/button-3/long-press
+
+id: hue_remote_bedroom_button_3_long_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - device_id: e3f173c8f45e900d5fbb650b8631585c
+    domain: hue
+    platform: device
+    type: long_press
+    subtype: 3
+
+action:
+  - parallel:
+      - if: "{{ is_state('light.glowstick', 'on') }}"
+
+        then:
+          - service: hue.activate_scene
+            target:
+              entity_id: scene.bedroom_gummy
+            data:
+              brightness: >-
+                {{
+                  max(
+                    state_attr("light.glowstick", "brightness") | int(64) - 64,
+                    0
+                  )
+                }}
+
+      - if: "{{ is_state('light.moomin_box', 'on') }}"
+
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.moomin_box
+            data:
+              brightness: >-
+                {{ max(state_attr("light.moomin_box", "brightness") | int(64) - 64, 0) }}

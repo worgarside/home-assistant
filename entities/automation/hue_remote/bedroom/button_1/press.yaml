@@ -18,9 +18,21 @@ action:
   - service: hue.activate_scene
     target:
       entity_id: scene.bedroom_gummy
+    data:
+      brightness: >-
+        {{
+          (
+            (
+              max(
+                states('sensor.lighting_modifier') | int(70),
+                50
+              ) * 255
+            ) / 100
+          ) | int
+        }}
 
   - service: light.turn_on
     target:
-      area_id: bedroom
+      entity_id: light.moomin_box
     data:
-      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+      brightness_pct: "{{ max( states('sensor.lighting_modifier') | int(70), 50) }}"
