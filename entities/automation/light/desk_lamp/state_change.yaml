@@ -12,7 +12,6 @@ trigger:
       - "on"
       - "off"
 
-
 action:
   - service: var.set
     target:
