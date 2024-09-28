@@ -1,0 +1,21 @@
+---
+alias: /fan/desk-fan/state-change
+
+id: fan_desk_fan_state_change
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: fan.desk_fan
+    to:
+      - "on"
+      - "off"
+
+action:
+  - service: var.set
+    target:
+      entity_id: var.will_s_desk_state_manager
+    data:
+      attributes:
+        fan.desk_fan: "{{ trigger.to_state.state | bool }}"

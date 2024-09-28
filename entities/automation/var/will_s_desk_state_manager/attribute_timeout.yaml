@@ -1,0 +1,51 @@
+---
+alias: /var/will-s-desk-state-manager/attribute-timeout
+
+id: var_will_s_desk_state_manager_attribute_timeout
+
+description: Timeout for "should be" on/off attributes of Will's desk state manager
+
+mode: queued
+
+trigger:
+  - platform: template
+    id: fan.desk_fan
+    value_template: >-
+      {{
+        state_attr('var.will_s_desk_state_manager', 'fan.desk_fan') | bool(false)
+        and is_state("fan.desk_fan", "off")
+      }}
+    for:
+      hours: 1
+
+  - platform: template
+    id: light.desk_lamp
+    value_template: >-
+      {{
+        state_attr('var.will_s_desk_state_manager', 'light.desk_lamp') | bool(false)
+        and is_state("light.desk_lamp", "off")
+      }}
+    for:
+      hours: 1
+
+  - platform: template
+    id: light.office_shapes
+    value_template: >-
+      {{
+        state_attr('var.will_s_desk_state_manager', 'light.office_shapes') | bool(false)
+        and is_state("light.office_shapes", "off")
+      }}
+    for:
+      hours: 1
+
+action:
+  - service: var.set
+    target:
+      entity_id: var.will_s_desk_state_manager
+    data:
+      attributes: >-
+        {{
+          {
+            trigger.id: false
+          }
+        }}

@@ -1,0 +1,91 @@
+---
+alias: /binary-sensor/will-s-desk-occupancy/state-change
+
+id: binary_sensor_will_s_desk_occupancy_state_change
+
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.will_s_desk_occupancy
+    to:
+      - "on"
+      - "off"
+
+variables:
+  state_manager: var.will_s_desk_state_manager
+
+action:
+  - if: "{{ trigger.to_state.state | bool }}"
+
+    then:
+      - parallel:
+          - if: "{{ state_attr(state_manager, 'fan.desk_fan') | bool(false) }}"
+            then:
+              - service: fan.turn_on
+                target:
+                  entity_id: fan.desk_fan
+
+          - if: "{{ state_attr(state_manager, 'light.desk_lamp') | bool(false) }}"
+            then:
+              - service: light.turn_on
+                target:
+                  entity_id: light.desk_lamp
+
+          - if: "{{ state_attr(state_manager, 'light.office_shapes') | bool(false) }}"
+            then:
+              - service: light.turn_on
+                target:
+                  entity_id: light.office_shapes
+
+    else:
+      - variables:
+          desk_fan: "{{ is_state('fan.desk_fan', 'on') }}"
+          desk_lamp: "{{ is_state('light.desk_lamp', 'on') }}"
+          office_shapes: "{{ is_state('light.office_shapes', 'on') }}"
+
+      - parallel:
+          - if: "{{ desk_fan }}"
+            then:
+              - service: fan.turn_off
+                target:
+                  entity_id: fan.desk_fan
+
+              - wait_template: >-
+                  {{ state_attr(state_manager, 'fan.desk_fan') | bool(false) is false }}
+                timeout:
+                  seconds: 10
+                continue_on_timeout: true
+
+          - if: "{{ desk_lamp }}"
+            then:
+              - service: light.turn_off
+                target:
+                  entity_id: light.desk_lamp
+
+              - wait_template: >-
+                  {{ state_attr(state_manager, 'light.desk_lamp') | bool(false) is false }}
+                timeout:
+                  seconds: 10
+                continue_on_timeout: true
+
+          - if: "{{ office_shapes }}"
+            then:
+              - service: light.turn_off
+                target:
+                  entity_id: light.office_shapes
+
+              - wait_template: >-
+                  {{ state_attr(state_manager, 'light.office_shapes') | bool(false) is false }}
+                timeout:
+                  seconds: 10
+                continue_on_timeout: true
+
+      - service: var.set
+        target:
+          entity_id: "{{ state_manager }}"
+        data:
+          attributes:
+            fan.desk_fan: "{{ desk_fan }}"
+            light.desk_lamp: "{{ desk_lamp }}"
+            light.office_shapes: "{{ office_shapes }}"
