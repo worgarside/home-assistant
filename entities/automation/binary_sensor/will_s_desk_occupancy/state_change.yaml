@@ -35,28 +35,44 @@ action:
               entity_id: light.office_shapes
 
     else:
-      - service: input_boolean.turn_off
-        target:
-          entity_id: input_boolean.sync_will_s_desk_state_manager
-
       - if: "{{ is_state('fan.desk_fan', 'on') }}"
         then:
+          - service: automation.turn_off
+            target:
+              entity_id: automation.fan_desk_fan_state_change
+
           - service: fan.turn_off
             target:
               entity_id: fan.desk_fan
 
+          - service: automation.turn_on
+            target:
+              entity_id: automation.fan_desk_fan_state_change
+
       - if: "{{ is_state('light.desk_lamp', 'on') }}"
         then:
+          - service: automation.turn_off
+            target:
+              entity_id: automation.light_desk_lamp_state_change
+
           - service: light.turn_off
             target:
               entity_id: light.desk_lamp
 
+          - service: automation.turn_on
+            target:
+              entity_id: automation.light_desk_lamp_state_change
+
       - if: "{{ is_state('light.office_shapes', 'on') }}"
         then:
+          - service: automation.turn_off
+            target:
+              entity_id: automation.light_office_shapes_state_change
+
           - service: light.turn_off
             target:
               entity_id: light.office_shapes
 
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.sync_will_s_desk_state_manager
+          - service: automation.turn_on
+            target:
+              entity_id: automation.light_office_shapes_state_change
