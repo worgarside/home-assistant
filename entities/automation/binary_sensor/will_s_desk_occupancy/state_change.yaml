@@ -38,11 +38,6 @@ action:
               entity_id: light.office_shapes
 
     else:
-      - variables:
-          desk_fan: false
-          desk_lamp: false
-          office_shapes: false
-
       - parallel:
           - if: "{{ is_state('fan.desk_fan', 'on') }}"
             then:
@@ -94,6 +89,6 @@ action:
           entity_id: "{{ state_manager }}"
         data:
           attributes:
-            fan.desk_fan: "{{ desk_fan }}"
-            light.desk_lamp: "{{ desk_lamp }}"
-            light.office_shapes: "{{ office_shapes }}"
+            fan.desk_fan: "{{ desk_fan | default(false) }}"
+            light.desk_lamp: "{{ desk_lamp | default(false) }}"
+            light.office_shapes: "{{ office_shapes | default(false) }}"
