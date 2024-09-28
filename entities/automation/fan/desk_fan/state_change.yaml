@@ -12,10 +12,6 @@ trigger:
       - "on"
       - "off"
 
-condition:
-  - condition: state
-    entity_id: input_boolean.sync_will_s_desk_state_manager
-    state: "on"
 
 action:
   - service: var.set

@@ -105,7 +105,13 @@ File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binar
 - Alias: /binary-sensor/will-s-desk-occupancy/state-change
 - ID: `binary_sensor_will_s_desk_occupancy_state_change`
 - Mode: `queued`
+- Variables:
 
+```json
+{
+  "state_manager": "var.will_s_desk_state_manager"
+}
+```
 File: [`automation/binary_sensor/will_s_desk_occupancy/state_change.yaml`](entities/automation/binary_sensor/will_s_desk_occupancy/state_change.yaml)
 </details>
 
@@ -2226,7 +2232,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -2469,15 +2475,6 @@ File: [`input_boolean/mini_crt_power.yaml`](entities/input_boolean/mini_crt_powe
 - Icon: [`mdi:album`](https://pictogrammers.com/library/mdi/icon/album/)
 
 File: [`input_boolean/office_shapes_artwork_mapping_active.yaml`](entities/input_boolean/office_shapes_artwork_mapping_active.yaml)
-</details>
-
-<details><summary><strong>Sync Will's Desk State Manager</strong></summary>
-
-**Entity ID: `input_boolean.sync_will_s_desk_state_manager`**
-
-- Icon: [`mdi:database-sync`](https://pictogrammers.com/library/mdi/icon/database-sync/)
-
-File: [`input_boolean/sync_will_s_desk_state_manager.yaml`](entities/input_boolean/sync_will_s_desk_state_manager.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10: Is Volume Muted</strong></summary>
