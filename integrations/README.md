@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (118)</h3></summary>
+<details><summary><h3>Entities (119)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1793,6 +1793,19 @@ File: [`automation/tag/cosmo/office.yaml`](entities/automation/tag/cosmo/office.
 - Mode: `single`
 
 File: [`automation/tag/cosmo/return_to_base.yaml`](entities/automation/tag/cosmo/return_to_base.yaml)
+</details>
+
+<details><summary><code>/var/will-s-desk-state-manager/attribute-timeout</code></summary>
+
+**Entity ID: `automation.var_will_s_desk_state_manager_attribute_timeout`**
+
+> Timeout for "should be" on/off attributes of Will's desk state manager
+
+- Alias: /var/will-s-desk-state-manager/attribute-timeout
+- ID: `var_will_s_desk_state_manager_attribute_timeout`
+- Mode: `queued`
+
+File: [`automation/var/will_s_desk_state_manager/attribute_timeout.yaml`](entities/automation/var/will_s_desk_state_manager/attribute_timeout.yaml)
 </details>
 
 <details><summary><code>/webhook/get-latest-appdaemon-release</code></summary>
