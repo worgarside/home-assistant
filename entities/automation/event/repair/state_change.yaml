@@ -103,6 +103,8 @@ action:
         [![Open your Home Assistant instance and show your repairs.](https://my.home-assistant.io/badges/repairs.svg)](https://my.home-assistant.io/redirect/repairs/)
       # yamllint enable rule:line-length
 
+  - condition: "{{ not issue_entity.startswith('restart_required_') }}"
+
   - alias: Debug Notification
     service: script.turn_on
     target:
