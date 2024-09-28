@@ -1,0 +1,27 @@
+---
+alias: /homeassistant/clear-service-reload-queue-on-start
+
+id: homeassistant_clear_service_reload_queue_on_start
+
+mode: single
+
+trigger:
+  - platform: homeassistant
+    event: start
+
+variables:
+  empty_list: []
+
+action:
+  - service: var.set
+    target:
+      entity_id: var.auto_reload_queue
+    data:
+      value: 0
+      attributes: >-
+        {{
+          {
+            "service_queue": empty_list | to_json,
+            "files": empty_list | to_json,
+          }
+        }}

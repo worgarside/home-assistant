@@ -1,0 +1,19 @@
+---
+friendly_name: Auto-Reload Queue
+
+unit_of_measurement: domains
+
+icon: mdi:reload
+
+restore: true  # Otherwise `var.reload` will reset it
+
+unique_id: var_auto_reload_queue
+
+initial_value: 0
+
+attributes:
+  files: >-
+    []
+
+  service_queue: >-
+    []

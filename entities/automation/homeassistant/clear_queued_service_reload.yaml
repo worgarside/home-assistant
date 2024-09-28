@@ -1,0 +1,35 @@
+---
+alias: /homeassistant/clear-queued-service-reload
+
+id: homeassistant_clear_queued_service_reload
+
+mode: queued
+
+trigger:
+  platform: event
+  event_type: call_service
+  event_data:
+    service: reload
+
+variables:
+  domain: "{{ trigger.event.data.domain }}"
+
+  service_queue: "{{ state_attr('var.auto_reload_queue', 'service_queue') | default([]) }}"
+
+condition: "{{ domain in service_queue }}"
+
+action:
+  - variables:
+      new_service_queue: "{{ service_queue | reject('eq', domain) | list }}"
+
+  - service: var.set
+    target:
+      entity_id: var.auto_reload_queue
+    data:
+      value: "{{ new_service_queue | length }}"
+      attributes: >-
+        {{
+          {
+            "service_queue": new_service_queue | to_json
+          }
+        }}

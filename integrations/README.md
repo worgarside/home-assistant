@@ -2,20 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (115)</h3></summary>
-
-<details><summary><code>/automation/auto-reload</code></summary>
-
-**Entity ID: `automation.automation_auto_reload`**
-
-> *No description provided*
-
-- Alias: /automation/auto-reload
-- ID: `automation_auto_reload`
-- Mode: `single`
-
-File: [`automation/automation/auto_reload.yaml`](entities/automation/automation/auto_reload.yaml)
-</details>
+<details><summary><h3>Entities (114)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -412,7 +399,7 @@ File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
 
 **Entity ID: `automation.event_repair_state_change`**
 
-> Get Cosmo to clean a room immediately, triggered from a mobile notification
+> Log repairs to the Home Assistant GitHub repository
 
 - Alias: /event/repair/state-change
 - ID: `event_repair_state_change`
@@ -572,6 +559,94 @@ File: [`automation/hassio/auto_restart_mariadb_add_on.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](entities/automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml)
+</details>
+
+<details><summary><code>/homeassistant/clear-queued-service-reload</code></summary>
+
+**Entity ID: `automation.homeassistant_clear_queued_service_reload`**
+
+> *No description provided*
+
+- Alias: /homeassistant/clear-queued-service-reload
+- ID: `homeassistant_clear_queued_service_reload`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "domain": "{{ trigger.event.data.domain }}",
+  "service_queue": "{{ state_attr('var.auto_reload_queue', 'service_queue') | default([]) }}"
+}
+```
+File: [`automation/homeassistant/clear_queued_service_reload.yaml`](entities/automation/homeassistant/clear_queued_service_reload.yaml)
+</details>
+
+<details><summary><code>/homeassistant/clear-service-reload-queue-on-start</code></summary>
+
+**Entity ID: `automation.homeassistant_clear_service_reload_queue_on_start`**
+
+> *No description provided*
+
+- Alias: /homeassistant/clear-service-reload-queue-on-start
+- ID: `homeassistant_clear_service_reload_queue_on_start`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "empty_list": []
+}
+```
+File: [`automation/homeassistant/clear_service_reload_queue_on_start.yaml`](entities/automation/homeassistant/clear_service_reload_queue_on_start.yaml)
+</details>
+
+<details><summary><code>/homeassistant/handle-service-reload</code></summary>
+
+**Entity ID: `automation.homeassistant_handle_service_reload`**
+
+> *No description provided*
+
+- Alias: /homeassistant/handle-service-reload
+- ID: `homeassistant_handle_service_reload`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "domain": "{{ trigger.event.data.path.split('/')[3] }}",
+  "service_mapping": {
+    "media_player": "universal",
+    "template_triggered": "template"
+  },
+  "service": "{{ service_mapping.get(domain, domain) }}",
+  "orig_service_queue": "{{ state_attr('var.auto_reload_queue', 'service_queue') or [] }}",
+  "reloadable_services": [
+    "automation",
+    "command_line",
+    "conversation",
+    "group",
+    "input_boolean",
+    "input_button",
+    "input_datetime",
+    "input_number",
+    "input_select",
+    "input_text",
+    "mqtt",
+    "rest",
+    "rest_command",
+    "scene",
+    "schedule",
+    "script",
+    "template",
+    "timer",
+    "universal",
+    "var",
+    "zone"
+  ],
+  "auto_reload_boolean": "input_boolean.auto_reload_{{ service }}"
+}
+```
+File: [`automation/homeassistant/handle_service_reload.yaml`](entities/automation/homeassistant/handle_service_reload.yaml)
 </details>
 
 <details><summary><code>/homeassistant/load-gh-cli-on-start</code></summary>
@@ -1068,32 +1143,6 @@ File: [`automation/notification/prusa_i3/print_completed.yaml`](entities/automat
 File: [`automation/notification/prusa_i3/user_input_required.yaml`](entities/automation/notification/prusa_i3/user_input_required.yaml)
 </details>
 
-<details><summary><code>/notification/system/reload-required/send</code></summary>
-
-**Entity ID: `automation.notification_system_reload_required_send`**
-
-> *No description provided*
-
-- Alias: /notification/system/reload-required/send
-- ID: `notification_system_reload_required_send`
-- Mode: `restart`
-
-File: [`automation/notification/system/reload_required/send.yaml`](entities/automation/notification/system/reload_required/send.yaml)
-</details>
-
-<details><summary><code>/notification/system/restart-required/send</code></summary>
-
-**Entity ID: `automation.notification_system_restart_required_send`**
-
-> *No description provided*
-
-- Alias: /notification/system/restart-required/send
-- ID: `notification_system_restart_required_send`
-- Mode: `single`
-
-File: [`automation/notification/system/restart_required/send.yaml`](entities/automation/notification/system/restart_required/send.yaml)
-</details>
-
 <details><summary><code>/octopi/cpu-fan-control</code></summary>
 
 **Entity ID: `automation.octopi_cpu_fan_control`**
@@ -1469,19 +1518,6 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
-</details>
-
-<details><summary><code>/script/auto-reload</code></summary>
-
-**Entity ID: `automation.script_auto_reload`**
-
-> *No description provided*
-
-- Alias: /script/auto-reload
-- ID: `script_auto_reload`
-- Mode: `single`
-
-File: [`automation/script/auto_reload.yaml`](entities/automation/script/auto_reload.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>
@@ -2138,7 +2174,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (7)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -2147,6 +2183,195 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 - Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
 
 File: [`input_boolean/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/input_boolean/appdaemon_trigger/ad_monzo_auto_save.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Automation</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_automation`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_automation.yaml`](entities/input_boolean/auto_reload/auto_reload_automation.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Command Line</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_command_line`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_command_line.yaml`](entities/input_boolean/auto_reload/auto_reload_command_line.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Conversation</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_conversation`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_conversation.yaml`](entities/input_boolean/auto_reload/auto_reload_conversation.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Group</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_group`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_group.yaml`](entities/input_boolean/auto_reload/auto_reload_group.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Boolean</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_boolean`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_boolean.yaml`](entities/input_boolean/auto_reload/auto_reload_input_boolean.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Button</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_button`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_button.yaml`](entities/input_boolean/auto_reload/auto_reload_input_button.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Datetime</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_datetime`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_datetime.yaml`](entities/input_boolean/auto_reload/auto_reload_input_datetime.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Number</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_number`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_number.yaml`](entities/input_boolean/auto_reload/auto_reload_input_number.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Select</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_select`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_select.yaml`](entities/input_boolean/auto_reload/auto_reload_input_select.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Input Text</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_input_text`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_input_text.yaml`](entities/input_boolean/auto_reload/auto_reload_input_text.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | MQTT</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_mqtt`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_mqtt.yaml`](entities/input_boolean/auto_reload/auto_reload_mqtt.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | REST</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_rest`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_rest.yaml`](entities/input_boolean/auto_reload/auto_reload_rest.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | REST Command</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_rest_command`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_rest_command.yaml`](entities/input_boolean/auto_reload/auto_reload_rest_command.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Scene</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_scene`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_scene.yaml`](entities/input_boolean/auto_reload/auto_reload_scene.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Schedule</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_schedule`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_schedule.yaml`](entities/input_boolean/auto_reload/auto_reload_schedule.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Script</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_script`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_script.yaml`](entities/input_boolean/auto_reload/auto_reload_script.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Template</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_template`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_template.yaml`](entities/input_boolean/auto_reload/auto_reload_template.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Timer</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_timer`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_timer.yaml`](entities/input_boolean/auto_reload/auto_reload_timer.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Universal</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_universal`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_universal.yaml`](entities/input_boolean/auto_reload/auto_reload_universal.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Var</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_var`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_var.yaml`](entities/input_boolean/auto_reload/auto_reload_var.yaml)
+</details>
+
+<details><summary><strong>Auto-Reload | Zone</strong></summary>
+
+**Entity ID: `input_boolean.auto_reload_zone`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+
+File: [`input_boolean/auto_reload/auto_reload_zone.yaml`](entities/input_boolean/auto_reload/auto_reload_zone.yaml)
 </details>
 
 <details><summary><strong>Debug with Persistent Notifications</strong></summary>
@@ -6902,7 +7127,17 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (16)</h3></summary>
+<details><summary><h3>Entities (17)</h3></summary>
+
+<details><summary><strong>Auto-Reload Queue</strong></summary>
+
+**Entity ID: `var.auto_reload_queue`**
+
+- Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
+- Unit Of Measurement: `domains`
+
+File: [`var/auto_reload_queue.yaml`](entities/var/auto_reload_queue.yaml)
+</details>
 
 <details><summary><strong>Auto-Save Amount</strong></summary>
 
