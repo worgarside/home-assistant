@@ -53,7 +53,8 @@ action:
             target:
               entity_id: "{{ state_manager }}"
             data:
-              fan.desk_fan: true
+              attributes:
+                fan.desk_fan: true
 
       - if: "{{ is_state('light.desk_lamp', 'on') }}"
         then:
@@ -71,7 +72,8 @@ action:
             target:
               entity_id: "{{ state_manager }}"
             data:
-              light.desk_lamp: true
+              attributes:
+                light.desk_lamp: true
 
       - if: "{{ is_state('light.office_shapes', 'on') }}"
         then:
@@ -89,4 +91,5 @@ action:
             target:
               entity_id: "{{ state_manager }}"
             data:
-              light.office_shapes: true
+              attributes:
+                light.office_shapes: true
