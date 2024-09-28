@@ -1,0 +1,62 @@
+---
+alias: /binary-sensor/will-s-desk-occupancy/state-change
+
+id: binary_sensor_will_s_desk_occupancy_state_change
+
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.will_s_desk_occupancy
+    to:
+      - "on"
+      - "off"
+
+action:
+  - if: "{{ trigger.to_state.state | bool }}"
+
+    then:
+      - if: "{{ state_attr('var.will_s_desk_state_manager', 'fan.desk_fan') | bool(false) }}"
+        then:
+          - service: fan.turn_on
+            target:
+              entity_id: fan.desk_fan
+
+      - if: "{{ state_attr('var.will_s_desk_state_manager', 'light.desk_lamp') | bool(false) }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.desk_lamp
+
+      - if: "{{ state_attr('var.will_s_desk_state_manager', 'light.office_shapes') | bool(false) }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.office_shapes
+
+    else:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.sync_will_s_desk_state_manager
+
+      - if: "{{ is_state('fan.desk_fan', 'on') }}"
+        then:
+          - service: fan.turn_off
+            target:
+              entity_id: fan.desk_fan
+
+      - if: "{{ is_state('light.desk_lamp', 'on') }}"
+        then:
+          - service: light.turn_off
+            target:
+              entity_id: light.desk_lamp
+
+      - if: "{{ is_state('light.office_shapes', 'on') }}"
+        then:
+          - service: light.turn_off
+            target:
+              entity_id: light.office_shapes
+
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.sync_will_s_desk_state_manager

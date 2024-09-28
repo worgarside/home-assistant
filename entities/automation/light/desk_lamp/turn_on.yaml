@@ -29,17 +29,3 @@ action:
       entity_id: light.desk_lamp
     data:
       brightness_pct: "{{ max(states('sensor.lighting_modifier') | int(50), 30) }}"
-
-  - wait_for_trigger:
-      - platform: state
-        entity_id: binary_sensor.will_s_desk_occupancy
-        to: "off"
-        for:
-          seconds: 5
-    timeout:
-      minutes: 15
-    continue_on_timeout: false
-
-  - service: light.turn_off
-    target:
-      entity_id: light.desk_lamp

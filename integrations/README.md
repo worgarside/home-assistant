@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (117)</h3></summary>
+<details><summary><h3>Entities (118)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -94,6 +94,19 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 }
 ```
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/will-s-desk-occupancy/state-change</code></summary>
+
+**Entity ID: `automation.binary_sensor_will_s_desk_occupancy_state_change`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/will-s-desk-occupancy/state-change
+- ID: `binary_sensor_will_s_desk_occupancy_state_change`
+- Mode: `queued`
+
+File: [`automation/binary_sensor/will_s_desk_occupancy/state_change.yaml`](entities/automation/binary_sensor/will_s_desk_occupancy/state_change.yaml)
 </details>
 
 <details><summary><code>/cosmo/clean-due</code></summary>
@@ -7346,7 +7359,6 @@ File: [`var/truelayer/truelayer_balance_starling_joint_account.yaml`](entities/v
 **Entity ID: `var.will_s_desk_state_manager`**
 
 - Icon: [`mdi:database-settings-outline`](https://pictogrammers.com/library/mdi/icon/database-settings-outline/)
-- Unit Of Measurement: `domains`
 
 File: [`var/will_s_desk_state_manager.yaml`](entities/var/will_s_desk_state_manager.yaml)
 </details>
