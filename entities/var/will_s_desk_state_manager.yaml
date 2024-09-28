@@ -1,0 +1,23 @@
+---
+# Used for storing "should be" states for entities at Will's desk
+# e.g. the fan should be on, but the desk is unoccupied so the fan entity is off; when the desk is
+# occupied again, the fan entity will be re-set to on.
+
+friendly_name: Will's Desk State Manager
+
+unit_of_measurement: domains
+
+icon: mdi:database-settings-outline
+
+restore: true
+
+unique_id: var_will_s_desk_state_manager
+
+initial_value: 0 # Not used
+
+attributes:
+  fan.desk_fan: false
+
+  light.desk_lamp: false
+
+  light.office_shapes: false

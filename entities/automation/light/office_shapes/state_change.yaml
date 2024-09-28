@@ -1,0 +1,26 @@
+---
+alias: /light/office-shapes/state-change
+
+id: light_office_shapes_state_change
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: light.office_shapes
+    to:
+      - "on"
+      - "off"
+
+condition:
+  - condition: state
+    entity_id: input_boolean.sync_will_s_desk_state_manager
+    state: "on"
+
+action:
+  - service: var.set
+    target:
+      entity_id: var.will_s_desk_state_manager
+    data:
+      attributes:
+        light.office_shapes: "{{ trigger.to_state.state | bool }}"

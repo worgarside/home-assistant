@@ -1,0 +1,26 @@
+---
+alias: /light/desk-lamp/state-change
+
+id: light_desk_lamp_state_change
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: light.desk_lamp
+    to:
+      - "on"
+      - "off"
+
+condition:
+  - condition: state
+    entity_id: input_boolean.sync_will_s_desk_state_manager
+    state: "on"
+
+action:
+  - service: var.set
+    target:
+      entity_id: var.will_s_desk_state_manager
+    data:
+      attributes:
+        light.desk_lamp: "{{ trigger.to_state.state | bool }}"

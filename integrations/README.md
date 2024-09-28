@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (114)</h3></summary>
+<details><summary><h3>Entities (117)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -463,6 +463,19 @@ File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
 }
 ```
 File: [`automation/event/repair/state_change.yaml`](entities/automation/event/repair/state_change.yaml)
+</details>
+
+<details><summary><code>/fan/desk-fan/state-change</code></summary>
+
+**Entity ID: `automation.fan_desk_fan_state_change`**
+
+> *No description provided*
+
+- Alias: /fan/desk-fan/state-change
+- ID: `fan_desk_fan_state_change`
+- Mode: `single`
+
+File: [`automation/fan/desk_fan/state_change.yaml`](entities/automation/fan/desk_fan/state_change.yaml)
 </details>
 
 <details><summary><code>/fan/prusa-i3-enclosure-fan/turn-off</code></summary>
@@ -928,6 +941,19 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
+<details><summary><code>/light/desk-lamp/state-change</code></summary>
+
+**Entity ID: `automation.light_desk_lamp_state_change`**
+
+> *No description provided*
+
+- Alias: /light/desk-lamp/state-change
+- ID: `light_desk_lamp_state_change`
+- Mode: `single`
+
+File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light/desk_lamp/state_change.yaml)
+</details>
+
 <details><summary><code>/light/desk-lamp/turn-on</code></summary>
 
 **Entity ID: `automation.light_desk_lamp_turn_on`**
@@ -952,6 +978,19 @@ File: [`automation/light/desk_lamp/turn_on.yaml`](entities/automation/light/desk
 - Mode: `restart`
 
 File: [`automation/light/kitchen_spotlights/on_off.yaml`](entities/automation/light/kitchen_spotlights/on_off.yaml)
+</details>
+
+<details><summary><code>/light/office-shapes/state-change</code></summary>
+
+**Entity ID: `automation.light_office_shapes_state_change`**
+
+> *No description provided*
+
+- Alias: /light/office-shapes/state-change
+- ID: `light_office_shapes_state_change`
+- Mode: `single`
+
+File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/light/office_shapes/state_change.yaml)
 </details>
 
 <details><summary><code>/media-player/topaz-sr10/off</code></summary>
@@ -2174,7 +2213,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (28)</h3></summary>
+<details><summary><h3>Entities (29)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -2417,6 +2456,15 @@ File: [`input_boolean/mini_crt_power.yaml`](entities/input_boolean/mini_crt_powe
 - Icon: [`mdi:album`](https://pictogrammers.com/library/mdi/icon/album/)
 
 File: [`input_boolean/office_shapes_artwork_mapping_active.yaml`](entities/input_boolean/office_shapes_artwork_mapping_active.yaml)
+</details>
+
+<details><summary><strong>Sync Will's Desk State Manager</strong></summary>
+
+**Entity ID: `input_boolean.sync_will_s_desk_state_manager`**
+
+- Icon: [`mdi:database-sync`](https://pictogrammers.com/library/mdi/icon/database-sync/)
+
+File: [`input_boolean/sync_will_s_desk_state_manager.yaml`](entities/input_boolean/sync_will_s_desk_state_manager.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10: Is Volume Muted</strong></summary>
@@ -7127,7 +7175,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (17)</h3></summary>
+<details><summary><h3>Entities (18)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -7291,6 +7339,16 @@ File: [`var/truelayer/truelayer_balance_starling_current_account.yaml`](entities
 - Unit Of Measurement: GBP
 
 File: [`var/truelayer/truelayer_balance_starling_joint_account.yaml`](entities/var/truelayer/truelayer_balance_starling_joint_account.yaml)
+</details>
+
+<details><summary><strong>Will's Desk State Manager</strong></summary>
+
+**Entity ID: `var.will_s_desk_state_manager`**
+
+- Icon: [`mdi:database-settings-outline`](https://pictogrammers.com/library/mdi/icon/database-settings-outline/)
+- Unit Of Measurement: `domains`
+
+File: [`var/will_s_desk_state_manager.yaml`](entities/var/will_s_desk_state_manager.yaml)
 </details>
 
 </details>
