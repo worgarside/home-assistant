@@ -13,13 +13,24 @@ trigger:
     minutes: 30
 
 condition:
-  - alias: "If standing target has not been met"
-    condition: numeric_state
-    entity_id: sensor.office_desk_standing_mode_percentage
-    below: input_number.office_desk_standing_mode_percentage_target
+  - and:
+      - alias: If standing target has not been met
+        condition: numeric_state
+        entity_id: sensor.office_desk_standing_mode_percentage
+        below: input_number.office_desk_standing_mode_percentage_target
+
+      - alias: Within working hours
+        condition: time
+        after: "09:00"
+        before: "18:00"
+
+      - alias: Not on weekend
+        condition: state
+        entity_id: binary_sensor.workday
+        state: "on"
 
 action:
-  - alias: "Send debug notification"
+  - alias: Send debug notification
     service: script.turn_on
     target:
       entity_id: script.debug_persistent_notification
@@ -27,10 +38,10 @@ action:
       variables:
         notification_title: "Work Mode: Standing Target Not Met \U0001F621"
         message: >-
-          {{ states('sensor.office_desk_standing_time_remaining') }} minutes remaining...
+          {{ states("sensor.office_desk_standing_time_remaining") }} minutes remaining...
         notification_id: cover_office_desk_work_mode
 
-  - alias: "Set desk to standing mode"
+  - alias: Set desk to standing mode
     service: script.office_desk_standing_mode
     data:
       sync_blinds: >
