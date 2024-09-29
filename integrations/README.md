@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (125)</h3></summary>
+<details><summary><h3>Entities (128)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1012,6 +1012,19 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
+<details><summary><code>/light/bedroom-lights/on</code></summary>
+
+**Entity ID: `automation.light_bedroom_lights_on`**
+
+> Run actions when the bedroom lights are turned on
+
+- Alias: /light/bedroom-lights/on
+- ID: `light_bedroom_lights_on`
+- Mode: `single`
+
+File: [`automation/light/bedroom_lights/on.yaml`](entities/automation/light/bedroom_lights/on.yaml)
+</details>
+
 <details><summary><code>/light/desk-lamp/state-change</code></summary>
 
 **Entity ID: `automation.light_desk_lamp_state_change`**
@@ -1075,6 +1088,32 @@ File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/di
 - Mode: `restart`
 
 File: [`automation/light/kitchen_spotlights/on_off.yaml`](entities/automation/light/kitchen_spotlights/on_off.yaml)
+</details>
+
+<details><summary><code>/light/lounge-lights/on</code></summary>
+
+**Entity ID: `automation.light_lounge_lights_on`**
+
+> Run actions when the lounge lights are turned on
+
+- Alias: /light/lounge-lights/on
+- ID: `light_lounge_lights_on`
+- Mode: `single`
+
+File: [`automation/light/lounge_lights/on.yaml`](entities/automation/light/lounge_lights/on.yaml)
+</details>
+
+<details><summary><code>/light/office-lights/on</code></summary>
+
+**Entity ID: `automation.light_office_lights_on`**
+
+> Run actions when the office lights are turned on
+
+- Alias: /light/office-lights/on
+- ID: `light_office_lights_on`
+- Mode: `single`
+
+File: [`automation/light/office_lights/on.yaml`](entities/automation/light/office_lights/on.yaml)
 </details>
 
 <details><summary><code>/light/office-shapes/state-change</code></summary>
