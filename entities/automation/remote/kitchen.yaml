@@ -44,7 +44,7 @@ action:
           - alias: Toggle Mini Lamp
             service: light.turn_{{ on_or_off }}
             target:
-              entity_id: light.kitchen_mini_lamp
+              entity_id: light.mini_lamp
 
       - alias: "Double Press: Set to 100%"
 
