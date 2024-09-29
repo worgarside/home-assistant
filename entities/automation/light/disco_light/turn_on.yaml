@@ -18,10 +18,19 @@ trigger:
       - "on"
       - playing
 
+  - platform: state
+    id: hifi_system_source
+    entity_id: media_player.hifi_system
+    attribute: source
+
 condition: >-
   {{
     trigger.id == "lounge_speakers_playing" or
-    state_attr("media_player.hifi_system","source") in ("HEOS Music", "Phono")
+    (
+      trigger.id.startswith("hifi_system") and
+      state_attr("media_player.hifi_system","source") in ("HEOS Music", "Phono") and
+      states("media_player.hifi_system") in ("on", "playing")
+    )
   }}
 
 action:
