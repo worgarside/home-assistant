@@ -4179,7 +4179,14 @@
                       "columns": 2
                     }
                   ]
-                },
+                }
+              ],
+              "title": "Finances",
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
                 {
                   "square": false,
                   "type": "grid",
@@ -4304,13 +4311,7 @@
                   "line_width": 2,
                   "font_size": 75
                 }
-              ],
-              "title": "Finances",
-              "column_span": 1
-            },
-            {
-              "type": "grid",
-              "cards": []
+              ]
             }
           ]
         },
