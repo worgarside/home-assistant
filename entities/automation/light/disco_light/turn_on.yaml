@@ -1,0 +1,30 @@
+---
+alias: /light/disco-light/turn-on
+
+id: light_disco_light_turn_on
+
+mode: single
+
+trigger:
+  - platform: state
+    id: lounge_speakers_playing
+    entity_id: media_player.lounge_speakers
+    to: playing
+
+  - platform: state
+    id: hifi_system_playing
+    entity_id: media_player.hifi_system
+    to:
+      - "on"
+      - playing
+
+condition: >-
+  {{
+    trigger.id == "lounge_speakers_playing" or
+    state_attr("media_player.hifi_system","source") in ("HEOS Music", "Phono")
+  }}
+
+action:
+  - service: light.turn_on
+    target:
+      entity_id: light.disco_light
