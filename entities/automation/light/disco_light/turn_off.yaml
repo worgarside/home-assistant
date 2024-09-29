@@ -10,25 +10,20 @@ trigger:
     id: lounge_speakers_paused
     entity_id: media_player.lounge_speakers
     to: paused
-    for:
-      minutes: 2
 
   - platform: state
     id: lounge_speakers_other
     entity_id: media_player.lounge_speakers
     from: playing
     not_to:
-      - paused
       - buffering
-    for:
-      minutes: 2
 
   - platform: state
     id: hifi_system
     entity_id: media_player.hifi_system
     from: playing
-    for:
-      minutes: 1
+    not_to:
+      - buffering
 
 condition: >-
   {%
