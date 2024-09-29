@@ -4329,6 +4329,77 @@
                       "state_not": "SigTech"
                     }
                   ]
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_monzo_current_account",
+                      "icon_color": "#FF4F40",
+                      "name": "Current Account",
+                      "fill_container": false,
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_amex",
+                      "icon_color": "#036ED0",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_monzo_credit_cards",
+                      "icon_color": "#4D3926",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Credit Cards"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_monzo_savings",
+                      "icon_color": "amber",
+                      "name": "Savings",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_starling_current_account",
+                      "icon_color": "#6633CC",
+                      "icon": "si:starlingbank",
+                      "name": "Current Account",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_starling_joint_account",
+                      "icon_color": "purple",
+                      "icon": "si:starlingbank",
+                      "name": "Joint Account",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_santander_current_account",
+                      "icon_color": "red",
+                      "name": "Santander"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_hsbc_current_account",
+                      "icon_color": "white",
+                      "name": "HSBC",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ],
+                  "columns": 2
                 }
               ],
               "title": "Finances",
