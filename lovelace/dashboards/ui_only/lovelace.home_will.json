@@ -834,19 +834,14 @@
                       "entity": "binary_sensor.office_desk_occupied"
                     },
                     {
-                      "type": "custom:mushroom-entity-card",
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{% if is_state(\"automation.cover_office_desk_work_mode\", \"on\") %}\n  {% if \"09:00\" < states(\"sensor.time\") < \"18:00\" and is_state(\"binary_sensor.workday\", \"on\") %}\n    Active\n  {% else %}\n    Inactive\n  {% endif %}\n{% else %}\n  Disabled\n{% endif %}\n",
+                      "secondary": "Work Mode",
+                      "icon": "{% if is_state(\"automation.cover_office_desk_work_mode\", \"on\") %}\n  {% if \"09:00\" < states(\"sensor.time\") < \"18:00\" and is_state(\"binary_sensor.workday\", \"on\") %}\n    mdi:robot-outline\n  {% else %}\n    mdi:robot-dead-outline\n  {% endif %}\n{% else %}\n  mdi:robot-off-outline\n{% endif %}\n",
                       "entity": "automation.cover_office_desk_work_mode",
-                      "name": "Work Mode Automation",
-                      "primary_info": "state",
-                      "secondary_info": "name",
+                      "icon_color": "{% if is_state(\"automation.cover_office_desk_work_mode\", \"on\") %}\n  {% if \"09:00\" < states(\"sensor.time\") < \"18:00\" and is_state(\"binary_sensor.workday\", \"on\") %}\n    cyan\n  {% else %}\n    blue-grey\n  {% endif %}\n{% else %}\n  grey\n{% endif %}\n",
                       "tap_action": {
                         "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
                       }
                     },
                     {
