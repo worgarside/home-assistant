@@ -25,6 +25,10 @@ variables:
     triple: triple
     hold: hold
 
+  flag: "{{ states('var.boolean_flag_kitchen_lights') | bool(false) }}"
+
+  on_or_off: "{{ 'off' if flag | bool else 'on'}}"
+
 action:
   - choose:
       - alias: "Single Press: Toggle Kitchen Spotlights"
@@ -35,10 +39,12 @@ action:
           - alias: Toggle Spotlights
             service: script.turn_on
             target:
-              entity_id: >-
-                script.turn_
-                {{- 'off' if states('var.boolean_flag_kitchen_lights') | bool(false) else 'on' -}}
-                _kitchen_spotlights
+              entity_id: script.turn_{{ on_or_off }}_kitchen_spotlights
+
+          - alias: Toggle Mini Lamp
+            service: light.turn_{{ on_or_off }}
+            target:
+              entity_id: light.kitchen_mini_lamp
 
       - alias: "Double Press: Set to 100%"
 
