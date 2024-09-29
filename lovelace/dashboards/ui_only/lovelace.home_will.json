@@ -4044,7 +4044,7 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "vertical-stack",
+                  "type": "custom:vertical-stack-in-card",
                   "cards": [
                     {
                       "type": "custom:mushroom-template-card",
@@ -4072,47 +4072,35 @@
                           "type": "custom:mushroom-entity-card",
                           "entity": "var.auto_save_amount",
                           "name": "Current Amount",
-                          "icon_color": "orange",
-                          "primary_info": "state",
-                          "secondary_info": "name"
+                          "icon_color": "orange"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "input_datetime.last_auto_save",
-                          "icon_color": "green",
-                          "primary_info": "state",
-                          "secondary_info": "name"
+                          "icon_color": "green"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "input_number.auto_save_debit_transaction_percentage",
                           "name": "Income Percentage",
-                          "icon_color": "lime",
-                          "primary_info": "state",
-                          "secondary_info": "name"
+                          "icon_color": "lime"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "input_number.auto_save_minimum",
-                          "icon_color": "deep-orange",
-                          "primary_info": "state",
-                          "secondary_info": "name"
+                          "icon_color": "deep-orange"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "input_number.auto_save_naughty_transaction_percentage",
                           "name": "Naughty Percentage",
-                          "icon_color": "red",
-                          "primary_info": "state",
-                          "secondary_info": "name"
+                          "icon_color": "red"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
                           "entity": "input_text.auto_save_naughty_transaction_pattern",
                           "name": "Naughty Pattern",
-                          "icon_color": "pink",
-                          "primary_info": "state",
-                          "secondary_info": "name"
+                          "icon_color": "pink"
                         }
                       ],
                       "columns": 2
@@ -4559,6 +4547,20 @@
             }
           ],
           "cards": []
+        },
+        {
+          "title": "Health",
+          "path": "health",
+          "icon": "mdi:medical-bag",
+          "type": "sections",
+          "max_columns": 2,
+          "dense_section_placement": false,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": []
+            }
+          ]
         }
       ]
     }
