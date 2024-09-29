@@ -4345,8 +4345,9 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_amex",
-                      "icon_color": "#036ED0",
+                      "entity": "var.truelayer_balance_monzo_savings",
+                      "icon_color": "amber",
+                      "name": "Savings",
                       "primary_info": "state",
                       "secondary_info": "name"
                     },
@@ -4360,9 +4361,8 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_monzo_savings",
-                      "icon_color": "amber",
-                      "name": "Savings",
+                      "entity": "var.truelayer_balance_amex",
+                      "icon_color": "#036ED0",
                       "primary_info": "state",
                       "secondary_info": "name"
                     },
@@ -4388,7 +4388,9 @@
                       "type": "custom:mushroom-entity-card",
                       "entity": "var.truelayer_balance_santander_current_account",
                       "icon_color": "red",
-                      "name": "Santander"
+                      "name": "Santander",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
