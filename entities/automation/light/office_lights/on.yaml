@@ -1,0 +1,29 @@
+---
+alias: /light/office-lights/on
+
+id: light_office_lights_on
+
+description: Run actions when the office lights are turned on
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: light.office_lights
+    from: "off"
+    to: "on"
+
+action:
+  - if: >-
+      {%
+        set blinds_should_be_closed = (
+          states("sensor.sun_elevation") | float(0) < -3 or
+          states("sensor.time") >= "21:30"
+        )
+      %}
+      {{ blinds_should_be_closed and states("number.office_blinds") | float(0) > 0 }}
+
+    then:
+      - service: cover.close_cover
+        target:
+          entity_id: cover.office_blinds
