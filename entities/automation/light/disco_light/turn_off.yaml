@@ -19,8 +19,8 @@ trigger:
       - buffering
 
   - platform: state
-    id: hifi_system
-    entity_id: media_player.hifi_system
+    id: hifi_system_heos
+    entity_id: media_player.hifi_system_heos
     from: playing
     not_to:
       - buffering
@@ -34,13 +34,13 @@ condition: >-
   {% set lounge_speakers_state = states("media_player.lounge_speakers") %}
   {{
     (
-      trigger.id == "hifi_system" and
+      trigger.id == "hifi_system_heos" and
       hifi_system_music_source and
       states("media_player.lounge_speakers") not in ("on", "playing")
     ) or (
       trigger.id.startswith("lounge_speakers") and not (
         hifi_system_music_source and
-        states("media_player.hifi_system") in ("on", "playing")
+        states("media_player.hifi_system_heos") in ("on", "playing")
       )
     )
   }}
