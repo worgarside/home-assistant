@@ -25,23 +25,26 @@ trigger:
     not_to:
       - buffering
 
+  - platform: state
+    id: hifi_system_source
+    entity_id: media_player.hifi_system
+    attribute: source
+
 condition: >-
-  {%
-    set hifi_system_music_source = (
-      state_attr("media_player.hifi_system","source") in ("HEOS Music", "Phono")
-    )
-  %}
-  {% set lounge_speakers_state = states("media_player.lounge_speakers") %}
   {{
     (
       trigger.id == "hifi_system_heos" and
-      hifi_system_music_source and
+      state_attr("media_player.hifi_system","source") == "HEOS Music" and
       states("media_player.lounge_speakers") not in ("on", "playing")
     ) or (
       trigger.id.startswith("lounge_speakers") and not (
-        hifi_system_music_source and
+        state_attr("media_player.hifi_system","source") == "HEOS Music" and
         states("media_player.hifi_system_heos") in ("on", "playing")
       )
+    ) or (
+      trigger.id == "hifi_system_source" and
+      state_attr("media_player.hifi_system","source") not in ("HEOS Music", "Phono")
+      and states("media_player.lounge_speakers") not in ("on", "playing")
     )
   }}
 
