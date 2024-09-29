@@ -41,10 +41,24 @@ action:
             target:
               entity_id: script.turn_{{ on_or_off }}_kitchen_spotlights
 
-          - alias: Toggle Mini Lamp
-            service: light.turn_{{ on_or_off }}
-            target:
-              entity_id: light.mini_lamp
+          # Don't turn lamp off if other lounge lights are on
+          - if: >-
+              {%
+                set lights_on = (
+                  expand("light.lounge_lights")
+                  | selectattr('entity_id', 'ne', "light.mini_lamp")
+                  | selectattr('state', 'eq', 'on')
+                  | list
+                  | count > 0
+                )
+              %}
+              {{ (lights_on and on_or_off == "on") or not lights_on }}
+
+            then:
+              - alias: Toggle Mini Lamp
+                service: light.turn_{{ on_or_off }}
+                target:
+                  entity_id: light.mini_lamp
 
       - alias: "Double Press: Set to 100%"
 
