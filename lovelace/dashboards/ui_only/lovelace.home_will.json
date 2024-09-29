@@ -811,6 +811,80 @@
                     "action": "toggle"
                   },
                   "name": "Desk"
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{% if states(\"binary_sensor.office_desk_occupied\") | bool(false) %}\nOccupied!\n{% else %}\nUnoccupied\n{% endif %}",
+                      "secondary": "Will's Desk",
+                      "icon": "mdi:chair-rolling",
+                      "icon_color": "{% if states(\"binary_sensor.office_desk_occupied\") | bool(false) %}\ngreen\n{% else %}\ngrey\n{% endif %}",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "entity": "binary_sensor.office_desk_occupied"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "automation.cover_office_desk_work_mode",
+                      "name": "Work Mode Automation",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{% set total_minutes = states(\"sensor.office_desk_standing_time_remaining\") | float(0) %}\n\n{% set hours = (total_minutes // 60) | int %}\n{% set minutes = (total_minutes % 60) | int %}\n{% set seconds = ((total_minutes % 1) * 60) | int %}\n\n{% set time_str = '' %}\n\n{% if hours > 0 %}\n  {% set time_str = time_str + '{}h '.format(hours) %}\n{% endif %}\n\n{% if minutes > 0 %}\n  {% set time_str = time_str + '{}m '.format(minutes) %}\n{% endif %}\n\n{% if seconds > 0 %}\n  {% set time_str = time_str + '{}s'.format(seconds) %}\n{% endif %}\n\n{{ time_str.strip() if time_str else '0s' }}\n",
+                      "secondary": "Standing Time Remaining",
+                      "icon": "mdi:timer-sand",
+                      "icon_color": "deep-purple",
+                      "entity": "sensor.office_desk_standing_time_remaining",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{% set total_minutes = states(\"sensor.office_desk_standing_occupied_cumulative_time\") | float(0) %}\n\n{% set hours = (total_minutes // 60) | int %}\n{% set minutes = (total_minutes % 60) | int %}\n{% set seconds = ((total_minutes % 1) * 60) | int %}\n\n{% set time_str = '' %}\n\n{% if hours > 0 %}\n  {% set time_str = time_str + '{}h '.format(hours) %}\n{% endif %}\n\n{% if minutes > 0 %}\n  {% set time_str = time_str + '{}m '.format(minutes) %}\n{% endif %}\n\n{% if seconds > 0 %}\n  {% set time_str = time_str + '{}s'.format(seconds) %}\n{% endif %}\n\n{{ time_str.strip() if time_str else '0s' }}\n",
+                      "secondary": "Time Stood",
+                      "icon": "mdi:timer",
+                      "icon_color": "purple",
+                      "entity": "sensor.office_desk_standing_occupied_cumulative_time",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ],
+                  "columns": 2
                 }
               ]
             },
