@@ -4311,6 +4311,15 @@
                   "line_width": 2,
                   "font_size": 75
                 }
+              ],
+              "title": "Finances",
+              "column_span": 1,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "person.will",
+                  "state_not": "SigTech"
+                }
               ]
             }
           ]
