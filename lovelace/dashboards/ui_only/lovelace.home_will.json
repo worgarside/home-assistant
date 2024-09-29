@@ -4402,6 +4402,57 @@
                     }
                   ],
                   "columns": 2
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "var.truelayer_balance_monzo_current_account",
+                      "color": "#FF4F40"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_amex",
+                      "color": "#036ED0"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_monzo_credit_cards",
+                      "color": "#4D3926"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_monzo_savings",
+                      "color": "#FFC007"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_starling_current_account",
+                      "color": "#6633CC"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_starling_joint_account",
+                      "color": "purple"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_santander_current_account",
+                      "color": "red"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_hsbc_current_account",
+                      "color": "white"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "icon": false,
+                    "legend": false,
+                    "labels": true,
+                    "fill": "fade",
+                    "name": false
+                  },
+                  "hours_to_show": 168,
+                  "points_per_hour": 1,
+                  "lower_bound": 0,
+                  "height": 200,
+                  "line_width": 2,
+                  "font_size": 75
                 }
               ],
               "title": "Finances",
