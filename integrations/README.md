@@ -1534,7 +1534,9 @@ File: [`automation/remote/coffee_table/single_press.yaml`](entities/automation/r
     "double": "double",
     "triple": "triple",
     "hold": "hold"
-  }
+  },
+  "flag": "{{ states('var.boolean_flag_kitchen_lights') | bool(false) }}",
+  "on_or_off": "{{ 'off' if flag | bool else 'on'}}"
 }
 ```
 File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml)
