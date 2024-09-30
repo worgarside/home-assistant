@@ -877,6 +877,38 @@
                       "double_tap_action": {
                         "action": "more-info"
                       }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.office_desk_standing_mode_percentage",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Standing Percentage"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.office_desk_standing_mode_percentage_target",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Standing Percentage Target"
                     }
                   ],
                   "columns": 2
