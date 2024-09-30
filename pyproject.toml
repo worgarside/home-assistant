@@ -9,7 +9,7 @@ package-mode = false
 [tool.poetry.dependencies]
 python = ">=3.12,<4.0"
 wg-utilities = "^5.16.1"
-watchdog = "^5.0.2"
+watchdog = "^5.0.3"
 paramiko = "^3.5.0"
 
 [tool.poetry.group.dev]
@@ -17,7 +17,7 @@ optional = true
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "*"
-watchdog = "^5.0.2"
+watchdog = "^5.0.3"
 zigpy = "^0.67.0"
 zha-quirks = "^0.0.122"
 matplotlib = "^3.9.2"
