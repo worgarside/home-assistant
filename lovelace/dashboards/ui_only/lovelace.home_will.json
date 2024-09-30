@@ -863,7 +863,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "primary": "{% set total_minutes = states(\"sensor.office_desk_standing_occupied_cumulative_time\") | float(0) %}\n\n{% set hours = (total_minutes // 60) | int %}\n{% set minutes = (total_minutes % 60) | int %}\n{% set seconds = ((total_minutes % 1) * 60) | int %}\n\n{% set time_str = '' %}\n\n{% if hours > 0 %}\n  {% set time_str = time_str + '{}h '.format(hours) %}\n{% endif %}\n\n{% if minutes > 0 %}\n  {% set time_str = time_str + '{}m '.format(minutes) %}\n{% endif %}\n\n{% if seconds > 0 %}\n  {% set time_str = time_str + '{}s'.format(seconds) %}\n{% endif %}\n\n{{ time_str.strip() if time_str else '0s' }}\n",
+                      "primary": "{% set total_minutes = states(\"sensor.office_desk_standing_occupied_cumulative_time\") | float(0) * 60 %}\n\n{% set hours = (total_minutes // 60) | int %}\n{% set minutes = (total_minutes % 60) | int %}\n{% set seconds = ((total_minutes % 1) * 60) | int %}\n\n{% set time_str = '' %}\n\n{% if hours > 0 %}\n  {% set time_str = time_str + '{}h '.format(hours) %}\n{% endif %}\n\n{% if minutes > 0 %}\n  {% set time_str = time_str + '{}m '.format(minutes) %}\n{% endif %}\n\n{% if seconds > 0 %}\n  {% set time_str = time_str + '{}s'.format(seconds) %}\n{% endif %}\n\n{{ time_str.strip() if time_str else '0s' }}\n",
                       "secondary": "Time Stood",
                       "icon": "mdi:timer",
                       "icon_color": "purple",
