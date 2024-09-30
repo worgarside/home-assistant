@@ -909,6 +909,22 @@
                       "primary_info": "state",
                       "secondary_info": "name",
                       "name": "Standing Percentage Target"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.office_desk_occupied_cumulative_time",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Time at Desk"
                     }
                   ],
                   "columns": 2
