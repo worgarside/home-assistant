@@ -43,7 +43,7 @@ sensor:
             is_state_attr(
               "media_player.spotify_will",
               "source",
-              device_attr(device_id("sensor.work_macbook_pro_active_audio_output"), "name")
+              "K3QFMW509D"
             )
           )
         )
