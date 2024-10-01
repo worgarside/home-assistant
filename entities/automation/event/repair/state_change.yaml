@@ -35,6 +35,7 @@ variables:
     - device_tracker
     - event
     - fan
+    - image
     - input_boolean
     - input_button
     - input_datetime
@@ -46,6 +47,7 @@ variables:
     - number
     - person
     - remote
+    - scene
     - script
     - select
     - sensor
@@ -147,26 +149,27 @@ action:
 
       - stop: Issue Closed
 
-    else:
-      - alias: Create issue if no match found
-        if: "{{ not issue_number | int(0) }}"
-        then:
-          - service: script.turn_on
-            target:
-              entity_id: script.gh_issue_create
-            data:
-              variables:
-                issue_title: >-
-                  {{ issue_type.replace('_', ' ').title() or 'HA Repair' }}: `{{ issue_entity }}`
-                issue_labels:
-                  - bug
-                body: "{{ longform_message }}"
-                assignee: worgarside
-                repository: home-assistant
+  - condition: "{{ event_type != 'remove' }}"
 
-        else:
-          - service: persistent_notification.create
-            data:
-              title: Repair issue already logged
-            # yamllint disable-line rule:line-length
-              message: Issue for `{{ issue_id }}` already [exists](https://github.com/worgarside/home-assistant/issues/{{ issue_number }}).
+  - alias: Create issue if no match found
+    if: "{{ not issue_number | int(0) }}"
+    then:
+      - service: script.turn_on
+        target:
+          entity_id: script.gh_issue_create
+        data:
+          variables:
+            issue_title: >-
+              {{ issue_type.replace('_', ' ').title() or 'HA Repair' }}: `{{ issue_entity }}`
+            issue_labels:
+              - bug
+            body: "{{ longform_message }}"
+            assignee: worgarside
+            repository: home-assistant
+
+    else:
+      - service: persistent_notification.create
+        data:
+          title: Repair issue already logged
+          # yamllint disable-line rule:line-length
+          message: Issue for `{{ issue_id }}` already [exists](https://github.com/worgarside/home-assistant/issues/{{ issue_number }}).
