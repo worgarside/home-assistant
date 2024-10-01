@@ -800,41 +800,134 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "custom:vertical-stack-in-card",
+                  "type": "custom:mushroom-cover-card",
+                  "entity": "cover.office_desk",
+                  "show_position_control": true,
+                  "layout": "horizontal",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "name": "Desk"
+                },
+                {
+                  "square": false,
+                  "type": "grid",
                   "cards": [
                     {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Cosmo",
-                      "title_tap_action": {
-                        "action": "navigate",
-                        "navigation_path": "/home-will/cosmo"
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{% if states(\"binary_sensor.office_desk_occupied\") | bool(false) %}\nOccupied!\n{% else %}\nUnoccupied\n{% endif %}",
+                      "secondary": "Will's Desk",
+                      "icon": "mdi:chair-rolling",
+                      "icon_color": "{% if states(\"binary_sensor.office_desk_occupied\") | bool(false) %}\ngreen\n{% else %}\ngrey\n{% endif %}",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "entity": "binary_sensor.office_desk_occupied"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{% if is_state(\"automation.cover_office_desk_work_mode\", \"on\") %}\n  {% if \"09:00\" < states(\"sensor.time\") < \"18:00\" and is_state(\"binary_sensor.workday\", \"on\") %}\n    Active\n  {% else %}\n    Inactive\n  {% endif %}\n{% else %}\n  Disabled\n{% endif %}\n",
+                      "secondary": "Work Mode",
+                      "icon": "{% if is_state(\"automation.cover_office_desk_work_mode\", \"on\") %}\n  {% if \"09:00\" < states(\"sensor.time\") < \"18:00\" and is_state(\"binary_sensor.workday\", \"on\") %}\n    mdi:robot-outline\n  {% else %}\n    mdi:robot-dead-outline\n  {% endif %}\n{% else %}\n  mdi:robot-off-outline\n{% endif %}\n",
+                      "entity": "automation.cover_office_desk_work_mode",
+                      "icon_color": "{% if is_state(\"automation.cover_office_desk_work_mode\", \"on\") %}\n  {% if \"09:00\" < states(\"sensor.time\") < \"18:00\" and is_state(\"binary_sensor.workday\", \"on\") %}\n    cyan\n  {% else %}\n    blue-grey\n  {% endif %}\n{% else %}\n  grey\n{% endif %}\n",
+                      "tap_action": {
+                        "action": "more-info"
                       }
                     },
                     {
-                      "type": "custom:xiaomi-vacuum-map-card",
-                      "map_source": {
-                        "camera": "camera.cosmo_map"
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{% set total_minutes = states(\"sensor.office_desk_standing_time_remaining\") | float(0) %}\n\n{% set hours = (total_minutes // 60) | int %}\n{% set minutes = (total_minutes % 60) | int %}\n{% set seconds = ((total_minutes % 1) * 60) | int %}\n\n{% set time_str = '' %}\n\n{% if hours > 0 %}\n  {% set time_str = time_str + '{}h '.format(hours) %}\n{% endif %}\n\n{% if minutes > 0 %}\n  {% set time_str = time_str + '{}m '.format(minutes) %}\n{% endif %}\n\n{% if seconds > 0 %}\n  {% set time_str = time_str + '{}s'.format(seconds) %}\n{% endif %}\n\n{{ time_str.strip() if time_str else '0s' }}\n",
+                      "secondary": "Standing Time Remaining",
+                      "icon": "mdi:timer-sand",
+                      "icon_color": "deep-purple",
+                      "entity": "sensor.office_desk_standing_time_remaining",
+                      "tap_action": {
+                        "action": "more-info"
                       },
-                      "calibration_source": {
-                        "camera": true
+                      "hold_action": {
+                        "action": "more-info"
                       },
-                      "entity": "vacuum.cosmo",
-                      "vacuum_platform": "Tasshack/dreame-vacuum",
-                      "title": "",
-                      "two_finger_pan": false,
-                      "map_modes": [
-                        {
-                          "template": "vacuum_clean_segment"
-                        },
-                        {
-                          "template": "vacuum_clean_zone"
-                        },
-                        {
-                          "template": "vacuum_clean_point"
-                        }
-                      ]
+                      "double_tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{% set total_minutes = states(\"sensor.office_desk_standing_occupied_cumulative_time\") | float(0) * 60 %}\n\n{% set hours = (total_minutes // 60) | int %}\n{% set minutes = (total_minutes % 60) | int %}\n{% set seconds = ((total_minutes % 1) * 60) | int %}\n\n{% set time_str = '' %}\n\n{% if hours > 0 %}\n  {% set time_str = time_str + '{}h '.format(hours) %}\n{% endif %}\n\n{% if minutes > 0 %}\n  {% set time_str = time_str + '{}m '.format(minutes) %}\n{% endif %}\n\n{% if seconds > 0 %}\n  {% set time_str = time_str + '{}s'.format(seconds) %}\n{% endif %}\n\n{{ time_str.strip() if time_str else '0s' }}\n",
+                      "secondary": "Time Stood",
+                      "icon": "mdi:timer",
+                      "icon_color": "purple",
+                      "entity": "sensor.office_desk_standing_occupied_cumulative_time",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.office_desk_standing_mode_percentage",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Standing Percentage"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "input_number.office_desk_standing_mode_percentage_target",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Standing Percentage Target"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.office_desk_occupied_cumulative_time",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Time at Desk"
                     }
-                  ]
+                  ],
+                  "columns": 2
                 }
               ]
             },
@@ -4026,6 +4119,229 @@
                 }
               ]
             }
+          ],
+          "visible": [
+            {
+              "user": "8f996a70fc1d4c9ea269be0e7d85beff"
+            }
+          ]
+        },
+        {
+          "title": "Will",
+          "path": "will",
+          "icon": "mdi:human-male",
+          "cards": [],
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Auto-Save",
+                      "secondary": "Total saved: X{{ states('var.auto_save_cumulative_total') }}",
+                      "icon": "mdi:chart-timeline-variant-shimmer",
+                      "icon_color": "blue",
+                      "fill_container": true,
+                      "entity": "script.ad_monzo_auto_save",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      }
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "var.auto_save_amount",
+                          "name": "Current Amount",
+                          "icon_color": "orange"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_datetime.last_auto_save",
+                          "icon_color": "green"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_number.auto_save_debit_transaction_percentage",
+                          "name": "Income Percentage",
+                          "icon_color": "lime"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_number.auto_save_minimum",
+                          "icon_color": "deep-orange"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_number.auto_save_naughty_transaction_percentage",
+                          "name": "Naughty Percentage",
+                          "icon_color": "red"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "input_text.auto_save_naughty_transaction_pattern",
+                          "name": "Naughty Pattern",
+                          "icon_color": "pink"
+                        }
+                      ],
+                      "columns": 2
+                    }
+                  ]
+                }
+              ],
+              "title": "Auto-Saver",
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_monzo_current_account",
+                      "icon_color": "#FF4F40",
+                      "name": "Current Account",
+                      "fill_container": false,
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_monzo_savings",
+                      "icon_color": "amber",
+                      "name": "Savings",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_monzo_credit_cards",
+                      "icon_color": "#4D3926",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "name": "Credit Cards"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_amex",
+                      "icon_color": "#036ED0",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_starling_current_account",
+                      "icon_color": "#6633CC",
+                      "icon": "si:starlingbank",
+                      "name": "Current Account",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_starling_joint_account",
+                      "icon_color": "purple",
+                      "icon": "si:starlingbank",
+                      "name": "Joint Account",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_santander_current_account",
+                      "icon_color": "red",
+                      "name": "Santander",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "var.truelayer_balance_hsbc_current_account",
+                      "icon_color": "white",
+                      "name": "HSBC",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ],
+                  "columns": 2
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "var.truelayer_balance_monzo_current_account",
+                      "color": "#FF4F40"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_amex",
+                      "color": "#036ED0"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_monzo_credit_cards",
+                      "color": "#4D3926"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_monzo_savings",
+                      "color": "#FFC007"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_starling_current_account",
+                      "color": "#6633CC"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_starling_joint_account",
+                      "color": "purple"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_santander_current_account",
+                      "color": "red"
+                    },
+                    {
+                      "entity": "var.truelayer_balance_hsbc_current_account",
+                      "color": "white"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "icon": false,
+                    "legend": false,
+                    "labels": true,
+                    "fill": "fade",
+                    "name": false
+                  },
+                  "hours_to_show": 168,
+                  "points_per_hour": 1,
+                  "lower_bound": 0,
+                  "height": 200,
+                  "line_width": 2,
+                  "font_size": 75
+                }
+              ],
+              "title": "Finances",
+              "column_span": 1,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "person.will",
+                  "state_not": "SigTech"
+                }
+              ]
+            }
           ]
         },
         {
@@ -4104,258 +4420,13 @@
                 }
               ]
             }
-          ]
-        },
-        {
-          "title": "Will",
-          "path": "will",
-          "icon": "mdi:human-male",
-          "cards": [],
-          "type": "sections",
-          "sections": [
+          ],
+          "visible": [
             {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-template-card",
-                      "primary": "Auto-Save",
-                      "secondary": "Total saved: X{{ states('var.auto_save_cumulative_total') }}",
-                      "icon": "mdi:chart-timeline-variant-shimmer",
-                      "icon_color": "blue",
-                      "fill_container": true,
-                      "entity": "script.ad_monzo_auto_save",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "double_tap_action": {
-                        "action": "none"
-                      }
-                    },
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.auto_save_amount",
-                          "name": "Current Amount",
-                          "icon_color": "orange"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_datetime.last_auto_save",
-                          "icon_color": "green"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_number.auto_save_debit_transaction_percentage",
-                          "name": "Income Percentage",
-                          "icon_color": "lime"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_number.auto_save_minimum",
-                          "icon_color": "deep-orange"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_number.auto_save_naughty_transaction_percentage",
-                          "name": "Naughty Percentage",
-                          "icon_color": "red"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "input_text.auto_save_naughty_transaction_pattern",
-                          "name": "Naughty Pattern",
-                          "icon_color": "pink"
-                        }
-                      ],
-                      "columns": 2
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "custom:expander-card",
-                      "title-card": {
-                        "type": "horizontal-stack",
-                        "cards": [
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_monzo_current_account",
-                            "icon_color": "#FF4F40",
-                            "layout": "vertical",
-                            "name": "Current Account",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          },
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_amex",
-                            "icon_color": "#036ED0",
-                            "layout": "vertical",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          },
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_monzo_credit_cards",
-                            "icon_color": "#4D3926",
-                            "layout": "vertical",
-                            "name": "Credit Cards",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          },
-                          {
-                            "type": "custom:mushroom-entity-card",
-                            "entity": "var.truelayer_balance_monzo_savings",
-                            "icon_color": "amber",
-                            "layout": "vertical",
-                            "name": "Savings",
-                            "card_mod": {
-                              "style": "ha-card {\n  border: none !important;\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding-left: 0.25em !important;\n  padding-right: 0.25em !important;\n}\n"
-                            }
-                          }
-                        ]
-                      },
-                      "cards": [
-                        {
-                          "type": "custom:mini-graph-card",
-                          "entities": [
-                            {
-                              "entity": "var.truelayer_balance_monzo_current_account",
-                              "color": "#FF4F40"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_amex",
-                              "color": "#036ED0"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_monzo_credit_cards",
-                              "color": "#4D3926"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_monzo_savings",
-                              "color": "#FFC007"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_starling_current_account",
-                              "color": "#6633CC"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_starling_joint_account",
-                              "color": "purple"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_santander_current_account",
-                              "color": "red"
-                            },
-                            {
-                              "entity": "var.truelayer_balance_hsbc_current_account",
-                              "color": "white"
-                            }
-                          ],
-                          "show": {
-                            "state": false,
-                            "icon": false,
-                            "legend": false,
-                            "labels": true,
-                            "fill": "fade",
-                            "name": false
-                          },
-                          "hours_to_show": 168,
-                          "points_per_hour": 1,
-                          "lower_bound": 0,
-                          "height": 200,
-                          "line_width": 2,
-                          "font_size": 75
-                        }
-                      ],
-                      "padding": 0,
-                      "child-padding": 0,
-                      "title-card-button-overlay": false
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_starling_current_account",
-                          "icon_color": "#6633CC",
-                          "layout": "vertical",
-                          "icon": "si:starlingbank",
-                          "name": "Current Account"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_starling_joint_account",
-                          "icon_color": "purple",
-                          "layout": "vertical",
-                          "icon": "si:starlingbank",
-                          "name": "Joint Account"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_santander_current_account",
-                          "icon_color": "red",
-                          "layout": "vertical",
-                          "name": "Santander"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "var.truelayer_balance_hsbc_current_account",
-                          "icon_color": "white",
-                          "layout": "vertical",
-                          "name": "HSBC"
-                        }
-                      ]
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "person.will",
-                      "state_not": "SigTech"
-                    }
-                  ]
-                }
-              ],
-              "title": "Finances",
-              "column_span": 1
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.habitica_will_pending_dailys",
-                  "fill_container": false,
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "name": "Pending Dailys"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.habitica_vic_pending_dailys",
-                  "fill_container": false,
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "name": "Pending Dailys"
-                }
-              ]
+              "user": "8f996a70fc1d4c9ea269be0e7d85beff"
             }
-          ]
+          ],
+          "cards": []
         },
         {
           "title": "ESP Dashboard",
@@ -4561,6 +4632,77 @@
                 }
               ],
               "title": "Soil Moisture Sensor 2"
+            }
+          ],
+          "visible": [
+            {
+              "user": "8f996a70fc1d4c9ea269be0e7d85beff"
+            }
+          ],
+          "cards": []
+        },
+        {
+          "title": "Health",
+          "path": "health",
+          "icon": "mdi:medical-bag",
+          "type": "sections",
+          "max_columns": 2,
+          "dense_section_placement": false,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": []
+            }
+          ]
+        },
+        {
+          "title": "Home",
+          "path": "home-home",
+          "icon": "mdi:home-city-outline",
+          "type": "sections",
+          "max_columns": 4,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "Cosmo",
+                      "title_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/home-will/cosmo"
+                      }
+                    },
+                    {
+                      "type": "custom:xiaomi-vacuum-map-card",
+                      "map_source": {
+                        "camera": "camera.cosmo_map"
+                      },
+                      "calibration_source": {
+                        "camera": true
+                      },
+                      "entity": "vacuum.cosmo",
+                      "vacuum_platform": "Tasshack/dreame-vacuum",
+                      "title": "",
+                      "two_finger_pan": false,
+                      "map_modes": [
+                        {
+                          "template": "vacuum_clean_segment"
+                        },
+                        {
+                          "template": "vacuum_clean_zone"
+                        },
+                        {
+                          "template": "vacuum_clean_point"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
