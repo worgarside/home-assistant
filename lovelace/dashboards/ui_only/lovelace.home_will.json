@@ -4703,6 +4703,17 @@
                     "grid_columns": 4,
                     "grid_rows": 2
                   }
+                },
+                {
+                  "type": "custom:mushroom-media-player-card",
+                  "entity": "media_player.hifi_system",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 1
+                  },
+                  "volume_controls": [
+                    "volume_set"
+                  ]
                 }
               ]
             }
