@@ -800,19 +800,6 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "custom:mushroom-cover-card",
-                  "entity": "cover.office_desk",
-                  "show_position_control": true,
-                  "layout": "horizontal",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "name": "Desk"
-                },
-                {
                   "square": false,
                   "type": "grid",
                   "cards": [
