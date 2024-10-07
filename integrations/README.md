@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (128)</h3></summary>
+<details><summary><h3>Entities (129)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1580,6 +1580,19 @@ File: [`automation/remote/lounge.yaml`](entities/automation/remote/lounge.yaml)
 - Mode: `single`
 
 File: [`automation/remote/lounge_desk/double_press.yaml`](entities/automation/remote/lounge_desk/double_press.yaml)
+</details>
+
+<details><summary><code>/remote/lounge-desk/hold</code></summary>
+
+**Entity ID: `automation.remote_lounge_desk_hold`**
+
+> *No description provided*
+
+- Alias: /remote/lounge-desk/hold
+- ID: `remote_lounge_desk_hold`
+- Mode: `single`
+
+File: [`automation/remote/lounge_desk/hold.yaml`](entities/automation/remote/lounge_desk/hold.yaml)
 </details>
 
 <details><summary><code>/remote/lounge-desk/single-press</code></summary>
