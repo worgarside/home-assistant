@@ -10,3 +10,5 @@ state_topic: /homeassistant/crtpi/stats
 unique_id: crtpi_boot_time
 
 value_template: "{{ value_json.boot_time }}"
+
+device_class: timestamp

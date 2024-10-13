@@ -1,0 +1,14 @@
+---
+force_update: false
+
+icon: mdi:console
+
+name: MtrxPi Pi Stats Start Time
+
+state_topic: /homeassistant/mtrxpi/stats
+
+unique_id: mtrxpi_pi_stats_start_time
+
+value_template: "{{ value_json.service_start_time }}"
+
+device_class: timestamp
