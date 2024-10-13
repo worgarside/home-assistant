@@ -2757,13 +2757,16 @@
                       }
                     },
                     {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.octoprint_print_status",
-                      "icon_color": "amber",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "name": "Current State",
-                      "icon": "mdi:printer-3d"
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{{ ( states(\"sensor.octopi_pi_stats_start_time\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\") }}",
+                      "secondary": "Pi Stats Start Time",
+                      "icon": "mdi:console",
+                      "entity": "sensor.octopi_pi_stats_start_time",
+                      "icon_color": "green",
+                      "multiline_secondary": false,
+                      "tap_action": {
+                        "action": "more-info"
+                      }
                     },
                     {
                       "type": "custom:mushroom-entity-card",
