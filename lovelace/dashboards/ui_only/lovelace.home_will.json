@@ -3584,6 +3584,18 @@
                       }
                     },
                     {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{{ ( states(\"sensor.vsmppi_pi_stats_start_time\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\") }}",
+                      "secondary": "Pi Stats Boot Time",
+                      "icon": "mdi:console",
+                      "entity": "sensor.vsmppi_pi_stats_start_time",
+                      "icon_color": "green",
+                      "multiline_secondary": false,
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.vsmppi_local_ip_address",
                       "icon_color": "yellow",
