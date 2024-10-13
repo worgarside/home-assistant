@@ -922,6 +922,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading": "Office"
+                },
+                {
                   "type": "grid",
                   "columns": 1,
                   "square": false,
@@ -1060,8 +1064,7 @@
                     }
                   ]
                 }
-              ],
-              "title": "Office"
+              ]
             }
           ],
           "max_columns": 3,
@@ -1482,6 +1485,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading": "Version Control"
+                },
+                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -1653,12 +1660,15 @@
                   "icon_color": "",
                   "multiline_secondary": false
                 }
-              ],
-              "title": "Version Control"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Network Monitor"
+                },
                 {
                   "type": "vertical-stack",
                   "cards": [
@@ -1789,12 +1799,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "Network Monitor"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "HAssPi System Monitor"
+                },
                 {
                   "square": false,
                   "type": "grid",
@@ -1936,12 +1949,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "HAssPi System Monitor"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Add-Ons"
+                },
                 {
                   "square": false,
                   "type": "grid",
@@ -2342,12 +2358,15 @@
                   "hour24": true,
                   "line_width": 2
                 }
-              ],
-              "title": "Add-Ons"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Auto-Reloading"
+                },
                 {
                   "type": "entities",
                   "entities": [
@@ -2438,7 +2457,6 @@
                   ]
                 }
               ],
-              "title": "Auto-Reloading",
               "column_span": 1
             }
           ],
@@ -2454,6 +2472,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Prusa i3 Mk3"
+                },
                 {
                   "camera_view": "live",
                   "type": "picture-glance",
@@ -2575,12 +2597,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "Prusa i3 Mk3"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Enclosure Stats"
+                },
                 {
                   "type": "vertical-stack",
                   "cards": [
@@ -2705,12 +2730,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "Enclosure Stats"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "OctoPi System Monitor"
+                },
                 {
                   "square": false,
                   "type": "grid",
@@ -2847,12 +2875,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "OctoPi System Monitor"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Filament Dry Box"
+                },
                 {
                   "type": "vertical-stack",
                   "cards": [
@@ -2940,12 +2971,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "Filament Dry Box"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Current Print"
+                },
                 {
                   "type": "vertical-stack",
                   "cards": [
@@ -2988,7 +3022,6 @@
                   "image_entity": "image.prusa_i3_thumbnail"
                 }
               ],
-              "title": "Current Print",
               "visibility": [
                 {
                   "condition": "state",
@@ -3001,12 +3034,15 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading": "Print Stats"
+                },
+                {
                   "type": "iframe",
                   "url": "/api/hassio_ingress/bSQ6mbQ3eJmh9ly2Tb8BE69LlikC2se-5093w1tvOlA/d-solo/adwhw66pv203kb/prusa-dashboard?orgId=1&from=now-6h&to=now&refresh=5m&panelId=1",
                   "aspect_ratio": "50%"
                 }
-              ],
-              "title": "Print Stats"
+              ]
             }
           ],
           "max_columns": 3,
@@ -3022,6 +3058,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LED Matrix Controller"
+                },
                 {
                   "type": "entities",
                   "entities": [
@@ -3311,12 +3351,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "LED Matrix Controller"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "MtrxPi System Monitor"
+                },
                 {
                   "square": false,
                   "type": "grid",
@@ -3334,12 +3377,16 @@
                       }
                     },
                     {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.mtrxpi_current_content",
-                      "icon_color": "teal",
-                      "name": "Current Content",
-                      "primary_info": "state",
-                      "secondary_info": "name"
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{{ ( states(\"sensor.mtrxpi_pi_stats_start_time\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\") }}",
+                      "secondary": "Service Start Time",
+                      "icon": "mdi:console",
+                      "entity": "sensor.mtrxpi_boot_time",
+                      "icon_color": "green",
+                      "multiline_secondary": false,
+                      "tap_action": {
+                        "action": "more-info"
+                      }
                     },
                     {
                       "type": "custom:mushroom-entity-card",
@@ -3466,18 +3513,20 @@
                   "group": false,
                   "volume_stateless": false
                 }
-              ],
-              "title": "MtrxPi System Monitor"
+              ]
             },
             {
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading": "Content Queue"
+                },
+                {
                   "type": "markdown",
                   "content": "### Current content is `{{ states('sensor.mtrxpi_current_content') }}` with priority {{ state_attr('sensor.mtrxpi_current_content', 'priority') }}\n\n{% if states(\"sensor.mtrxpi_current_content\") == \"combination\" %}\nCombined: `{{ state_attr('sensor.mtrxpi_current_content', 'content') | map(attribute=\"id\") | join(\"`, `\") }}`\n{% endif %}\n\n{% set qsize = states('sensor.mtrxpi_content_queue') | int(0) %}\n\n{% if qsize %}\n---\n## {{ qsize }} item{% if qsize > 1 %}s{% endif %} in queue\n{% endif %}\n\n{% for k, v in state_attr('sensor.mtrxpi_content_queue', 'queue') . items() %}\n### {{ v[\"id\"] }} | {{ k | float }}\n  ```json\n  {{ v[\"parameters\"] | tojson(indent=2) }}\n  ```\n{% endfor %}"
                 }
               ],
-              "title": "Content Queue",
               "visibility": [
                 {
                   "condition": "state",
@@ -3510,6 +3559,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "VSMPPi System Monitor"
+                },
                 {
                   "square": false,
                   "type": "grid",
@@ -3637,8 +3690,7 @@
                     }
                   ]
                 }
-              ],
-              "title": "VSMPPi System Monitor"
+              ]
             }
           ],
           "cards": []
@@ -3652,6 +3704,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "CRT TV Internal Conditions"
+                },
                 {
                   "type": "vertical-stack",
                   "cards": [
@@ -3767,12 +3823,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "CRT TV Internal Conditions"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "CRT Pi System Monitor"
+                },
                 {
                   "square": false,
                   "type": "grid",
@@ -3907,8 +3966,7 @@
                     }
                   ]
                 }
-              ],
-              "title": "CRT Pi System Monitor"
+              ]
             },
             {
               "type": "grid",
@@ -4110,6 +4168,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading": "Auto-Saver"
+                },
+                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -4186,12 +4248,15 @@
                   ]
                 }
               ],
-              "title": "Auto-Saver",
               "column_span": 1
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Finances"
+                },
                 {
                   "square": false,
                   "type": "grid",
@@ -4317,7 +4382,6 @@
                   "font_size": 75
                 }
               ],
-              "title": "Finances",
               "column_span": 1,
               "visibility": [
                 {
@@ -4424,6 +4488,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading": "Soil Moisture Sensor 1"
+                },
+                {
                   "square": false,
                   "type": "grid",
                   "columns": 3,
@@ -4516,12 +4584,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "Soil Moisture Sensor 1"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Soil Moisture Sensor 2"
+                },
                 {
                   "square": false,
                   "type": "grid",
@@ -4615,8 +4686,7 @@
                     }
                   ]
                 }
-              ],
-              "title": "Soil Moisture Sensor 2"
+              ]
             }
           ],
           "visible": [
