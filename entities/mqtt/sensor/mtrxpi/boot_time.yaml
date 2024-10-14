@@ -10,3 +10,5 @@ state_topic: /homeassistant/mtrxpi/stats
 unique_id: mtrxpi_boot_time
 
 value_template: "{{ value_json.boot_time }}"
+
+device_class: timestamp
