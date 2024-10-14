@@ -3709,7 +3709,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (109)</h3></summary>
+<details><summary><h3>Entities (115)</h3></summary>
 
 <details><summary><strong>MtrxPi | Clock: Scale</strong></summary>
 
@@ -4154,6 +4154,16 @@ File: [`mqtt/sensor/crtpi/local_ip_address.yaml`](entities/mqtt/sensor/crtpi/loc
 File: [`mqtt/sensor/crtpi/memory_usage.yaml`](entities/mqtt/sensor/crtpi/memory_usage.yaml)
 </details>
 
+<details><summary><strong>CrtPi Pi Stats Start Time</strong></summary>
+
+**Entity ID: `sensor.crtpi_pi_stats_start_time`**
+
+- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
+- State Topic: /homeassistant/crtpi/stats
+
+File: [`mqtt/sensor/crtpi/pi_stats_start_time.yaml`](entities/mqtt/sensor/crtpi/pi_stats_start_time.yaml)
+</details>
+
 <details><summary><strong>CrtPi Uptime</strong></summary>
 
 **Entity ID: `sensor.crtpi_uptime`**
@@ -4285,6 +4295,16 @@ File: [`mqtt/sensor/growpi/local_ip_address.yaml`](entities/mqtt/sensor/growpi/l
 - Unit Of Measurement: %
 
 File: [`mqtt/sensor/growpi/memory_usage.yaml`](entities/mqtt/sensor/growpi/memory_usage.yaml)
+</details>
+
+<details><summary><strong>GrowPi Pi Stats Start Time</strong></summary>
+
+**Entity ID: `sensor.growpi_pi_stats_start_time`**
+
+- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
+- State Topic: /homeassistant/growpi/stats
+
+File: [`mqtt/sensor/growpi/pi_stats_start_time.yaml`](entities/mqtt/sensor/growpi/pi_stats_start_time.yaml)
 </details>
 
 <details><summary><strong>GrowPi Uptime</strong></summary>
@@ -4439,6 +4459,16 @@ File: [`mqtt/sensor/mtrxpi/local_ip_address.yaml`](entities/mqtt/sensor/mtrxpi/l
 - Unit Of Measurement: %
 
 File: [`mqtt/sensor/mtrxpi/memory_usage.yaml`](entities/mqtt/sensor/mtrxpi/memory_usage.yaml)
+</details>
+
+<details><summary><strong>MtrxPi Pi Stats Start Time</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_pi_stats_start_time`**
+
+- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
+- State Topic: /homeassistant/mtrxpi/stats
+
+File: [`mqtt/sensor/mtrxpi/pi_stats_start_time.yaml`](entities/mqtt/sensor/mtrxpi/pi_stats_start_time.yaml)
 </details>
 
 <details><summary><strong>MtrxPi Uptime</strong></summary>
@@ -4598,6 +4628,16 @@ File: [`mqtt/sensor/octopi/local_ip_address.yaml`](entities/mqtt/sensor/octopi/l
 File: [`mqtt/sensor/octopi/memory_usage.yaml`](entities/mqtt/sensor/octopi/memory_usage.yaml)
 </details>
 
+<details><summary><strong>OctoPi Pi Stats Start Time</strong></summary>
+
+**Entity ID: `sensor.octopi_pi_stats_start_time`**
+
+- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
+- State Topic: /homeassistant/octopi/stats
+
+File: [`mqtt/sensor/octopi/pi_stats_start_time.yaml`](entities/mqtt/sensor/octopi/pi_stats_start_time.yaml)
+</details>
+
 <details><summary><strong>OctoPi Uptime</strong></summary>
 
 **Entity ID: `sensor.octopi_uptime`**
@@ -4741,6 +4781,16 @@ File: [`mqtt/sensor/rtropi/local_ip_address.yaml`](entities/mqtt/sensor/rtropi/l
 File: [`mqtt/sensor/rtropi/memory_usage.yaml`](entities/mqtt/sensor/rtropi/memory_usage.yaml)
 </details>
 
+<details><summary><strong>Rtropi Pi Stats Start Time</strong></summary>
+
+**Entity ID: `sensor.rtropi_pi_stats_start_time`**
+
+- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
+- State Topic: /homeassistant/rtropi/stats
+
+File: [`mqtt/sensor/rtropi/pi_stats_start_time.yaml`](entities/mqtt/sensor/rtropi/pi_stats_start_time.yaml)
+</details>
+
 <details><summary><strong>RtroPi Uptime</strong></summary>
 
 **Entity ID: `sensor.rtropi_uptime`**
@@ -4872,6 +4922,16 @@ File: [`mqtt/sensor/vsmppi/local_ip_address.yaml`](entities/mqtt/sensor/vsmppi/l
 - Unit Of Measurement: %
 
 File: [`mqtt/sensor/vsmppi/memory_usage.yaml`](entities/mqtt/sensor/vsmppi/memory_usage.yaml)
+</details>
+
+<details><summary><strong>VSMPPi Pi Stats Start Time</strong></summary>
+
+**Entity ID: `sensor.vsmppi_pi_stats_start_time`**
+
+- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
+- State Topic: /homeassistant/vsmppi/stats
+
+File: [`mqtt/sensor/vsmppi/pi_stats_start_time.yaml`](entities/mqtt/sensor/vsmppi/pi_stats_start_time.yaml)
 </details>
 
 <details><summary><strong>VSMPPi Uptime</strong></summary>

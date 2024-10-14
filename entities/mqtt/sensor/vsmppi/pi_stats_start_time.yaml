@@ -1,0 +1,14 @@
+---
+force_update: false
+
+icon: mdi:console
+
+name: VSMPPi Pi Stats Start Time
+
+state_topic: /homeassistant/vsmppi/stats
+
+unique_id: vsmppi_pi_stats_start_time
+
+value_template: "{{ value_json.service_start_time }}"
+
+device_class: timestamp
