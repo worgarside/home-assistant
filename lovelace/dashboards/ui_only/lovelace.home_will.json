@@ -3588,7 +3588,7 @@
                       "name": "Pi Stats Start Time",
                       "icon": "mdi:console",
                       "entity": "sensor.vsmppi_pi_stats_start_time",
-                      "icon_color": "green",
+                      "icon_color": "amber",
                       "tap_action": {
                         "action": "more-info"
                       },
