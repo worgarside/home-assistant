@@ -3368,28 +3368,28 @@
                   "type": "grid",
                   "cards": [
                     {
-                      "type": "custom:mushroom-template-card",
-                      "primary": "{{ ( states(\"sensor.mtrxpi_boot_time\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\") }}",
-                      "secondary": "Last Boot Time",
+                      "type": "custom:mushroom-entity-card",
+                      "name": "Last Boot Time",
                       "icon": "mdi:console",
                       "entity": "sensor.mtrxpi_boot_time",
                       "icon_color": "green",
-                      "multiline_secondary": false,
                       "tap_action": {
                         "action": "more-info"
-                      }
+                      },
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
-                      "type": "custom:mushroom-template-card",
-                      "primary": "{{ ( states(\"sensor.mtrxpi_pi_stats_start_time\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\") }}",
-                      "secondary": "Pi Stats Start Time",
+                      "type": "custom:mushroom-entity-card",
+                      "name": "Pi Stats Start Time",
                       "icon": "mdi:console",
                       "entity": "sensor.mtrxpi_pi_stats_start_time",
-                      "icon_color": "green",
-                      "multiline_secondary": false,
+                      "icon_color": "amber",
                       "tap_action": {
                         "action": "more-info"
-                      }
+                      },
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
