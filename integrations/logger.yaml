@@ -6,15 +6,25 @@ logger:
   filters:
     homeassistant.loader:
       - We found a custom integration
+
     pychromecast.socket_client:
       - Failed to connect to service ServiceInfo
       - Error communicating with socket, resetting connection
+
     pychromecast.controllers:
       - STOP command requested but no session is active.
+
     idasen:
       - Connection failed
+
     denonavr.api:
       - Unexpected exception on telnet reconnect
+
+    homeassistant.components.sonos.speaker:
+      - Creating subscription failed for
+      - Creating subscriptions failed for
+      - No recent activity and cannot reach
+
   logs:
     charset_normalizer: warning
     idasen: critical
