@@ -2017,7 +2017,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (33)</h3></summary>
+<details><summary><h3>Entities (34)</h3></summary>
 
 <details><summary><strong>AdGuard Status</strong></summary>
 
@@ -2037,6 +2037,16 @@ File: [`command_line/sensor/addons/adguard_status.yaml`](entities/command_line/s
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/appdaemon_status.yaml`](entities/command_line/sensor/addons/appdaemon_status.yaml)
+</details>
+
+<details><summary><strong>CastSponsorSkip Status</strong></summary>
+
+**Entity ID: `sensor.castsponsorskip_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/db21ed7f_sponsorblockcast/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/castsponsorskip_status.yaml`](entities/command_line/sensor/addons/castsponsorskip_status.yaml)
 </details>
 
 <details><summary><strong>ESPHome Add-on Status</strong></summary>
@@ -6316,7 +6326,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (92)</h3></summary>
+<details><summary><h3>Entities (94)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6532,6 +6542,26 @@ File: [`template/sensor/addon_stats/appdaemon_cpu_usage.yaml`](entities/template
 - Unit Of Measurement: %
 
 File: [`template/sensor/addon_stats/appdaemon_memory_usage.yaml`](entities/template/sensor/addon_stats/appdaemon_memory_usage.yaml)
+</details>
+
+<details><summary><strong>CastSponsorSkip CPU Usage</strong></summary>
+
+**Entity ID: `sensor.castsponsorskip_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/castsponsorskip_cpu_usage.yaml`](entities/template/sensor/addon_stats/castsponsorskip_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>CastSponsorSkip Memory Usage</strong></summary>
+
+**Entity ID: `sensor.castsponsorskip_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/castsponsorskip_memory_usage.yaml`](entities/template/sensor/addon_stats/castsponsorskip_memory_usage.yaml)
 </details>
 
 <details><summary><strong>ESPHome Add-on CPU Usage</strong></summary>
