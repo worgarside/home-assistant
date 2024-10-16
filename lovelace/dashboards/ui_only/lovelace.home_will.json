@@ -919,7 +919,19 @@
               ],
               "visibility": [
                 {
-                  "condition": "{{ \"09:00\" < states(\"sensor.time\") < \"18:00\" and is_state(\"binary_sensor.workday\", \"on\") }}\n"
+                  "condition": "and",
+                  "conditions": [
+                    {
+                      "condition": "time",
+                      "after": "09:00",
+                      "before": "18:00"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.workday",
+                      "state": "on"
+                    }
+                  ]
                 }
               ]
             },
