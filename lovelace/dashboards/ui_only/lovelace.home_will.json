@@ -916,6 +916,11 @@
                   ],
                   "columns": 2
                 }
+              ],
+              "visibility": [
+                {
+                  "condition": "{{ \"09:00\" < states(\"sensor.time\") < \"18:00\" and is_state(\"binary_sensor.workday\", \"on\") }}\n"
+                }
               ]
             },
             {
