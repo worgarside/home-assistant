@@ -1746,6 +1746,21 @@
                           "color": "#BC19E5"
                         },
                         {
+                          "name": "SponsorBlock"
+                        },
+                        {
+                          "slug": "castsponsorskip"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#E519BC"
+                        },
+                        {
                           "name": "Terminal & SSH"
                         },
                         {
@@ -1758,28 +1773,13 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519BC"
+                          "color": "#E5196B"
                         },
                         {
                           "name": "VSCode"
                         },
                         {
                           "slug": "visual_studio_code_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E5196B"
-                        },
-                        {
-                          "name": "YAS-209 Bridge"
-                        },
-                        {
-                          "slug": "yas_209_bridge"
                         }
                       ]
                     }
