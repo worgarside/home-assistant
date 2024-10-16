@@ -925,6 +925,11 @@
                       "condition": "state",
                       "entity": "binary_sensor.workday",
                       "state": "on"
+                    },
+                    {
+                      "condition": "time",
+                      "before": "18:00",
+                      "after": "09:00"
                     }
                   ]
                 }
