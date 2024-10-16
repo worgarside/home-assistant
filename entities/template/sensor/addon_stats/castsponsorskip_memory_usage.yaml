@@ -1,0 +1,10 @@
+---
+icon: mdi:memory
+
+name: CastSponsorSkip Memory Usage
+
+state: "{{ state_attr('sensor.castsponsorskip_status', 'data').memory_percent | default(0) }}"
+
+unique_id: castsponsorskip_memory_usage
+
+unit_of_measurement: '%'

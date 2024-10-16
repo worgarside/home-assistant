@@ -1,0 +1,10 @@
+---
+icon: mdi:cpu-32-bit
+
+name: CastSponsorSkip CPU Usage
+
+state: "{{ state_attr('sensor.castsponsorskip_status', 'data').cpu_percent | default(0) }}"
+
+unique_id: castsponsorskip_cpu_usage
+
+unit_of_measurement: '%'
