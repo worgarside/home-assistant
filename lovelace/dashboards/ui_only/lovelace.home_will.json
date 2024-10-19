@@ -792,7 +792,7 @@
                         "min_bound_range": 10,
                         "lower_bound": "~20",
                         "upper_bound": "~20",
-                        "animate": true,
+                        "animate": false,
                         "show": {
                           "fill": "fade",
                           "icon": false,
@@ -841,9 +841,9 @@
                         "points_per_hour": 20,
                         "line_width": 2,
                         "min_bound_range": 10,
-                        "lower_bound": "~20",
-                        "upper_bound": "~20",
-                        "animate": true,
+                        "lower_bound": "~50",
+                        "upper_bound": "~70",
+                        "animate": false,
                         "show": {
                           "fill": "fade",
                           "icon": false,
