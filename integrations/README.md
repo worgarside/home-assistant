@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (131)</h3></summary>
+<details><summary><h3>Entities (132)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -438,6 +438,19 @@ File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
 - Mode: `single`
 
 File: [`automation/diffuser/lounge/set_color.yaml`](entities/automation/diffuser/lounge/set_color.yaml)
+</details>
+
+<details><summary><code>/diffuser/lounge/timeout</code></summary>
+
+**Entity ID: `automation.diffuser_lounge_timeout`**
+
+> *No description provided*
+
+- Alias: /diffuser/lounge/timeout
+- ID: `diffuser_lounge_timeout`
+- Mode: `single`
+
+File: [`automation/diffuser/lounge/timeout.yaml`](entities/automation/diffuser/lounge/timeout.yaml)
 </details>
 
 <details><summary><code>/event/repair/state-change</code></summary>
@@ -2921,7 +2934,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (42)</h3></summary>
+<details><summary><h3>Entities (43)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3352,6 +3365,19 @@ File: [`input_number/timeout/dry_box_dehumidifier_timeout.yaml`](entities/input_
 - Unit Of Measurement: `s`
 
 File: [`input_number/timeout/hallway_lights_timeout.yaml`](entities/input_number/timeout/hallway_lights_timeout.yaml)
+</details>
+
+<details><summary><strong>Lounge Diffuser | Timeout</strong></summary>
+
+**Entity ID: `input_number.lounge_diffuser_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 86400
+- Min: 15
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/timeout/lounge_diffuser_timeout.yaml`](entities/input_number/timeout/lounge_diffuser_timeout.yaml)
 </details>
 
 <details><summary><strong>Prusa i3 Bed | Timeout</strong></summary>
