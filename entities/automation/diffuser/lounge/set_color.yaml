@@ -12,11 +12,11 @@ description: Keep the color of the lounge diffuser the same
 trigger:
   - platform: state
     entity_id: select.lounge_diffuser_colors
-    from: Tangerine
+    not_to: Tangerine
 
   - platform: state
     entity_id: select.lounge_diffuser_light_mode
-    from: Solid
+    not_to: Solid
 
 action:
   - service: select.select_option
