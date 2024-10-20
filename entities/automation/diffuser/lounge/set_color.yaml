@@ -12,7 +12,9 @@ description: Keep the color of the lounge diffuser the same
 trigger:
   - platform: state
     entity_id: select.lounge_diffuser_colors
-    not_to: Tangerine
+    not_to:
+      - Tangerine
+      - unavailable
 
   - platform: state
     entity_id: select.lounge_diffuser_light_mode
@@ -21,12 +23,17 @@ trigger:
 action:
   - service: select.select_option
     target:
-      entity_id: select.lounge_diffuser_colors
-    data:
-      option: Tangerine
-
-  - service: select.select_option
-    target:
       entity_id: select.lounge_diffuser_light_mode
     data:
       option: Solid
+
+  - wait_template: "{{ is_state('select.lounge_diffuser_light_mode', 'Solid') }}"
+    timeout:
+      seconds: 10
+    continue_on_timeout: true
+
+  - service: select.select_option
+    target:
+      entity_id: select.lounge_diffuser_colors
+    data:
+      option: Tangerine
