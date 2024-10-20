@@ -16,6 +16,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading": "Bedroom"
+                },
+                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -178,12 +182,15 @@
                   "type": "tile",
                   "entity": "remote.bedroom_tv"
                 }
-              ],
-              "title": "Bedroom"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Hallway"
+                },
                 {
                   "type": "vertical-stack",
                   "cards": [
@@ -226,12 +233,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "Hallway"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Kitchen"
+                },
                 {
                   "type": "vertical-stack",
                   "cards": [
@@ -261,12 +271,15 @@
                     }
                   ]
                 }
-              ],
-              "title": "Kitchen"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lounge"
+                },
                 {
                   "type": "vertical-stack",
                   "cards": [
@@ -474,6 +487,10 @@
                         {
                           "type": "entity",
                           "entity": "sensor.lounge_humidity"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "switch.lounge_diffuser"
                         }
                       ]
                     }
@@ -487,12 +504,15 @@
                   "type": "tile",
                   "entity": "remote.lounge_tv"
                 }
-              ],
-              "title": "Lounge"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Office"
+                },
                 {
                   "type": "vertical-stack",
                   "cards": [
@@ -650,8 +670,7 @@
                     }
                   ]
                 }
-              ],
-              "title": "Office"
+              ]
             }
           ],
           "cards": []
