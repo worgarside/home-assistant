@@ -51,8 +51,8 @@ def lighten_color(color: str, amount: float) -> str:
     return f"{r:02x}{g:02x}{b:02x}".upper()
 
 
-def generate_unique_colors(n: int) -> list[str]:
-    """Generate n unique colors."""
+def generate_unique_colors(n: int, *, include_prefix: bool = False) -> list[str]:
+    """Generate n unique hex codes."""
     if n < 1:
         raise ValueError(n)
 
@@ -62,6 +62,10 @@ def generate_unique_colors(n: int) -> list[str]:
     for i in range(n):
         hue = i * step
         hex_color = hls_to_hex(hue, 0.5, 0.8)
+
+        if include_prefix:
+            hex_color = f"#{hex_color}"
+
         colors.append(hex_color)
 
     return colors
@@ -261,6 +265,53 @@ def get_repo_label_colors() -> None:
         )
 
 
+def tuya_encode_color(hex_code: str, brightness: int = 255) -> str:
+    """Create a Tuya color code from a hex code and brightness.
+
+    RR GG BB HHHH VV BrBr
+    https://github.com/codetheweb/tuyapi/issues/346#issuecomment-716900821
+    """
+    hex_code = hex_code.lstrip("#")
+
+    r = int(hex_code[0:2], 16)
+    g = int(hex_code[2:4], 16)
+    b = int(hex_code[4:6], 16)
+
+    hue, _, value = colorsys.rgb_to_hsv(r / 255, g / 255, b / 255)
+
+    # Encode values into the final format RR GG BB HHHH VV BrBr
+    return (
+        f"{r:02x}{g:02x}{b:02x}{int(hue * 360):04x}{int(value * 255):02x}{brightness:02x}"
+    )
+
+
+def get_tuya_colors() -> None:
+    """Generate Tuya color codes and names."""
+    color_names = [
+        "Crimson",
+        "Tangerine",
+        "Gold",
+        "Chartreuse",
+        "Lime",
+        "Neon",
+        "Emerald",
+        "Mint",
+        "Aqua",
+        "Sky",
+        "Sapphire",
+        "Indigo",
+        "Violet",
+        "Fuchsia",
+        "Magenta",
+        "Rose",
+    ]
+
+    codes = [tuya_encode_color(color) for color in generate_unique_colors(16)]
+
+    print(";".join(codes))
+    print(";".join(color_names))
+
+
 if __name__ == "__main__":
     print("\n\n\n")
-    gen_github_label_colors()
+    get_tuya_colors()
