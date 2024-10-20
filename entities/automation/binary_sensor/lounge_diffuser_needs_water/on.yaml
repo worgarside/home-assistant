@@ -1,0 +1,38 @@
+---
+alias: /binary-sensor/lounge-diffuser-needs-water/on
+
+id: binary_sensor_lounge_diffuser_needs_water_on
+
+max_exceeded: silent
+
+mode: single
+
+description: Send a notification when the lounge diffuser runs out of water
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.lounge_diffuser_needs_water
+    to: "on"
+    for:
+      minutes: 1
+
+action:
+  - if: "{{ is_state('person.will', 'home') }}"
+
+    then:
+      - service: script.notify_will
+        data:
+          title: Home Assistant Alert
+          message: Lounge diffuser needs water
+          mobile_notification_icon: mdi:water-percent-alert
+          notification_id: lounge_diffuser_needs_water
+
+  - if: "{{ is_state('person.vic', 'home') }}"
+
+    then:
+      - service: script.notify_vic
+        data:
+          title: Lounge diffuser needs water
+          message: 🦎
+          mobile_notification_icon: mdi:water-percent-alert
+          notification_id: lounge_diffuser_needs_water

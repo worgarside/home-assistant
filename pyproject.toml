@@ -20,6 +20,7 @@ watchdog = "^5.0.3"
 zigpy = "^0.68.1"
 zha-quirks = "^0.0.123"
 matplotlib = "^3.9.2"
+pyyaml = "^6.0.2"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"

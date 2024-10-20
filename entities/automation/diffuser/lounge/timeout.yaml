@@ -1,0 +1,18 @@
+---
+alias: /diffuser/lounge/timeout
+
+id: diffuser_lounge_timeout
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: switch.lounge_diffuser
+    to: "on"
+    for:
+      minutes: "{{ states('input_number.lounge_diffuser_timeout') | int(120) }}"
+
+action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.lounge_diffuser
