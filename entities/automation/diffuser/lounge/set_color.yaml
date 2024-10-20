@@ -1,0 +1,32 @@
+---
+alias: /diffuser/lounge/set-color
+
+id: diffuser_lounge_set_color
+
+max_exceeded: silent
+
+mode: single
+
+description: Keep the color of the lounge diffuser the same
+
+trigger:
+  - platform: state
+    entity_id: select.lounge_diffuser_colors
+    from: Tangerine
+
+  - platform: state
+    entity_id: select.lounge_diffuser_light_mode
+    from: Solid
+
+action:
+  - service: select.select_option
+    target:
+      entity_id: select.lounge_diffuser_colors
+    data:
+      option: Tangerine
+
+  - service: select.select_option
+    target:
+      entity_id: select.lounge_diffuser_light_mode
+    data:
+      option: Solid

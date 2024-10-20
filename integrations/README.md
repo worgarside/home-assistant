@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (129)</h3></summary>
+<details><summary><h3>Entities (131)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -61,6 +61,19 @@ File: [`automation/binary_sensor/hallway_motion_sensor/on.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/hallway_motion_sensor/timeout.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/lounge-diffuser-needs-water/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_lounge_diffuser_needs_water_on`**
+
+> Send a notification when the lounge diffuser runs out of water
+
+- Alias: /binary-sensor/lounge-diffuser-needs-water/on
+- ID: `binary_sensor_lounge_diffuser_needs_water_on`
+- Mode: `single`
+
+File: [`automation/binary_sensor/lounge_diffuser_needs_water/on.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/on.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/office-presence-sensor/state-change</code></summary>
@@ -412,6 +425,19 @@ File: [`automation/cube/rotate.yaml`](entities/automation/cube/rotate.yaml)
 }
 ```
 File: [`automation/cube/slide.yaml`](entities/automation/cube/slide.yaml)
+</details>
+
+<details><summary><code>/diffuser/lounge/set-color</code></summary>
+
+**Entity ID: `automation.diffuser_lounge_set_color`**
+
+> Keep the color of the lounge diffuser the same
+
+- Alias: /diffuser/lounge/set-color
+- ID: `diffuser_lounge_set_color`
+- Mode: `single`
+
+File: [`automation/diffuser/lounge/set_color.yaml`](entities/automation/diffuser/lounge/set_color.yaml)
 </details>
 
 <details><summary><code>/event/repair/state-change</code></summary>
@@ -5650,7 +5676,7 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
   "notification_id": "{% if clear_notification %}\n  {{ notification_id | default(None) }}\n{% else %}\n  {{ notification_id | default('notify_vic_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}\n{% endif %}",
   "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message | default(\"\") }}\n{% endif %}",
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
-  "notif_title": "{{ title | default(' ') }}",
+  "notif_title": "{{ title | default('Home Assistant') }}",
   "url": "{{ url | default('') }}",
   "group": "{{ group | default('') }}",
   "sticky": "{{ sticky | default(false) }}"
@@ -5760,7 +5786,7 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "notification_id": "{% if clear_notification %}\n  {{ notification_id | default(None) }}\n{% else %}\n  {{ notification_id | default('notify_will_' ~ now().strftime('%Y%m%d%H%M%S%f')) }}\n{% endif %}",
   "message": "{% if clear_notification %}\n  clear_notification\n{% else %}\n  {{ message | default(\"\") }}\n{% endif %}",
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
-  "notif_title": "{{ title | default(' ') }}",
+  "notif_title": "{{ title | default('Home Assistant') }}",
   "url": "{{ url | default('') }}",
   "group": "{{ group | default('') }}",
   "sticky": "{{ sticky | default(false) }}",

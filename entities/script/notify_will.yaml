@@ -102,7 +102,7 @@ variables:
 
   mobile_notification_icon: "{{ mobile_notification_icon | default('mdi:home-assistant') }}"
 
-  notif_title: "{{ title | default(' ') }}"
+  notif_title: "{{ title | default('Home Assistant') }}"
 
   url: "{{ url | default('') }}"
 
