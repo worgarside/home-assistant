@@ -1864,7 +1864,7 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "CPU Usage (6 Hours)",
+                  "name": "6 Hour History",
                   "entities": [
                     {
                       "entity": "sensor.adguard_cpu_usage",
@@ -1944,7 +1944,7 @@
                   "hours_to_show": 6,
                   "points_per_hour": 60,
                   "lower_bound": 0,
-                  "upper_bound": "~70",
+                  "upper_bound": "~50",
                   "height": 150,
                   "animate": false,
                   "hour24": true,
