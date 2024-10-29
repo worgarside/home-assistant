@@ -1,7 +1,7 @@
 ---
-alias: /binary-sensor/lounge-diffuser-needs-water/on
+alias: /binary-sensor/lounge-diffuser-needs-water/off
 
-id: binary_sensor_lounge_diffuser_needs_water_on
+id: binary_sensor_lounge_diffuser_needs_water_off
 
 max_exceeded: silent
 
@@ -12,7 +12,7 @@ description: Send a notification when the lounge diffuser runs out of water
 trigger:
   - platform: state
     entity_id: binary_sensor.lounge_diffuser_needs_water
-    to: "on"
+    to: "off" # Because off = dry
     for:
       minutes: 1
 
