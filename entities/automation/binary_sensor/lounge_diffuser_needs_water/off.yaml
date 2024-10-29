@@ -12,9 +12,11 @@ description: Send a notification when the lounge diffuser runs out of water
 trigger:
   - platform: state
     entity_id: binary_sensor.lounge_diffuser_needs_water
-    to: "off" # Because off = dry
+    to:
+      - "on"
+      - "off"
     for:
-      minutes: 1
+      seconds: 15
 
 action:
   - if: "{{ is_state('person.will', 'home') }}"
@@ -23,7 +25,12 @@ action:
       - service: script.notify_will
         data:
           title: Home Assistant Alert
-          message: Lounge diffuser needs water
+          message: >-
+            {% if trigger.to_state.state | bool %}
+              clear_notification
+            {% else %}
+              Lounge diffuser needs water
+            {% endif %}
           mobile_notification_icon: mdi:water-percent-alert
           notification_id: lounge_diffuser_needs_water
 
@@ -33,6 +40,11 @@ action:
       - service: script.notify_vic
         data:
           title: Lounge diffuser needs water
-          message: 🦎
+          message: >-
+            {% if trigger.to_state.state | bool %}
+              clear_notification
+            {% else %}
+              🦎
+            {% endif %}
           mobile_notification_icon: mdi:water-percent-alert
           notification_id: lounge_diffuser_needs_water
