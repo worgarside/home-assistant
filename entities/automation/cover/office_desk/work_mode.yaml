@@ -29,6 +29,11 @@ condition:
         entity_id: binary_sensor.workday
         state: "on"
 
+      - alias: Desk is occupied
+        condition: state
+        entity_id: binary_sensor.office_desk_occupied
+        state: "on"
+
 action:
   - alias: Send debug notification
     service: script.turn_on
