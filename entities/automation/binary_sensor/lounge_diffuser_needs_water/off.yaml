@@ -12,7 +12,6 @@ description: Send a notification when the lounge diffuser runs out of water
 trigger:
   - platform: state
     entity_id: binary_sensor.lounge_diffuser_needs_water
-    to: "off" # Because off = dry
     for:
       minutes: 1
 
@@ -26,6 +25,7 @@ action:
           message: Lounge diffuser needs water
           mobile_notification_icon: mdi:water-percent-alert
           notification_id: lounge_diffuser_needs_water
+          clear_notification: "{{ trigger.to_state.state | bool }}"
 
   - if: "{{ is_state('person.vic', 'home') }}"
 
@@ -36,3 +36,4 @@ action:
           message: 🦎
           mobile_notification_icon: mdi:water-percent-alert
           notification_id: lounge_diffuser_needs_water
+          clear_notification: "{{ trigger.to_state.state | bool }}"
