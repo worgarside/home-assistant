@@ -63,17 +63,17 @@ File: [`automation/binary_sensor/hallway_motion_sensor/on.yaml`](entities/automa
 File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/hallway_motion_sensor/timeout.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/lounge-diffuser-needs-water/on</code></summary>
+<details><summary><code>/binary-sensor/lounge-diffuser-needs-water/off</code></summary>
 
-**Entity ID: `automation.binary_sensor_lounge_diffuser_needs_water_on`**
+**Entity ID: `automation.binary_sensor_lounge_diffuser_needs_water_off`**
 
 > Send a notification when the lounge diffuser runs out of water
 
-- Alias: /binary-sensor/lounge-diffuser-needs-water/on
-- ID: `binary_sensor_lounge_diffuser_needs_water_on`
+- Alias: /binary-sensor/lounge-diffuser-needs-water/off
+- ID: `binary_sensor_lounge_diffuser_needs_water_off`
 - Mode: `single`
 
-File: [`automation/binary_sensor/lounge_diffuser_needs_water/on.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/on.yaml)
+File: [`automation/binary_sensor/lounge_diffuser_needs_water/off.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/off.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/office-presence-sensor/state-change</code></summary>
