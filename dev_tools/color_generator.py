@@ -85,11 +85,13 @@ def get_addon_colors() -> None:
         ("MariaDB", "mariadb"),
         ("Matter Server", "matter_server"),
         ("Mosquitto Broker", "mosquitto_broker"),
-        # ("Plex Media Server", "plex_media_server"),
+        ("Nextcloud", "nextcloud"),
+        ("Plex Media Server", "plex_media_server"),
         ("Silicon Labs Multiprotocol", "silicon_labs_multiprotocol_add_on"),
+        ("SponsorBlock", "castsponsorskip"),
         ("Terminal & SSH", "terminal_ssh_add_on"),
         ("VSCode", "visual_studio_code_add_on"),
-        ("YAS-209 Bridge", "yas_209_bridge"),
+        # ("YAS-209 Bridge", "yas_209_bridge"),
     )
 
     template = """  - type: custom:decluttering-card
@@ -112,15 +114,16 @@ cards:""")
     for color, addon, slug in color_tuples:
         print(template.format(color=color, name=addon, slug=slug))
 
-    print("\n\n\n\n\n\n")
-    print("""type: custom:mini-graph-card
+    for stat in ("cpu", "memory"):
+        print("\n\n\n\n\n\n")
+        print("""type: custom:mini-graph-card
 name: 6 Hour History
 entities:""")
-    for color, _, slug in color_tuples:
-        print(f"""  - entity: sensor.{slug}_cpu_usage
+        for color, _, slug in color_tuples:
+            print(f"""  - entity: sensor.{slug}_{stat}_usage
     color: '#{color}'""")
 
-    print("""show:
+        print("""show:
   state: false
   legend: false
   fill: fade
@@ -134,7 +137,7 @@ points_per_hour: 60
 lower_bound: 0
 upper_bound: ~70
 height: 150
-animate: true
+animate: false
 hour24: true
 line_width: 2
 """)
@@ -314,4 +317,4 @@ def get_tuya_colors() -> None:
 
 if __name__ == "__main__":
     print("\n\n\n")
-    get_tuya_colors()
+    get_addon_colors()
