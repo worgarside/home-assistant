@@ -1952,7 +1952,7 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "Memory Usage (6 Hours)",
+                  "name": "6 Hour History",
                   "entities": [
                     {
                       "entity": "sensor.adguard_memory_usage",
@@ -1960,63 +1960,67 @@
                     },
                     {
                       "entity": "sensor.appdaemon_memory_usage",
-                      "color": "#E56619"
+                      "color": "#E56119"
                     },
                     {
                       "entity": "sensor.esphome_add_on_memory_usage",
-                      "color": "#E5B219"
+                      "color": "#E5A919"
                     },
                     {
                       "entity": "sensor.grafana_memory_usage",
-                      "color": "#CCE519"
+                      "color": "#D9E519"
                     },
                     {
                       "entity": "sensor.influxdb_memory_usage",
-                      "color": "#7FE519"
+                      "color": "#91E519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_memory_usage",
-                      "color": "#33E519"
+                      "color": "#49E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_memory_usage",
-                      "color": "#19E54C"
+                      "color": "#19E531"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_memory_usage",
-                      "color": "#19E599"
+                      "color": "#19E579"
                     },
                     {
                       "entity": "sensor.mariadb_memory_usage",
-                      "color": "#19E5E5"
+                      "color": "#19E5C1"
                     },
                     {
                       "entity": "sensor.matter_server_memory_usage",
-                      "color": "#1998E5"
+                      "color": "#19C1E5"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_memory_usage",
-                      "color": "#194CE5"
+                      "color": "#1979E5"
+                    },
+                    {
+                      "entity": "sensor.nextcloud_memory_usage",
+                      "color": "#1931E5"
                     },
                     {
                       "entity": "sensor.plex_media_server_memory_usage",
-                      "color": "#3219E5"
+                      "color": "#4919E5"
                     },
                     {
                       "entity": "sensor.silicon_labs_multiprotocol_add_on_memory_usage",
-                      "color": "#7F19E5"
+                      "color": "#9119E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_memory_usage",
-                      "color": "#CB19E5"
+                      "color": "#D919E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_memory_usage",
-                      "color": "#E519B2"
+                      "color": "#E519A9"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_memory_usage",
-                      "color": "#E51965"
+                      "color": "#E51961"
                     }
                   ],
                   "show": {
@@ -2032,7 +2036,7 @@
                   "hours_to_show": 6,
                   "points_per_hour": 60,
                   "lower_bound": 0,
-                  "upper_bound": "~10",
+                  "upper_bound": "~70",
                   "height": 150,
                   "animate": false,
                   "hour24": true,
