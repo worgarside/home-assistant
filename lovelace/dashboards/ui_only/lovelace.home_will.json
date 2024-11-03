@@ -1640,7 +1640,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E56619"
+                          "color": "#E56119"
                         },
                         {
                           "name": "AppDaemon"
@@ -1655,7 +1655,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5B219"
+                          "color": "#E5A919"
                         },
                         {
                           "name": "ESPHome"
@@ -1670,7 +1670,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#CCE519"
+                          "color": "#D9E519"
                         },
                         {
                           "name": "Grafana"
@@ -1685,7 +1685,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#7FE519"
+                          "color": "#91E519"
                         },
                         {
                           "name": "InfluxDB"
@@ -1700,7 +1700,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#33E519"
+                          "color": "#49E519"
                         },
                         {
                           "name": "Google Drive Backup"
@@ -1715,7 +1715,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E54C"
+                          "color": "#19E531"
                         },
                         {
                           "name": "Item Warehouse API"
@@ -1730,7 +1730,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E599"
+                          "color": "#19E579"
                         },
                         {
                           "name": "Item Warehouse Website"
@@ -1745,7 +1745,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E5E5"
+                          "color": "#19E5C1"
                         },
                         {
                           "name": "MariaDB"
@@ -1760,7 +1760,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#1998E5"
+                          "color": "#19C1E5"
                         },
                         {
                           "name": "Matter Server"
@@ -1775,7 +1775,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#194CE5"
+                          "color": "#1979E5"
                         },
                         {
                           "name": "Mosquitto Broker"
@@ -1790,7 +1790,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#3219E5"
+                          "color": "#1931E5"
+                        },
+                        {
+                          "name": "Nextcloud"
+                        },
+                        {
+                          "slug": "nextcloud"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#4919E5"
                         },
                         {
                           "name": "Plex Media Server"
@@ -1805,7 +1820,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#7F19E5"
+                          "color": "#9119E5"
                         },
                         {
                           "name": "Silicon Labs Multiprotocol"
@@ -1820,7 +1835,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#CB19E5"
+                          "color": "#D919E5"
                         },
                         {
                           "name": "SponsorBlock"
@@ -1835,7 +1850,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519B2"
+                          "color": "#E519A9"
                         },
                         {
                           "name": "Terminal & SSH"
@@ -1850,7 +1865,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E51965"
+                          "color": "#E51961"
                         },
                         {
                           "name": "VSCode"
