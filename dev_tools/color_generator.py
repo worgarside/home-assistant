@@ -85,7 +85,7 @@ def get_addon_colors() -> None:
         ("MariaDB", "mariadb"),
         ("Matter Server", "matter_server"),
         ("Mosquitto Broker", "mosquitto_broker"),
-        ("Nextcloud", "nextcloud_ocr"),
+        ("Nextcloud", "nextcloud"),
         ("Plex Media Server", "plex_media_server"),
         ("Silicon Labs Multiprotocol", "silicon_labs_multiprotocol_add_on"),
         ("SponsorBlock", "castsponsorskip"),
