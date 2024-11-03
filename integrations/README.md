@@ -2056,7 +2056,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (34)</h3></summary>
+<details><summary><h3>Entities (35)</h3></summary>
 
 <details><summary><strong>AdGuard Status</strong></summary>
 
@@ -2176,6 +2176,16 @@ File: [`command_line/sensor/addons/matter_server_status.yaml`](entities/command_
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/mosquitto_broker_status.yaml`](entities/command_line/sensor/addons/mosquitto_broker_status.yaml)
+</details>
+
+<details><summary><strong>Nextcloud Status</strong></summary>
+
+**Entity ID: `sensor.nextcloud_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/db21ed7f_nextcloud_ocr/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/nextcloud_status.yaml`](entities/command_line/sensor/addons/nextcloud_status.yaml)
 </details>
 
 <details><summary><strong>Plex Media Server Status</strong></summary>
@@ -6378,7 +6388,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (94)</h3></summary>
+<details><summary><h3>Entities (96)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6794,6 +6804,26 @@ File: [`template/sensor/addon_stats/mosquitto_broker_cpu_usage.yaml`](entities/t
 - Unit Of Measurement: %
 
 File: [`template/sensor/addon_stats/mosquitto_broker_memory_usage.yaml`](entities/template/sensor/addon_stats/mosquitto_broker_memory_usage.yaml)
+</details>
+
+<details><summary><strong>Nextcloud CPU Usage</strong></summary>
+
+**Entity ID: `sensor.nextcloud_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/nextcloud_cpu_usage.yaml`](entities/template/sensor/addon_stats/nextcloud_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>Nextcloud Memory Usage</strong></summary>
+
+**Entity ID: `sensor.nextcloud_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/nextcloud_memory_usage.yaml`](entities/template/sensor/addon_stats/nextcloud_memory_usage.yaml)
 </details>
 
 <details><summary><strong>Plex Media Server CPU Usage</strong></summary>
