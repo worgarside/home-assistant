@@ -1,0 +1,10 @@
+---
+icon: mdi:memory
+
+name: Nextcloud Memory Usage
+
+state: "{{ state_attr('sensor.nextcloud_status', 'data').memory_percent | default(0) }}"
+
+unique_id: nextcloud_memory_usage
+
+unit_of_measurement: '%'
