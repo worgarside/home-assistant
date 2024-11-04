@@ -87,7 +87,7 @@ repos:
           - --show-error-codes
         additional_dependencies:
           - types-paramiko
-          - watchdog==5.0.3
+          - watchdog==6.0.0
           - wg-utilities==5.17.0
           - matplotlib==3.9.2
           - types-PyYAML
