@@ -32,7 +32,11 @@ state: >-
       Dusk
     {% endif %}
   {% else %}
-    Night
+    {% if hour > 20 %}
+      Night
+    {% else %}
+      Dusk
+    {% endif %}
   {% endif %}
 
 icon: >-
