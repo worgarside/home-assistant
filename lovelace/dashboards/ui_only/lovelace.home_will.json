@@ -1640,7 +1640,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E56619"
+                          "color": "#E56119"
                         },
                         {
                           "name": "AppDaemon"
@@ -1655,7 +1655,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5B219"
+                          "color": "#E5A919"
                         },
                         {
                           "name": "ESPHome"
@@ -1670,7 +1670,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#CCE519"
+                          "color": "#D9E519"
                         },
                         {
                           "name": "Grafana"
@@ -1685,7 +1685,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#7FE519"
+                          "color": "#91E519"
                         },
                         {
                           "name": "InfluxDB"
@@ -1700,7 +1700,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#33E519"
+                          "color": "#49E519"
                         },
                         {
                           "name": "Google Drive Backup"
@@ -1715,7 +1715,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E54C"
+                          "color": "#19E531"
                         },
                         {
                           "name": "Item Warehouse API"
@@ -1730,7 +1730,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E599"
+                          "color": "#19E579"
                         },
                         {
                           "name": "Item Warehouse Website"
@@ -1745,7 +1745,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E5E5"
+                          "color": "#19E5C1"
                         },
                         {
                           "name": "MariaDB"
@@ -1760,7 +1760,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#1998E5"
+                          "color": "#19C1E5"
                         },
                         {
                           "name": "Matter Server"
@@ -1775,7 +1775,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#194CE5"
+                          "color": "#1979E5"
                         },
                         {
                           "name": "Mosquitto Broker"
@@ -1790,7 +1790,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#3219E5"
+                          "color": "#1931E5"
+                        },
+                        {
+                          "name": "Nextcloud"
+                        },
+                        {
+                          "slug": "nextcloud"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#4919E5"
                         },
                         {
                           "name": "Plex Media Server"
@@ -1805,7 +1820,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#7F19E5"
+                          "color": "#9119E5"
                         },
                         {
                           "name": "Silicon Labs Multiprotocol"
@@ -1820,7 +1835,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#CB19E5"
+                          "color": "#D919E5"
                         },
                         {
                           "name": "SponsorBlock"
@@ -1835,7 +1850,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519B2"
+                          "color": "#E519A9"
                         },
                         {
                           "name": "Terminal & SSH"
@@ -1850,7 +1865,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E51965"
+                          "color": "#E51961"
                         },
                         {
                           "name": "VSCode"
@@ -1864,7 +1879,7 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "CPU Usage (6 Hours)",
+                  "name": "6 Hour History",
                   "entities": [
                     {
                       "entity": "sensor.adguard_cpu_usage",
@@ -1872,63 +1887,67 @@
                     },
                     {
                       "entity": "sensor.appdaemon_cpu_usage",
-                      "color": "#E56619"
+                      "color": "#E56119"
                     },
                     {
                       "entity": "sensor.esphome_add_on_cpu_usage",
-                      "color": "#E5B219"
+                      "color": "#E5A919"
                     },
                     {
                       "entity": "sensor.grafana_cpu_usage",
-                      "color": "#CCE519"
+                      "color": "#D9E519"
                     },
                     {
                       "entity": "sensor.influxdb_cpu_usage",
-                      "color": "#7FE519"
+                      "color": "#91E519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_cpu_usage",
-                      "color": "#33E519"
+                      "color": "#49E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_cpu_usage",
-                      "color": "#19E54C"
+                      "color": "#19E531"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_cpu_usage",
-                      "color": "#19E599"
+                      "color": "#19E579"
                     },
                     {
                       "entity": "sensor.mariadb_cpu_usage",
-                      "color": "#19E5E5"
+                      "color": "#19E5C1"
                     },
                     {
                       "entity": "sensor.matter_server_cpu_usage",
-                      "color": "#1998E5"
+                      "color": "#19C1E5"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_cpu_usage",
-                      "color": "#194CE5"
+                      "color": "#1979E5"
+                    },
+                    {
+                      "entity": "sensor.nextcloud_cpu_usage",
+                      "color": "#1931E5"
                     },
                     {
                       "entity": "sensor.plex_media_server_cpu_usage",
-                      "color": "#3219E5"
+                      "color": "#4919E5"
                     },
                     {
                       "entity": "sensor.silicon_labs_multiprotocol_add_on_cpu_usage",
-                      "color": "#7F19E5"
+                      "color": "#9119E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_cpu_usage",
-                      "color": "#CB19E5"
+                      "color": "#D919E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_cpu_usage",
-                      "color": "#E519B2"
+                      "color": "#E519A9"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_cpu_usage",
-                      "color": "#E51965"
+                      "color": "#E51961"
                     }
                   ],
                   "show": {
@@ -1952,7 +1971,7 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "Memory Usage (6 Hours)",
+                  "name": "6 Hour History",
                   "entities": [
                     {
                       "entity": "sensor.adguard_memory_usage",
@@ -1960,63 +1979,67 @@
                     },
                     {
                       "entity": "sensor.appdaemon_memory_usage",
-                      "color": "#E56619"
+                      "color": "#E56119"
                     },
                     {
                       "entity": "sensor.esphome_add_on_memory_usage",
-                      "color": "#E5B219"
+                      "color": "#E5A919"
                     },
                     {
                       "entity": "sensor.grafana_memory_usage",
-                      "color": "#CCE519"
+                      "color": "#D9E519"
                     },
                     {
                       "entity": "sensor.influxdb_memory_usage",
-                      "color": "#7FE519"
+                      "color": "#91E519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_memory_usage",
-                      "color": "#33E519"
+                      "color": "#49E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_memory_usage",
-                      "color": "#19E54C"
+                      "color": "#19E531"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_memory_usage",
-                      "color": "#19E599"
+                      "color": "#19E579"
                     },
                     {
                       "entity": "sensor.mariadb_memory_usage",
-                      "color": "#19E5E5"
+                      "color": "#19E5C1"
                     },
                     {
                       "entity": "sensor.matter_server_memory_usage",
-                      "color": "#1998E5"
+                      "color": "#19C1E5"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_memory_usage",
-                      "color": "#194CE5"
+                      "color": "#1979E5"
+                    },
+                    {
+                      "entity": "sensor.nextcloud_memory_usage",
+                      "color": "#1931E5"
                     },
                     {
                       "entity": "sensor.plex_media_server_memory_usage",
-                      "color": "#3219E5"
+                      "color": "#4919E5"
                     },
                     {
                       "entity": "sensor.silicon_labs_multiprotocol_add_on_memory_usage",
-                      "color": "#7F19E5"
+                      "color": "#9119E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_memory_usage",
-                      "color": "#CB19E5"
+                      "color": "#D919E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_memory_usage",
-                      "color": "#E519B2"
+                      "color": "#E519A9"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_memory_usage",
-                      "color": "#E51965"
+                      "color": "#E51961"
                     }
                   ],
                   "show": {
