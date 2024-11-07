@@ -1,0 +1,10 @@
+---
+icon: mdi:memory
+
+name: FlareSolverr Memory Usage
+
+state: "{{ state_attr('sensor.flare_solverr_status', 'data').memory_percent | default(0) }}"
+
+unique_id: flaresolverr_memory_usage
+
+unit_of_measurement: "%"

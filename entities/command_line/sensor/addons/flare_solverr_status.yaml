@@ -1,0 +1,14 @@
+---
+sensor:
+  command: !secret addon_stats_command_flaresolverr
+
+  json_attributes:
+    - data
+
+  name: FlareSolverr Status
+
+  scan_interval: 60
+
+  unique_id: flare_solverr_status
+
+  value_template: "{{ value_json.result }}"

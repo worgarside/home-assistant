@@ -1,0 +1,10 @@
+---
+icon: mdi:cpu-32-bit
+
+name: Transmission CPU Usage
+
+state: "{{ state_attr('sensor.transmission_status', 'data').cpu_percent | default(0) }}"
+
+unique_id: transmission_cpu_usage
+
+unit_of_measurement: "%"

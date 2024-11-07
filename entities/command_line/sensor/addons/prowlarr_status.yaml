@@ -1,0 +1,14 @@
+---
+sensor:
+  command: !secret addon_stats_command_prowlarr
+
+  json_attributes:
+    - data
+
+  name: Prowlarr Status
+
+  scan_interval: 60
+
+  unique_id: prowlarr_status
+
+  value_template: "{{ value_json.result }}"
