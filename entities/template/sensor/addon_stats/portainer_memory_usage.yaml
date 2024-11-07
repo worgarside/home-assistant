@@ -1,0 +1,10 @@
+---
+icon: mdi:memory
+
+name: Portainer Memory Usage
+
+state: "{{ state_attr('sensor.portainer_status', 'data').memory_percent | default(0) }}"
+
+unique_id: portainer_memory_usage
+
+unit_of_measurement: "%"

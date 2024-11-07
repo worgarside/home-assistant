@@ -3,4 +3,4 @@ icon: mdi:memory
 name: Item Warehouse API Memory Usage
 state: "{{ state_attr('sensor.item_warehouse_api_status', 'data').memory_percent | default(0) }}"
 unique_id: item_warehouse_api_memory_usage
-unit_of_measurement: '%'
+unit_of_measurement: "%"

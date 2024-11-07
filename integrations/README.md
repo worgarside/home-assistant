@@ -2056,7 +2056,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (36)</h3></summary>
+<details><summary><h3>Entities (41)</h3></summary>
 
 <details><summary><strong>AdGuard Status</strong></summary>
 
@@ -2096,6 +2096,16 @@ File: [`command_line/sensor/addons/castsponsorskip_status.yaml`](entities/comman
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/esphome_add_on_status.yaml`](entities/command_line/sensor/addons/esphome_add_on_status.yaml)
+</details>
+
+<details><summary><strong>FlareSolverr Status</strong></summary>
+
+**Entity ID: `sensor.flare_solverr_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/db21ed7f_flaresolverr/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/flare_solverr_status.yaml`](entities/command_line/sensor/addons/flare_solverr_status.yaml)
 </details>
 
 <details><summary><strong>Google Drive Backup Add-on Status</strong></summary>
@@ -2208,6 +2218,26 @@ File: [`command_line/sensor/addons/nginx_proxy_manager_status.yaml`](entities/co
 File: [`command_line/sensor/addons/plex_media_server_status.yaml`](entities/command_line/sensor/addons/plex_media_server_status.yaml)
 </details>
 
+<details><summary><strong>Portainer Status</strong></summary>
+
+**Entity ID: `sensor.portainer_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/db21ed7f_portainer/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/portainer_status.yaml`](entities/command_line/sensor/addons/portainer_status.yaml)
+</details>
+
+<details><summary><strong>Prowlarr Status</strong></summary>
+
+**Entity ID: `sensor.prowlarr_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_prowlarr/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/prowlarr_status.yaml`](entities/command_line/sensor/addons/prowlarr_status.yaml)
+</details>
+
 <details><summary><strong>Silicon Labs Multiprotocol Add-on Status</strong></summary>
 
 **Entity ID: `sensor.silicon_labs_multiprotocol_add_on_status`**
@@ -2218,6 +2248,16 @@ File: [`command_line/sensor/addons/plex_media_server_status.yaml`](entities/comm
 File: [`command_line/sensor/addons/silicon_labs_multiprotocol_add_on_status.yaml`](entities/command_line/sensor/addons/silicon_labs_multiprotocol_add_on_status.yaml)
 </details>
 
+<details><summary><strong>Sonarr Status</strong></summary>
+
+**Entity ID: `sensor.sonarr_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_sonarr/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/sonarr_status.yaml`](entities/command_line/sensor/addons/sonarr_status.yaml)
+</details>
+
 <details><summary><strong>Terminal & SSH Add-on Status</strong></summary>
 
 **Entity ID: `sensor.terminal_ssh_add_on_status`**
@@ -2226,6 +2266,16 @@ File: [`command_line/sensor/addons/silicon_labs_multiprotocol_add_on_status.yaml
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/terminal_ssh_add_on_status.yaml`](entities/command_line/sensor/addons/terminal_ssh_add_on_status.yaml)
+</details>
+
+<details><summary><strong>Transmission Status</strong></summary>
+
+**Entity ID: `sensor.transmission_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/db21ed7f_transmission_openvpn/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/transmission_status.yaml`](entities/command_line/sensor/addons/transmission_status.yaml)
 </details>
 
 <details><summary><strong>Visual Studio Code Add-on Status</strong></summary>
@@ -6398,7 +6448,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (98)</h3></summary>
+<details><summary><h3>Entities (108)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6656,6 +6706,26 @@ File: [`template/sensor/addon_stats/esphome_add_on_cpu_usage.yaml`](entities/tem
 File: [`template/sensor/addon_stats/esphome_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/esphome_add_on_memory_usage.yaml)
 </details>
 
+<details><summary><strong>FlareSolverr CPU Usage</strong></summary>
+
+**Entity ID: `sensor.flaresolverr_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/flaresolverr_cpu_usage.yaml`](entities/template/sensor/addon_stats/flaresolverr_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>FlareSolverr Memory Usage</strong></summary>
+
+**Entity ID: `sensor.flaresolverr_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/flaresolverr_memory_usage.yaml`](entities/template/sensor/addon_stats/flaresolverr_memory_usage.yaml)
+</details>
+
 <details><summary><strong>Google Drive Backup Add-on CPU Usage</strong></summary>
 
 **Entity ID: `sensor.google_drive_backup_add_on_cpu_usage`**
@@ -6876,6 +6946,46 @@ File: [`template/sensor/addon_stats/plex_media_server_cpu_usage.yaml`](entities/
 File: [`template/sensor/addon_stats/plex_media_server_memory_usage.yaml`](entities/template/sensor/addon_stats/plex_media_server_memory_usage.yaml)
 </details>
 
+<details><summary><strong>Portainer CPU Usage</strong></summary>
+
+**Entity ID: `sensor.portainer_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/portainer_cpu_usage.yaml`](entities/template/sensor/addon_stats/portainer_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>Portainer Memory Usage</strong></summary>
+
+**Entity ID: `sensor.portainer_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/portainer_memory_usage.yaml`](entities/template/sensor/addon_stats/portainer_memory_usage.yaml)
+</details>
+
+<details><summary><strong>Prowlarr CPU Usage</strong></summary>
+
+**Entity ID: `sensor.prowlarr_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/prowlarr_cpu_usage.yaml`](entities/template/sensor/addon_stats/prowlarr_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>Prowlarr Memory Usage</strong></summary>
+
+**Entity ID: `sensor.prowlarr_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/prowlarr_memory_usage.yaml`](entities/template/sensor/addon_stats/prowlarr_memory_usage.yaml)
+</details>
+
 <details><summary><strong>Silicon Labs Multiprotocol Add-on CPU Usage</strong></summary>
 
 **Entity ID: `sensor.silicon_labs_multiprotocol_add_on_cpu_usage`**
@@ -6896,6 +7006,26 @@ File: [`template/sensor/addon_stats/silicon_labs_multiprotocol_add_on_cpu_usage.
 File: [`template/sensor/addon_stats/silicon_labs_multiprotocol_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/silicon_labs_multiprotocol_add_on_memory_usage.yaml)
 </details>
 
+<details><summary><strong>Sonarr CPU Usage</strong></summary>
+
+**Entity ID: `sensor.sonarr_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/sonarr_cpu_usage.yaml`](entities/template/sensor/addon_stats/sonarr_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>Sonarr Memory Usage</strong></summary>
+
+**Entity ID: `sensor.sonarr_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/sonarr_memory_usage.yaml`](entities/template/sensor/addon_stats/sonarr_memory_usage.yaml)
+</details>
+
 <details><summary><strong>Terminal & SSH Add-on CPU Usage</strong></summary>
 
 **Entity ID: `sensor.terminal_ssh_add_on_cpu_usage`**
@@ -6914,6 +7044,26 @@ File: [`template/sensor/addon_stats/terminal_ssh_add_on_cpu_usage.yaml`](entitie
 - Unit Of Measurement: %
 
 File: [`template/sensor/addon_stats/terminal_ssh_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/terminal_ssh_add_on_memory_usage.yaml)
+</details>
+
+<details><summary><strong>Transmission CPU Usage</strong></summary>
+
+**Entity ID: `sensor.transmission_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/transmission_cpu_usage.yaml`](entities/template/sensor/addon_stats/transmission_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>Transmission Memory Usage</strong></summary>
+
+**Entity ID: `sensor.transmission_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/transmission_memory_usage.yaml`](entities/template/sensor/addon_stats/transmission_memory_usage.yaml)
 </details>
 
 <details><summary><strong>Visual Studio Code Add-on CPU Usage</strong></summary>

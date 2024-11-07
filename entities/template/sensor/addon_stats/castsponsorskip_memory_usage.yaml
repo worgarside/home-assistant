@@ -7,4 +7,4 @@ state: "{{ state_attr('sensor.castsponsorskip_status', 'data').memory_percent | 
 
 unique_id: castsponsorskip_memory_usage
 
-unit_of_measurement: '%'
+unit_of_measurement: "%"

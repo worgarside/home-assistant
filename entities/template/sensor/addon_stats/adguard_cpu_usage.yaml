@@ -3,4 +3,4 @@ icon: mdi:cpu-32-bit
 name: AdGuard CPU Usage
 state: "{{ state_attr('sensor.adguard_status', 'data').cpu_percent | default(0) }}"
 unique_id: adguard_cpu_usage
-unit_of_measurement: '%'
+unit_of_measurement: "%"

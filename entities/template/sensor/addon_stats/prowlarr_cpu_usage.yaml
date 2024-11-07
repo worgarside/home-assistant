@@ -1,0 +1,10 @@
+---
+icon: mdi:cpu-32-bit
+
+name: Prowlarr CPU Usage
+
+state: "{{ state_attr('sensor.prowlarr_status', 'data').cpu_percent | default(0) }}"
+
+unique_id: prowlarr_cpu_usage
+
+unit_of_measurement: "%"

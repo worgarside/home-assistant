@@ -3,4 +3,4 @@ icon: mdi:cpu-32-bit
 name: Plex Media Server CPU Usage
 state: "{{ state_attr('sensor.plex_media_server_status', 'data').cpu_percent | default(0) }}"
 unique_id: plex_media_server_cpu_usage
-unit_of_measurement: '%'
+unit_of_measurement: "%"
