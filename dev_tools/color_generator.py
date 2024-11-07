@@ -86,6 +86,7 @@ def get_addon_colors() -> None:
         ("Matter Server", "matter_server"),
         ("Mosquitto Broker", "mosquitto_broker"),
         ("Nextcloud", "nextcloud"),
+        ("NGINX Proxy Manager", "nginx_proxy_manager"),
         ("Plex Media Server", "plex_media_server"),
         ("Silicon Labs Multiprotocol", "silicon_labs_multiprotocol_add_on"),
         ("SponsorBlock", "castsponsorskip"),
@@ -116,14 +117,16 @@ cards:""")
 
     for stat in ("cpu", "memory"):
         print("\n\n\n\n\n\n")
-        print("""type: custom:mini-graph-card
-name: 6 Hour History
-entities:""")
+        print(
+            f"""type: custom:mini-graph-card
+name: {"CPU" if stat == "cpu" else "Memory"} Usage (6 Hours)
+entities:""",
+        )
         for color, _, slug in color_tuples:
             print(f"""  - entity: sensor.{slug}_{stat}_usage
     color: '#{color}'""")
 
-        print("""show:
+        print(f"""show:
   state: false
   legend: false
   fill: fade
@@ -135,7 +138,7 @@ entities:""")
 hours_to_show: 6
 points_per_hour: 60
 lower_bound: 0
-upper_bound: ~70
+upper_bound: ~{50 if stat == "cpu" else 10}
 height: 150
 animate: false
 hour24: true
