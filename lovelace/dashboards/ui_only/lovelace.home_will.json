@@ -1640,7 +1640,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E56119"
+                          "color": "#E55D19"
                         },
                         {
                           "name": "AppDaemon"
@@ -1655,7 +1655,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5A919"
+                          "color": "#E5A119"
                         },
                         {
                           "name": "ESPHome"
@@ -1670,7 +1670,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#D9E519"
+                          "color": "#E5E519"
                         },
                         {
                           "name": "Grafana"
@@ -1685,7 +1685,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#91E519"
+                          "color": "#A1E519"
                         },
                         {
                           "name": "InfluxDB"
@@ -1700,7 +1700,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#49E519"
+                          "color": "#5DE519"
                         },
                         {
                           "name": "Google Drive Backup"
@@ -1715,7 +1715,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E531"
+                          "color": "#19E519"
                         },
                         {
                           "name": "Item Warehouse API"
@@ -1730,7 +1730,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E579"
+                          "color": "#19E55D"
                         },
                         {
                           "name": "Item Warehouse Website"
@@ -1745,7 +1745,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E5C1"
+                          "color": "#19E5A1"
                         },
                         {
                           "name": "MariaDB"
@@ -1760,7 +1760,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19C1E5"
+                          "color": "#19E5E5"
                         },
                         {
                           "name": "Matter Server"
@@ -1775,7 +1775,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#1979E5"
+                          "color": "#19A1E5"
                         },
                         {
                           "name": "Mosquitto Broker"
@@ -1790,7 +1790,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#1931E5"
+                          "color": "#195DE5"
                         },
                         {
                           "name": "Nextcloud"
@@ -1805,7 +1805,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#4919E5"
+                          "color": "#1919E5"
+                        },
+                        {
+                          "name": "NGINX Proxy Manager"
+                        },
+                        {
+                          "slug": "nginx_proxy_manager"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#5D19E5"
                         },
                         {
                           "name": "Plex Media Server"
@@ -1820,7 +1835,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#9119E5"
+                          "color": "#A119E5"
                         },
                         {
                           "name": "Silicon Labs Multiprotocol"
@@ -1835,7 +1850,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#D919E5"
+                          "color": "#E519E5"
                         },
                         {
                           "name": "SponsorBlock"
@@ -1850,7 +1865,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519A9"
+                          "color": "#E519A1"
                         },
                         {
                           "name": "Terminal & SSH"
@@ -1865,7 +1880,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E51961"
+                          "color": "#E5195D"
                         },
                         {
                           "name": "VSCode"
