@@ -1998,71 +1998,91 @@
                     },
                     {
                       "entity": "sensor.appdaemon_memory_usage",
-                      "color": "#E55D19"
+                      "color": "#E54E19"
                     },
                     {
                       "entity": "sensor.esphome_add_on_memory_usage",
-                      "color": "#E5A119"
+                      "color": "#E58319"
+                    },
+                    {
+                      "entity": "sensor.flaresolverr_memory_usage",
+                      "color": "#E5B919"
                     },
                     {
                       "entity": "sensor.grafana_memory_usage",
-                      "color": "#E5E519"
+                      "color": "#DCE519"
                     },
                     {
                       "entity": "sensor.influxdb_memory_usage",
-                      "color": "#A1E519"
+                      "color": "#A7E519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_memory_usage",
-                      "color": "#5DE519"
+                      "color": "#72E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_memory_usage",
-                      "color": "#19E519"
+                      "color": "#3CE519"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_memory_usage",
-                      "color": "#19E55D"
+                      "color": "#19E52B"
                     },
                     {
                       "entity": "sensor.mariadb_memory_usage",
-                      "color": "#19E5A1"
+                      "color": "#19E560"
                     },
                     {
                       "entity": "sensor.matter_server_memory_usage",
-                      "color": "#19E5E5"
+                      "color": "#19E595"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_memory_usage",
-                      "color": "#19A1E5"
+                      "color": "#19E5CA"
                     },
                     {
                       "entity": "sensor.nextcloud_memory_usage",
-                      "color": "#195DE5"
+                      "color": "#19CAE5"
                     },
                     {
                       "entity": "sensor.nginx_proxy_manager_memory_usage",
-                      "color": "#1919E5"
+                      "color": "#1995E5"
                     },
                     {
                       "entity": "sensor.plex_media_server_memory_usage",
-                      "color": "#5D19E5"
+                      "color": "#1960E5"
+                    },
+                    {
+                      "entity": "sensor.portainer_memory_usage",
+                      "color": "#192BE5"
+                    },
+                    {
+                      "entity": "sensor.prowlarr_memory_usage",
+                      "color": "#3C19E5"
                     },
                     {
                       "entity": "sensor.silicon_labs_multiprotocol_add_on_memory_usage",
-                      "color": "#A119E5"
+                      "color": "#7219E5"
+                    },
+                    {
+                      "entity": "sensor.sonarr_memory_usage",
+                      "color": "#A719E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_memory_usage",
-                      "color": "#E519E5"
+                      "color": "#DC19E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_memory_usage",
-                      "color": "#E519A1"
+                      "color": "#E519B9"
+                    },
+                    {
+                      "entity": "sensor.transmission_memory_usage",
+                      "color": "#E51983"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_memory_usage",
-                      "color": "#E5195D"
+                      "color": "#E5194E"
                     }
                   ],
                   "show": {
