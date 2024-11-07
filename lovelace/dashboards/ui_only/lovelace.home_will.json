@@ -1879,7 +1879,7 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "6 Hour History",
+                  "name": "CPU Usage (6 Hours)",
                   "entities": [
                     {
                       "entity": "sensor.adguard_cpu_usage",
@@ -1887,67 +1887,71 @@
                     },
                     {
                       "entity": "sensor.appdaemon_cpu_usage",
-                      "color": "#E56119"
+                      "color": "#E55D19"
                     },
                     {
                       "entity": "sensor.esphome_add_on_cpu_usage",
-                      "color": "#E5A919"
+                      "color": "#E5A119"
                     },
                     {
                       "entity": "sensor.grafana_cpu_usage",
-                      "color": "#D9E519"
+                      "color": "#E5E519"
                     },
                     {
                       "entity": "sensor.influxdb_cpu_usage",
-                      "color": "#91E519"
+                      "color": "#A1E519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_cpu_usage",
-                      "color": "#49E519"
+                      "color": "#5DE519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_cpu_usage",
-                      "color": "#19E531"
+                      "color": "#19E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_cpu_usage",
-                      "color": "#19E579"
+                      "color": "#19E55D"
                     },
                     {
                       "entity": "sensor.mariadb_cpu_usage",
-                      "color": "#19E5C1"
+                      "color": "#19E5A1"
                     },
                     {
                       "entity": "sensor.matter_server_cpu_usage",
-                      "color": "#19C1E5"
+                      "color": "#19E5E5"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_cpu_usage",
-                      "color": "#1979E5"
+                      "color": "#19A1E5"
                     },
                     {
                       "entity": "sensor.nextcloud_cpu_usage",
-                      "color": "#1931E5"
+                      "color": "#195DE5"
+                    },
+                    {
+                      "entity": "sensor.nginx_proxy_manager_cpu_usage",
+                      "color": "#1919E5"
                     },
                     {
                       "entity": "sensor.plex_media_server_cpu_usage",
-                      "color": "#4919E5"
+                      "color": "#5D19E5"
                     },
                     {
                       "entity": "sensor.silicon_labs_multiprotocol_add_on_cpu_usage",
-                      "color": "#9119E5"
+                      "color": "#A119E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_cpu_usage",
-                      "color": "#D919E5"
+                      "color": "#E519E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_cpu_usage",
-                      "color": "#E519A9"
+                      "color": "#E519A1"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_cpu_usage",
-                      "color": "#E51961"
+                      "color": "#E5195D"
                     }
                   ],
                   "show": {
