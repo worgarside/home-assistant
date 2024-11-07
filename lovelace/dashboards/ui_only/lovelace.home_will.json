@@ -1640,7 +1640,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E55D19"
+                          "color": "#E54E19"
                         },
                         {
                           "name": "AppDaemon"
@@ -1655,7 +1655,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5A119"
+                          "color": "#E58319"
                         },
                         {
                           "name": "ESPHome"
@@ -1670,7 +1670,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5E519"
+                          "color": "#E5B919"
+                        },
+                        {
+                          "name": "FlareSolverr"
+                        },
+                        {
+                          "slug": "flaresolverr"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#DCE519"
                         },
                         {
                           "name": "Grafana"
@@ -1685,7 +1700,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#A1E519"
+                          "color": "#A7E519"
                         },
                         {
                           "name": "InfluxDB"
@@ -1700,7 +1715,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#5DE519"
+                          "color": "#72E519"
                         },
                         {
                           "name": "Google Drive Backup"
@@ -1715,7 +1730,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E519"
+                          "color": "#3CE519"
                         },
                         {
                           "name": "Item Warehouse API"
@@ -1730,7 +1745,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E55D"
+                          "color": "#19E52B"
                         },
                         {
                           "name": "Item Warehouse Website"
@@ -1745,7 +1760,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E5A1"
+                          "color": "#19E560"
                         },
                         {
                           "name": "MariaDB"
@@ -1760,7 +1775,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E5E5"
+                          "color": "#19E595"
                         },
                         {
                           "name": "Matter Server"
@@ -1775,7 +1790,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19A1E5"
+                          "color": "#19E5CA"
                         },
                         {
                           "name": "Mosquitto Broker"
@@ -1790,7 +1805,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#195DE5"
+                          "color": "#19CAE5"
                         },
                         {
                           "name": "Nextcloud"
@@ -1805,7 +1820,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#1919E5"
+                          "color": "#1995E5"
                         },
                         {
                           "name": "NGINX Proxy Manager"
@@ -1820,7 +1835,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#5D19E5"
+                          "color": "#1960E5"
                         },
                         {
                           "name": "Plex Media Server"
@@ -1835,7 +1850,37 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#A119E5"
+                          "color": "#192BE5"
+                        },
+                        {
+                          "name": "Portainer"
+                        },
+                        {
+                          "slug": "portainer"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#3C19E5"
+                        },
+                        {
+                          "name": "Prowlarr"
+                        },
+                        {
+                          "slug": "prowlarr"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#7219E5"
                         },
                         {
                           "name": "Silicon Labs Multiprotocol"
@@ -1850,7 +1895,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519E5"
+                          "color": "#A719E5"
+                        },
+                        {
+                          "name": "Sonarr"
+                        },
+                        {
+                          "slug": "sonarr"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#DC19E5"
                         },
                         {
                           "name": "SponsorBlock"
@@ -1865,7 +1925,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519A1"
+                          "color": "#E519B9"
                         },
                         {
                           "name": "Terminal & SSH"
@@ -1880,7 +1940,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5195D"
+                          "color": "#E51983"
+                        },
+                        {
+                          "name": "Transmission"
+                        },
+                        {
+                          "slug": "transmission"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#E5194E"
                         },
                         {
                           "name": "VSCode"
