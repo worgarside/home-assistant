@@ -61,17 +61,17 @@ action:
 
             then:
               - variables:
-                  brightness_values: >-
+                  brightness_pct: >-
                     {% if time_of_day == "Night" %}
-                      {{ ( 0, 2, 0, 2, 0, 2, 0, 2) }}
+                      2
                     {% elif time_of_day in ("Dawn", "Dusk") %}
-                      {{ ( 10,  10,  10,  10,  10,  50,  50,  10) }}
+                      25
                     {% elif time_of_day == "Twilight" %}
-                      {{ ( 10,  10,  10,  10,  10,  75,  75,  10) }}
+                      60
                     {% elif time_of_day in ("Sunrise", "Sunset") %}
-                      {{ ( 50,  50,  50,  50,  50,  85,  85,  50) }}
+                      75
                     {% else %}
-                      {{ (100, 100, 100, 100, 100, 100, 100, 100) }}
+                      100
                     {% endif %}
 
               - repeat:
@@ -81,7 +81,7 @@ action:
                       target:
                         entity_id: light.kitchen_spotlight_{{ 9 - repeat.index }}
                       data:
-                        brightness_pct: "{{ brightness_values[-repeat.index] }}"
+                        brightness_pct: "{{ brightness_pct }}"
                         color_temp_kelvin: "{{ color_temp_kelvin }}"
 
             else:
