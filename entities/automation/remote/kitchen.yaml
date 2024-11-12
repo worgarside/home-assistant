@@ -57,38 +57,27 @@ action:
         conditions: "{{ press_type == presses.single }}"
 
         sequence:
-          - if: "{{ on_or_off | bool }}"
+          - variables:
+              brightness_pct: >-
+                {% if time_of_day == "Night" %}
+                  2
+                {% elif time_of_day in ("Dawn", "Dusk") %}
+                  25
+                {% elif time_of_day == "Twilight" %}
+                  60
+                {% elif time_of_day in ("Sunrise", "Sunset") %}
+                  75
+                {% else %}
+                  100
+                {% endif %}
 
-            then:
-              - variables:
-                  brightness_pct: >-
-                    {% if time_of_day == "Night" %}
-                      2
-                    {% elif time_of_day in ("Dawn", "Dusk") %}
-                      25
-                    {% elif time_of_day == "Twilight" %}
-                      60
-                    {% elif time_of_day in ("Sunrise", "Sunset") %}
-                      75
-                    {% else %}
-                      100
-                    {% endif %}
-
-              - repeat:
-                  count: 8
-                  sequence:
-                    - service: light.turn_on
-                      target:
-                        entity_id: light.kitchen_spotlight_{{ 9 - repeat.index }}
-                      data:
-                        brightness_pct: "{{ brightness_pct }}"
-                        color_temp_kelvin: "{{ color_temp_kelvin }}"
-
-            else:
-              - alias: Turn Off Spotlights
-                service: light.turn_off
-                target:
-                  entity_id: light.kitchen_spotlights
+          - alias: Turn Off Spotlights
+            service: light.toggle
+            target:
+              entity_id: light.kitchen_spotlights
+            data:
+              brightness_pct: "{{ brightness_pct }}"
+              color_temp_kelvin: "{{ color_temp_kelvin }}"
 
           # Don't turn lamp off if other lounge lights are on
           - if: >-
