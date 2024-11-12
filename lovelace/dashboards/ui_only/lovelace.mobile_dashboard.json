@@ -212,22 +212,23 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.front_door"
+                          "entity": "binary_sensor.front_door_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.hallway_temperature"
+                          "entity": "sensor.hallway_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.hallway_humidity"
+                          "entity": "sensor.hallway_climate_sensor_humidity"
                         },
                         {
                           "type": "entity",
                           "entity": "switch.air_freshener",
                           "tap_action": {
                             "action": "toggle"
-                          }
+                          },
+                          "icon": "mdi:air-filter"
                         }
                       ]
                     }
