@@ -35,7 +35,7 @@ trigger:
     subtype: hold_left
 
 variables:
-  press_type: "{{ trigger.event.data.args.press_type }}"
+  press_type: "{{ trigger.subtype }}"
   presses:
     single: single_left
     double: double_left
