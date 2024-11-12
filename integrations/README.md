@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (129)</h3></summary>
+<details><summary><h3>Entities (127)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -567,32 +567,6 @@ File: [`automation/gh_cli/user_updated.yaml`](entities/automation/gh_cli/user_up
 }
 ```
 File: [`automation/habitica/brush_teeth.yaml`](entities/automation/habitica/brush_teeth.yaml)
-</details>
-
-<details><summary><code>/hassio/auto-restart-mariadb-add-on</code></summary>
-
-**Entity ID: `automation.hassio_auto_restart_mariadb_add_on`**
-
-> *No description provided*
-
-- Alias: /hassio/auto-restart-mariadb-add-on
-- ID: `hassio_auto_restart_mariadb_add_on`
-- Mode: `single`
-
-File: [`automation/hassio/auto_restart_mariadb_add_on.yaml`](entities/automation/hassio/auto_restart_mariadb_add_on.yaml)
-</details>
-
-<details><summary><code>/hassio/auto-restart-silicon-labs-multiprotocol-add-on</code></summary>
-
-**Entity ID: `automation.hassio_auto_restart_silicon_labs_multiprotocol_add_on`**
-
-> *No description provided*
-
-- Alias: /hassio/auto-restart-silicon-labs-multiprotocol-add-on
-- ID: `hassio_auto_restart_silicon_labs_multiprotocol_add_on`
-- Mode: `single`
-
-File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](entities/automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml)
 </details>
 
 <details><summary><code>/homeassistant/clear-queued-service-reload</code></summary>
@@ -2017,7 +1991,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (41)</h3></summary>
+<details><summary><h3>Entities (42)</h3></summary>
 
 <details><summary><strong>AdGuard Status</strong></summary>
 
@@ -2257,6 +2231,16 @@ File: [`command_line/sensor/addons/visual_studio_code_add_on_status.yaml`](entit
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/yas_209_bridge_status.yaml`](entities/command_line/sensor/addons/yas_209_bridge_status.yaml)
+</details>
+
+<details><summary><strong>Zigbee2MQTT Status</strong></summary>
+
+**Entity ID: `sensor.zigbee2mqtt_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/45df7312_zigbee2mqtt/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/zigbee2mqtt_status.yaml`](entities/command_line/sensor/addons/zigbee2mqtt_status.yaml)
 </details>
 
 <details><summary><strong>Current GH CLI User</strong></summary>
@@ -6409,7 +6393,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (108)</h3></summary>
+<details><summary><h3>Entities (110)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -7065,6 +7049,26 @@ File: [`template/sensor/addon_stats/yas_209_bridge_cpu_usage.yaml`](entities/tem
 - Unit Of Measurement: %
 
 File: [`template/sensor/addon_stats/yas_209_bridge_memory_usage.yaml`](entities/template/sensor/addon_stats/yas_209_bridge_memory_usage.yaml)
+</details>
+
+<details><summary><strong>Zigbee2MQTT CPU Usage</strong></summary>
+
+**Entity ID: `sensor.zigbee2mqtt_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/zigbee2mqtt_cpu_usage.yaml`](entities/template/sensor/addon_stats/zigbee2mqtt_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>Zigbee2MQTT Memory Usage</strong></summary>
+
+**Entity ID: `sensor.zigbee2mqtt_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/zigbee2mqtt_memory_usage.yaml`](entities/template/sensor/addon_stats/zigbee2mqtt_memory_usage.yaml)
 </details>
 
 <details><summary><strong>Address Line 1</strong></summary>

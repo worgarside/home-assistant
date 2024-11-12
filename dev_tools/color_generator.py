@@ -91,13 +91,14 @@ def get_addon_colors() -> None:
         ("Plex Media Server", "plex_media_server"),
         ("Portainer", "portainer"),
         ("Prowlarr", "prowlarr"),
-        ("Silicon Labs Multiprotocol", "silicon_labs_multiprotocol_add_on"),
+        # ("Silicon Labs Multiprotocol", "silicon_labs_multiprotocol_add_on"),
         ("Sonarr", "sonarr"),
         ("SponsorBlock", "castsponsorskip"),
         ("Terminal & SSH", "terminal_ssh_add_on"),
         ("Transmission", "transmission"),
         ("VSCode", "visual_studio_code_add_on"),
         # ("YAS-209 Bridge", "yas_209_bridge"),
+        ("Zigbee2MQTT", "zigbee2mqtt"),
     )
 
     template = """  - type: custom:decluttering-card
