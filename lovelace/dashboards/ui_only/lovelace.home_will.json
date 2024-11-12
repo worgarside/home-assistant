@@ -760,27 +760,27 @@
                         "type": "custom:mini-graph-card",
                         "entities": [
                           {
-                            "entity": "sensor.bedroom_temperature",
+                            "entity": "sensor.bedroom_climate_sensor_temperature",
                             "name": "Bedroom",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.hallway_temperature",
+                            "entity": "sensor.hallway_climate_sensor_temperature",
                             "name": "Hallway",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.kitchen_temperature",
+                            "entity": "sensor.kitchen_climate_sensor_temperature",
                             "name": "Kitchen",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.lounge_temperature",
+                            "entity": "sensor.lounge_climate_sensor_temperature",
                             "name": "Lounge",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.office_temperature",
+                            "entity": "sensor.office_climate_sensor_temperature",
                             "name": "Office",
                             "smoothing": true
                           }
@@ -811,27 +811,27 @@
                         "type": "custom:mini-graph-card",
                         "entities": [
                           {
-                            "entity": "sensor.bedroom_humidity",
+                            "entity": "sensor.bedroom_climate_sensor_humidity",
                             "name": "Bedroom",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.hallway_humidity",
+                            "entity": "sensor.hallway_climate_sensor_humidity",
                             "name": "Hallway",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.kitchen_humidity",
+                            "entity": "sensor.kitchen_climate_sensor_humidity",
                             "name": "Kitchen",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.lounge_humidity",
+                            "entity": "sensor.lounge_climate_sensor_humidity",
                             "name": "Lounge",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.office_humidity",
+                            "entity": "sensor.office_climate_sensor_humidity",
                             "name": "Office",
                             "smoothing": true
                           }
@@ -999,7 +999,7 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.front_door",
+                          "entity": "binary_sensor.front_door_sensor_contact",
                           "secondary_info": "last-changed",
                           "name": "Front Door"
                         },
@@ -1640,7 +1640,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E56119"
+                          "color": "#E54E19"
                         },
                         {
                           "name": "AppDaemon"
@@ -1655,7 +1655,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5A919"
+                          "color": "#E58319"
                         },
                         {
                           "name": "ESPHome"
@@ -1670,7 +1670,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#D9E519"
+                          "color": "#E5B919"
+                        },
+                        {
+                          "name": "FlareSolverr"
+                        },
+                        {
+                          "slug": "flaresolverr"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#DCE519"
                         },
                         {
                           "name": "Grafana"
@@ -1685,7 +1700,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#91E519"
+                          "color": "#A7E519"
                         },
                         {
                           "name": "InfluxDB"
@@ -1700,7 +1715,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#49E519"
+                          "color": "#72E519"
                         },
                         {
                           "name": "Google Drive Backup"
@@ -1715,7 +1730,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E531"
+                          "color": "#3CE519"
                         },
                         {
                           "name": "Item Warehouse API"
@@ -1730,7 +1745,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E579"
+                          "color": "#19E52B"
                         },
                         {
                           "name": "Item Warehouse Website"
@@ -1745,7 +1760,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E5C1"
+                          "color": "#19E560"
                         },
                         {
                           "name": "MariaDB"
@@ -1760,7 +1775,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19C1E5"
+                          "color": "#19E595"
                         },
                         {
                           "name": "Matter Server"
@@ -1775,7 +1790,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#1979E5"
+                          "color": "#19E5CA"
                         },
                         {
                           "name": "Mosquitto Broker"
@@ -1790,7 +1805,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#1931E5"
+                          "color": "#19CAE5"
                         },
                         {
                           "name": "Nextcloud"
@@ -1805,7 +1820,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#4919E5"
+                          "color": "#1995E5"
+                        },
+                        {
+                          "name": "NGINX Proxy Manager"
+                        },
+                        {
+                          "slug": "nginx_proxy_manager"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#1960E5"
                         },
                         {
                           "name": "Plex Media Server"
@@ -1820,7 +1850,37 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#9119E5"
+                          "color": "#192BE5"
+                        },
+                        {
+                          "name": "Portainer"
+                        },
+                        {
+                          "slug": "portainer"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#3C19E5"
+                        },
+                        {
+                          "name": "Prowlarr"
+                        },
+                        {
+                          "slug": "prowlarr"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#7219E5"
                         },
                         {
                           "name": "Silicon Labs Multiprotocol"
@@ -1835,7 +1895,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#D919E5"
+                          "color": "#A719E5"
+                        },
+                        {
+                          "name": "Sonarr"
+                        },
+                        {
+                          "slug": "sonarr"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#DC19E5"
                         },
                         {
                           "name": "SponsorBlock"
@@ -1850,7 +1925,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519A9"
+                          "color": "#E519B9"
                         },
                         {
                           "name": "Terminal & SSH"
@@ -1865,7 +1940,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E51961"
+                          "color": "#E51983"
+                        },
+                        {
+                          "name": "Transmission"
+                        },
+                        {
+                          "slug": "transmission"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#E5194E"
                         },
                         {
                           "name": "VSCode"
@@ -1879,7 +1969,7 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "6 Hour History",
+                  "name": "CPU Usage (6 Hours)",
                   "entities": [
                     {
                       "entity": "sensor.adguard_cpu_usage",
@@ -1887,67 +1977,91 @@
                     },
                     {
                       "entity": "sensor.appdaemon_cpu_usage",
-                      "color": "#E56119"
+                      "color": "#E54E19"
                     },
                     {
                       "entity": "sensor.esphome_add_on_cpu_usage",
-                      "color": "#E5A919"
+                      "color": "#E58319"
+                    },
+                    {
+                      "entity": "sensor.flaresolverr_cpu_usage",
+                      "color": "#E5B919"
                     },
                     {
                       "entity": "sensor.grafana_cpu_usage",
-                      "color": "#D9E519"
+                      "color": "#DCE519"
                     },
                     {
                       "entity": "sensor.influxdb_cpu_usage",
-                      "color": "#91E519"
+                      "color": "#A7E519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_cpu_usage",
-                      "color": "#49E519"
+                      "color": "#72E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_cpu_usage",
-                      "color": "#19E531"
+                      "color": "#3CE519"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_cpu_usage",
-                      "color": "#19E579"
+                      "color": "#19E52B"
                     },
                     {
                       "entity": "sensor.mariadb_cpu_usage",
-                      "color": "#19E5C1"
+                      "color": "#19E560"
                     },
                     {
                       "entity": "sensor.matter_server_cpu_usage",
-                      "color": "#19C1E5"
+                      "color": "#19E595"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_cpu_usage",
-                      "color": "#1979E5"
+                      "color": "#19E5CA"
                     },
                     {
                       "entity": "sensor.nextcloud_cpu_usage",
-                      "color": "#1931E5"
+                      "color": "#19CAE5"
+                    },
+                    {
+                      "entity": "sensor.nginx_proxy_manager_cpu_usage",
+                      "color": "#1995E5"
                     },
                     {
                       "entity": "sensor.plex_media_server_cpu_usage",
-                      "color": "#4919E5"
+                      "color": "#1960E5"
+                    },
+                    {
+                      "entity": "sensor.portainer_cpu_usage",
+                      "color": "#192BE5"
+                    },
+                    {
+                      "entity": "sensor.prowlarr_cpu_usage",
+                      "color": "#3C19E5"
                     },
                     {
                       "entity": "sensor.silicon_labs_multiprotocol_add_on_cpu_usage",
-                      "color": "#9119E5"
+                      "color": "#7219E5"
+                    },
+                    {
+                      "entity": "sensor.sonarr_cpu_usage",
+                      "color": "#A719E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_cpu_usage",
-                      "color": "#D919E5"
+                      "color": "#DC19E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_cpu_usage",
-                      "color": "#E519A9"
+                      "color": "#E519B9"
+                    },
+                    {
+                      "entity": "sensor.transmission_cpu_usage",
+                      "color": "#E51983"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_cpu_usage",
-                      "color": "#E51961"
+                      "color": "#E5194E"
                     }
                   ],
                   "show": {
@@ -1963,7 +2077,7 @@
                   "hours_to_show": 6,
                   "points_per_hour": 60,
                   "lower_bound": 0,
-                  "upper_bound": "~50",
+                  "upper_bound": "~10",
                   "height": 150,
                   "animate": false,
                   "hour24": true,
@@ -1971,7 +2085,7 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "6 Hour History",
+                  "name": "Memory Usage (6 Hours)",
                   "entities": [
                     {
                       "entity": "sensor.adguard_memory_usage",
@@ -1979,67 +2093,91 @@
                     },
                     {
                       "entity": "sensor.appdaemon_memory_usage",
-                      "color": "#E56119"
+                      "color": "#E54E19"
                     },
                     {
                       "entity": "sensor.esphome_add_on_memory_usage",
-                      "color": "#E5A919"
+                      "color": "#E58319"
+                    },
+                    {
+                      "entity": "sensor.flaresolverr_memory_usage",
+                      "color": "#E5B919"
                     },
                     {
                       "entity": "sensor.grafana_memory_usage",
-                      "color": "#D9E519"
+                      "color": "#DCE519"
                     },
                     {
                       "entity": "sensor.influxdb_memory_usage",
-                      "color": "#91E519"
+                      "color": "#A7E519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_memory_usage",
-                      "color": "#49E519"
+                      "color": "#72E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_memory_usage",
-                      "color": "#19E531"
+                      "color": "#3CE519"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_memory_usage",
-                      "color": "#19E579"
+                      "color": "#19E52B"
                     },
                     {
                       "entity": "sensor.mariadb_memory_usage",
-                      "color": "#19E5C1"
+                      "color": "#19E560"
                     },
                     {
                       "entity": "sensor.matter_server_memory_usage",
-                      "color": "#19C1E5"
+                      "color": "#19E595"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_memory_usage",
-                      "color": "#1979E5"
+                      "color": "#19E5CA"
                     },
                     {
                       "entity": "sensor.nextcloud_memory_usage",
-                      "color": "#1931E5"
+                      "color": "#19CAE5"
+                    },
+                    {
+                      "entity": "sensor.nginx_proxy_manager_memory_usage",
+                      "color": "#1995E5"
                     },
                     {
                       "entity": "sensor.plex_media_server_memory_usage",
-                      "color": "#4919E5"
+                      "color": "#1960E5"
+                    },
+                    {
+                      "entity": "sensor.portainer_memory_usage",
+                      "color": "#192BE5"
+                    },
+                    {
+                      "entity": "sensor.prowlarr_memory_usage",
+                      "color": "#3C19E5"
                     },
                     {
                       "entity": "sensor.silicon_labs_multiprotocol_add_on_memory_usage",
-                      "color": "#9119E5"
+                      "color": "#7219E5"
+                    },
+                    {
+                      "entity": "sensor.sonarr_memory_usage",
+                      "color": "#A719E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_memory_usage",
-                      "color": "#D919E5"
+                      "color": "#DC19E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_memory_usage",
-                      "color": "#E519A9"
+                      "color": "#E519B9"
+                    },
+                    {
+                      "entity": "sensor.transmission_memory_usage",
+                      "color": "#E51983"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_memory_usage",
-                      "color": "#E51961"
+                      "color": "#E5194E"
                     }
                   ],
                   "show": {
@@ -3046,13 +3184,13 @@
                           "y_axis": "secondary"
                         },
                         {
-                          "entity": "sensor.office_humidity",
+                          "entity": "sensor.office_climate_sensor_humidity",
                           "name": "Office Humidity",
                           "color": "#4DAF50",
                           "show_line": false
                         },
                         {
-                          "entity": "sensor.office_temperature",
+                          "entity": "sensor.office_climate_sensor_temperature",
                           "name": "Office Temperature",
                           "color": "#FF9901",
                           "y_axis": "secondary",

@@ -51,7 +51,7 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-fan-card",
-                          "entity": "fan.vic_s_fan",
+                          "entity": "fan.vic_s_desk_fan",
                           "icon_animation": true,
                           "primary_info": "state",
                           "secondary_info": "name"
@@ -156,19 +156,19 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.bedroom_door"
+                          "entity": "binary_sensor.bedroom_door_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.bedroom_window"
+                          "entity": "binary_sensor.bedroom_window_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.bedroom_temperature"
+                          "entity": "sensor.bedroom_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.bedroom_humidity"
+                          "entity": "sensor.bedroom_climate_sensor_humidity"
                         }
                       ]
                     }
@@ -212,22 +212,23 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.front_door"
+                          "entity": "binary_sensor.front_door_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.hallway_temperature"
+                          "entity": "sensor.hallway_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.hallway_humidity"
+                          "entity": "sensor.hallway_climate_sensor_humidity"
                         },
                         {
                           "type": "entity",
                           "entity": "switch.air_freshener",
                           "tap_action": {
                             "action": "toggle"
-                          }
+                          },
+                          "icon": "mdi:air-filter"
                         }
                       ]
                     }
@@ -257,15 +258,15 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.kitchen_door"
+                          "entity": "binary_sensor.kitchen_door_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.kitchen_temperature"
+                          "entity": "sensor.kitchen_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.kitchen_humidity"
+                          "entity": "sensor.kitchen_climate_sensor_humidity"
                         }
                       ]
                     }
@@ -435,7 +436,7 @@
                         },
                         {
                           "type": "custom:mushroom-light-card",
-                          "entity": "light.disco_light",
+                          "entity": "light.disco_ball_spotlight",
                           "primary_info": "state",
                           "secondary_info": "name",
                           "use_light_color": true,
@@ -478,15 +479,15 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.lounge_window"
+                          "entity": "binary_sensor.lounge_window_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.lounge_temperature"
+                          "entity": "sensor.lounge_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.lounge_humidity"
+                          "entity": "sensor.lounge_climate_sensor_humidity"
                         },
                         {
                           "type": "entity",
@@ -652,19 +653,19 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.office_door"
+                          "entity": "binary_sensor.office_door_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.office_window"
+                          "entity": "binary_sensor.office_window_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.office_temperature"
+                          "entity": "sensor.office_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.office_humidity"
+                          "entity": "sensor.office_climate_sensor_humidity"
                         }
                       ]
                     }
