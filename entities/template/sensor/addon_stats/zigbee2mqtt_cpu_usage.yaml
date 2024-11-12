@@ -1,0 +1,10 @@
+---
+icon: mdi:cpu-32-bit
+
+name: Zigbee2MQTT CPU Usage
+
+state: "{{ state_attr('sensor.zigbee2mqtt_status', 'data').cpu_percent | default(0) }}"
+
+unique_id: zigbee2mqtt_cpu_usage
+
+unit_of_measurement: "%"

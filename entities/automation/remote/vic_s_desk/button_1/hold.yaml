@@ -1,0 +1,17 @@
+---
+alias: /remote/vic-s-desk/button-1/hold
+
+id: remote_vic_s_desk_button_1_hold
+
+mode: single
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 40b83e6d8b8a1ff1f0767cd2f32272da
+    type: action
+    subtype: hold
+
+action:
+  - service: fan.toggle
+    entity_id: fan.vic_s_desk_fan

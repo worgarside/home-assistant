@@ -8,11 +8,11 @@ id: remote_coffee_table_hold
 mode: single
 
 trigger:
-  - platform: event
-    event_type: zha_event
-    event_data:
-      command: hold
-      device_ieee: 00:15:8d:00:07:6b:66:8b
+  - domain: mqtt
+    platform: device
+    device_id: 4c15e7d3153231546a79521c3e172ed6
+    type: action
+    subtype: hold
 
 action:
   - service: switch.turn_off

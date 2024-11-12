@@ -1,18 +1,18 @@
 ---
-alias: /remote/coffee-table/single-press
+alias: /remote/coffee-table/single
 
 description: Set the scene for watching TV
 
-id: remote_coffee_table_single_press
+id: remote_coffee_table_single
 
 mode: single
 
 trigger:
-  - platform: event
-    event_type: zha_event
-    event_data:
-      command: single
-      device_ieee: 00:15:8d:00:07:6b:66:8b
+  - domain: mqtt
+    platform: device
+    device_id: 4c15e7d3153231546a79521c3e172ed6
+    type: action
+    subtype: single
 
 variables:
   # Truncated to 14 characters
@@ -52,7 +52,7 @@ action:
         then:
           - service: script.log_exception
             data:
-              calling_entity: automation.remote_coffee_table_single_press
+              calling_entity: automation.remote_coffee_table_single
               message: >-
                 Invalid `source` value: got "{{ hifi_system_source }}"; must be one of
                 "{{ available_sources | join('", "') }}"
@@ -79,7 +79,7 @@ action:
             - hallway
             - kitchen
           entity_id:
-            - light.disco_light
+            - light.disco_ball_spotlight
             - light.table_lamp
 
       - service: media_player.media_stop

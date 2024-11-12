@@ -1,16 +1,16 @@
 ---
-alias: /remote/lounge-desk/single-press
+alias: /remote/vic-s-desk/button-1/single
 
-id: remote_lounge_desk_single_press
+id: remote_vic_s_desk_button_1_single
 
 mode: single
 
 trigger:
-  - platform: event
-    event_type: zha_event
-    event_data:
-      command: single
-      device_ieee: 00:15:8d:00:09:e0:13:9c
+  - domain: mqtt
+    platform: device
+    device_id: 40b83e6d8b8a1ff1f0767cd2f32272da
+    type: action
+    subtype: single
 
 action:
   - service: light.turn_on

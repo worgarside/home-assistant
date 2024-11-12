@@ -7,14 +7,14 @@ mode: single
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.hallway_motion_sensor
+    entity_id: binary_sensor.hallway_motion_sensor_occupancy
     from: "off"
     to: "on"
 
 condition:
   alias: Don't run if the front door is open(ing), let the lights come on from the other end
   condition: state
-  entity_id: binary_sensor.front_door
+  entity_id: binary_sensor.front_door_sensor_contact
   state: "off"
 
 variables:

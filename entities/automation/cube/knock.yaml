@@ -8,11 +8,11 @@ mode: queued
 max: 255
 
 trigger:
-  - platform: event
-    event_type: zha_event
-    event_data:
-      device_id: 9fb3a3a8b909705eca6e5f2027270388
-      command: knock
+  - domain: mqtt
+    platform: device
+    device_id: 97957a841940dc1adb8c044010c9e73c
+    type: action
+    subtype: knock
 
 variables:
   active_face: "{{ states('sensor.cube_active_face') }}"

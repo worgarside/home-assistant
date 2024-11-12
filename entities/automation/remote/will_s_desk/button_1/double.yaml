@@ -1,0 +1,17 @@
+---
+alias: /remote/will-s-desk/button-1/double
+
+id: remote_will_s_desk_button_1_double
+
+mode: single
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: f6a43e39ac7a0ec2e7509234553e2352
+    type: action
+    subtype: double
+
+action:
+  - service: fan.toggle
+    entity_id: fan.desk_fan

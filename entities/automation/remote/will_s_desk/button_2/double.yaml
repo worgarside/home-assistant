@@ -1,16 +1,16 @@
 ---
-alias: /remote/office-desk/double-press
+alias: /remote/will-s-desk/button-2/double
 
-id: remote_office_desk_double_press
+id: remote_will_s_desk_button_2_double
 
 mode: single
 
 trigger:
-  - platform: event
-    event_type: zha_event
-    event_data:
-      command: double
-      device_ieee: 00:15:8d:00:09:ee:31:be
+  - domain: mqtt
+    platform: device
+    device_id: f641b31476572acb00870aeac0e656e1
+    type: action
+    subtype: double
 
 action:
   - service: script.office_desk_standing_mode

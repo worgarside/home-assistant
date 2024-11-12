@@ -8,7 +8,7 @@ mode: single
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.hallway_motion_sensor
+    entity_id: binary_sensor.hallway_motion_sensor_occupancy
     from: "on"
     to: "off"
     for:

@@ -1,0 +1,10 @@
+---
+icon: mdi:memory
+
+name: Zigbee2MQTT Memory Usage
+
+state: "{{ state_attr('sensor.zigbee2mqtt_status', 'data').memory_percent | default(0) }}"
+
+unique_id: zigbee2mqtt_memory_usage
+
+unit_of_measurement: "%"

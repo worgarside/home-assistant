@@ -1,7 +1,7 @@
 ---
-alias: /remote/bedroom-blinds/hold
+alias: /remote/bedroom-blinds/double
 
-id: remote_bedroom_blinds_hold
+id: remote_bedroom_blinds_double
 
 mode: single
 
@@ -10,8 +10,8 @@ trigger:
     platform: device
     device_id: 5c80508cb067d126c77d8a368cd3507a
     type: action
-    subtype: hold
+    subtype: double
 
 action:
-  - service: cover.stop_cover
+  - service: cover.open_cover
     entity_id: cover.bedroom_blinds

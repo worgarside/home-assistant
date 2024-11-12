@@ -1,0 +1,17 @@
+---
+alias: /remote/will-s-desk/button-1/single
+
+id: remote_will_s_desk_button_1_single
+
+mode: single
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: f6a43e39ac7a0ec2e7509234553e2352
+    type: action
+    subtype: single
+
+action:
+  - service: light.toggle
+    entity_id: light.office_shapes

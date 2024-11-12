@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (132)</h3></summary>
+<details><summary><h3>Entities (126)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -206,19 +206,6 @@ File: [`automation/cover/bedroom_blinds/close_after_sunset.yaml`](entities/autom
 File: [`automation/cover/bedroom_blinds/open_before_sunrise.yaml`](entities/automation/cover/bedroom_blinds/open_before_sunrise.yaml)
 </details>
 
-<details><summary><code>/cover/bedroom-blinds/register-stop-state</code></summary>
-
-**Entity ID: `automation.cover_bedroom_blinds_register_stop_state`**
-
-> Register that the blinds have stopped moving when they hang in the opening or closing state for a minute (they take ~35 seconds to open/close). This usually arises when the blinds are set to a non-0/100 value.
-
-- Alias: /cover/bedroom-blinds/register-stop-state
-- ID: `cover_bedroom_blinds_register_stop_state`
-- Mode: `single`
-
-File: [`automation/cover/bedroom_blinds/register_stop_state.yaml`](entities/automation/cover/bedroom_blinds/register_stop_state.yaml)
-</details>
-
 <details><summary><code>/cover/lounge-blinds/close-after-sunset</code></summary>
 
 **Entity ID: `automation.cover_lounge_blinds_close_after_sunset`**
@@ -245,19 +232,6 @@ File: [`automation/cover/lounge_blinds/close_after_sunset.yaml`](entities/automa
 File: [`automation/cover/lounge_blinds/open_before_sunrise.yaml`](entities/automation/cover/lounge_blinds/open_before_sunrise.yaml)
 </details>
 
-<details><summary><code>/cover/lounge-blinds/register-stop-state</code></summary>
-
-**Entity ID: `automation.cover_lounge_blinds_register_stop_state`**
-
-> Register that the blinds have stopped moving when they hang in the opening or closing state for a minute (they take ~35 seconds to open/close). This usually arises when the blinds are set to a non-0/100 value.
-
-- Alias: /cover/lounge-blinds/register-stop-state
-- ID: `cover_lounge_blinds_register_stop_state`
-- Mode: `single`
-
-File: [`automation/cover/lounge_blinds/register_stop_state.yaml`](entities/automation/cover/lounge_blinds/register_stop_state.yaml)
-</details>
-
 <details><summary><code>/cover/office-blinds/close-after-sunset</code></summary>
 
 **Entity ID: `automation.cover_office_blinds_close_after_sunset`**
@@ -282,19 +256,6 @@ File: [`automation/cover/office_blinds/close_after_sunset.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/cover/office_blinds/open_before_sunrise.yaml`](entities/automation/cover/office_blinds/open_before_sunrise.yaml)
-</details>
-
-<details><summary><code>/cover/office-blinds/register-stop-state</code></summary>
-
-**Entity ID: `automation.cover_office_blinds_register_stop_state`**
-
-> Register that the blinds have stopped moving when they hang in the opening or closing state for a minute (they take ~35 seconds to open/close). This usually arises when the blinds are set to a non-0/100 value.
-
-- Alias: /cover/office-blinds/register-stop-state
-- ID: `cover_office_blinds_register_stop_state`
-- Mode: `restart`
-
-File: [`automation/cover/office_blinds/register_stop_state.yaml`](entities/automation/cover/office_blinds/register_stop_state.yaml)
 </details>
 
 <details><summary><code>/cover/office-desk/keepalive</code></summary>
@@ -606,32 +567,6 @@ File: [`automation/gh_cli/user_updated.yaml`](entities/automation/gh_cli/user_up
 }
 ```
 File: [`automation/habitica/brush_teeth.yaml`](entities/automation/habitica/brush_teeth.yaml)
-</details>
-
-<details><summary><code>/hassio/auto-restart-mariadb-add-on</code></summary>
-
-**Entity ID: `automation.hassio_auto_restart_mariadb_add_on`**
-
-> *No description provided*
-
-- Alias: /hassio/auto-restart-mariadb-add-on
-- ID: `hassio_auto_restart_mariadb_add_on`
-- Mode: `single`
-
-File: [`automation/hassio/auto_restart_mariadb_add_on.yaml`](entities/automation/hassio/auto_restart_mariadb_add_on.yaml)
-</details>
-
-<details><summary><code>/hassio/auto-restart-silicon-labs-multiprotocol-add-on</code></summary>
-
-**Entity ID: `automation.hassio_auto_restart_silicon_labs_multiprotocol_add_on`**
-
-> *No description provided*
-
-- Alias: /hassio/auto-restart-silicon-labs-multiprotocol-add-on
-- ID: `hassio_auto_restart_silicon_labs_multiprotocol_add_on`
-- Mode: `single`
-
-File: [`automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml`](entities/automation/hassio/auto_restart_silicon_labs_multiprotocol_add_on.yaml)
 </details>
 
 <details><summary><code>/homeassistant/clear-queued-service-reload</code></summary>
@@ -1118,19 +1053,6 @@ File: [`automation/light/disco_light/turn_off.yaml`](entities/automation/light/d
 File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/disco_light/turn_on.yaml)
 </details>
 
-<details><summary><code>/light/kitchen-spotlights/on-off</code></summary>
-
-**Entity ID: `automation.light_kitchen_spotlights_on_off`**
-
-> Keeps `var.boolean_flag_kitchen_lights` in sync with `light.kitchen_spotlights` in case they're turned on/off outside of the main automation/script(s).
-
-- Alias: /light/kitchen-spotlights/on-off
-- ID: `light_kitchen_spotlights_on_off`
-- Mode: `restart`
-
-File: [`automation/light/kitchen_spotlights/on_off.yaml`](entities/automation/light/kitchen_spotlights/on_off.yaml)
-</details>
-
 <details><summary><code>/light/lounge-lights/on</code></summary>
 
 **Entity ID: `automation.light_lounge_lights_on`**
@@ -1471,17 +1393,17 @@ File: [`automation/prusa_i3/bed/timeout.yaml`](entities/automation/prusa_i3/bed/
 File: [`automation/prusa_i3/hotend/timeout.yaml`](entities/automation/prusa_i3/hotend/timeout.yaml)
 </details>
 
-<details><summary><code>/remote/bedroom-blinds/double-press</code></summary>
+<details><summary><code>/remote/bedroom-blinds/double</code></summary>
 
-**Entity ID: `automation.remote_bedroom_blinds_double_press`**
+**Entity ID: `automation.remote_bedroom_blinds_double`**
 
 > *No description provided*
 
-- Alias: /remote/bedroom-blinds/double-press
-- ID: `remote_bedroom_blinds_double_press`
+- Alias: /remote/bedroom-blinds/double
+- ID: `remote_bedroom_blinds_double`
 - Mode: `single`
 
-File: [`automation/remote/bedroom_blinds/double_press.yaml`](entities/automation/remote/bedroom_blinds/double_press.yaml)
+File: [`automation/remote/bedroom_blinds/double.yaml`](entities/automation/remote/bedroom_blinds/double.yaml)
 </details>
 
 <details><summary><code>/remote/bedroom-blinds/hold</code></summary>
@@ -1497,30 +1419,30 @@ File: [`automation/remote/bedroom_blinds/double_press.yaml`](entities/automation
 File: [`automation/remote/bedroom_blinds/hold.yaml`](entities/automation/remote/bedroom_blinds/hold.yaml)
 </details>
 
-<details><summary><code>/remote/bedroom-blinds/single-press</code></summary>
+<details><summary><code>/remote/bedroom-blinds/single</code></summary>
 
-**Entity ID: `automation.remote_bedroom_blinds_single_press`**
+**Entity ID: `automation.remote_bedroom_blinds_single`**
 
 > *No description provided*
 
-- Alias: /remote/bedroom-blinds/single-press
-- ID: `remote_bedroom_blinds_single_press`
+- Alias: /remote/bedroom-blinds/single
+- ID: `remote_bedroom_blinds_single`
 - Mode: `single`
 
-File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation/remote/bedroom_blinds/single_press.yaml)
+File: [`automation/remote/bedroom_blinds/single.yaml`](entities/automation/remote/bedroom_blinds/single.yaml)
 </details>
 
-<details><summary><code>/remote/coffee-table/double-press</code></summary>
+<details><summary><code>/remote/coffee-table/double</code></summary>
 
-**Entity ID: `automation.remote_coffee_table_double_press`**
+**Entity ID: `automation.remote_coffee_table_double`**
 
 > Turn off the lounge
 
-- Alias: /remote/coffee-table/double-press
-- ID: `remote_coffee_table_double_press`
+- Alias: /remote/coffee-table/double
+- ID: `remote_coffee_table_double`
 - Mode: `single`
 
-File: [`automation/remote/coffee_table/double_press.yaml`](entities/automation/remote/coffee_table/double_press.yaml)
+File: [`automation/remote/coffee_table/double.yaml`](entities/automation/remote/coffee_table/double.yaml)
 </details>
 
 <details><summary><code>/remote/coffee-table/hold</code></summary>
@@ -1536,14 +1458,14 @@ File: [`automation/remote/coffee_table/double_press.yaml`](entities/automation/r
 File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/coffee_table/hold.yaml)
 </details>
 
-<details><summary><code>/remote/coffee-table/single-press</code></summary>
+<details><summary><code>/remote/coffee-table/single</code></summary>
 
-**Entity ID: `automation.remote_coffee_table_single_press`**
+**Entity ID: `automation.remote_coffee_table_single`**
 
 > Set the scene for watching TV
 
-- Alias: /remote/coffee-table/single-press
-- ID: `remote_coffee_table_single_press`
+- Alias: /remote/coffee-table/single
+- ID: `remote_coffee_table_single`
 - Mode: `single`
 - Variables:
 
@@ -1553,7 +1475,7 @@ File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/co
   "available_sources": "{{ state_attr('media_player.hifi_system', 'source_list') or [] }}"
 }
 ```
-File: [`automation/remote/coffee_table/single_press.yaml`](entities/automation/remote/coffee_table/single_press.yaml)
+File: [`automation/remote/coffee_table/single.yaml`](entities/automation/remote/coffee_table/single.yaml)
 </details>
 
 <details><summary><code>/remote/kitchen</code></summary>
@@ -1569,15 +1491,17 @@ File: [`automation/remote/coffee_table/single_press.yaml`](entities/automation/r
 
 ```json
 {
-  "press_type": "{{ trigger.event.data.args.press_type }}",
+  "press_type": "{{ trigger.payload }}",
   "presses": {
-    "single": "single",
-    "double": "double",
-    "triple": "triple",
-    "hold": "hold"
+    "single": "single_left",
+    "double": "double_left",
+    "triple": "triple_left",
+    "hold": "hold_left"
   },
-  "flag": "{{ states('var.boolean_flag_kitchen_lights') | bool(false) }}",
-  "on_or_off": "{{ 'off' if flag | bool else 'on'}}"
+  "initial_group_state": "{{ states('light.kitchen_spotlights') | bool(false) }}",
+  "on_or_off": "{{ 'off' if initial_group_state | bool else 'on'}}",
+  "color_temp_kelvin": 2500,
+  "time_of_day": "{{ states('sensor.time_of_day') }}"
 }
 ```
 File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml)
@@ -1596,133 +1520,16 @@ File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml
 
 ```json
 {
-  "press_type": "{{ trigger.event.data.args.press_type }}",
+  "press_type": "{{ trigger.payload }}",
   "presses": {
-    "single": "single",
-    "double": "double",
-    "triple": "triple",
-    "hold": "hold"
+    "single": "single_right",
+    "double": "double_right",
+    "triple": "triple_right",
+    "hold": "hold_right"
   }
 }
 ```
 File: [`automation/remote/lounge.yaml`](entities/automation/remote/lounge.yaml)
-</details>
-
-<details><summary><code>/remote/lounge-desk/double-press</code></summary>
-
-**Entity ID: `automation.remote_lounge_desk_double_press`**
-
-> *No description provided*
-
-- Alias: /remote/lounge-desk/double-press
-- ID: `remote_lounge_desk_double_press`
-- Mode: `single`
-
-File: [`automation/remote/lounge_desk/double_press.yaml`](entities/automation/remote/lounge_desk/double_press.yaml)
-</details>
-
-<details><summary><code>/remote/lounge-desk/hold</code></summary>
-
-**Entity ID: `automation.remote_lounge_desk_hold`**
-
-> *No description provided*
-
-- Alias: /remote/lounge-desk/hold
-- ID: `remote_lounge_desk_hold`
-- Mode: `single`
-
-File: [`automation/remote/lounge_desk/hold.yaml`](entities/automation/remote/lounge_desk/hold.yaml)
-</details>
-
-<details><summary><code>/remote/lounge-desk/single-press</code></summary>
-
-**Entity ID: `automation.remote_lounge_desk_single_press`**
-
-> *No description provided*
-
-- Alias: /remote/lounge-desk/single-press
-- ID: `remote_lounge_desk_single_press`
-- Mode: `single`
-
-File: [`automation/remote/lounge_desk/single_press.yaml`](entities/automation/remote/lounge_desk/single_press.yaml)
-</details>
-
-<details><summary><code>/remote/office/double-press</code></summary>
-
-**Entity ID: `automation.remote_office_double_press`**
-
-> *No description provided*
-
-- Alias: /remote/office/double-press
-- ID: `remote_office_double_press`
-- Mode: `single`
-
-File: [`automation/remote/office/double_press.yaml`](entities/automation/remote/office/double_press.yaml)
-</details>
-
-<details><summary><code>/remote/office/hold</code></summary>
-
-**Entity ID: `automation.remote_office_hold`**
-
-> *No description provided*
-
-- Alias: /remote/office/hold
-- ID: `remote_office_hold`
-- Mode: `single`
-
-File: [`automation/remote/office/hold.yaml`](entities/automation/remote/office/hold.yaml)
-</details>
-
-<details><summary><code>/remote/office/single-press</code></summary>
-
-**Entity ID: `automation.remote_office_single_press`**
-
-> *No description provided*
-
-- Alias: /remote/office/single-press
-- ID: `remote_office_single_press`
-- Mode: `single`
-
-File: [`automation/remote/office/single_press.yaml`](entities/automation/remote/office/single_press.yaml)
-</details>
-
-<details><summary><code>/remote/office-desk/double-press</code></summary>
-
-**Entity ID: `automation.remote_office_desk_double_press`**
-
-> *No description provided*
-
-- Alias: /remote/office-desk/double-press
-- ID: `remote_office_desk_double_press`
-- Mode: `single`
-
-File: [`automation/remote/office_desk/double_press.yaml`](entities/automation/remote/office_desk/double_press.yaml)
-</details>
-
-<details><summary><code>/remote/office-desk/hold</code></summary>
-
-**Entity ID: `automation.remote_office_desk_hold`**
-
-> *No description provided*
-
-- Alias: /remote/office-desk/hold
-- ID: `remote_office_desk_hold`
-- Mode: `single`
-
-File: [`automation/remote/office_desk/hold.yaml`](entities/automation/remote/office_desk/hold.yaml)
-</details>
-
-<details><summary><code>/remote/office-desk/single-press</code></summary>
-
-**Entity ID: `automation.remote_office_desk_single_press`**
-
-> *No description provided*
-
-- Alias: /remote/office-desk/single-press
-- ID: `remote_office_desk_single_press`
-- Mode: `single`
-
-File: [`automation/remote/office_desk/single_press.yaml`](entities/automation/remote/office_desk/single_press.yaml)
 </details>
 
 <details><summary><code>/remote/prusa-i3-mk3-power/double-press</code></summary>
@@ -1749,6 +1556,123 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-desk/button-1/double</code></summary>
+
+**Entity ID: `automation.remote_vic_s_desk_button_1_double`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-desk/button-1/double
+- ID: `remote_vic_s_desk_button_1_double`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_desk/button_1/double.yaml`](entities/automation/remote/vic_s_desk/button_1/double.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-desk/button-1/hold</code></summary>
+
+**Entity ID: `automation.remote_vic_s_desk_button_1_hold`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-desk/button-1/hold
+- ID: `remote_vic_s_desk_button_1_hold`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_desk/button_1/hold.yaml`](entities/automation/remote/vic_s_desk/button_1/hold.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-desk/button-1/single</code></summary>
+
+**Entity ID: `automation.remote_vic_s_desk_button_1_single`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-desk/button-1/single
+- ID: `remote_vic_s_desk_button_1_single`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_desk/button_1/single.yaml`](entities/automation/remote/vic_s_desk/button_1/single.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-1/double</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_1_double`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-1/double
+- ID: `remote_will_s_desk_button_1_double`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_1/double.yaml`](entities/automation/remote/will_s_desk/button_1/double.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-1/hold</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_1_hold`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-1/hold
+- ID: `remote_will_s_desk_button_1_hold`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_1/hold.yaml`](entities/automation/remote/will_s_desk/button_1/hold.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-1/single</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_1_single`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-1/single
+- ID: `remote_will_s_desk_button_1_single`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_1/single.yaml`](entities/automation/remote/will_s_desk/button_1/single.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-2/double</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_2_double`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-2/double
+- ID: `remote_will_s_desk_button_2_double`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_2/double.yaml`](entities/automation/remote/will_s_desk/button_2/double.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-2/hold</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_2_hold`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-2/hold
+- ID: `remote_will_s_desk_button_2_hold`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_2/hold.yaml`](entities/automation/remote/will_s_desk/button_2/hold.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-2/single</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_2_single`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-2/single
+- ID: `remote_will_s_desk_button_2_single`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_2/single.yaml`](entities/automation/remote/will_s_desk/button_2/single.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>
@@ -2056,7 +1980,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (41)</h3></summary>
+<details><summary><h3>Entities (42)</h3></summary>
 
 <details><summary><strong>AdGuard Status</strong></summary>
 
@@ -2296,6 +2220,16 @@ File: [`command_line/sensor/addons/visual_studio_code_add_on_status.yaml`](entit
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/yas_209_bridge_status.yaml`](entities/command_line/sensor/addons/yas_209_bridge_status.yaml)
+</details>
+
+<details><summary><strong>Zigbee2MQTT Status</strong></summary>
+
+**Entity ID: `sensor.zigbee2mqtt_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/45df7312_zigbee2mqtt/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/zigbee2mqtt_status.yaml`](entities/command_line/sensor/addons/zigbee2mqtt_status.yaml)
 </details>
 
 <details><summary><strong>Current GH CLI User</strong></summary>
@@ -5135,7 +5069,7 @@ File: [`mqtt/switch/prusa_i3/enclosure_fan.yaml`](entities/mqtt/switch/prusa_i3/
 
 ## Script
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (27)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5555,35 +5489,6 @@ File: [`script/input_select/target_git_branch/target_git_branch_set_options.yaml
 }
 ```
 File: [`script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml`](entities/script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml)
-</details>
-
-<details><summary><strong>Turn Off Kitchen Spotlights</strong></summary>
-
-**Entity ID: `script.turn_off_kitchen_spotlights`**
-
-> Turn off the kitchen lights with a nice transition
-
-- Mode: `single`
-
-File: [`script/light/kitchen_spotlights/turn_off_kitchen_spotlights.yaml`](entities/script/light/kitchen_spotlights/turn_off_kitchen_spotlights.yaml)
-</details>
-
-<details><summary><strong>Turn On Kitchen Spotlights</strong></summary>
-
-**Entity ID: `script.turn_on_kitchen_spotlights`**
-
-> Turn on the kitchen lights at varying brightness levels, depending on the time of day
-
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "color_temp_kelvin": 2500,
-  "time_of_day": "{{ states('sensor.time_of_day') }}"
-}
-```
-File: [`script/light/kitchen_spotlights/turn_on_kitchen_spotlights.yaml`](entities/script/light/kitchen_spotlights/turn_on_kitchen_spotlights.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10: Turn Off</strong></summary>
@@ -6448,7 +6353,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (108)</h3></summary>
+<details><summary><h3>Entities (110)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -7106,6 +7011,26 @@ File: [`template/sensor/addon_stats/yas_209_bridge_cpu_usage.yaml`](entities/tem
 File: [`template/sensor/addon_stats/yas_209_bridge_memory_usage.yaml`](entities/template/sensor/addon_stats/yas_209_bridge_memory_usage.yaml)
 </details>
 
+<details><summary><strong>Zigbee2MQTT CPU Usage</strong></summary>
+
+**Entity ID: `sensor.zigbee2mqtt_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/zigbee2mqtt_cpu_usage.yaml`](entities/template/sensor/addon_stats/zigbee2mqtt_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>Zigbee2MQTT Memory Usage</strong></summary>
+
+**Entity ID: `sensor.zigbee2mqtt_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/zigbee2mqtt_memory_usage.yaml`](entities/template/sensor/addon_stats/zigbee2mqtt_memory_usage.yaml)
+</details>
+
 <details><summary><strong>Address Line 1</strong></summary>
 
 **Entity ID: `sensor.address_line_1`**
@@ -7684,7 +7609,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (18)</h3></summary>
+<details><summary><h3>Entities (17)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -7714,13 +7639,6 @@ File: [`var/auto_save_amount.yaml`](entities/var/auto_save_amount.yaml)
 - Unit Of Measurement: GBP
 
 File: [`var/auto_save_cumulative_total.yaml`](entities/var/auto_save_cumulative_total.yaml)
-</details>
-
-<details><summary><strong>Boolean Flag: Kitchen Lights</strong></summary>
-
-**Entity ID: `var.boolean_flag_kitchen_lights`**
-
-File: [`var/boolean_flags/boolean_flag_kitchen_lights.yaml`](entities/var/boolean_flags/boolean_flag_kitchen_lights.yaml)
 </details>
 
 <details><summary><strong>Current AppDaemon Branch</strong></summary>

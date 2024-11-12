@@ -40,4 +40,4 @@ condition: >-
 action:
   - service: light.turn_on
     target:
-      entity_id: light.disco_light
+      entity_id: light.disco_ball_spotlight
