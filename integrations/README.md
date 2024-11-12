@@ -1504,7 +1504,7 @@ File: [`automation/remote/coffee_table/single.yaml`](entities/automation/remote/
 
 ```json
 {
-  "press_type": "{{ trigger.subtype }}",
+  "press_type": "{{ trigger.payload }}",
   "presses": {
     "single": "single_left",
     "double": "double_left",
@@ -1531,7 +1531,7 @@ File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml
 
 ```json
 {
-  "press_type": "{{ trigger.subtype }}",
+  "press_type": "{{ trigger.payload }}",
   "presses": {
     "single": "single_right",
     "double": "double_right",
