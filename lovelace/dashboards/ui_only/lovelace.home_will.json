@@ -760,27 +760,27 @@
                         "type": "custom:mini-graph-card",
                         "entities": [
                           {
-                            "entity": "sensor.bedroom_temperature",
+                            "entity": "sensor.bedroom_climate_sensor_temperature",
                             "name": "Bedroom",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.hallway_temperature",
+                            "entity": "sensor.hallway_climate_sensor_temperature",
                             "name": "Hallway",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.kitchen_temperature",
+                            "entity": "sensor.kitchen_climate_sensor_temperature",
                             "name": "Kitchen",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.lounge_temperature",
+                            "entity": "sensor.lounge_climate_sensor_temperature",
                             "name": "Lounge",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.office_temperature",
+                            "entity": "sensor.office_climate_sensor_temperature",
                             "name": "Office",
                             "smoothing": true
                           }
@@ -811,27 +811,27 @@
                         "type": "custom:mini-graph-card",
                         "entities": [
                           {
-                            "entity": "sensor.bedroom_humidity",
+                            "entity": "sensor.bedroom_climate_sensor_humidity",
                             "name": "Bedroom",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.hallway_humidity",
+                            "entity": "sensor.hallway_climate_sensor_humidity",
                             "name": "Hallway",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.kitchen_humidity",
+                            "entity": "sensor.kitchen_climate_sensor_humidity",
                             "name": "Kitchen",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.lounge_humidity",
+                            "entity": "sensor.lounge_climate_sensor_humidity",
                             "name": "Lounge",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.office_humidity",
+                            "entity": "sensor.office_climate_sensor_humidity",
                             "name": "Office",
                             "smoothing": true
                           }
