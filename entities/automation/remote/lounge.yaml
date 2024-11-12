@@ -14,11 +14,25 @@ trigger:
     domain: mqtt
     device_id: 8862bc05ca197fc53d955b484f9b503b
     type: action
-    subtype:
-      - single_right
-      - double_right
-      - triple_right
-      - hold_right
+    subtype: single_right
+
+  - platform: device
+    domain: mqtt
+    device_id: 8862bc05ca197fc53d955b484f9b503b
+    type: action
+    subtype: double_right
+
+  - platform: device
+    domain: mqtt
+    device_id: 8862bc05ca197fc53d955b484f9b503b
+    type: action
+    subtype: triple_right
+
+  - platform: device
+    domain: mqtt
+    device_id: 8862bc05ca197fc53d955b484f9b503b
+    type: action
+    subtype: hold_right
 
 variables:
   press_type: "{{ trigger.event.data.args.press_type }}"
