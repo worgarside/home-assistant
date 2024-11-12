@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (127)</h3></summary>
+<details><summary><h3>Entities (126)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1053,19 +1053,6 @@ File: [`automation/light/disco_light/turn_off.yaml`](entities/automation/light/d
 File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/disco_light/turn_on.yaml)
 </details>
 
-<details><summary><code>/light/kitchen-spotlights/on-off</code></summary>
-
-**Entity ID: `automation.light_kitchen_spotlights_on_off`**
-
-> Keeps `var.boolean_flag_kitchen_lights` in sync with `light.kitchen_spotlights` in case they're turned on/off outside of the main automation/script(s).
-
-- Alias: /light/kitchen-spotlights/on-off
-- ID: `light_kitchen_spotlights_on_off`
-- Mode: `restart`
-
-File: [`automation/light/kitchen_spotlights/on_off.yaml`](entities/automation/light/kitchen_spotlights/on_off.yaml)
-</details>
-
 <details><summary><code>/light/lounge-lights/on</code></summary>
 
 **Entity ID: `automation.light_lounge_lights_on`**
@@ -1511,8 +1498,10 @@ File: [`automation/remote/coffee_table/single.yaml`](entities/automation/remote/
     "triple": "triple_left",
     "hold": "hold_left"
   },
-  "flag": "{{ states('var.boolean_flag_kitchen_lights') | bool(false) }}",
-  "on_or_off": "{{ 'off' if flag | bool else 'on'}}"
+  "initial_group_state": "{{ states('light.kitchen_spotlights') | bool(false) }}",
+  "on_or_off": "{{ 'off' if initial_group_state | bool else 'on'}}",
+  "color_temp_kelvin": 2500,
+  "time_of_day": "{{ states('sensor.time_of_day') }}"
 }
 ```
 File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml)
@@ -5080,7 +5069,7 @@ File: [`mqtt/switch/prusa_i3/enclosure_fan.yaml`](entities/mqtt/switch/prusa_i3/
 
 ## Script
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (27)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5500,35 +5489,6 @@ File: [`script/input_select/target_git_branch/target_git_branch_set_options.yaml
 }
 ```
 File: [`script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml`](entities/script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml)
-</details>
-
-<details><summary><strong>Turn Off Kitchen Spotlights</strong></summary>
-
-**Entity ID: `script.turn_off_kitchen_spotlights`**
-
-> Turn off the kitchen lights with a nice transition
-
-- Mode: `single`
-
-File: [`script/light/kitchen_spotlights/turn_off_kitchen_spotlights.yaml`](entities/script/light/kitchen_spotlights/turn_off_kitchen_spotlights.yaml)
-</details>
-
-<details><summary><strong>Turn On Kitchen Spotlights</strong></summary>
-
-**Entity ID: `script.turn_on_kitchen_spotlights`**
-
-> Turn on the kitchen lights at varying brightness levels, depending on the time of day
-
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "color_temp_kelvin": 2500,
-  "time_of_day": "{{ states('sensor.time_of_day') }}"
-}
-```
-File: [`script/light/kitchen_spotlights/turn_on_kitchen_spotlights.yaml`](entities/script/light/kitchen_spotlights/turn_on_kitchen_spotlights.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10: Turn Off</strong></summary>
@@ -7649,7 +7609,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (18)</h3></summary>
+<details><summary><h3>Entities (17)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -7679,13 +7639,6 @@ File: [`var/auto_save_amount.yaml`](entities/var/auto_save_amount.yaml)
 - Unit Of Measurement: GBP
 
 File: [`var/auto_save_cumulative_total.yaml`](entities/var/auto_save_cumulative_total.yaml)
-</details>
-
-<details><summary><strong>Boolean Flag: Kitchen Lights</strong></summary>
-
-**Entity ID: `var.boolean_flag_kitchen_lights`**
-
-File: [`var/boolean_flags/boolean_flag_kitchen_lights.yaml`](entities/var/boolean_flags/boolean_flag_kitchen_lights.yaml)
 </details>
 
 <details><summary><strong>Current AppDaemon Branch</strong></summary>
