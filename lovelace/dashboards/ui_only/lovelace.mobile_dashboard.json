@@ -479,15 +479,15 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.lounge_window"
+                          "entity": "binary_sensor.lounge_window_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.lounge_temperature"
+                          "entity": "sensor.lounge_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.lounge_humidity"
+                          "entity": "sensor.lounge_climate_sensor_humidity"
                         },
                         {
                           "type": "entity",
