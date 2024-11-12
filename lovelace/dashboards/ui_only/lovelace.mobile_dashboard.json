@@ -156,19 +156,19 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.bedroom_door"
+                          "entity": "binary_sensor.bedroom_door_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.bedroom_window"
+                          "entity": "binary_sensor.bedroom_window_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.bedroom_temperature"
+                          "entity": "sensor.bedroom_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.bedroom_humidity"
+                          "entity": "sensor.bedroom_climate_sensor_humidity"
                         }
                       ]
                     }
