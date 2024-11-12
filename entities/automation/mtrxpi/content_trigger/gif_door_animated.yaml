@@ -7,7 +7,7 @@ mode: queued
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.office_door
+    entity_id: binary_sensor.office_door_sensor_contact
     from: "off"
     to: "on"
 

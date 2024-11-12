@@ -1,0 +1,20 @@
+---
+alias: /remote/coffee-table/double
+
+description: Turn off the lounge
+
+id: remote_coffee_table_double
+
+mode: single
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 4c15e7d3153231546a79521c3e172ed6
+    type: action
+    subtype: double
+
+action:
+  - service: homeassistant.turn_off
+    target:
+      area_id: lounge

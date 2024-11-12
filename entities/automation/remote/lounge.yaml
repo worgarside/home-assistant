@@ -10,20 +10,18 @@ mode: single
 max_exceeded: silent
 
 trigger:
-  - platform: event
-    event_type: zha_event
-    event_data:
-      device_ieee: 54:ef:44:10:00:9f:a9:95
-      args:
-        button: 2 # Right Button on switch
+  - platform: device
+    domain: mqtt
+    device_id: 8862bc05ca197fc53d955b484f9b503b
+    type: action
 
 variables:
   press_type: "{{ trigger.event.data.args.press_type }}"
   presses:
-    single: single
-    double: double
-    triple: triple
-    hold: hold
+    single: single_right
+    double: double_right
+    triple: triple_right
+    hold: hold_right
 
 action:
   - choose:

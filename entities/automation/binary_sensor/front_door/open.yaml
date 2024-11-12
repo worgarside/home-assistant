@@ -8,7 +8,7 @@ mode: single
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.front_door
+    entity_id: binary_sensor.front_door_sensor_contact
     from: "off"
     to: "on"
     for:

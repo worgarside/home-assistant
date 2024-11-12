@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (132)</h3></summary>
+<details><summary><h3>Entities (129)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -206,19 +206,6 @@ File: [`automation/cover/bedroom_blinds/close_after_sunset.yaml`](entities/autom
 File: [`automation/cover/bedroom_blinds/open_before_sunrise.yaml`](entities/automation/cover/bedroom_blinds/open_before_sunrise.yaml)
 </details>
 
-<details><summary><code>/cover/bedroom-blinds/register-stop-state</code></summary>
-
-**Entity ID: `automation.cover_bedroom_blinds_register_stop_state`**
-
-> Register that the blinds have stopped moving when they hang in the opening or closing state for a minute (they take ~35 seconds to open/close). This usually arises when the blinds are set to a non-0/100 value.
-
-- Alias: /cover/bedroom-blinds/register-stop-state
-- ID: `cover_bedroom_blinds_register_stop_state`
-- Mode: `single`
-
-File: [`automation/cover/bedroom_blinds/register_stop_state.yaml`](entities/automation/cover/bedroom_blinds/register_stop_state.yaml)
-</details>
-
 <details><summary><code>/cover/lounge-blinds/close-after-sunset</code></summary>
 
 **Entity ID: `automation.cover_lounge_blinds_close_after_sunset`**
@@ -245,19 +232,6 @@ File: [`automation/cover/lounge_blinds/close_after_sunset.yaml`](entities/automa
 File: [`automation/cover/lounge_blinds/open_before_sunrise.yaml`](entities/automation/cover/lounge_blinds/open_before_sunrise.yaml)
 </details>
 
-<details><summary><code>/cover/lounge-blinds/register-stop-state</code></summary>
-
-**Entity ID: `automation.cover_lounge_blinds_register_stop_state`**
-
-> Register that the blinds have stopped moving when they hang in the opening or closing state for a minute (they take ~35 seconds to open/close). This usually arises when the blinds are set to a non-0/100 value.
-
-- Alias: /cover/lounge-blinds/register-stop-state
-- ID: `cover_lounge_blinds_register_stop_state`
-- Mode: `single`
-
-File: [`automation/cover/lounge_blinds/register_stop_state.yaml`](entities/automation/cover/lounge_blinds/register_stop_state.yaml)
-</details>
-
 <details><summary><code>/cover/office-blinds/close-after-sunset</code></summary>
 
 **Entity ID: `automation.cover_office_blinds_close_after_sunset`**
@@ -282,19 +256,6 @@ File: [`automation/cover/office_blinds/close_after_sunset.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/cover/office_blinds/open_before_sunrise.yaml`](entities/automation/cover/office_blinds/open_before_sunrise.yaml)
-</details>
-
-<details><summary><code>/cover/office-blinds/register-stop-state</code></summary>
-
-**Entity ID: `automation.cover_office_blinds_register_stop_state`**
-
-> Register that the blinds have stopped moving when they hang in the opening or closing state for a minute (they take ~35 seconds to open/close). This usually arises when the blinds are set to a non-0/100 value.
-
-- Alias: /cover/office-blinds/register-stop-state
-- ID: `cover_office_blinds_register_stop_state`
-- Mode: `restart`
-
-File: [`automation/cover/office_blinds/register_stop_state.yaml`](entities/automation/cover/office_blinds/register_stop_state.yaml)
 </details>
 
 <details><summary><code>/cover/office-desk/keepalive</code></summary>
@@ -1471,17 +1432,17 @@ File: [`automation/prusa_i3/bed/timeout.yaml`](entities/automation/prusa_i3/bed/
 File: [`automation/prusa_i3/hotend/timeout.yaml`](entities/automation/prusa_i3/hotend/timeout.yaml)
 </details>
 
-<details><summary><code>/remote/bedroom-blinds/double-press</code></summary>
+<details><summary><code>/remote/bedroom-blinds/double</code></summary>
 
-**Entity ID: `automation.remote_bedroom_blinds_double_press`**
+**Entity ID: `automation.remote_bedroom_blinds_double`**
 
 > *No description provided*
 
-- Alias: /remote/bedroom-blinds/double-press
-- ID: `remote_bedroom_blinds_double_press`
+- Alias: /remote/bedroom-blinds/double
+- ID: `remote_bedroom_blinds_double`
 - Mode: `single`
 
-File: [`automation/remote/bedroom_blinds/double_press.yaml`](entities/automation/remote/bedroom_blinds/double_press.yaml)
+File: [`automation/remote/bedroom_blinds/double.yaml`](entities/automation/remote/bedroom_blinds/double.yaml)
 </details>
 
 <details><summary><code>/remote/bedroom-blinds/hold</code></summary>
@@ -1497,30 +1458,30 @@ File: [`automation/remote/bedroom_blinds/double_press.yaml`](entities/automation
 File: [`automation/remote/bedroom_blinds/hold.yaml`](entities/automation/remote/bedroom_blinds/hold.yaml)
 </details>
 
-<details><summary><code>/remote/bedroom-blinds/single-press</code></summary>
+<details><summary><code>/remote/bedroom-blinds/single</code></summary>
 
-**Entity ID: `automation.remote_bedroom_blinds_single_press`**
+**Entity ID: `automation.remote_bedroom_blinds_single`**
 
 > *No description provided*
 
-- Alias: /remote/bedroom-blinds/single-press
-- ID: `remote_bedroom_blinds_single_press`
+- Alias: /remote/bedroom-blinds/single
+- ID: `remote_bedroom_blinds_single`
 - Mode: `single`
 
-File: [`automation/remote/bedroom_blinds/single_press.yaml`](entities/automation/remote/bedroom_blinds/single_press.yaml)
+File: [`automation/remote/bedroom_blinds/single.yaml`](entities/automation/remote/bedroom_blinds/single.yaml)
 </details>
 
-<details><summary><code>/remote/coffee-table/double-press</code></summary>
+<details><summary><code>/remote/coffee-table/double</code></summary>
 
-**Entity ID: `automation.remote_coffee_table_double_press`**
+**Entity ID: `automation.remote_coffee_table_double`**
 
 > Turn off the lounge
 
-- Alias: /remote/coffee-table/double-press
-- ID: `remote_coffee_table_double_press`
+- Alias: /remote/coffee-table/double
+- ID: `remote_coffee_table_double`
 - Mode: `single`
 
-File: [`automation/remote/coffee_table/double_press.yaml`](entities/automation/remote/coffee_table/double_press.yaml)
+File: [`automation/remote/coffee_table/double.yaml`](entities/automation/remote/coffee_table/double.yaml)
 </details>
 
 <details><summary><code>/remote/coffee-table/hold</code></summary>
@@ -1536,14 +1497,14 @@ File: [`automation/remote/coffee_table/double_press.yaml`](entities/automation/r
 File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/coffee_table/hold.yaml)
 </details>
 
-<details><summary><code>/remote/coffee-table/single-press</code></summary>
+<details><summary><code>/remote/coffee-table/single</code></summary>
 
-**Entity ID: `automation.remote_coffee_table_single_press`**
+**Entity ID: `automation.remote_coffee_table_single`**
 
 > Set the scene for watching TV
 
-- Alias: /remote/coffee-table/single-press
-- ID: `remote_coffee_table_single_press`
+- Alias: /remote/coffee-table/single
+- ID: `remote_coffee_table_single`
 - Mode: `single`
 - Variables:
 
@@ -1553,7 +1514,7 @@ File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/co
   "available_sources": "{{ state_attr('media_player.hifi_system', 'source_list') or [] }}"
 }
 ```
-File: [`automation/remote/coffee_table/single_press.yaml`](entities/automation/remote/coffee_table/single_press.yaml)
+File: [`automation/remote/coffee_table/single.yaml`](entities/automation/remote/coffee_table/single.yaml)
 </details>
 
 <details><summary><code>/remote/kitchen</code></summary>
@@ -1571,10 +1532,10 @@ File: [`automation/remote/coffee_table/single_press.yaml`](entities/automation/r
 {
   "press_type": "{{ trigger.event.data.args.press_type }}",
   "presses": {
-    "single": "single",
-    "double": "double",
-    "triple": "triple",
-    "hold": "hold"
+    "single": "single_left",
+    "double": "double_left",
+    "triple": "triple_left",
+    "hold": "hold_left"
   },
   "flag": "{{ states('var.boolean_flag_kitchen_lights') | bool(false) }}",
   "on_or_off": "{{ 'off' if flag | bool else 'on'}}"
@@ -1598,131 +1559,14 @@ File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml
 {
   "press_type": "{{ trigger.event.data.args.press_type }}",
   "presses": {
-    "single": "single",
-    "double": "double",
-    "triple": "triple",
-    "hold": "hold"
+    "single": "single_right",
+    "double": "double_right",
+    "triple": "triple_right",
+    "hold": "hold_right"
   }
 }
 ```
 File: [`automation/remote/lounge.yaml`](entities/automation/remote/lounge.yaml)
-</details>
-
-<details><summary><code>/remote/lounge-desk/double-press</code></summary>
-
-**Entity ID: `automation.remote_lounge_desk_double_press`**
-
-> *No description provided*
-
-- Alias: /remote/lounge-desk/double-press
-- ID: `remote_lounge_desk_double_press`
-- Mode: `single`
-
-File: [`automation/remote/lounge_desk/double_press.yaml`](entities/automation/remote/lounge_desk/double_press.yaml)
-</details>
-
-<details><summary><code>/remote/lounge-desk/hold</code></summary>
-
-**Entity ID: `automation.remote_lounge_desk_hold`**
-
-> *No description provided*
-
-- Alias: /remote/lounge-desk/hold
-- ID: `remote_lounge_desk_hold`
-- Mode: `single`
-
-File: [`automation/remote/lounge_desk/hold.yaml`](entities/automation/remote/lounge_desk/hold.yaml)
-</details>
-
-<details><summary><code>/remote/lounge-desk/single-press</code></summary>
-
-**Entity ID: `automation.remote_lounge_desk_single_press`**
-
-> *No description provided*
-
-- Alias: /remote/lounge-desk/single-press
-- ID: `remote_lounge_desk_single_press`
-- Mode: `single`
-
-File: [`automation/remote/lounge_desk/single_press.yaml`](entities/automation/remote/lounge_desk/single_press.yaml)
-</details>
-
-<details><summary><code>/remote/office/double-press</code></summary>
-
-**Entity ID: `automation.remote_office_double_press`**
-
-> *No description provided*
-
-- Alias: /remote/office/double-press
-- ID: `remote_office_double_press`
-- Mode: `single`
-
-File: [`automation/remote/office/double_press.yaml`](entities/automation/remote/office/double_press.yaml)
-</details>
-
-<details><summary><code>/remote/office/hold</code></summary>
-
-**Entity ID: `automation.remote_office_hold`**
-
-> *No description provided*
-
-- Alias: /remote/office/hold
-- ID: `remote_office_hold`
-- Mode: `single`
-
-File: [`automation/remote/office/hold.yaml`](entities/automation/remote/office/hold.yaml)
-</details>
-
-<details><summary><code>/remote/office/single-press</code></summary>
-
-**Entity ID: `automation.remote_office_single_press`**
-
-> *No description provided*
-
-- Alias: /remote/office/single-press
-- ID: `remote_office_single_press`
-- Mode: `single`
-
-File: [`automation/remote/office/single_press.yaml`](entities/automation/remote/office/single_press.yaml)
-</details>
-
-<details><summary><code>/remote/office-desk/double-press</code></summary>
-
-**Entity ID: `automation.remote_office_desk_double_press`**
-
-> *No description provided*
-
-- Alias: /remote/office-desk/double-press
-- ID: `remote_office_desk_double_press`
-- Mode: `single`
-
-File: [`automation/remote/office_desk/double_press.yaml`](entities/automation/remote/office_desk/double_press.yaml)
-</details>
-
-<details><summary><code>/remote/office-desk/hold</code></summary>
-
-**Entity ID: `automation.remote_office_desk_hold`**
-
-> *No description provided*
-
-- Alias: /remote/office-desk/hold
-- ID: `remote_office_desk_hold`
-- Mode: `single`
-
-File: [`automation/remote/office_desk/hold.yaml`](entities/automation/remote/office_desk/hold.yaml)
-</details>
-
-<details><summary><code>/remote/office-desk/single-press</code></summary>
-
-**Entity ID: `automation.remote_office_desk_single_press`**
-
-> *No description provided*
-
-- Alias: /remote/office-desk/single-press
-- ID: `remote_office_desk_single_press`
-- Mode: `single`
-
-File: [`automation/remote/office_desk/single_press.yaml`](entities/automation/remote/office_desk/single_press.yaml)
 </details>
 
 <details><summary><code>/remote/prusa-i3-mk3-power/double-press</code></summary>
@@ -1749,6 +1593,123 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-desk/button-1/double</code></summary>
+
+**Entity ID: `automation.remote_vic_s_desk_button_1_double`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-desk/button-1/double
+- ID: `remote_vic_s_desk_button_1_double`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_desk/button_1/double.yaml`](entities/automation/remote/vic_s_desk/button_1/double.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-desk/button-1/hold</code></summary>
+
+**Entity ID: `automation.remote_vic_s_desk_button_1_hold`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-desk/button-1/hold
+- ID: `remote_vic_s_desk_button_1_hold`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_desk/button_1/hold.yaml`](entities/automation/remote/vic_s_desk/button_1/hold.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-desk/button-1/single</code></summary>
+
+**Entity ID: `automation.remote_vic_s_desk_button_1_single`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-desk/button-1/single
+- ID: `remote_vic_s_desk_button_1_single`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_desk/button_1/single.yaml`](entities/automation/remote/vic_s_desk/button_1/single.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-1/double</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_1_double`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-1/double
+- ID: `remote_will_s_desk_button_1_double`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_1/double.yaml`](entities/automation/remote/will_s_desk/button_1/double.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-1/hold</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_1_hold`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-1/hold
+- ID: `remote_will_s_desk_button_1_hold`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_1/hold.yaml`](entities/automation/remote/will_s_desk/button_1/hold.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-1/single</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_1_single`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-1/single
+- ID: `remote_will_s_desk_button_1_single`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_1/single.yaml`](entities/automation/remote/will_s_desk/button_1/single.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-2/double</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_2_double`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-2/double
+- ID: `remote_will_s_desk_button_2_double`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_2/double.yaml`](entities/automation/remote/will_s_desk/button_2/double.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-2/hold</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_2_hold`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-2/hold
+- ID: `remote_will_s_desk_button_2_hold`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_2/hold.yaml`](entities/automation/remote/will_s_desk/button_2/hold.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-2/single</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_2_single`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-2/single
+- ID: `remote_will_s_desk_button_2_single`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_2/single.yaml`](entities/automation/remote/will_s_desk/button_2/single.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>

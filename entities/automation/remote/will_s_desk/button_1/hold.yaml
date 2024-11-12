@@ -1,0 +1,23 @@
+---
+alias: /remote/will-s-desk/button-1/hold
+
+id: remote_will_s_desk_button_1_hold
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: f6a43e39ac7a0ec2e7509234553e2352
+    type: action
+    subtype: hold
+
+action:
+  - service: switch.toggle
+    entity_id: switch.office_amp
+
+  - alias: Prevent rapid toggling
+    delay:
+      seconds: 5
