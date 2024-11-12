@@ -1883,21 +1883,6 @@
                           "color": "#7219E5"
                         },
                         {
-                          "name": "Silicon Labs Multiprotocol"
-                        },
-                        {
-                          "slug": "silicon_labs_multiprotocol_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#A719E5"
-                        },
-                        {
                           "name": "Sonarr"
                         },
                         {
@@ -1910,7 +1895,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#DC19E5"
+                          "color": "#A719E5"
                         },
                         {
                           "name": "SponsorBlock"
@@ -1925,7 +1910,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519B9"
+                          "color": "#DC19E5"
                         },
                         {
                           "name": "Terminal & SSH"
@@ -1940,7 +1925,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E51983"
+                          "color": "#E519B9"
                         },
                         {
                           "name": "Transmission"
@@ -1955,13 +1940,28 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5194E"
+                          "color": "#E51983"
                         },
                         {
                           "name": "VSCode"
                         },
                         {
                           "slug": "visual_studio_code_add_on"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#E5194E"
+                        },
+                        {
+                          "name": "Zigbee2MQTT"
+                        },
+                        {
+                          "slug": "zigbee2mqtt"
                         }
                       ]
                     }
