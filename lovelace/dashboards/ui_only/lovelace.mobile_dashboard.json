@@ -653,19 +653,19 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.office_door"
+                          "entity": "binary_sensor.office_door_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.office_window"
+                          "entity": "binary_sensor.office_window_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.office_temperature"
+                          "entity": "sensor.office_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.office_humidity"
+                          "entity": "sensor.office_climate_sensor_humidity"
                         }
                       ]
                     }
