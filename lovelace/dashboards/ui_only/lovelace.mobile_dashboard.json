@@ -258,15 +258,15 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.kitchen_door"
+                          "entity": "binary_sensor.kitchen_door_sensor_contact"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.kitchen_temperature"
+                          "entity": "sensor.kitchen_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.kitchen_humidity"
+                          "entity": "sensor.kitchen_climate_sensor_humidity"
                         }
                       ]
                     }
