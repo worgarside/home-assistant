@@ -1640,7 +1640,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E54E19"
+                          "color": "#E56619"
                         },
                         {
                           "name": "AppDaemon"
@@ -1655,7 +1655,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E58319"
+                          "color": "#E5B219"
                         },
                         {
                           "name": "ESPHome"
@@ -1670,22 +1670,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5B919"
-                        },
-                        {
-                          "name": "FlareSolverr"
-                        },
-                        {
-                          "slug": "flaresolverr"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#DCE519"
+                          "color": "#CCE519"
                         },
                         {
                           "name": "Grafana"
@@ -1700,7 +1685,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#A7E519"
+                          "color": "#7FE519"
                         },
                         {
                           "name": "InfluxDB"
@@ -1715,7 +1700,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#72E519"
+                          "color": "#33E519"
                         },
                         {
                           "name": "Google Drive Backup"
@@ -1730,7 +1715,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#3CE519"
+                          "color": "#19E54C"
                         },
                         {
                           "name": "Item Warehouse API"
@@ -1745,7 +1730,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E52B"
+                          "color": "#19E599"
                         },
                         {
                           "name": "Item Warehouse Website"
@@ -1760,7 +1745,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E560"
+                          "color": "#19E5E5"
                         },
                         {
                           "name": "MariaDB"
@@ -1775,7 +1760,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E595"
+                          "color": "#1998E5"
                         },
                         {
                           "name": "Matter Server"
@@ -1790,7 +1775,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E5CA"
+                          "color": "#194CE5"
                         },
                         {
                           "name": "Mosquitto Broker"
@@ -1805,37 +1790,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19CAE5"
-                        },
-                        {
-                          "name": "Nextcloud"
-                        },
-                        {
-                          "slug": "nextcloud"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#1995E5"
-                        },
-                        {
-                          "name": "NGINX Proxy Manager"
-                        },
-                        {
-                          "slug": "nginx_proxy_manager"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#1960E5"
+                          "color": "#3219E5"
                         },
                         {
                           "name": "Plex Media Server"
@@ -1850,37 +1805,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#192BE5"
-                        },
-                        {
-                          "name": "Portainer"
-                        },
-                        {
-                          "slug": "portainer"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#3C19E5"
-                        },
-                        {
-                          "name": "Prowlarr"
-                        },
-                        {
-                          "slug": "prowlarr"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#7219E5"
+                          "color": "#7F19E5"
                         },
                         {
                           "name": "Silicon Labs Multiprotocol"
@@ -1895,22 +1820,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#A719E5"
-                        },
-                        {
-                          "name": "Sonarr"
-                        },
-                        {
-                          "slug": "sonarr"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#DC19E5"
+                          "color": "#CB19E5"
                         },
                         {
                           "name": "SponsorBlock"
@@ -1925,7 +1835,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519B9"
+                          "color": "#E519B2"
                         },
                         {
                           "name": "Terminal & SSH"
@@ -1940,22 +1850,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E51983"
-                        },
-                        {
-                          "name": "Transmission"
-                        },
-                        {
-                          "slug": "transmission"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E5194E"
+                          "color": "#E51965"
                         },
                         {
                           "name": "VSCode"
@@ -1977,91 +1872,63 @@
                     },
                     {
                       "entity": "sensor.appdaemon_cpu_usage",
-                      "color": "#E54E19"
+                      "color": "#E56619"
                     },
                     {
                       "entity": "sensor.esphome_add_on_cpu_usage",
-                      "color": "#E58319"
-                    },
-                    {
-                      "entity": "sensor.flaresolverr_cpu_usage",
-                      "color": "#E5B919"
+                      "color": "#E5B219"
                     },
                     {
                       "entity": "sensor.grafana_cpu_usage",
-                      "color": "#DCE519"
+                      "color": "#CCE519"
                     },
                     {
                       "entity": "sensor.influxdb_cpu_usage",
-                      "color": "#A7E519"
+                      "color": "#7FE519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_cpu_usage",
-                      "color": "#72E519"
+                      "color": "#33E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_cpu_usage",
-                      "color": "#3CE519"
+                      "color": "#19E54C"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_cpu_usage",
-                      "color": "#19E52B"
+                      "color": "#19E599"
                     },
                     {
                       "entity": "sensor.mariadb_cpu_usage",
-                      "color": "#19E560"
+                      "color": "#19E5E5"
                     },
                     {
                       "entity": "sensor.matter_server_cpu_usage",
-                      "color": "#19E595"
+                      "color": "#1998E5"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_cpu_usage",
-                      "color": "#19E5CA"
-                    },
-                    {
-                      "entity": "sensor.nextcloud_cpu_usage",
-                      "color": "#19CAE5"
-                    },
-                    {
-                      "entity": "sensor.nginx_proxy_manager_cpu_usage",
-                      "color": "#1995E5"
+                      "color": "#194CE5"
                     },
                     {
                       "entity": "sensor.plex_media_server_cpu_usage",
-                      "color": "#1960E5"
-                    },
-                    {
-                      "entity": "sensor.portainer_cpu_usage",
-                      "color": "#192BE5"
-                    },
-                    {
-                      "entity": "sensor.prowlarr_cpu_usage",
-                      "color": "#3C19E5"
+                      "color": "#3219E5"
                     },
                     {
                       "entity": "sensor.silicon_labs_multiprotocol_add_on_cpu_usage",
-                      "color": "#7219E5"
-                    },
-                    {
-                      "entity": "sensor.sonarr_cpu_usage",
-                      "color": "#A719E5"
+                      "color": "#7F19E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_cpu_usage",
-                      "color": "#DC19E5"
+                      "color": "#CB19E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_cpu_usage",
-                      "color": "#E519B9"
-                    },
-                    {
-                      "entity": "sensor.transmission_cpu_usage",
-                      "color": "#E51983"
+                      "color": "#E519B2"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_cpu_usage",
-                      "color": "#E5194E"
+                      "color": "#E51965"
                     }
                   ],
                   "show": {
@@ -2077,7 +1944,7 @@
                   "hours_to_show": 6,
                   "points_per_hour": 60,
                   "lower_bound": 0,
-                  "upper_bound": "~10",
+                  "upper_bound": "~50",
                   "height": 150,
                   "animate": false,
                   "hour24": true,
@@ -2093,91 +1960,63 @@
                     },
                     {
                       "entity": "sensor.appdaemon_memory_usage",
-                      "color": "#E54E19"
+                      "color": "#E56619"
                     },
                     {
                       "entity": "sensor.esphome_add_on_memory_usage",
-                      "color": "#E58319"
-                    },
-                    {
-                      "entity": "sensor.flaresolverr_memory_usage",
-                      "color": "#E5B919"
+                      "color": "#E5B219"
                     },
                     {
                       "entity": "sensor.grafana_memory_usage",
-                      "color": "#DCE519"
+                      "color": "#CCE519"
                     },
                     {
                       "entity": "sensor.influxdb_memory_usage",
-                      "color": "#A7E519"
+                      "color": "#7FE519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_memory_usage",
-                      "color": "#72E519"
+                      "color": "#33E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_memory_usage",
-                      "color": "#3CE519"
+                      "color": "#19E54C"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_memory_usage",
-                      "color": "#19E52B"
+                      "color": "#19E599"
                     },
                     {
                       "entity": "sensor.mariadb_memory_usage",
-                      "color": "#19E560"
+                      "color": "#19E5E5"
                     },
                     {
                       "entity": "sensor.matter_server_memory_usage",
-                      "color": "#19E595"
+                      "color": "#1998E5"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_memory_usage",
-                      "color": "#19E5CA"
-                    },
-                    {
-                      "entity": "sensor.nextcloud_memory_usage",
-                      "color": "#19CAE5"
-                    },
-                    {
-                      "entity": "sensor.nginx_proxy_manager_memory_usage",
-                      "color": "#1995E5"
+                      "color": "#194CE5"
                     },
                     {
                       "entity": "sensor.plex_media_server_memory_usage",
-                      "color": "#1960E5"
-                    },
-                    {
-                      "entity": "sensor.portainer_memory_usage",
-                      "color": "#192BE5"
-                    },
-                    {
-                      "entity": "sensor.prowlarr_memory_usage",
-                      "color": "#3C19E5"
+                      "color": "#3219E5"
                     },
                     {
                       "entity": "sensor.silicon_labs_multiprotocol_add_on_memory_usage",
-                      "color": "#7219E5"
-                    },
-                    {
-                      "entity": "sensor.sonarr_memory_usage",
-                      "color": "#A719E5"
+                      "color": "#7F19E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_memory_usage",
-                      "color": "#DC19E5"
+                      "color": "#CB19E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_memory_usage",
-                      "color": "#E519B9"
-                    },
-                    {
-                      "entity": "sensor.transmission_memory_usage",
-                      "color": "#E51983"
+                      "color": "#E519B2"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_memory_usage",
-                      "color": "#E5194E"
+                      "color": "#E51965"
                     }
                   ],
                   "show": {
