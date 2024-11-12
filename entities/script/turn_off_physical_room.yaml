@@ -60,7 +60,7 @@ sequence:
 
       blinds_entity_id: cover.{{ room }}_blinds
 
-      window_entity_id: binary_sensor.{{ room }}_window
+      window_entity_id: binary_sensor.{{ room }}_window_sensor_contact
 
   - alias: "Turn off each physical domain"
     repeat:

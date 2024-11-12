@@ -120,7 +120,7 @@ sequence:
         for room in doors
         if (
           not ns.any_closed and
-          is_state('binary_sensor.' ~ room ~ '_door', 'off')
+          is_state('binary_sensor.' ~ room ~ '_sensor_contact', 'off')
         )
       %}
         {% set ns.any_closed = True %}
@@ -142,12 +142,12 @@ sequence:
             if (
               ns.all_open_long_enough and
               states.binary_sensor |
-                selectattr('entity_id', 'eq', 'binary_sensor.' ~ room ~ '_door') |
+                selectattr('entity_id', 'eq', 'binary_sensor.' ~ room ~ '_door_sensor_contact') |
                 list |
                 length > 0
             )
           %}
-            {% set door_state = states.binary_sensor[room ~ '_door'] %}
+            {% set door_state = states.binary_sensor[room ~ '_door_sensor_contact'] %}
             {% set door_last_changed = door_state.last_changed | as_timestamp %}
 
             {%

@@ -26,7 +26,7 @@ condition:
       }}
 
 action:
-  - wait_template: "{{ is_state('binary_sensor.lounge_window', 'off') }}"
+  - wait_template: "{{ is_state('binary_sensor.lounge_window_sensor_contact', 'off') }}"
     timeout: 3600
     continue_on_timeout: true
 
