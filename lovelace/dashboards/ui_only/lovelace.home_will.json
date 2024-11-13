@@ -5106,7 +5106,17 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "New section"
+                  "heading": "Movies",
+                  "heading_style": "title",
+                  "icon": "phu:radarr"
+                },
+                {
+                  "type": "custom:upcoming-media-card",
+                  "entity": "sensor.plex_recently_added",
+                  "image_style": "fanart",
+                  "collapse": "flag=true",
+                  "sort_by": "airdate",
+                  "enable_tooltips": true
                 }
               ]
             }
