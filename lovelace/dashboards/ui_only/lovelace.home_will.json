@@ -5097,7 +5097,13 @@
                   "type": "heading",
                   "heading": "Movies",
                   "heading_style": "title",
-                  "icon": "phu:radarr"
+                  "icon": "phu:radarr",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.home_assistant_library_films"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:upcoming-media-card",
