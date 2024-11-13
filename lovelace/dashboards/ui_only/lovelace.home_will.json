@@ -5070,7 +5070,14 @@
                   "icon": "phu:sonarr",
                   "heading_style": "title",
                   "heading": "TV Shows",
-                  "badges": []
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.home_assistant_library_tv_programmes"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:upcoming-media-card",
