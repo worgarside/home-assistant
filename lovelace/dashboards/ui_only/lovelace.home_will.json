@@ -5072,6 +5072,18 @@
                   "collapse": "flag=true",
                   "sort_by": "airdate",
                   "enable_tooltips": true
+                },
+                {
+                  "type": "heading",
+                  "icon": "phu:sonarr",
+                  "heading_style": "title",
+                  "heading": "TV Shows",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.sonarr_upcoming"
+                    }
+                  ]
                 }
               ]
             },
