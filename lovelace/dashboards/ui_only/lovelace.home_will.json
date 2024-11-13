@@ -5066,14 +5066,6 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "custom:upcoming-media-card",
-                  "entity": "sensor.sonarr_upcoming_media",
-                  "image_style": "fanart",
-                  "collapse": "flag=true",
-                  "sort_by": "airdate",
-                  "enable_tooltips": true
-                },
-                {
                   "type": "heading",
                   "icon": "phu:sonarr",
                   "heading_style": "title",
@@ -5084,6 +5076,14 @@
                       "entity": "sensor.sonarr_upcoming"
                     }
                   ]
+                },
+                {
+                  "type": "custom:upcoming-media-card",
+                  "entity": "sensor.sonarr_upcoming_media",
+                  "image_style": "fanart",
+                  "collapse": "flag=true",
+                  "sort_by": "airdate",
+                  "enable_tooltips": true
                 }
               ]
             },
