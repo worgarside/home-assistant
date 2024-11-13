@@ -5088,6 +5088,14 @@
                 {
                   "type": "heading",
                   "heading": "New section"
+                },
+                {
+                  "type": "custom:upcoming-media-card",
+                  "entity": "sensor.radarr_upcoming_media",
+                  "image_style": "fanart",
+                  "collapse": "flag=true",
+                  "sort_by": "airdate",
+                  "enable_tooltips": true
                 }
               ]
             }
