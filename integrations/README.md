@@ -6147,7 +6147,7 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
 
 <details><summary><strong>External IP</strong></summary>
 
@@ -6174,6 +6174,13 @@ File: [`sensor/office_desk_occupied_cumulative_time.yaml`](entities/sensor/offic
 - Platform: `history_stats`
 
 File: [`sensor/office_desk_standing_occupied_cumulative_time.yaml`](entities/sensor/office_desk_standing_occupied_cumulative_time.yaml)
+</details>
+
+<details><summary><code>sensor.plex_recently_added</code></summary>
+
+- Platform: `plex_recently_added`
+
+File: [`sensor/plex_recently_added.yaml`](entities/sensor/plex_recently_added.yaml)
 </details>
 
 <details><summary><code>sensor.time_date</code></summary>
