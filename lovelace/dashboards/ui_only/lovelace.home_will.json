@@ -5066,10 +5066,6 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "heading",
-                  "heading": "New section"
-                },
-                {
                   "title": "TV",
                   "type": "custom:upcoming-media-card",
                   "entity": "sensor.sonarr_upcoming_media",
