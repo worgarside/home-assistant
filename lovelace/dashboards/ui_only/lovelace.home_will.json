@@ -5070,12 +5070,7 @@
                   "icon": "phu:sonarr",
                   "heading_style": "title",
                   "heading": "TV Shows",
-                  "badges": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.sonarr_upcoming"
-                    }
-                  ]
+                  "badges": []
                 },
                 {
                   "type": "custom:upcoming-media-card",
