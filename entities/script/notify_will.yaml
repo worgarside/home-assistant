@@ -143,7 +143,7 @@ sequence:
           title: "{{ notif_title }}"
 
   - alias: Phone
-    service: notify.mobile_app_pixel_6_pro
+    service: notify.mobile_app_will_s_pixel_6_pro
     data:
       message: "{{ message }}"
       title: "{{ notif_title }}"
