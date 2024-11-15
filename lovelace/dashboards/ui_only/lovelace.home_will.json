@@ -4663,6 +4663,38 @@
                 {
                   "type": "heading",
                   "heading": "New section"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "input_text.monzo_auth_token_auto_saver"
+                    },
+                    {
+                      "entity": "input_text.monzo_auth_token_cc_pot_top_up"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_amex_auto_saver"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_amex"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_hsbc"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_monzo"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_santander"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_starling_joint"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_starling"
+                    }
+                  ]
                 }
               ]
             }
