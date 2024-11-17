@@ -1,0 +1,20 @@
+---
+alias: /remote/office-hue-remote/off-press
+
+id: remote_office_hue_remote_off_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: e8bc7fec0277d53e050af7b9ce025641
+    type: action
+    subtype: off_press
+
+action:
+  - service: light.turn_off
+    target:
+      area_id: office

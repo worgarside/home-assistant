@@ -1,19 +1,19 @@
 ---
-alias: /hue-remote/office/button-4/long-press
-id: hue_remote_office_button_4_long_press
+alias: /remote/office-hue-remote/off-hold
+
+id: remote_office_hue_remote_off_hold
+
 mode: single
+
 max_exceeded: silent
+
 trigger:
-  - device_id: 143de217ee3f684c339353a371764642
-    domain: hue
+  - domain: mqtt
     platform: device
-    subtype: 4
-    type: long_press
-  - device_id: 143de217ee3f684c339353a371764642
-    domain: hue
-    platform: device
-    subtype: 4
-    type: long_release
+    device_id: e8bc7fec0277d53e050af7b9ce025641
+    type: action
+    subtype: off_hold
+
 action:
   - service: script.turn_off_physical_room
     data:
