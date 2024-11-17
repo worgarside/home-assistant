@@ -1462,95 +1462,95 @@ File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml
 File: [`automation/remote/lounge.yaml`](entities/automation/remote/lounge.yaml)
 </details>
 
-<details><summary><code>/remote/office-hue-remote/down-hold</code></summary>
+<details><summary><code>/remote/office-hue-remote/down/hold</code></summary>
 
 **Entity ID: `automation.remote_office_hue_remote_down_hold`**
 
 > *No description provided*
 
-- Alias: /remote/office-hue-remote/down-hold
+- Alias: /remote/office-hue-remote/down/hold
 - ID: `remote_office_hue_remote_down_hold`
 - Mode: `single`
 
-File: [`automation/remote/office_hue_remote/down_hold.yaml`](entities/automation/remote/office_hue_remote/down_hold.yaml)
+File: [`automation/remote/office_hue_remote/down/hold.yaml`](entities/automation/remote/office_hue_remote/down/hold.yaml)
 </details>
 
-<details><summary><code>/remote/office-hue-remote/down-press</code></summary>
+<details><summary><code>/remote/office-hue-remote/down/press</code></summary>
 
 **Entity ID: `automation.remote_office_hue_remote_down_press`**
 
 > *No description provided*
 
-- Alias: /remote/office-hue-remote/down-press
+- Alias: /remote/office-hue-remote/down/press
 - ID: `remote_office_hue_remote_down_press`
 - Mode: `single`
 
-File: [`automation/remote/office_hue_remote/down_press.yaml`](entities/automation/remote/office_hue_remote/down_press.yaml)
+File: [`automation/remote/office_hue_remote/down/press.yaml`](entities/automation/remote/office_hue_remote/down/press.yaml)
 </details>
 
-<details><summary><code>/remote/office-hue-remote/off-hold</code></summary>
+<details><summary><code>/remote/office-hue-remote/off/hold</code></summary>
 
 **Entity ID: `automation.remote_office_hue_remote_off_hold`**
 
 > *No description provided*
 
-- Alias: /remote/office-hue-remote/off-hold
+- Alias: /remote/office-hue-remote/off/hold
 - ID: `remote_office_hue_remote_off_hold`
 - Mode: `single`
 
-File: [`automation/remote/office_hue_remote/off_hold.yaml`](entities/automation/remote/office_hue_remote/off_hold.yaml)
+File: [`automation/remote/office_hue_remote/off/hold.yaml`](entities/automation/remote/office_hue_remote/off/hold.yaml)
 </details>
 
-<details><summary><code>/remote/office-hue-remote/off-press</code></summary>
+<details><summary><code>/remote/office-hue-remote/off/press</code></summary>
 
 **Entity ID: `automation.remote_office_hue_remote_off_press`**
 
 > *No description provided*
 
-- Alias: /remote/office-hue-remote/off-press
+- Alias: /remote/office-hue-remote/off/press
 - ID: `remote_office_hue_remote_off_press`
 - Mode: `single`
 
-File: [`automation/remote/office_hue_remote/off_press.yaml`](entities/automation/remote/office_hue_remote/off_press.yaml)
+File: [`automation/remote/office_hue_remote/off/press.yaml`](entities/automation/remote/office_hue_remote/off/press.yaml)
 </details>
 
-<details><summary><code>/remote/office-hue-remote/on-press</code></summary>
+<details><summary><code>/remote/office-hue-remote/on/press</code></summary>
 
 **Entity ID: `automation.remote_office_hue_remote_on_press`**
 
 > *No description provided*
 
-- Alias: /remote/office-hue-remote/on-press
+- Alias: /remote/office-hue-remote/on/press
 - ID: `remote_office_hue_remote_on_press`
 - Mode: `single`
 
-File: [`automation/remote/office_hue_remote/on_press.yaml`](entities/automation/remote/office_hue_remote/on_press.yaml)
+File: [`automation/remote/office_hue_remote/on/press.yaml`](entities/automation/remote/office_hue_remote/on/press.yaml)
 </details>
 
-<details><summary><code>/remote/office-hue-remote/up-hold</code></summary>
+<details><summary><code>/remote/office-hue-remote/up/hold</code></summary>
 
 **Entity ID: `automation.remote_office_hue_remote_up_hold`**
 
 > *No description provided*
 
-- Alias: /remote/office-hue-remote/up-hold
+- Alias: /remote/office-hue-remote/up/hold
 - ID: `remote_office_hue_remote_up_hold`
 - Mode: `single`
 
-File: [`automation/remote/office_hue_remote/up_hold.yaml`](entities/automation/remote/office_hue_remote/up_hold.yaml)
+File: [`automation/remote/office_hue_remote/up/hold.yaml`](entities/automation/remote/office_hue_remote/up/hold.yaml)
 </details>
 
-<details><summary><code>/remote/office-hue-remote/up-press</code></summary>
+<details><summary><code>/remote/office-hue-remote/up/press</code></summary>
 
 **Entity ID: `automation.remote_office_hue_remote_up_press`**
 
 > *No description provided*
 
-- Alias: /remote/office-hue-remote/up-press
+- Alias: /remote/office-hue-remote/up/press
 - ID: `remote_office_hue_remote_up_press`
 - Mode: `single`
 
-File: [`automation/remote/office_hue_remote/up_press.yaml`](entities/automation/remote/office_hue_remote/up_press.yaml)
+File: [`automation/remote/office_hue_remote/up/press.yaml`](entities/automation/remote/office_hue_remote/up/press.yaml)
 </details>
 
 <details><summary><code>/remote/prusa-i3-mk3-power/double-press</code></summary>

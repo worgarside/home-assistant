@@ -1,7 +1,7 @@
 ---
-alias: /remote/office-hue-remote/down-press
+alias: /remote/office-hue-remote/up/press
 
-id: remote_office_hue_remote_down_press
+id: remote_office_hue_remote_up_press
 
 mode: single
 
@@ -12,7 +12,7 @@ trigger:
     platform: device
     device_id: e8bc7fec0277d53e050af7b9ce025641
     type: action
-    subtype: down_press
+    subtype: up_press
 
 action:
   - repeat:
@@ -32,4 +32,4 @@ action:
               target:
                 entity_id: "{{ repeat.item }}"
               data:
-                brightness: "{{ max(state_attr(repeat.item, 'brightness') | int(0) - 10, 0) }}"
+                brightness: "{{ min(state_attr(repeat.item, 'brightness') | int(255) + 10, 255) }}"
