@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (126)</h3></summary>
+<details><summary><h3>Entities (125)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -782,45 +782,6 @@ File: [`automation/hue_remote/lounge/button_4/long_press.yaml`](entities/automat
 File: [`automation/hue_remote/lounge/button_4/press.yaml`](entities/automation/hue_remote/lounge/button_4/press.yaml)
 </details>
 
-<details><summary><code>/hue-remote/office/button-1/short-press</code></summary>
-
-**Entity ID: `automation.hue_remote_office_button_1_short_press`**
-
-> *No description provided*
-
-- Alias: /hue-remote/office/button-1/short-press
-- ID: `hue_remote_office_button_1_short_press`
-- Mode: `single`
-
-File: [`automation/hue_remote/office/button_1/short_press.yaml`](entities/automation/hue_remote/office/button_1/short_press.yaml)
-</details>
-
-<details><summary><code>/hue-remote/office/button-4/long-press</code></summary>
-
-**Entity ID: `automation.hue_remote_office_button_4_long_press`**
-
-> *No description provided*
-
-- Alias: /hue-remote/office/button-4/long-press
-- ID: `hue_remote_office_button_4_long_press`
-- Mode: `single`
-
-File: [`automation/hue_remote/office/button_4/long_press.yaml`](entities/automation/hue_remote/office/button_4/long_press.yaml)
-</details>
-
-<details><summary><code>/hue-remote/office/button-4/short-press</code></summary>
-
-**Entity ID: `automation.hue_remote_office_button_4_short_press`**
-
-> *No description provided*
-
-- Alias: /hue-remote/office/button-4/short-press
-- ID: `hue_remote_office_button_4_short_press`
-- Mode: `single`
-
-File: [`automation/hue_remote/office/button_4/short_press.yaml`](entities/automation/hue_remote/office/button_4/short_press.yaml)
-</details>
-
 <details><summary><code>/input-datetime/cosmo/next-clean-due/set</code></summary>
 
 **Entity ID: `automation.input_datetime_cosmo_next_clean_due_set`**
@@ -1501,17 +1462,43 @@ File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml
 File: [`automation/remote/lounge.yaml`](entities/automation/remote/lounge.yaml)
 </details>
 
-<details><summary><code>/hue-remote/office/button-1/short</code></summary>
+<details><summary><code>/remote/office-hue-remote/off-hold</code></summary>
 
-**Entity ID: `automation.hue_remote_office_button_1_short`**
+**Entity ID: `automation.remote_office_hue_remote_off_hold`**
 
 > *No description provided*
 
-- Alias: /hue-remote/office/button-1/short
-- ID: `hue_remote_office_button_1_short`
+- Alias: /remote/office-hue-remote/off-hold
+- ID: `remote_office_hue_remote_off_hold`
 - Mode: `single`
 
-File: [`automation/remote/office_hue_remote/button_1/short_press.yaml`](entities/automation/remote/office_hue_remote/button_1/short_press.yaml)
+File: [`automation/remote/office_hue_remote/off_hold.yaml`](entities/automation/remote/office_hue_remote/off_hold.yaml)
+</details>
+
+<details><summary><code>/remote/office-hue-remote/off-press</code></summary>
+
+**Entity ID: `automation.remote_office_hue_remote_off_press`**
+
+> *No description provided*
+
+- Alias: /remote/office-hue-remote/off-press
+- ID: `remote_office_hue_remote_off_press`
+- Mode: `single`
+
+File: [`automation/remote/office_hue_remote/off_press.yaml`](entities/automation/remote/office_hue_remote/off_press.yaml)
+</details>
+
+<details><summary><code>/remote/office-hue-remote/on-press</code></summary>
+
+**Entity ID: `automation.remote_office_hue_remote_on_press`**
+
+> *No description provided*
+
+- Alias: /remote/office-hue-remote/on-press
+- ID: `remote_office_hue_remote_on_press`
+- Mode: `single`
+
+File: [`automation/remote/office_hue_remote/on_press.yaml`](entities/automation/remote/office_hue_remote/on_press.yaml)
 </details>
 
 <details><summary><code>/remote/prusa-i3-mk3-power/double-press</code></summary>

@@ -1,7 +1,7 @@
 ---
-alias: /hue-remote/office/button-1/short
+alias: /remote/office-hue-remote/on-press
 
-id: hue_remote_office_button_1_short
+id: remote_office_hue_remote_on_press
 
 mode: single
 
@@ -12,7 +12,7 @@ trigger:
     platform: device
     device_id: e8bc7fec0277d53e050af7b9ce025641
     type: action
-    subtype: on_press
+    subtype: on_press  # This isn't "on press event, do X" - it's "ON [button has been] press[ed]"
 
 action:
   - service: light.turn_on
