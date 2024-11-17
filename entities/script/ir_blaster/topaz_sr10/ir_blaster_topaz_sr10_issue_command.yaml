@@ -60,16 +60,11 @@ sequence:
           - stop: Topaz SR10 not turned on
             error: true
 
-  - service: zha.issue_zigbee_cluster_command
+  - service: text.set_value
+    target:
+      entity_id: text.topaz_sr10_ir_controller_ir_code_to_send
     data:
-      cluster_id: 57348
-      cluster_type: in
-      command: 2
-      command_type: server
-      endpoint_id: 1
-      ieee: dc:8e:95:ff:fe:f9:ad:13
-      params:
-        code: "{{ code }}"
+      value: "{{ code }}"
 
   - if: "{{ extra_service_calls is list and extra_service_calls | length > 0 }}"
     then:
@@ -78,6 +73,12 @@ sequence:
           script_id: script.ir_blaster_topaz_sr10_issue_command
           actions: "{{ extra_service_calls }}"
           suppress_debug_notifications: true
+
+  - service: text.set_value
+    target:
+      entity_id: text.topaz_sr10_ir_controller_ir_code_to_send
+    data:
+      value: ""
 
   - delay:
       milliseconds: "{{ delay_ms }}"
