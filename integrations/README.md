@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (125)</h3></summary>
+<details><summary><h3>Entities (126)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1499,6 +1499,19 @@ File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml
 }
 ```
 File: [`automation/remote/lounge.yaml`](entities/automation/remote/lounge.yaml)
+</details>
+
+<details><summary><code>/hue-remote/office/button-1/short</code></summary>
+
+**Entity ID: `automation.hue_remote_office_button_1_short`**
+
+> *No description provided*
+
+- Alias: /hue-remote/office/button-1/short
+- ID: `hue_remote_office_button_1_short`
+- Mode: `single`
+
+File: [`automation/remote/office_hue_remote/button_1/short_press.yaml`](entities/automation/remote/office_hue_remote/button_1/short_press.yaml)
 </details>
 
 <details><summary><code>/remote/prusa-i3-mk3-power/double-press</code></summary>
