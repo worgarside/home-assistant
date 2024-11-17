@@ -1,0 +1,46 @@
+---
+alias: /remote/office-hue-remote/up-hold
+
+id: remote_office_hue_remote_up_hold
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: e8bc7fec0277d53e050af7b9ce025641
+    type: action
+    subtype: up_hold
+
+action:
+  - repeat:
+      until:
+        - condition: state
+          entity_id: sensor.office_hue_remote_action_duration
+          state: unknown
+
+      sequence:
+        - repeat:
+            for_each: >-
+              {{
+                area_entities("office") |
+                reject("eq", "light.office_lights") |
+                select("match", "^light\.") |
+                list
+              }}
+
+            sequence:
+              - if: "{{ is_state(repeat.item, 'on') }}"
+
+                then:
+                  - service: light.turn_on
+                    target:
+                      entity_id: "{{ repeat.item }}"
+                    data:
+                      brightness: >-
+                        {{ min(state_attr(repeat.item, "brightness") | int(0) + 10, 255) }}
+
+        - delay:
+            seconds: 0.5

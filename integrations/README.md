@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (125)</h3></summary>
+<details><summary><h3>Entities (127)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1462,6 +1462,19 @@ File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml
 File: [`automation/remote/lounge.yaml`](entities/automation/remote/lounge.yaml)
 </details>
 
+<details><summary><code>/remote/office-hue-remote/down-hold</code></summary>
+
+**Entity ID: `automation.remote_office_hue_remote_down_hold`**
+
+> *No description provided*
+
+- Alias: /remote/office-hue-remote/down-hold
+- ID: `remote_office_hue_remote_down_hold`
+- Mode: `single`
+
+File: [`automation/remote/office_hue_remote/down_hold.yaml`](entities/automation/remote/office_hue_remote/down_hold.yaml)
+</details>
+
 <details><summary><code>/remote/office-hue-remote/off-hold</code></summary>
 
 **Entity ID: `automation.remote_office_hue_remote_off_hold`**
@@ -1499,6 +1512,19 @@ File: [`automation/remote/office_hue_remote/off_press.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/office_hue_remote/on_press.yaml`](entities/automation/remote/office_hue_remote/on_press.yaml)
+</details>
+
+<details><summary><code>/remote/office-hue-remote/up-hold</code></summary>
+
+**Entity ID: `automation.remote_office_hue_remote_up_hold`**
+
+> *No description provided*
+
+- Alias: /remote/office-hue-remote/up-hold
+- ID: `remote_office_hue_remote_up_hold`
+- Mode: `single`
+
+File: [`automation/remote/office_hue_remote/up_hold.yaml`](entities/automation/remote/office_hue_remote/up_hold.yaml)
 </details>
 
 <details><summary><code>/remote/prusa-i3-mk3-power/double-press</code></summary>
