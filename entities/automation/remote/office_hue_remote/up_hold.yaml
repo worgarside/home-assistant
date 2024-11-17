@@ -40,7 +40,7 @@ action:
                       entity_id: "{{ repeat.item }}"
                     data:
                       brightness: >-
-                        {{ min(state_attr(repeat.item, "brightness") | int(0) + 10, 255) }}
+                        {{ min(state_attr(repeat.item, "brightness") | int(255) + 10, 255) }}
 
         - delay:
             seconds: 0.5
