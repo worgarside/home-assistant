@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (125)</h3></summary>
+<details><summary><h3>Entities (126)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -994,6 +994,19 @@ File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/di
 - Mode: `single`
 
 File: [`automation/light/lounge_lights/on.yaml`](entities/automation/light/lounge_lights/on.yaml)
+</details>
+
+<details><summary><code>/light/moomin-box/on</code></summary>
+
+**Entity ID: `automation.light_moomin_box_on`**
+
+> The Moomin Box light only seems to actually turn on when the brightness value is changed - a simple state change doesn't work. This increments the brightness by 1 every time the light is turned on as a workaround.
+
+- Alias: /light/moomin-box/on
+- ID: `light_moomin_box_on`
+- Mode: `single`
+
+File: [`automation/light/moomin_box/on.yaml`](entities/automation/light/moomin_box/on.yaml)
 </details>
 
 <details><summary><code>/light/office-lights/on</code></summary>
