@@ -4656,6 +4656,47 @@
                   "state_not": "SigTech"
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "input_text.monzo_auth_token_auto_saver"
+                    },
+                    {
+                      "entity": "input_text.monzo_auth_token_cc_pot_top_up"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_amex_auto_saver"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_amex"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_hsbc"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_monzo"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_santander"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_starling_joint"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_starling"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -5070,7 +5111,14 @@
                   "icon": "phu:sonarr",
                   "heading_style": "title",
                   "heading": "TV Shows",
-                  "badges": []
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.home_assistant_library_tv_programmes"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:upcoming-media-card",
@@ -5090,7 +5138,13 @@
                   "type": "heading",
                   "heading": "Movies",
                   "heading_style": "title",
-                  "icon": "phu:radarr"
+                  "icon": "phu:radarr",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.home_assistant_library_films"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:upcoming-media-card",
@@ -5119,7 +5173,8 @@
                   "collapse": "flag=true",
                   "sort_by": "airdate",
                   "enable_tooltips": true,
-                  "clock": 24
+                  "clock": 24,
+                  "date": "ddmm"
                 }
               ]
             }
