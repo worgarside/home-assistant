@@ -17,6 +17,31 @@ repos:
           - --fix
           - --validate-all
 
+  - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+    rev: 0.2.3
+    hooks:
+      - id: yamlfmt
+        exclude: esphome
+        args:
+          - --mapping
+          - "2"
+          - --sequence
+          - "4"
+          - --offset
+          - "2"
+          - --width
+          - "4096"
+          - --preserve-quotes
+
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args:
+          - --format
+          - parsable
+          - --strict
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.7.3
     hooks:
@@ -51,31 +76,6 @@ repos:
     hooks:
       - id: beautysh
         language_version: python3.11 # Uses pkg_resources -.-
-
-  - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
-    rev: 0.2.3
-    hooks:
-      - id: yamlfmt
-        exclude: esphome
-        args:
-          - --mapping
-          - "2"
-          - --sequence
-          - "4"
-          - --offset
-          - "2"
-          - --width
-          - "4096"
-          - --preserve-quotes
-
-  - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.35.1
-    hooks:
-      - id: yamllint
-        args:
-          - --format
-          - parsable
-          - --strict
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.13.0
