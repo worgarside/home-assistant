@@ -1,0 +1,24 @@
+---
+alias: /light/moomin-box/on
+
+id: light_moomin_box_on
+
+description: >-
+  The Moomin Box light only seems to actually turn on when the brightness value is changed - a simple
+  state change doesn't work. This increments the brightness by 1 every time the light is turned on as
+  a workaround.
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: light.moomin_box
+    from: "off"
+    to: "on"
+
+action:
+  - service: light.turn_on
+    target:
+      entity_id: light.moomin_box
+    data:
+      brightness: "{{ trigger.to_state.attributes.brightness + 1 }}"
