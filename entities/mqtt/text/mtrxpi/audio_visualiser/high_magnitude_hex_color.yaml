@@ -6,10 +6,12 @@
 
       command_topic: /mtrxpi/audio-visualiser/parameter/high-magnitude-hex-color
 
-      command_template: "{{ value | tojson }}"
+      command_template: "{{ value | tojson }}"  # hacv disable: InvalidTemplateVar:value
 
       icon: mdi:palette
 
       retain: true
 
       state_topic: /mtrxpi/audio-visualiser/parameter/high-magnitude-hex-color
+
+      value_template: "{{ value_json | from_json }}"
