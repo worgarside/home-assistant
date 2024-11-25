@@ -6,6 +6,8 @@
 
       command_topic: /mtrxpi/audio-visualiser/parameter/low-magnitude-hex-color
 
+      command_template: "{{ value | tojson }}"
+
       icon: mdi:palette
 
       retain: true
