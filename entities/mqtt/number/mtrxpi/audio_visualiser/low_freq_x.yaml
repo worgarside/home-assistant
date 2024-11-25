@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Audio Visualiser: Low Freq X"
+
+unique_id: mtrxpi_audio_visualiser_low_freq_x
+
+command_topic: /mtrxpi/audio-visualiser/parameter/low-freq-x
+
+icon: mdi:arrow-left-right
+
+min: 0
+
+max: 63
+
+mode: slider
+
+retain: true
+
+step: 1
+
+unit_of_measurement: " "
+
+state_topic: /mtrxpi/audio-visualiser/parameter/low-freq-x

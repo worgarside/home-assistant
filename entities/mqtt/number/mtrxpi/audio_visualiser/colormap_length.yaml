@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Audio Visualiser: Colormap Length"
+
+unique_id: mtrxpi_audio_visualiser_colormap_length
+
+command_topic: /mtrxpi/audio-visualiser/parameter/colormap-length
+
+icon: mdi:sine-wave
+
+min: 100
+
+max: None
+
+mode: slider
+
+retain: true
+
+step: 1
+
+unit_of_measurement: colors
+
+state_topic: /mtrxpi/audio-visualiser/parameter/colormap-length

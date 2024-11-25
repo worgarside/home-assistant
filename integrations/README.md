@@ -3757,7 +3757,103 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (115)</h3></summary>
+<details><summary><h3>Entities (123)</h3></summary>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Colormap Length</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_colormap_length`**
+
+- Icon: [`mdi:sine-wave`](https://pictogrammers.com/library/mdi/icon/sine-wave/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/colormap-length
+- State Topic: /mtrxpi/audio-visualiser/parameter/colormap-length
+- Unit Of Measurement: `colors`
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/colormap_length.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/colormap_length.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Cutoff Frequency</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_cutoff_frequency`**
+
+- Icon: [`mdi:sine-wave`](https://pictogrammers.com/library/mdi/icon/sine-wave/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/cutoff-frequency
+- State Topic: /mtrxpi/audio-visualiser/parameter/cutoff-frequency
+- Unit Of Measurement: Hz
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/cutoff_frequency.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/cutoff_frequency.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: High Freq X</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_high_freq_x`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/high-freq-x
+- State Topic: /mtrxpi/audio-visualiser/parameter/high-freq-x
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/high_freq_x.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/high_freq_x.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: High Freq Y</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_high_freq_y`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/high-freq-y
+- State Topic: /mtrxpi/audio-visualiser/parameter/high-freq-y
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/high_freq_y.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/high_freq_y.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Low Freq X</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_low_freq_x`**
+
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/low-freq-x
+- State Topic: /mtrxpi/audio-visualiser/parameter/low-freq-x
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/low_freq_x.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/low_freq_x.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Low Freq Y</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_low_freq_y`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/low-freq-y
+- State Topic: /mtrxpi/audio-visualiser/parameter/low-freq-y
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/low_freq_y.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/low_freq_y.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: X Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_x_pos`**
+
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/x-pos
+- State Topic: /mtrxpi/audio-visualiser/parameter/x-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/x_pos.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/x_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Y Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_y_pos`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/y-pos
+- State Topic: /mtrxpi/audio-visualiser/parameter/y-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/y_pos.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/y_pos.yaml)
+</details>
 
 <details><summary><strong>MtrxPi | Clock: Scale</strong></summary>
 
