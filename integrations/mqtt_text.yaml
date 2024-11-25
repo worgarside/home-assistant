@@ -1,0 +1,5 @@
+---
+
+# https://www.home-assistant.io/integrations/mqtt
+
+mqtt: !include_dir_merge_list ../entities/mqtt/text

@@ -1,0 +1,13 @@
+---
+  - text:
+      name: "MtrxPi | Audio Visualiser: Low Magnitude Hex Color"
+
+      unique_id: mtrxpi_audio_visualiser_low_magnitude_hex_color
+
+      command_topic: /mtrxpi/audio-visualiser/parameter/low-magnitude-hex-color
+
+      icon: mdi:palette
+
+      retain: true
+
+      state_topic: /mtrxpi/audio-visualiser/parameter/low-magnitude-hex-color

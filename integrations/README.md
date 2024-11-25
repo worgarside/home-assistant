@@ -5049,6 +5049,34 @@ File: [`mqtt/switch/prusa_i3/enclosure_fan.yaml`](entities/mqtt/switch/prusa_i3/
 
 </details>
 
+## Mqtt
+
+<details><summary><h3>Entities (2)</h3></summary>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: High Magnitude Hex Color</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_high_magnitude_hex_color`**
+
+- Icon: [`mdi:palette`](https://pictogrammers.com/library/mdi/icon/palette/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/high-magnitude-hex-color
+- State Topic: /mtrxpi/audio-visualiser/parameter/high-magnitude-hex-color
+
+File: [`mqtt/text/mtrxpi/audio_visualiser/high_magnitude_hex_color.yaml`](entities/mqtt/text/mtrxpi/audio_visualiser/high_magnitude_hex_color.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Low Magnitude Hex Color</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_low_magnitude_hex_color`**
+
+- Icon: [`mdi:palette`](https://pictogrammers.com/library/mdi/icon/palette/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/low-magnitude-hex-color
+- State Topic: /mtrxpi/audio-visualiser/parameter/low-magnitude-hex-color
+
+File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entities/mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml)
+</details>
+
+</details>
+
 ## Script
 
 <details><summary><h3>Entities (27)</h3></summary>
