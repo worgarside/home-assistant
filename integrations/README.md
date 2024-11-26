@@ -3770,7 +3770,19 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (123)</h3></summary>
+<details><summary><h3>Entities (125)</h3></summary>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Chunk Size</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_chunk_size`**
+
+- Icon: [`mdi:table-split-cell`](https://pictogrammers.com/library/mdi/icon/table-split-cell/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/chunk-size
+- State Topic: /mtrxpi/audio-visualiser/parameter/chunk-size
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/chunk_size.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/chunk_size.yaml)
+</details>
 
 <details><summary><strong>MtrxPi | Audio Visualiser: Colormap Length</strong></summary>
 
@@ -3842,6 +3854,18 @@ File: [`mqtt/number/mtrxpi/audio_visualiser/low_freq_x.yaml`](entities/mqtt/numb
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/audio_visualiser/low_freq_y.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/low_freq_y.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Sample Rate</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_sample_rate`**
+
+- Icon: [`mdi:sine-wave`](https://pictogrammers.com/library/mdi/icon/sine-wave/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/sample-rate
+- State Topic: /mtrxpi/audio-visualiser/parameter/sample-rate
+- Unit Of Measurement: Hz
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/sample_rate.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/sample_rate.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Audio Visualiser: X Pos</strong></summary>
