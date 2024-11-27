@@ -1780,13 +1780,13 @@ testing = ["pytest"]
 
 [[package]]
 name = "zigpy"
-version = "0.72.0"
+version = "0.73.1"
 description = "Library implementing a Zigbee stack"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "zigpy-0.72.0-py3-none-any.whl", hash = "sha256:24616c43b2a69131eb465c182f48c7e23bcffa280a9e58629bf1522a8bdce549"},
-    {file = "zigpy-0.72.0.tar.gz", hash = "sha256:d3507bc88202e8012618cd02fb51564c14aa3786b259420d490912d92dcb0d14"},
+    {file = "zigpy-0.73.1-py3-none-any.whl", hash = "sha256:6f817bc600627e3d0658b5d286bfdf83bf011352fc058161cac91505d7560b20"},
+    {file = "zigpy-0.73.1.tar.gz", hash = "sha256:6c244dae4badbf5bb12a52a5890637b320552288a412d0242b0a3a54bc15615c"},
 ]
 
 [package.dependencies]
@@ -1801,7 +1801,7 @@ pyserial-asyncio = [
     {version = "*", markers = "platform_system != \"Windows\""},
     {version = "!=0.5", markers = "platform_system == \"Windows\""},
 ]
-typing-extensions = "*"
+typing_extensions = "*"
 voluptuous = "*"
 
 [package.extras]
@@ -1810,4 +1810,4 @@ testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-b
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<4.0"
-content-hash = "b0b255ef79783558e06a836df8af5214c6e2326af68f3bc3c02482b08c34734b"
+content-hash = "63eacd8b778c06469d83ed5331819ba5d4a3496a1a622d26a3626ae055bd96ac"
