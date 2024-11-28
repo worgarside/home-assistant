@@ -6,7 +6,7 @@
 
       command_topic: /mtrxpi/audio-visualiser/parameter/high-magnitude-hex-color
 
-      command_template: '"{ value }"'  # hacv disable: InvalidTemplateVar:value
+      command_template: '"{{ value }}"'  # hacv disable: InvalidTemplateVar:value
 
       icon: mdi:palette
 
