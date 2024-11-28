@@ -5,13 +5,13 @@ unique_id: mtrxpi_audio_visualiser_colormap_length
 
 command_topic: /mtrxpi/audio-visualiser/parameter/colormap-length
 
-icon: mdi:sine-wave
+icon: mdi:palette
 
 min: 100
 
 max: 10000
 
-mode: slider
+mode: box
 
 retain: true
 
