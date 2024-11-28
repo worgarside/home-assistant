@@ -3788,7 +3788,7 @@ File: [`mqtt/number/mtrxpi/audio_visualiser/chunk_size.yaml`](entities/mqtt/numb
 
 **Entity ID: `mqtt.mtrxpi_audio_visualiser_colormap_length`**
 
-- Icon: [`mdi:sine-wave`](https://pictogrammers.com/library/mdi/icon/sine-wave/)
+- Icon: [`mdi:palette`](https://pictogrammers.com/library/mdi/icon/palette/)
 - Command Topic: /mtrxpi/audio-visualiser/parameter/colormap-length
 - State Topic: /mtrxpi/audio-visualiser/parameter/colormap-length
 - Unit Of Measurement: `colors`
@@ -3800,7 +3800,7 @@ File: [`mqtt/number/mtrxpi/audio_visualiser/colormap_length.yaml`](entities/mqtt
 
 **Entity ID: `mqtt.mtrxpi_audio_visualiser_cutoff_frequency`**
 
-- Icon: [`mdi:sine-wave`](https://pictogrammers.com/library/mdi/icon/sine-wave/)
+- Icon: [`mdi:arrow-collapse-up`](https://pictogrammers.com/library/mdi/icon/arrow-collapse-up/)
 - Command Topic: /mtrxpi/audio-visualiser/parameter/cutoff-frequency
 - State Topic: /mtrxpi/audio-visualiser/parameter/cutoff-frequency
 - Unit Of Measurement: Hz
@@ -3812,7 +3812,7 @@ File: [`mqtt/number/mtrxpi/audio_visualiser/cutoff_frequency.yaml`](entities/mqt
 
 **Entity ID: `mqtt.mtrxpi_audio_visualiser_high_freq_x`**
 
-- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Icon: [`mdi:star-four-points-circle`](https://pictogrammers.com/library/mdi/icon/star-four-points-circle/)
 - Command Topic: /mtrxpi/audio-visualiser/parameter/high-freq-x
 - State Topic: /mtrxpi/audio-visualiser/parameter/high-freq-x
 - Unit Of Measurement:
@@ -3824,7 +3824,7 @@ File: [`mqtt/number/mtrxpi/audio_visualiser/high_freq_x.yaml`](entities/mqtt/num
 
 **Entity ID: `mqtt.mtrxpi_audio_visualiser_high_freq_y`**
 
-- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Icon: [`mdi:star-four-points-circle`](https://pictogrammers.com/library/mdi/icon/star-four-points-circle/)
 - Command Topic: /mtrxpi/audio-visualiser/parameter/high-freq-y
 - State Topic: /mtrxpi/audio-visualiser/parameter/high-freq-y
 - Unit Of Measurement:
@@ -3836,7 +3836,7 @@ File: [`mqtt/number/mtrxpi/audio_visualiser/high_freq_y.yaml`](entities/mqtt/num
 
 **Entity ID: `mqtt.mtrxpi_audio_visualiser_low_freq_x`**
 
-- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Icon: [`mdi:star-four-points-circle-outline`](https://pictogrammers.com/library/mdi/icon/star-four-points-circle-outline/)
 - Command Topic: /mtrxpi/audio-visualiser/parameter/low-freq-x
 - State Topic: /mtrxpi/audio-visualiser/parameter/low-freq-x
 - Unit Of Measurement:
@@ -3848,7 +3848,7 @@ File: [`mqtt/number/mtrxpi/audio_visualiser/low_freq_x.yaml`](entities/mqtt/numb
 
 **Entity ID: `mqtt.mtrxpi_audio_visualiser_low_freq_y`**
 
-- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Icon: [`mdi:star-four-points-circle-outline`](https://pictogrammers.com/library/mdi/icon/star-four-points-circle-outline/)
 - Command Topic: /mtrxpi/audio-visualiser/parameter/low-freq-y
 - State Topic: /mtrxpi/audio-visualiser/parameter/low-freq-y
 - Unit Of Measurement:
