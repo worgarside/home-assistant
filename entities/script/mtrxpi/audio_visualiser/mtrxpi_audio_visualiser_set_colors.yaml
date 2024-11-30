@@ -5,7 +5,7 @@ description: Helper to set the MtrxPi Audio Visualiser colors
 
 mode: single
 
-max_exceeded: ignore
+max_exceeded: silent
 
 fields:
   high_magnitude_color:
