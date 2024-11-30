@@ -1,0 +1,14 @@
+---
+force_update: true
+
+icon: mdi:volume-vibrate
+
+name: "MtrxPi | Audio Processor: Max Magnitude"
+
+state_class: measurement
+
+state_topic: /mtrxpi/audio-processor/max-magnitude
+
+unique_id: mtrxpi_audio_processor_max_magnitude
+
+unit_of_measurement: " "

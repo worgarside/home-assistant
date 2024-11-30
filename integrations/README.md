@@ -4514,9 +4514,10 @@ File: [`mqtt/sensor/mtrxpi/active_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/act
 
 **Entity ID: `sensor.mtrxpi_audio_processor_max_magnitude`**
 
-- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
+- Icon: [`mdi:volume-vibrate`](https://pictogrammers.com/library/mdi/icon/volume-vibrate/)
 - State Class: `measurement`
 - State Topic: /mtrxpi/audio-processor/max-magnitude
+- Unit Of Measurement:
 
 File: [`mqtt/sensor/mtrxpi/audio_processor/max_magnitude.yaml`](entities/mqtt/sensor/mtrxpi/audio_processor/max_magnitude.yaml)
 </details>
