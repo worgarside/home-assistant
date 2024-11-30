@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (126)</h3></summary>
+<details><summary><h3>Entities (127)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1129,6 +1129,19 @@ File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](en
 }
 ```
 File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](entities/automation/mobile_app_notification_action/cosmo/remind_later.yaml)
+</details>
+
+<details><summary><code>/mtrxpi/content-trigger/audio-visualiser</code></summary>
+
+**Entity ID: `automation.mtrxpi_content_trigger_audio_visualiser`**
+
+> *No description provided*
+
+- Alias: /mtrxpi/content-trigger/audio-visualiser
+- ID: `mtrxpi_content_trigger_audio_visualiser`
+- Mode: `queued`
+
+File: [`automation/mtrxpi/content_trigger/audio_visualiser.yaml`](entities/automation/mtrxpi/content_trigger/audio_visualiser.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/clock</code></summary>
@@ -5705,6 +5718,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
     "selector": {
       "select": {
         "options": [
+          "audio-visualiser",
           "clock",
           "gif-door-animated",
           "image-door-closed",
