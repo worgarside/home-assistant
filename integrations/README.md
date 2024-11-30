@@ -5237,7 +5237,7 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 ## Script
 
-<details><summary><h3>Entities (27)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5699,6 +5699,40 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_turn_off.yaml`](entities/scrip
 - Mode: `restart`
 
 File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Set Colors</strong></summary>
+
+**Entity ID: `script.mtrxpi_audio_visualiser_set_colors`**
+
+> Helper to set the MtrxPi Audio Visualiser colors
+
+- Fields:
+
+```json
+{
+  "high_magnitude_color": {
+    "description": "The color to use for the high magnitude",
+    "example": "#FF0000",
+    "required": false,
+    "selector": {
+      "color": null
+    }
+  },
+  "low_magnitude_color": {
+    "description": "The color to use for the low magnitude",
+    "example": "#00FF00",
+    "required": false,
+    "selector": {
+      "color": null
+    }
+  }
+}
+```
+
+- Mode: `single`
+
+File: [`script/mtrxpi/audio_visualiser/mtrxpi_audio_visualiser_set_colors.yaml`](entities/script/mtrxpi/audio_visualiser/mtrxpi_audio_visualiser_set_colors.yaml)
 </details>
 
 <details><summary><strong>MtrxPi: Queue Content</strong></summary>

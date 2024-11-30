@@ -1,0 +1,40 @@
+---
+alias: "MtrxPi | Audio Visualiser: Set Colors"
+
+description: Helper to set the MtrxPi Audio Visualiser colors
+
+mode: single
+
+max_exceeded: ignore
+
+fields:
+  high_magnitude_color:
+    description: The color to use for the high magnitude
+    example: "#FF0000"
+    required: false
+    selector:
+      color:
+
+  low_magnitude_color:
+    description: The color to use for the low magnitude
+    example: "#00FF00"
+    required: false
+    selector:
+      color:
+
+sequence:
+  - if: "{{ high_magnitude_color }}"
+    then:
+      - service: text.set_value
+        target:
+          entity_id: text.mtrxpi_audio_visualiser_high_magnitude_hex_color
+        data:
+          value: "{{ high_magnitude_color }}"
+
+  - if: "{{ low_magnitude_color }}"
+    then:
+      - service: text.set_value
+        target:
+          entity_id: text.mtrxpi_audio_visualiser_low_magnitude_hex_color
+        data:
+          value: "{{ low_magnitude_color }}"
