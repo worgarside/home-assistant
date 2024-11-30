@@ -3384,6 +3384,19 @@
                                 "id": "clock"
                               }
                             }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "clock",
+                                "priority": "clear"
+                              }
+                            }
                           }
                         ]
                       }
@@ -3466,6 +3479,19 @@
                                 "id": "audio-visualiser"
                               }
                             }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "audio-visualiser",
+                                "priority": "clear"
+                              }
+                            }
                           }
                         ]
                       }
@@ -3498,6 +3524,19 @@
                               "service": "script.mtrxpi_queue_content",
                               "service_data": {
                                 "id": "now-playing"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "now-playing",
+                                "priority": "clear"
                               }
                             }
                           }
@@ -3550,7 +3589,7 @@
                             "name": "Leaf Growth Chance"
                           },
                           {
-                            "entity": "number.mtrxpi_raining_grid_plant_death_propagation_speed",
+                            "entity": "number.mtrxpi_raining_grid_plant_decay_propagation_speed",
                             "name": "Plant Decay Speed"
                           },
                           {
@@ -3574,6 +3613,19 @@
                               "service": "script.mtrxpi_queue_content",
                               "service_data": {
                                 "id": "raining-grid"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "raining-grid",
+                                "priority": "clear"
                               }
                             }
                           }
@@ -3626,6 +3678,19 @@
                                 "id": "sorter"
                               }
                             }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "sorter",
+                                "priority": "clear"
+                              }
+                            }
                           }
                         ],
                         "show_header_toggle": false,
@@ -3659,6 +3724,19 @@
                             }
                           },
                           {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "gif-door-animated",
+                                "priority": "clear"
+                              }
+                            }
+                          },
+                          {
                             "type": "divider"
                           },
                           {
@@ -3674,6 +3752,19 @@
                               "service": "script.mtrxpi_queue_content",
                               "service_data": {
                                 "id": "image-door-closed"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "image-door-closed",
+                                "priority": "clear"
                               }
                             }
                           }
