@@ -3448,11 +3448,15 @@
                             "name": "Low Magnitude Color"
                           },
                           {
+                            "entity": "script.mtrxpi_audio_visualiser_set_colors",
+                            "name": "Set Colors"
+                          },
+                          {
                             "entity": "input_number.mtrxpi_audio_visualiser_queue_position",
                             "name": "Queue Position"
                           },
                           {
-                            "entity": "automation.mtrxpi_content_trigger_clock",
+                            "entity": "automation.mtrxpi_content_trigger_audio_visualiser",
                             "name": "Content Trigger"
                           },
                           {
