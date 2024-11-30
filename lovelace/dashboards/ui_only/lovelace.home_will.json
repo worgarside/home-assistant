@@ -3432,16 +3432,20 @@
                             "name": "Y Pos"
                           },
                           {
-                            "entity": "text.mtrxpi_audio_visualiser_high_magnitude_hex_color",
-                            "name": "High Magnitude Color"
-                          },
-                          {
-                            "entity": "text.mtrxpi_audio_visualiser_low_magnitude_hex_color",
-                            "name": "Low Magnitude Color"
-                          },
-                          {
                             "entity": "script.mtrxpi_audio_visualiser_set_colors",
-                            "name": "Set Colors"
+                            "name": "Set Colors",
+                            "type": "custom:multiple-entity-row",
+                            "show_state": false,
+                            "entities": [
+                              {
+                                "entity": "text.mtrxpi_audio_visualiser_high_magnitude_hex_color",
+                                "name": "High Magnitude"
+                              },
+                              {
+                                "entity": "text.mtrxpi_audio_visualiser_low_magnitude_hex_color",
+                                "name": "Low Magnitude"
+                              }
+                            ]
                           },
                           {
                             "entity": "input_number.mtrxpi_audio_visualiser_queue_position",
