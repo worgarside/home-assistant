@@ -13,14 +13,14 @@ fields:
     example: "#FF0000"
     required: false
     selector:
-      color:
+      color_rgb:
 
   low_magnitude_color:
     description: The color to use for the low magnitude
     example: "#00FF00"
     required: false
     selector:
-      color:
+      color_rgb:
 
 sequence:
   - if: "{{ high_magnitude_color }}"
@@ -29,7 +29,14 @@ sequence:
         target:
           entity_id: text.mtrxpi_audio_visualiser_high_magnitude_hex_color
         data:
-          value: "{{ high_magnitude_color }}"
+          value: >-
+            {{
+              "#{:02x}{:02x}{:02x}".format(
+                high_magnitude_color[0],
+                high_magnitude_color[1],
+                high_magnitude_color[2],
+              )
+            }}
 
   - if: "{{ low_magnitude_color }}"
     then:
@@ -37,4 +44,11 @@ sequence:
         target:
           entity_id: text.mtrxpi_audio_visualiser_low_magnitude_hex_color
         data:
-          value: "{{ low_magnitude_color }}"
+          value: >-
+            {{
+              "#{:02x}{:02x}{:02x}".format(
+                low_magnitude_color[0],
+                low_magnitude_color[1],
+                low_magnitude_color[2],
+              )
+            }}

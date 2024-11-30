@@ -5716,7 +5716,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
     "example": "#FF0000",
     "required": false,
     "selector": {
-      "color": null
+      "color_rgb": null
     }
   },
   "low_magnitude_color": {
@@ -5724,7 +5724,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
     "example": "#00FF00",
     "required": false,
     "selector": {
-      "color": null
+      "color_rgb": null
     }
   }
 }
