@@ -3396,6 +3396,10 @@
                         "type": "entities",
                         "entities": [
                           {
+                            "entity": "sensor.mtrxpi_audio_processor_max_magnitude",
+                            "name": "Max Magnitude"
+                          },
+                          {
                             "entity": "number.mtrxpi_audio_visualiser_colormap_length",
                             "name": "Colormap Length"
                           },
