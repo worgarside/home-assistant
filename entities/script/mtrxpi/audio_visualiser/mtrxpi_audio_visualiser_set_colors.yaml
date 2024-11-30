@@ -23,7 +23,7 @@ fields:
       color_rgb:
 
 sequence:
-  - if: "{{ high_magnitude_color }}"
+  - if: "{{ high_magnitude_color is defined }}"
     then:
       - service: text.set_value
         target:
@@ -38,7 +38,7 @@ sequence:
               )
             }}
 
-  - if: "{{ low_magnitude_color }}"
+  - if: "{{ low_magnitude_color is defined }}"
     then:
       - service: text.set_value
         target:
