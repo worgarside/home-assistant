@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Audio Visualiser: Cutoff Frequency"
+
+unique_id: mtrxpi_audio_visualiser_cutoff_frequency
+
+command_topic: /mtrxpi/audio-visualiser/parameter/cutoff-frequency
+
+icon: mdi:arrow-collapse-up
+
+min: 20
+
+max: 22000
+
+mode: slider
+
+retain: true
+
+step: 1
+
+unit_of_measurement: Hz
+
+state_topic: /mtrxpi/audio-visualiser/parameter/cutoff-frequency

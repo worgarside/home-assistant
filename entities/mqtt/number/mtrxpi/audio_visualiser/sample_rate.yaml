@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Audio Visualiser: Sample Rate"
+
+unique_id: mtrxpi_audio_visualiser_sample_rate
+
+command_topic: /mtrxpi/audio-visualiser/parameter/sample-rate
+
+icon: mdi:sine-wave
+
+min: 1
+
+max: 100000
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: Hz
+
+state_topic: /mtrxpi/audio-visualiser/parameter/sample-rate

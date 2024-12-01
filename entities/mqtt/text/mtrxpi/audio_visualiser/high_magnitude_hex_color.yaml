@@ -1,0 +1,17 @@
+---
+  - text:
+      name: "MtrxPi | Audio Visualiser: High Magnitude Hex Color"
+
+      unique_id: mtrxpi_audio_visualiser_high_magnitude_hex_color
+
+      command_topic: /mtrxpi/audio-visualiser/parameter/high-magnitude-hex-color
+
+      command_template: '"{{ value }}"'  # hacv disable: InvalidTemplateVar:value
+
+      icon: mdi:palette
+
+      retain: true
+
+      state_topic: /mtrxpi/audio-visualiser/parameter/high-magnitude-hex-color
+
+      value_template: "{{ value_json.strip('\"') }}"

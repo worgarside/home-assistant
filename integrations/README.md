@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (126)</h3></summary>
+<details><summary><h3>Entities (127)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1129,6 +1129,19 @@ File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](en
 }
 ```
 File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](entities/automation/mobile_app_notification_action/cosmo/remind_later.yaml)
+</details>
+
+<details><summary><code>/mtrxpi/content-trigger/audio-visualiser</code></summary>
+
+**Entity ID: `automation.mtrxpi_content_trigger_audio_visualiser`**
+
+> *No description provided*
+
+- Alias: /mtrxpi/content-trigger/audio-visualiser
+- ID: `mtrxpi_content_trigger_audio_visualiser`
+- Mode: `queued`
+
+File: [`automation/mtrxpi/content_trigger/audio_visualiser.yaml`](entities/automation/mtrxpi/content_trigger/audio_visualiser.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/clock</code></summary>
@@ -2920,7 +2933,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (43)</h3></summary>
+<details><summary><h3>Entities (44)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3112,6 +3125,19 @@ File: [`input_number/lounge_blinds_button_height.yaml`](entities/input_number/lo
 - Unit Of Measurement: mm/hr
 
 File: [`input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml`](entities/input_number/mtrxpi/mtrxpi_raining_grid_maximum_rain_intensity.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_audio_visualiser_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_audio_visualiser_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_audio_visualiser_queue_position.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Clock: Queue Position</strong></summary>
@@ -3757,7 +3783,127 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (115)</h3></summary>
+<details><summary><h3>Entities (126)</h3></summary>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Chunk Size</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_chunk_size`**
+
+- Icon: [`mdi:table-split-cell`](https://pictogrammers.com/library/mdi/icon/table-split-cell/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/chunk-size
+- State Topic: /mtrxpi/audio-visualiser/parameter/chunk-size
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/chunk_size.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/chunk_size.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Colormap Length</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_colormap_length`**
+
+- Icon: [`mdi:palette`](https://pictogrammers.com/library/mdi/icon/palette/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/colormap-length
+- State Topic: /mtrxpi/audio-visualiser/parameter/colormap-length
+- Unit Of Measurement: `colors`
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/colormap_length.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/colormap_length.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Cutoff Frequency</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_cutoff_frequency`**
+
+- Icon: [`mdi:arrow-collapse-up`](https://pictogrammers.com/library/mdi/icon/arrow-collapse-up/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/cutoff-frequency
+- State Topic: /mtrxpi/audio-visualiser/parameter/cutoff-frequency
+- Unit Of Measurement: Hz
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/cutoff_frequency.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/cutoff_frequency.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: High Freq X</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_high_freq_x`**
+
+- Icon: [`mdi:star-four-points-circle`](https://pictogrammers.com/library/mdi/icon/star-four-points-circle/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/high-freq-x
+- State Topic: /mtrxpi/audio-visualiser/parameter/high-freq-x
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/high_freq_x.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/high_freq_x.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: High Freq Y</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_high_freq_y`**
+
+- Icon: [`mdi:star-four-points-circle`](https://pictogrammers.com/library/mdi/icon/star-four-points-circle/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/high-freq-y
+- State Topic: /mtrxpi/audio-visualiser/parameter/high-freq-y
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/high_freq_y.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/high_freq_y.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Low Freq X</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_low_freq_x`**
+
+- Icon: [`mdi:star-four-points-circle-outline`](https://pictogrammers.com/library/mdi/icon/star-four-points-circle-outline/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/low-freq-x
+- State Topic: /mtrxpi/audio-visualiser/parameter/low-freq-x
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/low_freq_x.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/low_freq_x.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Low Freq Y</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_low_freq_y`**
+
+- Icon: [`mdi:star-four-points-circle-outline`](https://pictogrammers.com/library/mdi/icon/star-four-points-circle-outline/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/low-freq-y
+- State Topic: /mtrxpi/audio-visualiser/parameter/low-freq-y
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/low_freq_y.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/low_freq_y.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Sample Rate</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_sample_rate`**
+
+- Icon: [`mdi:sine-wave`](https://pictogrammers.com/library/mdi/icon/sine-wave/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/sample-rate
+- State Topic: /mtrxpi/audio-visualiser/parameter/sample-rate
+- Unit Of Measurement: Hz
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/sample_rate.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/sample_rate.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: X Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_x_pos`**
+
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/x-pos
+- State Topic: /mtrxpi/audio-visualiser/parameter/x-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/x_pos.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/x_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Y Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_y_pos`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/y-pos
+- State Topic: /mtrxpi/audio-visualiser/parameter/y-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/audio_visualiser/y_pos.yaml`](entities/mqtt/number/mtrxpi/audio_visualiser/y_pos.yaml)
+</details>
 
 <details><summary><strong>MtrxPi | Clock: Scale</strong></summary>
 
@@ -3878,16 +4024,16 @@ File: [`mqtt/number/mtrxpi/raining_grid/distance_between_plants.yaml`](entities/
 File: [`mqtt/number/mtrxpi/raining_grid/leaf_growth_chance.yaml`](entities/mqtt/number/mtrxpi/raining_grid/leaf_growth_chance.yaml)
 </details>
 
-<details><summary><strong>MtrxPi | Raining Grid: Plant Death Propagation Speed</strong></summary>
+<details><summary><strong>MtrxPi | Raining Grid: Plant Decay Propagation Speed</strong></summary>
 
-**Entity ID: `mqtt.mtrxpi_raining_grid_plant_death_propagation_speed`**
+**Entity ID: `mqtt.mtrxpi_raining_grid_plant_decay_propagation_speed`**
 
 - Icon: [`mdi:flower`](https://pictogrammers.com/library/mdi/icon/flower/)
-- Command Topic: /mtrxpi/raining-grid/parameter/plant-death-propagation-speed
-- State Topic: /mtrxpi/raining-grid/parameter/plant-death-propagation-speed
+- Command Topic: /mtrxpi/raining-grid/parameter/plant-decay-propagation-speed
+- State Topic: /mtrxpi/raining-grid/parameter/plant-decay-propagation-speed
 - Unit Of Measurement: `ticks`
 
-File: [`mqtt/number/mtrxpi/raining_grid/plant_death_propagation_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/plant_death_propagation_speed.yaml)
+File: [`mqtt/number/mtrxpi/raining_grid/plant_decay_propagation_speed.yaml`](entities/mqtt/number/mtrxpi/raining_grid/plant_decay_propagation_speed.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Raining Grid: Plant Growth Chance</strong></summary>
@@ -4375,6 +4521,18 @@ File: [`mqtt/sensor/growpi/uptime.yaml`](entities/mqtt/sensor/growpi/uptime.yaml
 - State Topic: /homeassistant/mtrxpi/stats
 
 File: [`mqtt/sensor/mtrxpi/active_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/active_git_ref.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Processor: Max Magnitude</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_audio_processor_max_magnitude`**
+
+- Icon: [`mdi:volume-vibrate`](https://pictogrammers.com/library/mdi/icon/volume-vibrate/)
+- State Class: `measurement`
+- State Topic: /mtrxpi/audio-processor/max-magnitude
+- Unit Of Measurement:
+
+File: [`mqtt/sensor/mtrxpi/audio_processor/max_magnitude.yaml`](entities/mqtt/sensor/mtrxpi/audio_processor/max_magnitude.yaml)
 </details>
 
 <details><summary><strong>MtrxPi Average Load (15 min)</strong></summary>
@@ -5049,9 +5207,37 @@ File: [`mqtt/switch/prusa_i3/enclosure_fan.yaml`](entities/mqtt/switch/prusa_i3/
 
 </details>
 
+## Mqtt
+
+<details><summary><h3>Entities (2)</h3></summary>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: High Magnitude Hex Color</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_high_magnitude_hex_color`**
+
+- Icon: [`mdi:palette`](https://pictogrammers.com/library/mdi/icon/palette/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/high-magnitude-hex-color
+- State Topic: /mtrxpi/audio-visualiser/parameter/high-magnitude-hex-color
+
+File: [`mqtt/text/mtrxpi/audio_visualiser/high_magnitude_hex_color.yaml`](entities/mqtt/text/mtrxpi/audio_visualiser/high_magnitude_hex_color.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Audio Visualiser: Low Magnitude Hex Color</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_audio_visualiser_low_magnitude_hex_color`**
+
+- Icon: [`mdi:palette`](https://pictogrammers.com/library/mdi/icon/palette/)
+- Command Topic: /mtrxpi/audio-visualiser/parameter/low-magnitude-hex-color
+- State Topic: /mtrxpi/audio-visualiser/parameter/low-magnitude-hex-color
+
+File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entities/mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml)
+</details>
+
+</details>
+
 ## Script
 
-<details><summary><h3>Entities (27)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5515,6 +5701,40 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_turn_off.yaml`](entities/scrip
 File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml)
 </details>
 
+<details><summary><strong>MtrxPi | Audio Visualiser: Set Colors</strong></summary>
+
+**Entity ID: `script.mtrxpi_audio_visualiser_set_colors`**
+
+> Helper to set the MtrxPi Audio Visualiser colors
+
+- Fields:
+
+```json
+{
+  "high_magnitude_color": {
+    "description": "The color to use for the high magnitude",
+    "example": "#FF0000",
+    "required": false,
+    "selector": {
+      "color_rgb": null
+    }
+  },
+  "low_magnitude_color": {
+    "description": "The color to use for the low magnitude",
+    "example": "#00FF00",
+    "required": false,
+    "selector": {
+      "color_rgb": null
+    }
+  }
+}
+```
+
+- Mode: `single`
+
+File: [`script/mtrxpi/audio_visualiser/mtrxpi_audio_visualiser_set_colors.yaml`](entities/script/mtrxpi/audio_visualiser/mtrxpi_audio_visualiser_set_colors.yaml)
+</details>
+
 <details><summary><strong>MtrxPi: Queue Content</strong></summary>
 
 **Entity ID: `script.mtrxpi_queue_content`**
@@ -5532,6 +5752,7 @@ File: [`script/media_player/topaz_sr10/topaz_sr10_volume_set.yaml`](entities/scr
     "selector": {
       "select": {
         "options": [
+          "audio-visualiser",
           "clock",
           "gif-door-animated",
           "image-door-closed",
