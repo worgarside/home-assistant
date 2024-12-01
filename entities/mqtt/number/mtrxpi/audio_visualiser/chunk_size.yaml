@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Audio Visualiser: Chunk Size"
+
+unique_id: mtrxpi_audio_visualiser_chunk_size
+
+command_topic: /mtrxpi/audio-visualiser/parameter/chunk-size
+
+icon: mdi:table-split-cell
+
+min: 1
+
+max: 20000
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: " "
+
+state_topic: /mtrxpi/audio-visualiser/parameter/chunk-size

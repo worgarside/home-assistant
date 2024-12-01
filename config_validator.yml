@@ -215,6 +215,28 @@ packages:
           remove_package_path: true
           separator: _
 
+  mqtt_text:
+    documentation:
+      id: $.text.unique_id
+      name: $.text.name
+      extra:
+        - $.text.icon
+        - $.text.state_class
+        - $.text.command_topic
+        - $.text.state_topic
+        - $.text.unit_of_measurement
+
+    validation:
+      should_match_filepath:
+        $.text.name:
+          remove_package_path: true
+          separator: " "
+
+        $.text.unique_id:
+          case: snake
+          remove_package_path: true
+          separator: _
+
   rest_command:
     validation: {}
 

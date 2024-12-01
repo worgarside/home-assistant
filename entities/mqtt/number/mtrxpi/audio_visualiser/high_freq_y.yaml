@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Audio Visualiser: High Freq Y"
+
+unique_id: mtrxpi_audio_visualiser_high_freq_y
+
+command_topic: /mtrxpi/audio-visualiser/parameter/high-freq-y
+
+icon: mdi:star-four-points-circle
+
+min: 0
+
+max: 63
+
+mode: slider
+
+retain: true
+
+step: 1
+
+unit_of_measurement: " "
+
+state_topic: /mtrxpi/audio-visualiser/parameter/high-freq-y
