@@ -3384,6 +3384,114 @@
                                 "id": "clock"
                               }
                             }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "clock",
+                                "priority": "clear"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "attributes": {
+                        "label": "Audio Visualiser"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "sensor.mtrxpi_audio_processor_max_magnitude",
+                            "name": "Max Magnitude"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_colormap_length",
+                            "name": "Colormap Length"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_cutoff_frequency",
+                            "name": "Cutoff Frequency"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_high_freq_x",
+                            "name": "High Freq. X"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_high_freq_y",
+                            "name": "High Freq. Y"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_low_freq_x",
+                            "name": "Low Freq. X"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_low_freq_y",
+                            "name": "Low Freq. Y"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_x_pos",
+                            "name": "X Pos"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_y_pos",
+                            "name": "Y Pos"
+                          },
+                          {
+                            "entity": "script.mtrxpi_audio_visualiser_set_colors",
+                            "name": "Set Colors",
+                            "type": "custom:multiple-entity-row",
+                            "show_state": false,
+                            "entities": [
+                              {
+                                "entity": "text.mtrxpi_audio_visualiser_high_magnitude_hex_color",
+                                "name": "High Magnitude"
+                              },
+                              {
+                                "entity": "text.mtrxpi_audio_visualiser_low_magnitude_hex_color",
+                                "name": "Low Magnitude"
+                              }
+                            ]
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_audio_visualiser_queue_position",
+                            "name": "Queue Position"
+                          },
+                          {
+                            "entity": "automation.mtrxpi_content_trigger_audio_visualiser",
+                            "name": "Content Trigger"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "audio-visualiser"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "audio-visualiser",
+                                "priority": "clear"
+                              }
+                            }
                           }
                         ]
                       }
@@ -3416,6 +3524,19 @@
                               "service": "script.mtrxpi_queue_content",
                               "service_data": {
                                 "id": "now-playing"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "now-playing",
+                                "priority": "clear"
                               }
                             }
                           }
@@ -3468,7 +3589,7 @@
                             "name": "Leaf Growth Chance"
                           },
                           {
-                            "entity": "number.mtrxpi_raining_grid_plant_death_propagation_speed",
+                            "entity": "number.mtrxpi_raining_grid_plant_decay_propagation_speed",
                             "name": "Plant Decay Speed"
                           },
                           {
@@ -3492,6 +3613,19 @@
                               "service": "script.mtrxpi_queue_content",
                               "service_data": {
                                 "id": "raining-grid"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "raining-grid",
+                                "priority": "clear"
                               }
                             }
                           }
@@ -3544,6 +3678,19 @@
                                 "id": "sorter"
                               }
                             }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "sorter",
+                                "priority": "clear"
+                              }
+                            }
                           }
                         ],
                         "show_header_toggle": false,
@@ -3577,6 +3724,19 @@
                             }
                           },
                           {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "gif-door-animated",
+                                "priority": "clear"
+                              }
+                            }
+                          },
+                          {
                             "type": "divider"
                           },
                           {
@@ -3592,6 +3752,19 @@
                               "service": "script.mtrxpi_queue_content",
                               "service_data": {
                                 "id": "image-door-closed"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "image-door-closed",
+                                "priority": "clear"
                               }
                             }
                           }
