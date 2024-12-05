@@ -120,7 +120,7 @@ sensor:
 
     force_update: true
 
-    json_attributes_path: $.data.location
+    json_attributes_path: $.location
 
     json_attributes:
       - lat
