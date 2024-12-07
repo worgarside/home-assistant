@@ -114,7 +114,9 @@ sensor:
 
     name: Tomorrow.io | Location
 
-    value_template: '{{ value_json.get("data", {}).get("time", ) }}'
+    value_template: >-
+      {{ value_json.get("location", {}).get("lat", "") }},
+      {{ value_json.get("location", {}).get("lon", "") }}
 
     icon: mdi:map-marker-question-outline
 
