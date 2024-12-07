@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (127)</h3></summary>
+<details><summary><h3>Entities (128)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1733,6 +1733,19 @@ File: [`automation/switch/dry_box_dehumidifier/timeout.yaml`](entities/automatio
 - Mode: `single`
 
 File: [`automation/switch/dry_box_dehumidifier/turn_on.yaml`](entities/automation/switch/dry_box_dehumidifier/turn_on.yaml)
+</details>
+
+<details><summary><code>/switch/lounge-diffuser/state-change</code></summary>
+
+**Entity ID: `automation.switch_lounge_diffuser_state_change`**
+
+> Keep the diffuser's light in sync with the diffuser state
+
+- Alias: /switch/lounge-diffuser/state-change
+- ID: `switch_lounge_diffuser_state_change`
+- Mode: `single`
+
+File: [`automation/switch/lounge_diffuser/state_change.yaml`](entities/automation/switch/lounge_diffuser/state_change.yaml)
 </details>
 
 <details><summary><code>/switch/mtrxpi-power/off</code></summary>
