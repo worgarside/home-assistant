@@ -125,3 +125,15 @@ sensor:
     json_attributes:
       - lat
       - lon
+
+  - unique_id: tomorrow_io_api_response
+
+    name: Tomorrow.io | API Response
+
+    value_template: '{{ "ok" }}'
+
+    icon: mdi:check-bold
+
+    force_update: true
+
+    json_attributes_path: $
