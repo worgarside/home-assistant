@@ -126,14 +126,17 @@ sensor:
       - lat
       - lon
 
-  - unique_id: tomorrow_io_api_response
+  - unique_id: tomorrow_io_api_error
 
-    name: Tomorrow.io | API Response
+    name: Tomorrow.io | API Error
 
-    value_template: '{{ "ok" }}'
+    value_template: '{{ value_json.get("code", "OK") }}'
 
-    icon: mdi:check-bold
+    icon: mdi:alert-circle-outline
 
     force_update: true
 
-    json_attributes_path: $
+    json_attributes:
+      - code
+      - message
+      - type
