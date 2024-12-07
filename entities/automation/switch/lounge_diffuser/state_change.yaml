@@ -1,0 +1,20 @@
+---
+alias: /switch/lounge-diffuser/state-change
+
+id: switch_lounge_diffuser_state_change
+
+description: Keep the diffuser's light in sync with the diffuser state
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: switch.lounge_diffuser
+    to:
+      - "on"
+      - "off"
+
+action:
+  - service: switch.turn_{{ trigger.to_state.state }}
+    target:
+      entity_id: switch.lounge_diffuser_light
