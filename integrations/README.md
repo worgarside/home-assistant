@@ -5254,7 +5254,7 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 <details><summary><code>rest.tomorrow_io_realtime_weather</code></summary>
 
-- Resource: https://api.tomorrow.io/v4/weather/realtime
+- Resource: https://api.tomorrow.io/v4/weather/realtime?apikey=abc123&location=51.501366,-0.141888&units=metric
 - Method: GET
 
 File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realtime_weather.yaml)

@@ -1,18 +1,16 @@
 ---
 # https://docs.tomorrow.io/reference/realtime-weather
 
-resource: https://api.tomorrow.io/v4/weather/realtime
+resource: !secret tomorrow_io_full_url
 
 scan_interval: 180
 
 method: GET
 
-params:
-  apikey: !secret tomorrow_io_api_key
-
-  location: !secret lat_comma_lng
-
-  units: metric
+# params:
+#   apikey: !secret tomorrow_io_api_key
+#   location: !secret lat_comma_lng
+#   units: metric
 
 headers:
   accept: application/json
