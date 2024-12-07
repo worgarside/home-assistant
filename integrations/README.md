@@ -5248,6 +5248,20 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 </details>
 
+## Rest
+
+<details><summary><h3>Entities (1)</h3></summary>
+
+<details><summary><code>rest.tomorrow_io_realtime_weather</code></summary>
+
+- Resource: https://api.tomorrow.io/v4/weather/realtime?apikey=abc123&location=51.501366,-0.141888&units=metric
+- Method: GET
+
+File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realtime_weather.yaml)
+</details>
+
+</details>
+
 ## Script
 
 <details><summary><h3>Entities (28)</h3></summary>
@@ -6394,7 +6408,7 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (6)</h3></summary>
+<details><summary><h3>Entities (5)</h3></summary>
 
 <details><summary><strong>External IP</strong></summary>
 
@@ -6435,15 +6449,6 @@ File: [`sensor/plex_recently_added.yaml`](entities/sensor/plex_recently_added.ya
 - Platform: `time_date`
 
 File: [`sensor/time_date.yaml`](entities/sensor/time_date.yaml)
-</details>
-
-<details><summary><strong>Tomorrow.io Realtime Weather</strong></summary>
-
-**Entity ID: `sensor.tomorrow_io_realtime_weather`**
-
-- Platform: `rest`
-
-File: [`sensor/tomorrow_io_realtime_weather.yaml`](entities/sensor/tomorrow_io_realtime_weather.yaml)
 </details>
 
 </details>
