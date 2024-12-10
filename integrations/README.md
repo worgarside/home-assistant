@@ -3796,7 +3796,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (126)</h3></summary>
+<details><summary><h3>Entities (127)</h3></summary>
 
 <details><summary><strong>MtrxPi | Audio Visualiser: Chunk Size</strong></summary>
 
@@ -3987,6 +3987,18 @@ File: [`mqtt/number/mtrxpi/combination/y_pos.yaml`](entities/mqtt/number/mtrxpi/
 - Unit Of Measurement: %
 
 File: [`mqtt/number/mtrxpi/matrix/brightness.yaml`](entities/mqtt/number/mtrxpi/matrix/brightness.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Now Playing: Size</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_now_playing_size`**
+
+- Icon: [`mdi:resize`](https://pictogrammers.com/library/mdi/icon/resize/)
+- Command Topic: /mtrxpi/now-playing/parameter/size
+- State Topic: /mtrxpi/now-playing/parameter/size
+- Unit Of Measurement: `px`
+
+File: [`mqtt/number/mtrxpi/now_playing/size.yaml`](entities/mqtt/number/mtrxpi/now_playing/size.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Now Playing: X Pos</strong></summary>
