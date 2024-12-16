@@ -1,6 +1,10 @@
 ---
 name: External IP
+
 platform: rest
-resource: http://ip.jsontest.com
+
+resource: https://api.ipify.org/?format=json
+
 scan_interval: 300
+
 value_template: '{{ value_json.ip }}'
