@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Now Playing: Size"
+
+unique_id: mtrxpi_now_playing_size
+
+command_topic: /mtrxpi/now-playing/parameter/size
+
+icon: mdi:resize
+
+min: 4
+
+max: 64
+
+mode: slider
+
+retain: true
+
+step: 1
+
+unit_of_measurement: px
+
+state_topic: /mtrxpi/now-playing/parameter/size
