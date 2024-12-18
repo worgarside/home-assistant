@@ -3508,6 +3508,10 @@
                             "name": "Media Player Source"
                           },
                           {
+                            "entity": "number.mtrxpi_now_playing_size",
+                            "name": "Size"
+                          },
+                          {
                             "entity": "input_number.mtrxpi_now_playing_queue_position",
                             "name": "Queue Position"
                           },
