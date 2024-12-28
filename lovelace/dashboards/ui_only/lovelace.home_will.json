@@ -5360,6 +5360,25 @@
               ]
             }
           ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 2,
+          "subview": false,
+          "path": "zigbee",
+          "title": "Zigbee",
+          "icon": "mdi:zigbee",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
