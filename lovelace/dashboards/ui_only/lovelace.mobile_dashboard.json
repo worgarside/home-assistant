@@ -254,6 +254,19 @@
                       "layout": "horizontal"
                     },
                     {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.kitchen_counter_lights",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      }
+                    },
+                    {
                       "type": "custom:mushroom-chips-card",
                       "chips": [
                         {
