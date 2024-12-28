@@ -1316,6 +1316,10 @@
                   },
                   "icon_color": "",
                   "multiline_secondary": false
+                },
+                {
+                  "type": "custom:zigbee2mqtt-networkmap",
+                  "entity": "sensor.zigbee2mqtt_network_map"
                 }
               ]
             },
