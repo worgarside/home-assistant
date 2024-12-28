@@ -5375,6 +5375,10 @@
                 {
                   "type": "heading",
                   "heading": "New section"
+                },
+                {
+                  "type": "custom:zigbee2mqtt-networkmap",
+                  "entity": "sensor.zigbee2mqtt_network_map"
                 }
               ]
             }
