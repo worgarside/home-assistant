@@ -3796,7 +3796,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (126)</h3></summary>
+<details><summary><h3>Entities (127)</h3></summary>
 
 <details><summary><strong>MtrxPi | Audio Visualiser: Chunk Size</strong></summary>
 
@@ -5163,6 +5163,15 @@ File: [`mqtt/sensor/vsmppi/pi_stats_start_time.yaml`](entities/mqtt/sensor/vsmpp
 - Unit Of Measurement: `s`
 
 File: [`mqtt/sensor/vsmppi/uptime.yaml`](entities/mqtt/sensor/vsmppi/uptime.yaml)
+</details>
+
+<details><summary><strong>Zigbee2MQTT Network Map</strong></summary>
+
+**Entity ID: `sensor.zigbee2mqtt_network_map`**
+
+- State Topic: zigbee2mqtt/bridge/response/networkmap
+
+File: [`mqtt/sensor/zigbee2mqtt/network_map.yaml`](entities/mqtt/sensor/zigbee2mqtt/network_map.yaml)
 </details>
 
 <details><summary><strong>CRTPi CPU Fan</strong></summary>

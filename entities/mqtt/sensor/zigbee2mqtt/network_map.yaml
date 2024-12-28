@@ -1,0 +1,13 @@
+---
+# https://github.com/azuwis/zigbee2mqtt-networkmap?tab=readme-ov-file#backend-setup
+name: Zigbee2MQTT Network Map
+
+unique_id: zigbee2mqtt_network_map
+
+state_topic: zigbee2mqtt/bridge/response/networkmap
+
+value_template: "{{ states('sensor.time') }}"
+
+json_attributes_topic: zigbee2mqtt/bridge/response/networkmap
+
+json_attributes_template: "{{ value_json.data.value | tojson }}"
