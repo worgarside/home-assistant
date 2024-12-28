@@ -5374,10 +5374,10 @@
               "cards": [
                 {
                   "type": "custom:zigbee2mqtt-networkmap",
-                  "entity": "sensor.zigbee2mqtt_network_map"
+                  "entity": "sensor.zigbee2mqtt_network_map",
+                  "column_span": 2
                 }
-              ],
-              "column_span": 2
+              ]
             }
           ]
         }
