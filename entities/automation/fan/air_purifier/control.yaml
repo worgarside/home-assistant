@@ -35,19 +35,14 @@ variables:
 action:
   - choose:
       - alias: Diffuser is on; turn off air purifier
-        conditions: "{{ diffuser_is_on and trigger.id == 'lounge_diffuser_state' }}"
+        conditions: "{{ diffuser_is_on }}"
         sequence:
           - service: fan.turn_off
             target:
               entity_id: fan.air_purifier
 
       - alias: Diffuser turned off; delay & turn on air purifier
-        conditions: >-
-          {{
-            not diffuser_is_on and
-            not tv_is_on and
-            trigger.id == 'lounge_diffuser_state'
-          }}
+        conditions: "{{ not tv_is_on and trigger.id == 'lounge_diffuser_state' }}"
         sequence:
           - delay:
               minutes: 30
@@ -65,7 +60,6 @@ action:
       - alias: '"Limited Auto"'
         conditions: >-
           {{
-            not diffuser_is_on and
             tv_is_on and
             state_attr('fan.air_purifier', 'preset_mode') == 'auto' and
             trigger.id == 'air_purifier_pm2_5'
@@ -79,12 +73,7 @@ action:
 
       # TV turned off and diffuser is off; set air purifier to auto mode
       - alias: TV Turned Off
-        conditions: >-
-          {{
-            not diffuser_is_on and
-            not tv_is_on and
-            trigger.id == 'lounge_tv_state'
-          }}
+        conditions: "{{ not tv_is_on and trigger.id == 'lounge_tv_state' }}"
         sequence:
           - service: fan.set_preset_mode
             data:
