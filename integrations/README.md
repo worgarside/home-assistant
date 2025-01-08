@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (128)</h3></summary>
+<details><summary><h3>Entities (129)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -484,6 +484,27 @@ File: [`automation/diffuser/lounge/timeout.yaml`](entities/automation/diffuser/l
 }
 ```
 File: [`automation/event/repair/state_change.yaml`](entities/automation/event/repair/state_change.yaml)
+</details>
+
+<details><summary><code>/fan/air-purifier/control</code></summary>
+
+**Entity ID: `automation.fan_air_purifier_control`**
+
+> Controls the air purifier based on TV and diffuser states. Turns off when diffuser is on, operates in limited auto mode when TV is on (25-50% based on PM2.5), and returns to auto mode when both are off after a 30-minute delay.
+
+- Alias: /fan/air-purifier/control
+- ID: `fan_air_purifier_control`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}",
+  "pm2_5": "{{ states('sensor.air_purifier_pm2_5') | float(50) }}",
+  "diffuser_is_on": "{{ states('switch.lounge_diffuser') | bool(false) }}"
+}
+```
+File: [`automation/fan/air_purifier/control.yaml`](entities/automation/fan/air_purifier/control.yaml)
 </details>
 
 <details><summary><code>/fan/desk-fan/state-change</code></summary>

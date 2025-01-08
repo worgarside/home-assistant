@@ -1,0 +1,85 @@
+---
+alias: /fan/air-purifier/control
+description: >
+  Controls the air purifier based on TV and diffuser states. Turns off when diffuser
+  is on, operates in limited auto mode when TV is on (25-50% based on PM2.5), and
+  returns to auto mode when both are off after a 30-minute delay.
+id: fan_air_purifier_control
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: remote.lounge_tv
+    id: lounge_tv_state
+    not_to:
+      - "unavailable"
+      - "unknown"
+
+  - platform: state
+    entity_id: sensor.air_purifier_pm2_5
+    id: air_purifier_pm2_5
+    not_to:
+      - "unavailable"
+      - "unknown"
+
+  - platform: state
+    entity_id: switch.lounge_diffuser
+    id: lounge_diffuser_state
+    not_to:
+      - "unavailable"
+      - "unknown"
+
+variables:
+  tv_is_on: "{{ states('remote.lounge_tv') | bool(false) }}"
+  pm2_5: "{{ states('sensor.air_purifier_pm2_5') | float(50) }}"
+  diffuser_is_on: "{{ states('switch.lounge_diffuser') | bool(false) }}"
+
+action:
+  - choose:
+      - alias: Diffuser is on; turn off air purifier
+        conditions: "{{ diffuser_is_on }}"
+        sequence:
+          - service: fan.turn_off
+            target:
+              entity_id: fan.air_purifier
+
+      - alias: Diffuser turned off; delay & turn on air purifier
+        conditions: "{{ not tv_is_on and trigger.id == 'lounge_diffuser_state' }}"
+        sequence:
+          - delay:
+              minutes: 30
+
+          - condition: "{{ not ( states('remote.lounge_tv') | bool(false) ) }}"
+
+          - service: fan.set_preset_mode
+            data:
+              preset_mode: auto
+            target:
+              entity_id: fan.air_purifier
+
+      # Diffuser is off, TV is on, air purifier is in auto mode; set air purifier to
+      # appropriate percentage (i.e. limited auto)
+      - alias: '"Limited Auto"'
+        conditions: >-
+          {{
+            tv_is_on and
+            state_attr('fan.air_purifier', 'preset_mode') == 'auto' and
+            trigger.id == 'air_purifier_pm2_5'
+          }}
+        sequence:
+          - service: fan.set_percentage
+            target:
+              entity_id: fan.air_purifier
+            data:
+              percentage: "{{ iif(pm2_5 > 12, 50, 25) }}"
+
+      # TV turned off and diffuser is off; set air purifier to auto mode
+      - alias: TV Turned Off
+        conditions: "{{ not tv_is_on and trigger.id == 'lounge_tv_state' }}"
+        sequence:
+          - service: fan.set_preset_mode
+            data:
+              preset_mode: auto
+            target:
+              entity_id: fan.air_purifier
