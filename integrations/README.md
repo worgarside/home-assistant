@@ -490,7 +490,7 @@ File: [`automation/event/repair/state_change.yaml`](entities/automation/event/re
 
 **Entity ID: `automation.fan_air_purifier_control`**
 
-> *No description provided*
+> Controls the air purifier based on TV and diffuser states. Turns off when diffuser is on, operates in limited auto mode when TV is on (25-50% based on PM2.5), and returns to auto mode when both are off after a 30-minute delay.
 
 - Alias: /fan/air-purifier/control
 - ID: `fan_air_purifier_control`
