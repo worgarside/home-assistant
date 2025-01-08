@@ -977,6 +977,53 @@
                     }
                   ],
                   "columns": 2
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.air_purifier_pm2_5",
+                      "name": "Air Quality",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.air_purifier_air_quality",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "gray"
+                    }
+                  ],
+                  "hours_to_show": 6,
+                  "hour24": true,
+                  "points_per_hour": 30,
+                  "line_width": 2,
+                  "min_bound_range": 10,
+                  "lower_bound": "~0",
+                  "show": {
+                    "fill": true,
+                    "legend": true,
+                    "labels": true
+                  },
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#28d20d"
+                    },
+                    {
+                      "value": 12,
+                      "color": "#a0ac00"
+                    },
+                    {
+                      "value": 35,
+                      "color": "#da7800"
+                    },
+                    {
+                      "value": 55,
+                      "color": "#f62727"
+                    }
+                  ]
                 }
               ]
             },
