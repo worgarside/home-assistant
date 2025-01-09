@@ -6611,7 +6611,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (108)</h3></summary>
+<details><summary><h3>Entities (109)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -7296,6 +7296,34 @@ File: [`template/sensor/addon_stats/zigbee2mqtt_memory_usage.yaml`](entities/tem
 - Icon: [`mdi:map-marker`](https://pictogrammers.com/library/mdi/icon/map-marker/)
 
 File: [`template/sensor/address_line_1.yaml`](entities/template/sensor/address_line_1.yaml)
+</details>
+
+<details><summary><strong>Air Purifier Fan Speed</strong></summary>
+
+**Entity ID: `sensor.air_purifier_fan_speed`**
+
+- Icon:
+
+```jinja
+{% if not states("fan.air_purifier") | bool(false) %}
+  mdi:fan-off
+{% elif state_attr('fan.air_purifier', 'mode') == 'auto' %}
+  mdi:fan-auto
+{% elif state_attr('fan.air_purifier', 'mode') == 'manual' %}
+  {% if state_attr('fan.air_purifier', 'percentage') == 25 %}
+    mdi:fan-speed-1
+  {% elif state_attr('fan.air_purifier', 'percentage') == 50 %}
+    mdi:fan-speed-2
+  {% elif state_attr('fan.air_purifier', 'percentage') == 75 %}
+    mdi:fan-speed-3
+  {% else %}
+    mdi:fan
+  {% endif %}
+{% else %}
+  mdi:fan
+{% endif %}
+```
+File: [`template/sensor/air_purifier_fan_speed.yaml`](entities/template/sensor/air_purifier_fan_speed.yaml)
 </details>
 
 <details><summary><strong>Current Hour</strong></summary>

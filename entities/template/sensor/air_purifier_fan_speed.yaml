@@ -1,0 +1,36 @@
+---
+name: Air Purifier Fan Speed
+
+unique_id: air_purifier_fan_speed
+
+state: >-
+  {% if not states("fan.air_purifier") | bool(false) %}
+    0
+  {% elif state_attr('fan.air_purifier', 'mode') == 'auto' %}
+    {{ states("sensor.air_purifier_air_quality") | int(0) }}
+  {% elif state_attr('fan.air_purifier', 'mode') == 'manual' %}
+    {{ state_attr('fan.air_purifier', 'percentage') | int(0) / 25 }}
+  {% elif state_attr('fan.air_purifier', 'mode') == 'off' %}
+    0
+  {% endif %}
+
+state_class: measurement
+
+icon: >-
+  {% if not states("fan.air_purifier") | bool(false) %}
+    mdi:fan-off
+  {% elif state_attr('fan.air_purifier', 'mode') == 'auto' %}
+    mdi:fan-auto
+  {% elif state_attr('fan.air_purifier', 'mode') == 'manual' %}
+    {% if state_attr('fan.air_purifier', 'percentage') == 25 %}
+      mdi:fan-speed-1
+    {% elif state_attr('fan.air_purifier', 'percentage') == 50 %}
+      mdi:fan-speed-2
+    {% elif state_attr('fan.air_purifier', 'percentage') == 75 %}
+      mdi:fan-speed-3
+    {% else %}
+      mdi:fan
+    {% endif %}
+  {% else %}
+    mdi:fan
+  {% endif %}
