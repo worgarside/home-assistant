@@ -987,7 +987,7 @@
                       "smoothing": true
                     },
                     {
-                      "entity": "sensor.air_purifier_air_quality",
+                      "entity": "sensor.air_purifier_fan_speed",
                       "name": "Fan Speed",
                       "y_axis": "secondary",
                       "show_line": true,
@@ -1001,6 +1001,8 @@
                   "line_width": 2,
                   "min_bound_range": 10,
                   "lower_bound": "~0",
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 4,
                   "show": {
                     "fill": true,
                     "legend": true,
