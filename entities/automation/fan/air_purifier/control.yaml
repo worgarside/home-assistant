@@ -48,7 +48,7 @@ action:
         conditions: "{{ not tv_is_on and trigger.id == 'lounge_diffuser_state' }}"
         sequence:
           - delay:
-              minutes: 30
+              minutes: 15
 
           - condition: "{{ not ( states('remote.lounge_tv') | bool(false) ) }}"
 
