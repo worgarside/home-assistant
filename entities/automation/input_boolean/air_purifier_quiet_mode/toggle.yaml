@@ -38,7 +38,7 @@ action:
         target:
           entity_id: input_boolean.air_purifier_quiet_mode
 
-  - else:
+    else:
       - service: input_boolean.turn_off
         target:
           entity_id: input_boolean.air_purifier_quiet_mode
