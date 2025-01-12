@@ -5602,7 +5602,8 @@ File: [`script/debug_persistent_notification.yaml`](entities/script/debug_persis
 {
   "pm2_5": "{{ states('sensor.air_purifier_pm2_5') | float(0) }}",
   "quiet_mode": "{{ states('input_boolean.air_purifier_quiet_mode') | bool(false) }}",
-  "current_speed": "{{ state_attr('fan.air_purifier', 'percentage') | int(0) }}"
+  "current_speed": "{{ state_attr('fan.air_purifier', 'percentage') | int(0) }}",
+  "target_speed": "{% if quiet_mode %}\n  {{ iif(pm2_5 > 12, 50, 25) }}\n{% else %}\n  {% if pm2_5 > 55 %}\n    100\n  {% elif pm2_5 > 35 %}\n    75\n  {% elif pm2_5 > 12 %}\n    50\n  {% else %}\n    25\n  {% endif %}\n{% endif %}"
 }
 ```
 File: [`script/fan/air_purifier/air_purifier_update_fan_speed.yaml`](entities/script/fan/air_purifier/air_purifier_update_fan_speed.yaml)
