@@ -1,0 +1,33 @@
+---
+alias: "Air Purifier: Update Fan Speed"
+
+description: Update the air purifier fan speed based on the current air quality and other conditions
+
+mode: single
+
+max_exceeded: silent
+
+variables:
+  pm2_5: "{{ states('sensor.air_purifier_pm2_5') | float(0) }}"
+
+  quiet_mode: "{{ states('input_boolean.air_purifier_quiet_mode') | bool(false) }}"
+
+sequence:
+  - service: fan.set_percentage
+    target:
+      entity_id: fan.air_purifier
+    data:
+      percentage: >-
+        {% if quiet_mode %}
+          {{ iif(pm2_5 > 12, 50, 25) }}
+        {% else %}
+          {% if pm2_5 > 55 %}
+            100
+          {% elif pm2_5 > 35 %}
+            75
+          {% elif pm2_5 > 12 %}
+            50
+          {% else %}
+            25
+          {% endif %}
+        {% endif %}

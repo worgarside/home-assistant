@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (129)</h3></summary>
+<details><summary><h3>Entities (131)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -490,7 +490,7 @@ File: [`automation/event/repair/state_change.yaml`](entities/automation/event/re
 
 **Entity ID: `automation.fan_air_purifier_control`**
 
-> Controls the air purifier based on TV and diffuser states. Turns off when diffuser is on, operates in limited auto mode when TV is on (25-50% based on PM2.5), and returns to auto mode when both are off after a 30-minute delay.
+> *No description provided*
 
 - Alias: /fan/air-purifier/control
 - ID: `fan_air_purifier_control`
@@ -499,9 +499,8 @@ File: [`automation/event/repair/state_change.yaml`](entities/automation/event/re
 
 ```json
 {
-  "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}",
-  "pm2_5": "{{ states('sensor.air_purifier_pm2_5') | float(50) }}",
-  "diffuser_is_on": "{{ states('switch.lounge_diffuser') | bool(false) }}"
+  "diffuser_is_on": "{{ states('switch.lounge_diffuser') | bool(false) }}",
+  "purifier_is_on": "{{ states('fan.air_purifier') | bool(false) }}"
 }
 ```
 File: [`automation/fan/air_purifier/control.yaml`](entities/automation/fan/air_purifier/control.yaml)
@@ -801,6 +800,40 @@ File: [`automation/hue_remote/lounge/button_4/long_press.yaml`](entities/automat
 - Mode: `single`
 
 File: [`automation/hue_remote/lounge/button_4/press.yaml`](entities/automation/hue_remote/lounge/button_4/press.yaml)
+</details>
+
+<details><summary><code>/input-boolean/air-purifier-quiet-mode/state-change</code></summary>
+
+**Entity ID: `automation.input_boolean_air_purifier_quiet_mode_state_change`**
+
+> *No description provided*
+
+- Alias: /input-boolean/air-purifier-quiet-mode/state-change
+- ID: `input_boolean_air_purifier_quiet_mode_state_change`
+- Mode: `single`
+
+File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/state_change.yaml)
+</details>
+
+<details><summary><code>/input-boolean/air-purifier-quiet-mode/toggle</code></summary>
+
+**Entity ID: `automation.input_boolean_air_purifier_quiet_mode_toggle`**
+
+> *No description provided*
+
+- Alias: /input-boolean/air-purifier-quiet-mode/toggle
+- ID: `input_boolean_air_purifier_quiet_mode_toggle`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}",
+  "vic_at_home": "{{ states('person.vic') == 'home' }}",
+  "vic_in_meeting": "{{ states('calendar.vic_work') | bool(false) }}"
+}
+```
+File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
 </details>
 
 <details><summary><code>/input-datetime/cosmo/next-clean-due/set</code></summary>
@@ -2461,7 +2494,16 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (28)</h3></summary>
+<details><summary><h3>Entities (29)</h3></summary>
+
+<details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
+
+**Entity ID: `input_boolean.air_purifier_quiet_mode`**
+
+- Icon: [`mdi:air-purifier`](https://pictogrammers.com/library/mdi/icon/air-purifier/)
+
+File: [`input_boolean/air_purifier/air_purifier_quiet_mode.yaml`](entities/input_boolean/air_purifier/air_purifier_quiet_mode.yaml)
+</details>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
 
@@ -5294,7 +5336,7 @@ File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realt
 
 ## Script
 
-<details><summary><h3>Entities (28)</h3></summary>
+<details><summary><h3>Entities (29)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5545,6 +5587,24 @@ File: [`script/cosmo/cosmo_tag_scanned.yaml`](entities/script/cosmo/cosmo_tag_sc
 - Mode: `parallel`
 
 File: [`script/debug_persistent_notification.yaml`](entities/script/debug_persistent_notification.yaml)
+</details>
+
+<details><summary><strong>Air Purifier: Update Fan Speed</strong></summary>
+
+**Entity ID: `script.air_purifier_update_fan_speed`**
+
+> Update the air purifier fan speed based on the current air quality and other conditions
+
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "pm2_5": "{{ states('sensor.air_purifier_pm2_5') | float(0) }}",
+  "quiet_mode": "{{ states('input_boolean.air_purifier_quiet_mode') | bool(false) }}"
+}
+```
+File: [`script/fan/air_purifier/air_purifier_update_fan_speed.yaml`](entities/script/fan/air_purifier/air_purifier_update_fan_speed.yaml)
 </details>
 
 <details><summary><strong>Log Exception</strong></summary>
