@@ -1,0 +1,18 @@
+---
+alias: /input-boolean/air-purifier-quiet-mode/state-change
+
+id: input_boolean_air_purifier_quiet_mode_state_change
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: input_boolean.air_purifier_quiet_mode
+
+# Only run if it's on
+condition: "{{ states('fan.air_purifier') | bool(false) }}"
+
+action:
+  - service: script.turn_on
+    target:
+      entity_id: script.air_purifier_update_fan_speed

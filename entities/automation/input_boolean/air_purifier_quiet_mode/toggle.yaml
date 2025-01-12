@@ -1,0 +1,44 @@
+---
+alias: /input-boolean/air-purifier-quiet-mode/toggle
+
+id: input_boolean_air_purifier_quiet_mode_toggle
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: remote.lounge_tv
+    id: lounge_tv_state
+    to:
+      - "on"
+      - "off"
+
+  - trigger: calendar
+    id: vic_work_start
+    event: start
+    entity_id: calendar.vic_work
+
+  - trigger: calendar
+    id: vic_work_end
+    event: end
+    entity_id: calendar.vic_work
+
+variables:
+  tv_is_on: "{{ states('remote.lounge_tv') | bool(false) }}"
+  vic_at_home: "{{ states('person.vic') == 'home' }}"
+  vic_in_meeting: "{{ states('calendar.vic_work') | bool(false) }}"
+
+# Skip the automation for vic_work triggers when Vic isn't home
+condition: "{{ not trigger.id.startswith('vic_work_') or states('person.vic') == 'home' }}"
+
+action:
+  - if: "{{ tv_is_on or (vic_in_meeting and vic_at_home) }}"
+    then:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.air_purifier_quiet_mode
+
+  - else:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.air_purifier_quiet_mode
