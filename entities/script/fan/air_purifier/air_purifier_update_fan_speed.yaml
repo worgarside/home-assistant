@@ -12,12 +12,11 @@ variables:
 
   quiet_mode: "{{ states('input_boolean.air_purifier_quiet_mode') | bool(false) }}"
 
+  current_speed: "{{ state_attr('fan.air_purifier', 'percentage') | int(0) }}"
+
 sequence:
-  - service: fan.set_percentage
-    target:
-      entity_id: fan.air_purifier
-    data:
-      percentage: >-
+  - variables:
+      target_speed: >-
         {% if quiet_mode %}
           {{ iif(pm2_5 > 12, 50, 25) }}
         {% else %}
@@ -31,3 +30,11 @@ sequence:
             25
           {% endif %}
         {% endif %}
+
+  - condition: "{{ current_speed != target_speed }}"
+
+  - service: fan.set_percentage
+    target:
+      entity_id: fan.air_purifier
+    data:
+      percentage: "{{ target_speed }}"
