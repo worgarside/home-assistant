@@ -42,3 +42,12 @@ action:
             data:
               brightness: >-
                 {{ max(state_attr("light.mini_lamp", "brightness") | int(32) - 32, 0) }}
+
+      - if: "{{ is_state('light.lounge_shapes', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.lounge_shapes
+            data:
+              brightness: >-
+                {{ max(state_attr("light.lounge_shapes", "brightness") | int(32) - 32, 0) }}
