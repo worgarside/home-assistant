@@ -726,7 +726,7 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 {
   "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}",
   "vic_at_home": "{{ states('person.vic') == 'home' }}",
-  "vic_in_meeting": "{{ states('calendar.vic_work') | bool(false) }}"
+  "vic_in_meeting": "{{\n  (\n    states(\"calendar.vic_work\") | bool(false) or\n    trigger.id == \"vic_work_start\"\n  ) and trigger.id != \"vic_work_end\"\n}}"
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
@@ -5653,7 +5653,8 @@ File: [`script/debug_persistent_notification.yaml`](entities/script/debug_persis
 ```json
 {
   "pm2_5": "{{ states('sensor.air_purifier_pm2_5') | float(0) }}",
-  "quiet_mode": "{{ states('input_boolean.air_purifier_quiet_mode') | bool(false) }}"
+  "quiet_mode": "{{ states('input_boolean.air_purifier_quiet_mode') | bool(false) }}",
+  "current_speed": "{{ state_attr('fan.air_purifier', 'percentage') | int(0) }}"
 }
 ```
 File: [`script/fan/air_purifier/air_purifier_update_fan_speed.yaml`](entities/script/fan/air_purifier/air_purifier_update_fan_speed.yaml)

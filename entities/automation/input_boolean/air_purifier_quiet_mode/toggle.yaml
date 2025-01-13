@@ -26,7 +26,13 @@ trigger:
 variables:
   tv_is_on: "{{ states('remote.lounge_tv') | bool(false) }}"
   vic_at_home: "{{ states('person.vic') == 'home' }}"
-  vic_in_meeting: "{{ states('calendar.vic_work') | bool(false) }}"
+  vic_in_meeting: >-
+    {{
+      (
+        states("calendar.vic_work") | bool(false) or
+        trigger.id == "vic_work_start"
+      ) and trigger.id != "vic_work_end"
+    }}
 
 # Skip the automation for vic_work triggers when Vic isn't home
 condition: "{{ not trigger.id.startswith('vic_work_') or states('person.vic') == 'home' }}"
