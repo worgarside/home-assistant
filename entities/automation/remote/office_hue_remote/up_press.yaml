@@ -1,0 +1,61 @@
+---
+alias: /remote/office-hue-remote/up-press
+
+id: remote_office_hue_remote_up_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: e8bc7fec0277d53e050af7b9ce025641
+    type: action
+    subtype: up_press
+
+action:
+  - parallel:
+      - service: light.turn_on
+        target:
+          entity_id: light.desk_lamp
+        data:
+          brightness: >-
+            {% if is_state("light.desk_lamp", "on") %}
+              {{ min(state_attr("light.desk_lamp", "brightness") | int(64) + 32, 255) }}
+            {% else %}
+              32
+            {% endif %}
+
+      - service: light.turn_on
+        target:
+          entity_id: light.mushroom_lamp
+        data:
+          brightness: >-
+            {% if is_state("light.mushroom_lamp", "on") %}
+              {{ min(state_attr("light.mushroom_lamp", "brightness") | int(64) + 32, 255) }}
+            {% else %}
+              32
+            {% endif %}
+
+      - service: light.turn_on
+        target:
+          entity_id: light.pegboard_spotlight
+        data:
+          brightness: >-
+            {% if is_state("light.pegboard_spotlight", "on") %}
+              {{ min(state_attr("light.pegboard_spotlight", "brightness") | int(64) + 32, 255) }}
+            {% else %}
+              32
+            {% endif %}
+
+      - service: light.turn_on
+        target:
+          entity_id: light.office_shapes
+        data:
+          brightness: >-
+            {% if is_state("light.office_shapes", "on") %}
+              {{ min(state_attr("light.office_shapes", "brightness") | int(64) + 32, 255) }}
+            {% else %}
+              32
+            {% endif %}
