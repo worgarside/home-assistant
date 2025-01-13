@@ -1,0 +1,22 @@
+---
+alias: /remote/lounge-hue-remote/off-hold
+
+id: remote_lounge_hue_remote_off_hold
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 8c4653bb5016d1e4c77de311307e0aa2
+    type: action
+    subtype: off_hold
+
+action:
+  - service: script.turn_off_physical_room
+    data:
+      room: lounge
+      close_blinds: "{{ is_state('binary_sensor.quiet_hours', 'on') }}"
+      close_blinds_with_open_window_after_delay: true

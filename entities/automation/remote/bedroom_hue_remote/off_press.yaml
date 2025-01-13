@@ -1,0 +1,20 @@
+---
+alias: /remote/bedroom-hue-remote/off-press
+
+id: remote_bedroom_hue_remote_off_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 59ad3110285eab557754d2cf24ad84c1
+    type: action
+    subtype: off_press
+
+action:
+  - service: light.turn_off
+    target:
+      area_id: bedroom
