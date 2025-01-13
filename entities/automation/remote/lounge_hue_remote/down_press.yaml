@@ -1,0 +1,53 @@
+---
+alias: /remote/lounge-hue-remote/down-press
+
+id: remote_lounge_hue_remote_down_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 8c4653bb5016d1e4c77de311307e0aa2
+    type: action
+    subtype: down_press
+
+action:
+  - parallel:
+      - if: "{{ is_state('light.shelf_lamp', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.shelf_lamp
+            data:
+              brightness: >-
+                {{ max(state_attr("light.shelf_lamp", "brightness") | int(32) - 32, 0) }}
+
+      - if: "{{ is_state('light.table_lamp', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.table_lamp
+            data:
+              brightness: >-
+                {{ max(state_attr("light.table_lamp", "brightness") | int(32) - 32, 0) }}
+
+      - if: "{{ is_state('light.mini_lamp', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.mini_lamp
+            data:
+              brightness: >-
+                {{ max(state_attr("light.mini_lamp", "brightness") | int(32) - 32, 0) }}
+
+      - if: "{{ is_state('light.lounge_shapes', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.lounge_shapes
+            data:
+              brightness: >-
+                {{ max(state_attr("light.lounge_shapes", "brightness") | int(32) - 32, 0) }}

@@ -1,0 +1,22 @@
+---
+alias: /remote/office-hue-remote/on-hold
+
+id: remote_office_hue_remote_on_hold
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: e8bc7fec0277d53e050af7b9ce025641
+    type: action
+    subtype: on_hold
+
+action:
+  - service: light.turn_on
+    target:
+      area_id: office
+    data:
+      brightness_pct: 100

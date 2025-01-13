@@ -1,0 +1,22 @@
+---
+alias: /remote/bedroom-hue-remote/on-hold
+
+id: remote_bedroom_hue_remote_on_hold
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 59ad3110285eab557754d2cf24ad84c1
+    type: action
+    subtype: on_hold
+
+action:
+  - service: light.turn_on
+    target:
+      area_id: bedroom
+    data:
+      brightness_pct: 100

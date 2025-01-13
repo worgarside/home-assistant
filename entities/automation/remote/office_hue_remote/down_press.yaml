@@ -1,0 +1,53 @@
+---
+alias: /remote/office-hue-remote/down-press
+
+id: remote_office_hue_remote_down_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: e8bc7fec0277d53e050af7b9ce025641
+    type: action
+    subtype: down_press
+
+action:
+  - parallel:
+      - if: "{{ is_state('light.desk_lamp', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.desk_lamp
+            data:
+              brightness: >-
+                {{ max(state_attr("light.desk_lamp", "brightness") | int(32) - 32, 0) }}
+
+      - if: "{{ is_state('light.mushroom_lamp', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.mushroom_lamp
+            data:
+              brightness: >-
+                {{ max(state_attr("light.mushroom_lamp", "brightness") | int(32) - 32, 0) }}
+
+      - if: "{{ is_state('light.pegboard_spotlight', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.pegboard_spotlight
+            data:
+              brightness: >-
+                {{ max(state_attr("light.pegboard_spotlight", "brightness") | int(32) - 32, 0) }}
+
+      - if: "{{ is_state('light.office_shapes', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.office_shapes
+            data:
+              brightness: >-
+                {{ max(state_attr("light.office_shapes", "brightness") | int(32) - 32, 0) }}

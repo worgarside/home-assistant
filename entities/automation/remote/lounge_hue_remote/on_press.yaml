@@ -1,0 +1,22 @@
+---
+alias: /remote/lounge-hue-remote/on-press
+
+id: remote_lounge_hue_remote_on_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 8c4653bb5016d1e4c77de311307e0aa2
+    type: action
+    subtype: on_press
+
+action:
+  - service: light.turn_on
+    target:
+      area_id: lounge
+    data:
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
