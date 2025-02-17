@@ -11,7 +11,7 @@ description: >-
 mode: single
 
 trigger:
-  - platform: state
+  - platform: numeric_state
     entity_id: sensor.air_purifier_pm2_5
     above: 25
     for:
