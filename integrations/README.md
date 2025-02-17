@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (135)</h3></summary>
+<details><summary><h3>Entities (136)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1787,6 +1787,19 @@ File: [`automation/remote/will_s_desk/button_2/single.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/switch/air_freshener/timeout.yaml`](entities/automation/switch/air_freshener/timeout.yaml)
+</details>
+
+<details><summary><code>/switch/air-freshener/turn-on</code></summary>
+
+**Entity ID: `automation.switch_air_freshener_turn_on`**
+
+> Turn the air freshener on when the AQI is high and the Air Purifier is on: if the purifier is off then it's because something that smells nice (e.g. diffuser, incense) is on, so the freshener isn't needed; if it's on, then assume the AQI is high because of e.g. cooking, so the freshener is needed
+
+- Alias: /switch/air-freshener/turn-on
+- ID: `switch_air_freshener_turn_on`
+- Mode: `single`
+
+File: [`automation/switch/air_freshener/turn_on.yaml`](entities/automation/switch/air_freshener/turn_on.yaml)
 </details>
 
 <details><summary><code>/switch/charging-hub/turn-off</code></summary>
