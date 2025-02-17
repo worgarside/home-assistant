@@ -70,7 +70,7 @@ jobs:
 
           mv -vn sensor.plex_recently_added/custom_components/* \
             ./custom_components/plex_recently_added/
-            
+
           rm -rf sensor.plex_recently_added
 
       - name: Local Workspace Workarounds
