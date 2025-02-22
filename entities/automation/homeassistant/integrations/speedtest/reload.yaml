@@ -1,0 +1,36 @@
+---
+alias: /homeassistant/integrations/speedtest/reload
+
+id: homeassistant_integrations_speedtest_reload
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.speedtest_ping
+    to:
+      - unavailable
+      - unknown
+    for:
+      minutes: 60
+
+action:
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      variables:
+        notification_title: Speedtest Integration Reloaded
+        message: |
+          ```json
+          {{ trigger.to_state | tojson(indent=2) }}
+          ```
+
+  - service: homeassistant.reload_config_entry
+    target:
+      entity_id: sensor.speedtest_download

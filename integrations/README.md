@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (136)</h3></summary>
+<details><summary><h3>Entities (137)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -644,6 +644,19 @@ File: [`automation/homeassistant/clear_service_reload_queue_on_start.yaml`](enti
 }
 ```
 File: [`automation/homeassistant/handle_service_reload.yaml`](entities/automation/homeassistant/handle_service_reload.yaml)
+</details>
+
+<details><summary><code>/homeassistant/integrations/speedtest/reload</code></summary>
+
+**Entity ID: `automation.homeassistant_integrations_speedtest_reload`**
+
+> *No description provided*
+
+- Alias: /homeassistant/integrations/speedtest/reload
+- ID: `homeassistant_integrations_speedtest_reload`
+- Mode: `single`
+
+File: [`automation/homeassistant/integrations/speedtest/reload.yaml`](entities/automation/homeassistant/integrations/speedtest/reload.yaml)
 </details>
 
 <details><summary><code>/homeassistant/load-gh-cli-on-start</code></summary>
