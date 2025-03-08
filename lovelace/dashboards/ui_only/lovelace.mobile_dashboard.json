@@ -156,19 +156,19 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.bedroom_door_sensor_contact"
+                          "entity": "binary_sensor.bedroom_door"
                         },
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.bedroom_window_sensor_contact"
+                          "entity": "binary_sensor.bedroom_window"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.bedroom_climate_sensor_temperature"
+                          "entity": "sensor.bedroom_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.bedroom_climate_sensor_humidity"
+                          "entity": "sensor.bedroom_humidity"
                         }
                       ]
                     }
@@ -212,23 +212,22 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.front_door_sensor_contact"
+                          "entity": "binary_sensor.front_door"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.hallway_climate_sensor_temperature"
+                          "entity": "sensor.hallway_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.hallway_climate_sensor_humidity"
+                          "entity": "sensor.hallway_humidity"
                         },
                         {
                           "type": "entity",
                           "entity": "switch.air_freshener",
                           "tap_action": {
                             "action": "toggle"
-                          },
-                          "icon": "mdi:air-filter"
+                          }
                         }
                       ]
                     }
@@ -254,32 +253,19 @@
                       "layout": "horizontal"
                     },
                     {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.kitchen_counter_lights",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "none"
-                      }
-                    },
-                    {
                       "type": "custom:mushroom-chips-card",
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.kitchen_door_sensor_contact"
+                          "entity": "binary_sensor.kitchen_door"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.kitchen_climate_sensor_temperature"
+                          "entity": "sensor.kitchen_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.kitchen_climate_sensor_humidity"
+                          "entity": "sensor.kitchen_humidity"
                         }
                       ]
                     }
@@ -449,7 +435,7 @@
                         },
                         {
                           "type": "custom:mushroom-light-card",
-                          "entity": "light.disco_ball_spotlight",
+                          "entity": "light.disco_light",
                           "primary_info": "state",
                           "secondary_info": "name",
                           "use_light_color": true,
@@ -492,15 +478,15 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.lounge_window_sensor_contact"
+                          "entity": "binary_sensor.lounge_window"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.lounge_climate_sensor_temperature"
+                          "entity": "sensor.lounge_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.lounge_climate_sensor_humidity"
+                          "entity": "sensor.lounge_humidity"
                         },
                         {
                           "type": "entity",
@@ -666,19 +652,19 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.office_door_sensor_contact"
+                          "entity": "binary_sensor.office_door"
                         },
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.office_window_sensor_contact"
+                          "entity": "binary_sensor.office_window"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.office_climate_sensor_temperature"
+                          "entity": "sensor.office_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.office_climate_sensor_humidity"
+                          "entity": "sensor.office_humidity"
                         }
                       ]
                     }
