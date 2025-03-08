@@ -760,27 +760,27 @@
                         "type": "custom:mini-graph-card",
                         "entities": [
                           {
-                            "entity": "sensor.bedroom_temperature",
+                            "entity": "sensor.bedroom_climate_sensor_temperature",
                             "name": "Bedroom",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.hallway_temperature",
+                            "entity": "sensor.hallway_climate_sensor_temperature",
                             "name": "Hallway",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.kitchen_temperature",
+                            "entity": "sensor.kitchen_climate_sensor_temperature",
                             "name": "Kitchen",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.lounge_temperature",
+                            "entity": "sensor.lounge_climate_sensor_temperature",
                             "name": "Lounge",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.office_temperature",
+                            "entity": "sensor.office_climate_sensor_temperature",
                             "name": "Office",
                             "smoothing": true
                           }
@@ -811,27 +811,27 @@
                         "type": "custom:mini-graph-card",
                         "entities": [
                           {
-                            "entity": "sensor.bedroom_humidity",
+                            "entity": "sensor.bedroom_climate_sensor_humidity",
                             "name": "Bedroom",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.hallway_humidity",
+                            "entity": "sensor.hallway_climate_sensor_humidity",
                             "name": "Hallway",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.kitchen_humidity",
+                            "entity": "sensor.kitchen_climate_sensor_humidity",
                             "name": "Kitchen",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.lounge_humidity",
+                            "entity": "sensor.lounge_climate_sensor_humidity",
                             "name": "Lounge",
                             "smoothing": true
                           },
                           {
-                            "entity": "sensor.office_humidity",
+                            "entity": "sensor.office_climate_sensor_humidity",
                             "name": "Office",
                             "smoothing": true
                           }
@@ -977,6 +977,56 @@
                     }
                   ],
                   "columns": 2
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.air_purifier_pm2_5",
+                      "name": "Air Quality",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.air_purifier_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "gray"
+                    }
+                  ],
+                  "hours_to_show": 6,
+                  "hour24": true,
+                  "points_per_hour": 30,
+                  "line_width": 2,
+                  "min_bound_range": 10,
+                  "lower_bound": "~0",
+                  "upper_bound": "~55",
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 4,
+                  "show": {
+                    "fill": true,
+                    "legend": true,
+                    "labels": true
+                  },
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#28d20d"
+                    },
+                    {
+                      "value": 12,
+                      "color": "#a0ac00"
+                    },
+                    {
+                      "value": 35,
+                      "color": "#da7800"
+                    },
+                    {
+                      "value": 55,
+                      "color": "#f62727"
+                    }
+                  ]
                 }
               ]
             },
@@ -999,7 +1049,7 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.front_door",
+                          "entity": "binary_sensor.front_door_sensor_contact",
                           "secondary_info": "last-changed",
                           "name": "Front Door"
                         },
@@ -1640,7 +1690,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E56619"
+                          "color": "#E54E19"
                         },
                         {
                           "name": "AppDaemon"
@@ -1655,7 +1705,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5B219"
+                          "color": "#E58319"
                         },
                         {
                           "name": "ESPHome"
@@ -1670,7 +1720,22 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#CCE519"
+                          "color": "#E5B919"
+                        },
+                        {
+                          "name": "FlareSolverr"
+                        },
+                        {
+                          "slug": "flaresolverr"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#DCE519"
                         },
                         {
                           "name": "Grafana"
@@ -1685,7 +1750,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#7FE519"
+                          "color": "#A7E519"
                         },
                         {
                           "name": "InfluxDB"
@@ -1700,7 +1765,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#33E519"
+                          "color": "#72E519"
                         },
                         {
                           "name": "Google Drive Backup"
@@ -1715,7 +1780,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E54C"
+                          "color": "#3CE519"
                         },
                         {
                           "name": "Item Warehouse API"
@@ -1730,7 +1795,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E599"
+                          "color": "#19E52B"
                         },
                         {
                           "name": "Item Warehouse Website"
@@ -1745,7 +1810,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E5E5"
+                          "color": "#19E560"
                         },
                         {
                           "name": "MariaDB"
@@ -1760,7 +1825,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#1998E5"
+                          "color": "#19E595"
                         },
                         {
                           "name": "Matter Server"
@@ -1775,7 +1840,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#194CE5"
+                          "color": "#19E5CA"
                         },
                         {
                           "name": "Mosquitto Broker"
@@ -1790,7 +1855,37 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#3219E5"
+                          "color": "#19CAE5"
+                        },
+                        {
+                          "name": "Nextcloud"
+                        },
+                        {
+                          "slug": "nextcloud"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#1995E5"
+                        },
+                        {
+                          "name": "NGINX Proxy Manager"
+                        },
+                        {
+                          "slug": "nginx_proxy_manager"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#1960E5"
                         },
                         {
                           "name": "Plex Media Server"
@@ -1805,13 +1900,13 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#7F19E5"
+                          "color": "#192BE5"
                         },
                         {
-                          "name": "Silicon Labs Multiprotocol"
+                          "name": "Portainer"
                         },
                         {
-                          "slug": "silicon_labs_multiprotocol_add_on"
+                          "slug": "portainer"
                         }
                       ]
                     },
@@ -1820,7 +1915,37 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#CB19E5"
+                          "color": "#3C19E5"
+                        },
+                        {
+                          "name": "Prowlarr"
+                        },
+                        {
+                          "slug": "prowlarr"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#7219E5"
+                        },
+                        {
+                          "name": "Sonarr"
+                        },
+                        {
+                          "slug": "sonarr"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#A719E5"
                         },
                         {
                           "name": "SponsorBlock"
@@ -1835,7 +1960,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519B2"
+                          "color": "#DC19E5"
                         },
                         {
                           "name": "Terminal & SSH"
@@ -1850,13 +1975,43 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E51965"
+                          "color": "#E519B9"
+                        },
+                        {
+                          "name": "Transmission"
+                        },
+                        {
+                          "slug": "transmission"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#E51983"
                         },
                         {
                           "name": "VSCode"
                         },
                         {
                           "slug": "visual_studio_code_add_on"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#E5194E"
+                        },
+                        {
+                          "name": "Zigbee2MQTT"
+                        },
+                        {
+                          "slug": "zigbee2mqtt"
                         }
                       ]
                     }
@@ -1872,63 +2027,91 @@
                     },
                     {
                       "entity": "sensor.appdaemon_cpu_usage",
-                      "color": "#E56619"
+                      "color": "#E54E19"
                     },
                     {
                       "entity": "sensor.esphome_add_on_cpu_usage",
-                      "color": "#E5B219"
+                      "color": "#E58319"
+                    },
+                    {
+                      "entity": "sensor.flaresolverr_cpu_usage",
+                      "color": "#E5B919"
                     },
                     {
                       "entity": "sensor.grafana_cpu_usage",
-                      "color": "#CCE519"
+                      "color": "#DCE519"
                     },
                     {
                       "entity": "sensor.influxdb_cpu_usage",
-                      "color": "#7FE519"
+                      "color": "#A7E519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_cpu_usage",
-                      "color": "#33E519"
+                      "color": "#72E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_cpu_usage",
-                      "color": "#19E54C"
+                      "color": "#3CE519"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_cpu_usage",
-                      "color": "#19E599"
+                      "color": "#19E52B"
                     },
                     {
                       "entity": "sensor.mariadb_cpu_usage",
-                      "color": "#19E5E5"
+                      "color": "#19E560"
                     },
                     {
                       "entity": "sensor.matter_server_cpu_usage",
-                      "color": "#1998E5"
+                      "color": "#19E595"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_cpu_usage",
-                      "color": "#194CE5"
+                      "color": "#19E5CA"
+                    },
+                    {
+                      "entity": "sensor.nextcloud_cpu_usage",
+                      "color": "#19CAE5"
+                    },
+                    {
+                      "entity": "sensor.nginx_proxy_manager_cpu_usage",
+                      "color": "#1995E5"
                     },
                     {
                       "entity": "sensor.plex_media_server_cpu_usage",
-                      "color": "#3219E5"
+                      "color": "#1960E5"
                     },
                     {
-                      "entity": "sensor.silicon_labs_multiprotocol_add_on_cpu_usage",
-                      "color": "#7F19E5"
+                      "entity": "sensor.portainer_cpu_usage",
+                      "color": "#192BE5"
+                    },
+                    {
+                      "entity": "sensor.prowlarr_cpu_usage",
+                      "color": "#3C19E5"
+                    },
+                    {
+                      "entity": "sensor.sonarr_cpu_usage",
+                      "color": "#7219E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_cpu_usage",
-                      "color": "#CB19E5"
+                      "color": "#A719E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_cpu_usage",
-                      "color": "#E519B2"
+                      "color": "#DC19E5"
+                    },
+                    {
+                      "entity": "sensor.transmission_cpu_usage",
+                      "color": "#E519B9"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_cpu_usage",
-                      "color": "#E51965"
+                      "color": "#E51983"
+                    },
+                    {
+                      "entity": "sensor.zigbee2mqtt_cpu_usage",
+                      "color": "#E5194E"
                     }
                   ],
                   "show": {
@@ -1944,7 +2127,7 @@
                   "hours_to_show": 6,
                   "points_per_hour": 60,
                   "lower_bound": 0,
-                  "upper_bound": "~50",
+                  "upper_bound": "~10",
                   "height": 150,
                   "animate": false,
                   "hour24": true,
@@ -1960,63 +2143,91 @@
                     },
                     {
                       "entity": "sensor.appdaemon_memory_usage",
-                      "color": "#E56619"
+                      "color": "#E54E19"
                     },
                     {
                       "entity": "sensor.esphome_add_on_memory_usage",
-                      "color": "#E5B219"
+                      "color": "#E58319"
+                    },
+                    {
+                      "entity": "sensor.flaresolverr_memory_usage",
+                      "color": "#E5B919"
                     },
                     {
                       "entity": "sensor.grafana_memory_usage",
-                      "color": "#CCE519"
+                      "color": "#DCE519"
                     },
                     {
                       "entity": "sensor.influxdb_memory_usage",
-                      "color": "#7FE519"
+                      "color": "#A7E519"
                     },
                     {
                       "entity": "sensor.google_drive_backup_add_on_memory_usage",
-                      "color": "#33E519"
+                      "color": "#72E519"
                     },
                     {
                       "entity": "sensor.item_warehouse_api_memory_usage",
-                      "color": "#19E54C"
+                      "color": "#3CE519"
                     },
                     {
                       "entity": "sensor.item_warehouse_website_memory_usage",
-                      "color": "#19E599"
+                      "color": "#19E52B"
                     },
                     {
                       "entity": "sensor.mariadb_memory_usage",
-                      "color": "#19E5E5"
+                      "color": "#19E560"
                     },
                     {
                       "entity": "sensor.matter_server_memory_usage",
-                      "color": "#1998E5"
+                      "color": "#19E595"
                     },
                     {
                       "entity": "sensor.mosquitto_broker_memory_usage",
-                      "color": "#194CE5"
+                      "color": "#19E5CA"
+                    },
+                    {
+                      "entity": "sensor.nextcloud_memory_usage",
+                      "color": "#19CAE5"
+                    },
+                    {
+                      "entity": "sensor.nginx_proxy_manager_memory_usage",
+                      "color": "#1995E5"
                     },
                     {
                       "entity": "sensor.plex_media_server_memory_usage",
-                      "color": "#3219E5"
+                      "color": "#1960E5"
                     },
                     {
-                      "entity": "sensor.silicon_labs_multiprotocol_add_on_memory_usage",
-                      "color": "#7F19E5"
+                      "entity": "sensor.portainer_memory_usage",
+                      "color": "#192BE5"
+                    },
+                    {
+                      "entity": "sensor.prowlarr_memory_usage",
+                      "color": "#3C19E5"
+                    },
+                    {
+                      "entity": "sensor.sonarr_memory_usage",
+                      "color": "#7219E5"
                     },
                     {
                       "entity": "sensor.castsponsorskip_memory_usage",
-                      "color": "#CB19E5"
+                      "color": "#A719E5"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_memory_usage",
-                      "color": "#E519B2"
+                      "color": "#DC19E5"
+                    },
+                    {
+                      "entity": "sensor.transmission_memory_usage",
+                      "color": "#E519B9"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_memory_usage",
-                      "color": "#E51965"
+                      "color": "#E51983"
+                    },
+                    {
+                      "entity": "sensor.zigbee2mqtt_memory_usage",
+                      "color": "#E5194E"
                     }
                   ],
                   "show": {
@@ -3023,13 +3234,13 @@
                           "y_axis": "secondary"
                         },
                         {
-                          "entity": "sensor.office_humidity",
+                          "entity": "sensor.office_climate_sensor_humidity",
                           "name": "Office Humidity",
                           "color": "#4DAF50",
                           "show_line": false
                         },
                         {
-                          "entity": "sensor.office_temperature",
+                          "entity": "sensor.office_climate_sensor_temperature",
                           "name": "Office Temperature",
                           "color": "#FF9901",
                           "y_axis": "secondary",
@@ -3223,6 +3434,114 @@
                                 "id": "clock"
                               }
                             }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "clock",
+                                "priority": "clear"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "attributes": {
+                        "label": "Audio Visualiser"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "sensor.mtrxpi_audio_processor_max_magnitude",
+                            "name": "Max Magnitude"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_colormap_length",
+                            "name": "Colormap Length"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_cutoff_frequency",
+                            "name": "Cutoff Frequency"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_high_freq_x",
+                            "name": "High Freq. X"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_high_freq_y",
+                            "name": "High Freq. Y"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_low_freq_x",
+                            "name": "Low Freq. X"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_low_freq_y",
+                            "name": "Low Freq. Y"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_x_pos",
+                            "name": "X Pos"
+                          },
+                          {
+                            "entity": "number.mtrxpi_audio_visualiser_y_pos",
+                            "name": "Y Pos"
+                          },
+                          {
+                            "entity": "script.mtrxpi_audio_visualiser_set_colors",
+                            "name": "Set Colors",
+                            "type": "custom:multiple-entity-row",
+                            "show_state": false,
+                            "entities": [
+                              {
+                                "entity": "text.mtrxpi_audio_visualiser_high_magnitude_hex_color",
+                                "name": "High Magnitude"
+                              },
+                              {
+                                "entity": "text.mtrxpi_audio_visualiser_low_magnitude_hex_color",
+                                "name": "Low Magnitude"
+                              }
+                            ]
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_audio_visualiser_queue_position",
+                            "name": "Queue Position"
+                          },
+                          {
+                            "entity": "automation.mtrxpi_content_trigger_audio_visualiser",
+                            "name": "Content Trigger"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "audio-visualiser"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "audio-visualiser",
+                                "priority": "clear"
+                              }
+                            }
                           }
                         ]
                       }
@@ -3237,6 +3556,10 @@
                           {
                             "entity": "input_select.mtrxpi_media_player_source",
                             "name": "Media Player Source"
+                          },
+                          {
+                            "entity": "number.mtrxpi_now_playing_size",
+                            "name": "Size"
                           },
                           {
                             "entity": "input_number.mtrxpi_now_playing_queue_position",
@@ -3255,6 +3578,19 @@
                               "service": "script.mtrxpi_queue_content",
                               "service_data": {
                                 "id": "now-playing"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "now-playing",
+                                "priority": "clear"
                               }
                             }
                           }
@@ -3307,7 +3643,7 @@
                             "name": "Leaf Growth Chance"
                           },
                           {
-                            "entity": "number.mtrxpi_raining_grid_plant_death_propagation_speed",
+                            "entity": "number.mtrxpi_raining_grid_plant_decay_propagation_speed",
                             "name": "Plant Decay Speed"
                           },
                           {
@@ -3331,6 +3667,19 @@
                               "service": "script.mtrxpi_queue_content",
                               "service_data": {
                                 "id": "raining-grid"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "raining-grid",
+                                "priority": "clear"
                               }
                             }
                           }
@@ -3383,6 +3732,19 @@
                                 "id": "sorter"
                               }
                             }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "sorter",
+                                "priority": "clear"
+                              }
+                            }
                           }
                         ],
                         "show_header_toggle": false,
@@ -3416,6 +3778,19 @@
                             }
                           },
                           {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "gif-door-animated",
+                                "priority": "clear"
+                              }
+                            }
+                          },
+                          {
                             "type": "divider"
                           },
                           {
@@ -3431,6 +3806,19 @@
                               "service": "script.mtrxpi_queue_content",
                               "service_data": {
                                 "id": "image-door-closed"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "image-door-closed",
+                                "priority": "clear"
                               }
                             }
                           }
@@ -4451,10 +4839,6 @@
                       "color": "#4D3926"
                     },
                     {
-                      "entity": "var.truelayer_balance_monzo_savings",
-                      "color": "#FFC007"
-                    },
-                    {
                       "entity": "var.truelayer_balance_starling_current_account",
                       "color": "#6633CC"
                     },
@@ -4493,6 +4877,47 @@
                   "condition": "state",
                   "entity": "person.will",
                   "state_not": "SigTech"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "input_text.monzo_auth_token_auto_saver"
+                    },
+                    {
+                      "entity": "input_text.monzo_auth_token_cc_pot_top_up"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_amex_auto_saver"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_amex"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_hsbc"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_monzo"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_santander"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_starling_joint"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_starling"
+                    }
+                  ]
                 }
               ]
             }
@@ -4570,225 +4995,6 @@
                   "state_content": [
                     "last-changed",
                     "command"
-                  ]
-                }
-              ]
-            }
-          ],
-          "visible": [
-            {
-              "user": "8f996a70fc1d4c9ea269be0e7d85beff"
-            }
-          ],
-          "cards": []
-        },
-        {
-          "title": "ESP Dashboard",
-          "path": "esp-dashboard",
-          "icon": "mdi:chip",
-          "type": "sections",
-          "max_columns": 3,
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Soil Moisture Sensor 1"
-                },
-                {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 3,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.soil_moisture_sensor_1_esp32_battery_voltage",
-                      "name": "Battery",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "icon_color": "#F54336"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.soil_moisture_sensor_1_moisture_sensor_voltage",
-                      "name": "Sensor",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "icon_color": "#43F536"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.soil_saturation_1",
-                      "name": "Saturation",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "icon_color": "blue"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "24 Hour History",
-                  "entities": [
-                    {
-                      "entity": "sensor.soil_moisture_sensor_1_esp32_battery_voltage",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.soil_moisture_sensor_1_moisture_sensor_voltage",
-                      "color": "#43F536"
-                    },
-                    {
-                      "entity": "sensor.soil_saturation_1",
-                      "color": "var(--blue-color)",
-                      "y_axis": "secondary"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "legend": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "labels_secondary": true,
-                    "unit": true
-                  },
-                  "hours_to_show": 24,
-                  "points_per_hour": 10,
-                  "lower_bound": 0,
-                  "upper_bound": "~4",
-                  "lower_bound_secondary": 0,
-                  "upper_bound_secondary": 100,
-                  "height": 150,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                },
-                {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 2,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.soil_moisture_sensor_1_lower_limit",
-                      "name": "Lower Limit (Wet)",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "icon_color": "light-blue"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.soil_moisture_sensor_1_upper_limit",
-                      "name": "Upper Limit (Dry)",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "icon_color": "brown"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Soil Moisture Sensor 2"
-                },
-                {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 3,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.soil_moisture_sensor_2_esp32_battery_voltage",
-                      "name": "Battery",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "icon_color": "#F54336"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.soil_moisture_sensor_2_moisture_sensor_voltage",
-                      "name": "Sensor",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "icon_color": "#43F536"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.soil_saturation_2",
-                      "name": "Saturation",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "icon_color": "blue"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "24 Hour History",
-                  "entities": [
-                    {
-                      "entity": "sensor.soil_moisture_sensor_2_esp32_battery_voltage",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.soil_moisture_sensor_2_moisture_sensor_voltage",
-                      "color": "#43F536"
-                    },
-                    {
-                      "entity": "sensor.soil_saturation_2",
-                      "color": "var(--blue-color)",
-                      "y_axis": "secondary"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "legend": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "labels_secondary": true,
-                    "unit": true
-                  },
-                  "hours_to_show": 24,
-                  "points_per_hour": 10,
-                  "lower_bound": 0,
-                  "upper_bound": "~4",
-                  "lower_bound_secondary": 0,
-                  "upper_bound_secondary": 100,
-                  "height": 150,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                },
-                {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 2,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.soil_moisture_sensor_2_lower_limit",
-                      "name": "Lower Limit (Wet)",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "icon_color": "light-blue"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "input_number.soil_moisture_sensor_2_upper_limit",
-                      "name": "Upper Limit (Dry)",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "icon_color": "brown"
-                    }
                   ]
                 }
               ]
@@ -4891,6 +5097,103 @@
                   ]
                 }
               ]
+            }
+          ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Media",
+          "path": "media",
+          "icon": "mdi:play-network-outline",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "phu:sonarr",
+                  "heading_style": "title",
+                  "heading": "TV Shows",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.home_assistant_library_tv_programmes"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:upcoming-media-card",
+                  "entity": "sensor.sonarr_upcoming_media",
+                  "image_style": "fanart",
+                  "collapse": "flag=true",
+                  "sort_by": "airdate",
+                  "enable_tooltips": true,
+                  "clock": 24
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Movies",
+                  "heading_style": "title",
+                  "icon": "phu:radarr",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.home_assistant_library_films"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:upcoming-media-card",
+                  "entity": "sensor.radarr_upcoming_media",
+                  "image_style": "fanart",
+                  "collapse": "flag=true",
+                  "sort_by": "airdate",
+                  "enable_tooltips": true,
+                  "clock": 24
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Recently Added",
+                  "heading_style": "title",
+                  "icon": "mdi:plex"
+                },
+                {
+                  "type": "custom:upcoming-media-card",
+                  "entity": "sensor.plex_recently_added",
+                  "image_style": "fanart",
+                  "collapse": "flag=true",
+                  "sort_by": "airdate",
+                  "enable_tooltips": true,
+                  "clock": 24,
+                  "date": "ddmm"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "path": "z2m-map",
+          "title": "Z2M Map",
+          "icon": "si:zigbee2mqtt",
+          "subview": true,
+          "cards": [
+            {
+              "type": "custom:zigbee2mqtt-networkmap",
+              "entity": "sensor.zigbee2mqtt_network_map"
             }
           ]
         }
