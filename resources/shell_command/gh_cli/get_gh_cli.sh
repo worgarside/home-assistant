@@ -1,7 +1,7 @@
 #!/bin/bash
 
 GH_CLI_VERSION="2.51.0"
-TARBALL_FILE=gh_"$GH_CLI_VERSION"_linux_arm64.tar.gz
+TARBALL_FILE=gh_"$GH_CLI_VERSION"_linux_amd64.tar.gz
 
 # Download CLI
 wget \
