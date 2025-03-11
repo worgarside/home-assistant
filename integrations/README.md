@@ -2107,17 +2107,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (42)</h3></summary>
-
-<details><summary><strong>AdGuard Status</strong></summary>
-
-**Entity ID: `sensor.adguard_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_adguard/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/adguard_status.yaml`](entities/command_line/sensor/addons/adguard_status.yaml)
-</details>
+<details><summary><h3>Entities (26)</h3></summary>
 
 <details><summary><strong>AppDaemon Status</strong></summary>
 
@@ -2149,16 +2139,6 @@ File: [`command_line/sensor/addons/castsponsorskip_status.yaml`](entities/comman
 File: [`command_line/sensor/addons/esphome_add_on_status.yaml`](entities/command_line/sensor/addons/esphome_add_on_status.yaml)
 </details>
 
-<details><summary><strong>FlareSolverr Status</strong></summary>
-
-**Entity ID: `sensor.flare_solverr_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/db21ed7f_flaresolverr/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/flare_solverr_status.yaml`](entities/command_line/sensor/addons/flare_solverr_status.yaml)
-</details>
-
 <details><summary><strong>Google Drive Backup Add-on Status</strong></summary>
 
 **Entity ID: `sensor.google_drive_backup_add_on_status`**
@@ -2167,26 +2147,6 @@ File: [`command_line/sensor/addons/flare_solverr_status.yaml`](entities/command_
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/google_drive_backup_add_on_status.yaml`](entities/command_line/sensor/addons/google_drive_backup_add_on_status.yaml)
-</details>
-
-<details><summary><strong>Grafana Status</strong></summary>
-
-**Entity ID: `sensor.grafana_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_grafana/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/grafana_status.yaml`](entities/command_line/sensor/addons/grafana_status.yaml)
-</details>
-
-<details><summary><strong>InfluxDB Status</strong></summary>
-
-**Entity ID: `sensor.influxdb_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_influxdb/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/influxdb_status.yaml`](entities/command_line/sensor/addons/influxdb_status.yaml)
 </details>
 
 <details><summary><strong>Item Warehouse API Status</strong></summary>
@@ -2209,106 +2169,6 @@ File: [`command_line/sensor/addons/item_warehouse_api.yaml`](entities/command_li
 File: [`command_line/sensor/addons/item_warehouse_website.yaml`](entities/command_line/sensor/addons/item_warehouse_website.yaml)
 </details>
 
-<details><summary><strong>MariaDB Status</strong></summary>
-
-**Entity ID: `sensor.mariadb_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_mariadb/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/mariadb_status.yaml`](entities/command_line/sensor/addons/mariadb_status.yaml)
-</details>
-
-<details><summary><strong>Matter Server Status</strong></summary>
-
-**Entity ID: `sensor.matter_server_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_matter_server/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/matter_server_status.yaml`](entities/command_line/sensor/addons/matter_server_status.yaml)
-</details>
-
-<details><summary><strong>Mosquitto Broker Status</strong></summary>
-
-**Entity ID: `sensor.mosquitto_broker_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_mosquitto/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/mosquitto_broker_status.yaml`](entities/command_line/sensor/addons/mosquitto_broker_status.yaml)
-</details>
-
-<details><summary><strong>Nextcloud Status</strong></summary>
-
-**Entity ID: `sensor.nextcloud_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/db21ed7f_nextcloud_ocr/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/nextcloud_status.yaml`](entities/command_line/sensor/addons/nextcloud_status.yaml)
-</details>
-
-<details><summary><strong>Nginx Proxy Manager Status</strong></summary>
-
-**Entity ID: `sensor.nginx_proxy_manager_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_nginxproxymanager/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/nginx_proxy_manager_status.yaml`](entities/command_line/sensor/addons/nginx_proxy_manager_status.yaml)
-</details>
-
-<details><summary><strong>Plex Media Server Status</strong></summary>
-
-**Entity ID: `sensor.plex_media_server_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_plex/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/plex_media_server_status.yaml`](entities/command_line/sensor/addons/plex_media_server_status.yaml)
-</details>
-
-<details><summary><strong>Portainer Status</strong></summary>
-
-**Entity ID: `sensor.portainer_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/db21ed7f_portainer/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/portainer_status.yaml`](entities/command_line/sensor/addons/portainer_status.yaml)
-</details>
-
-<details><summary><strong>Prowlarr Status</strong></summary>
-
-**Entity ID: `sensor.prowlarr_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_prowlarr/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/prowlarr_status.yaml`](entities/command_line/sensor/addons/prowlarr_status.yaml)
-</details>
-
-<details><summary><strong>Silicon Labs Multiprotocol Add-on Status</strong></summary>
-
-**Entity ID: `sensor.silicon_labs_multiprotocol_add_on_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/core_silabs_multiprotocol/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/silicon_labs_multiprotocol_add_on_status.yaml`](entities/command_line/sensor/addons/silicon_labs_multiprotocol_add_on_status.yaml)
-</details>
-
-<details><summary><strong>Sonarr Status</strong></summary>
-
-**Entity ID: `sensor.sonarr_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_sonarr/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/sonarr_status.yaml`](entities/command_line/sensor/addons/sonarr_status.yaml)
-</details>
-
 <details><summary><strong>Terminal & SSH Add-on Status</strong></summary>
 
 **Entity ID: `sensor.terminal_ssh_add_on_status`**
@@ -2317,16 +2177,6 @@ File: [`command_line/sensor/addons/sonarr_status.yaml`](entities/command_line/se
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/terminal_ssh_add_on_status.yaml`](entities/command_line/sensor/addons/terminal_ssh_add_on_status.yaml)
-</details>
-
-<details><summary><strong>Transmission Status</strong></summary>
-
-**Entity ID: `sensor.transmission_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/db21ed7f_transmission_openvpn/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/transmission_status.yaml`](entities/command_line/sensor/addons/transmission_status.yaml)
 </details>
 
 <details><summary><strong>Visual Studio Code Add-on Status</strong></summary>
@@ -2347,16 +2197,6 @@ File: [`command_line/sensor/addons/visual_studio_code_add_on_status.yaml`](entit
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/yas_209_bridge_status.yaml`](entities/command_line/sensor/addons/yas_209_bridge_status.yaml)
-</details>
-
-<details><summary><strong>Zigbee2MQTT Status</strong></summary>
-
-**Entity ID: `sensor.zigbee2mqtt_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/45df7312_zigbee2mqtt/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/zigbee2mqtt_status.yaml`](entities/command_line/sensor/addons/zigbee2mqtt_status.yaml)
 </details>
 
 <details><summary><strong>Current GH CLI User</strong></summary>
@@ -6737,7 +6577,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (109)</h3></summary>
+<details><summary><h3>Entities (77)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6915,26 +6755,6 @@ File: [`template/binary_sensor/work_macbook_pro_docked.yaml`](entities/template/
 File: [`template/image/prusa_i3_thumbnail.yaml`](entities/template/image/prusa_i3_thumbnail.yaml)
 </details>
 
-<details><summary><strong>AdGuard CPU Usage</strong></summary>
-
-**Entity ID: `sensor.adguard_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/adguard_cpu_usage.yaml`](entities/template/sensor/addon_stats/adguard_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>AdGuard Memory Usage</strong></summary>
-
-**Entity ID: `sensor.adguard_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/adguard_memory_usage.yaml`](entities/template/sensor/addon_stats/adguard_memory_usage.yaml)
-</details>
-
 <details><summary><strong>AppDaemon CPU Usage</strong></summary>
 
 **Entity ID: `sensor.appdaemon_cpu_usage`**
@@ -6995,26 +6815,6 @@ File: [`template/sensor/addon_stats/esphome_add_on_cpu_usage.yaml`](entities/tem
 File: [`template/sensor/addon_stats/esphome_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/esphome_add_on_memory_usage.yaml)
 </details>
 
-<details><summary><strong>FlareSolverr CPU Usage</strong></summary>
-
-**Entity ID: `sensor.flaresolverr_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/flaresolverr_cpu_usage.yaml`](entities/template/sensor/addon_stats/flaresolverr_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>FlareSolverr Memory Usage</strong></summary>
-
-**Entity ID: `sensor.flaresolverr_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/flaresolverr_memory_usage.yaml`](entities/template/sensor/addon_stats/flaresolverr_memory_usage.yaml)
-</details>
-
 <details><summary><strong>Google Drive Backup Add-on CPU Usage</strong></summary>
 
 **Entity ID: `sensor.google_drive_backup_add_on_cpu_usage`**
@@ -7033,46 +6833,6 @@ File: [`template/sensor/addon_stats/google_drive_backup_add_on_cpu_usage.yaml`](
 - Unit Of Measurement: %
 
 File: [`template/sensor/addon_stats/google_drive_backup_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/google_drive_backup_add_on_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Grafana CPU Usage</strong></summary>
-
-**Entity ID: `sensor.grafana_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/grafana_cpu_usage.yaml`](entities/template/sensor/addon_stats/grafana_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Grafana Memory Usage</strong></summary>
-
-**Entity ID: `sensor.grafana_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/grafana_memory_usage.yaml`](entities/template/sensor/addon_stats/grafana_memory_usage.yaml)
-</details>
-
-<details><summary><strong>InfluxDB CPU Usage</strong></summary>
-
-**Entity ID: `sensor.influxdb_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/influxdb_cpu_usage.yaml`](entities/template/sensor/addon_stats/influxdb_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>InfluxDB Memory Usage</strong></summary>
-
-**Entity ID: `sensor.influxdb_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/influxdb_memory_usage.yaml`](entities/template/sensor/addon_stats/influxdb_memory_usage.yaml)
 </details>
 
 <details><summary><strong>Item Warehouse API CPU Usage</strong></summary>
@@ -7115,206 +6875,6 @@ File: [`template/sensor/addon_stats/item_warehouse_website_cpu_usage.yaml`](enti
 File: [`template/sensor/addon_stats/item_warehouse_website_memory_usage.yaml`](entities/template/sensor/addon_stats/item_warehouse_website_memory_usage.yaml)
 </details>
 
-<details><summary><strong>MariaDB CPU Usage</strong></summary>
-
-**Entity ID: `sensor.mariadb_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/mariadb_cpu_usage.yaml`](entities/template/sensor/addon_stats/mariadb_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>MariaDB Memory Usage</strong></summary>
-
-**Entity ID: `sensor.mariadb_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/mariadb_memory_usage.yaml`](entities/template/sensor/addon_stats/mariadb_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Matter Server CPU Usage</strong></summary>
-
-**Entity ID: `sensor.matter_server_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/matter_server_cpu_usage.yaml`](entities/template/sensor/addon_stats/matter_server_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Matter Server Memory Usage</strong></summary>
-
-**Entity ID: `sensor.matter_server_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/matter_server_memory_usage.yaml`](entities/template/sensor/addon_stats/matter_server_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Mosquitto Broker CPU Usage</strong></summary>
-
-**Entity ID: `sensor.mosquitto_broker_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/mosquitto_broker_cpu_usage.yaml`](entities/template/sensor/addon_stats/mosquitto_broker_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Mosquitto Broker Memory Usage</strong></summary>
-
-**Entity ID: `sensor.mosquitto_broker_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/mosquitto_broker_memory_usage.yaml`](entities/template/sensor/addon_stats/mosquitto_broker_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Nextcloud CPU Usage</strong></summary>
-
-**Entity ID: `sensor.nextcloud_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/nextcloud_cpu_usage.yaml`](entities/template/sensor/addon_stats/nextcloud_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Nextcloud Memory Usage</strong></summary>
-
-**Entity ID: `sensor.nextcloud_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/nextcloud_memory_usage.yaml`](entities/template/sensor/addon_stats/nextcloud_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Nginx Proxy Manager CPU Usage</strong></summary>
-
-**Entity ID: `sensor.nginx_proxy_manager_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/nginx_proxy_manager_cpu_usage.yaml`](entities/template/sensor/addon_stats/nginx_proxy_manager_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Nginx Proxy Manager Memory Usage</strong></summary>
-
-**Entity ID: `sensor.nginx_proxy_manager_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/nginx_proxy_manager_memory_usage.yaml`](entities/template/sensor/addon_stats/nginx_proxy_manager_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Plex Media Server CPU Usage</strong></summary>
-
-**Entity ID: `sensor.plex_media_server_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/plex_media_server_cpu_usage.yaml`](entities/template/sensor/addon_stats/plex_media_server_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Plex Media Server Memory Usage</strong></summary>
-
-**Entity ID: `sensor.plex_media_server_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/plex_media_server_memory_usage.yaml`](entities/template/sensor/addon_stats/plex_media_server_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Portainer CPU Usage</strong></summary>
-
-**Entity ID: `sensor.portainer_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/portainer_cpu_usage.yaml`](entities/template/sensor/addon_stats/portainer_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Portainer Memory Usage</strong></summary>
-
-**Entity ID: `sensor.portainer_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/portainer_memory_usage.yaml`](entities/template/sensor/addon_stats/portainer_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Prowlarr CPU Usage</strong></summary>
-
-**Entity ID: `sensor.prowlarr_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/prowlarr_cpu_usage.yaml`](entities/template/sensor/addon_stats/prowlarr_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Prowlarr Memory Usage</strong></summary>
-
-**Entity ID: `sensor.prowlarr_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/prowlarr_memory_usage.yaml`](entities/template/sensor/addon_stats/prowlarr_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Silicon Labs Multiprotocol Add-on CPU Usage</strong></summary>
-
-**Entity ID: `sensor.silicon_labs_multiprotocol_add_on_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/silicon_labs_multiprotocol_add_on_cpu_usage.yaml`](entities/template/sensor/addon_stats/silicon_labs_multiprotocol_add_on_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Silicon Labs Multiprotocol Add-on Memory Usage</strong></summary>
-
-**Entity ID: `sensor.silicon_labs_multiprotocol_add_on_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/silicon_labs_multiprotocol_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/silicon_labs_multiprotocol_add_on_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Sonarr CPU Usage</strong></summary>
-
-**Entity ID: `sensor.sonarr_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/sonarr_cpu_usage.yaml`](entities/template/sensor/addon_stats/sonarr_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Sonarr Memory Usage</strong></summary>
-
-**Entity ID: `sensor.sonarr_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/sonarr_memory_usage.yaml`](entities/template/sensor/addon_stats/sonarr_memory_usage.yaml)
-</details>
-
 <details><summary><strong>Terminal & SSH Add-on CPU Usage</strong></summary>
 
 **Entity ID: `sensor.terminal_ssh_add_on_cpu_usage`**
@@ -7333,26 +6893,6 @@ File: [`template/sensor/addon_stats/terminal_ssh_add_on_cpu_usage.yaml`](entitie
 - Unit Of Measurement: %
 
 File: [`template/sensor/addon_stats/terminal_ssh_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/terminal_ssh_add_on_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Transmission CPU Usage</strong></summary>
-
-**Entity ID: `sensor.transmission_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/transmission_cpu_usage.yaml`](entities/template/sensor/addon_stats/transmission_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Transmission Memory Usage</strong></summary>
-
-**Entity ID: `sensor.transmission_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/transmission_memory_usage.yaml`](entities/template/sensor/addon_stats/transmission_memory_usage.yaml)
 </details>
 
 <details><summary><strong>Visual Studio Code Add-on CPU Usage</strong></summary>
@@ -7393,26 +6933,6 @@ File: [`template/sensor/addon_stats/yas_209_bridge_cpu_usage.yaml`](entities/tem
 - Unit Of Measurement: %
 
 File: [`template/sensor/addon_stats/yas_209_bridge_memory_usage.yaml`](entities/template/sensor/addon_stats/yas_209_bridge_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Zigbee2MQTT CPU Usage</strong></summary>
-
-**Entity ID: `sensor.zigbee2mqtt_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/zigbee2mqtt_cpu_usage.yaml`](entities/template/sensor/addon_stats/zigbee2mqtt_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Zigbee2MQTT Memory Usage</strong></summary>
-
-**Entity ID: `sensor.zigbee2mqtt_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/zigbee2mqtt_memory_usage.yaml`](entities/template/sensor/addon_stats/zigbee2mqtt_memory_usage.yaml)
 </details>
 
 <details><summary><strong>Address Line 1</strong></summary>
