@@ -2,7 +2,7 @@
 # https://www.home-assistant.io/integrations/recorder
 
 recorder:
-  db_url: !secret mariadb_db_url
+  db_url: !secret db_url
   purge_keep_days: 60
   exclude:
     domains:
