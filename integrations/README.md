@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (137)</h3></summary>
+<details><summary><h3>Entities (136)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1193,19 +1193,6 @@ File: [`automation/octopi/cpu_fan_control.yaml`](entities/automation/octopi/cpu_
 - Mode: `restart`
 
 File: [`automation/person/nobody_home.yaml`](entities/automation/person/nobody_home.yaml)
-</details>
-
-<details><summary><code>/person/vic/toggle-adguard</code></summary>
-
-**Entity ID: `automation.person_vic_toggle_adguard`**
-
-> Turns AdGuard on when Vic is away and off when Vic is home
-
-- Alias: /person/vic/toggle-adguard
-- ID: `person_vic_toggle_adguard`
-- Mode: `single`
-
-File: [`automation/person/vic/toggle_adguard.yaml`](entities/automation/person/vic/toggle_adguard.yaml)
 </details>
 
 <details><summary><code>/person/will/home</code></summary>
