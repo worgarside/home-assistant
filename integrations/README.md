@@ -610,7 +610,7 @@ File: [`automation/homeassistant/clear_service_reload_queue_on_start.yaml`](enti
 
 ```json
 {
-  "domain": "{{ trigger.event.data.path.split('/')[3] }}",
+  "domain": "{% set parts = trigger.event.data.path.split(\"/\") %} {% if parts | length > 3 %}\n  {{ parts[3] }}\n{% endif %}",
   "service_mapping": {
     "media_player": "universal",
     "template_triggered": "template"
@@ -2107,7 +2107,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (26)</h3></summary>
+<details><summary><h3>Entities (25)</h3></summary>
 
 <details><summary><strong>AppDaemon Status</strong></summary>
 
@@ -2137,16 +2137,6 @@ File: [`command_line/sensor/addons/castsponsorskip_status.yaml`](entities/comman
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/esphome_add_on_status.yaml`](entities/command_line/sensor/addons/esphome_add_on_status.yaml)
-</details>
-
-<details><summary><strong>Google Drive Backup Add-on Status</strong></summary>
-
-**Entity ID: `sensor.google_drive_backup_add_on_status`**
-
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/cebe7a76_hassio_google_drive_backup/stats`
-- Scan Interval: 60
-
-File: [`command_line/sensor/addons/google_drive_backup_add_on_status.yaml`](entities/command_line/sensor/addons/google_drive_backup_add_on_status.yaml)
 </details>
 
 <details><summary><strong>Item Warehouse API Status</strong></summary>
@@ -6577,7 +6567,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (77)</h3></summary>
+<details><summary><h3>Entities (75)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6813,26 +6803,6 @@ File: [`template/sensor/addon_stats/esphome_add_on_cpu_usage.yaml`](entities/tem
 - Unit Of Measurement: %
 
 File: [`template/sensor/addon_stats/esphome_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/esphome_add_on_memory_usage.yaml)
-</details>
-
-<details><summary><strong>Google Drive Backup Add-on CPU Usage</strong></summary>
-
-**Entity ID: `sensor.google_drive_backup_add_on_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/google_drive_backup_add_on_cpu_usage.yaml`](entities/template/sensor/addon_stats/google_drive_backup_add_on_cpu_usage.yaml)
-</details>
-
-<details><summary><strong>Google Drive Backup Add-on Memory Usage</strong></summary>
-
-**Entity ID: `sensor.google_drive_backup_add_on_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/addon_stats/google_drive_backup_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/google_drive_backup_add_on_memory_usage.yaml)
 </details>
 
 <details><summary><strong>Item Warehouse API CPU Usage</strong></summary>
