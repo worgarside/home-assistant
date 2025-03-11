@@ -1,7 +1,7 @@
 ---
 influxdb:
   api_version: 1
-  host: a0d7b954-influxdb
+  host: !secret influxdb_host
   port: 8086
   database: homeassistant
   username: homeassistant
