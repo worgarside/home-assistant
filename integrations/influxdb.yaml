@@ -8,3 +8,4 @@ influxdb:
   token: !secret influxdb_token
   organization: !secret influxdb_organization
   bucket: !secret influxdb_bucket
+  ssl: false
