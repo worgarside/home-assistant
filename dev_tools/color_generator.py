@@ -74,31 +74,11 @@ def generate_unique_colors(n: int, *, include_prefix: bool = False) -> list[str]
 def get_addon_colors() -> None:
     """Generate colors for the Add-ons."""
     addon_names = (
-        ("AdGuard", "adguard"),
         ("AppDaemon", "appdaemon"),
         ("ESPHome", "esphome_add_on"),
-        ("FlareSolverr", "flaresolverr"),
-        ("Grafana", "grafana"),
-        ("InfluxDB", "influxdb"),
-        ("Google Drive Backup", "google_drive_backup_add_on"),
-        ("Item Warehouse API", "item_warehouse_api"),
-        ("Item Warehouse Website", "item_warehouse_website"),
-        ("MariaDB", "mariadb"),
-        ("Matter Server", "matter_server"),
-        ("Mosquitto Broker", "mosquitto_broker"),
-        ("Nextcloud", "nextcloud"),
-        ("NGINX Proxy Manager", "nginx_proxy_manager"),
-        ("Plex Media Server", "plex_media_server"),
-        ("Portainer", "portainer"),
-        ("Prowlarr", "prowlarr"),
-        # ("Silicon Labs Multiprotocol", "silicon_labs_multiprotocol_add_on"),
-        ("Sonarr", "sonarr"),
         ("SponsorBlock", "castsponsorskip"),
         ("Terminal & SSH", "terminal_ssh_add_on"),
-        ("Transmission", "transmission"),
         ("VSCode", "visual_studio_code_add_on"),
-        # ("YAS-209 Bridge", "yas_209_bridge"),
-        ("Zigbee2MQTT", "zigbee2mqtt"),
     )
 
     template = """  - type: custom:decluttering-card
