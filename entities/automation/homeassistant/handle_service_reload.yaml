@@ -12,7 +12,11 @@ trigger:
     event_type: modified
 
 variables:
-  domain: "{{ trigger.event.data.path.split('/')[3] }}"
+  domain: >-
+    {% set parts = trigger.event.data.path.split("/") %}
+    {% if parts | length > 3 %}
+      {{ parts[3] }}
+    {% endif %}
 
   service_mapping:
     media_player: universal
