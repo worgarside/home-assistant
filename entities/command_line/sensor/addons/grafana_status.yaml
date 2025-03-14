@@ -1,9 +1,0 @@
----
-sensor:
-  command: !secret addon_stats_command_grafana
-  json_attributes:
-    - data
-  name: Grafana Status
-  scan_interval: 60
-  unique_id: grafana_status
-  value_template: "{{ value_json.result }}"
