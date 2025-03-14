@@ -4,6 +4,7 @@
 proxmoxve:
   - host: !secret proxmoxve_host
     port: !secret proxmoxve_port
+    verify_ssl: false
     username: !secret proxmoxve_username
     password: !secret proxmoxve_password
     nodes:
