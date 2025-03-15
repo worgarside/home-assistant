@@ -1320,6 +1320,40 @@
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "light-green"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "6 Hour History",
+                  "entities": [
+                    {
+                      "entity": "sensor.qbittorrent_upload_speed",
+                      "name": "Upload",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.qbittorrent_download_speed",
+                      "name": "Download",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": true,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "labels_secondary": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 60,
+                  "lower_bound": 0,
+                  "upper_bound": "~20",
+                  "height": 150,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
                 }
               ]
             }
