@@ -1478,18 +1478,6 @@
                       }
                     },
                     {
-                      "type": "custom:mushroom-template-card",
-                      "primary": "{{ ( state_attr('sensor.backup_state', \"last_backup\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\")  }}",
-                      "secondary": "{{ states('sensor.backup_state').replace(\"_\", \" \").title() }}",
-                      "icon": "mdi:cloud-upload-outline",
-                      "entity": "sensor.backup_state",
-                      "icon_color": "teal",
-                      "multiline_secondary": false,
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
                       "type": "custom:mushroom-entity-card",
                       "entity": "sensor.local_ip",
                       "icon_color": "yellow",
