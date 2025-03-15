@@ -1334,6 +1334,13 @@
                       "entity": "sensor.qbittorrent_download_speed",
                       "name": "Download",
                       "color": "#2096F3"
+                    },
+                    {
+                      "entity": "sensor.storage_cc_ssd_transient_qbt_disk_used_percentage",
+                      "name": "Disk Usage",
+                      "color": "#FF9901",
+                      "y_axis": "secondary",
+                      "show_line": false
                     }
                   ],
                   "show": {
@@ -1350,8 +1357,10 @@
                   "points_per_hour": 60,
                   "lower_bound": 0,
                   "upper_bound": "~20",
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100,
                   "height": 150,
-                  "animate": true,
+                  "animate": false,
                   "hour24": true,
                   "line_width": 2
                 }
