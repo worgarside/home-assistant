@@ -1183,6 +1183,125 @@
           "cards": []
         },
         {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Proxmox VE",
+          "path": "proxmox-ve",
+          "icon": "mdi:cube",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "grid",
+                      "columns": 2,
+                      "square": false,
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.node_cc_cpu_used",
+                          "icon_color": "red",
+                          "name": "CPU Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.node_cc_memory_used_percentage",
+                          "icon_color": "blue",
+                          "name": "Memory Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.node_cc_disk_used_percentage",
+                          "icon_color": "green",
+                          "name": "Disk Usage (PVE Host)",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.companion_cube_cpu_temperature",
+                          "icon_color": "orange",
+                          "name": "CPU Temperature",
+                          "icon": "",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "6 Hour History",
+                      "entities": [
+                        {
+                          "entity": "sensor.node_cc_cpu_used",
+                          "name": "CPU",
+                          "color": "#F54336"
+                        },
+                        {
+                          "entity": "sensor.node_cc_memory_used_percentage",
+                          "name": "Memory",
+                          "color": "#2096F3"
+                        },
+                        {
+                          "entity": "sensor.node_cc_disk_used_percentage",
+                          "name": "Disk Usage",
+                          "color": "#4DAF50"
+                        },
+                        {
+                          "entity": "sensor.companion_cube_cpu_temperature",
+                          "name": "CPU Temperature",
+                          "color": "#FF9901",
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "show": {
+                        "state": false,
+                        "legend": false,
+                        "fill": "fade",
+                        "name": true,
+                        "icon": false,
+                        "labels": true,
+                        "labels_secondary": true,
+                        "unit": true
+                      },
+                      "hours_to_show": 6,
+                      "points_per_hour": 60,
+                      "lower_bound": 0,
+                      "upper_bound": "~50",
+                      "lower_bound_secondary": "~30",
+                      "upper_bound_secondary": "~50",
+                      "height": 150,
+                      "animate": true,
+                      "hour24": true,
+                      "line_width": 2
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "icon": "mdi:raspberry-pi",
           "title": "HAssPi",
           "path": "hasspi",
@@ -1573,11 +1692,6 @@
                       "line_width": 2
                     }
                   ]
-                },
-                {
-                  "type": "iframe",
-                  "url": "https://grafana.worgarsi.de/d-solo/defxc2pd3s54wd/proxmox-ve?orgId=1&timezone=browser&panelId=1&__feature.dashboardSceneSolo",
-                  "aspect_ratio": "50%"
                 }
               ]
             },
