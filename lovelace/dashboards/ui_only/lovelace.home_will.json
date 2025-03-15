@@ -1307,18 +1307,18 @@
               "cards": [
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qbittorrent_active_torrents",
+                  "icon": "si:qbittorrent",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Active Torrents"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.qbittorrent_global_ratio",
                   "icon": "mdi:sprout-outline",
                   "primary_info": "state",
                   "secondary_info": "name"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qbittorrent_active_torrents",
-                  "icon": "mdi:sprout-outline",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "name": "Active Torrents"
                 }
               ]
             }
