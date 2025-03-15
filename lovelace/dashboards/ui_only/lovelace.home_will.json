@@ -1697,96 +1697,24 @@
                   "name": "CPU Usage (6 Hours)",
                   "entities": [
                     {
-                      "entity": "sensor.adguard_cpu_usage",
+                      "entity": "sensor.appdaemon_cpu_usage",
                       "color": "#E51919"
                     },
                     {
-                      "entity": "sensor.appdaemon_cpu_usage",
-                      "color": "#E54E19"
-                    },
-                    {
                       "entity": "sensor.esphome_add_on_cpu_usage",
-                      "color": "#E58319"
-                    },
-                    {
-                      "entity": "sensor.flaresolverr_cpu_usage",
-                      "color": "#E5B919"
-                    },
-                    {
-                      "entity": "sensor.grafana_cpu_usage",
-                      "color": "#DCE519"
-                    },
-                    {
-                      "entity": "sensor.influxdb_cpu_usage",
-                      "color": "#A7E519"
-                    },
-                    {
-                      "entity": "sensor.google_drive_backup_add_on_cpu_usage",
-                      "color": "#72E519"
-                    },
-                    {
-                      "entity": "sensor.item_warehouse_api_cpu_usage",
-                      "color": "#3CE519"
-                    },
-                    {
-                      "entity": "sensor.item_warehouse_website_cpu_usage",
-                      "color": "#19E52B"
-                    },
-                    {
-                      "entity": "sensor.mariadb_cpu_usage",
-                      "color": "#19E560"
-                    },
-                    {
-                      "entity": "sensor.matter_server_cpu_usage",
-                      "color": "#19E595"
-                    },
-                    {
-                      "entity": "sensor.mosquitto_broker_cpu_usage",
-                      "color": "#19E5CA"
-                    },
-                    {
-                      "entity": "sensor.nextcloud_cpu_usage",
-                      "color": "#19CAE5"
-                    },
-                    {
-                      "entity": "sensor.nginx_proxy_manager_cpu_usage",
-                      "color": "#1995E5"
-                    },
-                    {
-                      "entity": "sensor.plex_media_server_cpu_usage",
-                      "color": "#1960E5"
-                    },
-                    {
-                      "entity": "sensor.portainer_cpu_usage",
-                      "color": "#192BE5"
-                    },
-                    {
-                      "entity": "sensor.prowlarr_cpu_usage",
-                      "color": "#3C19E5"
-                    },
-                    {
-                      "entity": "sensor.sonarr_cpu_usage",
-                      "color": "#7219E5"
+                      "color": "#BCE519"
                     },
                     {
                       "entity": "sensor.castsponsorskip_cpu_usage",
-                      "color": "#A719E5"
+                      "color": "#19E56B"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_cpu_usage",
-                      "color": "#DC19E5"
-                    },
-                    {
-                      "entity": "sensor.transmission_cpu_usage",
-                      "color": "#E519B9"
+                      "color": "#196BE5"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_cpu_usage",
-                      "color": "#E51983"
-                    },
-                    {
-                      "entity": "sensor.zigbee2mqtt_cpu_usage",
-                      "color": "#E5194E"
+                      "color": "#BC19E5"
                     }
                   ],
                   "show": {
