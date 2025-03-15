@@ -1184,7 +1184,7 @@
         },
         {
           "type": "sections",
-          "max_columns": 4,
+          "max_columns": 3,
           "title": "Proxmox VE",
           "path": "proxmox-ve",
           "icon": "mdi:cube",
@@ -1311,7 +1311,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "cards": []
         },
         {
           "icon": "mdi:raspberry-pi",
