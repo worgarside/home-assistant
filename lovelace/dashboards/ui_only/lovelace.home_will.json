@@ -1540,15 +1540,6 @@
                           "name": "Disk Usage",
                           "primary_info": "state",
                           "secondary_info": "name"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.processor_temperature",
-                          "icon_color": "orange",
-                          "name": "CPU Temperature",
-                          "icon": "mdi:thermometer-lines",
-                          "primary_info": "state",
-                          "secondary_info": "name"
                         }
                       ]
                     },
@@ -1570,12 +1561,6 @@
                           "entity": "sensor.disk_use_percent",
                           "name": "Disk Usage",
                           "color": "#4DAF50"
-                        },
-                        {
-                          "entity": "sensor.processor_temperature",
-                          "name": "CPU Temperature",
-                          "color": "#FF9901",
-                          "y_axis": "secondary"
                         }
                       ],
                       "show": {
