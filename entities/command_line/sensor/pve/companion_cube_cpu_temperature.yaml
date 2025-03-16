@@ -1,0 +1,15 @@
+---
+sensor:
+  name: Companion Cube | CPU Temperature
+
+  command: >-
+    ssh -i /config/.ssh/pve root@192.168.68.199 -o StrictHostKeyChecking=no
+    sensors | grep 'Package id 0:' | awk '{print $4}' | tr -d '+°C'
+
+  unit_of_measurement: "°C"
+
+  scan_interval: 60
+
+  unique_id: companion_cube_cpu_temperature
+
+  icon: mdi:thermometer-lines

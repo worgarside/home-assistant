@@ -2107,7 +2107,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (25)</h3></summary>
+<details><summary><h3>Entities (26)</h3></summary>
 
 <details><summary><strong>AppDaemon Status</strong></summary>
 
@@ -2347,6 +2347,16 @@ File: [`command_line/sensor/github_pull_requests/wg_scripts_pull_requests.yaml`]
 - Scan Interval: 3600
 
 File: [`command_line/sensor/github_pull_requests/wg_utilities_pull_requests.yaml`](entities/command_line/sensor/github_pull_requests/wg_utilities_pull_requests.yaml)
+</details>
+
+<details><summary><strong>Companion Cube | CPU Temperature</strong></summary>
+
+**Entity ID: `sensor.companion_cube_cpu_temperature`**
+
+- Command: `ssh -i /config/.ssh/pve root@192.168.68.199 -o StrictHostKeyChecking=no sensors | grep 'Package id 0:' | awk '{print $4}' | tr -d '+°C'`
+- Scan Interval: 60
+
+File: [`command_line/sensor/pve/companion_cube_cpu_temperature.yaml`](entities/command_line/sensor/pve/companion_cube_cpu_temperature.yaml)
 </details>
 
 <details><summary><strong>Remote Git Branches</strong></summary>
