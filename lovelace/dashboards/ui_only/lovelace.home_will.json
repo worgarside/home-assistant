@@ -1183,6 +1183,194 @@
           "cards": []
         },
         {
+          "type": "sections",
+          "max_columns": 3,
+          "title": "Proxmox VE",
+          "path": "proxmox-ve",
+          "icon": "mdi:cube",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "grid",
+                      "columns": 2,
+                      "square": false,
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.node_cc_cpu_used",
+                          "icon_color": "red",
+                          "name": "CPU Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.node_cc_memory_used_percentage",
+                          "icon_color": "blue",
+                          "name": "Memory Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.node_cc_disk_used_percentage",
+                          "icon_color": "green",
+                          "name": "Disk Usage (PVE Host)",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.companion_cube_cpu_temperature",
+                          "icon_color": "orange",
+                          "name": "CPU Temperature",
+                          "icon": "",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "6 Hour History",
+                      "entities": [
+                        {
+                          "entity": "sensor.node_cc_cpu_used",
+                          "name": "CPU",
+                          "color": "#F54336"
+                        },
+                        {
+                          "entity": "sensor.node_cc_memory_used_percentage",
+                          "name": "Memory",
+                          "color": "#2096F3"
+                        },
+                        {
+                          "entity": "sensor.node_cc_disk_used_percentage",
+                          "name": "Disk Usage",
+                          "color": "#4DAF50"
+                        },
+                        {
+                          "entity": "sensor.companion_cube_cpu_temperature",
+                          "name": "CPU Temperature",
+                          "color": "#FF9901",
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "show": {
+                        "state": false,
+                        "legend": false,
+                        "fill": "fade",
+                        "name": true,
+                        "icon": false,
+                        "labels": true,
+                        "labels_secondary": true,
+                        "unit": true
+                      },
+                      "hours_to_show": 6,
+                      "points_per_hour": 60,
+                      "lower_bound": 0,
+                      "upper_bound": "~50",
+                      "lower_bound_secondary": "~30",
+                      "upper_bound_secondary": "~50",
+                      "height": 150,
+                      "animate": true,
+                      "hour24": true,
+                      "line_width": 2
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "iframe",
+                  "url": "https://grafana.worgarsi.de/d-solo/defxc2pd3s54wd/proxmox-ve?orgId=1&timezone=browser&panelId=1&__feature.dashboardSceneSolo",
+                  "aspect_ratio": "100%"
+                },
+                {
+                  "type": "iframe",
+                  "url": "https://grafana.worgarsi.de/d-solo/defxc2pd3s54wd/proxmox-ve?orgId=1&timezone=browser&panelId=2&__feature.dashboardSceneSolo",
+                  "aspect_ratio": "100%"
+                }
+              ],
+              "column_span": 2
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qbittorrent_active_torrents",
+                  "icon": "si:qbittorrent",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Active Torrents"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qbittorrent_global_ratio",
+                  "icon": "mdi:sprout-outline",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "light-green"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "6 Hour History",
+                  "entities": [
+                    {
+                      "entity": "sensor.qbittorrent_upload_speed",
+                      "name": "Upload",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.qbittorrent_download_speed",
+                      "name": "Download",
+                      "color": "#2096F3"
+                    },
+                    {
+                      "entity": "sensor.storage_cc_ssd_transient_qbt_disk_used_percentage",
+                      "name": "Disk Usage",
+                      "color": "#FF9901",
+                      "y_axis": "secondary",
+                      "show_line": false
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": true,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "labels_secondary": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 60,
+                  "lower_bound": 0,
+                  "upper_bound": "~20",
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100,
+                  "height": 150,
+                  "animate": false,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            }
+          ],
+          "cards": [],
+          "dense_section_placement": true
+        },
+        {
           "icon": "mdi:raspberry-pi",
           "title": "HAssPi",
           "path": "hasspi",
@@ -1448,61 +1636,6 @@
                         "state": false,
                         "legend": false
                       }
-                    },
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "AdGuard Home"
-                    },
-                    {
-                      "square": false,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "switch.adguard_home_protection",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "name": "AdGuard Active",
-                          "icon_color": "light-grey"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.adguard_home_dns_queries_blocked_ratio",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "name": "Block Ratio",
-                          "icon_color": "grey"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.adguard_home_average_processing_speed",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "name": "Avg. Latency",
-                          "icon_color": "dark-grey"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.adguard_home_dns_queries",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "name": "Queries",
-                          "icon_color": "blue-grey",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "browser_mod.popup",
-                            "target": {},
-                            "data": {
-                              "dismissable": true,
-                              "content": {
-                                "type": "iframe",
-                                "url": "/api/hassio_ingress/bSQ6mbQ3eJmh9ly2Tb8BE69LlikC2se-5093w1tvOlA/d-solo/bdfpycmiw5u68f/d1?orgId=1&panelId=2&from=now-30d&to=now&refresh=5m"
-                              }
-                            }
-                          }
-                        }
-                      ],
-                      "columns": 2
                     }
                   ]
                 }
@@ -1527,18 +1660,6 @@
                       "icon": "mdi:console",
                       "entity": "sensor.uptime",
                       "icon_color": "green",
-                      "multiline_secondary": false,
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-template-card",
-                      "primary": "{{ ( state_attr('sensor.backup_state', \"last_backup\") | as_datetime | as_local ).strftime(\"%Y-%m-%d %H:%M:%S\")  }}",
-                      "secondary": "{{ states('sensor.backup_state').replace(\"_\", \" \").title() }}",
-                      "icon": "mdi:cloud-upload-outline",
-                      "entity": "sensor.backup_state",
-                      "icon_color": "teal",
                       "multiline_secondary": false,
                       "tap_action": {
                         "action": "more-info"
@@ -1595,15 +1716,6 @@
                           "name": "Disk Usage",
                           "primary_info": "state",
                           "secondary_info": "name"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "sensor.processor_temperature",
-                          "icon_color": "orange",
-                          "name": "CPU Temperature",
-                          "icon": "mdi:thermometer-lines",
-                          "primary_info": "state",
-                          "secondary_info": "name"
                         }
                       ]
                     },
@@ -1625,12 +1737,6 @@
                           "entity": "sensor.disk_use_percent",
                           "name": "Disk Usage",
                           "color": "#4DAF50"
-                        },
-                        {
-                          "entity": "sensor.processor_temperature",
-                          "name": "CPU Temperature",
-                          "color": "#FF9901",
-                          "y_axis": "secondary"
                         }
                       ],
                       "show": {
@@ -1678,21 +1784,6 @@
                           "color": "#E51919"
                         },
                         {
-                          "name": "AdGuard"
-                        },
-                        {
-                          "slug": "adguard"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E54E19"
-                        },
-                        {
                           "name": "AppDaemon"
                         },
                         {
@@ -1705,7 +1796,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E58319"
+                          "color": "#BCE519"
                         },
                         {
                           "name": "ESPHome"
@@ -1720,232 +1811,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E5B919"
-                        },
-                        {
-                          "name": "FlareSolverr"
-                        },
-                        {
-                          "slug": "flaresolverr"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#DCE519"
-                        },
-                        {
-                          "name": "Grafana"
-                        },
-                        {
-                          "slug": "grafana"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#A7E519"
-                        },
-                        {
-                          "name": "InfluxDB"
-                        },
-                        {
-                          "slug": "influxdb"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#72E519"
-                        },
-                        {
-                          "name": "Google Drive Backup"
-                        },
-                        {
-                          "slug": "google_drive_backup_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#3CE519"
-                        },
-                        {
-                          "name": "Item Warehouse API"
-                        },
-                        {
-                          "slug": "item_warehouse_api"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#19E52B"
-                        },
-                        {
-                          "name": "Item Warehouse Website"
-                        },
-                        {
-                          "slug": "item_warehouse_website"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#19E560"
-                        },
-                        {
-                          "name": "MariaDB"
-                        },
-                        {
-                          "slug": "mariadb"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#19E595"
-                        },
-                        {
-                          "name": "Matter Server"
-                        },
-                        {
-                          "slug": "matter_server"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#19E5CA"
-                        },
-                        {
-                          "name": "Mosquitto Broker"
-                        },
-                        {
-                          "slug": "mosquitto_broker"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#19CAE5"
-                        },
-                        {
-                          "name": "Nextcloud"
-                        },
-                        {
-                          "slug": "nextcloud"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#1995E5"
-                        },
-                        {
-                          "name": "NGINX Proxy Manager"
-                        },
-                        {
-                          "slug": "nginx_proxy_manager"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#1960E5"
-                        },
-                        {
-                          "name": "Plex Media Server"
-                        },
-                        {
-                          "slug": "plex_media_server"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#192BE5"
-                        },
-                        {
-                          "name": "Portainer"
-                        },
-                        {
-                          "slug": "portainer"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#3C19E5"
-                        },
-                        {
-                          "name": "Prowlarr"
-                        },
-                        {
-                          "slug": "prowlarr"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#7219E5"
-                        },
-                        {
-                          "name": "Sonarr"
-                        },
-                        {
-                          "slug": "sonarr"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#A719E5"
+                          "color": "#19E56B"
                         },
                         {
                           "name": "SponsorBlock"
@@ -1960,7 +1826,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#DC19E5"
+                          "color": "#196BE5"
                         },
                         {
                           "name": "Terminal & SSH"
@@ -1975,43 +1841,13 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E519B9"
-                        },
-                        {
-                          "name": "Transmission"
-                        },
-                        {
-                          "slug": "transmission"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E51983"
+                          "color": "#BC19E5"
                         },
                         {
                           "name": "VSCode"
                         },
                         {
                           "slug": "visual_studio_code_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E5194E"
-                        },
-                        {
-                          "name": "Zigbee2MQTT"
-                        },
-                        {
-                          "slug": "zigbee2mqtt"
                         }
                       ]
                     }
@@ -2022,96 +1858,24 @@
                   "name": "CPU Usage (6 Hours)",
                   "entities": [
                     {
-                      "entity": "sensor.adguard_cpu_usage",
+                      "entity": "sensor.appdaemon_cpu_usage",
                       "color": "#E51919"
                     },
                     {
-                      "entity": "sensor.appdaemon_cpu_usage",
-                      "color": "#E54E19"
-                    },
-                    {
                       "entity": "sensor.esphome_add_on_cpu_usage",
-                      "color": "#E58319"
-                    },
-                    {
-                      "entity": "sensor.flaresolverr_cpu_usage",
-                      "color": "#E5B919"
-                    },
-                    {
-                      "entity": "sensor.grafana_cpu_usage",
-                      "color": "#DCE519"
-                    },
-                    {
-                      "entity": "sensor.influxdb_cpu_usage",
-                      "color": "#A7E519"
-                    },
-                    {
-                      "entity": "sensor.google_drive_backup_add_on_cpu_usage",
-                      "color": "#72E519"
-                    },
-                    {
-                      "entity": "sensor.item_warehouse_api_cpu_usage",
-                      "color": "#3CE519"
-                    },
-                    {
-                      "entity": "sensor.item_warehouse_website_cpu_usage",
-                      "color": "#19E52B"
-                    },
-                    {
-                      "entity": "sensor.mariadb_cpu_usage",
-                      "color": "#19E560"
-                    },
-                    {
-                      "entity": "sensor.matter_server_cpu_usage",
-                      "color": "#19E595"
-                    },
-                    {
-                      "entity": "sensor.mosquitto_broker_cpu_usage",
-                      "color": "#19E5CA"
-                    },
-                    {
-                      "entity": "sensor.nextcloud_cpu_usage",
-                      "color": "#19CAE5"
-                    },
-                    {
-                      "entity": "sensor.nginx_proxy_manager_cpu_usage",
-                      "color": "#1995E5"
-                    },
-                    {
-                      "entity": "sensor.plex_media_server_cpu_usage",
-                      "color": "#1960E5"
-                    },
-                    {
-                      "entity": "sensor.portainer_cpu_usage",
-                      "color": "#192BE5"
-                    },
-                    {
-                      "entity": "sensor.prowlarr_cpu_usage",
-                      "color": "#3C19E5"
-                    },
-                    {
-                      "entity": "sensor.sonarr_cpu_usage",
-                      "color": "#7219E5"
+                      "color": "#BCE519"
                     },
                     {
                       "entity": "sensor.castsponsorskip_cpu_usage",
-                      "color": "#A719E5"
+                      "color": "#19E56B"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_cpu_usage",
-                      "color": "#DC19E5"
-                    },
-                    {
-                      "entity": "sensor.transmission_cpu_usage",
-                      "color": "#E519B9"
+                      "color": "#196BE5"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_cpu_usage",
-                      "color": "#E51983"
-                    },
-                    {
-                      "entity": "sensor.zigbee2mqtt_cpu_usage",
-                      "color": "#E5194E"
+                      "color": "#BC19E5"
                     }
                   ],
                   "show": {
@@ -2138,96 +1902,24 @@
                   "name": "Memory Usage (6 Hours)",
                   "entities": [
                     {
-                      "entity": "sensor.adguard_memory_usage",
+                      "entity": "sensor.appdaemon_memory_usage",
                       "color": "#E51919"
                     },
                     {
-                      "entity": "sensor.appdaemon_memory_usage",
-                      "color": "#E54E19"
-                    },
-                    {
                       "entity": "sensor.esphome_add_on_memory_usage",
-                      "color": "#E58319"
-                    },
-                    {
-                      "entity": "sensor.flaresolverr_memory_usage",
-                      "color": "#E5B919"
-                    },
-                    {
-                      "entity": "sensor.grafana_memory_usage",
-                      "color": "#DCE519"
-                    },
-                    {
-                      "entity": "sensor.influxdb_memory_usage",
-                      "color": "#A7E519"
-                    },
-                    {
-                      "entity": "sensor.google_drive_backup_add_on_memory_usage",
-                      "color": "#72E519"
-                    },
-                    {
-                      "entity": "sensor.item_warehouse_api_memory_usage",
-                      "color": "#3CE519"
-                    },
-                    {
-                      "entity": "sensor.item_warehouse_website_memory_usage",
-                      "color": "#19E52B"
-                    },
-                    {
-                      "entity": "sensor.mariadb_memory_usage",
-                      "color": "#19E560"
-                    },
-                    {
-                      "entity": "sensor.matter_server_memory_usage",
-                      "color": "#19E595"
-                    },
-                    {
-                      "entity": "sensor.mosquitto_broker_memory_usage",
-                      "color": "#19E5CA"
-                    },
-                    {
-                      "entity": "sensor.nextcloud_memory_usage",
-                      "color": "#19CAE5"
-                    },
-                    {
-                      "entity": "sensor.nginx_proxy_manager_memory_usage",
-                      "color": "#1995E5"
-                    },
-                    {
-                      "entity": "sensor.plex_media_server_memory_usage",
-                      "color": "#1960E5"
-                    },
-                    {
-                      "entity": "sensor.portainer_memory_usage",
-                      "color": "#192BE5"
-                    },
-                    {
-                      "entity": "sensor.prowlarr_memory_usage",
-                      "color": "#3C19E5"
-                    },
-                    {
-                      "entity": "sensor.sonarr_memory_usage",
-                      "color": "#7219E5"
+                      "color": "#BCE519"
                     },
                     {
                       "entity": "sensor.castsponsorskip_memory_usage",
-                      "color": "#A719E5"
+                      "color": "#19E56B"
                     },
                     {
                       "entity": "sensor.terminal_ssh_add_on_memory_usage",
-                      "color": "#DC19E5"
-                    },
-                    {
-                      "entity": "sensor.transmission_memory_usage",
-                      "color": "#E519B9"
+                      "color": "#196BE5"
                     },
                     {
                       "entity": "sensor.visual_studio_code_add_on_memory_usage",
-                      "color": "#E51983"
-                    },
-                    {
-                      "entity": "sensor.zigbee2mqtt_memory_usage",
-                      "color": "#E5194E"
+                      "color": "#BC19E5"
                     }
                   ],
                   "show": {
@@ -5120,7 +4812,7 @@
                       "type": "entity",
                       "show_state": true,
                       "show_icon": true,
-                      "entity": "sensor.home_assistant_library_tv_programmes"
+                      "entity": "sensor.companion_cube_library_tv_programmes"
                     }
                   ]
                 },
@@ -5146,7 +4838,7 @@
                   "badges": [
                     {
                       "type": "entity",
-                      "entity": "sensor.home_assistant_library_films"
+                      "entity": "sensor.companion_cube_library_films"
                     }
                   ]
                 },
