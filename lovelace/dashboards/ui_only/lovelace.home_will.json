@@ -1425,6 +1425,15 @@
                   "animate": false,
                   "hour24": true,
                   "line_width": 2
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_stats_spacesaved",
+                  "icon": "",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Space Saved",
+                  "icon_color": "purple"
                 }
               ]
             }
