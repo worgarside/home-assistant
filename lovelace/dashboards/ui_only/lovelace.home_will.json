@@ -1434,6 +1434,15 @@
                   "secondary_info": "name",
                   "name": "Space Saved",
                   "icon_color": "purple"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_stats_transcodedcount",
+                  "icon": "",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "purple",
+                  "name": "Transcoded"
                 }
               ]
             }
