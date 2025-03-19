@@ -1312,7 +1312,6 @@
                     },
                     {
                       "type": "custom:mini-graph-card",
-                      "name": "6 Hour History",
                       "entities": [
                         {
                           "entity": "sensor.companion_cube_power_power",
@@ -1330,7 +1329,7 @@
                         "state": false,
                         "legend": false,
                         "fill": "fade",
-                        "name": true,
+                        "name": false,
                         "icon": false,
                         "labels": true,
                         "labels_secondary": true,
