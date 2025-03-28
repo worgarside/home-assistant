@@ -1513,6 +1513,15 @@
                   "secondary_info": "name",
                   "icon_color": "amber",
                   "name": "Transcoding Speed"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_stats_transcodefilesremaining",
+                  "icon": "mdi:file-multiple",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "amber",
+                  "name": "Pending Files"
                 }
               ]
             }
