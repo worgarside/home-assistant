@@ -1464,6 +1464,13 @@
                       "color": "#FF9901",
                       "y_axis": "secondary",
                       "show_line": false
+                    },
+                    {
+                      "entity": "sensor.storage_cc_tdarr_cache_disk_used_percentage",
+                      "name": "Disk Usage",
+                      "color": "teal",
+                      "y_axis": "secondary",
+                      "show_line": false
                     }
                   ],
                   "show": {
