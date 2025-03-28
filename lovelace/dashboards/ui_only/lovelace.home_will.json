@@ -1460,14 +1460,14 @@
                     },
                     {
                       "entity": "sensor.storage_cc_ssd_transient_qbt_disk_used_percentage",
-                      "name": "Disk Usage",
+                      "name": "QBT Storage",
                       "color": "#FF9901",
                       "y_axis": "secondary",
                       "show_line": false
                     },
                     {
                       "entity": "sensor.storage_cc_tdarr_cache_disk_used_percentage",
-                      "name": "Disk Usage",
+                      "name": "Tdarr Storage",
                       "color": "teal",
                       "y_axis": "secondary",
                       "show_line": false
