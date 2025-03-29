@@ -39,6 +39,15 @@
         "require_admin": false,
         "mode": "storage",
         "url_path": "mobile-dashboard"
+      },
+      {
+        "id": "nginx_proxy_managet",
+        "show_in_sidebar": true,
+        "icon": "si:nginxproxymanager",
+        "title": "NPM",
+        "require_admin": false,
+        "mode": "storage",
+        "url_path": "nginx-proxy-managet"
       }
     ]
   }
