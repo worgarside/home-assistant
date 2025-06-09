@@ -783,6 +783,11 @@
                             "entity": "sensor.airing_cupboard_climate_sensor_temperature",
                             "name": "Airing Cupboard",
                             "smoothing": true
+                          },
+                          {
+                            "entity": "sensor.kitchen_air_quality_sensor_temperature",
+                            "name": "Kitchen",
+                            "smoothing": true
                           }
                         ],
                         "hours_to_show": 24,
@@ -833,6 +838,11 @@
                           {
                             "entity": "sensor.airing_cupboard_climate_sensor_humidity",
                             "name": "Airing Cupboard",
+                            "smoothing": true
+                          },
+                          {
+                            "entity": "sensor.kitchen_air_quality_sensor_humidity",
+                            "name": "Kitchen",
                             "smoothing": true
                           }
                         ],
