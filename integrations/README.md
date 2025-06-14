@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (139)</h3></summary>
+<details><summary><h3>Entities (141)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -74,6 +74,38 @@ File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/a
 - Mode: `single`
 
 File: [`automation/binary_sensor/lounge_diffuser_needs_water/off.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/off.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/main-hallway-motion-sensor/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/main-hallway-motion-sensor/on
+- ID: `binary_sensor_main_hallway_motion_sensor_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/binary_sensor/main_hallway_motion_sensor/on.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/main-hallway-motion-sensor/timeout</code></summary>
+
+**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_timeout`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/main-hallway-motion-sensor/timeout
+- ID: `binary_sensor_main_hallway_motion_sensor_timeout`
+- Mode: `single`
+
+File: [`automation/binary_sensor/main_hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor/timeout.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/office-presence-sensor/state-change</code></summary>

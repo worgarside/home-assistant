@@ -36,7 +36,6 @@ condition:
       {% set other_pos = state_attr(other_entity, 'current_position') | int(default=0) %}
       {{ abs(trigger_pos - other_pos) > 2.5 }}
 
-
   # Don't run if the other blind is already moving
   - condition: template
     value_template: >-

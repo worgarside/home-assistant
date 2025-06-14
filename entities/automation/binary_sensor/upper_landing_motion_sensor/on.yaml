@@ -20,3 +20,4 @@ action:
       entity_id: light.upper_landing_light
     data:
       brightness_pct: "{{ brightness }}"
+      transition: 1
