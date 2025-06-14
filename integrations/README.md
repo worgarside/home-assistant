@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (141)</h3></summary>
+<details><summary><h3>Entities (142)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -601,6 +601,19 @@ File: [`automation/fan/air_purifier/control.yaml`](entities/automation/fan/air_p
 - Mode: `single`
 
 File: [`automation/fan/desk_fan/state_change.yaml`](entities/automation/fan/desk_fan/state_change.yaml)
+</details>
+
+<details><summary><code>/fan/kitchen-extractor-vent/control</code></summary>
+
+**Entity ID: `automation.fan_kitchen_extractor_vent_control`**
+
+> *No description provided*
+
+- Alias: /fan/kitchen-extractor-vent/control
+- ID: `fan_kitchen_extractor_vent_control`
+- Mode: `single`
+
+File: [`automation/fan/kitchen_extractor_vent/control.yaml`](entities/automation/fan/kitchen_extractor_vent/control.yaml)
 </details>
 
 <details><summary><code>/fan/prusa-i3-enclosure-fan/turn-off</code></summary>
