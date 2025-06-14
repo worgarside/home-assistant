@@ -2405,13 +2405,20 @@ File: [`command_line/sensor/remote_git_branches.yaml`](entities/command_line/sen
 
 ## Cover
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (2)</h3></summary>
 
 <details><summary><strong>Office Desk</strong></summary>
 
 **Entity ID: `cover.office_desk`**
 
 File: [`cover/office/office_desk.yaml`](entities/cover/office/office_desk.yaml)
+</details>
+
+<details><summary><strong>Will's Office Blinds</strong></summary>
+
+**Entity ID: `cover.will_s_office_blinds`**
+
+File: [`cover/will_s_office/will_s_office_blinds.yaml`](entities/cover/will_s_office/will_s_office_blinds.yaml)
 </details>
 
 </details>
