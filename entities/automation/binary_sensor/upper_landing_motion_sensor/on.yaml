@@ -1,0 +1,22 @@
+---
+alias: /binary-sensor/upper-landing-motion-sensor/on
+
+id: binary_sensor_upper_landing_motion_sensor_on
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
+    from: "off"
+    to: "on"
+
+variables:
+  brightness: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+action:
+  - service: light.turn_on
+    target:
+      entity_id: light.upper_landing_light
+    data:
+      brightness_pct: "{{ brightness }}"
