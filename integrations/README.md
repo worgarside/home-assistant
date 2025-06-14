@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (136)</h3></summary>
+<details><summary><h3>Entities (142)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -76,6 +76,38 @@ File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/a
 File: [`automation/binary_sensor/lounge_diffuser_needs_water/off.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/off.yaml)
 </details>
 
+<details><summary><code>/binary-sensor/main-hallway-motion-sensor/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/main-hallway-motion-sensor/on
+- ID: `binary_sensor_main_hallway_motion_sensor_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/binary_sensor/main_hallway_motion_sensor/on.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/main-hallway-motion-sensor/timeout</code></summary>
+
+**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_timeout`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/main-hallway-motion-sensor/timeout
+- ID: `binary_sensor_main_hallway_motion_sensor_timeout`
+- Mode: `single`
+
+File: [`automation/binary_sensor/main_hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor/timeout.yaml)
+</details>
+
 <details><summary><code>/binary-sensor/office-presence-sensor/state-change</code></summary>
 
 **Entity ID: `automation.binary_sensor_office_presence_sensor_state_change`**
@@ -126,6 +158,38 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 }
 ```
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/upper-landing-motion-sensor/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_upper_landing_motion_sensor_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/upper-landing-motion-sensor/on
+- ID: `binary_sensor_upper_landing_motion_sensor_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/binary_sensor/upper_landing_motion_sensor/on.yaml`](entities/automation/binary_sensor/upper_landing_motion_sensor/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/upper-landing-motion-sensor/timeout</code></summary>
+
+**Entity ID: `automation.binary_sensor_upper_landing_motion_sensor_timeout`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/upper-landing-motion-sensor/timeout
+- ID: `binary_sensor_upper_landing_motion_sensor_timeout`
+- Mode: `single`
+
+File: [`automation/binary_sensor/upper_landing_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/upper_landing_motion_sensor/timeout.yaml)
 </details>
 
 <details><summary><code>/cosmo/clean-due</code></summary>
@@ -282,6 +346,26 @@ File: [`automation/cover/office_desk/keepalive.yaml`](entities/automation/cover/
 - Mode: `single`
 
 File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/office_desk/work_mode.yaml)
+</details>
+
+<details><summary><code>/cover/will-s-office-blinds/state-change</code></summary>
+
+**Entity ID: `automation.cover_will_s_office_blinds_state_change`**
+
+> Ensures both blinds stay in sync when either one is controlled
+
+- Alias: /cover/will-s-office-blinds/state-change
+- ID: `cover_will_s_office_blinds_state_change`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "trigger_entity": "{{ trigger.entity_id }}",
+  "other_entity": "{% if trigger_entity == 'cover.will_s_office_blinds_1' %}\n  cover.will_s_office_blinds_2\n{% else %}\n  cover.will_s_office_blinds_1\n{% endif %}"
+}
+```
+File: [`automation/cover/will_s_office_blinds/state_change.yaml`](entities/automation/cover/will_s_office_blinds/state_change.yaml)
 </details>
 
 <details><summary><code>/crtpi/cpu-fan-control</code></summary>
@@ -517,6 +601,19 @@ File: [`automation/fan/air_purifier/control.yaml`](entities/automation/fan/air_p
 - Mode: `single`
 
 File: [`automation/fan/desk_fan/state_change.yaml`](entities/automation/fan/desk_fan/state_change.yaml)
+</details>
+
+<details><summary><code>/fan/kitchen-extractor-vent/control</code></summary>
+
+**Entity ID: `automation.fan_kitchen_extractor_vent_control`**
+
+> *No description provided*
+
+- Alias: /fan/kitchen-extractor-vent/control
+- ID: `fan_kitchen_extractor_vent_control`
+- Mode: `single`
+
+File: [`automation/fan/kitchen_extractor_vent/control.yaml`](entities/automation/fan/kitchen_extractor_vent/control.yaml)
 </details>
 
 <details><summary><code>/fan/prusa-i3-enclosure-fan/turn-off</code></summary>
@@ -2373,13 +2470,20 @@ File: [`command_line/sensor/remote_git_branches.yaml`](entities/command_line/sen
 
 ## Cover
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (2)</h3></summary>
 
 <details><summary><strong>Office Desk</strong></summary>
 
 **Entity ID: `cover.office_desk`**
 
 File: [`cover/office/office_desk.yaml`](entities/cover/office/office_desk.yaml)
+</details>
+
+<details><summary><strong>Will's Office Blinds</strong></summary>
+
+**Entity ID: `cover.will_s_office_blinds`**
+
+File: [`cover/will_s_office/will_s_office_blinds.yaml`](entities/cover/will_s_office/will_s_office_blinds.yaml)
 </details>
 
 </details>

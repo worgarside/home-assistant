@@ -1,0 +1,33 @@
+---
+alias: /binary-sensor/main-hallway-motion-sensor/on
+
+id: binary_sensor_main_hallway_motion_sensor_on
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.main_hallway_motion_sensor_occupancy
+    from: "off"
+    to: "on"
+
+variables:
+  brightness: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+action:
+  - service: light.turn_on
+    target:
+      entity_id: light.lower_hallway_1
+    data:
+      brightness_pct: "{{ brightness }}"
+      transition: 1
+
+  - delay:
+      seconds: 2.5
+
+  - service: light.turn_on
+    target:
+      entity_id: light.lower_hallway_2
+    data:
+      brightness_pct: "{{ brightness }}"
+      transition: 1
