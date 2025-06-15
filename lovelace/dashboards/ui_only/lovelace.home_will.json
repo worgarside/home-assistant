@@ -1234,6 +1234,22 @@
                   ]
                 }
               ]
+            },
+            {
+              "title": "History",
+              "cards": [
+                {
+                  "title": "History",
+                  "type": "history-graph",
+                  "hours_to_show": 33,
+                  "entities": [
+                    "sensor.vic_s_office_fan_temperature",
+                    "sensor.vic_s_office_climate_sensor_humidity",
+                    "sensor.vic_s_office_climate_sensor_temperature",
+                    "sensor.vic_s_office_fan_humidity"
+                  ]
+                }
+              ]
             }
           ],
           "max_columns": 3,
