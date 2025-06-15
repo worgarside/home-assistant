@@ -15,9 +15,3 @@ trigger:
 action:
   - service: script.office_desk_standing_mode
     data:
-      sync_blinds: >-
-        {{
-          states('sensor.sun_elevation') | int(0) > -3 and
-          states('sensor.time') < "21:30" and
-          is_state("binary_sensor.quiet_hours", "off")
-        }}
