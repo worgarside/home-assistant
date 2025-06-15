@@ -21,7 +21,7 @@ sequence:
     condition: template
     value_template: >
       {{
-        state_attr("cover.office_desk_esphome", "current_position") | int(-1) !=
+        state_attr("cover.will_s_office_desk_idasen", "current_position") | int(-1) !=
         position | int
       }}
 
@@ -30,7 +30,12 @@ sequence:
         condition: template
 
         value_template: >-
-          {% set current = state_attr('cover.office_desk_esphome', 'current_position') | int(None) %}
+          {%
+            set current = state_attr(
+              'cover.will_s_office_desk_idasen',
+              'current_position',
+            ) | int(None)
+          %}
           {% set target = position | int(None) %}
           {{ current is none or target is none or (current - target) | abs <= tolerance }}
 
@@ -52,12 +57,12 @@ sequence:
               notification_title: Setting desk position
               message: |
                 Target: {{ position }}%
-                Current: {{ state_attr('cover.office_desk_esphome', 'current_position') }}%
+                Current: {{ state_attr('cover.will_s_office_desk_idasen', 'current_position') }}%
               notification_id: desk_move_{{ position }}
 
         - service: cover.set_cover_position
           data:
-            entity_id: cover.office_desk_esphome
+            entity_id: cover.will_s_office_desk_idasen
             position: "{{ position }}"
 
         - alias: Stop following template returning `true` if the desk hasn't started moving yet
@@ -66,7 +71,10 @@ sequence:
 
         - alias: Wait for desk to reach target position
           wait_template: >-
-            {% set curr = state_attr('cover.office_desk_esphome', 'current_position') | int(None) %}
+            {% set curr = state_attr(
+              'cover.will_s_office_desk_idasen',
+              'current_position',
+            ) | int(None) %}
             {% set target = position | int(None) %}
             {{ curr is none or target is none or (curr - target) | abs <= tolerance }}
           timeout: 00:00:30
@@ -81,7 +89,7 @@ sequence:
               notification_title: >-
                 {%
                   set current = state_attr(
-                    "cover.office_desk_esphome",
+                    "cover.will_s_office_desk_idasen",
                     "current_position",
                   ) | int(None)
                 %}
@@ -97,8 +105,13 @@ sequence:
               message: |
                 Target: {{ position }}%
                 Tolerance: {{ tolerance }}%
-                Final position: {{ state_attr('cover.office_desk_esphome', 'current_position') }}%
-                Final state: `{{ states('cover.office_desk_esphome')}}`
+                Final position: {{
+                  state_attr(
+                    'cover.will_s_office_desk_idasen',
+                    'current_position',
+                  )
+                }}%
+                Final state: `{{ states('cover.will_s_office_desk_idasen')}}`
 
         - alias: If not timed out, send stop signal (prevent moving too far/extra retries)
           if: "{{ wait.completed }}"

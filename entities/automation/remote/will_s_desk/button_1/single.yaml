@@ -14,4 +14,4 @@ trigger:
 
 action:
   - service: light.toggle
-    entity_id: light.office_shapes
+    entity_id: light.will_s_office_shapes

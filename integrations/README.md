@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (136)</h3></summary>
+<details><summary><h3>Entities (131)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -76,6 +76,38 @@ File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/a
 File: [`automation/binary_sensor/lounge_diffuser_needs_water/off.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/off.yaml)
 </details>
 
+<details><summary><code>/binary-sensor/main-hallway-motion-sensor/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/main-hallway-motion-sensor/on
+- ID: `binary_sensor_main_hallway_motion_sensor_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/binary_sensor/main_hallway_motion_sensor/on.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/main-hallway-motion-sensor/timeout</code></summary>
+
+**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_timeout`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/main-hallway-motion-sensor/timeout
+- ID: `binary_sensor_main_hallway_motion_sensor_timeout`
+- Mode: `single`
+
+File: [`automation/binary_sensor/main_hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor/timeout.yaml)
+</details>
+
 <details><summary><code>/binary-sensor/office-presence-sensor/state-change</code></summary>
 
 **Entity ID: `automation.binary_sensor_office_presence_sensor_state_change`**
@@ -126,6 +158,38 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 }
 ```
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/upper-landing-motion-sensor/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_upper_landing_motion_sensor_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/upper-landing-motion-sensor/on
+- ID: `binary_sensor_upper_landing_motion_sensor_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/binary_sensor/upper_landing_motion_sensor/on.yaml`](entities/automation/binary_sensor/upper_landing_motion_sensor/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/upper-landing-motion-sensor/timeout</code></summary>
+
+**Entity ID: `automation.binary_sensor_upper_landing_motion_sensor_timeout`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/upper-landing-motion-sensor/timeout
+- ID: `binary_sensor_upper_landing_motion_sensor_timeout`
+- Mode: `single`
+
+File: [`automation/binary_sensor/upper_landing_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/upper_landing_motion_sensor/timeout.yaml)
 </details>
 
 <details><summary><code>/cosmo/clean-due</code></summary>
@@ -180,84 +244,6 @@ File: [`automation/cosmo/clean_flat.yaml`](entities/automation/cosmo/clean_flat.
 File: [`automation/cosmo/nightly_kitchen_clean.yaml`](entities/automation/cosmo/nightly_kitchen_clean.yaml)
 </details>
 
-<details><summary><code>/cover/bedroom-blinds/close-after-sunset</code></summary>
-
-**Entity ID: `automation.cover_bedroom_blinds_close_after_sunset`**
-
-> Close the bedroom blinds either when the Sun sets past -3' or at 21:30
-
-- Alias: /cover/bedroom-blinds/close-after-sunset
-- ID: `cover_bedroom_blinds_close_after_sunset`
-- Mode: `single`
-
-File: [`automation/cover/bedroom_blinds/close_after_sunset.yaml`](entities/automation/cover/bedroom_blinds/close_after_sunset.yaml)
-</details>
-
-<details><summary><code>/cover/bedroom-blinds/open-before-sunrise</code></summary>
-
-**Entity ID: `automation.cover_bedroom_blinds_open_before_sunrise`**
-
-> Open the bedroom blinds when the Sun rises past -6'
-
-- Alias: /cover/bedroom-blinds/open-before-sunrise
-- ID: `cover_bedroom_blinds_open_before_sunrise`
-- Mode: `single`
-
-File: [`automation/cover/bedroom_blinds/open_before_sunrise.yaml`](entities/automation/cover/bedroom_blinds/open_before_sunrise.yaml)
-</details>
-
-<details><summary><code>/cover/lounge-blinds/close-after-sunset</code></summary>
-
-**Entity ID: `automation.cover_lounge_blinds_close_after_sunset`**
-
-> Close the lounge blinds either when the Sun sets past -6' or at 21:30
-
-- Alias: /cover/lounge-blinds/close-after-sunset
-- ID: `cover_lounge_blinds_close_after_sunset`
-- Mode: `single`
-
-File: [`automation/cover/lounge_blinds/close_after_sunset.yaml`](entities/automation/cover/lounge_blinds/close_after_sunset.yaml)
-</details>
-
-<details><summary><code>/cover/lounge-blinds/open-before-sunrise</code></summary>
-
-**Entity ID: `automation.cover_lounge_blinds_open_before_sunrise`**
-
-> Open the lounge blinds when the Sun rises past -6'
-
-- Alias: /cover/lounge-blinds/open-before-sunrise
-- ID: `cover_lounge_blinds_open_before_sunrise`
-- Mode: `single`
-
-File: [`automation/cover/lounge_blinds/open_before_sunrise.yaml`](entities/automation/cover/lounge_blinds/open_before_sunrise.yaml)
-</details>
-
-<details><summary><code>/cover/office-blinds/close-after-sunset</code></summary>
-
-**Entity ID: `automation.cover_office_blinds_close_after_sunset`**
-
-> Close the office blinds either when the Sun sets past -6' or at 21:30
-
-- Alias: /cover/office-blinds/close-after-sunset
-- ID: `cover_office_blinds_close_after_sunset`
-- Mode: `single`
-
-File: [`automation/cover/office_blinds/close_after_sunset.yaml`](entities/automation/cover/office_blinds/close_after_sunset.yaml)
-</details>
-
-<details><summary><code>/cover/office-blinds/open-before-sunrise</code></summary>
-
-**Entity ID: `automation.cover_office_blinds_open_before_sunrise`**
-
-> Open the office blinds when the Sun rises past -6'
-
-- Alias: /cover/office-blinds/open-before-sunrise
-- ID: `cover_office_blinds_open_before_sunrise`
-- Mode: `single`
-
-File: [`automation/cover/office_blinds/open_before_sunrise.yaml`](entities/automation/cover/office_blinds/open_before_sunrise.yaml)
-</details>
-
 <details><summary><code>/cover/office-desk/keepalive</code></summary>
 
 **Entity ID: `automation.cover_office_desk_keepalive`**
@@ -282,6 +268,26 @@ File: [`automation/cover/office_desk/keepalive.yaml`](entities/automation/cover/
 - Mode: `single`
 
 File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/office_desk/work_mode.yaml)
+</details>
+
+<details><summary><code>/cover/will-s-office-blinds/state-change</code></summary>
+
+**Entity ID: `automation.cover_will_s_office_blinds_state_change`**
+
+> Ensures both blinds stay in sync when either one is controlled
+
+- Alias: /cover/will-s-office-blinds/state-change
+- ID: `cover_will_s_office_blinds_state_change`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "trigger_entity": "{{ trigger.entity_id }}",
+  "other_entity": "{% if trigger_entity == 'cover.will_s_office_blinds_1' %}\n  cover.will_s_office_blinds_2\n{% else %}\n  cover.will_s_office_blinds_1\n{% endif %}"
+}
+```
+File: [`automation/cover/will_s_office_blinds/state_change.yaml`](entities/automation/cover/will_s_office_blinds/state_change.yaml)
 </details>
 
 <details><summary><code>/crtpi/cpu-fan-control</code></summary>
@@ -517,6 +523,19 @@ File: [`automation/fan/air_purifier/control.yaml`](entities/automation/fan/air_p
 - Mode: `single`
 
 File: [`automation/fan/desk_fan/state_change.yaml`](entities/automation/fan/desk_fan/state_change.yaml)
+</details>
+
+<details><summary><code>/fan/kitchen-extractor-vent/control</code></summary>
+
+**Entity ID: `automation.fan_kitchen_extractor_vent_control`**
+
+> *No description provided*
+
+- Alias: /fan/kitchen-extractor-vent/control
+- ID: `fan_kitchen_extractor_vent_control`
+- Mode: `single`
+
+File: [`automation/fan/kitchen_extractor_vent/control.yaml`](entities/automation/fan/kitchen_extractor_vent/control.yaml)
 </details>
 
 <details><summary><code>/fan/prusa-i3-enclosure-fan/turn-off</code></summary>
@@ -872,7 +891,7 @@ File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light
 
 **Entity ID: `automation.light_desk_lamp_turn_on`**
 
-> Turn the desk lamp on when someone enters the room, all of the lights are off, and the blinds are down
+> Turn the desk lamp on when someone enters the room and all of the lights are off
 
 - Alias: /light/desk-lamp/turn-on
 - ID: `light_desk_lamp_turn_on`
@@ -931,19 +950,6 @@ File: [`automation/light/lounge_lights/on.yaml`](entities/automation/light/loung
 - Mode: `single`
 
 File: [`automation/light/moomin_box/on.yaml`](entities/automation/light/moomin_box/on.yaml)
-</details>
-
-<details><summary><code>/light/office-lights/on</code></summary>
-
-**Entity ID: `automation.light_office_lights_on`**
-
-> Run actions when the office lights are turned on
-
-- Alias: /light/office-lights/on
-- ID: `light_office_lights_on`
-- Mode: `single`
-
-File: [`automation/light/office_lights/on.yaml`](entities/automation/light/office_lights/on.yaml)
 </details>
 
 <details><summary><code>/light/office-shapes/state-change</code></summary>
@@ -1258,45 +1264,6 @@ File: [`automation/prusa_i3/bed/timeout.yaml`](entities/automation/prusa_i3/bed/
 - Mode: `single`
 
 File: [`automation/prusa_i3/hotend/timeout.yaml`](entities/automation/prusa_i3/hotend/timeout.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-blinds/double</code></summary>
-
-**Entity ID: `automation.remote_bedroom_blinds_double`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-blinds/double
-- ID: `remote_bedroom_blinds_double`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_blinds/double.yaml`](entities/automation/remote/bedroom_blinds/double.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-blinds/hold</code></summary>
-
-**Entity ID: `automation.remote_bedroom_blinds_hold`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-blinds/hold
-- ID: `remote_bedroom_blinds_hold`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_blinds/hold.yaml`](entities/automation/remote/bedroom_blinds/hold.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-blinds/single</code></summary>
-
-**Entity ID: `automation.remote_bedroom_blinds_single`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-blinds/single
-- ID: `remote_bedroom_blinds_single`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_blinds/single.yaml`](entities/automation/remote/bedroom_blinds/single.yaml)
 </details>
 
 <details><summary><code>/remote/bedroom-hue-remote/down-press</code></summary>
@@ -1748,19 +1715,6 @@ File: [`automation/remote/will_s_desk/button_1/single.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/will_s_desk/button_2/double.yaml`](entities/automation/remote/will_s_desk/button_2/double.yaml)
-</details>
-
-<details><summary><code>/remote/will-s-desk/button-2/hold</code></summary>
-
-**Entity ID: `automation.remote_will_s_desk_button_2_hold`**
-
-> *No description provided*
-
-- Alias: /remote/will-s-desk/button-2/hold
-- ID: `remote_will_s_desk_button_2_hold`
-- Mode: `single`
-
-File: [`automation/remote/will_s_desk/button_2/hold.yaml`](entities/automation/remote/will_s_desk/button_2/hold.yaml)
 </details>
 
 <details><summary><code>/remote/will-s-desk/button-2/single</code></summary>
@@ -2373,13 +2327,20 @@ File: [`command_line/sensor/remote_git_branches.yaml`](entities/command_line/sen
 
 ## Cover
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (2)</h3></summary>
 
 <details><summary><strong>Office Desk</strong></summary>
 
 **Entity ID: `cover.office_desk`**
 
 File: [`cover/office/office_desk.yaml`](entities/cover/office/office_desk.yaml)
+</details>
+
+<details><summary><strong>Will's Office Blinds</strong></summary>
+
+**Entity ID: `cover.will_s_office_blinds`**
+
+File: [`cover/will_s_office/will_s_office_blinds.yaml`](entities/cover/will_s_office/will_s_office_blinds.yaml)
 </details>
 
 </details>
@@ -6065,21 +6026,6 @@ File: [`script/office_desk_set_position.yaml`](entities/script/office_desk_set_p
 
 > *No description provided*
 
-- Fields:
-
-```json
-{
-  "sync_blinds": {
-    "description": "Sync blinds with desk position",
-    "example": "false",
-    "required": false,
-    "selector": {
-      "boolean": null
-    }
-  }
-}
-```
-
 - Mode: `single`
 
 File: [`script/office_desk_sitting_mode.yaml`](entities/script/office_desk_sitting_mode.yaml)
@@ -6090,21 +6036,6 @@ File: [`script/office_desk_sitting_mode.yaml`](entities/script/office_desk_sitti
 **Entity ID: `script.office_desk_standing_mode`**
 
 > *No description provided*
-
-- Fields:
-
-```json
-{
-  "sync_blinds": {
-    "description": "Sync blinds with desk position",
-    "example": "false",
-    "required": false,
-    "selector": {
-      "boolean": null
-    }
-  }
-}
-```
 
 - Mode: `single`
 

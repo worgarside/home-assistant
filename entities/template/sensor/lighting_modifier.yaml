@@ -18,11 +18,11 @@ state: >-
   {% elif tod in ("Evening", "Sunset", "Sunrise") %}
     60
   {% elif tod == "Twilight" %}
-    50
-  {% elif tod in ("Dusk", "Dawn") %}
     30
+  {% elif tod in ("Dusk", "Dawn") %}
+    10
   {% elif tod == "Night" %}
-    {{ iif(quiet_hours, 5, 25) }}
+    {{ iif(quiet_hours, 1, 10) }}
   {% else %}
     100
   {% endif %}

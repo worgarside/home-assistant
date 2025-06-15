@@ -3,14 +3,17 @@ friendly_name: Office Desk
 
 unique_id: office_desk
 
-value_template: "{{ states('cover.office_desk_esphome') }}"
+value_template: "{{ states('cover.will_s_office_desk_idasen') }}"
 
-position_template: "{{ state_attr('cover.office_desk_esphome', 'current_position') | int(-1) }}"
+position_template: >-
+  {{
+    state_attr('cover.will_s_office_desk_idasen', 'current_position') | int(-1)
+  }}
 
 icon_template: >-
   {%
     if (
-      state_attr('cover.office_desk_esphome', 'current_position') | int(default=0) >=
+      state_attr('cover.will_s_office_desk_idasen', 'current_position') | int(default=0) >=
       ( states('input_number.office_desk_standing_height') | int(default=80) - 5 )
     )
   %}
@@ -19,7 +22,8 @@ icon_template: >-
     phu:desk-sit-alt
   {% endif %}
 
-availability_template: "{{ states('cover.office_desk_esphome') not in ('unknown', 'unavailable') }}"
+availability_template: >-
+  {{ states('cover.will_s_office_desk_idasen') not in ('unknown', 'unavailable') }}
 
 open_cover:
   service: script.office_desk_set_position

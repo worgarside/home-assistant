@@ -9,6 +9,6 @@ icon: >
   {% endif %}
 state: >
   {{
-    state_attr("cover.office_desk_esphome", "current_position") | int(-1) >
+    state_attr("cover.will_s_office_desk_idasen", "current_position") | int(-1) >
     ( states('input_number.office_desk_standing_height') | int(-1) - 10 )
   }}

@@ -32,17 +32,17 @@ action:
                 target:
                   entity_id: light.desk_lamp
 
-          - if: "{{ state_attr(state_manager, 'light.office_shapes') | bool(false) }}"
+          - if: "{{ state_attr(state_manager, 'light.will_s_office_shapes') | bool(false) }}"
             then:
               - service: light.turn_on
                 target:
-                  entity_id: light.office_shapes
+                  entity_id: light.will_s_office_shapes
 
     else:
       - variables:
           desk_fan: "{{ is_state('fan.desk_fan', 'on') }}"
           desk_lamp: "{{ is_state('light.desk_lamp', 'on') }}"
-          office_shapes: "{{ is_state('light.office_shapes', 'on') }}"
+          will_s_office_shapes: "{{ is_state('light.will_s_office_shapes', 'on') }}"
 
       - parallel:
           - if: "{{ desk_fan }}"
@@ -69,14 +69,16 @@ action:
                   seconds: 10
                 continue_on_timeout: true
 
-          - if: "{{ office_shapes }}"
+          - if: "{{ will_s_office_shapes }}"
             then:
               - service: light.turn_off
                 target:
-                  entity_id: light.office_shapes
+                  entity_id: light.will_s_office_shapes
 
               - wait_template: >-
-                  {{ state_attr(state_manager, 'light.office_shapes') | bool(false) is false }}
+                  {{
+                    state_attr(state_manager, 'light.will_s_office_shapes') | bool(false) is false
+                  }}
                 timeout:
                   seconds: 10
                 continue_on_timeout: true
@@ -88,4 +90,4 @@ action:
           attributes:
             fan.desk_fan: "{{ desk_fan }}"
             light.desk_lamp: "{{ desk_lamp }}"
-            light.office_shapes: "{{ office_shapes }}"
+            light.will_s_office_shapes: "{{ will_s_office_shapes }}"
