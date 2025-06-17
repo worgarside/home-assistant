@@ -788,6 +788,11 @@
                             "entity": "sensor.kitchen_air_quality_sensor_temperature",
                             "name": "Kitchen",
                             "smoothing": true
+                          },
+                          {
+                            "entity": "sensor.spare_room_climate_sensor_temperature",
+                            "name": "Spare Room",
+                            "smoothing": true
                           }
                         ],
                         "hours_to_show": 24,
@@ -843,6 +848,11 @@
                           {
                             "entity": "sensor.kitchen_air_quality_sensor_humidity",
                             "name": "Kitchen",
+                            "smoothing": true
+                          },
+                          {
+                            "entity": "sensor.spare_room_climate_sensor_humidity",
+                            "name": "Spare Room",
                             "smoothing": true
                           }
                         ],
