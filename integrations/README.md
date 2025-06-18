@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (131)</h3></summary>
+<details><summary><h3>Entities (132)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1342,6 +1342,19 @@ File: [`automation/remote/bedroom_hue_remote/on_press.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/bedroom_hue_remote/up_press.yaml`](entities/automation/remote/bedroom_hue_remote/up_press.yaml)
+</details>
+
+<details><summary><code>/remote/charging-hub-button/single</code></summary>
+
+**Entity ID: `automation.remote_charging_hub_button_single`**
+
+> Toggle the charging hub's power state
+
+- Alias: /remote/charging-hub-button/single
+- ID: `remote_charging_hub_button_single`
+- Mode: `single`
+
+File: [`automation/remote/charging_hub_button/single.yaml`](entities/automation/remote/charging_hub_button/single.yaml)
 </details>
 
 <details><summary><code>/remote/coffee-table/double</code></summary>
