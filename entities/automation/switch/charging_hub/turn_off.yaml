@@ -11,6 +11,8 @@ trigger:
   - platform: numeric_state
     entity_id: sensor.charging_hub_current_consumption
     below: 1
+    for:
+      minutes: 2
 
 action:
   - service: switch.turn_off
