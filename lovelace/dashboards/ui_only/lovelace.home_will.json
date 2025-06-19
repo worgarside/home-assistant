@@ -1250,6 +1250,18 @@
                           }
                         }
                       ]
+                    },
+                    {
+                      "type": "custom:mushroom-fan-card",
+                      "entity": "fan.will_s_office_fan",
+                      "icon": "phu:dyson-floor",
+                      "name": "Fan",
+                      "show_percentage_control": true,
+                      "show_oscillate_control": false,
+                      "collapsible_controls": true,
+                      "show_direction_control": false,
+                      "layout": "horizontal",
+                      "icon_animation": false
                     }
                   ]
                 }
