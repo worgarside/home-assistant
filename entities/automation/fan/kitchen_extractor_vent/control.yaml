@@ -1,0 +1,34 @@
+---
+alias: /fan/kitchen-extractor-vent/control
+
+id: fan_kitchen_extractor_vent_control
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.kitchen_air_quality_sensor_pm25
+    above: input_number.kitchen_extractor_vent_pm2_5_threshold
+    id: pm25_high
+
+  - platform: numeric_state
+    entity_id: sensor.kitchen_air_quality_sensor_pm25
+    below: input_number.kitchen_extractor_vent_pm2_5_threshold
+    id: pm25_low
+
+  - platform: numeric_state
+    entity_id: sensor.kitchen_air_quality_sensor_voc_index
+    above: input_number.kitchen_extractor_vent_voc_index_threshold
+    id: voc_high
+
+  - platform: numeric_state
+    entity_id: sensor.kitchen_air_quality_sensor_voc_index
+    below: input_number.kitchen_extractor_vent_voc_index_threshold
+    id: voc_low
+
+action:
+  - service: fan.turn_{{ 'on' if trigger.id.endswith('high') else 'off' }}
+    target:
+      entity_id: fan.kitchen_extractor_vent

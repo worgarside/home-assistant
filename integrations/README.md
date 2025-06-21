@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (136)</h3></summary>
+<details><summary><h3>Entities (128)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -30,39 +30,6 @@ File: [`automation/automation/auto_reload_complete.yaml`](entities/automation/au
 File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/binary_sensor/front_door/open.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/hallway-motion-sensor/on</code></summary>
-
-**Entity ID: `automation.binary_sensor_hallway_motion_sensor_on`**
-
-> *No description provided*
-
-- Alias: /binary-sensor/hallway-motion-sensor/on
-- ID: `binary_sensor_hallway_motion_sensor_on`
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}",
-  "delay": 1
-}
-```
-File: [`automation/binary_sensor/hallway_motion_sensor/on.yaml`](entities/automation/binary_sensor/hallway_motion_sensor/on.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/hallway-motion-sensor/timeout</code></summary>
-
-**Entity ID: `automation.binary_sensor_hallway_motion_sensor_timeout`**
-
-> *No description provided*
-
-- Alias: /binary-sensor/hallway-motion-sensor/timeout
-- ID: `binary_sensor_hallway_motion_sensor_timeout`
-- Mode: `single`
-
-File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/hallway_motion_sensor/timeout.yaml)
-</details>
-
 <details><summary><code>/binary-sensor/lounge-diffuser-needs-water/off</code></summary>
 
 **Entity ID: `automation.binary_sensor_lounge_diffuser_needs_water_off`**
@@ -74,6 +41,70 @@ File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/a
 - Mode: `single`
 
 File: [`automation/binary_sensor/lounge_diffuser_needs_water/off.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/off.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/lower-hallway-motion-sensor/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_lower_hallway_motion_sensor_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/lower-hallway-motion-sensor/on
+- ID: `binary_sensor_lower_hallway_motion_sensor_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/binary_sensor/lower_hallway_motion_sensor/on.yaml`](entities/automation/binary_sensor/lower_hallway_motion_sensor/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/lower-hallway-motion-sensor/timeout</code></summary>
+
+**Entity ID: `automation.binary_sensor_lower_hallway_motion_sensor_timeout`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/lower-hallway-motion-sensor/timeout
+- ID: `binary_sensor_lower_hallway_motion_sensor_timeout`
+- Mode: `single`
+
+File: [`automation/binary_sensor/lower_hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/lower_hallway_motion_sensor/timeout.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/main-hallway-motion-sensor/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/main-hallway-motion-sensor/on
+- ID: `binary_sensor_main_hallway_motion_sensor_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/binary_sensor/main_hallway_motion_sensor/on.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/main-hallway-motion-sensor/timeout</code></summary>
+
+**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_timeout`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/main-hallway-motion-sensor/timeout
+- ID: `binary_sensor_main_hallway_motion_sensor_timeout`
+- Mode: `single`
+
+File: [`automation/binary_sensor/main_hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor/timeout.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/office-presence-sensor/state-change</code></summary>
@@ -128,6 +159,38 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
 </details>
 
+<details><summary><code>/binary-sensor/upper-landing-motion-sensor/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_upper_landing_motion_sensor_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/upper-landing-motion-sensor/on
+- ID: `binary_sensor_upper_landing_motion_sensor_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/binary_sensor/upper_landing_motion_sensor/on.yaml`](entities/automation/binary_sensor/upper_landing_motion_sensor/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/upper-landing-motion-sensor/timeout</code></summary>
+
+**Entity ID: `automation.binary_sensor_upper_landing_motion_sensor_timeout`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/upper-landing-motion-sensor/timeout
+- ID: `binary_sensor_upper_landing_motion_sensor_timeout`
+- Mode: `single`
+
+File: [`automation/binary_sensor/upper_landing_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/upper_landing_motion_sensor/timeout.yaml)
+</details>
+
 <details><summary><code>/cosmo/clean-due</code></summary>
 
 **Entity ID: `automation.cosmo_clean_due`**
@@ -180,84 +243,6 @@ File: [`automation/cosmo/clean_flat.yaml`](entities/automation/cosmo/clean_flat.
 File: [`automation/cosmo/nightly_kitchen_clean.yaml`](entities/automation/cosmo/nightly_kitchen_clean.yaml)
 </details>
 
-<details><summary><code>/cover/bedroom-blinds/close-after-sunset</code></summary>
-
-**Entity ID: `automation.cover_bedroom_blinds_close_after_sunset`**
-
-> Close the bedroom blinds either when the Sun sets past -3' or at 21:30
-
-- Alias: /cover/bedroom-blinds/close-after-sunset
-- ID: `cover_bedroom_blinds_close_after_sunset`
-- Mode: `single`
-
-File: [`automation/cover/bedroom_blinds/close_after_sunset.yaml`](entities/automation/cover/bedroom_blinds/close_after_sunset.yaml)
-</details>
-
-<details><summary><code>/cover/bedroom-blinds/open-before-sunrise</code></summary>
-
-**Entity ID: `automation.cover_bedroom_blinds_open_before_sunrise`**
-
-> Open the bedroom blinds when the Sun rises past -6'
-
-- Alias: /cover/bedroom-blinds/open-before-sunrise
-- ID: `cover_bedroom_blinds_open_before_sunrise`
-- Mode: `single`
-
-File: [`automation/cover/bedroom_blinds/open_before_sunrise.yaml`](entities/automation/cover/bedroom_blinds/open_before_sunrise.yaml)
-</details>
-
-<details><summary><code>/cover/lounge-blinds/close-after-sunset</code></summary>
-
-**Entity ID: `automation.cover_lounge_blinds_close_after_sunset`**
-
-> Close the lounge blinds either when the Sun sets past -6' or at 21:30
-
-- Alias: /cover/lounge-blinds/close-after-sunset
-- ID: `cover_lounge_blinds_close_after_sunset`
-- Mode: `single`
-
-File: [`automation/cover/lounge_blinds/close_after_sunset.yaml`](entities/automation/cover/lounge_blinds/close_after_sunset.yaml)
-</details>
-
-<details><summary><code>/cover/lounge-blinds/open-before-sunrise</code></summary>
-
-**Entity ID: `automation.cover_lounge_blinds_open_before_sunrise`**
-
-> Open the lounge blinds when the Sun rises past -6'
-
-- Alias: /cover/lounge-blinds/open-before-sunrise
-- ID: `cover_lounge_blinds_open_before_sunrise`
-- Mode: `single`
-
-File: [`automation/cover/lounge_blinds/open_before_sunrise.yaml`](entities/automation/cover/lounge_blinds/open_before_sunrise.yaml)
-</details>
-
-<details><summary><code>/cover/office-blinds/close-after-sunset</code></summary>
-
-**Entity ID: `automation.cover_office_blinds_close_after_sunset`**
-
-> Close the office blinds either when the Sun sets past -6' or at 21:30
-
-- Alias: /cover/office-blinds/close-after-sunset
-- ID: `cover_office_blinds_close_after_sunset`
-- Mode: `single`
-
-File: [`automation/cover/office_blinds/close_after_sunset.yaml`](entities/automation/cover/office_blinds/close_after_sunset.yaml)
-</details>
-
-<details><summary><code>/cover/office-blinds/open-before-sunrise</code></summary>
-
-**Entity ID: `automation.cover_office_blinds_open_before_sunrise`**
-
-> Open the office blinds when the Sun rises past -6'
-
-- Alias: /cover/office-blinds/open-before-sunrise
-- ID: `cover_office_blinds_open_before_sunrise`
-- Mode: `single`
-
-File: [`automation/cover/office_blinds/open_before_sunrise.yaml`](entities/automation/cover/office_blinds/open_before_sunrise.yaml)
-</details>
-
 <details><summary><code>/cover/office-desk/keepalive</code></summary>
 
 **Entity ID: `automation.cover_office_desk_keepalive`**
@@ -282,6 +267,26 @@ File: [`automation/cover/office_desk/keepalive.yaml`](entities/automation/cover/
 - Mode: `single`
 
 File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/office_desk/work_mode.yaml)
+</details>
+
+<details><summary><code>/cover/will-s-office-blinds/state-change</code></summary>
+
+**Entity ID: `automation.cover_will_s_office_blinds_state_change`**
+
+> Ensures both blinds stay in sync when either one is controlled
+
+- Alias: /cover/will-s-office-blinds/state-change
+- ID: `cover_will_s_office_blinds_state_change`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "trigger_entity": "{{ trigger.entity_id }}",
+  "other_entity": "{% if trigger_entity == 'cover.will_s_office_blinds_1' %}\n  cover.will_s_office_blinds_2\n{% else %}\n  cover.will_s_office_blinds_1\n{% endif %}"
+}
+```
+File: [`automation/cover/will_s_office_blinds/state_change.yaml`](entities/automation/cover/will_s_office_blinds/state_change.yaml)
 </details>
 
 <details><summary><code>/crtpi/cpu-fan-control</code></summary>
@@ -519,6 +524,19 @@ File: [`automation/fan/air_purifier/control.yaml`](entities/automation/fan/air_p
 File: [`automation/fan/desk_fan/state_change.yaml`](entities/automation/fan/desk_fan/state_change.yaml)
 </details>
 
+<details><summary><code>/fan/kitchen-extractor-vent/control</code></summary>
+
+**Entity ID: `automation.fan_kitchen_extractor_vent_control`**
+
+> *No description provided*
+
+- Alias: /fan/kitchen-extractor-vent/control
+- ID: `fan_kitchen_extractor_vent_control`
+- Mode: `single`
+
+File: [`automation/fan/kitchen_extractor_vent/control.yaml`](entities/automation/fan/kitchen_extractor_vent/control.yaml)
+</details>
+
 <details><summary><code>/fan/prusa-i3-enclosure-fan/turn-off</code></summary>
 
 **Entity ID: `automation.fan_prusa_i3_enclosure_fan_turn_off`**
@@ -698,9 +716,7 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 
 ```json
 {
-  "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}",
-  "vic_at_home": "{{ states('person.vic') == 'home' }}",
-  "vic_in_meeting": "{{\n  (\n    states(\"calendar.vic_work\") | bool(false) or\n    trigger.id == \"vic_work_start\"\n  ) and trigger.id != \"vic_work_end\"\n}}"
+  "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}"
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
@@ -842,19 +858,6 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
-<details><summary><code>/light/bedroom-lights/on</code></summary>
-
-**Entity ID: `automation.light_bedroom_lights_on`**
-
-> Run actions when the bedroom lights are turned on
-
-- Alias: /light/bedroom-lights/on
-- ID: `light_bedroom_lights_on`
-- Mode: `single`
-
-File: [`automation/light/bedroom_lights/on.yaml`](entities/automation/light/bedroom_lights/on.yaml)
-</details>
-
 <details><summary><code>/light/desk-lamp/state-change</code></summary>
 
 **Entity ID: `automation.light_desk_lamp_state_change`**
@@ -872,7 +875,7 @@ File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light
 
 **Entity ID: `automation.light_desk_lamp_turn_on`**
 
-> Turn the desk lamp on when someone enters the room, all of the lights are off, and the blinds are down
+> Turn the desk lamp on when someone enters the room and all of the lights are off
 
 - Alias: /light/desk-lamp/turn-on
 - ID: `light_desk_lamp_turn_on`
@@ -907,19 +910,6 @@ File: [`automation/light/disco_light/turn_off.yaml`](entities/automation/light/d
 File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/disco_light/turn_on.yaml)
 </details>
 
-<details><summary><code>/light/lounge-lights/on</code></summary>
-
-**Entity ID: `automation.light_lounge_lights_on`**
-
-> Run actions when the lounge lights are turned on
-
-- Alias: /light/lounge-lights/on
-- ID: `light_lounge_lights_on`
-- Mode: `single`
-
-File: [`automation/light/lounge_lights/on.yaml`](entities/automation/light/lounge_lights/on.yaml)
-</details>
-
 <details><summary><code>/light/moomin-box/on</code></summary>
 
 **Entity ID: `automation.light_moomin_box_on`**
@@ -931,19 +921,6 @@ File: [`automation/light/lounge_lights/on.yaml`](entities/automation/light/loung
 - Mode: `single`
 
 File: [`automation/light/moomin_box/on.yaml`](entities/automation/light/moomin_box/on.yaml)
-</details>
-
-<details><summary><code>/light/office-lights/on</code></summary>
-
-**Entity ID: `automation.light_office_lights_on`**
-
-> Run actions when the office lights are turned on
-
-- Alias: /light/office-lights/on
-- ID: `light_office_lights_on`
-- Mode: `single`
-
-File: [`automation/light/office_lights/on.yaml`](entities/automation/light/office_lights/on.yaml)
 </details>
 
 <details><summary><code>/light/office-shapes/state-change</code></summary>
@@ -1260,45 +1237,6 @@ File: [`automation/prusa_i3/bed/timeout.yaml`](entities/automation/prusa_i3/bed/
 File: [`automation/prusa_i3/hotend/timeout.yaml`](entities/automation/prusa_i3/hotend/timeout.yaml)
 </details>
 
-<details><summary><code>/remote/bedroom-blinds/double</code></summary>
-
-**Entity ID: `automation.remote_bedroom_blinds_double`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-blinds/double
-- ID: `remote_bedroom_blinds_double`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_blinds/double.yaml`](entities/automation/remote/bedroom_blinds/double.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-blinds/hold</code></summary>
-
-**Entity ID: `automation.remote_bedroom_blinds_hold`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-blinds/hold
-- ID: `remote_bedroom_blinds_hold`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_blinds/hold.yaml`](entities/automation/remote/bedroom_blinds/hold.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-blinds/single</code></summary>
-
-**Entity ID: `automation.remote_bedroom_blinds_single`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-blinds/single
-- ID: `remote_bedroom_blinds_single`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_blinds/single.yaml`](entities/automation/remote/bedroom_blinds/single.yaml)
-</details>
-
 <details><summary><code>/remote/bedroom-hue-remote/down-press</code></summary>
 
 **Entity ID: `automation.remote_bedroom_hue_remote_down_press`**
@@ -1375,6 +1313,19 @@ File: [`automation/remote/bedroom_hue_remote/on_press.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/bedroom_hue_remote/up_press.yaml`](entities/automation/remote/bedroom_hue_remote/up_press.yaml)
+</details>
+
+<details><summary><code>/remote/charging-hub-button/single</code></summary>
+
+**Entity ID: `automation.remote_charging_hub_button_single`**
+
+> Toggle the charging hub's power state
+
+- Alias: /remote/charging-hub-button/single
+- ID: `remote_charging_hub_button_single`
+- Mode: `single`
+
+File: [`automation/remote/charging_hub_button/single.yaml`](entities/automation/remote/charging_hub_button/single.yaml)
 </details>
 
 <details><summary><code>/remote/coffee-table/double</code></summary>
@@ -1659,19 +1610,6 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
 </details>
 
-<details><summary><code>/remote/vic-s-desk/button-1/double</code></summary>
-
-**Entity ID: `automation.remote_vic_s_desk_button_1_double`**
-
-> *No description provided*
-
-- Alias: /remote/vic-s-desk/button-1/double
-- ID: `remote_vic_s_desk_button_1_double`
-- Mode: `single`
-
-File: [`automation/remote/vic_s_desk/button_1/double.yaml`](entities/automation/remote/vic_s_desk/button_1/double.yaml)
-</details>
-
 <details><summary><code>/remote/vic-s-desk/button-1/hold</code></summary>
 
 **Entity ID: `automation.remote_vic_s_desk_button_1_hold`**
@@ -1683,19 +1621,6 @@ File: [`automation/remote/vic_s_desk/button_1/double.yaml`](entities/automation/
 - Mode: `single`
 
 File: [`automation/remote/vic_s_desk/button_1/hold.yaml`](entities/automation/remote/vic_s_desk/button_1/hold.yaml)
-</details>
-
-<details><summary><code>/remote/vic-s-desk/button-1/single</code></summary>
-
-**Entity ID: `automation.remote_vic_s_desk_button_1_single`**
-
-> *No description provided*
-
-- Alias: /remote/vic-s-desk/button-1/single
-- ID: `remote_vic_s_desk_button_1_single`
-- Mode: `single`
-
-File: [`automation/remote/vic_s_desk/button_1/single.yaml`](entities/automation/remote/vic_s_desk/button_1/single.yaml)
 </details>
 
 <details><summary><code>/remote/will-s-desk/button-1/double</code></summary>
@@ -1748,19 +1673,6 @@ File: [`automation/remote/will_s_desk/button_1/single.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/will_s_desk/button_2/double.yaml`](entities/automation/remote/will_s_desk/button_2/double.yaml)
-</details>
-
-<details><summary><code>/remote/will-s-desk/button-2/hold</code></summary>
-
-**Entity ID: `automation.remote_will_s_desk_button_2_hold`**
-
-> *No description provided*
-
-- Alias: /remote/will-s-desk/button-2/hold
-- ID: `remote_will_s_desk_button_2_hold`
-- Mode: `single`
-
-File: [`automation/remote/will_s_desk/button_2/hold.yaml`](entities/automation/remote/will_s_desk/button_2/hold.yaml)
 </details>
 
 <details><summary><code>/remote/will-s-desk/button-2/single</code></summary>
@@ -2373,13 +2285,20 @@ File: [`command_line/sensor/remote_git_branches.yaml`](entities/command_line/sen
 
 ## Cover
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (2)</h3></summary>
 
 <details><summary><strong>Office Desk</strong></summary>
 
 **Entity ID: `cover.office_desk`**
 
 File: [`cover/office/office_desk.yaml`](entities/cover/office/office_desk.yaml)
+</details>
+
+<details><summary><strong>Will's Office Blinds</strong></summary>
+
+**Entity ID: `cover.will_s_office_blinds`**
+
+File: [`cover/will_s_office/will_s_office_blinds.yaml`](entities/cover/will_s_office/will_s_office_blinds.yaml)
 </details>
 
 </details>
@@ -2914,7 +2833,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (44)</h3></summary>
+<details><summary><h3>Entities (42)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3060,18 +2979,6 @@ File: [`input_number/cosmo/cosmo_room_timeout_lounge.yaml`](entities/input_numbe
 File: [`input_number/cosmo/cosmo_room_timeout_office.yaml`](entities/input_number/cosmo/cosmo_room_timeout_office.yaml)
 </details>
 
-<details><summary><strong>CRTPi: Fan Auto-On Threshold</strong></summary>
-
-**Entity ID: `input_number.crtpi_fan_auto_on_threshold`**
-
-- Max: 100
-- Min: 20
-- Mode: `box`
-- Unit Of Measurement: °C
-
-File: [`input_number/crtpi_fan_auto_on_threshold.yaml`](entities/input_number/crtpi_fan_auto_on_threshold.yaml)
-</details>
-
 <details><summary><strong>Dry Box | Max Humidity</strong></summary>
 
 **Entity ID: `input_number.dry_box_max_humidity`**
@@ -3199,18 +3106,6 @@ File: [`input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.ya
 File: [`input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml)
 </details>
 
-<details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
-
-**Entity ID: `input_number.octopi_fan_auto_on_threshold`**
-
-- Max: 100
-- Min: 20
-- Mode: `box`
-- Unit Of Measurement: °C
-
-File: [`input_number/octopi_fan_auto_on_threshold.yaml`](entities/input_number/octopi_fan_auto_on_threshold.yaml)
-</details>
-
 <details><summary><strong>Office Desk Sitting Height</strong></summary>
 
 **Entity ID: `input_number.office_desk_sitting_height`**
@@ -3297,28 +3192,51 @@ File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_low
 File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml)
 </details>
 
-<details><summary><strong>ST MacBook Pro Full Battery Threshold</strong></summary>
+<details><summary><strong>CRTPi: Fan Auto-On Threshold</strong></summary>
 
-**Entity ID: `input_number.st_macbook_pro_full_battery_threshold`**
+**Entity ID: `input_number.crtpi_fan_auto_on_threshold`**
 
-- Icon: [`mdi:battery`](https://pictogrammers.com/library/mdi/icon/battery/)
 - Max: 100
+- Min: 20
 - Mode: `box`
-- Unit Of Measurement: %
+- Unit Of Measurement: °C
 
-File: [`input_number/st_macbook_pro_full_battery_threshold.yaml`](entities/input_number/st_macbook_pro_full_battery_threshold.yaml)
+File: [`input_number/threshold/crtpi_fan_auto_on/crtpi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/crtpi_fan_auto_on/crtpi_fan_auto_on_threshold.yaml)
 </details>
 
-<details><summary><strong>ST MacBook Pro Low Battery Threshold</strong></summary>
+<details><summary><strong>Kitchen Extractor Vent: PM2.5 Threshold</strong></summary>
 
-**Entity ID: `input_number.st_macbook_pro_low_battery_threshold`**
+**Entity ID: `input_number.kitchen_extractor_vent_pm2_5_threshold`**
 
-- Icon: [`mdi:battery-low`](https://pictogrammers.com/library/mdi/icon/battery-low/)
-- Max: 100
+- Max: 998
+- Min: 1
 - Mode: `box`
-- Unit Of Measurement: %
+- Unit Of Measurement: µg/m³
 
-File: [`input_number/st_macbook_pro_low_battery_threshold.yaml`](entities/input_number/st_macbook_pro_low_battery_threshold.yaml)
+File: [`input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_pm2_5_threshold.yaml`](entities/input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_pm2_5_threshold.yaml)
+</details>
+
+<details><summary><strong>Kitchen Extractor Vent: VOC Index Threshold</strong></summary>
+
+**Entity ID: `input_number.kitchen_extractor_vent_voc_index_threshold`**
+
+- Max: 998
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_voc_index_threshold.yaml`](entities/input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_voc_index_threshold.yaml)
+</details>
+
+<details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
+
+**Entity ID: `input_number.octopi_fan_auto_on_threshold`**
+
+- Max: 100
+- Min: 20
+- Mode: `box`
+- Unit Of Measurement: °C
+
+File: [`input_number/threshold/octopi_fan_auto_on/octopi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/octopi_fan_auto_on/octopi_fan_auto_on_threshold.yaml)
 </details>
 
 <details><summary><strong>Air Freshener | Timeout</strong></summary>
@@ -3435,30 +3353,6 @@ File: [`input_number/topaz_sr10/topaz_sr10_power_off_timeout.yaml`](entities/inp
 - Unit Of Measurement: dB
 
 File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_number/topaz_sr10/topaz_sr10_volume_level.yaml)
-</details>
-
-<details><summary><strong>Will's MacBook Pro Full Battery Threshold</strong></summary>
-
-**Entity ID: `input_number.will_s_macbook_pro_full_battery_threshold`**
-
-- Icon: [`mdi:battery`](https://pictogrammers.com/library/mdi/icon/battery/)
-- Max: 100
-- Mode: `box`
-- Unit Of Measurement: %
-
-File: [`input_number/will_s_macbook_pro_full_battery_threshold.yaml`](entities/input_number/will_s_macbook_pro_full_battery_threshold.yaml)
-</details>
-
-<details><summary><strong>Will's MacBook Pro Low Battery Threshold</strong></summary>
-
-**Entity ID: `input_number.will_s_macbook_pro_low_battery_threshold`**
-
-- Icon: [`mdi:battery-low`](https://pictogrammers.com/library/mdi/icon/battery-low/)
-- Max: 100
-- Mode: `box`
-- Unit Of Measurement: %
-
-File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/input_number/will_s_macbook_pro_low_battery_threshold.yaml)
 </details>
 
 </details>
@@ -6065,21 +5959,6 @@ File: [`script/office_desk_set_position.yaml`](entities/script/office_desk_set_p
 
 > *No description provided*
 
-- Fields:
-
-```json
-{
-  "sync_blinds": {
-    "description": "Sync blinds with desk position",
-    "example": "false",
-    "required": false,
-    "selector": {
-      "boolean": null
-    }
-  }
-}
-```
-
 - Mode: `single`
 
 File: [`script/office_desk_sitting_mode.yaml`](entities/script/office_desk_sitting_mode.yaml)
@@ -6090,21 +5969,6 @@ File: [`script/office_desk_sitting_mode.yaml`](entities/script/office_desk_sitti
 **Entity ID: `script.office_desk_standing_mode`**
 
 > *No description provided*
-
-- Fields:
-
-```json
-{
-  "sync_blinds": {
-    "description": "Sync blinds with desk position",
-    "example": "false",
-    "required": false,
-    "selector": {
-      "boolean": null
-    }
-  }
-}
-```
 
 - Mode: `single`
 
@@ -6365,31 +6229,6 @@ File: [`script/system/script_response_debugger.yaml`](entities/script/system/scr
     "example": "[\n  {\n    \"service_call\": \"script.turn_on\",\n    \"entity_id\": \"script.office_desk_sitting_mode\"\n  }\n]\n",
     "selector": {
       "action": null
-    }
-  },
-  "close_blinds": {
-    "name": "Close Blinds",
-    "description": "Whether to close the blinds",
-    "required": false,
-    "selector": {
-      "boolean": null
-    }
-  },
-  "close_blinds_window_delay": {
-    "name": "Close Blinds Window Delay",
-    "description": "The delay before closing the blinds if the window is open",
-    "example": "00:01:00",
-    "required": false,
-    "selector": {
-      "time": null
-    }
-  },
-  "close_blinds_with_open_window_after_delay": {
-    "name": "Close Blinds With Open Window After Delay",
-    "description": "Whether to close the blinds if the window is open after a delay",
-    "required": false,
-    "selector": {
-      "boolean": null
     }
   }
 }

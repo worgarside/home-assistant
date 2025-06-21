@@ -1,14 +1,14 @@
 ---
 
-alias: /binary-sensor/hallway-motion-sensor/timeout
+alias: /binary-sensor/upper-landing-motion-sensor/timeout
 
-id: binary_sensor_hallway_motion_sensor_timeout
+id: binary_sensor_upper_landing_motion_sensor_timeout
 
 mode: single
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.hallway_motion_sensor_occupancy
+    entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
     from: "on"
     to: "off"
     for:
@@ -16,6 +16,6 @@ trigger:
 
 action:
   - service: light.turn_off
-    entity_id: light.hallway
+    entity_id: light.upper_landing_light
     data:
       transition: 5

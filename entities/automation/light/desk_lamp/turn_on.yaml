@@ -4,8 +4,7 @@ alias: /light/desk-lamp/turn-on
 id: light_desk_lamp_turn_on
 
 description: >-
-  Turn the desk lamp on when someone enters the room, all of the lights are off,
-  and the blinds are down
+  Turn the desk lamp on when someone enters the room and all of the lights are off
 
 mode: single
 
@@ -19,13 +18,9 @@ condition:
     entity_id: light.office_lights
     state: "off"
 
-  - condition: state
-    entity_id: cover.office_blinds
-    state: closed
-
 action:
   - service: light.turn_on
     target:
-      entity_id: light.desk_lamp
+      entity_id: light.will_s_desk_lamp
     data:
       brightness_pct: "{{ max(states('sensor.lighting_modifier') | int(50), 30) }}"

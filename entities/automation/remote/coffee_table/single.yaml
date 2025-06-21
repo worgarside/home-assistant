@@ -68,7 +68,6 @@ action:
         target:
           entity_id:
             - light.lounge_shapes
-            - light.shelf_lamp
             - light.mini_lamp
         data:
           brightness_pct: 50
@@ -86,14 +85,6 @@ action:
         target:
           entity_id: media_player.lounge_speakers
 
-      - if: "{{ is_state('cover.lounge_blinds', 'closed') }}"
-
-        then:
-          - service: light.turn_on
-            target:
-              entity_id: light.globe_lamp
-
-        else:
-          - service: light.turn_off
-            target:
-              entity_id: light.globe_lamp
+      - service: light.turn_off
+        target:
+          entity_id: light.globe_lamp
