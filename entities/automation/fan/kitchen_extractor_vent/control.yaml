@@ -10,22 +10,22 @@ max_exceeded: silent
 trigger:
   - platform: numeric_state
     entity_id: sensor.kitchen_air_quality_sensor_pm25
-    above: 35
+    above: input_number.kitchen_extractor_vent_pm2_5_threshold
     id: pm25_high
 
   - platform: numeric_state
     entity_id: sensor.kitchen_air_quality_sensor_pm25
-    below: 35
+    below: input_number.kitchen_extractor_vent_pm2_5_threshold
     id: pm25_low
 
   - platform: numeric_state
     entity_id: sensor.kitchen_air_quality_sensor_voc_index
-    above: 200
+    above: input_number.kitchen_extractor_vent_voc_index_threshold
     id: voc_high
 
   - platform: numeric_state
     entity_id: sensor.kitchen_air_quality_sensor_voc_index
-    below: 200
+    below: input_number.kitchen_extractor_vent_voc_index_threshold
     id: voc_low
 
 action:

@@ -2888,7 +2888,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (44)</h3></summary>
+<details><summary><h3>Entities (42)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3034,18 +3034,6 @@ File: [`input_number/cosmo/cosmo_room_timeout_lounge.yaml`](entities/input_numbe
 File: [`input_number/cosmo/cosmo_room_timeout_office.yaml`](entities/input_number/cosmo/cosmo_room_timeout_office.yaml)
 </details>
 
-<details><summary><strong>CRTPi: Fan Auto-On Threshold</strong></summary>
-
-**Entity ID: `input_number.crtpi_fan_auto_on_threshold`**
-
-- Max: 100
-- Min: 20
-- Mode: `box`
-- Unit Of Measurement: °C
-
-File: [`input_number/crtpi_fan_auto_on_threshold.yaml`](entities/input_number/crtpi_fan_auto_on_threshold.yaml)
-</details>
-
 <details><summary><strong>Dry Box | Max Humidity</strong></summary>
 
 **Entity ID: `input_number.dry_box_max_humidity`**
@@ -3173,18 +3161,6 @@ File: [`input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.ya
 File: [`input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml)
 </details>
 
-<details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
-
-**Entity ID: `input_number.octopi_fan_auto_on_threshold`**
-
-- Max: 100
-- Min: 20
-- Mode: `box`
-- Unit Of Measurement: °C
-
-File: [`input_number/octopi_fan_auto_on_threshold.yaml`](entities/input_number/octopi_fan_auto_on_threshold.yaml)
-</details>
-
 <details><summary><strong>Office Desk Sitting Height</strong></summary>
 
 **Entity ID: `input_number.office_desk_sitting_height`**
@@ -3271,28 +3247,51 @@ File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_low
 File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml)
 </details>
 
-<details><summary><strong>ST MacBook Pro Full Battery Threshold</strong></summary>
+<details><summary><strong>CRTPi: Fan Auto-On Threshold</strong></summary>
 
-**Entity ID: `input_number.st_macbook_pro_full_battery_threshold`**
+**Entity ID: `input_number.crtpi_fan_auto_on_threshold`**
 
-- Icon: [`mdi:battery`](https://pictogrammers.com/library/mdi/icon/battery/)
 - Max: 100
+- Min: 20
 - Mode: `box`
-- Unit Of Measurement: %
+- Unit Of Measurement: °C
 
-File: [`input_number/st_macbook_pro_full_battery_threshold.yaml`](entities/input_number/st_macbook_pro_full_battery_threshold.yaml)
+File: [`input_number/threshold/crtpi_fan_auto_on/crtpi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/crtpi_fan_auto_on/crtpi_fan_auto_on_threshold.yaml)
 </details>
 
-<details><summary><strong>ST MacBook Pro Low Battery Threshold</strong></summary>
+<details><summary><strong>Kitchen Extractor Vent: PM2.5 Threshold</strong></summary>
 
-**Entity ID: `input_number.st_macbook_pro_low_battery_threshold`**
+**Entity ID: `input_number.kitchen_extractor_vent_pm2_5_threshold`**
 
-- Icon: [`mdi:battery-low`](https://pictogrammers.com/library/mdi/icon/battery-low/)
-- Max: 100
+- Max: 998
+- Min: 1
 - Mode: `box`
-- Unit Of Measurement: %
+- Unit Of Measurement: µg/m³
 
-File: [`input_number/st_macbook_pro_low_battery_threshold.yaml`](entities/input_number/st_macbook_pro_low_battery_threshold.yaml)
+File: [`input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_pm2_5_threshold.yaml`](entities/input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_pm2_5_threshold.yaml)
+</details>
+
+<details><summary><strong>Kitchen Extractor Vent: VOC Index Threshold</strong></summary>
+
+**Entity ID: `input_number.kitchen_extractor_vent_voc_index_threshold`**
+
+- Max: 998
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_voc_index_threshold.yaml`](entities/input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_voc_index_threshold.yaml)
+</details>
+
+<details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
+
+**Entity ID: `input_number.octopi_fan_auto_on_threshold`**
+
+- Max: 100
+- Min: 20
+- Mode: `box`
+- Unit Of Measurement: °C
+
+File: [`input_number/threshold/octopi_fan_auto_on/octopi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/octopi_fan_auto_on/octopi_fan_auto_on_threshold.yaml)
 </details>
 
 <details><summary><strong>Air Freshener | Timeout</strong></summary>
@@ -3409,30 +3408,6 @@ File: [`input_number/topaz_sr10/topaz_sr10_power_off_timeout.yaml`](entities/inp
 - Unit Of Measurement: dB
 
 File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_number/topaz_sr10/topaz_sr10_volume_level.yaml)
-</details>
-
-<details><summary><strong>Will's MacBook Pro Full Battery Threshold</strong></summary>
-
-**Entity ID: `input_number.will_s_macbook_pro_full_battery_threshold`**
-
-- Icon: [`mdi:battery`](https://pictogrammers.com/library/mdi/icon/battery/)
-- Max: 100
-- Mode: `box`
-- Unit Of Measurement: %
-
-File: [`input_number/will_s_macbook_pro_full_battery_threshold.yaml`](entities/input_number/will_s_macbook_pro_full_battery_threshold.yaml)
-</details>
-
-<details><summary><strong>Will's MacBook Pro Low Battery Threshold</strong></summary>
-
-**Entity ID: `input_number.will_s_macbook_pro_low_battery_threshold`**
-
-- Icon: [`mdi:battery-low`](https://pictogrammers.com/library/mdi/icon/battery-low/)
-- Max: 100
-- Mode: `box`
-- Unit Of Measurement: %
-
-File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/input_number/will_s_macbook_pro_low_battery_threshold.yaml)
 </details>
 
 </details>
