@@ -1,5 +1,4 @@
 ---
-
 alias: /binary-sensor/main-hallway-motion-sensor/timeout
 
 id: binary_sensor_main_hallway_motion_sensor_timeout
@@ -15,12 +14,18 @@ trigger:
       seconds: "{{ states('input_number.hallway_lights_timeout') | int(120) }}"
 
 action:
-  - service: light.turn_off
-    entity_id: light.lower_hallway_1
-    data:
-      transition: 5
+  - parallel:
+      - service: light.turn_off
+        entity_id: light.lower_hallway_1
+        data:
+          transition: 5
 
-  - service: light.turn_off
-    entity_id: light.lower_hallway_2
-    data:
-      transition: 5
+      - service: light.turn_off
+        entity_id: light.lower_hallway_2
+        data:
+          transition: 5
+
+      - service: light.turn_off
+        entity_id: light.kitchen_hallway_spotlight
+        data:
+          transition: 5
