@@ -717,9 +717,7 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 
 ```json
 {
-  "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}",
-  "vic_at_home": "{{ states('person.vic') == 'home' }}",
-  "vic_in_meeting": "{{\n  (\n    states(\"calendar.vic_work\") | bool(false) or\n    trigger.id == \"vic_work_start\"\n  ) and trigger.id != \"vic_work_end\"\n}}"
+  "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}"
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
