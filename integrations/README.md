@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (132)</h3></summary>
+<details><summary><h3>Entities (128)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -858,19 +858,6 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
-<details><summary><code>/light/bedroom-lights/on</code></summary>
-
-**Entity ID: `automation.light_bedroom_lights_on`**
-
-> Run actions when the bedroom lights are turned on
-
-- Alias: /light/bedroom-lights/on
-- ID: `light_bedroom_lights_on`
-- Mode: `single`
-
-File: [`automation/light/bedroom_lights/on.yaml`](entities/automation/light/bedroom_lights/on.yaml)
-</details>
-
 <details><summary><code>/light/desk-lamp/state-change</code></summary>
 
 **Entity ID: `automation.light_desk_lamp_state_change`**
@@ -921,19 +908,6 @@ File: [`automation/light/disco_light/turn_off.yaml`](entities/automation/light/d
 - Mode: `single`
 
 File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/disco_light/turn_on.yaml)
-</details>
-
-<details><summary><code>/light/lounge-lights/on</code></summary>
-
-**Entity ID: `automation.light_lounge_lights_on`**
-
-> Run actions when the lounge lights are turned on
-
-- Alias: /light/lounge-lights/on
-- ID: `light_lounge_lights_on`
-- Mode: `single`
-
-File: [`automation/light/lounge_lights/on.yaml`](entities/automation/light/lounge_lights/on.yaml)
 </details>
 
 <details><summary><code>/light/moomin-box/on</code></summary>
@@ -1636,19 +1610,6 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
 </details>
 
-<details><summary><code>/remote/vic-s-desk/button-1/double</code></summary>
-
-**Entity ID: `automation.remote_vic_s_desk_button_1_double`**
-
-> *No description provided*
-
-- Alias: /remote/vic-s-desk/button-1/double
-- ID: `remote_vic_s_desk_button_1_double`
-- Mode: `single`
-
-File: [`automation/remote/vic_s_desk/button_1/double.yaml`](entities/automation/remote/vic_s_desk/button_1/double.yaml)
-</details>
-
 <details><summary><code>/remote/vic-s-desk/button-1/hold</code></summary>
 
 **Entity ID: `automation.remote_vic_s_desk_button_1_hold`**
@@ -1660,19 +1621,6 @@ File: [`automation/remote/vic_s_desk/button_1/double.yaml`](entities/automation/
 - Mode: `single`
 
 File: [`automation/remote/vic_s_desk/button_1/hold.yaml`](entities/automation/remote/vic_s_desk/button_1/hold.yaml)
-</details>
-
-<details><summary><code>/remote/vic-s-desk/button-1/single</code></summary>
-
-**Entity ID: `automation.remote_vic_s_desk_button_1_single`**
-
-> *No description provided*
-
-- Alias: /remote/vic-s-desk/button-1/single
-- ID: `remote_vic_s_desk_button_1_single`
-- Mode: `single`
-
-File: [`automation/remote/vic_s_desk/button_1/single.yaml`](entities/automation/remote/vic_s_desk/button_1/single.yaml)
 </details>
 
 <details><summary><code>/remote/will-s-desk/button-1/double</code></summary>
@@ -6281,31 +6229,6 @@ File: [`script/system/script_response_debugger.yaml`](entities/script/system/scr
     "example": "[\n  {\n    \"service_call\": \"script.turn_on\",\n    \"entity_id\": \"script.office_desk_sitting_mode\"\n  }\n]\n",
     "selector": {
       "action": null
-    }
-  },
-  "close_blinds": {
-    "name": "Close Blinds",
-    "description": "Whether to close the blinds",
-    "required": false,
-    "selector": {
-      "boolean": null
-    }
-  },
-  "close_blinds_window_delay": {
-    "name": "Close Blinds Window Delay",
-    "description": "The delay before closing the blinds if the window is open",
-    "example": "00:01:00",
-    "required": false,
-    "selector": {
-      "time": null
-    }
-  },
-  "close_blinds_with_open_window_after_delay": {
-    "name": "Close Blinds With Open Window After Delay",
-    "description": "Whether to close the blinds if the window is open after a delay",
-    "required": false,
-    "selector": {
-      "boolean": null
     }
   }
 }
