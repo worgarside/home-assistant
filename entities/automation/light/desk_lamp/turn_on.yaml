@@ -21,6 +21,6 @@ condition:
 action:
   - service: light.turn_on
     target:
-      entity_id: light.desk_lamp
+      entity_id: light.will_s_desk_lamp
     data:
       brightness_pct: "{{ max(states('sensor.lighting_modifier') | int(50), 30) }}"

@@ -16,14 +16,14 @@ trigger:
 
 action:
   - parallel:
-      - if: "{{ is_state('light.desk_lamp', 'on') }}"
+      - if: "{{ is_state('light.will_s_desk_lamp', 'on') }}"
         then:
           - service: light.turn_on
             target:
-              entity_id: light.desk_lamp
+              entity_id: light.will_s_desk_lamp
             data:
               brightness: >-
-                {{ max(state_attr("light.desk_lamp", "brightness") | int(32) - 32, 0) }}
+                {{ max(state_attr("light.will_s_desk_lamp", "brightness") | int(32) - 32, 0) }}
 
       - if: "{{ is_state('light.mushroom_lamp', 'on') }}"
         then:
