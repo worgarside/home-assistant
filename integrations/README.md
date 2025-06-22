@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (128)</h3></summary>
+<details><summary><h3>Entities (129)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -934,6 +934,19 @@ File: [`automation/light/moomin_box/on.yaml`](entities/automation/light/moomin_b
 - Mode: `single`
 
 File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/light/office_shapes/state_change.yaml)
+</details>
+
+<details><summary><code>/light/wardrobe-lights/toggle</code></summary>
+
+**Entity ID: `automation.light_wardrobe_lights_toggle`**
+
+> *No description provided*
+
+- Alias: /light/wardrobe-lights/toggle
+- ID: `light_wardrobe_lights_toggle`
+- Mode: `single`
+
+File: [`automation/light/wardrobe_lights/toggle.yaml`](entities/automation/light/wardrobe_lights/toggle.yaml)
 </details>
 
 <details><summary><code>/media-player/topaz-sr10/off</code></summary>
