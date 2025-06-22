@@ -3,9 +3,7 @@ alias: /light/wardrobe-lights/toggle
 
 id: light_wardrobe_lights_toggle
 
-mode: single
-
-max_exceeded: silent
+mode: queued
 
 trigger:
   - platform: state

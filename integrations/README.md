@@ -944,7 +944,7 @@ File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/l
 
 - Alias: /light/wardrobe-lights/toggle
 - ID: `light_wardrobe_lights_toggle`
-- Mode: `single`
+- Mode: `queued`
 
 File: [`automation/light/wardrobe_lights/toggle.yaml`](entities/automation/light/wardrobe_lights/toggle.yaml)
 </details>
