@@ -22,6 +22,9 @@ trigger:
     entity_id: sensor.kitchen_air_quality_sensor_voc_index
     above: input_number.kitchen_extractor_vent_voc_index_threshold
     id: voc_high
+    # VOC Index is very reactive
+    for:
+      minutes: 5
 
   - platform: numeric_state
     entity_id: sensor.kitchen_air_quality_sensor_voc_index
