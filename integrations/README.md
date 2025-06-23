@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (129)</h3></summary>
+<details><summary><h3>Entities (127)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -74,38 +74,6 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 }
 ```
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/upper-landing-motion-sensor/on</code></summary>
-
-**Entity ID: `automation.binary_sensor_upper_landing_motion_sensor_on`**
-
-> *No description provided*
-
-- Alias: /binary-sensor/upper-landing-motion-sensor/on
-- ID: `binary_sensor_upper_landing_motion_sensor_on`
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
-}
-```
-File: [`automation/binary_sensor/upper_landing_motion_sensor/on.yaml`](entities/automation/binary_sensor/upper_landing_motion_sensor/on.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/upper-landing-motion-sensor/timeout</code></summary>
-
-**Entity ID: `automation.binary_sensor_upper_landing_motion_sensor_timeout`**
-
-> *No description provided*
-
-- Alias: /binary-sensor/upper-landing-motion-sensor/timeout
-- ID: `binary_sensor_upper_landing_motion_sensor_timeout`
-- Mode: `single`
-
-File: [`automation/binary_sensor/upper_landing_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/upper_landing_motion_sensor/timeout.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/will-s-office-presence-sensor/state-change</code></summary>
@@ -917,7 +885,8 @@ File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/l
 
 ```json
 {
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}",
+  "double_brightness": "{{\n  min(\n    ( states('sensor.lighting_modifier') | int(70) ) * 2,\n    100\n  )\n}}"
 }
 ```
 File: [`automation/light/upper_landing_lights/on.yaml`](entities/automation/light/upper_landing_lights/on.yaml)
