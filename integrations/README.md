@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (127)</h3></summary>
+<details><summary><h3>Entities (126)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -773,19 +773,6 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 - Mode: `single`
 
 File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light/desk_lamp/state_change.yaml)
-</details>
-
-<details><summary><code>/light/desk-lamp/turn-on</code></summary>
-
-**Entity ID: `automation.light_desk_lamp_turn_on`**
-
-> Turn the desk lamp on when someone enters the room and all of the lights are off
-
-- Alias: /light/desk-lamp/turn-on
-- ID: `light_desk_lamp_turn_on`
-- Mode: `single`
-
-File: [`automation/light/desk_lamp/turn_on.yaml`](entities/automation/light/desk_lamp/turn_on.yaml)
 </details>
 
 <details><summary><code>/light/disco-light/turn-off</code></summary>
