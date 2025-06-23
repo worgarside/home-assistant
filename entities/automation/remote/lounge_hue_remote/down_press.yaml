@@ -16,15 +16,6 @@ trigger:
 
 action:
   - parallel:
-      - if: "{{ is_state('light.shelf_lamp', 'on') }}"
-        then:
-          - service: light.turn_on
-            target:
-              entity_id: light.shelf_lamp
-            data:
-              brightness: >-
-                {{ max(state_attr("light.shelf_lamp", "brightness") | int(32) - 32, 0) }}
-
       - if: "{{ is_state('light.table_lamp', 'on') }}"
         then:
           - service: light.turn_on
