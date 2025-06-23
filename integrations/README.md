@@ -43,70 +43,6 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 File: [`automation/binary_sensor/lounge_diffuser_needs_water/off.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/off.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/lower-hallway-motion-sensor/on</code></summary>
-
-**Entity ID: `automation.binary_sensor_lower_hallway_motion_sensor_on`**
-
-> *No description provided*
-
-- Alias: /binary-sensor/lower-hallway-motion-sensor/on
-- ID: `binary_sensor_lower_hallway_motion_sensor_on`
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
-}
-```
-File: [`automation/binary_sensor/lower_hallway_motion_sensor/on.yaml`](entities/automation/binary_sensor/lower_hallway_motion_sensor/on.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/lower-hallway-motion-sensor/timeout</code></summary>
-
-**Entity ID: `automation.binary_sensor_lower_hallway_motion_sensor_timeout`**
-
-> *No description provided*
-
-- Alias: /binary-sensor/lower-hallway-motion-sensor/timeout
-- ID: `binary_sensor_lower_hallway_motion_sensor_timeout`
-- Mode: `single`
-
-File: [`automation/binary_sensor/lower_hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/lower_hallway_motion_sensor/timeout.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/main-hallway-motion-sensor/on</code></summary>
-
-**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_on`**
-
-> *No description provided*
-
-- Alias: /binary-sensor/main-hallway-motion-sensor/on
-- ID: `binary_sensor_main_hallway_motion_sensor_on`
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
-}
-```
-File: [`automation/binary_sensor/main_hallway_motion_sensor/on.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor/on.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/main-hallway-motion-sensor/timeout</code></summary>
-
-**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_timeout`**
-
-> *No description provided*
-
-- Alias: /binary-sensor/main-hallway-motion-sensor/timeout
-- ID: `binary_sensor_main_hallway_motion_sensor_timeout`
-- Mode: `single`
-
-File: [`automation/binary_sensor/main_hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor/timeout.yaml)
-</details>
-
 <details><summary><code>/binary-sensor/office-presence-sensor/state-change</code></summary>
 
 **Entity ID: `automation.binary_sensor_office_presence_sensor_state_change`**
@@ -910,6 +846,38 @@ File: [`automation/light/disco_light/turn_off.yaml`](entities/automation/light/d
 File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/disco_light/turn_on.yaml)
 </details>
 
+<details><summary><code>/light/lower-hallway-lights/on</code></summary>
+
+**Entity ID: `automation.light_lower_hallway_lights_on`**
+
+> *No description provided*
+
+- Alias: /light/lower-hallway-lights/on
+- ID: `light_lower_hallway_lights_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/light/lower_hallway_lights/on.yaml`](entities/automation/light/lower_hallway_lights/on.yaml)
+</details>
+
+<details><summary><code>/light/lower-hallway-lights/timeout</code></summary>
+
+**Entity ID: `automation.light_lower_hallway_lights_timeout`**
+
+> *No description provided*
+
+- Alias: /light/lower-hallway-lights/timeout
+- ID: `light_lower_hallway_lights_timeout`
+- Mode: `single`
+
+File: [`automation/light/lower_hallway_lights/timeout.yaml`](entities/automation/light/lower_hallway_lights/timeout.yaml)
+</details>
+
 <details><summary><code>/light/moomin-box/on</code></summary>
 
 **Entity ID: `automation.light_moomin_box_on`**
@@ -934,6 +902,38 @@ File: [`automation/light/moomin_box/on.yaml`](entities/automation/light/moomin_b
 - Mode: `single`
 
 File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/light/office_shapes/state_change.yaml)
+</details>
+
+<details><summary><code>/light/upper-landing-lights/on</code></summary>
+
+**Entity ID: `automation.light_upper_landing_lights_on`**
+
+> *No description provided*
+
+- Alias: /light/upper-landing-lights/on
+- ID: `light_upper_landing_lights_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/light/upper_landing_lights/on.yaml`](entities/automation/light/upper_landing_lights/on.yaml)
+</details>
+
+<details><summary><code>/light/upper-landing-lights/timeout</code></summary>
+
+**Entity ID: `automation.light_upper_landing_lights_timeout`**
+
+> *No description provided*
+
+- Alias: /light/upper-landing-lights/timeout
+- ID: `light_upper_landing_lights_timeout`
+- Mode: `single`
+
+File: [`automation/light/upper_landing_lights/timeout.yaml`](entities/automation/light/upper_landing_lights/timeout.yaml)
 </details>
 
 <details><summary><code>/light/wardrobe-lights/toggle</code></summary>
