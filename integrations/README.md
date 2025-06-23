@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (125)</h3></summary>
+<details><summary><h3>Entities (124)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -171,26 +171,6 @@ File: [`automation/cover/office_desk/keepalive.yaml`](entities/automation/cover/
 - Mode: `single`
 
 File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/office_desk/work_mode.yaml)
-</details>
-
-<details><summary><code>/cover/will-s-office-blinds/state-change</code></summary>
-
-**Entity ID: `automation.cover_will_s_office_blinds_state_change`**
-
-> Ensures both blinds stay in sync when either one is controlled
-
-- Alias: /cover/will-s-office-blinds/state-change
-- ID: `cover_will_s_office_blinds_state_change`
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "trigger_entity": "{{ trigger.entity_id }}",
-  "other_entity": "{% if trigger_entity == 'cover.will_s_office_blinds_1' %}\n  cover.will_s_office_blinds_2\n{% else %}\n  cover.will_s_office_blinds_1\n{% endif %}"
-}
-```
-File: [`automation/cover/will_s_office_blinds/state_change.yaml`](entities/automation/cover/will_s_office_blinds/state_change.yaml)
 </details>
 
 <details><summary><code>/crtpi/cpu-fan-control</code></summary>
