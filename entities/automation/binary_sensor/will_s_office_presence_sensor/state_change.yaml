@@ -1,13 +1,13 @@
 ---
-alias: /binary-sensor/office-presence-sensor/state-change
+alias: /binary-sensor/will-s-office-presence-sensor/state-change
 
-id: binary_sensor_office_presence_sensor_state_change
+id: binary_sensor_will_s_office_presence_sensor_state_change
 
 mode: queued
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.office_presence_sensor
+    entity_id: binary_sensor.will_s_office_presence_sensor
     to:
       - "on"
       - "off"

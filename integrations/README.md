@@ -43,25 +43,6 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 File: [`automation/binary_sensor/lounge_diffuser_needs_water/off.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/off.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/office-presence-sensor/state-change</code></summary>
-
-**Entity ID: `automation.binary_sensor_office_presence_sensor_state_change`**
-
-> *No description provided*
-
-- Alias: /binary-sensor/office-presence-sensor/state-change
-- ID: `binary_sensor_office_presence_sensor_state_change`
-- Mode: `queued`
-- Variables:
-
-```json
-{
-  "state_manager": "var.will_s_desk_state_manager"
-}
-```
-File: [`automation/binary_sensor/office_presence_sensor/state_change.yaml`](entities/automation/binary_sensor/office_presence_sensor/state_change.yaml)
-</details>
-
 <details><summary><code>/binary-sensor/quiet-hours/off</code></summary>
 
 **Entity ID: `automation.binary_sensor_quiet_hours_off`**
@@ -125,6 +106,25 @@ File: [`automation/binary_sensor/upper_landing_motion_sensor/on.yaml`](entities/
 - Mode: `single`
 
 File: [`automation/binary_sensor/upper_landing_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/upper_landing_motion_sensor/timeout.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/will-s-office-presence-sensor/state-change</code></summary>
+
+**Entity ID: `automation.binary_sensor_will_s_office_presence_sensor_state_change`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/will-s-office-presence-sensor/state-change
+- ID: `binary_sensor_will_s_office_presence_sensor_state_change`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "state_manager": "var.will_s_desk_state_manager"
+}
+```
+File: [`automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml`](entities/automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml)
 </details>
 
 <details><summary><code>/cosmo/clean-due</code></summary>
