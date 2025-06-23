@@ -2846,7 +2846,7 @@ File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pin
 
 ## Input Number
 
-<details><summary><h3>Entities (42)</h3></summary>
+<details><summary><h3>Entities (43)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3205,6 +3205,18 @@ File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_low
 File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml)
 </details>
 
+<details><summary><strong>Charging Hub: Auto-Off Threshold</strong></summary>
+
+**Entity ID: `input_number.charging_hub_auto_off_threshold`**
+
+- Max: 100
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: W
+
+File: [`input_number/threshold/charging_hub/charging_hub_auto_off_threshold.yaml`](entities/input_number/threshold/charging_hub/charging_hub_auto_off_threshold.yaml)
+</details>
+
 <details><summary><strong>CRTPi: Fan Auto-On Threshold</strong></summary>
 
 **Entity ID: `input_number.crtpi_fan_auto_on_threshold`**
@@ -3214,7 +3226,7 @@ File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upp
 - Mode: `box`
 - Unit Of Measurement: °C
 
-File: [`input_number/threshold/crtpi_fan_auto_on/crtpi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/crtpi_fan_auto_on/crtpi_fan_auto_on_threshold.yaml)
+File: [`input_number/threshold/crtpi_fan/crtpi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/crtpi_fan/crtpi_fan_auto_on_threshold.yaml)
 </details>
 
 <details><summary><strong>Kitchen Extractor Vent: PM2.5 Threshold</strong></summary>
@@ -3249,7 +3261,7 @@ File: [`input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_voc
 - Mode: `box`
 - Unit Of Measurement: °C
 
-File: [`input_number/threshold/octopi_fan_auto_on/octopi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/octopi_fan_auto_on/octopi_fan_auto_on_threshold.yaml)
+File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml)
 </details>
 
 <details><summary><strong>Air Freshener | Timeout</strong></summary>

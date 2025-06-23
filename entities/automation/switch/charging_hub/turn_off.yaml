@@ -10,7 +10,7 @@ mode: single
 trigger:
   - platform: numeric_state
     entity_id: sensor.charging_hub_current_consumption
-    below: 1
+    below: input_number.charging_hub_auto_off_threshold
     for:
       minutes: 2
 
