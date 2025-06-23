@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (126)</h3></summary>
+<details><summary><h3>Entities (125)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1165,19 +1165,6 @@ File: [`automation/person/will/home.yaml`](entities/automation/person/will/home.
 - Mode: `single`
 
 File: [`automation/person/will/leaving_work.yaml`](entities/automation/person/will/leaving_work.yaml)
-</details>
-
-<details><summary><code>/presence/office/beanbag</code></summary>
-
-**Entity ID: `automation.presence_office_beanbag`**
-
-> *No description provided*
-
-- Alias: /presence/office/beanbag
-- ID: `presence_office_beanbag`
-- Mode: `single`
-
-File: [`automation/presence/office/beanbag.yaml`](entities/automation/presence/office/beanbag.yaml)
 </details>
 
 <details><summary><code>/prusa-i3/bed/timeout</code></summary>
