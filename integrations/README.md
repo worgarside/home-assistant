@@ -417,7 +417,14 @@ File: [`automation/fan/desk_fan/state_change.yaml`](entities/automation/fan/desk
 - Alias: /fan/kitchen-extractor-vent/control
 - ID: `fan_kitchen_extractor_vent_control`
 - Mode: `single`
+- Variables:
 
+```json
+{
+  "voc_high": "{{\n  states('sensor.kitchen_air_quality_sensor_voc_index') | float >\n  states('input_number.kitchen_extractor_vent_voc_index_threshold') | float\n}}\n",
+  "pm25_high": "{{\n  states('sensor.kitchen_air_quality_sensor_pm25') | float >\n  states('input_number.kitchen_extractor_vent_pm2_5_threshold') | float\n}}\n"
+}
+```
 File: [`automation/fan/kitchen_extractor_vent/control.yaml`](entities/automation/fan/kitchen_extractor_vent/control.yaml)
 </details>
 

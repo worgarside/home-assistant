@@ -31,7 +31,75 @@ trigger:
     below: input_number.kitchen_extractor_vent_voc_index_threshold
     id: voc_low
 
+  - platform: state
+    entity_id: binary_sensor.kitchen_presence_sensor
+    to: "off"
+    for:
+      minutes: 1
+    id: kitchen_exited
+
+  - platform: state
+    entity_id: binary_sensor.kitchen_presence_sensor
+    to: "on"
+    id: kitchen_entered
+
+condition:
+  - condition: or
+    conditions:
+      # Allow all air quality sensor triggers to proceed normally
+      - condition: trigger
+        id:
+          - pm25_high
+          - voc_high
+          - pm25_low
+          - voc_low
+
+      # When the kitchen is exited, turn the vent on if VOC OR PM2.5 is high
+      - condition: and
+        conditions:
+          - condition: trigger
+            id: kitchen_exited
+          - condition: or
+            conditions:
+              - condition: numeric_state
+                entity_id: sensor.kitchen_air_quality_sensor_voc_index
+                above: input_number.kitchen_extractor_vent_voc_index_threshold
+              - condition: numeric_state
+                entity_id: sensor.kitchen_air_quality_sensor_pm25
+                above: input_number.kitchen_extractor_vent_pm2_5_threshold
+
+      # When the kitchen is entered, turn the vent off if pm2.5 is below thresholds
+      - condition: and
+        conditions:
+          - condition: trigger
+            id: kitchen_entered
+          - condition: numeric_state
+            entity_id: sensor.kitchen_air_quality_sensor_pm25
+            below: input_number.kitchen_extractor_vent_pm2_5_threshold
+
+variables:
+  voc_high: >
+    {{
+      states('sensor.kitchen_air_quality_sensor_voc_index') | float >
+      states('input_number.kitchen_extractor_vent_voc_index_threshold') | float
+    }}
+  pm25_high: >
+    {{
+      states('sensor.kitchen_air_quality_sensor_pm25') | float >
+      states('input_number.kitchen_extractor_vent_pm2_5_threshold') | float
+    }}
+
 action:
-  - service: fan.turn_{{ 'on' if trigger.id.endswith('high') else 'off' }}
+  - variables:
+      should_turn_on: >
+        {% if trigger.id in ['pm25_high', 'voc_high'] %}
+          true
+        {% elif trigger.id == 'kitchen_exited' %}
+          {{ voc_high or pm25_high }}
+        {% else %}
+          false
+        {% endif %}
+
+  - service: fan.turn_{{ 'on' if should_turn_on | bool else 'off' }}
     target:
       entity_id: fan.kitchen_extractor_vent
