@@ -12,8 +12,12 @@ icon: mdi:brightness-percent
 state: >-
   {% set tod = states("sensor.time_of_day") %}
   {% set quiet_hours = states("binary_sensor.quiet_hours") | bool(false) %}
+  {% set weekday = states("binary_sensor.weekday") | bool(false) %}
+  {% set current_hour = states("sensor.current_hour") | int(12) %}
 
-  {% if tod in ("Morning", "Afternoon") %}
+  {% if ( weekday and 0 <= current_hour < 7 ) or tod == "Night" %}
+    1
+  {% elif tod in ("Morning", "Afternoon") %}
     {{ iif(quiet_hours, 75, 100) }}
   {% elif tod in ("Evening", "Sunset", "Sunrise") %}
     60
@@ -21,8 +25,6 @@ state: >-
     30
   {% elif tod in ("Dusk", "Dawn") %}
     10
-  {% elif tod == "Night" %}
-    {{ iif(quiet_hours, 1, 10) }}
   {% else %}
     100
   {% endif %}
