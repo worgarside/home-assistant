@@ -3957,6 +3957,18 @@ File: [`mqtt/number/mtrxpi/combination/y_pos.yaml`](entities/mqtt/number/mtrxpi/
 File: [`mqtt/number/mtrxpi/matrix/brightness.yaml`](entities/mqtt/number/mtrxpi/matrix/brightness.yaml)
 </details>
 
+<details><summary><strong>MtrxPi | Now Playing: Size</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_now_playing_size`**
+
+- Icon: [`mdi:resize`](https://pictogrammers.com/library/mdi/icon/resize/)
+- Command Topic: /mtrxpi/now-playing/parameter/size
+- State Topic: /mtrxpi/now-playing/parameter/size
+- Unit Of Measurement: `px`
+
+File: [`mqtt/number/mtrxpi/now_playing/size.yaml`](entities/mqtt/number/mtrxpi/now_playing/size.yaml)
+</details>
+
 <details><summary><strong>MtrxPi | Now Playing: X Pos</strong></summary>
 
 **Entity ID: `mqtt.mtrxpi_now_playing_x_pos`**
