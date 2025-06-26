@@ -108,9 +108,6 @@ action:
               brightness_pct: "{{ brightness }}"
               transition: 1
 
-          - delay:
-              seconds: 2.5
-
           - service: light.turn_on
             target:
               entity_id: light.lower_hallway_2
