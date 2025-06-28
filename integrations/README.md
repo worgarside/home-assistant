@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (124)</h3></summary>
+<details><summary><h3>Entities (108)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -65,14 +65,7 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 - Alias: /binary-sensor/quiet-hours/on
 - ID: `binary_sensor_quiet_hours_on`
 - Mode: `single`
-- Variables:
 
-```json
-{
-  "now_iso": "{{ now().isoformat() }}",
-  "now_ts": "{{ ( now_iso | as_datetime ).timestamp() }}"
-}
-```
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
 </details>
 
@@ -95,38 +88,6 @@ File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binar
 File: [`automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml`](entities/automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml)
 </details>
 
-<details><summary><code>/cosmo/clean-due</code></summary>
-
-**Entity ID: `automation.cosmo_clean_due`**
-
-> A room has not been cleaned for N hours
-
-- Alias: /cosmo/clean-due
-- ID: `cosmo_clean_due`
-- Mode: `parallel`
-- Variables:
-
-```json
-{
-  "room": "{{\n  trigger.entity_id.removeprefix('input_datetime.cosmo_next_').removesuffix('_clean_due')\n}}"
-}
-```
-File: [`automation/cosmo/clean_due.yaml`](entities/automation/cosmo/clean_due.yaml)
-</details>
-
-<details><summary><code>/cosmo/clean-flat</code></summary>
-
-**Entity ID: `automation.cosmo_clean_flat`**
-
-> *No description provided*
-
-- Alias: /cosmo/clean-flat
-- ID: `cosmo_clean_flat`
-- Mode: `single`
-
-File: [`automation/cosmo/clean_flat.yaml`](entities/automation/cosmo/clean_flat.yaml)
-</details>
-
 <details><summary><code>/cosmo/nightly-kitchen-clean</code></summary>
 
 **Entity ID: `automation.cosmo_nightly_kitchen_clean`**
@@ -136,14 +97,7 @@ File: [`automation/cosmo/clean_flat.yaml`](entities/automation/cosmo/clean_flat.
 - Alias: /cosmo/nightly-kitchen-clean
 - ID: `cosmo_nightly_kitchen_clean`
 - Mode: `single`
-- Variables:
 
-```json
-{
-  "carpet_boost": "{{ states('switch.cosmo_carpet_boost') }}",
-  "lights_on": "{{\n  expand((area_entities('lounge') + area_entities('kitchen')) | select('match', '^light\\.')) |\n  selectattr('state', 'eq', 'on') |\n  list |\n  count > 0\n}}"
-}
-```
 File: [`automation/cosmo/nightly_kitchen_clean.yaml`](entities/automation/cosmo/nightly_kitchen_clean.yaml)
 </details>
 
@@ -613,47 +567,6 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
 </details>
 
-<details><summary><code>/input-datetime/cosmo/next-clean-due/set</code></summary>
-
-**Entity ID: `automation.input_datetime_cosmo_next_clean_due_set`**
-
-> *No description provided*
-
-- Alias: /input-datetime/cosmo/next-clean-due/set
-- ID: `input_datetime_cosmo_next_clean_due_set`
-- Mode: `parallel`
-- Variables:
-
-```json
-{
-  "new_datetime": "{{ trigger.to_state.state }}",
-  "hour": "{{ (new_datetime | as_datetime).hour | int(12) }}"
-}
-```
-File: [`automation/input_datetime/cosmo/next_clean_due/set.yaml`](entities/automation/input_datetime/cosmo/next_clean_due/set.yaml)
-</details>
-
-<details><summary><code>/input-datetime/cosmo/room-last-cleaned/set</code></summary>
-
-**Entity ID: `automation.input_datetime_cosmo_room_last_cleaned_set`**
-
-> *No description provided*
-
-- Alias: /input-datetime/cosmo/room-last-cleaned/set
-- ID: `input_datetime_cosmo_room_last_cleaned_set`
-- Mode: `parallel`
-- Variables:
-
-```json
-{
-  "room": "{{ trigger.entity_id.removeprefix('input_datetime.cosmo_last_').removesuffix('_clean') }}",
-  "timeout_hours": "{{ states('input_number.cosmo_room_timeout_' ~ room) | int(72) }}",
-  "next_clean": "{{ trigger.to_state.state | as_datetime + timedelta(hours=timeout_hours) }}"
-}
-```
-File: [`automation/input_datetime/cosmo/room_last_cleaned/set.yaml`](entities/automation/input_datetime/cosmo/room_last_cleaned/set.yaml)
-</details>
-
 <details><summary><code>/input-datetime/home-assistant-start-time/set-datetime</code></summary>
 
 **Entity ID: `automation.input_datetime_home_assistant_start_time_set_datetime`**
@@ -665,49 +578,6 @@ File: [`automation/input_datetime/cosmo/room_last_cleaned/set.yaml`](entities/au
 - Mode: `single`
 
 File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](entities/automation/input_datetime/home_assistant_start_time/set_datetime.yaml)
-</details>
-
-<details><summary><code>/input-number/cosmo/room-timeout/set</code></summary>
-
-**Entity ID: `automation.input_number_cosmo_room_timeout_set`**
-
-> *No description provided*
-
-- Alias: /input-number/cosmo/room-timeout/set
-- ID: `input_number_cosmo_room_timeout_set`
-- Mode: `parallel`
-- Variables:
-
-```json
-{
-  "room": "{{ trigger.entity_id.removeprefix('input_number.cosmo_room_timeout_') }}",
-  "timeout_hours": "{{ trigger.to_state.state | int(72) }}",
-  "last_clean": "{{ states('input_datetime.cosmo_last_' ~ room ~ '_clean') }}",
-  "next_clean": "{{ last_clean | as_datetime + timedelta(hours=timeout_hours) }}"
-}
-```
-File: [`automation/input_number/cosmo/room_timeout/set.yaml`](entities/automation/input_number/cosmo/room_timeout/set.yaml)
-</details>
-
-<details><summary><code>/input-select/cosmo-entity-picture/set-options</code></summary>
-
-**Entity ID: `automation.input_select_cosmo_entity_picture_set_options`**
-
-> *No description provided*
-
-- Alias: /input-select/cosmo-entity-picture/set-options
-- ID: `input_select_cosmo_entity_picture_set_options`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "image_directory_lovelace": "/local/images/cosmo/",
-  "image_directory_real": "/config/www/images/cosmo",
-  "null_image": "/local/images/null.webp"
-}
-```
-File: [`automation/input_select/cosmo_entity_picture/set_options.yaml`](entities/automation/input_select/cosmo_entity_picture/set_options.yaml)
 </details>
 
 <details><summary><code>/input-select/gh-cli-active-user/option-selected</code></summary>
@@ -929,63 +799,6 @@ File: [`automation/media_player/topaz_sr10/on.yaml`](entities/automation/media_p
 - Mode: `single`
 
 File: [`automation/media_player/topaz_sr10/timeout.yaml`](entities/automation/media_player/topaz_sr10/timeout.yaml)
-</details>
-
-<details><summary><code>/mobile-app-notification-action/cosmo/clean-now</code></summary>
-
-**Entity ID: `automation.mobile_app_notification_action_cosmo_clean_now`**
-
-> Get Cosmo to clean a room immediately, triggered from a mobile notification
-
-- Alias: /mobile-app-notification-action/cosmo/clean-now
-- ID: `mobile_app_notification_action_cosmo_clean_now`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "room": "{{ trigger.event.data.action.split(':')[2] }}"
-}
-```
-File: [`automation/mobile_app_notification_action/cosmo/clean_now.yaml`](entities/automation/mobile_app_notification_action/cosmo/clean_now.yaml)
-</details>
-
-<details><summary><code>/mobile-app-notification-action/cosmo/ignore-request</code></summary>
-
-**Entity ID: `automation.mobile_app_notification_action_cosmo_ignore_request`**
-
-> Ignore Cosmo's clean request, triggered from a mobile notification
-
-- Alias: /mobile-app-notification-action/cosmo/ignore-request
-- ID: `mobile_app_notification_action_cosmo_ignore_request`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "room": "{{ trigger.event.data.action.split(':')[2] }}"
-}
-```
-File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](entities/automation/mobile_app_notification_action/cosmo/ignore_request.yaml)
-</details>
-
-<details><summary><code>/mobile-app-notification-action/cosmo/remind-later</code></summary>
-
-**Entity ID: `automation.mobile_app_notification_action_cosmo_remind_later`**
-
-> Get Cosmo to check again later, triggered from a mobile notification
-
-- Alias: /mobile-app-notification-action/cosmo/remind-later
-- ID: `mobile_app_notification_action_cosmo_remind_later`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "room": "{{ trigger.event.data.action.split(':')[2] }}"
-}
-```
-File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](entities/automation/mobile_app_notification_action/cosmo/remind_later.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/audio-visualiser</code></summary>
@@ -1783,97 +1596,6 @@ File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/swit
 File: [`automation/switch/prusa_i3_mk3_power/timeout.yaml`](entities/automation/switch/prusa_i3_mk3_power/timeout.yaml)
 </details>
 
-<details><summary><code>/tag/cosmo/bedroom</code></summary>
-
-**Entity ID: `automation.tag_cosmo_bedroom`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/bedroom
-- ID: `tag_cosmo_bedroom`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/bedroom.yaml`](entities/automation/tag/cosmo/bedroom.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/en-suite</code></summary>
-
-**Entity ID: `automation.tag_cosmo_en_suite`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/en-suite
-- ID: `tag_cosmo_en_suite`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/en_suite.yaml`](entities/automation/tag/cosmo/en_suite.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/hallway</code></summary>
-
-**Entity ID: `automation.tag_cosmo_hallway`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/hallway
-- ID: `tag_cosmo_hallway`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/hallway.yaml`](entities/automation/tag/cosmo/hallway.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/kitchen</code></summary>
-
-**Entity ID: `automation.tag_cosmo_kitchen`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/kitchen
-- ID: `tag_cosmo_kitchen`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/kitchen.yaml`](entities/automation/tag/cosmo/kitchen.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/lounge</code></summary>
-
-**Entity ID: `automation.tag_cosmo_lounge`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/lounge
-- ID: `tag_cosmo_lounge`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/lounge.yaml`](entities/automation/tag/cosmo/lounge.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/office</code></summary>
-
-**Entity ID: `automation.tag_cosmo_office`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/office
-- ID: `tag_cosmo_office`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/office.yaml`](entities/automation/tag/cosmo/office.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/return-to-base</code></summary>
-
-**Entity ID: `automation.tag_cosmo_return_to_base`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/return-to-base
-- ID: `tag_cosmo_return_to_base`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/return_to_base.yaml`](entities/automation/tag/cosmo/return_to_base.yaml)
-</details>
-
 <details><summary><code>/var/will-s-desk-state-manager/attribute-timeout</code></summary>
 
 **Entity ID: `automation.var_will_s_desk_state_manager_attribute_timeout`**
@@ -2561,172 +2283,7 @@ File: [`input_button/water_pineapple.yaml`](entities/input_button/water_pineappl
 
 ## Input Datetime
 
-<details><summary><h3>Entities (19)</h3></summary>
-
-<details><summary><strong>Cosmo: Last Bathroom Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_bathroom_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_bathroom_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_bathroom_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last Bedroom Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_bedroom_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_bedroom_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_bedroom_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last En-Suite Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_en_suite_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_en_suite_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_en_suite_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last Hallway Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_hallway_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_hallway_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_hallway_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last Kitchen Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_kitchen_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_kitchen_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_kitchen_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last Lounge Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_lounge_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_lounge_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_lounge_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last Office Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_office_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_office_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_office_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Bathroom Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_bathroom_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_bathroom_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_bathroom_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Bedroom Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_bedroom_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_bedroom_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_bedroom_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next En-Suite Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_en_suite_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_en_suite_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_en_suite_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Hallway Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_hallway_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_hallway_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_hallway_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Kitchen Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_kitchen_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_kitchen_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_kitchen_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Lounge Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_lounge_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_lounge_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_lounge_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Office Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_office_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_office_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_office_clean_due.yaml)
-</details>
-
-<details><summary><strong>Ficus Last Watered</strong></summary>
-
-**Entity ID: `input_datetime.ficus_last_watered`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:calendar-clock`](https://pictogrammers.com/library/mdi/icon/calendar-clock/)
-
-File: [`input_datetime/ficus_last_watered.yaml`](entities/input_datetime/ficus_last_watered.yaml)
-</details>
+<details><summary><h3>Entities (2)</h3></summary>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
 
@@ -2750,33 +2307,11 @@ File: [`input_datetime/home_assistant_start_time.yaml`](entities/input_datetime/
 File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_save.yaml)
 </details>
 
-<details><summary><strong>Monstera Last Watered</strong></summary>
-
-**Entity ID: `input_datetime.monstera_last_watered`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:calendar-clock`](https://pictogrammers.com/library/mdi/icon/calendar-clock/)
-
-File: [`input_datetime/monstera_last_watered.yaml`](entities/input_datetime/monstera_last_watered.yaml)
-</details>
-
-<details><summary><strong>Pineapple Last Watered</strong></summary>
-
-**Entity ID: `input_datetime.pineapple_last_watered`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:calendar-clock`](https://pictogrammers.com/library/mdi/icon/calendar-clock/)
-
-File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pineapple_last_watered.yaml)
-</details>
-
 </details>
 
 ## Input Number
 
-<details><summary><h3>Entities (43)</h3></summary>
+<details><summary><h3>Entities (36)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2836,90 +2371,6 @@ File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_maximum_auto_top_up.ya
 - Unit Of Measurement: GBP
 
 File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml`](entities/input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Bathroom</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_bathroom`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_bathroom.yaml`](entities/input_number/cosmo/cosmo_room_timeout_bathroom.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Bedroom</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_bedroom`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_bedroom.yaml`](entities/input_number/cosmo/cosmo_room_timeout_bedroom.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: En-Suite</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_en_suite`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_en_suite.yaml`](entities/input_number/cosmo/cosmo_room_timeout_en_suite.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Hallway</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_hallway`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_hallway.yaml`](entities/input_number/cosmo/cosmo_room_timeout_hallway.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Kitchen</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_kitchen`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_kitchen.yaml`](entities/input_number/cosmo/cosmo_room_timeout_kitchen.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Lounge</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_lounge`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_lounge.yaml`](entities/input_number/cosmo/cosmo_room_timeout_lounge.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Office</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_office`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_office.yaml`](entities/input_number/cosmo/cosmo_room_timeout_office.yaml)
 </details>
 
 <details><summary><strong>Dry Box | Max Humidity</strong></summary>
@@ -5090,7 +4541,7 @@ File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realt
 
 ## Script
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (26)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5210,96 +4661,6 @@ File: [`script/cosmo/cosmo_clean_room.yaml`](entities/script/cosmo/cosmo_clean_r
 }
 ```
 File: [`script/cosmo/cosmo_get_room_id_or_name.yaml`](entities/script/cosmo/cosmo_get_room_id_or_name.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Send Clean Requests</strong></summary>
-
-**Entity ID: `script.cosmo_send_clean_requests`**
-
-> Send a notification asking to vacuum on behalf of Cosmo
-
-- Fields:
-
-```json
-{
-  "room": {
-    "description": "The room to send the request for",
-    "required": true,
-    "selector": {
-      "area": null
-    }
-  }
-}
-```
-
-- Mode: `queued`
-
-File: [`script/cosmo/cosmo_send_clean_requests.yaml`](entities/script/cosmo/cosmo_send_clean_requests.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Set Cleaning Sequence</strong></summary>
-
-**Entity ID: `script.cosmo_set_cleaning_sequence`**
-
-> Set Cosmo's cleaning sequence based on the last time each room was cleaned
-
-- Fields:
-
-```json
-{
-  "rooms": {
-    "description": "List of rooms to clean",
-    "required": false,
-    "selector": {
-      "area": {
-        "multiple": true
-      }
-    }
-  }
-}
-```
-
-- Mode: `restart`
-
-File: [`script/cosmo/cosmo_set_cleaning_sequence.yaml`](entities/script/cosmo/cosmo_set_cleaning_sequence.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Tag Scanned</strong></summary>
-
-**Entity ID: `script.cosmo_tag_scanned`**
-
-> Send Cosmo to work when an NFC tag is scanned
-
-- Fields:
-
-```json
-{
-  "room_name": {
-    "description": "The room name to use for the ID lookup and in in the TTS message",
-    "example": "bedroom",
-    "required": true,
-    "selector": {
-      "area": null
-    }
-  },
-  "tts_entity_id": {
-    "description": "The entity ID of the TTS device to use",
-    "example": "media_player.bedroom_nest_mini",
-    "required": true,
-    "selector": {
-      "entity": {
-        "filter": {
-          "domain": "media_player"
-        }
-      }
-    }
-  }
-}
-```
-
-- Mode: `single`
-
-File: [`script/cosmo/cosmo_tag_scanned.yaml`](entities/script/cosmo/cosmo_tag_scanned.yaml)
 </details>
 
 <details><summary><strong>Debug Persistent Notification</strong></summary>
