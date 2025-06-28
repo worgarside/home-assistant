@@ -2791,7 +2791,7 @@ File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_nu
 
 ## Input Select
 
-<details><summary><h3>Entities (10)</h3></summary>
+<details><summary><h3>Entities (9)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -2800,15 +2800,6 @@ File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_nu
 - Icon: [`mdi:docker`](https://pictogrammers.com/library/mdi/icon/docker/)
 
 File: [`input_select/add_on_stats_legend_sensor_type.yaml`](entities/input_select/add_on_stats_legend_sensor_type.yaml)
-</details>
-
-<details><summary><strong>Cosmo Entity Picture</strong></summary>
-
-**Entity ID: `input_select.cosmo_entity_picture`**
-
-- Icon: [`mdi:robot-vacuum`](https://pictogrammers.com/library/mdi/icon/robot-vacuum/)
-
-File: [`input_select/cosmo_entity_picture.yaml`](entities/input_select/cosmo_entity_picture.yaml)
 </details>
 
 <details><summary><strong>CRTPi | Media Player Source</strong></summary>
