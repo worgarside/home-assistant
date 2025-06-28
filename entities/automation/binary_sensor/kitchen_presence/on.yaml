@@ -1,0 +1,22 @@
+---
+alias: /binary-sensor/kitchen-presence/on
+
+id: binary_sensor_kitchen_presence_on
+
+description: >-
+  Pauses Cosmo (vacuum.cosmo) when kitchen presence is detected.
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.kitchen_presence_sensor
+    from: "off"
+    to: "on"
+
+action:
+  - if: "{{ is_state('vacuum.cosmo', 'cleaning') }}"
+    then:
+      - service: vacuum.pause
+        target:
+          entity_id: vacuum.cosmo

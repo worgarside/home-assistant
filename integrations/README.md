@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (108)</h3></summary>
+<details><summary><h3>Entities (110)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -28,6 +28,32 @@ File: [`automation/automation/auto_reload_complete.yaml`](entities/automation/au
 - Mode: `single`
 
 File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/binary_sensor/front_door/open.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/kitchen-presence/off</code></summary>
+
+**Entity ID: `automation.binary_sensor_kitchen_presence_off`**
+
+> Resumes Cosmo (vacuum.cosmo) when kitchen presence is cleared for 1 minute and Cosmo is paused.
+
+- Alias: /binary-sensor/kitchen-presence/off
+- ID: `binary_sensor_kitchen_presence_off`
+- Mode: `single`
+
+File: [`automation/binary_sensor/kitchen_presence/off.yaml`](entities/automation/binary_sensor/kitchen_presence/off.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/kitchen-presence/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_kitchen_presence_on`**
+
+> Pauses Cosmo (vacuum.cosmo) when kitchen presence is detected.
+
+- Alias: /binary-sensor/kitchen-presence/on
+- ID: `binary_sensor_kitchen_presence_on`
+- Mode: `single`
+
+File: [`automation/binary_sensor/kitchen_presence/on.yaml`](entities/automation/binary_sensor/kitchen_presence/on.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/lounge-diffuser-needs-water/off</code></summary>
