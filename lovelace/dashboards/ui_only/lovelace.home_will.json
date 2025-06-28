@@ -681,7 +681,7 @@
                                   ],
                                   "card": {
                                     "type": "picture",
-                                    "image_template": "{{ states('input_select.cosmo_entity_picture') }}"
+                                    "image_template": "/local/images/cosmo.webp"
                                   }
                                 },
                                 {
@@ -696,13 +696,6 @@
                                       "type": "custom:mushroom-entity-card",
                                       "entity": "vacuum.cosmo",
                                       "name": "Cosmo"
-                                    },
-                                    {
-                                      "type": "custom:mushroom-select-card",
-                                      "entity": "input_select.cosmo_entity_picture"
-                                    },
-                                    {
-                                      "entity": "automation.input_select_cosmo_entity_picture_set_options"
                                     }
                                   ]
                                 }
