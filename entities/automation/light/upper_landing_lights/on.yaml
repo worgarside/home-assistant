@@ -22,13 +22,6 @@ trigger:
 
 variables:
   brightness: "{{ states('sensor.lighting_modifier') | int(70) }}"
-  double_brightness: >-
-    {{
-      min(
-        ( states('sensor.lighting_modifier') | int(70) ) * 2,
-        100
-      )
-    }}
 
 action:
   - choose:
@@ -50,7 +43,7 @@ action:
                 target:
                   entity_id: light.upper_landing_light
                 data:
-                  brightness_pct: "{{ double_brightness }}"
+                  brightness_pct: "{{ brightness }}"
                   transition: 1
 
       - conditions:
@@ -63,7 +56,7 @@ action:
             target:
               entity_id: light.upper_landing_light
             data:
-              brightness_pct: "{{ double_brightness }}"
+              brightness_pct: "{{ brightness }}"
               transition: 1
 
           - delay:

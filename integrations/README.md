@@ -755,8 +755,7 @@ File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/l
 
 ```json
 {
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}",
-  "double_brightness": "{{\n  min(\n    ( states('sensor.lighting_modifier') | int(70) ) * 2,\n    100\n  )\n}}"
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
 }
 ```
 File: [`automation/light/upper_landing_lights/on.yaml`](entities/automation/light/upper_landing_lights/on.yaml)
