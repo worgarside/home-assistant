@@ -1018,84 +1018,6 @@ File: [`automation/prusa_i3/bed/timeout.yaml`](entities/automation/prusa_i3/bed/
 File: [`automation/prusa_i3/hotend/timeout.yaml`](entities/automation/prusa_i3/hotend/timeout.yaml)
 </details>
 
-<details><summary><code>/remote/bedroom-hue-remote/down-press</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_down_press`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/down-press
-- ID: `remote_bedroom_hue_remote_down_press`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/down_press.yaml`](entities/automation/remote/bedroom_hue_remote/down_press.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/off-hold</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_off_hold`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/off-hold
-- ID: `remote_bedroom_hue_remote_off_hold`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/off_hold.yaml`](entities/automation/remote/bedroom_hue_remote/off_hold.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/off-press</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_off_press`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/off-press
-- ID: `remote_bedroom_hue_remote_off_press`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/off_press.yaml`](entities/automation/remote/bedroom_hue_remote/off_press.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/on-hold</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_on_hold`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/on-hold
-- ID: `remote_bedroom_hue_remote_on_hold`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/on_hold.yaml`](entities/automation/remote/bedroom_hue_remote/on_hold.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/on-press</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_on_press`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/on-press
-- ID: `remote_bedroom_hue_remote_on_press`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/on_press.yaml`](entities/automation/remote/bedroom_hue_remote/on_press.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/up-press</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_up_press`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/up-press
-- ID: `remote_bedroom_hue_remote_up_press`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/up_press.yaml`](entities/automation/remote/bedroom_hue_remote/up_press.yaml)
-</details>
-
 <details><summary><code>/remote/charging-hub-button/single</code></summary>
 
 **Entity ID: `automation.remote_charging_hub_button_single`**
@@ -1402,6 +1324,84 @@ File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/remote/vic_s_desk/button_1/hold.yaml`](entities/automation/remote/vic_s_desk/button_1/hold.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/down-press</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_down_press`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/down-press
+- ID: `remote_vic_s_office_hue_remote_down_press`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/down_press.yaml`](entities/automation/remote/vic_s_office_hue_remote/down_press.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/off-hold</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_off_hold`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/off-hold
+- ID: `remote_vic_s_office_hue_remote_off_hold`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/off_hold.yaml`](entities/automation/remote/vic_s_office_hue_remote/off_hold.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/off-press</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_off_press`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/off-press
+- ID: `remote_vic_s_office_hue_remote_off_press`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/off_press.yaml`](entities/automation/remote/vic_s_office_hue_remote/off_press.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/on-hold</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_on_hold`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/on-hold
+- ID: `remote_vic_s_office_hue_remote_on_hold`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/on_hold.yaml`](entities/automation/remote/vic_s_office_hue_remote/on_hold.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/on-press</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_on_press`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/on-press
+- ID: `remote_vic_s_office_hue_remote_on_press`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/on_press.yaml`](entities/automation/remote/vic_s_office_hue_remote/on_press.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/up-press</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_up_press`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/up-press
+- ID: `remote_vic_s_office_hue_remote_up_press`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/up_press.yaml`](entities/automation/remote/vic_s_office_hue_remote/up_press.yaml)
 </details>
 
 <details><summary><code>/remote/will-s-desk/button-1/double</code></summary>

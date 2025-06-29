@@ -1,7 +1,7 @@
 ---
-alias: /remote/bedroom-hue-remote/on-press
+alias: /remote/vic-s-office-hue-remote/on-press
 
-id: remote_bedroom_hue_remote_on_press
+id: remote_vic_s_office_hue_remote_on_press
 
 mode: single
 
@@ -17,6 +17,6 @@ trigger:
 action:
   - service: light.turn_on
     target:
-      area_id: bedroom
+      area_id: vic_s_office
     data:
       brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"

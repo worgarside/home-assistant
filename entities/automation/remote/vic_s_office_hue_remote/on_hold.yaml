@@ -1,7 +1,7 @@
 ---
-alias: /remote/bedroom-hue-remote/on-hold
+alias: /remote/vic-s-office-hue-remote/on-hold
 
-id: remote_bedroom_hue_remote_on_hold
+id: remote_vic_s_office_hue_remote_on_hold
 
 mode: single
 
@@ -17,6 +17,6 @@ trigger:
 action:
   - service: light.turn_on
     target:
-      area_id: bedroom
+      area_id: vic_s_office
     data:
       brightness_pct: 100

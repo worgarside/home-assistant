@@ -1,7 +1,7 @@
 ---
-alias: /remote/bedroom-hue-remote/off-hold
+alias: /remote/vic-s-office-hue-remote/off-hold
 
-id: remote_bedroom_hue_remote_off_hold
+id: remote_vic_s_office_hue_remote_off_hold
 
 mode: single
 
@@ -17,4 +17,4 @@ trigger:
 action:
   - service: script.turn_off_physical_room
     data:
-      room: bedroom
+      room: vic_s_office

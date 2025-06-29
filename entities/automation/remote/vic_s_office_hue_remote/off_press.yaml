@@ -1,7 +1,7 @@
 ---
-alias: /remote/bedroom-hue-remote/off-press
+alias: /remote/vic-s-office-hue-remote/off-press
 
-id: remote_bedroom_hue_remote_off_press
+id: remote_vic_s_office_hue_remote_off_press
 
 mode: single
 
@@ -17,4 +17,4 @@ trigger:
 action:
   - service: light.turn_off
     target:
-      area_id: bedroom
+      area_id: vic_s_office
