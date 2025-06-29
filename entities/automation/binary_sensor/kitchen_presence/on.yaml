@@ -20,3 +20,10 @@ action:
       - service: vacuum.pause
         target:
           entity_id: vacuum.cosmo
+
+  - service: light.turn_on
+    target:
+      entity_id: light.basement_big_light
+    data:
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+      transition: 2

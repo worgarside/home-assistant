@@ -22,3 +22,9 @@ action:
       - service: vacuum.start
         target:
           entity_id: vacuum.cosmo
+
+  - service: light.turn_off
+    target:
+      entity_id: light.basement_big_light
+    data:
+      transition: 5
