@@ -27,41 +27,7 @@ fields:
     selector:
       action:
 
-  close_blinds:
-    name: Close Blinds
-    description: Whether to close the blinds
-    required: false
-    selector:
-      boolean:
-
-  close_blinds_window_delay:
-    name: Close Blinds Window Delay
-    description: The delay before closing the blinds if the window is open
-    example: "00:01:00"
-    required: false
-    selector:
-      time:
-
-  close_blinds_with_open_window_after_delay:
-    name: Close Blinds With Open Window After Delay
-    description: Whether to close the blinds if the window is open after a delay
-    required: false
-    selector:
-      boolean:
-
 sequence:
-  - variables:
-      close_blinds: "{{ close_blinds | default(false) }}"
-
-      close_blinds_window_delay: "{{ close_blinds_window_delay | default('00:01:00') }}"
-
-      close_blinds_with_open_window_after_delay: >-
-        {{ close_blinds_with_open_window_after_delay | default(false) }}
-
-      blinds_entity_id: cover.{{ room }}_blinds
-
-      window_entity_id: binary_sensor.{{ room }}_window_sensor_contact
-
   - alias: "Turn off each physical domain"
     repeat:
       for_each:
@@ -73,6 +39,7 @@ sequence:
         - remote.turn_off
       sequence:
         - service: "{{ repeat.item }}"
+          continue_on_error: true
           target:
             area_id: "{{ room }}"
 
@@ -84,43 +51,3 @@ sequence:
             - service: "{{ repeat.item.service_call | default('homeassistant.turn_off') }}"
               target:
                 entity_id: "{{ repeat.item.entity_id }}"
-
-  - alias: "Close blinds if requested"
-    if: "{{ close_blinds }}"
-    then:
-      - alias: "Wait for window to be closed"
-        choose:
-          - alias: Continue on timeout
-            conditions: >
-              {{
-                is_state(window_entity_id, 'on') and
-                close_blinds_with_open_window_after_delay is true
-              }}
-            sequence:
-              - wait_template: "{{ is_state(window_entity_id, 'off') }}"
-                timeout: "{{ close_blinds_window_delay }}"
-                continue_on_timeout: true
-
-              - service: cover.close_cover
-                target:
-                  entity_id: "{{ blinds_entity_id }}"
-
-          - alias: Don't continue on timeout
-            conditions: >
-              {{
-                is_state(window_entity_id, 'on') and
-                close_blinds_with_open_window_after_delay is false
-              }}
-            sequence:
-              - wait_template: "{{ is_state(window_entity_id, 'off') }}"
-                timeout: "{{ close_blinds_window_delay }}"
-                continue_on_timeout: false
-
-              - service: cover.close_cover
-                target:
-                  entity_id: "{{ blinds_entity_id }}"
-
-        default:
-          - service: cover.close_cover
-            target:
-              entity_id: "{{ blinds_entity_id }}"

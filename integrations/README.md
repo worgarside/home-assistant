@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (136)</h3></summary>
+<details><summary><h3>Entities (110)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -30,37 +30,30 @@ File: [`automation/automation/auto_reload_complete.yaml`](entities/automation/au
 File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/binary_sensor/front_door/open.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/hallway-motion-sensor/on</code></summary>
+<details><summary><code>/binary-sensor/kitchen-presence/off</code></summary>
 
-**Entity ID: `automation.binary_sensor_hallway_motion_sensor_on`**
+**Entity ID: `automation.binary_sensor_kitchen_presence_off`**
 
-> *No description provided*
+> Resumes Cosmo (vacuum.cosmo) when kitchen presence is cleared for 1 minute and Cosmo is paused.
 
-- Alias: /binary-sensor/hallway-motion-sensor/on
-- ID: `binary_sensor_hallway_motion_sensor_on`
+- Alias: /binary-sensor/kitchen-presence/off
+- ID: `binary_sensor_kitchen_presence_off`
 - Mode: `single`
-- Variables:
 
-```json
-{
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}",
-  "delay": 1
-}
-```
-File: [`automation/binary_sensor/hallway_motion_sensor/on.yaml`](entities/automation/binary_sensor/hallway_motion_sensor/on.yaml)
+File: [`automation/binary_sensor/kitchen_presence/off.yaml`](entities/automation/binary_sensor/kitchen_presence/off.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/hallway-motion-sensor/timeout</code></summary>
+<details><summary><code>/binary-sensor/kitchen-presence/on</code></summary>
 
-**Entity ID: `automation.binary_sensor_hallway_motion_sensor_timeout`**
+**Entity ID: `automation.binary_sensor_kitchen_presence_on`**
 
-> *No description provided*
+> Pauses Cosmo (vacuum.cosmo) when kitchen presence is detected.
 
-- Alias: /binary-sensor/hallway-motion-sensor/timeout
-- ID: `binary_sensor_hallway_motion_sensor_timeout`
+- Alias: /binary-sensor/kitchen-presence/on
+- ID: `binary_sensor_kitchen_presence_on`
 - Mode: `single`
 
-File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/automation/binary_sensor/hallway_motion_sensor/timeout.yaml)
+File: [`automation/binary_sensor/kitchen_presence/on.yaml`](entities/automation/binary_sensor/kitchen_presence/on.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/lounge-diffuser-needs-water/off</code></summary>
@@ -74,25 +67,6 @@ File: [`automation/binary_sensor/hallway_motion_sensor/timeout.yaml`](entities/a
 - Mode: `single`
 
 File: [`automation/binary_sensor/lounge_diffuser_needs_water/off.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/off.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/office-presence-sensor/state-change</code></summary>
-
-**Entity ID: `automation.binary_sensor_office_presence_sensor_state_change`**
-
-> *No description provided*
-
-- Alias: /binary-sensor/office-presence-sensor/state-change
-- ID: `binary_sensor_office_presence_sensor_state_change`
-- Mode: `queued`
-- Variables:
-
-```json
-{
-  "state_manager": "var.will_s_desk_state_manager"
-}
-```
-File: [`automation/binary_sensor/office_presence_sensor/state_change.yaml`](entities/automation/binary_sensor/office_presence_sensor/state_change.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/quiet-hours/off</code></summary>
@@ -117,47 +91,27 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 - Alias: /binary-sensor/quiet-hours/on
 - ID: `binary_sensor_quiet_hours_on`
 - Mode: `single`
-- Variables:
 
-```json
-{
-  "now_iso": "{{ now().isoformat() }}",
-  "now_ts": "{{ ( now_iso | as_datetime ).timestamp() }}"
-}
-```
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
 </details>
 
-<details><summary><code>/cosmo/clean-due</code></summary>
+<details><summary><code>/binary-sensor/will-s-office-presence-sensor/state-change</code></summary>
 
-**Entity ID: `automation.cosmo_clean_due`**
+**Entity ID: `automation.binary_sensor_will_s_office_presence_sensor_state_change`**
 
-> A room has not been cleaned for N hours
+> *No description provided*
 
-- Alias: /cosmo/clean-due
-- ID: `cosmo_clean_due`
-- Mode: `parallel`
+- Alias: /binary-sensor/will-s-office-presence-sensor/state-change
+- ID: `binary_sensor_will_s_office_presence_sensor_state_change`
+- Mode: `queued`
 - Variables:
 
 ```json
 {
-  "room": "{{\n  trigger.entity_id.removeprefix('input_datetime.cosmo_next_').removesuffix('_clean_due')\n}}"
+  "state_manager": "var.will_s_desk_state_manager"
 }
 ```
-File: [`automation/cosmo/clean_due.yaml`](entities/automation/cosmo/clean_due.yaml)
-</details>
-
-<details><summary><code>/cosmo/clean-flat</code></summary>
-
-**Entity ID: `automation.cosmo_clean_flat`**
-
-> *No description provided*
-
-- Alias: /cosmo/clean-flat
-- ID: `cosmo_clean_flat`
-- Mode: `single`
-
-File: [`automation/cosmo/clean_flat.yaml`](entities/automation/cosmo/clean_flat.yaml)
+File: [`automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml`](entities/automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml)
 </details>
 
 <details><summary><code>/cosmo/nightly-kitchen-clean</code></summary>
@@ -169,93 +123,8 @@ File: [`automation/cosmo/clean_flat.yaml`](entities/automation/cosmo/clean_flat.
 - Alias: /cosmo/nightly-kitchen-clean
 - ID: `cosmo_nightly_kitchen_clean`
 - Mode: `single`
-- Variables:
 
-```json
-{
-  "carpet_boost": "{{ states('switch.cosmo_carpet_boost') }}",
-  "lights_on": "{{\n  expand((area_entities('lounge') + area_entities('kitchen')) | select('match', '^light\\.')) |\n  selectattr('state', 'eq', 'on') |\n  list |\n  count > 0\n}}"
-}
-```
 File: [`automation/cosmo/nightly_kitchen_clean.yaml`](entities/automation/cosmo/nightly_kitchen_clean.yaml)
-</details>
-
-<details><summary><code>/cover/bedroom-blinds/close-after-sunset</code></summary>
-
-**Entity ID: `automation.cover_bedroom_blinds_close_after_sunset`**
-
-> Close the bedroom blinds either when the Sun sets past -3' or at 21:30
-
-- Alias: /cover/bedroom-blinds/close-after-sunset
-- ID: `cover_bedroom_blinds_close_after_sunset`
-- Mode: `single`
-
-File: [`automation/cover/bedroom_blinds/close_after_sunset.yaml`](entities/automation/cover/bedroom_blinds/close_after_sunset.yaml)
-</details>
-
-<details><summary><code>/cover/bedroom-blinds/open-before-sunrise</code></summary>
-
-**Entity ID: `automation.cover_bedroom_blinds_open_before_sunrise`**
-
-> Open the bedroom blinds when the Sun rises past -6'
-
-- Alias: /cover/bedroom-blinds/open-before-sunrise
-- ID: `cover_bedroom_blinds_open_before_sunrise`
-- Mode: `single`
-
-File: [`automation/cover/bedroom_blinds/open_before_sunrise.yaml`](entities/automation/cover/bedroom_blinds/open_before_sunrise.yaml)
-</details>
-
-<details><summary><code>/cover/lounge-blinds/close-after-sunset</code></summary>
-
-**Entity ID: `automation.cover_lounge_blinds_close_after_sunset`**
-
-> Close the lounge blinds either when the Sun sets past -6' or at 21:30
-
-- Alias: /cover/lounge-blinds/close-after-sunset
-- ID: `cover_lounge_blinds_close_after_sunset`
-- Mode: `single`
-
-File: [`automation/cover/lounge_blinds/close_after_sunset.yaml`](entities/automation/cover/lounge_blinds/close_after_sunset.yaml)
-</details>
-
-<details><summary><code>/cover/lounge-blinds/open-before-sunrise</code></summary>
-
-**Entity ID: `automation.cover_lounge_blinds_open_before_sunrise`**
-
-> Open the lounge blinds when the Sun rises past -6'
-
-- Alias: /cover/lounge-blinds/open-before-sunrise
-- ID: `cover_lounge_blinds_open_before_sunrise`
-- Mode: `single`
-
-File: [`automation/cover/lounge_blinds/open_before_sunrise.yaml`](entities/automation/cover/lounge_blinds/open_before_sunrise.yaml)
-</details>
-
-<details><summary><code>/cover/office-blinds/close-after-sunset</code></summary>
-
-**Entity ID: `automation.cover_office_blinds_close_after_sunset`**
-
-> Close the office blinds either when the Sun sets past -6' or at 21:30
-
-- Alias: /cover/office-blinds/close-after-sunset
-- ID: `cover_office_blinds_close_after_sunset`
-- Mode: `single`
-
-File: [`automation/cover/office_blinds/close_after_sunset.yaml`](entities/automation/cover/office_blinds/close_after_sunset.yaml)
-</details>
-
-<details><summary><code>/cover/office-blinds/open-before-sunrise</code></summary>
-
-**Entity ID: `automation.cover_office_blinds_open_before_sunrise`**
-
-> Open the office blinds when the Sun rises past -6'
-
-- Alias: /cover/office-blinds/open-before-sunrise
-- ID: `cover_office_blinds_open_before_sunrise`
-- Mode: `single`
-
-File: [`automation/cover/office_blinds/open_before_sunrise.yaml`](entities/automation/cover/office_blinds/open_before_sunrise.yaml)
 </details>
 
 <details><summary><code>/cover/office-desk/keepalive</code></summary>
@@ -519,6 +388,26 @@ File: [`automation/fan/air_purifier/control.yaml`](entities/automation/fan/air_p
 File: [`automation/fan/desk_fan/state_change.yaml`](entities/automation/fan/desk_fan/state_change.yaml)
 </details>
 
+<details><summary><code>/fan/kitchen-extractor-vent/control</code></summary>
+
+**Entity ID: `automation.fan_kitchen_extractor_vent_control`**
+
+> *No description provided*
+
+- Alias: /fan/kitchen-extractor-vent/control
+- ID: `fan_kitchen_extractor_vent_control`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "voc_high": "{{\n  states('sensor.kitchen_air_quality_sensor_voc_index') | float >\n  states('input_number.kitchen_extractor_vent_voc_index_threshold') | float\n}}\n",
+  "pm25_high": "{{\n  states('sensor.kitchen_air_quality_sensor_pm25') | float >\n  states('input_number.kitchen_extractor_vent_pm2_5_threshold') | float\n}}\n"
+}
+```
+File: [`automation/fan/kitchen_extractor_vent/control.yaml`](entities/automation/fan/kitchen_extractor_vent/control.yaml)
+</details>
+
 <details><summary><code>/fan/prusa-i3-enclosure-fan/turn-off</code></summary>
 
 **Entity ID: `automation.fan_prusa_i3_enclosure_fan_turn_off`**
@@ -698,53 +587,10 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 
 ```json
 {
-  "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}",
-  "vic_at_home": "{{ states('person.vic') == 'home' }}",
-  "vic_in_meeting": "{{\n  (\n    states(\"calendar.vic_work\") | bool(false) or\n    trigger.id == \"vic_work_start\"\n  ) and trigger.id != \"vic_work_end\"\n}}"
+  "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}"
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
-</details>
-
-<details><summary><code>/input-datetime/cosmo/next-clean-due/set</code></summary>
-
-**Entity ID: `automation.input_datetime_cosmo_next_clean_due_set`**
-
-> *No description provided*
-
-- Alias: /input-datetime/cosmo/next-clean-due/set
-- ID: `input_datetime_cosmo_next_clean_due_set`
-- Mode: `parallel`
-- Variables:
-
-```json
-{
-  "new_datetime": "{{ trigger.to_state.state }}",
-  "hour": "{{ (new_datetime | as_datetime).hour | int(12) }}"
-}
-```
-File: [`automation/input_datetime/cosmo/next_clean_due/set.yaml`](entities/automation/input_datetime/cosmo/next_clean_due/set.yaml)
-</details>
-
-<details><summary><code>/input-datetime/cosmo/room-last-cleaned/set</code></summary>
-
-**Entity ID: `automation.input_datetime_cosmo_room_last_cleaned_set`**
-
-> *No description provided*
-
-- Alias: /input-datetime/cosmo/room-last-cleaned/set
-- ID: `input_datetime_cosmo_room_last_cleaned_set`
-- Mode: `parallel`
-- Variables:
-
-```json
-{
-  "room": "{{ trigger.entity_id.removeprefix('input_datetime.cosmo_last_').removesuffix('_clean') }}",
-  "timeout_hours": "{{ states('input_number.cosmo_room_timeout_' ~ room) | int(72) }}",
-  "next_clean": "{{ trigger.to_state.state | as_datetime + timedelta(hours=timeout_hours) }}"
-}
-```
-File: [`automation/input_datetime/cosmo/room_last_cleaned/set.yaml`](entities/automation/input_datetime/cosmo/room_last_cleaned/set.yaml)
 </details>
 
 <details><summary><code>/input-datetime/home-assistant-start-time/set-datetime</code></summary>
@@ -758,49 +604,6 @@ File: [`automation/input_datetime/cosmo/room_last_cleaned/set.yaml`](entities/au
 - Mode: `single`
 
 File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](entities/automation/input_datetime/home_assistant_start_time/set_datetime.yaml)
-</details>
-
-<details><summary><code>/input-number/cosmo/room-timeout/set</code></summary>
-
-**Entity ID: `automation.input_number_cosmo_room_timeout_set`**
-
-> *No description provided*
-
-- Alias: /input-number/cosmo/room-timeout/set
-- ID: `input_number_cosmo_room_timeout_set`
-- Mode: `parallel`
-- Variables:
-
-```json
-{
-  "room": "{{ trigger.entity_id.removeprefix('input_number.cosmo_room_timeout_') }}",
-  "timeout_hours": "{{ trigger.to_state.state | int(72) }}",
-  "last_clean": "{{ states('input_datetime.cosmo_last_' ~ room ~ '_clean') }}",
-  "next_clean": "{{ last_clean | as_datetime + timedelta(hours=timeout_hours) }}"
-}
-```
-File: [`automation/input_number/cosmo/room_timeout/set.yaml`](entities/automation/input_number/cosmo/room_timeout/set.yaml)
-</details>
-
-<details><summary><code>/input-select/cosmo-entity-picture/set-options</code></summary>
-
-**Entity ID: `automation.input_select_cosmo_entity_picture_set_options`**
-
-> *No description provided*
-
-- Alias: /input-select/cosmo-entity-picture/set-options
-- ID: `input_select_cosmo_entity_picture_set_options`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "image_directory_lovelace": "/local/images/cosmo/",
-  "image_directory_real": "/config/www/images/cosmo",
-  "null_image": "/local/images/null.webp"
-}
-```
-File: [`automation/input_select/cosmo_entity_picture/set_options.yaml`](entities/automation/input_select/cosmo_entity_picture/set_options.yaml)
 </details>
 
 <details><summary><code>/input-select/gh-cli-active-user/option-selected</code></summary>
@@ -842,19 +645,6 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
-<details><summary><code>/light/bedroom-lights/on</code></summary>
-
-**Entity ID: `automation.light_bedroom_lights_on`**
-
-> Run actions when the bedroom lights are turned on
-
-- Alias: /light/bedroom-lights/on
-- ID: `light_bedroom_lights_on`
-- Mode: `single`
-
-File: [`automation/light/bedroom_lights/on.yaml`](entities/automation/light/bedroom_lights/on.yaml)
-</details>
-
 <details><summary><code>/light/desk-lamp/state-change</code></summary>
 
 **Entity ID: `automation.light_desk_lamp_state_change`**
@@ -866,19 +656,6 @@ File: [`automation/light/bedroom_lights/on.yaml`](entities/automation/light/bedr
 - Mode: `single`
 
 File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light/desk_lamp/state_change.yaml)
-</details>
-
-<details><summary><code>/light/desk-lamp/turn-on</code></summary>
-
-**Entity ID: `automation.light_desk_lamp_turn_on`**
-
-> Turn the desk lamp on when someone enters the room, all of the lights are off, and the blinds are down
-
-- Alias: /light/desk-lamp/turn-on
-- ID: `light_desk_lamp_turn_on`
-- Mode: `single`
-
-File: [`automation/light/desk_lamp/turn_on.yaml`](entities/automation/light/desk_lamp/turn_on.yaml)
 </details>
 
 <details><summary><code>/light/disco-light/turn-off</code></summary>
@@ -907,17 +684,36 @@ File: [`automation/light/disco_light/turn_off.yaml`](entities/automation/light/d
 File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/disco_light/turn_on.yaml)
 </details>
 
-<details><summary><code>/light/lounge-lights/on</code></summary>
+<details><summary><code>/light/lower-hallway-lights/on</code></summary>
 
-**Entity ID: `automation.light_lounge_lights_on`**
+**Entity ID: `automation.light_lower_hallway_lights_on`**
 
-> Run actions when the lounge lights are turned on
+> *No description provided*
 
-- Alias: /light/lounge-lights/on
-- ID: `light_lounge_lights_on`
+- Alias: /light/lower-hallway-lights/on
+- ID: `light_lower_hallway_lights_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/light/lower_hallway_lights/on.yaml`](entities/automation/light/lower_hallway_lights/on.yaml)
+</details>
+
+<details><summary><code>/light/lower-hallway-lights/timeout</code></summary>
+
+**Entity ID: `automation.light_lower_hallway_lights_timeout`**
+
+> *No description provided*
+
+- Alias: /light/lower-hallway-lights/timeout
+- ID: `light_lower_hallway_lights_timeout`
 - Mode: `single`
 
-File: [`automation/light/lounge_lights/on.yaml`](entities/automation/light/lounge_lights/on.yaml)
+File: [`automation/light/lower_hallway_lights/timeout.yaml`](entities/automation/light/lower_hallway_lights/timeout.yaml)
 </details>
 
 <details><summary><code>/light/moomin-box/on</code></summary>
@@ -933,19 +729,6 @@ File: [`automation/light/lounge_lights/on.yaml`](entities/automation/light/loung
 File: [`automation/light/moomin_box/on.yaml`](entities/automation/light/moomin_box/on.yaml)
 </details>
 
-<details><summary><code>/light/office-lights/on</code></summary>
-
-**Entity ID: `automation.light_office_lights_on`**
-
-> Run actions when the office lights are turned on
-
-- Alias: /light/office-lights/on
-- ID: `light_office_lights_on`
-- Mode: `single`
-
-File: [`automation/light/office_lights/on.yaml`](entities/automation/light/office_lights/on.yaml)
-</details>
-
 <details><summary><code>/light/office-shapes/state-change</code></summary>
 
 **Entity ID: `automation.light_office_shapes_state_change`**
@@ -957,6 +740,51 @@ File: [`automation/light/office_lights/on.yaml`](entities/automation/light/offic
 - Mode: `single`
 
 File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/light/office_shapes/state_change.yaml)
+</details>
+
+<details><summary><code>/light/upper-landing-lights/on</code></summary>
+
+**Entity ID: `automation.light_upper_landing_lights_on`**
+
+> *No description provided*
+
+- Alias: /light/upper-landing-lights/on
+- ID: `light_upper_landing_lights_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/light/upper_landing_lights/on.yaml`](entities/automation/light/upper_landing_lights/on.yaml)
+</details>
+
+<details><summary><code>/light/upper-landing-lights/timeout</code></summary>
+
+**Entity ID: `automation.light_upper_landing_lights_timeout`**
+
+> *No description provided*
+
+- Alias: /light/upper-landing-lights/timeout
+- ID: `light_upper_landing_lights_timeout`
+- Mode: `single`
+
+File: [`automation/light/upper_landing_lights/timeout.yaml`](entities/automation/light/upper_landing_lights/timeout.yaml)
+</details>
+
+<details><summary><code>/light/wardrobe-lights/toggle</code></summary>
+
+**Entity ID: `automation.light_wardrobe_lights_toggle`**
+
+> *No description provided*
+
+- Alias: /light/wardrobe-lights/toggle
+- ID: `light_wardrobe_lights_toggle`
+- Mode: `queued`
+
+File: [`automation/light/wardrobe_lights/toggle.yaml`](entities/automation/light/wardrobe_lights/toggle.yaml)
 </details>
 
 <details><summary><code>/media-player/topaz-sr10/off</code></summary>
@@ -996,63 +824,6 @@ File: [`automation/media_player/topaz_sr10/on.yaml`](entities/automation/media_p
 - Mode: `single`
 
 File: [`automation/media_player/topaz_sr10/timeout.yaml`](entities/automation/media_player/topaz_sr10/timeout.yaml)
-</details>
-
-<details><summary><code>/mobile-app-notification-action/cosmo/clean-now</code></summary>
-
-**Entity ID: `automation.mobile_app_notification_action_cosmo_clean_now`**
-
-> Get Cosmo to clean a room immediately, triggered from a mobile notification
-
-- Alias: /mobile-app-notification-action/cosmo/clean-now
-- ID: `mobile_app_notification_action_cosmo_clean_now`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "room": "{{ trigger.event.data.action.split(':')[2] }}"
-}
-```
-File: [`automation/mobile_app_notification_action/cosmo/clean_now.yaml`](entities/automation/mobile_app_notification_action/cosmo/clean_now.yaml)
-</details>
-
-<details><summary><code>/mobile-app-notification-action/cosmo/ignore-request</code></summary>
-
-**Entity ID: `automation.mobile_app_notification_action_cosmo_ignore_request`**
-
-> Ignore Cosmo's clean request, triggered from a mobile notification
-
-- Alias: /mobile-app-notification-action/cosmo/ignore-request
-- ID: `mobile_app_notification_action_cosmo_ignore_request`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "room": "{{ trigger.event.data.action.split(':')[2] }}"
-}
-```
-File: [`automation/mobile_app_notification_action/cosmo/ignore_request.yaml`](entities/automation/mobile_app_notification_action/cosmo/ignore_request.yaml)
-</details>
-
-<details><summary><code>/mobile-app-notification-action/cosmo/remind-later</code></summary>
-
-**Entity ID: `automation.mobile_app_notification_action_cosmo_remind_later`**
-
-> Get Cosmo to check again later, triggered from a mobile notification
-
-- Alias: /mobile-app-notification-action/cosmo/remind-later
-- ID: `mobile_app_notification_action_cosmo_remind_later`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "room": "{{ trigger.event.data.action.split(':')[2] }}"
-}
-```
-File: [`automation/mobile_app_notification_action/cosmo/remind_later.yaml`](entities/automation/mobile_app_notification_action/cosmo/remind_later.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/audio-visualiser</code></summary>
@@ -1221,19 +992,6 @@ File: [`automation/person/will/home.yaml`](entities/automation/person/will/home.
 File: [`automation/person/will/leaving_work.yaml`](entities/automation/person/will/leaving_work.yaml)
 </details>
 
-<details><summary><code>/presence/office/beanbag</code></summary>
-
-**Entity ID: `automation.presence_office_beanbag`**
-
-> *No description provided*
-
-- Alias: /presence/office/beanbag
-- ID: `presence_office_beanbag`
-- Mode: `single`
-
-File: [`automation/presence/office/beanbag.yaml`](entities/automation/presence/office/beanbag.yaml)
-</details>
-
 <details><summary><code>/prusa-i3/bed/timeout</code></summary>
 
 **Entity ID: `automation.prusa_i3_bed_timeout`**
@@ -1260,121 +1018,17 @@ File: [`automation/prusa_i3/bed/timeout.yaml`](entities/automation/prusa_i3/bed/
 File: [`automation/prusa_i3/hotend/timeout.yaml`](entities/automation/prusa_i3/hotend/timeout.yaml)
 </details>
 
-<details><summary><code>/remote/bedroom-blinds/double</code></summary>
+<details><summary><code>/remote/charging-hub-button/single</code></summary>
 
-**Entity ID: `automation.remote_bedroom_blinds_double`**
+**Entity ID: `automation.remote_charging_hub_button_single`**
 
-> *No description provided*
+> Toggle the charging hub's power state
 
-- Alias: /remote/bedroom-blinds/double
-- ID: `remote_bedroom_blinds_double`
+- Alias: /remote/charging-hub-button/single
+- ID: `remote_charging_hub_button_single`
 - Mode: `single`
 
-File: [`automation/remote/bedroom_blinds/double.yaml`](entities/automation/remote/bedroom_blinds/double.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-blinds/hold</code></summary>
-
-**Entity ID: `automation.remote_bedroom_blinds_hold`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-blinds/hold
-- ID: `remote_bedroom_blinds_hold`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_blinds/hold.yaml`](entities/automation/remote/bedroom_blinds/hold.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-blinds/single</code></summary>
-
-**Entity ID: `automation.remote_bedroom_blinds_single`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-blinds/single
-- ID: `remote_bedroom_blinds_single`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_blinds/single.yaml`](entities/automation/remote/bedroom_blinds/single.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/down-press</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_down_press`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/down-press
-- ID: `remote_bedroom_hue_remote_down_press`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/down_press.yaml`](entities/automation/remote/bedroom_hue_remote/down_press.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/off-hold</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_off_hold`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/off-hold
-- ID: `remote_bedroom_hue_remote_off_hold`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/off_hold.yaml`](entities/automation/remote/bedroom_hue_remote/off_hold.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/off-press</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_off_press`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/off-press
-- ID: `remote_bedroom_hue_remote_off_press`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/off_press.yaml`](entities/automation/remote/bedroom_hue_remote/off_press.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/on-hold</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_on_hold`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/on-hold
-- ID: `remote_bedroom_hue_remote_on_hold`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/on_hold.yaml`](entities/automation/remote/bedroom_hue_remote/on_hold.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/on-press</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_on_press`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/on-press
-- ID: `remote_bedroom_hue_remote_on_press`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/on_press.yaml`](entities/automation/remote/bedroom_hue_remote/on_press.yaml)
-</details>
-
-<details><summary><code>/remote/bedroom-hue-remote/up-press</code></summary>
-
-**Entity ID: `automation.remote_bedroom_hue_remote_up_press`**
-
-> *No description provided*
-
-- Alias: /remote/bedroom-hue-remote/up-press
-- ID: `remote_bedroom_hue_remote_up_press`
-- Mode: `single`
-
-File: [`automation/remote/bedroom_hue_remote/up_press.yaml`](entities/automation/remote/bedroom_hue_remote/up_press.yaml)
+File: [`automation/remote/charging_hub_button/single.yaml`](entities/automation/remote/charging_hub_button/single.yaml)
 </details>
 
 <details><summary><code>/remote/coffee-table/double</code></summary>
@@ -1659,19 +1313,6 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
 </details>
 
-<details><summary><code>/remote/vic-s-desk/button-1/double</code></summary>
-
-**Entity ID: `automation.remote_vic_s_desk_button_1_double`**
-
-> *No description provided*
-
-- Alias: /remote/vic-s-desk/button-1/double
-- ID: `remote_vic_s_desk_button_1_double`
-- Mode: `single`
-
-File: [`automation/remote/vic_s_desk/button_1/double.yaml`](entities/automation/remote/vic_s_desk/button_1/double.yaml)
-</details>
-
 <details><summary><code>/remote/vic-s-desk/button-1/hold</code></summary>
 
 **Entity ID: `automation.remote_vic_s_desk_button_1_hold`**
@@ -1685,17 +1326,82 @@ File: [`automation/remote/vic_s_desk/button_1/double.yaml`](entities/automation/
 File: [`automation/remote/vic_s_desk/button_1/hold.yaml`](entities/automation/remote/vic_s_desk/button_1/hold.yaml)
 </details>
 
-<details><summary><code>/remote/vic-s-desk/button-1/single</code></summary>
+<details><summary><code>/remote/vic-s-office-hue-remote/down-press</code></summary>
 
-**Entity ID: `automation.remote_vic_s_desk_button_1_single`**
+**Entity ID: `automation.remote_vic_s_office_hue_remote_down_press`**
 
 > *No description provided*
 
-- Alias: /remote/vic-s-desk/button-1/single
-- ID: `remote_vic_s_desk_button_1_single`
+- Alias: /remote/vic-s-office-hue-remote/down-press
+- ID: `remote_vic_s_office_hue_remote_down_press`
 - Mode: `single`
 
-File: [`automation/remote/vic_s_desk/button_1/single.yaml`](entities/automation/remote/vic_s_desk/button_1/single.yaml)
+File: [`automation/remote/vic_s_office_hue_remote/down_press.yaml`](entities/automation/remote/vic_s_office_hue_remote/down_press.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/off-hold</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_off_hold`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/off-hold
+- ID: `remote_vic_s_office_hue_remote_off_hold`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/off_hold.yaml`](entities/automation/remote/vic_s_office_hue_remote/off_hold.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/off-press</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_off_press`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/off-press
+- ID: `remote_vic_s_office_hue_remote_off_press`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/off_press.yaml`](entities/automation/remote/vic_s_office_hue_remote/off_press.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/on-hold</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_on_hold`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/on-hold
+- ID: `remote_vic_s_office_hue_remote_on_hold`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/on_hold.yaml`](entities/automation/remote/vic_s_office_hue_remote/on_hold.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/on-press</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_on_press`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/on-press
+- ID: `remote_vic_s_office_hue_remote_on_press`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/on_press.yaml`](entities/automation/remote/vic_s_office_hue_remote/on_press.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-office-hue-remote/up-press</code></summary>
+
+**Entity ID: `automation.remote_vic_s_office_hue_remote_up_press`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-office-hue-remote/up-press
+- ID: `remote_vic_s_office_hue_remote_up_press`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_office_hue_remote/up_press.yaml`](entities/automation/remote/vic_s_office_hue_remote/up_press.yaml)
 </details>
 
 <details><summary><code>/remote/will-s-desk/button-1/double</code></summary>
@@ -1748,19 +1454,6 @@ File: [`automation/remote/will_s_desk/button_1/single.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/will_s_desk/button_2/double.yaml`](entities/automation/remote/will_s_desk/button_2/double.yaml)
-</details>
-
-<details><summary><code>/remote/will-s-desk/button-2/hold</code></summary>
-
-**Entity ID: `automation.remote_will_s_desk_button_2_hold`**
-
-> *No description provided*
-
-- Alias: /remote/will-s-desk/button-2/hold
-- ID: `remote_will_s_desk_button_2_hold`
-- Mode: `single`
-
-File: [`automation/remote/will_s_desk/button_2/hold.yaml`](entities/automation/remote/will_s_desk/button_2/hold.yaml)
 </details>
 
 <details><summary><code>/remote/will-s-desk/button-2/single</code></summary>
@@ -1926,97 +1619,6 @@ File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/swit
 }
 ```
 File: [`automation/switch/prusa_i3_mk3_power/timeout.yaml`](entities/automation/switch/prusa_i3_mk3_power/timeout.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/bedroom</code></summary>
-
-**Entity ID: `automation.tag_cosmo_bedroom`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/bedroom
-- ID: `tag_cosmo_bedroom`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/bedroom.yaml`](entities/automation/tag/cosmo/bedroom.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/en-suite</code></summary>
-
-**Entity ID: `automation.tag_cosmo_en_suite`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/en-suite
-- ID: `tag_cosmo_en_suite`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/en_suite.yaml`](entities/automation/tag/cosmo/en_suite.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/hallway</code></summary>
-
-**Entity ID: `automation.tag_cosmo_hallway`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/hallway
-- ID: `tag_cosmo_hallway`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/hallway.yaml`](entities/automation/tag/cosmo/hallway.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/kitchen</code></summary>
-
-**Entity ID: `automation.tag_cosmo_kitchen`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/kitchen
-- ID: `tag_cosmo_kitchen`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/kitchen.yaml`](entities/automation/tag/cosmo/kitchen.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/lounge</code></summary>
-
-**Entity ID: `automation.tag_cosmo_lounge`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/lounge
-- ID: `tag_cosmo_lounge`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/lounge.yaml`](entities/automation/tag/cosmo/lounge.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/office</code></summary>
-
-**Entity ID: `automation.tag_cosmo_office`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/office
-- ID: `tag_cosmo_office`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/office.yaml`](entities/automation/tag/cosmo/office.yaml)
-</details>
-
-<details><summary><code>/tag/cosmo/return-to-base</code></summary>
-
-**Entity ID: `automation.tag_cosmo_return_to_base`**
-
-> *No description provided*
-
-- Alias: /tag/cosmo/return-to-base
-- ID: `tag_cosmo_return_to_base`
-- Mode: `single`
-
-File: [`automation/tag/cosmo/return_to_base.yaml`](entities/automation/tag/cosmo/return_to_base.yaml)
 </details>
 
 <details><summary><code>/var/will-s-desk-state-manager/attribute-timeout</code></summary>
@@ -2373,13 +1975,20 @@ File: [`command_line/sensor/remote_git_branches.yaml`](entities/command_line/sen
 
 ## Cover
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (2)</h3></summary>
 
 <details><summary><strong>Office Desk</strong></summary>
 
 **Entity ID: `cover.office_desk`**
 
 File: [`cover/office/office_desk.yaml`](entities/cover/office/office_desk.yaml)
+</details>
+
+<details><summary><strong>Will's Office Blinds</strong></summary>
+
+**Entity ID: `cover.will_s_office_blinds`**
+
+File: [`cover/will_s_office/will_s_office_blinds.yaml`](entities/cover/will_s_office/will_s_office_blinds.yaml)
 </details>
 
 </details>
@@ -2699,172 +2308,7 @@ File: [`input_button/water_pineapple.yaml`](entities/input_button/water_pineappl
 
 ## Input Datetime
 
-<details><summary><h3>Entities (19)</h3></summary>
-
-<details><summary><strong>Cosmo: Last Bathroom Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_bathroom_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_bathroom_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_bathroom_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last Bedroom Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_bedroom_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_bedroom_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_bedroom_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last En-Suite Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_en_suite_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_en_suite_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_en_suite_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last Hallway Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_hallway_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_hallway_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_hallway_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last Kitchen Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_kitchen_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_kitchen_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_kitchen_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last Lounge Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_lounge_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_lounge_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_lounge_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Last Office Clean</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_last_office_clean`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/last_clean/cosmo_last_office_clean.yaml`](entities/input_datetime/cosmo/last_clean/cosmo_last_office_clean.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Bathroom Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_bathroom_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_bathroom_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_bathroom_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Bedroom Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_bedroom_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_bedroom_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_bedroom_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next En-Suite Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_en_suite_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_en_suite_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_en_suite_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Hallway Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_hallway_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_hallway_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_hallway_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Kitchen Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_kitchen_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_kitchen_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_kitchen_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Lounge Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_lounge_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_lounge_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_lounge_clean_due.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Next Office Clean Due</strong></summary>
-
-**Entity ID: `input_datetime.cosmo_next_office_clean_due`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:vacuum-outline`](https://pictogrammers.com/library/mdi/icon/vacuum-outline/)
-
-File: [`input_datetime/cosmo/next_clean_due/cosmo_next_office_clean_due.yaml`](entities/input_datetime/cosmo/next_clean_due/cosmo_next_office_clean_due.yaml)
-</details>
-
-<details><summary><strong>Ficus Last Watered</strong></summary>
-
-**Entity ID: `input_datetime.ficus_last_watered`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:calendar-clock`](https://pictogrammers.com/library/mdi/icon/calendar-clock/)
-
-File: [`input_datetime/ficus_last_watered.yaml`](entities/input_datetime/ficus_last_watered.yaml)
-</details>
+<details><summary><h3>Entities (2)</h3></summary>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
 
@@ -2888,33 +2332,11 @@ File: [`input_datetime/home_assistant_start_time.yaml`](entities/input_datetime/
 File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_save.yaml)
 </details>
 
-<details><summary><strong>Monstera Last Watered</strong></summary>
-
-**Entity ID: `input_datetime.monstera_last_watered`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:calendar-clock`](https://pictogrammers.com/library/mdi/icon/calendar-clock/)
-
-File: [`input_datetime/monstera_last_watered.yaml`](entities/input_datetime/monstera_last_watered.yaml)
-</details>
-
-<details><summary><strong>Pineapple Last Watered</strong></summary>
-
-**Entity ID: `input_datetime.pineapple_last_watered`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:calendar-clock`](https://pictogrammers.com/library/mdi/icon/calendar-clock/)
-
-File: [`input_datetime/pineapple_last_watered.yaml`](entities/input_datetime/pineapple_last_watered.yaml)
-</details>
-
 </details>
 
 ## Input Number
 
-<details><summary><h3>Entities (44)</h3></summary>
+<details><summary><h3>Entities (36)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2974,102 +2396,6 @@ File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_maximum_auto_top_up.ya
 - Unit Of Measurement: GBP
 
 File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml`](entities/input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Bathroom</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_bathroom`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_bathroom.yaml`](entities/input_number/cosmo/cosmo_room_timeout_bathroom.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Bedroom</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_bedroom`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_bedroom.yaml`](entities/input_number/cosmo/cosmo_room_timeout_bedroom.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: En-Suite</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_en_suite`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_en_suite.yaml`](entities/input_number/cosmo/cosmo_room_timeout_en_suite.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Hallway</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_hallway`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_hallway.yaml`](entities/input_number/cosmo/cosmo_room_timeout_hallway.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Kitchen</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_kitchen`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_kitchen.yaml`](entities/input_number/cosmo/cosmo_room_timeout_kitchen.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Lounge</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_lounge`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_lounge.yaml`](entities/input_number/cosmo/cosmo_room_timeout_lounge.yaml)
-</details>
-
-<details><summary><strong>Cosmo Room Timeout: Office</strong></summary>
-
-**Entity ID: `input_number.cosmo_room_timeout_office`**
-
-- Max: 168
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `hours`
-
-File: [`input_number/cosmo/cosmo_room_timeout_office.yaml`](entities/input_number/cosmo/cosmo_room_timeout_office.yaml)
-</details>
-
-<details><summary><strong>CRTPi: Fan Auto-On Threshold</strong></summary>
-
-**Entity ID: `input_number.crtpi_fan_auto_on_threshold`**
-
-- Max: 100
-- Min: 20
-- Mode: `box`
-- Unit Of Measurement: °C
-
-File: [`input_number/crtpi_fan_auto_on_threshold.yaml`](entities/input_number/crtpi_fan_auto_on_threshold.yaml)
 </details>
 
 <details><summary><strong>Dry Box | Max Humidity</strong></summary>
@@ -3199,18 +2525,6 @@ File: [`input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.ya
 File: [`input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml)
 </details>
 
-<details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
-
-**Entity ID: `input_number.octopi_fan_auto_on_threshold`**
-
-- Max: 100
-- Min: 20
-- Mode: `box`
-- Unit Of Measurement: °C
-
-File: [`input_number/octopi_fan_auto_on_threshold.yaml`](entities/input_number/octopi_fan_auto_on_threshold.yaml)
-</details>
-
 <details><summary><strong>Office Desk Sitting Height</strong></summary>
 
 **Entity ID: `input_number.office_desk_sitting_height`**
@@ -3297,28 +2611,63 @@ File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_low
 File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml)
 </details>
 
-<details><summary><strong>ST MacBook Pro Full Battery Threshold</strong></summary>
+<details><summary><strong>Charging Hub: Auto-Off Threshold</strong></summary>
 
-**Entity ID: `input_number.st_macbook_pro_full_battery_threshold`**
+**Entity ID: `input_number.charging_hub_auto_off_threshold`**
 
-- Icon: [`mdi:battery`](https://pictogrammers.com/library/mdi/icon/battery/)
 - Max: 100
+- Min: 1
 - Mode: `box`
-- Unit Of Measurement: %
+- Unit Of Measurement: W
 
-File: [`input_number/st_macbook_pro_full_battery_threshold.yaml`](entities/input_number/st_macbook_pro_full_battery_threshold.yaml)
+File: [`input_number/threshold/charging_hub/charging_hub_auto_off_threshold.yaml`](entities/input_number/threshold/charging_hub/charging_hub_auto_off_threshold.yaml)
 </details>
 
-<details><summary><strong>ST MacBook Pro Low Battery Threshold</strong></summary>
+<details><summary><strong>CRTPi: Fan Auto-On Threshold</strong></summary>
 
-**Entity ID: `input_number.st_macbook_pro_low_battery_threshold`**
+**Entity ID: `input_number.crtpi_fan_auto_on_threshold`**
 
-- Icon: [`mdi:battery-low`](https://pictogrammers.com/library/mdi/icon/battery-low/)
 - Max: 100
+- Min: 20
 - Mode: `box`
-- Unit Of Measurement: %
+- Unit Of Measurement: °C
 
-File: [`input_number/st_macbook_pro_low_battery_threshold.yaml`](entities/input_number/st_macbook_pro_low_battery_threshold.yaml)
+File: [`input_number/threshold/crtpi_fan/crtpi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/crtpi_fan/crtpi_fan_auto_on_threshold.yaml)
+</details>
+
+<details><summary><strong>Kitchen Extractor Vent: PM2.5 Threshold</strong></summary>
+
+**Entity ID: `input_number.kitchen_extractor_vent_pm2_5_threshold`**
+
+- Max: 998
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: µg/m³
+
+File: [`input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_pm2_5_threshold.yaml`](entities/input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_pm2_5_threshold.yaml)
+</details>
+
+<details><summary><strong>Kitchen Extractor Vent: VOC Index Threshold</strong></summary>
+
+**Entity ID: `input_number.kitchen_extractor_vent_voc_index_threshold`**
+
+- Max: 998
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_voc_index_threshold.yaml`](entities/input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_voc_index_threshold.yaml)
+</details>
+
+<details><summary><strong>OctoPi Fan Auto-On Threshold</strong></summary>
+
+**Entity ID: `input_number.octopi_fan_auto_on_threshold`**
+
+- Max: 100
+- Min: 20
+- Mode: `box`
+- Unit Of Measurement: °C
+
+File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml)
 </details>
 
 <details><summary><strong>Air Freshener | Timeout</strong></summary>
@@ -3437,35 +2786,11 @@ File: [`input_number/topaz_sr10/topaz_sr10_power_off_timeout.yaml`](entities/inp
 File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_number/topaz_sr10/topaz_sr10_volume_level.yaml)
 </details>
 
-<details><summary><strong>Will's MacBook Pro Full Battery Threshold</strong></summary>
-
-**Entity ID: `input_number.will_s_macbook_pro_full_battery_threshold`**
-
-- Icon: [`mdi:battery`](https://pictogrammers.com/library/mdi/icon/battery/)
-- Max: 100
-- Mode: `box`
-- Unit Of Measurement: %
-
-File: [`input_number/will_s_macbook_pro_full_battery_threshold.yaml`](entities/input_number/will_s_macbook_pro_full_battery_threshold.yaml)
-</details>
-
-<details><summary><strong>Will's MacBook Pro Low Battery Threshold</strong></summary>
-
-**Entity ID: `input_number.will_s_macbook_pro_low_battery_threshold`**
-
-- Icon: [`mdi:battery-low`](https://pictogrammers.com/library/mdi/icon/battery-low/)
-- Max: 100
-- Mode: `box`
-- Unit Of Measurement: %
-
-File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/input_number/will_s_macbook_pro_low_battery_threshold.yaml)
-</details>
-
 </details>
 
 ## Input Select
 
-<details><summary><h3>Entities (10)</h3></summary>
+<details><summary><h3>Entities (9)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -3474,15 +2799,6 @@ File: [`input_number/will_s_macbook_pro_low_battery_threshold.yaml`](entities/in
 - Icon: [`mdi:docker`](https://pictogrammers.com/library/mdi/icon/docker/)
 
 File: [`input_select/add_on_stats_legend_sensor_type.yaml`](entities/input_select/add_on_stats_legend_sensor_type.yaml)
-</details>
-
-<details><summary><strong>Cosmo Entity Picture</strong></summary>
-
-**Entity ID: `input_select.cosmo_entity_picture`**
-
-- Icon: [`mdi:robot-vacuum`](https://pictogrammers.com/library/mdi/icon/robot-vacuum/)
-
-File: [`input_select/cosmo_entity_picture.yaml`](entities/input_select/cosmo_entity_picture.yaml)
 </details>
 
 <details><summary><strong>CRTPi | Media Player Source</strong></summary>
@@ -5241,7 +4557,7 @@ File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realt
 
 ## Script
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (26)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5361,96 +4677,6 @@ File: [`script/cosmo/cosmo_clean_room.yaml`](entities/script/cosmo/cosmo_clean_r
 }
 ```
 File: [`script/cosmo/cosmo_get_room_id_or_name.yaml`](entities/script/cosmo/cosmo_get_room_id_or_name.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Send Clean Requests</strong></summary>
-
-**Entity ID: `script.cosmo_send_clean_requests`**
-
-> Send a notification asking to vacuum on behalf of Cosmo
-
-- Fields:
-
-```json
-{
-  "room": {
-    "description": "The room to send the request for",
-    "required": true,
-    "selector": {
-      "area": null
-    }
-  }
-}
-```
-
-- Mode: `queued`
-
-File: [`script/cosmo/cosmo_send_clean_requests.yaml`](entities/script/cosmo/cosmo_send_clean_requests.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Set Cleaning Sequence</strong></summary>
-
-**Entity ID: `script.cosmo_set_cleaning_sequence`**
-
-> Set Cosmo's cleaning sequence based on the last time each room was cleaned
-
-- Fields:
-
-```json
-{
-  "rooms": {
-    "description": "List of rooms to clean",
-    "required": false,
-    "selector": {
-      "area": {
-        "multiple": true
-      }
-    }
-  }
-}
-```
-
-- Mode: `restart`
-
-File: [`script/cosmo/cosmo_set_cleaning_sequence.yaml`](entities/script/cosmo/cosmo_set_cleaning_sequence.yaml)
-</details>
-
-<details><summary><strong>Cosmo: Tag Scanned</strong></summary>
-
-**Entity ID: `script.cosmo_tag_scanned`**
-
-> Send Cosmo to work when an NFC tag is scanned
-
-- Fields:
-
-```json
-{
-  "room_name": {
-    "description": "The room name to use for the ID lookup and in in the TTS message",
-    "example": "bedroom",
-    "required": true,
-    "selector": {
-      "area": null
-    }
-  },
-  "tts_entity_id": {
-    "description": "The entity ID of the TTS device to use",
-    "example": "media_player.bedroom_nest_mini",
-    "required": true,
-    "selector": {
-      "entity": {
-        "filter": {
-          "domain": "media_player"
-        }
-      }
-    }
-  }
-}
-```
-
-- Mode: `single`
-
-File: [`script/cosmo/cosmo_tag_scanned.yaml`](entities/script/cosmo/cosmo_tag_scanned.yaml)
 </details>
 
 <details><summary><strong>Debug Persistent Notification</strong></summary>
@@ -6065,21 +5291,6 @@ File: [`script/office_desk_set_position.yaml`](entities/script/office_desk_set_p
 
 > *No description provided*
 
-- Fields:
-
-```json
-{
-  "sync_blinds": {
-    "description": "Sync blinds with desk position",
-    "example": "false",
-    "required": false,
-    "selector": {
-      "boolean": null
-    }
-  }
-}
-```
-
 - Mode: `single`
 
 File: [`script/office_desk_sitting_mode.yaml`](entities/script/office_desk_sitting_mode.yaml)
@@ -6090,21 +5301,6 @@ File: [`script/office_desk_sitting_mode.yaml`](entities/script/office_desk_sitti
 **Entity ID: `script.office_desk_standing_mode`**
 
 > *No description provided*
-
-- Fields:
-
-```json
-{
-  "sync_blinds": {
-    "description": "Sync blinds with desk position",
-    "example": "false",
-    "required": false,
-    "selector": {
-      "boolean": null
-    }
-  }
-}
-```
 
 - Mode: `single`
 
@@ -6365,31 +5561,6 @@ File: [`script/system/script_response_debugger.yaml`](entities/script/system/scr
     "example": "[\n  {\n    \"service_call\": \"script.turn_on\",\n    \"entity_id\": \"script.office_desk_sitting_mode\"\n  }\n]\n",
     "selector": {
       "action": null
-    }
-  },
-  "close_blinds": {
-    "name": "Close Blinds",
-    "description": "Whether to close the blinds",
-    "required": false,
-    "selector": {
-      "boolean": null
-    }
-  },
-  "close_blinds_window_delay": {
-    "name": "Close Blinds Window Delay",
-    "description": "The delay before closing the blinds if the window is open",
-    "example": "00:01:00",
-    "required": false,
-    "selector": {
-      "time": null
-    }
-  },
-  "close_blinds_with_open_window_after_delay": {
-    "name": "Close Blinds With Open Window After Delay",
-    "description": "Whether to close the blinds if the window is open after a delay",
-    "required": false,
-    "selector": {
-      "boolean": null
     }
   }
 }

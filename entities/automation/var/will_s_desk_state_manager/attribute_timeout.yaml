@@ -19,21 +19,21 @@ trigger:
       hours: 1
 
   - platform: template
-    id: light.desk_lamp
+    id: light.will_s_desk_lamp
     value_template: >-
       {{
-        state_attr('var.will_s_desk_state_manager', 'light.desk_lamp') | bool(false)
-        and is_state("light.desk_lamp", "off")
+        state_attr('var.will_s_desk_state_manager', 'light.will_s_desk_lamp') | bool(false)
+        and is_state("light.will_s_desk_lamp", "off")
       }}
     for:
       hours: 1
 
   - platform: template
-    id: light.office_shapes
+    id: light.will_s_office_shapes
     value_template: >-
       {{
-        state_attr('var.will_s_desk_state_manager', 'light.office_shapes') | bool(false)
-        and is_state("light.office_shapes", "off")
+        state_attr('var.will_s_desk_state_manager', 'light.will_s_office_shapes') | bool(false)
+        and is_state("light.will_s_office_shapes", "off")
       }}
     for:
       hours: 1
