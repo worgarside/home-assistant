@@ -15,30 +15,14 @@ trigger:
     subtype: down_press
 
 action:
-  - parallel:
-      - if: "{{ is_state('light.table_lamp', 'on') }}"
-        then:
-          - service: light.turn_on
-            target:
-              entity_id: light.table_lamp
-            data:
-              brightness: >-
-                {{ max(state_attr("light.table_lamp", "brightness") | int(32) - 32, 0) }}
-
-      - if: "{{ is_state('light.mini_lamp', 'on') }}"
-        then:
-          - service: light.turn_on
-            target:
-              entity_id: light.mini_lamp
-            data:
-              brightness: >-
-                {{ max(state_attr("light.mini_lamp", "brightness") | int(32) - 32, 0) }}
-
-      - if: "{{ is_state('light.lounge_shapes', 'on') }}"
-        then:
-          - service: light.turn_on
-            target:
-              entity_id: light.lounge_shapes
-            data:
-              brightness: >-
-                {{ max(state_attr("light.lounge_shapes", "brightness") | int(32) - 32, 0) }}
+  - repeat:
+      for_each: "{{ area_entities('lounge') | select('match', '^light\\.') | list }}"
+      sequence:
+        - if: "{{ is_state(repeat.item, 'on') }}"
+          then:
+            - service: light.turn_on
+              target:
+                entity_id: "{{ repeat.item }}"
+              data:
+                brightness: >-
+                  {{ max(state_attr(repeat.item, "brightness") | int(32) - 32, 0) }}
