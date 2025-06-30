@@ -358,25 +358,6 @@
                       "columns": 2
                     },
                     {
-                      "type": "custom:mini-media-player",
-                      "entity": "media_player.lounge_speakers",
-                      "artwork": "material",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "hide": {
-                        "power": true,
-                        "source": true,
-                        "volume": true
-                      },
-                      "group": false,
-                      "volume_stateless": false,
-                      "toggle_power": true
-                    },
-                    {
                       "type": "custom:mushroom-chips-card",
                       "chips": [
                         {
