@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (110)</h3></summary>
+<details><summary><h3>Entities (108)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1075,60 +1075,6 @@ File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/co
 }
 ```
 File: [`automation/remote/coffee_table/single.yaml`](entities/automation/remote/coffee_table/single.yaml)
-</details>
-
-<details><summary><code>/remote/kitchen</code></summary>
-
-**Entity ID: `automation.remote_kitchen`**
-
-> Control all kitchen spotlights with a single switch
-
-- Alias: /remote/kitchen
-- ID: `remote_kitchen`
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "press_type": "{{ trigger.payload }}",
-  "presses": {
-    "single": "single_left",
-    "double": "double_left",
-    "triple": "triple_left",
-    "hold": "hold_left"
-  },
-  "initial_group_state": "{{ states('light.kitchen_spotlights') | bool(false) }}",
-  "on_or_off": "{{ 'off' if initial_group_state | bool else 'on'}}",
-  "color_temp_kelvin": 2500,
-  "time_of_day": "{{ states('sensor.time_of_day') }}"
-}
-```
-File: [`automation/remote/kitchen.yaml`](entities/automation/remote/kitchen.yaml)
-</details>
-
-<details><summary><code>/remote/lounge</code></summary>
-
-**Entity ID: `automation.remote_lounge`**
-
-> Control lounge lights with a single switch
-
-- Alias: /remote/lounge
-- ID: `remote_lounge`
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "press_type": "{{ trigger.payload }}",
-  "presses": {
-    "single": "single_right",
-    "double": "double_right",
-    "triple": "triple_right",
-    "hold": "hold_right"
-  }
-}
-```
-File: [`automation/remote/lounge.yaml`](entities/automation/remote/lounge.yaml)
 </details>
 
 <details><summary><code>/remote/lounge-hue-remote/down-press</code></summary>
