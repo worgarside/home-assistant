@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (108)</h3></summary>
+<details><summary><h3>Entities (107)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1257,19 +1257,6 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
-</details>
-
-<details><summary><code>/remote/vic-s-desk/button-1/hold</code></summary>
-
-**Entity ID: `automation.remote_vic_s_desk_button_1_hold`**
-
-> *No description provided*
-
-- Alias: /remote/vic-s-desk/button-1/hold
-- ID: `remote_vic_s_desk_button_1_hold`
-- Mode: `single`
-
-File: [`automation/remote/vic_s_desk/button_1/hold.yaml`](entities/automation/remote/vic_s_desk/button_1/hold.yaml)
 </details>
 
 <details><summary><code>/remote/vic-s-office-hue-remote/down-press</code></summary>
