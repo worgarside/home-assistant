@@ -70,6 +70,12 @@ action:
         data:
           brightness_pct: 25
 
+      - service: light.turn_on
+        target:
+          entity_id: light.lounge_shelves
+        data:
+          brightness_pct: 1
+
       - service: light.turn_off
         target:
           area_id:
@@ -78,7 +84,6 @@ action:
             - lower_hallway
           entity_id:
             - light.globe_lamp
-            - light.lounge_shelves
 
       - service: media_player.media_stop
         target:
