@@ -16,7 +16,14 @@ trigger:
 
 action:
   - repeat:
-      for_each: "{{ area_entities('lounge') | select('match', '^light\\.') | list }}"
+      for_each: >-
+        {%- set ns = namespace(lights=[]) %}
+        {%- for e in area_entities('lounge') %}
+          {%- if e.startswith('light.') and state_attr(e, 'brightness') is not none %}
+            {%- set ns.lights = ns.lights + [e] %}
+          {%- endif %}
+        {%- endfor %}
+        {{ ns.lights }}
       sequence:
         - if: "{{ is_state(repeat.item, 'on') }}"
           then:
