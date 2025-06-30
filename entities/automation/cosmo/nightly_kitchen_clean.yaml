@@ -23,5 +23,5 @@ action:
 
   - service: script.cosmo_clean_room
     data:
-      room_name: kitchen
+      room_name: Basement
       suction_level: 3
