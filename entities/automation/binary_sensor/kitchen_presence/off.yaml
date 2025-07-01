@@ -25,6 +25,8 @@ action:
 
   - service: light.turn_off
     target:
-      entity_id: light.basement_big_light
+      entity_id:
+        - light.basement_big_light
+        - light.kitchen_shelves # ignores transition
     data:
       transition: 5
