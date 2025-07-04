@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (107)</h3></summary>
+<details><summary><h3>Entities (108)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -151,6 +151,19 @@ File: [`automation/cover/office_desk/keepalive.yaml`](entities/automation/cover/
 - Mode: `single`
 
 File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/office_desk/work_mode.yaml)
+</details>
+
+<details><summary><code>/cover/will-s-office-blinds/control</code></summary>
+
+**Entity ID: `automation.cover_will_s_office_blinds_control`**
+
+> Closes Will's office blinds when the office door is closed, the office desk is occupied, and the sun is below 3 degrees.
+
+- Alias: /cover/will-s-office-blinds/control
+- ID: `cover_will_s_office_blinds_control`
+- Mode: `single`
+
+File: [`automation/cover/will_s_office_blinds/control.yaml`](entities/automation/cover/will_s_office_blinds/control.yaml)
 </details>
 
 <details><summary><code>/crtpi/cpu-fan-control</code></summary>

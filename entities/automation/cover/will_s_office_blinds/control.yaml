@@ -1,0 +1,36 @@
+---
+alias: /cover/will-s-office-blinds/control
+
+id: cover_will_s_office_blinds_control
+
+mode: single
+
+description: >-
+  Closes Will's office blinds when the office door is closed, the office desk is occupied, and the
+  sun is below 3 degrees.
+
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.office_door_sensor_contact
+      - binary_sensor.office_desk_occupied
+      - sensor.sun_elevation
+
+condition:
+  - condition: state
+    entity_id: binary_sensor.office_door_sensor_contact
+    state: "off"
+
+  - condition: state
+    entity_id: binary_sensor.office_desk_occupied
+    state: "on"
+
+  - condition: numeric_state
+    entity_id: sensor.sun_elevation
+    below: 3
+
+action:
+  - service: cover.close_cover
+    target:
+      entity_id:
+        - cover.will_s_office_blinds
