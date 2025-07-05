@@ -153,17 +153,17 @@ File: [`automation/cover/office_desk/keepalive.yaml`](entities/automation/cover/
 File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/office_desk/work_mode.yaml)
 </details>
 
-<details><summary><code>/cover/will-s-office-blinds/control</code></summary>
+<details><summary><code>/cover/will-s-office-blinds/auto-close</code></summary>
 
-**Entity ID: `automation.cover_will_s_office_blinds_control`**
+**Entity ID: `automation.cover_will_s_office_blinds_auto_close`**
 
 > Closes Will's office blinds when the office door is closed, the office desk is occupied, and the sun is below 3 degrees.
 
-- Alias: /cover/will-s-office-blinds/control
-- ID: `cover_will_s_office_blinds_control`
+- Alias: /cover/will-s-office-blinds/auto-close
+- ID: `cover_will_s_office_blinds_auto_close`
 - Mode: `single`
 
-File: [`automation/cover/will_s_office_blinds/control.yaml`](entities/automation/cover/will_s_office_blinds/control.yaml)
+File: [`automation/cover/will_s_office_blinds/auto_close.yaml`](entities/automation/cover/will_s_office_blinds/auto_close.yaml)
 </details>
 
 <details><summary><code>/crtpi/cpu-fan-control</code></summary>
@@ -5171,6 +5171,14 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
     "selector": {
       "boolean": null
     }
+  },
+  "image": {
+    "description": "Optional image for the notification",
+    "example": "/api/camera_proxy/camera.octoprint_camera",
+    "required": false,
+    "selector": {
+      "text": null
+    }
   }
 }
 ```
@@ -5189,7 +5197,8 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "url": "{{ url | default('') }}",
   "group": "{{ group | default('') }}",
   "sticky": "{{ sticky | default(false) }}",
-  "persistent": "{{ persistent | default(false) }}"
+  "persistent": "{{ persistent | default(false) }}",
+  "image": "{{ image | default('') }}"
 }
 ```
 File: [`script/notify_will.yaml`](entities/script/notify_will.yaml)
