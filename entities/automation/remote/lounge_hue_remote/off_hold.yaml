@@ -18,5 +18,3 @@ action:
   - service: script.turn_off_physical_room
     data:
       room: lounge
-      close_blinds: "{{ is_state('binary_sensor.quiet_hours', 'on') }}"
-      close_blinds_with_open_window_after_delay: true

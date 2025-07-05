@@ -10,7 +10,7 @@ max_exceeded: silent
 trigger:
   - domain: mqtt
     platform: device
-    device_id: 68434e202923bb767d76728d28845eb4
+    device_id: 40b83e6d8b8a1ff1f0767cd2f32272da
     type: action
     subtype: hold
 
