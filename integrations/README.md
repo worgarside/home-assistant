@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (108)</h3></summary>
+<details><summary><h3>Entities (114)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1029,6 +1029,84 @@ File: [`automation/prusa_i3/bed/timeout.yaml`](entities/automation/prusa_i3/bed/
 - Mode: `single`
 
 File: [`automation/prusa_i3/hotend/timeout.yaml`](entities/automation/prusa_i3/hotend/timeout.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-hue-remote/down-press</code></summary>
+
+**Entity ID: `automation.remote_bedroom_hue_remote_down_press`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-hue-remote/down-press
+- ID: `remote_bedroom_hue_remote_down_press`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_hue_remote/down_press.yaml`](entities/automation/remote/bedroom_hue_remote/down_press.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-hue-remote/off-hold</code></summary>
+
+**Entity ID: `automation.remote_bedroom_hue_remote_off_hold`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-hue-remote/off-hold
+- ID: `remote_bedroom_hue_remote_off_hold`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_hue_remote/off_hold.yaml`](entities/automation/remote/bedroom_hue_remote/off_hold.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-hue-remote/off-press</code></summary>
+
+**Entity ID: `automation.remote_bedroom_hue_remote_off_press`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-hue-remote/off-press
+- ID: `remote_bedroom_hue_remote_off_press`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_hue_remote/off_press.yaml`](entities/automation/remote/bedroom_hue_remote/off_press.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-hue-remote/on-hold</code></summary>
+
+**Entity ID: `automation.remote_bedroom_hue_remote_on_hold`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-hue-remote/on-hold
+- ID: `remote_bedroom_hue_remote_on_hold`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_hue_remote/on_hold.yaml`](entities/automation/remote/bedroom_hue_remote/on_hold.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-hue-remote/on-press</code></summary>
+
+**Entity ID: `automation.remote_bedroom_hue_remote_on_press`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-hue-remote/on-press
+- ID: `remote_bedroom_hue_remote_on_press`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_hue_remote/on_press.yaml`](entities/automation/remote/bedroom_hue_remote/on_press.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-hue-remote/up-press</code></summary>
+
+**Entity ID: `automation.remote_bedroom_hue_remote_up_press`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-hue-remote/up-press
+- ID: `remote_bedroom_hue_remote_up_press`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_hue_remote/up_press.yaml`](entities/automation/remote/bedroom_hue_remote/up_press.yaml)
 </details>
 
 <details><summary><code>/remote/charging-hub-button/single</code></summary>

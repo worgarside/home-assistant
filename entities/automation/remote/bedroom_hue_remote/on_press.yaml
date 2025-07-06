@@ -1,0 +1,22 @@
+---
+alias: /remote/bedroom-hue-remote/on-press
+
+id: remote_bedroom_hue_remote_on_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 79d516f0ed1aea94563808b84d2419e5
+    type: action
+    subtype: on_press
+
+action:
+  - service: light.turn_on
+    target:
+      area_id: bedroom
+    data:
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
