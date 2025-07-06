@@ -1,0 +1,14 @@
+---
+force_update: true
+
+icon: mdi:trophy
+
+name: "MtrxPi | Snake: High Score"
+
+state_class: measurement
+
+state_topic: /mtrxpi/snake/parameter/high-score
+
+unique_id: mtrxpi_snake_high_score
+
+unit_of_measurement: bits

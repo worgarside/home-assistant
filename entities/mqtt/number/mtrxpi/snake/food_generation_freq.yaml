@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Snake: Food Generation Freq"
+
+unique_id: mtrxpi_snake_food_generation_freq
+
+command_topic: /mtrxpi/snake/frequency/food-generation-freq
+
+icon: mdi:food-apple
+
+min: 100
+
+max: 10000
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: ticks
+
+state_topic: /mtrxpi/snake/frequency/food-generation-freq

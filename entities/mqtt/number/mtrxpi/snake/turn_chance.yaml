@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Snake: Turn Chance"
+
+unique_id: mtrxpi_snake_turn_chance
+
+command_topic: /mtrxpi/snake/parameter/turn-chance
+
+icon: mdi:dice-multiple
+
+min: 0
+
+max: 1
+
+mode: box
+
+retain: true
+
+step: 0.01
+
+unit_of_measurement: "%"
+
+state_topic: /mtrxpi/snake/parameter/turn-chance

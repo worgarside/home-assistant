@@ -3026,7 +3026,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (127)</h3></summary>
+<details><summary><h3>Entities (134)</h3></summary>
 
 <details><summary><strong>MtrxPi | Audio Visualiser: Chunk Size</strong></summary>
 
@@ -3361,6 +3361,54 @@ File: [`mqtt/number/mtrxpi/raining_grid/x_pos.yaml`](entities/mqtt/number/mtrxpi
 - Unit Of Measurement:
 
 File: [`mqtt/number/mtrxpi/raining_grid/y_pos.yaml`](entities/mqtt/number/mtrxpi/raining_grid/y_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: Food Generation Freq</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_snake_food_generation_freq`**
+
+- Icon: [`mdi:food-apple`](https://pictogrammers.com/library/mdi/icon/food-apple/)
+- Command Topic: /mtrxpi/snake/frequency/food-generation-freq
+- State Topic: /mtrxpi/snake/frequency/food-generation-freq
+- Unit Of Measurement: `ticks`
+
+File: [`mqtt/number/mtrxpi/snake/food_generation_freq.yaml`](entities/mqtt/number/mtrxpi/snake/food_generation_freq.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: Snake Speed</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_snake_snake_speed`**
+
+- Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
+- Command Topic: /mtrxpi/snake/frequency/snake-speed
+- State Topic: /mtrxpi/snake/frequency/snake-speed
+- Unit Of Measurement: `ticks`
+
+File: [`mqtt/number/mtrxpi/snake/snake_speed.yaml`](entities/mqtt/number/mtrxpi/snake/snake_speed.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: Turn Chance</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_snake_turn_chance`**
+
+- Icon: [`mdi:dice-multiple`](https://pictogrammers.com/library/mdi/icon/dice-multiple/)
+- Command Topic: /mtrxpi/snake/parameter/turn-chance
+- State Topic: /mtrxpi/snake/parameter/turn-chance
+- Unit Of Measurement: %
+
+File: [`mqtt/number/mtrxpi/snake/turn_chance.yaml`](entities/mqtt/number/mtrxpi/snake/turn_chance.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: Turn Cooldown</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_snake_turn_cooldown`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Command Topic: /mtrxpi/snake/parameter/turn-cooldown
+- State Topic: /mtrxpi/snake/parameter/turn-cooldown
+- Unit Of Measurement: `ticks`
+
+File: [`mqtt/number/mtrxpi/snake/turn_cooldown.yaml`](entities/mqtt/number/mtrxpi/snake/turn_cooldown.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Sorter: Completion Display Time</strong></summary>
@@ -3918,6 +3966,42 @@ File: [`mqtt/sensor/mtrxpi/memory_usage.yaml`](entities/mqtt/sensor/mtrxpi/memor
 - State Topic: /homeassistant/mtrxpi/stats
 
 File: [`mqtt/sensor/mtrxpi/pi_stats_start_time.yaml`](entities/mqtt/sensor/mtrxpi/pi_stats_start_time.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: Food Count</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_snake_food_count`**
+
+- Icon: [`mdi:food`](https://pictogrammers.com/library/mdi/icon/food/)
+- State Class: `measurement`
+- State Topic: /mtrxpi/snake/parameter/food-count
+- Unit Of Measurement: `bits`
+
+File: [`mqtt/sensor/mtrxpi/snake/food_count.yaml`](entities/mqtt/sensor/mtrxpi/snake/food_count.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: High Score</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_snake_high_score`**
+
+- Icon: [`mdi:trophy`](https://pictogrammers.com/library/mdi/icon/trophy/)
+- State Class: `measurement`
+- State Topic: /mtrxpi/snake/parameter/high-score
+- Unit Of Measurement: `bits`
+
+File: [`mqtt/sensor/mtrxpi/snake/high_score.yaml`](entities/mqtt/sensor/mtrxpi/snake/high_score.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: Snake Length</strong></summary>
+
+**Entity ID: `sensor.mtrxpi_snake_snake_length`**
+
+- Icon: [`mdi:snake`](https://pictogrammers.com/library/mdi/icon/snake/)
+- State Class: `measurement`
+- State Topic: /mtrxpi/snake/parameter/snake-length
+- Unit Of Measurement: `cells`
+
+File: [`mqtt/sensor/mtrxpi/snake/snake_length.yaml`](entities/mqtt/sensor/mtrxpi/snake/snake_length.yaml)
 </details>
 
 <details><summary><strong>MtrxPi Uptime</strong></summary>
