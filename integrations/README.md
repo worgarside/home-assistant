@@ -2282,7 +2282,7 @@ File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_s
 
 ## Input Number
 
-<details><summary><h3>Entities (36)</h3></summary>
+<details><summary><h3>Entities (37)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2456,6 +2456,19 @@ File: [`input_number/mtrxpi/queue_position/mtrxpi_now_playing_queue_position.yam
 - Unit Of Measurement:
 
 File: [`input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_raining_grid_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_snake_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_snake_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_snake_queue_position.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Sorter: Queue Position</strong></summary>
@@ -5037,6 +5050,7 @@ File: [`script/mtrxpi/audio_visualiser/mtrxpi_audio_visualiser_set_colors.yaml`]
           "image-door-closed",
           "now-playing",
           "raining-grid",
+          "snake",
           "sorter"
         ]
       }
