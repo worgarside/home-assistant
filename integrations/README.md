@@ -3039,7 +3039,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (134)</h3></summary>
+<details><summary><h3>Entities (136)</h3></summary>
 
 <details><summary><strong>MtrxPi | Audio Visualiser: Chunk Size</strong></summary>
 
@@ -3422,6 +3422,30 @@ File: [`mqtt/number/mtrxpi/snake/turn_chance.yaml`](entities/mqtt/number/mtrxpi/
 - Unit Of Measurement: `ticks`
 
 File: [`mqtt/number/mtrxpi/snake/turn_cooldown.yaml`](entities/mqtt/number/mtrxpi/snake/turn_cooldown.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: X Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_snake_x_pos`**
+
+- Icon: [`mdi:arrow-left-right`](https://pictogrammers.com/library/mdi/icon/arrow-left-right/)
+- Command Topic: /mtrxpi/snake/parameter/x-pos
+- State Topic: /mtrxpi/snake/parameter/x-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/snake/x_pos.yaml`](entities/mqtt/number/mtrxpi/snake/x_pos.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: Y Pos</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_snake_y_pos`**
+
+- Icon: [`mdi:arrow-up-down`](https://pictogrammers.com/library/mdi/icon/arrow-up-down/)
+- Command Topic: /mtrxpi/snake/parameter/y-pos
+- State Topic: /mtrxpi/snake/parameter/y-pos
+- Unit Of Measurement:
+
+File: [`mqtt/number/mtrxpi/snake/y_pos.yaml`](entities/mqtt/number/mtrxpi/snake/y_pos.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Sorter: Completion Display Time</strong></summary>
