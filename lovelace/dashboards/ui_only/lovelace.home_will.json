@@ -2785,6 +2785,79 @@
                     },
                     {
                       "attributes": {
+                        "label": "Snake"
+                      },
+                      "card": {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "sensor.mtrxpi_snake_snake_length",
+                            "name": "Snake Length"
+                          },
+                          {
+                            "entity": "sensor.mtrxpi_snake_food_count",
+                            "name": "Food Count"
+                          },
+                          {
+                            "entity": "sensor.mtrxpi_snake_high_score",
+                            "name": "High Score"
+                          },
+                          {
+                            "entity": "number.mtrxpi_snake_food_generation_freq",
+                            "name": "Food Generation Frequency"
+                          },
+                          {
+                            "entity": "number.mtrxpi_snake_snake_speed",
+                            "name": "Snake Speed"
+                          },
+                          {
+                            "entity": "number.mtrxpi_snake_turn_chance",
+                            "name": "Turn Chance"
+                          },
+                          {
+                            "entity": "number.mtrxpi_snake_turn_cooldown",
+                            "name": "Turn Cooldown"
+                          },
+                          {
+                            "entity": "input_number.mtrxpi_snake_queue_position",
+                            "name": "Queue Position"
+                          },
+                          {
+                            "entity": "automation.mtrxpi_content_trigger_snake",
+                            "name": "Content Trigger"
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "Queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "snake"
+                              }
+                            }
+                          },
+                          {
+                            "type": "button",
+                            "entity": "script.mtrxpi_queue_content",
+                            "name": "De-queue Content",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.mtrxpi_queue_content",
+                              "service_data": {
+                                "id": "snake",
+                                "priority": "clear"
+                              }
+                            }
+                          }
+                        ],
+                        "show_header_toggle": false,
+                        "state_color": true
+                      }
+                    },
+                    {
+                      "attributes": {
                         "label": "Now Playing"
                       },
                       "card": {
