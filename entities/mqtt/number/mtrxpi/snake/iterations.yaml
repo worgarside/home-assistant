@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Snake: Iterations"
+
+unique_id: mtrxpi_snake_iterations
+
+command_topic: /mtrxpi/snake/parameter/iterations
+
+icon: mdi:counter
+
+min: 0
+
+max: 100
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: iterations
+
+state_topic: /mtrxpi/snake/parameter/iterations

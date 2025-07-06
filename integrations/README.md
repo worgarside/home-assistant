@@ -3039,7 +3039,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (134)</h3></summary>
+<details><summary><h3>Entities (136)</h3></summary>
 
 <details><summary><strong>MtrxPi | Audio Visualiser: Chunk Size</strong></summary>
 
@@ -3386,6 +3386,30 @@ File: [`mqtt/number/mtrxpi/raining_grid/y_pos.yaml`](entities/mqtt/number/mtrxpi
 - Unit Of Measurement: `ticks`
 
 File: [`mqtt/number/mtrxpi/snake/food_generation_freq.yaml`](entities/mqtt/number/mtrxpi/snake/food_generation_freq.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: Iterations</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_snake_iterations`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+- Command Topic: /mtrxpi/snake/parameter/iterations
+- State Topic: /mtrxpi/snake/parameter/iterations
+- Unit Of Measurement: `iterations`
+
+File: [`mqtt/number/mtrxpi/snake/iterations.yaml`](entities/mqtt/number/mtrxpi/snake/iterations.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | Snake: Iterations Remaining</strong></summary>
+
+**Entity ID: `mqtt.mtrxpi_snake_iterations_remaining`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+- Command Topic: /mtrxpi/snake/parameter/iterations-remaining
+- State Topic: /mtrxpi/snake/parameter/iterations-remaining
+- Unit Of Measurement: `iterations`
+
+File: [`mqtt/number/mtrxpi/snake/iterations_remaining.yaml`](entities/mqtt/number/mtrxpi/snake/iterations_remaining.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Snake: Snake Speed</strong></summary>
