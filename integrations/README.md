@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (114)</h3></summary>
+<details><summary><h3>Entities (115)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1491,6 +1491,19 @@ File: [`automation/remote/will_s_desk/button_2/double.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/will_s_desk/button_2/single.yaml`](entities/automation/remote/will_s_desk/button_2/single.yaml)
+</details>
+
+<details><summary><code>/sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear</code></summary>
+
+**Entity ID: `automation.sensor_storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear`**
+
+> Notify and clear notification for qBittorrent SSD storage usage thresholds
+
+- Alias: /sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear
+- ID: `sensor_storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear`
+- Mode: `single`
+
+File: [`automation/sensor/storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear.yaml`](entities/automation/sensor/storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>

@@ -1,0 +1,48 @@
+---
+alias: /sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear
+
+id: sensor_storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear
+
+description: Notify and clear notification for qBittorrent SSD storage usage thresholds
+
+mode: single
+
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.storage_cc_ssd_transient_qbt_disk_used_percentage
+    above: 98
+  - platform: numeric_state
+    entity_id: sensor.storage_cc_ssd_transient_qbt_disk_used_percentage
+    above: 99
+  - platform: numeric_state
+    entity_id: sensor.storage_cc_ssd_transient_qbt_disk_used_percentage
+    above: 99.99
+    id: full
+  - platform: numeric_state
+    entity_id: sensor.storage_cc_ssd_transient_qbt_disk_used_percentage
+    below: 80
+    id: clear
+
+action:
+  - if: "{{ trigger.id == 'clear' }}"
+
+    then:
+      - service: script.notify_will
+        data:
+          clear_notification: true
+          notification_id: qbt_storage
+          message: clear_notification
+
+    else:
+      - service: script.notify_will
+        data:
+          title: >-
+            qBittorrent Storage {% if trigger.id != 'full' %}Nearly {% endif %}Full
+          message: >-
+            qBittorrent storage usage is at
+            {{ states('sensor.storage_cc_ssd_transient_qbt_disk_used_percentage') }}%
+          notification_id: qbt_storage
+          mobile_notification_icon: mdi:harddisk
+          sticky: true
+          persistent: false
+          url: !secret qbittorrent_url
