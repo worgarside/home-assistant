@@ -40,7 +40,7 @@ action:
             qBittorrent Storage {% if trigger.id != 'full' %}Nearly {% endif %}Full
           message: >-
             qBittorrent storage usage is at
-            {{ states('sensor.storage_cc_ssd_transient_qbt_disk_used_percentage') }}%
+            {{ states('sensor.storage_cc_ssd_transient_qbt_disk_used_percentage') | round(0) }}%
           notification_id: qbt_storage
           mobile_notification_icon: mdi:harddisk
           sticky: true
