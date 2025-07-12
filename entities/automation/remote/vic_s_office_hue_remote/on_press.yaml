@@ -1,0 +1,22 @@
+---
+alias: /remote/vic-s-office-hue-remote/on-press
+
+id: remote_vic_s_office_hue_remote_on_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 59ad3110285eab557754d2cf24ad84c1
+    type: action
+    subtype: on_press
+
+action:
+  - service: light.turn_on
+    target:
+      area_id: vic_s_office
+    data:
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"

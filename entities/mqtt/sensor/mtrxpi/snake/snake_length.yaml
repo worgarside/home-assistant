@@ -1,0 +1,14 @@
+---
+force_update: true
+
+icon: mdi:snake
+
+name: "MtrxPi | Snake: Snake Length"
+
+state_class: measurement
+
+state_topic: /mtrxpi/snake/parameter/snake-length
+
+unique_id: mtrxpi_snake_snake_length
+
+unit_of_measurement: cells

@@ -1,0 +1,22 @@
+---
+alias: /remote/charging-hub-button/single
+
+description: Toggle the charging hub's power state
+
+id: remote_charging_hub_button_single
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: f0398414406fab0e42d6cee87901204d
+    type: action
+    subtype: single
+
+action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.charging_hub

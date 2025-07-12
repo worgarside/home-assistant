@@ -1,0 +1,14 @@
+---
+force_update: true
+
+icon: mdi:food
+
+name: "MtrxPi | Snake: Food Count"
+
+state_class: measurement
+
+state_topic: /mtrxpi/snake/parameter/food-count
+
+unique_id: mtrxpi_snake_food_count
+
+unit_of_measurement: bits

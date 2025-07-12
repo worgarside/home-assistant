@@ -73,6 +73,13 @@ fields:
     selector:
       boolean:
 
+  image:
+    description: Optional image for the notification
+    example: /api/camera_proxy/camera.octoprint_camera
+    required: false
+    selector:
+      text:
+
 mode: queued
 
 max: 50
@@ -111,6 +118,8 @@ variables:
   sticky: "{{ sticky | default(false) }}"
 
   persistent: "{{ persistent | default(false) }}"
+
+  image: "{{ image | default('') }}"
 
 sequence:
   - if: >-
@@ -155,6 +164,7 @@ sequence:
         group: "{{ group }}"
         sticky: "{{ sticky }}"
         persistent: "{{ persistent }}"
+        image: "{{ image }}"
 
   - alias: Personal MacBook Pro
     if:
@@ -178,6 +188,7 @@ sequence:
             tag: "{{ notification_id }}"
             group: "{{ group }}"
             url: "{{ url }}"
+            image: "{{ image }}"
 
   - alias: Work MacBook Pro
     if:
@@ -212,3 +223,6 @@ sequence:
           data:
             actions: "{{ actions }}"
             tag: "{{ notification_id }}"
+            group: "{{ group }}"
+            url: "{{ url }}"
+            image: "{{ image }}"
