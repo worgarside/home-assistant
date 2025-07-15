@@ -7,7 +7,7 @@ mode: single
 
 description: >-
   Closes Will's office blinds when the office door is closed, the office desk is occupied, and the
-  sun is below 3 degrees.
+  sun is below -3 degrees.
 
 trigger:
   - platform: state

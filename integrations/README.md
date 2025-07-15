@@ -157,7 +157,7 @@ File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/
 
 **Entity ID: `automation.cover_will_s_office_blinds_auto_close`**
 
-> Closes Will's office blinds when the office door is closed, the office desk is occupied, and the sun is below 3 degrees.
+> Closes Will's office blinds when the office door is closed, the office desk is occupied, and the sun is below -3 degrees.
 
 - Alias: /cover/will-s-office-blinds/auto-close
 - ID: `cover_will_s_office_blinds_auto_close`
@@ -2058,7 +2058,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (27)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -2276,15 +2276,6 @@ File: [`input_boolean/auto_reload/auto_reload_zone.yaml`](entities/input_boolean
 File: [`input_boolean/debug_with_persistent_notifications.yaml`](entities/input_boolean/debug_with_persistent_notifications.yaml)
 </details>
 
-<details><summary><strong>Lounge Shapes Artwork Mapping Active</strong></summary>
-
-**Entity ID: `input_boolean.lounge_shapes_artwork_mapping_active`**
-
-- Icon: [`mdi:album`](https://pictogrammers.com/library/mdi/icon/album/)
-
-File: [`input_boolean/lounge_shapes_artwork_mapping_active.yaml`](entities/input_boolean/lounge_shapes_artwork_mapping_active.yaml)
-</details>
-
 <details><summary><strong>Mini CRT Fan</strong></summary>
 
 **Entity ID: `input_boolean.mini_crt_fan`**
@@ -2303,15 +2294,6 @@ File: [`input_boolean/mini_crt_fan.yaml`](entities/input_boolean/mini_crt_fan.ya
 File: [`input_boolean/mini_crt_power.yaml`](entities/input_boolean/mini_crt_power.yaml)
 </details>
 
-<details><summary><strong>Office Shapes Artwork Mapping Active</strong></summary>
-
-**Entity ID: `input_boolean.office_shapes_artwork_mapping_active`**
-
-- Icon: [`mdi:album`](https://pictogrammers.com/library/mdi/icon/album/)
-
-File: [`input_boolean/office_shapes_artwork_mapping_active.yaml`](entities/input_boolean/office_shapes_artwork_mapping_active.yaml)
-</details>
-
 <details><summary><strong>Topaz SR10: Is Volume Muted</strong></summary>
 
 **Entity ID: `input_boolean.topaz_sr10_is_volume_muted`**
@@ -2319,39 +2301,6 @@ File: [`input_boolean/office_shapes_artwork_mapping_active.yaml`](entities/input
 - Icon: [`mdi:volume-off`](https://pictogrammers.com/library/mdi/icon/volume-off/)
 
 File: [`input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml`](entities/input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml)
-</details>
-
-</details>
-
-## Input Button
-
-<details><summary><h3>Entities (3)</h3></summary>
-
-<details><summary><strong>Water Ficus</strong></summary>
-
-**Entity ID: `input_button.water_ficus`**
-
-- Icon: [`mdi:watering-can-outline`](https://pictogrammers.com/library/mdi/icon/watering-can-outline/)
-
-File: [`input_button/water_ficus.yaml`](entities/input_button/water_ficus.yaml)
-</details>
-
-<details><summary><strong>Water Monstera</strong></summary>
-
-**Entity ID: `input_button.water_monstera`**
-
-- Icon: [`mdi:watering-can-outline`](https://pictogrammers.com/library/mdi/icon/watering-can-outline/)
-
-File: [`input_button/water_monstera.yaml`](entities/input_button/water_monstera.yaml)
-</details>
-
-<details><summary><strong>Water Pineapple</strong></summary>
-
-**Entity ID: `input_button.water_pineapple`**
-
-- Icon: [`mdi:watering-can-outline`](https://pictogrammers.com/library/mdi/icon/watering-can-outline/)
-
-File: [`input_button/water_pineapple.yaml`](entities/input_button/water_pineapple.yaml)
 </details>
 
 </details>
@@ -2386,7 +2335,7 @@ File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_s
 
 ## Input Number
 
-<details><summary><h3>Entities (38)</h3></summary>
+<details><summary><h3>Entities (33)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2457,18 +2406,6 @@ File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml
 - Unit Of Measurement: %
 
 File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/dry_box/dry_box_max_humidity.yaml)
-</details>
-
-<details><summary><strong>Lounge Blinds Button Height</strong></summary>
-
-**Entity ID: `input_number.lounge_blinds_button_height`**
-
-- Icon: [`mdi:format-align-middle`](https://pictogrammers.com/library/mdi/icon/format-align-middle/)
-- Max: 100
-- Mode: `box`
-- Unit Of Measurement: %
-
-File: [`input_number/lounge_blinds_button_height.yaml`](entities/input_number/lounge_blinds_button_height.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Raining Grid: Maximum Rain Intensity</strong></summary>
@@ -2636,54 +2573,6 @@ File: [`input_number/office_desk_standing_height.yaml`](entities/input_number/of
 - Unit Of Measurement: %
 
 File: [`input_number/office_desk_standing_mode_percentage_target.yaml`](entities/input_number/office_desk_standing_mode_percentage_target.yaml)
-</details>
-
-<details><summary><strong>Soil Moisture Sensor 1 | Lower Limit</strong></summary>
-
-**Entity ID: `input_number.soil_moisture_sensor_1_lower_limit`**
-
-- Icon: [`mdi:arrow-collapse-down`](https://pictogrammers.com/library/mdi/icon/arrow-collapse-down/)
-- Max: 1
-- Mode: `box`
-- Unit Of Measurement: V
-
-File: [`input_number/soil_moisture_threshold/sensor_1/soil_moisture_sensor_1_lower_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_1/soil_moisture_sensor_1_lower_limit.yaml)
-</details>
-
-<details><summary><strong>Soil Moisture Sensor 1 | Upper Limit</strong></summary>
-
-**Entity ID: `input_number.soil_moisture_sensor_1_upper_limit`**
-
-- Icon: [`mdi:arrow-collapse-up`](https://pictogrammers.com/library/mdi/icon/arrow-collapse-up/)
-- Max: 1
-- Mode: `box`
-- Unit Of Measurement: V
-
-File: [`input_number/soil_moisture_threshold/sensor_1/soil_moisture_sensor_1_upper_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_1/soil_moisture_sensor_1_upper_limit.yaml)
-</details>
-
-<details><summary><strong>Soil Moisture Sensor 2 | Lower Limit</strong></summary>
-
-**Entity ID: `input_number.soil_moisture_sensor_2_lower_limit`**
-
-- Icon: [`mdi:arrow-collapse-down`](https://pictogrammers.com/library/mdi/icon/arrow-collapse-down/)
-- Max: 1
-- Mode: `box`
-- Unit Of Measurement: V
-
-File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_lower_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_lower_limit.yaml)
-</details>
-
-<details><summary><strong>Soil Moisture Sensor 2 | Upper Limit</strong></summary>
-
-**Entity ID: `input_number.soil_moisture_sensor_2_upper_limit`**
-
-- Icon: [`mdi:arrow-collapse-up`](https://pictogrammers.com/library/mdi/icon/arrow-collapse-up/)
-- Max: 1
-- Mode: `box`
-- Unit Of Measurement: V
-
-File: [`input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml`](entities/input_number/soil_moisture_threshold/sensor_2/soil_moisture_sensor_2_upper_limit.yaml)
 </details>
 
 <details><summary><strong>Charging Hub: Auto-Off Threshold</strong></summary>
@@ -5941,7 +5830,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (75)</h3></summary>
+<details><summary><h3>Entities (73)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6728,26 +6617,6 @@ File: [`template/sensor/office_desk/office_desk_standing_time_remaining.yaml`](e
 **Entity ID: `sensor.person_cosmo`**
 
 File: [`template/sensor/person/person_cosmo.yaml`](entities/template/sensor/person/person_cosmo.yaml)
-</details>
-
-<details><summary><strong>Soil Saturation 1</strong></summary>
-
-**Entity ID: `sensor.soil_saturation_1`**
-
-- Icon: [`mdi:watering-can-outline`](https://pictogrammers.com/library/mdi/icon/watering-can-outline/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/soil_saturation/soil_saturation_1.yaml`](entities/template/sensor/soil_saturation/soil_saturation_1.yaml)
-</details>
-
-<details><summary><strong>Soil Saturation 2</strong></summary>
-
-**Entity ID: `sensor.soil_saturation_2`**
-
-- Icon: [`mdi:watering-can-outline`](https://pictogrammers.com/library/mdi/icon/watering-can-outline/)
-- Unit Of Measurement: %
-
-File: [`template/sensor/soil_saturation/soil_saturation_2.yaml`](entities/template/sensor/soil_saturation/soil_saturation_2.yaml)
 </details>
 
 <details><summary><strong>Spotify Will Garside Media Album Artwork Internal URL</strong></summary>
