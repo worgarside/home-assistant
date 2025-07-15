@@ -23,23 +23,6 @@
                   "type": "vertical-stack",
                   "cards": [
                     {
-                      "type": "custom:mushroom-cover-card",
-                      "entity": "cover.bedroom_blinds",
-                      "show_position_control": true,
-                      "show_buttons_control": false,
-                      "show_tilt_position_control": false,
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "layout": "horizontal",
-                      "name": "Blinds",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      }
-                    },
-                    {
                       "square": false,
                       "tap_action": {
                         "action": "more-info"
@@ -111,25 +94,6 @@
                       "columns": 2
                     },
                     {
-                      "type": "custom:mini-media-player",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "entity": "media_player.bedroom_speakers",
-                      "artwork": "material",
-                      "hide": {
-                        "power": true,
-                        "source": true,
-                        "volume": true
-                      },
-                      "group": false,
-                      "volume_stateless": false,
-                      "toggle_power": true
-                    },
-                    {
                       "type": "custom:mushroom-media-player-card",
                       "tap_action": {
                         "action": "more-info"
@@ -154,14 +118,6 @@
                     {
                       "type": "custom:mushroom-chips-card",
                       "chips": [
-                        {
-                          "type": "entity",
-                          "entity": "binary_sensor.bedroom_door_sensor_contact"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "binary_sensor.bedroom_window_sensor_contact"
-                        },
                         {
                           "type": "entity",
                           "entity": "sensor.bedroom_climate_sensor_temperature"
@@ -189,58 +145,6 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "Hallway"
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.hallway",
-                      "name": "Spotlights",
-                      "show_brightness_control": true,
-                      "layout": "horizontal",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "toggle"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-chips-card",
-                      "chips": [
-                        {
-                          "type": "entity",
-                          "entity": "binary_sensor.front_door_sensor_contact"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.hallway_climate_sensor_temperature"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.hallway_climate_sensor_humidity"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "switch.air_freshener",
-                          "tap_action": {
-                            "action": "toggle"
-                          },
-                          "icon": "mdi:air-filter"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
                   "heading": "Kitchen"
                 },
                 {
@@ -254,32 +158,15 @@
                       "layout": "horizontal"
                     },
                     {
-                      "type": "custom:mushroom-light-card",
-                      "entity": "light.kitchen_counter_lights",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "none"
-                      }
-                    },
-                    {
                       "type": "custom:mushroom-chips-card",
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.kitchen_door_sensor_contact"
+                          "entity": "sensor.kitchen_air_quality_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.kitchen_climate_sensor_temperature"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.kitchen_climate_sensor_humidity"
+                          "entity": "sensor.kitchen_air_quality_sensor_humidity"
                         }
                       ]
                     }
@@ -297,23 +184,6 @@
                 {
                   "type": "vertical-stack",
                   "cards": [
-                    {
-                      "type": "custom:mushroom-cover-card",
-                      "entity": "cover.lounge_blinds",
-                      "show_position_control": true,
-                      "show_buttons_control": false,
-                      "show_tilt_position_control": false,
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "layout": "horizontal",
-                      "name": "Blinds",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      }
-                    },
                     {
                       "type": "custom:mushroom-media-player-card",
                       "entity": "media_player.lounge_chromecast",
@@ -469,38 +339,11 @@
                       "columns": 2
                     },
                     {
-                      "type": "custom:mini-media-player",
-                      "entity": "media_player.lounge_speakers",
-                      "artwork": "material",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "hide": {
-                        "power": true,
-                        "source": true,
-                        "volume": true
-                      },
-                      "group": false,
-                      "volume_stateless": false,
-                      "toggle_power": true
-                    },
-                    {
                       "type": "custom:mushroom-chips-card",
                       "chips": [
                         {
                           "type": "entity",
                           "entity": "binary_sensor.lounge_window_sensor_contact"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.lounge_climate_sensor_temperature"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.lounge_climate_sensor_humidity"
                         },
                         {
                           "type": "entity",
@@ -532,23 +375,6 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-cover-card",
-                      "entity": "cover.office_blinds",
-                      "show_position_control": true,
-                      "show_buttons_control": false,
-                      "show_tilt_position_control": false,
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "layout": "horizontal",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "name": "Blinds"
-                    },
-                    {
-                      "type": "custom:mushroom-cover-card",
                       "entity": "cover.office_desk",
                       "show_position_control": true,
                       "show_buttons_control": false,
@@ -570,7 +396,7 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-light-card",
-                          "entity": "light.desk_lamp",
+                          "entity": "light.will_s_desk_lamp",
                           "primary_info": "state",
                           "secondary_info": "name",
                           "show_brightness_control": true,
@@ -598,24 +424,6 @@
                           "hold_action": {
                             "action": "none"
                           },
-                          "use_light_color": true,
-                          "double_tap_action": {
-                            "action": "toggle"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-light-card",
-                          "entity": "light.office_shapes",
-                          "primary_info": "state",
-                          "secondary_info": "name",
-                          "name": "Shapes",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "show_brightness_control": true,
                           "use_light_color": true,
                           "double_tap_action": {
                             "action": "toggle"
@@ -666,19 +474,11 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.office_door_sensor_contact"
+                          "entity": "sensor.will_s_office_climate_sensor_temperature"
                         },
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.office_window_sensor_contact"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.office_climate_sensor_temperature"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.office_climate_sensor_humidity"
+                          "entity": "sensor.will_s_office_climate_sensor_humidity"
                         }
                       ]
                     }
