@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (115)</h3></summary>
+<details><summary><h3>Entities (116)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -695,6 +695,19 @@ File: [`automation/light/disco_light/turn_off.yaml`](entities/automation/light/d
 - Mode: `single`
 
 File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/disco_light/turn_on.yaml)
+</details>
+
+<details><summary><code>/light/lounge-lights/stop-tv-reflections</code></summary>
+
+**Entity ID: `automation.light_lounge_lights_stop_tv_reflections`**
+
+> *No description provided*
+
+- Alias: /light/lounge-lights/stop-tv-reflections
+- ID: `light_lounge_lights_stop_tv_reflections`
+- Mode: `single`
+
+File: [`automation/light/lounge-lights/stop_tv_reflections.yaml`](entities/automation/light/lounge-lights/stop_tv_reflections.yaml)
 </details>
 
 <details><summary><code>/light/lower-hallway-lights/on</code></summary>
@@ -2373,7 +2386,7 @@ File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_s
 
 ## Input Number
 
-<details><summary><h3>Entities (37)</h3></summary>
+<details><summary><h3>Entities (38)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2573,6 +2586,18 @@ File: [`input_number/mtrxpi/queue_position/mtrxpi_snake_queue_position.yaml`](en
 - Unit Of Measurement:
 
 File: [`input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_sorter_queue_position.yaml)
+</details>
+
+<details><summary><strong>Nightly Kitchen Clean Suction Level</strong></summary>
+
+**Entity ID: `input_number.nightly_kitchen_clean_suction_level`**
+
+- Icon: [`mdi:robot-vacuum`](https://pictogrammers.com/library/mdi/icon/robot-vacuum/)
+- Max: 3
+- Mode: `slider`
+- Unit Of Measurement: `level`
+
+File: [`input_number/nightly_kitchen_clean_suction_level.yaml`](entities/input_number/nightly_kitchen_clean_suction_level.yaml)
 </details>
 
 <details><summary><strong>Office Desk Sitting Height</strong></summary>
