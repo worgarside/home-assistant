@@ -12,7 +12,7 @@ trigger:
     minutes: /5
 
   - platform: state
-    entity_id: cover.office_desk_esphome
+    entity_id: cover.will_s_office_desk_idasen
     to:
       - unavailable
       - unknown

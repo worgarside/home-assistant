@@ -1,0 +1,39 @@
+---
+alias: /remote/vic-s-office-hue-remote/up-press
+
+id: remote_vic_s_office_hue_remote_up_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 59ad3110285eab557754d2cf24ad84c1
+    type: action
+    subtype: up_press
+
+action:
+  - parallel:
+      - service: light.turn_on
+        target:
+          entity_id: light.glowstick
+        data:
+          brightness: >-
+            {% if is_state("light.glowstick", "on") %}
+              {{ min(state_attr("light.glowstick", "brightness") | int(64) + 32, 255) }}
+            {% else %}
+              32
+            {% endif %}
+
+      - service: light.turn_on
+        target:
+          entity_id: light.shell_lamp
+        data:
+          brightness: >-
+            {% if is_state("light.shell_lamp", "on") %}
+              {{ min(state_attr("light.shell_lamp", "brightness") | int(64) + 32, 255) }}
+            {% else %}
+              32
+            {% endif %}

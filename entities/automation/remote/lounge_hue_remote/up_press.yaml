@@ -15,47 +15,23 @@ trigger:
     subtype: up_press
 
 action:
-  - parallel:
-      - service: light.turn_on
-        target:
-          entity_id: light.shelf_lamp
-        data:
-          brightness: >-
-            {% if is_state("light.shelf_lamp", "on") %}
-              {{ min(state_attr("light.shelf_lamp", "brightness") | int(64) + 32, 255) }}
-            {% else %}
-              32
-            {% endif %}
-
-      - service: light.turn_on
-        target:
-          entity_id: light.table_lamp
-        data:
-          brightness: >-
-            {% if is_state("light.table_lamp", "on") %}
-              {{ min(state_attr("light.table_lamp", "brightness") | int(64) + 32, 255) }}
-            {% else %}
-              32
-            {% endif %}
-
-      - service: light.turn_on
-        target:
-          entity_id: light.mini_lamp
-        data:
-          brightness: >-
-            {% if is_state("light.mini_lamp", "on") %}
-              {{ min(state_attr("light.mini_lamp", "brightness") | int(64) + 32, 255) }}
-            {% else %}
-              32
-            {% endif %}
-
-      - service: light.turn_on
-        target:
-          entity_id: light.lounge_shapes
-        data:
-          brightness: >-
-            {% if is_state("light.lounge_shapes", "on") %}
-              {{ min(state_attr("light.lounge_shapes", "brightness") | int(64) + 32, 255) }}
-            {% else %}
-              32
-            {% endif %}
+  - repeat:
+      for_each: >-
+        {%- set ns = namespace(lights=[]) %}
+        {%- for e in area_entities('lounge') %}
+          {%- if e.startswith('light.') and state_attr(e, 'brightness') is not none %}
+            {%- set ns.lights = ns.lights + [e] %}
+          {%- endif %}
+        {%- endfor %}
+        {{ ns.lights }}
+      sequence:
+        - service: light.turn_on
+          target:
+            entity_id: "{{ repeat.item }}"
+          data:
+            brightness: >-
+              {% if is_state(repeat.item, "on") %}
+                {{ min(state_attr(repeat.item, "brightness") | int(64) + 32, 255) }}
+              {% else %}
+                32
+              {% endif %}

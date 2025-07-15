@@ -1,0 +1,42 @@
+---
+alias: /light/lounge-lights/stop-tv-reflections
+
+id: light_lounge_lights_stop_tv_reflections
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id:
+      - remote.lounge_chromecast
+      - media_player.lounge_chromecast_remote
+      - remote.lounge_tv
+      - media_player.lounge_tv
+      - media_player.lounge_chromecast
+    to: "on"
+
+action:
+  - service: light.turn_off
+    target:
+      entity_id: light.globe_lamp
+
+  - if:
+      - condition: state
+        entity_id: light.lounge_shelves
+        state: "on"
+      - condition: template
+        value_template: >
+          {{ state_attr('light.lounge_shelves', 'brightness') | int(0) > (255 * 0.05) }}
+
+    then:
+      - service: light.turn_on
+        target:
+          entity_id: light.lounge_shelves
+        data:
+          brightness_pct: 5
+
+  - alias: Debounce
+    delay:
+      seconds: 10

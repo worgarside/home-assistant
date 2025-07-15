@@ -7,18 +7,6 @@ mode: single
 
 trigger:
   - platform: state
-    id: lounge_speakers_paused
-    entity_id: media_player.lounge_speakers
-    to: paused
-
-  - platform: state
-    id: lounge_speakers_other
-    entity_id: media_player.lounge_speakers
-    from: playing
-    not_to:
-      - buffering
-
-  - platform: state
     id: hifi_system_heos
     entity_id: media_player.hifi_system_heos
     from: playing
@@ -34,17 +22,10 @@ condition: >-
   {{
     (
       trigger.id == "hifi_system_heos" and
-      state_attr("media_player.hifi_system","source") == "HEOS Music" and
-      states("media_player.lounge_speakers") not in ("on", "playing")
-    ) or (
-      trigger.id.startswith("lounge_speakers") and not (
-        state_attr("media_player.hifi_system","source") == "HEOS Music" and
-        states("media_player.hifi_system_heos") in ("on", "playing")
-      )
+      state_attr("media_player.hifi_system","source") == "HEOS Music"
     ) or (
       trigger.id == "hifi_system_source" and
       state_attr("media_player.hifi_system","source") not in ("HEOS Music", "Phono")
-      and states("media_player.lounge_speakers") not in ("on", "playing")
     )
   }}
 

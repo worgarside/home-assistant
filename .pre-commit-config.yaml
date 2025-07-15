@@ -11,11 +11,11 @@ repos:
   - repo: https://github.com/worgarside/home-assistant-config-validator
     rev: 4.3.4
     hooks:
-      - id: generate-readme
       - id: validate-entities
         args:
           - --fix
           - --validate-all
+      - id: generate-readme
 
   - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
     rev: 0.2.3
@@ -45,7 +45,7 @@ repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.12.3
     hooks:
-      - id: ruff
+      - id: ruff-check
         args:
           - --fix
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"

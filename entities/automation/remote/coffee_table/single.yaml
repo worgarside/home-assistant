@@ -21,24 +21,16 @@ variables:
 
 action:
   - parallel:
-      - if: "{{ not ( states('remote.lounge_tv') | bool(false) ) }}"
+      - if: "{{ not ( states('remote.lounge_chromecast') | bool(false) ) }}"
 
         then:
           - service: remote.turn_on
             target:
               entity_id: remote.lounge_tv
 
-      - if: "{{ not ( states('remote.lounge_chromecast') | bool(false) ) }}"
-
-        then:
-          - service: switch.turn_off
-            entity_id: switch.lounge_chromecast_outlet
-
-          - delay:
-              seconds: 2.5
-
-          - service: switch.turn_on
-            entity_id: switch.lounge_chromecast_outlet
+          - service: remote.turn_on
+            target:
+              entity_id: remote.lounge_chromecast
 
       - if: "{{ states('media_player.hifi_system') == 'off' }}"
 
@@ -67,33 +59,28 @@ action:
       - service: light.turn_on
         target:
           entity_id:
-            - light.lounge_shapes
-            - light.shelf_lamp
-            - light.mini_lamp
+            - light.table_lamp
+            - light.disco_ball_spotlight # ignores brightness_pct
         data:
           brightness_pct: 50
+
+      - service: light.turn_on
+        target:
+          entity_id: light.mini_lamp
+        data:
+          brightness_pct: 25
+
+      - service: light.turn_on
+        target:
+          entity_id: light.lounge_shelves
+        data:
+          brightness_pct: 1
 
       - service: light.turn_off
         target:
           area_id:
-            - hallway
-            - kitchen
+            - front_hallway
+            - landing
+            - lower_hallway
           entity_id:
-            - light.disco_ball_spotlight
-            - light.table_lamp
-
-      - service: media_player.media_stop
-        target:
-          entity_id: media_player.lounge_speakers
-
-      - if: "{{ is_state('cover.lounge_blinds', 'closed') }}"
-
-        then:
-          - service: light.turn_on
-            target:
-              entity_id: light.globe_lamp
-
-        else:
-          - service: light.turn_off
-            target:
-              entity_id: light.globe_lamp
+            - light.globe_lamp

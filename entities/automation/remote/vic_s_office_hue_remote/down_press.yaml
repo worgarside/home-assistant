@@ -1,0 +1,35 @@
+---
+alias: /remote/vic-s-office-hue-remote/down-press
+
+id: remote_vic_s_office_hue_remote_down_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 59ad3110285eab557754d2cf24ad84c1
+    type: action
+    subtype: down_press
+
+action:
+  - parallel:
+      - if: "{{ is_state('light.glowstick', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.glowstick
+            data:
+              brightness: >-
+                {{ max(state_attr("light.glowstick", "brightness") | int(32) - 32, 0) }}
+
+      - if: "{{ is_state('light.shell_lamp', 'on') }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.shell_lamp
+            data:
+              brightness: >-
+                {{ max(state_attr("light.shell_lamp", "brightness") | int(32) - 32, 0) }}

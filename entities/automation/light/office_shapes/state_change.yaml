@@ -7,7 +7,7 @@ mode: single
 
 trigger:
   - platform: state
-    entity_id: light.office_shapes
+    entity_id: light.will_s_office_shapes
     to:
       - "on"
       - "off"
@@ -18,4 +18,4 @@ action:
       entity_id: var.will_s_desk_state_manager
     data:
       attributes:
-        light.office_shapes: "{{ trigger.to_state.state | bool }}"
+        light.will_s_office_shapes: "{{ trigger.to_state.state | bool }}"

@@ -1,0 +1,126 @@
+---
+alias: /light/lower-hallway-lights/on
+
+id: light_lower_hallway_lights_on
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.lower_hallway_motion_sensor_occupancy
+    from: "off"
+    to: "on"
+    id: lower
+
+  - platform: state
+    entity_id: binary_sensor.main_hallway_motion_sensor_occupancy
+    from: "off"
+    to: "on"
+    id: main
+
+  - platform: state
+    entity_id: binary_sensor.kitchen_hallway_occupancy
+    from: "off"
+    to: "on"
+    id: kitchen_hallway
+
+variables:
+  brightness: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+action:
+  - choose:
+      - conditions:
+          - alias: Lower hallway motion sensor triggered
+            condition: template
+            value_template: "{{ trigger.id == 'lower' }}"
+
+        sequence:
+          - parallel:
+              - service: light.turn_on
+                target:
+                  entity_id: light.lower_hallway_1
+                data:
+                  brightness_pct: "{{ brightness }}"
+                  transition: 1
+
+              - service: light.turn_on
+                target:
+                  entity_id: light.lower_hallway_2
+                data:
+                  brightness_pct: "{{ brightness }}"
+                  transition: 1
+
+          - delay:
+              seconds: 2.5
+
+          - service: light.turn_on
+            target:
+              entity_id: light.kitchen_hallway_spotlight
+            data:
+              brightness_pct: "{{ brightness }}"
+              transition: 1
+
+      - conditions:
+          - alias: Main hallway motion sensor triggered
+            condition: template
+            value_template: "{{ trigger.id == 'main' }}"
+
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.lower_hallway_1
+            data:
+              brightness_pct: "{{ brightness }}"
+              transition: 1
+
+          - delay:
+              seconds: 2.5
+
+          - service: light.turn_on
+            target:
+              entity_id: light.lower_hallway_2
+            data:
+              brightness_pct: "{{ brightness }}"
+              transition: 1
+
+          - delay:
+              seconds: 2.5
+
+          - service: light.turn_on
+            target:
+              entity_id: light.kitchen_hallway_spotlight
+            data:
+              brightness_pct: "{{ brightness }}"
+              transition: 1
+
+      - conditions:
+          - alias: Kitchen hallway occupancy sensor triggered
+            condition: template
+            value_template: "{{ trigger.id == 'kitchen_hallway' }}"
+
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.kitchen_hallway_spotlight
+            data:
+              brightness_pct: "{{ brightness }}"
+              transition: 1
+
+          - service: light.turn_on
+            target:
+              entity_id: light.lower_hallway_2
+            data:
+              brightness_pct: "{{ brightness }}"
+              transition: 1
+
+          - delay:
+              seconds: 2.5
+
+          - service: light.turn_on
+            target:
+              entity_id: light.lower_hallway_1
+            data:
+              brightness_pct: "{{ brightness }}"
+              transition: 1

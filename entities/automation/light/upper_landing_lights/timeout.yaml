@@ -1,0 +1,54 @@
+---
+alias: /light/upper-landing-lights/timeout
+
+id: light_upper_landing_lights_timeout
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.front_hallway_motion_sensor_occupancy
+    from: "on"
+    to: "off"
+
+  - platform: state
+    entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
+    from: "on"
+    to: "off"
+
+condition:
+  # Only proceed if ALL motion sensors are off
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.front_hallway_motion_sensor_occupancy
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
+        state: "off"
+
+action:
+  # Wait for the configured timeout period
+  - delay:
+      seconds: "{{ states('input_number.hallway_lights_timeout') | int(120) }}"
+
+  # Check again that all sensors are still off after the timeout
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.front_hallway_motion_sensor_occupancy
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
+        state: "off"
+
+  - parallel:
+      - service: light.turn_off
+        entity_id: light.front_hallway
+        data:
+          transition: 5
+
+      - service: light.turn_off
+        entity_id: light.upper_landing_light
+        data:
+          transition: 5

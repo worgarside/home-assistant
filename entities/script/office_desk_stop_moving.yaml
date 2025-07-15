@@ -8,18 +8,18 @@ sequence:
       condition: template
       value_template: >
         {{
-          states('cover.office_desk_esphome') in ['opening', 'closing']
+          states('cover.will_s_office_desk_idasen') in ['opening', 'closing']
         }}
     then:
       - service: cover.set_cover_position
         data:
-          entity_id: cover.office_desk_esphome
+          entity_id: cover.will_s_office_desk_idasen
           position: >
-            {% set desk_state = states('cover.office_desk_esphome') %}
+            {% set desk_state = states('cover.will_s_office_desk_idasen') %}
             {% if desk_state == 'opening' %}
-              {{ state_attr('cover.office_desk_esphome', 'current_position') | int(0) - 1 }}
+              {{ state_attr('cover.will_s_office_desk_idasen', 'current_position') | int(0) - 1 }}
             {% elif desk_state == 'closing' %}
-              {{ state_attr('cover.office_desk_esphome', 'current_position') | int(-2) + 1 }}
+              {{ state_attr('cover.will_s_office_desk_idasen', 'current_position') | int(-2) + 1 }}
             {% endif %}
 
   - service: script.turn_off
@@ -32,5 +32,5 @@ sequence:
   - service: homeassistant.update_entity
     target:
       entity_id:
-        - cover.office_desk_esphome
+        - cover.will_s_office_desk_idasen
         - cover.office_desk
