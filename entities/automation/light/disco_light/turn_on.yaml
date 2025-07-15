@@ -7,11 +7,6 @@ mode: single
 
 trigger:
   - platform: state
-    id: lounge_speakers_playing
-    entity_id: media_player.lounge_speakers
-    to: playing
-
-  - platform: state
     id: hifi_system_playing
     entity_id: media_player.hifi_system_heos
     to:
@@ -25,11 +20,9 @@ trigger:
 
 condition: >-
   {{
-    trigger.id == "lounge_speakers_playing" or
     (
       trigger.id == "hifi_system_playing" and
-      state_attr("media_player.hifi_system","source") == "HEOS Music" and
-      states("media_player.hifi_system_heos") in ("on", "playing")
+      state_attr("media_player.hifi_system","source") == "HEOS Music"
     ) or
     (
       trigger.id == "hifi_system_source" and

@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Snake: Snake Speed"
+
+unique_id: mtrxpi_snake_snake_speed
+
+command_topic: /mtrxpi/snake/frequency/snake-speed
+
+icon: mdi:speedometer
+
+min: 1
+
+max: 1000
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: ticks
+
+state_topic: /mtrxpi/snake/frequency/snake-speed

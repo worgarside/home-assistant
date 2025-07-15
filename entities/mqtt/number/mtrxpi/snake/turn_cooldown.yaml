@@ -1,0 +1,22 @@
+---
+name: "MtrxPi | Snake: Turn Cooldown"
+
+unique_id: mtrxpi_snake_turn_cooldown
+
+command_topic: /mtrxpi/snake/parameter/turn-cooldown
+
+icon: mdi:timer-sand
+
+min: 0
+
+max: 64
+
+mode: box
+
+retain: true
+
+step: 1
+
+unit_of_measurement: ticks
+
+state_topic: /mtrxpi/snake/parameter/turn-cooldown

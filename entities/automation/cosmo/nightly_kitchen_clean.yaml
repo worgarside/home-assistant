@@ -7,59 +7,21 @@ mode: single
 
 trigger:
   platform: time
-  at: "22:00:00"
-
-variables:
-  carpet_boost: "{{ states('switch.cosmo_carpet_boost') }}"
-
-  lights_on: >-
-    {{
-      expand((area_entities('lounge') + area_entities('kitchen')) | select('match', '^light\.')) |
-      selectattr('state', 'eq', 'on') |
-      list |
-      count > 0
-    }}
+  at: "23:00:00"
 
 action:
-  - if: "{{ lights_on }}"
+  - if: "{{ states('binary_sensor.kitchen_presence_sensor') | bool(false) }}"
 
     then:
-      - alias: Wait for lights out
-        timeout:
-          hours: 1
-        wait_template: >-
-          {{
-            expand((area_entities('lounge') + area_entities('kitchen')) |
-            select('match', '^light\.')) |
-            selectattr('state', 'eq', 'on') |
-            list |
-            count == 0
-          }}
-
-      - delay:
-          minutes: 15
-
-  - if: "{{ carpet_boost | bool(true) }}"
-    then:
-      - service: switch.turn_off
-        target:
-          entity_id: switch.cosmo_carpet_boost
+      - alias: Wait for nobody in the kitchen
+        wait_for_trigger:
+          - platform: state
+            entity_id: binary_sensor.kitchen_presence_sensor
+            to: "off"
+            for:
+              minutes: 10
 
   - service: script.cosmo_clean_room
     data:
-      room_name: kitchen
-      suction_level: 0
-
-  - if: "{{ carpet_boost | bool(true) }}"
-    then:
-      - delay:
-          minutes: 1
-
-      - wait_for_trigger:
-          platform: state
-          entity_id: vacuum.cosmo
-          to: docked
-
-      - service: switch.turn_on
-        target:
-          entity_id: switch.cosmo_carpet_boost
+      room_name: Basement
+      suction_level: "{{ states('input_number.nightly_kitchen_clean_suction_level') | int(2) }}"

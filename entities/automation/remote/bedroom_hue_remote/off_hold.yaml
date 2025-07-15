@@ -10,7 +10,7 @@ max_exceeded: silent
 trigger:
   - domain: mqtt
     platform: device
-    device_id: 59ad3110285eab557754d2cf24ad84c1
+    device_id: 79d516f0ed1aea94563808b84d2419e5
     type: action
     subtype: off_hold
 
@@ -18,5 +18,3 @@ action:
   - service: script.turn_off_physical_room
     data:
       room: bedroom
-      close_blinds: "{{ is_state('binary_sensor.quiet_hours', 'on') }}"
-      close_blinds_with_open_window_after_delay: true

@@ -6,4 +6,4 @@ unique_id: person_cosmo
 state: >-
   {{ states('vacuum.cosmo').capitalize() }} in the {{ states('sensor.cosmo_current_room') }}
 
-picture: "{{ states('input_select.cosmo_entity_picture') }}"
+picture: /local/images/cosmo.webp

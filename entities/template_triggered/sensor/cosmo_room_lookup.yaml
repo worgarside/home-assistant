@@ -17,8 +17,14 @@ sensor:
 
     state: >-
       {% set ns = namespace(lookup={}) %}
+      {%
+        set rooms = state_attr('vacuum.cosmo', 'rooms')[
+            state_attr('vacuum.cosmo', 'selected_map')
+        ] | selectattr('name', 'match', '^[A-Za-z0-9\\-_ ]+$')
+        | list
+      %}
 
-      {% for room in this.attributes.rooms | list %}
+      {% for room in rooms | list %}
         {% set room_name = room.name.casefold() | regex_replace("[^A-Za-z0-9]", "") %}
 
         {% if not room_name %}

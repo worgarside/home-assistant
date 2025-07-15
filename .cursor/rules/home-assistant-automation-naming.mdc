@@ -1,0 +1,15 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Home Assistant Automation Naming and Structure
+
+- Automation YAML files must have their `alias` and `id` fields match the file path, using kebab-case for the alias and snake_case for the id.
+  - Example: For a file at `entities/automation/binary_sensor/kitchen_presence/on.yaml`, use:
+    - `alias: /binary-sensor/kitchen-presence/on`
+    - `id: binary_sensor_kitchen_presence_on`
+- Use the correct entity IDs as per the device or sensor in question. For kitchen presence, use `binary_sensor.kitchen_presence_sensor`.
+- When writing automations that may be extended in the future, prefer using `if`/`then` blocks within the `action` section for conditional logic, rather than global `condition` blocks.
+- For automations that pause or resume devices based on presence, use the standard Home Assistant services (e.g., `vacuum.pause`, `vacuum.start`) unless a custom service is required.
+- Separate automations for `on` and `off` triggers should be placed in their respective files (e.g., `on.yaml` for presence detected, `off.yaml` for presence cleared).

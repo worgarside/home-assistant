@@ -16,14 +16,14 @@ trigger:
 
 action:
   - parallel:
-      - if: "{{ is_state('light.desk_lamp', 'on') }}"
+      - if: "{{ is_state('light.will_s_desk_lamp', 'on') }}"
         then:
           - service: light.turn_on
             target:
-              entity_id: light.desk_lamp
+              entity_id: light.will_s_desk_lamp
             data:
               brightness: >-
-                {{ max(state_attr("light.desk_lamp", "brightness") | int(32) - 32, 0) }}
+                {{ max(state_attr("light.will_s_desk_lamp", "brightness") | int(32) - 32, 0) }}
 
       - if: "{{ is_state('light.mushroom_lamp', 'on') }}"
         then:
@@ -43,11 +43,11 @@ action:
               brightness: >-
                 {{ max(state_attr("light.pegboard_spotlight", "brightness") | int(32) - 32, 0) }}
 
-      - if: "{{ is_state('light.office_shapes', 'on') }}"
+      - if: "{{ is_state('light.will_s_office_shapes', 'on') }}"
         then:
           - service: light.turn_on
             target:
-              entity_id: light.office_shapes
+              entity_id: light.will_s_office_shapes
             data:
               brightness: >-
-                {{ max(state_attr("light.office_shapes", "brightness") | int(32) - 32, 0) }}
+                {{ max(state_attr("light.will_s_office_shapes", "brightness") | int(32) - 32, 0) }}
