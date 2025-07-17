@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (116)</h3></summary>
+<details><summary><h3>Entities (114)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -671,32 +671,6 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light/desk_lamp/state_change.yaml)
 </details>
 
-<details><summary><code>/light/disco-light/turn-off</code></summary>
-
-**Entity ID: `automation.light_disco_light_turn_off`**
-
-> *No description provided*
-
-- Alias: /light/disco-light/turn-off
-- ID: `light_disco_light_turn_off`
-- Mode: `single`
-
-File: [`automation/light/disco_light/turn_off.yaml`](entities/automation/light/disco_light/turn_off.yaml)
-</details>
-
-<details><summary><code>/light/disco-light/turn-on</code></summary>
-
-**Entity ID: `automation.light_disco_light_turn_on`**
-
-> *No description provided*
-
-- Alias: /light/disco-light/turn-on
-- ID: `light_disco_light_turn_on`
-- Mode: `single`
-
-File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/disco_light/turn_on.yaml)
-</details>
-
 <details><summary><code>/light/lounge-lights/stop-tv-reflections</code></summary>
 
 **Entity ID: `automation.light_lounge_lights_stop_tv_reflections`**
@@ -707,7 +681,7 @@ File: [`automation/light/disco_light/turn_on.yaml`](entities/automation/light/di
 - ID: `light_lounge_lights_stop_tv_reflections`
 - Mode: `single`
 
-File: [`automation/light/lounge-lights/stop_tv_reflections.yaml`](entities/automation/light/lounge-lights/stop_tv_reflections.yaml)
+File: [`automation/light/lounge_lights/stop_tv_reflections.yaml`](entities/automation/light/lounge_lights/stop_tv_reflections.yaml)
 </details>
 
 <details><summary><code>/light/lower-hallway-lights/on</code></summary>
