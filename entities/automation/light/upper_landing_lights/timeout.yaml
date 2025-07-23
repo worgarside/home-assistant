@@ -16,8 +16,13 @@ trigger:
     from: "on"
     to: "off"
 
+  - platform: state
+    entity_id: binary_sensor.front_door_contact
+    from: "on"
+    to: "off"
+
 condition:
-  # Only proceed if ALL motion sensors are off
+  # Only proceed if ALL motion sensors are off AND front door is closed
   - condition: and
     conditions:
       - condition: state
@@ -25,6 +30,9 @@ condition:
         state: "off"
       - condition: state
         entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.front_door_contact
         state: "off"
 
 action:
@@ -32,7 +40,7 @@ action:
   - delay:
       seconds: "{{ states('input_number.hallway_lights_timeout') | int(120) }}"
 
-  # Check again that all sensors are still off after the timeout
+  # Check again that all sensors are still off AND front door is still closed after the timeout
   - condition: and
     conditions:
       - condition: state
@@ -40,6 +48,9 @@ action:
         state: "off"
       - condition: state
         entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.front_door_contact
         state: "off"
 
   - parallel:

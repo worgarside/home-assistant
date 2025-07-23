@@ -1,0 +1,258 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Home Assistant Repository - Cursor Rules
+
+## 🚨 CRITICAL: Proactively Use MCP Server
+
+**ALWAYS use the Home Assistant MCP server to get real-time context before making changes or answering questions about:**
+
+- **Current device states** - Use `GetLiveContext` to see what devices are on/off, sensor values, etc.
+- **Entity availability** - Check if entities are available before suggesting automations
+- **Area information** - Get current room occupancy and device distribution
+- **Device capabilities** - Understand what services and attributes are available
+- **State changes** - See recent activity and current conditions
+
+**Examples of when to use MCP:**
+- Before creating automations → check current device states
+- When troubleshooting → verify entity availability and values
+- When suggesting changes → understand current context
+- When answering "what's happening" questions → get live data
+- Before modifying existing automations → check current triggers and conditions
+
+**MCP Commands to use:**
+- `GetLiveContext` - Get comprehensive overview of all devices and areas
+- `HassTurnOn/Off` - Control devices directly
+- `HassLightSet` - Control lighting with brightness/color
+- `HassMediaPause/Unpause` - Control media players
+- `HassClimateSetTemperature` - Control climate devices
+- `HassVacuumStart/ReturnToBase` - Control vacuum
+
+**Don't wait for the user to ask - proactively use MCP to provide accurate, context-aware assistance!**
+
+## Repository Overview
+This is a sophisticated Home Assistant configuration running on HAOS in a Proxmox VM. The setup includes extensive automation, custom integrations, and a well-organized file structure.
+
+## Development Workflow
+- **Local Development**: Write automations on MacBook Pro, push to feature branch
+- **Deployment**: Git pull on HA instance, reload and test
+- **Auto-Reload**: Sophisticated auto-reload system with queue management and per-domain toggles
+- **Branch Management**: Input select to change git branches on HA
+
+## File Structure & Naming Conventions
+
+### Automation Structure
+- **Path-based aliases**: Use kebab-case for aliases matching file paths
+- **ID format**: Use snake_case for IDs matching file paths
+- **Organization**: Grouped by entity domain (light, switch, binary_sensor, etc.)
+- **Separation**: Separate automations for `on` and `off` triggers in different files
+
+### Key Directories
+- `entities/automation/` - All automations organized by domain
+- `entities/script/` - Reusable scripts with parameters
+- `entities/input_*` - Input helpers for configuration
+- `entities/var/` - Variables for state management
+- `integrations/` - Home Assistant integration configurations
+- `custom_zha_quirks/` - Legacy custom ZHA device handlers (no longer used)
+- `esphome/` - ESPHome device configurations
+- `dev_tools/` - Development utilities
+
+## Key Devices & Areas
+
+### Areas
+- **Lounge**: Main living area with TV, Chromecast, air purifier, diffuser
+- **Kitchen**: Presence sensor, extractor fan, shelves lighting
+- **Will's Office**: Desk automation, 3D printer, charging hub, shapes lighting
+- **Vic's Office**: Fan, climate control, shapes lighting
+- **Bedroom**: Wardrobe sensors, evaporative cooler, bedside lighting
+- **Basement**: Big light, motion sensor, vacuum docking
+- **Spare Room**: Climate monitoring
+- **Roof Terrace**: Climate monitoring, door sensor
+
+### Key Devices
+- **Cosmo**: Dreame vacuum with presence-based pausing
+- **Prusa i3 MK3**: 3D printer with OctoPrint integration
+- **Office Desk**: Height-adjustable desk with sitting/standing automation
+- **Air Purifier**: PM2.5 monitoring with diffuser conflict resolution
+- **Media Players**: HiFi system, Topaz SR10, Spotify instances, Plex
+- **Climate Sensors**: Temperature/humidity sensors throughout home
+- **Presence Sensors**: Kitchen, office, motion sensors
+- **Smart Lighting**: Extensive LED strips, lamps, spotlights
+
+## Common Automation Patterns
+
+### Presence-Based Automation
+```yaml
+# Kitchen presence pauses vacuum
+trigger:
+  - platform: state
+    entity_id: binary_sensor.kitchen_presence_sensor
+    from: "off"
+    to: "on"
+action:
+  - if: "{{ is_state('vacuum.cosmo', 'cleaning') }}"
+    then:
+      - service: vacuum.pause
+```
+
+### Media Control
+```yaml
+# TV on/off controls air purifier quiet mode
+trigger:
+  - platform: state
+    entity_id: remote.lounge_tv
+action:
+  - service: input_boolean.turn_{{ 'on' if tv_is_on else 'off' }}
+    target:
+      entity_id: input_boolean.air_purifier_quiet_mode
+```
+
+### Conditional Logic
+- Use `if`/`then` blocks within `action` for conditional logic
+- Prefer this over global `condition` blocks for extensibility
+- Use `choose` blocks for complex conditional sequences
+
+### Script Parameters
+```yaml
+# Scripts with typed parameters
+fields:
+  room_name:
+    description: The name of the room to clean
+    required: true
+    selector:
+      area:
+  suction_level:
+    description: The suction level to use
+    required: false
+    default: 2
+    selector:
+      number:
+        min: 0
+        max: 3
+```
+
+## Integration Patterns
+
+### Zigbee2MQTT (Z2M)
+- **Architecture**: Z2M running as LXC container on Proxmox
+- **Device Management**: All Zigbee devices managed through Z2M
+- **MQTT Bridge**: Devices exposed to Home Assistant via MQTT
+- **Device Automation**: Triggers for remotes and sensors via MQTT device triggers
+- **Battery Monitoring**: Device battery levels via MQTT sensors
+
+### MQTT
+- Media player metadata publishing to displays
+- LED matrix control for MtrxPi
+- Custom device integrations
+- Z2M device communication
+
+### ESPHome
+- ESP32 devices for climate monitoring
+- Filament dry box with dehumidifier control
+- Bluetooth proxy for device connectivity
+
+### GitHub Integration
+- Webhooks for repository updates
+- GitHub CLI for user switching
+- Pull request monitoring
+
+## Development Best Practices
+
+### Automation Naming
+- **Alias**: `/domain/entity/action` (kebab-case)
+- **ID**: `domain_entity_action` (snake_case)
+- **File Path**: `entities/automation/domain/entity/action.yaml`
+
+### Error Handling
+- Use `continue_on_error: true` for non-critical service calls
+- Implement timeout handling with `wait_template`
+- Use `max_exceeded: silent` for high-frequency triggers
+
+### State Management
+- Use `var` entities for complex state tracking
+- Implement timeout mechanisms for state attributes
+- Use `input_*` entities for configuration
+
+### Debugging
+- `script.debug_persistent_notification` for development logging
+- Auto-reload notifications with emoji responses
+- Template debugging with `tojson` filters
+
+## Common Services & Templates
+
+### Service Calls
+- `vacuum.pause` / `vacuum.start` for Cosmo
+- `light.turn_on` with `brightness_pct` and `transition`
+- `media_player.volume_up` / `media_player.volume_down`
+- `cover.set_cover_position` for desk/blinds
+- `fan.set_percentage` for fan control
+
+### Template Patterns
+```yaml
+# Dynamic brightness based on sensor
+brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+# Conditional entity targeting
+target_entity: "{{ states('input_text.cube_entity_' ~ active_face) | lower }}"
+
+# Time-based conditions
+condition: time
+after: "09:00"
+before: "18:00"
+```
+
+### Area-Based Targeting
+```yaml
+# Turn off all lights in an area
+service: light.turn_off
+target:
+  area_id: lounge
+
+# Script with area parameter
+service: script.turn_off_physical_room
+data:
+  room: "{{ repeat.item }}"
+```
+
+## Troubleshooting Tips
+
+### Common Issues
+- **Entity unavailable**: Check device connectivity and integration status
+- **Automation not triggering**: Verify trigger conditions and entity states
+- **Service call failures**: Check entity availability and service parameters
+- **Template errors**: Use `tojson` for debugging complex templates
+- **Z2M connectivity**: Check LXC container status and MQTT bridge
+
+### Debug Tools
+- `script.debug_persistent_notification` for logging
+- Auto-reload system for development feedback
+- Template testing in Developer Tools
+- State inspection in Developer Tools
+
+## Key Integrations to Know
+
+### Core Integrations
+- **Zigbee2MQTT**: Zigbee device management via MQTT bridge
+- **MQTT**: Message broker for custom devices and Z2M
+- **ESPHome**: ESP32 device management
+- **OctoPrint**: 3D printer integration
+- **Spotify**: Music streaming control
+- **Plex**: Media server integration
+
+### Custom Components
+- **Dreame Vacuum**: Custom vacuum integration
+- **Webhooks**: GitHub and external integrations
+- **Shell Commands**: CLI tool integration
+
+## Environment Context
+- **HAOS**: Home Assistant Operating System
+- **Proxmox**: Virtualization platform with LXC containers
+- **Zigbee2MQTT**: LXC container for Zigbee device management
+- **Python**: Development tools and scripts
+- **Git**: Version control with feature branch workflow
+- **MQTT**: Message broker for IoT devices and Z2M
+- **Zigbee**: Wireless protocol for smart devices
+
+This setup represents a mature, well-organized Home Assistant configuration with extensive automation, custom integrations, and a sophisticated development workflow using Zigbee2MQTT for device management.
