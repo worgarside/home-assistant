@@ -8,53 +8,16 @@ mode: single
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.front_door_sensor_contact
+    entity_id: binary_sensor.front_door_contact
     from: "off"
     to: "on"
     for:
       milliseconds: 500
 
-condition:
-  alias: Don't run if all the lights are already on (i.e. only run if at least one is off)
-  or:
-    - condition: state
-      entity_id: light.hallway_1
-      state: "off"
-
-    - condition: state
-      entity_id: light.hallway_2
-      state: "off"
-
-    - condition: state
-      entity_id: light.hallway_3
-      state: "off"
-
 action:
-  - variables:
-      brightness: "{{ states('sensor.lighting_modifier') | int(70) }}"
-      delay: 1
-
   - service: light.turn_on
     target:
-      entity_id: light.hallway_3
+      entity_id: light.front_hallway
     data:
-      brightness_pct: "{{ brightness }}"
-      transition: "{{ delay }}"
-
-  - delay: "{{ delay }}"
-
-  - service: light.turn_on
-    target:
-      entity_id: light.hallway_2
-    data:
-      brightness_pct: "{{ brightness }}"
-      transition: "{{ delay }}"
-
-  - delay: "{{ delay }}"
-
-  - service: light.turn_on
-    target:
-      entity_id: light.hallway_1
-    data:
-      brightness_pct: "{{ brightness }}"
-      transition: "{{ delay }}"
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+      transition: 1
