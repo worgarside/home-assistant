@@ -34,7 +34,7 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 
 **Entity ID: `automation.binary_sensor_kitchen_presence_off`**
 
-> Resumes Cosmo (vacuum.cosmo) when kitchen presence is cleared for 1 minute and Cosmo is paused.
+> Resumes Cosmo (vacuum.cosmo) when kitchen presence is cleared for 1 minute and Cosmo is paused, but only if he was cleaning the basement.
 
 - Alias: /binary-sensor/kitchen-presence/off
 - ID: `binary_sensor_kitchen_presence_off`
@@ -47,7 +47,7 @@ File: [`automation/binary_sensor/kitchen_presence/off.yaml`](entities/automation
 
 **Entity ID: `automation.binary_sensor_kitchen_presence_on`**
 
-> Pauses Cosmo (vacuum.cosmo) when kitchen presence is detected.
+> Pauses Cosmo (vacuum.cosmo) when kitchen presence is detected, but only if he's cleaning the basement.
 
 - Alias: /binary-sensor/kitchen-presence/on
 - ID: `binary_sensor_kitchen_presence_on`

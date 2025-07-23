@@ -4,7 +4,8 @@ alias: /binary-sensor/kitchen-presence/on
 id: binary_sensor_kitchen_presence_on
 
 description: >-
-  Pauses Cosmo (vacuum.cosmo) when kitchen presence is detected.
+  Pauses Cosmo (vacuum.cosmo) when kitchen presence is detected, but only if he's cleaning the
+  basement.
 
 mode: single
 
@@ -15,7 +16,11 @@ trigger:
     to: "on"
 
 action:
-  - if: "{{ is_state('vacuum.cosmo', 'cleaning') }}"
+  - if: >
+      {{
+        is_state('vacuum.cosmo', 'cleaning') and
+        is_state('sensor.cosmo_current_room', 'Basement')
+      }}
     then:
       - service: vacuum.pause
         target:
