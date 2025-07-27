@@ -39,7 +39,13 @@ File: [`automation/binary_sensor/basement_presence/off.yaml`](entities/automatio
 - Alias: /binary-sensor/basement-presence/on
 - ID: `binary_sensor_basement_presence_on`
 - Mode: `restart`
+- Variables:
 
+```json
+{
+  "color_temp_kelvin": 2500
+}
+```
 File: [`automation/binary_sensor/basement_presence/on.yaml`](entities/automation/binary_sensor/basement_presence/on.yaml)
 </details>
 

@@ -23,6 +23,9 @@ condition:
     entity_id: binary_sensor.basement_occupancy
     state: "on"
 
+variables:
+  color_temp_kelvin: 2500
+
 action:
   - parallel:
       # Cosmo pause logic - only when entering basement
@@ -65,6 +68,7 @@ action:
                     data:
                       brightness_pct: >-
                         {{ (states('sensor.lighting_modifier') | int(70) * 0.5) | int }}
+                      color_temp_kelvin: "{{ color_temp_kelvin }}"
                       transition: 1
 
                   - service: light.turn_on
@@ -73,6 +77,7 @@ action:
                     data:
                       brightness_pct: >-
                         {{ (states('sensor.lighting_modifier') | int(70) * 0.25) | int }}
+                      color_temp_kelvin: "{{ color_temp_kelvin }}"
                       transition: 1
 
                   - service: light.turn_off
@@ -98,6 +103,7 @@ action:
                       area_id: dining_area
                     data:
                       brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+                      color_temp_kelvin: "{{ color_temp_kelvin }}"
                       transition: 1
 
                   # Kitchen: spotlights at 15%, island at 50%
