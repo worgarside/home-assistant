@@ -1,0 +1,36 @@
+---
+alias: /binary-sensor/basement-presence/off
+
+id: binary_sensor_basement_presence_off
+
+description: >-
+  Resumes Cosmo (vacuum.cosmo) when kitchen presence is cleared for 1 minute and Cosmo is paused,
+  but only if he was cleaning the basement.
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.basement_occupancy
+    from: "on"
+    to: "off"
+    for:
+      minutes: 1
+
+action:
+  - parallel:
+      - if: >
+          {{
+            is_state('vacuum.cosmo', 'paused') and
+            is_state('sensor.cosmo_current_room', 'Basement')
+          }}
+        then:
+          - service: vacuum.start
+            target:
+              entity_id: vacuum.cosmo
+
+      - service: light.turn_off
+        target:
+          floor_id: basement
+        data:
+          transition: 5

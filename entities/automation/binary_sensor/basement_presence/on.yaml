@@ -1,0 +1,133 @@
+---
+alias: /binary-sensor/basement-presence/on
+
+id: binary_sensor_basement_presence_on
+
+description: >-
+  Controls basement lighting based on occupancy in kitchen, dining area, and basement.
+  Also pauses Cosmo when someone enters the basement while he's cleaning.
+
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.basement_occupancy
+    to: "on"
+  - platform: state
+    entity_id:
+      - binary_sensor.kitchen_occupancy
+      - binary_sensor.dining_area_occupancy
+
+condition:
+  - condition: state
+    entity_id: binary_sensor.basement_occupancy
+    state: "on"
+
+variables:
+  color_temp_kelvin: 2500
+
+action:
+  - parallel:
+      # Cosmo pause logic - only when entering basement
+      - if: >
+          {{
+            trigger.entity_id == 'binary_sensor.basement_occupancy' and
+            trigger.to_state.state == 'on' and
+            is_state('vacuum.cosmo', 'cleaning') and
+            is_state('sensor.cosmo_current_room', 'Basement')
+          }}
+        then:
+          - service: vacuum.pause
+            target:
+              entity_id: vacuum.cosmo
+
+      # Lighting control logic
+      - choose:
+          # Someone in kitchen only
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.kitchen_occupancy
+                state: "on"
+              - condition: state
+                entity_id: binary_sensor.dining_area_occupancy
+                state: "off"
+            sequence:
+              - parallel:
+                  # Kitchen lights at full brightness
+                  - service: light.turn_on
+                    target:
+                      area_id: kitchen
+                    data:
+                      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+                      transition: 1
+
+                  # Dining area: big light at 50%, shelves at 25%, spotlights off
+                  - service: light.turn_on
+                    target:
+                      entity_id: light.dining_area_big_light
+                    data:
+                      brightness_pct: >-
+                        {{ (states('sensor.lighting_modifier') | int(70) * 0.5) | int }}
+                      color_temp_kelvin: "{{ color_temp_kelvin }}"
+                      transition: 1
+
+                  - service: light.turn_on
+                    target:
+                      entity_id: light.dining_area_shelves
+                    data:
+                      brightness_pct: >-
+                        {{ (states('sensor.lighting_modifier') | int(70) * 0.25) | int }}
+                      color_temp_kelvin: "{{ color_temp_kelvin }}"
+                      transition: 1
+
+                  - service: light.turn_off
+                    target:
+                      entity_id: light.dining_area
+                    data:
+                      transition: 1
+
+          # Someone in dining area only
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.kitchen_occupancy
+                state: "off"
+              - condition: state
+                entity_id: binary_sensor.dining_area_occupancy
+                state: "on"
+
+            sequence:
+              - parallel:
+                  # Dining area lights at full brightness
+                  - service: light.turn_on
+                    target:
+                      area_id: dining_area
+                    data:
+                      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+                      color_temp_kelvin: "{{ color_temp_kelvin }}"
+                      transition: 1
+
+                  # Kitchen: spotlights at 15%, island at 50%
+                  - service: light.turn_on
+                    target:
+                      entity_id: light.kitchen_spotlights
+                    data:
+                      brightness_pct: >-
+                        {{ (states('sensor.lighting_modifier') | int(70) * 0.15) | int }}
+                      transition: 1
+
+                  - service: light.turn_on
+                    target:
+                      entity_id: light.kitchen_island
+                    data:
+                      brightness_pct: >-
+                        {{ (states('sensor.lighting_modifier') | int(70) * 0.5) | int }}
+                      transition: 1
+
+        # Default: Someone in both areas or hallway
+        default:
+          - service: light.turn_on
+            target:
+              floor_id: basement
+            data:
+              brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+              transition: 1

@@ -1,0 +1,335 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Home Assistant Configuration Syntax Cheat Sheet
+
+## Automation Structure
+
+### Basic Automation Template
+```yaml
+---
+alias: /domain/entity/action
+id: domain_entity_action
+description: Brief description of what this automation does
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: entity.name
+    from: "off"
+    to: "on"
+
+action:
+  - service: service.name
+    target:
+      entity_id: entity.name
+    data:
+      parameter: value
+```
+
+### File Naming Conventions
+- **Path-based aliases**: Use kebab-case for aliases matching file paths
+- **ID format**: Use snake_case for IDs matching file paths
+- **Example**: File at `entities/automation/binary_sensor/kitchen_presence/on.yaml`
+  - `alias: /binary-sensor/kitchen-presence/on`
+  - `id: binary_sensor_kitchen_presence_on`
+
+## Choose Block Syntax
+
+### Basic Choose Structure
+```yaml
+- choose:
+    - conditions:
+        - condition: state
+          entity_id: entity.name
+          state: "on"
+      sequence:
+        - service: service.name
+          target:
+            entity_id: entity.name
+    - conditions:
+        - condition: template
+          value_template: "{{ some_condition }}"
+      sequence:
+        - service: another_service
+    # Default case (no conditions needed)
+    default:
+      - service: default_service
+```
+
+### Choose with Multiple Conditions
+```yaml
+- choose:
+    - conditions:
+        - condition: state
+          entity_id: binary_sensor.kitchen_occupancy
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.dining_area_occupancy
+          state: "off"
+      sequence:
+        - service: light.turn_on
+          target:
+            area_id: kitchen
+```
+
+## Target Syntax
+
+### Entity Targeting
+```yaml
+# Single entity
+target:
+  entity_id: light.kitchen_light
+
+# Multiple entities
+target:
+  entity_id:
+    - light.kitchen_light
+    - light.dining_light
+
+# Area targeting
+target:
+  area_id: kitchen
+
+# Multiple areas
+target:
+  area_id:
+    - kitchen
+    - dining_area
+
+# Floor targeting
+target:
+  floor_id: basement
+```
+
+### Common Targeting Patterns
+- `area_id: kitchen` - All lights in kitchen area
+- `area_id: [kitchen, dining_area]` - All lights in multiple areas
+- `entity_id: [light.kitchen_light, light.dining_light]` - Specific entities
+- `floor_id: basement` - All lights on a specific floor
+
+## Lighting Control Patterns
+
+### Using Lighting Modifier Sensor
+```yaml
+# Always use lighting modifier for context-aware brightness
+brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+# Percentage of lighting modifier
+brightness_pct: "{{ (states('sensor.lighting_modifier') | int(70) * 0.5) | int }}"
+
+# Common fallback values
+| int(70)  # Most common fallback
+| int(80)  # LED matrix brightness
+```
+
+### Light Service Calls
+```yaml
+# Turn on with brightness and transition
+- service: light.turn_on
+  target:
+    area_id: kitchen
+  data:
+    brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+    transition: 1
+
+# Turn off with transition
+- service: light.turn_off
+  target:
+    area_id: kitchen
+  data:
+    transition: 5
+```
+
+## Parallel and Sequential Actions
+
+### Parallel Execution
+```yaml
+- parallel:
+    - service: vacuum.pause
+      target:
+        entity_id: vacuum.cosmo
+    - sequence:
+        - service: light.turn_on
+          target:
+            entity_id: light.kitchen_light
+        - service: light.turn_on
+          target:
+            entity_id: light.dining_light
+```
+
+### Sequential Execution
+```yaml
+- sequence:
+    - service: light.turn_on
+      target:
+        entity_id: light.big_light
+    - service: light.turn_on
+      target:
+        entity_id: light.shelves
+```
+
+## Conditional Logic
+
+### If/Then Blocks
+```yaml
+- if: >
+    {{
+      is_state('vacuum.cosmo', 'cleaning') and
+      is_state('sensor.cosmo_current_room', 'Basement')
+    }}
+  then:
+    - service: vacuum.pause
+      target:
+        entity_id: vacuum.cosmo
+```
+
+### Template Conditions
+```yaml
+- condition: template
+  value_template: "{{ trigger.entity_id == 'binary_sensor.basement_occupancy' and trigger.to_state.state == 'on' }}"
+```
+
+## Trigger Patterns
+
+### State Change Triggers
+```yaml
+# Basic state change
+- platform: state
+  entity_id: binary_sensor.presence
+  from: "off"
+  to: "on"
+
+# Multiple entities
+- platform: state
+  entity_id:
+    - binary_sensor.kitchen_occupancy
+    - binary_sensor.dining_occupancy
+
+# With delay
+- platform: state
+  entity_id: binary_sensor.presence
+  from: "on"
+  to: "off"
+  for:
+    minutes: 1
+```
+
+### Multiple Triggers
+```yaml
+trigger:
+  - platform: state
+    entity_id: binary_sensor.basement_occupancy
+    to: "on"
+  - platform: state
+    entity_id: binary_sensor.kitchen_occupancy
+  - platform: state
+    entity_id: binary_sensor.dining_area_occupancy
+```
+
+## Common Service Calls
+
+### Vacuum Control
+```yaml
+- service: vacuum.pause
+  target:
+    entity_id: vacuum.cosmo
+
+- service: vacuum.start
+  target:
+    entity_id: vacuum.cosmo
+
+- service: vacuum.return_to_base
+  target:
+    entity_id: vacuum.cosmo
+```
+
+### Media Player Control
+```yaml
+- service: media_player.volume_set
+  target:
+    entity_id: media_player.hifi
+  data:
+    volume_level: 0.5
+
+- service: media_player.media_pause
+  target:
+    entity_id: media_player.hifi
+```
+
+### Climate Control
+```yaml
+- service: climate.set_temperature
+  target:
+    entity_id: climate.office
+  data:
+    temperature: 22
+```
+
+## Template Patterns
+
+### Common Template Filters
+```yaml
+# Integer conversion with fallback
+"{{ states('sensor.lighting_modifier') | int(70) }}"
+
+# Percentage calculation
+"{{ (states('sensor.lighting_modifier') | int(70) * 0.5) | int }}"
+
+# State checking
+"{{ is_state('vacuum.cosmo', 'cleaning') }}"
+
+# Trigger data access
+"{{ trigger.entity_id }}"
+"{{ trigger.to_state.state }}"
+```
+
+### Conditional Templates
+```yaml
+# Complex conditions
+{{
+  trigger.entity_id == 'binary_sensor.basement_occupancy' and
+  trigger.to_state.state == 'on' and
+  is_state('vacuum.cosmo', 'cleaning') and
+  is_state('sensor.cosmo_current_room', 'Basement')
+}}
+```
+
+## Error Handling
+
+### Continue on Error
+```yaml
+- service: unreliable_service
+  continue_on_error: true
+  target:
+    entity_id: some_entity
+```
+
+### Max Exceeded
+```yaml
+mode: single
+max_exceeded: silent  # For high-frequency triggers
+```
+
+## Common Gotchas
+
+1. **`floor_id` is valid for targeting all lights on a floor** - Use `floor_id: basement` for floor-wide control
+2. **Choose block requires `conditions` and `sequence`** - Except for the `default` case
+3. **Template conditions need proper spacing** - Use `>` for multi-line templates
+4. **Service calls need proper indentation** - YAML is sensitive to spacing
+5. **Always use lighting modifier** - Don't hard-code brightness values
+6. **Area targeting vs entity targeting** - Know when to use each
+7. **Parallel vs sequential** - Use `parallel` for independent actions, `sequence` for dependent ones
+
+## Best Practices
+
+1. **Use descriptive automation aliases** that match file paths
+2. **Include descriptions** for complex automations
+3. **Use lighting modifier sensor** for context-aware brightness
+4. **Prefer `if`/`then` blocks** over global conditions for extensibility
+5. **Use area targeting** when possible for cleaner code
+6. **Include fallback values** in templates
+7. **Use `choose` blocks** for complex conditional logic
+8. **Keep automations focused** - one automation per logical function

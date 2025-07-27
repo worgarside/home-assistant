@@ -1,0 +1,70 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Lighting Modifier Sensor - Context-Aware Brightness Control
+
+## Overview
+The `sensor.lighting_modifier` provides dynamic brightness values (1-100%) based on time of day, quiet hours, and weekday status. This sensor should be used for all light automation to ensure consistent, context-aware lighting behavior.
+
+## Sensor Definition
+- **Entity ID**: `sensor.lighting_modifier`
+- **File**: [entities/template/sensor/lighting_modifier.yaml](mdc:entities/template/sensor/lighting_modifier.yaml)
+- **Unit**: Percentage (%)
+
+## Brightness Logic
+The sensor returns different brightness levels based on these conditions:
+
+1. **Night/Weekday Early Hours** (0-7 AM on weekdays, or Night time): `1%`
+2. **Morning/Afternoon**: `75%` (quiet hours) or `100%` (normal)
+3. **Evening/Sunset/Sunrise**: `60%`
+4. **Twilight**: `30%`
+5. **Dawn/Dusk**: `10%`
+6. **Default**: `100%`
+
+## Dependencies
+The lighting modifier depends on these sensors:
+- [sensor.time_of_day](mdc:entities/template/sensor/nature/time_of_day.yaml) - Determines time periods
+- [sensor.current_hour](mdc:entities/template/sensor/current_hour.yaml) - Current hour for weekday logic
+- [binary_sensor.quiet_hours](mdc:entities/template/binary_sensor/quiet_hours.yaml) - Reduces brightness during quiet periods
+- [binary_sensor.weekday](mdc:entities/template/binary_sensor/weekday.yaml) - Different behavior for weekdays
+- [sensor.sun_elevation](mdc:entities/template/sensor/nature/sun_elevation.yaml) - Template sensor that references built-in sun.sun elevation
+
+## Usage Pattern
+Always use the lighting modifier for light brightness in automations:
+
+```yaml
+# ✅ Correct - Uses lighting modifier
+brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+# ❌ Incorrect - Hard-coded brightness
+brightness_pct: 70
+```
+
+## Current Usage Examples
+The lighting modifier is used in these automation files:
+- [remote/lounge_hue_remote/on_press.yaml](mdc:entities/automation/remote/lounge_hue_remote/on_press.yaml)
+- [remote/vic_s_office_hue_remote/on_press.yaml](mdc:entities/automation/remote/vic_s_office_hue_remote/on_press.yaml)
+- [remote/office_hue_remote/on_press.yaml](mdc:entities/automation/remote/office_hue_remote/on_press.yaml)
+- [remote/will_s_desk/button_1/single.yaml](mdc:entities/automation/remote/will_s_desk/button_1/single.yaml)
+- [light/lower_hallway_lights/on.yaml](mdc:entities/automation/light/lower_hallway_lights/on.yaml)
+- [light/upper_landing_lights/on.yaml](mdc:entities/automation/light/upper_landing_lights/on.yaml)
+- [remote/bedroom_hue_remote/on_press.yaml](mdc:entities/automation/remote/bedroom_hue_remote/on_press.yaml)
+- [binary_sensor/kitchen_presence/on.yaml](mdc:entities/automation/binary_sensor/kitchen_presence/on.yaml)
+- [binary_sensor/front_door/open.yaml](mdc:entities/automation/binary_sensor/front_door/open.yaml)
+
+## Implementation Guidelines
+1. **Always use lighting modifier** for `brightness_pct` in light automations
+2. **Provide fallback value** using `| int(70)` for safety
+3. **Don't hard-code brightness values** - let the context determine appropriate levels
+4. **Consider quiet hours** - the sensor automatically handles this logic
+5. **Test at different times** - verify behavior during day/night transitions
+
+## Fallback Values
+Common fallback values used in the codebase:
+- `| int(70)` - Most common fallback
+- `| int(80)` - Used for LED matrix brightness
+- `| int(70)` - Used for hallway and landing lights
+
+The lighting modifier ensures consistent, time-aware lighting behavior across all automations while respecting quiet hours and weekday schedules.
