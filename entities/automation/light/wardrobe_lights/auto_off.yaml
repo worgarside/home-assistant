@@ -1,0 +1,18 @@
+---
+alias: /light/wardrobe-lights/auto-off
+
+id: light_wardrobe_lights_auto_off
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: light.wardrobe_lights
+    to: "on"
+    for:
+      minutes: 10
+
+action:
+  - service: light.turn_off
+    target:
+      entity_id: light.wardrobe_lights
