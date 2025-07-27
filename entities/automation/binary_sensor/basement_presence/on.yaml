@@ -28,11 +28,8 @@ variables:
 
 action:
   - parallel:
-      # Cosmo pause logic - only when entering basement
       - if: >
           {{
-            trigger.entity_id == 'binary_sensor.basement_occupancy' and
-            trigger.to_state.state == 'on' and
             is_state('vacuum.cosmo', 'cleaning') and
             is_state('sensor.cosmo_current_room', 'Basement')
           }}
