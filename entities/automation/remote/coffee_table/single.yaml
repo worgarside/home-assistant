@@ -59,7 +59,6 @@ action:
       - service: light.turn_on
         target:
           entity_id:
-            - light.table_lamp
             - light.disco_ball_spotlight # ignores brightness_pct
         data:
           brightness_pct: 50
@@ -74,7 +73,7 @@ action:
         target:
           entity_id: light.lounge_shelves
         data:
-          brightness_pct: 1
+          brightness_pct: 5
 
       - service: light.turn_off
         target:
