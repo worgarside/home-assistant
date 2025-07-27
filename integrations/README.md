@@ -17,6 +17,32 @@
 File: [`automation/automation/auto_reload_complete.yaml`](entities/automation/automation/auto_reload_complete.yaml)
 </details>
 
+<details><summary><code>/binary-sensor/basement-presence/off</code></summary>
+
+**Entity ID: `automation.binary_sensor_basement_presence_off`**
+
+> Resumes Cosmo (vacuum.cosmo) when kitchen presence is cleared for 1 minute and Cosmo is paused, but only if he was cleaning the basement.
+
+- Alias: /binary-sensor/basement-presence/off
+- ID: `binary_sensor_basement_presence_off`
+- Mode: `single`
+
+File: [`automation/binary_sensor/basement_presence/off.yaml`](entities/automation/binary_sensor/basement_presence/off.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/basement-presence/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_basement_presence_on`**
+
+> Controls basement lighting based on occupancy in kitchen, dining area, and basement. Also pauses Cosmo when someone enters the basement while he's cleaning.
+
+- Alias: /binary-sensor/basement-presence/on
+- ID: `binary_sensor_basement_presence_on`
+- Mode: `restart`
+
+File: [`automation/binary_sensor/basement_presence/on.yaml`](entities/automation/binary_sensor/basement_presence/on.yaml)
+</details>
+
 <details><summary><code>/binary-sensor/front-door/open</code></summary>
 
 **Entity ID: `automation.binary_sensor_front_door_open`**
@@ -28,32 +54,6 @@ File: [`automation/automation/auto_reload_complete.yaml`](entities/automation/au
 - Mode: `single`
 
 File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/binary_sensor/front_door/open.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/kitchen-presence/off</code></summary>
-
-**Entity ID: `automation.binary_sensor_kitchen_presence_off`**
-
-> Resumes Cosmo (vacuum.cosmo) when kitchen presence is cleared for 1 minute and Cosmo is paused, but only if he was cleaning the basement.
-
-- Alias: /binary-sensor/kitchen-presence/off
-- ID: `binary_sensor_kitchen_presence_off`
-- Mode: `single`
-
-File: [`automation/binary_sensor/kitchen_presence/off.yaml`](entities/automation/binary_sensor/kitchen_presence/off.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/kitchen-presence/on</code></summary>
-
-**Entity ID: `automation.binary_sensor_kitchen_presence_on`**
-
-> Pauses Cosmo (vacuum.cosmo) when kitchen presence is detected, but only if he's cleaning the basement.
-
-- Alias: /binary-sensor/kitchen-presence/on
-- ID: `binary_sensor_kitchen_presence_on`
-- Mode: `single`
-
-File: [`automation/binary_sensor/kitchen_presence/on.yaml`](entities/automation/binary_sensor/kitchen_presence/on.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/lounge-diffuser-needs-water/off</code></summary>
