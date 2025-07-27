@@ -29,8 +29,11 @@ condition:
     entity_id: sensor.sun_elevation
     below: -3
 
+  - condition: state
+    entity_id: person.vic
+    state: home
+
 action:
   - service: cover.close_cover
     target:
-      entity_id:
-        - cover.will_s_office_blinds
+      entity_id: cover.will_s_office_blinds
