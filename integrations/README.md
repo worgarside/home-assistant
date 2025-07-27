@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (114)</h3></summary>
+<details><summary><h3>Entities (115)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -772,6 +772,19 @@ File: [`automation/light/upper_landing_lights/on.yaml`](entities/automation/ligh
 - Mode: `single`
 
 File: [`automation/light/upper_landing_lights/timeout.yaml`](entities/automation/light/upper_landing_lights/timeout.yaml)
+</details>
+
+<details><summary><code>/light/wardrobe-lights/auto-off</code></summary>
+
+**Entity ID: `automation.light_wardrobe_lights_auto_off`**
+
+> *No description provided*
+
+- Alias: /light/wardrobe-lights/auto-off
+- ID: `light_wardrobe_lights_auto_off`
+- Mode: `single`
+
+File: [`automation/light/wardrobe_lights/auto_off.yaml`](entities/automation/light/wardrobe_lights/auto_off.yaml)
 </details>
 
 <details><summary><code>/light/wardrobe-lights/toggle</code></summary>
