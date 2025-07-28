@@ -11,6 +11,9 @@ trigger:
   - platform: state
     entity_id: sensor.octoprint_last_event
     to: PausedForUser
+    not_from:
+      - unavailable
+      - unknown
 
 action:
   - service: script.notify_will
