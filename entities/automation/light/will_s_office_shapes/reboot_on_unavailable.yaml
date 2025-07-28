@@ -1,0 +1,35 @@
+---
+alias: /light/will-s-office-shapes/reboot-on-unavailable
+
+id: light_will_s_office_shapes_reboot_on_unavailable
+
+description: Reboot Will's office shapes if unavailable for 2 minutes
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: light.will_s_office_shapes
+    to: "unavailable"
+    for:
+      minutes: 2
+
+condition:
+  - condition: state
+    entity_id: switch.will_s_office_shapes_power
+    state: "on"
+
+action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.will_s_office_shapes_power
+
+  - delay:
+      seconds: 5
+
+  - service: switch.turn_on
+    target:
+      entity_id: switch.will_s_office_shapes_power
+
+  - delay:
+      minutes: 5 # Debounce
