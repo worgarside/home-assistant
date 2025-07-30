@@ -10,13 +10,13 @@ trigger:
   at: "23:00:00"
 
 action:
-  - if: "{{ states('binary_sensor.kitchen_presence_sensor') | bool(false) }}"
+  - if: "{{ states('binary_sensor.basement_occupancy') | bool(false) }}"
 
     then:
       - alias: Wait for nobody in the kitchen
         wait_for_trigger:
           - platform: state
-            entity_id: binary_sensor.kitchen_presence_sensor
+            entity_id: binary_sensor.basement_occupancy
             to: "off"
             for:
               minutes: 10
