@@ -2435,14 +2435,14 @@ testing = ["pytest"]
 
 [[package]]
 name = "zigpy"
-version = "0.80.1"
+version = "0.81.0"
 description = "Library implementing a Zigbee stack"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "zigpy-0.80.1-py3-none-any.whl", hash = "sha256:88dada524c0ef656696fe2f70956c5900621e88a0185b68a3093d29572bcf9b6"},
-    {file = "zigpy-0.80.1.tar.gz", hash = "sha256:2da5f7e3fe77f61d993b2127361e528fb8f4772066266d3aedda8d0939dbdc0f"},
+    {file = "zigpy-0.81.0-py3-none-any.whl", hash = "sha256:c49ecf037e65ff4fcffcb05d7c9c747d7033820b4ffc13969fc629ed9197414a"},
+    {file = "zigpy-0.81.0.tar.gz", hash = "sha256:f9302b853bad5ed575f72bbfdc8cd334f2ca52b86d6ea6d6227120fa2f64bb90"},
 ]
 
 [package.dependencies]
@@ -2461,9 +2461,9 @@ typing_extensions = "*"
 voluptuous = "*"
 
 [package.extras]
-testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-binary ; platform_system == \"Linux\" and python_version < \"3.12\"", "pytest", "pytest-asyncio", "pytest-cov", "pytest-timeout", "tomli"]
+testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-binary ; platform_system == \"Linux\" and python_version < \"3.12\"", "pytest", "pytest-asyncio (<1.0.0)", "pytest-cov", "pytest-timeout", "tomli"]
 
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4.0"
-content-hash = "3f072d8e7330df690b2a43061da21093cd0ab37c996e179036835aaae371393e"
+content-hash = "e6b26c921bde31502cc72c479a6ce263e686068492e650bab71a724923c76622"
