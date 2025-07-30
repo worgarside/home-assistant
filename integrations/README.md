@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (115)</h3></summary>
+<details><summary><h3>Entities (116)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -804,6 +804,19 @@ File: [`automation/light/wardrobe_lights/auto_off.yaml`](entities/automation/lig
 - Mode: `queued`
 
 File: [`automation/light/wardrobe_lights/toggle.yaml`](entities/automation/light/wardrobe_lights/toggle.yaml)
+</details>
+
+<details><summary><code>/light/will-s-office-shapes/reboot-on-unavailable</code></summary>
+
+**Entity ID: `automation.light_will_s_office_shapes_reboot_on_unavailable`**
+
+> Reboot Will's office shapes if unavailable for 2 minutes
+
+- Alias: /light/will-s-office-shapes/reboot-on-unavailable
+- ID: `light_will_s_office_shapes_reboot_on_unavailable`
+- Mode: `single`
+
+File: [`automation/light/will_s_office_shapes/reboot_on_unavailable.yaml`](entities/automation/light/will_s_office_shapes/reboot_on_unavailable.yaml)
 </details>
 
 <details><summary><code>/media-player/topaz-sr10/off</code></summary>
