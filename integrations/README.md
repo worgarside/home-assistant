@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (116)</h3></summary>
+<details><summary><h3>Entities (119)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -73,6 +73,45 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 - Mode: `single`
 
 File: [`automation/binary_sensor/lounge_diffuser_needs_water/off.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/off.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/lounge-occupancy/off</code></summary>
+
+**Entity ID: `automation.binary_sensor_lounge_occupancy_off`**
+
+> Turn off lounge lighting when room becomes empty
+
+- Alias: /binary-sensor/lounge-occupancy/off
+- ID: `binary_sensor_lounge_occupancy_off`
+- Mode: `single`
+
+File: [`automation/binary_sensor/lounge_occupancy/off.yaml`](entities/automation/binary_sensor/lounge_occupancy/off.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/lounge-occupancy/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_lounge_occupancy_on`**
+
+> Turn on lounge lighting when someone enters the room
+
+- Alias: /binary-sensor/lounge-occupancy/on
+- ID: `binary_sensor_lounge_occupancy_on`
+- Mode: `single`
+
+File: [`automation/binary_sensor/lounge_occupancy/on.yaml`](entities/automation/binary_sensor/lounge_occupancy/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/lounge-occupancy/room-timeout</code></summary>
+
+**Entity ID: `automation.binary_sensor_lounge_occupancy_room_timeout`**
+
+> Turn off lounge room after 30 minutes of being empty
+
+- Alias: /binary-sensor/lounge-occupancy/room-timeout
+- ID: `binary_sensor_lounge_occupancy_room_timeout`
+- Mode: `single`
+
+File: [`automation/binary_sensor/lounge_occupancy/room_timeout.yaml`](entities/automation/binary_sensor/lounge_occupancy/room_timeout.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/quiet-hours/off</code></summary>
@@ -2334,7 +2373,7 @@ File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_s
 
 ## Input Number
 
-<details><summary><h3>Entities (34)</h3></summary>
+<details><summary><h3>Entities (36)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2677,7 +2716,6 @@ File: [`input_number/timeout/dry_box_dehumidifier_timeout.yaml`](entities/input_
 
 - Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
 - Max: 300
-- Min: 10
 - Mode: `box`
 - Unit Of Measurement: `s`
 
@@ -2695,6 +2733,31 @@ File: [`input_number/timeout/hallway_lights_timeout.yaml`](entities/input_number
 - Unit Of Measurement: `mins`
 
 File: [`input_number/timeout/lounge_diffuser_timeout.yaml`](entities/input_number/timeout/lounge_diffuser_timeout.yaml)
+</details>
+
+<details><summary><strong>Lounge Lights | Timeout</strong></summary>
+
+**Entity ID: `input_number.lounge_lights_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 300
+- Mode: `box`
+- Unit Of Measurement: `s`
+
+File: [`input_number/timeout/lounge_lights_timeout.yaml`](entities/input_number/timeout/lounge_lights_timeout.yaml)
+</details>
+
+<details><summary><strong>Lounge Room | Timeout</strong></summary>
+
+**Entity ID: `input_number.lounge_room_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 120
+- Min: 5
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/lounge_room_timeout.yaml`](entities/input_number/timeout/lounge_room_timeout.yaml)
 </details>
 
 <details><summary><strong>Prusa i3 Bed | Timeout</strong></summary>
