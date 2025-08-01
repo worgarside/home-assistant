@@ -15,7 +15,7 @@ trigger:
     from: "on"
     to: "off"
     for:
-      minutes: 1
+      seconds: "{{ states('input_number.basement_lights_timeout') | int(60) }}"
 
 action:
   - parallel:

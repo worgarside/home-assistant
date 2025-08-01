@@ -2334,7 +2334,7 @@ File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_s
 
 ## Input Number
 
-<details><summary><h3>Entities (33)</h3></summary>
+<details><summary><h3>Entities (34)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2644,6 +2644,18 @@ File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](en
 - Unit Of Measurement: `mins`
 
 File: [`input_number/timeout/air_freshener_timeout.yaml`](entities/input_number/timeout/air_freshener_timeout.yaml)
+</details>
+
+<details><summary><strong>Basement Lights | Timeout</strong></summary>
+
+**Entity ID: `input_number.basement_lights_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 300
+- Mode: `box`
+- Unit Of Measurement: `s`
+
+File: [`input_number/timeout/basement_lights_timeout.yaml`](entities/input_number/timeout/basement_lights_timeout.yaml)
 </details>
 
 <details><summary><strong>Dry Box | Dehumidifier Timeout</strong></summary>
