@@ -2,4 +2,4 @@
 
 # https://www.home-assistant.io/integrations/scene
 
-scene:
+scene: !include ../scenes.yaml
