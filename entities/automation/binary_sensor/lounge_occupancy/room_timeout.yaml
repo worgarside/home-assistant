@@ -1,0 +1,21 @@
+---
+alias: /binary-sensor/lounge-occupancy/room-timeout
+
+id: binary_sensor_lounge_occupancy_room_timeout
+
+description: Turn off lounge room after 30 minutes of being empty
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.lounge_occupancy
+    from: "on"
+    to: "off"
+    for:
+      minutes: "{{ states('input_number.lounge_room_timeout') | int(30) }}"
+
+action:
+  - service: script.turn_off_physical_room
+    data:
+      room: lounge

@@ -1,0 +1,25 @@
+---
+alias: /binary-sensor/lounge-occupancy/off
+
+id: binary_sensor_lounge_occupancy_off
+
+description: Turn off lounge lighting when room becomes empty
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.lounge_occupancy
+    from: "on"
+    to: "off"
+    for:
+      seconds: "{{ states('input_number.lounge_lights_timeout') | int(60) }}"
+
+action:
+  - service: light.turn_off
+    target:
+      area_id: lounge
+    data:
+      transition: 5

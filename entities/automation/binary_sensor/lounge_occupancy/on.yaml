@@ -1,0 +1,39 @@
+---
+alias: /binary-sensor/lounge-occupancy/on
+
+id: binary_sensor_lounge_occupancy_on
+
+description: Turn on lounge lighting when someone enters the room
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.lounge_occupancy
+    from: "off"
+    to: "on"
+
+action:
+  - if: >
+      {{
+        is_state('remote.lounge_tv', 'on') or
+        is_state('remote.lounge_chromecast', 'on') or
+        is_state('media_player.lounge_chromecast', 'on') or
+        is_state('media_player.lounge_tv_2', 'on') or
+        is_state('media_player.lounge_chromecast_remote', 'on')
+      }}
+
+    then:
+      - service: scene.turn_on
+        target:
+          entity_id: scene.lounge_tv_lighting
+
+    else:
+      - service: light.turn_on
+        target:
+          area_id: lounge
+        data:
+          brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+          transition: 1
