@@ -81,6 +81,8 @@ jobs:
 
           sed -i 's/\/config/\/github\/workspace/g' configuration.yaml
 
+          touch scenes.yaml
+
       - name: Validate Configuration
         uses: worgarside/action-home-assistant@main
         with:
