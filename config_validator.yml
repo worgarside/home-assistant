@@ -290,6 +290,10 @@ packages:
       disable:
         - jinja2_templates
 
+  scene:
+    # scenes.yaml is managed via the UI, but it still needs to be !included
+    validation: {}
+
   switch:
     documentation:
       name: friendly_name
