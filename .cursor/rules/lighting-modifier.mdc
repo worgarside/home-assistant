@@ -1,12 +1,7 @@
----
-description:
-globs:
-alwaysApply: false
----
-# Lighting Modifier Sensor - Context-Aware Brightness Control
+# Lighting Modifier Sensor - MANDATORY Context-Aware Brightness Control
 
 ## Overview
-The `sensor.lighting_modifier` provides dynamic brightness values (1-100%) based on time of day, quiet hours, and weekday status. This sensor should be used for all light automation to ensure consistent, context-aware lighting behavior.
+The `sensor.lighting_modifier` provides dynamic brightness values (1-100%) based on time of day, quiet hours, and weekday status. This sensor MUST be used for all light automation to ensure consistent, context-aware lighting behavior.
 
 ## Sensor Definition
 - **Entity ID**: `sensor.lighting_modifier`
@@ -32,7 +27,7 @@ The lighting modifier depends on these sensors:
 - [sensor.sun_elevation](mdc:entities/template/sensor/nature/sun_elevation.yaml) - Template sensor that references built-in sun.sun elevation
 
 ## Usage Pattern
-Always use the lighting modifier for light brightness in automations:
+**MANDATORY**: Use the lighting modifier for light brightness in automations:
 
 ```yaml
 # ✅ Correct - Uses lighting modifier
@@ -55,15 +50,17 @@ The lighting modifier is used in these automation files:
 - [binary_sensor/front_door/open.yaml](mdc:entities/automation/binary_sensor/front_door/open.yaml)
 
 ## Implementation Guidelines
-1. **Always use lighting modifier** for `brightness_pct` in light automations
-2. **Provide fallback value** using `| int(70)` for safety
-3. **Don't hard-code brightness values** - let the context determine appropriate levels
+1. **MANDATORY: Use lighting modifier** for `brightness_pct` in light automations
+2. **REQUIRED: Provide fallback value** using `| int(70)` for safety
+3. **NEVER hard-code brightness values** - let the context determine appropriate levels
 4. **Consider quiet hours** - the sensor automatically handles this logic
 5. **Test at different times** - verify behavior during day/night transitions
 
 ## Fallback Values
 Common fallback values used in the codebase:
 - `| int(70)` - Most common fallback
+The lighting modifier ensures consistent, time-aware lighting behavior across all automations while respecting quiet hours and weekday schedules.
+
 - `| int(80)` - Used for LED matrix brightness
 - `| int(70)` - Used for hallway and landing lights
 
