@@ -1,0 +1,56 @@
+---
+alwaysApply: true
+---
+# Lounge TV/Media Entities - Reliable Media Detection
+
+## Overview
+The lounge has multiple unreliable media entities that should be checked together for robust media activity detection. Always check multiple entities rather than relying on a single one.
+
+## Media Entities
+
+### Remote Controls
+- `remote.lounge_tv` - Main TV remote control
+- `remote.lounge_chromecast` - Chromecast remote control
+
+### Media Players
+- `media_player.lounge_chromecast` - Chromecast media player
+- `media_player.lounge_tv_2` - Secondary TV media player
+- `media_player.lounge_chromecast_remote` - Chromecast remote media player
+
+## Usage Pattern
+
+### Checking for Media Activity
+Always check multiple entities for reliable detection:
+
+```yaml
+- if: >
+    {{
+      is_state('remote.lounge_tv', 'on') or
+      is_state('remote.lounge_chromecast', 'on') or
+      is_state('media_player.lounge_chromecast', 'on') or
+      is_state('media_player.lounge_tv_2', 'on') or
+      is_state('media_player.lounge_chromecast_remote', 'on')
+    }}
+```
+
+### State Values
+- **All entities**: Use `'on'` state
+
+## Implementation Examples
+
+### Current Usage
+This pattern is used in:
+- [entities/automation/binary_sensor/lounge_occupancy/on.yaml](mdc:entities/automation/binary_sensor/lounge_occupancy/on.yaml) - Activates TV lighting scene when any media is active
+
+### Best Practices
+1. **Always check multiple entities** - Don't rely on a single entity
+2. **Use appropriate states** - `'on'` for remotes, `'playing'` for media players
+3. **Include fallback logic** - Handle cases where entities are unavailable
+4. **Test thoroughly** - Verify behavior with different media sources
+
+## Why Multiple Entities?
+- Individual entities can be unreliable or slow to update
+- Different media sources may update different entities
+- Provides redundancy for robust automation behavior
+- Handles edge cases where one entity fails to report state changes
+---

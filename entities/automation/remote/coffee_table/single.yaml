@@ -56,24 +56,9 @@ action:
             data:
               source: "{{ hifi_system_source }}"
 
-      - service: light.turn_on
+      - service: scene.turn_on
         target:
-          entity_id:
-            - light.disco_ball_spotlight # ignores brightness_pct
-        data:
-          brightness_pct: 50
-
-      - service: light.turn_on
-        target:
-          entity_id: light.mini_lamp
-        data:
-          brightness_pct: 25
-
-      - service: light.turn_on
-        target:
-          entity_id: light.lounge_shelves
-        data:
-          brightness_pct: 5
+          entity_id: scene.lounge_tv_lighting
 
       - service: light.turn_off
         target:
@@ -81,5 +66,3 @@ action:
             - front_hallway
             - landing
             - lower_hallway
-          entity_id:
-            - light.globe_lamp
