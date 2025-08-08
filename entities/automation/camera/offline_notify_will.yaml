@@ -1,0 +1,34 @@
+alias: /camera/offline-notify-will
+id: camera_offline_notify_will
+description: Notify Will when either basement or lounge camera goes offline
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: camera.basement
+    to: unavailable
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: camera.lounge
+    to: unavailable
+    for:
+      minutes: 1
+
+variables:
+  camera_name: >-
+    {% if trigger.entity_id == 'camera.basement' %}
+      Basement
+    {% elif trigger.entity_id == 'camera.lounge' %}
+      Lounge
+    {% else %}
+      Unknown
+    {% endif %}
+
+action:
+  - service: script.notify_will
+    data:
+      title: "Camera Offline"
+      message: "The {{ camera_name }} camera is offline (unavailable)."
+      group: camera-offline
+      mobile_notification_icon: mdi:cctv
