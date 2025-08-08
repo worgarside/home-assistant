@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (119)</h3></summary>
+<details><summary><h3>Entities (121)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -140,6 +140,25 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
 </details>
 
+<details><summary><code>/binary-sensor/vic-s-office-occupancy/state-change</code></summary>
+
+**Entity ID: `automation.binary_sensor_vic_s_office_occupancy_state_change`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/vic-s-office-occupancy/state-change
+- ID: `binary_sensor_vic_s_office_occupancy_state_change`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "state_manager": "var.vic_s_office_state_manager"
+}
+```
+File: [`automation/binary_sensor/vic_s_office_occupancy/state_change.yaml`](entities/automation/binary_sensor/vic_s_office_occupancy/state_change.yaml)
+</details>
+
 <details><summary><code>/binary-sensor/will-s-office-presence-sensor/state-change</code></summary>
 
 **Entity ID: `automation.binary_sensor_will_s_office_presence_sensor_state_change`**
@@ -153,7 +172,7 @@ File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binar
 
 ```json
 {
-  "state_manager": "var.will_s_desk_state_manager"
+  "state_manager": "var.will_s_office_state_manager"
 }
 ```
 File: [`automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml`](entities/automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml)
@@ -1716,17 +1735,30 @@ File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/swit
 File: [`automation/switch/prusa_i3_mk3_power/timeout.yaml`](entities/automation/switch/prusa_i3_mk3_power/timeout.yaml)
 </details>
 
-<details><summary><code>/var/will-s-desk-state-manager/attribute-timeout</code></summary>
+<details><summary><code>/var/vic-s-office-state-manager/attribute-timeout</code></summary>
 
-**Entity ID: `automation.var_will_s_desk_state_manager_attribute_timeout`**
+**Entity ID: `automation.var_vic_s_office_state_manager_attribute_timeout`**
+
+> Timeout for "should be" on/off attributes of Vic's desk state manager
+
+- Alias: /var/vic-s-office-state-manager/attribute-timeout
+- ID: `var_vic_s_office_state_manager_attribute_timeout`
+- Mode: `queued`
+
+File: [`automation/var/vic_s_office_state_manager/attribute_timeout.yaml`](entities/automation/var/vic_s_office_state_manager/attribute_timeout.yaml)
+</details>
+
+<details><summary><code>/var/will-s-office-state-manager/attribute-timeout</code></summary>
+
+**Entity ID: `automation.var_will_s_office_state_manager_attribute_timeout`**
 
 > Timeout for "should be" on/off attributes of Will's desk state manager
 
-- Alias: /var/will-s-desk-state-manager/attribute-timeout
-- ID: `var_will_s_desk_state_manager_attribute_timeout`
+- Alias: /var/will-s-office-state-manager/attribute-timeout
+- ID: `var_will_s_office_state_manager_attribute_timeout`
 - Mode: `queued`
 
-File: [`automation/var/will_s_desk_state_manager/attribute_timeout.yaml`](entities/automation/var/will_s_desk_state_manager/attribute_timeout.yaml)
+File: [`automation/var/will_s_office_state_manager/attribute_timeout.yaml`](entities/automation/var/will_s_office_state_manager/attribute_timeout.yaml)
 </details>
 
 <details><summary><code>/webhook/get-latest-appdaemon-release</code></summary>
@@ -6808,7 +6840,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (17)</h3></summary>
+<details><summary><h3>Entities (18)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -6967,13 +6999,22 @@ File: [`var/truelayer/truelayer_balance_starling_current_account.yaml`](entities
 File: [`var/truelayer/truelayer_balance_starling_joint_account.yaml`](entities/var/truelayer/truelayer_balance_starling_joint_account.yaml)
 </details>
 
-<details><summary><strong>Will's Desk State Manager</strong></summary>
+<details><summary><strong>Vic's Office State Manager</strong></summary>
 
-**Entity ID: `var.will_s_desk_state_manager`**
+**Entity ID: `var.vic_s_office_state_manager`**
 
 - Icon: [`mdi:database-settings-outline`](https://pictogrammers.com/library/mdi/icon/database-settings-outline/)
 
-File: [`var/will_s_desk_state_manager.yaml`](entities/var/will_s_desk_state_manager.yaml)
+File: [`var/vic_s_office_state_manager.yaml`](entities/var/vic_s_office_state_manager.yaml)
+</details>
+
+<details><summary><strong>Will's Office State Manager</strong></summary>
+
+**Entity ID: `var.will_s_office_state_manager`**
+
+- Icon: [`mdi:database-settings-outline`](https://pictogrammers.com/library/mdi/icon/database-settings-outline/)
+
+File: [`var/will_s_office_state_manager.yaml`](entities/var/will_s_office_state_manager.yaml)
 </details>
 
 </details>
