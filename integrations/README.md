@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (119)</h3></summary>
+<details><summary><h3>Entities (120)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -157,6 +157,25 @@ File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binar
 }
 ```
 File: [`automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml`](entities/automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml)
+</details>
+
+<details><summary><code>/camera/offline-notify-will</code></summary>
+
+**Entity ID: `automation.camera_offline_notify_will`**
+
+> Notify Will when either basement or lounge camera goes offline
+
+- Alias: /camera/offline-notify-will
+- ID: `camera_offline_notify_will`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "camera_name": "{% if trigger.entity_id == 'camera.basement' %}\n  Basement\n{% elif trigger.entity_id == 'camera.lounge' %}\n  Lounge\n{% else %}\n  Unknown\n{% endif %}"
+}
+```
+File: [`automation/camera/offline_notify_will.yaml`](entities/automation/camera/offline_notify_will.yaml)
 </details>
 
 <details><summary><code>/cosmo/nightly-kitchen-clean</code></summary>
