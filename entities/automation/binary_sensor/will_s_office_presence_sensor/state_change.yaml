@@ -38,6 +38,12 @@ action:
                 target:
                   entity_id: light.will_s_office_shapes
 
+          - if: "{{ state_attr(state_manager, 'light.mushroom_lamp') | bool(false) }}"
+            then:
+              - service: light.turn_on
+                target:
+                  entity_id: light.mushroom_lamp
+
           - service: light.turn_on
             target:
               entity_id: light.will_s_office_voice_assistant_led_ring
@@ -49,6 +55,7 @@ action:
           desk_fan: "{{ is_state('fan.desk_fan', 'on') }}"
           will_s_desk_lamp: "{{ is_state('light.will_s_desk_lamp', 'on') }}"
           will_s_office_shapes: "{{ is_state('light.will_s_office_shapes', 'on') }}"
+          mushroom_lamp: "{{ is_state('light.mushroom_lamp', 'on') }}"
 
       - parallel:
           - if: "{{ desk_fan }}"
@@ -89,6 +96,20 @@ action:
                   seconds: 10
                 continue_on_timeout: true
 
+          - if: "{{ mushroom_lamp }}"
+            then:
+              - service: light.turn_off
+                target:
+                  entity_id: light.mushroom_lamp
+
+              - wait_template: >-
+                  {{
+                    state_attr(state_manager, 'light.mushroom_lamp') | bool(false) is false
+                  }}
+                timeout:
+                  seconds: 10
+                continue_on_timeout: true
+
           - service: light.turn_off
             target:
               entity_id: light.will_s_office_voice_assistant_led_ring
@@ -101,3 +122,4 @@ action:
             fan.desk_fan: "{{ desk_fan }}"
             light.will_s_desk_lamp: "{{ will_s_desk_lamp }}"
             light.will_s_office_shapes: "{{ will_s_office_shapes }}"
+            light.mushroom_lamp: "{{ mushroom_lamp }}"

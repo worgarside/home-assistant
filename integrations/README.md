@@ -1716,17 +1716,17 @@ File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/swit
 File: [`automation/switch/prusa_i3_mk3_power/timeout.yaml`](entities/automation/switch/prusa_i3_mk3_power/timeout.yaml)
 </details>
 
-<details><summary><code>/var/will-s-desk-state-manager/attribute-timeout</code></summary>
+<details><summary><code>/var/will-s-office-state-manager/attribute-timeout</code></summary>
 
-**Entity ID: `automation.var_will_s_desk_state_manager_attribute_timeout`**
+**Entity ID: `automation.var_will_s_office_state_manager_attribute_timeout`**
 
 > Timeout for "should be" on/off attributes of Will's desk state manager
 
-- Alias: /var/will-s-desk-state-manager/attribute-timeout
-- ID: `var_will_s_desk_state_manager_attribute_timeout`
+- Alias: /var/will-s-office-state-manager/attribute-timeout
+- ID: `var_will_s_office_state_manager_attribute_timeout`
 - Mode: `queued`
 
-File: [`automation/var/will_s_desk_state_manager/attribute_timeout.yaml`](entities/automation/var/will_s_desk_state_manager/attribute_timeout.yaml)
+File: [`automation/var/will_s_office_state_manager/attribute_timeout.yaml`](entities/automation/var/will_s_office_state_manager/attribute_timeout.yaml)
 </details>
 
 <details><summary><code>/webhook/get-latest-appdaemon-release</code></summary>
