@@ -13,7 +13,7 @@ trigger:
       - "off"
 
 variables:
-  state_manager: var.will_s_desk_state_manager
+  state_manager: var.will_s_office_state_manager
 
 action:
   - if: "{{ trigger.to_state.state | bool }}"

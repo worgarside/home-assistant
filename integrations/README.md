@@ -153,7 +153,7 @@ File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binar
 
 ```json
 {
-  "state_manager": "var.will_s_desk_state_manager"
+  "state_manager": "var.will_s_office_state_manager"
 }
 ```
 File: [`automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml`](entities/automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml)
@@ -6967,13 +6967,13 @@ File: [`var/truelayer/truelayer_balance_starling_current_account.yaml`](entities
 File: [`var/truelayer/truelayer_balance_starling_joint_account.yaml`](entities/var/truelayer/truelayer_balance_starling_joint_account.yaml)
 </details>
 
-<details><summary><strong>Will's Desk State Manager</strong></summary>
+<details><summary><strong>Will's Office State Manager</strong></summary>
 
-**Entity ID: `var.will_s_desk_state_manager`**
+**Entity ID: `var.will_s_office_state_manager`**
 
 - Icon: [`mdi:database-settings-outline`](https://pictogrammers.com/library/mdi/icon/database-settings-outline/)
 
-File: [`var/will_s_desk_state_manager.yaml`](entities/var/will_s_desk_state_manager.yaml)
+File: [`var/will_s_office_state_manager.yaml`](entities/var/will_s_office_state_manager.yaml)
 </details>
 
 </details>

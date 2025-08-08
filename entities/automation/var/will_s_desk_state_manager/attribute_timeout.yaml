@@ -12,7 +12,7 @@ trigger:
     id: fan.desk_fan
     value_template: >-
       {{
-        state_attr('var.will_s_desk_state_manager', 'fan.desk_fan') | bool(false)
+        state_attr('var.will_s_office_state_manager', 'fan.desk_fan') | bool(false)
         and is_state("fan.desk_fan", "off")
       }}
     for:
@@ -22,7 +22,7 @@ trigger:
     id: light.will_s_desk_lamp
     value_template: >-
       {{
-        state_attr('var.will_s_desk_state_manager', 'light.will_s_desk_lamp') | bool(false)
+        state_attr('var.will_s_office_state_manager', 'light.will_s_desk_lamp') | bool(false)
         and is_state("light.will_s_desk_lamp", "off")
       }}
     for:
@@ -32,7 +32,7 @@ trigger:
     id: light.will_s_office_shapes
     value_template: >-
       {{
-        state_attr('var.will_s_desk_state_manager', 'light.will_s_office_shapes') | bool(false)
+        state_attr('var.will_s_office_state_manager', 'light.will_s_office_shapes') | bool(false)
         and is_state("light.will_s_office_shapes", "off")
       }}
     for:
@@ -41,7 +41,7 @@ trigger:
 action:
   - service: var.set
     target:
-      entity_id: var.will_s_desk_state_manager
+      entity_id: var.will_s_office_state_manager
     data:
       attributes: >-
         {{

@@ -15,7 +15,7 @@ trigger:
 action:
   - service: var.set
     target:
-      entity_id: var.will_s_desk_state_manager
+      entity_id: var.will_s_office_state_manager
     data:
       attributes:
         fan.desk_fan: "{{ trigger.to_state.state | bool }}"
