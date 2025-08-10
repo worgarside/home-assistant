@@ -9,7 +9,7 @@ max_exceeded: silent
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.lower_hallway_motion_sensor_occupancy
+    entity_id: binary_sensor.lower_hallway_occupancy
     from: "off"
     to: "on"
     id: lower
