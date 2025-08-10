@@ -19,5 +19,5 @@ action:
       entity_id: light.shell_lamp
     data:
       # The lamp itself isn't that bright
-      brightness_pct: "{{ [(states('sensor.lighting_modifier') | int(70) * 2), 100] | min | int }}"
+      brightness_pct: "{{ [((states('sensor.lighting_modifier') | int(70)) * 2), 100] | min | int }}"
       transition: 1
