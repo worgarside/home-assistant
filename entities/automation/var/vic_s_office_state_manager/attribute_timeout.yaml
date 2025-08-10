@@ -1,0 +1,51 @@
+---
+alias: /var/vic-s-office-state-manager/attribute-timeout
+
+id: var_vic_s_office_state_manager_attribute_timeout
+
+description: Timeout for "should be" on/off attributes of Vic's desk state manager
+
+mode: queued
+
+trigger:
+  - platform: template
+    id: light.glowstick
+    value_template: >-
+      {{
+        state_attr('var.vic_s_office_state_manager', 'light.glowstick') | bool(false)
+        and is_state("light.glowstick", "off")
+      }}
+    for:
+      hours: 1
+
+  - platform: template
+    id: light.shell_lamp
+    value_template: >-
+      {{
+        state_attr('var.vic_s_office_state_manager', 'light.shell_lamp') | bool(false)
+        and is_state("light.shell_lamp", "off")
+      }}
+    for:
+      hours: 1
+
+  - platform: template
+    id: fan.vic_s_office_fan
+    value_template: >-
+      {{
+        state_attr('var.vic_s_office_state_manager', 'fan.vic_s_office_fan') | bool(false)
+        and is_state("fan.vic_s_office_fan", "off")
+      }}
+    for:
+      hours: 1
+
+action:
+  - service: var.set
+    target:
+      entity_id: var.vic_s_office_state_manager
+    data:
+      attributes: >-
+        {{
+          {
+            trigger.id: false
+          }
+        }}

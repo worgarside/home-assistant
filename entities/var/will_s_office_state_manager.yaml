@@ -3,13 +3,13 @@
 # e.g. the fan should be on, but the desk is unoccupied so the fan entity is off; when the desk is
 # occupied again, the fan entity will be re-set to on.
 
-friendly_name: Will's Desk State Manager
+friendly_name: Will's Office State Manager
 
 icon: mdi:database-settings-outline
 
 restore: true
 
-unique_id: var_will_s_desk_state_manager
+unique_id: var_will_s_office_state_manager
 
 initial_value: 0 # Not used
 
@@ -19,3 +19,5 @@ attributes:
   light.will_s_desk_lamp: false
 
   light.will_s_office_shapes: false
+
+  light.mushroom_lamp: false

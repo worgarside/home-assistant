@@ -1,0 +1,93 @@
+---
+alias: /binary-sensor/vic-s-office-occupancy/state-change
+
+id: binary_sensor_vic_s_office_occupancy_state_change
+
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.vic_s_office_occupancy
+    to:
+      - "on"
+      - "off"
+
+variables:
+  state_manager: var.vic_s_office_state_manager
+
+action:
+  - if: "{{ trigger.to_state.state | bool }}"
+
+    then:
+      - parallel:
+          - if: "{{ state_attr(state_manager, 'light.glowstick') | bool(false) }}"
+            then:
+              - service: light.turn_on
+                target:
+                  entity_id: light.glowstick
+
+          - if: "{{ state_attr(state_manager, 'light.shell_lamp') | bool(false) }}"
+            then:
+              - service: light.turn_on
+                target:
+                  entity_id: light.shell_lamp
+
+          - if: "{{ state_attr(state_manager, 'fan.vic_s_office_fan') | bool(false) }}"
+            then:
+              - service: fan.turn_on
+                target:
+                  entity_id: fan.vic_s_office_fan
+
+    else:
+      - variables:
+          glowstick: "{{ is_state('light.glowstick', 'on') }}"
+          shell_lamp: "{{ is_state('light.shell_lamp', 'on') }}"
+          vic_s_office_fan: "{{ is_state('fan.vic_s_office_fan', 'on') }}"
+
+      - parallel:
+          - if: "{{ glowstick }}"
+            then:
+              - service: light.turn_off
+                target:
+                  entity_id: light.glowstick
+
+              - wait_template: >-
+                  {{ state_attr(state_manager, 'light.glowstick') | bool(false) is false }}
+                timeout:
+                  seconds: 10
+                continue_on_timeout: true
+
+          - if: "{{ shell_lamp }}"
+            then:
+              - service: light.turn_off
+                target:
+                  entity_id: light.shell_lamp
+
+              - wait_template: >-
+                  {{ state_attr(state_manager, 'light.shell_lamp') | bool(false) is false }}
+                timeout:
+                  seconds: 10
+                continue_on_timeout: true
+
+          - if: "{{ vic_s_office_fan }}"
+            then:
+              - service: fan.turn_off
+                target:
+                  entity_id: fan.vic_s_office_fan
+
+              - wait_template: >-
+                  {{
+                    state_attr(state_manager, 'fan.vic_s_office_fan') | bool(false) is false
+                  }}
+                timeout:
+                  seconds: 10
+                continue_on_timeout: true
+
+      - service: var.set
+        target:
+          entity_id: "{{ state_manager }}"
+        data:
+          attributes:
+            light.glowstick: "{{ glowstick }}"
+            light.shell_lamp: "{{ shell_lamp }}"
+            fan.vic_s_office_fan: "{{ vic_s_office_fan }}"
