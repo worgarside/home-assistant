@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (122)</h3></summary>
+<details><summary><h3>Entities (123)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -138,6 +138,19 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 - Mode: `single`
 
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/vic-s-office-occupancy/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_vic_s_office_occupancy_on`**
+
+> Turn on shell lamp when Victoria's office occupancy is detected
+
+- Alias: /binary-sensor/vic-s-office-occupancy/on
+- ID: `binary_sensor_vic_s_office_occupancy_on`
+- Mode: `single`
+
+File: [`automation/binary_sensor/vic_s_office_occupancy/on.yaml`](entities/automation/binary_sensor/vic_s_office_occupancy/on.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/vic-s-office-occupancy/state-change</code></summary>
