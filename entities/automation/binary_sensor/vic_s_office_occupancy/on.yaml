@@ -1,0 +1,23 @@
+---
+alias: /binary-sensor/vic-s-office-occupancy/on
+
+id: binary_sensor_vic_s_office_occupancy_on
+
+description: Turn on shell lamp when Victoria's office occupancy is detected
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.vic_s_office_occupancy
+    from: "off"
+    to: "on"
+
+action:
+  - service: light.turn_on
+    target:
+      entity_id: light.shell_lamp
+    data:
+      # The lamp itself isn't that bright
+      brightness_pct: "{{ [((states('sensor.lighting_modifier') | int(70)) * 2), 100] | min | int }}"
+      transition: 1
