@@ -1,7 +1,10 @@
 ---
 alias: /camera/offline-notify-will
+
 id: camera_offline_notify_will
+
 description: Notify Will when either basement or lounge camera goes offline
+
 mode: single
 
 trigger:
@@ -30,6 +33,6 @@ action:
   - service: script.notify_will
     data:
       title: "Camera Offline"
-      message: "The {{ camera_name }} camera is offline (unavailable)."
+      message: "{{ camera_name }} camera is offline (unavailable)."
       group: camera-offline
       mobile_notification_icon: mdi:cctv
