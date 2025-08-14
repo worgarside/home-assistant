@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (123)</h3></summary>
+<details><summary><h3>Entities (124)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -765,6 +765,29 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 - Mode: `single`
 
 File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light/desk_lamp/state_change.yaml)
+</details>
+
+<details><summary><code>/light/glowstick/rain-flash</code></summary>
+
+**Entity ID: `automation.light_glowstick_rain_flash`**
+
+> *No description provided*
+
+- Alias: /light/glowstick/rain-flash
+- ID: `light_glowstick_rain_flash`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "original_state": "{{ is_state('light.glowstick', 'on') }}",
+  "original_brightness": "{{ state_attr('light.glowstick', 'brightness') | int(128) }}",
+  "original_rgb_color": "{{ state_attr('light.glowstick', 'rgb_color') | default([255, 255, 255]) }}",
+  "last_flash_time": "{{ state_attr('var.rain_flash_cooldown', 'last_flash_time') | default('1970-01-01T00:00:00+00:00') }}",
+  "cooldown_expired": "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 7200 }}"
+}
+```
+File: [`automation/light/glowstick/rain_flash.yaml`](entities/automation/light/glowstick/rain_flash.yaml)
 </details>
 
 <details><summary><code>/light/lounge-lights/stop-tv-reflections</code></summary>
@@ -6872,7 +6895,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (18)</h3></summary>
+<details><summary><h3>Entities (19)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -6920,6 +6943,15 @@ File: [`var/current_appdaemon_branch.yaml`](entities/var/current_appdaemon_branc
 - Icon: [`mdi:application-parentheses`](https://pictogrammers.com/library/mdi/icon/application-parentheses/)
 
 File: [`var/current_appdaemon_ref.yaml`](entities/var/current_appdaemon_ref.yaml)
+</details>
+
+<details><summary><strong>Rain Flash Cooldown</strong></summary>
+
+**Entity ID: `var.rain_flash_cooldown`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+
+File: [`var/rain_flash_cooldown.yaml`](entities/var/rain_flash_cooldown.yaml)
 </details>
 
 <details><summary><strong>Spotify Tempo (Will)</strong></summary>
