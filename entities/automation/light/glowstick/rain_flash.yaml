@@ -8,10 +8,9 @@ mode: single
 max_exceeded: silent
 
 trigger:
-  - platform: state
+  - platform: numeric_state
     entity_id: sensor.tomorrow_io_rain_intensity
-    from: "0"
-    to: ">0"
+    above: 0
 
 variables:
   # Store the original state of the glowstick
