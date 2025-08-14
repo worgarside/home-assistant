@@ -80,27 +80,20 @@ action:
                   seconds: 0.5
 
           - alias: Restore original state
-            choose:
-              - conditions:
-                  - alias: If glowstick was originally on
-                    condition: template
-                    value_template: "{{ original_state }}"
-                sequence:
-                  - service: light.turn_on
-                    target:
-                      entity_id: light.glowstick
-                    data:
-                      rgb_color: "{{ original_rgb_color }}"
-                      brightness: "{{ original_brightness }}"
-                      transition: 1
-
-              - conditions:
-                  - alias: If glowstick was originally off
-                    condition: template
-                    value_template: "{{ not original_state }}"
-                sequence:
-                  - service: light.turn_off
-                    target:
-                      entity_id: light.glowstick
-                    data:
-                      transition: 1
+            if:
+              - condition: template
+                value_template: "{{ original_state }}"
+            then:
+              - service: light.turn_on
+                target:
+                  entity_id: light.glowstick
+                data:
+                  rgb_color: "{{ original_rgb_color }}"
+                  brightness: "{{ original_brightness }}"
+                  transition: 1
+            else:
+              - service: light.turn_off
+                target:
+                  entity_id: light.glowstick
+                data:
+                  transition: 1
