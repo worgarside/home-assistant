@@ -48,15 +48,6 @@ action:
           - delay:
               seconds: 1
 
-          - service: light.turn_off
-            target:
-              entity_id: light.glowstick
-            data:
-              transition: 0.5
-
-          - delay:
-              seconds: 0.5
-
           # Second flash
           - service: light.turn_on
             target:
@@ -68,12 +59,6 @@ action:
 
           - delay:
               seconds: 1
-
-          - service: light.turn_off
-            target:
-              entity_id: light.glowstick
-            data:
-              transition: 0.5
 
       - alias: Restore original state
         if:
