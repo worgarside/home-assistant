@@ -75,9 +75,6 @@ action:
             data:
               transition: 0.5
 
-          - delay:
-              seconds: 0.5
-
       - alias: Restore original state
         if:
           - condition: template
