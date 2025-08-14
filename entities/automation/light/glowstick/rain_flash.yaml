@@ -23,77 +23,76 @@ variables:
   cooldown_expired: "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 7200 }}"
 
 action:
-  - choose:
-      - conditions:
-          - alias: Check if cooldown has expired (2 hours)
-            condition: template
-            value_template: "{{ cooldown_expired }}"
+  - if:
+      - condition: template
+        value_template: "{{ cooldown_expired }}"
+    then:
+      - alias: Store current time as last flash time
+        service: var.set_attributes
+        target:
+          entity_id: var.rain_flash_cooldown
+        data:
+          last_flash_time: "{{ now().isoformat() }}"
+      
+      - alias: Flash blue twice
         sequence:
-          - alias: Store current time as last flash time
-            service: var.set_attributes
+          # First flash
+          - service: light.turn_on
             target:
-              entity_id: var.rain_flash_cooldown
+              entity_id: light.glowstick
             data:
-              last_flash_time: "{{ now().isoformat() }}"
-          - alias: Flash blue twice
-            sequence:
-              # First flash
-              - service: light.turn_on
-                target:
-                  entity_id: light.glowstick
-                data:
-                  rgb_color: [0, 0, 255]  # Blue
-                  brightness: 255
-                  transition: 0.5
+              rgb_color: [0, 0, 255]  # Blue
+              brightness: 255
+              transition: 0.5
 
-              - delay:
-                  seconds: 1
+          - delay:
+              seconds: 1
 
-              - service: light.turn_off
-                target:
-                  entity_id: light.glowstick
-                data:
-                  transition: 0.5
+          - service: light.turn_off
+            target:
+              entity_id: light.glowstick
+            data:
+              transition: 0.5
 
-              - delay:
-                  seconds: 0.5
+          - delay:
+              seconds: 0.5
 
-              # Second flash
-              - service: light.turn_on
-                target:
-                  entity_id: light.glowstick
-                data:
-                  rgb_color: [0, 0, 255]  # Blue
-                  brightness: 255
-                  transition: 0.5
+          # Second flash
+          - service: light.turn_on
+            target:
+              entity_id: light.glowstick
+            data:
+              rgb_color: [0, 0, 255]  # Blue
+              brightness: 255
+              transition: 0.5
 
-              - delay:
-                  seconds: 1
+          - delay:
+              seconds: 1
 
-              - service: light.turn_off
-                target:
-                  entity_id: light.glowstick
-                data:
-                  transition: 0.5
+          - service: light.turn_off
+            target:
+              entity_id: light.glowstick
+            data:
+              transition: 0.5
 
-              - delay:
-                  seconds: 0.5
+          - delay:
+              seconds: 0.5
 
-          - alias: Restore original state
-            if:
-              - condition: template
-                value_template: "{{ original_state }}"
-            then:
-              - service: light.turn_on
-                target:
-                  entity_id: light.glowstick
-                data:
-                  rgb_color: "{{ original_rgb_color }}"
-                  brightness: "{{ original_brightness }}"
-                  transition: 1
-            else:
-              - service: light.turn_off
-                target:
-                  entity_id: light.glowstick
-                data:
-                  transition: 1
+      - alias: Restore original state
+        if:
+          - condition: template
+            value_template: "{{ original_state }}"
+        then:
+          - service: light.turn_on
+            target:
+              entity_id: light.glowstick
+            data:
+              rgb_color: "{{ original_rgb_color }}"
+              brightness: "{{ original_brightness }}"
+              transition: 1
+        else:
+          - service: light.turn_off
+            target:
+              entity_id: light.glowstick
+            data:
+              transition: 1
