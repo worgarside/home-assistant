@@ -6,8 +6,8 @@ id: light_will_s_office_shapes_door_open_flash
 mode: single
 
 description: >-
-  Flashes Will's office voice assistant LED ring red at 100% brightness when the office door is opened,
-  then restores the previous color and brightness.
+  Flashes Will's office voice assistant LED ring red at 100% brightness when the office door is
+  opened, then restores the previous color and brightness.
 
 trigger:
   - platform: state
@@ -19,7 +19,10 @@ action:
   - variables:
       was_on: "{{ is_state('light.will_s_office_voice_assistant_led_ring', 'on') }}"
       saved_color: "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'rgb_color') }}"
-      saved_brightness: "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'brightness') }}"
+      saved_brightness: >-
+        {{
+          state_attr('light.will_s_office_voice_assistant_led_ring', 'brightness')
+        }}
 
   # First flash red at 100% brightness
   - service: light.turn_on
