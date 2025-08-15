@@ -2477,7 +2477,9 @@ File: [`input_datetime/home_assistant_start_time.yaml`](entities/input_datetime/
 File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_save.yaml)
 </details>
 
-<details><summary><code>input_datetime.rain_flash_cooldown</code></summary>
+<details><summary><strong>Rain Flash Cooldown</strong></summary>
+
+**Entity ID: `input_datetime.rain_flash_cooldown`**
 
 - Has Date: `true`
 - Has Time: `true`
