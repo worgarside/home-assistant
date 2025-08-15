@@ -23,7 +23,7 @@ action:
       saved_color_temp: "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'color_temp') }}"
       saved_effect: "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'effect') }}"
 
-  # Flash red at 100% brightness
+  # First flash red at 100% brightness
   - service: light.turn_on
     target:
       entity_id: light.will_s_office_voice_assistant_led_ring
@@ -31,9 +31,29 @@ action:
       rgb_color: [255, 0, 0]
       brightness_pct: 100
 
-  # Wait for flash duration
+  # Wait for first flash duration
   - delay:
-      seconds: 2
+      seconds: 1
+
+  # Brief pause between flashes
+  - service: light.turn_off
+    target:
+      entity_id: light.will_s_office_voice_assistant_led_ring
+
+  - delay:
+      seconds: 0.5
+
+  # Second flash red at 100% brightness
+  - service: light.turn_on
+    target:
+      entity_id: light.will_s_office_voice_assistant_led_ring
+    data:
+      rgb_color: [255, 0, 0]
+      brightness_pct: 100
+
+  # Wait for second flash duration
+  - delay:
+      seconds: 1
 
   # Restore previous state
   - if:
