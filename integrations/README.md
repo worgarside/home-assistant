@@ -918,7 +918,15 @@ File: [`automation/light/will_s_office_shapes/reboot_on_unavailable.yaml`](entit
 - Alias: /light/will-s-office-voice-assistant-led-ring/door-open-flash
 - ID: `light_will_s_office_voice_assistant_led_ring_door_open_flash`
 - Mode: `single`
+- Variables:
 
+```json
+{
+  "was_on": "{{ is_state('light.will_s_office_voice_assistant_led_ring', 'on') }}",
+  "saved_color": "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'rgb_color') }}",
+  "saved_brightness": "{{\n  state_attr('light.will_s_office_voice_assistant_led_ring', 'brightness')\n}}"
+}
+```
 File: [`automation/light/will_s_office_voice_assistant_led_ring/door_open_flash.yaml`](entities/automation/light/will_s_office_voice_assistant_led_ring/door_open_flash.yaml)
 </details>
 
