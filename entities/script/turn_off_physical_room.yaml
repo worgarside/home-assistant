@@ -35,11 +35,11 @@ sequence:
   - alias: "Turn off each physical domain"
     repeat:
       for_each:
-        - media_player.turn_off
+        - remote.turn_off
         - light.turn_off
         - switch.turn_off
         - fan.turn_off
-        - remote.turn_off
+        - media_player.turn_off
       sequence:
         - service: "{{ repeat.item }}"
           continue_on_error: true
