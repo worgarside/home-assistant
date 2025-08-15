@@ -783,8 +783,8 @@ File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light
   "original_state": "{{ is_state('light.glowstick', 'on') }}",
   "original_brightness": "{{ state_attr('light.glowstick', 'brightness') | int(128) }}",
   "original_rgb_color": "{{ state_attr('light.glowstick', 'rgb_color') | default([255, 255, 255]) }}",
-  "last_flash_time": "{{ state_attr('var.rain_flash_cooldown', 'last_flash_time') | default('1970-01-01T00:00:00+00:00') }}",
-  "cooldown_expired": "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 7200 }}"
+  "last_flash_time": "{{\n  state_attr('var.rain_flash_cooldown', 'last_flash_time') |\n  default('1970-01-01T00:00:00+00:00') |\n  as_timestamp()\n}}\n",
+  "cooldown_expired": "{{ (as_timestamp(now()) - last_flash_time) > 7200 }}"
 }
 ```
 File: [`automation/light/glowstick/rain_flash.yaml`](entities/automation/light/glowstick/rain_flash.yaml)

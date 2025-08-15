@@ -19,46 +19,49 @@ variables:
   original_rgb_color: "{{ state_attr('light.glowstick', 'rgb_color') | default([255, 255, 255]) }}"
 
   # Check if we're within the 2-hour cooldown period
-  last_flash_time: "{{ state_attr('var.rain_flash_cooldown', 'last_flash_time') | default('1970-01-01T00:00:00+00:00') }}"
-  cooldown_expired: "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 7200 }}"
+  last_flash_time: >
+    {{
+      state_attr('var.rain_flash_cooldown', 'last_flash_time') |
+      default('1970-01-01T00:00:00+00:00') |
+      as_timestamp()
+    }}
+  cooldown_expired: "{{ (as_timestamp(now()) - last_flash_time) > 7200 }}"
 
 action:
-  - if:
-      - condition: template
-        value_template: "{{ cooldown_expired }}"
+  - if: "{{ cooldown_expired }}"
+
     then:
       - alias: Store current time as last flash time
-        service: var.set_attributes
+        service: var.set
         target:
           entity_id: var.rain_flash_cooldown
         data:
-          last_flash_time: "{{ now().isoformat() }}"
-      
-      - alias: Flash blue twice
-        sequence:
-          # First flash
-          - service: light.turn_on
-            target:
-              entity_id: light.glowstick
-            data:
-              rgb_color: [0, 0, 255]  # Blue
-              brightness: 255
-              transition: 0.5
+          attributes:
+            last_flash_time: "{{ now().isoformat() }}"
 
-          - delay:
-              seconds: 1
+      # First flash
+      - service: light.turn_on
+        target:
+          entity_id: light.glowstick
+        data:
+          rgb_color: [0, 0, 255]  # Blue
+          brightness: 255
+          transition: 0.5
 
-          # Second flash
-          - service: light.turn_on
-            target:
-              entity_id: light.glowstick
-            data:
-              rgb_color: [0, 0, 255]  # Blue
-              brightness: 255
-              transition: 0.5
+      - delay:
+          seconds: 1
 
-          - delay:
-              seconds: 1
+      # Second flash
+      - service: light.turn_on
+        target:
+          entity_id: light.glowstick
+        data:
+          rgb_color: [0, 0, 255]  # Blue
+          brightness: 255
+          transition: 0.5
+
+      - delay:
+          seconds: 1
 
       - alias: Restore original state
         if:
