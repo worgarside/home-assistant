@@ -49,6 +49,7 @@ action:
               entity_id: light.will_s_office_voice_assistant_led_ring
             data:
               brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+              rgb_color: [255, 0, 196] # Purple
 
     else:
       - variables:
