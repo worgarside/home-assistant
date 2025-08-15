@@ -896,19 +896,6 @@ File: [`automation/light/wardrobe_lights/auto_off.yaml`](entities/automation/lig
 File: [`automation/light/wardrobe_lights/toggle.yaml`](entities/automation/light/wardrobe_lights/toggle.yaml)
 </details>
 
-<details><summary><code>/light/will-s-office-shapes/door-open-flash</code></summary>
-
-**Entity ID: `automation.light_will_s_office_shapes_door_open_flash`**
-
-> Flashes Will's office voice assistant LED ring red at 100% brightness when the office door is opened, then restores the previous color and brightness.
-
-- Alias: /light/will-s-office-shapes/door-open-flash
-- ID: `light_will_s_office_shapes_door_open_flash`
-- Mode: `single`
-
-File: [`automation/light/will_s_office_shapes/door_open_flash.yaml`](entities/automation/light/will_s_office_shapes/door_open_flash.yaml)
-</details>
-
 <details><summary><code>/light/will-s-office-shapes/reboot-on-unavailable</code></summary>
 
 **Entity ID: `automation.light_will_s_office_shapes_reboot_on_unavailable`**
@@ -920,6 +907,19 @@ File: [`automation/light/will_s_office_shapes/door_open_flash.yaml`](entities/au
 - Mode: `single`
 
 File: [`automation/light/will_s_office_shapes/reboot_on_unavailable.yaml`](entities/automation/light/will_s_office_shapes/reboot_on_unavailable.yaml)
+</details>
+
+<details><summary><code>/light/will-s-office-voice-assistant-led-ring/door-open-flash</code></summary>
+
+**Entity ID: `automation.light_will_s_office_voice_assistant_led_ring_door_open_flash`**
+
+> Flashes Will's office voice assistant LED ring red at 100% brightness when the office door is opened, then restores the previous color and brightness.
+
+- Alias: /light/will-s-office-voice-assistant-led-ring/door-open-flash
+- ID: `light_will_s_office_voice_assistant_led_ring_door_open_flash`
+- Mode: `single`
+
+File: [`automation/light/will_s_office_voice_assistant_led_ring/door_open_flash.yaml`](entities/automation/light/will_s_office_voice_assistant_led_ring/door_open_flash.yaml)
 </details>
 
 <details><summary><code>/media-player/topaz-sr10/off</code></summary>

@@ -1,7 +1,7 @@
 ---
-alias: /light/will-s-office-shapes/door-open-flash
+alias: /light/will-s-office-voice-assistant-led-ring/door-open-flash
 
-id: light_will_s_office_shapes_door_open_flash
+id: light_will_s_office_voice_assistant_led_ring_door_open_flash
 
 mode: single
 
@@ -57,9 +57,8 @@ action:
       seconds: 1
 
   # Restore previous state
-  - if:
-      - condition: template
-        value_template: "{{ was_on }}"
+  - if: "{{ was_on }}"
+
     then:
       - service: light.turn_on
         target:
@@ -67,6 +66,7 @@ action:
         data:
           rgb_color: "{{ saved_color }}"
           brightness: "{{ saved_brightness }}"
+
     else:
       - service: light.turn_off
         target:
