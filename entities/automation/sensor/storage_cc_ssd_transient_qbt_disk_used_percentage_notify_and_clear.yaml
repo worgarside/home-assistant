@@ -10,10 +10,10 @@ mode: single
 trigger:
   - platform: numeric_state
     entity_id: sensor.storage_cc_ssd_transient_qbt_disk_used_percentage
-    above: 98
+    above: 95
   - platform: numeric_state
     entity_id: sensor.storage_cc_ssd_transient_qbt_disk_used_percentage
-    above: 99
+    above: 98
   - platform: numeric_state
     entity_id: sensor.storage_cc_ssd_transient_qbt_disk_used_percentage
     above: 99.99
