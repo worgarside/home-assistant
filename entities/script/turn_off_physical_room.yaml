@@ -1,7 +1,11 @@
 ---
 alias: Turn Off Physical Room
 
-mode: restart
+mode: queued
+
+max: 10
+
+max_exceeded: error
 
 fields:
   room:
@@ -34,7 +38,6 @@ sequence:
         - light.turn_off
         - switch.turn_off
         - fan.turn_off
-        - media_player.media_stop
         - media_player.turn_off
         - remote.turn_off
       sequence:

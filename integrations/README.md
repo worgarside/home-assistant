@@ -5786,7 +5786,7 @@ File: [`script/system/script_response_debugger.yaml`](entities/script/system/scr
 }
 ```
 
-- Mode: `restart`
+- Mode: `queued`
 
 File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_room.yaml)
 </details>
