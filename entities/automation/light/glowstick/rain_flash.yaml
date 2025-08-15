@@ -23,55 +23,66 @@ variables:
   cooldown_expired: "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 7200 }}"
 
 action:
-  - if: "{{ cooldown_expired }}"
+  - condition: "{{ cooldown_expired }}"
+
+  - alias: Store current time as last flash time
+    service: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.rain_flash_cooldown
+    data:
+      datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+
+  - service: light.turn_on
+    target:
+      entity_id: light.glowstick
+    data:
+      rgb_color: [0, 0, 255]  # Blue
+      brightness: 255
+      transition: 2
+
+  - delay:
+      seconds: 1
+
+  - service: light.turn_off
+    target:
+      entity_id: light.glowstick
+    data:
+      transition: 2
+
+  - delay:
+      seconds: 1
+
+  - service: light.turn_on
+    target:
+      entity_id: light.glowstick
+    data:
+      rgb_color: [0, 0, 255]  # Blue
+      brightness: 255
+      transition: 2
+
+  - delay:
+      seconds: 1
+
+  - service: light.turn_off
+    target:
+      entity_id: light.glowstick
+    data:
+      transition: 2
+
+  - if: "{{ original_state }}"
 
     then:
-      - alias: Store current time as last flash time
-        service: input_datetime.set_datetime
-        target:
-          entity_id: input_datetime.rain_flash_cooldown
-        data:
-          datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-
-      # First flash
       - service: light.turn_on
         target:
           entity_id: light.glowstick
         data:
-          rgb_color: [0, 0, 255]  # Blue
-          brightness: 255
-          transition: 0.5
+          rgb_color: "{{ original_rgb_color }}"
+          brightness: "{{ original_brightness }}"
+          transition: 1
 
-      - delay:
-          seconds: 1
-
-      # Second flash
-      - service: light.turn_on
+    else:
+      - service: light.turn_off
         target:
           entity_id: light.glowstick
         data:
-          rgb_color: [0, 0, 255]  # Blue
-          brightness: 255
-          transition: 0.5
-
-      - delay:
-          seconds: 1
-
-      - alias: Restore original state
-        if:
-          - condition: template
-            value_template: "{{ original_state }}"
-        then:
-          - service: light.turn_on
-            target:
-              entity_id: light.glowstick
-            data:
-              rgb_color: "{{ original_rgb_color }}"
-              brightness: "{{ original_brightness }}"
-              transition: 1
-        else:
-          - service: light.turn_off
-            target:
-              entity_id: light.glowstick
-            data:
-              transition: 1
+          transition: 1
