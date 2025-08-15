@@ -37,11 +37,9 @@ action:
       brightness_pct: 100
       transition: 0.5
 
-  # Wait for first flash duration
   - delay:
       seconds: 0.5
 
-  # Brief pause between flashes
   - service: light.turn_off
     target:
       entity_id: light.will_s_office_voice_assistant_led_ring
@@ -58,10 +56,16 @@ action:
     data:
       rgb_color: [255, 0, 0]
       brightness_pct: 100
+      transition: 0.5
 
-  # Wait for second flash duration
   - delay:
       seconds: 0.5
+
+  - service: light.turn_off
+    target:
+      entity_id: light.will_s_office_voice_assistant_led_ring
+    data:
+      transition: 0.5
 
   # Restore previous state
   - if: "{{ was_on }}"
