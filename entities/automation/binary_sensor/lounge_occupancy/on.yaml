@@ -15,6 +15,11 @@ trigger:
     from: "off"
     to: "on"
 
+condition:
+  - condition: time
+    after: "06:00"
+    before: "23:30"
+
 action:
   - if: >
       {{
