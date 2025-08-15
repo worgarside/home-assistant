@@ -932,6 +932,27 @@ File: [`automation/light/wardrobe_lights/toggle.yaml`](entities/automation/light
 File: [`automation/light/will_s_office_shapes/reboot_on_unavailable.yaml`](entities/automation/light/will_s_office_shapes/reboot_on_unavailable.yaml)
 </details>
 
+<details><summary><code>/light/will-s-office-voice-assistant-led-ring/door-open-flash</code></summary>
+
+**Entity ID: `automation.light_will_s_office_voice_assistant_led_ring_door_open_flash`**
+
+> Flashes Will's office voice assistant LED ring red at 100% brightness when the office door is opened, then restores the previous color and brightness.
+
+- Alias: /light/will-s-office-voice-assistant-led-ring/door-open-flash
+- ID: `light_will_s_office_voice_assistant_led_ring_door_open_flash`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "was_on": "{{ is_state('light.will_s_office_voice_assistant_led_ring', 'on') }}",
+  "saved_color": "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'rgb_color') }}",
+  "saved_brightness": "{{\n  state_attr('light.will_s_office_voice_assistant_led_ring', 'brightness')\n}}"
+}
+```
+File: [`automation/light/will_s_office_voice_assistant_led_ring/door_open_flash.yaml`](entities/automation/light/will_s_office_voice_assistant_led_ring/door_open_flash.yaml)
+</details>
+
 <details><summary><code>/media-player/topaz-sr10/off</code></summary>
 
 **Entity ID: `automation.media_player_topaz_sr10_off`**
