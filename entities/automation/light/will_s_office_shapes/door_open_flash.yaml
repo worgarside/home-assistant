@@ -20,8 +20,6 @@ action:
       was_on: "{{ is_state('light.will_s_office_voice_assistant_led_ring', 'on') }}"
       saved_color: "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'rgb_color') }}"
       saved_brightness: "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'brightness') }}"
-      saved_color_temp: "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'color_temp') }}"
-      saved_effect: "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'effect') }}"
 
   # First flash red at 100% brightness
   - service: light.turn_on
@@ -69,12 +67,6 @@ action:
           {% endif %}
           {% if saved_brightness %}
           brightness: "{{ saved_brightness }}"
-          {% endif %}
-          {% if saved_color_temp %}
-          color_temp: "{{ saved_color_temp }}"
-          {% endif %}
-          {% if saved_effect %}
-          effect: "{{ saved_effect }}"
           {% endif %}
     else:
       - service: light.turn_off
