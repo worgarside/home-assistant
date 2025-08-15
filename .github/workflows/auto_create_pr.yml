@@ -9,6 +9,7 @@ on:
       - chore/*
       - hotfix/*
       - refactor/*
+  workflow_dispatch:
 
 jobs:
   create-pr:
