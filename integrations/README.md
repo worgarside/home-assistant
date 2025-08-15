@@ -767,29 +767,6 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light/desk_lamp/state_change.yaml)
 </details>
 
-<details><summary><code>/light/glowstick/rain-flash</code></summary>
-
-**Entity ID: `automation.light_glowstick_rain_flash`**
-
-> *No description provided*
-
-- Alias: /light/glowstick/rain-flash
-- ID: `light_glowstick_rain_flash`
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "original_state": "{{ is_state('light.glowstick', 'on') }}",
-  "original_brightness": "{{ state_attr('light.glowstick', 'brightness') | int(128) }}",
-  "original_rgb_color": "{{ state_attr('light.glowstick', 'rgb_color') | default([255, 255, 255]) }}",
-  "last_flash_time": "{{ states('input_datetime.rain_flash_cooldown') }}",
-  "cooldown_expired": "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 7200 }}"
-}
-```
-File: [`automation/light/glowstick/rain_flash.yaml`](entities/automation/light/glowstick/rain_flash.yaml)
-</details>
-
 <details><summary><code>/light/lounge-lights/stop-tv-reflections</code></summary>
 
 **Entity ID: `automation.light_lounge_lights_stop_tv_reflections`**
@@ -891,6 +868,29 @@ File: [`automation/light/upper_landing_lights/on.yaml`](entities/automation/ligh
 - Mode: `single`
 
 File: [`automation/light/upper_landing_lights/timeout.yaml`](entities/automation/light/upper_landing_lights/timeout.yaml)
+</details>
+
+<details><summary><code>/light/vic-s-office/rain-flash</code></summary>
+
+**Entity ID: `automation.light_vic_s_office_rain_flash`**
+
+> *No description provided*
+
+- Alias: /light/vic-s-office/rain-flash
+- ID: `light_vic_s_office_rain_flash`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "original_state": "{{ is_state('light.vic_s_office', 'on') }}",
+  "original_brightness": "{{ state_attr('light.vic_s_office', 'brightness') | int(128) }}",
+  "original_rgb_color": "{{\n  state_attr('light.vic_s_office', 'rgb_color') | default([255, 255, 255])\n}}",
+  "last_flash_time": "{{ states('input_datetime.rain_flash_cooldown') }}",
+  "cooldown_expired": "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 7200 }}"
+}
+```
+File: [`automation/light/vic_s_office/rain_flash.yaml`](entities/automation/light/vic_s_office/rain_flash.yaml)
 </details>
 
 <details><summary><code>/light/wardrobe-lights/auto-off</code></summary>
