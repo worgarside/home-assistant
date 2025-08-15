@@ -783,7 +783,7 @@ File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light
   "original_state": "{{ is_state('light.glowstick', 'on') }}",
   "original_brightness": "{{ state_attr('light.glowstick', 'brightness') | int(128) }}",
   "original_rgb_color": "{{ state_attr('light.glowstick', 'rgb_color') | default([255, 255, 255]) }}",
-  "last_flash_time": "{{\n  state_attr(\"var.rain_flash_cooldown\", \"last_flash_time\") |\n  as_timestamp(\"1970-01-01T00:00:00+00:00\")\n}}\n",
+  "last_flash_time": "{{ states('input_datetime.rain_flash_cooldown') }}",
   "cooldown_expired": "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 7200 }}"
 }
 ```
@@ -2453,7 +2453,7 @@ File: [`input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml`](entities/inpu
 
 ## Input Datetime
 
-<details><summary><h3>Entities (2)</h3></summary>
+<details><summary><h3>Entities (3)</h3></summary>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
 
@@ -2475,6 +2475,15 @@ File: [`input_datetime/home_assistant_start_time.yaml`](entities/input_datetime/
 - Icon: [`mdi:bank-transfer`](https://pictogrammers.com/library/mdi/icon/bank-transfer/)
 
 File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_save.yaml)
+</details>
+
+<details><summary><code>input_datetime.rain_flash_cooldown</code></summary>
+
+- Has Date: `true`
+- Has Time: `true`
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+
+File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_flash_cooldown.yaml)
 </details>
 
 </details>
@@ -6916,7 +6925,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (19)</h3></summary>
+<details><summary><h3>Entities (18)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -6964,15 +6973,6 @@ File: [`var/current_appdaemon_branch.yaml`](entities/var/current_appdaemon_branc
 - Icon: [`mdi:application-parentheses`](https://pictogrammers.com/library/mdi/icon/application-parentheses/)
 
 File: [`var/current_appdaemon_ref.yaml`](entities/var/current_appdaemon_ref.yaml)
-</details>
-
-<details><summary><strong>Rain Flash Cooldown</strong></summary>
-
-**Entity ID: `var.rain_flash_cooldown`**
-
-- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
-
-File: [`var/rain_flash_cooldown.yaml`](entities/var/rain_flash_cooldown.yaml)
 </details>
 
 <details><summary><strong>Spotify Tempo (Will)</strong></summary>
