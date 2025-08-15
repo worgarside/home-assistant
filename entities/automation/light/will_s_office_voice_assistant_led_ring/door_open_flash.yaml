@@ -15,7 +15,6 @@ trigger:
     to: "on"
 
 variables:
-  # Save current state
   was_on: "{{ is_state('light.will_s_office_voice_assistant_led_ring', 'on') }}"
   saved_color: "{{ state_attr('light.will_s_office_voice_assistant_led_ring', 'rgb_color') }}"
   saved_brightness: >-
@@ -24,10 +23,6 @@ variables:
     }}
 
 action:
-  - service: light.turn_off
-    target:
-      entity_id: light.will_s_office_voice_assistant_led_ring
-
   - service: light.turn_on
     target:
       entity_id: light.will_s_office_voice_assistant_led_ring
@@ -37,35 +32,8 @@ action:
       transition: 1
 
   - delay:
-      seconds: 1
+      seconds: 2
 
-  - service: light.turn_off
-    target:
-      entity_id: light.will_s_office_voice_assistant_led_ring
-    data:
-      transition: 1
-
-  - delay:
-      seconds: 1
-
-  - service: light.turn_on
-    target:
-      entity_id: light.will_s_office_voice_assistant_led_ring
-    data:
-      rgb_color: [255, 0, 0]
-      brightness_pct: 100
-      transition: 1
-
-  - delay:
-      seconds: 1
-
-  - service: light.turn_off
-    target:
-      entity_id: light.will_s_office_voice_assistant_led_ring
-    data:
-      transition: 1
-
-  # Restore previous state
   - if: "{{ was_on }}"
 
     then:
@@ -75,7 +43,7 @@ action:
         data:
           rgb_color: "{{ saved_color }}"
           brightness: "{{ saved_brightness }}"
-          transition: 2
+          transition: 1
     else:
       - service: light.turn_off
         target:
