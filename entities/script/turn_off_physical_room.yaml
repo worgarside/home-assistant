@@ -35,16 +35,19 @@ sequence:
   - alias: "Turn off each physical domain"
     repeat:
       for_each:
+        - media_player.turn_off
         - light.turn_off
         - switch.turn_off
         - fan.turn_off
-        - media_player.turn_off
         - remote.turn_off
       sequence:
         - service: "{{ repeat.item }}"
           continue_on_error: true
           target:
             area_id: "{{ room }}"
+
+        - delay:
+            seconds: 1
 
   - if: "{{ extra_service_calls is defined and extra_service_calls | length > 0 }}"
     then:
