@@ -62,12 +62,8 @@ action:
         target:
           entity_id: light.will_s_office_voice_assistant_led_ring
         data:
-          {% if saved_color %}
           rgb_color: "{{ saved_color }}"
-          {% endif %}
-          {% if saved_brightness %}
           brightness: "{{ saved_brightness }}"
-          {% endif %}
     else:
       - service: light.turn_off
         target:
