@@ -28,44 +28,42 @@ action:
     target:
       entity_id: light.will_s_office_voice_assistant_led_ring
 
-  # First flash red at 100% brightness
   - service: light.turn_on
     target:
       entity_id: light.will_s_office_voice_assistant_led_ring
     data:
       rgb_color: [255, 0, 0]
       brightness_pct: 100
-      transition: 0.5
+      transition: 1
 
   - delay:
-      seconds: 0.5
+      seconds: 1
 
   - service: light.turn_off
     target:
       entity_id: light.will_s_office_voice_assistant_led_ring
     data:
-      transition: 0.5
+      transition: 1
 
   - delay:
-      seconds: 0.5
+      seconds: 1
 
-  # Second flash red at 100% brightness
   - service: light.turn_on
     target:
       entity_id: light.will_s_office_voice_assistant_led_ring
     data:
       rgb_color: [255, 0, 0]
       brightness_pct: 100
-      transition: 0.5
+      transition: 1
 
   - delay:
-      seconds: 0.5
+      seconds: 1
 
   - service: light.turn_off
     target:
       entity_id: light.will_s_office_voice_assistant_led_ring
     data:
-      transition: 0.5
+      transition: 1
 
   # Restore previous state
   - if: "{{ was_on }}"
