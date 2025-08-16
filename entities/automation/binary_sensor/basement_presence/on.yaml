@@ -26,6 +26,8 @@ condition:
 variables:
   color_temp_kelvin: 2500
 
+  kitchen_modifier: "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}"
+
 action:
   - parallel:
       - if: >
@@ -55,7 +57,14 @@ action:
                     target:
                       area_id: kitchen
                     data:
-                      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+                      brightness_pct: >
+                        {{
+                          min(
+                            (states('sensor.lighting_modifier') | int(70))
+                              * (kitchen_modifier | int(2.5)),
+                            100
+                          )
+                        }}
                       transition: 1
 
                   # Dining area: big light at 50%, shelves at 25%, spotlights off
@@ -114,7 +123,9 @@ action:
 
                   - service: light.turn_on
                     target:
-                      entity_id: light.kitchen_island
+                      entity_id:
+                        - light.kitchen_island
+                        - light.kitchen_counter_lights
                     data:
                       brightness_pct: >-
                         {{ (states('sensor.lighting_modifier') | int(70) * 0.5) | int }}
@@ -124,7 +135,21 @@ action:
         default:
           - service: light.turn_on
             target:
-              floor_id: basement
+              area_id: kitchen
+            data:
+              brightness_pct: >
+                {{
+                  min(
+                    (states('sensor.lighting_modifier') | int(70)) * (kitchen_modifier | int(2.5)),
+                    100
+                  )
+                }}
+              transition: 1
+
+          - service: light.turn_on
+            target:
+              area_id: dining_area
             data:
               brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+              color_temp_kelvin: "{{ color_temp_kelvin }}"
               transition: 1
