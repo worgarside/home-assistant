@@ -32,6 +32,12 @@ action:
                 target:
                   entity_id: light.shell_lamp
 
+          - if: "{{ state_attr(state_manager, 'light.vic_s_office') | bool(false) }}"
+            then:
+              - service: light.turn_on
+                target:
+                  entity_id: light.vic_s_office
+
           - if: "{{ state_attr(state_manager, 'fan.vic_s_office_fan') | bool(false) }}"
             then:
               - service: fan.turn_on
@@ -42,6 +48,7 @@ action:
       - variables:
           glowstick: "{{ is_state('light.glowstick', 'on') }}"
           shell_lamp: "{{ is_state('light.shell_lamp', 'on') }}"
+          vic_s_office: "{{ is_state('light.vic_s_office', 'on') }}"
           vic_s_office_fan: "{{ is_state('fan.vic_s_office_fan', 'on') }}"
 
       - parallel:
@@ -69,6 +76,18 @@ action:
                   seconds: 10
                 continue_on_timeout: true
 
+          - if: "{{ vic_s_office }}"
+            then:
+              - service: light.turn_off
+                target:
+                  entity_id: light.vic_s_office
+
+              - wait_template: >-
+                  {{ state_attr(state_manager, 'light.vic_s_office') | bool(false) is false }}
+                timeout:
+                  seconds: 10
+                continue_on_timeout: true
+
           - if: "{{ vic_s_office_fan }}"
             then:
               - service: fan.turn_off
@@ -90,4 +109,5 @@ action:
           attributes:
             light.glowstick: "{{ glowstick }}"
             light.shell_lamp: "{{ shell_lamp }}"
+            light.vic_s_office: "{{ vic_s_office }}"
             fan.vic_s_office_fan: "{{ vic_s_office_fan }}"
