@@ -141,6 +141,19 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
 </details>
 
+<details><summary><code>/binary-sensor/roof-shutters-e1-box-leak-sensor/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_roof_shutters_e1_box_leak_sensor_on`**
+
+> Alert Will when water leak is detected in the E1 box
+
+- Alias: /binary-sensor/roof-shutters-e1-box-leak-sensor/on
+- ID: `binary_sensor_roof_shutters_e1_box_leak_sensor_on`
+- Mode: `single`
+
+File: [`automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml`](entities/automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml)
+</details>
+
 <details><summary><code>/binary-sensor/vic-s-office-occupancy/on</code></summary>
 
 **Entity ID: `automation.binary_sensor_vic_s_office_occupancy_on`**

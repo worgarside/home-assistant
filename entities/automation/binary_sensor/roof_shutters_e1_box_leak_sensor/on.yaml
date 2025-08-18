@@ -1,0 +1,23 @@
+---
+alias: /binary-sensor/roof-shutters-e1-box-leak-sensor/on
+
+id: binary_sensor_roof_shutters_e1_box_leak_sensor_on
+
+description: Alert Will when water leak is detected in the E1 box
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.roof_shutters_e1_box_leak_sensor_water_leak
+    to: "on"
+
+action:
+  - service: script.notify_will
+    data:
+      title: 🚨 Water Leak Detected!
+      message: Water ingress detected in the E1 box on the roof terrace.
+      notification_id: e1_box_water_leak
+      mobile_notification_icon: mdi:water-alert
+      sticky: true
+      persistent: true
