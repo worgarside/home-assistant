@@ -7,6 +7,8 @@ description: Turn the dry box dehumidifier on when the humidity is above the thr
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: numeric_state
     entity_id: sensor.dry_box_humidity

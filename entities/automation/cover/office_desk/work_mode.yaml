@@ -5,6 +5,8 @@ id: cover_office_desk_work_mode
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: time_pattern
     minutes: 0

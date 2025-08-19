@@ -5,6 +5,8 @@ id: input_datetime_home_assistant_start_time_set_datetime
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: homeassistant
     event: start

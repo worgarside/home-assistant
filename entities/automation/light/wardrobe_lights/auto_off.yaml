@@ -5,6 +5,8 @@ id: light_wardrobe_lights_auto_off
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: light.wardrobe_lights

@@ -6,6 +6,8 @@ id: binary_sensor_front_door_open
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: binary_sensor.front_door_contact

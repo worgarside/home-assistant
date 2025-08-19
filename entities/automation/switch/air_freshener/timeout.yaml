@@ -5,6 +5,8 @@ id: switch_air_freshener_timeout
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: switch.air_freshener
