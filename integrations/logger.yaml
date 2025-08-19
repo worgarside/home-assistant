@@ -25,6 +25,9 @@ logger:
       - Creating subscriptions failed for
       - No recent activity and cannot reach
 
+    homeassistant.components.mqtt.light.schema_json:
+      - Invalid color mode 'color_temp' received for entity light\.kitchen_counter_lights
+
   logs:
     charset_normalizer: warning
     idasen: critical
