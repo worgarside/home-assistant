@@ -7,9 +7,7 @@ description: >-
   Controls basement lighting based on occupancy in kitchen, dining area, and basement.
   Also pauses Cosmo when someone enters the basement while he's cleaning.
 
-mode: queued
-
-max: 2
+mode: restart
 
 max_exceeded: silent
 

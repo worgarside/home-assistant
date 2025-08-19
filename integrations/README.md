@@ -38,7 +38,7 @@ File: [`automation/binary_sensor/basement_presence/off.yaml`](entities/automatio
 
 - Alias: /binary-sensor/basement-presence/on
 - ID: `binary_sensor_basement_presence_on`
-- Mode: `queued`
+- Mode: `restart`
 - Variables:
 
 ```json
