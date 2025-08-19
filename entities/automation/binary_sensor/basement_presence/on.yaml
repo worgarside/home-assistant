@@ -9,6 +9,8 @@ description: >-
 
 mode: restart
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: binary_sensor.basement_occupancy
@@ -26,7 +28,9 @@ condition:
 variables:
   color_temp_kelvin: 2500
 
-  kitchen_modifier: "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}"
+  kitchen_multiplier: "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}"
+
+  modifier: "{{ states('sensor.lighting_modifier') | int(70) }}"
 
 action:
   - parallel:
@@ -57,14 +61,7 @@ action:
                     target:
                       area_id: kitchen
                     data:
-                      brightness_pct: >
-                        {{
-                          min(
-                            (states('sensor.lighting_modifier') | int(70))
-                              * (kitchen_modifier | int(2.5)),
-                            100
-                          )
-                        }}
+                      brightness_pct: "{{ min(modifier * kitchen_multiplier, 100) }}"
                       transition: 1
 
                   # Dining area: big light at 50%, shelves at 25%, spotlights off
@@ -72,8 +69,7 @@ action:
                     target:
                       entity_id: light.dining_area_big_light
                     data:
-                      brightness_pct: >-
-                        {{ (states('sensor.lighting_modifier') | int(70) * 0.5) | int }}
+                      brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
                       color_temp_kelvin: "{{ color_temp_kelvin }}"
                       transition: 1
 
@@ -81,8 +77,7 @@ action:
                     target:
                       entity_id: light.dining_area_shelves
                     data:
-                      brightness_pct: >-
-                        {{ (states('sensor.lighting_modifier') | int(70) * 0.25) | int }}
+                      brightness_pct: "{{ (modifier * 0.25) | round(0, 'ceil') }}"
                       color_temp_kelvin: "{{ color_temp_kelvin }}"
                       transition: 1
 
@@ -91,6 +86,20 @@ action:
                       entity_id: light.dining_area
                     data:
                       transition: 1
+
+              - service: light.turn_on
+                target:
+                  entity_id: light.kitchen_island
+                data:
+                  # Keep kitchen island brighter for cooking
+                  brightness_pct: >-
+                    {{
+                      max(
+                        min(modifier * kitchen_multiplier, 100),
+                        (40 if 12 <= now().hour < 23 else 0)
+                      )
+                    }}
+                  transition: 1
 
           # Someone in dining area only
           - conditions:
@@ -108,48 +117,47 @@ action:
                     target:
                       area_id: dining_area
                     data:
-                      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+                      brightness_pct: "{{ modifier }}"
                       color_temp_kelvin: "{{ color_temp_kelvin }}"
                       transition: 1
 
-                  # Kitchen: spotlights at 15%, island at 50%
-                  - service: light.turn_on
-                    target:
-                      entity_id: light.kitchen_spotlights
-                    data:
-                      brightness_pct: >-
-                        {{ (states('sensor.lighting_modifier') | int(70) * 0.15) | int }}
-                      transition: 1
+                  - sequence:
+                      - delay:
+                          seconds: 5
 
-                  - service: light.turn_on
-                    target:
-                      entity_id:
-                        - light.kitchen_island
-                        - light.kitchen_counter_lights
-                    data:
-                      brightness_pct: >-
-                        {{ (states('sensor.lighting_modifier') | int(70) * 0.5) | int }}
-                      transition: 1
+                      # Kitchen: spotlights at 15%, island at 50%
+                      - service: light.turn_on
+                        target:
+                          entity_id: light.kitchen_spotlights
+                        data:
+                          brightness_pct: "{{ (modifier * 0.15) | round(0, 'ceil') }}"
+                          transition: 1
+
+                      - service: light.turn_on
+                        target:
+                          entity_id:
+                            - light.kitchen_island
+                            - light.kitchen_counter_lights
+                        data:
+                          brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
+                          transition: 1
 
         # Default: Someone in both areas or hallway
         default:
+          - delay:
+              seconds: 2
+
           - service: light.turn_on
             target:
               area_id: kitchen
             data:
-              brightness_pct: >
-                {{
-                  min(
-                    (states('sensor.lighting_modifier') | int(70)) * (kitchen_modifier | int(2.5)),
-                    100
-                  )
-                }}
+              brightness_pct: "{{ min(modifier * kitchen_multiplier, 100) }}"
               transition: 1
 
           - service: light.turn_on
             target:
               area_id: dining_area
             data:
-              brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+              brightness_pct: "{{ modifier }}"
               color_temp_kelvin: "{{ color_temp_kelvin }}"
               transition: 1

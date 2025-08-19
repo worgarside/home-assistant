@@ -1,0 +1,50 @@
+---
+alwaysApply: true
+---
+# Home Assistant Parallel and Sequence Block Structure
+
+## Critical: Parallel Block Structure
+
+When using `parallel` blocks in Home Assistant automations, remember that each item in the parallel block should be either:
+- A single service call
+- A `sequence` block for multiple sequential actions
+- An `if`/`then` block
+
+## Common Mistake: Missing Sequence Wrapper
+
+**INCORRECT:**
+```yaml
+- parallel:
+    - service: vacuum.start
+      target:
+        entity_id: vacuum.cosmo
+    - delay:
+        seconds: 5
+    - service: light.turn_off
+      target:
+        floor_id: basement
+```
+
+**CORRECT:**
+```yaml
+- parallel:
+    - service: vacuum.start
+      target:
+        entity_id: vacuum.cosmo
+    - sequence:
+        - delay:
+            seconds: 5
+        - service: light.turn_off
+          target:
+            floor_id: basement
+```
+
+## Why This Matters
+
+- `parallel` blocks execute all items simultaneously
+- Without `sequence`, delay and subsequent actions run in parallel (defeating the purpose)
+- Always wrap related sequential actions in a `sequence` block within `parallel`
+
+## Examples from This Codebase
+
+See [entities/automation/binary_sensor/basement_presence/off.yaml](mdc:entities/automation/binary_sensor/basement_presence/off.yaml) for correct implementation where vacuum resume logic runs in parallel with a sequence that delays then turns off lights.

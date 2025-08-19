@@ -44,7 +44,8 @@ File: [`automation/binary_sensor/basement_presence/off.yaml`](entities/automatio
 ```json
 {
   "color_temp_kelvin": 2500,
-  "kitchen_modifier": "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}"
+  "kitchen_multiplier": "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}",
+  "modifier": "{{ states('sensor.lighting_modifier') | int(70) }}"
 }
 ```
 File: [`automation/binary_sensor/basement_presence/on.yaml`](entities/automation/binary_sensor/basement_presence/on.yaml)
