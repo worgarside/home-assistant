@@ -7,6 +7,8 @@ description: Turn off the charging hub when everything has finished charging
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: numeric_state
     entity_id: sensor.charging_hub_current_consumption

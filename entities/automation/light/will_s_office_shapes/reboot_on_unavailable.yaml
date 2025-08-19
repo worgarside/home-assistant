@@ -7,6 +7,8 @@ description: Reboot Will's office shapes if unavailable for 2 minutes
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: light.will_s_office_shapes

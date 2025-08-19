@@ -5,6 +5,8 @@ id: binary_sensor_quiet_hours_off
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   platform: state
   entity_id: binary_sensor.quiet_hours

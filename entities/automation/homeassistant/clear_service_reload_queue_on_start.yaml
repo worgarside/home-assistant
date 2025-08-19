@@ -5,6 +5,8 @@ id: homeassistant_clear_service_reload_queue_on_start
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: homeassistant
     event: start

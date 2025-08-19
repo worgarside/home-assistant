@@ -5,6 +5,8 @@ id: homeassistant_load_gh_cli_on_start
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: homeassistant
     event: start

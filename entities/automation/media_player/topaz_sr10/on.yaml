@@ -9,6 +9,8 @@ description: >-
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   platform: state
   entity_id: media_player.topaz_sr10

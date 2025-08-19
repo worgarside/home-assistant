@@ -2,6 +2,9 @@
 alias: /automation/auto-reload-complete
 id: automation_auto_reload_complete
 mode: single
+
+max_exceeded: silent
+
 trigger:
   platform: event
   event_type: automation_reloaded

@@ -7,6 +7,8 @@ description: Notify and clear notification for qBittorrent SSD storage usage thr
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: numeric_state
     entity_id: sensor.storage_cc_ssd_transient_qbt_disk_used_percentage

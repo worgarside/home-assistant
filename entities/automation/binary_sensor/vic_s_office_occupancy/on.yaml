@@ -7,6 +7,8 @@ description: Turn on shell lamp when Victoria's office occupancy is detected
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: binary_sensor.vic_s_office_occupancy
