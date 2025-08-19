@@ -865,7 +865,8 @@ File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/l
 
 ```json
 {
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}",
+  "upper_landing_brightness": "{{\n  [states('sensor.lighting_modifier') | int(70), 20] | max\n  if 12 <= now().hour < 23\n  else states('sensor.lighting_modifier') | int(70)\n}}"
 }
 ```
 File: [`automation/light/upper_landing_lights/on.yaml`](entities/automation/light/upper_landing_lights/on.yaml)
