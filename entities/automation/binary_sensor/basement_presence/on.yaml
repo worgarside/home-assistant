@@ -69,7 +69,7 @@ action:
                     target:
                       entity_id: light.dining_area_big_light
                     data:
-                      brightness_pct: "{{ (modifier * 0.5) | int }}"
+                      brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
                       color_temp_kelvin: "{{ color_temp_kelvin }}"
                       transition: 1
 
@@ -77,7 +77,7 @@ action:
                     target:
                       entity_id: light.dining_area_shelves
                     data:
-                      brightness_pct: "{{ (modifier * 0.25) | int }}"
+                      brightness_pct: "{{ (modifier * 0.25) | round(0, 'ceil') }}"
                       color_temp_kelvin: "{{ color_temp_kelvin }}"
                       transition: 1
 
@@ -130,7 +130,7 @@ action:
                         target:
                           entity_id: light.kitchen_spotlights
                         data:
-                          brightness_pct: "{{ (modifier * 0.15) | int }}"
+                          brightness_pct: "{{ (modifier * 0.15) | round(0, 'ceil') }}"
                           transition: 1
 
                       - service: light.turn_on
@@ -139,7 +139,7 @@ action:
                             - light.kitchen_island
                             - light.kitchen_counter_lights
                         data:
-                          brightness_pct: "{{ (modifier * 0.5) | int }}"
+                          brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
                           transition: 1
 
         # Default: Someone in both areas or hallway
@@ -158,7 +158,3 @@ action:
               brightness_pct: "{{ modifier }}"
               color_temp_kelvin: "{{ color_temp_kelvin }}"
               transition: 1
-
-  - alias: Debounce
-    delay:
-      seconds: 2
