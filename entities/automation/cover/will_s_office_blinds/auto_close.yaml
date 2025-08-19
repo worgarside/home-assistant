@@ -33,6 +33,10 @@ condition:
     entity_id: person.vic
     state: home
 
+  - condition: state
+    entity_id: cover.will_s_office_blinds
+    state: "open"
+
 action:
   - service: cover.close_cover
     target:
