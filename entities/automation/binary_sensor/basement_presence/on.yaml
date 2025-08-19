@@ -96,7 +96,7 @@ action:
                     {{
                       max(
                         min(modifier * kitchen_multiplier, 100),
-                        (40 if now().hour < 23 else 0)
+                        (40 if 12 <= now().hour < 23 else 0)
                       )
                     }}
                   transition: 1
