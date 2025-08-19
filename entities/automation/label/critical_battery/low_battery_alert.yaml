@@ -1,0 +1,56 @@
+---
+alias: /label/critical-battery/low-battery-alert
+
+id: label_critical_battery_low_battery_alert
+
+description: >-
+  Check all entities with "Critical Battery" label every hour and alert if battery is below 5%
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: time_pattern
+    hours: "/1"
+
+condition:
+  - condition: state
+    entity_id: binary_sensor.quiet_hours
+    state: "off"
+
+action:
+  - repeat:
+      for_each: >-
+        {{ label_entities('Critical Battery') | default([]) }}
+      # hacv disable: InvalidTemplateVar:label_entities
+
+      sequence:
+        - variables:
+            notification_id: >-
+              critical_battery_{{ slugify(repeat.item) }}
+            # hacv disable: InvalidTemplateVar:slugify
+
+        - if: "{{ states(repeat.item) | float(100) < 5 }}"
+
+          then:
+            - service: script.notify_will
+              data:
+                title: "\U0001F50B Critical Battery Alert"
+                message: >-
+                  {{
+                    state_attr(repeat.item, 'friendly_name')
+                    or (repeat.item | replace('sensor.', '') | replace('_', ' ') | title)
+                  }}
+                  battery is critically low: {{ states(repeat.item) }}%
+                mobile_notification_icon: mdi:battery-alert
+                group: critical-battery-alerts
+                sticky: true
+                notification_id: "{{ notification_id }}"
+
+          else:
+            - service: script.notify_will
+              data:
+                message: clear_notification
+                clear_notification: true
+                notification_id: "{{ notification_id }}"

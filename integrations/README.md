@@ -769,6 +769,19 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
+<details><summary><code>/label/critical-battery/low-battery-alert</code></summary>
+
+**Entity ID: `automation.label_critical_battery_low_battery_alert`**
+
+> Check all entities with "Critical Battery" label every hour and alert if battery is below 5%
+
+- Alias: /label/critical-battery/low-battery-alert
+- ID: `label_critical_battery_low_battery_alert`
+- Mode: `single`
+
+File: [`automation/label/critical_battery/low_battery_alert.yaml`](entities/automation/label/critical_battery/low_battery_alert.yaml)
+</details>
+
 <details><summary><code>/light/desk-lamp/state-change</code></summary>
 
 **Entity ID: `automation.light_desk_lamp_state_change`**
