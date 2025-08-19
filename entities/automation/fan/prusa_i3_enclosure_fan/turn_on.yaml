@@ -5,6 +5,8 @@ id: fan_prusa_i3_enclosure_fan_turn_on
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: sensor.prusa_i3_filament_type

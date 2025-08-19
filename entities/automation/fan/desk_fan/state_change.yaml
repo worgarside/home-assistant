@@ -5,6 +5,8 @@ id: fan_desk_fan_state_change
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: fan.desk_fan

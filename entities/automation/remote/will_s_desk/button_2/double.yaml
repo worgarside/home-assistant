@@ -5,6 +5,8 @@ id: remote_will_s_desk_button_2_double
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - domain: mqtt
     platform: device

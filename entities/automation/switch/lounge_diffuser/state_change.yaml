@@ -7,6 +7,8 @@ description: Keep the diffuser's light in sync with the diffuser state
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: switch.lounge_diffuser

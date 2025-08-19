@@ -5,6 +5,8 @@ id: light_upper_landing_lights_timeout
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: binary_sensor.front_hallway_motion_sensor_occupancy

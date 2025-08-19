@@ -10,6 +10,8 @@ description: >-
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: light.moomin_box

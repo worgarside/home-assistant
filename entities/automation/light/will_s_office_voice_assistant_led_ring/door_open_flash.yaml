@@ -5,6 +5,8 @@ id: light_will_s_office_voice_assistant_led_ring_door_open_flash
 
 mode: single
 
+max_exceeded: silent
+
 description: >-
   Flashes Will's office voice assistant LED ring red at 100% brightness when the office door is
   opened, then restores the previous color and brightness.

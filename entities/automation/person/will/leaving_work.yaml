@@ -5,6 +5,8 @@ id: person_will_leaving_work
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   platform: state
   entity_id: person.will

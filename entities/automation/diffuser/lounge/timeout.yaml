@@ -5,6 +5,8 @@ id: diffuser_lounge_timeout
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: switch.lounge_diffuser

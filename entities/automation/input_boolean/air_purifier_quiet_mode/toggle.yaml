@@ -5,6 +5,8 @@ id: input_boolean_air_purifier_quiet_mode_toggle
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: remote.lounge_tv

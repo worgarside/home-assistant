@@ -5,6 +5,8 @@ id: prusa_i3_hotend_timeout
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: binary_sensor.octoprint_printing
