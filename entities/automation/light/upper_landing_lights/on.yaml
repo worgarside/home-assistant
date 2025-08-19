@@ -22,6 +22,12 @@ trigger:
 
 variables:
   brightness: "{{ states('sensor.lighting_modifier') | int(70) }}"
+  upper_landing_brightness: >-
+    {{
+      [states('sensor.lighting_modifier') | int(70), 20] | max
+      if 12 <= now().hour < 23
+      else states('sensor.lighting_modifier') | int(70)
+    }}
 
 action:
   - choose:
@@ -43,7 +49,7 @@ action:
                 target:
                   entity_id: light.upper_landing_light
                 data:
-                  brightness_pct: "{{ brightness }}"
+                  brightness_pct: "{{ upper_landing_brightness }}"
                   transition: 1
 
       - conditions:
@@ -56,7 +62,7 @@ action:
             target:
               entity_id: light.upper_landing_light
             data:
-              brightness_pct: "{{ brightness }}"
+              brightness_pct: "{{ upper_landing_brightness }}"
               transition: 1
 
           - delay:
