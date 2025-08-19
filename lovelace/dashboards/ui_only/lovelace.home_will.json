@@ -4481,19 +4481,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "panel",
-          "path": "z2m-map",
-          "title": "Z2M Map",
-          "icon": "si:zigbee2mqtt",
-          "subview": true,
-          "cards": [
-            {
-              "type": "custom:zigbee2mqtt-networkmap",
-              "entity": "sensor.zigbee2mqtt_network_map"
-            }
-          ]
         }
       ]
     }
