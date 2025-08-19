@@ -21,4 +21,4 @@ action:
   - alias: Re/Connect to Idasen Desk
     service: button.press
     target:
-      entity_id: button.office_desk_esphome_connect
+      entity_id: button.will_s_office_desk_idasen_connect
