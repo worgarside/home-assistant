@@ -5,6 +5,8 @@ id: light_office_shapes_state_change
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: light.will_s_office_shapes

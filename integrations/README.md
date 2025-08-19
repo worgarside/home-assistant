@@ -214,7 +214,7 @@ File: [`automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml
 
 - Alias: /camera/offline-notify-will
 - ID: `camera_offline_notify_will`
-- Mode: `single`
+- Mode: `queued`
 - Variables:
 
 ```json

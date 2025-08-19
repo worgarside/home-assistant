@@ -5,6 +5,8 @@ id: input_boolean_air_purifier_quiet_mode_state_change
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: input_boolean.air_purifier_quiet_mode

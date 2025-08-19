@@ -5,7 +5,11 @@ id: camera_offline_notify_will
 
 description: Notify Will when either basement or lounge camera goes offline
 
-mode: single
+mode: queued
+
+max_exceeded: silent
+
+max: 2
 
 trigger:
   - platform: state
@@ -13,6 +17,7 @@ trigger:
     to: unavailable
     for:
       minutes: 1
+
   - platform: state
     entity_id: camera.lounge
     to: unavailable

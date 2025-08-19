@@ -5,6 +5,8 @@ id: cover_will_s_office_blinds_auto_close
 
 mode: single
 
+max_exceeded: silent
+
 description: >-
   Closes Will's office blinds when the office door is closed, the office desk is occupied, and the
   sun is below -3 degrees.
@@ -32,6 +34,10 @@ condition:
   - condition: state
     entity_id: person.vic
     state: home
+
+  - condition: state
+    entity_id: cover.will_s_office_blinds
+    state: "open"
 
 action:
   - service: cover.close_cover

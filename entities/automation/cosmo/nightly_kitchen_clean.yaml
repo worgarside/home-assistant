@@ -5,6 +5,8 @@ id: cosmo_nightly_kitchen_clean
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   platform: time
   at: "23:00:00"

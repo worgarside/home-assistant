@@ -5,6 +5,8 @@ id: switch_christmas_tree_turn_on
 
 mode: single
 
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: zone.home
