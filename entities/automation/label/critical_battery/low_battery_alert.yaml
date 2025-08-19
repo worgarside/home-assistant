@@ -22,6 +22,7 @@ action:
       for_each: >-
         {{ label_entities('Critical Battery') }}
       # hacv disable: InvalidTemplateVar:label_entities
+
       sequence:
         - if: "{{ states(repeat.item) | float(100) < 5 }}"
 
@@ -37,7 +38,7 @@ action:
                 sticky: true
                 notification_id: "critical_battery_{{ repeat.item }}"
 
-        - else:
+          else:
             - service: script.notify_will
               data:
                 message: clear_notification
