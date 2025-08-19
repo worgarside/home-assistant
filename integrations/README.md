@@ -44,7 +44,8 @@ File: [`automation/binary_sensor/basement_presence/off.yaml`](entities/automatio
 ```json
 {
   "color_temp_kelvin": 2500,
-  "kitchen_modifier": "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}"
+  "kitchen_multiplier": "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}",
+  "modifier": "{{ states('sensor.lighting_modifier') | int(70) }}"
 }
 ```
 File: [`automation/binary_sensor/basement_presence/on.yaml`](entities/automation/binary_sensor/basement_presence/on.yaml)
@@ -139,6 +140,19 @@ File: [`automation/binary_sensor/quiet_hours/off.yaml`](entities/automation/bina
 - Mode: `single`
 
 File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binary_sensor/quiet_hours/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/roof-shutters-e1-box-leak-sensor/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_roof_shutters_e1_box_leak_sensor_on`**
+
+> Alert Will when water leak is detected in the E1 box
+
+- Alias: /binary-sensor/roof-shutters-e1-box-leak-sensor/on
+- ID: `binary_sensor_roof_shutters_e1_box_leak_sensor_on`
+- Mode: `single`
+
+File: [`automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml`](entities/automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/vic-s-office-occupancy/on</code></summary>
@@ -865,7 +879,8 @@ File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/l
 
 ```json
 {
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}",
+  "upper_landing_brightness": "{{\n  [states('sensor.lighting_modifier') | int(70), 20] | max\n  if 12 <= now().hour < 23\n  else states('sensor.lighting_modifier') | int(70)\n}}"
 }
 ```
 File: [`automation/light/upper_landing_lights/on.yaml`](entities/automation/light/upper_landing_lights/on.yaml)
