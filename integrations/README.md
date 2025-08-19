@@ -778,13 +778,7 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 - Alias: /label/critical-battery/low-battery-alert
 - ID: `label_critical_battery_low_battery_alert`
 - Mode: `single`
-- Variables:
 
-```json
-{
-  "notification_id": "critical_battery_{{ slugify(repeat.item) }}"
-}
-```
 File: [`automation/label/critical_battery/low_battery_alert.yaml`](entities/automation/label/critical_battery/low_battery_alert.yaml)
 </details>
 

@@ -19,11 +19,6 @@ condition:
     entity_id: binary_sensor.quiet_hours
     state: "off"
 
-variables:
-  notification_id: >-
-    critical_battery_{{ slugify(repeat.item) }}
-  # hacv disable: InvalidTemplateVar:slugify
-
 action:
   - repeat:
       for_each: >-
@@ -31,6 +26,11 @@ action:
       # hacv disable: InvalidTemplateVar:label_entities
 
       sequence:
+        - variables:
+            notification_id: >-
+              critical_battery_{{ slugify(repeat.item) }}
+            # hacv disable: InvalidTemplateVar:slugify
+
         - if: "{{ states(repeat.item) | float(100) < 5 }}"
 
           then:
