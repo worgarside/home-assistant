@@ -34,7 +34,8 @@ variables:
 
 action:
   - parallel:
-      - if: >
+      - alias: Cosmo Pause
+        if: >
           {{
             is_state('vacuum.cosmo', 'cleaning') and
             is_state('sensor.cosmo_current_room', 'Basement')
@@ -44,109 +45,13 @@ action:
             target:
               entity_id: vacuum.cosmo
 
-      # Lighting control logic
-      - choose:
-          # Someone in kitchen only
-          - conditions:
-              - condition: state
-                entity_id: binary_sensor.kitchen_occupancy
-                state: "on"
-              - condition: state
-                entity_id: binary_sensor.dining_area_occupancy
-                state: "off"
-            sequence:
-              - parallel:
-                  # Kitchen lights at full brightness
-                  - service: light.turn_on
-                    target:
-                      area_id: kitchen
-                    data:
-                      brightness_pct: "{{ min(modifier * kitchen_multiplier, 100) }}"
-                      transition: 1
+      - alias: Kitchen Lighting
+        if:
+          - condition: state
+            entity_id: binary_sensor.kitchen_occupancy
+            state: "on"
 
-                  # Dining area: big light at 50%, shelves at 25%, spotlights off
-                  - service: light.turn_on
-                    target:
-                      entity_id: light.dining_area_big_light
-                    data:
-                      brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
-                      color_temp_kelvin: "{{ color_temp_kelvin }}"
-                      transition: 1
-
-                  - service: light.turn_on
-                    target:
-                      entity_id: light.dining_area_shelves
-                    data:
-                      brightness_pct: "{{ (modifier * 0.25) | round(0, 'ceil') }}"
-                      color_temp_kelvin: "{{ color_temp_kelvin }}"
-                      transition: 1
-
-                  - service: light.turn_off
-                    target:
-                      entity_id: light.dining_area
-                    data:
-                      transition: 1
-
-              - service: light.turn_on
-                target:
-                  entity_id: light.kitchen_island
-                data:
-                  # Keep kitchen island brighter for cooking
-                  brightness_pct: >-
-                    {{
-                      max(
-                        min(modifier * kitchen_multiplier, 100),
-                        (40 if 12 <= now().hour < 23 else 0)
-                      )
-                    }}
-                  transition: 1
-
-          # Someone in dining area only
-          - conditions:
-              - condition: state
-                entity_id: binary_sensor.kitchen_occupancy
-                state: "off"
-              - condition: state
-                entity_id: binary_sensor.dining_area_occupancy
-                state: "on"
-
-            sequence:
-              - parallel:
-                  # Dining area lights at full brightness
-                  - service: light.turn_on
-                    target:
-                      area_id: dining_area
-                    data:
-                      brightness_pct: "{{ modifier }}"
-                      color_temp_kelvin: "{{ color_temp_kelvin }}"
-                      transition: 1
-
-                  - sequence:
-                      - delay:
-                          seconds: 5
-
-                      # Kitchen: spotlights at 15%, island at 50%
-                      - service: light.turn_on
-                        target:
-                          entity_id: light.kitchen_spotlights
-                        data:
-                          brightness_pct: "{{ (modifier * 0.15) | round(0, 'ceil') }}"
-                          transition: 1
-
-                      - service: light.turn_on
-                        target:
-                          entity_id:
-                            - light.kitchen_island
-                            - light.kitchen_counter_lights
-                        data:
-                          brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
-                          transition: 1
-
-        # Default: Someone in both areas or hallway
-        default:
-          - delay:
-              seconds: 2
-
+        then:
           - service: light.turn_on
             target:
               area_id: kitchen
@@ -156,8 +61,84 @@ action:
 
           - service: light.turn_on
             target:
+              entity_id: light.kitchen_island
+            data:
+              # Keep kitchen island brighter for cooking
+              brightness_pct: >-
+                {{
+                  max(
+                    min(modifier * kitchen_multiplier, 100),
+                    (40 if 12 <= now().hour < 23 else 0)
+                  )
+                }}
+              transition: 1
+
+        else:
+          - if: >-
+              {{
+                trigger.entity_id == 'binary_sensor.kitchen_occupancy' and
+                trigger.from_state.state == 'on' and
+                trigger.to_state.state == 'off'
+              }}
+
+            then:
+              - delay:
+                  seconds: 5
+
+          # Kitchen: spotlights at 15%, island at 50%
+          - service: light.turn_on
+            target:
+              entity_id: light.kitchen_spotlights
+            data:
+              brightness_pct: "{{ (modifier * 0.15) | round(0, 'ceil') }}"
+              transition: 1
+
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.kitchen_island
+                - light.kitchen_counter_lights
+            data:
+              brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
+              transition: 1
+
+      - alias: Dining Area Lighting
+        if:
+          - condition: state
+            entity_id: binary_sensor.dining_area_occupancy
+            state: "on"
+
+        then:
+          # Dining area lights at full brightness
+          - service: light.turn_on
+            target:
               area_id: dining_area
             data:
               brightness_pct: "{{ modifier }}"
               color_temp_kelvin: "{{ color_temp_kelvin }}"
               transition: 1
+
+        else:
+          - parallel:
+              # Dining area: big light at 50%, shelves at 25%, spotlights off
+              - service: light.turn_on
+                target:
+                  entity_id: light.dining_area_big_light
+                data:
+                  brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
+                  color_temp_kelvin: "{{ color_temp_kelvin }}"
+                  transition: 1
+
+              - service: light.turn_on
+                target:
+                  entity_id: light.dining_area_shelves
+                data:
+                  brightness_pct: "{{ (modifier * 0.25) | round(0, 'ceil') }}"
+                  color_temp_kelvin: "{{ color_temp_kelvin }}"
+                  transition: 1
+
+              - service: light.turn_off
+                target:
+                  entity_id: light.dining_area
+                data:
+                  transition: 1
