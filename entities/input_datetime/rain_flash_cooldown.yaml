@@ -1,0 +1,11 @@
+---
+# Used for storing the last time the glowstick flashed due to rain
+# This prevents excessive flashing when it rains, stops, then rains again
+
+name: Rain Flash Cooldown
+
+icon: mdi:timer-sand
+
+has_date: true
+
+has_time: true
