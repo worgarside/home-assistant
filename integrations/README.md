@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (126)</h3></summary>
+<details><summary><h3>Entities (127)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -897,6 +897,29 @@ File: [`automation/light/upper_landing_lights/on.yaml`](entities/automation/ligh
 - Mode: `single`
 
 File: [`automation/light/upper_landing_lights/timeout.yaml`](entities/automation/light/upper_landing_lights/timeout.yaml)
+</details>
+
+<details><summary><code>/light/vic-s-office/rain-flash</code></summary>
+
+**Entity ID: `automation.light_vic_s_office_rain_flash`**
+
+> *No description provided*
+
+- Alias: /light/vic-s-office/rain-flash
+- ID: `light_vic_s_office_rain_flash`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "original_state": "{{ is_state('light.vic_s_office', 'on') }}",
+  "original_brightness": "{{ state_attr('light.vic_s_office', 'brightness') | int(128) }}",
+  "original_rgb_color": "{{\n  state_attr('light.vic_s_office', 'rgb_color') | default([255, 255, 255])\n}}",
+  "last_flash_time": "{{ states('input_datetime.rain_flash_cooldown') }}",
+  "cooldown_expired": "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 3600 }}"
+}
+```
+File: [`automation/light/vic_s_office/rain_flash.yaml`](entities/automation/light/vic_s_office/rain_flash.yaml)
 </details>
 
 <details><summary><code>/light/wardrobe-lights/auto-off</code></summary>
@@ -2459,7 +2482,7 @@ File: [`input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml`](entities/inpu
 
 ## Input Datetime
 
-<details><summary><h3>Entities (2)</h3></summary>
+<details><summary><h3>Entities (3)</h3></summary>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
 
@@ -2481,6 +2504,17 @@ File: [`input_datetime/home_assistant_start_time.yaml`](entities/input_datetime/
 - Icon: [`mdi:bank-transfer`](https://pictogrammers.com/library/mdi/icon/bank-transfer/)
 
 File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_save.yaml)
+</details>
+
+<details><summary><strong>Rain Flash Cooldown</strong></summary>
+
+**Entity ID: `input_datetime.rain_flash_cooldown`**
+
+- Has Date: `true`
+- Has Time: `true`
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+
+File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_flash_cooldown.yaml)
 </details>
 
 </details>
