@@ -916,7 +916,7 @@ File: [`automation/light/upper_landing_lights/timeout.yaml`](entities/automation
   "original_brightness": "{{ state_attr('light.vic_s_office', 'brightness') | int(128) }}",
   "original_rgb_color": "{{\n  state_attr('light.vic_s_office', 'rgb_color') | default([255, 255, 255])\n}}",
   "last_flash_time": "{{ states('input_datetime.rain_flash_cooldown') }}",
-  "cooldown_expired": "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 7200 }}"
+  "cooldown_expired": "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 3600 }}"
 }
 ```
 File: [`automation/light/vic_s_office/rain_flash.yaml`](entities/automation/light/vic_s_office/rain_flash.yaml)

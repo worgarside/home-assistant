@@ -21,9 +21,9 @@ variables:
       state_attr('light.vic_s_office', 'rgb_color') | default([255, 255, 255])
     }}
 
-  # Check if we're within the 2-hour cooldown period
+  # Check if we're within the 1-hour cooldown period
   last_flash_time: "{{ states('input_datetime.rain_flash_cooldown') }}"
-  cooldown_expired: "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 7200 }}"
+  cooldown_expired: "{{ (as_timestamp(now()) - as_timestamp(last_flash_time)) > 3600 }}"
 
 action:
   - condition: "{{ cooldown_expired }}"
@@ -41,7 +41,7 @@ action:
     data:
       rgb_color: [0, 0, 255]  # Blue
       brightness: 255
-      transition: 2
+      transition: 0
 
   - delay:
       seconds: 1
@@ -50,7 +50,7 @@ action:
     target:
       entity_id: light.vic_s_office
     data:
-      transition: 2
+      transition: 0
 
   - delay:
       seconds: 1
@@ -61,16 +61,10 @@ action:
     data:
       rgb_color: [0, 0, 255]  # Blue
       brightness: 255
-      transition: 2
+      transition: 0
 
   - delay:
       seconds: 1
-
-  - service: light.turn_off
-    target:
-      entity_id: light.vic_s_office
-    data:
-      transition: 2
 
   - if: "{{ original_state }}"
 
