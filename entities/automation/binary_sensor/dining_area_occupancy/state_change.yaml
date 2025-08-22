@@ -1,0 +1,61 @@
+---
+alias: /binary-sensor/dining-area-occupancy/state-change
+
+id: binary_sensor_dining_area_occupancy_state_change
+
+mode: queued
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.dining_area_occupancy
+    to: "on"
+
+  - platform: state
+    entity_id: binary_sensor.dining_area_occupancy
+    to: "off"
+    for:
+      seconds: 5
+
+variables:
+  color_temp_kelvin: 2500
+
+  modifier: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+action:
+  - if: "{{ trigger.to_state.state == 'on' }}"
+    then:
+      # Dining area lights at full brightness
+      - service: light.turn_on
+        target:
+          area_id: dining_area
+        data:
+          brightness_pct: "{{ modifier }}"
+          color_temp_kelvin: "{{ color_temp_kelvin }}"
+          transition: 1
+
+    else:
+      - parallel:
+          # big light at 50%, shelves at 25%, spotlights off
+          - service: light.turn_on
+            target:
+              entity_id: light.dining_area_big_light
+            data:
+              brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
+              color_temp_kelvin: "{{ color_temp_kelvin }}"
+              transition: 1
+
+          - service: light.turn_on
+            target:
+              entity_id: light.dining_area_shelves
+            data:
+              brightness_pct: "{{ (modifier * 0.25) | round(0, 'ceil') }}"
+              color_temp_kelvin: "{{ color_temp_kelvin }}"
+              transition: 1
+
+          - service: light.turn_off
+            target:
+              entity_id: light.dining_area
+            data:
+              transition: 1

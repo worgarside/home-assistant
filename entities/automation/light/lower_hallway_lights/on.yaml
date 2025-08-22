@@ -101,19 +101,20 @@ action:
             value_template: "{{ trigger.id == 'kitchen_hallway' }}"
 
         sequence:
-          - service: light.turn_on
-            target:
-              entity_id: light.kitchen_hallway_spotlight
-            data:
-              brightness_pct: "{{ brightness }}"
-              transition: 1
+          - parallel:
+              - service: light.turn_on
+                target:
+                  entity_id: light.kitchen_hallway_spotlight
+                data:
+                  brightness_pct: "{{ brightness }}"
+                  transition: 1
 
-          - service: light.turn_on
-            target:
-              entity_id: light.lower_hallway_2
-            data:
-              brightness_pct: "{{ brightness }}"
-              transition: 1
+              - service: light.turn_on
+                target:
+                  entity_id: light.lower_hallway_2
+                data:
+                  brightness_pct: "{{ brightness }}"
+                  transition: 1
 
           - delay:
               seconds: 2.5

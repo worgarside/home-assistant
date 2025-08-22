@@ -1,0 +1,76 @@
+---
+alias: /binary-sensor/kitchen-occupancy/state-change
+
+id: binary_sensor_kitchen_occupancy_state_change
+
+mode: queued
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.dining_area_occupancy
+    to: "on"
+  - platform: state
+    entity_id: binary_sensor.dining_area_occupancy
+    to: "off"
+    for:
+      seconds: 5
+
+variables:
+  kitchen_multiplier: "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}"
+
+  modifier: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+action:
+  - if: "{{ trigger.to_state.state == 'on' }}"
+    then:
+      - service: light.turn_on
+        target:
+          area_id: kitchen
+        data:
+          brightness_pct: "{{ min(modifier * kitchen_multiplier, 100) }}"
+          transition: 1
+
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_island
+        data:
+          # Keep kitchen island brighter for cooking
+          brightness_pct: >-
+            {{
+              max(
+                min(modifier * kitchen_multiplier, 100),
+                (40 if 12 <= now().hour < 23 else 0)
+              )
+            }}
+          transition: 1
+
+    else:
+      - if: >-
+          {{
+            trigger.entity_id == 'binary_sensor.kitchen_occupancy' and
+            trigger.from_state.state == 'on' and
+            trigger.to_state.state == 'off'
+          }}
+
+        then:
+          - delay:
+              seconds: 5
+
+      # Kitchen: spotlights at 15%, island at 50%
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_spotlights
+        data:
+          brightness_pct: "{{ (modifier * 0.15) | round(0, 'ceil') }}"
+          transition: 1
+
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.kitchen_island
+            - light.kitchen_counter_lights
+        data:
+          brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
+          transition: 1
