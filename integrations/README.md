@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (127)</h3></summary>
+<details><summary><h3>Entities (129)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -34,21 +34,33 @@ File: [`automation/binary_sensor/basement_presence/off.yaml`](entities/automatio
 
 **Entity ID: `automation.binary_sensor_basement_presence_on`**
 
-> Controls basement lighting based on occupancy in kitchen, dining area, and basement. Also pauses Cosmo when someone enters the basement while he's cleaning.
+> Pauses Cosmo when someone enters the basement while he's cleaning.
 
 - Alias: /binary-sensor/basement-presence/on
 - ID: `binary_sensor_basement_presence_on`
 - Mode: `restart`
+
+File: [`automation/binary_sensor/basement_presence/on.yaml`](entities/automation/binary_sensor/basement_presence/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/dining-area-occupancy/state-change</code></summary>
+
+**Entity ID: `automation.binary_sensor_dining_area_occupancy_state_change`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/dining-area-occupancy/state-change
+- ID: `binary_sensor_dining_area_occupancy_state_change`
+- Mode: `queued`
 - Variables:
 
 ```json
 {
   "color_temp_kelvin": 2500,
-  "kitchen_multiplier": "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}",
   "modifier": "{{ states('sensor.lighting_modifier') | int(70) }}"
 }
 ```
-File: [`automation/binary_sensor/basement_presence/on.yaml`](entities/automation/binary_sensor/basement_presence/on.yaml)
+File: [`automation/binary_sensor/dining_area_occupancy/state_change.yaml`](entities/automation/binary_sensor/dining_area_occupancy/state_change.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/front-door/open</code></summary>
@@ -62,6 +74,26 @@ File: [`automation/binary_sensor/basement_presence/on.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/binary_sensor/front_door/open.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/kitchen-occupancy/state-change</code></summary>
+
+**Entity ID: `automation.binary_sensor_kitchen_occupancy_state_change`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/kitchen-occupancy/state-change
+- ID: `binary_sensor_kitchen_occupancy_state_change`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "kitchen_multiplier": "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}",
+  "modifier": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/binary_sensor/kitchen_occupancy/state_change.yaml`](entities/automation/binary_sensor/kitchen_occupancy/state_change.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/lounge-diffuser-needs-water/off</code></summary>
