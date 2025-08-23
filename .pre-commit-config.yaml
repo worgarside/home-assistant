@@ -8,6 +8,25 @@ repos:
     hooks:
       - id: sync-additional-dependencies
 
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args:
+          - --maxkb=1000
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: pretty-format-json
+        args:
+          - --no-sort-keys
+          - --autofix
+          - --indent
+          - "2"
+      - id: trailing-whitespace
+
   - repo: https://github.com/worgarside/home-assistant-config-validator
     rev: 4.3.4
     hooks:
@@ -51,25 +70,6 @@ repos:
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
       - id: ruff-format
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
-
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
-    hooks:
-      - id: check-added-large-files
-        args:
-          - --maxkb=1000
-      - id: check-case-conflict
-      - id: check-merge-conflict
-      - id: debug-statements
-      - id: end-of-file-fixer
-      - id: mixed-line-ending
-      - id: pretty-format-json
-        args:
-          - --no-sort-keys
-          - --autofix
-          - --indent
-          - "2"
-      - id: trailing-whitespace
 
   - repo: https://github.com/lovesegfault/beautysh
     rev: v6.2.1
