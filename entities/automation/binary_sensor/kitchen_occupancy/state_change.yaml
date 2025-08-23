@@ -25,26 +25,29 @@ variables:
 action:
   - if: "{{ trigger.to_state.state == 'on' }}"
     then:
-      - service: light.turn_on
-        target:
-          area_id: kitchen
-        data:
-          brightness_pct: "{{ min(modifier * kitchen_multiplier, 100) }}"
-          transition: 1
+      - parallel:
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.kitchen_counter_lights
+                - light.kitchen_spotlights
+            data:
+              brightness_pct: "{{ min(modifier * kitchen_multiplier, 100) }}"
+              transition: 1
 
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_island
-        data:
-          # Keep kitchen island brighter for cooking
-          brightness_pct: >-
-            {{
-              max(
-                min(modifier * kitchen_multiplier, 100),
-                (40 if 12 <= now().hour < 23 else 0)
-              )
-            }}
-          transition: 1
+          - service: light.turn_on
+            target:
+              entity_id: light.kitchen_island
+            data:
+            # Keep kitchen island brighter for cooking
+              brightness_pct: >-
+                {{
+                  max(
+                    min(modifier * kitchen_multiplier, 100),
+                    (40 if 12 <= now().hour < 23 else 0)
+                  )
+                }}
+              transition: 1
 
     else:
       - if: >-
@@ -58,19 +61,20 @@ action:
           - delay:
               seconds: 5
 
-      # Kitchen: spotlights at 15%, island at 50%
-      - service: light.turn_on
-        target:
-          entity_id: light.kitchen_spotlights
-        data:
-          brightness_pct: "{{ (modifier * 0.15) | round(0, 'ceil') }}"
-          transition: 1
+      - parallel:
+        # Kitchen: spotlights at 15%, island at 50%
+          - service: light.turn_on
+            target:
+              entity_id: light.kitchen_spotlights
+            data:
+              brightness_pct: "{{ (modifier * 0.15) | round(0, 'ceil') }}"
+              transition: 1
 
-      - service: light.turn_on
-        target:
-          entity_id:
-            - light.kitchen_island
-            - light.kitchen_counter_lights
-        data:
-          brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
-          transition: 1
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.kitchen_island
+                - light.kitchen_counter_lights
+            data:
+              brightness_pct: "{{ (modifier * 0.5) | round(0, 'ceil') }}"
+              transition: 1
