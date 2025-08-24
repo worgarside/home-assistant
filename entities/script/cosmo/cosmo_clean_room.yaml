@@ -16,17 +16,6 @@ fields:
     selector:
       area:
 
-  doors_open_timeout:
-    description: How long to wait for doors to be open (defaults to 120 minutes)
-    required: false
-    default: 120
-    selector:
-      number:
-        min: 0
-        max: 100
-        unit_of_measurement: minutes
-        mode: slider
-
   repeats:
     description: How many times to repeat the clean (defaults to 3)
     required: false
@@ -48,8 +37,6 @@ fields:
         mode: slider
 
 variables:
-  doors_open_timeout: "{{ doors_open_timeout | default(120) | int(120) }}"
-
   repeats: "{{ repeats | default(3) | int(3) }}"
 
   suction_level: "{{ suction_level | default(2) | int(2) }}"
