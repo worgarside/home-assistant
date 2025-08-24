@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (129)</h3></summary>
+<details><summary><h3>Entities (131)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -255,6 +255,19 @@ File: [`automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml
 }
 ```
 File: [`automation/camera/offline_notify_will.yaml`](entities/automation/camera/offline_notify_will.yaml)
+</details>
+
+<details><summary><code>/cosmo/docked-set-basement-map</code></summary>
+
+**Entity ID: `automation.cosmo_docked_set_basement_map`**
+
+> Sets Cosmo's selected map to Basement when docked and/or charging
+
+- Alias: /cosmo/docked-set-basement-map
+- ID: `cosmo_docked_set_basement_map`
+- Mode: `single`
+
+File: [`automation/cosmo/docked_set_basement_map.yaml`](entities/automation/cosmo/docked_set_basement_map.yaml)
 </details>
 
 <details><summary><code>/cosmo/nightly-kitchen-clean</code></summary>
@@ -1870,6 +1883,19 @@ File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/swit
 }
 ```
 File: [`automation/switch/prusa_i3_mk3_power/timeout.yaml`](entities/automation/switch/prusa_i3_mk3_power/timeout.yaml)
+</details>
+
+<details><summary><code>/tag/cosmo/ground-floor</code></summary>
+
+**Entity ID: `automation.tag_cosmo_ground_floor`**
+
+> *No description provided*
+
+- Alias: /tag/cosmo/ground-floor
+- ID: `tag_cosmo_ground_floor`
+- Mode: `single`
+
+File: [`automation/tag/cosmo/ground_floor.yaml`](entities/automation/tag/cosmo/ground_floor.yaml)
 </details>
 
 <details><summary><code>/var/vic-s-office-state-manager/attribute-timeout</code></summary>
@@ -4914,19 +4940,6 @@ File: [`script/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/script/appda
       "area": null
     }
   },
-  "doors_open_timeout": {
-    "description": "How long to wait for doors to be open (defaults to 120 minutes)",
-    "required": false,
-    "default": 120,
-    "selector": {
-      "number": {
-        "min": 0,
-        "max": 100,
-        "unit_of_measurement": "minutes",
-        "mode": "slider"
-      }
-    }
-  },
   "repeats": {
     "description": "How many times to repeat the clean (defaults to 3)",
     "required": false,
@@ -4959,7 +4972,6 @@ File: [`script/appdaemon_trigger/ad_monzo_auto_save.yaml`](entities/script/appda
 
 ```json
 {
-  "doors_open_timeout": "{{ doors_open_timeout | default(120) | int(120) }}",
   "repeats": "{{ repeats | default(3) | int(3) }}",
   "suction_level": "{{ suction_level | default(2) | int(2) }}",
   "suction_level_str": "{{ ['quiet', 'standard', 'strong', 'turbo'][suction_level] }}",
