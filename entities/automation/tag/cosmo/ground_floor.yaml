@@ -9,6 +9,8 @@ triggers:
   - trigger: tag
     tag_id: aa64c696-7066-4e9e-9c9f-a4ddff5e10cb
 
+condition: "{{ not is_state('vacuum.cosmo', 'cleaning') }}"
+
 actions:
   - action: select.select_option
     target:
