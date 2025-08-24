@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (131)</h3></summary>
+<details><summary><h3>Entities (132)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1883,6 +1883,19 @@ File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/swit
 }
 ```
 File: [`automation/switch/prusa_i3_mk3_power/timeout.yaml`](entities/automation/switch/prusa_i3_mk3_power/timeout.yaml)
+</details>
+
+<details><summary><code>/tag/cosmo/first-floor</code></summary>
+
+**Entity ID: `automation.tag_cosmo_first_floor`**
+
+> *No description provided*
+
+- Alias: /tag/cosmo/first-floor
+- ID: `tag_cosmo_first_floor`
+- Mode: `single`
+
+File: [`automation/tag/cosmo/first_floor.yaml`](entities/automation/tag/cosmo/first_floor.yaml)
 </details>
 
 <details><summary><code>/tag/cosmo/ground-floor</code></summary>

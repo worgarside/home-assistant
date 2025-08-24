@@ -1,20 +1,20 @@
 ---
-alias: /tag/cosmo/ground-floor
+alias: /tag/cosmo/first-floor
 
-id: tag_cosmo_ground_floor
+id: tag_cosmo_first_floor
 
 mode: single
 
 triggers:
   - trigger: tag
-    tag_id: aa64c696-7066-4e9e-9c9f-a4ddff5e10cb
+    tag_id: dd7af79f-062c-40b8-acca-dd23f00cfd7f
 
 actions:
   - action: select.select_option
     target:
       entity_id: select.cosmo_selected_map
     data:
-      option: Ground Floor
+      option: First Floor
 
   - alias: Let all entities update/settle
     delay:
@@ -27,24 +27,31 @@ actions:
 
   - alias: Get Room IDs
     parallel:
-      - alias: Get Hallway ID
+      - alias: Get Landing ID
         service: script.cosmo_get_room_id_or_name
         data:
-          lookup_value: hallway
-        response_variable: hallway_id
+          lookup_value: landing
+        response_variable: landing_id
 
-      - alias: Get Lounge ID
+      - alias: Get Bedroom ID
         service: script.cosmo_get_room_id_or_name
         data:
-          lookup_value: lounge
-        response_variable: lounge_id
+          lookup_value: bedroom
+        response_variable: bedroom_id
 
-  - alias: "Set Cleaning Sequence: Hallway first, Lounge second"
+      - alias: Get Will's Office ID
+        service: script.cosmo_get_room_id_or_name
+        data:
+          lookup_value: willsoffice
+        response_variable: wills_office_id
+
+  - alias: "Set Cleaning Sequence: Bedroom, Landing, Will's Office"
     service: dreame_vacuum.vacuum_set_cleaning_sequence
     data:
       cleaning_sequence:
-        - "{{ hallway_id.value }}"
-        - "{{ lounge_id.value }}"
+        - "{{ bedroom_id.value }}"
+        - "{{ landing_id.value }}"
+        - "{{ wills_office_id.value }}"
     target:
       entity_id: vacuum.cosmo
 
@@ -61,8 +68,9 @@ actions:
   - alias: Set Clean Count to 3x
     repeat:
       for_each:
-        - select.dreamebot_d10_plus_room_{{ hallway_id.value }}_cleaning_times
-        - select.dreamebot_d10_plus_room_{{ lounge_id.value }}_cleaning_times
+        - select.dreamebot_d10_plus_room_{{ bedroom_id.value }}_cleaning_times
+        - select.dreamebot_d10_plus_room_{{ landing_id.value }}_cleaning_times
+        - select.dreamebot_d10_plus_room_{{ wills_office_id.value }}_cleaning_times
 
       sequence:
         - service: select.select_option
@@ -75,8 +83,9 @@ actions:
     repeat:
       for_each:
         - select.cosmo_suction_level
-        - select.dreamebot_d10_plus_room_{{ hallway_id.value }}_suction_level
-        - select.dreamebot_d10_plus_room_{{ lounge_id.value }}_suction_level
+        - select.dreamebot_d10_plus_room_{{ bedroom_id.value }}_suction_level
+        - select.dreamebot_d10_plus_room_{{ landing_id.value }}_suction_level
+        - select.dreamebot_d10_plus_room_{{ wills_office_id.value }}_suction_level
 
       sequence:
         - action: select.select_option
