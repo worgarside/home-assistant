@@ -1,0 +1,24 @@
+---
+alias: /cosmo/docked-set-basement-map
+
+id: cosmo_docked_set_basement_map
+
+mode: single
+
+description: Sets Cosmo's selected map to Basement when docked and/or charging
+
+trigger:
+  - platform: state
+    entity_id: vacuum.cosmo
+    to: docked
+
+  - platform: state
+    entity_id: vacuum.cosmo
+    to: charging
+
+action:
+  - service: select.select_option
+    target:
+      entity_id: select.cosmo_selected_map
+    data:
+      option: Basement
