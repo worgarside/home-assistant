@@ -1,0 +1,28 @@
+---
+alias: /tag/cosmo/basement
+
+id: tag_cosmo_basement
+
+mode: single
+
+triggers:
+  - trigger: tag
+    tag_id: a6c3ba98-1036-4b44-8c54-c255eeb934a9
+
+condition: "{{ not is_state('vacuum.cosmo', 'cleaning') }}"
+
+actions:
+  - action: select.select_option
+    target:
+      entity_id: select.cosmo_selected_map
+    data:
+      option: Basement
+
+  - alias: Let all entities update/settle
+    delay:
+      seconds: 5
+
+  - alias: Return to Base
+    action: vacuum.return_to_base
+    target:
+      entity_id: vacuum.cosmo

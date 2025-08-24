@@ -1,0 +1,93 @@
+---
+alias: /tag/cosmo/ground-floor
+
+id: tag_cosmo_ground_floor
+
+mode: single
+
+triggers:
+  - trigger: tag
+    tag_id: aa64c696-7066-4e9e-9c9f-a4ddff5e10cb
+
+condition: "{{ not is_state('vacuum.cosmo', 'cleaning') }}"
+
+actions:
+  - action: select.select_option
+    target:
+      entity_id: select.cosmo_selected_map
+    data:
+      option: Ground Floor
+
+  - alias: Let all entities update/settle
+    delay:
+      seconds: 5
+
+  - alias: Turn on Cleaning Sequence
+    action: switch.turn_on
+    target:
+      entity_id: switch.cosmo_cleaning_sequence
+
+  - alias: Get Room IDs
+    parallel:
+      - alias: Get Hallway ID
+        service: script.cosmo_get_room_id_or_name
+        data:
+          lookup_value: hallway
+        response_variable: hallway_id
+
+      - alias: Get Lounge ID
+        service: script.cosmo_get_room_id_or_name
+        data:
+          lookup_value: lounge
+        response_variable: lounge_id
+
+  - alias: "Set Cleaning Sequence: Hallway first, Lounge second"
+    service: dreame_vacuum.vacuum_set_cleaning_sequence
+    data:
+      cleaning_sequence:
+        - "{{ hallway_id.value }}"
+        - "{{ lounge_id.value }}"
+    target:
+      entity_id: vacuum.cosmo
+
+  - alias: Turn on Carpet Boost
+    service: switch.turn_on
+    target:
+      entity_id: switch.cosmo_carpet_boost
+
+  - alias: Turn on Customized Cleaning
+    service: switch.turn_on
+    target:
+      entity_id: switch.cosmo_customized_cleaning
+
+  - alias: Set Clean Count to 3x
+    repeat:
+      for_each:
+        - select.dreamebot_d10_plus_room_{{ hallway_id.value }}_cleaning_times
+        - select.dreamebot_d10_plus_room_{{ lounge_id.value }}_cleaning_times
+
+      sequence:
+        - service: select.select_option
+          target:
+            entity_id: "{{ repeat.item }}"
+          data:
+            option: 3x
+
+  - alias: Set Suction Level to Strong
+    repeat:
+      for_each:
+        - select.cosmo_suction_level
+        - select.dreamebot_d10_plus_room_{{ hallway_id.value }}_suction_level
+        - select.dreamebot_d10_plus_room_{{ lounge_id.value }}_suction_level
+
+      sequence:
+        - action: select.select_option
+          target:
+            entity_id: "{{ repeat.item }}"
+          data:
+            option: strong
+
+  - alias: Start Cosmo
+    service: vacuum.start
+    target:
+      entity_id: vacuum.cosmo

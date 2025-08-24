@@ -1,0 +1,102 @@
+---
+alias: /tag/cosmo/first-floor
+
+id: tag_cosmo_first_floor
+
+mode: single
+
+triggers:
+  - trigger: tag
+    tag_id: dd7af79f-062c-40b8-acca-dd23f00cfd7f
+
+condition: "{{ not is_state('vacuum.cosmo', 'cleaning') }}"
+
+actions:
+  - action: select.select_option
+    target:
+      entity_id: select.cosmo_selected_map
+    data:
+      option: First Floor
+
+  - alias: Let all entities update/settle
+    delay:
+      seconds: 5
+
+  - alias: Turn on Cleaning Sequence
+    action: switch.turn_on
+    target:
+      entity_id: switch.cosmo_cleaning_sequence
+
+  - alias: Get Room IDs
+    parallel:
+      - alias: Get Landing ID
+        service: script.cosmo_get_room_id_or_name
+        data:
+          lookup_value: landing
+        response_variable: landing_id
+
+      - alias: Get Bedroom ID
+        service: script.cosmo_get_room_id_or_name
+        data:
+          lookup_value: bedroom
+        response_variable: bedroom_id
+
+      - alias: Get Will's Office ID
+        service: script.cosmo_get_room_id_or_name
+        data:
+          lookup_value: willsoffice
+        response_variable: wills_office_id
+
+  - alias: "Set Cleaning Sequence: Bedroom, Landing, Will's Office"
+    service: dreame_vacuum.vacuum_set_cleaning_sequence
+    data:
+      cleaning_sequence:
+        - "{{ bedroom_id.value }}"
+        - "{{ landing_id.value }}"
+        - "{{ wills_office_id.value }}"
+    target:
+      entity_id: vacuum.cosmo
+
+  - alias: Turn on Carpet Boost
+    service: switch.turn_on
+    target:
+      entity_id: switch.cosmo_carpet_boost
+
+  - alias: Turn on Customized Cleaning
+    service: switch.turn_on
+    target:
+      entity_id: switch.cosmo_customized_cleaning
+
+  - alias: Set Clean Count to 3x
+    repeat:
+      for_each:
+        - select.dreamebot_d10_plus_room_{{ bedroom_id.value }}_cleaning_times
+        - select.dreamebot_d10_plus_room_{{ landing_id.value }}_cleaning_times
+        - select.dreamebot_d10_plus_room_{{ wills_office_id.value }}_cleaning_times
+
+      sequence:
+        - service: select.select_option
+          target:
+            entity_id: "{{ repeat.item }}"
+          data:
+            option: 3x
+
+  - alias: Set Suction Level to Strong
+    repeat:
+      for_each:
+        - select.cosmo_suction_level
+        - select.dreamebot_d10_plus_room_{{ bedroom_id.value }}_suction_level
+        - select.dreamebot_d10_plus_room_{{ landing_id.value }}_suction_level
+        - select.dreamebot_d10_plus_room_{{ wills_office_id.value }}_suction_level
+
+      sequence:
+        - action: select.select_option
+          target:
+            entity_id: "{{ repeat.item }}"
+          data:
+            option: strong
+
+  - alias: Start Cosmo
+    service: vacuum.start
+    target:
+      entity_id: vacuum.cosmo

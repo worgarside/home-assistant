@@ -2,6 +2,9 @@
 trigger:
   - platform: state
     entity_id: vacuum.cosmo
+
+  - platform: state
+    entity_id: vacuum.cosmo
     attribute: rooms
 
   - platform: state
