@@ -7,7 +7,7 @@ mode: single
 
 triggers:
   - trigger: tag
-    tag_id: dd7af79f-062c-40b8-acca-dd23f00cfd7f
+    tag_id: a6c3ba98-1036-4b44-8c54-c255eeb934a9
 
 condition: "{{ not is_state('vacuum.cosmo', 'cleaning') }}"
 
