@@ -1,0 +1,35 @@
+---
+alias: /sensor/tomorrow-io-weather-code/rain-with-open-door
+id: sensor_tomorrow_io_weather_code_rain_with_open_door
+description: Alert Will when it starts to rain and the roof terrace door is open
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.tomorrow_io_weather_code
+    to:
+      - "Drizzle"
+      - "Rain"
+      - "Light Rain"
+      - "Heavy Rain"
+      - "Freezing Drizzle"
+      - "Freezing Rain"
+      - "Light Freezing Rain"
+      - "Heavy Freezing Rain"
+      - "Thunderstorm"
+
+condition:
+  - condition: state
+    entity_id: binary_sensor.roof_terrace_door_contact
+    state: "on"
+
+action:
+  - service: script.notify_will
+    data:
+      title: 🌧️ Rain Alert - Door Open!
+      message: It's starting to rain and the roof terrace door is open. You may want to close it to prevent water ingress.
+      notification_id: rain_door_open_alert
+      mobile_notification_icon: mdi:weather-pouring
+      sticky: true
+      persistent: true
