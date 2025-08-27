@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (133)</h3></summary>
+<details><summary><h3>Entities (134)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1731,6 +1731,19 @@ File: [`automation/remote/will_s_desk/button_2/single.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/sensor/storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear.yaml`](entities/automation/sensor/storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear.yaml)
+</details>
+
+<details><summary><code>/sensor/tomorrow-io-weather-code/rain-with-open-door</code></summary>
+
+**Entity ID: `automation.sensor_tomorrow_io_weather_code_rain_with_open_door`**
+
+> Alert Will when it starts to rain and the roof terrace door is open
+
+- Alias: /sensor/tomorrow-io-weather-code/rain-with-open-door
+- ID: `sensor_tomorrow_io_weather_code_rain_with_open_door`
+- Mode: `single`
+
+File: [`automation/sensor/tomorrow_io_weather_code/rain_with_open_door.yaml`](entities/automation/sensor/tomorrow_io_weather_code/rain_with_open_door.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>
