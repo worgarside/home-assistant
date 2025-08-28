@@ -15,7 +15,7 @@ state: >-
   {% set weekday = states("binary_sensor.weekday") | bool(false) %}
   {% set current_hour = states("sensor.current_hour") | int(12) %}
 
-  {% if ( weekday and 0 <= current_hour < 7 ) or tod == "Night" %}
+  {% if current_hour >= 23 or ( weekday and 0 <= current_hour < 7 ) or tod == "Night" %}
     1
   {% elif tod in ("Morning", "Afternoon") %}
     {{ iif(quiet_hours, 75, 100) }}
