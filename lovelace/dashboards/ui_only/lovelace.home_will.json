@@ -1194,6 +1194,45 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.sun_elevation",
+                      "name": "Sun"
+                    },
+                    {
+                      "entity": "sensor.lighting_modifier",
+                      "name": "Modifier",
+                      "y_axis": "secondary"
+                    }
+                  ],
+                  "height": 250,
+                  "hours_to_show": 24,
+                  "hour24": true,
+                  "points_per_hour": 20,
+                  "line_width": 2,
+                  "min_bound_range": 10,
+                  "animate": false,
+                  "smoothing": true,
+                  "show": {
+                    "fill": "fade",
+                    "icon": false,
+                    "state": false,
+                    "legend": true,
+                    "labels": false,
+                    "name": false
+                  }
+                }
+              ]
             }
           ],
           "max_columns": 3,
