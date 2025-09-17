@@ -96,17 +96,17 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 File: [`automation/binary_sensor/kitchen_occupancy/state_change.yaml`](entities/automation/binary_sensor/kitchen_occupancy/state_change.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/lounge-diffuser-needs-water/off</code></summary>
+<details><summary><code>/binary-sensor/lounge-diffuser-needs-water/state-change</code></summary>
 
-**Entity ID: `automation.binary_sensor_lounge_diffuser_needs_water_off`**
+**Entity ID: `automation.binary_sensor_lounge_diffuser_needs_water_state_change`**
 
 > Send a notification when the lounge diffuser runs out of water
 
-- Alias: /binary-sensor/lounge-diffuser-needs-water/off
-- ID: `binary_sensor_lounge_diffuser_needs_water_off`
+- Alias: /binary-sensor/lounge-diffuser-needs-water/state-change
+- ID: `binary_sensor_lounge_diffuser_needs_water_state_change`
 - Mode: `single`
 
-File: [`automation/binary_sensor/lounge_diffuser_needs_water/off.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/off.yaml)
+File: [`automation/binary_sensor/lounge_diffuser_needs_water/state_change.yaml`](entities/automation/binary_sensor/lounge_diffuser_needs_water/state_change.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/lounge-occupancy/off</code></summary>
