@@ -1,0 +1,23 @@
+---
+alias: /webhook/notify-will
+
+id: webhook_notify_will
+
+mode: queued
+
+trigger:
+  - platform: webhook
+    webhook_id: notify_will
+    allowed_methods:
+      - POST
+    local_only: true
+
+action:
+  - service: persistent_notification.create
+    data:
+      title: "Webhook Payload"
+      message: |
+        ## Webhook Payload
+        ```json
+        {{ trigger.json }}
+        ```
