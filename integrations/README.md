@@ -2304,13 +2304,20 @@ File: [`cover/office/office_desk.yaml`](entities/cover/office/office_desk.yaml)
 
 ## Device Tracker
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (2)</h3></summary>
 
 <details><summary><code>device_tracker.primary_gmail_address</code></summary>
 
 - Platform: `google_maps`
 
 File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_tracker/google_maps/primary_gmail_address.yaml)
+</details>
+
+<details><summary><code>device_tracker.openwrt_vm</code></summary>
+
+- Platform: `luci`
+
+File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openwrt_vm.yaml)
 </details>
 
 </details>
