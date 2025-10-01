@@ -50,9 +50,6 @@ variables:
 
   room_occupied: "{{ is_state('binary_sensor.will_s_office_presence_sensor', 'on') }}"
 
-# If it's already on, leave it alone
-condition: "{{ is_state('fan.will_s_office_fan', 'off') }}"
-
 action:
   - choose:
       - alias: Poor Air Quality
