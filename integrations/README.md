@@ -2008,6 +2008,19 @@ File: [`automation/webhook/git_branch_or_tag_created.yaml`](entities/automation/
 File: [`automation/webhook/git_branch_or_tag_deleted.yaml`](entities/automation/webhook/git_branch_or_tag_deleted.yaml)
 </details>
 
+<details><summary><code>/webhook/notify-will</code></summary>
+
+**Entity ID: `automation.webhook_notify_will`**
+
+> *No description provided*
+
+- Alias: /webhook/notify-will
+- ID: `webhook_notify_will`
+- Mode: `queued`
+
+File: [`automation/webhook/notify_will.yaml`](entities/automation/webhook/notify_will.yaml)
+</details>
+
 <details><summary><code>/webhook/update-pull-request-sensor</code></summary>
 
 **Entity ID: `automation.webhook_update_pull_request_sensor`**
