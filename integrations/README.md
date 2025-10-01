@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (133)</h3></summary>
+<details><summary><h3>Entities (134)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -601,6 +601,27 @@ File: [`automation/fan/prusa_i3_enclosure_fan/turn_off.yaml`](entities/automatio
 - Mode: `single`
 
 File: [`automation/fan/prusa_i3_enclosure_fan/turn_on.yaml`](entities/automation/fan/prusa_i3_enclosure_fan/turn_on.yaml)
+</details>
+
+<details><summary><code>/fan/will-s-office-fan/control</code></summary>
+
+**Entity ID: `automation.fan_will_s_office_fan_control`**
+
+> Turn on Will's office fan when air quality is bad (high PM2.5 or VOC levels). The fan will turn on when either PM2.5 or VOC index exceeds their respective thresholds.
+
+- Alias: /fan/will-s-office-fan/control
+- ID: `fan_will_s_office_fan_control`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "pm25_high": "{{\n  states('sensor.will_s_office_fan_pm_2_5') | float(0) >\n  states('input_number.will_s_office_fan_pm2_5_threshold') | float(0)\n}}\n",
+  "voc_high": "{{\n  states('sensor.will_s_office_fan_volatile_organic_compounds_index') | float(0) >\n  states('input_number.will_s_office_fan_voc_index_threshold') | float(0)\n}}\n",
+  "room_occupied": "{{ is_state('binary_sensor.will_s_office_presence_sensor', 'on') }}"
+}
+```
+File: [`automation/fan/will_s_office_fan/control.yaml`](entities/automation/fan/will_s_office_fan/control.yaml)
 </details>
 
 <details><summary><code>/gh-cli/user-updated</code></summary>
@@ -2612,7 +2633,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (36)</h3></summary>
+<details><summary><h3>Entities (38)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2909,6 +2930,29 @@ File: [`input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_voc
 - Unit Of Measurement: °C
 
 File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml)
+</details>
+
+<details><summary><strong>Will's Office Fan: PM2.5 Threshold</strong></summary>
+
+**Entity ID: `input_number.will_s_office_fan_pm2_5_threshold`**
+
+- Max: 500
+- Min: 25
+- Mode: `box`
+- Unit Of Measurement: µg/m³
+
+File: [`input_number/threshold/will_s_office_fan/will_s_office_fan_pm2_5_threshold.yaml`](entities/input_number/threshold/will_s_office_fan/will_s_office_fan_pm2_5_threshold.yaml)
+</details>
+
+<details><summary><strong>Will's Office Fan: VOC Index Threshold</strong></summary>
+
+**Entity ID: `input_number.will_s_office_fan_voc_index_threshold`**
+
+- Max: 10
+- Min: 0.5
+- Mode: `box`
+
+File: [`input_number/threshold/will_s_office_fan/will_s_office_fan_voc_index_threshold.yaml`](entities/input_number/threshold/will_s_office_fan/will_s_office_fan_voc_index_threshold.yaml)
 </details>
 
 <details><summary><strong>Air Freshener | Timeout</strong></summary>
