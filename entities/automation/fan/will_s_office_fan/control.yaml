@@ -35,6 +35,12 @@ trigger:
     below: input_number.will_s_office_fan_voc_index_threshold
     id: voc_low
 
+  - platform: state
+    entity_id: binary_sensor.will_s_office_presence_sensor
+    to: "off"
+    from: "on"
+    id: room_exited
+
 variables:
   pm25_high: >
     {{
@@ -55,7 +61,7 @@ action:
       - alias: Poor Air Quality
         conditions: "{{ trigger.id in ['pm25_high', 'voc_high'] }}"
         sequence:
-        # Don't want to blow things around the room
+          # Don't want to blow things around the room
           - service: fan.set_direction
             data:
               direction: reverse
@@ -74,7 +80,7 @@ action:
             target:
               entity_id: fan.will_s_office_fan
 
-    # Only 100% turn the fan off if the room is empty
+      # Only 100% turn the fan off if the room is empty
       - alias: Good Air Quality (Empty Room)
         conditions: "{{ trigger.id in ['pm25_low', 'voc_low'] and not room_occupied }}"
         sequence:
@@ -92,5 +98,32 @@ action:
           }}
         sequence:
           - service: fan.turn_off
+            target:
+              entity_id: fan.will_s_office_fan
+
+      - alias: Room Exited with Poor Air Quality & Fan Off
+        conditions: >-
+          {{
+            trigger.id == 'room_exited'
+            and (pm25_high or voc_high)
+            and is_state('fan.will_s_office_fan', 'off')
+          }}
+        sequence:
+          # Don't want to blow things around the room
+          - service: fan.set_direction
+            data:
+              direction: reverse
+            target:
+              entity_id: fan.will_s_office_fan
+
+          - service: climate.set_hvac_mode
+            target:
+              entity_id: climate.will_s_office_fan
+            data:
+              hvac_mode: cool
+
+          - service: fan.set_percentage
+            data:
+              percentage: "{{ 100 if room_occupied else 60 }}"
             target:
               entity_id: fan.will_s_office_fan
