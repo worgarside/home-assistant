@@ -61,13 +61,6 @@ action:
       - alias: Poor Air Quality
         conditions: "{{ trigger.id in ['pm25_high', 'voc_high'] }}"
         sequence:
-          # Don't want to blow things around the room
-          - service: fan.set_direction
-            data:
-              direction: reverse
-            target:
-              entity_id: fan.will_s_office_fan
-
           - service: climate.set_hvac_mode
             target:
               entity_id: climate.will_s_office_fan
@@ -76,7 +69,15 @@ action:
 
           - service: fan.set_percentage
             data:
-              percentage: "{{ 100 if room_occupied else 60 }}"
+              percentage: "{{ 70 if room_occupied else 100 }}"
+            target:
+              entity_id: fan.will_s_office_fan
+
+          # Don't want to blow things around the room
+          # Has to be after the percentage is set
+          - service: fan.set_direction
+            data:
+              direction: reverse
             target:
               entity_id: fan.will_s_office_fan
 
@@ -109,13 +110,6 @@ action:
             and is_state('fan.will_s_office_fan', 'off')
           }}
         sequence:
-          # Don't want to blow things around the room
-          - service: fan.set_direction
-            data:
-              direction: reverse
-            target:
-              entity_id: fan.will_s_office_fan
-
           - service: climate.set_hvac_mode
             target:
               entity_id: climate.will_s_office_fan
@@ -124,6 +118,14 @@ action:
 
           - service: fan.set_percentage
             data:
-              percentage: "{{ 100 if room_occupied else 60 }}"
+              percentage: "{{ 70 if room_occupied else 100 }}"
+            target:
+              entity_id: fan.will_s_office_fan
+
+          # Don't want to blow things around the room
+          # Has to be after the percentage is set
+          - service: fan.set_direction
+            data:
+              direction: reverse
             target:
               entity_id: fan.will_s_office_fan
