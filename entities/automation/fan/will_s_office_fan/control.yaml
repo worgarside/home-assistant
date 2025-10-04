@@ -76,7 +76,7 @@ action:
 
           - service: fan.set_percentage
             data:
-              percentage: "{{ 100 if room_occupied else 60 }}"
+              percentage: "{{ 60 if room_occupied else 100 }}"
             target:
               entity_id: fan.will_s_office_fan
 
@@ -117,7 +117,7 @@ action:
 
           - service: fan.set_percentage
             data:
-              percentage: "{{ 100 if room_occupied else 60 }}"
+              percentage: "{{ 60 if room_occupied else 100 }}"
             target:
               entity_id: fan.will_s_office_fan
 
