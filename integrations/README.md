@@ -2936,7 +2936,7 @@ File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](en
 
 **Entity ID: `input_number.will_s_office_fan_pm2_5_threshold`**
 
-- Max: 500
+- Max: 1000
 - Min: 25
 - Mode: `box`
 - Unit Of Measurement: µg/m³
