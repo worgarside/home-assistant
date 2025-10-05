@@ -12,7 +12,7 @@ trigger:
     at: input_datetime.next_bedroom_sunrise
 
 variables:
-  original_start_time: "{{ trigger.at }}"
+  original_start_time: "{{ states('input_datetime.next_bedroom_sunrise') }}"
 
 action:
   - alias: Turn on bedroom shapes with deep orange

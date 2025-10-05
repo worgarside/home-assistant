@@ -809,7 +809,7 @@ File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](
 
 ```json
 {
-  "original_start_time": "{{ trigger.at }}"
+  "original_start_time": "{{ states('input_datetime.next_bedroom_sunrise') }}"
 }
 ```
 File: [`automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml`](entities/automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml)
