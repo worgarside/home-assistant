@@ -95,8 +95,6 @@ variables:
 
   group: "{{ group | default('') }}"
 
-  sticky: "{{ sticky | default(false) }}"
-
 sequence:
   - if: >-
       {{
