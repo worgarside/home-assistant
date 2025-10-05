@@ -1,0 +1,21 @@
+---
+alias: /notification/apollo-plt1b/ota-mode-off
+
+id: notification_apollo_plt1b_ota_mode_off
+
+description: Clear Apollo PLT-1B OTA mode notification when OTA mode is turned off
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: input_boolean.apollo_ota_mode
+    from: "on"
+    to: "off"
+
+action:
+  - service: script.notify_will
+    data:
+      clear_notification: true
+      notification_id: apollo_plt1b_ota_mode_on
+      message: clear_notification
