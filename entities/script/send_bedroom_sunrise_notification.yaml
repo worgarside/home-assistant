@@ -1,0 +1,71 @@
+---
+alias: Send Bedroom Sunrise Notification
+
+description: Send sunrise notification with countdown timer to both phones
+
+mode: single
+
+sequence:
+  - alias: Calculate notification timeout
+    variables:
+      notif_timeout: "{{ states('input_datetime.next_bedroom_sunrise') | as_timestamp - now().timestamp() }}"
+
+  - alias: Send sunrise notification to Vic
+    if:
+      - condition: state
+        entity_id: person.vic
+        state: home
+    then:
+      - service: notify.mobile_app_victorias_iphone
+        data:
+          title: Good morning!
+          message: Rise and shine!
+          data:
+            actions:
+              - action: BEDROOM_SUNRISE_DELAY_15
+                title: "Delay 15 mins"
+              - action: BEDROOM_SUNRISE_DELAY_60
+                title: "Delay 60 mins"
+              - action: BEDROOM_SUNRISE_STOP
+                title: "Stop Sunrise"
+            tag: sunrise-alarm
+            group: sunrise-alarm
+            push:
+              sound: none
+              interruption-level: passive
+              badge: 1
+            subtitle: "Sunrise in {{ (notif_timeout / 60) | round(0) }} minutes"
+
+  - alias: Send sunrise notification to Will
+    if:
+      - condition: state
+        entity_id: person.will
+        state: home
+    then:
+      - service: notify.mobile_app_will_s_pixel_6_pro
+        data:
+          title: Good morning!
+          message: Rise and shine!
+          data:
+            persistent: true
+            actions:
+              - action: BEDROOM_SUNRISE_DELAY_15
+                title: "Delay 15 mins"
+              - action: BEDROOM_SUNRISE_DELAY_60
+                title: "Delay 60 mins"
+              - action: BEDROOM_SUNRISE_STOP
+                title: "Stop Sunrise"
+            tag: sunrise-alarm
+            group: sunrise-alarm
+            channel: Sunrise
+            importance: min
+            vibrationPattern: "100"
+            timeout: "{{ notif_timeout }}"
+            chronometer: true
+            when: "{{ notif_timeout }}"
+            when_relative: true
+            sound: none
+            notification_icon: "mdi:weather-sunset-up"
+            sticky: true
+            alert_once: true
+            subject: "Sunrise in {{ (notif_timeout / 60) | round(0) }} minutes"
