@@ -19,3 +19,5 @@ action:
       clear_notification: true
       notification_id: apollo_plt1b_ota_mode_on
       message: clear_notification
+      persistent: true
+      sticky: true
