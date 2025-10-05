@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (141)</h3></summary>
+<details><summary><h3>Entities (142)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -867,6 +867,19 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 File: [`automation/label/critical_battery/low_battery_alert.yaml`](entities/automation/label/critical_battery/low_battery_alert.yaml)
 </details>
 
+<details><summary><code>/light/bedroom-shapes/bon-appetit</code></summary>
+
+**Entity ID: `automation.light_bedroom_shapes_bon_appetit`**
+
+> Reset bedroom shapes to "bon appetit" effect at 10 AM
+
+- Alias: /light/bedroom-shapes/bon-appetit
+- ID: `light_bedroom_shapes_bon_appetit`
+- Mode: `single`
+
+File: [`automation/light/bedroom_shapes/bon_appetit.yaml`](entities/automation/light/bedroom_shapes/bon_appetit.yaml)
+</details>
+
 <details><summary><code>/light/desk-lamp/state-change</code></summary>
 
 **Entity ID: `automation.light_desk_lamp_state_change`**
@@ -1119,7 +1132,7 @@ File: [`automation/media_player/topaz_sr10/timeout.yaml`](entities/automation/me
 
 ```json
 {
-  "delay_minutes": "{% if trigger.id == 'BEDROOM_SUNRISE_DELAY_15' %}\n  15\n{% elif trigger.id == 'BEDROOM_SUNRISE_DELAY_60' %}\n  60\n{% endif %}"
+  "delay_minutes": "{% if trigger.id == 'BEDROOM_SUNRISE_DELAY_15' %}\n  15\n{% elif trigger.id == 'BEDROOM_SUNRISE_DELAY_30' %}\n  30\n{% elif trigger.id == 'BEDROOM_SUNRISE_DELAY_60' %}\n  60\n{% endif %}"
 }
 ```
 File: [`automation/mobile_app/notification_action/bedroom_sunrise_delay.yaml`](entities/automation/mobile_app/notification_action/bedroom_sunrise_delay.yaml)

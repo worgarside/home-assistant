@@ -50,9 +50,11 @@ sequence:
               data:
                 actions:
                   - action: BEDROOM_SUNRISE_DELAY_15
-                    title: "Delay 15 mins"
+                    title: "Start in 15 mins"
+                  - action: BEDROOM_SUNRISE_DELAY_30
+                    title: "Start in 30 mins"
                   - action: BEDROOM_SUNRISE_DELAY_60
-                    title: "Delay 60 mins"
+                    title: "Start in 60 mins"
                   - action: BEDROOM_SUNRISE_STOP
                     title: "Stop Sunrise"
                 tag: sunrise-alarm
@@ -61,7 +63,6 @@ sequence:
                   sound: none
                   interruption-level: passive
                   badge: 1
-                subtitle: "Sun up in {{ (notif_timeout / 60) | round(0) }} minutes"
 
       - alias: Send sunrise notification to Will
         if:
@@ -77,9 +78,11 @@ sequence:
                 persistent: true
                 actions:
                   - action: BEDROOM_SUNRISE_DELAY_15
-                    title: "Delay 15 mins"
+                    title: "Start in 15 mins"
+                  - action: BEDROOM_SUNRISE_DELAY_30
+                    title: "Start in 30 mins"
                   - action: BEDROOM_SUNRISE_DELAY_60
-                    title: "Delay 60 mins"
+                    title: "Start in 60 mins"
                   - action: BEDROOM_SUNRISE_STOP
                     title: "Stop Sunrise"
                 tag: sunrise-alarm
@@ -95,4 +98,3 @@ sequence:
                 notification_icon: "mdi:weather-sunset-up"
                 sticky: true
                 alert_once: true
-                subject: "Sun up in {{ (notif_timeout / 60) | round(0) }} minutes"

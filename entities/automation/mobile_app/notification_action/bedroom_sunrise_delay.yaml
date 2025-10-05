@@ -16,6 +16,11 @@ trigger:
   - platform: event
     event_type: mobile_app_notification_action
     event_data:
+      action: BEDROOM_SUNRISE_DELAY_30
+    id: BEDROOM_SUNRISE_DELAY_30
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
       action: BEDROOM_SUNRISE_DELAY_60
     id: BEDROOM_SUNRISE_DELAY_60
 
@@ -23,6 +28,8 @@ variables:
   delay_minutes: >-
     {% if trigger.id == 'BEDROOM_SUNRISE_DELAY_15' %}
       15
+    {% elif trigger.id == 'BEDROOM_SUNRISE_DELAY_30' %}
+      30
     {% elif trigger.id == 'BEDROOM_SUNRISE_DELAY_60' %}
       60
     {% endif %}
