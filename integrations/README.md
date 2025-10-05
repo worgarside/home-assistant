@@ -805,7 +805,13 @@ File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](
 - Alias: /input-datetime/next-bedroom-sunrise/sunrise-start
 - ID: `input_datetime_next_bedroom_sunrise_sunrise_start`
 - Mode: `single`
+- Variables:
 
+```json
+{
+  "original_start_time": "{{ trigger.at }}"
+}
+```
 File: [`automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml`](entities/automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml)
 </details>
 

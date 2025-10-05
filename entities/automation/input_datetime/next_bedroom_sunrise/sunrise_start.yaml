@@ -11,6 +11,9 @@ trigger:
   - platform: time
     at: input_datetime.next_bedroom_sunrise
 
+variables:
+  original_start_time: "{{ trigger.at }}"
+
 action:
   - alias: Turn on bedroom shapes with deep orange
     service: light.turn_on
@@ -26,11 +29,12 @@ action:
 
   - alias: Gradual brightness increase over 30 minutes
     repeat:
-      count: 30
+      while: >-
+        {{
+          is_state('input_datetime.next_bedroom_sunrise', original_start_time) and
+          repeat.index < 30
+        }}
       sequence:
-        - alias: Wait 1 minute
-          delay:
-            minutes: 1
         - alias: Increase brightness
           service: light.turn_on
           target:
@@ -39,6 +43,10 @@ action:
             brightness_pct: "{{ (repeat.index * 3.33) | round(0) }}"
             rgb_color: [255, 140, 0] # Deep orange
             transition: 60 # 1 minute transition
+
+        - alias: Wait 1 minute
+          delay:
+            minutes: 1
 
   - alias: Final brightness at 100%
     service: light.turn_on
