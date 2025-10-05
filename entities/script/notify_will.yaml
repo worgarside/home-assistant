@@ -160,7 +160,7 @@ sequence:
         actions: "{{ actions }}"
         tag: "{{ notification_id }}"
         notification_icon: "{{ mobile_notification_icon }}"
-        url: "{{ url }}"
+        clickAction: "{{ url }}"
         group: "{{ group }}"
         sticky: "{{ sticky }}"
         persistent: "{{ persistent }}"
