@@ -1,0 +1,66 @@
+---
+alias: /input-datetime/next-bedroom-sunrise/sunrise-start
+
+id: input_datetime_next_bedroom_sunrise_sunrise_start
+
+description: Start the bedroom sunrise alarm when the scheduled time is reached
+
+mode: single
+
+trigger:
+  - platform: time
+    at: input_datetime.next_bedroom_sunrise
+
+action:
+  - alias: Turn on bedroom shapes with deep orange
+    service: light.turn_on
+    target:
+      entity_id: light.bedroom_shapes
+    data:
+      brightness_pct: 1
+      rgb_color: [255, 140, 0] # Deep orange
+      transition: 0
+
+  - alias: Send sunrise notification
+    service: script.send_bedroom_sunrise_notification
+
+  - alias: Gradual brightness increase over 30 minutes
+    repeat:
+      count: 30
+      sequence:
+        - alias: Wait 1 minute
+          delay:
+            minutes: 1
+        - alias: Increase brightness
+          service: light.turn_on
+          target:
+            entity_id: light.bedroom_shapes
+          data:
+            brightness_pct: "{{ (repeat.index * 3.33) | round(0) }}"
+            rgb_color: [255, 140, 0] # Deep orange
+            transition: 60 # 1 minute transition
+
+  - alias: Final brightness at 100%
+    service: light.turn_on
+    target:
+      entity_id: light.bedroom_shapes
+    data:
+      brightness_pct: 100
+      rgb_color: [255, 140, 0] # Deep orange
+      transition: 60
+
+  - alias: Reset next sunrise to tomorrow
+    service: script.reset_next_bedroom_sunrise
+
+  - alias: Clear sunrise notifications
+    service: notify.mobile_app_victorias_iphone
+    data:
+      message: clear_notification
+      data:
+        tag: sunrise-alarm
+
+  - service: notify.mobile_app_will_s_pixel_6_pro
+    data:
+      message: clear_notification
+      data:
+        tag: sunrise-alarm

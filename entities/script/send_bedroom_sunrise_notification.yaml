@@ -8,7 +8,8 @@ mode: single
 sequence:
   - alias: Calculate notification timeout
     variables:
-      notif_timeout: "{{ states('input_datetime.next_bedroom_sunrise') | as_timestamp - now().timestamp() }}"
+      notif_timeout: >-
+        {{ states('input_datetime.next_bedroom_sunrise') | as_timestamp - now().timestamp() }}
 
   - alias: Send sunrise notification to Vic
     if:
