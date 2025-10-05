@@ -1,0 +1,67 @@
+---
+alias: /notification/apollo-plt1b/ota-mode-on
+
+id: notification_apollo_plt1b_ota_mode_on
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.apollo_plt_1b_1510d0_online
+    from: "off"
+    to: "on"
+    id: begonia
+
+  - platform: state
+    entity_id: binary_sensor.apollo_plt_1b_1511bc_online
+    from: "off"
+    to: "on"
+    id: coleus
+
+  - platform: state
+    entity_id: binary_sensor.apollo_plt_1b_151430_online
+    from: "off"
+    to: "on"
+    id: monstera
+
+  - platform: state
+    entity_id: binary_sensor.apollo_plt_1b_1743a8_online
+    from: "off"
+    to: "on"
+    id: spider_plant
+
+condition:
+  - condition: state
+    entity_id: input_boolean.apollo_ota_mode
+    state: "on"
+
+variables:
+  online: >-
+    {%- set ns = namespace(plants=[]) %}
+    {%- set all_plants = {
+      'binary_sensor.apollo_plt_1b_1510d0_online': 'Begonia',
+      'binary_sensor.apollo_plt_1b_1511bc_online': 'Coleus',
+      'binary_sensor.apollo_plt_1b_151430_online': 'Monstera',
+      'binary_sensor.apollo_plt_1b_1743a8_online': 'Spider Plant'
+    } %}
+    {%- for entity_id, name in all_plants.items() %}
+      {%- if is_state(entity_id, 'on') %}
+        {%- set ns.plants = ns.plants + [name] %}
+      {%- endif %}
+    {%- endfor %}
+    {{ ns.plants }}
+
+action:
+  - service: script.notify_will
+    data:
+      title: "Apollo PLT-1B OTA Mode On"
+      message: "{{ ', '.join(online) }}"
+      mobile_notification_icon: mdi:sprout-outline
+      notification_id: apollo_plt1b_ota_mode_on
+      persistent: true
+      sticky: true
+      actions:
+        - action: TURN_APOLLO_OTA_MODE_OFF
+          title: Turn OTA Mode Off
