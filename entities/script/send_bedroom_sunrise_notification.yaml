@@ -35,8 +35,7 @@ sequence:
     else:
       - alias: Calculate notification timeout
         variables:
-          notif_timeout: >-
-            {{ states('input_datetime.next_bedroom_sunrise') | as_timestamp + (30 * 60) }}
+          notif_timeout: 1800
 
       - alias: Send sunrise notification to Vic
         if:
