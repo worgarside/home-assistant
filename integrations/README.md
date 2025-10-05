@@ -804,7 +804,7 @@ File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](
 
 - Alias: /input-datetime/next-bedroom-sunrise/sunrise-start
 - ID: `input_datetime_next_bedroom_sunrise_sunrise_start`
-- Mode: `single`
+- Mode: `restart`
 - Variables:
 
 ```json

@@ -5,7 +5,7 @@ id: input_datetime_next_bedroom_sunrise_sunrise_start
 
 description: Start the bedroom sunrise alarm when the scheduled time is reached
 
-mode: single
+mode: restart
 
 trigger:
   - platform: time

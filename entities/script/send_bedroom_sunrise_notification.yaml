@@ -36,7 +36,7 @@ sequence:
       - alias: Calculate notification timeout
         variables:
           notif_timeout: >-
-            {{ states('input_datetime.next_bedroom_sunrise') | as_timestamp - now().timestamp() }}
+            {{ states('input_datetime.next_bedroom_sunrise') | as_timestamp + (30 * 60) }}
 
       - alias: Send sunrise notification to Vic
         if:
@@ -62,7 +62,7 @@ sequence:
                   sound: none
                   interruption-level: passive
                   badge: 1
-                subtitle: "Sunrise in {{ (notif_timeout / 60) | round(0) }} minutes"
+                subtitle: "Sun up in {{ (notif_timeout / 60) | round(0) }} minutes"
 
       - alias: Send sunrise notification to Will
         if:
@@ -96,4 +96,4 @@ sequence:
                 notification_icon: "mdi:weather-sunset-up"
                 sticky: true
                 alert_once: true
-                subject: "Sunrise in {{ (notif_timeout / 60) | round(0) }} minutes"
+                subject: "Sun up in {{ (notif_timeout / 60) | round(0) }} minutes"
