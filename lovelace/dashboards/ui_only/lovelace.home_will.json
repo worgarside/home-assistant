@@ -1190,6 +1190,23 @@
                       "show_direction_control": false,
                       "layout": "horizontal",
                       "icon_animation": false
+                    },
+                    {
+                      "type": "custom:mushroom-climate-card",
+                      "entity": "climate.will_s_office_fan",
+                      "hvac_modes": [
+                        "heat"
+                      ],
+                      "show_temperature_control": true,
+                      "collapsible_controls": true,
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "layout": "horizontal",
+                      "name": "Fan"
                     }
                   ]
                 }
