@@ -48,17 +48,19 @@ action:
           delay:
             minutes: 1
 
-  - alias: Final brightness at 100%
-    service: light.turn_on
-    target:
-      entity_id: light.bedroom_shapes
-    data:
-      brightness_pct: 100
-      rgb_color: [255, 140, 0] # Deep orange
-      transition: 60
+  - if: "{{ is_state('input_datetime.next_bedroom_sunrise', original_start_time) }}"
+    then:
+      - alias: Final brightness at 100%
+        service: light.turn_on
+        target:
+          entity_id: light.bedroom_shapes
+        data:
+          brightness_pct: 100
+          rgb_color: [255, 140, 0] # Deep orange
+          transition: 60
 
-  - alias: Reset next sunrise to tomorrow
-    service: script.reset_next_bedroom_sunrise
+      - alias: Reset next sunrise to tomorrow
+        service: script.reset_next_bedroom_sunrise
 
   - alias: Clear sunrise notifications
     service: notify.mobile_app_victorias_iphone
