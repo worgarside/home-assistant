@@ -2661,7 +2661,7 @@ File: [`input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml`](entities/inpu
 
 ## Input Datetime
 
-<details><summary><h3>Entities (3)</h3></summary>
+<details><summary><h3>Entities (4)</h3></summary>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
 
@@ -2683,6 +2683,17 @@ File: [`input_datetime/home_assistant_start_time.yaml`](entities/input_datetime/
 - Icon: [`mdi:bank-transfer`](https://pictogrammers.com/library/mdi/icon/bank-transfer/)
 
 File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_save.yaml)
+</details>
+
+<details><summary><strong>Next Bedroom Sunrise</strong></summary>
+
+**Entity ID: `input_datetime.next_bedroom_sunrise`**
+
+- Has Date: `true`
+- Has Time: `true`
+- Icon: [`mdi:weather-sunset-up`](https://pictogrammers.com/library/mdi/icon/weather-sunset-up/)
+
+File: [`input_datetime/next_bedroom_sunrise.yaml`](entities/input_datetime/next_bedroom_sunrise.yaml)
 </details>
 
 <details><summary><strong>Rain Flash Cooldown</strong></summary>
