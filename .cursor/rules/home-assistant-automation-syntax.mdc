@@ -15,7 +15,7 @@ description: Home Assistant automation trigger syntax rules
 - platform: time
   at: input_datetime.next_bedroom_sunrise  # Direct entity reference
 
-# Numeric state triggers  
+# Numeric state triggers
 - platform: numeric_state
   entity_id: sensor.temperature
   above: input_number.max_temp  # Direct entity reference
@@ -61,7 +61,7 @@ description: Home Assistant automation trigger syntax rules
 - platform: time
   at: input_datetime.my_datetime  # Entity reference
 
-# Incorrect  
+# Incorrect
 - platform: time
   at: "{{ states('input_datetime.my_datetime') }}"  # Unnecessary template
 ```

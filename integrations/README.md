@@ -5064,7 +5064,7 @@ File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realt
 
 ## Script
 
-<details><summary><h3>Entities (26)</h3></summary>
+<details><summary><h3>Entities (27)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5818,6 +5818,17 @@ File: [`script/office_desk_standing_mode.yaml`](entities/script/office_desk_stan
 - Mode: `restart`
 
 File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_moving.yaml)
+</details>
+
+<details><summary><strong>Send Bedroom Sunrise Notification</strong></summary>
+
+**Entity ID: `script.send_bedroom_sunrise_notification`**
+
+> Send sunrise notification with countdown timer to both phones
+
+- Mode: `single`
+
+File: [`script/send_bedroom_sunrise_notification.yaml`](entities/script/send_bedroom_sunrise_notification.yaml)
 </details>
 
 <details><summary><strong>GH Issue Create</strong></summary>
