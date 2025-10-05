@@ -22,17 +22,9 @@ action:
       transition: 5
 
   - alias: Clear sunrise notifications
-    service: notify.mobile_app_victorias_iphone
+    service: script.send_bedroom_sunrise_notification
     data:
-      message: clear_notification
-      data:
-        tag: sunrise-alarm
-
-  - service: notify.mobile_app_will_s_pixel_6_pro
-    data:
-      message: clear_notification
-      data:
-        tag: sunrise-alarm
+      clear_notification: true
 
   - alias: Reset next sunrise to tomorrow
     service: script.reset_next_bedroom_sunrise

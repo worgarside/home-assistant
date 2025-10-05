@@ -5888,8 +5888,28 @@ File: [`script/reset_next_bedroom_sunrise.yaml`](entities/script/reset_next_bedr
 
 > Send sunrise notification with countdown timer to both phones
 
-- Mode: `single`
+- Fields:
 
+```json
+{
+  "clear_notification": {
+    "description": "Clear the notification",
+    "example": "true",
+    "selector": {
+      "boolean": null
+    }
+  }
+}
+```
+
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "clear_notification": "{{ clear_notification | default(False) | bool(False) }}"
+}
+```
 File: [`script/send_bedroom_sunrise_notification.yaml`](entities/script/send_bedroom_sunrise_notification.yaml)
 </details>
 

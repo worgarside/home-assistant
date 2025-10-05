@@ -42,5 +42,7 @@ action:
     data:
       transition: 5
 
-  - alias: Send updated sunrise notification
+  - alias: Clear sunrise notifications
     service: script.send_bedroom_sunrise_notification
+    data:
+      clear_notification: true
