@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (137)</h3></summary>
+<details><summary><h3>Entities (138)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1236,6 +1236,19 @@ File: [`automation/notification/prusa_i3/print_completed.yaml`](entities/automat
 - Mode: `single`
 
 File: [`automation/notification/prusa_i3/user_input_required.yaml`](entities/automation/notification/prusa_i3/user_input_required.yaml)
+</details>
+
+<details><summary><code>/notification/rain-door-open-alert</code></summary>
+
+**Entity ID: `automation.notification_rain_door_open_alert`**
+
+> Alert Will when it starts to rain and the roof terrace door is open
+
+- Alias: /notification/rain-door-open-alert
+- ID: `notification_rain_door_open_alert`
+- Mode: `single`
+
+File: [`automation/notification/rain_door_open_alert.yaml`](entities/automation/notification/rain_door_open_alert.yaml)
 </details>
 
 <details><summary><code>/octopi/cpu-fan-control</code></summary>
@@ -5601,8 +5614,7 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
   "notif_title": "{{ title | default('Home Assistant') }}",
   "url": "{{ url | default('') }}",
-  "group": "{{ group | default('') }}",
-  "sticky": "{{ sticky | default(false) }}"
+  "group": "{{ group | default('') }}"
 }
 ```
 File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)

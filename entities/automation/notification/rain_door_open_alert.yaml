@@ -1,0 +1,40 @@
+---
+alias: /notification/rain-door-open-alert
+
+id: notification_rain_door_open_alert
+
+description: Alert Will when it starts to rain and the roof terrace door is open
+
+mode: single
+
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.tomorrow_io_rain_intensity
+    above: 0
+
+condition:
+  - condition: state
+    entity_id: binary_sensor.roof_terrace_door_contact
+    state: "on"
+
+action:
+  - parallel:
+      - service: script.notify_will
+        data:
+          title: 🌧️ Rain Alert - Roof Door Open!
+          message: >-
+            Rain intensity is {{ states('sensor.tomorrow_io_rain_intensity') }}
+            {{ state_attr('sensor.tomorrow_io_rain_intensity', 'unit_of_measurement') }}
+          notification_id: rain_door_open_alert
+          mobile_notification_icon: mdi:weather-pouring
+          sticky: true
+          persistent: true
+
+      - service: script.notify_vic
+        data:
+          title: 🌧️ Rain Alert - Roof Door Open!
+          message: >-
+            Rain intensity is {{ states('sensor.tomorrow_io_rain_intensity') }}
+            {{ state_attr('sensor.tomorrow_io_rain_intensity', 'unit_of_measurement') }}
+          notification_id: rain_door_open_alert
+          mobile_notification_icon: mdi:weather-pouring
