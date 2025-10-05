@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (136)</h3></summary>
+<details><summary><h3>Entities (137)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1197,6 +1197,19 @@ File: [`automation/notification/apollo_plt1b/ota_mode_off.yaml`](entities/automa
 }
 ```
 File: [`automation/notification/apollo_plt1b/ota_mode_on.yaml`](entities/automation/notification/apollo_plt1b/ota_mode_on.yaml)
+</details>
+
+<details><summary><code>/notification/apollo-plt1b/turn-ota-mode-off</code></summary>
+
+**Entity ID: `automation.notification_apollo_plt1b_turn_ota_mode_off`**
+
+> Turn off Apollo OTA mode when notification action is pressed
+
+- Alias: /notification/apollo-plt1b/turn-ota-mode-off
+- ID: `notification_apollo_plt1b_turn_ota_mode_off`
+- Mode: `single`
+
+File: [`automation/notification/apollo_plt1b/turn_ota_mode_off.yaml`](entities/automation/notification/apollo_plt1b/turn_ota_mode_off.yaml)
 </details>
 
 <details><summary><code>/notification/prusa-i3/print-completed</code></summary>

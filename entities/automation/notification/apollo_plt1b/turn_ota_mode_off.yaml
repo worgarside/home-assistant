@@ -1,0 +1,19 @@
+---
+alias: /notification/apollo-plt1b/turn-ota-mode-off
+
+id: notification_apollo_plt1b_turn_ota_mode_off
+
+description: Turn off Apollo OTA mode when notification action is pressed
+
+mode: single
+
+trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: TURN_APOLLO_OTA_MODE_OFF
+
+action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.apollo_ota_mode
