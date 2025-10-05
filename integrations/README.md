@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (134)</h3></summary>
+<details><summary><h3>Entities (137)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1165,6 +1165,51 @@ File: [`automation/mtrxpi/content_trigger/now_playing.yaml`](entities/automation
 }
 ```
 File: [`automation/mtrxpi/content_trigger/raining_grid.yaml`](entities/automation/mtrxpi/content_trigger/raining_grid.yaml)
+</details>
+
+<details><summary><code>/notification/apollo-plt1b/ota-mode-off</code></summary>
+
+**Entity ID: `automation.notification_apollo_plt1b_ota_mode_off`**
+
+> Clear Apollo PLT-1B OTA mode notification when OTA mode is turned off
+
+- Alias: /notification/apollo-plt1b/ota-mode-off
+- ID: `notification_apollo_plt1b_ota_mode_off`
+- Mode: `single`
+
+File: [`automation/notification/apollo_plt1b/ota_mode_off.yaml`](entities/automation/notification/apollo_plt1b/ota_mode_off.yaml)
+</details>
+
+<details><summary><code>/notification/apollo-plt1b/ota-mode-on</code></summary>
+
+**Entity ID: `automation.notification_apollo_plt1b_ota_mode_on`**
+
+> *No description provided*
+
+- Alias: /notification/apollo-plt1b/ota-mode-on
+- ID: `notification_apollo_plt1b_ota_mode_on`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "online": "{%- set ns = namespace(plants=[]) %} {%- set all_plants = {\n  'binary_sensor.apollo_plt_1b_1510d0_online': 'Begonia',\n  'binary_sensor.apollo_plt_1b_1511bc_online': 'Coleus',\n  'binary_sensor.apollo_plt_1b_151430_online': 'Monstera',\n  'binary_sensor.apollo_plt_1b_1743a8_online': 'Spider Plant'\n} %} {%- for entity_id, name in all_plants.items() %}\n  {%- if is_state(entity_id, 'on') %}\n    {%- set ns.plants = ns.plants + [name] %}\n  {%- endif %}\n{%- endfor %} {{ ns.plants }}"
+}
+```
+File: [`automation/notification/apollo_plt1b/ota_mode_on.yaml`](entities/automation/notification/apollo_plt1b/ota_mode_on.yaml)
+</details>
+
+<details><summary><code>/notification/apollo-plt1b/turn-ota-mode-off</code></summary>
+
+**Entity ID: `automation.notification_apollo_plt1b_turn_ota_mode_off`**
+
+> Turn off Apollo OTA mode when notification action is pressed
+
+- Alias: /notification/apollo-plt1b/turn-ota-mode-off
+- ID: `notification_apollo_plt1b_turn_ota_mode_off`
+- Mode: `single`
+
+File: [`automation/notification/apollo_plt1b/turn_ota_mode_off.yaml`](entities/automation/notification/apollo_plt1b/turn_ota_mode_off.yaml)
 </details>
 
 <details><summary><code>/notification/prusa-i3/print-completed</code></summary>
@@ -2345,7 +2390,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (27)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -2354,6 +2399,15 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 - Icon: [`mdi:air-purifier`](https://pictogrammers.com/library/mdi/icon/air-purifier/)
 
 File: [`input_boolean/air_purifier/air_purifier_quiet_mode.yaml`](entities/input_boolean/air_purifier/air_purifier_quiet_mode.yaml)
+</details>
+
+<details><summary><strong>Apollo OTA Mode</strong></summary>
+
+**Entity ID: `input_boolean.apollo_ota_mode`**
+
+- Icon: [`mdi:sleep-off`](https://pictogrammers.com/library/mdi/icon/sleep-off/)
+
+File: [`input_boolean/apollo_ota_mode.yaml`](entities/input_boolean/apollo_ota_mode.yaml)
 </details>
 
 <details><summary><strong>AD: Monzo Auto-Save</strong></summary>
