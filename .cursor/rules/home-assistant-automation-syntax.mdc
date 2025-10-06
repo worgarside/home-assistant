@@ -1,0 +1,110 @@
+---
+alwaysApply: true
+description: Home Assistant automation trigger syntax rules
+---
+
+# Home Assistant Automation Trigger Syntax
+
+## General Rule: Use Direct Entity References
+
+**ALWAYS use direct entity references in triggers, NOT `states()` functions**
+
+### Correct Syntax Examples
+```yaml
+# Time triggers
+- platform: time
+  at: input_datetime.next_bedroom_sunrise  # Direct entity reference
+
+# Numeric state triggers
+- platform: numeric_state
+  entity_id: sensor.temperature
+  above: input_number.max_temp  # Direct entity reference
+  below: input_number.min_temp  # Direct entity reference
+
+# State triggers
+- platform: state
+  entity_id: binary_sensor.motion
+  to: "on"
+
+# Zone triggers
+- platform: zone
+  entity_id: person.will
+  zone: zone.home
+```
+
+### Incorrect Syntax Examples
+```yaml
+# DON'T use states() function in triggers
+- platform: time
+  at: "{{ states('input_datetime.next_bedroom_sunrise') }}"  # WRONG
+
+- platform: numeric_state
+  entity_id: sensor.temperature
+  above: "{{ states('input_number.max_temp') }}"  # WRONG
+  below: "{{ states('input_number.min_temp') }}"   # WRONG
+```
+
+## Key Rules
+
+1. **All trigger types**: Use direct entity references, not `states()` function
+2. **Template triggers**: Use `{{ }}` syntax only when needed for complex expressions
+3. **Entity references**: Most trigger fields accept direct entity IDs without quotes
+4. **String values**: Only use quotes when the value is a literal string
+
+## Common Patterns
+
+### Time-based triggers
+```yaml
+# Correct
+- platform: time
+  at: "07:30:00"  # Fixed time
+- platform: time
+  at: input_datetime.my_datetime  # Entity reference
+
+# Incorrect
+- platform: time
+  at: "{{ states('input_datetime.my_datetime') }}"  # Unnecessary template
+```
+
+### Numeric state triggers
+```yaml
+# Correct
+- platform: numeric_state
+  entity_id: sensor.temperature
+  above: input_number.max_temp
+  below: input_number.min_temp
+
+# Incorrect
+- platform: numeric_state
+  entity_id: sensor.temperature
+  above: "{{ states('input_number.max_temp') }}"
+  below: "{{ states('input_number.min_temp') }}"
+```
+
+### State triggers
+```yaml
+# Correct
+- platform: state
+  entity_id: binary_sensor.motion
+  to: "on"
+
+# Template when needed
+- platform: template
+  value_template: "{{ is_state('binary_sensor.motion', 'on') and is_state('light.living_room', 'off') }}"
+```
+
+### Event triggers
+```yaml
+# Correct
+- platform: event
+  event_type: mobile_app_notification_action
+  event_data:
+    action: BEDROOM_SUNRISE_DELAY_15
+```
+
+## Best Practices
+
+1. Use direct entity references when possible
+2. Only use templates when you need complex logic
+3. Keep trigger conditions simple and readable
+4. Use descriptive automation aliases that match file paths

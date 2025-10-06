@@ -1,0 +1,55 @@
+---
+alias: /mobile-app/notification-action/bedroom-sunrise-delay
+
+id: mobile_app_notification_action_bedroom_sunrise_delay
+
+description: Handle delay for sunrise alarm (15 or 60 minutes)
+
+mode: single
+
+trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: BEDROOM_SUNRISE_DELAY_15
+    id: BEDROOM_SUNRISE_DELAY_15
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: BEDROOM_SUNRISE_DELAY_30
+    id: BEDROOM_SUNRISE_DELAY_30
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: BEDROOM_SUNRISE_DELAY_60
+    id: BEDROOM_SUNRISE_DELAY_60
+
+variables:
+  delay_minutes: >-
+    {% if trigger.id == 'BEDROOM_SUNRISE_DELAY_15' %}
+      15
+    {% elif trigger.id == 'BEDROOM_SUNRISE_DELAY_30' %}
+      30
+    {% elif trigger.id == 'BEDROOM_SUNRISE_DELAY_60' %}
+      60
+    {% endif %}
+
+action:
+  - alias: Set sunrise to X minutes from now
+    service: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.next_bedroom_sunrise
+    data:
+      datetime: "{{ (now() + timedelta(minutes=delay_minutes)).strftime('%Y-%m-%d %H:%M:%S') }}"
+
+  - alias: Dim light slowly
+    service: light.turn_off
+    target:
+      entity_id: light.bedroom_shapes
+    data:
+      transition: 5
+
+  - alias: Clear sunrise notifications
+    service: script.send_bedroom_sunrise_notification
+    data:
+      clear_notification: true

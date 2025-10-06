@@ -1,0 +1,20 @@
+---
+alias: Reset Next Bedroom Sunrise
+
+description: >-
+  Set the next bedroom sunrise to tomorrow at the appropriate time (7:30 AM weekdays, 8:30 AM
+  weekends)
+
+mode: single
+
+sequence:
+  - alias: Set next sunrise to tomorrow at 7:30 AM (weekday) or 8:30 AM (weekend)
+    service: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.next_bedroom_sunrise
+    data:
+      datetime: >-
+        {% set tomorrow = (now() + timedelta(days=1)).date() %}
+        {% set is_weekend = tomorrow.weekday() >= 5 %}
+        {% set time_str = "08:30:00" if is_weekend else "07:30:00" %}
+        {{ tomorrow.strftime('%Y-%m-%d') }} {{ time_str }}
