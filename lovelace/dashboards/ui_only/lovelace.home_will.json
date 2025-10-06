@@ -4551,6 +4551,18 @@
                 {
                   "type": "heading",
                   "heading": "New section"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.apollo_plt_1b_1510d0_soil_moisture"
+                  ],
+                  "hours_to_show": 168,
+                  "points_per_hour": 0.25,
+                  "show": {
+                    "icon": false,
+                    "name": false
+                  }
                 }
               ]
             }
