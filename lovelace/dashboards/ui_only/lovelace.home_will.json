@@ -4603,6 +4603,17 @@
                     "columns": 3,
                     "rows": 2
                   }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.apollo_plt_1b_151430_soil_moisture",
+                  "name": "Monstera",
+                  "layout": "vertical",
+                  "fill_container": false,
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  }
                 }
               ]
             }
