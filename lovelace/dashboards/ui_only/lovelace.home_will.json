@@ -4655,6 +4655,17 @@
                   },
                   "primary_info": "state",
                   "secondary_info": "none"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.apollo_plt_1b_monstera_last_online",
+                  "layout": "vertical",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "primary_info": "state",
+                  "secondary_info": "none"
                 }
               ]
             }
