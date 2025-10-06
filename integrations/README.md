@@ -7177,7 +7177,43 @@ File: [`template/sensor/spotify/spotify_will_garside_media_title.yaml`](entities
 
 ## Template
 
-<details><summary><h3>Entities (7)</h3></summary>
+<details><summary><h3>Entities (11)</h3></summary>
+
+<details><summary><strong>Apollo PLT 1B | Begonia: Last Online</strong></summary>
+
+**Entity ID: `template.apollo_plt_1b_begonia_last_online`**
+
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`template_triggered/sensor/apollo/apollo_plt_1b_begonia_last_online.yaml`](entities/template_triggered/sensor/apollo/apollo_plt_1b_begonia_last_online.yaml)
+</details>
+
+<details><summary><strong>Apollo PLT 1B | Coleus: Last Online</strong></summary>
+
+**Entity ID: `template.apollo_plt_1b_coleus_last_online`**
+
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`template_triggered/sensor/apollo/apollo_plt_1b_coleus_last_online.yaml`](entities/template_triggered/sensor/apollo/apollo_plt_1b_coleus_last_online.yaml)
+</details>
+
+<details><summary><strong>Apollo PLT 1B | Monstera: Last Online</strong></summary>
+
+**Entity ID: `template.apollo_plt_1b_monstera_last_online`**
+
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`template_triggered/sensor/apollo/apollo_plt_1b_monstera_last_online.yaml`](entities/template_triggered/sensor/apollo/apollo_plt_1b_monstera_last_online.yaml)
+</details>
+
+<details><summary><strong>Apollo PLT 1B | Spider Plant: Last Online</strong></summary>
+
+**Entity ID: `template.apollo_plt_1b_spider_plant_last_online`**
+
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`template_triggered/sensor/apollo/apollo_plt_1b_spider_plant_last_online.yaml`](entities/template_triggered/sensor/apollo/apollo_plt_1b_spider_plant_last_online.yaml)
+</details>
 
 <details><summary><strong>Cosmo Room Lookup</strong></summary>
 
