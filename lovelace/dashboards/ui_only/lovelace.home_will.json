@@ -4568,7 +4568,8 @@
                     },
                     {
                       "entity": "sensor.apollo_plt_1b_151430_soil_moisture",
-                      "name": "Monstera"
+                      "name": "Monstera",
+                      "color": "#19e5e5"
                     },
                     {
                       "entity": "sensor.apollo_plt_1b_1743a8_soil_moisture",
@@ -4623,7 +4624,8 @@
                     "rows": 2
                   },
                   "primary_info": "state",
-                  "secondary_info": "none"
+                  "secondary_info": "none",
+                  "icon_color": "#19e5e5"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
