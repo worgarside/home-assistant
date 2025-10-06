@@ -3,6 +3,10 @@ trigger:
   - platform: state
     entity_id: binary_sensor.apollo_plt_1b_1510d0_online
 
+  - platform: state
+    entity_id: sensor.apollo_plt_1b_begonia_last_online
+    to: "unknown"
+
 sensor:
   - name: "Apollo PLT 1B | Begonia: Last Online"
 
@@ -16,5 +20,8 @@ sensor:
       {% if is_state('binary_sensor.apollo_plt_1b_1510d0_online', 'on') %}
         {{ now() }}
       {% else %}
-        {{ states.binary_sensor.apollo_plt_1b_1510d0_online.last_changed }}
+        {{
+          states.binary_sensor.apollo_plt_1b_1510d0_online.last_changed
+          | default("1970-01-01T00:00:00+00:00")
+        }}
       {% endif %}
