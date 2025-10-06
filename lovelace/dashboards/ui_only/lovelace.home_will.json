@@ -4593,8 +4593,12 @@
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.apollo_plt_1b_1510d0_soil_moisture",
                   "name": "Begonia",
-                  "layout": "horizontal",
-                  "fill_container": false
+                  "layout": "vertical",
+                  "fill_container": false,
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  }
                 }
               ]
             }
