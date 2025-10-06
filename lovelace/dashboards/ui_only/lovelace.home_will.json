@@ -4537,6 +4537,158 @@
               ]
             }
           ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Plants",
+          "path": "plants",
+          "icon": "mdi:sprout-outline",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.apollo_plt_1b_1510d0_soil_moisture",
+                      "name": "Begonia",
+                      "color": "#e51919"
+                    },
+                    {
+                      "entity": "sensor.apollo_plt_1b_1511bc_soil_moisture",
+                      "name": "Coleus",
+                      "color": "#7fe519"
+                    },
+                    {
+                      "entity": "sensor.apollo_plt_1b_151430_soil_moisture",
+                      "name": "Monstera",
+                      "color": "#19e5e5"
+                    },
+                    {
+                      "entity": "sensor.apollo_plt_1b_1743a8_soil_moisture",
+                      "name": "Spider Plant",
+                      "color": "#7f19e5"
+                    }
+                  ],
+                  "hours_to_show": 168,
+                  "points_per_hour": 0.25,
+                  "show": {
+                    "icon": false,
+                    "legend": true,
+                    "name": false,
+                    "state": false
+                  },
+                  "line_width": 2
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.apollo_plt_1b_1510d0_soil_moisture",
+                  "name": "Begonia",
+                  "layout": "vertical",
+                  "fill_container": false,
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "primary_info": "state",
+                  "secondary_info": "none",
+                  "icon_color": "#e51919"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.apollo_plt_1b_1511bc_soil_moisture",
+                  "name": "Coleus",
+                  "layout": "vertical",
+                  "fill_container": false,
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "secondary_info": "none",
+                  "primary_info": "state",
+                  "icon_color": "#7fe519"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.apollo_plt_1b_151430_soil_moisture",
+                  "name": "Monstera",
+                  "layout": "vertical",
+                  "fill_container": false,
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "primary_info": "state",
+                  "secondary_info": "none",
+                  "icon_color": "#19e5e5"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.apollo_plt_1b_1743a8_soil_moisture",
+                  "name": "Spider Plant",
+                  "layout": "vertical",
+                  "fill_container": false,
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "primary_info": "state",
+                  "secondary_info": "none",
+                  "icon_color": "#7f19e5"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.apollo_plt_1b_begonia_last_online",
+                  "layout": "vertical",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "primary_info": "state",
+                  "secondary_info": "none",
+                  "icon_color": "#e51919"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.apollo_plt_1b_coleus_last_online",
+                  "layout": "vertical",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "primary_info": "state",
+                  "secondary_info": "none",
+                  "icon_color": "#7fe519"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.apollo_plt_1b_monstera_last_online",
+                  "layout": "vertical",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "primary_info": "state",
+                  "secondary_info": "none",
+                  "icon_color": "#19e5e5"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.apollo_plt_1b_spider_plant_last_online",
+                  "layout": "vertical",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 2
+                  },
+                  "primary_info": "state",
+                  "secondary_info": "none",
+                  "icon_color": "#7f19e5"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
