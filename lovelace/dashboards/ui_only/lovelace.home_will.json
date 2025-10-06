@@ -4556,13 +4556,30 @@
                 {
                   "type": "custom:mini-graph-card",
                   "entities": [
-                    "sensor.apollo_plt_1b_1510d0_soil_moisture"
+                    {
+                      "entity": "sensor.apollo_plt_1b_1510d0_soil_moisture",
+                      "name": "Begonia"
+                    },
+                    {
+                      "entity": "sensor.apollo_plt_1b_1511bc_soil_moisture",
+                      "name": "Coleus"
+                    },
+                    {
+                      "entity": "sensor.apollo_plt_1b_151430_soil_moisture",
+                      "name": "Monstera"
+                    },
+                    {
+                      "entity": "sensor.apollo_plt_1b_1743a8_soil_moisture",
+                      "name": "Spider Plant"
+                    }
                   ],
                   "hours_to_show": 168,
                   "points_per_hour": 0.25,
                   "show": {
                     "icon": false,
-                    "name": false
+                    "legend": true,
+                    "name": false,
+                    "state": false
                   }
                 }
               ]
