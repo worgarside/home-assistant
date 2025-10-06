@@ -1,0 +1,30 @@
+---
+alias: /mobile-app/notification-action/bedroom-sunrise-stop
+
+id: mobile_app_notification_action_bedroom_sunrise_stop
+
+description: Stop the sunrise alarm completely
+
+mode: single
+
+trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: BEDROOM_SUNRISE_STOP
+
+action:
+  - alias: Turn off bedroom shapes
+    service: light.turn_off
+    target:
+      entity_id: light.bedroom_shapes
+    data:
+      transition: 5
+
+  - alias: Clear sunrise notifications
+    service: script.send_bedroom_sunrise_notification
+    data:
+      clear_notification: true
+
+  - alias: Reset next sunrise to tomorrow
+    service: script.reset_next_bedroom_sunrise

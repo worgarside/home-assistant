@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (138)</h3></summary>
+<details><summary><h3>Entities (142)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -796,6 +796,25 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/
 File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](entities/automation/input_datetime/home_assistant_start_time/set_datetime.yaml)
 </details>
 
+<details><summary><code>/input-datetime/next-bedroom-sunrise/sunrise-start</code></summary>
+
+**Entity ID: `automation.input_datetime_next_bedroom_sunrise_sunrise_start`**
+
+> Start the bedroom sunrise alarm when the scheduled time is reached
+
+- Alias: /input-datetime/next-bedroom-sunrise/sunrise-start
+- ID: `input_datetime_next_bedroom_sunrise_sunrise_start`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "original_start_time": "{{ states('input_datetime.next_bedroom_sunrise') }}"
+}
+```
+File: [`automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml`](entities/automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml)
+</details>
+
 <details><summary><code>/input-select/gh-cli-active-user/option-selected</code></summary>
 
 **Entity ID: `automation.input_select_gh_cli_active_user_option_selected`**
@@ -846,6 +865,19 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 - Mode: `single`
 
 File: [`automation/label/critical_battery/low_battery_alert.yaml`](entities/automation/label/critical_battery/low_battery_alert.yaml)
+</details>
+
+<details><summary><code>/light/bedroom-shapes/bon-appetit</code></summary>
+
+**Entity ID: `automation.light_bedroom_shapes_bon_appetit`**
+
+> Reset bedroom shapes to "bon appetit" effect at 10 AM
+
+- Alias: /light/bedroom-shapes/bon-appetit
+- ID: `light_bedroom_shapes_bon_appetit`
+- Mode: `single`
+
+File: [`automation/light/bedroom_shapes/bon_appetit.yaml`](entities/automation/light/bedroom_shapes/bon_appetit.yaml)
 </details>
 
 <details><summary><code>/light/desk-lamp/state-change</code></summary>
@@ -1085,6 +1117,38 @@ File: [`automation/media_player/topaz_sr10/on.yaml`](entities/automation/media_p
 - Mode: `single`
 
 File: [`automation/media_player/topaz_sr10/timeout.yaml`](entities/automation/media_player/topaz_sr10/timeout.yaml)
+</details>
+
+<details><summary><code>/mobile-app/notification-action/bedroom-sunrise-delay</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_bedroom_sunrise_delay`**
+
+> Handle delay for sunrise alarm (15 or 60 minutes)
+
+- Alias: /mobile-app/notification-action/bedroom-sunrise-delay
+- ID: `mobile_app_notification_action_bedroom_sunrise_delay`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "delay_minutes": "{% if trigger.id == 'BEDROOM_SUNRISE_DELAY_15' %}\n  15\n{% elif trigger.id == 'BEDROOM_SUNRISE_DELAY_30' %}\n  30\n{% elif trigger.id == 'BEDROOM_SUNRISE_DELAY_60' %}\n  60\n{% endif %}"
+}
+```
+File: [`automation/mobile_app/notification_action/bedroom_sunrise_delay.yaml`](entities/automation/mobile_app/notification_action/bedroom_sunrise_delay.yaml)
+</details>
+
+<details><summary><code>/mobile-app/notification-action/bedroom-sunrise-stop</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_bedroom_sunrise_stop`**
+
+> Stop the sunrise alarm completely
+
+- Alias: /mobile-app/notification-action/bedroom-sunrise-stop
+- ID: `mobile_app_notification_action_bedroom_sunrise_stop`
+- Mode: `single`
+
+File: [`automation/mobile_app/notification_action/bedroom_sunrise_stop.yaml`](entities/automation/mobile_app/notification_action/bedroom_sunrise_stop.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/audio-visualiser</code></summary>
@@ -2661,7 +2725,7 @@ File: [`input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml`](entities/inpu
 
 ## Input Datetime
 
-<details><summary><h3>Entities (3)</h3></summary>
+<details><summary><h3>Entities (4)</h3></summary>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
 
@@ -2683,6 +2747,17 @@ File: [`input_datetime/home_assistant_start_time.yaml`](entities/input_datetime/
 - Icon: [`mdi:bank-transfer`](https://pictogrammers.com/library/mdi/icon/bank-transfer/)
 
 File: [`input_datetime/last_auto_save.yaml`](entities/input_datetime/last_auto_save.yaml)
+</details>
+
+<details><summary><strong>Next Bedroom Sunrise</strong></summary>
+
+**Entity ID: `input_datetime.next_bedroom_sunrise`**
+
+- Has Date: `true`
+- Has Time: `true`
+- Icon: [`mdi:weather-sunset-up`](https://pictogrammers.com/library/mdi/icon/weather-sunset-up/)
+
+File: [`input_datetime/next_bedroom_sunrise.yaml`](entities/input_datetime/next_bedroom_sunrise.yaml)
 </details>
 
 <details><summary><strong>Rain Flash Cooldown</strong></summary>
@@ -5053,7 +5128,7 @@ File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realt
 
 ## Script
 
-<details><summary><h3>Entities (26)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5807,6 +5882,48 @@ File: [`script/office_desk_standing_mode.yaml`](entities/script/office_desk_stan
 - Mode: `restart`
 
 File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_moving.yaml)
+</details>
+
+<details><summary><strong>Reset Next Bedroom Sunrise</strong></summary>
+
+**Entity ID: `script.reset_next_bedroom_sunrise`**
+
+> Set the next bedroom sunrise to tomorrow at the appropriate time (7:30 AM weekdays, 8:30 AM weekends)
+
+- Mode: `single`
+
+File: [`script/reset_next_bedroom_sunrise.yaml`](entities/script/reset_next_bedroom_sunrise.yaml)
+</details>
+
+<details><summary><strong>Send Bedroom Sunrise Notification</strong></summary>
+
+**Entity ID: `script.send_bedroom_sunrise_notification`**
+
+> Send sunrise notification with countdown timer to both phones
+
+- Fields:
+
+```json
+{
+  "clear_notification": {
+    "description": "Clear the notification",
+    "example": "true",
+    "selector": {
+      "boolean": null
+    }
+  }
+}
+```
+
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "clear_notification": "{{ clear_notification | default(False) | bool(False) }}"
+}
+```
+File: [`script/send_bedroom_sunrise_notification.yaml`](entities/script/send_bedroom_sunrise_notification.yaml)
 </details>
 
 <details><summary><strong>GH Issue Create</strong></summary>
