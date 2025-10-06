@@ -1,0 +1,20 @@
+---
+trigger:
+  - platform: state
+    entity_id: binary_sensor.apollo_plt_1b_1511bc_online
+
+sensor:
+  - name: "Apollo PLT 1B | Coleus: Last Online"
+
+    unique_id: apollo_plt_1b_coleus_last_online
+
+    icon: mdi:clock-outline
+
+    device_class: timestamp
+
+    state: >
+      {% if is_state('binary_sensor.apollo_plt_1b_1511bc_online', 'on') %}
+        {{ now() }}
+      {% else %}
+        {{ states.binary_sensor.apollo_plt_1b_1511bc_online.last_changed }}
+      {% endif %}

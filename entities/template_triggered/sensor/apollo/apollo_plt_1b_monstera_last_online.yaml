@@ -1,0 +1,20 @@
+---
+trigger:
+  - platform: state
+    entity_id: binary_sensor.apollo_plt_1b_151430_online
+
+sensor:
+  - name: "Apollo PLT 1B | Monstera: Last Online"
+
+    unique_id: apollo_plt_1b_monstera_last_online
+
+    icon: mdi:clock-outline
+
+    device_class: timestamp
+
+    state: >
+      {% if is_state('binary_sensor.apollo_plt_1b_151430_online', 'on') %}
+        {{ now() }}
+      {% else %}
+        {{ states.binary_sensor.apollo_plt_1b_151430_online.last_changed }}
+      {% endif %}
