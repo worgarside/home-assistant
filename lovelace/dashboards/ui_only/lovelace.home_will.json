@@ -1194,7 +1194,9 @@
                           "collapsible_controls": false,
                           "show_direction_control": false,
                           "layout": "horizontal",
-                          "icon_animation": false
+                          "icon_animation": false,
+                          "primary_info": "state",
+                          "secondary_info": "none"
                         },
                         {
                           "type": "custom:mushroom-climate-card",
@@ -1202,7 +1204,7 @@
                           "hvac_modes": [
                             "heat"
                           ],
-                          "show_temperature_control": true,
+                          "show_temperature_control": false,
                           "collapsible_controls": true,
                           "tap_action": {
                             "action": "more-info"
@@ -1211,7 +1213,9 @@
                             "action": "toggle"
                           },
                           "layout": "horizontal",
-                          "name": "Fan"
+                          "name": "Fan",
+                          "primary_info": "state",
+                          "secondary_info": "none"
                         }
                       ]
                     }
