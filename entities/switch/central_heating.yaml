@@ -11,6 +11,10 @@ icon_template: >-
   {% endif %}
 
 turn_on:
+  - condition: state
+    entity_id: switch.central_heating
+    state: 'off'
+
   - if: >
       {{
         has_value('var.central_heating_last_action') and
@@ -56,6 +60,10 @@ turn_on:
       entity_id: switch.boiler_fingerbot
 
 turn_off:
+  - condition: state
+    entity_id: switch.central_heating
+    state: 'on'
+
   - if: >
       {{
         has_value('var.central_heating_last_action') and
