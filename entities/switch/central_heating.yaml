@@ -1,0 +1,89 @@
+---
+friendly_name: Central Heating
+
+unique_id: central_heating
+
+icon_template: >-
+  {% if states('switch.central_heating') | bool(false) %}
+    mdi:radiator
+  {% else %}
+    mdi:radiator-off
+  {% endif %}
+
+turn_on:
+  - condition: state
+    entity_id: switch.central_heating
+    state: 'off'
+
+  - if: >
+      {{
+        has_value('var.central_heating_last_action') and
+        states('var.central_heating_last_action') and
+        (as_timestamp(now()) - as_timestamp(states('var.central_heating_last_action'))) <= 10
+      }}
+
+    then:
+      - delay:
+          seconds: >-
+            {{
+              (as_timestamp(states('var.central_heating_last_action')) + 10) - as_timestamp(now())
+            }}
+
+  - service: var.set
+    target:
+      entity_id: var.central_heating_last_action
+    data:
+      value: "{{ now().isoformat() }}"
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot
+
+  - wait_for_trigger:
+      - trigger: state
+        entity_id: switch.boiler_fingerbot
+        for:
+          seconds: 2
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot
+
+  - wait_for_trigger:
+      - trigger: state
+        entity_id: switch.boiler_fingerbot
+        for:
+          seconds: 2
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot
+
+turn_off:
+  - condition: state
+    entity_id: switch.central_heating
+    state: 'on'
+
+  - if: >
+      {{
+        has_value('var.central_heating_last_action') and
+        states('var.central_heating_last_action') and
+        (as_timestamp(now()) - as_timestamp(states('var.central_heating_last_action'))) <= 10
+      }}
+
+    then:
+      - delay:
+          seconds: >-
+            {{
+              (as_timestamp(states('var.central_heating_last_action')) + 10) - as_timestamp(now())
+            }}
+
+  - service: var.set
+    target:
+      entity_id: var.central_heating_last_action
+    data:
+      value: "{{ now().isoformat() }}"
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot

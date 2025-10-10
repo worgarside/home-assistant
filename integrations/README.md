@@ -6349,7 +6349,14 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Switch
 
-<details><summary><h3>Entities (2)</h3></summary>
+<details><summary><h3>Entities (3)</h3></summary>
+
+<details><summary><strong>Central Heating</strong></summary>
+
+**Entity ID: `switch.central_heating`**
+
+File: [`switch/central_heating.yaml`](entities/switch/central_heating.yaml)
+</details>
 
 <details><summary><strong>MtrxPi Power</strong></summary>
 
@@ -7309,7 +7316,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Var
 
-<details><summary><h3>Entities (18)</h3></summary>
+<details><summary><h3>Entities (19)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -7339,6 +7346,15 @@ File: [`var/auto_save_amount.yaml`](entities/var/auto_save_amount.yaml)
 - Unit Of Measurement: GBP
 
 File: [`var/auto_save_cumulative_total.yaml`](entities/var/auto_save_cumulative_total.yaml)
+</details>
+
+<details><summary><strong>Central Heating Last Action</strong></summary>
+
+**Entity ID: `var.central_heating_last_action`**
+
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`var/central_heating_last_action.yaml`](entities/var/central_heating_last_action.yaml)
 </details>
 
 <details><summary><strong>Current AppDaemon Branch</strong></summary>
