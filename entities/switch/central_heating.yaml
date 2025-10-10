@@ -14,6 +14,7 @@ turn_on:
   - if: >
       {{
         not has_value('var.central_heating_last_action') or
+        not states('var.central_heating_last_action') or
         (as_timestamp(now()) - as_timestamp(states('var.central_heating_last_action'))) > 10
       }}
 
@@ -38,7 +39,7 @@ turn_on:
         data:
           calling_entity: switch.central_heating
           message: >-
-            Central heating toggle blocked - next available at 
+            Central heating toggle blocked - next available at
             {{
               (as_timestamp(states('var.central_heating_last_action')) + 10)
               | timestamp_custom('%H:%M:%S')
@@ -48,6 +49,7 @@ turn_off:
   - if: >
       {{
         not has_value('var.central_heating_last_action') or
+        not states('var.central_heating_last_action') or
         (as_timestamp(now()) - as_timestamp(states('var.central_heating_last_action'))) > 10
       }}
 
@@ -67,7 +69,7 @@ turn_off:
         data:
           calling_entity: switch.central_heating
           message: >-
-            Central heating toggle blocked - next available at 
+            Central heating toggle blocked - next available at
             {{
               (as_timestamp(states('var.central_heating_last_action')) + 10)
               | timestamp_custom('%H:%M:%S')
