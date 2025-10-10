@@ -13,79 +13,69 @@ icon_template: >-
 turn_on:
   - if: >
       {{
-        not has_value('var.central_heating_last_action') or
-        not states('var.central_heating_last_action') or
-        (as_timestamp(now()) - as_timestamp(states('var.central_heating_last_action'))) > 10
+        has_value('var.central_heating_last_action') and
+        states('var.central_heating_last_action') and
+        (as_timestamp(now()) - as_timestamp(states('var.central_heating_last_action'))) <= 10
       }}
 
     then:
-      - service: var.set
-        target:
-          entity_id: var.central_heating_last_action
-        data:
-          value: "{{ now().isoformat() }}"
-
-      - service: switch.toggle
-        target:
-          entity_id: switch.boiler_fingerbot
-
-      - wait_for_trigger:
-          - trigger: state
-            entity_id: switch.boiler_fingerbot
-            for:
-              seconds: 2
-
-      - service: switch.toggle
-        target:
-          entity_id: switch.boiler_fingerbot
-
-      - wait_for_trigger:
-          - trigger: state
-            entity_id: switch.boiler_fingerbot
-            for:
-              seconds: 2
-
-      - service: switch.toggle
-        target:
-          entity_id: switch.boiler_fingerbot
-
-    else:
-      - service: script.log_exception
-        data:
-          calling_entity: switch.central_heating
-          message: >-
-            Central heating toggle blocked - next available at
+      - delay:
+          seconds: >-
             {{
-              (as_timestamp(states('var.central_heating_last_action')) + 10)
-              | timestamp_custom('%H:%M:%S')
+              (as_timestamp(states('var.central_heating_last_action')) + 10) - as_timestamp(now())
             }}
+
+  - service: var.set
+    target:
+      entity_id: var.central_heating_last_action
+    data:
+      value: "{{ now().isoformat() }}"
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot
+
+  - wait_for_trigger:
+      - trigger: state
+        entity_id: switch.boiler_fingerbot
+        for:
+          seconds: 2
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot
+
+  - wait_for_trigger:
+      - trigger: state
+        entity_id: switch.boiler_fingerbot
+        for:
+          seconds: 2
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot
 
 turn_off:
   - if: >
       {{
-        not has_value('var.central_heating_last_action') or
-        not states('var.central_heating_last_action') or
-        (as_timestamp(now()) - as_timestamp(states('var.central_heating_last_action'))) > 10
+        has_value('var.central_heating_last_action') and
+        states('var.central_heating_last_action') and
+        (as_timestamp(now()) - as_timestamp(states('var.central_heating_last_action'))) <= 10
       }}
 
     then:
-      - service: var.set
-        target:
-          entity_id: var.central_heating_last_action
-        data:
-          value: "{{ now().isoformat() }}"
-
-      - service: switch.toggle
-        target:
-          entity_id: switch.boiler_fingerbot
-
-    else:
-      - service: script.log_exception
-        data:
-          calling_entity: switch.central_heating
-          message: >-
-            Central heating toggle blocked - next available at
+      - delay:
+          seconds: >-
             {{
-              (as_timestamp(states('var.central_heating_last_action')) + 10)
-              | timestamp_custom('%H:%M:%S')
+              (as_timestamp(states('var.central_heating_last_action')) + 10) - as_timestamp(now())
             }}
+
+  - service: var.set
+    target:
+      entity_id: var.central_heating_last_action
+    data:
+      value: "{{ now().isoformat() }}"
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot
