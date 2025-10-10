@@ -1,0 +1,66 @@
+---
+friendly_name: Central Heating
+
+unique_id: central_heating
+
+optimistic: true
+
+icon_template: >-
+  {% if this.state | bool(false) %}
+    mdi:radiator
+  {% else %}
+    mdi:radiator-off
+  {% endif %}
+
+turn_on:
+  - if: >
+      {{
+        not has_value('var.central_heating_last_action') or
+        (as_timestamp(now()) - as_timestamp(states('var.central_heating_last_action'))) > 10
+      }}
+
+    then:
+      - service: var.set
+        target:
+          entity_id: var.central_heating_last_action
+        data:
+          value: "{{ now().isoformat() }}"
+
+      - repeat:
+          count: 3
+          sequence:
+            - service: switch.toggle
+              target:
+                entity_id: switch.boiler_fingerbot
+            - delay:
+                seconds: 2
+
+    else:
+      - service: script.log_exception
+        data:
+          calling_entity: switch.central_heating
+          message: "Central heating toggle blocked - too soon after last action (cooldown active)"
+
+turn_off:
+  - if: >
+      {{
+        not has_value('var.central_heating_last_action') or
+        (as_timestamp(now()) - as_timestamp(states('var.central_heating_last_action'))) > 10
+      }}
+
+    then:
+      - service: var.set
+        target:
+          entity_id: var.central_heating_last_action
+        data:
+          value: "{{ now().isoformat() }}"
+
+      - service: switch.toggle
+        target:
+          entity_id: switch.boiler_fingerbot
+
+    else:
+      - service: script.log_exception
+        data:
+          calling_entity: switch.central_heating
+          message: "Central heating toggle blocked - too soon after last action (cooldown active)"
