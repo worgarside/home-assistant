@@ -4,7 +4,7 @@ friendly_name: Central Heating
 unique_id: central_heating
 
 icon_template: >-
-  {% if this.state | bool(false) %}
+  {% if states('switch.central_heating') | bool(false) %}
     mdi:radiator
   {% else %}
     mdi:radiator-off
