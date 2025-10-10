@@ -7352,6 +7352,8 @@ File: [`var/auto_save_cumulative_total.yaml`](entities/var/auto_save_cumulative_
 
 **Entity ID: `var.central_heating_last_action`**
 
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
 File: [`var/central_heating_last_action.yaml`](entities/var/central_heating_last_action.yaml)
 </details>
 
