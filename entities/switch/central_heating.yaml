@@ -25,14 +25,29 @@ turn_on:
         data:
           value: "{{ now().isoformat() }}"
 
-      - repeat:
-          count: 3
-          sequence:
-            - service: switch.toggle
-              target:
-                entity_id: switch.boiler_fingerbot
-            - delay:
-                seconds: 2
+      - service: switch.toggle
+        target:
+          entity_id: switch.boiler_fingerbot
+
+      - wait_for_trigger:
+          - trigger: state
+            entity_id: switch.boiler_fingerbot
+            for:
+              seconds: 2
+
+      - service: switch.toggle
+        target:
+          entity_id: switch.boiler_fingerbot
+
+      - wait_for_trigger:
+          - trigger: state
+            entity_id: switch.boiler_fingerbot
+            for:
+              seconds: 2
+
+      - service: switch.toggle
+        target:
+          entity_id: switch.boiler_fingerbot
 
     else:
       - service: script.log_exception
