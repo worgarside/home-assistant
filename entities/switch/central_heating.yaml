@@ -3,8 +3,6 @@ friendly_name: Central Heating
 
 unique_id: central_heating
 
-optimistic: true
-
 icon_template: >-
   {% if this.state | bool(false) %}
     mdi:radiator
