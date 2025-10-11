@@ -1,9 +1,9 @@
 ---
 alias: /remote/coffee-table/double
 
-description: Turn off the lounge
-
 id: remote_coffee_table_double
+
+description: Control the TV to use the speakrers as the audio output
 
 mode: single
 
@@ -16,7 +16,39 @@ trigger:
     type: action
     subtype: double
 
+variables:
+  delay_ms: 500
+
+  codes:
+    action_menu: BUwJZgKcBIADAxoCZgJAC0AHQAPgCwtAAcAbA5wEB1DgAz9AAQOcBGYCwAHgDwtAAUAbAZwE4AU/wFdAB0ABA5wEZgLAAeADC0ABQA8BnATgBT9AAQOcBGYCwAHgDwtAAUAbAZwE4N0/QU8DnARmAkAHwANADwGcBOAF/0AbA5wEZgJAB0AD4AULA70CGgLgAQMJnAS9ApwEB1BMCQ== # yamllint disable-line rule:line-length
+    down: B24JWwKtBFsCQAHgAwdAC8AD4AUBAUVg4FszAbcC4F1nAVsC4ChnAgJbAg==
+    enter: B2IJWgKuBFoCQAHAB0ABQAvAA+AFAQW9YmIJWgJAG0ABwAdAAUALwAPgBQHgxDMCAloC
+
 action:
-  - service: homeassistant.turn_off
-    target:
-      area_id: lounge
+  - repeat:
+      for_each:
+        - "{{ codes.action_menu }}"
+        - "{{ codes.down }}"
+        - "{{ codes.down }}"
+        - "{{ codes.down }}"
+        - "{{ codes.down }}"
+        - "{{ codes.down }}"
+        - "{{ codes.enter }}"
+      sequence:
+        - service: text.set_value
+          target:
+            entity_id: text.lounge_ir_blaster_ir_code_to_send
+          data:
+            value: "{{ repeat.item }}"
+
+        - delay:
+            milliseconds: 5
+
+        - service: text.set_value
+          target:
+            entity_id: text.topaz_sr10_ir_controller_ir_code_to_send
+          data:
+            value: ""
+
+        - delay:
+            milliseconds: "{{ delay_ms }}"
