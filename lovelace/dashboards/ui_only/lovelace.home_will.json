@@ -4918,7 +4918,19 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "New section"
+                  "heading_style": "title",
+                  "heading": "Kitchen",
+                  "icon": "mdi:stove",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_humidity"
+                    }
+                  ]
                 }
               ]
             }
