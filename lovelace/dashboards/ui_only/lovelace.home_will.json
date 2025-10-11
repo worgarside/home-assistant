@@ -5258,9 +5258,16 @@
               "type": "entity",
               "show_name": true,
               "show_state": true,
-              "show_icon": true,
+              "show_icon": false,
               "entity": "climate.kitchen_radiator",
-              "name": "Kitchen"
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
             },
             {
               "type": "entity",
