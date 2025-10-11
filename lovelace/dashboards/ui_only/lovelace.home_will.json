@@ -4792,6 +4792,27 @@
               "cards": [
                 {
                   "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Kitchen",
+                  "icon": "mdi:stove",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_humidity"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
                   "heading": "Will's Office",
                   "heading_style": "title",
                   "icon": "hue:room-computer",
@@ -4909,27 +4930,6 @@
                   "hvac_modes": [
                     "heat",
                     "cool"
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading_style": "title",
-                  "heading": "Kitchen",
-                  "icon": "mdi:stove",
-                  "badges": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.kitchen_air_quality_sensor_temperature"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.kitchen_air_quality_sensor_humidity"
-                    }
                   ]
                 }
               ]
