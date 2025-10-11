@@ -1496,12 +1496,23 @@ File: [`automation/remote/charging_hub_button/single.yaml`](entities/automation/
 
 **Entity ID: `automation.remote_coffee_table_double`**
 
-> Turn off the lounge
+> Control the TV to use the speakrers as the audio output
 
 - Alias: /remote/coffee-table/double
 - ID: `remote_coffee_table_double`
 - Mode: `single`
+- Variables:
 
+```json
+{
+  "delay_ms": 750,
+  "codes": {
+    "action_menu": "BUwJZgKcBIADAxoCZgJAC0AHQAPgCwtAAcAbA5wEB1DgAz9AAQOcBGYCwAHgDwtAAUAbAZwE4AU/wFdAB0ABA5wEZgLAAeADC0ABQA8BnATgBT9AAQOcBGYCwAHgDwtAAUAbAZwE4N0/QU8DnARmAkAHwANADwGcBOAF/0AbA5wEZgJAB0AD4AULA70CGgLgAQMJnAS9ApwEB1BMCQ==",
+    "down": "B24JWwKtBFsCQAHgAwdAC8AD4AUBAUVg4FszAbcC4F1nAVsC4ChnAgJbAg==",
+    "enter": "B2IJWgKuBFoCQAHAB0ABQAvAA+AFAQW9YmIJWgJAG0ABwAdAAUALwAPgBQHgxDMCAloC"
+  }
+}
+```
 File: [`automation/remote/coffee_table/double.yaml`](entities/automation/remote/coffee_table/double.yaml)
 </details>
 
@@ -1516,26 +1527,6 @@ File: [`automation/remote/coffee_table/double.yaml`](entities/automation/remote/
 - Mode: `single`
 
 File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/coffee_table/hold.yaml)
-</details>
-
-<details><summary><code>/remote/coffee-table/single</code></summary>
-
-**Entity ID: `automation.remote_coffee_table_single`**
-
-> Set the scene for watching TV
-
-- Alias: /remote/coffee-table/single
-- ID: `remote_coffee_table_single`
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "hifi_system_source": "Lounge Chromec",
-  "available_sources": "{{ state_attr('media_player.hifi_system', 'source_list') or [] }}"
-}
-```
-File: [`automation/remote/coffee_table/single.yaml`](entities/automation/remote/coffee_table/single.yaml)
 </details>
 
 <details><summary><code>/remote/lounge-hue-remote/down-press</code></summary>
