@@ -4793,7 +4793,18 @@
                 {
                   "type": "heading",
                   "heading": "Will's Office",
-                  "heading_style": "title"
+                  "heading_style": "title",
+                  "icon": "hue:room-computer",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_s_office_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_s_office_climate_sensor_humidity"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-climate-card",
