@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (143)</h3></summary>
+<details><summary><h3>Entities (142)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -729,7 +729,7 @@ File: [`automation/homeassistant/handle_service_reload.yaml`](entities/automatio
 
 **Entity ID: `automation.homeassistant_integrations_speedtest_reload`**
 
-> *No description provided*
+> Reload speedtest config entry when any speedtest sensor becomes unavailable for 30 seconds
 
 - Alias: /homeassistant/integrations/speedtest/reload
 - ID: `homeassistant_integrations_speedtest_reload`
@@ -1861,19 +1861,6 @@ File: [`automation/remote/will_s_desk/button_2/double.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/will_s_desk/button_2/single.yaml`](entities/automation/remote/will_s_desk/button_2/single.yaml)
-</details>
-
-<details><summary><code>/sensor/speedtest/unavailable</code></summary>
-
-**Entity ID: `automation.sensor_speedtest_unavailable`**
-
-> Reload speedtest config entry when any speedtest sensor becomes unavailable for 30 seconds
-
-- Alias: /sensor/speedtest/unavailable
-- ID: `sensor_speedtest_unavailable`
-- Mode: `single`
-
-File: [`automation/sensor/speedtest/unavailable.yaml`](entities/automation/sensor/speedtest/unavailable.yaml)
 </details>
 
 <details><summary><code>/sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear</code></summary>
