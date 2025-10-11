@@ -4873,6 +4873,25 @@
                   "icon": "mdi:radiator"
                 },
                 {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.dining_area_radiator",
+                  "name": "Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
                   "type": "custom:mushroom-fan-card",
                   "entity": "fan.kitchen_extractor_vent",
                   "name": "Extractor Vent",
@@ -4939,41 +4958,6 @@
                       ]
                     }
                   ]
-                },
-                {
-                  "type": "heading",
-                  "heading_style": "subtitle",
-                  "icon": "mdi:silverware",
-                  "badges": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.kitchen_air_quality_sensor_temperature"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.kitchen_air_quality_sensor_humidity"
-                    }
-                  ],
-                  "heading": "Dining Area"
-                },
-                {
-                  "type": "custom:mushroom-climate-card",
-                  "entity": "climate.dining_area_radiator",
-                  "name": "Radiator",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "show_temperature_control": true,
-                  "collapsible_controls": false,
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "icon": "mdi:radiator"
                 }
               ]
             },
