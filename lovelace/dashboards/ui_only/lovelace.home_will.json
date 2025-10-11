@@ -4948,7 +4948,11 @@
                       "entity": "sensor.will_s_office_climate_sensor_temperature",
                       "color": "orange"
                     }
-                  ]
+                  ],
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 2
+                  }
                 }
               ]
             },
