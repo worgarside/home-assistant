@@ -4736,6 +4736,16 @@
                   "features_position": "bottom",
                   "entity": "schedule.heating_schedule",
                   "secondary": "Next On"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Will's Office",
+                  "heading_style": "title"
                 },
                 {
                   "type": "custom:mushroom-climate-card",
@@ -4755,16 +4765,6 @@
                     "action": "more-info"
                   },
                   "icon": "mdi:radiator"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Will's Office",
-                  "heading_style": "title"
                 }
               ]
             }
