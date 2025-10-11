@@ -4755,6 +4755,25 @@
                     "action": "more-info"
                   },
                   "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.bedroom_radiator_2",
+                  "name": "Radiator 2",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
                 }
               ]
             },
