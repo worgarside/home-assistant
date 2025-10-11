@@ -4928,6 +4928,27 @@
                     "heat",
                     "cool"
                   ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "show": {
+                    "state": false,
+                    "icon": false,
+                    "name": false
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 10,
+                  "line_width": 2,
+                  "entities": [
+                    {
+                      "entity": "sensor.will_s_office_fan_pm_2_5",
+                      "color": "green"
+                    },
+                    {
+                      "entity": "sensor.will_s_office_climate_sensor_temperature",
+                      "color": "orange"
+                    }
+                  ]
                 }
               ]
             },
