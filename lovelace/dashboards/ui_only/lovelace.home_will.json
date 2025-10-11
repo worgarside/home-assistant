@@ -5266,9 +5266,16 @@
               "type": "entity",
               "show_name": true,
               "show_state": true,
-              "show_icon": true,
+              "show_icon": false,
               "entity": "climate.vic_s_office_radiator",
-              "name": "Vic's Office"
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
             },
             {
               "type": "entity",
