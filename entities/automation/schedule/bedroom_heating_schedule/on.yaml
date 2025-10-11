@@ -13,7 +13,16 @@ trigger:
     from: "off"
     to: "on"
 
-condition: "{{ states('zone.home') | int(0) > 0 }}"
+condition:
+  - and:
+      - alias: Someone is home
+        condition: numeric_state
+        entity_id: zone.home
+        above: 0
+      - alias: It's cold outside
+        condition: numeric_state
+        entity_id: sensor.met_office_fulham_temperature
+        below: 15
 
 action:
   - action: fan.turn_off
