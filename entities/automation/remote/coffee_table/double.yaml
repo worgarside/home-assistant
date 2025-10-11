@@ -17,7 +17,7 @@ trigger:
     subtype: double
 
 variables:
-  delay_ms: 500
+  delay_ms: 750
 
   codes:
     action_menu: BUwJZgKcBIADAxoCZgJAC0AHQAPgCwtAAcAbA5wEB1DgAz9AAQOcBGYCwAHgDwtAAUAbAZwE4AU/wFdAB0ABA5wEZgLAAeADC0ABQA8BnATgBT9AAQOcBGYCwAHgDwtAAUAbAZwE4N0/QU8DnARmAkAHwANADwGcBOAF/0AbA5wEZgJAB0AD4AULA70CGgLgAQMJnAS9ApwEB1BMCQ== # yamllint disable-line rule:line-length
@@ -44,7 +44,7 @@ action:
             value: "{{ repeat.item }}"
 
         - delay:
-            milliseconds: 5
+            milliseconds: 50
 
         - service: text.set_value
           target:
@@ -54,3 +54,9 @@ action:
 
         - delay:
             milliseconds: "{{ delay_ms }}"
+
+  - service: text.set_value
+    target:
+      entity_id: text.topaz_sr10_ir_controller_ir_code_to_send
+    data:
+      value: ""

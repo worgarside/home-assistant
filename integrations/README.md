@@ -1505,7 +1505,7 @@ File: [`automation/remote/charging_hub_button/single.yaml`](entities/automation/
 
 ```json
 {
-  "delay_ms": 500,
+  "delay_ms": 750,
   "codes": {
     "action_menu": "BUwJZgKcBIADAxoCZgJAC0AHQAPgCwtAAcAbA5wEB1DgAz9AAQOcBGYCwAHgDwtAAUAbAZwE4AU/wFdAB0ABA5wEZgLAAeADC0ABQA8BnATgBT9AAQOcBGYCwAHgDwtAAUAbAZwE4N0/QU8DnARmAkAHwANADwGcBOAF/0AbA5wEZgJAB0AD4AULA70CGgLgAQMJnAS9ApwEB1BMCQ==",
     "down": "B24JWwKtBFsCQAHgAwdAC8AD4AUBAUVg4FszAbcC4F1nAVsC4ChnAgJbAg==",
