@@ -5272,7 +5272,11 @@
             },
             {
               "type": "entity",
-              "entity": "climate.will_s_office_radiator"
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office"
             }
           ]
         }
