@@ -4953,6 +4953,29 @@
                     "columns": 4,
                     "rows": 2
                   }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Air Quality",
+                  "show": {
+                    "state": false,
+                    "icon": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 10,
+                  "line_width": 5,
+                  "height": 300,
+                  "entities": [
+                    {
+                      "entity": "sensor.will_s_office_climate_sensor_temperature",
+                      "color": "orange"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 2.4
+                  }
                 }
               ]
             },
