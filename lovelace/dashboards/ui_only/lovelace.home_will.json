@@ -4710,7 +4710,12 @@
           "sections": [
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "schedule.heating_schedule"
+                }
+              ]
             }
           ]
         }
