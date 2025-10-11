@@ -5229,6 +5229,30 @@
               "entity": "switch.central_heating",
               "color": "deep-orange",
               "state_content": "state"
+            },
+            {
+              "type": "entity",
+              "entity": "climate.bedroom_radiator_1"
+            },
+            {
+              "type": "entity",
+              "entity": "climate.bedroom_radiator_2"
+            },
+            {
+              "type": "entity",
+              "entity": "climate.dining_area_radiator"
+            },
+            {
+              "type": "entity",
+              "entity": "climate.kitchen_radiator"
+            },
+            {
+              "type": "entity",
+              "entity": "climate.vic_s_office_radiator"
+            },
+            {
+              "type": "entity",
+              "entity": "climate.will_s_office_radiator"
             }
           ]
         }
