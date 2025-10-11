@@ -5034,7 +5034,7 @@
                     },
                     {
                       "type": "custom:mini-graph-card",
-                      "name": "Air Quality",
+                      "name": "Temperature",
                       "show": {
                         "state": false,
                         "icon": false,
@@ -5046,10 +5046,14 @@
                       "height": 300,
                       "entities": [
                         {
-                          "entity": "sensor.will_s_office_fan_pm_2_5",
-                          "color": "green"
+                          "entity": "sensor.will_s_office_climate_sensor_temperature",
+                          "color": "orange"
                         }
-                      ]
+                      ],
+                      "grid_options": {
+                        "columns": 4,
+                        "rows": 2.4
+                      }
                     }
                   ]
                 }
