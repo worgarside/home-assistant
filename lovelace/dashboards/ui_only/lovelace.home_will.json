@@ -4798,6 +4798,10 @@
                   "badges": [
                     {
                       "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_pm25"
+                    },
+                    {
+                      "type": "entity",
                       "entity": "sensor.kitchen_air_quality_sensor_temperature"
                     },
                     {
