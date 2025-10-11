@@ -4714,6 +4714,12 @@
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "schedule.heating_schedule"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ state_attr(\"schedule.heating_schedule\", \"next\") }}",
+                  "icon": "mdi:mushroom",
+                  "features_position": "bottom"
                 }
               ]
             }
