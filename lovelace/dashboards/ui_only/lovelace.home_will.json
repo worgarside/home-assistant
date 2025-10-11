@@ -5250,9 +5250,16 @@
               "type": "entity",
               "show_name": true,
               "show_state": true,
-              "show_icon": true,
+              "show_icon": false,
               "entity": "climate.dining_area_radiator",
-              "name": "Dining Area"
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
             },
             {
               "type": "entity",
