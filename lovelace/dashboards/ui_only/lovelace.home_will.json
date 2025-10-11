@@ -5228,7 +5228,14 @@
               "show_icon": true,
               "entity": "switch.central_heating",
               "color": "deep-orange",
-              "state_content": "state"
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
             },
             {
               "type": "entity",
