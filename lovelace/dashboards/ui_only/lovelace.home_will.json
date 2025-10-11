@@ -4713,8 +4713,11 @@
               "cards": [
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "schedule.heating_schedule",
-                  "icon_color": "deep-orange"
+                  "entity": "schedule.bedroom_heating_schedule",
+                  "icon_color": "deep-orange",
+                  "name": "Heating Schedule",
+                  "primary_info": "state",
+                  "secondary_info": "name"
                 },
                 {
                   "type": "custom:mushroom-template-card",
