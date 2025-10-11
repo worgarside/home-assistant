@@ -4700,6 +4700,24 @@
               ]
             }
           ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Central Heating",
+          "path": "central-heating",
+          "icon": "mdi:radiator",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
