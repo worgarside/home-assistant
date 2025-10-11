@@ -13,7 +13,13 @@ trigger:
     from: "off"
     to: "on"
 
+condition: "{{ states('zone.home') | int(0) > 0 }}"
+
 action:
+  - action: fan.turn_off
+    target:
+      area_id: bedroom
+
   - service: climate.turn_on
     target:
       entity_id:
