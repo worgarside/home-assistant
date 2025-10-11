@@ -4721,7 +4721,7 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "primary": "{% set next = state_attr('schedule.heating_schedule', 'next_event') %}\n{% if next %}\n  {% set dt = as_datetime(next) %}\n  {% set delta = dt - now() %}\n  {% set minutes = (delta.total_seconds() / 60) | int %}\n\n  {% if minutes < 60 %}\n    In {{ minutes }} minute{{ 's' if minutes != 1 }}\n  {% elif minutes < 1440 %}\n    In {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }}\n  {% else %}\n    In {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }}\n  {% endif %}\n{% else %}\n  No upcoming event\n{% endif %}\n",
+                  "primary": "{% set next = state_attr('schedule.bedroom_heating_schedule', 'next_event') %}\n{% if next %}\n  {% set dt = as_datetime(next) %}\n  {% set delta = dt - now() %}\n  {% set minutes = (delta.total_seconds() / 60) | int %}\n\n  {% if minutes < 60 %}\n    In {{ minutes }} minute{{ 's' if minutes != 1 }}\n  {% elif minutes < 1440 %}\n    In {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }}\n  {% else %}\n    In {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }}\n  {% endif %}\n{% else %}\n  No upcoming event\n{% endif %}\n",
                   "icon": "mdi:home-thermometer",
                   "features_position": "bottom",
                   "entity": "schedule.heating_schedule",
