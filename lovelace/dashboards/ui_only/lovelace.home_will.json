@@ -4846,6 +4846,25 @@
                     }
                   ],
                   "heading": "Dining Area"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.dining_area_radiator",
+                  "name": "Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
                 }
               ]
             },
