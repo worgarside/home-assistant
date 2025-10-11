@@ -96,7 +96,9 @@ cards:""")
     color_tuples = tuple(
         (c.upper(), addon, slug)
         for c, (addon, slug) in zip(
-            generate_unique_colors(len(addon_names)), addon_names, strict=False
+            generate_unique_colors(len(addon_names)),
+            addon_names,
+            strict=False,
         )
     )
 
