@@ -3,6 +3,9 @@ alias: /homeassistant/integrations/speedtest/reload
 
 id: homeassistant_integrations_speedtest_reload
 
+description: >-
+  Reload speedtest config entry when any speedtest sensor becomes unavailable for 30 seconds
+
 mode: single
 
 max_exceeded: silent
@@ -13,24 +16,21 @@ trigger:
       - sensor.speedtest_download
       - sensor.speedtest_upload
       - sensor.speedtest_ping
-    to:
-      - unavailable
-      - unknown
+    to: "unavailable"
     for:
-      minutes: 60
+      seconds: 30
 
 action:
-  - service: script.turn_on
-    target:
-      entity_id: script.debug_persistent_notification
+  - service: script.debug_persistent_notification
     data:
-      variables:
-        notification_title: Speedtest Integration Reloaded
-        message: |
-          ```json
-          {{ trigger.to_state | tojson(indent=2) }}
-          ```
+      message: >-
+        Speedtest sensor {{ trigger.entity_id }} became unavailable for 30+ seconds.
+        Reloading speedtest config entry.
+      notification_title: Speedtest Sensor Unavailable
+      notification_id: speedtest_sensor_unavailable
 
   - service: homeassistant.reload_config_entry
     target:
       entity_id: sensor.speedtest_download
+    data:
+      entry_id: 0cfae871c5302278e74c3ab42a713f09
