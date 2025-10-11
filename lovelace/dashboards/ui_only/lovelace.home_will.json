@@ -5264,7 +5264,11 @@
             },
             {
               "type": "entity",
-              "entity": "climate.vic_s_office_radiator"
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office"
             },
             {
               "type": "entity",
