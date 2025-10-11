@@ -4824,6 +4824,12 @@
                     "action": "more-info"
                   },
                   "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.kitchen_extractor_vent",
+                  "name": "Extractor Vent",
+                  "icon_animation": true
                 }
               ]
             },
