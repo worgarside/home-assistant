@@ -1,0 +1,23 @@
+---
+alias: /sensor/vic-s-office-climate-sensor-temperature/sync-radiator-trv
+
+id: sensor_vic_s_office_climate_sensor_temperature_sync_radiator_trv
+
+description: >-
+  Sync radiator TRV external temperature input when vic's office climate sensor temperature updates
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.vic_s_office_climate_sensor_temperature
+    not_to:
+      - "unavailable"
+      - "unknown"
+
+action:
+  - service: number.set_value
+    target:
+      entity_id: number.vic_s_office_radiator_external_temperature_input
+    data:
+      value: "{{ states('sensor.vic_s_office_climate_sensor_temperature') | float }}"

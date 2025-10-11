@@ -1,0 +1,25 @@
+---
+alias: /sensor/kitchen-climate-sensor-temperature/sync-radiator-trv
+
+id: sensor_kitchen_climate_sensor_temperature_sync_radiator_trv
+
+description: >-
+  Sync radiator TRV external temperature input when kitchen climate sensor temperature updates
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.kitchen_climate_sensor_temperature
+    not_to:
+      - "unavailable"
+      - "unknown"
+
+action:
+  - service: number.set_value
+    target:
+      entity_id:
+        - number.kitchen_radiator_external_temperature_input
+        - number.dining_area_radiator_external_temperature_input
+    data:
+      value: "{{ states('sensor.kitchen_climate_sensor_temperature') | float }}"

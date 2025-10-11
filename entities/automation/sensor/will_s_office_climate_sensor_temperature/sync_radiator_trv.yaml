@@ -1,0 +1,23 @@
+---
+alias: /sensor/will-s-office-climate-sensor-temperature/sync-radiator-trv
+
+id: sensor_will_s_office_climate_sensor_temperature_sync_radiator_trv
+
+description: >-
+  Sync radiator TRV external temperature input when office climate sensor temperature updates
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.will_s_office_climate_sensor_temperature
+    not_to:
+      - "unavailable"
+      - "unknown"
+
+action:
+  - service: number.set_value
+    target:
+      entity_id: number.will_s_office_radiator_external_temperature_input
+    data:
+      value: "{{ states('sensor.will_s_office_climate_sensor_temperature') | float }}"

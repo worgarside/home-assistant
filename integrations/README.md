@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (147)</h3></summary>
+<details><summary><h3>Entities (151)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1906,6 +1906,32 @@ File: [`automation/schedule/bedroom_heating_schedule/off.yaml`](entities/automat
 File: [`automation/schedule/bedroom_heating_schedule/on.yaml`](entities/automation/schedule/bedroom_heating_schedule/on.yaml)
 </details>
 
+<details><summary><code>/sensor/bedroom-climate-sensor-temperature/sync-radiator-trv</code></summary>
+
+**Entity ID: `automation.sensor_bedroom_climate_sensor_temperature_sync_radiator_trv`**
+
+> Sync radiator TRV external temperature input when bedroom climate sensor temperature updates
+
+- Alias: /sensor/bedroom-climate-sensor-temperature/sync-radiator-trv
+- ID: `sensor_bedroom_climate_sensor_temperature_sync_radiator_trv`
+- Mode: `single`
+
+File: [`automation/sensor/bedroom_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/bedroom_climate_sensor_temperature/sync_radiator_trv.yaml)
+</details>
+
+<details><summary><code>/sensor/kitchen-climate-sensor-temperature/sync-radiator-trv</code></summary>
+
+**Entity ID: `automation.sensor_kitchen_climate_sensor_temperature_sync_radiator_trv`**
+
+> Sync radiator TRV external temperature input when kitchen climate sensor temperature updates
+
+- Alias: /sensor/kitchen-climate-sensor-temperature/sync-radiator-trv
+- ID: `sensor_kitchen_climate_sensor_temperature_sync_radiator_trv`
+- Mode: `single`
+
+File: [`automation/sensor/kitchen_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/kitchen_climate_sensor_temperature/sync_radiator_trv.yaml)
+</details>
+
 <details><summary><code>/sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear</code></summary>
 
 **Entity ID: `automation.sensor_storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear`**
@@ -1917,6 +1943,32 @@ File: [`automation/schedule/bedroom_heating_schedule/on.yaml`](entities/automati
 - Mode: `single`
 
 File: [`automation/sensor/storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear.yaml`](entities/automation/sensor/storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear.yaml)
+</details>
+
+<details><summary><code>/sensor/vic-s-office-climate-sensor-temperature/sync-radiator-trv</code></summary>
+
+**Entity ID: `automation.sensor_vic_s_office_climate_sensor_temperature_sync_radiator_trv`**
+
+> Sync radiator TRV external temperature input when vic's office climate sensor temperature updates
+
+- Alias: /sensor/vic-s-office-climate-sensor-temperature/sync-radiator-trv
+- ID: `sensor_vic_s_office_climate_sensor_temperature_sync_radiator_trv`
+- Mode: `single`
+
+File: [`automation/sensor/vic_s_office_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/vic_s_office_climate_sensor_temperature/sync_radiator_trv.yaml)
+</details>
+
+<details><summary><code>/sensor/will-s-office-climate-sensor-temperature/sync-radiator-trv</code></summary>
+
+**Entity ID: `automation.sensor_will_s_office_climate_sensor_temperature_sync_radiator_trv`**
+
+> Sync radiator TRV external temperature input when office climate sensor temperature updates
+
+- Alias: /sensor/will-s-office-climate-sensor-temperature/sync-radiator-trv
+- ID: `sensor_will_s_office_climate_sensor_temperature_sync_radiator_trv`
+- Mode: `single`
+
+File: [`automation/sensor/will_s_office_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/will_s_office_climate_sensor_temperature/sync_radiator_trv.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>
