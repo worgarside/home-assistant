@@ -4719,7 +4719,17 @@
                   "type": "heading",
                   "icon": "mdi:bed-queen-outline",
                   "heading_style": "title",
-                  "heading": "Bedroom"
+                  "heading": "Bedroom",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.bedroom_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.bedroom_climate_sensor_humidity"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-entity-card",
