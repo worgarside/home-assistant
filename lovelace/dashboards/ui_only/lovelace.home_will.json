@@ -5276,7 +5276,14 @@
               "show_state": true,
               "show_icon": false,
               "entity": "climate.will_s_office_radiator",
-              "name": "Will's Office"
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
             }
           ]
         }
