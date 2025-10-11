@@ -4700,6 +4700,53 @@
               ]
             }
           ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Central Heating",
+          "path": "central-heating",
+          "icon": "mdi:radiator",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "mdi:bed-queen-outline",
+                  "heading_style": "title",
+                  "heading": "Bedroom"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "schedule.bedroom_heating_schedule",
+                  "icon_color": "deep-orange",
+                  "name": "Heating Schedule",
+                  "primary_info": "state",
+                  "secondary_info": "name"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{% set next = state_attr('schedule.bedroom_heating_schedule', 'next_event') %}\n{% if next %}\n  {% set dt = as_datetime(next) %}\n  {% set delta = dt - now() %}\n  {% set minutes = (delta.total_seconds() / 60) | int %}\n\n  {% if minutes < 60 %}\n    In {{ minutes }} minute{{ 's' if minutes != 1 }}\n  {% elif minutes < 1440 %}\n    In {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }}\n  {% else %}\n    In {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }}\n  {% endif %}\n{% else %}\n  No upcoming event\n{% endif %}\n",
+                  "icon": "mdi:home-thermometer",
+                  "features_position": "bottom",
+                  "entity": "schedule.heating_schedule",
+                  "secondary": "Next On"
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state"
+            }
+          ]
         }
       ]
     }
