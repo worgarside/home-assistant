@@ -4712,6 +4712,12 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "icon": "mdi:bed-queen-outline",
+                  "heading_style": "title",
+                  "heading": "Bedroom"
+                },
+                {
                   "type": "custom:mushroom-entity-card",
                   "entity": "schedule.bedroom_heating_schedule",
                   "icon_color": "deep-orange",
