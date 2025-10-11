@@ -1,0 +1,29 @@
+---
+alias: /switch/central-heating/on
+
+id: switch_central_heating_on
+
+description: Create persistent notification when central heating turns on
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: switch.central_heating
+    from: "off"
+    to: "on"
+
+action:
+  - service: notify.mobile_app_will_s_pixel_6_pro
+    data:
+      title: "Central heating is on"
+      message: "Heating system activated"
+      data:
+        tag: "central_heating_status"
+        persistent: true
+        sticky: "true"
+        notification_icon: "mdi:radiator"
+        chronometer: true
+        when: "{{ now().timestamp() | int }}"
+        when_relative: false
+        sound: "none"

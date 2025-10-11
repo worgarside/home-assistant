@@ -1,0 +1,21 @@
+---
+alias: /schedule/bedroom-heating-schedule/on
+
+id: schedule_bedroom_heating_schedule_on
+
+description: Activate bedroom heating when schedule turns on
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: schedule.bedroom_heating_schedule
+    from: "off"
+    to: "on"
+
+action:
+  - service: climate.turn_on
+    target:
+      entity_id:
+        - climate.bedroom_radiator_1
+        - climate.bedroom_radiator_2

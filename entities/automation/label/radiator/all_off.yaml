@@ -1,0 +1,26 @@
+---
+alias: /label/radiator/all-off
+
+id: label_radiator_all_off
+
+description: Turn off central heating when all radiators are off
+
+mode: single
+
+trigger:
+  - platform: template
+    value_template: >-
+      {{
+        label_entities("Radiator")
+        | expand()
+        | selectattr('state', 'eq', 'on')
+        | list
+        | count == 0
+      }}
+
+condition: "{{ is_state('switch.central_heating', 'on') }}"
+
+action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.central_heating

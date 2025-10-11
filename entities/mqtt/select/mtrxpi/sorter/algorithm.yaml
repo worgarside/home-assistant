@@ -5,7 +5,7 @@ unique_id: mtrxpi_sorter_algorithm
 
 command_topic: /mtrxpi/sorter/parameter/algorithm
 
-command_template: "{{ slugify(value) | tojson }}" # hacv disable: InvalidTemplateVar:value,slugify
+command_template: "{{ slugify(value) | tojson }}" # hacv disable: InvalidTemplateVar:value
 
 icon: mdi:sort
 

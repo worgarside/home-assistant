@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (141)</h3></summary>
+<details><summary><h3>Entities (147)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -865,6 +865,32 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 - Mode: `single`
 
 File: [`automation/label/critical_battery/low_battery_alert.yaml`](entities/automation/label/critical_battery/low_battery_alert.yaml)
+</details>
+
+<details><summary><code>/label/radiator/all-off</code></summary>
+
+**Entity ID: `automation.label_radiator_all_off`**
+
+> Turn off central heating when all radiators are off
+
+- Alias: /label/radiator/all-off
+- ID: `label_radiator_all_off`
+- Mode: `single`
+
+File: [`automation/label/radiator/all_off.yaml`](entities/automation/label/radiator/all_off.yaml)
+</details>
+
+<details><summary><code>/label/radiator/any-on</code></summary>
+
+**Entity ID: `automation.label_radiator_any_on`**
+
+> Turn on central heating when any radiator turns on
+
+- Alias: /label/radiator/any-on
+- ID: `label_radiator_any_on`
+- Mode: `single`
+
+File: [`automation/label/radiator/any_on.yaml`](entities/automation/label/radiator/any_on.yaml)
 </details>
 
 <details><summary><code>/light/bedroom-shapes/bon-appetit</code></summary>
@@ -1854,6 +1880,32 @@ File: [`automation/remote/will_s_desk/button_2/double.yaml`](entities/automation
 File: [`automation/remote/will_s_desk/button_2/single.yaml`](entities/automation/remote/will_s_desk/button_2/single.yaml)
 </details>
 
+<details><summary><code>/schedule/bedroom-heating-schedule/off</code></summary>
+
+**Entity ID: `automation.schedule_bedroom_heating_schedule_off`**
+
+> Turn off bedroom radiators when bedroom heating schedule turns off
+
+- Alias: /schedule/bedroom-heating-schedule/off
+- ID: `schedule_bedroom_heating_schedule_off`
+- Mode: `single`
+
+File: [`automation/schedule/bedroom_heating_schedule/off.yaml`](entities/automation/schedule/bedroom_heating_schedule/off.yaml)
+</details>
+
+<details><summary><code>/schedule/bedroom-heating-schedule/on</code></summary>
+
+**Entity ID: `automation.schedule_bedroom_heating_schedule_on`**
+
+> Activate bedroom heating when schedule turns on
+
+- Alias: /schedule/bedroom-heating-schedule/on
+- ID: `schedule_bedroom_heating_schedule_on`
+- Mode: `single`
+
+File: [`automation/schedule/bedroom_heating_schedule/on.yaml`](entities/automation/schedule/bedroom_heating_schedule/on.yaml)
+</details>
+
 <details><summary><code>/sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear</code></summary>
 
 **Entity ID: `automation.sensor_storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear`**
@@ -1891,6 +1943,32 @@ File: [`automation/switch/air_freshener/timeout.yaml`](entities/automation/switc
 - Mode: `single`
 
 File: [`automation/switch/air_freshener/turn_on.yaml`](entities/automation/switch/air_freshener/turn_on.yaml)
+</details>
+
+<details><summary><code>/switch/central-heating/off</code></summary>
+
+**Entity ID: `automation.switch_central_heating_off`**
+
+> Turn off all radiators when central heating is turned off
+
+- Alias: /switch/central-heating/off
+- ID: `switch_central_heating_off`
+- Mode: `single`
+
+File: [`automation/switch/central_heating/off.yaml`](entities/automation/switch/central_heating/off.yaml)
+</details>
+
+<details><summary><code>/switch/central-heating/on</code></summary>
+
+**Entity ID: `automation.switch_central_heating_on`**
+
+> Create persistent notification when central heating turns on
+
+- Alias: /switch/central-heating/on
+- ID: `switch_central_heating_on`
+- Mode: `single`
+
+File: [`automation/switch/central_heating/on.yaml`](entities/automation/switch/central_heating/on.yaml)
 </details>
 
 <details><summary><code>/switch/charging-hub/turn-off</code></summary>
