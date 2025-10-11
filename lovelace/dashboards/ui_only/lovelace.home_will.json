@@ -4830,6 +4830,22 @@
                   "entity": "fan.kitchen_extractor_vent",
                   "name": "Extractor Vent",
                   "icon_animation": true
+                },
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "icon": "mdi:silverware",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_humidity"
+                    }
+                  ],
+                  "heading": "Dining Area"
                 }
               ]
             },
