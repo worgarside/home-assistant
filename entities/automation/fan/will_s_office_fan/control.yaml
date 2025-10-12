@@ -73,13 +73,15 @@ action:
             target:
               entity_id: fan.will_s_office_fan
 
-          # Don't want to blow things around the room
-          # Has to be after the percentage is set
-          - service: fan.set_direction
-            data:
-              direction: reverse
-            target:
-              entity_id: fan.will_s_office_fan
+          - if: "{{ not is_state_attr('fan.will_s_office_fan', 'direction', 'reverse') }}"
+            then:
+              # Don't want to blow things around the room
+              # Has to be after the percentage is set
+              - service: fan.set_direction
+                data:
+                  direction: reverse
+                target:
+                  entity_id: fan.will_s_office_fan
 
       # Only 100% turn the fan off if the room is empty
       - alias: Good Air Quality (Empty Room)
@@ -122,10 +124,12 @@ action:
             target:
               entity_id: fan.will_s_office_fan
 
-          # Don't want to blow things around the room
-          # Has to be after the percentage is set
-          - service: fan.set_direction
-            data:
-              direction: reverse
-            target:
-              entity_id: fan.will_s_office_fan
+          - if: "{{ not is_state_attr('fan.will_s_office_fan', 'direction', 'reverse') }}"
+            then:
+              # Don't want to blow things around the room
+              # Has to be after the percentage is set
+              - service: fan.set_direction
+                data:
+                  direction: reverse
+                target:
+                  entity_id: fan.will_s_office_fan
