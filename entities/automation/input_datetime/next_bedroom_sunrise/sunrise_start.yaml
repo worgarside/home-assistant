@@ -11,6 +11,8 @@ trigger:
   - platform: time
     at: input_datetime.next_bedroom_sunrise
 
+condition: "{{ states('zone.home') | int(0) > 0 }}"
+
 variables:
   original_start_time: "{{ states('input_datetime.next_bedroom_sunrise') }}"
 
