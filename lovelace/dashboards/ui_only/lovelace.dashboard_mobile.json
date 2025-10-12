@@ -2050,7 +2050,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Lights timeout{%- if has_value(\"input_number.basement_lights_timeout\") %} ({{ states(\"input_number.basement_lights_timeout\") | int }}s) {% endif -%}"
+                  "primary": "Kitchen/Dining Area lights timeout{%- if has_value(\"input_number.basement_lights_timeout\") %} ({{ states(\"input_number.basement_lights_timeout\") | int }}s) {% endif -%}"
                 }
               ]
             },
