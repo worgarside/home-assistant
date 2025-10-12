@@ -4717,124 +4717,6 @@
               "cards": [
                 {
                   "type": "heading",
-                  "icon": "mdi:bed-queen-outline",
-                  "heading_style": "title",
-                  "heading": "Bedroom",
-                  "badges": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.bedroom_climate_sensor_temperature"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.bedroom_climate_sensor_humidity"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "schedule.bedroom_heating_schedule",
-                  "icon_color": "deep-orange",
-                  "name": "Heating Schedule",
-                  "primary_info": "state",
-                  "secondary_info": "name"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "primary": "{% set next = state_attr('schedule.bedroom_heating_schedule', 'next_event') %}\n{% if next %}\n  {% set dt = as_datetime(next) %}\n  {% set delta = dt - now() %}\n  {% set minutes = (delta.total_seconds() / 60) | int %}\n\n  {% if minutes < 60 %}\n    In {{ minutes }} minute{{ 's' if minutes != 1 }}\n  {% elif minutes < 1440 %}\n    In {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }}\n  {% else %}\n    In {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }}\n  {% endif %}\n{% else %}\n  No upcoming event\n{% endif %}\n",
-                  "icon": "mdi:home-thermometer",
-                  "features_position": "bottom",
-                  "entity": "schedule.bedroom_heating_schedule",
-                  "secondary": "Next On"
-                },
-                {
-                  "type": "custom:mushroom-climate-card",
-                  "entity": "climate.bedroom_radiator_1",
-                  "name": "Radiator 1",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "show_temperature_control": true,
-                  "collapsible_controls": false,
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "icon": "mdi:radiator"
-                },
-                {
-                  "type": "custom:mushroom-climate-card",
-                  "entity": "climate.bedroom_radiator_2",
-                  "name": "Radiator 2",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "show_temperature_control": true,
-                  "collapsible_controls": false,
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "icon": "mdi:radiator"
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Temperature",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.bedroom_climate_sensor_temperature",
-                          "color": "orange"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Humidity",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.bedroom_climate_sensor_humidity",
-                          "color": "purple"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
                   "heading_style": "title",
                   "heading": "Basement",
                   "icon": "mdi:stove",
@@ -4959,6 +4841,124 @@
                       "entities": [
                         {
                           "entity": "sensor.kitchen_air_quality_sensor_humidity",
+                          "color": "purple"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "mdi:bed-queen-outline",
+                  "heading_style": "title",
+                  "heading": "Bedroom",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.bedroom_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.bedroom_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "schedule.bedroom_heating_schedule",
+                  "icon_color": "deep-orange",
+                  "name": "Heating Schedule",
+                  "primary_info": "state",
+                  "secondary_info": "name"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{% set next = state_attr('schedule.bedroom_heating_schedule', 'next_event') %}\n{% if next %}\n  {% set dt = as_datetime(next) %}\n  {% set delta = dt - now() %}\n  {% set minutes = (delta.total_seconds() / 60) | int %}\n\n  {% if minutes < 60 %}\n    In {{ minutes }} minute{{ 's' if minutes != 1 }}\n  {% elif minutes < 1440 %}\n    In {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }}\n  {% else %}\n    In {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }}\n  {% endif %}\n{% else %}\n  No upcoming event\n{% endif %}\n",
+                  "icon": "mdi:home-thermometer",
+                  "features_position": "bottom",
+                  "entity": "schedule.bedroom_heating_schedule",
+                  "secondary": "Next On"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.bedroom_radiator_1",
+                  "name": "Radiator 1",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.bedroom_radiator_2",
+                  "name": "Radiator 2",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Temperature",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.bedroom_climate_sensor_temperature",
+                          "color": "orange"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Humidity",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.bedroom_climate_sensor_humidity",
                           "color": "purple"
                         }
                       ]
