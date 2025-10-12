@@ -939,16 +939,17 @@
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.apollo_plt_1b_1743a8_soil_moisture",
-                  "name": "Spider Plant",
-                  "layout": "vertical",
+                  "name": "Spider Plant Soil Moisture",
+                  "layout": "horizontal",
                   "fill_container": false,
                   "grid_options": {
-                    "columns": 3,
-                    "rows": 2
+                    "columns": 6,
+                    "rows": 1
                   },
                   "primary_info": "state",
-                  "secondary_info": "none",
-                  "icon_color": "#7f19e5"
+                  "secondary_info": "name",
+                  "icon_color": "#7f19e5",
+                  "icon": "mdi:water-percent"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
