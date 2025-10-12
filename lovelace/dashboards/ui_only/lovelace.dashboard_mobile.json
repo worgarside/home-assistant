@@ -793,32 +793,6 @@
                   "hold_action": {
                     "action": "none"
                   }
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:motion-sensor{% if not states(\"automation.binary_sensor_vic_s_office_occupancy_on\") | bool(false) %}-off{% endif %}",
-                  "features_position": "bottom",
-                  "entity": "automation.binary_sensor_vic_s_office_occupancy_on",
-                  "area": "vic_s_office",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": " /binary-sensor/vic-s-office-occupancy/on",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.binary_sensor_vic_s_office_occupancy_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Shell lamp auto-on"
                 }
               ]
             }
