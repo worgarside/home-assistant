@@ -1,0 +1,2799 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.dashboard_mobile",
+  "data": {
+    "config": {
+      "swipe_nav": {
+        "wrap": true,
+        "enable_mouse_swipe": true,
+        "animate": "swipe",
+        "swipe_amount": 30
+      },
+      "views": [
+        {
+          "type": "sections",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
+          "max_columns": 4,
+          "title": "Vic's Office",
+          "path": "vic-s-office",
+          "icon": "mdi:star-face",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Vic's Office",
+                  "heading_style": "title",
+                  "icon": "",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.vic_s_office_fan_pm_2_5"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.vic_s_office_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.vic_s_office_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.vic_s_office_radiator",
+                  "name": "Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.vic_s_office_fan",
+                  "name": "Fan",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "phu:dyson-floor",
+                  "hvac_modes": [
+                    "heat",
+                    "cool"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.shell_lamp",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.vic_s_office",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "name": "Ceiling Light",
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "show_color_control": false,
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.glowstick",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "show_color_control": false,
+                  "layout": "horizontal"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Environment",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Air Quality",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "icon": "mdi:flower",
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.vic_s_office_fan_pm_2_5",
+                      "color": "#656f70"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Temperature",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "animate": true,
+                  "line_width": 1,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.vic_s_office_climate_sensor_temperature",
+                      "color": "#e7c8e8"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.vic_s_office_climate_sensor_humidity",
+                      "color": "#5bacba"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:weather-pouring",
+                  "features_position": "bottom",
+                  "entity": "automation.light_vic_s_office_rain_flash",
+                  "area": "vic_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": " /light/vic-s-office/rain-flash",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_vic_s_office_rain_flash\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "primary": "Flash the light when it starts raining",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:motion-sensor{% if not states(\"automation.binary_sensor_vic_s_office_occupancy_on\") | bool(false) %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_vic_s_office_occupancy_on",
+                  "area": "vic_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": " /binary-sensor/vic-s-office-occupancy/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_vic_s_office_occupancy_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Shell lamp auto-on"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:lightbulb\n{%- if not states(\"automation.binary_sensor_vic_s_office_occupancy_state_change\") | bool(false) -%}\n-off\n{%- elif area_entities('vic_s_office') | select('match','^light\\.') | select('is_state','on') | list | count > 0 -%}\n-on\n{%- endif -%}\n-outline",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_vic_s_office_occupancy_state_change",
+                  "area": "vic_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": " /binary-sensor/vic-s-office-occupancy/state-change",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_vic_s_office_occupancy_state_change\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Presence-based lighting"
+                }
+              ]
+            }
+          ],
+          "cards": []
+        },
+        {
+          "type": "sections",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
+          "max_columns": 4,
+          "title": "Lounge",
+          "path": "lounge",
+          "icon": "mdi:sofa-outline",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lounge",
+                  "heading_style": "title",
+                  "icon": "",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.air_purifier_air_quality"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.lounge_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.lounge_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "automation.remote_coffee_table_double",
+                  "name": "Reset TV Audio Output",
+                  "secondary_info": "none",
+                  "icon": "mdi:remote-tv",
+                  "icon_color": "pink"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.air_purifier",
+                  "icon_animation": true
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "secondary": "Diffuser",
+                  "icon": "mdi:air-humidifier{%- if is_state(\"switch.lounge_diffuser\", \"off\") -%}-off{%- endif -%}",
+                  "features_position": "bottom",
+                  "entity": "switch.lounge_diffuser",
+                  "area": "lounge",
+                  "primary": "{{- states(\"switch.lounge_diffuser\") | title -}}",
+                  "color": "{{- iif(is_state(\"switch.lounge_diffuser\", \"on\"), \"orange\" ,\"gray\") -}}",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "badge_color": "red",
+                  "badge_icon": "{% if is_state(\"binary_sensor.lounge_diffuser_needs_water\", \"off\") %}mdi:water-alert-outline{% endif %}"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.air_freshener",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "{% set val = states('sensor.apollo_plt_1b_1743a8_soil_moisture') | float(0) %}\n{% if val < 20 %}\n  mdi:water-off\n{% elif val < 40 %}\n  mdi:water-alert\n{% elif val < 60 %}\n  mdi:water-percent\n{% elif val < 80 %}\n  mdi:water\n{% else %}\n  mdi:water-check\n{% endif %}\n",
+                  "features_position": "bottom",
+                  "entity": "sensor.apollo_plt_1b_1743a8_soil_moisture",
+                  "area": "lounge",
+                  "primary": "{{ states(\"sensor.apollo_plt_1b_1743a8_soil_moisture\") | round(2) }}%",
+                  "secondary": "Spider Plant Soil Moisture |\n{%- set last = states('sensor.apollo_plt_1b_spider_plant_last_online') %}\n{% if last not in ['unknown', 'unavailable', 'none', ''] %}\n  {% set dt = as_datetime(last) %}\n  {% set delta = now() - dt %}\n  {% set minutes = (delta.total_seconds() / 60) | int %}\n\n  {% if minutes < 60 %}\n    {{ minutes }} minute{{ 's' if minutes != 1 }} ago\n  {% elif minutes < 1440 %}\n    {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }} ago\n  {% else %}\n    {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }} ago\n  {% endif %}\n{% else %}\n  Unknown\n{% endif %}\n",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{% set val = states('sensor.apollo_plt_1b_1743a8_soil_moisture') | float(0) %}\n{% if val < 20 %}\n  red\n{% elif val < 40 %}\n  orange\n{% elif val < 60 %}\n  yellow\n{% elif val < 80 %}\n  limegreen\n{% else %}\n  deepskyblue\n{% endif %}\n"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.disco_ball_spotlight",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.globe_lamp",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "collapsible_controls": true
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.green_lamp",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.lounge_shelves",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "name": "Shelves",
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.mini_lamp",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.moomin_box",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Environment",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Air Quality",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "icon": "mdi:flower",
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.air_purifier_pm2_5",
+                      "color": "#656f70"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Temperature",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "animate": true,
+                  "line_width": 1,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.lounge_climate_sensor_temperature",
+                      "color": "#e7c8e8"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.lounge_climate_sensor_humidity",
+                      "color": "#5bacba"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:air-purifier{% if is_state(\"fan.air_purifier\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.fan_air_purifier_control",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/fan/air-purifier/control",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.fan_air_purifier_control\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Air Purifier "
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:power-socket-uk",
+                  "features_position": "bottom",
+                  "entity": "automation.switch_air_freshener_turn_on",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/switch/air-freshener/turn-on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.switch_air_freshener_turn_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Air Freshener Auto-On"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Controls",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.lounge_lights_timeout",
+                  "name": "Lights Timeout",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.air_freshener_timeout",
+                  "name": "Air Freshener Timeout",
+                  "display_mode": "slider",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "layout": "horizontal"
+                }
+              ]
+            }
+          ],
+          "cards": []
+        },
+        {
+          "type": "sections",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
+          "max_columns": 4,
+          "title": "Bedroom",
+          "path": "bedroom",
+          "icon": "mdi:sleep",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "mdi:bed-queen-outline",
+                  "heading_style": "title",
+                  "heading": "Bedroom",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.bedroom_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.bedroom_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "schedule.bedroom_heating_schedule",
+                  "icon_color": "deep-orange",
+                  "name": "Heating Schedule",
+                  "primary_info": "state",
+                  "secondary_info": "name"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{% set next = state_attr('schedule.bedroom_heating_schedule', 'next_event') %}\n{% if next %}\n  {% set dt = as_datetime(next) %}\n  {% set delta = dt - now() %}\n  {% set minutes = (delta.total_seconds() / 60) | int %}\n\n  {% if minutes < 60 %}\n    In {{ minutes }} minute{{ 's' if minutes != 1 }}\n  {% elif minutes < 1440 %}\n    In {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }}\n  {% else %}\n    In {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }}\n  {% endif %}\n{% else %}\n  No upcoming event\n{% endif %}\n",
+                  "icon": "mdi:home-thermometer",
+                  "features_position": "bottom",
+                  "entity": "schedule.bedroom_heating_schedule",
+                  "secondary": "Next On"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.bedroom_radiator_1",
+                  "name": "Radiator 1",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.bedroom_radiator_2",
+                  "name": "Radiator 2",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.evaporative_cooler",
+                  "show_percentage_control": true,
+                  "collapsible_controls": true,
+                  "layout": "horizontal",
+                  "icon_animation": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.vic_s_bedside_table",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Vic's Bedside Table Lamp"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.will_s_bedside_table",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Will's Bedside Table Lamp"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.bedroom_shapes",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "collapsible_controls": false,
+                  "name": "Shapes"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.wardrobe_lights",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Wardrobe Lights",
+                  "icon": "mdi:wardrobe-outline"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Environment",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Temperature",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "animate": true,
+                  "line_width": 1,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.bedroom_climate_sensor_temperature",
+                      "color": "#e7c8e8"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.bedroom_climate_sensor_humidity",
+                      "color": "#5bacba"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:hexagon-multiple-outline",
+                  "features_position": "bottom",
+                  "entity": "automation.light_bedroom_shapes_bon_appetit",
+                  "area": "bedroom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/light/bedroom-shapes/bon-appetit",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_bedroom_shapes_bon_appetit\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Reset shapes to bon appetit (10AM)"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:led-strip-variant",
+                  "features_position": "bottom",
+                  "entity": "automation.light_wardrobe_lights_toggle",
+                  "area": "bedroom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/light/wardrobe-lights/toggle",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_wardrobe_lights_toggle\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Automatic wardrobe lights"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-sand",
+                  "features_position": "bottom",
+                  "entity": "automation.light_wardrobe_lights_auto_off",
+                  "area": "bedroom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/light/wardrobe-lights/auto-off",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_wardrobe_lights_auto_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Wardrobe lights timeout"
+                }
+              ]
+            }
+          ],
+          "cards": []
+        },
+        {
+          "type": "sections",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
+          "max_columns": 4,
+          "title": "Basement",
+          "path": "basement",
+          "icon": "mdi:chef-hat",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Basement",
+                  "icon": "",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_pm25"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.kitchen_radiator",
+                  "name": "Kitchen Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.dining_area_radiator",
+                  "name": "Dining Area Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.kitchen_extractor_vent",
+                  "name": "Extractor Vent",
+                  "icon_animation": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "primary_info": "state",
+                  "secondary_info": "name"
+                },
+                {
+                  "type": "custom:mushroom-vacuum-card",
+                  "entity": "vacuum.cosmo",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "commands": [],
+                  "icon_animation": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Kitchen Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.kitchen_island",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Island"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.kitchen_spotlights",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Spotlights"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.kitchen_counter_lights",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Counter Lights"
+                },
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Dining Area Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.dining_area_big_light",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Big Light"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.dining_area_shelves",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Shelves"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.dining_area",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Spotlights"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Environment",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Air Quality",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true,
+                    "legend": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "icon": "mdi:flower",
+                  "animate": true,
+                  "height": 100,
+                  "entities": [
+                    {
+                      "entity": "sensor.kitchen_air_quality_sensor_pm25",
+                      "color": "#656f70",
+                      "name": "PM 2.5"
+                    },
+                    {
+                      "entity": "input_number.kitchen_extractor_vent_pm2_5_threshold",
+                      "color": "green",
+                      "show_line": false,
+                      "show_legend": false
+                    },
+                    {
+                      "entity": "sensor.kitchen_air_quality_sensor_voc_index",
+                      "color": "#311e40",
+                      "name": "VOC Index"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Temperature",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "animate": true,
+                  "line_width": 1,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.kitchen_air_quality_sensor_temperature",
+                      "color": "#e7c8e8"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.kitchen_air_quality_sensor_humidity",
+                      "color": "#5bacba"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:fan{% if is_state(\"automation.fan_kitchen_extractor_vent_control\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.fan_kitchen_extractor_vent_control",
+                  "area": "kitchen",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/fan/kitchen-extractor-vent/control",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.fan_kitchen_extractor_vent_control\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Control extractor vent fan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:lightbulb-{{ iif(is_state(\"automation.binary_sensor_kitchen_occupancy_state_change\", \"on\"), \"auto\", \"off\") }}-outline",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_kitchen_occupancy_state_change",
+                  "area": "kitchen",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/kitchen-occupancy/state-change",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_kitchen_occupancy_state_change\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Kitchen light control"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:lightbulb-{{ iif(is_state(\"automation.binary_sensor_dining_area_occupancy_state_change\", \"on\"), \"auto\", \"off\") }}-outline",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_dining_area_occupancy_state_change",
+                  "area": "dining_area",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/dining-area-occupancy/state-change",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_dining_area_occupancy_state_change\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Dining Area light control"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-sand",
+                  "features_position": "bottom",
+                  "entity": "automation.light_lower_hallway_lights_timeout",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/light/lower-hallway-lights/timeout",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_lower_hallway_lights_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Lower hallway lights timeout"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-sand",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_basement_presence_off",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/basement-presence/off",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_basement_presence_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Kitchen/Dining Area lights timeout{%- if has_value(\"input_number.basement_lights_timeout\") %} ({{ states(\"input_number.basement_lights_timeout\") | int }}s) {% endif -%}"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:robot-vacuum{% if is_state(\"automation.binary_sensor_basement_presence_on\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_basement_presence_on",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/basement-presence/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_basement_presence_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Auto-pause Cosmo"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Controls",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.basement_lights_timeout",
+                  "name": "Lights Timeout",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.kitchen_extractor_vent_pm2_5_threshold",
+                  "name": "PM2.5 Threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.kitchen_extractor_vent_voc_index_threshold",
+                  "name": "VOC Index Threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal"
+                }
+              ]
+            }
+          ],
+          "cards": []
+        },
+        {
+          "type": "sections",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
+          "max_columns": 4,
+          "title": "Will's Office",
+          "path": "will-s-office",
+          "icon": "mdi:desktop-classic",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Will's Office",
+                  "heading_style": "title",
+                  "icon": "",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_s_office_fan_pm_2_5"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_s_office_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_s_office_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.will_s_office_radiator",
+                  "name": "Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.will_s_office_fan",
+                  "name": "Fan",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "phu:dyson-floor",
+                  "hvac_modes": [
+                    "heat",
+                    "cool"
+                  ]
+                },
+                {
+                  "type": "grid",
+                  "columns": 2,
+                  "square": false,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-fan-card",
+                      "entity": "fan.desk_fan",
+                      "name": "Desk Fan",
+                      "icon_animation": true,
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "switch.charging_hub",
+                      "primary_info": "name",
+                      "secondary_info": "state",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-cover-card",
+                  "entity": "cover.will_s_office_blinds",
+                  "show_position_control": true,
+                  "layout": "horizontal",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "name": "Blinds"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lights",
+                  "heading_style": "subtitle",
+                  "badges": []
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.mushroom_lamp",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.will_s_office_shapes",
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "use_light_color": true,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "name": "Shapes",
+                  "fill_container": false
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.will_s_desk_lamp",
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "use_light_color": true,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "name": "Lamp"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Environment",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Air Quality",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true,
+                    "legend": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "icon": "mdi:flower",
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.will_s_office_fan_pm_2_5",
+                      "color": "#656f70",
+                      "name": "PM 2.5"
+                    },
+                    {
+                      "entity": "input_number.will_s_office_fan_pm2_5_threshold",
+                      "color": "green",
+                      "show_line": false,
+                      "show_legend": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Temperature",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "animate": true,
+                  "line_width": 1,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.will_s_office_climate_sensor_temperature",
+                      "color": "#e7c8e8"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.will_s_office_climate_sensor_humidity",
+                      "color": "#5bacba"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "cards": []
+        },
+        {
+          "type": "sections",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
+          "max_columns": 1,
+          "title": "Overview",
+          "path": "overview",
+          "icon": "mdi:earth",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Overview",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "custom:tabbed-card",
+                  "options": {},
+                  "tabs": [
+                    {
+                      "attributes": {
+                        "label": "Temperature"
+                      },
+                      "card": {
+                        "type": "custom:mini-graph-card",
+                        "entities": [
+                          {
+                            "entity": "sensor.airing_cupboard_climate_sensor_temperature",
+                            "name": "Airing Cupboard"
+                          },
+                          {
+                            "entity": "sensor.bathroom_climate_sensor_temperature",
+                            "name": "Bathroom"
+                          },
+                          {
+                            "entity": "sensor.bedroom_climate_sensor_temperature",
+                            "name": "Bedroom"
+                          },
+                          {
+                            "entity": "sensor.kitchen_air_quality_sensor_temperature",
+                            "name": "Kitchen"
+                          },
+                          {
+                            "entity": "sensor.lounge_climate_sensor_temperature",
+                            "name": "Lounge"
+                          },
+                          {
+                            "entity": "sensor.roof_terrace_climate_sensor_temperature",
+                            "name": "Roof"
+                          },
+                          {
+                            "entity": "sensor.spare_room_climate_sensor_temperature",
+                            "name": "Spare Room"
+                          },
+                          {
+                            "entity": "sensor.vic_s_office_climate_sensor_temperature",
+                            "name": "Vic's Office"
+                          },
+                          {
+                            "entity": "sensor.will_s_office_climate_sensor_temperature",
+                            "name": "Will's Office"
+                          },
+                          {
+                            "entity": "sensor.met_office_fulham_temperature",
+                            "name": "Hammersmith"
+                          }
+                        ],
+                        "height": 250,
+                        "hours_to_show": 24,
+                        "hour24": true,
+                        "points_per_hour": 20,
+                        "line_width": 2,
+                        "min_bound_range": 10,
+                        "lower_bound": "~20",
+                        "upper_bound": "~20",
+                        "animate": false,
+                        "smoothing": true,
+                        "show": {
+                          "fill": "fade",
+                          "icon": false,
+                          "state": false,
+                          "legend": true,
+                          "labels": true,
+                          "name": false
+                        }
+                      }
+                    },
+                    {
+                      "attributes": {
+                        "label": "Humidity"
+                      },
+                      "card": {
+                        "type": "custom:mini-graph-card",
+                        "entities": [
+                          {
+                            "entity": "sensor.airing_cupboard_climate_sensor_humidity",
+                            "name": "Airing Cupboard"
+                          },
+                          {
+                            "entity": "sensor.bathroom_climate_sensor_humidity",
+                            "name": "Bathroom"
+                          },
+                          {
+                            "entity": "sensor.bedroom_climate_sensor_humidity",
+                            "name": "Bedroom"
+                          },
+                          {
+                            "entity": "sensor.kitchen_air_quality_sensor_humidity",
+                            "name": "Kitchen"
+                          },
+                          {
+                            "entity": "sensor.lounge_climate_sensor_humidity",
+                            "name": "Lounge"
+                          },
+                          {
+                            "entity": "sensor.roof_terrace_climate_sensor_humidity",
+                            "name": "Roof"
+                          },
+                          {
+                            "entity": "sensor.spare_room_climate_sensor_humidity",
+                            "name": "Spare Room"
+                          },
+                          {
+                            "entity": "sensor.vic_s_office_climate_sensor_humidity",
+                            "name": "Vic's Office"
+                          },
+                          {
+                            "entity": "sensor.will_s_office_climate_sensor_humidity",
+                            "name": "Will's Office"
+                          }
+                        ],
+                        "height": 250,
+                        "hours_to_show": 24,
+                        "hour24": true,
+                        "points_per_hour": 20,
+                        "line_width": 2,
+                        "smoothing": true,
+                        "min_bound_range": 10,
+                        "lower_bound": "~50",
+                        "upper_bound": "~70",
+                        "animate": false,
+                        "show": {
+                          "fill": "fade",
+                          "icon": false,
+                          "state": false,
+                          "legend": true,
+                          "labels": true,
+                          "name": false
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
