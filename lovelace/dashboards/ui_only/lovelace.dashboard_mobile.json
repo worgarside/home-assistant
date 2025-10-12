@@ -2054,7 +2054,7 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "icon": "mdi:timer-sand",
+                  "icon": "mdi:robot-vacuum{% if is_state(\"automation.binary_sensor_basement_presence_on\", \"off\") %}-off{% endif %}",
                   "features_position": "bottom",
                   "entity": "automation.binary_sensor_basement_presence_on",
                   "area": "lower_hallway",
