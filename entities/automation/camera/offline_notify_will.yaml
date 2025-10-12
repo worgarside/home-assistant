@@ -9,18 +9,22 @@ mode: queued
 
 max_exceeded: silent
 
-max: 2
+max: 4
 
 trigger:
   - platform: state
     entity_id: camera.basement
-    to: unavailable
+    to:
+      - recording
+      - unavailable
     for:
       minutes: 1
 
   - platform: state
     entity_id: camera.lounge
-    to: unavailable
+    to:
+      - recording
+      - unavailable
     for:
       minutes: 1
 
@@ -35,9 +39,20 @@ variables:
     {% endif %}
 
 action:
-  - service: script.notify_will
-    data:
-      title: "Camera Offline"
-      message: "{{ camera_name }} camera is offline (unavailable)."
-      group: camera-offline
-      mobile_notification_icon: mdi:cctv
+  - if: "{{ trigger.to_state.state == 'unavailable' }}"
+
+    then:
+      - service: script.notify_will
+        data:
+          title: "Camera Offline"
+          message: "{{ camera_name }} camera is offline"
+          group: camera-offline
+          mobile_notification_icon: mdi:cctv
+          notification_id: camera_offline_{{ camera_name }}
+
+    else:
+      - service: script.notify_will
+        data:
+          clear_notification: true
+          notification_id: camera_offline_{{ camera_name }}
+          message: clear_notification
