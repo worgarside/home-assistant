@@ -1842,7 +1842,8 @@
                   "show": {
                     "state": false,
                     "icon": true,
-                    "name": true
+                    "name": true,
+                    "legend": false
                   },
                   "hours_to_show": 24,
                   "points_per_hour": 4,
@@ -1856,8 +1857,9 @@
                       "color": "#656f70"
                     },
                     {
-                      "entity": "sensor.kitchen_air_quality_sensor_pm25",
-                      "color": "white"
+                      "entity": "input_number.kitchen_extractor_vent_pm2_5_threshold",
+                      "color": "green",
+                      "show_line": false
                     }
                   ]
                 },
