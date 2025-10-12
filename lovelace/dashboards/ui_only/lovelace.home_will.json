@@ -5035,7 +5035,8 @@
                       "show": {
                         "state": false,
                         "icon": false,
-                        "name": true
+                        "name": true,
+                        "legend": false
                       },
                       "hours_to_show": 24,
                       "points_per_hour": 4,
@@ -5045,6 +5046,11 @@
                         {
                           "entity": "sensor.will_s_office_fan_pm_2_5",
                           "color": "green"
+                        },
+                        {
+                          "entity": "input_number.will_s_office_fan_pm2_5_threshold",
+                          "color": "white",
+                          "show_line": false
                         }
                       ]
                     },
