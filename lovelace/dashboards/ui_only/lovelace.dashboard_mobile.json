@@ -944,6 +944,10 @@
                     "action": "none"
                   },
                   "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "number.lounge_threshold"
                 }
               ]
             }
