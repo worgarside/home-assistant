@@ -1396,32 +1396,6 @@
                     "action": "none"
                   },
                   "primary": "Reset shapes to bon appetit (10AM)"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:power-socket-uk",
-                  "features_position": "bottom",
-                  "entity": "automation.switch_air_freshener_turn_on",
-                  "area": "lounge",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/switch/air-freshener/turn-on",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.switch_air_freshener_turn_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Air Freshener Auto-On"
                 }
               ]
             }
