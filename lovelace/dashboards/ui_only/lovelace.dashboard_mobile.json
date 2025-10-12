@@ -245,7 +245,11 @@
                   },
                   "double_tap_action": {
                     "action": "toggle"
-                  }
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "show_color_control": true,
+                  "layout": "horizontal"
                 },
                 {
                   "type": "custom:mini-graph-card",
