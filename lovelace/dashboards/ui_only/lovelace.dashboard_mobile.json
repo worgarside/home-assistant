@@ -2033,22 +2033,6 @@
                   "secondary_info": "state",
                   "primary_info": "name",
                   "layout": "horizontal"
-                },
-                {
-                  "type": "custom:mushroom-number-card",
-                  "entity": "input_number.air_freshener_timeout",
-                  "name": "Air Freshener Timeout",
-                  "display_mode": "slider",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  },
-                  "layout": "horizontal"
                 }
               ]
             }
