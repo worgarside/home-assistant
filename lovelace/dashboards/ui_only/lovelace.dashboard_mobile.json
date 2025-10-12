@@ -2819,7 +2819,7 @@
                       "height": 200,
                       "hours_to_show": 24,
                       "hour24": true,
-                      "points_per_hour": 20,
+                      "points_per_hour": 10,
                       "line_width": 2,
                       "min_bound_range": 10,
                       "lower_bound": "~20",
@@ -2830,7 +2830,7 @@
                         "fill": "fade",
                         "icon": false,
                         "state": false,
-                        "legend": true,
+                        "legend": false,
                         "labels": true,
                         "name": false
                       }
