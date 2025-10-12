@@ -2909,6 +2909,21 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "conversation.home_assistant"
+                    },
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#e51919",
+                      "content": "Airing Cupboard"
+                    }
+                  ]
                 }
               ],
               "column_span": 2
