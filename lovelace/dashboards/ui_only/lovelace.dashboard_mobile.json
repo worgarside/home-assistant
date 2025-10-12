@@ -1911,6 +1911,32 @@
                     "action": "none"
                   },
                   "primary": "Dining Area light control"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-sand",
+                  "features_position": "bottom",
+                  "entity": "automation.light_lower_hallway_lights_timeout",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/light/lower-hallway-lights/timeout",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_lower_hallway_lights_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Lower hallway lights timeout"
                 }
               ]
             }
