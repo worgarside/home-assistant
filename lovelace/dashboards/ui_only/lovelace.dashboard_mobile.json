@@ -689,6 +689,11 @@
                   "layout": "horizontal",
                   "show_color_control": false,
                   "show_color_temp_control": false
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.air_purifier",
+                  "icon_animation": true
                 }
               ]
             },
