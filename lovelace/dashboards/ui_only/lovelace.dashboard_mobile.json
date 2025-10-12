@@ -880,7 +880,7 @@
                   "type": "heading",
                   "heading": "Automations",
                   "heading_style": "subtitle",
-                  "icon": "mdi:robot-happy"
+                  "icon": ""
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -1359,69 +1359,6 @@
                       "color": "#5bacba"
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Automations",
-                  "heading_style": "subtitle",
-                  "icon": "mdi:robot-happy"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:air-purifier{% if is_state(\"fan.air_purifier\", \"off\") %}-off{% endif %}",
-                  "features_position": "bottom",
-                  "entity": "automation.fan_air_purifier_control",
-                  "area": "lounge",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/fan/air-purifier/control",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.fan_air_purifier_control\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Air Purifier "
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:power-socket-uk",
-                  "features_position": "bottom",
-                  "entity": "automation.switch_air_freshener_turn_on",
-                  "area": "lounge",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/switch/air-freshener/turn-on",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.switch_air_freshener_turn_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Air Freshener Auto-On"
                 }
               ]
             }
