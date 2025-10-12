@@ -265,6 +265,15 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
                   "type": "custom:mini-graph-card",
                   "name": "Air Quality",
                   "show": {
