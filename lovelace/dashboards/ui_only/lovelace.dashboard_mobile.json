@@ -2681,6 +2681,75 @@
                   "icon": "mdi:earth"
                 },
                 {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#e51919",
+                      "content": "Airing Cupboard"
+                    },
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#e59319",
+                      "content": "Bathroom"
+                    },
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#bce519",
+                      "content": "Bedroom"
+                    },
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#42e519",
+                      "content": "Kitchen"
+                    },
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#19e56b",
+                      "content": "Lounge"
+                    },
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#19e5e5",
+                      "content": "Roof"
+                    },
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#196be5",
+                      "content": "Spare Room"
+                    },
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#4219e5",
+                      "content": "Vic's Office"
+                    },
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#bc19e5",
+                      "content": "Will's Office"
+                    },
+                    {
+                      "type": "template",
+                      "icon": "mdi:circle",
+                      "icon_color": "#e51993",
+                      "content": "Hammersmith"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 24,
+                    "rows": "auto"
+                  }
+                },
+                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -2907,71 +2976,6 @@
                         "labels": true,
                         "name": false
                       }
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mushroom-chips-card",
-                  "chips": [
-                    {
-                      "type": "template",
-                      "icon": "mdi:circle",
-                      "icon_color": "#e51919",
-                      "content": "Airing Cupboard"
-                    },
-                    {
-                      "type": "template",
-                      "icon": "mdi:circle",
-                      "icon_color": "#e59319",
-                      "content": "Bathroom"
-                    },
-                    {
-                      "type": "template",
-                      "icon": "mdi:circle",
-                      "icon_color": "#bce519",
-                      "content": "Bedroom"
-                    },
-                    {
-                      "type": "template",
-                      "icon": "mdi:circle",
-                      "icon_color": "#42e519",
-                      "content": "Kitchen"
-                    },
-                    {
-                      "type": "template",
-                      "icon": "mdi:circle",
-                      "icon_color": "#19e56b",
-                      "content": "Lounge"
-                    },
-                    {
-                      "type": "template",
-                      "icon": "mdi:circle",
-                      "icon_color": "#19e5e5",
-                      "content": "Roof"
-                    },
-                    {
-                      "type": "template",
-                      "icon": "mdi:circle",
-                      "icon_color": "#196be5",
-                      "content": "Spare Room"
-                    },
-                    {
-                      "type": "template",
-                      "icon": "mdi:circle",
-                      "icon_color": "#4219e5",
-                      "content": "Vic's Office"
-                    },
-                    {
-                      "type": "template",
-                      "icon": "mdi:circle",
-                      "icon_color": "#bc19e5",
-                      "content": "Will's Office"
-                    },
-                    {
-                      "type": "template",
-                      "icon": "mdi:circle",
-                      "icon_color": "#e51993",
-                      "content": "Hammersmith"
                     }
                   ]
                 }
