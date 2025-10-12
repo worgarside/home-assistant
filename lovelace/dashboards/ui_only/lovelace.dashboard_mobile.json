@@ -2698,43 +2698,53 @@
                       "entities": [
                         {
                           "entity": "sensor.airing_cupboard_climate_sensor_temperature",
-                          "name": "Airing Cupboard"
+                          "name": "Airing Cupboard",
+                          "color": "#e51919"
                         },
                         {
                           "entity": "sensor.bathroom_climate_sensor_temperature",
-                          "name": "Bathroom"
+                          "name": "Bathroom",
+                          "color": "#e59319"
                         },
                         {
                           "entity": "sensor.bedroom_climate_sensor_temperature",
-                          "name": "Bedroom"
+                          "name": "Bedroom",
+                          "color": "#bce519"
                         },
                         {
                           "entity": "sensor.kitchen_air_quality_sensor_temperature",
-                          "name": "Kitchen"
+                          "name": "Kitchen",
+                          "color": "#42e519"
                         },
                         {
                           "entity": "sensor.lounge_climate_sensor_temperature",
-                          "name": "Lounge"
+                          "name": "Lounge",
+                          "color": "#19e56b"
                         },
                         {
                           "entity": "sensor.roof_terrace_climate_sensor_temperature",
-                          "name": "Roof"
+                          "name": "Roof",
+                          "color": "#19e5e5"
                         },
                         {
                           "entity": "sensor.spare_room_climate_sensor_temperature",
-                          "name": "Spare Room"
+                          "name": "Spare Room",
+                          "color": "#196be5"
                         },
                         {
                           "entity": "sensor.vic_s_office_climate_sensor_temperature",
-                          "name": "Vic's Office"
+                          "name": "Vic's Office",
+                          "color": "#4219e5"
                         },
                         {
                           "entity": "sensor.will_s_office_climate_sensor_temperature",
-                          "name": "Will's Office"
+                          "name": "Will's Office",
+                          "color": "#bc19e5"
                         },
                         {
                           "entity": "sensor.met_office_fulham_temperature",
-                          "name": "Hammersmith"
+                          "name": "Hammersmith",
+                          "color": "#e51993"
                         }
                       ],
                       "height": 200,
