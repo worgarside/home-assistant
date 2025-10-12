@@ -13,7 +13,7 @@ trigger:
       {{
         label_entities("Radiator")
         | expand()
-        | selectattr('state', 'eq', 'on')
+        | selectattr('state', 'eq', 'heat')
         | list
         | count > 0
       }}
