@@ -4,6 +4,12 @@
   "key": "lovelace.dashboard_mobile",
   "data": {
     "config": {
+      "swipe_nav": {
+        "wrap": true,
+        "enable_mouse_swipe": true,
+        "animate": "swipe",
+        "swipe_amount": 30
+      },
       "views": [
         {
           "type": "sections",
