@@ -1832,6 +1832,79 @@
               "cards": [
                 {
                   "type": "heading",
+                  "icon": "",
+                  "heading": "Environment",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Air Quality",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "icon": "mdi:flower",
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.air_purifier_pm2_5",
+                      "color": "#656f70"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Temperature",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "animate": true,
+                  "line_width": 1,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.lounge_climate_sensor_temperature",
+                      "color": "#e7c8e8"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.lounge_climate_sensor_humidity",
+                      "color": "#5bacba"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
                   "heading": "Automations",
                   "heading_style": "subtitle",
                   "icon": ""
@@ -1939,15 +2012,6 @@
                     "action": "none"
                   },
                   "primary": "Lower hallway lights timeout"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "New section"
                 }
               ]
             }
