@@ -2033,6 +2033,17 @@
                   "secondary_info": "state",
                   "primary_info": "name",
                   "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.kitchen_extractor_vent_pm2_5_threshold",
+                  "name": "PM2.5 Threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal"
                 }
               ]
             }
