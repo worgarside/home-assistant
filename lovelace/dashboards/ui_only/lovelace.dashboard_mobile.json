@@ -952,18 +952,6 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.apollo_plt_1b_monstera_last_online",
-                  "layout": "vertical",
-                  "grid_options": {
-                    "columns": 3,
-                    "rows": 2
-                  },
-                  "primary_info": "state",
-                  "secondary_info": "none",
-                  "icon_color": "#19e5e5"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.apollo_plt_1b_spider_plant_last_online",
                   "layout": "vertical",
                   "grid_options": {
