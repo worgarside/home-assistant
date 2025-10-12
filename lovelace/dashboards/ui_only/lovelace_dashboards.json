@@ -39,6 +39,15 @@
         "require_admin": false,
         "mode": "storage",
         "url_path": "nginx-proxy-managet"
+      },
+      {
+        "id": "dashboard_mobile",
+        "show_in_sidebar": true,
+        "icon": "mdi:cellphone-text",
+        "title": "Mobile",
+        "require_admin": false,
+        "mode": "storage",
+        "url_path": "dashboard-mobile"
       }
     ]
   }
