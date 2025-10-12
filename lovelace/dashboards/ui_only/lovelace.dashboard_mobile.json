@@ -2869,6 +2869,20 @@
                     "rows": 1
                   },
                   "color": "{% set val = states('sensor.apollo_plt_1b_1511bc_soil_moisture') | float(0) %}\n{% if val < 20 %}\n  red\n{% elif val < 40 %}\n  orange\n{% elif val < 60 %}\n  yellow\n{% elif val < 80 %}\n  limegreen\n{% else %}\n  deepskyblue\n{% endif %}\n"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "{% set val = states('sensor.apollo_plt_1b_151430_soil_moisture') | float(0) %}\n{% if val < 20 %}\n  mdi:water-off\n{% elif val < 40 %}\n  mdi:water-alert\n{% elif val < 60 %}\n  mdi:water-percent\n{% elif val < 80 %}\n  mdi:water\n{% else %}\n  mdi:water-check\n{% endif %}\n",
+                  "features_position": "bottom",
+                  "entity": "sensor.apollo_plt_1b_151430_soil_moisture",
+                  "area": "office",
+                  "primary": "{{ states(\"sensor.apollo_plt_1b_151430_soil_moisture\") | round(2) }}%",
+                  "secondary": "Monstera Soil Moisture |\n{%- set last = states('sensor.apollo_plt_1b_monstera_last_online') %}\n{% if last not in ['unknown', 'unavailable', 'none', ''] %}\n  {% set dt = as_datetime(last) %}\n  {% set delta = now() - dt %}\n  {% set minutes = (delta.total_seconds() / 60) | int %}\n\n  {% if minutes < 60 %}\n    {{ minutes }} minute{{ 's' if minutes != 1 }} ago\n  {% elif minutes < 1440 %}\n    {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }} ago\n  {% else %}\n    {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }} ago\n  {% endif %}\n{% else %}\n  Unknown\n{% endif %}\n",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{% set val = states('sensor.apollo_plt_1b_151430_soil_moisture') | float(0) %}\n{% if val < 20 %}\n  red\n{% elif val < 40 %}\n  orange\n{% elif val < 60 %}\n  yellow\n{% elif val < 80 %}\n  limegreen\n{% else %}\n  deepskyblue\n{% endif %}\n"
                 }
               ]
             }
