@@ -2684,7 +2684,11 @@
                   "type": "heading",
                   "icon": "",
                   "heading": "Temperature",
-                  "heading_style": "title"
+                  "heading_style": "subtitle",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": "auto"
+                  }
                 },
                 {
                   "type": "custom:mini-graph-card",
