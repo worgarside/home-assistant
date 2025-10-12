@@ -1208,7 +1208,7 @@
                 },
                 {
                   "type": "custom:mushroom-light-card",
-                  "entity": "light.mini_lamp",
+                  "entity": "light.will_s_bedside_table",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "tap_action": {
@@ -1229,7 +1229,8 @@
                   "grid_options": {
                     "columns": 6,
                     "rows": 1
-                  }
+                  },
+                  "name": "Will's Bedside Table Lamp"
                 },
                 {
                   "type": "custom:mushroom-light-card",
