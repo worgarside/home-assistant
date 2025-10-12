@@ -2757,6 +2757,16 @@
                   "type": "custom:vertical-stack-in-card",
                   "cards": [
                     {
+                      "type": "heading",
+                      "icon": "",
+                      "heading": "Temperature",
+                      "heading_style": "subtitle",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": "auto"
+                      }
+                    },
+                    {
                       "type": "custom:mini-graph-card",
                       "entities": [
                         {
