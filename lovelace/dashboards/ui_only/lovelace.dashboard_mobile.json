@@ -2051,6 +2051,32 @@
                     "action": "none"
                   },
                   "primary": "Kitchen/Dining Area lights timeout{%- if has_value(\"input_number.basement_lights_timeout\") %} ({{ states(\"input_number.basement_lights_timeout\") | int }}s) {% endif -%}"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-sand",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_basement_presence_on",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/basement-presence/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_basement_presence_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Auto-pause Cosmo"
                 }
               ]
             },
