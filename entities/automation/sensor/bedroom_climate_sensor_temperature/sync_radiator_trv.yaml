@@ -1,0 +1,25 @@
+---
+alias: /sensor/bedroom-climate-sensor-temperature/sync-radiator-trv
+
+id: sensor_bedroom_climate_sensor_temperature_sync_radiator_trv
+
+description: >-
+  Sync radiator TRV external temperature input when bedroom climate sensor temperature updates
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.bedroom_climate_sensor_temperature
+    not_to:
+      - "unavailable"
+      - "unknown"
+
+action:
+  - service: number.set_value
+    target:
+      entity_id:
+        - number.bedroom_radiator_1_external_temperature_input
+        - number.bedroom_radiator_2_external_temperature_input
+    data:
+      value: "{{ states('sensor.bedroom_climate_sensor_temperature') | float }}"

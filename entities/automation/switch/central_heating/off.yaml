@@ -1,0 +1,26 @@
+---
+alias: /switch/central-heating/off
+
+id: switch_central_heating_off
+
+description: Turn off all radiators when central heating is turned off
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: switch.central_heating
+    from: "on"
+    to: "off"
+
+action:
+  - parallel:
+      - service: climate.turn_off
+        target:
+          label_id: radiator
+
+      - service: notify.mobile_app_will_s_pixel_6_pro
+        data:
+          message: clear_notification
+          data:
+            tag: central_heating_status

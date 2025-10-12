@@ -13,13 +13,31 @@ trigger:
     to: "0"
 
 action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.central_heating
+
+  - service: climate.turn_off
+    target:
+      label_id: radiator
+
   - alias: "Turn off each physical room"
     repeat:
       for_each:
-        - bedroom
+        - dining_area
+        - kitchen
+        - lower_hallway
+        - front_hallway
         - lounge
-        - office
+        - vic_s_office
+        - bathroom
+        - bedroom
+        - landing
+        - will_s_office
+        - guest_room
+        - roof_terrace
       sequence:
         - service: script.turn_off_physical_room
           data:
             room: "{{ repeat.item }}"
+          continue_on_error: true

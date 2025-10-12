@@ -55,5 +55,6 @@ sequence:
           for_each: "{{ extra_service_calls }}"
           sequence:
             - service: "{{ repeat.item.service_call | default('homeassistant.turn_off') }}"
+              continue_on_error: true
               target:
                 entity_id: "{{ repeat.item.entity_id }}"
