@@ -1738,6 +1738,32 @@
                     "rows": 1
                   },
                   "name": "Counter Lights"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.dining_area_big_light",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Big Light"
                 }
               ]
             },
