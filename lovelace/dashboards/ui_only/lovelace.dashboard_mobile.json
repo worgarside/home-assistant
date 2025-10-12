@@ -2336,7 +2336,7 @@
                     {
                       "type": "custom:mushroom-fan-card",
                       "entity": "fan.desk_fan",
-                      "name": "Fan",
+                      "name": "Desk Fan",
                       "icon_animation": true,
                       "tap_action": {
                         "action": "more-info"
@@ -2358,6 +2358,19 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "custom:mushroom-cover-card",
+                  "entity": "cover.will_s_office_blinds",
+                  "show_position_control": true,
+                  "layout": "horizontal",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "name": "Blinds"
                 }
               ]
             },
@@ -2423,19 +2436,6 @@
                     "action": "more-info"
                   },
                   "name": "Lamp"
-                },
-                {
-                  "type": "custom:mushroom-cover-card",
-                  "entity": "cover.will_s_office_blinds",
-                  "show_position_control": true,
-                  "layout": "horizontal",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "name": "Blinds"
                 }
               ]
             }
