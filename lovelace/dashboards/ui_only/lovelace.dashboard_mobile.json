@@ -1182,7 +1182,7 @@
                 },
                 {
                   "type": "custom:mushroom-light-card",
-                  "entity": "light.green_lamp",
+                  "entity": "light.vic_s_bedside_table",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "tap_action": {
@@ -1203,7 +1203,8 @@
                   "grid_options": {
                     "columns": 6,
                     "rows": 1
-                  }
+                  },
+                  "name": "Vic's Bedside Table lamp"
                 },
                 {
                   "type": "custom:mushroom-light-card",
