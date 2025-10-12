@@ -1740,6 +1740,12 @@
                   "name": "Counter Lights"
                 },
                 {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Dining Area Lights",
+                  "heading_style": "subtitle"
+                },
+                {
                   "type": "custom:mushroom-light-card",
                   "entity": "light.dining_area_big_light",
                   "primary_info": "state",
@@ -1764,12 +1770,6 @@
                     "rows": 1
                   },
                   "name": "Big Light"
-                },
-                {
-                  "type": "heading",
-                  "icon": "",
-                  "heading": "Dining Area Lights",
-                  "heading_style": "subtitle"
                 }
               ]
             },
