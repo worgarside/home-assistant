@@ -77,7 +77,16 @@
                   "type": "custom:mushroom-fan-card",
                   "entity": "fan.kitchen_extractor_vent",
                   "name": "Extractor Vent",
-                  "icon_animation": true
+                  "icon_animation": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  }
                 },
                 {
                   "type": "horizontal-stack",
