@@ -212,7 +212,9 @@
                   },
                   "use_light_color": true,
                   "show_brightness_control": true,
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": true
                 },
                 {
                   "type": "custom:mushroom-light-card",
