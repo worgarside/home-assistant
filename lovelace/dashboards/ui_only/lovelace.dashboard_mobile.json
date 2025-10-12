@@ -770,20 +770,19 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "icon": "mdi:weather-pouring",
+                  "icon": "mdi:air-purifier{% if is_state(\"fan.air_purifier\", \"off\") %}-off{% endif %}",
                   "features_position": "bottom",
-                  "entity": "automation.light_vic_s_office_rain_flash",
-                  "area": "vic_s_office",
+                  "entity": "automation.fan_air_purifier_control",
+                  "area": "lounge",
                   "tap_action": {
                     "action": "more-info"
                   },
-                  "secondary": " /light/vic-s-office/rain-flash",
+                  "secondary": "/fan/air-purifier/control",
                   "grid_options": {
                     "columns": 12,
                     "rows": 1
                   },
-                  "color": "{{ iif(states(\"automation.light_vic_s_office_rain_flash\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "primary": "Flash the light when it starts raining",
+                  "color": "{{ iif(states(\"automation.fan_air_purifier_control\") | bool(false), \"#04b7d6\", \"grey\") }}",
                   "icon_tap_action": {
                     "action": "more-info"
                   },
@@ -792,7 +791,8 @@
                   },
                   "hold_action": {
                     "action": "none"
-                  }
+                  },
+                  "primary": "Air Purifier "
                 }
               ]
             }
