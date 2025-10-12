@@ -2691,6 +2691,16 @@
                   }
                 },
                 {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Humidity",
+                  "heading_style": "subtitle",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": "auto"
+                  }
+                },
+                {
                   "type": "custom:mini-graph-card",
                   "entities": [
                     {
