@@ -624,6 +624,27 @@
                   "layout": "horizontal",
                   "show_color_control": false,
                   "show_color_temp_control": false
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.lounge_shelves",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "name": "Shelves"
                 }
               ]
             },
