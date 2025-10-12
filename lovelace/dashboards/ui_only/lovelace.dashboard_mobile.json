@@ -783,6 +783,24 @@
               ]
             }
           ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 1,
+          "title": "Vic's Office",
+          "path": "vic-s-office",
+          "icon": "mdi:flower",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
