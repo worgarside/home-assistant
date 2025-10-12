@@ -566,6 +566,11 @@
                   "icon_color": "pink"
                 },
                 {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.air_purifier",
+                  "icon_animation": true
+                },
+                {
                   "type": "custom:mushroom-light-card",
                   "entity": "light.disco_ball_spotlight",
                   "primary_info": "state",
@@ -689,11 +694,6 @@
                   "layout": "horizontal",
                   "show_color_control": false,
                   "show_color_temp_control": false
-                },
-                {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.air_purifier",
-                  "icon_animation": true
                 }
               ]
             },
