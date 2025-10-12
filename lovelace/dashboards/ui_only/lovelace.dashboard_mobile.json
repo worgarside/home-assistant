@@ -946,30 +946,6 @@
                   "layout": "horizontal"
                 }
               ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Camera",
-                  "heading_style": "subtitle"
-                },
-                {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.lounge",
-                      "live_provider": "auto",
-                      "always_error_if_entity_unavailable": true
-                    }
-                  ],
-                  "view": {
-                    "default": "live",
-                    "dim": false
-                  }
-                }
-              ]
             }
           ],
           "cards": []
