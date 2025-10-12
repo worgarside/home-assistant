@@ -172,6 +172,19 @@
                   "icon": "mdi:home-automation",
                   "heading": "Automations",
                   "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "automation.binary_sensor_basement_presence_on",
+                  "fill_container": false,
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "layout": "horizontal",
+                  "secondary_info": "none",
+                  "primary_info": "name",
+                  "icon_color": "orange"
                 }
               ]
             }
