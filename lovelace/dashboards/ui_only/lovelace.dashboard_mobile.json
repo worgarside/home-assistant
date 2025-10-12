@@ -1168,6 +1168,29 @@
                     "action": "more-info"
                   },
                   "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.evaporative_cooler",
+                  "show_percentage_control": true,
+                  "collapsible_controls": true,
+                  "layout": "horizontal",
+                  "icon_animation": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
                 }
               ]
             },
