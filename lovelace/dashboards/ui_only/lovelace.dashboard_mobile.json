@@ -2943,19 +2943,23 @@
                       "entities": [
                         {
                           "entity": "sensor.kitchen_air_quality_sensor_pm25",
-                          "name": "Kitchen"
+                          "name": "Kitchen",
+                          "color": "#42e519"
                         },
                         {
                           "entity": "sensor.air_purifier_pm2_5",
-                          "name": "Lounge"
+                          "name": "Lounge",
+                          "color": "#19e56b"
                         },
                         {
                           "entity": "sensor.vic_s_office_fan_pm_2_5",
-                          "name": "Vic's Office"
+                          "name": "Vic's Office",
+                          "color": "#4219e5"
                         },
                         {
                           "entity": "sensor.will_s_office_fan_pm_2_5",
-                          "name": "Will's Office"
+                          "name": "Will's Office",
+                          "color": "#bc19e5"
                         }
                       ],
                       "height": 200,
