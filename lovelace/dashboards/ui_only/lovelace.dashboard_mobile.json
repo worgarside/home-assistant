@@ -252,7 +252,12 @@
                   "show_brightness_control": true,
                   "show_color_control": false,
                   "layout": "horizontal"
-                },
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
                 {
                   "type": "custom:mini-graph-card",
                   "name": "Air Quality",
@@ -291,6 +296,27 @@
                     {
                       "entity": "sensor.vic_s_office_climate_sensor_temperature",
                       "color": "#e7c8e8"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.vic_s_office_climate_sensor_humidity",
+                      "color": "#5bacba"
                     }
                   ]
                 }
@@ -382,36 +408,6 @@
                     "action": "none"
                   },
                   "primary": "Presence-based lighting"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "New section"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "Humidity",
-                  "show": {
-                    "state": false,
-                    "icon": true,
-                    "line": false,
-                    "name": true
-                  },
-                  "hours_to_show": 24,
-                  "points_per_hour": 4,
-                  "line_width": 1,
-                  "animate": true,
-                  "height": 150,
-                  "entities": [
-                    {
-                      "entity": "sensor.vic_s_office_climate_sensor_humidity",
-                      "color": "#5bacba"
-                    }
-                  ]
                 }
               ]
             }
