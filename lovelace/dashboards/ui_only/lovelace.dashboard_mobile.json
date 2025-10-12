@@ -183,6 +183,26 @@
                       "color": "#e3a959"
                     }
                   ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": false,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 5,
+                  "height": 300,
+                  "entities": [
+                    {
+                      "entity": "sensor.vic_s_office_climate_sensor_humidity",
+                      "color": "#5bacba"
+                    }
+                  ]
                 }
               ]
             }
