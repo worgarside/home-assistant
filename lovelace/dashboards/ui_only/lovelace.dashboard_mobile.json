@@ -1373,19 +1373,19 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "icon": "mdi:air-purifier{% if is_state(\"fan.air_purifier\", \"off\") %}-off{% endif %}",
+                  "icon": "mdi:hexagon-multiple-outline",
                   "features_position": "bottom",
-                  "entity": "automation.fan_air_purifier_control",
-                  "area": "lounge",
+                  "entity": "automation.light_bedroom_shapes_bon_appetit",
+                  "area": "bedroom",
                   "tap_action": {
                     "action": "more-info"
                   },
-                  "secondary": "/fan/air-purifier/control",
+                  "secondary": "/light/bedroom-shapes/bon-appetit",
                   "grid_options": {
                     "columns": 12,
                     "rows": 1
                   },
-                  "color": "{{ iif(states(\"automation.fan_air_purifier_control\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "color": "{{ iif(states(\"automation.light_bedroom_shapes_bon_appetit\") | bool(false), \"#04b7d6\", \"grey\") }}",
                   "icon_tap_action": {
                     "action": "more-info"
                   },
@@ -1395,7 +1395,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Air Purifier "
+                  "primary": "Reset shapes to bon appetit (10AM)"
                 },
                 {
                   "type": "custom:mushroom-template-card",
