@@ -765,6 +765,24 @@
               ]
             }
           ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Lounge",
+          "path": "lounge",
+          "icon": "mdi:sofa-outline",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
