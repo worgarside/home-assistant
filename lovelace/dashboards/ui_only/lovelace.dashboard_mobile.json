@@ -185,6 +185,23 @@
                   "secondary_info": "none",
                   "primary_info": "name",
                   "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:mushroom",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_basement_presence_on",
+                  "area": "kitchen",
+                  "primary": "/binary-sensor/basement-presence/on",
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "secondary": "Pauses Cosmo when presence is detected",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_basement_presence_on\") | bool(false), \"y\", \"n\") }}"
                 }
               ]
             }
