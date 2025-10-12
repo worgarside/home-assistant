@@ -198,7 +198,18 @@
                 },
                 {
                   "type": "custom:mushroom-light-card",
-                  "entity": "light.shell_lamp"
+                  "entity": "light.shell_lamp",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
                 },
                 {
                   "type": "custom:mushroom-light-card",
