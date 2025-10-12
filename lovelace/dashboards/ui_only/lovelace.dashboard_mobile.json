@@ -1859,6 +1859,32 @@
                     "action": "none"
                   },
                   "primary": "Control extractor vent fan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:lightbulb-{{ iif(is_state(\"automation.binary_sensor_kitchen_occupancy_state_change\", \"on\"), \"auto\", \"off\") }}-outline",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_kitchen_occupancy_state_change",
+                  "area": "kitchen",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/kitchen-occupancy/state-change",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_kitchen_occupancy_state_change\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Kitchen light control"
                 }
               ]
             }
