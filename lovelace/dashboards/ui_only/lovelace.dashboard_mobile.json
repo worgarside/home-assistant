@@ -277,6 +277,119 @@
         },
         {
           "type": "sections",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
           "max_columns": 1,
           "title": "Lounge",
           "path": "lounge",
@@ -383,6 +496,119 @@
         },
         {
           "type": "sections",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
           "max_columns": 1,
           "title": "Bedroom",
           "path": "bedroom",
@@ -511,6 +737,119 @@
         },
         {
           "type": "sections",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
           "max_columns": 1,
           "title": "Basement",
           "path": "basement",
@@ -704,6 +1043,10 @@
               ]
             }
           ],
+          "cards": []
+        },
+        {
+          "type": "sections",
           "badges": [
             {
               "type": "entity",
@@ -812,10 +1155,11 @@
               ]
             }
           ],
-          "cards": []
-        },
-        {
-          "type": "sections",
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
           "max_columns": 1,
           "title": "Will's Office",
           "path": "will-s-office",
@@ -960,6 +1304,119 @@
         },
         {
           "type": "sections",
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "top",
+            "badges_wrap": "scroll"
+          },
           "max_columns": 1,
           "title": "Overview",
           "path": "overview",
