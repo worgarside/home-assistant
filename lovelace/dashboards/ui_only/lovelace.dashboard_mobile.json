@@ -2025,6 +2025,32 @@
                     "action": "none"
                   },
                   "primary": "Lower hallway lights timeout"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-sand",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_basement_presence_off",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/basement-presence/off",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_basement_presence_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Lights timeout{%- if has_value(\"input_number.basement_lights_timeout\") %} ({{ states(\"input_number.basement_lights_timeout\") | int }}s) {% endif -%}"
                 }
               ]
             },
