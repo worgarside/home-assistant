@@ -2835,6 +2835,60 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "heading",
+                      "icon": "",
+                      "heading": "Air Quality",
+                      "heading_style": "subtitle",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": "auto"
+                      }
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "entities": [
+                        {
+                          "entity": "sensor.kitchen_air_quality_sensor_pm25",
+                          "name": "Kitchen"
+                        },
+                        {
+                          "entity": "sensor.air_purifier_pm2_5",
+                          "name": "Lounge"
+                        },
+                        {
+                          "entity": "sensor.vic_s_office_fan_pm_2_5",
+                          "name": "Vic's Office"
+                        },
+                        {
+                          "entity": "sensor.will_s_office_fan_pm_2_5",
+                          "name": "Will's Office"
+                        }
+                      ],
+                      "height": 250,
+                      "hours_to_show": 24,
+                      "hour24": true,
+                      "points_per_hour": 20,
+                      "line_width": 2,
+                      "smoothing": true,
+                      "min_bound_range": 10,
+                      "lower_bound": "~50",
+                      "upper_bound": "~70",
+                      "animate": false,
+                      "show": {
+                        "fill": "fade",
+                        "icon": false,
+                        "state": false,
+                        "legend": true,
+                        "labels": true,
+                        "name": false
+                      }
+                    }
+                  ]
                 }
               ],
               "column_span": 2
