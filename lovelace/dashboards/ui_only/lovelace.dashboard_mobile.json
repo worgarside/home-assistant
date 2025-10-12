@@ -607,6 +607,21 @@
                   },
                   "badge_color": "red",
                   "badge_icon": "{% if is_state(\"binary_sensor.lounge_diffuser_needs_water\", \"off\") %}mdi:water-alert-outline{% endif %}"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.air_freshener",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
                 }
               ]
             },
