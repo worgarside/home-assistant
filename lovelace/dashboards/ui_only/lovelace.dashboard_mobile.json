@@ -228,7 +228,16 @@
                 },
                 {
                   "type": "custom:mushroom-light-card",
-                  "entity": "light.glowstick"
+                  "entity": "light.glowstick",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
                 },
                 {
                   "type": "custom:mini-graph-card",
