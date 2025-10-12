@@ -588,14 +588,8 @@
                   "icon_animation": true
                 },
                 {
-                  "type": "heading",
-                  "icon": "",
-                  "heading": "Lights",
-                  "heading_style": "subtitle"
-                },
-                {
                   "type": "custom:mushroom-light-card",
-                  "entity": "light.disco_ball_spotlight",
+                  "entity": "light.lounge_shelves",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "tap_action": {
@@ -612,35 +606,12 @@
                   "layout": "horizontal",
                   "show_color_control": false,
                   "show_color_temp_control": false,
+                  "name": "Shelves",
+                  "collapsible_controls": true,
                   "grid_options": {
                     "columns": 6,
                     "rows": 1
                   }
-                },
-                {
-                  "type": "custom:mushroom-light-card",
-                  "entity": "light.globe_lamp",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "use_light_color": true,
-                  "show_brightness_control": true,
-                  "layout": "horizontal",
-                  "show_color_control": false,
-                  "show_color_temp_control": false,
-                  "grid_options": {
-                    "columns": 6,
-                    "rows": 1
-                  },
-                  "collapsible_controls": true
                 },
                 {
                   "type": "custom:mushroom-light-card",
@@ -661,32 +632,6 @@
                   "layout": "horizontal",
                   "show_color_control": false,
                   "show_color_temp_control": false,
-                  "collapsible_controls": true,
-                  "grid_options": {
-                    "columns": 6,
-                    "rows": 1
-                  }
-                },
-                {
-                  "type": "custom:mushroom-light-card",
-                  "entity": "light.lounge_shelves",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "use_light_color": true,
-                  "show_brightness_control": true,
-                  "layout": "horizontal",
-                  "show_color_control": false,
-                  "show_color_temp_control": false,
-                  "name": "Shelves",
                   "collapsible_controls": true,
                   "grid_options": {
                     "columns": 6,
@@ -742,6 +687,66 @@
                     "columns": 6,
                     "rows": 1
                   }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.disco_ball_spotlight",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.globe_lamp",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "collapsible_controls": true
                 }
               ]
             },
@@ -848,10 +853,6 @@
                   "primary": "Air Purifier "
                 }
               ]
-            },
-            {
-              "type": "grid",
-              "cards": []
             }
           ],
           "cards": []
