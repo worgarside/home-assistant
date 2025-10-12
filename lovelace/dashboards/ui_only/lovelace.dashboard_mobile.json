@@ -1396,6 +1396,32 @@
                     "action": "none"
                   },
                   "primary": "Reset shapes to bon appetit (10AM)"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:led-strip-variant",
+                  "features_position": "bottom",
+                  "entity": "automation.light_wardrobe_lights_toggle",
+                  "area": "bedroom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/light/wardrobe-lights/toggle",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_wardrobe_lights_toggle\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Automatic wardrobe lights"
                 }
               ]
             }
