@@ -2681,6 +2681,12 @@
                   "icon": "mdi:earth"
                 },
                 {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Temperature",
+                  "heading_style": "title"
+                },
+                {
                   "type": "custom:mini-graph-card",
                   "entities": [
                     {
@@ -2805,12 +2811,6 @@
                     "labels": true,
                     "name": false
                   }
-                },
-                {
-                  "type": "heading",
-                  "icon": "",
-                  "heading": "Temperature",
-                  "heading_style": "title"
                 }
               ],
               "column_span": 2
