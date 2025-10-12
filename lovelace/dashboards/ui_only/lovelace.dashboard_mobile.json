@@ -832,6 +832,24 @@
               ]
             }
           ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 1,
+          "title": "Overview",
+          "path": "overview",
+          "icon": "mdi:earth",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
