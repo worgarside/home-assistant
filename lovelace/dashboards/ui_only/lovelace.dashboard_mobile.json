@@ -2444,7 +2444,79 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "New section"
+                  "icon": "",
+                  "heading": "Environment",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Air Quality",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true,
+                    "legend": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "icon": "mdi:flower",
+                  "animate": true,
+                  "height": 100,
+                  "entities": [
+                    {
+                      "entity": "sensor.will_s_office_fan_pm_2_5",
+                      "color": "#656f70",
+                      "name": "PM 2.5"
+                    },
+                    {
+                      "entity": "input_number.will_s_office_fan_pm2_5_threshold",
+                      "color": "green",
+                      "show_line": false,
+                      "show_legend": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Temperature",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "animate": true,
+                  "line_width": 1,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.kitchen_air_quality_sensor_temperature",
+                      "color": "#e7c8e8"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.kitchen_air_quality_sensor_humidity",
+                      "color": "#5bacba"
+                    }
+                  ]
                 }
               ]
             }
