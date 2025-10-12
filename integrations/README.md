@@ -1919,17 +1919,17 @@ File: [`automation/schedule/bedroom_heating_schedule/on.yaml`](entities/automati
 File: [`automation/sensor/bedroom_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/bedroom_climate_sensor_temperature/sync_radiator_trv.yaml)
 </details>
 
-<details><summary><code>/sensor/kitchen-climate-sensor-temperature/sync-radiator-trv</code></summary>
+<details><summary><code>/sensor/kitchen-air-quality-sensor-temperature/sync-radiator-trv</code></summary>
 
-**Entity ID: `automation.sensor_kitchen_climate_sensor_temperature_sync_radiator_trv`**
+**Entity ID: `automation.sensor_kitchen_air_quality_sensor_temperature_sync_radiator_trv`**
 
 > Sync radiator TRV external temperature input when kitchen climate sensor temperature updates
 
-- Alias: /sensor/kitchen-climate-sensor-temperature/sync-radiator-trv
-- ID: `sensor_kitchen_climate_sensor_temperature_sync_radiator_trv`
+- Alias: /sensor/kitchen-air-quality-sensor-temperature/sync-radiator-trv
+- ID: `sensor_kitchen_air_quality_sensor_temperature_sync_radiator_trv`
 - Mode: `single`
 
-File: [`automation/sensor/kitchen_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/kitchen_climate_sensor_temperature/sync_radiator_trv.yaml)
+File: [`automation/sensor/kitchen_air_quality_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/kitchen_air_quality_sensor_temperature/sync_radiator_trv.yaml)
 </details>
 
 <details><summary><code>/sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear</code></summary>
