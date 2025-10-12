@@ -19,7 +19,7 @@ action:
 
   - service: climate.turn_off
     target:
-      label: "Radiator"
+      label_id: "Radiator"
 
   - alias: "Turn off each physical room"
     repeat:

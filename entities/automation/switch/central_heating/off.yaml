@@ -17,7 +17,7 @@ action:
   - parallel:
       - service: climate.turn_off
         target:
-          label: "Radiator"
+          label_id: "Radiator"
 
       - service: notify.mobile_app_will_s_pixel_6_pro
         data:
