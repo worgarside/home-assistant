@@ -2675,6 +2675,97 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.vic",
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "icon_type": "entity-picture"
+                    },
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "sensor.person_cosmo",
+                      "fill_container": false,
+                      "icon_type": "entity-picture",
+                      "layout": "vertical",
+                      "tap_action": {
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "vertical-stack",
+                              "cards": [
+                                {
+                                  "type": "custom:card-templater",
+                                  "entities": [
+                                    "input_select.cosmo_entity_picture"
+                                  ],
+                                  "card": {
+                                    "type": "picture",
+                                    "image_template": "/local/images/cosmo.webp"
+                                  }
+                                },
+                                {
+                                  "type": "entities",
+                                  "entities": [
+                                    {
+                                      "type": "custom:mushroom-entity-card",
+                                      "entity": "sensor.person_cosmo",
+                                      "name": "Cosmo"
+                                    },
+                                    {
+                                      "type": "custom:mushroom-entity-card",
+                                      "entity": "vacuum.cosmo",
+                                      "name": "Cosmo"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.will",
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "icon_type": "entity-picture"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states('sensor.vic_and_will_distance') }} miles apart",
+                  "secondary": "",
+                  "icon": "mdi:map-marker-distance",
+                  "entity": "sensor.vic_and_will_distance",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 1
+                  },
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.vic_and_will_distance",
+                      "state_not": "0"
+                    }
+                  ],
+                  "features_position": "bottom"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
                   "type": "heading",
                   "heading": "Environment",
                   "heading_style": "title",
@@ -3050,101 +3141,6 @@
                     "rows": 1
                   },
                   "color": "{% set val = states('sensor.apollo_plt_1b_1743a8_soil_moisture') | float(0) %}\n{% if val < 20 %}\n  red\n{% elif val < 40 %}\n  orange\n{% elif val < 60 %}\n  yellow\n{% elif val < 80 %}\n  limegreen\n{% else %}\n  deepskyblue\n{% endif %}\n"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "New section"
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.vic",
-                      "fill_container": false,
-                      "layout": "vertical",
-                      "icon_type": "entity-picture"
-                    },
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "sensor.person_cosmo",
-                      "fill_container": false,
-                      "icon_type": "entity-picture",
-                      "layout": "vertical",
-                      "tap_action": {
-                        "action": "fire-dom-event",
-                        "browser_mod": {
-                          "service": "browser_mod.popup",
-                          "data": {
-                            "content": {
-                              "type": "vertical-stack",
-                              "cards": [
-                                {
-                                  "type": "custom:card-templater",
-                                  "entities": [
-                                    "input_select.cosmo_entity_picture"
-                                  ],
-                                  "card": {
-                                    "type": "picture",
-                                    "image_template": "/local/images/cosmo.webp"
-                                  }
-                                },
-                                {
-                                  "type": "entities",
-                                  "entities": [
-                                    {
-                                      "type": "custom:mushroom-entity-card",
-                                      "entity": "sensor.person_cosmo",
-                                      "name": "Cosmo"
-                                    },
-                                    {
-                                      "type": "custom:mushroom-entity-card",
-                                      "entity": "vacuum.cosmo",
-                                      "name": "Cosmo"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.will",
-                      "fill_container": false,
-                      "layout": "vertical",
-                      "icon_type": "entity-picture"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "primary": "{{ states('sensor.vic_and_will_distance') }} miles apart",
-                  "secondary": "",
-                  "icon": "mdi:map-marker-distance",
-                  "entity": "sensor.vic_and_will_distance",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "layout_options": {
-                    "grid_columns": 4,
-                    "grid_rows": 1
-                  },
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.vic_and_will_distance",
-                      "state_not": "0"
-                    }
-                  ],
-                  "features_position": "bottom"
                 }
               ]
             }
