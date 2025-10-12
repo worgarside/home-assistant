@@ -6,7 +6,729 @@
     "config": {
       "views": [
         {
-          "title": "Home"
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Central Heating",
+          "path": "central-heating",
+          "icon": "mdi:radiator",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Basement",
+                  "icon": "mdi:stove",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_pm25"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.kitchen_air_quality_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.kitchen_radiator",
+                  "name": "Kitchen Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.dining_area_radiator",
+                  "name": "Dining Area Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.kitchen_extractor_vent",
+                  "name": "Extractor Vent",
+                  "icon_animation": true
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Air Quality",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true,
+                        "legend": false
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.kitchen_air_quality_sensor_pm25",
+                          "color": "green"
+                        },
+                        {
+                          "entity": "input_number.kitchen_extractor_vent_pm2_5_threshold",
+                          "color": "white",
+                          "show_line": false
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Temperature",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.kitchen_air_quality_sensor_temperature",
+                          "color": "orange"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Humidity",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.kitchen_air_quality_sensor_humidity",
+                          "color": "purple"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "mdi:bed-queen-outline",
+                  "heading_style": "title",
+                  "heading": "Bedroom",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.bedroom_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.bedroom_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "schedule.bedroom_heating_schedule",
+                  "icon_color": "deep-orange",
+                  "name": "Heating Schedule",
+                  "primary_info": "state",
+                  "secondary_info": "name"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{% set next = state_attr('schedule.bedroom_heating_schedule', 'next_event') %}\n{% if next %}\n  {% set dt = as_datetime(next) %}\n  {% set delta = dt - now() %}\n  {% set minutes = (delta.total_seconds() / 60) | int %}\n\n  {% if minutes < 60 %}\n    In {{ minutes }} minute{{ 's' if minutes != 1 }}\n  {% elif minutes < 1440 %}\n    In {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }}\n  {% else %}\n    In {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }}\n  {% endif %}\n{% else %}\n  No upcoming event\n{% endif %}\n",
+                  "icon": "mdi:home-thermometer",
+                  "features_position": "bottom",
+                  "entity": "schedule.bedroom_heating_schedule",
+                  "secondary": "Next On"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.bedroom_radiator_1",
+                  "name": "Radiator 1",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.bedroom_radiator_2",
+                  "name": "Radiator 2",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Temperature",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.bedroom_climate_sensor_temperature",
+                          "color": "orange"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Humidity",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.bedroom_climate_sensor_humidity",
+                          "color": "purple"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lounge",
+                  "heading_style": "title",
+                  "icon": "hue:room-living",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.air_purifier_air_quality"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.lounge_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.lounge_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Air Quality",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true,
+                        "legend": false
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.air_purifier_pm2_5",
+                          "color": "green"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Temperature",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.lounge_climate_sensor_temperature",
+                          "color": "orange"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Humidity",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.lounge_climate_sensor_humidity",
+                          "color": "purple"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Will's Office",
+                  "heading_style": "title",
+                  "icon": "hue:room-computer",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_s_office_fan_pm_2_5"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_s_office_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_s_office_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.will_s_office_radiator",
+                  "name": "Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.will_s_office_fan",
+                  "name": "Fan",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "phu:dyson-floor",
+                  "hvac_modes": [
+                    "heat",
+                    "cool"
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Air Quality",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true,
+                        "legend": false
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.will_s_office_fan_pm_2_5",
+                          "color": "green"
+                        },
+                        {
+                          "entity": "input_number.will_s_office_fan_pm2_5_threshold",
+                          "color": "white",
+                          "show_line": false
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Temperature",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.will_s_office_climate_sensor_temperature",
+                          "color": "orange"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Humidity",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.will_s_office_climate_sensor_humidity",
+                          "color": "purple"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Vic's Office",
+                  "heading_style": "title",
+                  "icon": "hue:room-computer",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.vic_s_office_fan_pm_2_5"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.vic_s_office_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.vic_s_office_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.vic_s_office_radiator",
+                  "name": "Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.vic_s_office_fan",
+                  "name": "Fan",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "phu:dyson-floor",
+                  "hvac_modes": [
+                    "heat",
+                    "cool"
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Air Quality",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.vic_s_office_fan_pm_2_5",
+                          "color": "green"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Temperature",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.vic_s_office_climate_sensor_temperature",
+                          "color": "orange"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Humidity",
+                      "show": {
+                        "state": false,
+                        "icon": false,
+                        "name": true
+                      },
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 5,
+                      "height": 300,
+                      "entities": [
+                        {
+                          "entity": "sensor.vic_s_office_climate_sensor_humidity",
+                          "color": "purple"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "switch.central_heating",
+              "color": "deep-orange",
+              "state_content": "state",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.central_heating",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_1",
+              "name": "Bedroom 1",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.bedroom_radiator_2",
+              "name": "Bedroom 2",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.bedroom_radiator_2",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.kitchen_radiator",
+              "name": "Kitchen",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.kitchen_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.vic_s_office_radiator",
+              "name": "Vic's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.vic_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
+              "entity": "climate.will_s_office_radiator",
+              "name": "Will's Office",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.will_s_office_radiator",
+                  "state": "heat"
+                }
+              ]
+            }
+          ],
+          "cards": []
         }
       ]
     }
