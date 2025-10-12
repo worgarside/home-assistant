@@ -197,6 +197,12 @@
                   ]
                 },
                 {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Lights",
+                  "heading_style": "subtitle"
+                },
+                {
                   "type": "custom:mushroom-light-card",
                   "entity": "light.shell_lamp",
                   "primary_info": "state",
