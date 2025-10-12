@@ -4916,6 +4916,11 @@
                         {
                           "entity": "sensor.kitchen_air_quality_sensor_pm25",
                           "color": "green"
+                        },
+                        {
+                          "entity": "input_number.kitchen_extractor_vent_pm2_5_threshold",
+                          "color": "white",
+                          "show_line": false
                         }
                       ]
                     },
