@@ -754,6 +754,12 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Environment",
+                  "heading_style": "subtitle"
+                },
+                {
                   "type": "custom:mini-graph-card",
                   "name": "Air Quality",
                   "show": {
