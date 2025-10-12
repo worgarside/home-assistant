@@ -1692,6 +1692,15 @@
                   "color": "{{ iif(states(\"automation.binary_sensor_basement_presence_on\") | bool(false), \"y\", \"n\") }}"
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
             }
           ],
           "cards": []
