@@ -590,12 +590,12 @@
                 {
                   "type": "custom:mushroom-template-card",
                   "secondary": "Diffuser",
-                  "icon": "mdi:air-humidifier{% if is_state(\"switch.lounge_diffuser\", \"off\") %}-off{% endif %}",
+                  "icon": "mdi:air-humidifier{%- if is_state(\"switch.lounge_diffuser\", \"off\") -%}-off{%- endif -%}",
                   "features_position": "bottom",
                   "entity": "switch.lounge_diffuser",
                   "area": "lounge",
-                  "primary": "{{ states(\"switch.lounge_diffuser\") | title }}",
-                  "color": "{{ iif(is_state(\"switch.lounge_diffuser\", \"on\"), \"orange\" ,\"gray\") }}",
+                  "primary": "{{- states(\"switch.lounge_diffuser\") | title -}}",
+                  "color": "{{- iif(is_state(\"switch.lounge_diffuser\", \"on\"), \"orange\" ,\"gray\") -}}",
                   "tap_action": {
                     "action": "more-info"
                   },
