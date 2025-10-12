@@ -5254,6 +5254,21 @@
               "show_name": true,
               "show_state": true,
               "show_icon": false,
+              "entity": "climate.dining_area_radiator",
+              "name": "Dining Area",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "climate.dining_area_radiator",
+                  "state": "heat"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": false,
               "entity": "climate.bedroom_radiator_1",
               "name": "Bedroom 1",
               "visibility": [
@@ -5275,21 +5290,6 @@
                 {
                   "condition": "state",
                   "entity": "climate.bedroom_radiator_2",
-                  "state": "heat"
-                }
-              ]
-            },
-            {
-              "type": "entity",
-              "show_name": true,
-              "show_state": true,
-              "show_icon": false,
-              "entity": "climate.dining_area_radiator",
-              "name": "Dining Area",
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "climate.dining_area_radiator",
                   "state": "heat"
                 }
               ]
