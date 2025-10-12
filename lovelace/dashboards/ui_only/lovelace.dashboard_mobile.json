@@ -801,6 +801,24 @@
               ]
             }
           ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 1,
+          "title": "Will's Office",
+          "path": "will-s-office",
+          "icon": "mdi:desktop-classic",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
