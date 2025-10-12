@@ -903,6 +903,17 @@
                   "type": "heading",
                   "heading": "Controls",
                   "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.lounge_lights_timeout",
+                  "name": "Lights Timeout",
+                  "display_mode": "buttons",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name"
                 }
               ]
             }
