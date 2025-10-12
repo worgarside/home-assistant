@@ -729,6 +729,24 @@
             }
           ],
           "cards": []
+        },
+        {
+          "type": "sections",
+          "max_columns": 1,
+          "title": "Bedroom",
+          "path": "bedroom",
+          "icon": "mdi:bed-queen-outline",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
