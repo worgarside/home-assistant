@@ -53,8 +53,6 @@ sequence:
                     title: "Start in 15 mins"
                   - action: BEDROOM_SUNRISE_DELAY_30
                     title: "Start in 30 mins"
-                  - action: BEDROOM_SUNRISE_DELAY_60
-                    title: "Start in 60 mins"
                   - action: BEDROOM_SUNRISE_STOP
                     title: "Stop Sunrise"
                 tag: sunrise-alarm
@@ -81,8 +79,6 @@ sequence:
                     title: "Start in 15 mins"
                   - action: BEDROOM_SUNRISE_DELAY_30
                     title: "Start in 30 mins"
-                  - action: BEDROOM_SUNRISE_DELAY_60
-                    title: "Start in 60 mins"
                   - action: BEDROOM_SUNRISE_STOP
                     title: "Stop Sunrise"
                 tag: sunrise-alarm
