@@ -2780,7 +2780,63 @@
                       "icon_color": "#e51919",
                       "content": "Airing Cupboard",
                       "tap_action": {
-                        "action": "none"
+                        "action": "perform-action",
+                        "perform_action": "browser_mod.popup",
+                        "target": {},
+                        "data": {
+                          "dismissable": true,
+                          "autoclose": false,
+                          "content": {
+                            "type": "custom:mini-graph-card",
+                            "entities": [
+                              {
+                                "entity": "sensor.air_purifier_pm2_5",
+                                "name": "Air Quality",
+                                "smoothing": true
+                              },
+                              {
+                                "entity": "sensor.air_purifier_fan_speed",
+                                "name": "Fan Speed",
+                                "y_axis": "secondary",
+                                "show_line": true,
+                                "show_fill": false,
+                                "color": "gray"
+                              }
+                            ],
+                            "hours_to_show": 6,
+                            "hour24": true,
+                            "points_per_hour": 30,
+                            "line_width": 2,
+                            "min_bound_range": 10,
+                            "lower_bound": "~0",
+                            "upper_bound": "~55",
+                            "lower_bound_secondary": 0,
+                            "upper_bound_secondary": 4,
+                            "show": {
+                              "fill": true,
+                              "legend": true,
+                              "labels": true
+                            },
+                            "color_thresholds": [
+                              {
+                                "value": 0,
+                                "color": "#28d20d"
+                              },
+                              {
+                                "value": 12,
+                                "color": "#a0ac00"
+                              },
+                              {
+                                "value": 35,
+                                "color": "#da7800"
+                              },
+                              {
+                                "value": 55,
+                                "color": "#f62727"
+                              }
+                            ]
+                          }
+                        }
                       },
                       "hold_action": {
                         "action": "none"
