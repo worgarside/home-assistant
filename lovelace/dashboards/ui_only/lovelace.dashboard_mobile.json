@@ -2818,31 +2818,17 @@
                           "service": "browser_mod.popup",
                           "data": {
                             "content": {
-                              "type": "custom:mini-graph-card",
-                              "name": "Airing Cupboard (24 hours)",
-                              "show": {
-                                "state": false,
-                                "icon": false,
-                                "name": true,
-                                "labels": true,
-                                "labels_secondary": true
-                              },
-                              "hours_to_show": 24,
-                              "points_per_hour": 4,
-                              "animate": true,
-                              "line_width": 1,
-                              "height": 150,
-                              "entities": [
+                              "type": "custom:decluttering-card",
+                              "template": "addon_active_entity_template",
+                              "variables": [
                                 {
-                                  "entity": "sensor.airing_cupboard_climate_sensor_temperature",
-                                  "color": "#e7c8e8",
-                                  "name": "Temperature"
+                                  "name": "Airing Cupboard"
                                 },
                                 {
-                                  "entity": "sensor.vic_s_office_climate_sensor_humidity",
-                                  "color": "#5bacba",
-                                  "y_axis": "secondary",
-                                  "name": "Humidity"
+                                  "temp_sensor": "sensor.airing_cupboard_climate_sensor_temperature"
+                                },
+                                {
+                                  "rhum_sensor": "sensor.vic_s_office_climate_sensor_humidity"
                                 }
                               ]
                             }
