@@ -2918,7 +2918,27 @@
                       "icon_color": "#42e519",
                       "content": "Kitchen",
                       "tap_action": {
-                        "action": "none"
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "custom:decluttering-card",
+                              "template": "environment_chip_pop_up",
+                              "variables": [
+                                {
+                                  "name": "Kitchen"
+                                },
+                                {
+                                  "temp_sensor": "kitchen_air_quality_sensor_temperature"
+                                },
+                                {
+                                  "rhum_sensor": "kitchen_air_quality_sensor_humidity"
+                                }
+                              ]
+                            }
+                          }
+                        }
                       },
                       "hold_action": {
                         "action": "none"
@@ -2933,7 +2953,27 @@
                       "icon_color": "#19e56b",
                       "content": "Lounge",
                       "tap_action": {
-                        "action": "none"
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "custom:decluttering-card",
+                              "template": "environment_chip_pop_up",
+                              "variables": [
+                                {
+                                  "name": "Lounge"
+                                },
+                                {
+                                  "temp_sensor": "lounge_climate_sensor_temperature"
+                                },
+                                {
+                                  "rhum_sensor": "lounge_climate_sensor_humidity"
+                                }
+                              ]
+                            }
+                          }
+                        }
                       },
                       "hold_action": {
                         "action": "none"
@@ -2948,7 +2988,27 @@
                       "icon_color": "#19e5e5",
                       "content": "Roof",
                       "tap_action": {
-                        "action": "none"
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "custom:decluttering-card",
+                              "template": "environment_chip_pop_up",
+                              "variables": [
+                                {
+                                  "name": "Roof"
+                                },
+                                {
+                                  "temp_sensor": "roof_climate_sensor_temperature"
+                                },
+                                {
+                                  "rhum_sensor": "roof_climate_sensor_humidity"
+                                }
+                              ]
+                            }
+                          }
+                        }
                       },
                       "hold_action": {
                         "action": "none"
@@ -2963,7 +3023,27 @@
                       "icon_color": "#196be5",
                       "content": "Spare Room",
                       "tap_action": {
-                        "action": "none"
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "custom:decluttering-card",
+                              "template": "environment_chip_pop_up",
+                              "variables": [
+                                {
+                                  "name": "Spare Room"
+                                },
+                                {
+                                  "temp_sensor": "spare_room_climate_sensor_temperature"
+                                },
+                                {
+                                  "rhum_sensor": "spare_room_climate_sensor_humidity"
+                                }
+                              ]
+                            }
+                          }
+                        }
                       },
                       "hold_action": {
                         "action": "none"
@@ -2978,7 +3058,27 @@
                       "icon_color": "#4219e5",
                       "content": "Vic's Office",
                       "tap_action": {
-                        "action": "none"
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "custom:decluttering-card",
+                              "template": "environment_chip_pop_up",
+                              "variables": [
+                                {
+                                  "name": "Vic's Office"
+                                },
+                                {
+                                  "temp_sensor": "vic_s_office_climate_sensor_temperature"
+                                },
+                                {
+                                  "rhum_sensor": "vic_s_office_climate_sensor_humidity"
+                                }
+                              ]
+                            }
+                          }
+                        }
                       },
                       "hold_action": {
                         "action": "none"
@@ -2993,7 +3093,27 @@
                       "icon_color": "#bc19e5",
                       "content": "Will's Office",
                       "tap_action": {
-                        "action": "none"
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "custom:decluttering-card",
+                              "template": "environment_chip_pop_up",
+                              "variables": [
+                                {
+                                  "name": "Will's Office"
+                                },
+                                {
+                                  "temp_sensor": "will_s_office_climate_sensor_temperature"
+                                },
+                                {
+                                  "rhum_sensor": "will_s_office_climate_sensor_humidity"
+                                }
+                              ]
+                            }
+                          }
+                        }
                       },
                       "hold_action": {
                         "action": "none"
@@ -3008,7 +3128,27 @@
                       "icon_color": "#e51993",
                       "content": "Hammersmith",
                       "tap_action": {
-                        "action": "none"
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "custom:decluttering-card",
+                              "template": "environment_chip_pop_up",
+                              "variables": [
+                                {
+                                  "name": "Hammersmith"
+                                },
+                                {
+                                  "temp_sensor": "met_office_fulham_temperature"
+                                },
+                                {
+                                  "rhum_sensor": "met_office_fulham_humidity"
+                                }
+                              ]
+                            }
+                          }
+                        }
                       },
                       "hold_action": {
                         "action": "none"
