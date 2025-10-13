@@ -10,6 +10,39 @@
         "animate": "swipe",
         "swipe_amount": 30
       },
+      "decluttering_templates": {
+        "environment_chip_pop_up": {
+          "card": {
+            "type": "custom:mini-graph-card",
+            "name": "[[name]] (24 hours)",
+            "show": {
+              "state": false,
+              "icon": false,
+              "name": true,
+              "labels": true,
+              "labels_secondary": true
+            },
+            "hours_to_show": 24,
+            "points_per_hour": 4,
+            "animate": true,
+            "line_width": 1,
+            "height": 150,
+            "entities": [
+              {
+                "entity": "sensor.[[ temp_sensor ]]",
+                "color": "#e7c8e8",
+                "name": "Temperature"
+              },
+              {
+                "entity": "sensor.[[ rhum_sensor ]]",
+                "color": "#5bacba",
+                "y_axis": "secondary",
+                "name": "Humidity"
+              }
+            ]
+          }
+        }
+      },
       "views": [
         {
           "type": "sections",
