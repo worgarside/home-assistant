@@ -2780,14 +2780,24 @@
                       "icon_color": "#e51919",
                       "content": "Airing Cupboard",
                       "tap_action": {
-                        "action": "perform-action",
-                        "perform_action": "browser_mod.popup",
-                        "target": {},
-                        "data": {
-                          "dismissable": true,
-                          "autoclose": false,
-                          "content": "sadsaddas",
-                          "title": "asddsadas"
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "entities",
+                              "entities": [
+                                {
+                                  "type": "custom:hui-element",
+                                  "card_mod": {
+                                    "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
+                                  },
+                                  "card_type": "markdown",
+                                  "content": "### Pull Request Controls\n"
+                                }
+                              ]
+                            }
+                          }
                         }
                       },
                       "hold_action": {
