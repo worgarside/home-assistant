@@ -34,7 +34,7 @@
                 "name": "Temperature"
               },
               {
-                "entity": "sensor.airing_cupboard_climate_sensor_humidity",
+                "entity": "sensor.[[ rhum_sensor ]]",
                 "color": "#5bacba",
                 "y_axis": "secondary",
                 "name": "Humidity"
