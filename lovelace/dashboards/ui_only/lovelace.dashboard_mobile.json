@@ -2848,7 +2848,27 @@
                       "icon_color": "#e59319",
                       "content": "Bathroom",
                       "tap_action": {
-                        "action": "none"
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "custom:decluttering-card",
+                              "template": "environment_chip_pop_up",
+                              "variables": [
+                                {
+                                  "name": "Bathroom"
+                                },
+                                {
+                                  "temp_sensor": "bathroom_climate_sensor_temperature"
+                                },
+                                {
+                                  "rhum_sensor": "bathroom_climate_sensor_humidity"
+                                }
+                              ]
+                            }
+                          }
+                        }
                       },
                       "hold_action": {
                         "action": "none"
@@ -2863,7 +2883,27 @@
                       "icon_color": "#bce519",
                       "content": "Bedroom",
                       "tap_action": {
-                        "action": "none"
+                        "action": "fire-dom-event",
+                        "browser_mod": {
+                          "service": "browser_mod.popup",
+                          "data": {
+                            "content": {
+                              "type": "custom:decluttering-card",
+                              "template": "environment_chip_pop_up",
+                              "variables": [
+                                {
+                                  "name": "Bedroom"
+                                },
+                                {
+                                  "temp_sensor": "bedroom_climate_sensor_temperature"
+                                },
+                                {
+                                  "rhum_sensor": "bedroom_climate_sensor_humidity"
+                                }
+                              ]
+                            }
+                          }
+                        }
                       },
                       "hold_action": {
                         "action": "none"
