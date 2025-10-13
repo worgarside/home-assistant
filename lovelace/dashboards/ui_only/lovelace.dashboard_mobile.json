@@ -14,7 +14,7 @@
         "environment_chip_pop_up": {
           "card": {
             "type": "custom:mini-graph-card",
-            "name": "Airing Cupboard (24 hours)",
+            "name": "[[name]] (24 hours)",
             "show": {
               "state": false,
               "icon": false,
@@ -29,7 +29,7 @@
             "height": 150,
             "entities": [
               {
-                "entity": "sensor.airing_cupboard_climate_sensor_temperature",
+                "entity": "sensor.[[temp_sensor]]",
                 "color": "#e7c8e8",
                 "name": "Temperature"
               },
