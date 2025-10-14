@@ -1481,6 +1481,32 @@
                     "action": "none"
                   },
                   "primary": "Wardrobe lights timeout"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:calendar",
+                  "features_position": "bottom",
+                  "entity": "automation.schedule_bedroom_heating_schedule_on",
+                  "area": "bedroom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/schedule/bedroom-heating-schedule/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_wardrobe_lights_auto_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Scheduled heating"
                 }
               ]
             }
