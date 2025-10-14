@@ -1406,6 +1406,32 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
+                  "icon": "mdi:weather-sunset-up",
+                  "features_position": "bottom",
+                  "entity": "automation.input_datetime_next_bedroom_sunrise_sunrise_start",
+                  "area": "bedroom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/input-datetime/next-bedroom-sunrise/sunrise-start",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_wardrobe_lights_auto_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Sunrise lighting"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
                   "icon": "mdi:hexagon-multiple-outline",
                   "features_position": "bottom",
                   "entity": "automation.light_bedroom_shapes_bon_appetit",
@@ -1507,32 +1533,6 @@
                     "action": "none"
                   },
                   "primary": "Scheduled heating"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:weather-sunset-up",
-                  "features_position": "bottom",
-                  "entity": "automation.input_datetime_next_bedroom_sunrise_sunrise_start",
-                  "area": "bedroom",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/input-datetime/next-bedroom-sunrise/sunrise-start",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.light_wardrobe_lights_auto_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Sunrise lighting"
                 }
               ]
             }
