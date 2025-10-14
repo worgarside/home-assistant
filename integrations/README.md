@@ -809,7 +809,9 @@ File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](
 
 ```json
 {
-  "original_start_time": "{{ states('input_datetime.next_bedroom_sunrise') }}"
+  "original_start_time": "{{ states('input_datetime.next_bedroom_sunrise') }}",
+  "max_brightness_pct": "{{ states('input_number.bedroom_sunrise_max_brightness') | int(100) }}",
+  "sunrise_duration": "{{ states('input_number.bedroom_sunrise_duration') | int(30) }}"
 }
 ```
 File: [`automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml`](entities/automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml)
@@ -2896,7 +2898,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (38)</h3></summary>
+<details><summary><h3>Entities (40)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -2932,6 +2934,30 @@ File: [`input_number/auto_save_minimum.yaml`](entities/input_number/auto_save_mi
 - Unit Of Measurement: %
 
 File: [`input_number/auto_save_naughty_transaction_percentage.yaml`](entities/input_number/auto_save_naughty_transaction_percentage.yaml)
+</details>
+
+<details><summary><strong>Bedroom Sunrise Duration</strong></summary>
+
+**Entity ID: `input_number.bedroom_sunrise_duration`**
+
+- Max: 120
+- Min: 5
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/bedroom_sunrise_duration.yaml`](entities/input_number/bedroom_sunrise_duration.yaml)
+</details>
+
+<details><summary><strong>Bedroom Sunrise Max Brightness</strong></summary>
+
+**Entity ID: `input_number.bedroom_sunrise_max_brightness`**
+
+- Max: 100
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: %
+
+File: [`input_number/bedroom_sunrise_max_brightness.yaml`](entities/input_number/bedroom_sunrise_max_brightness.yaml)
 </details>
 
 <details><summary><strong>Credit Card Pot Top-Up | Maximum Auto Top-Up</strong></summary>
