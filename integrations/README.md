@@ -148,27 +148,6 @@ File: [`automation/binary_sensor/lounge_occupancy/on.yaml`](entities/automation/
 File: [`automation/binary_sensor/lounge_occupancy/room_timeout.yaml`](entities/automation/binary_sensor/lounge_occupancy/room_timeout.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/office-opening-detected/on</code></summary>
-
-**Entity ID: `automation.binary_sensor_office_opening_detected_on`**
-
-> Turn off office heating when window or roof terrace door is opened for 5 seconds
-
-- Alias: /binary-sensor/office-opening-detected/on
-- ID: `binary_sensor_office_opening_detected_on`
-- Mode: `restart`
-- Variables:
-
-```json
-{
-  "radiator_was_on": "{{ is_state('climate.will_s_office_radiator', 'heat') }}",
-  "fan_was_heating": "{{ is_state('climate.will_s_office_fan', 'heat') }}",
-  "notif_id": "office_heating_off"
-}
-```
-File: [`automation/binary_sensor/office_opening_detected/on.yaml`](entities/automation/binary_sensor/office_opening_detected/on.yaml)
-</details>
-
 <details><summary><code>/binary-sensor/quiet-hours/off</code></summary>
 
 **Entity ID: `automation.binary_sensor_quiet_hours_off`**
@@ -238,6 +217,27 @@ File: [`automation/binary_sensor/vic_s_office_occupancy/on.yaml`](entities/autom
 }
 ```
 File: [`automation/binary_sensor/vic_s_office_occupancy/state_change.yaml`](entities/automation/binary_sensor/vic_s_office_occupancy/state_change.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/will-s-office-opening-detected/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_will_s_office_opening_detected_on`**
+
+> Turn off office heating when window or roof terrace door is opened for 5 seconds
+
+- Alias: /binary-sensor/will-s-office-opening-detected/on
+- ID: `binary_sensor_will_s_office_opening_detected_on`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "radiator_was_on": "{{ is_state('climate.will_s_office_radiator', 'heat') }}",
+  "fan_was_heating": "{{ is_state('climate.will_s_office_fan', 'heat') }}",
+  "notif_id": "office_heating_off"
+}
+```
+File: [`automation/binary_sensor/will_s_office_opening_detected/on.yaml`](entities/automation/binary_sensor/will_s_office_opening_detected/on.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/will-s-office-presence-sensor/state-change</code></summary>
