@@ -5447,6 +5447,14 @@
                 {
                   "type": "heading",
                   "heading": "New section"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.will_s_pixel_6_pro_weight",
+                  "name": "Weight",
+                  "icon_color": "pink",
+                  "secondary_info": "name",
+                  "primary_info": "state"
                 }
               ]
             }
