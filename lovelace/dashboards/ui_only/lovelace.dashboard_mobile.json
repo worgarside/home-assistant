@@ -1224,6 +1224,19 @@
                     "columns": 6,
                     "rows": 1
                   }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_datetime.next_bedroom_sunrise",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.input_datetime_next_bedroom_sunrise_sunrise_start",
+                      "state": "on"
+                    }
+                  ]
                 }
               ]
             },
