@@ -5295,7 +5295,7 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 ## Rest
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (2)</h3></summary>
 
 <details><summary><code>rest.tomorrow_io_realtime_weather</code></summary>
 
@@ -5303,6 +5303,13 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 - Method: GET
 
 File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realtime_weather.yaml)
+</details>
+
+<details><summary><code>rest.wger_weight</code></summary>
+
+- Resource: http://10.0.0.104:3000/api/v2/weightentry/?limit=1&ordering=-date
+
+File: [`rest/wger/wger_weight.yaml`](entities/rest/wger/wger_weight.yaml)
 </details>
 
 </details>
@@ -6375,7 +6382,7 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
 
 <details><summary><strong>External IP</strong></summary>
 
@@ -6416,6 +6423,15 @@ File: [`sensor/plex_recently_added.yaml`](entities/sensor/plex_recently_added.ya
 - Platform: `time_date`
 
 File: [`sensor/time_date.yaml`](entities/sensor/time_date.yaml)
+</details>
+
+<details><summary><strong>Wger Weight (Δ7d)</strong></summary>
+
+**Entity ID: `sensor.sensor.wger_weight`**
+
+- Platform: `statistics`
+
+File: [`sensor/wger_weight_change_7d.yaml`](entities/sensor/wger_weight_change_7d.yaml)
 </details>
 
 </details>
