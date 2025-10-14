@@ -1,5 +1,5 @@
 ---
-url: "{{ secrets.wger_api_base }}/weightentry/"  # hacv disable: InvalidTemplateVar:secrets
+url: http://10.0.0.104:3000/api/v2/weightentry/
 
 method: post
 
