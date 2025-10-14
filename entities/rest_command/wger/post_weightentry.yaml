@@ -6,5 +6,7 @@ method: post
 headers:
   authorization: !secret wger_auth_header
 
+content_type: application/json
+
 # yamllint disable-line rule:line-length
 payload: "{{ {'date': today_at(0).strftime('%Y-%m-%d'), 'weight': weight} | tojson }}"  # hacv disable: InvalidTemplateVar:weight
