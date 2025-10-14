@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (152)</h3></summary>
+<details><summary><h3>Entities (153)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1992,6 +1992,19 @@ File: [`automation/sensor/vic_s_office_climate_sensor_temperature/sync_radiator_
 - Mode: `single`
 
 File: [`automation/sensor/will_s_office_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/will_s_office_climate_sensor_temperature/sync_radiator_trv.yaml)
+</details>
+
+<details><summary><code>/sensor/will-s-pixel-6-pro-weight/update</code></summary>
+
+**Entity ID: `automation.sensor_will_s_pixel_6_pro_weight_update`**
+
+> Submit weight entry to wger when weight sensor updates
+
+- Alias: /sensor/will-s-pixel-6-pro-weight/update
+- ID: `sensor_will_s_pixel_6_pro_weight_update`
+- Mode: `single`
+
+File: [`automation/sensor/will_s_pixel_6_pro_weight/update.yaml`](entities/automation/sensor/will_s_pixel_6_pro_weight/update.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>

@@ -1,0 +1,20 @@
+---
+alias: /sensor/will-s-pixel-6-pro-weight/update
+
+id: sensor_will_s_pixel_6_pro_weight_update
+
+description: Submit weight entry to wger when weight sensor updates
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.will_s_pixel_6_pro_weight
+    not_to:
+      - "unknown"
+      - "unavailable"
+
+action:
+  - service: rest_command.post_weightentry
+    data:
+      weight: "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}"
