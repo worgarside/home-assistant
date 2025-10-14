@@ -8,6 +8,5 @@ method: post
 headers:
   authorization: !secret wger_auth_header
 
-payload:
-  date: "{{ today_at(0).strftime('%Y-%m-%d') }}"
-  weight: "{{ weight}}"  # hacv disable: InvalidTemplateVar:weight
+# yamllint disable-line rule:line-length
+payload: "{{ {'date': today_at(0).strftime('%Y-%m-%d'), 'weight': weight} | tojson }}"  # hacv disable: InvalidTemplateVar:weight
