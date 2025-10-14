@@ -5455,6 +5455,14 @@
                   "icon_color": "pink",
                   "secondary_info": "name",
                   "primary_info": "state"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_weight",
+                  "name": "Weight",
+                  "icon_color": "pink",
+                  "secondary_info": "name",
+                  "primary_info": "state"
                 }
               ]
             }
