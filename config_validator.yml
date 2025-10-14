@@ -251,6 +251,9 @@ packages:
         - $.sensor[0].unique_id
 
   rest_command:
+    documentation:
+      id: __file__
+
     validation: {}
 
   script:

@@ -1,6 +1,4 @@
 ---
-id: post_weightentry
-
 url: "{{ secrets.wger_api_base }}/weightentry/"  # hacv disable: InvalidTemplateVar:secrets
 
 method: post
