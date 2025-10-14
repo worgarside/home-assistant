@@ -5450,6 +5450,15 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_weigh_in_count",
+                  "name": "Weigh-Ins",
+                  "icon_color": "pink",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:scale-bathroom"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.will_s_pixel_6_pro_weight",
                   "name": "Weight",
                   "icon_color": "pink",
@@ -5460,14 +5469,6 @@
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.wger_weight",
                   "name": "Weight",
-                  "icon_color": "pink",
-                  "secondary_info": "name",
-                  "primary_info": "state"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.wger_weigh_in_count",
-                  "name": "Weigh-Ins",
                   "icon_color": "pink",
                   "secondary_info": "name",
                   "primary_info": "state"
