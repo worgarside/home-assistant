@@ -1555,6 +1555,18 @@
                   "primary_info": "name",
                   "layout": "horizontal",
                   "icon": "mdi:timer-cog-outline"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.bedroom_sunrise_max_brightness",
+                  "name": "Sunrise Brightness",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "icon": "mdi:brightness-percent"
                 }
               ]
             }
