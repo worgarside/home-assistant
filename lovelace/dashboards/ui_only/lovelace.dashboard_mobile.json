@@ -1510,7 +1510,7 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "icon": "mdi:calendar",
+                  "icon": "mdi:weather-sunset-up",
                   "features_position": "bottom",
                   "entity": "automation.input_datetime_next_bedroom_sunrise_sunrise_start",
                   "area": "bedroom",
@@ -1532,7 +1532,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Scheduled heating"
+                  "primary": "Sunrise lighting"
                 }
               ]
             }
