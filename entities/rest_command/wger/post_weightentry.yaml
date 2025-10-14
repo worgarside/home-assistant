@@ -1,0 +1,13 @@
+---
+id: post_weightentry
+
+url: "{{ secrets.wger_api_base }}/weightentry/"  # hacv disable: InvalidTemplateVar:secrets
+
+method: post
+
+headers:
+  authorization: !secret wger_auth_header
+
+payload:
+  date: "{{ today_at(0).strftime('%Y-%m-%d') }}"
+  weight: "{{ weight}}"  # hacv disable: InvalidTemplateVar:weight

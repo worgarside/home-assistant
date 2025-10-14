@@ -5294,6 +5294,17 @@ File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realt
 
 </details>
 
+## Rest Command
+
+<details><summary><h3>Entities (1)</h3></summary>
+
+<details><summary><code>rest_command.post_weightentry</code></summary>
+
+File: [`rest_command/wger/post_weightentry.yaml`](entities/rest_command/wger/post_weightentry.yaml)
+</details>
+
+</details>
+
 ## Script
 
 <details><summary><h3>Entities (28)</h3></summary>
