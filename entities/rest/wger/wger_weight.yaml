@@ -1,6 +1,4 @@
 ---
-platform: rest
-
 resource: http://10.0.0.104:3000/api/v2/weightentry/?limit=1&ordering=-date
 
 headers:
