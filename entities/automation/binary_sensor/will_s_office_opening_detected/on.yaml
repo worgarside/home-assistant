@@ -1,0 +1,68 @@
+---
+alias: /binary-sensor/will-s-office-opening-detected/on
+
+id: binary_sensor_will_s_office_opening_detected_on
+
+description: Turn off office heating when window or roof terrace door is opened for 5 seconds
+
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.will_s_office_window_sensor_contact
+      - binary_sensor.roof_terrace_door_contact
+    from: "off"
+    to: "on"
+    for:
+      seconds: 5
+
+variables:
+  radiator_was_on: "{{ is_state('climate.will_s_office_radiator', 'heat') }}"
+  fan_was_heating: "{{ is_state('climate.will_s_office_fan', 'heat') }}"
+
+  notif_id: office_heating_off
+
+condition: "{{ radiator_was_on or fan_was_heating }}"
+
+action:
+  - parallel:
+      - if: "{{ radiator_was_on }}"
+        then:
+          - service: climate.turn_off
+            target:
+              entity_id: climate.will_s_office_radiator
+
+      - if: "{{ fan_was_heating }}"
+        then:
+          - service: climate.turn_off
+            target:
+              entity_id: climate.will_s_office_fan
+
+      - if: "{{ radiator_was_on or fan_was_heating }}"
+
+        then:
+          - service: script.notify_will
+            data:
+              title: Office heating disabled
+              message: >-
+                {% if radiator_was_on and fan_was_heating %}
+                  Office radiator and fan heating turned off
+                {% elif radiator_was_on %}
+                  Office radiator turned off
+                {% elif fan_was_heating %}
+                  Office fan heating turned off
+                {% endif %}
+              mobile_notification_icon: mdi:window-open
+              group: office_heating
+              notification_id: "{{ notif_id }}"
+              persistent: true
+
+          - delay:
+              minutes: 10
+
+          - service: script.notify_will
+            data:
+              message: clear_notification
+              clear_notification: true
+              notification_id: "{{ notif_id }}"
