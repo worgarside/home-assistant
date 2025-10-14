@@ -1546,14 +1546,15 @@
                 },
                 {
                   "type": "custom:mushroom-number-card",
-                  "entity": "input_number.basement_lights_timeout",
-                  "name": "Lights Timeout",
+                  "entity": "input_number.bedroom_sunrise_duration",
+                  "name": "Sunrise Duration",
                   "tap_action": {
                     "action": "more-info"
                   },
                   "secondary_info": "state",
                   "primary_info": "name",
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "icon": "mdi:timer-cog-outline"
                 }
               ]
             }
