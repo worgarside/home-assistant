@@ -2388,7 +2388,12 @@
           "header": {
             "layout": "center",
             "badges_position": "top",
-            "badges_wrap": "scroll"
+            "badges_wrap": "scroll",
+            "card": {
+              "type": "markdown",
+              "content": "Will's Office",
+              "text_only": true
+            }
           },
           "max_columns": 4,
           "title": "Will's Office",
