@@ -25,6 +25,23 @@ variables:
   entity_domain: "{{ calling_entity.split('.')[0] }}"
   entity_id: "{{ calling_entity.split('.')[1] }}"
   timestamp: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+  formatted_message: >-
+    {% if '\n' not in message and '`' not in message %}
+    {#- Plain text single line -#}
+    {{- '`' + message + '`' -}}
+    {%- elif '```' in message and message.count('```') >= 2 -%}
+    {#- Code block -#}
+    {{- '\n' + message -}}
+    {% elif '```' in message and message.count('```') < 2 -%}
+    {#- Invalid code block, wrap in triple-backticks -#}
+    {{- '\n```\n' + message.replace('`', '\\`') + '\n```' -}}
+    {%- elif '\n' in message -%}
+    {#- Multi-line text with newlines -#}
+    {{- '\n```\n' + message + '\n```' -}}
+    {%- else -%}
+    {#- Plain text multi-line -#}
+    {{- message -}}
+    {%- endif -%}
 
 sequence:
   - service: persistent_notification.create
@@ -33,7 +50,7 @@ sequence:
       message: |
         Source:  [`{{ calling_entity }}`](/config/{{ entity_domain }}/trace/{{ entity_id }})
         Time:    `{{ timestamp }}`
-        Message: {{ '`' + message + '`' if '\n' not in message else '\n' + message }}
+        Message: {{ formatted_message }}
 
   - service: system_log.write
     data:
