@@ -6425,13 +6425,13 @@ File: [`sensor/plex_recently_added.yaml`](entities/sensor/plex_recently_added.ya
 File: [`sensor/time_date.yaml`](entities/sensor/time_date.yaml)
 </details>
 
-<details><summary><strong>Wger Weight (Δ7d)</strong></summary>
+<details><summary><strong>Wger | Weight (Δ7d)</strong></summary>
 
 **Entity ID: `sensor.sensor.wger_weight`**
 
 - Platform: `statistics`
 
-File: [`sensor/wger_weight_change_7d.yaml`](entities/sensor/wger_weight_change_7d.yaml)
+File: [`sensor/wger_weight_7d.yaml`](entities/sensor/wger_weight_7d.yaml)
 </details>
 
 </details>

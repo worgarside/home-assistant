@@ -297,6 +297,21 @@ packages:
     # scenes.yaml is managed via the UI, but it still needs to be !included
     validation: {}
 
+  statistics:
+    documentation:
+      id: __file__
+      extra:
+        - entity_id
+        - state_characteristic
+
+    validation:
+      should_exist:
+        - entity_id
+        - state_characteristic
+
+      should_match_filename:
+        - unique_id
+
   switch:
     documentation:
       name: friendly_name
