@@ -5534,7 +5534,7 @@ File: [`script/fan/air_purifier/air_purifier_update_fan_speed.yaml`](entities/sc
   "entity_domain": "{{ calling_entity.split('.')[0] }}",
   "entity_id": "{{ calling_entity.split('.')[1] }}",
   "timestamp": "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}",
-  "formatted_message": "{% if '\\n' not in message and '`' not in message %} {#- Plain text single line -#} {{- '`' + message + '`' -}} {%- elif '```' in message and message.count('```') >= 2 -%} {#- Code block -#} {{- '\\n' + message -}} {% elif '```' in message and message.count('```') < 2 -%} {#- Invalid code block, wrap in triple-backticks -#} {{- '\\n```\\n' + message.replace('`', '\\\\`') + '\\n```' -}} {%- elif '\\n' in message -%} {#- Multi-line text with newlines -#} {{- '\\n```\\n' + message + '\\n```' -}} {%- else -%} {#- Plain text multi-line -#} {{- message -}} {%- endif -%}"
+  "formatted_message": "{% if \"\\n\" not in message.strip() and \"`\" not in message %}\n  {#- Plain text single line -#}\n  {{ \"`\" + message.strip() + \"`\" }}\n{% elif \"```\" in message %}\n  {#- Some type of code block -#}\n  {% if message.count(\"```\") >= 2 %}\n    {#- Valid, don't reformat -#}\n    {{ \"\\n\" + message.strip() }}\n  {% else -%}\n    {#- Invalid code block, wrap in triple-backticks -#}\n    {{ \"\\n```\\n\" + message.replace(\"`\", \"\\\\`\").strip() + \"\\n```\\n\" }}\n  {% endif %}\n{% else %}\n{{ message.strip() }}\n{% endif %}\n"
 }
 ```
 File: [`script/functions/log_exception.yaml`](entities/script/functions/log_exception.yaml)

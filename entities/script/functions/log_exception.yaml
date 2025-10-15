@@ -25,23 +25,22 @@ variables:
   entity_domain: "{{ calling_entity.split('.')[0] }}"
   entity_id: "{{ calling_entity.split('.')[1] }}"
   timestamp: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
-  formatted_message: >-
-    {% if '\n' not in message and '`' not in message %}
-    {#- Plain text single line -#}
-    {{- '`' + message + '`' -}}
-    {%- elif '```' in message and message.count('```') >= 2 -%}
-    {#- Code block -#}
-    {{- '\n' + message -}}
-    {% elif '```' in message and message.count('```') < 2 -%}
-    {#- Invalid code block, wrap in triple-backticks -#}
-    {{- '\n```\n' + message.replace('`', '\\`') + '\n```' -}}
-    {%- elif '\n' in message -%}
-    {#- Multi-line text with newlines -#}
-    {{- '\n```\n' + message + '\n```' -}}
-    {%- else -%}
-    {#- Plain text multi-line -#}
-    {{- message -}}
-    {%- endif -%}
+  formatted_message: |
+    {% if "\n" not in message.strip() and "`" not in message %}
+      {#- Plain text single line -#}
+      {{ "`" + message.strip() + "`" }}
+    {% elif "```" in message %}
+      {#- Some type of code block -#}
+      {% if message.count("```") >= 2 %}
+        {#- Valid, don't reformat -#}
+        {{ "\n" + message.strip() }}
+      {% else -%}
+        {#- Invalid code block, wrap in triple-backticks -#}
+        {{ "\n```\n" + message.replace("`", "\\`").strip() + "\n```\n" }}
+      {% endif %}
+    {% else %}
+    {{ message.strip() }}
+    {% endif %}
 
 sequence:
   - service: persistent_notification.create
@@ -50,7 +49,11 @@ sequence:
       message: |
         Source:  [`{{ calling_entity }}`](/config/{{ entity_domain }}/trace/{{ entity_id }})
         Time:    `{{ timestamp }}`
-        Message: {{ formatted_message }}
+        Message: {%- if "\n" in formatted_message or "```" in formatted_message %}
+        >
+
+        {{ formatted_message }}
+        {%- else %}{{ formatted_message }}{% endif %}
 
   - service: system_log.write
     data:

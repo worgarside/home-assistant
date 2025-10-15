@@ -25,4 +25,14 @@ action:
       - service: script.log_exception
         data:
           calling_entity: automation.sensor_will_s_pixel_6_pro_weight_update
-          message: "Got status {{ res.status }}: {{ res.content }}"
+          message: |
+            Got status `{{ res.status }}` from wger API via `rest_command.post_weightentry`
+
+            {%- set content = res.content %}
+            {%- if content is match('^\\s*[\\[\\{]') %}
+            ```json
+            {{ content | tojson(indent=2) }}
+            ```
+            {%- else %}
+            {{ content }}
+            {%- endif %}
