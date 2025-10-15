@@ -5465,6 +5465,15 @@
                   "secondary_info": "name",
                   "primary_info": "state",
                   "icon": "mdi:scale-bathroom"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_weight_d7d",
+                  "icon_color": "pink",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:scale-bathroom",
+                  "name": "Weight (\u03947d)"
                 }
               ]
             },
