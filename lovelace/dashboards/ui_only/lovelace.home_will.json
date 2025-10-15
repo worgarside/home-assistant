@@ -5474,6 +5474,15 @@
                   "features_position": "bottom",
                   "entity": "sensor.wger_weight_d7d",
                   "color": "{{ iif(states(\"sensor.wger_weight_d7d\") | int(0) > 0, \"red\", \"green\") }}"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_will_weight_lifted_today",
+                  "name": "Weight LIfted Today",
+                  "icon_color": "blue",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:weight-lifter"
                 }
               ]
             },
