@@ -5459,11 +5459,12 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.wger_weight",
+                  "entity": "sensor.wger_will_body_weight",
                   "name": "Weight",
                   "icon_color": "pink",
                   "secondary_info": "name",
-                  "primary_info": "state"
+                  "primary_info": "state",
+                  "icon": "mdi:scale-bathroom"
                 }
               ]
             },
