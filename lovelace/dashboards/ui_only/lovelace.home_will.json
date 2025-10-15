@@ -5516,6 +5516,14 @@
                   "secondary_info": "name",
                   "primary_info": "state",
                   "icon": "mdi:arm-flex-outline"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.last_workout_duration",
+                  "icon_color": "blue",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": ""
                 }
               ]
             },
