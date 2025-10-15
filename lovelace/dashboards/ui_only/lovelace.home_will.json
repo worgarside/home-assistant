@@ -5474,6 +5474,14 @@
                   "primary_info": "state",
                   "icon": "mdi:scale-bathroom",
                   "name": "Weight (\u03947d)"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states(\"sensor.wger_weight\") }}",
+                  "secondary": "How are you?",
+                  "icon": "mdi:mushroom",
+                  "features_position": "bottom",
+                  "entity": "sensor.wger_weight_d7d"
                 }
               ]
             },
