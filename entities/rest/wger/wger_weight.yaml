@@ -34,3 +34,5 @@ sensor:
     name: Wger | Weigh-In Count
 
     value_template: "{{ value_json.count }}"
+
+    unit_of_measurement: " "

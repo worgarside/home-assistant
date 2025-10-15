@@ -18,3 +18,11 @@ action:
   - service: rest_command.post_weightentry
     data:
       weight: "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}"
+    response_variable: res
+
+  - if: "{{ res.status != 200 }}"
+    then:
+      - service: script.log_exception
+        data:
+          calling_entity: automation.sensor_will_s_pixel_6_pro_weight_update
+          message: "Got status {{ res.status }}: {{ res.content }}"
