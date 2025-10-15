@@ -6435,7 +6435,7 @@ File: [`sensor/time_date.yaml`](entities/sensor/time_date.yaml)
 
 <details><summary><strong>Wger | Weight (Δ7d)</strong></summary>
 
-**Entity ID: `sensor.sensor.wger_weight_change_7d`**
+**Entity ID: `sensor.sensor.wger_will_body_weight`**
 
 - Platform: `statistics`
 
