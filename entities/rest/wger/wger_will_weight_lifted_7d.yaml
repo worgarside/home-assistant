@@ -1,0 +1,65 @@
+---
+resource_template: >-
+  {{
+    'http://10.0.0.104:3000/api/v2/workoutlog/?limit=5000&ordering=-date'
+    ~ '&date__gt=' ~ (utcnow() - timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:%SZ')
+    ~ '&date__lt=' ~ utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+  }}
+
+headers:
+  Authorization: !secret wger_auth_header
+  Accept: application/json
+
+scan_interval: 300
+
+sensor:
+  # --- Rolling 7 days total ---
+  - unique_id: wger_will_weight_lifted_7d
+
+    name: "Wger | Will: Weight Lifted (7d)"
+
+    json_attributes_path: "$"
+
+    json_attributes:
+      - count
+      - next
+      - previous
+
+    value_template: >-
+      {% set logs = value_json.results if value_json.results is defined else value_json %}
+      {% set ns = namespace(total=0) %}
+      {% for l in logs %}
+        {% set w = (l.weight | float(0)) %}
+        {% set r = (l.repetitions | float(0)) %}
+        {% set ns.total = ns.total + (w * r) %}
+      {% endfor %}
+      {{ ns.total | round(2) }}
+
+    unit_of_measurement: kg
+
+  # --- Today only (local day boundary) ---
+  - unique_id: wger_will_weight_lifted_today
+
+    name: "Wger | Will: Weight Lifted Today"
+
+    json_attributes_path: "$"
+
+    json_attributes:
+      - count
+      - next
+      - previous
+
+    value_template: >-
+      {% set logs = value_json.results if value_json.results is defined else value_json %}
+      {% set today = now().strftime('%Y-%m-%d') %}
+      {% set ns = namespace(total=0) %}
+      {% for l in logs %}
+        {% if l.date.startswith(today) %}
+          {% set w = (l.weight | float(0)) %}
+          {% set r = (l.repetitions | float(0)) %}
+          {% set ns.total = ns.total + (w * r) %}
+        {% endif %}
+      {% endfor %}
+      {{ ns.total | round(2) }}
+
+    unit_of_measurement: kg

@@ -8,9 +8,9 @@ headers:
 scan_interval: 300
 
 sensor:
-  - unique_id: wger_weight
+  - unique_id: wger_will_body_weight
 
-    name: Wger | Weight
+    name: "Wger | Will: Body Weight"
 
     json_attributes_path: "$.results[0]"
 
@@ -29,9 +29,9 @@ sensor:
 
     unit_of_measurement: kg
 
-  - unique_id: wger_weigh_in_count
+  - unique_id: wger_will_weigh_in_count
 
-    name: Wger | Weigh-In Count
+    name: "Wger | Will: Weigh-In Count"
 
     value_template: "{{ value_json.count }}"
 
