@@ -13,7 +13,6 @@ headers:
 scan_interval: 300
 
 sensor:
-  # --- Rolling 7 days total ---
   - unique_id: wger_will_weight_lifted_7d
 
     name: "Wger | Will: Weight Lifted (7d)"
@@ -37,7 +36,6 @@ sensor:
 
     unit_of_measurement: kg
 
-  # --- Today only (local day boundary) ---
   - unique_id: wger_will_weight_lifted_today
 
     name: "Wger | Will: Weight Lifted Today"
@@ -102,8 +100,7 @@ sensor:
       {% set ns = namespace(total=0) %}
       {% for l in logs %}
         {% if l.date.startswith(today) %}
-          {% set r = (l.repetitions | float(0)) %}
-          {% set ns.total = ns.total + r %}
+          {% set ns.total = ns.total + (l.repetitions | float(0)) %}
         {% endif %}
       {% endfor %}
       {{ ns.total | round(2) }}

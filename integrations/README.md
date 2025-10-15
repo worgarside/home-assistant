@@ -5295,7 +5295,7 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 ## Rest
 
-<details><summary><h3>Entities (3)</h3></summary>
+<details><summary><h3>Entities (4)</h3></summary>
 
 <details><summary><code>rest.tomorrow_io_realtime_weather</code></summary>
 
@@ -5305,16 +5305,23 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realtime_weather.yaml)
 </details>
 
-<details><summary><code>rest.wger_will_body_weight</code></summary>
+<details><summary><code>rest.wger_will_weightentry</code></summary>
 
 - Resource: http://10.0.0.104:3000/api/v2/weightentry/?limit=1&ordering=-date
 
-File: [`rest/wger/wger_will_body_weight.yaml`](entities/rest/wger/wger_will_body_weight.yaml)
+File: [`rest/wger/wger_will_weightentry.yaml`](entities/rest/wger/wger_will_weightentry.yaml)
 </details>
 
-<details><summary><code>rest.wger_workoutlog</code></summary>
+<details><summary><code>rest.wger_will_workoutlog</code></summary>
 
-File: [`rest/wger/wger_workoutlog.yaml`](entities/rest/wger/wger_workoutlog.yaml)
+File: [`rest/wger/wger_will_workoutlog.yaml`](entities/rest/wger/wger_will_workoutlog.yaml)
+</details>
+
+<details><summary><code>rest.wger_will_workoutsession</code></summary>
+
+- Resource: http://10.0.0.104:3000/api/v2/workoutsession/?limit=1&ordering=-id
+
+File: [`rest/wger/wger_will_workoutsession.yaml`](entities/rest/wger/wger_will_workoutsession.yaml)
 </details>
 
 </details>

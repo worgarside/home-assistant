@@ -1,0 +1,56 @@
+---
+resource: 'http://10.0.0.104:3000/api/v2/workoutsession/?limit=1&ordering=-id'
+
+headers:
+  Authorization: !secret wger_auth_header
+  Accept: application/json
+
+scan_interval: 300
+
+sensor:
+  - name: Last Workout Duration
+
+    unique_id: last_workout_duration
+
+    icon: mdi:timer
+
+    unit_of_measurement: min
+
+    value_template: >-
+      {% set s = value_json.results[0] %}
+      {% if s.date and s.time_start and s.time_end %}
+        {# Combine date + times into datetimes #}
+        {% set start = as_datetime(s.date ~ 'T' ~ s.time_start) %}
+        {% set end   = as_datetime(s.date ~ 'T' ~ s.time_end) %}
+        {{ ((end - start).total_seconds() / 60) | round(0) }}
+      {% else %} 0 {% endif %}
+
+    json_attributes_path: "$.results[0]"
+
+    json_attributes:
+      - date
+      - time_start
+      - time_end
+      - routine
+      - day
+      - impression
+      - notes
+
+  - name: Last Workout Date
+
+    unique_id: last_workout_date
+
+    icon: mdi:calendar
+
+    value_template: "{{ value_json.results[0].date }}"
+
+    json_attributes_path: "$.results[0]"
+
+    json_attributes:
+      - date
+      - time_start
+      - time_end
+      - routine
+      - day
+      - impression
+      - notes
