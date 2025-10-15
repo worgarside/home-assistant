@@ -5474,12 +5474,13 @@
                   "features_position": "bottom",
                   "entity": "sensor.wger_weight_d7d",
                   "color": "{{ iif(states(\"sensor.wger_weight_d7d\") | int(0) > 0, \"red\", \"green\") }}"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
+                },
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Weight Lifted",
+                  "heading_style": "subtitle"
+                },
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.wger_will_weight_lifted_today",
@@ -5488,7 +5489,12 @@
                   "secondary_info": "name",
                   "primary_info": "state",
                   "icon": "mdi:weight-lifter"
-                },
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.wger_will_weight_lifted_7d",
