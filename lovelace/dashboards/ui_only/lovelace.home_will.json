@@ -5486,20 +5486,19 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "icon": "mdi:weather-pouring",
+                  "icon": "mdi:autorenew{% if is_state(\"automation.sensor_will_s_pixel_6_pro_weight_update\", \"off\") %}-off{%endif%}",
                   "features_position": "bottom",
-                  "entity": "automation.light_vic_s_office_rain_flash",
-                  "area": "vic_s_office",
+                  "entity": "automation.sensor_will_s_pixel_6_pro_weight_update",
                   "tap_action": {
                     "action": "more-info"
                   },
-                  "secondary": " /light/vic-s-office/rain-flash",
+                  "secondary": "/sensor/will-s-pixel-6-pro-weight/update",
                   "grid_options": {
                     "columns": 12,
                     "rows": 1
                   },
-                  "color": "{{ iif(states(\"automation.light_vic_s_office_rain_flash\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "primary": "Flash the light when it starts raining",
+                  "color": "{{ iif(states(\"automation.sensor_will_s_pixel_6_pro_weight_update\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "primary": "Update wger weight from Health Connect",
                   "icon_tap_action": {
                     "action": "more-info"
                   },
