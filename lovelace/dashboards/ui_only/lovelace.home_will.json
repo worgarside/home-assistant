@@ -5498,6 +5498,15 @@
                   "secondary_info": "name",
                   "primary_info": "state",
                   "icon": "mdi:weight-lifter"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_will_total_reps_today",
+                  "name": "Today",
+                  "icon_color": "blue",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:arm-flex-outline"
                 }
               ]
             },
