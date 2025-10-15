@@ -9,12 +9,14 @@ fields:
   calling_entity:
     description: The entity that called this service
     required: true
+    example: automation.do_something  # hacv disable: InvalidEntityConsumed
     selector:
       entity:
 
   message:
     description: The message to be logged
     required: true
+    example: Something went wrong!
     selector:
       text:
         multiline: true
@@ -31,7 +33,7 @@ sequence:
       message: |
         Source:  [`{{ calling_entity }}`](/config/{{ entity_domain }}/trace/{{ entity_id }})
         Time:    `{{ timestamp }}`
-        Message: `{{ message }}`
+        Message: {{ '`' + message + '`' if '\n' not in message else '\n' + message }}
 
   - service: system_log.write
     data:

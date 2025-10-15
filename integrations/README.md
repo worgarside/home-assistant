@@ -5508,6 +5508,7 @@ File: [`script/fan/air_purifier/air_purifier_update_fan_speed.yaml`](entities/sc
   "calling_entity": {
     "description": "The entity that called this service",
     "required": true,
+    "example": "automation.do_something",
     "selector": {
       "entity": null
     }
@@ -5515,6 +5516,7 @@ File: [`script/fan/air_purifier/air_purifier_update_fan_speed.yaml`](entities/sc
   "message": {
     "description": "The message to be logged",
     "required": true,
+    "example": "Something went wrong!",
     "selector": {
       "text": {
         "multiline": true
