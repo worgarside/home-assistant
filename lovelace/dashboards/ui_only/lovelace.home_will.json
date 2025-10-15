@@ -5507,6 +5507,15 @@
                   "secondary_info": "name",
                   "primary_info": "state",
                   "icon": "mdi:arm-flex-outline"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_will_total_reps_7d",
+                  "name": "Today",
+                  "icon_color": "blue",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:arm-flex-outline"
                 }
               ]
             },
