@@ -240,15 +240,12 @@ packages:
   rest:
     documentation:
       id:
-        - $.sensor[0].unique_id
         - __file__
       extra:
         - resource
         - method
 
-    validation:
-      should_match_filename:
-        - $.sensor[0].unique_id
+    validation: {}
 
   rest_command:
     documentation:

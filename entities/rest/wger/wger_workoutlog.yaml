@@ -63,3 +63,49 @@ sensor:
       {{ ns.total | round(2) }}
 
     unit_of_measurement: kg
+
+  - unique_id: wger_will_total_reps_7d
+
+    name: "Wger | Will: Total Reps (7d)"
+
+    json_attributes_path: "$"
+
+    json_attributes:
+      - count
+      - next
+      - previous
+
+    value_template: >-
+      {% set logs = value_json.results if value_json.results is defined else value_json %}
+      {% set ns = namespace(total=0) %}
+      {% for l in logs %}
+        {% set ns.total = ns.total + (l.repetitions | float(0)) %}
+      {% endfor %}
+      {{ ns.total | round(2) }}
+
+    unit_of_measurement: reps
+
+  - unique_id: wger_will_total_reps_today
+
+    name: "Wger | Will: Total Reps Today"
+
+    json_attributes_path: "$"
+
+    json_attributes:
+      - count
+      - next
+      - previous
+
+    value_template: >-
+      {% set logs = value_json.results if value_json.results is defined else value_json %}
+      {% set today = now().strftime('%Y-%m-%d') %}
+      {% set ns = namespace(total=0) %}
+      {% for l in logs %}
+        {% if l.date.startswith(today) %}
+          {% set r = (l.repetitions | float(0)) %}
+          {% set ns.total = ns.total + r %}
+        {% endif %}
+      {% endfor %}
+      {{ ns.total | round(2) }}
+
+    unit_of_measurement: reps

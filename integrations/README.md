@@ -5312,9 +5312,9 @@ File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realt
 File: [`rest/wger/wger_will_body_weight.yaml`](entities/rest/wger/wger_will_body_weight.yaml)
 </details>
 
-<details><summary><code>rest.wger_will_weight_lifted_7d</code></summary>
+<details><summary><code>rest.wger_workoutlog</code></summary>
 
-File: [`rest/wger/wger_will_weight_lifted_7d.yaml`](entities/rest/wger/wger_will_weight_lifted_7d.yaml)
+File: [`rest/wger/wger_workoutlog.yaml`](entities/rest/wger/wger_workoutlog.yaml)
 </details>
 
 </details>
