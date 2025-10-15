@@ -5484,17 +5484,12 @@
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.wger_will_weight_lifted_today",
-                  "name": "Weight LIfted Today",
+                  "name": "Today",
                   "icon_color": "blue",
                   "secondary_info": "name",
                   "primary_info": "state",
                   "icon": "mdi:weight-lifter"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
+                },
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.wger_will_weight_lifted_7d",
