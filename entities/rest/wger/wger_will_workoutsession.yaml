@@ -8,9 +8,9 @@ headers:
 scan_interval: 300
 
 sensor:
-  - name: Last Workout Duration
+  - name: "Wger | Will: Last Workout Duration"
 
-    unique_id: last_workout_duration
+    unique_id: wger_will_last_workout_duration
 
     icon: mdi:timer
 
@@ -36,13 +36,18 @@ sensor:
       - impression
       - notes
 
-  - name: Last Workout Date
+  - name: "Wger | Will: Last Workout Date"
 
-    unique_id: last_workout_date
+    unique_id: wger_will_last_workout_date
 
     icon: mdi:calendar
 
-    value_template: "{{ value_json.results[0].date }}"
+    value_template: >-
+      {% if value_json.results and value_json.results | length > 0 %}
+        {{ value_json.results[0].date }}
+      {% else %}
+        unknown
+      {% endif %}
 
     json_attributes_path: "$.results[0]"
 

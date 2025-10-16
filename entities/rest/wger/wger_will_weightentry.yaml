@@ -29,6 +29,10 @@ sensor:
 
     unit_of_measurement: kg
 
+    device_class: weight
+
+    state_class: measurement
+
   - unique_id: wger_will_weigh_in_count
 
     name: "Wger | Will: Weigh-In Count"

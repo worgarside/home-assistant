@@ -36,6 +36,10 @@ sensor:
 
     unit_of_measurement: kg
 
+    device_class: weight
+
+    state_class: measurement
+
   - unique_id: wger_will_weight_lifted_today
 
     name: "Wger | Will: Weight Lifted Today"
@@ -61,6 +65,10 @@ sensor:
       {{ ns.total | round(2) }}
 
     unit_of_measurement: kg
+
+    device_class: weight
+
+    state_class: measurement
 
   - unique_id: wger_will_total_reps_7d
 

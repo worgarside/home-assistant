@@ -1,9 +1,9 @@
 ---
 platform: statistics
 
-name: Wger | Weight (Δ7d)
+name: "Wger | Will: Weight (Δ7d)"
 
-unique_id: wger_weight_change_7d
+unique_id: wger_will_weight_change_7d
 
 # ID of the entity to track the change in
 entity_id: sensor.wger_will_body_weight
