@@ -28,6 +28,9 @@ logger:
     homeassistant.components.mqtt.light.schema_json:
       - Invalid color mode 'color_temp' received for entity light\.kitchen_counter_lights
 
+    homeassistant.components.device_tracker:
+      - The see service is not supported for this entity
+
   logs:
     charset_normalizer: warning
     idasen: critical

@@ -1,0 +1,42 @@
+---
+resource: http://10.0.0.104:3000/api/v2/weightentry/?limit=1&ordering=-date
+
+headers:
+  Authorization: !secret wger_auth_header
+  Accept: application/json
+
+scan_interval: 300
+
+sensor:
+  - unique_id: wger_will_body_weight
+
+    name: "Wger | Will: Body Weight"
+
+    json_attributes_path: "$.results[0]"
+
+    json_attributes:
+      - date
+      - id
+      - user
+
+    value_template: >
+      {%
+        set r = value_json.results
+          if (value_json is mapping and value_json.results is defined)
+          else []
+      %}
+      {{ r[0].weight | float if r|count > 0 else none }}
+
+    unit_of_measurement: kg
+
+    device_class: weight
+
+    state_class: measurement
+
+  - unique_id: wger_will_weigh_in_count
+
+    name: "Wger | Will: Weigh-In Count"
+
+    value_template: "{{ value_json.count }}"
+
+    unit_of_measurement: " "
