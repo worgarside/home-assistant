@@ -85,9 +85,9 @@ sensor:
       {% set logs = value_json.results if value_json.results is defined else value_json %}
       {% set ns = namespace(total=0) %}
       {% for l in logs %}
-        {% set ns.total = ns.total + (l.repetitions | float(0)) %}
+        {% set ns.total = ns.total + (l.repetitions | int(0)) %}
       {% endfor %}
-      {{ ns.total | round(2) }}
+      {{ ns.total | int }}
 
     unit_of_measurement: reps
 
@@ -108,9 +108,9 @@ sensor:
       {% set ns = namespace(total=0) %}
       {% for l in logs %}
         {% if l.date.startswith(today) %}
-          {% set ns.total = ns.total + (l.repetitions | float(0)) %}
+          {% set ns.total = ns.total + (l.repetitions | int(0)) %}
         {% endif %}
       {% endfor %}
-      {{ ns.total | round(2) }}
+      {{ ns.total | int }}
 
     unit_of_measurement: reps
