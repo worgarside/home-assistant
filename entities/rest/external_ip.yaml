@@ -1,0 +1,11 @@
+---
+resource: https://api.ipify.org/?format=json
+
+scan_interval: 300
+
+sensor:
+  - unique_id: external_ip
+
+    name: External IP
+
+    value_template: "{{ value_json.ip }}"

@@ -5295,7 +5295,14 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 ## Rest
 
-<details><summary><h3>Entities (4)</h3></summary>
+<details><summary><h3>Entities (5)</h3></summary>
+
+<details><summary><code>rest.external_ip</code></summary>
+
+- Resource: https://api.ipify.org/?format=json
+
+File: [`rest/external_ip.yaml`](entities/rest/external_ip.yaml)
+</details>
 
 <details><summary><code>rest.tomorrow_io_realtime_weather</code></summary>
 
@@ -6397,16 +6404,7 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (6)</h3></summary>
-
-<details><summary><strong>External IP</strong></summary>
-
-**Entity ID: `sensor.external_ip`**
-
-- Platform: `rest`
-
-File: [`sensor/external_ip.yaml`](entities/sensor/external_ip.yaml)
-</details>
+<details><summary><h3>Entities (5)</h3></summary>
 
 <details><summary><strong>Office Desk Occupied Cumulative Time</strong></summary>
 
