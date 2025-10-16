@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (152)</h3></summary>
+<details><summary><h3>Entities (153)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1992,6 +1992,19 @@ File: [`automation/sensor/vic_s_office_climate_sensor_temperature/sync_radiator_
 - Mode: `single`
 
 File: [`automation/sensor/will_s_office_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/will_s_office_climate_sensor_temperature/sync_radiator_trv.yaml)
+</details>
+
+<details><summary><code>/sensor/will-s-pixel-6-pro-weight/update</code></summary>
+
+**Entity ID: `automation.sensor_will_s_pixel_6_pro_weight_update`**
+
+> Submit weight entry to wger when weight sensor updates
+
+- Alias: /sensor/will-s-pixel-6-pro-weight/update
+- ID: `sensor_will_s_pixel_6_pro_weight_update`
+- Mode: `single`
+
+File: [`automation/sensor/will_s_pixel_6_pro_weight/update.yaml`](entities/automation/sensor/will_s_pixel_6_pro_weight/update.yaml)
 </details>
 
 <details><summary><code>/switch/air-freshener/timeout</code></summary>
@@ -5282,7 +5295,14 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 ## Rest
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (5)</h3></summary>
+
+<details><summary><code>rest.external_ip</code></summary>
+
+- Resource: https://api.ipify.org/?format=json
+
+File: [`rest/external_ip.yaml`](entities/rest/external_ip.yaml)
+</details>
 
 <details><summary><code>rest.tomorrow_io_realtime_weather</code></summary>
 
@@ -5290,6 +5310,36 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 - Method: GET
 
 File: [`rest/tomorrow_io_realtime_weather.yaml`](entities/rest/tomorrow_io_realtime_weather.yaml)
+</details>
+
+<details><summary><code>rest.wger_will_weightentry</code></summary>
+
+- Resource: http://10.0.0.104:3000/api/v2/weightentry/?limit=1&ordering=-date
+
+File: [`rest/wger/wger_will_weightentry.yaml`](entities/rest/wger/wger_will_weightentry.yaml)
+</details>
+
+<details><summary><code>rest.wger_will_workoutlog</code></summary>
+
+File: [`rest/wger/wger_will_workoutlog.yaml`](entities/rest/wger/wger_will_workoutlog.yaml)
+</details>
+
+<details><summary><code>rest.wger_will_workoutsession</code></summary>
+
+- Resource: http://10.0.0.104:3000/api/v2/workoutsession/?limit=1&ordering=-id
+
+File: [`rest/wger/wger_will_workoutsession.yaml`](entities/rest/wger/wger_will_workoutsession.yaml)
+</details>
+
+</details>
+
+## Rest Command
+
+<details><summary><h3>Entities (1)</h3></summary>
+
+<details><summary><code>rest_command.post_weightentry</code></summary>
+
+File: [`rest_command/wger/post_weightentry.yaml`](entities/rest_command/wger/post_weightentry.yaml)
 </details>
 
 </details>
@@ -5477,6 +5527,7 @@ File: [`script/fan/air_purifier/air_purifier_update_fan_speed.yaml`](entities/sc
   "calling_entity": {
     "description": "The entity that called this service",
     "required": true,
+    "example": "automation.do_something",
     "selector": {
       "entity": null
     }
@@ -5484,6 +5535,7 @@ File: [`script/fan/air_purifier/air_purifier_update_fan_speed.yaml`](entities/sc
   "message": {
     "description": "The message to be logged",
     "required": true,
+    "example": "Something went wrong!",
     "selector": {
       "text": {
         "multiline": true
@@ -5500,7 +5552,8 @@ File: [`script/fan/air_purifier/air_purifier_update_fan_speed.yaml`](entities/sc
 {
   "entity_domain": "{{ calling_entity.split('.')[0] }}",
   "entity_id": "{{ calling_entity.split('.')[1] }}",
-  "timestamp": "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+  "timestamp": "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}",
+  "formatted_message": "{% if \"\\n\" not in message.strip() and \"`\" not in message %}\n  {#- Plain text single line -#}\n  {{ \"`\" + message.strip() + \"`\" }}\n{% elif \"```\" in message %}\n  {#- Some type of code block -#}\n  {% if message.count(\"```\") >= 2 %}\n    {#- Valid, don't reformat -#}\n    {{ \"\\n\" + message.strip() }}\n  {% else -%}\n    {#- Invalid code block, wrap in triple-backticks -#}\n    {{ \"\\n```\\n\" + message.replace(\"`\", \"\\\\`\").strip() + \"\\n```\\n\" }}\n  {% endif %}\n{% else %}\n{{ message.strip() }}\n{% endif %}\n"
 }
 ```
 File: [`script/functions/log_exception.yaml`](entities/script/functions/log_exception.yaml)
@@ -6353,15 +6406,6 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 <details><summary><h3>Entities (5)</h3></summary>
 
-<details><summary><strong>External IP</strong></summary>
-
-**Entity ID: `sensor.external_ip`**
-
-- Platform: `rest`
-
-File: [`sensor/external_ip.yaml`](entities/sensor/external_ip.yaml)
-</details>
-
 <details><summary><strong>Office Desk Occupied Cumulative Time</strong></summary>
 
 **Entity ID: `sensor.binary_sensor.office_desk_occupied`**
@@ -6392,6 +6436,15 @@ File: [`sensor/plex_recently_added.yaml`](entities/sensor/plex_recently_added.ya
 - Platform: `time_date`
 
 File: [`sensor/time_date.yaml`](entities/sensor/time_date.yaml)
+</details>
+
+<details><summary><strong>Wger | Will: Weight (Δ7d)</strong></summary>
+
+**Entity ID: `sensor.sensor.wger_will_body_weight`**
+
+- Platform: `statistics`
+
+File: [`sensor/wger_will_weight_7d.yaml`](entities/sensor/wger_will_weight_7d.yaml)
 </details>
 
 </details>

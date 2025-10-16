@@ -28,7 +28,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/worgarside/home-assistant-config-validator
-    rev: 4.3.5
+    rev: 4.3.6
     hooks:
       - id: validate-entities
         args:

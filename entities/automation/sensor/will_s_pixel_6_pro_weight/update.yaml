@@ -1,0 +1,44 @@
+---
+alias: /sensor/will-s-pixel-6-pro-weight/update
+
+id: sensor_will_s_pixel_6_pro_weight_update
+
+description: Submit weight entry to wger when weight sensor updates
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.will_s_pixel_6_pro_weight
+    not_to:
+      - "unknown"
+      - "unavailable"
+
+action:
+  - service: rest_command.post_weightentry
+    data:
+      weight: "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}"
+    response_variable: res
+
+  - if: "{{ 200 <= res.status < 300 }}"
+    then:
+      - service: homeassistant.update_entity
+        data:
+          entity_id:
+            - sensor.wger_will_body_weight
+
+    else:
+      - service: script.log_exception
+        data:
+          calling_entity: automation.sensor_will_s_pixel_6_pro_weight_update
+          message: |
+            Got status `{{ res.status }}` from wger API via `rest_command.post_weightentry`
+
+            {%- set content = res.content %}
+            {%- if content is match('^\\s*[\\[\\{]') %}
+            ```json
+            {{ content | tojson(indent=2) }}
+            ```
+            {%- else %}
+            {{ content }}
+            {%- endif %}

@@ -9,12 +9,14 @@ fields:
   calling_entity:
     description: The entity that called this service
     required: true
+    example: automation.do_something  # hacv disable: InvalidEntityConsumed
     selector:
       entity:
 
   message:
     description: The message to be logged
     required: true
+    example: Something went wrong!
     selector:
       text:
         multiline: true
@@ -23,6 +25,22 @@ variables:
   entity_domain: "{{ calling_entity.split('.')[0] }}"
   entity_id: "{{ calling_entity.split('.')[1] }}"
   timestamp: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+  formatted_message: |
+    {% if "\n" not in message.strip() and "`" not in message %}
+      {#- Plain text single line -#}
+      {{ "`" + message.strip() + "`" }}
+    {% elif "```" in message %}
+      {#- Some type of code block -#}
+      {% if message.count("```") >= 2 %}
+        {#- Valid, don't reformat -#}
+        {{ "\n" + message.strip() }}
+      {% else -%}
+        {#- Invalid code block, wrap in triple-backticks -#}
+        {{ "\n```\n" + message.replace("`", "\\`").strip() + "\n```\n" }}
+      {% endif %}
+    {% else %}
+    {{ message.strip() }}
+    {% endif %}
 
 sequence:
   - service: persistent_notification.create
@@ -31,7 +49,11 @@ sequence:
       message: |
         Source:  [`{{ calling_entity }}`](/config/{{ entity_domain }}/trace/{{ entity_id }})
         Time:    `{{ timestamp }}`
-        Message: `{{ message }}`
+        Message: {%- if "\n" in formatted_message or "```" in formatted_message %}
+        >
+
+        {{ formatted_message }}
+        {%- else %}{{ formatted_message }}{% endif %}
 
   - service: system_log.write
     data:
