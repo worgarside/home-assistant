@@ -1,0 +1,11 @@
+---
+unique_id: ovo_electricity_monthly_cost
+
+source: sensor.ovo_last_electricity_cost
+
+name: "OVO | Electricity: Monthly Cost"
+
+cycle: monthly
+
+offset:
+  days: 1

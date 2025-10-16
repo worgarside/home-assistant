@@ -1,0 +1,11 @@
+---
+unique_id: ovo_electricity_daily_cost
+
+source: sensor.ovo_last_electricity_cost
+
+name: "OVO | Electricity: Daily Cost"
+
+cycle: daily
+
+offset:
+  days: 1
