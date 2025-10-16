@@ -5482,7 +5482,11 @@
                   "icon": "mdi:trending-{{ iif(states(\"sensor.wger_weight_d7d\") | float(0) > 0, \"up\",\"down\") }}",
                   "features_position": "bottom",
                   "entity": "sensor.wger_weight_d7d",
-                  "color": "{{ iif(states(\"sensor.wger_weight_d7d\") | float(0) > 0, \"red\", \"green\") }}"
+                  "color": "{{ iif(states(\"sensor.wger_weight_d7d\") | float(0) > 0, \"red\", \"green\") }}",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
                 },
                 {
                   "type": "heading",
