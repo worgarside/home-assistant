@@ -5456,7 +5456,11 @@
                   "icon_color": "pink",
                   "secondary_info": "name",
                   "primary_info": "state",
-                  "icon": "mdi:scale-bathroom"
+                  "icon": "mdi:scale-bathroom",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
                 },
                 {
                   "type": "custom:mushroom-entity-card",
