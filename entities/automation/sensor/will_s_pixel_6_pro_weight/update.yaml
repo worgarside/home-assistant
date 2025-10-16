@@ -24,8 +24,8 @@ action:
     then:
       - service: homeassistant.update_entity
         data:
-          entity_id: sensor.wger_weight
-          state: "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}"
+          entity_id:
+            - sensor.wger_will_body_weight
 
     else:
       - service: script.log_exception
