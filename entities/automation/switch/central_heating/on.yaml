@@ -27,3 +27,6 @@ action:
         when: "{{ now().timestamp() | int }}"
         when_relative: false
         sound: "none"
+        actions:
+          - action: "CENTRAL_HEATING_TURN_OFF"
+            title: "Turn Off"

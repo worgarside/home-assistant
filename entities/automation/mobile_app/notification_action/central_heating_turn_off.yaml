@@ -1,0 +1,20 @@
+---
+alias: /mobile-app/notification-action/central-heating-turn-off
+
+id: mobile_app_notification_action_central_heating_turn_off
+
+description: Turn off central heating from notification action
+
+mode: single
+
+trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: CENTRAL_HEATING_TURN_OFF
+
+action:
+  - alias: Turn off central heating
+    action: switch.turn_off
+    target:
+      entity_id: switch.central_heating

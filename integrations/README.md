@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (156)</h3></summary>
+<details><summary><h3>Entities (157)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1247,6 +1247,19 @@ File: [`automation/mobile_app/notification_action/bedroom_sunrise_delay.yaml`](e
 - Mode: `single`
 
 File: [`automation/mobile_app/notification_action/bedroom_sunrise_stop.yaml`](entities/automation/mobile_app/notification_action/bedroom_sunrise_stop.yaml)
+</details>
+
+<details><summary><code>/mobile-app/notification-action/central-heating-turn-off</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_central_heating_turn_off`**
+
+> Turn off central heating from notification action
+
+- Alias: /mobile-app/notification-action/central-heating-turn-off
+- ID: `mobile_app_notification_action_central_heating_turn_off`
+- Mode: `single`
+
+File: [`automation/mobile_app/notification_action/central_heating_turn_off.yaml`](entities/automation/mobile_app/notification_action/central_heating_turn_off.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/audio-visualiser</code></summary>
