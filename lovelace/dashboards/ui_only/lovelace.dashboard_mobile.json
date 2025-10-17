@@ -757,6 +757,11 @@
                     "rows": 1
                   },
                   "color": "{% set val = states('sensor.apollo_plt_1b_1743a8_soil_moisture') | float(0) %}\n{% if val < 20 %}\n  red\n{% elif val < 40 %}\n  orange\n{% elif val < 60 %}\n  yellow\n{% elif val < 80 %}\n  limegreen\n{% else %}\n  deepskyblue\n{% endif %}\n"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.lounge_lights_exercise_mode",
+                  "name": "Exercise Mode"
                 }
               ]
             },
