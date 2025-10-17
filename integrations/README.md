@@ -6584,7 +6584,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (73)</h3></summary>
+<details><summary><h3>Entities (75)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -7399,6 +7399,64 @@ File: [`template/sensor/spotify/spotify_will_garside_media_artist.yaml`](entitie
 **Entity ID: `sensor.spotify_will_garside_media_title`**
 
 File: [`template/sensor/spotify/spotify_will_garside_media_title.yaml`](entities/template/sensor/spotify/spotify_will_garside_media_title.yaml)
+</details>
+
+<details><summary><strong>Vic's Office Fan Speed</strong></summary>
+
+**Entity ID: `sensor.vic_s_office_fan_speed`**
+
+- Icon:
+
+```jinja
+{% if not states("fan.vic_s_office_fan") | bool(false) %}
+  mdi:fan-off
+{% elif is_state("fan.vic_s_office_fan", "off") %}
+  mdi:fan-off
+{% elif state_attr("fan.vic_s_office_fan", "percentage") | int(0) == 0 %}
+  mdi:fan-off
+{% elif state_attr("fan.vic_s_office_fan", "percentage") | int(0) <= 25 %}
+  mdi:fan-speed-1
+{% elif state_attr("fan.vic_s_office_fan", "percentage") | int(0) <= 50 %}
+  mdi:fan-speed-2
+{% elif state_attr("fan.vic_s_office_fan", "percentage") | int(0) <= 75 %}
+  mdi:fan-speed-3
+{% else %}
+  mdi:fan
+{% endif %}
+```
+
+- Unit Of Measurement: %
+
+File: [`template/sensor/vic_s_office_fan_speed.yaml`](entities/template/sensor/vic_s_office_fan_speed.yaml)
+</details>
+
+<details><summary><strong>Will's Office Fan Speed</strong></summary>
+
+**Entity ID: `sensor.will_s_office_fan_speed`**
+
+- Icon:
+
+```jinja
+{% if not states("fan.will_s_office_fan") | bool(false) %}
+  mdi:fan-off
+{% elif is_state("fan.will_s_office_fan", "off") %}
+  mdi:fan-off
+{% elif state_attr("fan.will_s_office_fan", "percentage") | int(0) == 0 %}
+  mdi:fan-off
+{% elif state_attr("fan.will_s_office_fan", "percentage") | int(0) <= 25 %}
+  mdi:fan-speed-1
+{% elif state_attr("fan.will_s_office_fan", "percentage") | int(0) <= 50 %}
+  mdi:fan-speed-2
+{% elif state_attr("fan.will_s_office_fan", "percentage") | int(0) <= 75 %}
+  mdi:fan-speed-3
+{% else %}
+  mdi:fan
+{% endif %}
+```
+
+- Unit Of Measurement: %
+
+File: [`template/sensor/will_s_office_fan_speed.yaml`](entities/template/sensor/will_s_office_fan_speed.yaml)
 </details>
 
 </details>
