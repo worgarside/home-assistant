@@ -1705,6 +1705,10 @@
                   "secondary_info": "state",
                   "primary_info": "name",
                   "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.turn_off_bedroom_fan_for_scheduled_heating"
                 }
               ]
             }
