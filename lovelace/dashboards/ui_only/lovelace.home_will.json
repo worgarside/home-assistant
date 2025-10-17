@@ -5591,11 +5591,12 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.last_workout_duration",
+                  "entity": "sensor.wger_will_last_workout_duration",
                   "icon_color": "blue",
                   "secondary_info": "name",
                   "primary_info": "state",
-                  "icon": ""
+                  "icon": "",
+                  "name": "Last Workout Duration"
                 },
                 {
                   "type": "custom:mushroom-template-card",
