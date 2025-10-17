@@ -2634,6 +2634,8 @@
                   "icon": "mdi:flower",
                   "animate": true,
                   "height": 150,
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100,
                   "entities": [
                     {
                       "entity": "sensor.will_s_office_fan_pm_2_5",
@@ -2652,7 +2654,7 @@
                       "y_axis": "secondary",
                       "show_line": true,
                       "show_fill": false,
-                      "color": "gray"
+                      "color": "darkgray"
                     }
                   ]
                 },
