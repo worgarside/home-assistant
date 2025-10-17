@@ -19,6 +19,7 @@ action:
       for_each:
         - automation.binary_sensor_lounge_occupancy_off
         - automation.binary_sensor_lounge_occupancy_on
+        - automation.binary_sensor_lounge_occupancy_room_timeout
       sequence:
           # Re-enable the automation only if it was enabled before
         - if: >-

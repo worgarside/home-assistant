@@ -3,7 +3,7 @@ alias: /binary-sensor/lounge-occupancy/room-timeout
 
 id: binary_sensor_lounge_occupancy_room_timeout
 
-description: Turn off lounge room after 30 minutes of being empty
+description: Turn off lounge room after N minutes of being empty
 
 mode: single
 

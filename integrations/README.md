@@ -139,7 +139,7 @@ File: [`automation/binary_sensor/lounge_occupancy/on.yaml`](entities/automation/
 
 **Entity ID: `automation.binary_sensor_lounge_occupancy_room_timeout`**
 
-> Turn off lounge room after 30 minutes of being empty
+> Turn off lounge room after N minutes of being empty
 
 - Alias: /binary-sensor/lounge-occupancy/room-timeout
 - ID: `binary_sensor_lounge_occupancy_room_timeout`

@@ -23,6 +23,8 @@ action:
           {{ states('automation.binary_sensor_lounge_occupancy_off') | bool(true) }}
         automation.binary_sensor_lounge_occupancy_on: >-
           {{ states('automation.binary_sensor_lounge_occupancy_on') | bool(true) }}
+        automation.binary_sensor_lounge_occupancy_room_timeout: >-
+          {{ states('automation.binary_sensor_lounge_occupancy_room_timeout') | bool(true) }}
 
   - service: light.turn_on
     alias: Turn all lounge lights to 100%
@@ -38,3 +40,4 @@ action:
       entity_id:
         - automation.binary_sensor_lounge_occupancy_off
         - automation.binary_sensor_lounge_occupancy_on
+        - automation.binary_sensor_lounge_occupancy_room_timeout
