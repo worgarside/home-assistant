@@ -3295,7 +3295,7 @@ File: [`input_number/threshold/vic_s_office_fan/vic_s_office_fan_pm2_5_threshold
 **Entity ID: `input_number.vic_s_office_fan_purifier_speed`**
 
 - Max: 100
-- Min: 1
+- Min: 10
 - Mode: `slider`
 - Unit Of Measurement: %
 
@@ -3330,7 +3330,7 @@ File: [`input_number/threshold/will_s_office_fan/will_s_office_fan_pm2_5_thresho
 **Entity ID: `input_number.will_s_office_fan_purifier_speed`**
 
 - Max: 100
-- Min: 1
+- Min: 10
 - Mode: `slider`
 - Unit Of Measurement: %
 
