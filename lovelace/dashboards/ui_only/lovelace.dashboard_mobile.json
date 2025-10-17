@@ -961,6 +961,15 @@
                     {
                       "entity": "sensor.air_purifier_pm2_5",
                       "color": "#656f70"
+                    },
+                    {
+                      "entity": "sensor.air_purifier_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "gray",
+                      "smoothing": false
                     }
                   ]
                 },
