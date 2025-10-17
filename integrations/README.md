@@ -219,14 +219,14 @@ File: [`automation/binary_sensor/vic_s_office_occupancy/on.yaml`](entities/autom
 File: [`automation/binary_sensor/vic_s_office_occupancy/state_change.yaml`](entities/automation/binary_sensor/vic_s_office_occupancy/state_change.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/will-s-office-opening-detected/on</code></summary>
+<details><summary><code>/binary-sensor/will-s-office-external-opening-detected/on</code></summary>
 
-**Entity ID: `automation.binary_sensor_will_s_office_opening_detected_on`**
+**Entity ID: `automation.binary_sensor_will_s_office_external_opening_detected_on`**
 
-> Turn off office heating when window or roof terrace door is opened for 5 seconds
+> Turn off office heating when window or roof terrace door is opened
 
-- Alias: /binary-sensor/will-s-office-opening-detected/on
-- ID: `binary_sensor_will_s_office_opening_detected_on`
+- Alias: /binary-sensor/will-s-office-external-opening-detected/on
+- ID: `binary_sensor_will_s_office_external_opening_detected_on`
 - Mode: `restart`
 - Variables:
 
@@ -237,7 +237,7 @@ File: [`automation/binary_sensor/vic_s_office_occupancy/state_change.yaml`](enti
   "notif_id": "office_heating_off"
 }
 ```
-File: [`automation/binary_sensor/will_s_office_opening_detected/on.yaml`](entities/automation/binary_sensor/will_s_office_opening_detected/on.yaml)
+File: [`automation/binary_sensor/will_s_office_external_opening_detected/on.yaml`](entities/automation/binary_sensor/will_s_office_external_opening_detected/on.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/will-s-office-presence-sensor/state-change</code></summary>
@@ -2932,7 +2932,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (41)</h3></summary>
+<details><summary><h3>Entities (42)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3416,6 +3416,19 @@ File: [`input_number/timeout/prusa_i3_power_timeout.yaml`](entities/input_number
 - Unit Of Measurement: `s`
 
 File: [`input_number/timeout/wardrobe_lights_timeout.yaml`](entities/input_number/timeout/wardrobe_lights_timeout.yaml)
+</details>
+
+<details><summary><strong>Will's Office | Heating: External Opening Timeout</strong></summary>
+
+**Entity ID: `input_number.will_s_office_heating_external_opening_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 600
+- Min: 5
+- Mode: `box`
+- Unit Of Measurement: `s`
+
+File: [`input_number/timeout/will_s_office_heating_external_opening_timeout.yaml`](entities/input_number/timeout/will_s_office_heating_external_opening_timeout.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10 | Power Off Timeout</strong></summary>
