@@ -5606,6 +5606,19 @@
                   "features_position": "bottom",
                   "entity": "sensor.wger_will_last_workout_date",
                   "color": "{% set date_str = states('sensor.wger_will_last_workout_date') %}\n{% if date_str not in ['unknown', 'unavailable', 'none', ''] %}\n  {% set target = as_datetime(date_str).date() %}\n  {% set today = now().date() %}\n  {% set delta = (target - today).days %}\n\n  {% if delta == 0 %}\n    green\n  {% elif delta == -1 %}\n    limegreen\n  {% elif delta == -2 %}\n    orange\n  {% elif delta <= -3 %}\n    red\n  {% elif delta > 0 %}\n    dodgerblue\n  {% else %}\n    grey\n  {% endif %}\n{% else %}\n  grey\n{% endif %}"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.wger_will_weight_lifted_today"
+                  ],
+                  "group_by": "date",
+                  "hour_to_show": 168,
+                  "show": {
+                    "graph": "bar"
+                  },
+                  "aggregate_func": "max",
+                  "lower_bound": 0
                 }
               ]
             },
