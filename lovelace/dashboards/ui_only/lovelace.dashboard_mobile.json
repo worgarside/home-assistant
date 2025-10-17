@@ -1735,7 +1735,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Wardrobe lights timeout"
+                  "primary": "{% set total_seconds = states('input_number.wardrobe_lights_timeout') | int %}\n{% set minutes = (total_seconds // 60) | int %}\n{% set seconds = (total_seconds % 60) | int %}\n\nTurn wardrobe lights off after \n{% if minutes > 0 %}\n  {{ minutes }} min{{ 's' if minutes != 1 else '' }}{% if seconds > 0 %} and {{ seconds }} sec{{ 's' if seconds != 1 else '' }}{% endif %}\n{% else %}\n  {{ seconds }} sec{{ 's' if seconds != 1 else '' }}\n{% endif %}"
                 },
                 {
                   "type": "custom:mushroom-template-card",
