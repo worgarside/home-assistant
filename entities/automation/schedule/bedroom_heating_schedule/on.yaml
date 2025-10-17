@@ -25,9 +25,11 @@ condition:
         below: 15
 
 action:
-  - action: fan.turn_off
-    target:
-      area_id: bedroom
+  - if: "{{ is_state('input_boolean.turn_off_bedroom_fan_for_scheduled_heating', 'on') }}"
+    then:
+      - action: fan.turn_off
+        target:
+          area_id: bedroom
 
   - action: climate.set_hvac_mode
     data:
