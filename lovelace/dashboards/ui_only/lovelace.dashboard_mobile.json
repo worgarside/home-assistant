@@ -1137,6 +1137,32 @@
                     "action": "none"
                   },
                   "primary": "Turn lights on"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-outline",
+                  "features_position": "bottom",
+                  "entity": "automation.switch_air_freshener_timeout",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/switch/air-freshener/timeout",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.switch_air_freshener_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn air freshener off after {{ states(\"input_number.air_freshener_timeout\") | int(\"??\") }} minutes"
                 }
               ]
             },
