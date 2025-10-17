@@ -683,7 +683,9 @@
                   "badges": [
                     {
                       "type": "entity",
-                      "entity": "sensor.air_purifier_air_quality"
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.air_purifier_pm2_5"
                     },
                     {
                       "type": "entity",
