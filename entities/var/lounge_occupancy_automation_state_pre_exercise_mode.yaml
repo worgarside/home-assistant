@@ -1,0 +1,13 @@
+---
+# Used to store whether the occupancy automation was enabled before exercise mode was enabled;
+# this value is then used to determine whether to re-enable the automation when exercise mode is
+# disabled
+friendly_name: Lounge | Occupancy Automation States Pre-Exercise Mode
+
+unique_id: var_lounge_occupancy_automation_state_pre_exercise_mode
+
+restore: true
+
+attributes:
+  binary_sensor_lounge_occupancy_off: false
+  binary_sensor_lounge_occupancy_on: false

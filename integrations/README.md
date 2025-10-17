@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (154)</h3></summary>
+<details><summary><h3>Entities (156)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -825,6 +825,32 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
+</details>
+
+<details><summary><code>/input-boolean/lounge-lights-exercise-mode/off</code></summary>
+
+**Entity ID: `automation.input_boolean_lounge_lights_exercise_mode_off`**
+
+> Disable exercise mode - re-enable occupancy automation if it was enabled before
+
+- Alias: /input-boolean/lounge-lights-exercise-mode/off
+- ID: `input_boolean_lounge_lights_exercise_mode_off`
+- Mode: `single`
+
+File: [`automation/input_boolean/lounge_lights_exercise_mode/off.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/off.yaml)
+</details>
+
+<details><summary><code>/input-boolean/lounge-lights-exercise-mode/on</code></summary>
+
+**Entity ID: `automation.input_boolean_lounge_lights_exercise_mode_on`**
+
+> Enable exercise mode - set lounge lights to 100% and disable occupancy automation
+
+- Alias: /input-boolean/lounge-lights-exercise-mode/on
+- ID: `input_boolean_lounge_lights_exercise_mode_on`
+- Mode: `single`
+
+File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/on.yaml)
 </details>
 
 <details><summary><code>/input-datetime/home-assistant-start-time/set-datetime</code></summary>
@@ -2647,7 +2673,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (30)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -2872,6 +2898,15 @@ File: [`input_boolean/auto_reload/auto_reload_zone.yaml`](entities/input_boolean
 - Icon: [`mdi:message-badge-outline`](https://pictogrammers.com/library/mdi/icon/message-badge-outline/)
 
 File: [`input_boolean/debug_with_persistent_notifications.yaml`](entities/input_boolean/debug_with_persistent_notifications.yaml)
+</details>
+
+<details><summary><strong>Lounge | Lights: Exercise Mode</strong></summary>
+
+**Entity ID: `input_boolean.lounge_lights_exercise_mode`**
+
+- Icon: [`mdi:dumbbell`](https://pictogrammers.com/library/mdi/icon/dumbbell/)
+
+File: [`input_boolean/lounge_lights_exercise_mode.yaml`](entities/input_boolean/lounge_lights_exercise_mode.yaml)
 </details>
 
 <details><summary><strong>Mini CRT Fan</strong></summary>
@@ -3407,7 +3442,7 @@ File: [`input_number/timeout/dry_box_dehumidifier_timeout.yaml`](entities/input_
 File: [`input_number/timeout/hallway_lights_timeout.yaml`](entities/input_number/timeout/hallway_lights_timeout.yaml)
 </details>
 
-<details><summary><strong>Lounge Diffuser | Timeout</strong></summary>
+<details><summary><strong>Lounge | Diffuser: Timeout</strong></summary>
 
 **Entity ID: `input_number.lounge_diffuser_timeout`**
 
@@ -3420,7 +3455,7 @@ File: [`input_number/timeout/hallway_lights_timeout.yaml`](entities/input_number
 File: [`input_number/timeout/lounge_diffuser_timeout.yaml`](entities/input_number/timeout/lounge_diffuser_timeout.yaml)
 </details>
 
-<details><summary><strong>Lounge Lights | Timeout</strong></summary>
+<details><summary><strong>Lounge | Lights: Timeout</strong></summary>
 
 **Entity ID: `input_number.lounge_lights_timeout`**
 
@@ -3432,7 +3467,7 @@ File: [`input_number/timeout/lounge_diffuser_timeout.yaml`](entities/input_numbe
 File: [`input_number/timeout/lounge_lights_timeout.yaml`](entities/input_number/timeout/lounge_lights_timeout.yaml)
 </details>
 
-<details><summary><strong>Lounge Room | Timeout</strong></summary>
+<details><summary><strong>Lounge | Room Timeout</strong></summary>
 
 **Entity ID: `input_number.lounge_room_timeout`**
 
@@ -7749,7 +7784,7 @@ File: [`utility_meter/ovo_gas_monthly_usage.yaml`](entities/utility_meter/ovo_ga
 
 ## Var
 
-<details><summary><h3>Entities (19)</h3></summary>
+<details><summary><h3>Entities (20)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -7806,6 +7841,13 @@ File: [`var/current_appdaemon_branch.yaml`](entities/var/current_appdaemon_branc
 - Icon: [`mdi:application-parentheses`](https://pictogrammers.com/library/mdi/icon/application-parentheses/)
 
 File: [`var/current_appdaemon_ref.yaml`](entities/var/current_appdaemon_ref.yaml)
+</details>
+
+<details><summary><strong>Lounge | Occupancy Automation States Pre-Exercise Mode</strong></summary>
+
+**Entity ID: `var.lounge_occupancy_automation_state_pre_exercise_mode`**
+
+File: [`var/lounge_occupancy_automation_state_pre_exercise_mode.yaml`](entities/var/lounge_occupancy_automation_state_pre_exercise_mode.yaml)
 </details>
 
 <details><summary><strong>Spotify Tempo (Will)</strong></summary>
