@@ -2822,6 +2822,18 @@
                   "primary_info": "name",
                   "layout": "horizontal",
                   "name": "VOC Index Threshold"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.will_s_office_fan_purifier_speed",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "Purifier Speed",
+                  "icon": "mdi:speedometer-slow"
                 }
               ]
             }
