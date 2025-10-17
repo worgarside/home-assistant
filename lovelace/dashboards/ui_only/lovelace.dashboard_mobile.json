@@ -327,6 +327,14 @@
                   "upper_bound_secondary": 100,
                   "entities": [
                     {
+                      "entity": "sensor.vic_s_office_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "#333333"
+                    },
+                    {
                       "entity": "sensor.vic_s_office_fan_pm_2_5",
                       "color": "#656f70",
                       "name": "PM 2.5"
@@ -336,14 +344,6 @@
                       "color": "green",
                       "show_line": false,
                       "show_legend": false
-                    },
-                    {
-                      "entity": "sensor.vic_s_office_fan_speed",
-                      "name": "Fan Speed",
-                      "y_axis": "secondary",
-                      "show_line": true,
-                      "show_fill": false,
-                      "color": "darkgray"
                     }
                   ]
                 },
