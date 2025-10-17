@@ -1,0 +1,11 @@
+---
+unique_id: ovo_gas_monthly_usage
+
+source: sensor.ovo_last_gas_reading
+
+name: "OVO | Gas: Monthly Usage"
+
+cycle: monthly
+
+offset:
+  days: 1

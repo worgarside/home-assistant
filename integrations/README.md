@@ -2932,7 +2932,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (41)</h3></summary>
+<details><summary><h3>Entities (42)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3403,6 +3403,19 @@ File: [`input_number/timeout/prusa_i3_hotend_timeout.yaml`](entities/input_numbe
 - Unit Of Measurement: `mins`
 
 File: [`input_number/timeout/prusa_i3_power_timeout.yaml`](entities/input_number/timeout/prusa_i3_power_timeout.yaml)
+</details>
+
+<details><summary><strong>Wardrobe Lights | Timeout</strong></summary>
+
+**Entity ID: `input_number.wardrobe_lights_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 900
+- Min: 5
+- Mode: `box`
+- Unit Of Measurement: `s`
+
+File: [`input_number/timeout/wardrobe_lights_timeout.yaml`](entities/input_number/timeout/wardrobe_lights_timeout.yaml)
 </details>
 
 <details><summary><strong>Will's Office | Heating: External Opening Timeout</strong></summary>
@@ -7589,6 +7602,68 @@ File: [`template_triggered/sensor/topaz_sr10_active_child.yaml`](entities/templa
 - Icon: [`mdi:soundbar`](https://pictogrammers.com/library/mdi/icon/soundbar/)
 
 File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/template_triggered/sensor/will_s_yas_209_bridge_input.yaml)
+</details>
+
+</details>
+
+## Utility Meter
+
+<details><summary><h3>Entities (8)</h3></summary>
+
+<details><summary><strong>OVO | Electricity: Daily Cost</strong></summary>
+
+**Entity ID: `utility_meter.ovo_electricity_daily_cost`**
+
+File: [`utility_meter/ovo_electricity_daily_cost.yaml`](entities/utility_meter/ovo_electricity_daily_cost.yaml)
+</details>
+
+<details><summary><strong>OVO | Electricity: Daily Usage</strong></summary>
+
+**Entity ID: `utility_meter.ovo_electricity_daily_usage`**
+
+File: [`utility_meter/ovo_electricity_daily_usage.yaml`](entities/utility_meter/ovo_electricity_daily_usage.yaml)
+</details>
+
+<details><summary><strong>OVO | Electricity: Monthly Cost</strong></summary>
+
+**Entity ID: `utility_meter.ovo_electricity_monthly_cost`**
+
+File: [`utility_meter/ovo_electricity_monthly_cost.yaml`](entities/utility_meter/ovo_electricity_monthly_cost.yaml)
+</details>
+
+<details><summary><strong>OVO | Electricity: Monthly Usage</strong></summary>
+
+**Entity ID: `utility_meter.ovo_electricity_monthly_usage`**
+
+File: [`utility_meter/ovo_electricity_monthly_usage.yaml`](entities/utility_meter/ovo_electricity_monthly_usage.yaml)
+</details>
+
+<details><summary><strong>OVO | Gas: Daily Cost</strong></summary>
+
+**Entity ID: `utility_meter.ovo_gas_daily_cost`**
+
+File: [`utility_meter/ovo_gas_daily_cost.yaml`](entities/utility_meter/ovo_gas_daily_cost.yaml)
+</details>
+
+<details><summary><strong>OVO | Gas: Daily Usage</strong></summary>
+
+**Entity ID: `utility_meter.ovo_gas_daily_usage`**
+
+File: [`utility_meter/ovo_gas_daily_usage.yaml`](entities/utility_meter/ovo_gas_daily_usage.yaml)
+</details>
+
+<details><summary><strong>OVO | Gas: Monthly Cost</strong></summary>
+
+**Entity ID: `utility_meter.ovo_gas_monthly_cost`**
+
+File: [`utility_meter/ovo_gas_monthly_cost.yaml`](entities/utility_meter/ovo_gas_monthly_cost.yaml)
+</details>
+
+<details><summary><strong>OVO | Gas: Monthly Usage</strong></summary>
+
+**Entity ID: `utility_meter.ovo_gas_monthly_usage`**
+
+File: [`utility_meter/ovo_gas_monthly_usage.yaml`](entities/utility_meter/ovo_gas_monthly_usage.yaml)
 </details>
 
 </details>

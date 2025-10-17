@@ -1,0 +1,11 @@
+---
+unique_id: ovo_gas_monthly_cost
+
+source: sensor.ovo_last_gas_cost
+
+name: "OVO | Gas: Monthly Cost"
+
+cycle: monthly
+
+offset:
+  days: 1
