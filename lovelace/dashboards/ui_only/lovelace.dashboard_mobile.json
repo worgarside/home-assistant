@@ -1085,6 +1085,32 @@
                     "action": "none"
                   },
                   "primary": "Turn lights off for empty room"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:motion-sensor{% if is_state(\"automation.binary_sensor_lounge_occupancy_on\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_lounge_occupancy_on",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/lounge-occupancy/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_lounge_occupancy_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn lights on"
                 }
               ]
             },
