@@ -1657,7 +1657,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Sunrise lighting"
+                  "primary": "Sunrise lighting: increase to {{ states(\"input_number.bedroom_sunrise_max_brightness\") | int(\"??\") }}% over {{ states(\"input_number.bedroom_sunrise_duration\") | int(\"??\") }} minutes"
                 },
                 {
                   "type": "custom:mushroom-template-card",
