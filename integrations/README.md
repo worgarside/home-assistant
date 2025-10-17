@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (157)</h3></summary>
+<details><summary><h3>Entities (155)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -240,14 +240,14 @@ File: [`automation/binary_sensor/vic_s_office_occupancy/state_change.yaml`](enti
 File: [`automation/binary_sensor/will_s_office_external_opening_detected/on.yaml`](entities/automation/binary_sensor/will_s_office_external_opening_detected/on.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/will-s-office-presence-sensor/state-change</code></summary>
+<details><summary><code>/binary-sensor/will-s-office-occupancy/state-change</code></summary>
 
-**Entity ID: `automation.binary_sensor_will_s_office_presence_sensor_state_change`**
+**Entity ID: `automation.binary_sensor_will_s_office_occupancy_state_change`**
 
 > *No description provided*
 
-- Alias: /binary-sensor/will-s-office-presence-sensor/state-change
-- ID: `binary_sensor_will_s_office_presence_sensor_state_change`
+- Alias: /binary-sensor/will-s-office-occupancy/state-change
+- ID: `binary_sensor_will_s_office_occupancy_state_change`
 - Mode: `queued`
 - Variables:
 
@@ -256,7 +256,7 @@ File: [`automation/binary_sensor/will_s_office_external_opening_detected/on.yaml
   "state_manager": "var.will_s_office_state_manager"
 }
 ```
-File: [`automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml`](entities/automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml)
+File: [`automation/binary_sensor/will_s_office_occupancy/state_change.yaml`](entities/automation/binary_sensor/will_s_office_occupancy/state_change.yaml)
 </details>
 
 <details><summary><code>/camera/offline-notify-will</code></summary>
@@ -565,19 +565,6 @@ File: [`automation/event/repair/state_change.yaml`](entities/automation/event/re
 File: [`automation/fan/air_purifier/control.yaml`](entities/automation/fan/air_purifier/control.yaml)
 </details>
 
-<details><summary><code>/fan/desk-fan/state-change</code></summary>
-
-**Entity ID: `automation.fan_desk_fan_state_change`**
-
-> *No description provided*
-
-- Alias: /fan/desk-fan/state-change
-- ID: `fan_desk_fan_state_change`
-- Mode: `single`
-
-File: [`automation/fan/desk_fan/state_change.yaml`](entities/automation/fan/desk_fan/state_change.yaml)
-</details>
-
 <details><summary><code>/fan/kitchen-extractor-vent/control</code></summary>
 
 **Entity ID: `automation.fan_kitchen_extractor_vent_control`**
@@ -661,7 +648,7 @@ File: [`automation/fan/vic_s_office_fan/control.yaml`](entities/automation/fan/v
 {
   "pm25_high": "{{\n  states('sensor.will_s_office_fan_pm_2_5') | float(0) >\n  states('input_number.will_s_office_fan_pm2_5_threshold') | float(0)\n}}\n",
   "voc_high": "{{\n  states('sensor.will_s_office_fan_volatile_organic_compounds_index') | float(0) >\n  states('input_number.will_s_office_fan_voc_index_threshold') | float(0)\n}}\n",
-  "room_occupied": "{{ is_state('binary_sensor.will_s_office_presence_sensor', 'on') }}",
+  "room_occupied": "{{ is_state('binary_sensor.will_s_office_occupancy', 'on') }}",
   "occupied_speed": "{{ states('input_number.will_s_office_fan_purifier_speed') | int(70) }}"
 }
 ```
@@ -965,6 +952,25 @@ File: [`automation/label/radiator/all_off.yaml`](entities/automation/label/radia
 File: [`automation/label/radiator/any_on.yaml`](entities/automation/label/radiator/any_on.yaml)
 </details>
 
+<details><summary><code>/label/restore-state-after-room-vacancy/state-change</code></summary>
+
+**Entity ID: `automation.label_restore_state_after_room_vacancy_state_change`**
+
+> *No description provided*
+
+- Alias: /label/restore-state-after-room-vacancy/state-change
+- ID: `label_restore_state_after_room_vacancy_state_change`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "entity_states": "{% set ns = namespace(e={}) %} {% for entity in label_entities('Restore State after Room Vacancy') | default([]) %}\n  {% set ns.e = dict(ns.e, **{entity: states(entity)}) %}\n{% endfor %} {{ ns.e }}"
+}
+```
+File: [`automation/label/restore_state_after_room_vacancy/state_change.yaml`](entities/automation/label/restore_state_after_room_vacancy/state_change.yaml)
+</details>
+
 <details><summary><code>/light/bedroom-shapes/bon-appetit</code></summary>
 
 **Entity ID: `automation.light_bedroom_shapes_bon_appetit`**
@@ -976,19 +982,6 @@ File: [`automation/label/radiator/any_on.yaml`](entities/automation/label/radiat
 - Mode: `single`
 
 File: [`automation/light/bedroom_shapes/bon_appetit.yaml`](entities/automation/light/bedroom_shapes/bon_appetit.yaml)
-</details>
-
-<details><summary><code>/light/desk-lamp/state-change</code></summary>
-
-**Entity ID: `automation.light_desk_lamp_state_change`**
-
-> *No description provided*
-
-- Alias: /light/desk-lamp/state-change
-- ID: `light_desk_lamp_state_change`
-- Mode: `single`
-
-File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light/desk_lamp/state_change.yaml)
 </details>
 
 <details><summary><code>/light/lounge-lights/stop-tv-reflections</code></summary>
@@ -1047,19 +1040,6 @@ File: [`automation/light/lower_hallway_lights/timeout.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/light/moomin_box/on.yaml`](entities/automation/light/moomin_box/on.yaml)
-</details>
-
-<details><summary><code>/light/office-shapes/state-change</code></summary>
-
-**Entity ID: `automation.light_office_shapes_state_change`**
-
-> *No description provided*
-
-- Alias: /light/office-shapes/state-change
-- ID: `light_office_shapes_state_change`
-- Mode: `single`
-
-File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/light/office_shapes/state_change.yaml)
 </details>
 
 <details><summary><code>/light/upper-landing-lights/on</code></summary>
