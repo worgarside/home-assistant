@@ -484,7 +484,42 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "New section"
+                  "heading": "Controls",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.vic_s_office_fan_pm2_5_threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "PM2.5 Threshold"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.vic_s_office_fan_voc_index_threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "VOC Index Threshold"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.vic_s_office_fan_purifier_speed",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "Purifier Speed",
+                  "icon": "mdi:speedometer-slow"
                 }
               ]
             }
