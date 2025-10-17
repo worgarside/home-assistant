@@ -34,6 +34,11 @@ action:
       brightness_pct: 100
       transition: 1
 
+  - service: switch.turn_off
+    alias: Turn off the air freshener
+    target:
+      entity_id: switch.air_freshener
+
   - service: automation.turn_off
     alias: Disable the occupancy automations
     target:
