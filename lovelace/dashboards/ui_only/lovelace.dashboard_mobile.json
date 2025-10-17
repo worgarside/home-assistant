@@ -2743,8 +2743,8 @@
                 },
                 {
                   "type": "custom:mushroom-number-card",
-                  "entity": "input_number.basement_lights_timeout",
-                  "name": "Lights Timeout",
+                  "entity": "input_number.will_s_office_heating_external_opening_timeout",
+                  "name": "Heating Timeout (External Opening Detected)",
                   "tap_action": {
                     "action": "more-info"
                   },
