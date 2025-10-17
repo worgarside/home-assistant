@@ -1,9 +1,9 @@
 ---
-alias: /binary-sensor/will-s-office-opening-detected/on
+alias: /binary-sensor/will-s-office-external-opening-detected/on
 
-id: binary_sensor_will_s_office_opening_detected_on
+id: binary_sensor_will_s_office_external_opening_detected_on
 
-description: Turn off office heating when window or roof terrace door is opened for 5 seconds
+description: Turn off office heating when window or roof terrace door is opened
 
 mode: restart
 
@@ -15,7 +15,10 @@ trigger:
     from: "off"
     to: "on"
     for:
-      seconds: 5
+      seconds: >-
+        {{
+          states('input_number.will_s_office_heating_external_opening_timeout') | int(10)
+        }}
 
 variables:
   radiator_was_on: "{{ is_state('climate.will_s_office_radiator', 'heat') }}"
