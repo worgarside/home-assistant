@@ -1,10 +1,10 @@
 ---
-alias: /fan/will-s-office-fan/control
+alias: /fan/vic-s-office-fan/control
 
-id: fan_will_s_office_fan_control
+id: fan_vic_s_office_fan_control
 
 description: >-
-  Turn on Will's office fan when air quality is bad (high PM2.5 or VOC levels).
+  Turn on Vic's office fan when air quality is bad (high PM2.5 or VOC levels).
   The fan will turn on when either PM2.5 or VOC index exceeds their respective thresholds.
 
 mode: single
@@ -13,30 +13,30 @@ max_exceeded: silent
 
 trigger:
   - platform: numeric_state
-    entity_id: sensor.will_s_office_fan_pm_2_5
-    above: input_number.will_s_office_fan_pm2_5_threshold
+    entity_id: sensor.vic_s_office_fan_pm_2_5
+    above: input_number.vic_s_office_fan_pm2_5_threshold
     id: pm25_high
 
   - platform: numeric_state
-    entity_id: sensor.will_s_office_fan_pm_2_5
-    below: input_number.will_s_office_fan_pm2_5_threshold
+    entity_id: sensor.vic_s_office_fan_pm_2_5
+    below: input_number.vic_s_office_fan_pm2_5_threshold
     id: pm25_low
 
   - platform: numeric_state
-    entity_id: sensor.will_s_office_fan_volatile_organic_compounds_index
-    above: input_number.will_s_office_fan_voc_index_threshold
+    entity_id: sensor.vic_s_office_fan_volatile_organic_compounds_index
+    above: input_number.vic_s_office_fan_voc_index_threshold
     id: voc_high
     # VOC Index is very reactive
     for:
       minutes: 5
 
   - platform: numeric_state
-    entity_id: sensor.will_s_office_fan_volatile_organic_compounds_index
-    below: input_number.will_s_office_fan_voc_index_threshold
+    entity_id: sensor.vic_s_office_fan_volatile_organic_compounds_index
+    below: input_number.vic_s_office_fan_voc_index_threshold
     id: voc_low
 
   - platform: state
-    entity_id: binary_sensor.will_s_office_presence_sensor
+    entity_id: binary_sensor.vic_s_office_occupancy
     to: "off"
     from: "on"
     id: room_exited
@@ -44,19 +44,19 @@ trigger:
 variables:
   pm25_high: >
     {{
-      states('sensor.will_s_office_fan_pm_2_5') | float(0) >
-      states('input_number.will_s_office_fan_pm2_5_threshold') | float(0)
+      states('sensor.vic_s_office_fan_pm_2_5') | float(0) >
+      states('input_number.vic_s_office_fan_pm2_5_threshold') | float(0)
     }}
 
   voc_high: >
     {{
-      states('sensor.will_s_office_fan_volatile_organic_compounds_index') | float(0) >
-      states('input_number.will_s_office_fan_voc_index_threshold') | float(0)
+      states('sensor.vic_s_office_fan_volatile_organic_compounds_index') | float(0) >
+      states('input_number.vic_s_office_fan_voc_index_threshold') | float(0)
     }}
 
-  room_occupied: "{{ is_state('binary_sensor.will_s_office_presence_sensor', 'on') }}"
+  room_occupied: "{{ is_state('binary_sensor.vic_s_office_occupancy', 'on') }}"
 
-  occupied_speed: "{{ states('input_number.will_s_office_fan_purifier_speed') | int(70) }}"
+  occupied_speed: "{{ states('input_number.vic_s_office_fan_purifier_speed') | int(50) }}"
 
 action:
   - choose:
@@ -65,7 +65,7 @@ action:
         sequence:
           - service: climate.set_hvac_mode
             target:
-              entity_id: climate.will_s_office_fan
+              entity_id: climate.vic_s_office_fan
             data:
               hvac_mode: cool
 
@@ -73,7 +73,7 @@ action:
             data:
               percentage: "{{ occupied_speed if room_occupied else 100 }}"
             target:
-              entity_id: fan.will_s_office_fan
+              entity_id: fan.vic_s_office_fan
 
           - delay:
               seconds: 1
@@ -84,7 +84,7 @@ action:
             data:
               direction: reverse
             target:
-              entity_id: fan.will_s_office_fan
+              entity_id: fan.vic_s_office_fan
 
       # Only 100% turn the fan off if the room is empty
       - alias: Good Air Quality (Empty Room)
@@ -92,32 +92,32 @@ action:
         sequence:
           - service: fan.turn_off
             target:
-              entity_id: fan.will_s_office_fan
+              entity_id: fan.vic_s_office_fan
 
       - alias: Good Air Quality (Occupied Room, not on Heating Mode, in Reverse)
         conditions: >
           {{
             trigger.id in ['pm25_low', 'voc_low']
             and room_occupied
-            and is_state('climate.will_s_office_fan', 'cool')
-            and is_state_attr('fan.will_s_office_fan', 'direction', 'reverse')
+            and is_state('climate.vic_s_office_fan', 'cool')
+            and is_state_attr('fan.vic_s_office_fan', 'direction', 'reverse')
           }}
         sequence:
           - service: fan.turn_off
             target:
-              entity_id: fan.will_s_office_fan
+              entity_id: fan.vic_s_office_fan
 
       - alias: Room Exited with Poor Air Quality & Fan Off
         conditions: >-
           {{
             trigger.id == 'room_exited'
             and (pm25_high or voc_high)
-            and is_state('fan.will_s_office_fan', 'off')
+            and is_state('fan.vic_s_office_fan', 'off')
           }}
         sequence:
           - service: climate.set_hvac_mode
             target:
-              entity_id: climate.will_s_office_fan
+              entity_id: climate.vic_s_office_fan
             data:
               hvac_mode: cool
 
@@ -125,7 +125,7 @@ action:
             data:
               percentage: "{{ occupied_speed if room_occupied else 100 }}"
             target:
-              entity_id: fan.will_s_office_fan
+              entity_id: fan.vic_s_office_fan
 
           - delay:
               seconds: 1
@@ -136,4 +136,4 @@ action:
             data:
               direction: reverse
             target:
-              entity_id: fan.will_s_office_fan
+              entity_id: fan.vic_s_office_fan
