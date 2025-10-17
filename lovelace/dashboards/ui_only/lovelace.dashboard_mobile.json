@@ -963,33 +963,6 @@
                       "color": "#656f70"
                     }
                   ]
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "Temperature",
-                  "show": {
-                    "state": false,
-                    "icon": false,
-                    "name": false
-                  },
-                  "hours_to_show": 24,
-                  "points_per_hour": 4,
-                  "animate": true,
-                  "line_width": 1,
-                  "height": 150,
-                  "entities": [
-                    {
-                      "entity": "sensor.lounge_climate_sensor_temperature",
-                      "color": "#e7c8e8",
-                      "name": "Temperature"
-                    },
-                    {
-                      "entity": "sensor.lounge_climate_sensor_humidity",
-                      "color": "#5bacba",
-                      "name": "Humidity",
-                      "y_axis": "secondary"
-                    }
-                  ]
                 }
               ]
             },
