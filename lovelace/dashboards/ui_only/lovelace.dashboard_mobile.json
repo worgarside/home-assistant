@@ -3006,7 +3006,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Auto-purify air"
+                  "primary": "Auto-purify air ({{ states(\"input_number.will_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.will_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.will_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )"
                 }
               ]
             },
