@@ -763,7 +763,13 @@
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "input_boolean.lounge_lights_exercise_mode",
-                  "name": "Exercise Mode"
+                  "name": "Exercise Mode",
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  }
                 }
               ]
             },
