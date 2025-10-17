@@ -2875,7 +2875,7 @@
                     "legend": true
                   },
                   "hours_to_show": 24,
-                  "points_per_hour": 4,
+                  "points_per_hour": 10,
                   "line_width": 1,
                   "icon": "mdi:flower",
                   "animate": true,
@@ -2883,6 +2883,15 @@
                   "lower_bound_secondary": 0,
                   "upper_bound_secondary": 100,
                   "entities": [
+                    {
+                      "entity": "sensor.will_s_office_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "lightgray",
+                      "smoothing": false
+                    },
                     {
                       "entity": "sensor.will_s_office_fan_pm_2_5",
                       "color": "#656f70",
@@ -2893,14 +2902,6 @@
                       "color": "green",
                       "show_line": false,
                       "show_legend": false
-                    },
-                    {
-                      "entity": "sensor.will_s_office_fan_speed",
-                      "name": "Fan Speed",
-                      "y_axis": "secondary",
-                      "show_line": true,
-                      "show_fill": false,
-                      "color": "darkgray"
                     }
                   ]
                 },
