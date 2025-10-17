@@ -5612,10 +5612,11 @@
                   "entities": [
                     "sensor.wger_will_weight_lifted_today"
                   ],
-                  "group_by": "date",
                   "hour_to_show": 168,
+                  "group_by": "date",
                   "show": {
-                    "graph": "bar"
+                    "graph": "bar",
+                    "state": false
                   },
                   "aggregate_func": "max",
                   "lower_bound": 0
