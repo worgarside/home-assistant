@@ -1,0 +1,34 @@
+---
+name: Vic's Office Fan Speed
+
+unique_id: vic_s_office_fan_speed
+
+state: >-
+  {% if not states("fan.vic_s_office_fan") | bool(false) %}
+    0
+  {% elif is_state("fan.vic_s_office_fan", "off") %}
+    0
+  {% else %}
+    {{ state_attr("fan.vic_s_office_fan", "percentage") | int(0) }}
+  {% endif %}
+
+state_class: measurement
+
+unit_of_measurement: "%"
+
+icon: >-
+  {% if not states("fan.vic_s_office_fan") | bool(false) %}
+    mdi:fan-off
+  {% elif is_state("fan.vic_s_office_fan", "off") %}
+    mdi:fan-off
+  {% elif state_attr("fan.vic_s_office_fan", "percentage") | int(0) == 0 %}
+    mdi:fan-off
+  {% elif state_attr("fan.vic_s_office_fan", "percentage") | int(0) <= 25 %}
+    mdi:fan-speed-1
+  {% elif state_attr("fan.vic_s_office_fan", "percentage") | int(0) <= 50 %}
+    mdi:fan-speed-2
+  {% elif state_attr("fan.vic_s_office_fan", "percentage") | int(0) <= 75 %}
+    mdi:fan-speed-3
+  {% else %}
+    mdi:fan
+  {% endif %}
