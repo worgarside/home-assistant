@@ -969,8 +969,8 @@
                   "name": "Temperature",
                   "show": {
                     "state": false,
-                    "icon": true,
-                    "name": true
+                    "icon": false,
+                    "name": false
                   },
                   "hours_to_show": 24,
                   "points_per_hour": 4,
@@ -980,7 +980,13 @@
                   "entities": [
                     {
                       "entity": "sensor.lounge_climate_sensor_temperature",
-                      "color": "#e7c8e8"
+                      "color": "#e7c8e8",
+                      "name": "Temperature"
+                    },
+                    {
+                      "entity": "sensor.lounge_climate_sensor_humidity",
+                      "color": "#5bacba",
+                      "name": "Humidity"
                     }
                   ]
                 },
