@@ -348,18 +348,18 @@
                   "upper_bound_secondary": 100,
                   "entities": [
                     {
-                      "entity": "sensor.will_s_office_fan_pm_2_5",
+                      "entity": "sensor.vic_s_office_fan_pm_2_5",
                       "color": "#656f70",
                       "name": "PM 2.5"
                     },
                     {
-                      "entity": "input_number.will_s_office_fan_pm2_5_threshold",
+                      "entity": "input_number.vic_s_office_fan_pm2_5_threshold",
                       "color": "green",
                       "show_line": false,
                       "show_legend": false
                     },
                     {
-                      "entity": "sensor.will_s_office_fan_speed",
+                      "entity": "sensor.vic_s_office_fan_speed",
                       "name": "Fan Speed",
                       "y_axis": "secondary",
                       "show_line": true,
