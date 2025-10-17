@@ -639,7 +639,8 @@ File: [`automation/fan/prusa_i3_enclosure_fan/turn_on.yaml`](entities/automation
 {
   "pm25_high": "{{\n  states('sensor.vic_s_office_fan_pm_2_5') | float(0) >\n  states('input_number.vic_s_office_fan_pm2_5_threshold') | float(0)\n}}\n",
   "voc_high": "{{\n  states('sensor.vic_s_office_fan_volatile_organic_compounds_index') | float(0) >\n  states('input_number.vic_s_office_fan_voc_index_threshold') | float(0)\n}}\n",
-  "room_occupied": "{{ is_state('binary_sensor.vic_s_office_occupancy', 'on') }}"
+  "room_occupied": "{{ is_state('binary_sensor.vic_s_office_occupancy', 'on') }}",
+  "occupied_speed": "{{ states('input_number.vic_s_office_fan_purifier_speed') | int(50) }}"
 }
 ```
 File: [`automation/fan/vic_s_office_fan/control.yaml`](entities/automation/fan/vic_s_office_fan/control.yaml)
@@ -660,7 +661,8 @@ File: [`automation/fan/vic_s_office_fan/control.yaml`](entities/automation/fan/v
 {
   "pm25_high": "{{\n  states('sensor.will_s_office_fan_pm_2_5') | float(0) >\n  states('input_number.will_s_office_fan_pm2_5_threshold') | float(0)\n}}\n",
   "voc_high": "{{\n  states('sensor.will_s_office_fan_volatile_organic_compounds_index') | float(0) >\n  states('input_number.will_s_office_fan_voc_index_threshold') | float(0)\n}}\n",
-  "room_occupied": "{{ is_state('binary_sensor.will_s_office_presence_sensor', 'on') }}"
+  "room_occupied": "{{ is_state('binary_sensor.will_s_office_presence_sensor', 'on') }}",
+  "occupied_speed": "{{ states('input_number.will_s_office_fan_purifier_speed') | int(70) }}"
 }
 ```
 File: [`automation/fan/will_s_office_fan/control.yaml`](entities/automation/fan/will_s_office_fan/control.yaml)
@@ -2953,7 +2955,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (44)</h3></summary>
+<details><summary><h3>Entities (46)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3288,6 +3290,18 @@ File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](en
 File: [`input_number/threshold/vic_s_office_fan/vic_s_office_fan_pm2_5_threshold.yaml`](entities/input_number/threshold/vic_s_office_fan/vic_s_office_fan_pm2_5_threshold.yaml)
 </details>
 
+<details><summary><strong>Vic's Office | Fan: Purifier Speed</strong></summary>
+
+**Entity ID: `input_number.vic_s_office_fan_purifier_speed`**
+
+- Max: 100
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: %
+
+File: [`input_number/threshold/vic_s_office_fan/vic_s_office_fan_purifier_speed.yaml`](entities/input_number/threshold/vic_s_office_fan/vic_s_office_fan_purifier_speed.yaml)
+</details>
+
 <details><summary><strong>Vic's Office Fan: VOC Index Threshold</strong></summary>
 
 **Entity ID: `input_number.vic_s_office_fan_voc_index_threshold`**
@@ -3309,6 +3323,18 @@ File: [`input_number/threshold/vic_s_office_fan/vic_s_office_fan_voc_index_thres
 - Unit Of Measurement: µg/m³
 
 File: [`input_number/threshold/will_s_office_fan/will_s_office_fan_pm2_5_threshold.yaml`](entities/input_number/threshold/will_s_office_fan/will_s_office_fan_pm2_5_threshold.yaml)
+</details>
+
+<details><summary><strong>Will's Office | Fan: Purifier Speed</strong></summary>
+
+**Entity ID: `input_number.will_s_office_fan_purifier_speed`**
+
+- Max: 100
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: %
+
+File: [`input_number/threshold/will_s_office_fan/will_s_office_fan_purifier_speed.yaml`](entities/input_number/threshold/will_s_office_fan/will_s_office_fan_purifier_speed.yaml)
 </details>
 
 <details><summary><strong>Will's Office Fan: VOC Index Threshold</strong></summary>

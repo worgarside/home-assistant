@@ -56,6 +56,8 @@ variables:
 
   room_occupied: "{{ is_state('binary_sensor.vic_s_office_occupancy', 'on') }}"
 
+  occupied_speed: "{{ states('input_number.vic_s_office_fan_purifier_speed') | int(50) }}"
+
 action:
   - choose:
       - alias: Poor Air Quality
@@ -69,7 +71,7 @@ action:
 
           - service: fan.set_percentage
             data:
-              percentage: "{{ 70 if room_occupied else 100 }}"
+              percentage: "{{ occupied_speed if room_occupied else 100 }}"
             target:
               entity_id: fan.vic_s_office_fan
 
@@ -121,7 +123,7 @@ action:
 
           - service: fan.set_percentage
             data:
-              percentage: "{{ 70 if room_occupied else 100 }}"
+              percentage: "{{ occupied_speed if room_occupied else 100 }}"
             target:
               entity_id: fan.vic_s_office_fan
 
