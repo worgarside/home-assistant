@@ -248,12 +248,13 @@ File: [`automation/binary_sensor/will_s_office_external_opening_detected/on.yaml
 
 - Alias: /binary-sensor/will-s-office-occupancy/state-change
 - ID: `binary_sensor_will_s_office_occupancy_state_change`
-- Mode: `queued`
+- Mode: `restart`
 - Variables:
 
 ```json
 {
-  "state_manager": "var.will_s_office_state_manager"
+  "state_manager": "var.will_s_office_state_manager",
+  "cached_states": "{{\n  state_attr(\"var.will_s_office_state_manager\", \"entity_states_b64\")\n  | base64_decode\n  | from_json\n}}"
 }
 ```
 File: [`automation/binary_sensor/will_s_office_occupancy/state_change.yaml`](entities/automation/binary_sensor/will_s_office_occupancy/state_change.yaml)
@@ -960,12 +961,12 @@ File: [`automation/label/radiator/any_on.yaml`](entities/automation/label/radiat
 
 - Alias: /label/restore-state-after-room-vacancy/state-change
 - ID: `label_restore_state_after_room_vacancy_state_change`
-- Mode: `single`
+- Mode: `restart`
 - Variables:
 
 ```json
 {
-  "entity_states": "{% set ns = namespace(e={}) %} {% for entity in label_entities('Restore State after Room Vacancy') | default([]) %}\n  {% set ns.e = dict(ns.e, **{entity: states(entity)}) %}\n{% endfor %} {{ ns.e }}"
+  "cached_states": "{{\n  state_attr(\"var.will_s_office_state_manager\",\"entity_states_b64\")\n  | base64_decode\n  | from_json\n}}"
 }
 ```
 File: [`automation/label/restore_state_after_room_vacancy/state_change.yaml`](entities/automation/label/restore_state_after_room_vacancy/state_change.yaml)
@@ -2287,7 +2288,7 @@ File: [`automation/var/vic_s_office_state_manager/attribute_timeout.yaml`](entit
 
 - Alias: /var/will-s-office-state-manager/attribute-timeout
 - ID: `var_will_s_office_state_manager_attribute_timeout`
-- Mode: `queued`
+- Mode: `single`
 
 File: [`automation/var/will_s_office_state_manager/attribute_timeout.yaml`](entities/automation/var/will_s_office_state_manager/attribute_timeout.yaml)
 </details>

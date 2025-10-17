@@ -3,28 +3,54 @@ alias: /label/restore-state-after-room-vacancy/state-change
 
 id: label_restore_state_after_room_vacancy_state_change
 
-mode: single
-
-max_exceeded: silent
+mode: restart
 
 trigger:
   - platform: template
+    # "X" and "Y" are used as defaults here because it's very unlikely that any entity will have a
+    # state of "X" or "Y", so the default case will be an inequality, causing the current state to
+    # be stored in the state manager.
     value_template: >-
-      {% for entity in label_entities('Restore State after Room Vacancy') | default([]) %}
-        {{ states(entity) }}
+      {%
+        set cached_states =
+          state_attr("var.will_s_office_state_manager", "entity_states_b64")
+          | base64_decode
+          | from_json
+      %}
+      {%- set ns = namespace(entities=[]) %}
+      {%
+        for entity in label_entities('Restore State after Room Vacancy') | default([])
+        if states(entity) | bool("X") != cached_states.get(entity) | bool("Y")
+      %}
+        {% set ns.entities = ns.entities + [entity] %}
       {% endfor %}
+      {{ ns.entities | count > 0 }}
 
 variables:
-  entity_states: >-
-    {% set ns = namespace(e={}) %}
-    {% for entity in label_entities('Restore State after Room Vacancy') | default([]) %}
-      {% set ns.e = dict(ns.e, **{entity: states(entity)}) %}
-    {% endfor %}
-    {{ ns.e }}
+  cached_states: >-
+    {{
+      state_attr("var.will_s_office_state_manager","entity_states_b64")
+      | base64_decode
+      | from_json
+    }}
+
+condition: "{{ trigger.to_state.entity_id != 'var.will_s_office_state_manager' }}"
 
 action:
+  - variables:
+      entity_states: >-
+        {% set ns = namespace(entities=cached_states) %}
+        {%
+          for entity in label_entities('Restore State after Room Vacancy') | default([])
+          if states(entity) | bool("X") != cached_states.get(entity) | bool("Y")
+        %}
+          {% set ns.entities = dict(ns.entities, **{entity: states(entity)}) %}
+        {% endfor %}
+        {{ ns.entities }}
+
   - service: var.set
     target:
       entity_id: var.will_s_office_state_manager
     data:
-      attributes: "{{ entity_states }}"
+      attributes:
+        entity_states_b64: "{{ entity_states | to_json | base64_encode }}"
