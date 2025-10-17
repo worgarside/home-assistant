@@ -501,7 +501,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Auto-purify air"
+                  "primary": "Auto-purify air ({{ states(\"input_number.vic_s_office_fan_purifier_speed\") | int(\"??\") }}% speed)"
                 }
               ]
             },
