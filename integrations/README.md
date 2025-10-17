@@ -7580,6 +7580,68 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 </details>
 
+## Utility Meter
+
+<details><summary><h3>Entities (8)</h3></summary>
+
+<details><summary><strong>OVO | Electricity: Daily Cost</strong></summary>
+
+**Entity ID: `utility_meter.ovo_electricity_daily_cost`**
+
+File: [`utility_meter/ovo_electricity_daily_cost.yaml`](entities/utility_meter/ovo_electricity_daily_cost.yaml)
+</details>
+
+<details><summary><strong>OVO | Electricity: Daily Usage</strong></summary>
+
+**Entity ID: `utility_meter.ovo_electricity_daily_usage`**
+
+File: [`utility_meter/ovo_electricity_daily_usage.yaml`](entities/utility_meter/ovo_electricity_daily_usage.yaml)
+</details>
+
+<details><summary><strong>OVO | Electricity: Monthly Cost</strong></summary>
+
+**Entity ID: `utility_meter.ovo_electricity_monthly_cost`**
+
+File: [`utility_meter/ovo_electricity_monthly_cost.yaml`](entities/utility_meter/ovo_electricity_monthly_cost.yaml)
+</details>
+
+<details><summary><strong>OVO | Electricity: Monthly Usage</strong></summary>
+
+**Entity ID: `utility_meter.ovo_electricity_monthly_usage`**
+
+File: [`utility_meter/ovo_electricity_monthly_usage.yaml`](entities/utility_meter/ovo_electricity_monthly_usage.yaml)
+</details>
+
+<details><summary><strong>OVO | Gas: Daily Cost</strong></summary>
+
+**Entity ID: `utility_meter.ovo_gas_daily_cost`**
+
+File: [`utility_meter/ovo_gas_daily_cost.yaml`](entities/utility_meter/ovo_gas_daily_cost.yaml)
+</details>
+
+<details><summary><strong>OVO | Gas: Daily Usage</strong></summary>
+
+**Entity ID: `utility_meter.ovo_gas_daily_usage`**
+
+File: [`utility_meter/ovo_gas_daily_usage.yaml`](entities/utility_meter/ovo_gas_daily_usage.yaml)
+</details>
+
+<details><summary><strong>OVO | Gas: Monthly Cost</strong></summary>
+
+**Entity ID: `utility_meter.ovo_gas_monthly_cost`**
+
+File: [`utility_meter/ovo_gas_monthly_cost.yaml`](entities/utility_meter/ovo_gas_monthly_cost.yaml)
+</details>
+
+<details><summary><strong>OVO | Gas: Monthly Usage</strong></summary>
+
+**Entity ID: `utility_meter.ovo_gas_monthly_usage`**
+
+File: [`utility_meter/ovo_gas_monthly_usage.yaml`](entities/utility_meter/ovo_gas_monthly_usage.yaml)
+</details>
+
+</details>
+
 ## Var
 
 <details><summary><h3>Entities (19)</h3></summary>
