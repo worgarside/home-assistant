@@ -2647,7 +2647,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (28)</h3></summary>
+<details><summary><h3>Entities (29)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -2899,6 +2899,15 @@ File: [`input_boolean/mini_crt_power.yaml`](entities/input_boolean/mini_crt_powe
 - Icon: [`mdi:volume-off`](https://pictogrammers.com/library/mdi/icon/volume-off/)
 
 File: [`input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml`](entities/input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml)
+</details>
+
+<details><summary><strong>Turn Off Bedroom Fan for Scheduled Heating</strong></summary>
+
+**Entity ID: `input_boolean.turn_off_bedroom_fan_for_scheduled_heating`**
+
+- Icon: [`mdi:fan-off`](https://pictogrammers.com/library/mdi/icon/fan-off/)
+
+File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities/input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml)
 </details>
 
 </details>
