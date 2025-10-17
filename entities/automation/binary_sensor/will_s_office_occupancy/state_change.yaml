@@ -50,10 +50,10 @@ action:
           - repeat:
               for_each: "{{ label_entities('Restore State after Room Vacancy') | default([]) }}"
 
-            sequence:
-              - service: homeassistant.turn_off
-                target:
-                  entity_id: "{{ repeat.item }}"
+              sequence:
+                - service: homeassistant.turn_off
+                  target:
+                    entity_id: "{{ repeat.item }}"
 
           - service: light.turn_off
             target:
