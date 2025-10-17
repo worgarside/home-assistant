@@ -1580,6 +1580,17 @@
                   "primary_info": "name",
                   "layout": "horizontal",
                   "icon": "mdi:brightness-percent"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.wardrobe_lights_timeout",
+                  "name": "Wardrobe Lights Timeout",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal"
                 }
               ]
             }
