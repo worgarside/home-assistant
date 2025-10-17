@@ -1821,6 +1821,12 @@
                   "grid_options": {
                     "columns": 12,
                     "rows": 1
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
                   }
                 }
               ]
