@@ -314,27 +314,6 @@
                   "show": {
                     "state": false,
                     "icon": true,
-                    "name": true
-                  },
-                  "hours_to_show": 24,
-                  "points_per_hour": 4,
-                  "line_width": 1,
-                  "icon": "mdi:flower",
-                  "animate": true,
-                  "height": 150,
-                  "entities": [
-                    {
-                      "entity": "sensor.vic_s_office_fan_pm_2_5",
-                      "color": "#656f70"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "Air Quality",
-                  "show": {
-                    "state": false,
-                    "icon": true,
                     "name": true,
                     "legend": true
                   },
