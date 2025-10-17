@@ -2753,6 +2753,32 @@
                     "action": "none"
                   },
                   "primary": "Disable heating on door/window open"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:air-purifier{% if is_state(\"automation.fan_will_s_office_fan_control\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.fan_will_s_office_fan_control",
+                  "area": "will_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/fan/will-s-office-fan/control",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.fan_will_s_office_fan_control\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Auto-purify air"
                 }
               ]
             },
