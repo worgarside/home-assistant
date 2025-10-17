@@ -2707,9 +2707,9 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "icon": "mdi:radiator{% if is_state(\"automation.binary_sensor_will_s_office_opening_detected_on\", \"off\") %}-off{% endif %}",
+                  "icon": "mdi:radiator{% if is_state(\"automation.binary_sensor_will_s_office_external_opening_detected_on\", \"off\") %}-off{% endif %}",
                   "features_position": "bottom",
-                  "entity": "automation.binary_sensor_will_s_office_opening_detected_on",
+                  "entity": "automation.binary_sensor_will_s_office_external_opening_detected_on",
                   "area": "will_s_office",
                   "tap_action": {
                     "action": "more-info"
@@ -2719,7 +2719,7 @@
                     "columns": 12,
                     "rows": 1
                   },
-                  "color": "{{ iif(states(\"automation.binary_sensor_will_s_office_opening_detected_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "color": "{{ iif(states(\"automation.binary_sensor_will_s_office_external_opening_detected_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
                   "icon_tap_action": {
                     "action": "more-info"
                   },
