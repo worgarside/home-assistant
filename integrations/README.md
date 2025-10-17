@@ -3539,7 +3539,7 @@ File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_nu
 
 ## Input Select
 
-<details><summary><h3>Entities (9)</h3></summary>
+<details><summary><h3>Entities (8)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -3566,15 +3566,6 @@ File: [`input_select/crtpi/crtpi_media_player_source.yaml`](entities/input_selec
 - Icon: [`mdi:badge-account-outline`](https://pictogrammers.com/library/mdi/icon/badge-account-outline/)
 
 File: [`input_select/gh_cli_active_user.yaml`](entities/input_select/gh_cli_active_user.yaml)
-</details>
-
-<details><summary><strong>Lounge Shapes Artwork Mapping Source</strong></summary>
-
-**Entity ID: `input_select.lounge_shapes_artwork_mapping_source`**
-
-- Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
-
-File: [`input_select/lounge_shapes_artwork_mapping_source.yaml`](entities/input_select/lounge_shapes_artwork_mapping_source.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Media Player Source</strong></summary>
