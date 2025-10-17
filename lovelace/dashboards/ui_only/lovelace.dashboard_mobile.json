@@ -1810,7 +1810,14 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "input_boolean.turn_off_bedroom_fan_for_scheduled_heating"
+                  "entity": "input_boolean.turn_off_bedroom_fan_for_scheduled_heating",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.schedule_bedroom_heating_schedule_on",
+                      "state": "on"
+                    }
+                  ]
                 }
               ]
             }
