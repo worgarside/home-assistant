@@ -2811,6 +2811,17 @@
                   "primary_info": "name",
                   "layout": "horizontal",
                   "name": "PM2.5 Threshold"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.will_s_office_fan_voc_index_threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "VOC Index Threshold"
                 }
               ]
             }
