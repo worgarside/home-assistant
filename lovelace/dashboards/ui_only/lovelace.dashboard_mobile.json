@@ -1148,6 +1148,17 @@
                     "action": "none"
                   },
                   "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.lounge_room_timeout",
+                  "name": "Room Timeout",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal"
                 }
               ]
             }
