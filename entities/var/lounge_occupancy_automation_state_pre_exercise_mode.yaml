@@ -6,8 +6,10 @@ friendly_name: Lounge | Occupancy Automation States Pre-Exercise Mode
 
 unique_id: var_lounge_occupancy_automation_state_pre_exercise_mode
 
+initial_value: 0 # not used
+
 restore: true
 
 attributes:
-  binary_sensor_lounge_occupancy_off: false
-  binary_sensor_lounge_occupancy_on: false
+  automation.binary_sensor_lounge_occupancy_off: false
+  automation.binary_sensor_lounge_occupancy_on: false

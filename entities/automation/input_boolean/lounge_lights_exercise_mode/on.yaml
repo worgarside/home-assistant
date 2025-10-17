@@ -19,9 +19,9 @@ action:
       entity_id: var.lounge_occupancy_automation_state_pre_exercise_mode
     data:
       attributes:
-        binary_sensor_lounge_occupancy_off: >-
+        automation.binary_sensor_lounge_occupancy_off: >-
           {{ states('automation.binary_sensor_lounge_occupancy_off') | bool(true) }}
-        binary_sensor_lounge_occupancy_on: >-
+        automation.binary_sensor_lounge_occupancy_on: >-
           {{ states('automation.binary_sensor_lounge_occupancy_on') | bool(true) }}
 
   - service: light.turn_on
