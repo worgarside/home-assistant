@@ -36,10 +36,12 @@ trigger:
     id: voc_low
 
   - platform: state
-    entity_id: binary_sensor.will_s_office_presence_sensor
+    entity_id: binary_sensor.will_s_office_occupancy
     to: "off"
     from: "on"
     id: room_exited
+    for:
+      minutes: 1
 
 variables:
   pm25_high: >
@@ -54,7 +56,7 @@ variables:
       states('input_number.will_s_office_fan_voc_index_threshold') | float(0)
     }}
 
-  room_occupied: "{{ is_state('binary_sensor.will_s_office_presence_sensor', 'on') }}"
+  room_occupied: "{{ is_state('binary_sensor.will_s_office_occupancy', 'on') }}"
 
   occupied_speed: "{{ states('input_number.will_s_office_fan_purifier_speed') | int(70) }}"
 

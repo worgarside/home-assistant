@@ -1,0 +1,66 @@
+---
+alias: /binary-sensor/will-s-office-occupancy/state-change
+
+id: binary_sensor_will_s_office_occupancy_state_change
+
+mode: queued
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.will_s_office_occupancy
+    to:
+      - "on"
+      - "off"
+
+variables:
+  state_manager: var.will_s_office_state_manager
+
+action:
+  - if: "{{ trigger.to_state.state | bool }}"
+
+    then:
+      - parallel:
+          - repeat:
+              for_each: "{{ label_entities('Restore State after Room Vacancy') | default([]) }}"
+
+              sequence:
+                - if: "{{ state_attr(state_manager, repeat.item) | bool(false) }}"
+                  then:
+                    - service: homeassistant.turn_on
+                      target:
+                        entity_id: "{{ repeat.item }}"
+
+          - service: light.turn_on
+            target:
+              entity_id: light.will_s_office_voice_assistant_led_ring
+            data:
+              brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+              rgb_color: [255, 0, 196] # Purple
+
+    else:
+      - variables:
+          entity_states: >-
+            {% set ns = namespace(e={}) %}
+            {% for entity in label_entities('Restore State after Room Vacancy') | default([]) %}
+              {% set ns.e = dict(ns.e, **{entity:states(entity)}) %}
+            {% endfor %}
+            {{ ns.e }}
+
+      - parallel:
+          - repeat:
+              for_each: "{{ label_entities('Restore State after Room Vacancy') | default([]) }}"
+
+            sequence:
+              - service: homeassistant.turn_off
+                target:
+                  entity_id: "{{ repeat.item }}"
+
+          - service: light.turn_off
+            target:
+              entity_id: light.will_s_office_voice_assistant_led_ring
+
+      - service: var.set
+        target:
+          entity_id: "{{ state_manager }}"
+        data:
+          attributes: "{{ entity_states }}"

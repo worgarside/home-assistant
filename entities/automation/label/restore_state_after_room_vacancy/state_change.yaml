@@ -1,0 +1,30 @@
+---
+alias: /label/restore-state-after-room-vacancy/state-change
+
+id: label_restore_state_after_room_vacancy_state_change
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: template
+    value_template: >-
+      {% for entity in label_entities('Restore State after Room Vacancy') | default([]) %}
+        {{ states(entity) }}
+      {% endfor %}
+
+variables:
+  entity_states: >-
+    {% set ns = namespace(e={}) %}
+    {% for entity in label_entities('Restore State after Room Vacancy') | default([]) %}
+      {% set ns.e = dict(ns.e, **{entity: states(entity)}) %}
+    {% endfor %}
+    {{ ns.e }}
+
+action:
+  - service: var.set
+    target:
+      entity_id: var.will_s_office_state_manager
+    data:
+      attributes: "{{ entity_states }}"
