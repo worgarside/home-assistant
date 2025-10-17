@@ -34,3 +34,10 @@ action:
             - service: automation.turn_on
               target:
                 entity_id: "{{ repeat.item }}"
+
+  - alias: Turn off lounge lights if room is empty
+    if: "{{ is_state('binary_sensor.lounge_occupancy', 'off') }}"
+    then:
+      - service: light.turn_off
+        target:
+          area_id: lounge
