@@ -2932,7 +2932,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (40)</h3></summary>
+<details><summary><h3>Entities (41)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3403,6 +3403,19 @@ File: [`input_number/timeout/prusa_i3_hotend_timeout.yaml`](entities/input_numbe
 - Unit Of Measurement: `mins`
 
 File: [`input_number/timeout/prusa_i3_power_timeout.yaml`](entities/input_number/timeout/prusa_i3_power_timeout.yaml)
+</details>
+
+<details><summary><strong>Wardrobe Lights | Timeout</strong></summary>
+
+**Entity ID: `input_number.wardrobe_lights_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 900
+- Min: 5
+- Mode: `box`
+- Unit Of Measurement: `s`
+
+File: [`input_number/timeout/wardrobe_lights_timeout.yaml`](entities/input_number/timeout/wardrobe_lights_timeout.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10 | Power Off Timeout</strong></summary>
