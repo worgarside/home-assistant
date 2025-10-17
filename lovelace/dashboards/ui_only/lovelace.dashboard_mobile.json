@@ -1817,7 +1817,11 @@
                       "entity": "automation.schedule_bedroom_heating_schedule_on",
                       "state": "on"
                     }
-                  ]
+                  ],
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
                 }
               ]
             }
