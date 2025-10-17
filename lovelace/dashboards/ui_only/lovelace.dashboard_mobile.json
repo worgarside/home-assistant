@@ -2645,6 +2645,14 @@
                       "color": "green",
                       "show_line": false,
                       "show_legend": false
+                    },
+                    {
+                      "entity": "sensor.will_s_office_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "gray"
                     }
                   ]
                 },
