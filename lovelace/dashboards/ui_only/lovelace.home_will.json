@@ -1050,6 +1050,57 @@
                       "color": "#f62727"
                     }
                   ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.will_s_office_fan_pm_2_5",
+                      "name": "Air Quality",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.will_s_office_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "gray"
+                    }
+                  ],
+                  "hours_to_show": 6,
+                  "hour24": true,
+                  "points_per_hour": 30,
+                  "line_width": 2,
+                  "min_bound_range": 10,
+                  "lower_bound": "~0",
+                  "upper_bound": "~550",
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100,
+                  "show": {
+                    "fill": true,
+                    "legend": true,
+                    "labels": true,
+                    "icon": false
+                  },
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#28d20d"
+                    },
+                    {
+                      "value": 120,
+                      "color": "#a0ac00"
+                    },
+                    {
+                      "value": 350,
+                      "color": "#da7800"
+                    },
+                    {
+                      "value": 550,
+                      "color": "#f62727"
+                    }
+                  ]
                 }
               ]
             },
@@ -1200,7 +1251,13 @@
                           "layout": "horizontal",
                           "icon_animation": false,
                           "primary_info": "state",
-                          "secondary_info": "none"
+                          "secondary_info": "none",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "double_tap_action": {
+                            "action": "toggle"
+                          }
                         },
                         {
                           "type": "custom:mushroom-climate-card",
@@ -4778,74 +4835,6 @@
                   "entity": "fan.kitchen_extractor_vent",
                   "name": "Extractor Vent",
                   "icon_animation": true
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Air Quality",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true,
-                        "legend": false
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.kitchen_air_quality_sensor_pm25",
-                          "color": "green"
-                        },
-                        {
-                          "entity": "input_number.kitchen_extractor_vent_pm2_5_threshold",
-                          "color": "white",
-                          "show_line": false
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Temperature",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.kitchen_air_quality_sensor_temperature",
-                          "color": "orange"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Humidity",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.kitchen_air_quality_sensor_humidity",
-                          "color": "purple"
-                        }
-                      ]
-                    }
-                  ]
                 }
               ]
             },
@@ -4921,49 +4910,6 @@
                     "action": "more-info"
                   },
                   "icon": "mdi:radiator"
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Temperature",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.bedroom_climate_sensor_temperature",
-                          "color": "orange"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Humidity",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.bedroom_climate_sensor_humidity",
-                          "color": "purple"
-                        }
-                      ]
-                    }
-                  ]
                 }
               ]
             },
@@ -4987,69 +4933,6 @@
                     {
                       "type": "entity",
                       "entity": "sensor.lounge_climate_sensor_humidity"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Air Quality",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true,
-                        "legend": false
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.air_purifier_pm2_5",
-                          "color": "green"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Temperature",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.lounge_climate_sensor_temperature",
-                          "color": "orange"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Humidity",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.lounge_climate_sensor_humidity",
-                          "color": "purple"
-                        }
-                      ]
                     }
                   ]
                 }
@@ -5119,74 +5002,6 @@
                     "heat",
                     "cool"
                   ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Air Quality",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true,
-                        "legend": false
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.will_s_office_fan_pm_2_5",
-                          "color": "green"
-                        },
-                        {
-                          "entity": "input_number.will_s_office_fan_pm2_5_threshold",
-                          "color": "white",
-                          "show_line": false
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Temperature",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.will_s_office_climate_sensor_temperature",
-                          "color": "orange"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Humidity",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.will_s_office_climate_sensor_humidity",
-                          "color": "purple"
-                        }
-                      ]
-                    }
-                  ]
                 }
               ]
             },
@@ -5253,68 +5068,6 @@
                   "hvac_modes": [
                     "heat",
                     "cool"
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Air Quality",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.vic_s_office_fan_pm_2_5",
-                          "color": "green"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Temperature",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.vic_s_office_climate_sensor_temperature",
-                          "color": "orange"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "Humidity",
-                      "show": {
-                        "state": false,
-                        "icon": false,
-                        "name": true
-                      },
-                      "hours_to_show": 24,
-                      "points_per_hour": 4,
-                      "line_width": 5,
-                      "height": 300,
-                      "entities": [
-                        {
-                          "entity": "sensor.vic_s_office_climate_sensor_humidity",
-                          "color": "purple"
-                        }
-                      ]
-                    }
                   ]
                 }
               ]
@@ -5433,6 +5186,182 @@
             "badges_position": "top",
             "badges_wrap": "scroll"
           }
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Health & Fitness",
+          "path": "health-fitness",
+          "icon": "mdi:weight-lifter",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Health",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_will_weigh_in_count",
+                  "name": "Weigh-Ins",
+                  "icon_color": "pink",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:counter",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_will_body_weight",
+                  "name": "Body Weight",
+                  "icon_color": "pink",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:scale-bathroom",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states(\"sensor.wger_will_weight_d7d\") }}kg",
+                  "secondary": "Weight (\u03947d)",
+                  "icon": "mdi:trending-{{ iif(states(\"sensor.wger_will_weight_d7d\") | float(0) > 0, \"up\",\"down\") }}",
+                  "features_position": "bottom",
+                  "entity": "sensor.wger_will_weight_d7d",
+                  "color": "{{ iif(states(\"sensor.wger_will_weight_d7d\") | float(0) > 0, \"red\", \"green\") }}",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states(\"sensor.will_s_pixel_6_pro_daily_steps\") | int }}",
+                  "secondary": "Steps Today",
+                  "icon": "mdi:foot-print",
+                  "features_position": "bottom",
+                  "entity": "sensor.will_s_pixel_6_pro_daily_steps"
+                },
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Weight Lifted",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_will_weight_lifted_today",
+                  "name": "Today",
+                  "icon_color": "blue",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:weight-lifter"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_will_weight_lifted_7d",
+                  "name": "Past 7 days",
+                  "icon_color": "indigo",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:weight-lifter"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_will_total_reps_today",
+                  "name": "Today",
+                  "icon_color": "blue",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:arm-flex-outline"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_will_total_reps_7d",
+                  "name": "Past 7 Days",
+                  "icon_color": "indigo",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "mdi:arm-flex-outline"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.wger_will_last_workout_duration",
+                  "icon_color": "blue",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "icon": "",
+                  "name": "Last Workout Duration"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{% set date_str = states('sensor.wger_will_last_workout_date') %}\n{% if date_str not in ['unknown', 'unavailable', 'none', ''] %}\n  {% set target = as_datetime(date_str).date() %}\n  {% set today = now().date() %}\n  {% set delta = (target - today).days %}\n\n  {% if delta == 0 %}\n    Today\n  {% elif delta == -1 %}\n    Yesterday\n  {% elif delta == 1 %}\n    Tomorrow\n  {% elif delta < 0 %}\n    {{ (delta | abs) }} days ago\n  {% else %}\n    In {{ delta }} days\n  {% endif %}\n{% else %}\n  Unknown\n{% endif %}",
+                  "secondary": "Latest Workout",
+                  "icon": "{% set date_str = states('sensor.wger_will_last_workout_date') %}\n{% if date_str not in ['unknown', 'unavailable', 'none', ''] %}\n  {% set target = as_datetime(date_str).date() %}\n  {% set today = now().date() %}\n  {% set delta = (target - today).days %}\n\n  {% if delta == 0 %}\n    mdi:dumbbell\n  {% elif delta == -1 %}\n    mdi:run\n  {% elif delta > 0 %}\n    mdi:calendar-clock\n  {% elif delta < -3 %}\n    mdi:alert-circle-outline\n  {% else %}\n    mdi:clock-outline\n  {% endif %}\n{% else %}\n  mdi:help-circle-outline\n{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "sensor.wger_will_last_workout_date",
+                  "color": "{% set date_str = states('sensor.wger_will_last_workout_date') %}\n{% if date_str not in ['unknown', 'unavailable', 'none', ''] %}\n  {% set target = as_datetime(date_str).date() %}\n  {% set today = now().date() %}\n  {% set delta = (target - today).days %}\n\n  {% if delta == 0 %}\n    green\n  {% elif delta == -1 %}\n    limegreen\n  {% elif delta == -2 %}\n    orange\n  {% elif delta <= -3 %}\n    red\n  {% elif delta > 0 %}\n    dodgerblue\n  {% else %}\n    grey\n  {% endif %}\n{% else %}\n  grey\n{% endif %}"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.wger_will_weight_lifted_today"
+                  ],
+                  "hour_to_show": 168,
+                  "group_by": "date",
+                  "show": {
+                    "graph": "bar",
+                    "state": false
+                  },
+                  "aggregate_func": "max",
+                  "lower_bound": 0
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:autorenew{% if is_state(\"automation.sensor_will_s_pixel_6_pro_weight_update\", \"off\") %}-off{%endif%}",
+                  "features_position": "bottom",
+                  "entity": "automation.sensor_will_s_pixel_6_pro_weight_update",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/sensor/will-s-pixel-6-pro-weight/update",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.sensor_will_s_pixel_6_pro_weight_update\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "primary": "Update wger weight from Health Connect",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

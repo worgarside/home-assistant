@@ -314,18 +314,36 @@
                   "show": {
                     "state": false,
                     "icon": true,
-                    "name": true
+                    "name": true,
+                    "legend": true
                   },
                   "hours_to_show": 24,
-                  "points_per_hour": 4,
+                  "points_per_hour": 30,
                   "line_width": 1,
                   "icon": "mdi:flower",
                   "animate": true,
                   "height": 150,
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100,
                   "entities": [
                     {
+                      "entity": "sensor.vic_s_office_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "#333333"
+                    },
+                    {
                       "entity": "sensor.vic_s_office_fan_pm_2_5",
-                      "color": "#656f70"
+                      "color": "#656f70",
+                      "name": "PM 2.5"
+                    },
+                    {
+                      "entity": "input_number.vic_s_office_fan_pm2_5_threshold",
+                      "color": "green",
+                      "show_line": false,
+                      "show_legend": false
                     }
                   ]
                 },
@@ -409,32 +427,6 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "icon": "mdi:motion-sensor{% if not states(\"automation.binary_sensor_vic_s_office_occupancy_on\") | bool(false) %}-off{% endif %}",
-                  "features_position": "bottom",
-                  "entity": "automation.binary_sensor_vic_s_office_occupancy_on",
-                  "area": "vic_s_office",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": " /binary-sensor/vic-s-office-occupancy/on",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.binary_sensor_vic_s_office_occupancy_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Shell lamp auto-on"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
                   "icon": "mdi:lightbulb\n{%- if not states(\"automation.binary_sensor_vic_s_office_occupancy_state_change\") | bool(false) -%}\n-off\n{%- elif area_entities('vic_s_office') | select('match','^light\\.') | select('is_state','on') | list | count > 0 -%}\n-on\n{%- endif -%}\n-outline",
                   "features_position": "bottom",
                   "entity": "automation.binary_sensor_vic_s_office_occupancy_state_change",
@@ -458,6 +450,113 @@
                     "action": "none"
                   },
                   "primary": "Presence-based lighting"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:air-purifier{% if is_state(\"automation.fan_vic_s_office_fan_control\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.fan_vic_s_office_fan_control",
+                  "area": "vic_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/fan/vic-s-office-fan/control",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.fan_vic_s_office_fan_control\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Auto-purify air ({{ states(\"input_number.vic_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.vic_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.vic_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:radiator{% if not states(\"automation.switch_central_heating_vic_office_preheat\") | bool(false) %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.switch_central_heating_vic_office_preheat",
+                  "area": "vic_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/switch/central-heating/vic-office-preheat",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.switch_central_heating_vic_office_preheat\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Pre-heat if heating is already on"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Controls",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.vic_s_office_fan_pm2_5_threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "PM2.5 Threshold"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.vic_s_office_fan_voc_index_threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "VOC Index Threshold"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.vic_s_office_fan_purifier_speed",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "Purifier Speed",
+                  "icon": "mdi:speedometer-slow"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_text.vic_work_calendar_holiday_pattern",
+                  "name": "Work Calendar Holiday Event Pattern (Used for pre-heat automation)",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
                 }
               ]
             }
@@ -595,7 +694,9 @@
                   "badges": [
                     {
                       "type": "entity",
-                      "entity": "sensor.air_purifier_air_quality"
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.air_purifier_pm2_5"
                     },
                     {
                       "type": "entity",
@@ -618,7 +719,7 @@
                 {
                   "type": "custom:mushroom-fan-card",
                   "entity": "fan.air_purifier",
-                  "icon_animation": true
+                  "icon_animation": false
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -669,6 +770,17 @@
                     "rows": 1
                   },
                   "color": "{% set val = states('sensor.apollo_plt_1b_1743a8_soil_moisture') | float(0) %}\n{% if val < 20 %}\n  red\n{% elif val < 40 %}\n  orange\n{% elif val < 60 %}\n  yellow\n{% elif val < 80 %}\n  limegreen\n{% else %}\n  deepskyblue\n{% endif %}\n"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.lounge_lights_exercise_mode",
+                  "name": "Exercise Mode",
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  }
                 }
               ]
             },
@@ -858,6 +970,14 @@
                   "height": 150,
                   "entities": [
                     {
+                      "entity": "sensor.air_purifier_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "#333333"
+                    },
+                    {
                       "entity": "sensor.air_purifier_pm2_5",
                       "color": "#656f70"
                     }
@@ -939,7 +1059,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Air Purifier "
+                  "primary": "Set Air Purifier level automatically"
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -966,6 +1086,110 @@
                     "action": "none"
                   },
                   "primary": "Air Freshener Auto-On"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:motion-sensor{% if is_state(\"automation.binary_sensor_lounge_occupancy_off\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_lounge_occupancy_off",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/lounge-occupancy/off",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_lounge_occupancy_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn lights off after {{ states(\"input_number.lounge_lights_timeout\") | int(\"??\") }} minutes of vacancy"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:motion-sensor{% if is_state(\"automation.binary_sensor_lounge_occupancy_room_timeout\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_lounge_occupancy_room_timeout",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/lounge-occupancy/room-timeout",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_lounge_occupancy_room_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn whole room off after {{ states(\"input_number.lounge_room_timeout\") | int(\"??\") }} minutes"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:motion-sensor{% if is_state(\"automation.binary_sensor_lounge_occupancy_on\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_lounge_occupancy_on",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/lounge-occupancy/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_lounge_occupancy_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn lights on"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-outline",
+                  "features_position": "bottom",
+                  "entity": "automation.switch_air_freshener_timeout",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/switch/air-freshener/timeout",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.switch_air_freshener_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn air freshener off after {{ states(\"input_number.air_freshener_timeout\") | int(\"??\") }} minutes"
                 }
               ]
             },
@@ -1002,6 +1226,17 @@
                   "double_tap_action": {
                     "action": "none"
                   },
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.lounge_room_timeout",
+                  "name": "Room Timeout",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
                   "layout": "horizontal"
                 }
               ]
@@ -1224,6 +1459,20 @@
                     "columns": 6,
                     "rows": 1
                   }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_datetime.next_bedroom_sunrise",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.input_datetime_next_bedroom_sunrise_sunrise_start",
+                      "state": "on"
+                    }
+                  ],
+                  "icon_color": "deep-orange"
                 }
               ]
             },
@@ -1406,6 +1655,32 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
+                  "icon": "mdi:weather-sunset-up",
+                  "features_position": "bottom",
+                  "entity": "automation.input_datetime_next_bedroom_sunrise_sunrise_start",
+                  "area": "bedroom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/input-datetime/next-bedroom-sunrise/sunrise-start",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_wardrobe_lights_auto_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Sunrise lighting: increase to {{ states(\"input_number.bedroom_sunrise_max_brightness\") | int(\"??\") }}% over {{ states(\"input_number.bedroom_sunrise_duration\") | int(\"??\") }} minutes"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
                   "icon": "mdi:hexagon-multiple-outline",
                   "features_position": "bottom",
                   "entity": "automation.light_bedroom_shapes_bon_appetit",
@@ -1480,7 +1755,99 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Wardrobe lights timeout"
+                  "primary": "{% set total_seconds = states('input_number.wardrobe_lights_timeout') | int %} {% set minutes = (total_seconds // 60) | int %} {% set seconds = (total_seconds % 60) | int %}\nTurn wardrobe lights off after {% if minutes > 0 %}\n  {{ minutes }} min{% if minutes > 1 %}s{% endif %}{% if seconds > 0 %} and {{ seconds }} sec{{ 's' if seconds != 1 else '' }}{% endif %}\n{% else %}\n  {{ seconds }} sec{{ 's' if seconds != 1 else '' }}\n{% endif %}"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:calendar",
+                  "features_position": "bottom",
+                  "entity": "automation.schedule_bedroom_heating_schedule_on",
+                  "area": "bedroom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/schedule/bedroom-heating-schedule/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_wardrobe_lights_auto_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Scheduled heating"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Controls",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.bedroom_sunrise_duration",
+                  "name": "Sunrise Duration",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "icon": "mdi:timer-cog-outline"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.bedroom_sunrise_max_brightness",
+                  "name": "Sunrise Max Brightness",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "icon": "mdi:brightness-percent"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.wardrobe_lights_timeout",
+                  "name": "Wardrobe Lights Timeout",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.turn_off_bedroom_fan_for_scheduled_heating",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.schedule_bedroom_heating_schedule_on",
+                      "state": "on"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  }
                 }
               ]
             }
@@ -2288,7 +2655,7 @@
           ],
           "header": {
             "layout": "center",
-            "badges_position": "top",
+            "badges_position": "bottom",
             "badges_wrap": "scroll"
           },
           "max_columns": 4,
@@ -2463,7 +2830,7 @@
                   "layout": "horizontal",
                   "show_color_control": false,
                   "show_color_temp_control": false,
-                  "collapsible_controls": true,
+                  "collapsible_controls": false,
                   "grid_options": {
                     "columns": 12,
                     "rows": 1
@@ -2519,12 +2886,23 @@
                     "legend": true
                   },
                   "hours_to_show": 24,
-                  "points_per_hour": 4,
+                  "points_per_hour": 10,
                   "line_width": 1,
                   "icon": "mdi:flower",
                   "animate": true,
                   "height": 150,
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100,
                   "entities": [
+                    {
+                      "entity": "sensor.will_s_office_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "#333333",
+                      "smoothing": false
+                    },
                     {
                       "entity": "sensor.will_s_office_fan_pm_2_5",
                       "color": "#656f70",
@@ -2578,6 +2956,124 @@
                       "color": "#5bacba"
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:radiator{% if is_state(\"automation.binary_sensor_will_s_office_external_opening_detected_on\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_will_s_office_external_opening_detected_on",
+                  "area": "will_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/will-s-office-opening-detected/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_will_s_office_external_opening_detected_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Disable heating on door/window open"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:air-purifier{% if is_state(\"automation.fan_will_s_office_fan_control\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.fan_will_s_office_fan_control",
+                  "area": "will_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/fan/will-s-office-fan/control",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.fan_will_s_office_fan_control\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Auto-purify air ({{ states(\"input_number.will_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.will_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.will_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Controls",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.will_s_office_heating_external_opening_timeout",
+                  "name": "Heating Timeout (External Opening Detected)",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.will_s_office_fan_pm2_5_threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "PM2.5 Threshold"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.will_s_office_fan_voc_index_threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "VOC Index Threshold"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.will_s_office_fan_purifier_speed",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "Purifier Speed",
+                  "icon": "mdi:speedometer-slow"
                 }
               ]
             }
