@@ -1744,7 +1744,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "{% set total_seconds = states('input_number.wardrobe_lights_timeout') | int %} {% set minutes = (total_seconds // 60) | int %} {% set seconds = (total_seconds % 60) | int %}\nTurn wardrobe lights off after  {% if minutes > 0 %}\n  {{ minutes }} min{% if minutes > 1 %}s{% endif %}{% if seconds > 0 %} and {{ seconds }} sec{{ 's' if seconds != 1 else '' }}{% endif %}\n{% else %}\n  {{ seconds }} sec{{ 's' if seconds != 1 else '' }}\n{% endif %}"
+                  "primary": "{% set total_seconds = states('input_number.wardrobe_lights_timeout') | int %} {% set minutes = (total_seconds // 60) | int %} {% set seconds = (total_seconds % 60) | int %}\nTurn wardrobe lights off after {% if minutes > 0 %}\n  {{ minutes }} min{% if minutes > 1 %}s{% endif %}{% if seconds > 0 %} and {{ seconds }} sec{{ 's' if seconds != 1 else '' }}{% endif %}\n{% else %}\n  {{ seconds }} sec{{ 's' if seconds != 1 else '' }}\n{% endif %}"
                 },
                 {
                   "type": "custom:mushroom-template-card",
