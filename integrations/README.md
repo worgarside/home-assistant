@@ -952,13 +952,7 @@ File: [`automation/label/radiator/any_on.yaml`](entities/automation/label/radiat
 - Alias: /label/restore-state-after-room-vacancy/state-change
 - ID: `label_restore_state_after_room_vacancy_state_change`
 - Mode: `restart`
-- Variables:
 
-```json
-{
-  "cached_states": "{{\n  ( state_attr(\"var.will_s_office_state_manager\", \"entity_states_b64\") or \"e30=\" )\n  | base64_decode\n  | from_json\n}}"
-}
-```
 File: [`automation/label/restore_state_after_room_vacancy/state_change.yaml`](entities/automation/label/restore_state_after_room_vacancy/state_change.yaml)
 </details>
 
@@ -5461,7 +5455,7 @@ File: [`rest_command/wger/post_weightentry.yaml`](entities/rest_command/wger/pos
 
 ## Script
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (30)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5722,7 +5716,7 @@ File: [`script/functions/log_exception.yaml`](entities/script/functions/log_exce
 File: [`script/functions/run_dynamic_script.yaml`](entities/script/functions/run_dynamic_script.yaml)
 </details>
 
-<details><summary><strong>State Manager Attribute Timeout</strong></summary>
+<details><summary><strong>State Manager | Attribute Timeout</strong></summary>
 
 **Entity ID: `script.state_manager_attribute_timeout`**
 
@@ -5755,6 +5749,40 @@ File: [`script/functions/run_dynamic_script.yaml`](entities/script/functions/run
 }
 ```
 File: [`script/functions/state_manager/state_manager_attribute_timeout.yaml`](entities/script/functions/state_manager/state_manager_attribute_timeout.yaml)
+</details>
+
+<details><summary><strong>State Manager | Reset States</strong></summary>
+
+**Entity ID: `script.state_manager_reset_states`**
+
+> Reset the states of a state manager to the original states
+
+- Fields:
+
+```json
+{
+  "state_manager": {
+    "description": "The state manager entity to reset attributes for",
+    "required": true,
+    "example": "var.will_s_office_state_manager",
+    "selector": {
+      "entity": {
+        "domain": "var"
+      }
+    }
+  }
+}
+```
+
+- Mode: `parallel`
+- Variables:
+
+```json
+{
+  "target_area_id": "{{ area_id(state_manager) }}"
+}
+```
+File: [`script/functions/state_manager/state_manager_reset_states.yaml`](entities/script/functions/state_manager/state_manager_reset_states.yaml)
 </details>
 
 <details><summary><strong>Target Git Branch: Set Options</strong></summary>

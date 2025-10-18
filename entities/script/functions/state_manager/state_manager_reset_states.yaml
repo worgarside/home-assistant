@@ -1,7 +1,7 @@
 ---
-alias: State Manager | Attribute Timeout
+alias: State Manager | Reset States
 
-description: Timeout for "should be" on/off attributes of a state manager
+description: Reset the states of a state manager to the original states
 
 mode: parallel
 
@@ -15,15 +15,6 @@ fields:
         domain: var
 
 variables:
-  # "e30=" is "{}" base64 encoded
-  cached_states: >-
-    {{
-      (state_attr(state_manager, "entity_states_b64") or "e30=")
-      | base64_decode
-      | from_json
-      | default({})
-    }}
-
   target_area_id: "{{ area_id(state_manager) }}"
 
 sequence:
@@ -31,7 +22,7 @@ sequence:
     then:
       - service: script.log_exception
         data:
-          calling_entity: script.state_manager_attribute_timeout
+          calling_entity: script.state_manager_reset_states
           message: >-
             Invalid `target_area_id` value `{{ target_area_id | default('<undefined>') }}` for
             state manager `{{ state_manager }}`
@@ -40,23 +31,19 @@ sequence:
         error: true
 
   - variables:
-      entity_states: >-
-        {%- set ns = namespace(output=cached_states) %}
+      area_states: >-
+        {% set ns = namespace(entities={}) %}
         {%
-          for k in cached_states.keys()
-          if (
-            cached_states.get(k) | bool(false)
-            and is_state(k, "off")
-            and area_id(k) == target_area_id
-          )
+          for entity in label_entities('Restore State after Room Vacancy') | default([])
+          if area_id(entity) == target_area_id
         %}
-          {% set ns.output = dict(ns.output, **{k: false}) %}
+          {% set ns.entities = dict(ns.entities, **{entity: states(entity)}) %}
         {% endfor %}
-        {{ ns.output }}
+        {{ ns.entities }}
 
   - service: var.set
     target:
       entity_id: "{{ state_manager }}"
     data:
       attributes:
-        entity_states_b64: "{{ entity_states | to_json | base64_encode }}"
+        entity_states_b64: "{{ area_states | to_json | base64_encode }}"
