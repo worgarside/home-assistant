@@ -2275,7 +2275,7 @@ File: [`automation/tag/cosmo/ground_floor.yaml`](entities/automation/tag/cosmo/g
 
 - Alias: /var/vic-s-office-state-manager/attribute-timeout
 - ID: `var_vic_s_office_state_manager_attribute_timeout`
-- Mode: `queued`
+- Mode: `single`
 
 File: [`automation/var/vic_s_office_state_manager/attribute_timeout.yaml`](entities/automation/var/vic_s_office_state_manager/attribute_timeout.yaml)
 </details>
