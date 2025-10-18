@@ -546,6 +546,17 @@
                   "layout": "horizontal",
                   "name": "Purifier Speed",
                   "icon": "mdi:speedometer-slow"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_text.vic_work_calendar_holiday_pattern",
+                  "name": "Work Calendar Holiday Event Pattern",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
                 }
               ]
             }
