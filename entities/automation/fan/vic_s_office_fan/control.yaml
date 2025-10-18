@@ -40,6 +40,8 @@ trigger:
     to: "off"
     from: "on"
     id: room_exited
+    for:
+      minutes: 1
 
 variables:
   pm25_high: >
