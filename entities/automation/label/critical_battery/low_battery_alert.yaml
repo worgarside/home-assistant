@@ -18,6 +18,9 @@ condition:
   - condition: state
     entity_id: binary_sensor.quiet_hours
     state: "off"
+  - condition: state
+    entity_id: person.will
+    state: home
 
 action:
   - repeat:
@@ -40,7 +43,7 @@ action:
                     state_attr(repeat.item, 'friendly_name')
                     or (repeat.item | replace('sensor.', '') | replace('_', ' ') | title)
                   }}
-                  battery is critically low: {{ states(repeat.item) }}%
+                  battery is critically low: {{ states(repeat.item) | float | round(2) }}%
                 mobile_notification_icon: mdi:battery-alert
                 group: critical-battery-alerts
                 sticky: true
