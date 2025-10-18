@@ -5471,7 +5471,7 @@ File: [`rest_command/wger/post_weightentry.yaml`](entities/rest_command/wger/pos
 
 ## Script
 
-<details><summary><h3>Entities (28)</h3></summary>
+<details><summary><h3>Entities (29)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5730,6 +5730,41 @@ File: [`script/functions/log_exception.yaml`](entities/script/functions/log_exce
 }
 ```
 File: [`script/functions/run_dynamic_script.yaml`](entities/script/functions/run_dynamic_script.yaml)
+</details>
+
+<details><summary><strong>State Manager Attribute Timeout</strong></summary>
+
+**Entity ID: `script.state_manager_attribute_timeout`**
+
+> Timeout for "should be" on/off attributes of a state manager
+
+- Fields:
+
+```json
+{
+  "state_manager": {
+    "description": "The state manager entity to reset attributes for",
+    "required": true,
+    "example": "var.will_s_office_state_manager",
+    "selector": {
+      "entity": {
+        "domain": "var"
+      }
+    }
+  }
+}
+```
+
+- Mode: `parallel`
+- Variables:
+
+```json
+{
+  "cached_states": "{{\n  state_attr(state_manager, \"entity_states_b64\")\n  | base64_decode\n  | from_json\n  | default({})\n}}",
+  "target_area_id": "{{ area_id(state_manager) }}"
+}
+```
+File: [`script/functions/state_manager/state_manager_attribute_timeout.yaml`](entities/script/functions/state_manager/state_manager_attribute_timeout.yaml)
 </details>
 
 <details><summary><strong>Target Git Branch: Set Options</strong></summary>
