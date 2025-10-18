@@ -1,0 +1,124 @@
+---
+alias: /binary-sensor/vic-s-office/occupancy/state-change
+
+id: binary_sensor_vic_s_office_occupancy_state_change
+
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.vic_s_office_occupancy
+    to:
+      - "on"
+      - "off"
+
+variables:
+  state_manager: var.vic_s_office_state_manager
+
+  cached_states: >-
+    {{
+      (state_attr(state_manager, "entity_states_b64") or "e30=")
+      | base64_decode
+      | from_json
+    }}
+
+  target_area_id: "{{ area_id(state_manager) }}"
+
+action:
+  - if: "{{ target_area_id is not defined or target_area_id is none or not target_area_id }}"
+    then:
+      - service: script.log_exception
+        data:
+          calling_entity: automation.binary_sensor_vic_s_office_occupancy_state_change
+          message: >-
+            Invalid `target_area_id` value `{{ target_area_id | default('<undefined>') }}` for
+            state manager `{{ state_manager }}`
+
+      - stop: "Invalid `target_area_id` value: `{{ target_area_id | default('<undefined>') }}`"
+        error: true
+
+  - if: "{{ trigger.to_state.state | bool }}"
+
+    then:
+      - parallel:
+          - repeat:
+              for_each: >-
+                {{
+                  (label_entities('Restore State after Room Vacancy') | default([]))
+                  | select('in', area_entities(target_area_id) | default([]))
+                  | list
+                }}
+
+              sequence:
+                - if: "{{ cached_states.get(repeat.item) | bool(false) }}"
+                  then:
+                    - service: homeassistant.turn_on
+                      target:
+                        entity_id: "{{ repeat.item }}"
+
+          - alias: Always turn on the shell lamp
+            service: light.turn_on
+            target:
+              entity_id: light.shell_lamp
+            data:
+              # The lamp itself isn't that bright
+              brightness_pct: "{{ [states('sensor.lighting_modifier') | int(70), 30] | max | int }}"
+              transition: 1
+
+          - alias: Turn the radiator on if the heating is already on
+            if: "{{ is_state('switch.central_heating', 'on') }}"
+            then:
+              - action: climate.set_hvac_mode
+                target:
+                  entity_id: climate.vic_s_office_radiator
+                data:
+                  hvac_mode: heat
+
+    else:
+      - variables:
+          entity_states: >-
+            {% set ns = namespace(e={}) %}
+            {%
+              for entity in label_entities('Restore State after Room Vacancy') | default([])
+              if area_id(entity) == target_area_id
+            %}
+              {% set ns.e = dict(ns.e, **{entity: states(entity)}) %}
+            {% endfor %}
+            {{ ns.e }}
+
+      - parallel:
+          - repeat:
+              for_each: "{{ entity_states.keys() | list }}"
+
+              sequence:
+                - service: homeassistant.turn_off
+                  target:
+                    entity_id: "{{ repeat.item }}"
+
+                - wait_template: >-
+                    {%
+                      set cached_states =
+                        (state_attr(state_manager, "entity_states_b64") or "e30=")
+                        | base64_decode
+                        | from_json
+                    %}
+                    {{ cached_states.get(repeat.item) | bool("??") is false }}
+                  timeout:
+                    seconds: 10
+                  continue_on_timeout: true
+
+          - service: climate.turn_off
+            target:
+              entity_id: climate.vic_s_office_radiator
+
+      - delay:
+          seconds: 1
+
+      # The switching off above will have stored falsy values for all entities in the state manager;
+      # they now need to be overwritten with the original states
+      - service: var.set
+        target:
+          entity_id: "{{ state_manager }}"
+        data:
+          attributes:
+            entity_states_b64: "{{ entity_states | to_json | base64_encode }}"

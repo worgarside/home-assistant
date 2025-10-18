@@ -1,0 +1,93 @@
+---
+alias: /label/restore-state-after-room-vacancy/state-change
+
+id: label_restore_state_after_room_vacancy_state_change
+
+mode: restart
+
+trigger:
+
+  - platform: template
+    # Generate a (flat) map of cached states, then create a list of entities whose states don't
+    # match the cached states. If the number of mismatches changes from 0 to >0, this triggers
+    # "X" and "Y" are used as defaults here because it's very unlikely that any entity will have a
+    # state of "X" or "Y", so the default case will be an inequality, causing the current state to
+    # be stored in the state manager.
+    value_template: >-
+      {% set ns = namespace(cached_states={}, entities=[]) %}
+      {% for sm in label_entities("state_manager") %}
+        {%
+          set ns.cached_states = dict(
+            ns.cached_states,
+            **(state_attr(sm, "entity_states_b64") or "e30=")
+            | base64_decode
+            | from_json
+          )
+        %}
+      {% endfor %}
+      {%
+        for entity in label_entities("Restore State after Room Vacancy") | default([])
+        if states(entity) | bool("X") != ns.cached_states.get(entity) | bool("Y")
+      %}
+        {% set ns.entities = ns.entities + [entity] %}
+      {% endfor %}
+      {{ ns.entities | count > 0 }}
+
+  # e.g. if a new entity is labeled
+  - platform: template
+    value_template: >-
+      {% set ns = namespace(cached_states={}) %}
+      {% for sm in label_entities("state_manager") %}
+        {%
+          set ns.cached_states = dict(
+            ns.cached_states,
+            **(state_attr(sm, "entity_states_b64") or "e30=")
+            | base64_decode
+            | from_json
+          )
+        %}
+      {% endfor %}
+      {{ label_entities('Restore State after Room Vacancy') != ns.cached_states.keys() | list }}
+
+  - platform: event
+    id: var_reload
+    event_type: call_service
+    event_data:
+      domain: var
+      service: reload
+
+condition: >-
+  {{
+    trigger.id == "var_reload" or
+    trigger.to_state.entity_id not in label_entities('state_manager')
+  }}
+
+action:
+  - if: "{{ trigger.id == 'var_reload' }}"
+    then:
+      - alias: Wait for reload to start
+        wait_template: "{{ is_state('var.will_s_office_state_manager', 'unavailable') }}"
+        timeout:
+          seconds: 5
+        continue_on_timeout: true
+
+      - alias: Wait for reload to complete
+        wait_template: "{{ not is_state('var.will_s_office_state_manager', 'unavailable') }}"
+        timeout:
+          seconds: 5
+        continue_on_timeout: true
+
+      - delay:
+          seconds: 2
+
+  - repeat:
+      for_each: "{{ label_entities('state_manager') | default([]) }}"
+
+      sequence:
+        - service: script.turn_on
+          target:
+            entity_id: script.state_manager_reset_states
+          data:
+            variables:
+              state_manager: "{{ repeat.item }}"
+          continue_on_error: true
