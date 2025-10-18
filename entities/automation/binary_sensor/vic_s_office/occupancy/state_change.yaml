@@ -37,7 +37,6 @@ action:
       - stop: "Invalid `target_area_id` value: `{{ target_area_id | default('<undefined>') }}`"
         error: true
 
-
   - if: "{{ trigger.to_state.state | bool }}"
 
     then:
@@ -66,14 +65,15 @@ action:
               brightness_pct: "{{ [states('sensor.lighting_modifier') | int(70), 30] | max | int }}"
               transition: 1
 
-          - alias: Always set the radiator to heat (heating might not be on)
-            action: climate.set_hvac_mode
-            target:
-              entity_id: climate.vic_s_office_radiator
-            data:
-              hvac_mode: heat
+          - alias: Turn the radiator on if the heating is already on
+            if: "{{ is_state('switch.central_heating', 'on') }}"
+            then:
+              - action: climate.set_hvac_mode
+                target:
+                  entity_id: climate.vic_s_office_radiator
+                data:
+                  hvac_mode: heat
 
-    else:
       - variables:
           entity_states: >-
             {% set ns = namespace(e={}) %}
