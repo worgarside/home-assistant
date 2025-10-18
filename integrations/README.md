@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (154)</h3></summary>
+<details><summary><h3>Entities (155)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -2086,6 +2086,19 @@ File: [`automation/switch/central_heating/off.yaml`](entities/automation/switch/
 File: [`automation/switch/central_heating/on.yaml`](entities/automation/switch/central_heating/on.yaml)
 </details>
 
+<details><summary><code>/switch/central-heating/vic-office-preheat</code></summary>
+
+**Entity ID: `automation.switch_central_heating_vic_office_preheat`**
+
+> Preheat Vic's office when central heating turns on during workday mornings, unless it's a holiday day. This does not turn the heating on, it's just to piggy-back off other automations if the heating is already on anyway.
+
+- Alias: /switch/central-heating/vic-office-preheat
+- ID: `switch_central_heating_vic_office_preheat`
+- Mode: `single`
+
+File: [`automation/switch/central_heating/vic_office_preheat.yaml`](entities/automation/switch/central_heating/vic_office_preheat.yaml)
+</details>
+
 <details><summary><code>/switch/charging-hub/turn-off</code></summary>
 
 **Entity ID: `automation.switch_charging_hub_turn_off`**
@@ -3630,7 +3643,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (17)</h3></summary>
+<details><summary><h3>Entities (18)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -3790,6 +3803,15 @@ File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entit
 - Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
 
 File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
+</details>
+
+<details><summary><strong>Vic | Work Calendar: Holiday Pattern</strong></summary>
+
+**Entity ID: `input_text.vic_work_calendar_holiday_pattern`**
+
+- Icon: [`mdi:regex`](https://pictogrammers.com/library/mdi/icon/regex/)
+
+File: [`input_text/vic_work_calendar_holiday_pattern.yaml`](entities/input_text/vic_work_calendar_holiday_pattern.yaml)
 </details>
 
 </details>

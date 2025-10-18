@@ -1,0 +1,59 @@
+---
+alias: /switch/central-heating/vic-office-preheat
+
+id: switch_central_heating_vic_office_preheat
+
+description: >-
+  Preheat Vic's office when central heating turns on during workday mornings, unless it's a holiday
+  day. This does not turn the heating on, it's just to piggy-back off other automations if the
+  heating is already on anyway.
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: switch.central_heating
+    to: "on"
+
+  - platform: time
+    at: "06:01:00"
+
+condition:
+  - condition: time
+    after: "06:00:00"
+    before: "09:00:00"
+
+  - condition: state
+    entity_id: binary_sensor.workday
+    state: "on"
+
+  - condition: state
+    entity_id: switch.central_heating
+    state: "on"
+
+action:
+  - action: calendar.get_events
+    target:
+      entity_id: calendar.vic_work
+    data:
+      start_date_time: "{{ now().date() }} 00:00:00"
+      duration:
+        hours: 24
+    response_variable: res
+
+  - alias: Check for holiday events (exit if it's a holiday day)
+    condition: template
+    value_template: >-
+      {{
+        res['calendar.vic_work'].events
+        | selectattr('summary', 'search', states('input_text.vic_work_calendar_holiday_pattern'))
+        | list
+        | length == 0
+      }}
+
+  - alias: Preheat Vic's office
+    action: climate.set_hvac_mode
+    data:
+      hvac_mode: heat
+    target:
+      entity_id: climate.vic_s_office_radiator
