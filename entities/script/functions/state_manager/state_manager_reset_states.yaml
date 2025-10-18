@@ -1,0 +1,49 @@
+---
+alias: State Manager | Reset States
+
+description: Reset the states of a state manager to the original states
+
+mode: parallel
+
+fields:
+  state_manager:
+    description: The state manager entity to reset attributes for
+    required: true
+    example: var.will_s_office_state_manager # hacv disable: InvalidEntityConsumed
+    selector:
+      entity:
+        domain: var
+
+variables:
+  target_area_id: "{{ area_id(state_manager) }}"
+
+sequence:
+  - if: "{{ target_area_id is not defined or target_area_id is none or not target_area_id }}"
+    then:
+      - service: script.log_exception
+        data:
+          calling_entity: script.state_manager_reset_states
+          message: >-
+            Invalid `target_area_id` value `{{ target_area_id | default('<undefined>') }}` for
+            state manager `{{ state_manager }}`
+
+      - stop: "Invalid `target_area_id` value: `{{ target_area_id | default('<undefined>') }}`"
+        error: true
+
+  - variables:
+      area_states: >-
+        {% set ns = namespace(entities={}) %}
+        {%
+          for entity in label_entities('Restore State after Room Vacancy') | default([])
+          if area_id(entity) == target_area_id
+        %}
+          {% set ns.entities = dict(ns.entities, **{entity: states(entity)}) %}
+        {% endfor %}
+        {{ ns.entities }}
+
+  - service: var.set
+    target:
+      entity_id: "{{ state_manager }}"
+    data:
+      attributes:
+        entity_states_b64: "{{ area_states | to_json | base64_encode }}"

@@ -19,6 +19,13 @@ variables:
   sunrise_duration: "{{ states('input_number.bedroom_sunrise_duration') | int(30) }}"
 
 action:
+  - if: "{{ is_state('light.bedroom_shapes', 'on') }}"
+    then:
+      - alias: Reset next sunrise to tomorrow
+        service: script.reset_next_bedroom_sunrise
+
+      - stop: "Bedroom shapes are already on, skipping sunrise start"
+
   - alias: Turn on bedroom shapes with deep orange
     service: light.turn_on
     target:

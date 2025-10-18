@@ -5,57 +5,29 @@ id: var_will_s_office_state_manager_attribute_timeout
 
 description: Timeout for "should be" on/off attributes of Will's desk state manager
 
-mode: queued
+mode: single
 
 trigger:
   - platform: template
-    id: fan.desk_fan
     value_template: >-
-      {{
-        state_attr('var.will_s_office_state_manager', 'fan.desk_fan') | bool(false)
-        and is_state("fan.desk_fan", "off")
-      }}
-    for:
-      hours: 1
-
-  - platform: template
-    id: light.will_s_desk_lamp
-    value_template: >-
-      {{
-        state_attr('var.will_s_office_state_manager', 'light.will_s_desk_lamp') | bool(false)
-        and is_state("light.will_s_desk_lamp", "off")
-      }}
-    for:
-      hours: 1
-
-  - platform: template
-    id: light.will_s_office_shapes
-    value_template: >-
-      {{
-        state_attr('var.will_s_office_state_manager', 'light.will_s_office_shapes') | bool(false)
-        and is_state("light.will_s_office_shapes", "off")
-      }}
-    for:
-      hours: 1
-
-  - platform: template
-    id: light.mushroom_lamp
-    value_template: >-
-      {{
-        state_attr('var.will_s_office_state_manager', 'light.mushroom_lamp') | bool(false)
-        and is_state("light.mushroom_lamp", "off")
-      }}
+      {%
+        set cached_states =
+          (state_attr("var.will_s_office_state_manager", "entity_states_b64") or "e30=")
+          | base64_decode
+          | from_json
+      %}
+      {%- set ns = namespace(keys=[]) %}
+      {%
+        for k in cached_states.keys()
+        if cached_states.get(k) | bool(false) and is_state(k, "off") and area_id(k) == "office"
+      %}
+        {% set ns.keys = ns.keys + [k] %}
+      {% endfor %}
+      {{ ns.keys | count > 0 }}
     for:
       hours: 1
 
 action:
-  - service: var.set
-    target:
-      entity_id: var.will_s_office_state_manager
+  - service: script.state_manager_attribute_timeout
     data:
-      attributes: >-
-        {{
-          {
-            trigger.id: false
-          }
-        }}
+      state_manager: var.will_s_office_state_manager

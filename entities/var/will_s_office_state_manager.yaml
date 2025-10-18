@@ -13,13 +13,5 @@ unique_id: var_will_s_office_state_manager
 
 initial_value: 0 # Not used
 
-attributes:
-  fan.desk_fan: false
-
-  light.will_s_desk_lamp: false
-
-  light.will_s_office_shapes: false
-
-  light.mushroom_lamp: false
-
-  fan.will_s_office_fan: false
+# attributes:
+#   entity_states_b64: e30=

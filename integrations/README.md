@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (154)</h3></summary>
+<details><summary><h3>Entities (155)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -139,7 +139,7 @@ File: [`automation/binary_sensor/lounge_occupancy/on.yaml`](entities/automation/
 
 **Entity ID: `automation.binary_sensor_lounge_occupancy_room_timeout`**
 
-> Turn off lounge room after 30 minutes of being empty
+> Turn off lounge room after N minutes of being empty
 
 - Alias: /binary-sensor/lounge-occupancy/room-timeout
 - ID: `binary_sensor_lounge_occupancy_room_timeout`
@@ -187,45 +187,34 @@ File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binar
 File: [`automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml`](entities/automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/vic-s-office-occupancy/on</code></summary>
-
-**Entity ID: `automation.binary_sensor_vic_s_office_occupancy_on`**
-
-> Turn on shell lamp when Victoria's office occupancy is detected
-
-- Alias: /binary-sensor/vic-s-office-occupancy/on
-- ID: `binary_sensor_vic_s_office_occupancy_on`
-- Mode: `single`
-
-File: [`automation/binary_sensor/vic_s_office_occupancy/on.yaml`](entities/automation/binary_sensor/vic_s_office_occupancy/on.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/vic-s-office-occupancy/state-change</code></summary>
+<details><summary><code>/binary-sensor/vic-s-office/occupancy/state-change</code></summary>
 
 **Entity ID: `automation.binary_sensor_vic_s_office_occupancy_state_change`**
 
 > *No description provided*
 
-- Alias: /binary-sensor/vic-s-office-occupancy/state-change
+- Alias: /binary-sensor/vic-s-office/occupancy/state-change
 - ID: `binary_sensor_vic_s_office_occupancy_state_change`
-- Mode: `queued`
+- Mode: `restart`
 - Variables:
 
 ```json
 {
-  "state_manager": "var.vic_s_office_state_manager"
+  "state_manager": "var.vic_s_office_state_manager",
+  "cached_states": "{{\n  (state_attr(state_manager, \"entity_states_b64\") or \"e30=\")\n  | base64_decode\n  | from_json\n}}",
+  "target_area_id": "{{ area_id(state_manager) }}"
 }
 ```
-File: [`automation/binary_sensor/vic_s_office_occupancy/state_change.yaml`](entities/automation/binary_sensor/vic_s_office_occupancy/state_change.yaml)
+File: [`automation/binary_sensor/vic_s_office/occupancy/state_change.yaml`](entities/automation/binary_sensor/vic_s_office/occupancy/state_change.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/will-s-office-external-opening-detected/on</code></summary>
+<details><summary><code>/binary-sensor/will-s-office/external-opening-detected/on</code></summary>
 
 **Entity ID: `automation.binary_sensor_will_s_office_external_opening_detected_on`**
 
 > Turn off office heating when window or roof terrace door is opened
 
-- Alias: /binary-sensor/will-s-office-external-opening-detected/on
+- Alias: /binary-sensor/will-s-office/external-opening-detected/on
 - ID: `binary_sensor_will_s_office_external_opening_detected_on`
 - Mode: `restart`
 - Variables:
@@ -237,26 +226,28 @@ File: [`automation/binary_sensor/vic_s_office_occupancy/state_change.yaml`](enti
   "notif_id": "office_heating_off"
 }
 ```
-File: [`automation/binary_sensor/will_s_office_external_opening_detected/on.yaml`](entities/automation/binary_sensor/will_s_office_external_opening_detected/on.yaml)
+File: [`automation/binary_sensor/will_s_office/external_opening_detected/on.yaml`](entities/automation/binary_sensor/will_s_office/external_opening_detected/on.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/will-s-office-presence-sensor/state-change</code></summary>
+<details><summary><code>/binary-sensor/will-s-office/occupancy/state-change</code></summary>
 
-**Entity ID: `automation.binary_sensor_will_s_office_presence_sensor_state_change`**
+**Entity ID: `automation.binary_sensor_will_s_office_occupancy_state_change`**
 
 > *No description provided*
 
-- Alias: /binary-sensor/will-s-office-presence-sensor/state-change
-- ID: `binary_sensor_will_s_office_presence_sensor_state_change`
-- Mode: `queued`
+- Alias: /binary-sensor/will-s-office/occupancy/state-change
+- ID: `binary_sensor_will_s_office_occupancy_state_change`
+- Mode: `restart`
 - Variables:
 
 ```json
 {
-  "state_manager": "var.will_s_office_state_manager"
+  "state_manager": "var.will_s_office_state_manager",
+  "cached_states": "{{\n  (state_attr(state_manager, \"entity_states_b64\") or \"e30=\")\n  | base64_decode\n  | from_json\n}}",
+  "target_area_id": "{{ area_id(state_manager) }}"
 }
 ```
-File: [`automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml`](entities/automation/binary_sensor/will_s_office_presence_sensor/state_change.yaml)
+File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](entities/automation/binary_sensor/will_s_office/occupancy/state_change.yaml)
 </details>
 
 <details><summary><code>/camera/offline-notify-will</code></summary>
@@ -565,19 +556,6 @@ File: [`automation/event/repair/state_change.yaml`](entities/automation/event/re
 File: [`automation/fan/air_purifier/control.yaml`](entities/automation/fan/air_purifier/control.yaml)
 </details>
 
-<details><summary><code>/fan/desk-fan/state-change</code></summary>
-
-**Entity ID: `automation.fan_desk_fan_state_change`**
-
-> *No description provided*
-
-- Alias: /fan/desk-fan/state-change
-- ID: `fan_desk_fan_state_change`
-- Mode: `single`
-
-File: [`automation/fan/desk_fan/state_change.yaml`](entities/automation/fan/desk_fan/state_change.yaml)
-</details>
-
 <details><summary><code>/fan/kitchen-extractor-vent/control</code></summary>
 
 **Entity ID: `automation.fan_kitchen_extractor_vent_control`**
@@ -661,7 +639,7 @@ File: [`automation/fan/vic_s_office_fan/control.yaml`](entities/automation/fan/v
 {
   "pm25_high": "{{\n  states('sensor.will_s_office_fan_pm_2_5') | float(0) >\n  states('input_number.will_s_office_fan_pm2_5_threshold') | float(0)\n}}\n",
   "voc_high": "{{\n  states('sensor.will_s_office_fan_volatile_organic_compounds_index') | float(0) >\n  states('input_number.will_s_office_fan_voc_index_threshold') | float(0)\n}}\n",
-  "room_occupied": "{{ is_state('binary_sensor.will_s_office_presence_sensor', 'on') }}",
+  "room_occupied": "{{ is_state('binary_sensor.will_s_office_occupancy', 'on') }}",
   "occupied_speed": "{{ states('input_number.will_s_office_fan_purifier_speed') | int(70) }}"
 }
 ```
@@ -827,6 +805,32 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
 </details>
 
+<details><summary><code>/input-boolean/lounge-lights-exercise-mode/off</code></summary>
+
+**Entity ID: `automation.input_boolean_lounge_lights_exercise_mode_off`**
+
+> Disable exercise mode - re-enable occupancy automation if it was enabled before
+
+- Alias: /input-boolean/lounge-lights-exercise-mode/off
+- ID: `input_boolean_lounge_lights_exercise_mode_off`
+- Mode: `single`
+
+File: [`automation/input_boolean/lounge_lights_exercise_mode/off.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/off.yaml)
+</details>
+
+<details><summary><code>/input-boolean/lounge-lights-exercise-mode/on</code></summary>
+
+**Entity ID: `automation.input_boolean_lounge_lights_exercise_mode_on`**
+
+> Enable exercise mode - set lounge lights to 100% and disable occupancy automation
+
+- Alias: /input-boolean/lounge-lights-exercise-mode/on
+- ID: `input_boolean_lounge_lights_exercise_mode_on`
+- Mode: `single`
+
+File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/on.yaml)
+</details>
+
 <details><summary><code>/input-datetime/home-assistant-start-time/set-datetime</code></summary>
 
 **Entity ID: `automation.input_datetime_home_assistant_start_time_set_datetime`**
@@ -939,6 +943,19 @@ File: [`automation/label/radiator/all_off.yaml`](entities/automation/label/radia
 File: [`automation/label/radiator/any_on.yaml`](entities/automation/label/radiator/any_on.yaml)
 </details>
 
+<details><summary><code>/label/restore-state-after-room-vacancy/state-change</code></summary>
+
+**Entity ID: `automation.label_restore_state_after_room_vacancy_state_change`**
+
+> *No description provided*
+
+- Alias: /label/restore-state-after-room-vacancy/state-change
+- ID: `label_restore_state_after_room_vacancy_state_change`
+- Mode: `restart`
+
+File: [`automation/label/restore_state_after_room_vacancy/state_change.yaml`](entities/automation/label/restore_state_after_room_vacancy/state_change.yaml)
+</details>
+
 <details><summary><code>/light/bedroom-shapes/bon-appetit</code></summary>
 
 **Entity ID: `automation.light_bedroom_shapes_bon_appetit`**
@@ -950,19 +967,6 @@ File: [`automation/label/radiator/any_on.yaml`](entities/automation/label/radiat
 - Mode: `single`
 
 File: [`automation/light/bedroom_shapes/bon_appetit.yaml`](entities/automation/light/bedroom_shapes/bon_appetit.yaml)
-</details>
-
-<details><summary><code>/light/desk-lamp/state-change</code></summary>
-
-**Entity ID: `automation.light_desk_lamp_state_change`**
-
-> *No description provided*
-
-- Alias: /light/desk-lamp/state-change
-- ID: `light_desk_lamp_state_change`
-- Mode: `single`
-
-File: [`automation/light/desk_lamp/state_change.yaml`](entities/automation/light/desk_lamp/state_change.yaml)
 </details>
 
 <details><summary><code>/light/lounge-lights/stop-tv-reflections</code></summary>
@@ -1021,19 +1025,6 @@ File: [`automation/light/lower_hallway_lights/timeout.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/light/moomin_box/on.yaml`](entities/automation/light/moomin_box/on.yaml)
-</details>
-
-<details><summary><code>/light/office-shapes/state-change</code></summary>
-
-**Entity ID: `automation.light_office_shapes_state_change`**
-
-> *No description provided*
-
-- Alias: /light/office-shapes/state-change
-- ID: `light_office_shapes_state_change`
-- Mode: `single`
-
-File: [`automation/light/office_shapes/state_change.yaml`](entities/automation/light/office_shapes/state_change.yaml)
 </details>
 
 <details><summary><code>/light/upper-landing-lights/on</code></summary>
@@ -1221,6 +1212,19 @@ File: [`automation/mobile_app/notification_action/bedroom_sunrise_delay.yaml`](e
 - Mode: `single`
 
 File: [`automation/mobile_app/notification_action/bedroom_sunrise_stop.yaml`](entities/automation/mobile_app/notification_action/bedroom_sunrise_stop.yaml)
+</details>
+
+<details><summary><code>/mobile-app/notification-action/central-heating-turn-off</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_central_heating_turn_off`**
+
+> Turn off central heating from notification action
+
+- Alias: /mobile-app/notification-action/central-heating-turn-off
+- ID: `mobile_app_notification_action_central_heating_turn_off`
+- Mode: `single`
+
+File: [`automation/mobile_app/notification_action/central_heating_turn_off.yaml`](entities/automation/mobile_app/notification_action/central_heating_turn_off.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/audio-visualiser</code></summary>
@@ -2082,6 +2086,19 @@ File: [`automation/switch/central_heating/off.yaml`](entities/automation/switch/
 File: [`automation/switch/central_heating/on.yaml`](entities/automation/switch/central_heating/on.yaml)
 </details>
 
+<details><summary><code>/switch/central-heating/vic-office-preheat</code></summary>
+
+**Entity ID: `automation.switch_central_heating_vic_office_preheat`**
+
+> Preheat Vic's office when central heating turns on during workday mornings, unless it's a holiday day. This does not turn the heating on, it's just to piggy-back off other automations if the heating is already on anyway.
+
+- Alias: /switch/central-heating/vic-office-preheat
+- ID: `switch_central_heating_vic_office_preheat`
+- Mode: `single`
+
+File: [`automation/switch/central_heating/vic_office_preheat.yaml`](entities/automation/switch/central_heating/vic_office_preheat.yaml)
+</details>
+
 <details><summary><code>/switch/charging-hub/turn-off</code></summary>
 
 **Entity ID: `automation.switch_charging_hub_turn_off`**
@@ -2255,7 +2272,7 @@ File: [`automation/tag/cosmo/ground_floor.yaml`](entities/automation/tag/cosmo/g
 
 - Alias: /var/vic-s-office-state-manager/attribute-timeout
 - ID: `var_vic_s_office_state_manager_attribute_timeout`
-- Mode: `queued`
+- Mode: `single`
 
 File: [`automation/var/vic_s_office_state_manager/attribute_timeout.yaml`](entities/automation/var/vic_s_office_state_manager/attribute_timeout.yaml)
 </details>
@@ -2268,7 +2285,7 @@ File: [`automation/var/vic_s_office_state_manager/attribute_timeout.yaml`](entit
 
 - Alias: /var/will-s-office-state-manager/attribute-timeout
 - ID: `var_will_s_office_state_manager_attribute_timeout`
-- Mode: `queued`
+- Mode: `single`
 
 File: [`automation/var/will_s_office_state_manager/attribute_timeout.yaml`](entities/automation/var/will_s_office_state_manager/attribute_timeout.yaml)
 </details>
@@ -2647,7 +2664,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (29)</h3></summary>
+<details><summary><h3>Entities (30)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -2872,6 +2889,15 @@ File: [`input_boolean/auto_reload/auto_reload_zone.yaml`](entities/input_boolean
 - Icon: [`mdi:message-badge-outline`](https://pictogrammers.com/library/mdi/icon/message-badge-outline/)
 
 File: [`input_boolean/debug_with_persistent_notifications.yaml`](entities/input_boolean/debug_with_persistent_notifications.yaml)
+</details>
+
+<details><summary><strong>Lounge | Lights: Exercise Mode</strong></summary>
+
+**Entity ID: `input_boolean.lounge_lights_exercise_mode`**
+
+- Icon: [`mdi:dumbbell`](https://pictogrammers.com/library/mdi/icon/dumbbell/)
+
+File: [`input_boolean/lounge_lights_exercise_mode.yaml`](entities/input_boolean/lounge_lights_exercise_mode.yaml)
 </details>
 
 <details><summary><strong>Mini CRT Fan</strong></summary>
@@ -3407,7 +3433,7 @@ File: [`input_number/timeout/dry_box_dehumidifier_timeout.yaml`](entities/input_
 File: [`input_number/timeout/hallway_lights_timeout.yaml`](entities/input_number/timeout/hallway_lights_timeout.yaml)
 </details>
 
-<details><summary><strong>Lounge Diffuser | Timeout</strong></summary>
+<details><summary><strong>Lounge | Diffuser: Timeout</strong></summary>
 
 **Entity ID: `input_number.lounge_diffuser_timeout`**
 
@@ -3420,7 +3446,7 @@ File: [`input_number/timeout/hallway_lights_timeout.yaml`](entities/input_number
 File: [`input_number/timeout/lounge_diffuser_timeout.yaml`](entities/input_number/timeout/lounge_diffuser_timeout.yaml)
 </details>
 
-<details><summary><strong>Lounge Lights | Timeout</strong></summary>
+<details><summary><strong>Lounge | Lights: Timeout</strong></summary>
 
 **Entity ID: `input_number.lounge_lights_timeout`**
 
@@ -3432,7 +3458,7 @@ File: [`input_number/timeout/lounge_diffuser_timeout.yaml`](entities/input_numbe
 File: [`input_number/timeout/lounge_lights_timeout.yaml`](entities/input_number/timeout/lounge_lights_timeout.yaml)
 </details>
 
-<details><summary><strong>Lounge Room | Timeout</strong></summary>
+<details><summary><strong>Lounge | Room Timeout</strong></summary>
 
 **Entity ID: `input_number.lounge_room_timeout`**
 
@@ -3617,7 +3643,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (17)</h3></summary>
+<details><summary><h3>Entities (18)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -3777,6 +3803,15 @@ File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entit
 - Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
 
 File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
+</details>
+
+<details><summary><strong>Vic | Work Calendar: Holiday Pattern</strong></summary>
+
+**Entity ID: `input_text.vic_work_calendar_holiday_pattern`**
+
+- Icon: [`mdi:regex`](https://pictogrammers.com/library/mdi/icon/regex/)
+
+File: [`input_text/vic_work_calendar_holiday_pattern.yaml`](entities/input_text/vic_work_calendar_holiday_pattern.yaml)
 </details>
 
 </details>
@@ -5442,7 +5477,7 @@ File: [`rest_command/wger/post_weightentry.yaml`](entities/rest_command/wger/pos
 
 ## Script
 
-<details><summary><h3>Entities (28)</h3></summary>
+<details><summary><h3>Entities (30)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -5701,6 +5736,75 @@ File: [`script/functions/log_exception.yaml`](entities/script/functions/log_exce
 }
 ```
 File: [`script/functions/run_dynamic_script.yaml`](entities/script/functions/run_dynamic_script.yaml)
+</details>
+
+<details><summary><strong>State Manager | Attribute Timeout</strong></summary>
+
+**Entity ID: `script.state_manager_attribute_timeout`**
+
+> Timeout for "should be" on/off attributes of a state manager
+
+- Fields:
+
+```json
+{
+  "state_manager": {
+    "description": "The state manager entity to reset attributes for",
+    "required": true,
+    "example": "var.will_s_office_state_manager",
+    "selector": {
+      "entity": {
+        "domain": "var"
+      }
+    }
+  }
+}
+```
+
+- Mode: `parallel`
+- Variables:
+
+```json
+{
+  "cached_states": "{{\n  (state_attr(state_manager, \"entity_states_b64\") or \"e30=\")\n  | base64_decode\n  | from_json\n  | default({})\n}}",
+  "target_area_id": "{{ area_id(state_manager) }}"
+}
+```
+File: [`script/functions/state_manager/state_manager_attribute_timeout.yaml`](entities/script/functions/state_manager/state_manager_attribute_timeout.yaml)
+</details>
+
+<details><summary><strong>State Manager | Reset States</strong></summary>
+
+**Entity ID: `script.state_manager_reset_states`**
+
+> Reset the states of a state manager to the original states
+
+- Fields:
+
+```json
+{
+  "state_manager": {
+    "description": "The state manager entity to reset attributes for",
+    "required": true,
+    "example": "var.will_s_office_state_manager",
+    "selector": {
+      "entity": {
+        "domain": "var"
+      }
+    }
+  }
+}
+```
+
+- Mode: `parallel`
+- Variables:
+
+```json
+{
+  "target_area_id": "{{ area_id(state_manager) }}"
+}
+```
+File: [`script/functions/state_manager/state_manager_reset_states.yaml`](entities/script/functions/state_manager/state_manager_reset_states.yaml)
 </details>
 
 <details><summary><strong>Target Git Branch: Set Options</strong></summary>
@@ -7740,7 +7844,7 @@ File: [`utility_meter/ovo_gas_monthly_usage.yaml`](entities/utility_meter/ovo_ga
 
 ## Var
 
-<details><summary><h3>Entities (19)</h3></summary>
+<details><summary><h3>Entities (20)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -7797,6 +7901,13 @@ File: [`var/current_appdaemon_branch.yaml`](entities/var/current_appdaemon_branc
 - Icon: [`mdi:application-parentheses`](https://pictogrammers.com/library/mdi/icon/application-parentheses/)
 
 File: [`var/current_appdaemon_ref.yaml`](entities/var/current_appdaemon_ref.yaml)
+</details>
+
+<details><summary><strong>Lounge | Occupancy Automation States Pre-Exercise Mode</strong></summary>
+
+**Entity ID: `var.lounge_occupancy_automation_state_pre_exercise_mode`**
+
+File: [`var/lounge_occupancy_automation_state_pre_exercise_mode.yaml`](entities/var/lounge_occupancy_automation_state_pre_exercise_mode.yaml)
 </details>
 
 <details><summary><strong>Spotify Tempo (Will)</strong></summary>
