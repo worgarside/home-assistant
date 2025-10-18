@@ -50,12 +50,17 @@ trigger:
       {{ label_entities('Restore State after Room Vacancy') != ns.cached_states.keys() | list }}
 
   - platform: event
+    id: var_reload
     event_type: call_service
     event_data:
       domain: var
       service: reload
 
-condition: "{{ trigger.to_state.entity_id not in label_entities('state_manager') }}"
+condition: >-
+  {{
+    trigger.id == "var_reload" or
+    trigger.to_state.entity_id not in label_entities('state_manager')
+  }}
 
 action:
   - repeat:
