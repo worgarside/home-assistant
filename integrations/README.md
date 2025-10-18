@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (155)</h3></summary>
+<details><summary><h3>Entities (154)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -187,45 +187,34 @@ File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binar
 File: [`automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml`](entities/automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/vic-s-office-occupancy/on</code></summary>
-
-**Entity ID: `automation.binary_sensor_vic_s_office_occupancy_on`**
-
-> Turn on shell lamp when Victoria's office occupancy is detected
-
-- Alias: /binary-sensor/vic-s-office-occupancy/on
-- ID: `binary_sensor_vic_s_office_occupancy_on`
-- Mode: `single`
-
-File: [`automation/binary_sensor/vic_s_office_occupancy/on.yaml`](entities/automation/binary_sensor/vic_s_office_occupancy/on.yaml)
-</details>
-
-<details><summary><code>/binary-sensor/vic-s-office-occupancy/state-change</code></summary>
+<details><summary><code>/binary-sensor/vic-s-office/occupancy/state-change</code></summary>
 
 **Entity ID: `automation.binary_sensor_vic_s_office_occupancy_state_change`**
 
 > *No description provided*
 
-- Alias: /binary-sensor/vic-s-office-occupancy/state-change
+- Alias: /binary-sensor/vic-s-office/occupancy/state-change
 - ID: `binary_sensor_vic_s_office_occupancy_state_change`
-- Mode: `queued`
+- Mode: `restart`
 - Variables:
 
 ```json
 {
-  "state_manager": "var.vic_s_office_state_manager"
+  "state_manager": "var.vic_s_office_state_manager",
+  "cached_states": "{{\n  state_attr(state_manager, \"entity_states_b64\")\n  | base64_decode\n  | from_json\n}}",
+  "target_area_id": "{{ area_id(state_manager) }}"
 }
 ```
-File: [`automation/binary_sensor/vic_s_office_occupancy/state_change.yaml`](entities/automation/binary_sensor/vic_s_office_occupancy/state_change.yaml)
+File: [`automation/binary_sensor/vic_s_office/occupancy/state_change.yaml`](entities/automation/binary_sensor/vic_s_office/occupancy/state_change.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/will-s-office-external-opening-detected/on</code></summary>
+<details><summary><code>/binary-sensor/will-s-office/external-opening-detected/on</code></summary>
 
 **Entity ID: `automation.binary_sensor_will_s_office_external_opening_detected_on`**
 
 > Turn off office heating when window or roof terrace door is opened
 
-- Alias: /binary-sensor/will-s-office-external-opening-detected/on
+- Alias: /binary-sensor/will-s-office/external-opening-detected/on
 - ID: `binary_sensor_will_s_office_external_opening_detected_on`
 - Mode: `restart`
 - Variables:
@@ -237,16 +226,16 @@ File: [`automation/binary_sensor/vic_s_office_occupancy/state_change.yaml`](enti
   "notif_id": "office_heating_off"
 }
 ```
-File: [`automation/binary_sensor/will_s_office_external_opening_detected/on.yaml`](entities/automation/binary_sensor/will_s_office_external_opening_detected/on.yaml)
+File: [`automation/binary_sensor/will_s_office/external_opening_detected/on.yaml`](entities/automation/binary_sensor/will_s_office/external_opening_detected/on.yaml)
 </details>
 
-<details><summary><code>/binary-sensor/will-s-office-occupancy/state-change</code></summary>
+<details><summary><code>/binary-sensor/will-s-office/occupancy/state-change</code></summary>
 
 **Entity ID: `automation.binary_sensor_will_s_office_occupancy_state_change`**
 
 > *No description provided*
 
-- Alias: /binary-sensor/will-s-office-occupancy/state-change
+- Alias: /binary-sensor/will-s-office/occupancy/state-change
 - ID: `binary_sensor_will_s_office_occupancy_state_change`
 - Mode: `restart`
 - Variables:
@@ -254,10 +243,11 @@ File: [`automation/binary_sensor/will_s_office_external_opening_detected/on.yaml
 ```json
 {
   "state_manager": "var.will_s_office_state_manager",
-  "cached_states": "{{\n  state_attr(\"var.will_s_office_state_manager\", \"entity_states_b64\")\n  | base64_decode\n  | from_json\n}}"
+  "cached_states": "{{\n  state_attr(state_manager, \"entity_states_b64\")\n  | base64_decode\n  | from_json\n}}",
+  "target_area_id": "{{ area_id(state_manager) }}"
 }
 ```
-File: [`automation/binary_sensor/will_s_office_occupancy/state_change.yaml`](entities/automation/binary_sensor/will_s_office_occupancy/state_change.yaml)
+File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](entities/automation/binary_sensor/will_s_office/occupancy/state_change.yaml)
 </details>
 
 <details><summary><code>/camera/offline-notify-will</code></summary>
@@ -5760,7 +5750,7 @@ File: [`script/functions/run_dynamic_script.yaml`](entities/script/functions/run
 
 ```json
 {
-  "cached_states": "{{\n  state_attr(state_manager, \"entity_states_b64\")\n  | base64_decode\n  | from_json\n  | default({})\n}}",
+  "cached_states": "{{\n  state_attr(state_manager, \"entity_states_b64\") or \"e30=\"\n  | base64_decode\n  | from_json\n  | default({})\n}}",
   "target_area_id": "{{ area_id(state_manager) }}"
 }
 ```

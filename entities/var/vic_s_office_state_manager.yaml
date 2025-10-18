@@ -14,10 +14,4 @@ unique_id: var_vic_s_office_state_manager
 initial_value: 0 # Not used
 
 attributes:
-  light.glowstick: false
-
-  light.shell_lamp: false
-
-  light.vic_s_office: false
-
-  fan.vic_s_office_fan: false
+  entity_states: {}

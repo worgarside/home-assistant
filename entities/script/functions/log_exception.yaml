@@ -49,7 +49,7 @@ sequence:
       message: |
         Source:  [`{{ calling_entity }}`](/config/{{ entity_domain }}/trace/{{ entity_id }})
         Time:    `{{ timestamp }}`
-        Message: {%- if "\n" in formatted_message or "```" in formatted_message %}
+        Message: {% if "\n" in formatted_message or "```" in formatted_message %}
         >
 
         {{ formatted_message }}

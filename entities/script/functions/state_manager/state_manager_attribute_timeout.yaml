@@ -15,9 +15,10 @@ fields:
         domain: var
 
 variables:
+  # "e30=" is "{}" base64 encoded
   cached_states: >-
     {{
-      state_attr(state_manager, "entity_states_b64")
+      state_attr(state_manager, "entity_states_b64") or "e30="
       | base64_decode
       | from_json
       | default({})
@@ -33,30 +34,29 @@ sequence:
           calling_entity: script.state_manager_attribute_timeout
           message: >-
             Invalid `target_area_id` value `{{ target_area_id | default('<undefined>') }}` for
-            state manager `{{ state_manager }}`"
+            state manager `{{ state_manager }}`
 
       - stop: "Invalid `target_area_id` value: `{{ target_area_id | default('<undefined>') }}`"
         error: true
 
-    else:
-      - variables:
-          entity_states: >-
-            {%- set ns = namespace(output=cached_states) %}
-            {%
-              for k in cached_states.keys()
-              if (
-                cached_states.get(k) | bool(false)
-                and is_state(k, "off")
-                and area_id(k) == target_area_id
-              )
-            %}
-              {% set ns.output = dict(ns.output, **{k: false}) %}
-            {% endfor %}
-            {{ ns.output }}
+  - variables:
+      entity_states: >-
+        {%- set ns = namespace(output=cached_states) %}
+        {%
+          for k in cached_states.keys()
+          if (
+            cached_states.get(k) | bool(false)
+            and is_state(k, "off")
+            and area_id(k) == target_area_id
+          )
+        %}
+          {% set ns.output = dict(ns.output, **{k: false}) %}
+        {% endfor %}
+        {{ ns.output }}
 
-      - service: var.set
-        target:
-          entity_id: "{{ state_manager }}"
-        data:
-          attributes:
-            entity_states_b64: "{{ entity_states | to_json | base64_encode }}"
+  - service: var.set
+    target:
+      entity_id: "{{ state_manager }}"
+    data:
+      attributes:
+        entity_states_b64: "{{ entity_states | to_json | base64_encode }}"
