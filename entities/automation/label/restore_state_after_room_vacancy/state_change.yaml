@@ -26,6 +26,11 @@ trigger:
       {% endfor %}
       {{ ns.entities | count > 0 }}
 
+  # e.g. if a new entity is labeled
+  - platform: template
+    value_template: >-
+      {{ label_entities('Restore State after Room Vacancy') != cached_states.keys() | list }}
+
 variables:
   cached_states: >-
     {{
