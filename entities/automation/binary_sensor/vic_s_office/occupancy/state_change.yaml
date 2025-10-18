@@ -17,7 +17,7 @@ variables:
 
   cached_states: >-
     {{
-      state_attr(state_manager, "entity_states_b64")
+      (state_attr(state_manager, "entity_states_b64") or "e30=")
       | base64_decode
       | from_json
     }}
@@ -97,7 +97,7 @@ action:
                 - wait_template: >-
                     {%
                       set cached_states =
-                        state_attr(state_manager, "entity_states_b64")
+                        (state_attr(state_manager, "entity_states_b64") or "e30=")
                         | base64_decode
                         | from_json
                     %}

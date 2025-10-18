@@ -13,7 +13,7 @@ trigger:
     value_template: >-
       {%
         set cached_states =
-          state_attr("var.will_s_office_state_manager", "entity_states_b64")
+          (state_attr("var.will_s_office_state_manager", "entity_states_b64") or "e30=")
           | base64_decode
           | from_json
       %}
@@ -29,7 +29,7 @@ trigger:
 variables:
   cached_states: >-
     {{
-      state_attr("var.will_s_office_state_manager","entity_states_b64")
+      ( state_attr("var.will_s_office_state_manager", "entity_states_b64") or "e30=" )
       | base64_decode
       | from_json
     }}

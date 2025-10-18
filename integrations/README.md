@@ -201,7 +201,7 @@ File: [`automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml`](enti
 ```json
 {
   "state_manager": "var.vic_s_office_state_manager",
-  "cached_states": "{{\n  state_attr(state_manager, \"entity_states_b64\")\n  | base64_decode\n  | from_json\n}}",
+  "cached_states": "{{\n  (state_attr(state_manager, \"entity_states_b64\") or \"e30=\")\n  | base64_decode\n  | from_json\n}}",
   "target_area_id": "{{ area_id(state_manager) }}"
 }
 ```
@@ -243,7 +243,7 @@ File: [`automation/binary_sensor/will_s_office/external_opening_detected/on.yaml
 ```json
 {
   "state_manager": "var.will_s_office_state_manager",
-  "cached_states": "{{\n  state_attr(state_manager, \"entity_states_b64\")\n  | base64_decode\n  | from_json\n}}",
+  "cached_states": "{{\n  (state_attr(state_manager, \"entity_states_b64\") or \"e30=\")\n  | base64_decode\n  | from_json\n}}",
   "target_area_id": "{{ area_id(state_manager) }}"
 }
 ```
@@ -956,7 +956,7 @@ File: [`automation/label/radiator/any_on.yaml`](entities/automation/label/radiat
 
 ```json
 {
-  "cached_states": "{{\n  state_attr(\"var.will_s_office_state_manager\",\"entity_states_b64\")\n  | base64_decode\n  | from_json\n}}"
+  "cached_states": "{{\n  ( state_attr(\"var.will_s_office_state_manager\", \"entity_states_b64\") or \"e30=\" )\n  | base64_decode\n  | from_json\n}}"
 }
 ```
 File: [`automation/label/restore_state_after_room_vacancy/state_change.yaml`](entities/automation/label/restore_state_after_room_vacancy/state_change.yaml)
@@ -5750,7 +5750,7 @@ File: [`script/functions/run_dynamic_script.yaml`](entities/script/functions/run
 
 ```json
 {
-  "cached_states": "{{\n  state_attr(state_manager, \"entity_states_b64\") or \"e30=\"\n  | base64_decode\n  | from_json\n  | default({})\n}}",
+  "cached_states": "{{\n  (state_attr(state_manager, \"entity_states_b64\") or \"e30=\")\n  | base64_decode\n  | from_json\n  | default({})\n}}",
   "target_area_id": "{{ area_id(state_manager) }}"
 }
 ```
