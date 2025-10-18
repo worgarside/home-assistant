@@ -65,6 +65,12 @@ condition: >-
 action:
   - if: "{{ trigger.id == 'var_reload' }}"
     then:
+      - alias: Wait for reload to start
+        wait_template: "{{ is_state('var.will_s_office_state_manager', 'unavailable') }}"
+        timeout:
+          seconds: 5
+        continue_on_timeout: true
+
       - alias: Wait for reload to complete
         wait_template: "{{ not is_state('var.will_s_office_state_manager', 'unavailable') }}"
         timeout:
