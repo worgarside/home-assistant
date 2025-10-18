@@ -74,6 +74,7 @@ action:
                 data:
                   hvac_mode: heat
 
+    else:
       - variables:
           entity_states: >-
             {% set ns = namespace(e={}) %}
