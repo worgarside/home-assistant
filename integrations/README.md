@@ -5575,13 +5575,7 @@ File: [`script/cosmo/cosmo_clean_room.yaml`](entities/script/cosmo/cosmo_clean_r
 ```
 
 - Mode: `parallel`
-- Variables:
 
-```json
-{
-  "result": "{% set raw_lookup = states(\"sensor.cosmo_room_lookup\") %} {% if raw_lookup.startswith(\"{\") %}\n  {% set lookup = raw_lookup | from_json %}\n  {% set key = lookup_value | string | lower | regex_replace(\"[^A-Za-z0-9]\", \"\") %}\n\n  {% if key in lookup %}\n    {{ lookup[key] }}\n  {% else %}\n    ERROR: {{ key | default(\"null\") }} not found in lookup: {{ lookup | tojson(indent=2) }}\n  {% endif %}\n{% else %}\n  ERROR: {{ key | default(\"null\") }} not found in lookup: {{ raw_lookup }}\n{% endif %}"
-}
-```
 File: [`script/cosmo/cosmo_get_room_id_or_name.yaml`](entities/script/cosmo/cosmo_get_room_id_or_name.yaml)
 </details>
 
