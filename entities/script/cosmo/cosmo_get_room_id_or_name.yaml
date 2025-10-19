@@ -24,10 +24,9 @@ sequence:
   - variables:
       result: >-
         {% set raw_lookup = states("sensor.cosmo_room_lookup") %}
+        {% set key = lookup_value | string | lower | regex_replace("[^A-Za-z0-9]", "") %}
         {% if raw_lookup.startswith("{") %}
           {% set lookup = raw_lookup | from_json %}
-          {% set key = lookup_value | string | lower | regex_replace("[^A-Za-z0-9]", "") %}
-
           {% if key in lookup %}
             {{ lookup[key] }}
           {% else %}
