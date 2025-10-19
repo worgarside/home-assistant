@@ -2947,7 +2947,7 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 **Entity ID: `input_datetime.cosmo_nightly_kitchen_clean_time`**
 
 - Has Time: `true`
-- Icon: [`mdi:vacuum-clock`](https://pictogrammers.com/library/mdi/icon/vacuum-clock/)
+- Icon: [`mdi:weather-night`](https://pictogrammers.com/library/mdi/icon/weather-night/)
 
 File: [`input_datetime/cosmo_nightly_kitchen_clean_time.yaml`](entities/input_datetime/cosmo_nightly_kitchen_clean_time.yaml)
 </details>
