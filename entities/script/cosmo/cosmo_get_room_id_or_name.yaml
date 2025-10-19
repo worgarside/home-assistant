@@ -16,9 +16,7 @@ sequence:
   - if: "{{ is_state('sensor.cosmo_room_lookup', 'unknown') }}"
     then:
       - alias: Force-update the room lookup
-        service: homeassistant.update_entity
-        data:
-          entity_id: sensor.cosmo_room_lookup
+        event: update_cosmo_room_lookup
 
   - variables:
       result: >-

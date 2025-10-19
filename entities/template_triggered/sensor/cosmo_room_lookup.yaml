@@ -11,6 +11,9 @@ trigger:
     entity_id: vacuum.cosmo
     attribute: selected_map
 
+  - platform: event
+    event_type: update_cosmo_room_lookup
+
 sensor:
   - name: Cosmo Room Lookup
 
