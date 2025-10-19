@@ -18,6 +18,9 @@ sequence:
       - alias: Force-update the room lookup
         event: update_cosmo_room_lookup
 
+      - wait_template: "{{ not is_state('sensor.cosmo_room_lookup', 'unknown') }}"
+        timeout: 10
+
   - variables:
       result: >-
         {% set raw_lookup = states("sensor.cosmo_room_lookup") %}
