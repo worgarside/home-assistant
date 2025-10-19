@@ -5322,6 +5322,21 @@
                   },
                   "aggregate_func": "max",
                   "lower_bound": 0
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.wger_will_weight_d7d"
+                  ],
+                  "hours_to_show": 168,
+                  "group_by": "date",
+                  "show": {
+                    "graph": "bar",
+                    "state": false
+                  },
+                  "aggregate_func": "max",
+                  "lower_bound": 0,
+                  "name": "Weight ("
                 }
               ]
             },
