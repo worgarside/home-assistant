@@ -5343,6 +5343,15 @@
                   "grid_options": {
                     "columns": 6
                   }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "{% set calories = states(\"sensor.will_s_pixel_6_pro_total_calories_burned\") | int(0) %}\n{{\n  iif(\n    calories < 1900, \"mdi:sleep\",\n    iif(calories < 2300, \"mdi:walk\",\n      iif(calories < 2700, \"mdi:run\", \"mdi:fire\")\n    )\n  )\n}}",
+                  "features_position": "bottom",
+                  "entity": "sensor.will_s_pixel_6_pro_total_calories_burned",
+                  "primary": "{{ states(\"sensor.will_s_pixel_6_pro_total_calories_burned\") | int(\"??\") }} kcal",
+                  "secondary": "Calories Burned Today",
+                  "color": "{% set calories = states(\"sensor.will_s_pixel_6_pro_total_calories_burned\") | int(0) %}\n{{\n  iif(\n    calories < 1900, \"#90CAF9\",\n    iif(calories < 2300, \"#81C784\",\n      iif(calories < 2700, \"#FFB74D\", \"#E53935\")\n    )\n  )\n}}"
                 }
               ]
             },
