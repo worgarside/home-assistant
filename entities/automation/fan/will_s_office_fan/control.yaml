@@ -16,11 +16,15 @@ trigger:
     entity_id: sensor.will_s_office_fan_pm_2_5
     above: input_number.will_s_office_fan_pm2_5_threshold
     id: pm25_high
+    for:
+      minutes: 1
 
   - platform: numeric_state
     entity_id: sensor.will_s_office_fan_pm_2_5
     below: input_number.will_s_office_fan_pm2_5_threshold
     id: pm25_low
+    for:
+      minutes: 1
 
   - platform: numeric_state
     entity_id: sensor.will_s_office_fan_volatile_organic_compounds_index
@@ -41,7 +45,7 @@ trigger:
     from: "on"
     id: room_exited
     for:
-      minutes: 1
+      minutes: 5
 
 variables:
   pm25_high: >
