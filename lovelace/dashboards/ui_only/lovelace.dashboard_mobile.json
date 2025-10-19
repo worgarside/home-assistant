@@ -2589,7 +2589,14 @@
                       "features_position": "bottom",
                       "entity": "input_number.nightly_kitchen_clean_suction_level",
                       "area": "kitchen",
-                      "color": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"#4CAF50\", \"#FFC107\", \"#FF9800\", \"#F44336\"][level],\n    \"#9E9E9E\"\n  )\n}}"
+                      "color": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"#4CAF50\", \"#FFC107\", \"#FF9800\", \"#F44336\"][level],\n    \"#9E9E9E\"\n  )\n}}",
+                      "multiline_secondary": false,
+                      "features": [
+                        {
+                          "style": "slider",
+                          "type": "numeric-input"
+                        }
+                      ]
                     },
                     {
                       "type": "custom:mushroom-number-card",
