@@ -2494,6 +2494,32 @@
                     "action": "none"
                   },
                   "primary": "Auto-pause Cosmo"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:robot-vacuum{% if is_state(\"automation.cosmo_nightly_kitchen_clean\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.cosmo_nightly_kitchen_clean",
+                  "area": "kitchen",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/cosmo/nightly-kitchen-clean",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.cosmo_nightly_kitchen_clean\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Cosmo Nightly Clean"
                 }
               ]
             },
