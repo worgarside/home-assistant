@@ -2569,7 +2569,10 @@
                   "entity": "input_datetime.cosmo_nightly_kitchen_clean_time",
                   "name": "Nightly Clean Time",
                   "primary_info": "state",
-                  "secondary_info": "name"
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  }
                 }
               ]
             }
