@@ -14,13 +14,18 @@ fields:
 
 variables:
   result: >-
-    {% set lookup = states('sensor.cosmo_room_lookup') | from_json %}
-    {% set key = lookup_value | string | lower | regex_replace("[^A-Za-z0-9]", "") %}
+    {% set raw_lookup = states("sensor.cosmo_room_lookup") %}
+    {% if raw_lookup.startswith("{") %}
+      {% set lookup = raw_lookup | from_json %}
+      {% set key = lookup_value | string | lower | regex_replace("[^A-Za-z0-9]", "") %}
 
-    {% if key in lookup %}
-      {{ lookup[key] }}
+      {% if key in lookup %}
+        {{ lookup[key] }}
+      {% else %}
+        ERROR: {{ key | default("null") }} not found in lookup: {{ lookup | tojson(indent=2) }}
+      {% endif %}
     {% else %}
-      ERROR: {{ key | default("null") }} not found in lookup: {{ lookup | tojson(indent=2) }}
+      ERROR: {{ key | default("null") }} not found in lookup: {{ raw_lookup }}
     {% endif %}
 
 sequence:
