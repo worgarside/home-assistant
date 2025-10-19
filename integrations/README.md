@@ -2940,7 +2940,17 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 
 ## Input Datetime
 
-<details><summary><h3>Entities (4)</h3></summary>
+<details><summary><h3>Entities (5)</h3></summary>
+
+<details><summary><strong>Cosmo Nightly Kitchen Clean Time</strong></summary>
+
+**Entity ID: `input_datetime.cosmo_nightly_kitchen_clean_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:vacuum-clock`](https://pictogrammers.com/library/mdi/icon/vacuum-clock/)
+
+File: [`input_datetime/cosmo_nightly_kitchen_clean_time.yaml`](entities/input_datetime/cosmo_nightly_kitchen_clean_time.yaml)
+</details>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
 
