@@ -2590,6 +2590,19 @@
                       "entity": "input_number.nightly_kitchen_clean_suction_level",
                       "area": "kitchen",
                       "color": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"#4CAF50\", \"#FFC107\", \"#FF9800\", \"#F44336\"][level],\n    \"#9E9E9E\"\n  )\n}}"
+                    },
+                    {
+                      "type": "custom:mushroom-number-card",
+                      "entity": "input_number.nightly_kitchen_clean_suction_level",
+                      "secondary_info": "none",
+                      "primary_info": "none",
+                      "layout": "horizontal",
+                      "grid_options": {
+                        "columns": 6,
+                        "rows": 1
+                      },
+                      "name": "Nightly Clean Suction Level",
+                      "icon_type": "none"
                     }
                   ]
                 }
