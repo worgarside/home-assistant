@@ -2494,6 +2494,32 @@
                     "action": "none"
                   },
                   "primary": "Auto-pause Cosmo"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:robot-vacuum{% if is_state(\"automation.cosmo_nightly_kitchen_clean\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.cosmo_nightly_kitchen_clean",
+                  "area": "kitchen",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/cosmo/nightly-kitchen-clean",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.cosmo_nightly_kitchen_clean\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Cosmo Nightly Clean"
                 }
               ]
             },
@@ -2512,8 +2538,8 @@
                   "tap_action": {
                     "action": "more-info"
                   },
-                  "secondary_info": "state",
-                  "primary_info": "name",
+                  "secondary_info": "name",
+                  "primary_info": "state",
                   "layout": "horizontal"
                 },
                 {
@@ -2523,8 +2549,8 @@
                   "tap_action": {
                     "action": "more-info"
                   },
-                  "secondary_info": "state",
-                  "primary_info": "name",
+                  "secondary_info": "name",
+                  "primary_info": "state",
                   "layout": "horizontal"
                 },
                 {
@@ -2534,9 +2560,36 @@
                   "tap_action": {
                     "action": "more-info"
                   },
-                  "secondary_info": "state",
-                  "primary_info": "name",
+                  "secondary_info": "name",
+                  "primary_info": "state",
                   "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_datetime.cosmo_nightly_kitchen_clean_time",
+                  "name": "Nightly Clean Time",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "features": [
+                    {
+                      "style": "slider",
+                      "type": "numeric-input"
+                    }
+                  ],
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"Silent\", \"Standard\", \"Strong\", \"Turbo\"][level],\n    level\n  )\n}}",
+                  "secondary": "Nightly Clean Suction Level",
+                  "icon": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"mdi:volume-mute\", \"mdi:fan\", \"mdi:fan-speed-2\", \"mdi:fan-speed-3\"][level],\n    \"mdi:help-circle\"\n  )\n}}",
+                  "features_position": "inline",
+                  "entity": "input_number.nightly_kitchen_clean_suction_level",
+                  "area": "kitchen",
+                  "color": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"#4CAF50\", \"#FFC107\", \"#FF9800\", \"#F44336\"][level],\n    \"#9E9E9E\"\n  )\n}}",
+                  "multiline_secondary": false
                 }
               ]
             }

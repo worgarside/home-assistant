@@ -5250,6 +5250,15 @@
                   "entity": "sensor.will_s_pixel_6_pro_daily_steps"
                 },
                 {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "{% set calories = states(\"sensor.will_s_pixel_6_pro_total_calories_burned\") | int(0) %}\n{{\n  iif(\n    calories < 1900, \"mdi:sleep\",\n    iif(calories < 2500, \"mdi:walk\",\n      iif(calories < 2900, \"mdi:run\", \"mdi:fire\")\n    )\n  )\n}}",
+                  "features_position": "bottom",
+                  "entity": "sensor.will_s_pixel_6_pro_total_calories_burned",
+                  "primary": "{{ states(\"sensor.will_s_pixel_6_pro_total_calories_burned\") | int(\"??\") }} kcal",
+                  "secondary": "Calories Burned Today",
+                  "color": "{% set calories = states(\"sensor.will_s_pixel_6_pro_total_calories_burned\") | int(0) %}\n{{\n  iif(\n    calories < 1900, \"#90CAF9\",\n    iif(calories < 2500, \"#81C784\",\n      iif(calories < 2900, \"#FFB74D\", \"#E53935\")\n    )\n  )\n}}"
+                },
+                {
                   "type": "heading",
                   "icon": "",
                   "heading": "Weight Lifted",
@@ -5314,14 +5323,35 @@
                   "entities": [
                     "sensor.wger_will_weight_lifted_today"
                   ],
-                  "hour_to_show": 168,
+                  "hours_to_show": 168,
                   "group_by": "date",
                   "show": {
                     "graph": "bar",
                     "state": false
                   },
                   "aggregate_func": "max",
-                  "lower_bound": 0
+                  "lower_bound": 0,
+                  "grid_options": {
+                    "columns": 6
+                  }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.wger_will_weight_d7d"
+                  ],
+                  "hours_to_show": 168,
+                  "group_by": "date",
+                  "show": {
+                    "graph": "bar",
+                    "state": false
+                  },
+                  "aggregate_func": "max",
+                  "lower_bound": "~0",
+                  "name": "Weight (\u03947d)",
+                  "grid_options": {
+                    "columns": 6
+                  }
                 }
               ]
             },
