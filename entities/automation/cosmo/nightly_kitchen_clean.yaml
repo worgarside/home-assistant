@@ -9,7 +9,7 @@ max_exceeded: silent
 
 trigger:
   platform: time
-  at: "23:00:00"
+  at: input_datetime.cosmo_nightly_kitchen_clean_time
 
 action:
   - if: "{{ states('binary_sensor.basement_occupancy') | bool(false) }}"
