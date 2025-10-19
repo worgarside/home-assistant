@@ -2573,6 +2573,19 @@
                   "tap_action": {
                     "action": "more-info"
                   }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.nightly_kitchen_clean_suction_level",
+                  "secondary_info": "none",
+                  "primary_info": "none",
+                  "layout": "horizontal",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "name": "Nightly Clean Suction Level",
+                  "icon_type": "none"
                 }
               ]
             }
