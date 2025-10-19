@@ -12,18 +12,30 @@ fields:
     selector:
       text:
 
-variables:
-  result: >-
-    {% set lookup = states('sensor.cosmo_room_lookup') | from_json %}
-    {% set key = lookup_value | string | lower | regex_replace("[^A-Za-z0-9]", "") %}
-
-    {% if key in lookup %}
-      {{ lookup[key] }}
-    {% else %}
-      ERROR: {{ key | default("null") }} not found in lookup: {{ lookup | tojson(indent=2) }}
-    {% endif %}
-
 sequence:
+  - if: "{{ is_state('sensor.cosmo_room_lookup', 'unknown') }}"
+    then:
+      - alias: Force-update the room lookup
+        event: update_cosmo_room_lookup
+
+      - wait_template: "{{ not is_state('sensor.cosmo_room_lookup', 'unknown') }}"
+        timeout: 10
+
+  - variables:
+      result: >-
+        {% set raw_lookup = states("sensor.cosmo_room_lookup") %}
+        {% set key = lookup_value | string | lower | regex_replace("[^A-Za-z0-9]", "") %}
+        {% if raw_lookup.startswith("{") %}
+          {% set lookup = raw_lookup | from_json %}
+          {% if key in lookup %}
+            {{ lookup[key] }}
+          {% else %}
+            ERROR: {{ key | default("null") }} not found in lookup: {{ lookup | tojson(indent=2) }}
+          {% endif %}
+        {% else %}
+          ERROR: {{ key | default("null") }} not found in lookup: {{ raw_lookup }}
+        {% endif %}
+
   - if: >-
       {{ (result | string).startswith("ERROR") }}
 

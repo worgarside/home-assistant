@@ -55,6 +55,28 @@ sequence:
     data:
       lookup_value: "{{ room_name }}"
     response_variable: room_id
+    continue_on_error: true
+
+  - if: "{{ not room_id }}"
+
+    then:
+      # yamllint disable rule:line-length
+      - variables:
+          message: |
+            Unable to get room ID for "{{ room_name }}" from `script.cosmo_room_lookup`. Current lookup is
+
+            ```json
+            {{ states("sensor.cosmo_room_lookup") }}
+            ```
+        # yamllint enable rule:line-length
+
+      - service: script.log_exception
+        data:
+          calling_entity: script.cosmo_clean_room
+          message: "{{ message }}"
+
+      - stop: "{{ message }}"
+        error: true
 
   - alias: Set suction level
     service: select.select_option

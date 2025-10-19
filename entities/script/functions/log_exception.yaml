@@ -51,7 +51,6 @@ sequence:
         Time:    `{{ timestamp }}`
         Message: {% if "\n" in formatted_message or "```" in formatted_message %}
         >
-
         {{ formatted_message }}
         {%- else %}{{ formatted_message }}{% endif %}
 

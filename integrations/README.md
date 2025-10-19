@@ -2940,7 +2940,17 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 
 ## Input Datetime
 
-<details><summary><h3>Entities (4)</h3></summary>
+<details><summary><h3>Entities (5)</h3></summary>
+
+<details><summary><strong>Cosmo Nightly Kitchen Clean Time</strong></summary>
+
+**Entity ID: `input_datetime.cosmo_nightly_kitchen_clean_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:weather-night`](https://pictogrammers.com/library/mdi/icon/weather-night/)
+
+File: [`input_datetime/cosmo_nightly_kitchen_clean_time.yaml`](entities/input_datetime/cosmo_nightly_kitchen_clean_time.yaml)
+</details>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
 
@@ -5575,13 +5585,7 @@ File: [`script/cosmo/cosmo_clean_room.yaml`](entities/script/cosmo/cosmo_clean_r
 ```
 
 - Mode: `parallel`
-- Variables:
 
-```json
-{
-  "result": "{% set lookup = states('sensor.cosmo_room_lookup') | from_json %} {% set key = lookup_value | string | lower | regex_replace(\"[^A-Za-z0-9]\", \"\") %}\n{% if key in lookup %}\n  {{ lookup[key] }}\n{% else %}\n  ERROR: {{ key | default(\"null\") }} not found in lookup: {{ lookup | tojson(indent=2) }}\n{% endif %}"
-}
-```
 File: [`script/cosmo/cosmo_get_room_id_or_name.yaml`](entities/script/cosmo/cosmo_get_room_id_or_name.yaml)
 </details>
 
