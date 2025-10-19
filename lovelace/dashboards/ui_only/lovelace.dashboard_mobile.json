@@ -2563,6 +2563,13 @@
                   "secondary_info": "state",
                   "primary_info": "name",
                   "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_datetime.cosmo_nightly_kitchen_clean_time",
+                  "name": "Nightly Clean Time",
+                  "primary_info": "state",
+                  "secondary_info": "name"
                 }
               ]
             }
