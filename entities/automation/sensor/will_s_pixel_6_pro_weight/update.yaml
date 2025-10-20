@@ -62,6 +62,31 @@ action:
                   weight: "{{ weight }}"
                 response_variable: put_res
 
+              - if: "{{ 400 <= put_res.status }}"
+                then:
+                  - action: script.log_exception
+                    data:
+                      calling_entity: automation.sensor_will_s_pixel_6_pro_weight_update
+                      message: |
+                        Got status `{{ put_res.status }}` from wger API via
+                        `rest_command.put_weightentry` with payload:
+
+                        ```json
+                        {
+                          "id": {{ previous_entry_id}},
+                          "date": "{{ date }}",
+                          "weight": {{ weight }},
+                        }
+                        ```
+
+                        {%- set content = put_res.content %}
+                        {%- if content is match('^\\s*[\\[\\{]') %}
+                        ```json
+                        {{ content | tojson(indent=2) }}
+                        ```
+                        {%- else %}
+                        {{ content }}
+                        {%- endif %}
     default:
       - action: script.log_exception
         data:
