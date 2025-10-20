@@ -7865,7 +7865,7 @@ File: [`utility_meter/ovo_gas_monthly_usage.yaml`](entities/utility_meter/ovo_ga
 
 ## Var
 
-<details><summary><h3>Entities (20)</h3></summary>
+<details><summary><h3>Entities (17)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -7968,36 +7968,6 @@ File: [`var/truelayer/truelayer_balance_amex.yaml`](entities/var/truelayer/truel
 - Unit Of Measurement: GBP
 
 File: [`var/truelayer/truelayer_balance_hsbc_current_account.yaml`](entities/var/truelayer/truelayer_balance_hsbc_current_account.yaml)
-</details>
-
-<details><summary><strong>Monzo Credit Cards Pot Balance</strong></summary>
-
-**Entity ID: `var.truelayer_balance_monzo_credit_cards`**
-
-- Icon: [`mdi:credit-card`](https://pictogrammers.com/library/mdi/icon/credit-card/)
-- Unit Of Measurement: GBP
-
-File: [`var/truelayer/truelayer_balance_monzo_credit_cards.yaml`](entities/var/truelayer/truelayer_balance_monzo_credit_cards.yaml)
-</details>
-
-<details><summary><strong>Monzo Current Account Balance</strong></summary>
-
-**Entity ID: `var.truelayer_balance_monzo_current_account`**
-
-- Icon: si:monzo
-- Unit Of Measurement: GBP
-
-File: [`var/truelayer/truelayer_balance_monzo_current_account.yaml`](entities/var/truelayer/truelayer_balance_monzo_current_account.yaml)
-</details>
-
-<details><summary><strong>Monzo Savings Pot Balance</strong></summary>
-
-**Entity ID: `var.truelayer_balance_monzo_savings`**
-
-- Icon: [`mdi:piggy-bank`](https://pictogrammers.com/library/mdi/icon/piggy-bank/)
-- Unit Of Measurement: GBP
-
-File: [`var/truelayer/truelayer_balance_monzo_savings.yaml`](entities/var/truelayer/truelayer_balance_monzo_savings.yaml)
 </details>
 
 <details><summary><strong>Santander Current Account Balance</strong></summary>
