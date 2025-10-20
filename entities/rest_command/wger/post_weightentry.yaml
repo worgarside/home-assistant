@@ -8,5 +8,5 @@ headers:
 
 content_type: application/json
 
-# yamllint disable-line rule:line-length
-payload: "{{ {'date': today_at(0).strftime('%Y-%m-%d'), 'weight': weight} | tojson }}"  # hacv disable: InvalidTemplateVar:weight
+# yamllint disable rule:line-length
+payload: "{{ {'date': date, 'weight': weight} | tojson }}" # hacv disable: InvalidTemplateVar:date,weight

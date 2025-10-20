@@ -14,27 +14,92 @@ trigger:
       - "unknown"
       - "unavailable"
 
+variables:
+  date: "{{ today_at(0).strftime('%Y-%m-%d') }}"
+  weight: "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}"
+
 action:
-  - service: rest_command.post_weightentry
+  - action: rest_command.post_weightentry
     data:
-      weight: "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}"
-    response_variable: res
+      date: "{{ date }}"
+      weight: "{{ weight }}"
+    response_variable: post_res
 
-  - if: "{{ 200 <= res.status < 300 }}"
-    then:
-      - service: homeassistant.update_entity
-        data:
-          entity_id:
-            - sensor.wger_will_body_weight
+  - choose:
+      - alias: Success
+        conditions: "{{ 200 <= post_res.status < 300 }}"
+        sequence:
+          - action: homeassistant.update_entity
+            data:
+              entity_id: sensor.wger_will_body_weight
 
-    else:
-      - service: script.log_exception
+      - alias: Failed; duplicate entry
+        conditions: >-
+          {{
+            post_res.status == 400 and
+            "The fields date, user must make a unique set." in post_res | string
+          }}
+        sequence:
+          - alias: Get previous entry
+            action: rest_command.get_weightentry
+            data:
+              date: "{{ date }}"
+              limit: 1
+            response_variable: get_res
+
+          - variables:
+              previous_entry_id: >-
+                {{ (get_res.content.get("results", [])[0] | default({"id": none})).id }}
+
+          - if: "{{ previous_entry_id is defined and previous_entry_id is not none }}"
+
+            then:
+              - alias: Update previous entry
+                action: rest_command.put_weightentry
+                data:
+                  id: "{{ previous_entry_id }}"
+                  date: "{{ date }}"
+                  weight: "{{ weight }}"
+                response_variable: put_res
+
+              - if: "{{ 200 <= put_res.status < 300 }}"
+                then:
+                  - action: homeassistant.update_entity
+                    data:
+                      entity_id: sensor.wger_will_body_weight
+
+                else:
+                  - action: script.log_exception
+                    data:
+                      calling_entity: automation.sensor_will_s_pixel_6_pro_weight_update
+                      message: |
+                        Got status `{{ put_res.status }}` from wger API via
+                        `rest_command.put_weightentry` with payload:
+
+                        ```json
+                        {
+                          "id": {{ previous_entry_id}},
+                          "date": "{{ date }}",
+                          "weight": {{ weight }},
+                        }
+                        ```
+
+                        {%- set content = put_res.content %}
+                        {%- if content is match('^\\s*[\\[\\{]') %}
+                        ```json
+                        {{ content | tojson(indent=2) }}
+                        ```
+                        {%- else %}
+                        {{ content }}
+                        {%- endif %}
+    default:
+      - action: script.log_exception
         data:
           calling_entity: automation.sensor_will_s_pixel_6_pro_weight_update
           message: |
-            Got status `{{ res.status }}` from wger API via `rest_command.post_weightentry`
+            Got status `{{ post_res.status }}` from wger API via `rest_command.post_weightentry`
 
-            {%- set content = res.content %}
+            {%- set content = post_res.content %}
             {%- if content is match('^\\s*[\\[\\{]') %}
             ```json
             {{ content | tojson(indent=2) }}
