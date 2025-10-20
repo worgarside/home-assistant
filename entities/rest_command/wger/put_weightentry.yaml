@@ -1,0 +1,12 @@
+---
+url: http://10.0.0.104:3000/api/v2/weightentry/{{ id }}/ # hacv disable: InvalidTemplateVar:id
+
+method: put
+
+headers:
+  authorization: !secret wger_auth_header
+
+content_type: application/json
+
+# yamllint disable rule:line-length
+payload: "{{ {'date': date, 'weight': weight} | tojson }}" # hacv disable: InvalidTemplateVar:weight,date

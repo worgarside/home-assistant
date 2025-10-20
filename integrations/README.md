@@ -2030,7 +2030,14 @@ File: [`automation/sensor/will_s_office_climate_sensor_temperature/sync_radiator
 - Alias: /sensor/will-s-pixel-6-pro-weight/update
 - ID: `sensor_will_s_pixel_6_pro_weight_update`
 - Mode: `single`
+- Variables:
 
+```json
+{
+  "date": "{{ today_at(0).strftime('%Y-%m-%d') }}",
+  "weight": "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}"
+}
+```
 File: [`automation/sensor/will_s_pixel_6_pro_weight/update.yaml`](entities/automation/sensor/will_s_pixel_6_pro_weight/update.yaml)
 </details>
 
@@ -5476,11 +5483,21 @@ File: [`rest/wger/wger_will_workoutsession.yaml`](entities/rest/wger/wger_will_w
 
 ## Rest Command
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (3)</h3></summary>
+
+<details><summary><code>rest_command.get_weightentry</code></summary>
+
+File: [`rest_command/wger/get_weightentry.yaml`](entities/rest_command/wger/get_weightentry.yaml)
+</details>
 
 <details><summary><code>rest_command.post_weightentry</code></summary>
 
 File: [`rest_command/wger/post_weightentry.yaml`](entities/rest_command/wger/post_weightentry.yaml)
+</details>
+
+<details><summary><code>rest_command.put_weightentry</code></summary>
+
+File: [`rest_command/wger/put_weightentry.yaml`](entities/rest_command/wger/put_weightentry.yaml)
 </details>
 
 </details>

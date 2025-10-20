@@ -1,0 +1,10 @@
+---
+# yamllint disable rule:line-length
+url: http://10.0.0.104:3000/api/v2/weightentry/?date={{ date }}&limit={{ limit | default(1) }}&ordering=-id # hacv disable: InvalidTemplateVar:limit,date
+
+method: get
+
+headers:
+  authorization: !secret wger_auth_header
+
+content_type: application/json
