@@ -1,5 +1,5 @@
 ---
-url: http://10.0.0.104:3000/api/v2/weightentry/{{ id }} # hacv disable: InvalidTemplateVar:id
+url: http://10.0.0.104:3000/api/v2/weightentry/{{ id }}/ # hacv disable: InvalidTemplateVar:id
 
 method: put
 
