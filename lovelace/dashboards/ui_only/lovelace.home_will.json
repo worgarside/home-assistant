@@ -4186,27 +4186,30 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_monzo_current_account",
+                      "entity": "sensor.monzo_will_current_account_balance",
                       "icon_color": "#FF4F40",
                       "name": "Current Account",
+                      "icon": "si:monzo",
                       "fill_container": false,
                       "primary_info": "state",
                       "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_monzo_savings",
+                      "entity": "sensor.monzo_will_savings_balance",
                       "icon_color": "amber",
+                      "icon": "mdi:piggy-bank",
                       "name": "Savings",
                       "primary_info": "state",
                       "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_monzo_credit_cards",
+                      "entity": "sensor.monzo_will_credit_cards_balance",
                       "icon_color": "#4D3926",
                       "primary_info": "state",
                       "secondary_info": "name",
+                      "icon": "mdi:credit-card",
                       "name": "Credit Cards"
                     },
                     {
