@@ -62,8 +62,13 @@ action:
                   weight: "{{ weight }}"
                 response_variable: put_res
 
-              - if: "{{ 400 <= put_res.status }}"
+              - if: "{{ 200 <= put_res.status < 300 }}"
                 then:
+                  - action: homeassistant.update_entity
+                    data:
+                      entity_id: sensor.wger_will_body_weight
+
+                else:
                   - action: script.log_exception
                     data:
                       calling_entity: automation.sensor_will_s_pixel_6_pro_weight_update
