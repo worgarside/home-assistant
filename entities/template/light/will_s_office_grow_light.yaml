@@ -1,0 +1,62 @@
+---
+name: Will's Office | Grow Light
+
+# Optimistic mode - RF is one-way communication
+# Brightness levels: 25%, 50%, 75%, 100% (or off)
+# HA brightness scale: 0-255, so 64, 128, 191, 255
+# 25%  10100111011000011111010100001010
+# 50%  10100111011000011111001100001100
+# 75%  10100111011000011111001000001101
+# 100% 10100111011000011111000000001111
+# off  10100111011000011111110000000011
+# on   10100111011000011111111000000001
+
+turn_on:
+  - action: esphome.esphome_rf_bridge_transmit_code
+    data:
+      code: "10100111011000011111111000000001"
+
+  - if: "{{ brightness is defined }}"
+    then:
+      - delay:
+          milliseconds: 10
+
+      - action: esphome.esphome_rf_bridge_transmit_code
+        data:
+          code: >-
+            {%- if brightness <= 95 -%}
+              10100111011000011111010100001010
+            {%- elif brightness <= 159 -%}
+              10100111011000011111001100001100
+            {%- elif brightness <= 223 -%}
+              10100111011000011111001000001101
+            {%- else -%}
+              10100111011000011111000000001111
+            {%- endif -%}
+
+turn_off:
+  action: esphome.esphome_rf_bridge_transmit_code
+  data:
+    code: "10100111011000011111110000000011"
+
+set_level:
+  # Always send "on" first since brightness codes don't turn the light on
+  - action: esphome.esphome_rf_bridge_transmit_code
+    data:
+      code: "10100111011000011111111000000001"
+
+  - delay:
+      milliseconds: 10
+
+  - action: esphome.esphome_rf_bridge_transmit_code
+    data:
+      code: >-
+        {%- if brightness <= 95 -%}
+          10100111011000011111010100001010
+        {%- elif brightness <= 159 -%}
+          10100111011000011111001100001100
+        {%- elif brightness <= 223 -%}
+          10100111011000011111001000001101
+        {%- else -%}
+          10100111011000011111000000001111
+        {%- endif -%}
