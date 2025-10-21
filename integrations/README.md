@@ -6805,7 +6805,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (75)</h3></summary>
+<details><summary><h3>Entities (76)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -6981,6 +6981,13 @@ File: [`template/binary_sensor/work_macbook_pro_docked.yaml`](entities/template/
 - Icon: [`mdi:monitor-screenshot`](https://pictogrammers.com/library/mdi/icon/monitor-screenshot/)
 
 File: [`template/image/prusa_i3_thumbnail.yaml`](entities/template/image/prusa_i3_thumbnail.yaml)
+</details>
+
+<details><summary><strong>Will's Office | Grow Light</strong></summary>
+
+**Entity ID: `template.will_s_office_grow_light`**
+
+File: [`template/light/will_s_office_grow_light.yaml`](entities/template/light/will_s_office_grow_light.yaml)
 </details>
 
 <details><summary><strong>AppDaemon CPU Usage</strong></summary>

@@ -4,4 +4,5 @@
 template:
   - binary_sensor: !include_dir_list ../entities/template/binary_sensor/
   - image: !include_dir_list ../entities/template/image/
+  - light: !include_dir_list ../entities/template/light/
   - sensor: !include_dir_list ../entities/template/sensor/

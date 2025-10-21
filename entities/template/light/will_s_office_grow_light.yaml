@@ -11,12 +11,14 @@ name: Will's Office | Grow Light
 # off  10100111011000011111110000000011
 # on   10100111011000011111111000000001
 
+unique_id: will_s_office_grow_light
+
 turn_on:
   - action: esphome.esphome_rf_bridge_transmit_code
     data:
       code: "10100111011000011111111000000001"
 
-  - if: "{{ brightness is defined }}"
+  - if: "{{ brightness is defined }}" # hacv disable: InvalidTemplateVar:brightness
     then:
       - delay:
           milliseconds: 10
@@ -33,6 +35,7 @@ turn_on:
             {%- else -%}
               10100111011000011111000000001111
             {%- endif -%}
+          # hacv disable: InvalidTemplateVar:brightness
 
 turn_off:
   action: esphome.esphome_rf_bridge_transmit_code
@@ -60,3 +63,4 @@ set_level:
         {%- else -%}
           10100111011000011111000000001111
         {%- endif -%}
+      # hacv disable: InvalidTemplateVar:brightness
