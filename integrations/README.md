@@ -7872,7 +7872,7 @@ File: [`utility_meter/ovo_gas_monthly_usage.yaml`](entities/utility_meter/ovo_ga
 
 ## Var
 
-<details><summary><h3>Entities (17)</h3></summary>
+<details><summary><h3>Entities (18)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -8017,7 +8017,7 @@ File: [`var/truelayer/truelayer_balance_starling_current_account.yaml`](entities
 File: [`var/truelayer/truelayer_balance_starling_joint_account.yaml`](entities/var/truelayer/truelayer_balance_starling_joint_account.yaml)
 </details>
 
-<details><summary><strong>Vic's Office State Manager</strong></summary>
+<details><summary><strong>Vic's Office | State Manager</strong></summary>
 
 **Entity ID: `var.vic_s_office_state_manager`**
 
@@ -8026,7 +8026,16 @@ File: [`var/truelayer/truelayer_balance_starling_joint_account.yaml`](entities/v
 File: [`var/vic_s_office_state_manager.yaml`](entities/var/vic_s_office_state_manager.yaml)
 </details>
 
-<details><summary><strong>Will's Office State Manager</strong></summary>
+<details><summary><strong>Will's Office | Grow Light: Brightness</strong></summary>
+
+**Entity ID: `var.will_s_office_grow_light_brightness`**
+
+- Icon: [`mdi:brightness-percent`](https://pictogrammers.com/library/mdi/icon/brightness-percent/)
+
+File: [`var/will_s_office_grow_light_brightness.yaml`](entities/var/will_s_office_grow_light_brightness.yaml)
+</details>
+
+<details><summary><strong>Will's Office | State Manager</strong></summary>
 
 **Entity ID: `var.will_s_office_state_manager`**
 

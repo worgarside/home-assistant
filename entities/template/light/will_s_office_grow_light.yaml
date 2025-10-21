@@ -13,6 +13,9 @@ name: Will's Office | Grow Light
 
 unique_id: will_s_office_grow_light
 
+# Brightness tracking via var - always snaps to 64, 128, 191, or 255
+level: "{{ states('var.will_s_office_grow_light_brightness') | int(255) }}"
+
 turn_on:
   - action: esphome.esphome_rf_bridge_transmit_code
     data:
@@ -34,6 +37,22 @@ turn_on:
               10100111011000011111001000001101
             {%- else -%}
               10100111011000011111000000001111
+            {%- endif -%}
+          # hacv disable: InvalidTemplateVar:brightness
+
+      - action: var.set
+        target:
+          entity_id: var.will_s_office_grow_light_brightness
+        data:
+          value: >-
+            {%- if brightness <= 95 -%}
+              64
+            {%- elif brightness <= 159 -%}
+              128
+            {%- elif brightness <= 223 -%}
+              191
+            {%- else -%}
+              255
             {%- endif -%}
           # hacv disable: InvalidTemplateVar:brightness
 
@@ -62,5 +81,21 @@ set_level:
           10100111011000011111001000001101
         {%- else -%}
           10100111011000011111000000001111
+        {%- endif -%}
+      # hacv disable: InvalidTemplateVar:brightness
+
+  - action: var.set
+    target:
+      entity_id: var.will_s_office_grow_light_brightness
+    data:
+      value: >-
+        {%- if brightness <= 95 -%}
+          64
+        {%- elif brightness <= 159 -%}
+          128
+        {%- elif brightness <= 223 -%}
+          191
+        {%- else -%}
+          255
         {%- endif -%}
       # hacv disable: InvalidTemplateVar:brightness
