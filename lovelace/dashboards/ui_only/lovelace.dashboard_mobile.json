@@ -3146,6 +3146,12 @@
                   "layout": "horizontal",
                   "name": "Purifier Speed",
                   "icon": "mdi:speedometer-slow"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.office_desk_sitting_height",
+                  "layout": "horizontal",
+                  "name": "Desk: Sitting Height"
                 }
               ]
             }
