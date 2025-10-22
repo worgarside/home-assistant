@@ -1,0 +1,44 @@
+---
+alias: /light/will-s-office-grow-light/on
+
+id: light_will_s_office_grow_light_on
+
+description: >-
+  Turn on grow light when office is unoccupied, dark outside, openings are secured,
+  and blinds are closed (before midnight) or will be closed by automation (after midnight).
+
+mode: restart
+
+trigger:
+  - platform: template
+    value_template: >-
+      {{
+        is_state('binary_sensor.will_s_office_occupancy', 'off') and
+        is_state('binary_sensor.roof_terrace_door_contact', 'off') and
+        is_state('binary_sensor.will_s_office_window_sensor_contact', 'off') and
+        is_state('binary_sensor.office_door_sensor_contact', 'off') and
+        (states('sensor.sun_elevation') | float(-10) < -3) and
+        (
+          now().hour < 12 or
+          is_state('cover.will_s_office_blinds', 'closed')
+        )
+      }}
+    for:
+      minutes: 15
+
+action:
+  # Close blinds if needed (idempotent - does nothing if already closed)
+  - service: cover.close_cover
+    target:
+      entity_id: cover.will_s_office_blinds
+
+  - wait_template: "{{ is_state('cover.will_s_office_blinds', 'closed') }}"
+    timeout:
+      seconds: 30
+
+  # Turn on grow light
+  - service: light.turn_on
+    target:
+      entity_id: light.esphome_rf_bridge_will_s_office_grow_light
+    data:
+      brightness_pct: 100
