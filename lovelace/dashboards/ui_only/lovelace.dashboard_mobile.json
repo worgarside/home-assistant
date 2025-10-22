@@ -3152,6 +3152,12 @@
                   "entity": "input_number.office_desk_sitting_height",
                   "layout": "horizontal",
                   "name": "Desk: Sitting Height"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.office_desk_standing_height",
+                  "layout": "horizontal",
+                  "name": "Desk: Standing Height"
                 }
               ]
             }
