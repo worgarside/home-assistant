@@ -14,13 +14,13 @@ description: >-
 trigger:
   - platform: state
     entity_id:
-      - binary_sensor.office_door_sensor_contact
+      - binary_sensor.will_s_office_door_contact
       - binary_sensor.office_desk_occupied
       - sensor.sun_elevation
 
 condition:
   - condition: state
-    entity_id: binary_sensor.office_door_sensor_contact
+    entity_id: binary_sensor.will_s_office_door_contact
     state: "off"
 
   - condition: state

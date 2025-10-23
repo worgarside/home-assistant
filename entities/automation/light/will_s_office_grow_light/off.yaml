@@ -1,0 +1,42 @@
+---
+alias: /light/will-s-office-grow-light/off
+
+id: light_will_s_office_grow_light_off
+
+description: >-
+  Turn off grow light when any condition becomes invalid: office occupied, light outside,
+  openings detected, or doors open.
+
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.will_s_office_occupancy # Office becomes occupied
+      # External openings detected
+      - binary_sensor.roof_terrace_door_contact
+      - binary_sensor.will_s_office_window_contact
+      # Doors open (triggers when either door opens)
+      - binary_sensor.will_s_office_door_contact
+      - binary_sensor.bedroom_door_contact
+    to: "on"
+
+  # Sun rises (becomes light outside)
+  - platform: numeric_state
+    entity_id: sensor.sun_elevation
+    above: -3
+
+  # Blinds opened
+  - platform: state
+    entity_id: cover.will_s_office_blinds
+    from: "closed"
+
+condition:
+  - condition: state
+    entity_id: light.esphome_rf_bridge_will_s_office_grow_light
+    state: "on"
+
+action:
+  - service: light.turn_off
+    target:
+      entity_id: light.esphome_rf_bridge_will_s_office_grow_light

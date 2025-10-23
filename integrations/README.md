@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (155)</h3></summary>
+<details><summary><h3>Entities (157)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1107,6 +1107,32 @@ File: [`automation/light/wardrobe_lights/auto_off.yaml`](entities/automation/lig
 - Mode: `queued`
 
 File: [`automation/light/wardrobe_lights/toggle.yaml`](entities/automation/light/wardrobe_lights/toggle.yaml)
+</details>
+
+<details><summary><code>/light/will-s-office-grow-light/off</code></summary>
+
+**Entity ID: `automation.light_will_s_office_grow_light_off`**
+
+> Turn off grow light when any condition becomes invalid: office occupied, light outside, openings detected, or doors open.
+
+- Alias: /light/will-s-office-grow-light/off
+- ID: `light_will_s_office_grow_light_off`
+- Mode: `restart`
+
+File: [`automation/light/will_s_office_grow_light/off.yaml`](entities/automation/light/will_s_office_grow_light/off.yaml)
+</details>
+
+<details><summary><code>/light/will-s-office-grow-light/on</code></summary>
+
+**Entity ID: `automation.light_will_s_office_grow_light_on`**
+
+> Turn on grow light when office is unoccupied, dark outside, openings are secured, and blinds are closed (before midnight) or will be closed by automation (after midnight).
+
+- Alias: /light/will-s-office-grow-light/on
+- ID: `light_will_s_office_grow_light_on`
+- Mode: `restart`
+
+File: [`automation/light/will_s_office_grow_light/on.yaml`](entities/automation/light/will_s_office_grow_light/on.yaml)
 </details>
 
 <details><summary><code>/light/will-s-office-shapes/reboot-on-unavailable</code></summary>

@@ -17,7 +17,6 @@ recorder:
       - sensor.time_date
       - sensor.time_utc
 
-      - sensor.octoprint_current_z
       - sensor.octoprint_approximate_completion_time
       - sensor.octoprint_print_time_left
       - sensor.octoprint_print_time
