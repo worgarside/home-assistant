@@ -13,7 +13,7 @@ description: >-
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.office_door_sensor_contact
+    entity_id: binary_sensor.will_s_office_door_contact
     to: "on"
 
 variables:
