@@ -10,7 +10,7 @@ mode: restart
 trigger:
   - platform: state
     entity_id:
-      - binary_sensor.will_s_office_window_sensor_contact
+      - binary_sensor.will_s_office_window_contact
       - binary_sensor.roof_terrace_door_contact
     from: "off"
     to: "on"

@@ -15,7 +15,7 @@ trigger:
       - binary_sensor.will_s_office_occupancy # Office becomes occupied
       # External openings detected
       - binary_sensor.roof_terrace_door_contact
-      - binary_sensor.will_s_office_window_sensor_contact
+      - binary_sensor.will_s_office_window_contact
       # Doors open (triggers when either door opens)
       - binary_sensor.will_s_office_door_contact
       - binary_sensor.bedroom_door_contact
