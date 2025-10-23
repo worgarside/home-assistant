@@ -17,7 +17,7 @@ trigger:
       - binary_sensor.roof_terrace_door_contact
       - binary_sensor.will_s_office_window_sensor_contact
       # Doors open (triggers when either door opens)
-      - binary_sensor.office_door_sensor_contact
+      - binary_sensor.will_s_office_door_contact
       - binary_sensor.bedroom_door_contact
     to: "on"
 
