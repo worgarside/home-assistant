@@ -10,9 +10,15 @@ description: >-
 mode: restart
 
 trigger:
-  # Office becomes occupied
   - platform: state
-    entity_id: binary_sensor.will_s_office_occupancy
+    entity_id:
+      - binary_sensor.will_s_office_occupancy # Office becomes occupied
+      # External openings detected
+      - binary_sensor.roof_terrace_door_contact
+      - binary_sensor.will_s_office_window_sensor_contact
+      # Doors open (triggers when either door opens)
+      - binary_sensor.office_door_sensor_contact
+      - binary_sensor.bedroom_door_contact
     to: "on"
 
   # Sun rises (becomes light outside)
@@ -20,29 +26,10 @@ trigger:
     entity_id: sensor.sun_elevation
     above: -3
 
-  # External openings detected
-  - platform: state
-    entity_id:
-      - binary_sensor.roof_terrace_door_contact
-      - binary_sensor.will_s_office_window_sensor_contact
-    to: "on"
-
-  # Office door opens
-  - platform: state
-    entity_id: binary_sensor.office_door_sensor_contact
-    to: "on"
-
   # Blinds opened
   - platform: state
     entity_id: cover.will_s_office_blinds
     from: "closed"
-    id: blinds_opened
-
-  # TODO: Add bedroom door trigger when sensor becomes available
-  # When both office door AND bedroom door are open, light should turn off
-  # - platform: state
-  #   entity_id: binary_sensor.bedroom_door_sensor_contact
-  #   to: "on"
 
 condition:
   - condition: state
