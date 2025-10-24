@@ -4260,7 +4260,7 @@
                   "type": "custom:mini-graph-card",
                   "entities": [
                     {
-                      "entity": "var.truelayer_balance_monzo_current_account",
+                      "entity": "sensor.monzo_will_current_account_balance",
                       "color": "#FF4F40"
                     },
                     {
@@ -4268,7 +4268,7 @@
                       "color": "#036ED0"
                     },
                     {
-                      "entity": "var.truelayer_balance_monzo_credit_cards",
+                      "entity": "sensor.monzo_will_credit_cards_balance",
                       "color": "#4D3926"
                     },
                     {
