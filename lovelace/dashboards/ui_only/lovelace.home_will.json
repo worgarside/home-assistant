@@ -5077,7 +5077,16 @@
             },
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.hallway_radiator_temperature_derivative"
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "badges": [
