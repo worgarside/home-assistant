@@ -8,15 +8,29 @@ description: Submit weight entry to wger when weight sensor updates
 mode: single
 
 trigger:
-  - platform: state
+  - trigger: state
     entity_id: sensor.will_s_pixel_6_pro_weight
     not_to:
       - "unknown"
       - "unavailable"
+    id: state_update
+
+  # If consecutive days have the same weight value, the `date` attribute will still be updated
+  # Although the POSTed value won't change, it'll log another weigh-in event
+  - trigger: state
+    entity_id: sensor.will_s_pixel_6_pro_weight
+    attribute: date
+    id: date_update
 
 variables:
   date: "{{ today_at(0).strftime('%Y-%m-%d') }}"
   weight: "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}"
+
+condition: >-
+  {{
+    trigger.id == 'state_update' or
+    (trigger.to_state.attributes.date | as_datetime).date().isoformat() == date
+  }}
 
 action:
   - action: rest_command.post_weightentry
