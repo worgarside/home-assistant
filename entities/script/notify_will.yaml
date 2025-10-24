@@ -201,7 +201,7 @@ sequence:
         - alias: Will is at the office
           condition: state
           entity_id: person.will
-          state: SigTech
+          state: Will Work
 
         - alias: Clear Notification
           condition: template
