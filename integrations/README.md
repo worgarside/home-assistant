@@ -6651,7 +6651,16 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
+
+<details><summary><strong>Hallway Radiator Temperature Derivative</strong></summary>
+
+**Entity ID: `sensor.hallway_radiator_temperature_derivative`**
+
+- Platform: `derivative`
+
+File: [`sensor/hallway_radiator_temperature_derivative.yaml`](entities/sensor/hallway_radiator_temperature_derivative.yaml)
+</details>
 
 <details><summary><strong>Office Desk Occupied Cumulative Time</strong></summary>
 
