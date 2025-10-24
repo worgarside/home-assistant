@@ -3104,6 +3104,32 @@
                     "action": "none"
                   },
                   "primary": "Auto-purify air ({{ states(\"input_number.will_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.will_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.will_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:lightbulb\n{%- if not states(\"automation.binary_sensor_will_s_office_occupancy_state_change\") | bool(false) -%}\n-off\n{%- elif area_entities('will_s_office') | select('match','^light\\.') | select('is_state','on') | list | count > 0 -%}\n-on\n{%- endif -%}\n-outline",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_will_s_office_occupancy_state_change",
+                  "area": "will_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": " /binary-sensor/will-s-office-occupancy/state-change",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_will_s_office_occupancy_state_change\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Presence-based lighting"
                 }
               ]
             },
