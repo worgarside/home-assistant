@@ -2060,8 +2060,9 @@ File: [`automation/sensor/will_s_office_climate_sensor_temperature/sync_radiator
 
 ```json
 {
-  "date": "{{ today_at(0).strftime('%Y-%m-%d') }}",
-  "weight": "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}"
+  "today_date": "{{ today_at(0).strftime('%Y-%m-%d') }}",
+  "weight": "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}",
+  "weigh_in_date": "{{\n  (\n    trigger.to_state.attributes.date | as_datetime(now() - timedelta(days=999))\n  ).date().isoformat()\n}}"
 }
 ```
 File: [`automation/sensor/will_s_pixel_6_pro_weight/update.yaml`](entities/automation/sensor/will_s_pixel_6_pro_weight/update.yaml)
