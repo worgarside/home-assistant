@@ -5085,9 +5085,13 @@
                       "entity": "sensor.hallway_radiator_temperature"
                     },
                     {
+                      "entity": "switch.central_heating"
+                    },
+                    {
                       "entity": "sensor.hallway_radiator_temperature_derivative"
                     }
-                  ]
+                  ],
+                  "logarithmic_scale": false
                 }
               ]
             }
