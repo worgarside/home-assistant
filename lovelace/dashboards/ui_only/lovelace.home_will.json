@@ -4186,27 +4186,30 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_monzo_current_account",
+                      "entity": "sensor.monzo_will_current_account_balance",
                       "icon_color": "#FF4F40",
                       "name": "Current Account",
+                      "icon": "si:monzo",
                       "fill_container": false,
                       "primary_info": "state",
                       "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_monzo_savings",
+                      "entity": "sensor.monzo_will_savings_balance",
                       "icon_color": "amber",
+                      "icon": "mdi:piggy-bank",
                       "name": "Savings",
                       "primary_info": "state",
                       "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_monzo_credit_cards",
+                      "entity": "sensor.monzo_will_credit_cards_balance",
                       "icon_color": "#4D3926",
                       "primary_info": "state",
                       "secondary_info": "name",
+                      "icon": "mdi:credit-card",
                       "name": "Credit Cards"
                     },
                     {
@@ -4257,7 +4260,7 @@
                   "type": "custom:mini-graph-card",
                   "entities": [
                     {
-                      "entity": "var.truelayer_balance_monzo_current_account",
+                      "entity": "sensor.monzo_will_current_account_balance",
                       "color": "#FF4F40"
                     },
                     {
@@ -4265,7 +4268,7 @@
                       "color": "#036ED0"
                     },
                     {
-                      "entity": "var.truelayer_balance_monzo_credit_cards",
+                      "entity": "sensor.monzo_will_credit_cards_balance",
                       "color": "#4D3926"
                     },
                     {
@@ -4644,8 +4647,8 @@
                       "color": "#7f19e5"
                     }
                   ],
-                  "hours_to_show": 168,
-                  "points_per_hour": 0.25,
+                  "hours_to_show": 672,
+                  "points_per_hour": 0.1,
                   "show": {
                     "icon": false,
                     "legend": true,
@@ -5069,6 +5072,27 @@
                     "heat",
                     "cool"
                   ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.hallway_radiator_temperature"
+                    },
+                    {
+                      "entity": "switch.central_heating"
+                    },
+                    {
+                      "entity": "sensor.hallway_radiator_temperature_derivative"
+                    }
+                  ],
+                  "logarithmic_scale": false,
+                  "hours_to_show": 6
                 }
               ]
             }
