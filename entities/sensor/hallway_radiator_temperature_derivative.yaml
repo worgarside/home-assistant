@@ -1,0 +1,14 @@
+---
+# https://www.home-assistant.io/integrations/derivative/
+
+platform: derivative
+
+source: sensor.hallway_radiator_temperature
+
+name: Hallway Radiator Temperature Derivative
+
+round: 2
+
+unit_time: h
+
+time_window: "00:15:00"
