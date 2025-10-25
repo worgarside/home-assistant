@@ -8,20 +8,67 @@ description: Submit weight entry to wger when weight sensor updates
 mode: single
 
 trigger:
-  - platform: state
+  - trigger: state
     entity_id: sensor.will_s_pixel_6_pro_weight
     not_to:
       - "unknown"
       - "unavailable"
+    id: state_update
+
+  # If consecutive days have the same weight value, the `date` attribute will still be updated
+  # Although the POSTed value won't change, it'll log another weigh-in event
+  - trigger: state
+    entity_id: sensor.will_s_pixel_6_pro_weight
+    attribute: date
+    id: date_update
 
 variables:
-  date: "{{ today_at(0).strftime('%Y-%m-%d') }}"
+  today_date: "{{ today_at(0).strftime('%Y-%m-%d') }}"
+
   weight: "{{ states('sensor.will_s_pixel_6_pro_weight') | float(0) | round(2) }}"
 
+  weigh_in_date: >-
+    {{
+      (
+        trigger.to_state.attributes.date | as_datetime(now() - timedelta(days=999))
+      ).date().isoformat()
+    }}
+
 action:
+  - if: "{{ weigh_in_date == (now() - timedelta(days=999)).date().isoformat() }}"
+
+    then:
+      - action: script.log_exception
+        data:
+          calling_entity: automation.sensor_will_s_pixel_6_pro_weight_update
+          message: |
+            Unable to update weight entry, no date found on trigger object attributes:
+
+            ```json
+            {{ trigger.to_state.attributes | tojson(indent=2) }}
+            ```
+
+      - stop: No date found on trigger object attribute
+        error: true
+
+  - if: "{{ weigh_in_date != today_date }}"
+    then:
+      - action: script.log_exception
+        data:
+          calling_entity: automation.sensor_will_s_pixel_6_pro_weight_update
+          message: |
+            Unable to update weight entry, date is not today:
+
+            ```json
+            {{ trigger.to_state.attributes | tojson(indent=2) }}
+            ```
+
+      - stop: Date is not today
+        error: true
+
   - action: rest_command.post_weightentry
     data:
-      date: "{{ date }}"
+      date: "{{ today_date }}"
       weight: "{{ weight }}"
     response_variable: post_res
 
@@ -43,7 +90,7 @@ action:
           - alias: Get previous entry
             action: rest_command.get_weightentry
             data:
-              date: "{{ date }}"
+              date: "{{ today_date }}"
               limit: 1
             response_variable: get_res
 
@@ -58,7 +105,7 @@ action:
                 action: rest_command.put_weightentry
                 data:
                   id: "{{ previous_entry_id }}"
-                  date: "{{ date }}"
+                  date: "{{ today_date }}"
                   weight: "{{ weight }}"
                 response_variable: put_res
 
@@ -79,7 +126,7 @@ action:
                         ```json
                         {
                           "id": {{ previous_entry_id}},
-                          "date": "{{ date }}",
+                          "date": "{{ today_date }}",
                           "weight": {{ weight }},
                         }
                         ```
