@@ -10,33 +10,15 @@ state: >-
   {% if sun is none or hour is none %}
     Unknown
   {% elif sun >= 2 %}
-    {% if hour < 12 %}
-      Morning
-    {% elif hour < 18 %}
-      Afternoon
-    {% else %}
-      Evening
-    {% endif %}
+    {{ "Morning" if hour < 12 else ("Afternoon" if hour < 18 else "Evening") }}
   {% elif sun >= -1 %}
-    {% if hour < 12 %}
-      Sunrise
-    {% else %}
-      Sunset
-    {% endif %}
+    {{ "Sunrise" if hour < 12 else "Sunset" }}
   {% elif sun >= -6 %}
     Twilight
   {% elif sun >= -18 %}
-    {% if hour < 12 %}
-      Dawn
-    {% else %}
-      Dusk
-    {% endif %}
+    {{ "Dawn" if 4 <= hour < 8 else ("Dusk" if hour >= 19 else "Night") }}
   {% else %}
-    {% if hour > 20 %}
-      Night
-    {% else %}
-      Dusk
-    {% endif %}
+    {{ "Night" if (hour >= 21 or hour < 6) else "Dusk" }}
   {% endif %}
 
 icon: >-
