@@ -1,0 +1,50 @@
+---
+alias: /notification/heating-invalid-state
+
+id: notification_heating_invalid_state
+
+description: Notify when heating is on but shouldn't be (e.g. SwitchBot failure, low battery)
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  # Radiator heating up when central heating is off
+  - platform: template
+    value_template: >
+      {{
+        is_state('switch.central_heating', 'off') and
+        states('sensor.hallway_radiator_temperature') | float(0) > 30 and
+        states('sensor.hallway_radiator_temperature_derivative') | float(0) > 0
+      }}
+    id: heating_up
+    for:
+      minutes: 15
+
+  # Radiator very hot when central heating is off
+  - platform: template
+    value_template: >
+      {{
+        is_state('switch.central_heating', 'off') and
+        states('sensor.hallway_radiator_temperature') | float(0) > 45
+      }}
+    id: hot
+    for:
+      minutes: 15
+
+action:
+  - service: script.notify_will
+    data:
+      title: Central Heating is On!
+      message: >-
+        {% if trigger.to_state.id == 'heating_up' %}
+          The radiator is heating up ({{
+            states('sensor.hallway_radiator_temperature_derivative') | float(0)
+          }}°C/h) when it shouldn't be.
+        {% elif trigger.to_state.id == 'hot' %}
+          The radiator has been > 45°C for 15 minutes but the central heating is off.
+        {% endif %}
+      group: heating_invalid_state
+      mobile_notification_icon: mdi:radiator-off
+      notification_id: heating_invalid_state
