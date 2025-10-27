@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (157)</h3></summary>
+<details><summary><h3>Entities (158)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1376,6 +1376,19 @@ File: [`automation/notification/apollo_plt1b/ota_mode_on.yaml`](entities/automat
 - Mode: `single`
 
 File: [`automation/notification/apollo_plt1b/turn_ota_mode_off.yaml`](entities/automation/notification/apollo_plt1b/turn_ota_mode_off.yaml)
+</details>
+
+<details><summary><code>/notification/heating-invalid-state</code></summary>
+
+**Entity ID: `automation.notification_heating_invalid_state`**
+
+> Notify when heating is on but shouldn't be (e.g. SwitchBot failure, low battery)
+
+- Alias: /notification/heating-invalid-state
+- ID: `notification_heating_invalid_state`
+- Mode: `single`
+
+File: [`automation/notification/heating_invalid_state.yaml`](entities/automation/notification/heating_invalid_state.yaml)
 </details>
 
 <details><summary><code>/notification/prusa-i3/print-completed</code></summary>
@@ -6652,7 +6665,16 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
+
+<details><summary><strong>Hallway Radiator Temperature Derivative</strong></summary>
+
+**Entity ID: `sensor.hallway_radiator_temperature_derivative`**
+
+- Platform: `derivative`
+
+File: [`sensor/hallway_radiator_temperature_derivative.yaml`](entities/sensor/hallway_radiator_temperature_derivative.yaml)
+</details>
 
 <details><summary><strong>Office Desk Occupied Cumulative Time</strong></summary>
 
