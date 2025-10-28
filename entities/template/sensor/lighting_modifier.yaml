@@ -22,6 +22,9 @@ state: >-
     1
   %}
 
+  {% set base_brightness = min(base_brightness, 30) if current_hour < 7 else base_brightness %}
+  {% set base_brightness = max(base_brightness, 10) if current_hour < 23 else base_brightness %}
+
   {% if weekday and 9 <= current_hour < 18 %}
     100
   {% elif weekday and 0 <= current_hour < 7 %}
