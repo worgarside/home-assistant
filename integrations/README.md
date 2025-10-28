@@ -3047,7 +3047,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (46)</h3></summary>
+<details><summary><h3>Entities (47)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3616,6 +3616,18 @@ File: [`input_number/topaz_sr10/topaz_sr10_power_off_timeout.yaml`](entities/inp
 - Unit Of Measurement: dB
 
 File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_number/topaz_sr10/topaz_sr10_volume_level.yaml)
+</details>
+
+<details><summary><strong>Will's Office | Grow Light: Trigger Delay</strong></summary>
+
+**Entity ID: `input_number.will_s_office_grow_light_trigger_delay`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 60
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/will_s_office_grow_light_trigger_delay.yaml`](entities/input_number/will_s_office_grow_light_trigger_delay.yaml)
 </details>
 
 </details>
