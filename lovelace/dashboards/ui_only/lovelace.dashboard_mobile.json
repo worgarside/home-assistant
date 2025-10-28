@@ -3197,6 +3197,12 @@
                   "entity": "input_number.office_desk_standing_height",
                   "layout": "horizontal",
                   "name": "Desk: Standing Height"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.will_s_office_grow_light_trigger_delay",
+                  "layout": "horizontal",
+                  "name": "Grow Light: Trigger Delay"
                 }
               ]
             }
