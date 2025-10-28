@@ -16,7 +16,7 @@ trigger:
         is_state('binary_sensor.will_s_office_occupancy', 'off') and
         is_state('binary_sensor.roof_terrace_door_contact', 'off') and
         is_state('binary_sensor.will_s_office_window_contact', 'off') and
-        is_state('binary_sensor.bedroom_door_contact', 'off') and
+        (now().hour < 23 or is_state('binary_sensor.bedroom_door_contact', 'off')) and
         (states('sensor.sun_elevation') | float(-10) < -3) and
         (
           now().hour < 12 or
