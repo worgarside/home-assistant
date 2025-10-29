@@ -1,0 +1,89 @@
+---
+friendly_name: Hot Water
+
+unique_id: hot_water
+
+icon_template: >-
+  {% if states('switch.hot_water') | bool(false) %}
+    mdi:water-boiler
+  {% else %}
+    mdi:water-boiler-off
+  {% endif %}
+
+turn_on:
+  - condition: state
+    entity_id: switch.hot_water
+    state: 'off'
+
+  - if: >
+      {{
+        has_value('var.hot_water_last_action') and
+        states('var.hot_water_last_action') and
+        (as_timestamp(now()) - as_timestamp(states('var.hot_water_last_action'))) <= 10
+      }}
+
+    then:
+      - delay:
+          seconds: >-
+            {{
+              (as_timestamp(states('var.hot_water_last_action')) + 10) - as_timestamp(now())
+            }}
+
+  - service: var.set
+    target:
+      entity_id: var.hot_water_last_action
+    data:
+      value: "{{ now().isoformat() }}"
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot_hot_water
+
+  - wait_for_trigger:
+      - trigger: state
+        entity_id: switch.boiler_fingerbot_hot_water
+        for:
+          seconds: 2
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot_hot_water
+
+  - wait_for_trigger:
+      - trigger: state
+        entity_id: switch.boiler_fingerbot_hot_water
+        for:
+          seconds: 2
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot_hot_water
+
+turn_off:
+  - condition: state
+    entity_id: switch.hot_water
+    state: 'on'
+
+  - if: >
+      {{
+        has_value('var.hot_water_last_action') and
+        states('var.hot_water_last_action') and
+        (as_timestamp(now()) - as_timestamp(states('var.hot_water_last_action'))) <= 10
+      }}
+
+    then:
+      - delay:
+          seconds: >-
+            {{
+              (as_timestamp(states('var.hot_water_last_action')) + 10) - as_timestamp(now())
+            }}
+
+  - service: var.set
+    target:
+      entity_id: var.hot_water_last_action
+    data:
+      value: "{{ now().isoformat() }}"
+
+  - service: switch.toggle
+    target:
+      entity_id: switch.boiler_fingerbot_hot_water

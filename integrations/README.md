@@ -6839,13 +6839,20 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Switch
 
-<details><summary><h3>Entities (3)</h3></summary>
+<details><summary><h3>Entities (4)</h3></summary>
 
 <details><summary><strong>Central Heating</strong></summary>
 
 **Entity ID: `switch.central_heating`**
 
 File: [`switch/central_heating.yaml`](entities/switch/central_heating.yaml)
+</details>
+
+<details><summary><strong>Hot Water</strong></summary>
+
+**Entity ID: `switch.hot_water`**
+
+File: [`switch/hot_water.yaml`](entities/switch/hot_water.yaml)
 </details>
 
 <details><summary><strong>MtrxPi Power</strong></summary>
@@ -7926,7 +7933,7 @@ File: [`utility_meter/ovo_gas_monthly_usage.yaml`](entities/utility_meter/ovo_ga
 
 ## Var
 
-<details><summary><h3>Entities (17)</h3></summary>
+<details><summary><h3>Entities (18)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -7983,6 +7990,15 @@ File: [`var/current_appdaemon_branch.yaml`](entities/var/current_appdaemon_branc
 - Icon: [`mdi:application-parentheses`](https://pictogrammers.com/library/mdi/icon/application-parentheses/)
 
 File: [`var/current_appdaemon_ref.yaml`](entities/var/current_appdaemon_ref.yaml)
+</details>
+
+<details><summary><strong>Hot Water Last Action</strong></summary>
+
+**Entity ID: `var.hot_water_last_action`**
+
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`var/hot_water_last_action.yaml`](entities/var/hot_water_last_action.yaml)
 </details>
 
 <details><summary><strong>Lounge | Occupancy Automation States Pre-Exercise Mode</strong></summary>
