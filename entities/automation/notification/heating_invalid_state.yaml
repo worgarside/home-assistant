@@ -46,7 +46,7 @@ action:
           The radiator has been > 45°C for 15 minutes but the central heating is off.
         {% endif %}
         Check the SwitchBot on the boiler, it's probably out of sync with the boiler's state;
-        battery is currently {{ states('sensor.boiler_fingerbot_battery') | float("??") }}%
+        battery is currently {{ states('sensor.boiler_fingerbot_heating_battery') | float("??") }}%
       group: heating_invalid_state
       mobile_notification_icon: mdi:radiator-off
       notification_id: heating_invalid_state
