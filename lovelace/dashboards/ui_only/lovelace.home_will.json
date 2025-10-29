@@ -4186,27 +4186,30 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_monzo_current_account",
+                      "entity": "sensor.monzo_will_current_account_balance",
                       "icon_color": "#FF4F40",
                       "name": "Current Account",
+                      "icon": "si:monzo",
                       "fill_container": false,
                       "primary_info": "state",
                       "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_monzo_savings",
+                      "entity": "sensor.monzo_will_savings_balance",
                       "icon_color": "amber",
+                      "icon": "mdi:piggy-bank",
                       "name": "Savings",
                       "primary_info": "state",
                       "secondary_info": "name"
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "var.truelayer_balance_monzo_credit_cards",
+                      "entity": "sensor.monzo_will_credit_cards_balance",
                       "icon_color": "#4D3926",
                       "primary_info": "state",
                       "secondary_info": "name",
+                      "icon": "mdi:credit-card",
                       "name": "Credit Cards"
                     },
                     {
@@ -4257,7 +4260,7 @@
                   "type": "custom:mini-graph-card",
                   "entities": [
                     {
-                      "entity": "var.truelayer_balance_monzo_current_account",
+                      "entity": "sensor.monzo_will_current_account_balance",
                       "color": "#FF4F40"
                     },
                     {
@@ -4265,7 +4268,7 @@
                       "color": "#036ED0"
                     },
                     {
-                      "entity": "var.truelayer_balance_monzo_credit_cards",
+                      "entity": "sensor.monzo_will_credit_cards_balance",
                       "color": "#4D3926"
                     },
                     {
@@ -4438,95 +4441,6 @@
           "cards": []
         },
         {
-          "title": "Home",
-          "path": "home-home",
-          "icon": "mdi:home-city-outline",
-          "type": "sections",
-          "max_columns": 4,
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Cosmo"
-                    },
-                    {
-                      "type": "custom:xiaomi-vacuum-map-card",
-                      "map_source": {
-                        "camera": "camera.cosmo_map"
-                      },
-                      "calibration_source": {
-                        "camera": true
-                      },
-                      "entity": "vacuum.cosmo",
-                      "vacuum_platform": "Tasshack/dreame-vacuum",
-                      "title": "",
-                      "two_finger_pan": false,
-                      "map_modes": [
-                        {
-                          "template": "vacuum_clean_segment"
-                        },
-                        {
-                          "template": "vacuum_clean_zone"
-                        },
-                        {
-                          "template": "vacuum_clean_point"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:mushroom-media-player-card",
-                  "entity": "media_player.hifi_system_heos",
-                  "volume_controls": [
-                    "volume_set"
-                  ],
-                  "fill_container": false,
-                  "layout_options": {
-                    "grid_columns": 4,
-                    "grid_rows": 2
-                  },
-                  "media_controls": [],
-                  "show_volume_level": true,
-                  "use_media_info": false
-                },
-                {
-                  "type": "custom:mushroom-media-player-card",
-                  "entity": "media_player.hifi_system_avr",
-                  "volume_controls": [
-                    "volume_set"
-                  ],
-                  "layout_options": {
-                    "grid_columns": 4,
-                    "grid_rows": 2
-                  }
-                },
-                {
-                  "type": "custom:mushroom-media-player-card",
-                  "entity": "media_player.hifi_system",
-                  "layout_options": {
-                    "grid_columns": 4,
-                    "grid_rows": 1
-                  },
-                  "volume_controls": [
-                    "volume_set"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           "type": "sections",
           "max_columns": 4,
           "title": "Media",
@@ -4644,8 +4558,8 @@
                       "color": "#7f19e5"
                     }
                   ],
-                  "hours_to_show": 168,
-                  "points_per_hour": 0.25,
+                  "hours_to_show": 672,
+                  "points_per_hour": 0.1,
                   "show": {
                     "icon": false,
                     "legend": true,
@@ -5071,6 +4985,27 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.hallway_radiator_temperature"
+                    },
+                    {
+                      "entity": "switch.central_heating"
+                    },
+                    {
+                      "entity": "sensor.hallway_radiator_temperature_derivative"
+                    }
+                  ],
+                  "logarithmic_scale": false,
+                  "hours_to_show": 24
+                }
+              ]
             }
           ],
           "badges": [
@@ -5388,6 +5323,33 @@
                   "hold_action": {
                     "action": "none"
                   }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Control Panel",
+          "path": "control-panel",
+          "icon": "mdi:tune-vertical",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "Turning {{ iif(is_state(\"schedule.hot_water\", \"on\"), \"off\", \"on\") }} in {% set next = state_attr('schedule.hot_water', 'next_event') %} {% set dt = as_datetime(next) %} {% set delta = dt - now() %} {% set minutes = (delta.total_seconds() / 60) | int %}\n{% if minutes < 60 %}\n  {{ minutes }} minute{{ 's' if minutes != 1 }}\n{% elif minutes < 1440 %}\n  {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }}\n{% else %}\n  {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }}\n{% endif %}",
+                  "icon": "mdi:water-boiler",
+                  "features_position": "bottom",
+                  "entity": "schedule.hot_water",
+                  "secondary": "Hot Water Schedule",
+                  "color": "{{ iif(states(\"schedule.hot_water\") | bool(false), \"#04b7d6\", \"grey\") }}"
                 }
               ]
             }
