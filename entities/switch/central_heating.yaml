@@ -37,27 +37,27 @@ turn_on:
 
   - service: switch.toggle
     target:
-      entity_id: switch.boiler_fingerbot
+      entity_id: switch.boiler_fingerbot_heating
 
   - wait_for_trigger:
       - trigger: state
-        entity_id: switch.boiler_fingerbot
+        entity_id: switch.boiler_fingerbot_heating
         for:
           seconds: 2
 
   - service: switch.toggle
     target:
-      entity_id: switch.boiler_fingerbot
+      entity_id: switch.boiler_fingerbot_heating
 
   - wait_for_trigger:
       - trigger: state
-        entity_id: switch.boiler_fingerbot
+        entity_id: switch.boiler_fingerbot_heating
         for:
           seconds: 2
 
   - service: switch.toggle
     target:
-      entity_id: switch.boiler_fingerbot
+      entity_id: switch.boiler_fingerbot_heating
 
 turn_off:
   - condition: state
@@ -86,4 +86,4 @@ turn_off:
 
   - service: switch.toggle
     target:
-      entity_id: switch.boiler_fingerbot
+      entity_id: switch.boiler_fingerbot_heating
