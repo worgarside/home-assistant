@@ -11,7 +11,7 @@ state: >-
   {% set sun = states("sensor.sun_elevation") | float(0) %}
   {% set quiet_hours = states("binary_sensor.quiet_hours") | bool(false) %}
   {% set weekday = states("binary_sensor.weekday") | bool(false) %}
-  {% set hour = states("sensor.hour") | int(12) %}
+  {% set hour = states("sensor.current_hour") | int(12) %}
 
   {% set base_brightness =
     100 if sun >= 2 else
