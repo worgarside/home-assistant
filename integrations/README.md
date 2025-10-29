@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (158)</h3></summary>
+<details><summary><h3>Entities (160)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1993,6 +1993,32 @@ File: [`automation/schedule/bedroom_heating_schedule/off.yaml`](entities/automat
 - Mode: `single`
 
 File: [`automation/schedule/bedroom_heating_schedule/on.yaml`](entities/automation/schedule/bedroom_heating_schedule/on.yaml)
+</details>
+
+<details><summary><code>/schedule/hot-water/off</code></summary>
+
+**Entity ID: `automation.schedule_hot_water_off`**
+
+> Turn off hot water when schedule turns off
+
+- Alias: /schedule/hot-water/off
+- ID: `schedule_hot_water_off`
+- Mode: `single`
+
+File: [`automation/schedule/hot_water/off.yaml`](entities/automation/schedule/hot_water/off.yaml)
+</details>
+
+<details><summary><code>/schedule/hot-water/on</code></summary>
+
+**Entity ID: `automation.schedule_hot_water_on`**
+
+> *No description provided*
+
+- Alias: /schedule/hot-water/on
+- ID: `schedule_hot_water_on`
+- Mode: `single`
+
+File: [`automation/schedule/hot_water/on.yaml`](entities/automation/schedule/hot_water/on.yaml)
 </details>
 
 <details><summary><code>/sensor/bedroom-climate-sensor-temperature/sync-radiator-trv</code></summary>

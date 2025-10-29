@@ -1,0 +1,19 @@
+---
+alias: /schedule/hot-water/off
+
+id: schedule_hot_water_off
+
+description: Turn off hot water when schedule turns off
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: schedule.hot_water
+    from: "on"
+    to: "off"
+
+action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.hot_water

@@ -1,0 +1,33 @@
+---
+alias: /schedule/hot-water/on
+
+id: schedule_hot_water_on
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: schedule.hot_water
+    from: "off"
+    to: "on"
+
+  - alias: Someone comes home
+    platform: numeric_state
+    entity_id: zone.home
+    above: 0
+
+condition:
+  - alias: Schedule is on
+    condition: state
+    entity_id: schedule.hot_water
+    state: "on"
+
+  - alias: Someone is home
+    condition: numeric_state
+    entity_id: zone.home
+    above: 0
+
+action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.hot_water
