@@ -5416,6 +5416,24 @@
               ]
             }
           ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Control Panel",
+          "path": "control-panel",
+          "icon": "mdi:tune-vertical",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
