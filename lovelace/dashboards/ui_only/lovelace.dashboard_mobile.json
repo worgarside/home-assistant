@@ -2949,6 +2949,15 @@
                   "double_tap_action": {
                     "action": "toggle"
                   }
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.will_s_office_fp2_light_level"
+                    }
+                  ],
+                  "logarithmic_scale": false
                 }
               ]
             },
