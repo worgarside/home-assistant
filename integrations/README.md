@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (162)</h3></summary>
+<details><summary><h3>Entities (163)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -2045,6 +2045,26 @@ File: [`automation/sensor/bedroom_climate_sensor_temperature/sync_radiator_trv.y
 - Mode: `single`
 
 File: [`automation/sensor/kitchen_air_quality_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/kitchen_air_quality_sensor_temperature/sync_radiator_trv.yaml)
+</details>
+
+<details><summary><code>/sensor/lighting-modifier/state</code></summary>
+
+**Entity ID: `automation.sensor_lighting_modifier_state`**
+
+> Sync entities with lighting modifier label when lighting modifier changes
+
+- Alias: /sensor/lighting-modifier/state
+- ID: `sensor_lighting_modifier_state`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "new_brightness": "{{ states('sensor.lighting_modifier') | int(-1) }}",
+  "labeled_entities": "{{ label_entities('sync_with_lighting_modifier') }}"
+}
+```
+File: [`automation/sensor/lighting_modifier/state.yaml`](entities/automation/sensor/lighting_modifier/state.yaml)
 </details>
 
 <details><summary><code>/sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear</code></summary>
