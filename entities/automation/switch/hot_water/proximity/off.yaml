@@ -1,0 +1,35 @@
+---
+alias: /switch/hot-water/proximity/off
+
+id: switch_hot_water_proximity_off
+
+description: Turn off hot water when someone moves away from home beyond threshold distance
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.home_nearest_distance
+      - sensor.home_nearest_direction_of_travel
+
+condition:
+  - alias: Hot water is currently on
+    condition: state
+    entity_id: switch.hot_water
+    state: "on"
+
+  - alias: Nearest person is beyond threshold distance
+    condition: numeric_state
+    entity_id: sensor.home_nearest_distance
+    above: input_number.hot_water_proximity_distance
+
+  - alias: Nearest person is traveling away from home
+    condition: state
+    entity_id: sensor.home_nearest_direction_of_travel
+    state: away_from
+
+action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.hot_water

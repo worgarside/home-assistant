@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (161)</h3></summary>
+<details><summary><h3>Entities (162)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -2222,6 +2222,19 @@ File: [`automation/switch/dry_box_dehumidifier/timeout.yaml`](entities/automatio
 - Mode: `single`
 
 File: [`automation/switch/dry_box_dehumidifier/turn_on.yaml`](entities/automation/switch/dry_box_dehumidifier/turn_on.yaml)
+</details>
+
+<details><summary><code>/switch/hot-water/proximity/off</code></summary>
+
+**Entity ID: `automation.switch_hot_water_proximity_off`**
+
+> Turn off hot water when someone moves away from home beyond threshold distance
+
+- Alias: /switch/hot-water/proximity/off
+- ID: `switch_hot_water_proximity_off`
+- Mode: `single`
+
+File: [`automation/switch/hot_water/proximity/off.yaml`](entities/automation/switch/hot_water/proximity/off.yaml)
 </details>
 
 <details><summary><code>/switch/hot-water/proximity/on</code></summary>
