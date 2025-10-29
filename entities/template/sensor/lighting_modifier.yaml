@@ -7,24 +7,31 @@ unit_of_measurement: "%"
 
 icon: mdi:brightness-percent
 
-# End of PM Twilight roughly aligns with the blinds closing
-
 state: >-
-  {% set tod = states("sensor.time_of_day") %}
+  {% set sun = states("sensor.sun_elevation") | float(0) %}
   {% set quiet_hours = states("binary_sensor.quiet_hours") | bool(false) %}
   {% set weekday = states("binary_sensor.weekday") | bool(false) %}
-  {% set current_hour = states("sensor.current_hour") | int(12) %}
+  {% set hour = states("sensor.hour") | int(12) %}
 
-  {% if ( weekday and 0 <= current_hour < 7 ) or tod == "Night" %}
+  {% set base_brightness =
+    100 if sun >= 2 else
+    60 if sun >= -1 else
+    30 if sun >= -6 else
+    10 if sun >= -12 else
+    5 if sun >= -18 else
     1
-  {% elif tod in ("Morning", "Afternoon") %}
-    {{ iif(quiet_hours, 75, 100) }}
-  {% elif tod in ("Evening", "Sunset", "Sunrise") %}
-    60
-  {% elif tod == "Twilight" %}
-    30
-  {% elif tod in ("Dusk", "Dawn") %}
-    10
-  {% else %}
+  %}
+
+  {% set base_brightness = min(base_brightness, 30) if hour < 7 else base_brightness %}
+  {% set base_brightness = max(base_brightness, 30) if 12 <= hour < 22 else base_brightness %}
+  {% set base_brightness = max(base_brightness, 10) if 12 <= hour < 23 else base_brightness %}
+
+  {% if weekday and 9 <= hour < 18 %}
     100
+  {% elif weekday and 0 <= hour < 7 %}
+    {{ base_brightness }}
+  {% elif quiet_hours and sun >= 2 %}
+    75
+  {% else %}
+    {{ base_brightness }}
   {% endif %}
