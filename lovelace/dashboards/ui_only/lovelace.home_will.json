@@ -5437,7 +5437,8 @@
                   "icon": "mdi:water-boiler",
                   "features_position": "bottom",
                   "entity": "schedule.hot_water",
-                  "secondary": "Hot Water Schedule"
+                  "secondary": "Hot Water Schedule",
+                  "color": "{{ iif(states(\"schedule.hot_water\") | bool(false), \"#04b7d6\", \"grey\") }}"
                 }
               ]
             }
