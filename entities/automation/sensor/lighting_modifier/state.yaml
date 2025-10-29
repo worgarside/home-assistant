@@ -62,13 +62,23 @@ action:
                   data:
                     value: "{{ new_brightness }}"
 
+            # Cover domain
+            - conditions: "{{ entity_domain == 'cover' }}"
+              sequence:
+                - service: cover.set_cover_position
+                  continue_on_error: true
+                  target:
+                    entity_id: "{{ entity_id }}"
+                  data:
+                    position: "{{ new_brightness }}"
+
           # Unsupported domain - log exception
           default:
             - service: script.log_exception
               data:
                 calling_entity: "{{ this.entity_id }}"
                 message: |
-                  Unsupported domain for lighting modifier sync: {{ entity_domain }}
+                  Unsupported domain for lighting modifier sync: `{{ entity_domain }}`
 
                   Entity: `{{ entity_id }}`
                   Attempted brightness: {{ new_brightness }}%
