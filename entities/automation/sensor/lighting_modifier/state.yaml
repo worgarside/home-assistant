@@ -1,0 +1,84 @@
+---
+alias: /sensor/lighting-modifier/state
+
+id: sensor_lighting_modifier_state
+
+description: Sync entities with lighting modifier label when lighting modifier changes
+
+mode: queued
+
+max: 5
+
+trigger:
+  - platform: state
+    entity_id: sensor.lighting_modifier
+
+variables:
+  new_brightness: "{{ states('sensor.lighting_modifier') | int(-1) }}"
+
+  labeled_entities: "{{ label_entities('sync_with_lighting_modifier') }}"
+
+condition: "{{ new_brightness > 0 }}"
+
+action:
+  - repeat:
+      for_each: "{{ labeled_entities }}"
+      sequence:
+        - variables:
+            entity_domain: "{{ repeat.item.split('.')[0] }}"
+            entity_id: "{{ repeat.item }}"
+
+        - choose:
+            # Light domain - use brightness_pct with transition
+            - conditions: "{{ entity_domain == 'light' }}"
+              sequence:
+                - if: "{{ is_state(entity_id, 'on') }}"
+                  then:
+                    - service: light.turn_on
+                      continue_on_error: true
+                      target:
+                        entity_id: "{{ entity_id }}"
+                      data:
+                        brightness_pct: "{{ new_brightness }}"
+                        transition: 2
+
+            # Input Number domain
+            - conditions: "{{ entity_domain == 'input_number' }}"
+              sequence:
+                - service: input_number.set_value
+                  continue_on_error: true
+                  target:
+                    entity_id: "{{ entity_id }}"
+                  data:
+                    value: "{{ new_brightness }}"
+
+            # Number domain
+            - conditions: "{{ entity_domain == 'number' }}"
+              sequence:
+                - service: number.set_value
+                  continue_on_error: true
+                  target:
+                    entity_id: "{{ entity_id }}"
+                  data:
+                    value: "{{ new_brightness }}"
+
+            # Cover domain
+            - conditions: "{{ entity_domain == 'cover' }}"
+              sequence:
+                - service: cover.set_cover_position
+                  continue_on_error: true
+                  target:
+                    entity_id: "{{ entity_id }}"
+                  data:
+                    position: "{{ new_brightness }}"
+
+          # Unsupported domain - log exception
+          default:
+            - service: script.log_exception
+              data:
+                calling_entity: "{{ this.entity_id }}"
+                message: |
+                  Unsupported domain for lighting modifier sync: `{{ entity_domain }}`
+
+                  Entity: `{{ entity_id }}`
+                  Attempted brightness: {{ new_brightness }}%
