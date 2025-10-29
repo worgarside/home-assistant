@@ -5430,6 +5430,14 @@
                 {
                   "type": "heading",
                   "heading": "New section"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "Turning {{ iif(is_state(\"schedule.hot_water\", \"on\"), \"off\", \"on\") }} in {% set next = state_attr('schedule.hot_water', 'next_event') %} {% set dt = as_datetime(next) %} {% set delta = dt - now() %} {% set minutes = (delta.total_seconds() / 60) | int %}\n{% if minutes < 60 %}\n  {{ minutes }} minute{{ 's' if minutes != 1 }}\n{% elif minutes < 1440 %}\n  {{ (minutes / 60) | int }} hour{{ 's' if (minutes / 60) | int != 1 }}\n{% else %}\n  {{ (minutes / 1440) | int }} day{{ 's' if (minutes / 1440) | int != 1 }}\n{% endif %}",
+                  "icon": "mdi:water-boiler",
+                  "features_position": "bottom",
+                  "entity": "schedule.hot_water",
+                  "secondary": "Hot Water Schedule"
                 }
               ]
             }
