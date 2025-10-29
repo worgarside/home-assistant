@@ -11,7 +11,7 @@ state: >-
   {% set sun = states("sensor.sun_elevation") | float(0) %}
   {% set quiet_hours = states("binary_sensor.quiet_hours") | bool(false) %}
   {% set weekday = states("binary_sensor.weekday") | bool(false) %}
-  {% set current_hour = states("sensor.current_hour") | int(12) %}
+  {% set hour = states("sensor.hour") | int(12) %}
 
   {% set base_brightness =
     100 if sun >= 2 else
@@ -22,13 +22,13 @@ state: >-
     1
   %}
 
-  {% set base_brightness = min(base_brightness, 30) if current_hour < 7 else base_brightness %}
-  {% set base_brightness = max(base_brightness, 30) if current_hour < 22 else base_brightness %}
-  {% set base_brightness = max(base_brightness, 10) if current_hour < 23 else base_brightness %}
+  {% set base_brightness = min(base_brightness, 30) if hour < 7 else base_brightness %}
+  {% set base_brightness = max(base_brightness, 30) if 12 <= hour < 22 else base_brightness %}
+  {% set base_brightness = max(base_brightness, 10) if 12 <= hour < 23 else base_brightness %}
 
-  {% if weekday and 9 <= current_hour < 18 %}
+  {% if weekday and 9 <= hour < 18 %}
     100
-  {% elif weekday and 0 <= current_hour < 7 %}
+  {% elif weekday and 0 <= hour < 7 %}
     {{ base_brightness }}
   {% elif quiet_hours and sun >= 2 %}
     75
