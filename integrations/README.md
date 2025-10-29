@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (160)</h3></summary>
+<details><summary><h3>Entities (161)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -2224,6 +2224,19 @@ File: [`automation/switch/dry_box_dehumidifier/timeout.yaml`](entities/automatio
 File: [`automation/switch/dry_box_dehumidifier/turn_on.yaml`](entities/automation/switch/dry_box_dehumidifier/turn_on.yaml)
 </details>
 
+<details><summary><code>/switch/hot-water/proximity/on</code></summary>
+
+**Entity ID: `automation.switch_hot_water_proximity_on`**
+
+> Turn on hot water when someone is approaching home and schedule is active
+
+- Alias: /switch/hot-water/proximity/on
+- ID: `switch_hot_water_proximity_on`
+- Mode: `single`
+
+File: [`automation/switch/hot_water/proximity/on.yaml`](entities/automation/switch/hot_water/proximity/on.yaml)
+</details>
+
 <details><summary><code>/switch/lounge-diffuser/state-change</code></summary>
 
 **Entity ID: `automation.switch_lounge_diffuser_state_change`**
@@ -3073,7 +3086,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (47)</h3></summary>
+<details><summary><h3>Entities (48)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3168,6 +3181,19 @@ File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml
 - Unit Of Measurement: %
 
 File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/dry_box/dry_box_max_humidity.yaml)
+</details>
+
+<details><summary><strong>Hot Water | Proximity Distance</strong></summary>
+
+**Entity ID: `input_number.hot_water_proximity_distance`**
+
+- Icon: [`mdi:map-marker-distance`](https://pictogrammers.com/library/mdi/icon/map-marker-distance/)
+- Max: 10
+- Min: 0.5
+- Mode: `box`
+- Unit Of Measurement: `mi`
+
+File: [`input_number/hot_water_proximity_distance.yaml`](entities/input_number/hot_water_proximity_distance.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Raining Grid: Maximum Rain Intensity</strong></summary>

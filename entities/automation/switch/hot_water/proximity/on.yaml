@@ -1,0 +1,40 @@
+---
+alias: /switch/hot-water/proximity/on
+
+id: switch_hot_water_proximity_on
+
+description: Turn on hot water when someone is approaching home and schedule is active
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.home_nearest_distance
+      - sensor.home_nearest_direction_of_travel
+
+condition:
+  - alias: Schedule is active
+    condition: state
+    entity_id: schedule.hot_water
+    state: "on"
+
+  - alias: Hot water is not already on
+    condition: state
+    entity_id: switch.hot_water
+    state: "off"
+
+  - alias: Nearest person is within threshold distance
+    condition: numeric_state
+    entity_id: sensor.home_nearest_distance
+    below: input_number.hot_water_proximity_distance
+
+  - alias: Nearest person is traveling towards home
+    condition: state
+    entity_id: sensor.home_nearest_direction_of_travel
+    state: towards
+
+action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.hot_water
