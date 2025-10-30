@@ -3119,7 +3119,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (48)</h3></summary>
+<details><summary><h3>Entities (49)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3701,6 +3701,18 @@ File: [`input_number/topaz_sr10/topaz_sr10_power_off_timeout.yaml`](entities/inp
 - Unit Of Measurement: dB
 
 File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_number/topaz_sr10/topaz_sr10_volume_level.yaml)
+</details>
+
+<details><summary><strong>Will's Office | Grow Light: Daytime Light Level Threshold</strong></summary>
+
+**Entity ID: `input_number.will_s_office_grow_light_daytime_light_level_threshold`**
+
+- Icon: [`mdi:brightness-6`](https://pictogrammers.com/library/mdi/icon/brightness-6/)
+- Max: 5000
+- Mode: `box`
+- Unit Of Measurement: `lx`
+
+File: [`input_number/will_s_office_grow_light_daytime_light_level_threshold.yaml`](entities/input_number/will_s_office_grow_light_daytime_light_level_threshold.yaml)
 </details>
 
 <details><summary><strong>Will's Office | Grow Light: Trigger Delay</strong></summary>
