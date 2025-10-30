@@ -5350,6 +5350,10 @@
                   "entity": "schedule.hot_water",
                   "secondary": "Hot Water Schedule",
                   "color": "{{ iif(states(\"schedule.hot_water\") | bool(false), \"#04b7d6\", \"grey\") }}"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.hot_water"
                 }
               ]
             }
