@@ -10,31 +10,45 @@ description: >-
 mode: restart
 
 trigger:
+  # Turn off if someone enters the office and it's dark
   - platform: state
+    id: occupancy
+    entity_id: binary_sensor.will_s_office_occupancy
+    to: "on"
+
+  # Turn off if the bedroom door is opened and it's late at night
+  - platform: state
+    id: bedroom_door
+    entity_id: binary_sensor.bedroom_door_contact
+    to: "on"
+
+  # Turn off if external openings are detected and it's dark (no bugs pls)
+  - platform: state
+    id: openings
     entity_id:
-      - binary_sensor.will_s_office_occupancy # Office becomes occupied
-      # External openings detected
       - binary_sensor.roof_terrace_door_contact
       - binary_sensor.will_s_office_window_contact
-      # Doors open (triggers when either door opens)
-      - binary_sensor.will_s_office_door_contact
-      - binary_sensor.bedroom_door_contact
     to: "on"
 
   # Sun rises (becomes light outside)
   - platform: numeric_state
+    id: sun_elevation
     entity_id: sensor.sun_elevation
-    above: -3
-
-  # Blinds opened
-  - platform: state
-    entity_id: cover.will_s_office_blinds
-    from: "closed"
+    above: 3
 
 condition:
   - condition: state
     entity_id: light.esphome_rf_bridge_will_s_office_grow_light
     state: "on"
+
+  - condition: template
+    value_template: >
+      {{
+        (trigger.id == 'openings' and states('sensor.sun_elevation') | float(10) < 3) or
+        (trigger.id == 'bedroom_door' and (now().hour >= 23 or now().hour < 7)) or
+        (trigger.id == 'occupancy' and states('sensor.sun_elevation') | float(0) < -3) or
+        trigger.id == 'sun_elevation'
+      }}
 
 action:
   - service: light.turn_off

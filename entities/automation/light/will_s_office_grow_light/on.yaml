@@ -10,14 +10,16 @@ description: >-
 mode: restart
 
 trigger:
+  # Dark outside, office is unoccupied, openings are secured, and blinds are closed (before midnight)
+  # or will be closed by automation (after midnight)
   - platform: template
     value_template: >-
       {{
+        (states('sensor.sun_elevation') | float(0) < -3) and
         is_state('binary_sensor.will_s_office_occupancy', 'off') and
         is_state('binary_sensor.roof_terrace_door_contact', 'off') and
         is_state('binary_sensor.will_s_office_window_contact', 'off') and
         (now().hour < 23 or is_state('binary_sensor.bedroom_door_contact', 'off')) and
-        (states('sensor.sun_elevation') | float(-10) < -3) and
         (
           now().hour < 12 or
           is_state('cover.will_s_office_blinds', 'closed')
@@ -26,15 +28,28 @@ trigger:
     for:
       minutes: "{{ states('input_number.will_s_office_grow_light_trigger_delay') | int(15) }}"
 
-action:
-  # Close blinds if needed (idempotent - does nothing if already closed)
-  - service: cover.close_cover
-    target:
-      entity_id: cover.will_s_office_blinds
+  # Bright outside, office is unoccupied, and light level is below threshold
+  - platform: template
+    value_template: >-
+      {{
+        (states('sensor.sun_elevation') | float(-10) > 3) and
+        is_state('binary_sensor.will_s_office_occupancy', 'off') and
+        states('sensor.will_s_office_fp2_light_level') | float(0) <
+          states('input_number.will_s_office_grow_light_daytime_light_level_threshold') | float(0)
+      }}
+    for:
+      minutes: "{{ states('input_number.will_s_office_grow_light_trigger_delay') | int(15) }}"
 
-  - wait_template: "{{ is_state('cover.will_s_office_blinds', 'closed') }}"
-    timeout:
-      seconds: 30
+action:
+  - if: "{{ states('sensor.sun_elevation') | float(0) < -3 }}"
+    then:
+      - service: cover.close_cover
+        target:
+          entity_id: cover.will_s_office_blinds
+
+      - wait_template: "{{ is_state('cover.will_s_office_blinds', 'closed') }}"
+        timeout:
+          seconds: 30
 
   # Turn on grow light
   - service: light.turn_on
