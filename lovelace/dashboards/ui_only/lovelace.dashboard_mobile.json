@@ -1111,7 +1111,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Turn lights off after {{ states(\"input_number.lounge_lights_timeout\") | int(\"??\") }} minutes of vacancy"
+                  "primary": "Turn lights off after {{ states(\"input_number.lounge_lights_timeout\") | int(\"??\") }} seconds of vacancy"
                 },
                 {
                   "type": "custom:mushroom-template-card",
