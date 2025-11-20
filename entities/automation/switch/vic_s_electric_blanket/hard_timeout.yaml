@@ -1,0 +1,22 @@
+---
+alias: /switch/vic-s-electric-blanket/hard-timeout
+
+id: switch_vic_s_electric_blanket_hard_timeout
+
+description: Hard timeout - turn off Vic's electric blanket after 8 hours
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: switch.vic_s_electric_blanket
+    to: "on"
+    for:
+      hours: 8
+
+action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.vic_s_electric_blanket
