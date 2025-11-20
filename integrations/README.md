@@ -3,6 +3,7 @@
 ## Automation
 
 <details><summary><h3>Entities (164)</h3></summary>
+<details><summary><h3>Entities (167)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -2357,6 +2358,70 @@ File: [`automation/switch/prusa_i3_mk3_power/off.yaml`](entities/automation/swit
 File: [`automation/switch/prusa_i3_mk3_power/timeout.yaml`](entities/automation/switch/prusa_i3_mk3_power/timeout.yaml)
 </details>
 
+<details><summary><code>/switch/vic-s-electric-blanket/hard-timeout</code></summary>
+
+**Entity ID: `automation.switch_vic_s_electric_blanket_hard_timeout`**
+
+> Hard timeout - turn off Vic's electric blanket after 8 hours
+
+- Alias: /switch/vic-s-electric-blanket/hard-timeout
+- ID: `switch_vic_s_electric_blanket_hard_timeout`
+- Mode: `single`
+
+File: [`automation/switch/vic_s_electric_blanket/hard_timeout.yaml`](entities/automation/switch/vic_s_electric_blanket/hard_timeout.yaml)
+</details>
+
+<details><summary><code>/switch/vic-s-electric-blanket/timeout</code></summary>
+
+**Entity ID: `automation.switch_vic_s_electric_blanket_timeout`**
+
+> Turn off Vic's electric blanket after timeout based on level
+
+- Alias: /switch/vic-s-electric-blanket/timeout
+- ID: `switch_vic_s_electric_blanket_timeout`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "level": "{{ states('sensor.vic_s_electric_blanket_level') }}"
+}
+```
+File: [`automation/switch/vic_s_electric_blanket/timeout.yaml`](entities/automation/switch/vic_s_electric_blanket/timeout.yaml)
+</details>
+
+<details><summary><code>/switch/will-s-electric-blanket/hard-timeout</code></summary>
+
+**Entity ID: `automation.switch_will_s_electric_blanket_hard_timeout`**
+
+> Hard timeout - turn off Will's electric blanket after 8 hours
+
+- Alias: /switch/will-s-electric-blanket/hard-timeout
+- ID: `switch_will_s_electric_blanket_hard_timeout`
+- Mode: `single`
+
+File: [`automation/switch/will_s_electric_blanket/hard_timeout.yaml`](entities/automation/switch/will_s_electric_blanket/hard_timeout.yaml)
+</details>
+
+<details><summary><code>/switch/will-s-electric-blanket/timeout</code></summary>
+
+**Entity ID: `automation.switch_will_s_electric_blanket_timeout`**
+
+> Turn off Will's electric blanket after timeout based on level
+
+- Alias: /switch/will-s-electric-blanket/timeout
+- ID: `switch_will_s_electric_blanket_timeout`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "level": "{{ states('sensor.will_s_electric_blanket_level') }}"
+}
+```
+File: [`automation/switch/will_s_electric_blanket/timeout.yaml`](entities/automation/switch/will_s_electric_blanket/timeout.yaml)
+</details>
+
 <details><summary><code>/tag/cosmo/basement</code></summary>
 
 **Entity ID: `automation.tag_cosmo_basement`**
@@ -3133,6 +3198,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 ## Input Number
 
 <details><summary><h3>Entities (50)</h3></summary>
+<details><summary><h3>Entities (52)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3587,6 +3653,42 @@ File: [`input_number/timeout/basement_lights_timeout.yaml`](entities/input_numbe
 - Unit Of Measurement: `mins`
 
 File: [`input_number/timeout/dry_box_dehumidifier_timeout.yaml`](entities/input_number/timeout/dry_box_dehumidifier_timeout.yaml)
+</details>
+
+<details><summary><strong>Electric Blanket Timeout: Level 1</strong></summary>
+
+**Entity ID: `input_number.electric_blanket_timeout_level_1`**
+
+- Max: 480
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/electric_blanket_timeout_level_1.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_1.yaml)
+</details>
+
+<details><summary><strong>Electric Blanket Timeout: Level 2</strong></summary>
+
+**Entity ID: `input_number.electric_blanket_timeout_level_2`**
+
+- Max: 480
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/electric_blanket_timeout_level_2.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_2.yaml)
+</details>
+
+<details><summary><strong>Electric Blanket Timeout: Level 3</strong></summary>
+
+**Entity ID: `input_number.electric_blanket_timeout_level_3`**
+
+- Max: 480
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/electric_blanket_timeout_level_3.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_3.yaml)
 </details>
 
 <details><summary><strong>Hallway Lights | Timeout</strong></summary>
@@ -6996,7 +7098,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (75)</h3></summary>
+<details><summary><h3>Entities (77)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -7813,6 +7915,33 @@ File: [`template/sensor/spotify/spotify_will_garside_media_artist.yaml`](entitie
 File: [`template/sensor/spotify/spotify_will_garside_media_title.yaml`](entities/template/sensor/spotify/spotify_will_garside_media_title.yaml)
 </details>
 
+<details><summary><strong>Vic's Electric Blanket Level</strong></summary>
+
+**Entity ID: `sensor.vic_s_electric_blanket_level`**
+
+- Icon:
+
+```jinja
+{% if not is_state("switch.vic_s_electric_blanket", "on") %}
+  mdi:numeric-0-circle
+{% else %}
+  {% set power = states("sensor.vic_s_electric_blanket_power") | float(0) %}
+  {% if power < 1 %}
+    mdi:numeric-0-circle
+  {% elif power >= 20 and power < 30 %}
+    mdi:numeric-1-circle
+  {% elif power >= 30 and power < 40 %}
+    mdi:numeric-2-circle
+  {% elif power >= 60 and power < 70 %}
+    mdi:numeric-3-circle
+  {% else %}
+    mdi:help-circle
+  {% endif %}
+{% endif %}
+```
+File: [`template/sensor/vic_s_electric_blanket_level.yaml`](entities/template/sensor/vic_s_electric_blanket_level.yaml)
+</details>
+
 <details><summary><strong>Vic's Office Fan Speed</strong></summary>
 
 **Entity ID: `sensor.vic_s_office_fan_speed`**
@@ -7840,6 +7969,33 @@ File: [`template/sensor/spotify/spotify_will_garside_media_title.yaml`](entities
 - Unit Of Measurement: %
 
 File: [`template/sensor/vic_s_office_fan_speed.yaml`](entities/template/sensor/vic_s_office_fan_speed.yaml)
+</details>
+
+<details><summary><strong>Will's Electric Blanket Level</strong></summary>
+
+**Entity ID: `sensor.will_s_electric_blanket_level`**
+
+- Icon:
+
+```jinja
+{% if not is_state("switch.will_s_electric_blanket", "on") %}
+  mdi:numeric-0-circle
+{% else %}
+  {% set power = states("sensor.will_s_electric_blanket_power") | float(0) %}
+  {% if power < 1 %}
+    mdi:numeric-0-circle
+  {% elif power >= 20 and power < 30 %}
+    mdi:numeric-1-circle
+  {% elif power >= 30 and power < 40 %}
+    mdi:numeric-2-circle
+  {% elif power >= 60 and power < 70 %}
+    mdi:numeric-3-circle
+  {% else %}
+    mdi:help-circle
+  {% endif %}
+{% endif %}
+```
+File: [`template/sensor/will_s_electric_blanket_level.yaml`](entities/template/sensor/will_s_electric_blanket_level.yaml)
 </details>
 
 <details><summary><strong>Will's Office Fan Speed</strong></summary>
