@@ -1481,6 +1481,14 @@
                   "secondary_info": "name",
                   "icon_color": "purple",
                   "icon": "phu:elec_blanket"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.will_s_electric_blanket",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green",
+                  "icon": "phu:elec_blanket"
                 }
               ]
             },
