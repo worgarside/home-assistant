@@ -1480,7 +1480,16 @@
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "purple",
-                  "icon": "phu:elec_blanket"
+                  "icon": "phu:elec_blanket",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
                 },
                 {
                   "type": "custom:mushroom-entity-card",
