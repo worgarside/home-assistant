@@ -1475,21 +1475,14 @@
                   "icon_color": "deep-orange"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states(\"switch.vic_s_electric_blanket\") | title }}{% if is_state(\"switch.vic_s_electric_blanket\", \"on\") %} (Level {{ states(\"sensor.vic_s_electric_blanket_level\") }}){% endif %}",
+                  "secondary": "Vic's Electric Blanket",
+                  "features_position": "bottom",
                   "entity": "switch.vic_s_electric_blanket",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "purple",
-                  "icon": "phu:elec_blanket",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  }
+                  "area": "bedroom",
+                  "color": "{{ iif(is_state(\"switch.vic_s_electric_blanket\", \"on\"), \"purple\", \"gray\") }}",
+                  "icon": "phu:elec_blanket"
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -1499,33 +1492,6 @@
                   "entity": "switch.will_s_electric_blanket",
                   "area": "bedroom",
                   "color": "{{ iif(is_state(\"switch.will_s_electric_blanket\", \"on\"), \"green\", \"gray\") }}",
-                  "icon": "phu:elec_blanket"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "switch.will_s_electric_blanket",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green",
-                  "icon": "phu:elec_blanket",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  }
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "primary": "{{ states(\"switch.vic_s_electric_blanket\") | title }}{% if is_state(\"switch.vic_s_electric_blanket\", \"on\") %} (Level {{ states(\"sensor.vic_s_electric_blanket_level\") }}){% endif %}",
-                  "secondary": "Vic's Electric Blanket",
-                  "features_position": "bottom",
-                  "entity": "switch.vic_s_electric_blanket",
-                  "area": "bedroom",
-                  "color": "{{ iif(is_state(\"switch.vic_s_electric_blanket\", \"on\"), \"purple\", \"gray\") }}",
                   "icon": "phu:elec_blanket"
                 }
               ]
