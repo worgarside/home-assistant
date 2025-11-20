@@ -11,7 +11,7 @@ max_exceeded: silent
 
 trigger:
   - platform: numeric_state
-    entity_id: sensor.charging_hub_current_consumption
+    entity_id: sensor.charging_hub_power
     below: input_number.charging_hub_auto_off_threshold
     for:
       minutes: 2
