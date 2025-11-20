@@ -3280,42 +3280,6 @@ File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml
 File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/dry_box/dry_box_max_humidity.yaml)
 </details>
 
-<details><summary><strong>Electric Blanket Timeout: Level 1</strong></summary>
-
-**Entity ID: `input_number.electric_blanket_timeout_level_1`**
-
-- Max: 480
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `min`
-
-File: [`input_number/electric_blanket_timeout_level_1.yaml`](entities/input_number/electric_blanket_timeout_level_1.yaml)
-</details>
-
-<details><summary><strong>Electric Blanket Timeout: Level 2</strong></summary>
-
-**Entity ID: `input_number.electric_blanket_timeout_level_2`**
-
-- Max: 480
-- Min: 1
-- Mode: `slider`
-- Unit Of Measurement: `min`
-
-File: [`input_number/electric_blanket_timeout_level_2.yaml`](entities/input_number/electric_blanket_timeout_level_2.yaml)
-</details>
-
-<details><summary><strong>Electric Blanket Timeout: Level 3</strong></summary>
-
-**Entity ID: `input_number.electric_blanket_timeout_level_3`**
-
-- Max: 480
-- Min: 1
-- Mode: `slider`
-- Unit Of Measurement: `min`
-
-File: [`input_number/electric_blanket_timeout_level_3.yaml`](entities/input_number/electric_blanket_timeout_level_3.yaml)
-</details>
-
 <details><summary><strong>Hot Water | Proximity Distance</strong></summary>
 
 **Entity ID: `input_number.hot_water_proximity_distance`**
@@ -3661,6 +3625,42 @@ File: [`input_number/timeout/basement_lights_timeout.yaml`](entities/input_numbe
 - Unit Of Measurement: `mins`
 
 File: [`input_number/timeout/dry_box_dehumidifier_timeout.yaml`](entities/input_number/timeout/dry_box_dehumidifier_timeout.yaml)
+</details>
+
+<details><summary><strong>Electric Blanket Timeout: Level 1</strong></summary>
+
+**Entity ID: `input_number.electric_blanket_timeout_level_1`**
+
+- Max: 480
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/electric_blanket_timeout_level_1.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_1.yaml)
+</details>
+
+<details><summary><strong>Electric Blanket Timeout: Level 2</strong></summary>
+
+**Entity ID: `input_number.electric_blanket_timeout_level_2`**
+
+- Max: 480
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/electric_blanket_timeout_level_2.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_2.yaml)
+</details>
+
+<details><summary><strong>Electric Blanket Timeout: Level 3</strong></summary>
+
+**Entity ID: `input_number.electric_blanket_timeout_level_3`**
+
+- Max: 480
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/electric_blanket_timeout_level_3.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_3.yaml)
 </details>
 
 <details><summary><strong>Hallway Lights | Timeout</strong></summary>
