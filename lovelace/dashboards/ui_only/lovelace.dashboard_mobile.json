@@ -1507,6 +1507,15 @@
                   "double_tap_action": {
                     "action": "toggle"
                   }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "Hello, {{user}}",
+                  "secondary": "How are you?",
+                  "icon": "mdi:mushroom",
+                  "features_position": "bottom",
+                  "entity": "switch.vic_s_electric_blanket",
+                  "area": "bedroom"
                 }
               ]
             },
