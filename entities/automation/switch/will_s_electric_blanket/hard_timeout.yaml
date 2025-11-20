@@ -1,0 +1,22 @@
+---
+alias: /switch/will-s-electric-blanket/hard-timeout
+
+id: switch_will_s_electric_blanket_hard_timeout
+
+description: Hard timeout - turn off Will's electric blanket after 8 hours
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: switch.will_s_electric_blanket
+    to: "on"
+    for:
+      hours: 8
+
+action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.will_s_electric_blanket

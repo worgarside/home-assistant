@@ -1,0 +1,40 @@
+---
+name: Vic's Electric Blanket Level
+
+unique_id: vic_s_electric_blanket_level
+
+state: >-
+  {% if not is_state("switch.vic_s_electric_blanket", "on") %}
+    0
+  {% else %}
+    {% set power = states("sensor.vic_s_electric_blanket_power") | float(0) %}
+    {% if power < 1 %}
+      0
+    {% elif power >= 20 and power < 30 %}
+      1
+    {% elif power >= 30 and power < 40 %}
+      2
+    {% elif power >= 60 and power < 70 %}
+      3
+    {% else %}
+      {{ none }}
+    {% endif %}
+  {% endif %}
+
+icon: >-
+  {% if not is_state("switch.vic_s_electric_blanket", "on") %}
+    mdi:numeric-0-circle
+  {% else %}
+    {% set power = states("sensor.vic_s_electric_blanket_power") | float(0) %}
+    {% if power < 1 %}
+      mdi:numeric-0-circle
+    {% elif power >= 20 and power < 30 %}
+      mdi:numeric-1-circle
+    {% elif power >= 30 and power < 40 %}
+      mdi:numeric-2-circle
+    {% elif power >= 60 and power < 70 %}
+      mdi:numeric-3-circle
+    {% else %}
+      mdi:help-circle
+    {% endif %}
+  {% endif %}
