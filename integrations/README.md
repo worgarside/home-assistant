@@ -2,8 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (164)</h3></summary>
-<details><summary><h3>Entities (167)</h3></summary>
+<details><summary><h3>Entities (168)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -3197,8 +3196,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (50)</h3></summary>
-<details><summary><h3>Entities (52)</h3></summary>
+<details><summary><h3>Entities (53)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
