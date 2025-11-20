@@ -1511,11 +1511,12 @@
                 {
                   "type": "custom:mushroom-template-card",
                   "primary": "{{ states(\"switch.will_s_electric_blanket\") | title }}{% if is_state(\"switch.will_s_electric_blanket\", \"on\") %} (Level {{ states(\"sensor.will_s_electric_blanket_level\") }}){% endif %}",
-                  "secondary": "How are you?",
-                  "icon": "mdi:mushroom",
+                  "secondary": "Will's Electric Blanket",
                   "features_position": "bottom",
                   "entity": "switch.will_s_electric_blanket",
-                  "area": "bedroom"
+                  "area": "bedroom",
+                  "color": "{{ iif(is_state(\"switch.will_s_electric_blanket\", \"on\"), \"green\", \"gray\") }}",
+                  "icon": "phu:electric-blanket"
                 }
               ]
             },
