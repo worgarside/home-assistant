@@ -60,9 +60,11 @@ turn_on:
       entity_id: switch.boiler_fingerbot_hot_water
 
 turn_off:
-  - condition: state
-    entity_id: switch.hot_water
-    state: 'on'
+  - condition: >-
+      {{
+        is_state('switch.hot_water', 'on') or
+        is_state('binary_sensor.boiler_hot_water_led_sensor', 'on')
+      }}
 
   - if: >
       {{
@@ -84,6 +86,15 @@ turn_off:
     data:
       value: "{{ now().isoformat() }}"
 
-  - service: switch.toggle
-    target:
-      entity_id: switch.boiler_fingerbot_hot_water
+  - repeat:
+      while: >-
+        {{
+          is_state('binary_sensor.boiler_hot_water_led_sensor', 'on') and
+          repeat.index < 10
+        }}
+      sequence:
+        - service: switch.toggle
+          target:
+            entity_id: switch.boiler_fingerbot_hot_water
+        - delay:
+            seconds: 2
