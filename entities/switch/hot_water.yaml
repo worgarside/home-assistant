@@ -6,7 +6,7 @@ unique_id: hot_water
 value_template: "{{ is_state('binary_sensor.boiler_hot_water_led_sensor', 'on') }}"
 
 icon_template: >-
-  {% if states('switch.hot_water') | bool(false) %}
+  {% if is_state('binary_sensor.boiler_hot_water_led_sensor', 'on') %}
     mdi:water-boiler
   {% else %}
     mdi:water-boiler-off

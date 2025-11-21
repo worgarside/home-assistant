@@ -6,7 +6,7 @@ unique_id: central_heating
 value_template: "{{ is_state('binary_sensor.boiler_heating_led_sensor', 'on') }}"
 
 icon_template: >-
-  {% if states('switch.central_heating') | bool(false) %}
+  {% if is_state('binary_sensor.boiler_heating_led_sensor', 'on') %}
     mdi:radiator
   {% else %}
     mdi:radiator-off
