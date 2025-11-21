@@ -3,7 +3,7 @@ friendly_name: Hot Water
 
 unique_id: hot_water
 
-state: "{{ is_state('binary_sensor.boiler_hot_water_led_sensor', 'on') }}"
+value_template: "{{ is_state('binary_sensor.boiler_hot_water_led_sensor', 'on') }}"
 
 icon_template: >-
   {% if states('switch.hot_water') | bool(false) %}

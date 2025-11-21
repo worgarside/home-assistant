@@ -3,7 +3,7 @@ friendly_name: Central Heating
 
 unique_id: central_heating
 
-state: "{{ is_state('binary_sensor.boiler_heating_led_sensor', 'on') }}"
+value_template: "{{ is_state('binary_sensor.boiler_heating_led_sensor', 'on') }}"
 
 icon_template: >-
   {% if states('switch.central_heating') | bool(false) %}
