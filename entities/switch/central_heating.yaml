@@ -3,8 +3,10 @@ friendly_name: Central Heating
 
 unique_id: central_heating
 
+value_template: "{{ is_state('binary_sensor.boiler_heating_led_sensor', 'on') }}"
+
 icon_template: >-
-  {% if states('switch.central_heating') | bool(false) %}
+  {% if is_state('binary_sensor.boiler_heating_led_sensor', 'on') %}
     mdi:radiator
   {% else %}
     mdi:radiator-off
@@ -12,7 +14,7 @@ icon_template: >-
 
 turn_on:
   - condition: state
-    entity_id: switch.central_heating
+    entity_id: binary_sensor.boiler_heating_led_sensor
     state: 'off'
 
   - if: >
@@ -61,7 +63,7 @@ turn_on:
 
 turn_off:
   - condition: state
-    entity_id: switch.central_heating
+    entity_id: binary_sensor.boiler_heating_led_sensor
     state: 'on'
 
   - if: >
@@ -84,6 +86,11 @@ turn_off:
     data:
       value: "{{ now().isoformat() }}"
 
-  - service: switch.toggle
-    target:
-      entity_id: switch.boiler_fingerbot_heating
+  - repeat:
+      while: "{{ is_state('binary_sensor.boiler_heating_led_sensor', 'on') and repeat.index < 10 }}"
+      sequence:
+        - service: switch.toggle
+          target:
+            entity_id: switch.boiler_fingerbot_heating
+        - delay:
+            seconds: 2
