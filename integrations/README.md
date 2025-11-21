@@ -3297,6 +3297,7 @@ File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/d
 
 **Entity ID: `input_number.electric_blanket_timeout_level_1`**
 
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
 - Max: 480
 - Min: 1
 - Mode: `box`
@@ -3309,6 +3310,7 @@ File: [`input_number/electric_blanket_timeout_level_1.yaml`](entities/input_numb
 
 **Entity ID: `input_number.electric_blanket_timeout_level_2`**
 
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
 - Max: 480
 - Min: 1
 - Mode: `slider`
@@ -3321,6 +3323,7 @@ File: [`input_number/electric_blanket_timeout_level_2.yaml`](entities/input_numb
 
 **Entity ID: `input_number.electric_blanket_timeout_level_3`**
 
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
 - Max: 480
 - Min: 1
 - Mode: `slider`
