@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (167)</h3></summary>
+<details><summary><h3>Entities (168)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1969,6 +1969,19 @@ File: [`automation/remote/will_s_desk/button_2/double.yaml`](entities/automation
 File: [`automation/remote/will_s_desk/button_2/single.yaml`](entities/automation/remote/will_s_desk/button_2/single.yaml)
 </details>
 
+<details><summary><code>/remote/will-s-office/doorbell/single-press</code></summary>
+
+**Entity ID: `automation.remote_will_s_office_doorbell_single_press`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-office/doorbell/single-press
+- ID: `remote_will_s_office_doorbell_single_press`
+- Mode: `single`
+
+File: [`automation/remote/will_s_office/doorbell/single_press.yaml`](entities/automation/remote/will_s_office/doorbell/single_press.yaml)
+</details>
+
 <details><summary><code>/schedule/bedroom-heating-schedule/off</code></summary>
 
 **Entity ID: `automation.schedule_bedroom_heating_schedule_off`**
@@ -3183,7 +3196,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (55)</h3></summary>
+<details><summary><h3>Entities (56)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3366,6 +3379,19 @@ File: [`input_number/mtrxpi/queue_position/mtrxpi_audio_visualiser_queue_positio
 - Unit Of Measurement:
 
 File: [`input_number/mtrxpi/queue_position/mtrxpi_clock_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_clock_queue_position.yaml)
+</details>
+
+<details><summary><strong>MtrxPi | GIF (Alert Bell): Queue Position</strong></summary>
+
+**Entity ID: `input_number.mtrxpi_gif_alert_bell_queue_position`**
+
+- Icon: [`mdi:tray-plus`](https://pictogrammers.com/library/mdi/icon/tray-plus/)
+- Max: 10000
+- Min: -10000
+- Mode: `box`
+- Unit Of Measurement:
+
+File: [`input_number/mtrxpi/queue_position/mtrxpi_gif_alert_bell_queue_position.yaml`](entities/input_number/mtrxpi/queue_position/mtrxpi_gif_alert_bell_queue_position.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | GIF (Door Animated): Queue Position</strong></summary>
