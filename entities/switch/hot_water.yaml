@@ -3,6 +3,8 @@ friendly_name: Hot Water
 
 unique_id: hot_water
 
+state: "{{ is_state('binary_sensor.boiler_hot_water_led_sensor', 'on') }}"
+
 icon_template: >-
   {% if states('switch.hot_water') | bool(false) %}
     mdi:water-boiler
@@ -12,7 +14,7 @@ icon_template: >-
 
 turn_on:
   - condition: state
-    entity_id: switch.hot_water
+    entity_id: binary_sensor.boiler_hot_water_led_sensor
     state: 'off'
 
   - if: >
@@ -60,11 +62,9 @@ turn_on:
       entity_id: switch.boiler_fingerbot_hot_water
 
 turn_off:
-  - condition: >-
-      {{
-        is_state('switch.hot_water', 'on') or
-        is_state('binary_sensor.boiler_hot_water_led_sensor', 'on')
-      }}
+  - condition: state
+    entity_id: binary_sensor.boiler_hot_water_led_sensor
+    state: 'on'
 
   - if: >
       {{

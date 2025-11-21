@@ -3,6 +3,8 @@ friendly_name: Central Heating
 
 unique_id: central_heating
 
+state: "{{ is_state('binary_sensor.boiler_heating_led_sensor', 'on') }}"
+
 icon_template: >-
   {% if states('switch.central_heating') | bool(false) %}
     mdi:radiator
@@ -12,7 +14,7 @@ icon_template: >-
 
 turn_on:
   - condition: state
-    entity_id: switch.central_heating
+    entity_id: binary_sensor.boiler_heating_led_sensor
     state: 'off'
 
   - if: >
@@ -60,11 +62,9 @@ turn_on:
       entity_id: switch.boiler_fingerbot_heating
 
 turn_off:
-  - condition: >-
-      {{
-        is_state('switch.central_heating', 'on') or
-        is_state('binary_sensor.boiler_heating_led_sensor', 'on')
-      }}
+  - condition: state
+    entity_id: binary_sensor.boiler_heating_led_sensor
+    state: 'on'
 
   - if: >
       {{
