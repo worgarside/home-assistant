@@ -84,7 +84,7 @@ jobs:
           touch scenes.yaml
 
       - name: Validate Configuration
-        uses: worgarside/action-home-assistant@main
+        uses: worgarside/action-home-assistant@2ed46e0ffded84d4c67d751e43ef0f2f9d8146aa
         with:
           path: .
           secrets: secrets.fake.yaml
