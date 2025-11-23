@@ -1482,7 +1482,13 @@
                   "entity": "switch.vic_s_electric_blanket",
                   "area": "bedroom",
                   "color": "{{ iif(is_state(\"switch.vic_s_electric_blanket\", \"on\"), \"purple\", \"gray\") }}",
-                  "icon": "phu:elec_blanket"
+                  "icon": "phu:elec_blanket",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
