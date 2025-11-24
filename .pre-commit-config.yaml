@@ -62,7 +62,7 @@ repos:
           - --strict
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.2
+    rev: v0.14.6
     hooks:
       - id: ruff-check
         args:
@@ -72,7 +72,7 @@ repos:
         exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
 
   - repo: https://github.com/lovesegfault/beautysh
-    rev: v6.2.1
+    rev: v6.4.2
     hooks:
       - id: beautysh
         language_version: python3.11 # Uses pkg_resources -.-
