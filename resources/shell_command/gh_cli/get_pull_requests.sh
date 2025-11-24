@@ -28,7 +28,7 @@ PULL_REQUESTS=$(
     /config/resources/gh_cli/bin/gh pr list \
         --repo "worgarside/$REPO_NAME" \
         --json author,autoMergeRequest,createdAt,isDraft,labels,number,reviewDecision,statusCheckRollup,title,url \
-        --jq '
+    --jq '
             map(.labels = [.labels[].name]) |
             map(.author = .author.login) |
             sort_by(.createdAt) |
