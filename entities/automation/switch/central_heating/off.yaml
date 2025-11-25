@@ -12,7 +12,7 @@ trigger:
     entity_id: switch.central_heating
     from: "on"
     to: "off"
-    for: 
+    for:
       seconds: 10
 
 action:
