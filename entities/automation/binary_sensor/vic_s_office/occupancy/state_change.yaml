@@ -107,10 +107,6 @@ action:
                     seconds: 10
                   continue_on_timeout: true
 
-          - service: climate.turn_off
-            target:
-              entity_id: climate.vic_s_office_radiator
-
       - delay:
           seconds: 1
 
