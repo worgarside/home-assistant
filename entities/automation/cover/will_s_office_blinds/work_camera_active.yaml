@@ -9,13 +9,13 @@ max_exceeded: silent
 
 description: >-
   Closes Will's office blinds when Will is at home and the work MacBook Pro
-  starts using the HD Pro Webcam C920, and re-opens them when the camera has
+  starts using the configured work camera, and re-opens them when the camera has
   not been used for 60 seconds (only if the blinds were originally open).
 
 trigger:
   - platform: state
     entity_id: sensor.work_macbook_pro_active_camera
-    to: "HD Pro Webcam C920"
+    to: input_text.will_s_office_webcam_name
     for:
       seconds: 10
 
@@ -37,7 +37,7 @@ action:
       - wait_for_trigger:
           - platform: state
             entity_id: sensor.work_macbook_pro_active_camera
-            from: "HD Pro Webcam C920"
+            from: input_text.will_s_office_webcam_name
             for:
               seconds: 60
 
