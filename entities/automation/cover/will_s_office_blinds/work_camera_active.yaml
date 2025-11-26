@@ -9,7 +9,8 @@ max_exceeded: silent
 
 description: >-
   Closes Will's office blinds when Will is at home and the work MacBook Pro
-  starts using the HD Pro Webcam C920.
+  starts using the HD Pro Webcam C920, and re-opens them when the camera has
+  not been used for 60 seconds (only if the blinds were originally open).
 
 trigger:
   - platform: state
@@ -17,6 +18,9 @@ trigger:
     to: "HD Pro Webcam C920"
     for:
       seconds: 10
+
+variables:
+  blinds_were_open: "{{ is_state('cover.will_s_office_blinds', 'open') }}"
 
 condition:
   - condition: state
@@ -28,4 +32,15 @@ action:
     target:
       entity_id: cover.will_s_office_blinds
 
+  - if: "{{ blinds_were_open }}"
+    then:
+      - wait_for_trigger:
+          - platform: state
+            entity_id: sensor.work_macbook_pro_active_camera
+            from: "HD Pro Webcam C920"
+            for:
+              seconds: 60
 
+      - service: cover.open_cover
+        target:
+          entity_id: cover.will_s_office_blinds
