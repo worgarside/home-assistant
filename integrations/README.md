@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (168)</h3></summary>
+<details><summary><h3>Entities (169)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -332,6 +332,25 @@ File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/
 - Mode: `single`
 
 File: [`automation/cover/will_s_office_blinds/auto_close.yaml`](entities/automation/cover/will_s_office_blinds/auto_close.yaml)
+</details>
+
+<details><summary><code>/cover/will-s-office-blinds/work-camera-active</code></summary>
+
+**Entity ID: `automation.cover_will_s_office_blinds_work_camera_active`**
+
+> Closes Will's office blinds when Will is at home and the work MacBook Pro starts using the HD Pro Webcam C920, and re-opens them when the camera has not been used for 60 seconds (only if the blinds were originally open).
+
+- Alias: /cover/will-s-office-blinds/work-camera-active
+- ID: `cover_will_s_office_blinds_work_camera_active`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "blinds_were_open": "{{ is_state('cover.will_s_office_blinds', 'open') }}"
+}
+```
+File: [`automation/cover/will_s_office_blinds/work_camera_active.yaml`](entities/automation/cover/will_s_office_blinds/work_camera_active.yaml)
 </details>
 
 <details><summary><code>/crtpi/cpu-fan-control</code></summary>
