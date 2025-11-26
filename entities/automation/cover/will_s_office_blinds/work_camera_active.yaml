@@ -1,0 +1,31 @@
+---
+alias: /cover/will-s-office-blinds/work-camera-active
+
+id: cover_will_s_office_blinds_work_camera_active
+
+mode: single
+
+max_exceeded: silent
+
+description: >-
+  Closes Will's office blinds when Will is at home and the work MacBook Pro
+  starts using the HD Pro Webcam C920.
+
+trigger:
+  - platform: state
+    entity_id: sensor.work_macbook_pro_active_camera
+    to: "HD Pro Webcam C920"
+    for:
+      seconds: 10
+
+condition:
+  - condition: state
+    entity_id: person.will
+    state: home
+
+action:
+  - service: cover.close_cover
+    target:
+      entity_id: cover.will_s_office_blinds
+
+
