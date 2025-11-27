@@ -790,7 +790,7 @@
                           },
                           {
                             "entity": "sensor.met_office_fulham_temperature",
-                            "name": "Fulham"
+                            "name": "Hammersmith"
                           }
                         ],
                         "height": 250,
@@ -855,6 +855,10 @@
                           {
                             "entity": "sensor.will_s_office_climate_sensor_humidity",
                             "name": "Will's Office"
+                          },
+                          {
+                            "entity": "sensor.met_office_fulham_humidity",
+                            "name": "Hammersmith"
                           }
                         ],
                         "height": 250,
@@ -1484,13 +1488,6 @@
                       "entity": "sensor.storage_cc_ssd_transient_qbt_disk_used_percentage",
                       "name": "QBT Storage",
                       "color": "#FF9901",
-                      "y_axis": "secondary",
-                      "show_line": false
-                    },
-                    {
-                      "entity": "sensor.storage_cc_tdarr_cache_disk_used_percentage",
-                      "name": "Tdarr Storage",
-                      "color": "teal",
                       "y_axis": "secondary",
                       "show_line": false
                     }
@@ -2272,7 +2269,7 @@
                     },
                     {
                       "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.prusa_i3_mk3_current_consumption",
+                      "entity": "sensor.prusa_i3_mk3_power",
                       "name": "Current Power Draw",
                       "icon_color": "yellow",
                       "primary_info": "state",
@@ -5350,6 +5347,10 @@
                   "entity": "schedule.hot_water",
                   "secondary": "Hot Water Schedule",
                   "color": "{{ iif(states(\"schedule.hot_water\") | bool(false), \"#04b7d6\", \"grey\") }}"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.hot_water"
                 }
               ]
             }
