@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (169)</h3></summary>
+<details><summary><h3>Entities (170)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
