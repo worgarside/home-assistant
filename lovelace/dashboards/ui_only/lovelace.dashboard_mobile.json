@@ -1111,7 +1111,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Turn lights off after {{ states(\"input_number.lounge_lights_timeout\") | int(\"??\") }} minutes of vacancy"
+                  "primary": "Turn lights off after {{ states(\"input_number.lounge_lights_timeout\") | int(\"??\") }} seconds of vacancy"
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -1473,6 +1473,41 @@
                     }
                   ],
                   "icon_color": "deep-orange"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states(\"switch.vic_s_electric_blanket\") | title }}{% if is_state(\"switch.vic_s_electric_blanket\", \"on\") %} (Level {{ states(\"sensor.vic_s_electric_blanket_level\") }}){% endif %}",
+                  "secondary": "Vic's Electric Blanket",
+                  "features_position": "bottom",
+                  "entity": "switch.vic_s_electric_blanket",
+                  "area": "bedroom",
+                  "color": "{{ iif(is_state(\"switch.vic_s_electric_blanket\", \"on\"), \"purple\", \"gray\") }}",
+                  "icon": "phu:elec_blanket",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states(\"switch.will_s_electric_blanket\") | title }}{% if is_state(\"switch.will_s_electric_blanket\", \"on\") %} (Level {{ states(\"sensor.will_s_electric_blanket_level\") }}){% endif %}",
+                  "secondary": "Will's Electric Blanket",
+                  "features_position": "bottom",
+                  "entity": "switch.will_s_electric_blanket",
+                  "area": "bedroom",
+                  "color": "{{ iif(is_state(\"switch.will_s_electric_blanket\", \"on\"), \"green\", \"gray\") }}",
+                  "icon": "phu:elec_blanket",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
                 }
               ]
             },
@@ -1847,6 +1882,51 @@
                   },
                   "tap_action": {
                     "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_number.electric_blanket_timeout_level_1",
+                  "name": "Lvl 1",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "layout": "horizontal",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_number.electric_blanket_timeout_level_2",
+                  "name": "Lvl 2",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "layout": "horizontal",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_number.electric_blanket_timeout_level_3",
+                  "name": "Lvl 3",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "layout": "horizontal",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
                   }
                 }
               ]
