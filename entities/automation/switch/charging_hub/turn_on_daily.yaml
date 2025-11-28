@@ -1,0 +1,40 @@
+---
+alias: /switch/charging-hub/turn-on-daily
+
+id: switch_charging_hub_turn_on_daily
+
+description: >-
+  Turn on the charging hub daily at 2 AM, and turn it off if power consumption remains
+  below the threshold. This is mainly for when I plug something in to charge overnight
+  and forget to turn it on
+
+mode: single
+
+trigger:
+  - platform: time
+    at: "02:00:00"
+
+condition:
+  - condition: state
+    entity_id: person.will
+    state: home
+
+action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.charging_hub
+
+  - delay:
+      seconds: 30
+
+  - wait_template: >
+      {{
+        states("sensor.charging_hub_power") | float(0) >=
+        states("input_number.charging_hub_auto_off_threshold") | float(0)
+      }}
+    timeout:
+      minutes: 2
+
+  - service: switch.turn_off
+    target:
+      entity_id: switch.charging_hub

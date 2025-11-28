@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (169)</h3></summary>
+<details><summary><h3>Entities (170)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -2235,6 +2235,19 @@ File: [`automation/switch/central_heating/vic_office_preheat.yaml`](entities/aut
 - Mode: `single`
 
 File: [`automation/switch/charging_hub/turn_off.yaml`](entities/automation/switch/charging_hub/turn_off.yaml)
+</details>
+
+<details><summary><code>/switch/charging-hub/turn-on-daily</code></summary>
+
+**Entity ID: `automation.switch_charging_hub_turn_on_daily`**
+
+> Turn on the charging hub daily at 2 AM, and turn it off if power consumption remains below the threshold. This is mainly for when I plug something in to charge overnight and forget to turn it on
+
+- Alias: /switch/charging-hub/turn-on-daily
+- ID: `switch_charging_hub_turn_on_daily`
+- Mode: `single`
+
+File: [`automation/switch/charging_hub/turn_on_daily.yaml`](entities/automation/switch/charging_hub/turn_on_daily.yaml)
 </details>
 
 <details><summary><code>/switch/christmas-tree/turn-on</code></summary>
