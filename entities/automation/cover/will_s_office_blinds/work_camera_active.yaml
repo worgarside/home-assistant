@@ -40,9 +40,14 @@ action:
   - if: "{{ blinds_were_open }}"
     then:
       - wait_for_trigger:
-          - platform: state
-            entity_id: sensor.work_macbook_pro_active_camera
-            from: input_text.will_s_office_webcam_name
+          - platform: template
+            value_template: >-
+              {{
+                not is_state(
+                  "sensor.work_macbook_pro_active_camera",
+                  states("input_text.will_s_office_webcam_name")
+                )
+              }}
             for:
               seconds: 60
 
