@@ -14,7 +14,7 @@ description: >-
 
 trigger:
   - platform: template
-    value_template: >-  
+    value_template: >-
       {{
         is_state(
           "sensor.work_macbook_pro_active_camera",
