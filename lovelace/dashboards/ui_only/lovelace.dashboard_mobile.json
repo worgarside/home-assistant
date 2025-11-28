@@ -1898,6 +1898,21 @@
                     "columns": 4,
                     "rows": 1
                   }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_number.electric_blanket_timeout_level_2",
+                  "name": "Lvl 2",
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "layout": "horizontal",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
                 }
               ]
             }
