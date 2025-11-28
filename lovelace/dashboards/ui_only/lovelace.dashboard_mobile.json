@@ -1893,7 +1893,11 @@
                   "tap_action": {
                     "action": "more-info"
                   },
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
                 }
               ]
             }
