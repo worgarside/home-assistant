@@ -10,15 +10,20 @@ mode: restart
 trigger:
   - platform: state
     entity_id: sensor.will_s_electric_blanket_level
+    for:
+      seconds: 5
 
 variables:
-  level: "{{ states('sensor.will_s_electric_blanket_level') }}"
-
-condition: "{{ level in ['1', '2', '3'] }}"
+  level: "{{ states('sensor.will_s_electric_blanket_level') | int(-1) }}"
 
 action:
   - choose:
-      - conditions: "{{ level == '1' }}"
+      - conditions: "{{ level == 0 }}"
+        sequence:
+          - alias: Do nothing # Nicer than having another condition inside the default block
+            delay: 1
+
+      - conditions: "{{ level == 1 }}"
         sequence:
           - delay:
               minutes: "{{ states('input_number.electric_blanket_timeout_level_1') | int(60) }}"
@@ -26,7 +31,7 @@ action:
             target:
               entity_id: switch.will_s_electric_blanket
 
-      - conditions: "{{ level == '2' }}"
+      - conditions: "{{ level == 2 }}"
         sequence:
           - delay:
               minutes: "{{ states('input_number.electric_blanket_timeout_level_2') | int(60) }}"
@@ -34,10 +39,17 @@ action:
             target:
               entity_id: switch.will_s_electric_blanket
 
-      - conditions: "{{ level == '3' }}"
+      - conditions: "{{ level == 3 }}"
         sequence:
           - delay:
               minutes: "{{ states('input_number.electric_blanket_timeout_level_3') | int(60) }}"
           - service: switch.turn_off
             target:
               entity_id: switch.will_s_electric_blanket
+
+    default:
+      - action: script.log_exception
+        data:
+          calling_entity: automation.switch_will_s_electric_blanket_timeout
+          message: |
+            Got level `{{ level }}` from `sensor.will_s_electric_blanket_level`

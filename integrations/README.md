@@ -2415,7 +2415,7 @@ File: [`automation/switch/vic_s_electric_blanket/hard_timeout.yaml`](entities/au
 
 ```json
 {
-  "level": "{{ states('sensor.vic_s_electric_blanket_level') }}"
+  "level": "{{ states('sensor.vic_s_electric_blanket_level') | int(-1) }}"
 }
 ```
 File: [`automation/switch/vic_s_electric_blanket/timeout.yaml`](entities/automation/switch/vic_s_electric_blanket/timeout.yaml)
@@ -2447,7 +2447,7 @@ File: [`automation/switch/will_s_electric_blanket/hard_timeout.yaml`](entities/a
 
 ```json
 {
-  "level": "{{ states('sensor.will_s_electric_blanket_level') }}"
+  "level": "{{ states('sensor.will_s_electric_blanket_level') | int(-1) }}"
 }
 ```
 File: [`automation/switch/will_s_electric_blanket/timeout.yaml`](entities/automation/switch/will_s_electric_blanket/timeout.yaml)
