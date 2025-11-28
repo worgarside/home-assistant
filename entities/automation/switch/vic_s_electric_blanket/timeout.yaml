@@ -10,6 +10,8 @@ mode: restart
 trigger:
   - platform: state
     entity_id: sensor.vic_s_electric_blanket_level
+    for:
+      seconds: 5
 
 variables:
   level: "{{ states('sensor.vic_s_electric_blanket_level') | int(-1) }}"
