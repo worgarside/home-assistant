@@ -20,7 +20,7 @@ action:
         sequence:
           - alias: Do nothing # Nicer than having another condition inside the default block
             delay: 1
-            
+
       - conditions: "{{ level == 1 }}"
         sequence:
           - delay:
