@@ -334,6 +334,25 @@ File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/
 File: [`automation/cover/will_s_office_blinds/auto_close.yaml`](entities/automation/cover/will_s_office_blinds/auto_close.yaml)
 </details>
 
+<details><summary><code>/cover/will-s-office-blinds/work-camera-active</code></summary>
+
+**Entity ID: `automation.cover_will_s_office_blinds_work_camera_active`**
+
+> Closes Will's office blinds when Will is at home and the work MacBook Pro starts using the configured work camera, and re-opens them when the camera has not been used for 60 seconds (only if the blinds were originally open).
+
+- Alias: /cover/will-s-office-blinds/work-camera-active
+- ID: `cover_will_s_office_blinds_work_camera_active`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "blinds_were_open": "{{ is_state('cover.will_s_office_blinds', 'open') }}"
+}
+```
+File: [`automation/cover/will_s_office_blinds/work_camera_active.yaml`](entities/automation/cover/will_s_office_blinds/work_camera_active.yaml)
+</details>
+
 <details><summary><code>/crtpi/cpu-fan-control</code></summary>
 
 **Entity ID: `automation.crtpi_cpu_fan_control`**
@@ -3987,7 +4006,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (18)</h3></summary>
+<details><summary><h3>Entities (19)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -4156,6 +4175,15 @@ File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entit
 - Icon: [`mdi:regex`](https://pictogrammers.com/library/mdi/icon/regex/)
 
 File: [`input_text/vic_work_calendar_holiday_pattern.yaml`](entities/input_text/vic_work_calendar_holiday_pattern.yaml)
+</details>
+
+<details><summary><strong>Will's Office Webcam Name</strong></summary>
+
+**Entity ID: `input_text.will_s_office_webcam_name`**
+
+- Icon: [`mdi:camera`](https://pictogrammers.com/library/mdi/icon/camera/)
+
+File: [`input_text/will_s_office_webcam_name.yaml`](entities/input_text/will_s_office_webcam_name.yaml)
 </details>
 
 </details>
