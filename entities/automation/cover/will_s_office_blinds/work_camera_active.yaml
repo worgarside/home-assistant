@@ -13,9 +13,14 @@ description: >-
   not been used for 60 seconds (only if the blinds were originally open).
 
 trigger:
-  - platform: state
-    entity_id: sensor.work_macbook_pro_active_camera
-    to: input_text.will_s_office_webcam_name
+  - platform: template
+    value_template: >-  
+      {{
+        is_state(
+          "sensor.work_macbook_pro_active_camera",
+          states("input_text.will_s_office_webcam_name")
+        )
+      }}
     for:
       seconds: 10
 
