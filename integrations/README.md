@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (170)</h3></summary>
+<details><summary><h3>Entities (180)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1843,6 +1843,136 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
+</details>
+
+<details><summary><code>/remote/spare-room/ball-lamp-remote/brightness-move-down</code></summary>
+
+**Entity ID: `automation.remote_spare_room_ball_lamp_remote_brightness_move_down`**
+
+> *No description provided*
+
+- Alias: /remote/spare-room/ball-lamp-remote/brightness-move-down
+- ID: `remote_spare_room_ball_lamp_remote_brightness_move_down`
+- Mode: `single`
+
+File: [`automation/remote/spare_room/ball_lamp_remote/brightness_move_down.yaml`](entities/automation/remote/spare_room/ball_lamp_remote/brightness_move_down.yaml)
+</details>
+
+<details><summary><code>/remote/spare-room/ball-lamp-remote/brightness-move-up</code></summary>
+
+**Entity ID: `automation.remote_spare_room_ball_lamp_remote_brightness_move_up`**
+
+> *No description provided*
+
+- Alias: /remote/spare-room/ball-lamp-remote/brightness-move-up
+- ID: `remote_spare_room_ball_lamp_remote_brightness_move_up`
+- Mode: `single`
+
+File: [`automation/remote/spare_room/ball_lamp_remote/brightness_move_up.yaml`](entities/automation/remote/spare_room/ball_lamp_remote/brightness_move_up.yaml)
+</details>
+
+<details><summary><code>/remote/spare-room/ball-lamp-remote/off</code></summary>
+
+**Entity ID: `automation.remote_spare_room_ball_lamp_remote_off`**
+
+> *No description provided*
+
+- Alias: /remote/spare-room/ball-lamp-remote/off
+- ID: `remote_spare_room_ball_lamp_remote_off`
+- Mode: `single`
+
+File: [`automation/remote/spare_room/ball_lamp_remote/off.yaml`](entities/automation/remote/spare_room/ball_lamp_remote/off.yaml)
+</details>
+
+<details><summary><code>/remote/spare-room/ball-lamp-remote/on</code></summary>
+
+**Entity ID: `automation.remote_spare_room_ball_lamp_remote_on`**
+
+> *No description provided*
+
+- Alias: /remote/spare-room/ball-lamp-remote/on
+- ID: `remote_spare_room_ball_lamp_remote_on`
+- Mode: `single`
+
+File: [`automation/remote/spare_room/ball_lamp_remote/on.yaml`](entities/automation/remote/spare_room/ball_lamp_remote/on.yaml)
+</details>
+
+<details><summary><code>/remote/spare-room/hue-remote/down-press</code></summary>
+
+**Entity ID: `automation.remote_spare_room_hue_remote_down_press`**
+
+> *No description provided*
+
+- Alias: /remote/spare-room/hue-remote/down-press
+- ID: `remote_spare_room_hue_remote_down_press`
+- Mode: `single`
+
+File: [`automation/remote/spare_room/hue_remote/down_press.yaml`](entities/automation/remote/spare_room/hue_remote/down_press.yaml)
+</details>
+
+<details><summary><code>/remote/spare-room/hue-remote/off-hold</code></summary>
+
+**Entity ID: `automation.remote_spare_room_hue_remote_off_hold`**
+
+> *No description provided*
+
+- Alias: /remote/spare-room/hue-remote/off-hold
+- ID: `remote_spare_room_hue_remote_off_hold`
+- Mode: `single`
+
+File: [`automation/remote/spare_room/hue_remote/off_hold.yaml`](entities/automation/remote/spare_room/hue_remote/off_hold.yaml)
+</details>
+
+<details><summary><code>/remote/spare-room/hue-remote/off-press</code></summary>
+
+**Entity ID: `automation.remote_spare_room_hue_remote_off_press`**
+
+> *No description provided*
+
+- Alias: /remote/spare-room/hue-remote/off-press
+- ID: `remote_spare_room_hue_remote_off_press`
+- Mode: `single`
+
+File: [`automation/remote/spare_room/hue_remote/off_press.yaml`](entities/automation/remote/spare_room/hue_remote/off_press.yaml)
+</details>
+
+<details><summary><code>/remote/spare-room/hue-remote/on-hold</code></summary>
+
+**Entity ID: `automation.remote_spare_room_hue_remote_on_hold`**
+
+> *No description provided*
+
+- Alias: /remote/spare-room/hue-remote/on-hold
+- ID: `remote_spare_room_hue_remote_on_hold`
+- Mode: `single`
+
+File: [`automation/remote/spare_room/hue_remote/on_hold.yaml`](entities/automation/remote/spare_room/hue_remote/on_hold.yaml)
+</details>
+
+<details><summary><code>/remote/spare-room/hue-remote/on-press</code></summary>
+
+**Entity ID: `automation.remote_spare_room_hue_remote_on_press`**
+
+> *No description provided*
+
+- Alias: /remote/spare-room/hue-remote/on-press
+- ID: `remote_spare_room_hue_remote_on_press`
+- Mode: `single`
+
+File: [`automation/remote/spare_room/hue_remote/on_press.yaml`](entities/automation/remote/spare_room/hue_remote/on_press.yaml)
+</details>
+
+<details><summary><code>/remote/spare-room/hue-remote/up-press</code></summary>
+
+**Entity ID: `automation.remote_spare_room_hue_remote_up_press`**
+
+> *No description provided*
+
+- Alias: /remote/spare-room/hue-remote/up-press
+- ID: `remote_spare_room_hue_remote_up_press`
+- Mode: `single`
+
+File: [`automation/remote/spare_room/hue_remote/up_press.yaml`](entities/automation/remote/spare_room/hue_remote/up_press.yaml)
 </details>
 
 <details><summary><code>/remote/vic-s-office-hue-remote/down-press</code></summary>

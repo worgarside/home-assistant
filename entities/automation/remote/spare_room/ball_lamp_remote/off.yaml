@@ -1,0 +1,20 @@
+---
+alias: /remote/spare-room/ball-lamp-remote/off
+
+id: remote_spare_room_ball_lamp_remote_off
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 93810fd8a8b1163ba97a3eef93cbdcec
+    type: action
+    subtype: "off"
+
+action:
+  - service: light.turn_off
+    target:
+      entity_id: light.ball_lamp

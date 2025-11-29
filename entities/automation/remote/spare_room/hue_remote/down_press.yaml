@@ -1,7 +1,7 @@
 ---
-alias: /remote/office-hue-remote/down-press
+alias: /remote/spare-room/hue-remote/down-press
 
-id: remote_office_hue_remote_down_press
+id: remote_spare_room_hue_remote_down_press
 
 mode: single
 
@@ -10,7 +10,7 @@ max_exceeded: silent
 trigger:
   - domain: mqtt
     platform: device
-    device_id: e8bc7fec0277d53e050af7b9ce025641
+    device_id: 423730fd9dff7496e36807ac1643a3c8
     type: action
     subtype: down_press
 
@@ -18,7 +18,7 @@ action:
   - repeat:
       for_each: >-
         {%- set ns = namespace(lights=[]) %}
-        {%- for e in area_entities('office') %}
+        {%- for e in area_entities('guest_room') %}
           {%- if e.startswith('light.') and state_attr(e, 'brightness') is not none %}
             {%- set ns.lights = ns.lights + [e] %}
           {%- endif %}

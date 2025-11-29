@@ -1,0 +1,22 @@
+---
+alias: /remote/spare-room/hue-remote/on-press
+
+id: remote_spare_room_hue_remote_on_press
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 423730fd9dff7496e36807ac1643a3c8
+    type: action
+    subtype: on_press  # This isn't "on press event, do X" - it's "ON [button has been] press[ed]"
+
+action:
+  - service: light.turn_on
+    target:
+      area_id: guest_room
+    data:
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
