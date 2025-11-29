@@ -20,4 +20,3 @@ action:
       entity_id: light.ball_lamp
     data:
       brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
-

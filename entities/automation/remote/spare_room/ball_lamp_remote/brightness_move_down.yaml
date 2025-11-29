@@ -23,4 +23,3 @@ action:
         data:
           brightness: >-
             {{ max(state_attr("light.ball_lamp", "brightness") | int(32) - 32, 0) }}
-
