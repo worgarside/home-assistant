@@ -12,7 +12,7 @@ trigger:
     platform: device
     device_id: 93810fd8a8b1163ba97a3eef93cbdcec
     type: action
-    subtype: off
+    subtype: "off"
 
 action:
   - service: light.turn_off
