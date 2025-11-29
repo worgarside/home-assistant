@@ -1,7 +1,7 @@
 ---
-alias: /remote/vic-s-office-hue-remote/up-press
+alias: /remote/spare-room/hue-remote/up-press
 
-id: remote_vic_s_office_hue_remote_up_press
+id: remote_spare_room_hue_remote_up_press
 
 mode: single
 
@@ -10,7 +10,7 @@ max_exceeded: silent
 trigger:
   - domain: mqtt
     platform: device
-    device_id: 59ad3110285eab557754d2cf24ad84c1
+    device_id: 423730fd9dff7496e36807ac1643a3c8
     type: action
     subtype: up_press
 
@@ -18,7 +18,7 @@ action:
   - repeat:
       for_each: >-
         {%- set ns = namespace(lights=[]) %}
-        {%- for e in area_entities('vic_s_office') %}
+        {%- for e in area_entities('guest_room') %}
           {%- if e.startswith('light.') and state_attr(e, 'brightness') is not none %}
             {%- set ns.lights = ns.lights + [e] %}
           {%- endif %}

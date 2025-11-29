@@ -15,47 +15,23 @@ trigger:
     subtype: up_press
 
 action:
-  - parallel:
-      - service: light.turn_on
-        target:
-          entity_id: light.will_s_desk_lamp
-        data:
-          brightness: >-
-            {% if is_state("light.will_s_desk_lamp", "on") %}
-              {{ min(state_attr("light.will_s_desk_lamp", "brightness") | int(64) + 32, 255) }}
-            {% else %}
-              32
-            {% endif %}
-
-      - service: light.turn_on
-        target:
-          entity_id: light.mushroom_lamp
-        data:
-          brightness: >-
-            {% if is_state("light.mushroom_lamp", "on") %}
-              {{ min(state_attr("light.mushroom_lamp", "brightness") | int(64) + 32, 255) }}
-            {% else %}
-              32
-            {% endif %}
-
-      - service: light.turn_on
-        target:
-          entity_id: light.pegboard_spotlight
-        data:
-          brightness: >-
-            {% if is_state("light.pegboard_spotlight", "on") %}
-              {{ min(state_attr("light.pegboard_spotlight", "brightness") | int(64) + 32, 255) }}
-            {% else %}
-              32
-            {% endif %}
-
-      - service: light.turn_on
-        target:
-          entity_id: light.will_s_office_shapes
-        data:
-          brightness: >-
-            {% if is_state("light.will_s_office_shapes", "on") %}
-              {{ min(state_attr("light.will_s_office_shapes", "brightness") | int(64) + 32, 255) }}
-            {% else %}
-              32
-            {% endif %}
+  - repeat:
+      for_each: >-
+        {%- set ns = namespace(lights=[]) %}
+        {%- for e in area_entities('office') %}
+          {%- if e.startswith('light.') and state_attr(e, 'brightness') is not none %}
+            {%- set ns.lights = ns.lights + [e] %}
+          {%- endif %}
+        {%- endfor %}
+        {{ ns.lights }}
+      sequence:
+        - service: light.turn_on
+          target:
+            entity_id: "{{ repeat.item }}"
+          data:
+            brightness: >-
+              {% if is_state(repeat.item, "on") %}
+                {{ min(state_attr(repeat.item, "brightness") | int(64) + 32, 255) }}
+              {% else %}
+                32
+              {% endif %}
