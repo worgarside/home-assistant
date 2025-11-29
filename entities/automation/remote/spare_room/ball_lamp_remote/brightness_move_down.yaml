@@ -1,0 +1,26 @@
+---
+alias: /remote/spare-room/ball-lamp-remote/brightness-move-down
+
+id: remote_spare_room_ball_lamp_remote_brightness_move_down
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 93810fd8a8b1163ba97a3eef93cbdcec
+    type: action
+    subtype: brightness_move_down
+
+action:
+  - if: "{{ is_state('light.ball_lamp', 'on') }}"
+    then:
+      - service: light.turn_on
+        target:
+          entity_id: light.ball_lamp
+        data:
+          brightness: >-
+            {{ max(state_attr("light.ball_lamp", "brightness") | int(32) - 32, 0) }}
+

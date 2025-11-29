@@ -1,7 +1,7 @@
 ---
-alias: /remote/spare-room-hue-remote/up-press
+alias: /remote/spare-room/hue-remote/down-press
 
-id: remote_spare_room_hue_remote_up_press
+id: remote_spare_room_hue_remote_down_press
 
 mode: single
 
@@ -12,7 +12,7 @@ trigger:
     platform: device
     device_id: 423730fd9dff7496e36807ac1643a3c8
     type: action
-    subtype: up_press
+    subtype: down_press
 
 action:
   - repeat:
@@ -25,13 +25,11 @@ action:
         {%- endfor %}
         {{ ns.lights }}
       sequence:
-        - service: light.turn_on
-          target:
-            entity_id: "{{ repeat.item }}"
-          data:
-            brightness: >-
-              {% if is_state(repeat.item, "on") %}
-                {{ min(state_attr(repeat.item, "brightness") | int(64) + 32, 255) }}
-              {% else %}
-                32
-              {% endif %}
+        - if: "{{ is_state(repeat.item, 'on') }}"
+          then:
+            - service: light.turn_on
+              target:
+                entity_id: "{{ repeat.item }}"
+              data:
+                brightness: >-
+                  {{ max(state_attr(repeat.item, "brightness") | int(32) - 32, 0) }}

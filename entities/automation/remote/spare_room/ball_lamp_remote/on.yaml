@@ -1,0 +1,23 @@
+---
+alias: /remote/spare-room/ball-lamp-remote/on
+
+id: remote_spare_room_ball_lamp_remote_on
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 93810fd8a8b1163ba97a3eef93cbdcec
+    type: action
+    subtype: "on"
+
+action:
+  - service: light.turn_on
+    target:
+      entity_id: light.ball_lamp
+    data:
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
