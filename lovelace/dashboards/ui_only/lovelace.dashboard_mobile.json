@@ -4231,7 +4231,7 @@
                 },
                 {
                   "type": "custom:mushroom-light-card",
-                  "entity": "light.shell_lamp",
+                  "entity": "light.dead_group",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "tap_action": {
@@ -4247,7 +4247,8 @@
                   "show_brightness_control": true,
                   "layout": "horizontal",
                   "show_color_control": false,
-                  "show_color_temp_control": false
+                  "show_color_temp_control": false,
+                  "name": "Spotlights"
                 },
                 {
                   "type": "custom:mushroom-light-card",
