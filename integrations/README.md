@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (180)</h3></summary>
+<details><summary><h3>Entities (181)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -2103,6 +2103,19 @@ File: [`automation/remote/will_s_desk/button_1/single.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/will_s_desk/button_2/double.yaml`](entities/automation/remote/will_s_desk/button_2/double.yaml)
+</details>
+
+<details><summary><code>/remote/will-s-desk/button-2/hold</code></summary>
+
+**Entity ID: `automation.remote_will_s_desk_button_2_hold`**
+
+> *No description provided*
+
+- Alias: /remote/will-s-desk/button-2/hold
+- ID: `remote_will_s_desk_button_2_hold`
+- Mode: `single`
+
+File: [`automation/remote/will_s_desk/button_2/hold.yaml`](entities/automation/remote/will_s_desk/button_2/hold.yaml)
 </details>
 
 <details><summary><code>/remote/will-s-desk/button-2/single</code></summary>
