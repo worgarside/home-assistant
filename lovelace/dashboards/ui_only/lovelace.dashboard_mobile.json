@@ -4225,7 +4225,66 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "New section"
+                  "icon": "",
+                  "heading": "Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.shell_lamp",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.vic_s_office",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "name": "Ceiling Light",
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "show_color_control": false,
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.glowstick",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "show_color_control": false,
+                  "layout": "horizontal"
                 }
               ]
             }
