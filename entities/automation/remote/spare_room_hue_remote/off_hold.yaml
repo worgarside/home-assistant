@@ -1,0 +1,20 @@
+---
+alias: /remote/spare-room-hue-remote/off-hold
+
+id: remote_spare_room_hue_remote_off_hold
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 423730fd9dff7496e36807ac1643a3c8
+    type: action
+    subtype: off_hold
+
+action:
+  - service: script.turn_off_physical_room
+    data:
+      room: guest_room
