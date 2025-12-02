@@ -1,0 +1,20 @@
+---
+alias: /remote/will-s-desk/button-2/hold
+
+id: remote_will_s_desk_button_2_hold
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: f641b31476572acb00870aeac0e656e1
+    type: action
+    subtype: hold
+
+action:
+  - service: cover.toggle
+    target:
+      entity_id: cover.will_s_office_blinds
