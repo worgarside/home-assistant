@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (181)</h3></summary>
+<details><summary><h3>Entities (180)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1648,19 +1648,6 @@ File: [`automation/remote/charging_hub_button/single.yaml`](entities/automation/
 }
 ```
 File: [`automation/remote/coffee_table/double.yaml`](entities/automation/remote/coffee_table/double.yaml)
-</details>
-
-<details><summary><code>/remote/coffee-table/hold</code></summary>
-
-**Entity ID: `automation.remote_coffee_table_hold`**
-
-> Toggle the lounge Chromecast outlet when the hold button is pressed on the remote
-
-- Alias: /remote/coffee-table/hold
-- ID: `remote_coffee_table_hold`
-- Mode: `single`
-
-File: [`automation/remote/coffee_table/hold.yaml`](entities/automation/remote/coffee_table/hold.yaml)
 </details>
 
 <details><summary><code>/remote/lounge-hue-remote/down-press</code></summary>
