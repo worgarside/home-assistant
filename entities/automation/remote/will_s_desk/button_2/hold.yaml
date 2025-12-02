@@ -15,6 +15,6 @@ trigger:
     subtype: hold
 
 action:
-  - service: cover.toggle_cover
+  - service: cover.toggle
     target:
       entity_id: cover.will_s_office_blinds
