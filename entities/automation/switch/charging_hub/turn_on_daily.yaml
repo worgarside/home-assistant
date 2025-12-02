@@ -29,7 +29,7 @@ action:
 
   - wait_template: >
       {{
-        states("sensor.charging_hub_power") | float(0) >=
+        states("sensor.charging_hub_power") | float(0) <=
         states("input_number.charging_hub_auto_off_threshold") | float(0)
       }}
     timeout:
