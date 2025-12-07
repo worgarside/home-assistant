@@ -1,0 +1,73 @@
+---
+alias: /remote/basement-remote/triple-left
+
+id: remote_basement_remote_triple_left
+
+description: >-
+  Set dining area big light to 100%, spotlights/shelves to min(modifier, 20%), and kitchen
+  to empty state and disable automations
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: d51d19b9f0b2a60cd270f6c99247aa1c
+    type: action
+    subtype: triple_left
+
+action:
+  - alias: Disable dining area occupancy automation
+    service: automation.turn_off
+    target:
+      entity_id: automation.binary_sensor_dining_area_occupancy_state_change
+
+  - alias: Disable kitchen occupancy automation
+    service: automation.turn_off
+    target:
+      entity_id: automation.binary_sensor_kitchen_occupancy_state_change
+
+  - parallel:
+      - alias: Set dining area big light to 100%
+        service: light.turn_on
+        target:
+          entity_id: light.dining_area_big_light
+        data:
+          brightness_pct: 100
+          transition: 1
+
+      - alias: Set dining area spotlights and shelves to min(modifier, 20%)
+        service: light.turn_on
+        target:
+          entity_id: light.dining_area
+        data:
+          brightness_pct: "{{ min(states('sensor.lighting_modifier') | int(70), 20) }}"
+          transition: 1
+
+      - service: light.turn_on
+        target:
+          entity_id: light.dining_area_shelves
+        data:
+          brightness_pct: "{{ min(states('sensor.lighting_modifier') | int(70), 20) }}"
+          transition: 1
+
+      - alias: Set kitchen lighting to empty state
+        service: light.turn_on
+        target:
+          entity_id: light.kitchen_spotlights
+        data:
+          brightness_pct: >
+            {{ (states('sensor.lighting_modifier') | int(70) * 0.15) | round(0, 'ceil') }}
+          transition: 1
+
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.kitchen_island
+            - light.kitchen_counter_lights
+        data:
+          brightness_pct: >
+            {{ (states('sensor.lighting_modifier') | int(70) * 0.5) | round(0, 'ceil') }}
+          transition: 1
