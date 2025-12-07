@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (180)</h3></summary>
+<details><summary><h3>Entities (182)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -76,6 +76,19 @@ File: [`automation/binary_sensor/dining_area_occupancy/state_change.yaml`](entit
 File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/binary_sensor/front_door/open.yaml)
 </details>
 
+<details><summary><code>/binary-sensor/kitchen-hallway-occupancy/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_kitchen_hallway_occupancy_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/kitchen-hallway-occupancy/on
+- ID: `binary_sensor_kitchen_hallway_occupancy_on`
+- Mode: `single`
+
+File: [`automation/binary_sensor/kitchen_hallway_occupancy/on.yaml`](entities/automation/binary_sensor/kitchen_hallway_occupancy/on.yaml)
+</details>
+
 <details><summary><code>/binary-sensor/kitchen-occupancy/state-change</code></summary>
 
 **Entity ID: `automation.binary_sensor_kitchen_occupancy_state_change`**
@@ -146,6 +159,32 @@ File: [`automation/binary_sensor/lounge_occupancy/on.yaml`](entities/automation/
 - Mode: `single`
 
 File: [`automation/binary_sensor/lounge_occupancy/room_timeout.yaml`](entities/automation/binary_sensor/lounge_occupancy/room_timeout.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/lower-hallway-occupancy/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_lower_hallway_occupancy_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/lower-hallway-occupancy/on
+- ID: `binary_sensor_lower_hallway_occupancy_on`
+- Mode: `single`
+
+File: [`automation/binary_sensor/lower_hallway_occupancy/on.yaml`](entities/automation/binary_sensor/lower_hallway_occupancy/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/main-hallway-motion-sensor-occupancy/on</code></summary>
+
+**Entity ID: `automation.binary_sensor_main_hallway_motion_sensor_occupancy_on`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/main-hallway-motion-sensor-occupancy/on
+- ID: `binary_sensor_main_hallway_motion_sensor_occupancy_on`
+- Mode: `single`
+
+File: [`automation/binary_sensor/main_hallway_motion_sensor_occupancy/on.yaml`](entities/automation/binary_sensor/main_hallway_motion_sensor_occupancy/on.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/quiet-hours/off</code></summary>
@@ -999,25 +1038,6 @@ File: [`automation/light/bedroom_shapes/bon_appetit.yaml`](entities/automation/l
 - Mode: `single`
 
 File: [`automation/light/lounge_lights/stop_tv_reflections.yaml`](entities/automation/light/lounge_lights/stop_tv_reflections.yaml)
-</details>
-
-<details><summary><code>/light/lower-hallway-lights/on</code></summary>
-
-**Entity ID: `automation.light_lower_hallway_lights_on`**
-
-> *No description provided*
-
-- Alias: /light/lower-hallway-lights/on
-- ID: `light_lower_hallway_lights_on`
-- Mode: `single`
-- Variables:
-
-```json
-{
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
-}
-```
-File: [`automation/light/lower_hallway_lights/on.yaml`](entities/automation/light/lower_hallway_lights/on.yaml)
 </details>
 
 <details><summary><code>/light/lower-hallway-lights/timeout</code></summary>
