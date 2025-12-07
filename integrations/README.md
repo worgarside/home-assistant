@@ -1590,7 +1590,7 @@ File: [`automation/remote/basement_remote/single_left.yaml`](entities/automation
 
 **Entity ID: `automation.remote_basement_remote_single_right`**
 
-> Set kitchen lights to lighting modifier and disable automations
+> Set kitchen lights to occupied state brightness and disable automations
 
 - Alias: /remote/basement-remote/single-right
 - ID: `remote_basement_remote_single_right`

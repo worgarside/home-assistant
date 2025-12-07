@@ -3,7 +3,7 @@ alias: /remote/basement-remote/single-right
 
 id: remote_basement_remote_single_right
 
-description: Set kitchen lights to lighting modifier and disable automations
+description: Set kitchen lights to occupied state brightness and disable automations
 
 mode: single
 
@@ -17,13 +17,41 @@ trigger:
     subtype: single_right
 
 action:
-  - alias: Set kitchen lights to lighting modifier
-    service: light.turn_on
-    target:
-      area_id: kitchen
-    data:
-      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
-      transition: 1
+  - alias: Set kitchen lights to occupied state brightness
+    parallel:
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.kitchen_counter_lights
+            - light.kitchen_spotlights
+        data:
+          brightness_pct: >-
+            {{
+              min(
+                states('sensor.lighting_modifier') | int(70) *
+                (1 if now().hour >= 23 or now().hour < 7 else 2.5),
+                100
+              )
+            }}
+          transition: 1
+
+      - service: light.turn_on
+        target:
+          entity_id: light.kitchen_island
+        data:
+          # Keep kitchen island brighter for cooking
+          brightness_pct: >-
+            {{
+              max(
+                min(
+                  states('sensor.lighting_modifier') | int(70) *
+                  (1 if now().hour >= 23 or now().hour < 7 else 2.5),
+                  100
+                ),
+                (40 if 12 <= now().hour < 23 else 0)
+              )
+            }}
+          transition: 1
 
   - alias: Disable kitchen occupancy automation
     service: automation.turn_off
