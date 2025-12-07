@@ -16,7 +16,7 @@ trigger:
     entity_id: binary_sensor.dining_area_occupancy
     to: "off"
     for:
-      seconds: 5
+      seconds: "{{ states('input_number.basement_room_vacancy_light_timeout') | int(5) }}"
 
 action:
   - service: script.dining_area_set_lighting_based_on_occupancy
