@@ -1,0 +1,31 @@
+---
+alias: /remote/basement-remote/single-right
+
+id: remote_basement_remote_single_right
+
+description: Set kitchen lights to lighting modifier and disable automations
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: d51d19b9f0b2a60cd270f6c99247aa1c
+    type: action
+    subtype: single_right
+
+action:
+  - alias: Set kitchen lights to lighting modifier
+    service: light.turn_on
+    target:
+      area_id: kitchen
+    data:
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+      transition: 1
+
+  - alias: Disable kitchen occupancy automation
+    service: automation.turn_off
+    target:
+      entity_id: automation.binary_sensor_kitchen_occupancy_state_change
