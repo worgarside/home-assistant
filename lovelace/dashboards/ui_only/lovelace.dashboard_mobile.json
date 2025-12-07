@@ -2624,6 +2624,17 @@
                 },
                 {
                   "type": "custom:mushroom-number-card",
+                  "entity": "input_number.basement_room_vacancy_light_timeout",
+                  "name": "Individual Room Timeout",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
                   "entity": "input_number.kitchen_extractor_vent_pm2_5_threshold",
                   "name": "PM2.5 Threshold",
                   "tap_action": {
@@ -2670,17 +2681,6 @@
                   "area": "kitchen",
                   "color": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"#4CAF50\", \"#FFC107\", \"#FF9800\", \"#F44336\"][level],\n    \"#9E9E9E\"\n  )\n}}",
                   "multiline_secondary": false
-                },
-                {
-                  "type": "custom:mushroom-number-card",
-                  "entity": "input_number.basement_room_vacancy_light_timeout",
-                  "name": "Individual Room Timeout",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary_info": "name",
-                  "primary_info": "state",
-                  "layout": "horizontal"
                 }
               ]
             }
