@@ -3455,7 +3455,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (56)</h3></summary>
+<details><summary><h3>Entities (57)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3936,6 +3936,18 @@ File: [`input_number/timeout/air_freshener_timeout.yaml`](entities/input_number/
 - Unit Of Measurement: `s`
 
 File: [`input_number/timeout/basement_lights_timeout.yaml`](entities/input_number/timeout/basement_lights_timeout.yaml)
+</details>
+
+<details><summary><strong>Basement | Room Vacancy Light Timeout</strong></summary>
+
+**Entity ID: `input_number.basement_room_vacancy_light_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 60
+- Mode: `box`
+- Unit Of Measurement: `s`
+
+File: [`input_number/timeout/basement_room_vacancy_light_timeout.yaml`](entities/input_number/timeout/basement_room_vacancy_light_timeout.yaml)
 </details>
 
 <details><summary><strong>Dry Box | Dehumidifier Timeout</strong></summary>
