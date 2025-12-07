@@ -29,5 +29,6 @@ action:
               entity_id: vacuum.cosmo
 
       - service: switch.turn_on
+        continue_on_error: true
         target:
           entity_id: switch.basement_christmas_tree

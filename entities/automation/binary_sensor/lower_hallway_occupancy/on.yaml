@@ -41,5 +41,6 @@ action:
           transition: 1
 
       - service: switch.turn_on
+        continue_on_error: true
         target:
           entity_id: switch.basement_christmas_tree
