@@ -1,0 +1,26 @@
+---
+alias: /remote/basement-remote/hold-right
+
+id: remote_basement_remote_hold_right
+
+description: Reset kitchen room - re-enable automations and trigger lighting based on occupancy
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: d51d19b9f0b2a60cd270f6c99247aa1c
+    type: action
+    subtype: hold_right
+
+action:
+  - alias: Reset kitchen lighting based on current occupancy
+    service: script.kitchen_set_lighting_based_on_occupancy
+
+  - alias: Re-enable kitchen automation
+    service: automation.turn_on
+    target:
+      entity_id: automation.binary_sensor_kitchen_occupancy_state_change

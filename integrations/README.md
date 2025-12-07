@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (180)</h3></summary>
+<details><summary><h3>Entities (187)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -52,14 +52,7 @@ File: [`automation/binary_sensor/basement_presence/on.yaml`](entities/automation
 - Alias: /binary-sensor/dining-area-occupancy/state-change
 - ID: `binary_sensor_dining_area_occupancy_state_change`
 - Mode: `queued`
-- Variables:
 
-```json
-{
-  "color_temp_kelvin": 2500,
-  "modifier": "{{ states('sensor.lighting_modifier') | int(70) }}"
-}
-```
 File: [`automation/binary_sensor/dining_area_occupancy/state_change.yaml`](entities/automation/binary_sensor/dining_area_occupancy/state_change.yaml)
 </details>
 
@@ -85,14 +78,7 @@ File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/bina
 - Alias: /binary-sensor/kitchen-occupancy/state-change
 - ID: `binary_sensor_kitchen_occupancy_state_change`
 - Mode: `queued`
-- Variables:
 
-```json
-{
-  "kitchen_multiplier": "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}",
-  "modifier": "{{ states('sensor.lighting_modifier') | int(70) }}"
-}
-```
 File: [`automation/binary_sensor/kitchen_occupancy/state_change.yaml`](entities/automation/binary_sensor/kitchen_occupancy/state_change.yaml)
 </details>
 
@@ -1533,6 +1519,97 @@ File: [`automation/prusa_i3/bed/timeout.yaml`](entities/automation/prusa_i3/bed/
 - Mode: `single`
 
 File: [`automation/prusa_i3/hotend/timeout.yaml`](entities/automation/prusa_i3/hotend/timeout.yaml)
+</details>
+
+<details><summary><code>/remote/basement-remote/double-left</code></summary>
+
+**Entity ID: `automation.remote_basement_remote_double_left`**
+
+> Set dining area lights to 100% and disable automations
+
+- Alias: /remote/basement-remote/double-left
+- ID: `remote_basement_remote_double_left`
+- Mode: `single`
+
+File: [`automation/remote/basement_remote/double_left.yaml`](entities/automation/remote/basement_remote/double_left.yaml)
+</details>
+
+<details><summary><code>/remote/basement-remote/double-right</code></summary>
+
+**Entity ID: `automation.remote_basement_remote_double_right`**
+
+> Set kitchen lights to 100% and disable automations
+
+- Alias: /remote/basement-remote/double-right
+- ID: `remote_basement_remote_double_right`
+- Mode: `single`
+
+File: [`automation/remote/basement_remote/double_right.yaml`](entities/automation/remote/basement_remote/double_right.yaml)
+</details>
+
+<details><summary><code>/remote/basement-remote/hold-left</code></summary>
+
+**Entity ID: `automation.remote_basement_remote_hold_left`**
+
+> Reset dining area - re-enable automations and trigger lighting based on occupancy
+
+- Alias: /remote/basement-remote/hold-left
+- ID: `remote_basement_remote_hold_left`
+- Mode: `single`
+
+File: [`automation/remote/basement_remote/hold_left.yaml`](entities/automation/remote/basement_remote/hold_left.yaml)
+</details>
+
+<details><summary><code>/remote/basement-remote/hold-right</code></summary>
+
+**Entity ID: `automation.remote_basement_remote_hold_right`**
+
+> Reset kitchen room - re-enable automations and trigger lighting based on occupancy
+
+- Alias: /remote/basement-remote/hold-right
+- ID: `remote_basement_remote_hold_right`
+- Mode: `single`
+
+File: [`automation/remote/basement_remote/hold_right.yaml`](entities/automation/remote/basement_remote/hold_right.yaml)
+</details>
+
+<details><summary><code>/remote/basement-remote/single-left</code></summary>
+
+**Entity ID: `automation.remote_basement_remote_single_left`**
+
+> Set dining area lights to lighting modifier and disable automations
+
+- Alias: /remote/basement-remote/single-left
+- ID: `remote_basement_remote_single_left`
+- Mode: `single`
+
+File: [`automation/remote/basement_remote/single_left.yaml`](entities/automation/remote/basement_remote/single_left.yaml)
+</details>
+
+<details><summary><code>/remote/basement-remote/single-right</code></summary>
+
+**Entity ID: `automation.remote_basement_remote_single_right`**
+
+> Set kitchen lights to occupied state brightness and disable automations
+
+- Alias: /remote/basement-remote/single-right
+- ID: `remote_basement_remote_single_right`
+- Mode: `single`
+
+File: [`automation/remote/basement_remote/single_right.yaml`](entities/automation/remote/basement_remote/single_right.yaml)
+</details>
+
+<details><summary><code>/remote/basement-remote/triple-left</code></summary>
+
+**Entity ID: `automation.remote_basement_remote_triple_left`**
+
+> Set dining area big light to 100%, spotlights/shelves to min(modifier, 20%), and kitchen to empty state and disable automations
+
+- Alias: /remote/basement-remote/triple-left
+- ID: `remote_basement_remote_triple_left`
+- Mode: `single`
+
+File: [`automation/remote/basement_remote/triple_left.yaml`](entities/automation/remote/basement_remote/triple_left.yaml)
 </details>
 
 <details><summary><code>/remote/bedroom-hue-remote/down-press</code></summary>
@@ -5989,7 +6066,7 @@ File: [`rest_command/wger/put_weightentry.yaml`](entities/rest_command/wger/put_
 
 ## Script
 
-<details><summary><h3>Entities (30)</h3></summary>
+<details><summary><h3>Entities (32)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -6130,6 +6207,24 @@ File: [`script/cosmo/cosmo_get_room_id_or_name.yaml`](entities/script/cosmo/cosm
 - Mode: `parallel`
 
 File: [`script/debug_persistent_notification.yaml`](entities/script/debug_persistent_notification.yaml)
+</details>
+
+<details><summary><strong>Dining Area | Set Lighting Based on Occupancy</strong></summary>
+
+**Entity ID: `script.dining_area_set_lighting_based_on_occupancy`**
+
+> Set dining area lighting based on current occupancy state
+
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "color_temp_kelvin": 2500,
+  "modifier": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`script/dining_area_set_lighting_based_on_occupancy.yaml`](entities/script/dining_area_set_lighting_based_on_occupancy.yaml)
 </details>
 
 <details><summary><strong>Air Purifier: Update Fan Speed</strong></summary>
@@ -6390,6 +6485,24 @@ File: [`script/input_select/target_git_branch/target_git_branch_set_options.yaml
 }
 ```
 File: [`script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml`](entities/script/ir_blaster/topaz_sr10/ir_blaster_topaz_sr10_issue_command.yaml)
+</details>
+
+<details><summary><strong>Kitchen | Set Lighting Based on Occupancy</strong></summary>
+
+**Entity ID: `script.kitchen_set_lighting_based_on_occupancy`**
+
+> Set kitchen lighting based on current occupancy state
+
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "kitchen_multiplier": "{{ 1 if now().hour >= 23 or now().hour < 7 else 2.5 }}",
+  "modifier": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`script/kitchen_set_lighting_based_on_occupancy.yaml`](entities/script/kitchen_set_lighting_based_on_occupancy.yaml)
 </details>
 
 <details><summary><strong>Topaz SR10: Turn Off</strong></summary>

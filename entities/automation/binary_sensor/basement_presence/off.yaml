@@ -36,3 +36,13 @@ action:
           floor_id: basement
         data:
           transition: 5
+
+      - alias: Re-enable dining area automation
+        service: automation.turn_on
+        target:
+          entity_id: automation.binary_sensor_dining_area_occupancy_state_change
+
+      - alias: Re-enable kitchen automation
+        service: automation.turn_on
+        target:
+          entity_id: automation.binary_sensor_kitchen_occupancy_state_change
