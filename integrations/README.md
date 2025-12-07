@@ -3938,7 +3938,7 @@ File: [`input_number/timeout/air_freshener_timeout.yaml`](entities/input_number/
 File: [`input_number/timeout/basement_lights_timeout.yaml`](entities/input_number/timeout/basement_lights_timeout.yaml)
 </details>
 
-<details><summary><strong>Basement Room Vacancy | Light Timeout</strong></summary>
+<details><summary><strong>Basement | Room Vacancy Light Timeout</strong></summary>
 
 **Entity ID: `input_number.basement_room_vacancy_light_timeout`**
 
