@@ -36,3 +36,7 @@ action:
           floor_id: basement
         data:
           transition: 5
+
+      - service: switch.turn_off
+        target:
+          entity_id: switch.basement_christmas_tree

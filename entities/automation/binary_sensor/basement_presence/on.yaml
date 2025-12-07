@@ -15,14 +15,19 @@ trigger:
     to: "on"
 
 action:
-  - alias: Cosmo Pause
-    if: >
-      {{
-        is_state('vacuum.cosmo', 'cleaning') and
-        is_state('sensor.cosmo_current_room', 'Basement')
-      }}
+  - parallel:
+      - alias: Cosmo Pause
+        if: >
+          {{
+            is_state('vacuum.cosmo', 'cleaning') and
+            is_state('sensor.cosmo_current_room', 'Basement')
+          }}
 
-    then:
-      - service: vacuum.pause
+        then:
+          - service: vacuum.pause
+            target:
+              entity_id: vacuum.cosmo
+
+      - service: switch.turn_on
         target:
-          entity_id: vacuum.cosmo
+          entity_id: switch.basement_christmas_tree
