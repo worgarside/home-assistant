@@ -2477,19 +2477,6 @@ File: [`automation/switch/charging_hub/turn_off.yaml`](entities/automation/switc
 File: [`automation/switch/charging_hub/turn_on_daily.yaml`](entities/automation/switch/charging_hub/turn_on_daily.yaml)
 </details>
 
-<details><summary><code>/switch/christmas-tree/turn-on</code></summary>
-
-**Entity ID: `automation.switch_christmas_tree_turn_on`**
-
-> *No description provided*
-
-- Alias: /switch/christmas-tree/turn-on
-- ID: `switch_christmas_tree_turn_on`
-- Mode: `single`
-
-File: [`automation/switch/christmas_tree/turn_on.yaml`](entities/automation/switch/christmas_tree/turn_on.yaml)
-</details>
-
 <details><summary><code>/switch/dry-box-dehumidifier/timeout</code></summary>
 
 **Entity ID: `automation.switch_dry_box_dehumidifier_timeout`**
@@ -2540,6 +2527,19 @@ File: [`automation/switch/hot_water/proximity/off.yaml`](entities/automation/swi
 - Mode: `single`
 
 File: [`automation/switch/hot_water/proximity/on.yaml`](entities/automation/switch/hot_water/proximity/on.yaml)
+</details>
+
+<details><summary><code>/switch/lounge-christmas-tree/lounge-vacancy-timeout</code></summary>
+
+**Entity ID: `automation.switch_lounge_christmas_tree_lounge_vacancy_timeout`**
+
+> Turn off lounge Christmas tree when lounge has been empty for 2 hours
+
+- Alias: /switch/lounge-christmas-tree/lounge-vacancy-timeout
+- ID: `switch_lounge_christmas_tree_lounge_vacancy_timeout`
+- Mode: `single`
+
+File: [`automation/switch/lounge_christmas_tree/lounge_vacancy_timeout.yaml`](entities/automation/switch/lounge_christmas_tree/lounge_vacancy_timeout.yaml)
 </details>
 
 <details><summary><code>/switch/lounge-diffuser/state-change</code></summary>

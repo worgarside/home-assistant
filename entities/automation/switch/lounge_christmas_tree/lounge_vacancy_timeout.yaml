@@ -1,0 +1,23 @@
+---
+alias: /switch/lounge-christmas-tree/lounge-vacancy-timeout
+
+id: switch_lounge_christmas_tree_lounge_vacancy_timeout
+
+description: Turn off lounge Christmas tree when lounge has been empty for 2 hours
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.lounge_occupancy
+    from: "on"
+    to: "off"
+    for:
+      hours: 2
+
+action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.lounge_christmas_tree
