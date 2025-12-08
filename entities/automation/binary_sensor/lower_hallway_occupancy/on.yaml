@@ -29,6 +29,14 @@ action:
           brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
           transition: 1
 
+      - service: switch.turn_on
+        continue_on_error: true
+        target:
+          entity_id:
+            - switch.basement_christmas_tree
+            - switch.lounge_christmas_tree
+
+
   - delay:
       seconds: 2.5
 
@@ -39,8 +47,3 @@ action:
         data:
           brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
           transition: 1
-
-      - service: switch.turn_on
-        continue_on_error: true
-        target:
-          entity_id: switch.basement_christmas_tree
