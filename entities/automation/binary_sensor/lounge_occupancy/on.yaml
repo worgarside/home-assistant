@@ -15,30 +15,36 @@ trigger:
     from: "off"
     to: "on"
 
-condition:
-  - condition: time
-    after: "06:00"
-    before: "23:30"
-
 action:
-  - if: >
-      {{
-        is_state('remote.lounge_tv', 'on') or
-        is_state('remote.lounge_chromecast', 'on') or
-        is_state('media_player.lounge_chromecast', 'on') or
-        is_state('media_player.lounge_tv_2', 'on') or
-        is_state('media_player.lounge_chromecast_remote', 'on')
-      }}
-
-    then:
-      - service: scene.turn_on
+  - parallel:
+      - service: switch.turn_on
+        continue_on_error: true
         target:
-          entity_id: scene.lounge_tv_lighting
+          entity_id: switch.lounge_christmas_tree
 
-    else:
-      - service: light.turn_on
-        target:
-          area_id: lounge
-        data:
-          brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
-          transition: 1
+      - if:
+          - condition: time
+            after: "06:00"
+            before: "23:30"
+        then:
+          - if: >
+              {{
+                is_state('remote.lounge_tv', 'on') or
+                is_state('remote.lounge_chromecast', 'on') or
+                is_state('media_player.lounge_chromecast', 'on') or
+                is_state('media_player.lounge_tv_2', 'on') or
+                is_state('media_player.lounge_chromecast_remote', 'on')
+              }}
+
+            then:
+              - service: scene.turn_on
+                target:
+                  entity_id: scene.lounge_tv_lighting
+
+            else:
+              - service: light.turn_on
+                target:
+                  area_id: lounge
+                data:
+                  brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+                  transition: 1

@@ -16,17 +16,17 @@ action:
   - service: switch.turn_off
     continue_on_error: true
     target:
-      entity_id: switch.hot_water
-
-  - service: switch.turn_off
-    continue_on_error: true
-    target:
       entity_id: switch.central_heating
 
   - service: climate.turn_off
     continue_on_error: true
     target:
       label_id: radiator
+
+  - service: switch.turn_off
+    continue_on_error: true
+    target:
+      entity_id: switch.lounge_christmas_tree
 
   - alias: "Turn off each physical room"
     repeat:
