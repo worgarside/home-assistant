@@ -248,6 +248,7 @@ File: [`automation/binary_sensor/vic_s_office/occupancy/state_change.yaml`](enti
 {
   "radiator_was_on": "{{ is_state('climate.will_s_office_radiator', 'heat') }}",
   "fan_was_heating": "{{ is_state('climate.will_s_office_fan', 'heat') }}",
+  "heating_is_on": "{{ is_state('switch.central_heating', 'on') }}",
   "notif_id": "office_heating_off"
 }
 ```
