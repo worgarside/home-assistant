@@ -2614,7 +2614,18 @@
                 {
                   "type": "custom:mushroom-number-card",
                   "entity": "input_number.basement_lights_timeout",
-                  "name": "Lights Timeout",
+                  "name": "Total Vacany Timeout",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.basement_room_vacancy_light_timeout",
+                  "name": "Individual Room Timeout",
                   "tap_action": {
                     "action": "more-info"
                   },
@@ -2670,6 +2681,20 @@
                   "area": "kitchen",
                   "color": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"#4CAF50\", \"#FFC107\", \"#FF9800\", \"#F44336\"][level],\n    \"#9E9E9E\"\n  )\n}}",
                   "multiline_secondary": false
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Guide",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "markdown",
+                  "content": "# Light Switch\n\n| Action | Button | Result |\n|--------|-------|---------|\n| Single |  | Regular brightness |\n| Double |  | Max brightness |\n| Triple | Left | Dinner lighting |\n| Hold |  | Reset, re-enable automation |\n"
                 }
               ]
             }
@@ -4212,6 +4237,64 @@
             }
           ],
           "cards": []
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Guest Room",
+          "path": "guest-room",
+          "icon": "mdi:home-roof",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.dead_group",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "name": "Spotlights"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.ball_lamp",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "show_color_control": false,
+                  "layout": "horizontal"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
