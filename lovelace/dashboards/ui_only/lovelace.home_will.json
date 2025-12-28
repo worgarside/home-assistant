@@ -5371,17 +5371,17 @@
                 },
                 {
                   "type": "custom:mushroom-number-card",
-                  "entity": "input_number.lighting_modifier_minimum",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "name": "Minimum"
-                },
-                {
-                  "type": "custom:mushroom-number-card",
                   "entity": "input_number.lighting_modifier_maximum",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "name": "Maximum"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.lighting_modifier_minimum",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Minimum"
                 }
               ]
             }
