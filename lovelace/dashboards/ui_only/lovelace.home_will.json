@@ -5368,6 +5368,13 @@
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.lighting_modifier_minimum",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Minimum"
                 }
               ]
             }
