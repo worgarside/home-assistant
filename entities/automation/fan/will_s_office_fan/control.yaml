@@ -67,7 +67,11 @@ variables:
 action:
   - choose:
       - alias: Poor Air Quality
-        conditions: "{{ trigger.id in ['pm25_high', 'voc_high'] }}"
+        conditions: >
+          {{
+            trigger.id in ['pm25_high', 'voc_high']
+            and not is_state('climate.will_s_office_fan', 'heat')
+          }}
         sequence:
           - service: climate.set_hvac_mode
             target:
