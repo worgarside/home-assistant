@@ -5367,7 +5367,11 @@
                   "entity": "sensor.lighting_modifier",
                   "primary_info": "state",
                   "secondary_info": "name",
-                  "icon_color": "orange"
+                  "icon_color": "orange",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
                 },
                 {
                   "type": "custom:mushroom-number-card",
