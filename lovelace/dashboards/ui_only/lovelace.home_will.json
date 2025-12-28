@@ -5361,6 +5361,13 @@
                   "type": "heading",
                   "heading": "Lighting Modifier",
                   "heading_style": "title"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lighting_modifier",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange"
                 }
               ]
             }
