@@ -953,7 +953,7 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 
 **Entity ID: `automation.input_text_test_mqtt_events_device_id_log_event`**
 
-> Log MQTT device events for the device ID specified in input_text.test_mqtt_events_device_id. This automation listens for all events and filters by device_id to capture MQTT device trigger events.
+> Log MQTT device events for the device ID specified in input_text.test_mqtt_events_device_id. This automation listens for all events and filters by device_id in the condition to capture MQTT device trigger events.
 
 - Alias: /input-text/test-mqtt-events-device-id/log-event
 - ID: `input_text_test_mqtt_events_device_id_log_event`
