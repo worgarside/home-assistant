@@ -5,15 +5,19 @@ id: input_text_test_mqtt_events_device_id_log_event
 
 description: >-
   Log MQTT device events for the device ID specified in input_text.test_mqtt_events_device_id. This
-  automation listens for all events and filters by device_id in the condition to capture MQTT
-  device trigger events.
+  automation listens to Zigbee2MQTT MQTT topics and filters by device_id to capture device events.
 
 mode: queued
 
 max: 100
 
 trigger:
-  - platform: event
+  - platform: mqtt
+    topic: zigbee2mqtt/+/action
+  - platform: mqtt
+    topic: zigbee2mqtt/+/click
+  - platform: mqtt
+    topic: zigbee2mqtt/+/#
 
 variables:
   target_device_id: "{{ states('input_text.test_mqtt_events_device_id') }}"
@@ -22,10 +26,7 @@ condition:
   - condition: template
     value_template: >-
       {{
-        target_device_id != '' and
-        trigger.event.data is defined and
-        trigger.event.data.device_id is defined and
-        trigger.event.data.device_id == target_device_id
+        target_device_id != ''
       }}
 
 action:
@@ -38,18 +39,20 @@ action:
         message: |
           **Target Device ID:** {{ target_device_id }}
 
+          **MQTT Topic:** {{ trigger.topic }}
+
+          **MQTT Payload:**
+          ```json
+          {{ trigger.payload | default('No payload') }}
+          ```
+
+          **Parsed JSON Payload (if JSON):**
+          ```json
+          {{ trigger.payload_json | default('Not JSON or no payload') | tojson(indent=2) }}
+          ```
+
           **Full Trigger Object:**
           ```json
           {{ trigger | tojson(indent=2) }}
-          ```
-
-          **Trigger Event (if exists):**
-          ```json
-          {{ trigger.event | default('No trigger.event') | tojson(indent=2) }}
-          ```
-
-          **Trigger Event Data (if exists):**
-          ```json
-          {{ trigger.event.data | default('No trigger.event.data') | tojson(indent=2) }}
           ```
         notification_id: mqtt_device_event_{{ target_device_id }}
