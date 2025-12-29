@@ -12,6 +12,8 @@ state: >-
   {% set quiet_hours = states("binary_sensor.quiet_hours") | bool(false) %}
   {% set weekday = states("binary_sensor.weekday") | bool(false) %}
   {% set hour = states("sensor.current_hour") | int(12) %}
+  {% set min_limit = states("input_number.lighting_modifier_minimum") | int(1) %}
+  {% set max_limit = states("input_number.lighting_modifier_maximum") | int(100) %}
 
   {% set base_brightness =
     100 if sun >= 2 else
@@ -27,11 +29,11 @@ state: >-
   {% set base_brightness = max(base_brightness, 10) if 12 <= hour < 23 else base_brightness %}
 
   {% if weekday and 9 <= hour < 18 %}
-    100
+    {{ max(min_limit, min(100, max_limit)) }}
   {% elif weekday and 0 <= hour < 7 %}
-    {{ base_brightness }}
+    {{ max(min_limit, min(base_brightness, max_limit)) }}
   {% elif quiet_hours and sun >= 2 %}
-    75
+    {{ max(min_limit, min(75, max_limit)) }}
   {% else %}
-    {{ base_brightness }}
+    {{ max(min_limit, min(base_brightness, max_limit)) }}
   {% endif %}

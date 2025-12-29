@@ -3475,7 +3475,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (57)</h3></summary>
+<details><summary><h3>Entities (59)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3622,6 +3622,30 @@ File: [`input_number/electric_blanket_timeout_level_3.yaml`](entities/input_numb
 - Unit Of Measurement: `mi`
 
 File: [`input_number/hot_water_proximity_distance.yaml`](entities/input_number/hot_water_proximity_distance.yaml)
+</details>
+
+<details><summary><strong>Lighting Modifier | Maximum</strong></summary>
+
+**Entity ID: `input_number.lighting_modifier_maximum`**
+
+- Max: 100
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: %
+
+File: [`input_number/lighting_modifier_maximum.yaml`](entities/input_number/lighting_modifier_maximum.yaml)
+</details>
+
+<details><summary><strong>Lighting Modifier | Minimum</strong></summary>
+
+**Entity ID: `input_number.lighting_modifier_minimum`**
+
+- Max: 100
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: %
+
+File: [`input_number/lighting_modifier_minimum.yaml`](entities/input_number/lighting_modifier_minimum.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Raining Grid: Maximum Rain Intensity</strong></summary>
