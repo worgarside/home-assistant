@@ -949,23 +949,25 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
-<details><summary><code>/input-text/test-mqtt-events-device-id/log-event</code></summary>
+<details><summary><code>/input-text/test-mqtt-events-device-name/log-event</code></summary>
 
-**Entity ID: `automation.input_text_test_mqtt_events_device_id_log_event`**
+**Entity ID: `automation.input_text_test_mqtt_events_device_name_log_event`**
 
-> Log MQTT device events for the device ID specified in input_text.test_mqtt_events_device_id. This automation listens to Zigbee2MQTT MQTT topics and filters by device_id to capture device events.
+> Log MQTT device events for the device name specified in input_text.test_mqtt_events_device_name. This automation listens to Zigbee2MQTT MQTT topics and filters by device name to capture device events.
 
-- Alias: /input-text/test-mqtt-events-device-id/log-event
-- ID: `input_text_test_mqtt_events_device_id_log_event`
+- Alias: /input-text/test-mqtt-events-device-name/log-event
+- ID: `input_text_test_mqtt_events_device_name_log_event`
 - Mode: `queued`
 - Variables:
 
 ```json
 {
-  "target_device_id": "{{ states('input_text.test_mqtt_events_device_id') }}"
+  "target_device_name": "{{ states('input_text.test_mqtt_events_device_name') }}",
+  "topic_parts": "{{ trigger.topic.split('/') }}",
+  "device_name_from_topic": "{{ topic_parts[1] if topic_parts | length > 1 else '' }}"
 }
 ```
-File: [`automation/input_text/test_mqtt_events_device_id/log_event.yaml`](entities/automation/input_text/test_mqtt_events_device_id/log_event.yaml)
+File: [`automation/input_text/test_mqtt_events_device_name/log_event.yaml`](entities/automation/input_text/test_mqtt_events_device_name/log_event.yaml)
 </details>
 
 <details><summary><code>/label/critical-battery/low-battery-alert</code></summary>
@@ -4451,13 +4453,13 @@ File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entit
 File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
 </details>
 
-<details><summary><strong>Test MQTT Events Device ID</strong></summary>
+<details><summary><strong>Test MQTT Events Device Name</strong></summary>
 
-**Entity ID: `input_text.test_mqtt_events_device_id`**
+**Entity ID: `input_text.test_mqtt_events_device_name`**
 
 - Icon: [`mdi:identifier`](https://pictogrammers.com/library/mdi/icon/identifier/)
 
-File: [`input_text/test_mqtt_events_device_id.yaml`](entities/input_text/test_mqtt_events_device_id.yaml)
+File: [`input_text/test_mqtt_events_device_name.yaml`](entities/input_text/test_mqtt_events_device_name.yaml)
 </details>
 
 <details><summary><strong>Vic | Work Calendar: Holiday Pattern</strong></summary>
