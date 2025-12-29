@@ -1,0 +1,20 @@
+---
+alias: /remote/vic-s-desk-remote/off
+
+id: remote_vic_s_desk_remote_off
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 5a8f51703fadf155e2b1cf8468d2b247
+    type: action
+    subtype: "off"
+
+action:
+  - service: light.turn_off
+    target:
+      area_id: vic_s_office
