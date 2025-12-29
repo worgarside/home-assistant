@@ -1,0 +1,22 @@
+---
+alias: /remote/bedroom-remote/on
+
+id: remote_bedroom_remote_on
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 20284ad1e9c6f6ca6b3d3651718dc5d0
+    type: action
+    subtype: "on"
+
+action:
+  - service: light.turn_on
+    target:
+      area_id: bedroom
+    data:
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"

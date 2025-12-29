@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (190)</h3></summary>
+<details><summary><h3>Entities (194)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1730,6 +1730,58 @@ File: [`automation/remote/bedroom_hue_remote/on_press.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/bedroom_hue_remote/up_press.yaml`](entities/automation/remote/bedroom_hue_remote/up_press.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-remote/brightness-move-down</code></summary>
+
+**Entity ID: `automation.remote_bedroom_remote_brightness_move_down`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-remote/brightness-move-down
+- ID: `remote_bedroom_remote_brightness_move_down`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_remote/brightness_move_down.yaml`](entities/automation/remote/bedroom_remote/brightness_move_down.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-remote/brightness-move-up</code></summary>
+
+**Entity ID: `automation.remote_bedroom_remote_brightness_move_up`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-remote/brightness-move-up
+- ID: `remote_bedroom_remote_brightness_move_up`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_remote/brightness_move_up.yaml`](entities/automation/remote/bedroom_remote/brightness_move_up.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-remote/off</code></summary>
+
+**Entity ID: `automation.remote_bedroom_remote_off`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-remote/off
+- ID: `remote_bedroom_remote_off`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_remote/off.yaml`](entities/automation/remote/bedroom_remote/off.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-remote/on</code></summary>
+
+**Entity ID: `automation.remote_bedroom_remote_on`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-remote/on
+- ID: `remote_bedroom_remote_on`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_remote/on.yaml`](entities/automation/remote/bedroom_remote/on.yaml)
 </details>
 
 <details><summary><code>/remote/charging-hub-button/single</code></summary>
