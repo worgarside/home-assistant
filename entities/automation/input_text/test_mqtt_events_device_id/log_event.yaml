@@ -1,0 +1,53 @@
+---
+alias: /input-text/test-mqtt-events-device-id/log-event
+
+id: input_text_test_mqtt_events_device_id_log_event
+
+description: >-
+  Log MQTT device events for the device ID specified in input_text.test_mqtt_events_device_id. This
+  automation listens for all events and filters by device_id to capture MQTT device trigger events.
+
+mode: queued
+
+max: 100
+
+trigger:
+  - domain: mqtt
+    platform: device
+    type: action
+
+variables:
+  target_device_id: "{{ states('input_text.test_mqtt_events_device_id') }}"
+
+condition:
+  - condition: template
+    value_template: >-
+      {{
+        target_device_id != ''
+      }}
+
+action:
+  - service: script.turn_on
+    target:
+      entity_id: script.debug_persistent_notification
+    data:
+      variables:
+        notification_title: MQTT Device Event ({{ target_device_id }})
+        message: |
+          **Target Device ID:** {{ target_device_id }}
+
+          **Full Trigger Object:**
+          ```json
+          {{ trigger | tojson(indent=2) }}
+          ```
+
+          **Trigger Event (if exists):**
+          ```json
+          {{ trigger.event | default('No trigger.event') | tojson(indent=2) }}
+          ```
+
+          **Trigger Event Data (if exists):**
+          ```json
+          {{ trigger.event.data | default('No trigger.event.data') | tojson(indent=2) }}
+          ```
+        notification_id: mqtt_device_event_{{ target_device_id }}

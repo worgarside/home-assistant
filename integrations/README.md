@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (189)</h3></summary>
+<details><summary><h3>Entities (190)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -947,6 +947,25 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 - Mode: `restart`
 
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
+</details>
+
+<details><summary><code>/input-text/test-mqtt-events-device-id/log-event</code></summary>
+
+**Entity ID: `automation.input_text_test_mqtt_events_device_id_log_event`**
+
+> Log MQTT device events for the device ID specified in input_text.test_mqtt_events_device_id. This automation listens for all events and filters by device_id to capture MQTT device trigger events.
+
+- Alias: /input-text/test-mqtt-events-device-id/log-event
+- ID: `input_text_test_mqtt_events_device_id_log_event`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "target_device_id": "{{ states('input_text.test_mqtt_events_device_id') }}"
+}
+```
+File: [`automation/input_text/test_mqtt_events_device_id/log_event.yaml`](entities/automation/input_text/test_mqtt_events_device_id/log_event.yaml)
 </details>
 
 <details><summary><code>/label/critical-battery/low-battery-alert</code></summary>
@@ -4246,7 +4265,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (19)</h3></summary>
+<details><summary><h3>Entities (20)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -4406,6 +4425,15 @@ File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entit
 - Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
 
 File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
+</details>
+
+<details><summary><strong>Test MQTT Events Device ID</strong></summary>
+
+**Entity ID: `input_text.test_mqtt_events_device_id`**
+
+- Icon: [`mdi:identifier`](https://pictogrammers.com/library/mdi/icon/identifier/)
+
+File: [`input_text/test_mqtt_events_device_id.yaml`](entities/input_text/test_mqtt_events_device_id.yaml)
 </details>
 
 <details><summary><strong>Vic | Work Calendar: Holiday Pattern</strong></summary>
