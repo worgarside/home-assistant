@@ -1,0 +1,20 @@
+---
+alias: /remote/bedroom-remote/off
+
+id: remote_bedroom_remote_off
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 20284ad1e9c6f6ca6b3d3651718dc5d0
+    type: action
+    subtype: "off"
+
+action:
+  - service: light.turn_off
+    target:
+      area_id: bedroom
