@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (189)</h3></summary>
+<details><summary><h3>Entities (198)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -949,6 +949,27 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
+<details><summary><code>/input-text/test-mqtt-events-device-name/log-event</code></summary>
+
+**Entity ID: `automation.input_text_test_mqtt_events_device_name_log_event`**
+
+> Log MQTT device events for the device name specified in input_text.test_mqtt_events_device_name. This automation listens to Zigbee2MQTT MQTT topics and filters by device name to capture device events.
+
+- Alias: /input-text/test-mqtt-events-device-name/log-event
+- ID: `input_text_test_mqtt_events_device_name_log_event`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "target_device_name": "{{ states('input_text.test_mqtt_events_device_name') }}",
+  "topic_parts": "{{ trigger.topic.split('/') }}",
+  "device_name_from_topic": "{{ topic_parts[1] if topic_parts | length > 1 else '' }}"
+}
+```
+File: [`automation/input_text/test_mqtt_events_device_name/log_event.yaml`](entities/automation/input_text/test_mqtt_events_device_name/log_event.yaml)
+</details>
+
 <details><summary><code>/label/critical-battery/low-battery-alert</code></summary>
 
 **Entity ID: `automation.label_critical_battery_low_battery_alert`**
@@ -1711,6 +1732,58 @@ File: [`automation/remote/bedroom_hue_remote/on_press.yaml`](entities/automation
 File: [`automation/remote/bedroom_hue_remote/up_press.yaml`](entities/automation/remote/bedroom_hue_remote/up_press.yaml)
 </details>
 
+<details><summary><code>/remote/bedroom-remote/brightness-move-down</code></summary>
+
+**Entity ID: `automation.remote_bedroom_remote_brightness_move_down`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-remote/brightness-move-down
+- ID: `remote_bedroom_remote_brightness_move_down`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_remote/brightness_move_down.yaml`](entities/automation/remote/bedroom_remote/brightness_move_down.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-remote/brightness-move-up</code></summary>
+
+**Entity ID: `automation.remote_bedroom_remote_brightness_move_up`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-remote/brightness-move-up
+- ID: `remote_bedroom_remote_brightness_move_up`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_remote/brightness_move_up.yaml`](entities/automation/remote/bedroom_remote/brightness_move_up.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-remote/off</code></summary>
+
+**Entity ID: `automation.remote_bedroom_remote_off`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-remote/off
+- ID: `remote_bedroom_remote_off`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_remote/off.yaml`](entities/automation/remote/bedroom_remote/off.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-remote/on</code></summary>
+
+**Entity ID: `automation.remote_bedroom_remote_on`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-remote/on
+- ID: `remote_bedroom_remote_on`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_remote/on.yaml`](entities/automation/remote/bedroom_remote/on.yaml)
+</details>
+
 <details><summary><code>/remote/charging-hub-button/single</code></summary>
 
 **Entity ID: `automation.remote_charging_hub_button_single`**
@@ -2058,6 +2131,58 @@ File: [`automation/remote/spare_room/hue_remote/on_press.yaml`](entities/automat
 - Mode: `single`
 
 File: [`automation/remote/spare_room/hue_remote/up_press.yaml`](entities/automation/remote/spare_room/hue_remote/up_press.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-desk-remote/brightness-move-down</code></summary>
+
+**Entity ID: `automation.remote_vic_s_desk_remote_brightness_move_down`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-desk-remote/brightness-move-down
+- ID: `remote_vic_s_desk_remote_brightness_move_down`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_desk_remote/brightness_move_down.yaml`](entities/automation/remote/vic_s_desk_remote/brightness_move_down.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-desk-remote/brightness-move-up</code></summary>
+
+**Entity ID: `automation.remote_vic_s_desk_remote_brightness_move_up`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-desk-remote/brightness-move-up
+- ID: `remote_vic_s_desk_remote_brightness_move_up`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_desk_remote/brightness_move_up.yaml`](entities/automation/remote/vic_s_desk_remote/brightness_move_up.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-desk-remote/off</code></summary>
+
+**Entity ID: `automation.remote_vic_s_desk_remote_off`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-desk-remote/off
+- ID: `remote_vic_s_desk_remote_off`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_desk_remote/off.yaml`](entities/automation/remote/vic_s_desk_remote/off.yaml)
+</details>
+
+<details><summary><code>/remote/vic-s-desk-remote/on</code></summary>
+
+**Entity ID: `automation.remote_vic_s_desk_remote_on`**
+
+> *No description provided*
+
+- Alias: /remote/vic-s-desk-remote/on
+- ID: `remote_vic_s_desk_remote_on`
+- Mode: `single`
+
+File: [`automation/remote/vic_s_desk_remote/on.yaml`](entities/automation/remote/vic_s_desk_remote/on.yaml)
 </details>
 
 <details><summary><code>/remote/vic-s-office-hue-remote/down-press</code></summary>
@@ -4270,7 +4395,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (19)</h3></summary>
+<details><summary><h3>Entities (20)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -4430,6 +4555,15 @@ File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entit
 - Pattern: ^[a-z][a-z_0-9]+\.[a-z_0-9]+$
 
 File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
+</details>
+
+<details><summary><strong>Test MQTT Events Device Name</strong></summary>
+
+**Entity ID: `input_text.test_mqtt_events_device_name`**
+
+- Icon: [`mdi:identifier`](https://pictogrammers.com/library/mdi/icon/identifier/)
+
+File: [`input_text/test_mqtt_events_device_name.yaml`](entities/input_text/test_mqtt_events_device_name.yaml)
 </details>
 
 <details><summary><strong>Vic | Work Calendar: Holiday Pattern</strong></summary>
