@@ -5422,8 +5422,7 @@
                   "entity": "input_number.will_habit_countable_1",
                   "primary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
                   "color": "{{ iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"red\", \"green\") }}",
-                  "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}",
-                  "secondary": "{{ states(\"sensor.will_habit_binary_2_streak\") }} day{% if states(\"sensor.will_habit_binary_2_streak\") | int(0) > 1 %}s{% endif %} streak"
+                  "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
                 }
               ],
               "column_span": 1
