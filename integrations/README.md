@@ -3245,7 +3245,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (30)</h3></summary>
+<details><summary><h3>Entities (32)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -3472,6 +3472,24 @@ File: [`input_boolean/auto_reload/auto_reload_zone.yaml`](entities/input_boolean
 File: [`input_boolean/debug_with_persistent_notifications.yaml`](entities/input_boolean/debug_with_persistent_notifications.yaml)
 </details>
 
+<details><summary><strong>Will | Habit 1</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_1`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_1.yaml`](entities/input_boolean/habit/will_habit_1.yaml)
+</details>
+
+<details><summary><strong>Will | Habit 2</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_2`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_2.yaml`](entities/input_boolean/habit/will_habit_2.yaml)
+</details>
+
 <details><summary><strong>Lounge | Lights: Exercise Mode</strong></summary>
 
 **Entity ID: `input_boolean.lounge_lights_exercise_mode`**
@@ -3521,7 +3539,7 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 
 ## Input Datetime
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (7)</h3></summary>
 
 <details><summary><strong>Cosmo Nightly Kitchen Clean Time</strong></summary>
 
@@ -3531,6 +3549,26 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 - Icon: [`mdi:weather-night`](https://pictogrammers.com/library/mdi/icon/weather-night/)
 
 File: [`input_datetime/cosmo_nightly_kitchen_clean_time.yaml`](entities/input_datetime/cosmo_nightly_kitchen_clean_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit 1: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_1_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_1_reminder_time.yaml`](entities/input_datetime/habit/will_habit_1_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit 2: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_2_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_2_reminder_time.yaml`](entities/input_datetime/habit/will_habit_2_reminder_time.yaml)
 </details>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
@@ -4317,7 +4355,7 @@ File: [`input_number/will_s_office_grow_light_trigger_delay.yaml`](entities/inpu
 
 ## Input Select
 
-<details><summary><h3>Entities (8)</h3></summary>
+<details><summary><h3>Entities (9)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -4391,11 +4429,20 @@ File: [`input_select/target_git_branch.yaml`](entities/input_select/target_git_b
 File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_source.yaml)
 </details>
 
+<details><summary><strong>Will | Mood Today</strong></summary>
+
+**Entity ID: `input_select.will_mood_today`**
+
+- Icon: [`mdi:emoticon-happy`](https://pictogrammers.com/library/mdi/icon/emoticon-happy/)
+
+File: [`input_select/will_mood_today.yaml`](entities/input_select/will_mood_today.yaml)
+</details>
+
 </details>
 
 ## Input Text
 
-<details><summary><h3>Entities (20)</h3></summary>
+<details><summary><h3>Entities (23)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -4557,6 +4604,24 @@ File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entit
 File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
 </details>
 
+<details><summary><strong>Will | Habit 1: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_1_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_1_name.yaml`](entities/input_text/habit/will_habit_1_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit 2: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_2_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_2_name.yaml`](entities/input_text/habit/will_habit_2_name.yaml)
+</details>
+
 <details><summary><strong>Test MQTT Events Device Name</strong></summary>
 
 **Entity ID: `input_text.test_mqtt_events_device_name`**
@@ -4573,6 +4638,15 @@ File: [`input_text/test_mqtt_events_device_name.yaml`](entities/input_text/test_
 - Icon: [`mdi:regex`](https://pictogrammers.com/library/mdi/icon/regex/)
 
 File: [`input_text/vic_work_calendar_holiday_pattern.yaml`](entities/input_text/vic_work_calendar_holiday_pattern.yaml)
+</details>
+
+<details><summary><strong>Will | Mood Note</strong></summary>
+
+**Entity ID: `input_text.will_mood_note`**
+
+- Icon: [`mdi:text`](https://pictogrammers.com/library/mdi/icon/text/)
+
+File: [`input_text/will_mood_note.yaml`](entities/input_text/will_mood_note.yaml)
 </details>
 
 <details><summary><strong>Will's Office Webcam Name</strong></summary>
