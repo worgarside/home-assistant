@@ -5377,19 +5377,18 @@
                   "icon": "{{ states(iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"input_text.will_habit_binary_1_icon_on\", \"input_text.will_habit_binary_1_icon_off\")) }}"
                 },
                 {
-                  "type": "custom:mushroom-template-card",
-                  "features_position": "inline",
-                  "entity": "input_number.will_habit_countable_1",
-                  "secondary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
-                  "primary": "{{ iif(is_state(\"input_number.will_habit_countable_1\", \"on\"), \"Complete!\", \"Not Done\") }}",
-                  "color": "{{ iif(is_state(\"input_number.will_habit_countable_1\", \"on\"), \"green\", \"red\") }}",
-                  "icon": "{{ states(iif(is_state(\"input_number.will_habit_countable_1\", \"on\"), \"input_text.will_habit_countable_1_icon_on\", \"input_text.will_habit_countable_1_icon_off\")) }}",
                   "features": [
                     {
                       "type": "numeric-input",
                       "style": "buttons"
                     }
-                  ]
+                  ],
+                  "type": "custom:mushroom-template-card",
+                  "features_position": "inline",
+                  "entity": "input_number.will_habit_countable_1",
+                  "primary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
+                  "color": "{{ iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"green\", \"red\") }}",
+                  "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
                 }
               ]
             }
