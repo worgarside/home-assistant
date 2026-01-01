@@ -309,6 +309,23 @@ packages:
       should_match_filename:
         - unique_id
 
+  sql:
+    documentation:
+      id: __file__
+      extra:
+        - column
+
+    validation:
+      should_exist:
+        - column
+        - query
+        - name
+        - unique_id
+
+      should_match_filename:
+        - name
+        - unique_id
+
   switch:
     documentation:
       name: friendly_name
