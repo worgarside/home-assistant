@@ -5390,6 +5390,19 @@
                 {
                   "features": [
                     {
+                      "type": "toggle"
+                    }
+                  ],
+                  "type": "custom:mushroom-template-card",
+                  "features_position": "inline",
+                  "entity": "input_boolean.will_habit_binary_2",
+                  "primary": "{{ states(\"input_text.will_habit_binary_2_name\") }}",
+                  "color": "{{ iif(is_state(\"input_boolean.will_habit_binary_2\", \"on\"), \"green\", \"red\") }}",
+                  "icon": "{{ states(iif(is_state(\"input_boolean.will_habit_binary_2\", \"on\"), \"input_text.will_habit_binary_2_icon_off_icon_on\", \"input_text.will_habit_binary_2_icon_off\")) }}"
+                },
+                {
+                  "features": [
+                    {
                       "type": "numeric-input",
                       "style": "buttons"
                     }
@@ -5400,19 +5413,6 @@
                   "primary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
                   "color": "{{ iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"red\", \"green\") }}",
                   "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
-                },
-                {
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "type": "custom:mushroom-template-card",
-                  "features_position": "inline",
-                  "entity": "input_boolean.will_habit_binary_2",
-                  "primary": "{{ states(\"input_text.will_habit_binary_2_name\") }}",
-                  "color": "{{ iif(is_state(\"input_boolean.will_habit_binary_2\", \"on\"), \"green\", \"red\") }}",
-                  "icon": "{{ states(iif(is_state(\"input_boolean.will_habit_binary_2\", \"on\"), \"input_text.will_habit_binary_2_icon_off_icon_on\", \"input_text.will_habit_binary_2_icon_off\")) }}"
                 }
               ]
             }
