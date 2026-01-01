@@ -5375,7 +5375,7 @@
                   "secondary": "{{ states(\"input_text.will_habit_binary_1_name\") }}",
                   "primary": "{{ iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"Complete!\", \"Not Done\") }}",
                   "color": "{{ iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"green\", \"red\") }}",
-                  "icon": "{{ states(\"input_text.will_habit_binary_1_icon\" }}"
+                  "icon": "{{ states(iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"input_text.will_habit_binary_1_icon_on\", \"input_text.will_habit_binary_1_icon_off\")) }}"
                 }
               ]
             }
