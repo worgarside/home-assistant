@@ -5376,6 +5376,20 @@
                   "primary": "{{ iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"Complete!\", \"Not Done\") }}",
                   "color": "{{ iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"green\", \"red\") }}",
                   "icon": "{{ states(iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"input_text.will_habit_binary_1_icon_on\", \"input_text.will_habit_binary_1_icon_off\")) }}"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "type": "custom:mushroom-template-card",
+                  "features_position": "inline",
+                  "entity": "input_number.will_habit_countable_1",
+                  "secondary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
+                  "primary": "{{ iif(is_state(\"input_number.will_habit_countable_1\", \"on\"), \"Complete!\", \"Not Done\") }}",
+                  "color": "{{ iif(is_state(\"input_number.will_habit_countable_1\", \"on\"), \"green\", \"red\") }}",
+                  "icon": "{{ states(iif(is_state(\"input_number.will_habit_countable_1\", \"on\"), \"input_text.will_habit_countable_1_icon_on\", \"input_text.will_habit_countable_1_icon_off\")) }}"
                 }
               ]
             }
