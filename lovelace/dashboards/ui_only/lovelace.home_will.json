@@ -5413,6 +5413,14 @@
                   "primary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
                   "color": "{{ iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"red\", \"green\") }}",
                   "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{{ states(\"sensor.will_habit_binary_1_streak\") }} days streak",
+                  "features_position": "bottom",
+                  "entity": "sensor.will_habit_binary_1_streak",
+                  "icon": "{% set streak = states('sensor.will_habit_binary_1_streak') | int(0) %}\n  {% if streak == 0 %}\n    mdi:fire-off\n  {% elif streak < 7 %}\n    mdi:fire\n  {% elif streak < 14 %}\n    mdi:fire-alert\n  {% elif streak < 30 %}\n    mdi:fire-circle\n  {% elif streak < 100 %}\n    mdi:fire-truck\n  {% else %}\n    mdi:firework\n  {% endif %}",
+                  "color": "{% set streak = states('sensor.will_habit_binary_1_streak') | int(0) %}\n{% if streak == 0 %}\n  #808080\n{% elif streak < 7 %}\n  #ff6400\n{% elif streak < 14 %}\n  #ff8c00\n{% elif streak < 30 %}\n  #ffa500\n{% elif streak < 100 %}\n  #ffc800\n{% else %}\n  #ffd700\n{% endif %}"
                 }
               ]
             }
