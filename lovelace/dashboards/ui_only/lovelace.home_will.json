@@ -5387,7 +5387,7 @@
                   "features_position": "inline",
                   "entity": "input_number.will_habit_countable_1",
                   "primary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
-                  "color": "{{ iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"green\", \"red\") }}",
+                  "color": "{{ iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"red\", \"green\") }}",
                   "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
                 }
               ]
