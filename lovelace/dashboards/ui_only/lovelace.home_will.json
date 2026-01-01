@@ -5330,6 +5330,12 @@
                   "type": "heading",
                   "heading": "Mood",
                   "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-select-card",
+                  "entity": "input_select.will_mood_today",
+                  "secondary_info": "none",
+                  "name": "Mood Today"
                 }
               ]
             }
