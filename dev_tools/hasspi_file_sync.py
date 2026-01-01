@@ -133,7 +133,7 @@ class FileSyncHandler(FileSystemEventHandler):
             for directory in target_path.parts[:-1]:
                 try:
                     self.sftp_client.chdir(directory)
-                except FileNotFoundError:  # noqa: PERF203
+                except FileNotFoundError:
                     LOGGER.debug("Creating directory: %s", directory)
                     self.sftp_client.mkdir(directory)
                     self.sftp_client.chdir(directory)
