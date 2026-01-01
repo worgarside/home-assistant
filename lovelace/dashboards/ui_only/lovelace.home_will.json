@@ -5361,7 +5361,17 @@
                 {
                   "type": "heading",
                   "heading": "Habits",
-                  "heading_style": "subtitle"
+                  "heading_style": "subtitle",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_habits_binary_count"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_habits_countable_count"
+                    }
+                  ]
                 },
                 {
                   "features": [
