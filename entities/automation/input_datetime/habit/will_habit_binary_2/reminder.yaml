@@ -1,0 +1,25 @@
+---
+alias: /input-datetime/habit/will-habit-binary-2/reminder
+
+id: input_datetime_habit_will_habit_binary_2_reminder
+
+description: Remind to log Will's binary habit 2 at configured reminder time
+
+mode: single
+
+trigger:
+  - platform: time
+    at: input_datetime.will_habit_binary_2_reminder_time
+
+condition: "{{ not is_state('input_boolean.will_habit_binary_2', 'on') }}"
+
+variables:
+  habit_name: "{{ states('input_text.will_habit_binary_2_name') | default('Habit Binary 2') }}"
+
+action:
+  - service: script.notify_will
+    data:
+      title: "Habit Reminder"
+      message: "Don't forget to mark {{ habit_name }} as complete!"
+      notification_id: will_habit_binary_2_reminder
+      url: /home-will/mood-habits

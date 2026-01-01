@@ -1,0 +1,25 @@
+---
+alias: /input-datetime/habit/will-habit-countable-1/reminder
+
+id: input_datetime_habit_will_habit_countable_1_reminder
+
+description: Remind to log Will's countable habit 1 at configured reminder time
+
+mode: single
+
+trigger:
+  - platform: time
+    at: input_datetime.will_habit_countable_1_reminder_time
+
+condition: "{{ states('input_number.will_habit_countable_1') | int(0) == 0 }}"
+
+variables:
+  habit_name: "{{ states('input_text.will_habit_countable_1_name') | default('Habit Countable 1') }}"
+
+action:
+  - service: script.notify_will
+    data:
+      title: "Habit Reminder"
+      message: "Don't forget to track {{ habit_name }}!"
+      notification_id: will_habit_countable_1_reminder
+      url: /home-will/mood-habits

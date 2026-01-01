@@ -1,0 +1,19 @@
+---
+name: Will | Habits Countable Count
+
+unique_id: will_habits_countable_count
+
+icon: mdi:counter
+
+state: >-
+  {% set ns = namespace(count=0) %}
+  {% for i in range(1, 999) %}
+    {%-
+      if not has_value("input_number.will_habit_countable_" ~ i) or
+        states("input_text.will_habit_countable_" ~ i ~ "_name") in ["", "unknown"]
+    -%}
+      {%- break %}
+    {%- endif -%}
+    {% set ns.count = i %}
+  {% endfor %}
+  {{ ns.count }}
