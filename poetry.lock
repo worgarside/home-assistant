@@ -2448,19 +2448,19 @@ propcache = ">=0.2.1"
 
 [[package]]
 name = "zigpy"
-version = "0.87.0"
+version = "0.89.0"
 description = "Library implementing a Zigbee stack"
 optional = false
 python-versions = ">=3.11"
 groups = ["dev"]
 files = [
-    {file = "zigpy-0.87.0-py3-none-any.whl", hash = "sha256:a5b186ceae461bf8ae9ce07308a438bac4e72d71072f43ae12f9cae18c8abe25"},
-    {file = "zigpy-0.87.0.tar.gz", hash = "sha256:aca07ef085aa78302e67a03a836f40134c6ecbfb281cf243d435f50fd08f056a"},
+    {file = "zigpy-0.89.0-py3-none-any.whl", hash = "sha256:07a133948130e810c008cbbaa8474432a978d42e793a996e5b8908403ee433d2"},
+    {file = "zigpy-0.89.0.tar.gz", hash = "sha256:310a323deb91fe0130cdcc22445ffa1e3b4f79ef9d8eaef446c142384b1d6a47"},
 ]
 
 [package.dependencies]
 aiohttp = "*"
-aiosqlite = ">=0.20.0"
+aiosqlite = ">=0.20.0,<0.22.0"
 attrs = "*"
 crccheck = "*"
 cryptography = "*"
@@ -2476,4 +2476,4 @@ testing = ["asynctest", "coverage[toml]", "coveralls", "freezegun", "pysqlite3-b
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4.0"
-content-hash = "70a3a096aca34079648bdc840778f3186f28b6b1b647ab3c75debe795ac8a084"
+content-hash = "d877404ade62e18f53f3ad074084f904ee6d2b8ed813f52af0cd6f97ee0f7411"
