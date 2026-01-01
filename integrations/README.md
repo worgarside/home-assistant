@@ -4484,7 +4484,7 @@ File: [`input_select/will_mood_today.yaml`](entities/input_select/will_mood_toda
 
 ## Input Text
 
-<details><summary><h3>Entities (25)</h3></summary>
+<details><summary><h3>Entities (29)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -4646,6 +4646,15 @@ File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entit
 File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
 </details>
 
+<details><summary><strong>Will | Habit Binary 1: Icon</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_1_icon`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_1_icon.yaml`](entities/input_text/habit/will_habit_binary_1_icon.yaml)
+</details>
+
 <details><summary><strong>Will | Habit Binary 1: Name</strong></summary>
 
 **Entity ID: `input_text.will_habit_binary_1_name`**
@@ -4653,6 +4662,15 @@ File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entit
 - Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
 
 File: [`input_text/habit/will_habit_binary_1_name.yaml`](entities/input_text/habit/will_habit_binary_1_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Icon</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_2_icon`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_2_icon.yaml`](entities/input_text/habit/will_habit_binary_2_icon.yaml)
 </details>
 
 <details><summary><strong>Will | Habit Binary 2: Name</strong></summary>
@@ -4664,6 +4682,15 @@ File: [`input_text/habit/will_habit_binary_1_name.yaml`](entities/input_text/hab
 File: [`input_text/habit/will_habit_binary_2_name.yaml`](entities/input_text/habit/will_habit_binary_2_name.yaml)
 </details>
 
+<details><summary><strong>Will | Habit Countable 1: Icon</strong></summary>
+
+**Entity ID: `input_text.will_habit_countable_1_icon`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_countable_1_icon.yaml`](entities/input_text/habit/will_habit_countable_1_icon.yaml)
+</details>
+
 <details><summary><strong>Will | Habit Countable 1: Name</strong></summary>
 
 **Entity ID: `input_text.will_habit_countable_1_name`**
@@ -4671,6 +4698,15 @@ File: [`input_text/habit/will_habit_binary_2_name.yaml`](entities/input_text/hab
 - Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
 
 File: [`input_text/habit/will_habit_countable_1_name.yaml`](entities/input_text/habit/will_habit_countable_1_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Icon</strong></summary>
+
+**Entity ID: `input_text.will_habit_countable_2_icon`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_countable_2_icon.yaml`](entities/input_text/habit/will_habit_countable_2_icon.yaml)
 </details>
 
 <details><summary><strong>Will | Habit Countable 2: Name</strong></summary>
