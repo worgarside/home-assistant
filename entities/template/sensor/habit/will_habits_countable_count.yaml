@@ -3,7 +3,7 @@ name: Will | Habits Countable Count
 
 unique_id: will_habits_countable_count
 
-icon: mdi:counter
+icon: mdi:numeric
 
 state: >-
   {% set ns = namespace(count=0) %}

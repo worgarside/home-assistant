@@ -3,7 +3,7 @@ name: Will | Habits Binary Count
 
 unique_id: will_habits_binary_count
 
-icon: mdi:counter
+icon: mdi:toggle-switch
 
 state: >-
   {% set ns = namespace(count=0) %}
