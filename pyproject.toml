@@ -1,31 +1,23 @@
-[tool.poetry]
+[project]
 name = "home-assistant"
 version = "3.18.0"
 description = ""
-authors = ["Will Garside <worgarside@gmail.com>"]
+authors = [
+  {name = "Will Garside", email = "worgarside@gmail.com"}
+]
 readme = "README.md"
-package-mode = false
+requires-python = ">=3.12,<4.0"
+dependencies = [
+  "wg-utilities>=5.17.4,<6.0.0",
+  "watchdog>=5.0.3,<6.0.0",
+  "paramiko>=3.5.1,<4.0.0",
+  "mcp-proxy>=0.8.0,<1.0.0",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.12,<4.0"
-wg-utilities = "^5.17.4"
-watchdog = "^5.0.3"
-paramiko = "^3.5.1"
-mcp-proxy = "^0.8.0"
-
-[tool.poetry.group.dev]
-optional = true
-
-[tool.poetry.group.dev.dependencies]
-watchdog = "^5.0.3"
-zigpy = "^0.87.0"
-matplotlib = "^3.10.3"
-pyyaml = "^6.0.2"
-
-[build-system]
-build-backend = "poetry.core.masonry.api"
-requires = [
-  "poetry-core",
+[project.optional-dependencies]
+dev = [
+  "matplotlib>=3.10.3,<4.0.0",
+  "pyyaml>=6.0.2,<7.0.0",
 ]
 
 [tool.mypy]
