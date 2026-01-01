@@ -5385,7 +5385,8 @@
                   "entity": "input_boolean.will_habit_binary_1",
                   "primary": "{{ states(\"input_text.will_habit_binary_1_name\") }}",
                   "color": "{{ iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"green\", \"red\") }}",
-                  "icon": "{{ states(iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"input_text.will_habit_binary_1_icon_on\", \"input_text.will_habit_binary_1_icon_off\")) }}"
+                  "icon": "{{ states(iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"input_text.will_habit_binary_1_icon_on\", \"input_text.will_habit_binary_1_icon_off\")) }}",
+                  "secondary": "{{ states(\"sensor.will_habit_binary_1_streak\") }} day{% if states(\"sensor.will_habit_binary_1_streak\") | int(0) > 1 %}s{% endif %} streak"
                 },
                 {
                   "type": "custom:mushroom-template-card",
