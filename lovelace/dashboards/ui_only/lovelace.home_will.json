@@ -5332,10 +5332,26 @@
                   "heading_style": "subtitle"
                 },
                 {
-                  "type": "custom:mushroom-select-card",
+                  "features": [
+                    {
+                      "type": "select-options"
+                    }
+                  ],
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:emoticon-{%- if is_state(\"input_select.will_mood_today\", \"Not Set\") -%}\nconfused\n{%- elif is_state(\"input_select.will_mood_today\", \"Very Low\") -%}\ndead\n{%- elif is_state(\"input_select.will_mood_today\", \"Low\") -%}\nsad\n{%- elif is_state(\"input_select.will_mood_today\", \"Okay\") -%}\nneutral\n{%- elif is_state(\"input_select.will_mood_today\", \"Good\") -%}\nhappy\n{%- elif is_state(\"input_select.will_mood_today\", \"Great\") -%}\ntongue\n{%- else -%}\ndevil\n{%- endif -%}\n-outline",
+                  "features_position": "inline",
                   "entity": "input_select.will_mood_today",
-                  "secondary_info": "none",
-                  "name": "Mood Today"
+                  "primary": "Today's Mood",
+                  "color": "{%- if is_state(\"input_select.will_mood_today\", \"Not Set\") -%}\n#9E9E9E\n{%- elif is_state(\"input_select.will_mood_today\", \"Very Low\") -%}\n#8B0000\n{%- elif is_state(\"input_select.will_mood_today\", \"Low\") -%}\n#FF5722\n{%- elif is_state(\"input_select.will_mood_today\", \"Okay\") -%}\n#FFC107\n{%- elif is_state(\"input_select.will_mood_today\", \"Good\") -%}\n#4CAF50\n{%- elif is_state(\"input_select.will_mood_today\", \"Great\") -%}\n#00E676\n{%- else -%}\n#9E9E9E\n{%- endif -%}",
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon_tap_action": {
+                    "action": "none"
+                  }
                 }
               ]
             }
