@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (198)</h3></summary>
+<details><summary><h3>Entities (206)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -850,6 +850,19 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
 </details>
 
+<details><summary><code>/input-boolean/habit/will/reset-all-daily</code></summary>
+
+**Entity ID: `automation.input_boolean_habit_will_reset_all_daily`**
+
+> Reset all Will's binary habit toggles at midnight
+
+- Alias: /input-boolean/habit/will/reset-all-daily
+- ID: `input_boolean_habit_will_reset_all_daily`
+- Mode: `single`
+
+File: [`automation/input_boolean/habit/will/reset_all_daily.yaml`](entities/automation/input_boolean/habit/will/reset_all_daily.yaml)
+</details>
+
 <details><summary><code>/input-boolean/lounge-lights-exercise-mode/off</code></summary>
 
 **Entity ID: `automation.input_boolean_lounge_lights_exercise_mode_off`**
@@ -874,6 +887,82 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/off.yaml`](entities
 - Mode: `single`
 
 File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/on.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-1/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_1_reminder`**
+
+> Remind to log Will's binary habit 1 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-1/reminder
+- ID: `input_datetime_habit_will_habit_binary_1_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{ states('input_text.will_habit_binary_1_name') | default('Habit Binary 1') }}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_1/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_1/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-2/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_2_reminder`**
+
+> Remind to log Will's binary habit 2 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-2/reminder
+- ID: `input_datetime_habit_will_habit_binary_2_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{ states('input_text.will_habit_binary_2_name') | default('Habit Binary 2') }}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_2/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_2/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-countable-1/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_countable_1_reminder`**
+
+> Remind to log Will's countable habit 1 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-countable-1/reminder
+- ID: `input_datetime_habit_will_habit_countable_1_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{ states('input_text.will_habit_countable_1_name') | default('Habit Countable 1') }}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_countable_1/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_countable_1/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-countable-2/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_countable_2_reminder`**
+
+> Remind to log Will's countable habit 2 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-countable-2/reminder
+- ID: `input_datetime_habit_will_habit_countable_2_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{ states('input_text.will_habit_countable_2_name') | default('Habit Countable 2') }}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_countable_2/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_countable_2/reminder.yaml)
 </details>
 
 <details><summary><code>/input-datetime/home-assistant-start-time/set-datetime</code></summary>
@@ -908,6 +997,19 @@ File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](
 }
 ```
 File: [`automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml`](entities/automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml)
+</details>
+
+<details><summary><code>/input-number/habit/will/reset-all-daily</code></summary>
+
+**Entity ID: `automation.input_number_habit_will_reset_all_daily`**
+
+> Reset all Will's countable habit counters at midnight
+
+- Alias: /input-number/habit/will/reset-all-daily
+- ID: `input_number_habit_will_reset_all_daily`
+- Mode: `single`
+
+File: [`automation/input_number/habit/will/reset_all_daily.yaml`](entities/automation/input_number/habit/will/reset_all_daily.yaml)
 </details>
 
 <details><summary><code>/input-select/gh-cli-active-user/option-selected</code></summary>
@@ -949,6 +1051,19 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
+<details><summary><code>/input-select/will/mood-today/reset-daily</code></summary>
+
+**Entity ID: `automation.input_select_will_mood_today_reset_daily`**
+
+> Reset mood selection at midnight
+
+- Alias: /input-select/will/mood-today/reset-daily
+- ID: `input_select_will_mood_today_reset_daily`
+- Mode: `single`
+
+File: [`automation/input_select/will/mood_today/reset_daily.yaml`](entities/automation/input_select/will/mood_today/reset_daily.yaml)
+</details>
+
 <details><summary><code>/input-text/test-mqtt-events-device-name/log-event</code></summary>
 
 **Entity ID: `automation.input_text_test_mqtt_events_device_name_log_event`**
@@ -968,6 +1083,19 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 }
 ```
 File: [`automation/input_text/test_mqtt_events_device_name/log_event.yaml`](entities/automation/input_text/test_mqtt_events_device_name/log_event.yaml)
+</details>
+
+<details><summary><code>/input-text/will/mood-note/reset-daily</code></summary>
+
+**Entity ID: `automation.input_text_will_mood_note_reset_daily`**
+
+> Clear mood note at midnight
+
+- Alias: /input-text/will/mood-note/reset-daily
+- ID: `input_text_will_mood_note_reset_daily`
+- Mode: `single`
+
+File: [`automation/input_text/will/mood_note/reset_daily.yaml`](entities/automation/input_text/will/mood_note/reset_daily.yaml)
 </details>
 
 <details><summary><code>/label/critical-battery/low-battery-alert</code></summary>
@@ -7816,7 +7944,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (77)</h3></summary>
+<details><summary><h3>Entities (80)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -8279,6 +8407,33 @@ File: [`template/sensor/entity_counts/low_batteries.yaml`](entities/template/sen
 - Icon: [`mdi:lan-disconnect`](https://pictogrammers.com/library/mdi/icon/lan-disconnect/)
 
 File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/template/sensor/entity_counts/unavailable_entities.yaml)
+</details>
+
+<details><summary><strong>Will | Habits Binary Count</strong></summary>
+
+**Entity ID: `sensor.will_habits_binary_count`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+
+File: [`template/sensor/habit/will_habits_binary_count.yaml`](entities/template/sensor/habit/will_habits_binary_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habits Countable Count</strong></summary>
+
+**Entity ID: `sensor.will_habits_countable_count`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+
+File: [`template/sensor/habit/will_habits_countable_count.yaml`](entities/template/sensor/habit/will_habits_countable_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habits Total Count</strong></summary>
+
+**Entity ID: `sensor.will_habits_total_count`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+
+File: [`template/sensor/habit/will_habits_total_count.yaml`](entities/template/sensor/habit/will_habits_total_count.yaml)
 </details>
 
 <details><summary><strong>HiFi System: Media Metadata</strong></summary>
