@@ -3472,22 +3472,22 @@ File: [`input_boolean/auto_reload/auto_reload_zone.yaml`](entities/input_boolean
 File: [`input_boolean/debug_with_persistent_notifications.yaml`](entities/input_boolean/debug_with_persistent_notifications.yaml)
 </details>
 
-<details><summary><strong>Will | Habit 1</strong></summary>
+<details><summary><strong>Will | Habit Binary 1</strong></summary>
 
-**Entity ID: `input_boolean.will_habit_1`**
+**Entity ID: `input_boolean.will_habit_binary_1`**
 
 - Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
 
-File: [`input_boolean/habit/will_habit_1.yaml`](entities/input_boolean/habit/will_habit_1.yaml)
+File: [`input_boolean/habit/will_habit_binary_1.yaml`](entities/input_boolean/habit/will_habit_binary_1.yaml)
 </details>
 
-<details><summary><strong>Will | Habit 2</strong></summary>
+<details><summary><strong>Will | Habit Binary 2</strong></summary>
 
-**Entity ID: `input_boolean.will_habit_2`**
+**Entity ID: `input_boolean.will_habit_binary_2`**
 
 - Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
 
-File: [`input_boolean/habit/will_habit_2.yaml`](entities/input_boolean/habit/will_habit_2.yaml)
+File: [`input_boolean/habit/will_habit_binary_2.yaml`](entities/input_boolean/habit/will_habit_binary_2.yaml)
 </details>
 
 <details><summary><strong>Lounge | Lights: Exercise Mode</strong></summary>
@@ -3539,7 +3539,7 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 
 ## Input Datetime
 
-<details><summary><h3>Entities (7)</h3></summary>
+<details><summary><h3>Entities (9)</h3></summary>
 
 <details><summary><strong>Cosmo Nightly Kitchen Clean Time</strong></summary>
 
@@ -3551,24 +3551,44 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 File: [`input_datetime/cosmo_nightly_kitchen_clean_time.yaml`](entities/input_datetime/cosmo_nightly_kitchen_clean_time.yaml)
 </details>
 
-<details><summary><strong>Will | Habit 1: Reminder Time</strong></summary>
+<details><summary><strong>Will | Habit Binary 1: Reminder Time</strong></summary>
 
-**Entity ID: `input_datetime.will_habit_1_reminder_time`**
+**Entity ID: `input_datetime.will_habit_binary_1_reminder_time`**
 
 - Has Time: `true`
 - Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
 
-File: [`input_datetime/habit/will_habit_1_reminder_time.yaml`](entities/input_datetime/habit/will_habit_1_reminder_time.yaml)
+File: [`input_datetime/habit/will_habit_binary_1_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_1_reminder_time.yaml)
 </details>
 
-<details><summary><strong>Will | Habit 2: Reminder Time</strong></summary>
+<details><summary><strong>Will | Habit Binary 2: Reminder Time</strong></summary>
 
-**Entity ID: `input_datetime.will_habit_2_reminder_time`**
+**Entity ID: `input_datetime.will_habit_binary_2_reminder_time`**
 
 - Has Time: `true`
 - Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
 
-File: [`input_datetime/habit/will_habit_2_reminder_time.yaml`](entities/input_datetime/habit/will_habit_2_reminder_time.yaml)
+File: [`input_datetime/habit/will_habit_binary_2_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_2_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_countable_1_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_countable_1_reminder_time.yaml`](entities/input_datetime/habit/will_habit_countable_1_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_countable_2_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_countable_2_reminder_time.yaml`](entities/input_datetime/habit/will_habit_countable_2_reminder_time.yaml)
 </details>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
@@ -3619,7 +3639,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (59)</h3></summary>
+<details><summary><h3>Entities (61)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3753,6 +3773,28 @@ File: [`input_number/electric_blanket_timeout_level_2.yaml`](entities/input_numb
 - Unit Of Measurement: `min`
 
 File: [`input_number/electric_blanket_timeout_level_3.yaml`](entities/input_number/electric_blanket_timeout_level_3.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_1`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+- Max: 100
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_1.yaml`](entities/input_number/habit/will_habit_countable_1.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_2`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+- Max: 100
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_2.yaml`](entities/input_number/habit/will_habit_countable_2.yaml)
 </details>
 
 <details><summary><strong>Hot Water | Proximity Distance</strong></summary>
@@ -4442,7 +4484,7 @@ File: [`input_select/will_mood_today.yaml`](entities/input_select/will_mood_toda
 
 ## Input Text
 
-<details><summary><h3>Entities (23)</h3></summary>
+<details><summary><h3>Entities (25)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -4604,22 +4646,40 @@ File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entit
 File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
 </details>
 
-<details><summary><strong>Will | Habit 1: Name</strong></summary>
+<details><summary><strong>Will | Habit Binary 1: Name</strong></summary>
 
-**Entity ID: `input_text.will_habit_1_name`**
+**Entity ID: `input_text.will_habit_binary_1_name`**
 
 - Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
 
-File: [`input_text/habit/will_habit_1_name.yaml`](entities/input_text/habit/will_habit_1_name.yaml)
+File: [`input_text/habit/will_habit_binary_1_name.yaml`](entities/input_text/habit/will_habit_binary_1_name.yaml)
 </details>
 
-<details><summary><strong>Will | Habit 2: Name</strong></summary>
+<details><summary><strong>Will | Habit Binary 2: Name</strong></summary>
 
-**Entity ID: `input_text.will_habit_2_name`**
+**Entity ID: `input_text.will_habit_binary_2_name`**
 
 - Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
 
-File: [`input_text/habit/will_habit_2_name.yaml`](entities/input_text/habit/will_habit_2_name.yaml)
+File: [`input_text/habit/will_habit_binary_2_name.yaml`](entities/input_text/habit/will_habit_binary_2_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_countable_1_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_countable_1_name.yaml`](entities/input_text/habit/will_habit_countable_1_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_countable_2_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_countable_2_name.yaml`](entities/input_text/habit/will_habit_countable_2_name.yaml)
 </details>
 
 <details><summary><strong>Test MQTT Events Device Name</strong></summary>
