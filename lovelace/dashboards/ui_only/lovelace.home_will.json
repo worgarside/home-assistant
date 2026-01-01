@@ -5423,7 +5423,7 @@
                   "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
                 }
               ],
-              "column_span": 2
+              "column_span": 1.5
             }
           ]
         },
