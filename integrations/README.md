@@ -8413,7 +8413,7 @@ File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/templ
 
 **Entity ID: `sensor.will_habits_binary_count`**
 
-- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+- Icon: [`mdi:toggle-switch`](https://pictogrammers.com/library/mdi/icon/toggle-switch/)
 
 File: [`template/sensor/habit/will_habits_binary_count.yaml`](entities/template/sensor/habit/will_habits_binary_count.yaml)
 </details>
@@ -8422,7 +8422,7 @@ File: [`template/sensor/habit/will_habits_binary_count.yaml`](entities/template/
 
 **Entity ID: `sensor.will_habits_countable_count`**
 
-- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+- Icon: [`mdi:numeric`](https://pictogrammers.com/library/mdi/icon/numeric/)
 
 File: [`template/sensor/habit/will_habits_countable_count.yaml`](entities/template/sensor/habit/will_habits_countable_count.yaml)
 </details>
