@@ -11,7 +11,10 @@ query: >-
       DATE(to_timestamp(states.last_updated_ts)) as check_date,
       states.state,
       states.last_updated_ts,
-      ROW_NUMBER() OVER (PARTITION BY DATE(to_timestamp(states.last_updated_ts)) ORDER BY states.last_updated_ts DESC) as rn
+      ROW_NUMBER() OVER (
+          PARTITION BY DATE(to_timestamp(states.last_updated_ts))
+          ORDER BY states.last_updated_ts DESC
+      ) as rn
     FROM states
     INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
     WHERE states_meta.entity_id = 'input_boolean.will_habit_binary_2'
