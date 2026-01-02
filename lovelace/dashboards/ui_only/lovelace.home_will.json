@@ -5430,6 +5430,29 @@
                   "primary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
                   "color": "{{ iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"red\", \"green\") }}",
                   "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:bell{% if is_state(\"automation.input_datetime_habit_will_habit_binary_1_reminder\", \"off\") %}-off{% endif %}-outline",
+                  "features_position": "inline",
+                  "entity": "automation.input_datetime_habit_will_habit_binary_1_reminder",
+                  "primary": "Daily Reminder @ {{ strptime(states('input_datetime.will_habit_binary_1_reminder_time'), '%H:%M:%S').strftime('%H:%M') }}",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "icon_tap_action": {
+                    "action": "none"
+                  },
+                  "color": "{{ iif( is_state(\"automation.input_datetime_habit_will_habit_binary_1_reminder\", \"on\"), \"orange\", \"grey\") }}"
                 }
               ],
               "column_span": 1
