@@ -199,7 +199,7 @@ query: >-
     INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
     WHERE states_meta.entity_id = 'input_boolean.{user}_habit_binary_{num}'
       AND states.last_updated_ts >= EXTRACT(EPOCH FROM (CURRENT_DATE - INTERVAL '365 days'))
-      AND DATE(to_timestamp(states.last_updated_ts)) <= CURRENT_DATE
+      AND DATE(to_timestamp(states.last_updated_ts)) < CURRENT_DATE
   ),
   valid_dates AS (
     SELECT DISTINCT check_date
@@ -210,7 +210,7 @@ query: >-
   ordered_dates AS (
     SELECT
       check_date,
-      CURRENT_DATE - check_date as days_ago,
+      (CURRENT_DATE - 1) - check_date as days_ago,
       ROW_NUMBER() OVER (ORDER BY check_date DESC) as rn
     FROM valid_dates
     ORDER BY check_date DESC
@@ -603,7 +603,7 @@ query: >-
     INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
     WHERE states_meta.entity_id = 'input_select.{user}_mood_today'
       AND states.last_updated_ts >= EXTRACT(EPOCH FROM (CURRENT_DATE - INTERVAL '365 days'))
-      AND DATE(to_timestamp(states.last_updated_ts)) <= CURRENT_DATE
+      AND DATE(to_timestamp(states.last_updated_ts)) < CURRENT_DATE
   ),
   valid_dates AS (
     SELECT DISTINCT check_date
@@ -614,7 +614,7 @@ query: >-
   ordered_dates AS (
     SELECT
       check_date,
-      CURRENT_DATE - check_date as days_ago,
+      (CURRENT_DATE - 1) - check_date as days_ago,
       ROW_NUMBER() OVER (ORDER BY check_date DESC) as rn
     FROM valid_dates
     ORDER BY check_date DESC
