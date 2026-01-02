@@ -5430,6 +5430,20 @@
                   "primary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
                   "color": "{{ iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"red\", \"green\") }}",
                   "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "type": "custom:mushroom-template-card",
+                  "features_position": "inline",
+                  "entity": "automation.input_datetime_habit_will_habit_binary_1_reminder",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
                 }
               ],
               "column_span": 1
