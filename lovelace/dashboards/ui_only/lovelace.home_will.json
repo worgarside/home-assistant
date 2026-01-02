@@ -5386,7 +5386,22 @@
                   "primary": "{{ states(\"input_text.will_habit_binary_1_name\") }}",
                   "color": "{{ iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"green\", \"red\") }}",
                   "icon": "{{ states(iif(is_state(\"input_boolean.will_habit_binary_1\", \"on\"), \"input_text.will_habit_binary_1_icon_on\", \"input_text.will_habit_binary_1_icon_off\")) }}",
-                  "secondary": "{{ states(\"sensor.will_habit_binary_1_streak\") }} day{% if states(\"sensor.will_habit_binary_1_streak\") | int(0) > 1 %}s{% endif %} streak"
+                  "secondary": "{{ states(\"sensor.will_habit_binary_1_streak\") }} day{% if states(\"sensor.will_habit_binary_1_streak\") | int(0) > 1 %}s{% endif %} streak",
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "icon_tap_action": {
+                    "action": "none"
+                  },
+                  "hold_action": {
+                    "action": "perform-action",
+                    "perform_action": "browser_mod.popup",
+                    "target": {},
+                    "data": {
+                      "dismissable": true,
+                      "autoclose": false
+                    }
+                  }
                 },
                 {
                   "features": [
