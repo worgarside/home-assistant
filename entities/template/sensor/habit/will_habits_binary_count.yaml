@@ -10,7 +10,8 @@ state: >-
   {% for i in range(1, 999) %}
     {%-
       if not has_value("input_boolean.will_habit_binary_" ~ i) or
-        states("input_text.will_habit_binary_" ~ i ~ "_name") in ["", "unknown"]
+        states("input_text.will_habit_binary_" ~ i ~ "_name")
+        in ["", "unknown"]
     -%}
       {%- break %}
     {%- endif -%}

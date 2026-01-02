@@ -402,6 +402,110 @@ action:
         print(f"    ✓ Generated files for countable habit {num}")
 
 
+def generate_habit_template_sensors(user: str) -> None:
+    """Generate high-level template sensors for habit tracking.
+
+    Args:
+        user: User name (e.g., 'will').
+    """
+    print(f"Generating high-level habit template sensors for {user}...")
+
+    # Binary habits count sensor
+    binary_count_path = (
+        REPO_PATH
+        / "entities"
+        / "template"
+        / "sensor"
+        / "habit"
+        / f"{user}_habits_binary_count.yaml"
+    )
+    binary_count_path.parent.mkdir(parents=True, exist_ok=True)
+    binary_count_path.write_text(
+        f"""---
+name: {user.title()} | Habits Binary Count
+
+unique_id: {user}_habits_binary_count
+
+icon: mdi:toggle-switch
+
+state: >-
+  {{% set ns = namespace(count=0) %}}
+  {{% for i in range(1, 999) %}}
+    {{%-
+      if not has_value("input_boolean.{user}_habit_binary_" ~ i) or
+        states("input_text.{user}_habit_binary_" ~ i ~ "_name")
+        in ["", "unknown"]
+    -%}}
+      {{%- break %}}
+    {{%- endif -%}}
+    {{% set ns.count = i %}}
+  {{% endfor %}}
+  {{{{ ns.count }}}}
+""",
+    )
+
+    # Countable habits count sensor
+    countable_count_path = (
+        REPO_PATH
+        / "entities"
+        / "template"
+        / "sensor"
+        / "habit"
+        / f"{user}_habits_countable_count.yaml"
+    )
+    countable_count_path.parent.mkdir(parents=True, exist_ok=True)
+    countable_count_path.write_text(
+        f"""---
+name: {user.title()} | Habits Countable Count
+
+unique_id: {user}_habits_countable_count
+
+icon: mdi:numeric
+
+state: >-
+  {{% set ns = namespace(count=0) %}}
+  {{% for i in range(1, 999) %}}
+    {{%-
+      if not has_value("input_number.{user}_habit_countable_" ~ i) or
+        states("input_text.{user}_habit_countable_" ~ i ~ "_name") in ["", "unknown"]
+    -%}}
+      {{%- break %}}
+    {{%- endif -%}}
+    {{% set ns.count = i %}}
+  {{% endfor %}}
+  {{{{ ns.count }}}}
+""",
+    )
+
+    # Total habits count sensor
+    total_count_path = (
+        REPO_PATH
+        / "entities"
+        / "template"
+        / "sensor"
+        / "habit"
+        / f"{user}_habits_total_count.yaml"
+    )
+    total_count_path.parent.mkdir(parents=True, exist_ok=True)
+    total_count_path.write_text(
+        f"""---
+name: {user.title()} | Habits Total Count
+
+unique_id: {user}_habits_total_count
+
+icon: mdi:counter
+
+state: >-
+  {{{{
+    states('sensor.{user}_habits_binary_count') | int(0) +
+    states('sensor.{user}_habits_countable_count') | int(0)
+  }}}}
+""",
+    )
+
+    print(f"  ✓ Generated high-level habit template sensors for {user}")
+
+
 def main() -> None:
     """Run the habit file generator."""
     parser = argparse.ArgumentParser(
@@ -461,6 +565,9 @@ Examples:
 
     if args.countable:
         generate_countable_habit_files(user, args.count)
+
+    if args.binary or args.countable:
+        generate_habit_template_sensors(user)
 
     if args.mood:
         generate_mood_files(user)
