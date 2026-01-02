@@ -14,7 +14,8 @@ trigger:
 condition: "{{ states('input_number.will_habit_countable_1') | int(0) == 0 }}"
 
 variables:
-  habit_name: "{{ states('input_text.will_habit_countable_1_name') | default('Habit Countable 1') }}"
+  habit_name: >-
+    {{ states('input_text.will_habit_countable_1_name') | default('Habit Countable 1') }}
 
 action:
   - service: script.notify_will

@@ -7928,8 +7928,6 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 </details>
 
 </details>
-<<<<<<< HEAD
-=======
 
 ## Sql
 
@@ -9314,4 +9312,3 @@ File: [`var/will_s_office_state_manager.yaml`](entities/var/will_s_office_state_
 </details>
 
 </details>
->>>>>>> 5fc92ef6 (Adds SQL validation to config)
