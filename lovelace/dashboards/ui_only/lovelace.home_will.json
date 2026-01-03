@@ -783,6 +783,19 @@
                       "icon": "mdi:clock",
                       "features_position": "bottom",
                       "entity": "input_number.[[user]]_habit_binary_[[n]]_repeat_reminder_interval"
+                    },
+                    {
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:counter",
+                      "features_position": "bottom",
+                      "entity": "input_number.[[user]]_habit_binary_[[n]]_repeat_reminder_count",
+                      "primary": "Max. reminder count"
                     }
                   ]
                 }
