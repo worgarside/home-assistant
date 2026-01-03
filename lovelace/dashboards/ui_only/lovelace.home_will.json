@@ -5453,6 +5453,27 @@
                     "action": "none"
                   },
                   "color": "{{ iif( is_state(\"automation.input_datetime_habit_will_habit_binary_1_reminder\", \"on\"), \"orange\", \"grey\") }}"
+                },
+                {
+                  "type": "custom:time-picker-card",
+                  "entity": "input_datetime.will_habit_binary_1_reminder_time",
+                  "hour_mode": 24,
+                  "hour_step": 1,
+                  "minute_step": 5,
+                  "layout": {
+                    "hour_mode": "double",
+                    "align_controls": "right",
+                    "name": "inside",
+                    "embedded": false,
+                    "thin": true
+                  },
+                  "hide": {
+                    "seconds": true,
+                    "name": false,
+                    "icon": false
+                  },
+                  "name": "Reminder Time",
+                  "link_values": false
                 }
               ],
               "column_span": 1
