@@ -5544,20 +5544,6 @@
                       "user": "will"
                     }
                   ]
-                },
-                {
-                  "features": [
-                    {
-                      "type": "numeric-input",
-                      "style": "buttons"
-                    }
-                  ],
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:numeric-{{ states(\"input_number.will_habit_binary_1_streak_min_days_per_week\") | int }}-box-multiple-outline",
-                  "features_position": "inline",
-                  "entity": "input_number.will_habit_binary_1_streak_min_days_per_week",
-                  "primary": "Days per week required",
-                  "secondary": "to maintain streak"
                 }
               ],
               "column_span": 1
