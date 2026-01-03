@@ -5562,6 +5562,19 @@
                   "icon": "mdi:clock",
                   "features_position": "bottom",
                   "entity": "input_number.will_habit_countable_1_repeat_reminder_interval"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "numeric-input",
+                      "style": "buttons"
+                    }
+                  ],
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:counter",
+                  "features_position": "bottom",
+                  "entity": "input_number.will_habit_countable_1_repeat_reminder_count",
+                  "primary": "Max. reminder count"
                 }
               ],
               "column_span": 1
