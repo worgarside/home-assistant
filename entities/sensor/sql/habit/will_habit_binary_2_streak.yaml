@@ -8,7 +8,7 @@ icon: mdi:fire
 query: >-
   WITH min_days_per_week AS (
     SELECT COALESCE(
-      (SELECT state::integer
+      (SELECT (state::numeric)::integer
        FROM states
        INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
        WHERE states_meta.entity_id = 'input_number.will_habit_binary_2_streak_min_days_per_week'
@@ -45,16 +45,19 @@ query: >-
     FROM valid_dates
     GROUP BY DATE_TRUNC('week', check_date - INTERVAL '1 day') + INTERVAL '1 day'
   ),
-  valid_weeks AS (
-    SELECT
-      week_start,
-      days_count,
-      EXTRACT(EPOCH FROM ((CURRENT_DATE - 1) - week_start)) / 86400 as days_ago_week_start
-    FROM week_groups, min_days_per_week
-    WHERE days_count >= min_days_per_week.min_days
-  ),
   yesterday_week_start AS (
     SELECT DATE_TRUNC('week', (CURRENT_DATE - 1) - INTERVAL '1 day') + INTERVAL '1 day' as week_start
+  ),
+  valid_weeks AS (
+    SELECT
+      wg.week_start,
+      wg.days_count,
+      EXTRACT(EPOCH FROM ((CURRENT_DATE - 1) - wg.week_start)) / 86400 as days_ago_week_start
+    FROM week_groups wg
+    CROSS JOIN min_days_per_week mdpw
+    CROSS JOIN yesterday_week_start yws
+    WHERE wg.days_count >= mdpw.min_days
+       OR (wg.week_start = yws.week_start AND wg.days_count > 0)
   ),
   ordered_weeks AS (
     SELECT
@@ -62,9 +65,9 @@ query: >-
       vw.days_count,
       vw.days_ago_week_start,
       ROW_NUMBER() OVER (ORDER BY vw.week_start DESC) as rn,
-      EXTRACT(EPOCH FROM (
+      (EXTRACT(EPOCH FROM (
         vw.week_start - LAG(vw.week_start, 1) OVER (ORDER BY vw.week_start DESC)
-      )) / 86400 as days_since_prev_week
+      )) / 86400)::integer as days_since_prev_week
     FROM valid_weeks vw
     CROSS JOIN yesterday_week_start yws
     WHERE vw.week_start <= yws.week_start

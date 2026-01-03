@@ -230,6 +230,9 @@ variables:
   habit_name: "{{{{ states('input_text.XXXUSERXXX_habit_binary_XXXNUMXXX_name') | default('Habit Binary XXXNUMXXX') }}}}"
   repeat_reminder_interval: "{{{{ states('input_number.XXXUSERXXX_habit_binary_XXXNUMXXX_repeat_reminder_interval') | int(60) }}}}"
   repeat_reminder_count: "{{{{ states('input_number.XXXUSERXXX_habit_binary_XXXNUMXXX_repeat_reminder_count') | int(0) }}}}"
+  current_minute_of_day: "{{{{ now().hour * 60 + now().minute }}}}"
+  midnight_cutoff_minute: "{{{{ 1440 - (repeat_reminder_interval | int(60) + 5) }}}}"
+  habit_completed: "{{{{ is_state('input_boolean.XXXUSERXXX_habit_binary_XXXNUMXXX', 'on') }}}}"
 
 action:
   - service: script.notify_XXXUSERXXX
@@ -244,10 +247,9 @@ action:
       - repeat:
           until: >-
             {{{{
-              (now().hour * 60 + now().minute) >=
-              (1440 - (repeat_reminder_interval | int(60) + 5)) or
+              current_minute_of_day >= midnight_cutoff_minute or
               repeat.index > repeat_reminder_count | int(0) or
-              is_state('input_boolean.XXXUSERXXX_habit_binary_XXXNUMXXX', 'on')
+              habit_completed
             }}}}
           sequence:
             - delay:
@@ -289,7 +291,7 @@ icon: mdi:fire
 query: >-
   WITH min_days_per_week AS (
     SELECT COALESCE(
-      (SELECT state::integer
+      (SELECT (state::numeric)::integer
        FROM states
        INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
        WHERE states_meta.entity_id = 'input_number.{user}_habit_binary_{num}_streak_min_days_per_week'
@@ -326,16 +328,19 @@ query: >-
     FROM valid_dates
     GROUP BY DATE_TRUNC('week', check_date - INTERVAL '1 day') + INTERVAL '1 day'
   ),
-  valid_weeks AS (
-    SELECT
-      week_start,
-      days_count,
-      EXTRACT(EPOCH FROM ((CURRENT_DATE - 1) - week_start)) / 86400 as days_ago_week_start
-    FROM week_groups, min_days_per_week
-    WHERE days_count >= min_days_per_week.min_days
-  ),
   yesterday_week_start AS (
     SELECT DATE_TRUNC('week', (CURRENT_DATE - 1) - INTERVAL '1 day') + INTERVAL '1 day' as week_start
+  ),
+  valid_weeks AS (
+    SELECT
+      wg.week_start,
+      wg.days_count,
+      EXTRACT(EPOCH FROM ((CURRENT_DATE - 1) - wg.week_start)) / 86400 as days_ago_week_start
+    FROM week_groups wg
+    CROSS JOIN min_days_per_week mdpw
+    CROSS JOIN yesterday_week_start yws
+    WHERE wg.days_count >= mdpw.min_days
+       OR (wg.week_start = yws.week_start AND wg.days_count > 0)
   ),
   ordered_weeks AS (
     SELECT
@@ -343,9 +348,9 @@ query: >-
       vw.days_count,
       vw.days_ago_week_start,
       ROW_NUMBER() OVER (ORDER BY vw.week_start DESC) as rn,
-      EXTRACT(EPOCH FROM (
+      (EXTRACT(EPOCH FROM (
         vw.week_start - LAG(vw.week_start, 1) OVER (ORDER BY vw.week_start DESC)
-      )) / 86400 as days_since_prev_week
+      )) / 86400)::integer as days_since_prev_week
     FROM valid_weeks vw
     CROSS JOIN yesterday_week_start yws
     WHERE vw.week_start <= yws.week_start
@@ -578,6 +583,10 @@ variables:
     "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_interval') | int(60) }}}}"
   repeat_reminder_count: >-
     "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_count') | int(0) }}}}"
+  current_minute_of_day: "{{{{ now().hour * 60 + now().minute }}}}"
+  midnight_cutoff_minute: "{{{{ 1440 - (repeat_reminder_interval | int(60) + 5) }}}}"
+  habit_completed: >-
+    "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX') | int(0) > 0 }}}}"
 
 action:
   - service: script.notify_XXXUSERXXX
@@ -592,9 +601,9 @@ action:
       - repeat:
           until: >-
             {{{{
-              (now().hour * 60 + now().minute) >= (1440 - (repeat_reminder_interval | int(60) + 5)) or
+              current_minute_of_day >= midnight_cutoff_minute or
               repeat.index > repeat_reminder_count | int(0) or
-              states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX') | int(0) > 0
+              habit_completed
             }}}}
           sequence:
             - delay:
