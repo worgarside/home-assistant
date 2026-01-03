@@ -688,7 +688,7 @@
                         "action": "none"
                       },
                       "icon_tap_action": {
-                        "action": "none"
+                        "action": "more-info"
                       },
                       "color": "{{ iif( is_state(\"automation.input_datetime_habit_[[user]]_habit_binary_[[n]]_reminder\", \"on\"), \"orange\", \"grey\") }}"
                     },
