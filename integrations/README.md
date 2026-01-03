@@ -8442,9 +8442,9 @@ File: [`template/sensor/spotify/spotify_will_garside_media_title.yaml`](entities
     mdi:numeric-0-circle
   {% elif power >= 20 and power < 30 %}
     mdi:numeric-1-circle
-  {% elif power >= 30 and power < 40 %}
+  {% elif power >= 30 and power < 60 %}
     mdi:numeric-2-circle
-  {% elif power >= 60 and power < 70 %}
+  {% elif power >= 60 %}
     mdi:numeric-3-circle
   {% else %}
     mdi:help-circle
@@ -8498,9 +8498,9 @@ File: [`template/sensor/vic_s_office_fan_speed.yaml`](entities/template/sensor/v
     mdi:numeric-0-circle
   {% elif power >= 20 and power < 30 %}
     mdi:numeric-1-circle
-  {% elif power >= 30 and power < 40 %}
+  {% elif power >= 30 and power < 60 %}
     mdi:numeric-2-circle
-  {% elif power >= 60 and power < 70 %}
+   {% elif power >= 60 %}
     mdi:numeric-3-circle
   {% else %}
     mdi:help-circle
