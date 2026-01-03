@@ -5668,7 +5668,7 @@
                       "primary": "Icon (Off)",
                       "icon": "{{ states(\"input_text.will_habit_binary_1_icon_off\") }}",
                       "features_position": "bottom",
-                      "color": "green"
+                      "color": "red"
                     }
                   ]
                 }
