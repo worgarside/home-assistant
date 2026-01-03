@@ -5482,6 +5482,16 @@
                       "entity": "input_text.will_habit_binary_1_name",
                       "type": "custom:text-input-row",
                       "name": "Habit Name"
+                    },
+                    {
+                      "entity": "input_text.will_habit_binary_1_icon_on",
+                      "type": "custom:text-input-row",
+                      "name": "Habit Icon (On)"
+                    },
+                    {
+                      "entity": "input_text.will_habit_binary_1_icon_off",
+                      "type": "custom:text-input-row",
+                      "name": "Habit Icon (Off)"
                     }
                   ]
                 }
