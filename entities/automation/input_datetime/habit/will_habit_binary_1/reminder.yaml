@@ -14,7 +14,19 @@ trigger:
 condition: "{{ not is_state('input_boolean.will_habit_binary_1', 'on') }}"
 
 variables:
-  habit_name: "{{ states('input_text.will_habit_binary_1_name') | default('Habit Binary 1') }}"
+  habit_name: >-
+    {{
+      states('input_text.will_habit_binary_1_name')
+      | default('Habit Binary 1')
+    }}
+  repeat_interval: >-
+    {{
+      states('input_number.will_habit_binary_1_repeat_reminder_interval') | int(60)
+    }}
+  repeat_reminder_count: >-
+    {{
+      states('input_number.will_habit_binary_1_repeat_reminder_count') | int(0)
+    }}
 
 action:
   - service: script.notify_will
@@ -23,3 +35,31 @@ action:
       message: "Don't forget to mark {{ habit_name }} as complete!"
       notification_id: will_habit_binary_1_reminder
       url: /home-will/mood-habits
+
+  - if: "{{ repeat_reminder_count | int(0) > 0 }}"
+    then:
+      - repeat:
+          until: >-
+            {%
+              set cutoff_time = (
+                now().replace(hour=0, minute=0, second=0, microsecond=0)
+                + timedelta(days=1)
+                - timedelta(minutes=(repeat_interval + 5))
+              )
+            %}
+            {% set habit_completed = is_state('input_boolean.will_habit_binary_1', 'on') %}
+            {{
+              now() >= cutoff_time or
+              repeat.index > repeat_reminder_count | int(0) or
+              habit_completed
+            }}
+          sequence:
+            - delay:
+                minutes: "{{ repeat_interval | int(60) }}"
+
+            - service: script.notify_will
+              data:
+                title: "Habit Reminder"
+                message: "Don't forget to mark {{ habit_name }} as complete!"
+                notification_id: will_habit_binary_1_reminder
+                url: /home-will/mood-habits

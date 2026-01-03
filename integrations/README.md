@@ -902,7 +902,9 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/
 
 ```json
 {
-  "habit_name": "{{ states('input_text.will_habit_binary_1_name') | default('Habit Binary 1') }}"
+  "habit_name": "{{\n  states('input_text.will_habit_binary_1_name')\n  | default('Habit Binary 1')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_1_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_1_repeat_reminder_count') | int(0)\n}}"
 }
 ```
 File: [`automation/input_datetime/habit/will_habit_binary_1/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_1/reminder.yaml)
@@ -921,7 +923,9 @@ File: [`automation/input_datetime/habit/will_habit_binary_1/reminder.yaml`](enti
 
 ```json
 {
-  "habit_name": "{{ states('input_text.will_habit_binary_2_name') | default('Habit Binary 2') }}"
+  "habit_name": "{{\n  states('input_text.will_habit_binary_2_name')\n  | default('Habit Binary 2')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_2_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_2_repeat_reminder_count') | int(0)\n}}"
 }
 ```
 File: [`automation/input_datetime/habit/will_habit_binary_2/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_2/reminder.yaml)
@@ -940,7 +944,9 @@ File: [`automation/input_datetime/habit/will_habit_binary_2/reminder.yaml`](enti
 
 ```json
 {
-  "habit_name": "{{ states('input_text.will_habit_countable_1_name') | default('Habit Countable 1') }}"
+  "habit_name": "{{ states('input_text.will_habit_countable_1_name') | default('Habit Countable 1') }}",
+  "repeat_interval": "\"{{ states('input_number.will_habit_countable_1_repeat_reminder_interval') | int(60) }}\"",
+  "repeat_reminder_count": "\"{{ states('input_number.will_habit_countable_1_repeat_reminder_count') | int(0) }}\""
 }
 ```
 File: [`automation/input_datetime/habit/will_habit_countable_1/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_countable_1/reminder.yaml)
@@ -959,7 +965,9 @@ File: [`automation/input_datetime/habit/will_habit_countable_1/reminder.yaml`](e
 
 ```json
 {
-  "habit_name": "{{ states('input_text.will_habit_countable_2_name') | default('Habit Countable 2') }}"
+  "habit_name": "{{ states('input_text.will_habit_countable_2_name') | default('Habit Countable 2') }}",
+  "repeat_interval": "\"{{ states('input_number.will_habit_countable_2_repeat_reminder_interval') | int(60) }}\"",
+  "repeat_reminder_count": "\"{{ states('input_number.will_habit_countable_2_repeat_reminder_count') | int(0) }}\""
 }
 ```
 File: [`automation/input_datetime/habit/will_habit_countable_2/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_countable_2/reminder.yaml)

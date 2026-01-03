@@ -227,12 +227,19 @@ trigger:
 condition: "{{{{ not is_state('input_boolean.XXXUSERXXX_habit_binary_XXXNUMXXX', 'on') }}}}"
 
 variables:
-  habit_name: "{{{{ states('input_text.XXXUSERXXX_habit_binary_XXXNUMXXX_name') | default('Habit Binary XXXNUMXXX') }}}}"
-  repeat_reminder_interval: "{{{{ states('input_number.XXXUSERXXX_habit_binary_XXXNUMXXX_repeat_reminder_interval') | int(60) }}}}"
-  repeat_reminder_count: "{{{{ states('input_number.XXXUSERXXX_habit_binary_XXXNUMXXX_repeat_reminder_count') | int(0) }}}}"
-  current_minute_of_day: "{{{{ now().hour * 60 + now().minute }}}}"
-  midnight_cutoff_minute: "{{{{ 1440 - (repeat_reminder_interval | int(60) + 5) }}}}"
-  habit_completed: "{{{{ is_state('input_boolean.XXXUSERXXX_habit_binary_XXXNUMXXX', 'on') }}}}"
+  habit_name: >-
+    {{{{
+      states('input_text.XXXUSERXXX_habit_binary_XXXNUMXXX_name')
+      | default('Habit Binary XXXNUMXXX')
+    }}}}
+  repeat_interval: >-
+    {{{{
+      states('input_number.XXXUSERXXX_habit_binary_XXXNUMXXX_repeat_reminder_interval') | int(60)
+    }}}}
+  repeat_reminder_count: >-
+    {{{{
+      states('input_number.XXXUSERXXX_habit_binary_XXXNUMXXX_repeat_reminder_count') | int(0)
+    }}}}
 
 action:
   - service: script.notify_XXXUSERXXX
@@ -246,14 +253,23 @@ action:
     then:
       - repeat:
           until: >-
+            XXXJINJA2SETSTARTXXX
+              set cutoff_time = (
+                now().replace(hour=0, minute=0, second=0, microsecond=0)
+                + timedelta(days=1)
+                - timedelta(minutes=(repeat_interval + 5))
+              )
+            XXXJINJA2SETENDXXX
+            XXXJINJA2SETSTARTXXX set habit_completed = is_state('input_boolean.XXXUSERXXX_habit_binary_XXXNUMXXX', 'on') XXXJINJA2SETENDXXX
             {{{{
-              current_minute_of_day >= midnight_cutoff_minute or
+              now() >= cutoff_time or
               repeat.index > repeat_reminder_count | int(0) or
               habit_completed
             }}}}
           sequence:
             - delay:
-                minutes: "{{{{ repeat_reminder_interval | int(60) }}}}"
+                minutes: "{{{{ repeat_interval | int(60) }}}}"
+
             - service: script.notify_XXXUSERXXX
               data:
                 title: "Habit Reminder"
@@ -265,6 +281,8 @@ action:
             reminder_template
             .replace("{{{{", "{{")
             .replace("}}}}", "}}")
+            .replace("XXXJINJA2SETSTARTXXX", "{%")
+            .replace("XXXJINJA2SETENDXXX", "%}")
             .replace("XXXUSERXXX", user)
             .replace("XXXNUMXXX", str(num))
             .replace("XXXUSERTITLEXXX", user.title())
@@ -579,14 +597,10 @@ variables:
   habit_name: >-
     {{{{ states('input_text.XXXUSERXXX_habit_countable_XXXNUMXXX_name')
     | default('Habit Countable XXXNUMXXX') }}}}
-  repeat_reminder_interval: >-
+  repeat_interval: >-
     "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_interval') | int(60) }}}}"
   repeat_reminder_count: >-
     "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_count') | int(0) }}}}"
-  current_minute_of_day: "{{{{ now().hour * 60 + now().minute }}}}"
-  midnight_cutoff_minute: "{{{{ 1440 - (repeat_reminder_interval | int(60) + 5) }}}}"
-  habit_completed: >-
-    "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX') | int(0) > 0 }}}}"
 
 action:
   - service: script.notify_XXXUSERXXX
@@ -600,25 +614,36 @@ action:
     then:
       - repeat:
           until: >-
+            XXXJINJA2SETSTARTXXX
+              set cutoff_time = (
+                now().replace(hour=0, minute=0, second=0, microsecond=0)
+                + timedelta(days=1)
+                - timedelta(minutes=(repeat_interval + 5))
+              )
+            XXXJINJA2SETENDXXX
+            XXXJINJA2SETSTARTXXX set habit_completed = states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX') | int(0) > 0 XXXJINJA2SETENDXXX
             {{{{
-              current_minute_of_day >= midnight_cutoff_minute or
+              now() >= cutoff_time or
               repeat.index > repeat_reminder_count | int(0) or
               habit_completed
             }}}}
           sequence:
             - delay:
-                minutes: "{{{{ repeat_reminder_interval | int(60) }}}}"
+                minutes: "{{{{ repeat_interval | int(60) }}}}"
+
             - service: script.notify_XXXUSERXXX
               data:
                 title: "Habit Reminder"
                 message: "Don't forget to track {{{{ habit_name }}}}!"
                 notification_id: XXXUSERXXX_habit_countable_XXXNUMXXX_reminder
                 url: /home-XXXUSERXXX/mood-habits
-"""
+"""  # noqa: E501
         reminder_content = (
             reminder_template
             .replace("{{{{", "{{")
             .replace("}}}}", "}}")
+            .replace("XXXJINJA2SETSTARTXXX", "{%")
+            .replace("XXXJINJA2SETENDXXX", "%}")
             .replace("XXXUSERXXX", user)
             .replace("XXXNUMXXX", str(num))
             .replace("XXXUSERTITLEXXX", user.title())
