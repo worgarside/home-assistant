@@ -5549,6 +5549,14 @@
                       "user": "will"
                     }
                   ]
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "Hello, {{user}}",
+                  "secondary": "How are you?",
+                  "icon": "mdi:mushroom",
+                  "features_position": "bottom",
+                  "entity": "input_number.will_habit_countable_1_repeat_reminder_interval"
                 }
               ],
               "column_span": 1
