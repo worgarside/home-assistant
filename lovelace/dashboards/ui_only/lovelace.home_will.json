@@ -5652,13 +5652,6 @@
                   "entity": "input_number.will_habit_binary_1_streak_min_days_per_week",
                   "primary": "Days per week required",
                   "secondary": "to maintain streak"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "primary": "Icon (On)",
-                  "icon": "{{ states(\"input_text.will_habit_binary_1_icon_on\") }}",
-                  "features_position": "bottom",
-                  "color": "green"
                 }
               ],
               "column_span": 1
