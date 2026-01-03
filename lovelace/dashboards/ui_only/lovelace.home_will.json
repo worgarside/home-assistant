@@ -770,6 +770,19 @@
                       "entity": "input_number.[[user]]_habit_binary_[[n]]_streak_min_days_per_week",
                       "primary": "Days per week required",
                       "secondary": "to maintain streak"
+                    },
+                    {
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Reminder interval",
+                      "icon": "mdi:clock",
+                      "features_position": "bottom",
+                      "entity": "input_number.[[user]]_habit_binary_[[n]]_repeat_reminder_interval"
                     }
                   ]
                 }
