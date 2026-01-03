@@ -192,6 +192,8 @@ icon: mdi:repeat
 
 min: 0
 
+max: 1000
+
 step: 1
 
 mode: box
@@ -300,6 +302,8 @@ action:
         )
         sql_sensor_path.parent.mkdir(parents=True, exist_ok=True)
         sql_sensor_template = """---
+platform: sql
+
 name: {user_title} | Habit Binary {num} Streak
 
 unique_id: {user}_habit_binary_{num}_streak
@@ -558,6 +562,8 @@ name: "{user.title()} | Habit Countable {num}: Repeat Reminder Count"
 icon: mdi:repeat
 
 min: 0
+
+max: 1000
 
 step: 1
 
@@ -941,6 +947,8 @@ action:
     mood_streak_sensor_path.parent.mkdir(parents=True, exist_ok=True)
     mood_streak_sensor_path.write_text(
         f"""---
+platform: sql
+
 name: {user.title()} | Mood Streak
 
 unique_id: {user}_mood_streak

@@ -3916,6 +3916,7 @@ File: [`input_number/electric_blanket_timeout_level_3.yaml`](entities/input_numb
 **Entity ID: `input_number.will_habit_binary_1_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_1_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_1_repeat_reminder_count.yaml)
@@ -3950,6 +3951,7 @@ File: [`input_number/habit/will_habit_binary_1_streak_min_days_per_week.yaml`](e
 **Entity ID: `input_number.will_habit_binary_2_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_2_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_2_repeat_reminder_count.yaml)
@@ -3995,6 +3997,7 @@ File: [`input_number/habit/will_habit_countable_1.yaml`](entities/input_number/h
 **Entity ID: `input_number.will_habit_countable_1_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_countable_1_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_countable_1_repeat_reminder_count.yaml)
@@ -4028,6 +4031,7 @@ File: [`input_number/habit/will_habit_countable_2.yaml`](entities/input_number/h
 **Entity ID: `input_number.will_habit_countable_2_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_countable_2_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_countable_2_repeat_reminder_count.yaml)
@@ -7908,6 +7912,8 @@ File: [`sensor/plex_recently_added.yaml`](entities/sensor/plex_recently_added.ya
 
 **Entity ID: `sensor.will_habit_binary_1_streak`**
 
+- Platform: `sql`
+
 File: [`sensor/sql/habit/will_habit_binary_1_streak.yaml`](entities/sensor/sql/habit/will_habit_binary_1_streak.yaml)
 </details>
 
@@ -7915,12 +7921,16 @@ File: [`sensor/sql/habit/will_habit_binary_1_streak.yaml`](entities/sensor/sql/h
 
 **Entity ID: `sensor.will_habit_binary_2_streak`**
 
+- Platform: `sql`
+
 File: [`sensor/sql/habit/will_habit_binary_2_streak.yaml`](entities/sensor/sql/habit/will_habit_binary_2_streak.yaml)
 </details>
 
 <details><summary><strong>Will | Mood Streak</strong></summary>
 
 **Entity ID: `sensor.will_mood_streak`**
+
+- Platform: `sql`
 
 File: [`sensor/sql/mood/will_mood_streak.yaml`](entities/sensor/sql/mood/will_mood_streak.yaml)
 </details>
