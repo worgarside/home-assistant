@@ -1,0 +1,24 @@
+---
+alias: /remote/bedroom-remote/arrow-left-click
+
+id: remote_bedroom_remote_arrow_left_click
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 20284ad1e9c6f6ca6b3d3651718dc5d0
+    type: action
+    subtype: arrow_left_click
+
+action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.vic_s_electric_blanket
+
+  - alias: Debounce
+    delay:
+      seconds: 1
