@@ -781,7 +781,7 @@
                       "type": "custom:mushroom-template-card",
                       "primary": "Reminder interval",
                       "icon": "mdi:clock",
-                      "features_position": "bottom",
+                      "features_position": "inline",
                       "entity": "input_number.[[user]]_habit_binary_[[n]]_repeat_reminder_interval"
                     },
                     {
@@ -793,7 +793,7 @@
                       ],
                       "type": "custom:mushroom-template-card",
                       "icon": "mdi:counter",
-                      "features_position": "bottom",
+                      "features_position": "inline",
                       "entity": "input_number.[[user]]_habit_binary_[[n]]_repeat_reminder_count",
                       "primary": "Max. reminder count"
                     }
