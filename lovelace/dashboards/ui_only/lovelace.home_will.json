@@ -722,6 +722,11 @@
                           "name": "Habit Name"
                         },
                         {
+                          "type": "markdown",
+                          "content": "Get icons [here](https://pictogrammers.com/library/mdi/)",
+                          "text_only": true
+                        },
+                        {
                           "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_on",
                           "type": "custom:text-input-row",
                           "name": "Habit Icon (On)"
