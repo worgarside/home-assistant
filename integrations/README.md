@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (198)</h3></summary>
+<details><summary><h3>Entities (199)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1730,6 +1730,19 @@ File: [`automation/remote/bedroom_hue_remote/on_press.yaml`](entities/automation
 - Mode: `single`
 
 File: [`automation/remote/bedroom_hue_remote/up_press.yaml`](entities/automation/remote/bedroom_hue_remote/up_press.yaml)
+</details>
+
+<details><summary><code>/remote/bedroom-remote/arrow-left-click</code></summary>
+
+**Entity ID: `automation.remote_bedroom_remote_arrow_left_click`**
+
+> *No description provided*
+
+- Alias: /remote/bedroom-remote/arrow-left-click
+- ID: `remote_bedroom_remote_arrow_left_click`
+- Mode: `single`
+
+File: [`automation/remote/bedroom_remote/arrow_left_click.yaml`](entities/automation/remote/bedroom_remote/arrow_left_click.yaml)
 </details>
 
 <details><summary><code>/remote/bedroom-remote/brightness-move-down</code></summary>
