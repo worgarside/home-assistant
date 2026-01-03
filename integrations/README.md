@@ -3767,7 +3767,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (63)</h3></summary>
+<details><summary><h3>Entities (71)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3903,6 +3903,28 @@ File: [`input_number/electric_blanket_timeout_level_2.yaml`](entities/input_numb
 File: [`input_number/electric_blanket_timeout_level_3.yaml`](entities/input_number/electric_blanket_timeout_level_3.yaml)
 </details>
 
+<details><summary><strong>Will | Habit Binary 1: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_1_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_1_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_1_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_1_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_1_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_1_repeat_reminder_interval.yaml)
+</details>
+
 <details><summary><strong>Will | Habit Binary 1: Streak Min Days Per Week</strong></summary>
 
 **Entity ID: `input_number.will_habit_binary_1_streak_min_days_per_week`**
@@ -3913,6 +3935,28 @@ File: [`input_number/electric_blanket_timeout_level_3.yaml`](entities/input_numb
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_1_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_1_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_2_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_2_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_2_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_2_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_2_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_2_repeat_reminder_interval.yaml)
 </details>
 
 <details><summary><strong>Will | Habit Binary 2: Streak Min Days Per Week</strong></summary>
@@ -3938,6 +3982,28 @@ File: [`input_number/habit/will_habit_binary_2_streak_min_days_per_week.yaml`](e
 File: [`input_number/habit/will_habit_countable_1.yaml`](entities/input_number/habit/will_habit_countable_1.yaml)
 </details>
 
+<details><summary><strong>Will | Habit Countable 1: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_1_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_1_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_countable_1_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_1_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_1_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_countable_1_repeat_reminder_interval.yaml)
+</details>
+
 <details><summary><strong>Will | Habit Countable 2</strong></summary>
 
 **Entity ID: `input_number.will_habit_countable_2`**
@@ -3947,6 +4013,28 @@ File: [`input_number/habit/will_habit_countable_1.yaml`](entities/input_number/h
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_countable_2.yaml`](entities/input_number/habit/will_habit_countable_2.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_2_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_2_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_countable_2_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_2_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_2_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_countable_2_repeat_reminder_interval.yaml)
 </details>
 
 <details><summary><strong>Hot Water | Proximity Distance</strong></summary>

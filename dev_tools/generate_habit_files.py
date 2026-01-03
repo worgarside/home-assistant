@@ -148,6 +148,58 @@ initial: 7
 """,
         )
 
+        # Input number for repeat reminder interval
+        repeat_interval_path = (
+            REPO_PATH
+            / "entities"
+            / "input_number"
+            / "habit"
+            / f"{user}_habit_binary_{num}_repeat_reminder_interval.yaml"
+        )
+        repeat_interval_path.parent.mkdir(parents=True, exist_ok=True)
+        repeat_interval_path.write_text(
+            f"""---
+name: "{user.title()} | Habit Binary {num}: Repeat Reminder Interval"
+
+icon: mdi:timer-outline
+
+min: 1
+
+max: 1440
+
+step: 1
+
+mode: box
+
+initial: 60
+""",
+        )
+
+        # Input number for repeat reminder count
+        repeat_count_path = (
+            REPO_PATH
+            / "entities"
+            / "input_number"
+            / "habit"
+            / f"{user}_habit_binary_{num}_repeat_reminder_count.yaml"
+        )
+        repeat_count_path.parent.mkdir(parents=True, exist_ok=True)
+        repeat_count_path.write_text(
+            f"""---
+name: "{user.title()} | Habit Binary {num}: Repeat Reminder Count"
+
+icon: mdi:repeat
+
+min: 0
+
+step: 1
+
+mode: box
+
+initial: 0
+""",
+        )
+
         # Reminder automation
         reminder_automation_path = (
             REPO_PATH
@@ -176,6 +228,8 @@ condition: "{{{{ not is_state('input_boolean.XXXUSERXXX_habit_binary_XXXNUMXXX',
 
 variables:
   habit_name: "{{{{ states('input_text.XXXUSERXXX_habit_binary_XXXNUMXXX_name') | default('Habit Binary XXXNUMXXX') }}}}"
+  repeat_reminder_interval: "{{{{ states('input_number.XXXUSERXXX_habit_binary_XXXNUMXXX_repeat_reminder_interval') | int(60) }}}}"
+  repeat_reminder_count: "{{{{ states('input_number.XXXUSERXXX_habit_binary_XXXNUMXXX_repeat_reminder_count') | int(0) }}}}"
 
 action:
   - service: script.notify_XXXUSERXXX
@@ -184,6 +238,26 @@ action:
       message: "Don't forget to mark {{{{ habit_name }}}} as complete!"
       notification_id: XXXUSERXXX_habit_binary_XXXNUMXXX_reminder
       url: /home-XXXUSERXXX/mood-habits
+
+  - if: "{{{{ repeat_reminder_count | int(0) > 0 }}}}"
+    then:
+      - repeat:
+          until: >-
+            {{{{
+              (now().hour * 60 + now().minute) >=
+              (1440 - (repeat_reminder_interval | int(60) + 5)) or
+              repeat.index > repeat_reminder_count | int(0) or
+              is_state('input_boolean.XXXUSERXXX_habit_binary_XXXNUMXXX', 'on')
+            }}}}
+          sequence:
+            - delay:
+                minutes: "{{{{ repeat_reminder_interval | int(60) }}}}"
+            - service: script.notify_XXXUSERXXX
+              data:
+                title: "Habit Reminder"
+                message: "Don't forget to mark {{{{ habit_name }}}} as complete!"
+                notification_id: XXXUSERXXX_habit_binary_XXXNUMXXX_reminder
+                url: /home-XXXUSERXXX/mood-habits
 """  # noqa: E501
         reminder_content = (
             reminder_template
@@ -418,6 +492,58 @@ icon: mdi:clock-outline
 """,
         )
 
+        # Input number for repeat reminder interval
+        repeat_interval_path = (
+            REPO_PATH
+            / "entities"
+            / "input_number"
+            / "habit"
+            / f"{user}_habit_countable_{num}_repeat_reminder_interval.yaml"
+        )
+        repeat_interval_path.parent.mkdir(parents=True, exist_ok=True)
+        repeat_interval_path.write_text(
+            f"""---
+name: "{user.title()} | Habit Countable {num}: Repeat Reminder Interval"
+
+icon: mdi:timer-outline
+
+min: 1
+
+max: 1440
+
+step: 1
+
+mode: box
+
+initial: 60
+""",
+        )
+
+        # Input number for repeat reminder count
+        repeat_count_path = (
+            REPO_PATH
+            / "entities"
+            / "input_number"
+            / "habit"
+            / f"{user}_habit_countable_{num}_repeat_reminder_count.yaml"
+        )
+        repeat_count_path.parent.mkdir(parents=True, exist_ok=True)
+        repeat_count_path.write_text(
+            f"""---
+name: "{user.title()} | Habit Countable {num}: Repeat Reminder Count"
+
+icon: mdi:repeat
+
+min: 0
+
+step: 1
+
+mode: box
+
+initial: 0
+""",
+        )
+
         # Reminder automation
         reminder_automation_path = (
             REPO_PATH
@@ -446,7 +572,12 @@ condition: "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX') | i
 
 variables:
   habit_name: >-
-    {{{{ states('input_text.XXXUSERXXX_habit_countable_XXXNUMXXX_name') | default('Habit Countable XXXNUMXXX') }}}}
+    {{{{ states('input_text.XXXUSERXXX_habit_countable_XXXNUMXXX_name')
+    | default('Habit Countable XXXNUMXXX') }}}}
+  repeat_reminder_interval: >-
+    "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_interval') | int(60) }}}}"
+  repeat_reminder_count: >-
+    "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_count') | int(0) }}}}"
 
 action:
   - service: script.notify_XXXUSERXXX
@@ -455,6 +586,25 @@ action:
       message: "Don't forget to track {{{{ habit_name }}}}!"
       notification_id: XXXUSERXXX_habit_countable_XXXNUMXXX_reminder
       url: /home-XXXUSERXXX/mood-habits
+
+  - if: "{{{{ repeat_reminder_count | int(0) > 0 }}}}"
+    then:
+      - repeat:
+          until: >-
+            {{{{
+              (now().hour * 60 + now().minute) >= (1440 - (repeat_reminder_interval | int(60) + 5)) or
+              repeat.index > repeat_reminder_count | int(0) or
+              states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX') | int(0) > 0
+            }}}}
+          sequence:
+            - delay:
+                minutes: "{{{{ repeat_reminder_interval | int(60) }}}}"
+            - service: script.notify_XXXUSERXXX
+              data:
+                title: "Habit Reminder"
+                message: "Don't forget to track {{{{ habit_name }}}}!"
+                notification_id: XXXUSERXXX_habit_countable_XXXNUMXXX_reminder
+                url: /home-XXXUSERXXX/mood-habits
 """
         reminder_content = (
             reminder_template
