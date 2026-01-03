@@ -652,7 +652,7 @@
             "primary": "{{ states(\"input_text.[[user]]_habit_binary_[[n]]_name\") }}",
             "color": "{{ iif(is_state(\"input_boolean.[[user]]_habit_binary_[[n]]\", \"on\"), \"green\", \"red\") }}",
             "icon": "{{ states(iif(is_state(\"input_boolean.[[user]]_habit_binary_[[n]]\", \"on\"), \"input_text.[[user]]_habit_binary_[[n]]_icon_on\", \"input_text.[[user]]_habit_binary_[[n]]_icon_off\")) }}",
-            "secondary": "{{ states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") }} day{% if states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") | int(0) > 1 %}s{% endif %} streak",
+            "secondary": "{{ states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") | int + iif(states(\"input_boolean.[[user]]_habit_binary_[[n]]\") | bool(false), 1, 0) }} day{% if states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") | int(0) > 1 %}s{% endif %} streak",
             "tap_action": {
               "action": "none"
             },
