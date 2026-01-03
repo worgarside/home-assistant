@@ -5474,6 +5474,16 @@
                   },
                   "name": "Reminder Time",
                   "link_values": false
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "input_text.will_habit_binary_1_name",
+                      "type": "custom:text-input-row",
+                      "name": "Habit Name"
+                    }
+                  ]
                 }
               ],
               "column_span": 1
