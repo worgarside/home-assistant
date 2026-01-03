@@ -5432,27 +5432,6 @@
                   "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
                 },
                 {
-                  "type": "custom:time-picker-card",
-                  "entity": "input_datetime.will_habit_binary_1_reminder_time",
-                  "hour_mode": 24,
-                  "hour_step": 1,
-                  "minute_step": 5,
-                  "layout": {
-                    "hour_mode": "double",
-                    "align_controls": "right",
-                    "name": "inside",
-                    "embedded": false,
-                    "thin": true
-                  },
-                  "hide": {
-                    "seconds": true,
-                    "name": false,
-                    "icon": false
-                  },
-                  "name": "Reminder Time",
-                  "link_values": false
-                },
-                {
                   "type": "entities",
                   "entities": [
                     {
@@ -5469,6 +5448,34 @@
                       "entity": "input_text.will_habit_binary_1_icon_off",
                       "type": "custom:text-input-row",
                       "name": "Habit Icon (Off)"
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "features": [
+                        {
+                          "type": "toggle"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:bell{% if is_state(\"automation.input_datetime_habit_will_habit_binary_1_reminder\", \"off\") %}-off{% endif %}-outline",
+                      "features_position": "inline",
+                      "entity": "automation.input_datetime_habit_will_habit_binary_1_reminder",
+                      "primary": "Daily Reminder @ {{ strptime(states('input_datetime.will_habit_binary_1_reminder_time'), '%H:%M:%S').strftime('%H:%M') }}",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "icon_tap_action": {
+                        "action": "none"
+                      },
+                      "color": "{{ iif( is_state(\"automation.input_datetime_habit_will_habit_binary_1_reminder\", \"on\"), \"orange\", \"grey\") }}"
                     }
                   ]
                 }
