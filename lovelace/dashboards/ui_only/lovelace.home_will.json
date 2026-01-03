@@ -734,6 +734,25 @@
                       ]
                     },
                     {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "primary": "Icon (On)",
+                          "icon": "{{ states(\"input_text.will_habit_binary_1_icon_on\") }}",
+                          "features_position": "bottom",
+                          "color": "green"
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "primary": "Icon (Off)",
+                          "icon": "{{ states(\"input_text.will_habit_binary_1_icon_off\") }}",
+                          "features_position": "bottom",
+                          "color": "red"
+                        }
+                      ]
+                    },
+                    {
                       "features": [
                         {
                           "type": "numeric-input",
