@@ -7872,7 +7872,7 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (9)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
 
 <details><summary><strong>Hallway Radiator Temperature Derivative</strong></summary>
 
@@ -7906,27 +7906,6 @@ File: [`sensor/office_desk_standing_occupied_cumulative_time.yaml`](entities/sen
 - Platform: `plex_recently_added`
 
 File: [`sensor/plex_recently_added.yaml`](entities/sensor/plex_recently_added.yaml)
-</details>
-
-<details><summary><strong>Will | Habit Binary 1 Streak</strong></summary>
-
-**Entity ID: `sensor.will_habit_binary_1_streak`**
-
-File: [`sensor/sql/habit/will_habit_binary_1_streak.yaml`](entities/sensor/sql/habit/will_habit_binary_1_streak.yaml)
-</details>
-
-<details><summary><strong>Will | Habit Binary 2 Streak</strong></summary>
-
-**Entity ID: `sensor.will_habit_binary_2_streak`**
-
-File: [`sensor/sql/habit/will_habit_binary_2_streak.yaml`](entities/sensor/sql/habit/will_habit_binary_2_streak.yaml)
-</details>
-
-<details><summary><strong>Will | Mood Streak</strong></summary>
-
-**Entity ID: `sensor.will_mood_streak`**
-
-File: [`sensor/sql/mood/will_mood_streak.yaml`](entities/sensor/sql/mood/will_mood_streak.yaml)
 </details>
 
 <details><summary><code>sensor.time_date</code></summary>
@@ -8063,7 +8042,7 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 - Column: `streak`
 
-File: [`sensor/sql/habit/will_habit_binary_1_streak.yaml`](entities/sensor/sql/habit/will_habit_binary_1_streak.yaml)
+File: [`sql/habit/will_habit_binary_1_streak.yaml`](entities/sql/habit/will_habit_binary_1_streak.yaml)
 </details>
 
 <details><summary><strong>Will | Habit Binary 2 Streak</strong></summary>
@@ -8072,7 +8051,7 @@ File: [`sensor/sql/habit/will_habit_binary_1_streak.yaml`](entities/sensor/sql/h
 
 - Column: `streak`
 
-File: [`sensor/sql/habit/will_habit_binary_2_streak.yaml`](entities/sensor/sql/habit/will_habit_binary_2_streak.yaml)
+File: [`sql/habit/will_habit_binary_2_streak.yaml`](entities/sql/habit/will_habit_binary_2_streak.yaml)
 </details>
 
 <details><summary><strong>Will | Mood Streak</strong></summary>
@@ -8081,7 +8060,7 @@ File: [`sensor/sql/habit/will_habit_binary_2_streak.yaml`](entities/sensor/sql/h
 
 - Column: `streak`
 
-File: [`sensor/sql/mood/will_mood_streak.yaml`](entities/sensor/sql/mood/will_mood_streak.yaml)
+File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml)
 </details>
 
 </details>
