@@ -7912,8 +7912,6 @@ File: [`sensor/plex_recently_added.yaml`](entities/sensor/plex_recently_added.ya
 
 **Entity ID: `sensor.will_habit_binary_1_streak`**
 
-- Platform: `sql`
-
 File: [`sensor/sql/habit/will_habit_binary_1_streak.yaml`](entities/sensor/sql/habit/will_habit_binary_1_streak.yaml)
 </details>
 
@@ -7921,16 +7919,12 @@ File: [`sensor/sql/habit/will_habit_binary_1_streak.yaml`](entities/sensor/sql/h
 
 **Entity ID: `sensor.will_habit_binary_2_streak`**
 
-- Platform: `sql`
-
 File: [`sensor/sql/habit/will_habit_binary_2_streak.yaml`](entities/sensor/sql/habit/will_habit_binary_2_streak.yaml)
 </details>
 
 <details><summary><strong>Will | Mood Streak</strong></summary>
 
 **Entity ID: `sensor.will_mood_streak`**
-
-- Platform: `sql`
 
 File: [`sensor/sql/mood/will_mood_streak.yaml`](entities/sensor/sql/mood/will_mood_streak.yaml)
 </details>

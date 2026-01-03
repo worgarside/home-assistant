@@ -1,6 +1,4 @@
 ---
-platform: sql
-
 name: Will | Habit Binary 1 Streak
 
 unique_id: will_habit_binary_1_streak
@@ -14,6 +12,7 @@ query: >-
        FROM states
        INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
        WHERE states_meta.entity_id = 'input_number.will_habit_binary_1_streak_min_days_per_week'
+         AND state ~ '^[0-9]+\.?[0-9]*$'
        ORDER BY states.last_updated_ts DESC
        LIMIT 1),
       7
