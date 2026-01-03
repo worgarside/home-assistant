@@ -648,11 +648,11 @@
             ],
             "type": "custom:mushroom-template-card",
             "features_position": "inline",
-            "entity": "input_boolean.will_habit_binary_[[n]]",
-            "primary": "{{ states(\"input_text.will_habit_binary_[[n]]_name\") }}",
-            "color": "{{ iif(is_state(\"input_boolean.will_habit_binary_[[n]]\", \"on\"), \"green\", \"red\") }}",
-            "icon": "{{ states(iif(is_state(\"input_boolean.will_habit_binary_[[n]]\", \"on\"), \"input_text.will_habit_binary_[[n]]_icon_on\", \"input_text.will_habit_binary_[[n]]_icon_off\")) }}",
-            "secondary": "{{ states(\"sensor.will_habit_binary_[[n]]_streak\") }} day{% if states(\"sensor.will_habit_binary_[[n]]_streak\") | int(0) > 1 %}s{% endif %} streak",
+            "entity": "input_boolean.[[user]]_habit_binary_[[n]]",
+            "primary": "{{ states(\"input_text.[[user]]_habit_binary_[[n]]_name\") }}",
+            "color": "{{ iif(is_state(\"input_boolean.[[user]]_habit_binary_[[n]]\", \"on\"), \"green\", \"red\") }}",
+            "icon": "{{ states(iif(is_state(\"input_boolean.[[user]]_habit_binary_[[n]]\", \"on\"), \"input_text.[[user]]_habit_binary_[[n]]_icon_on\", \"input_text.[[user]]_habit_binary_[[n]]_icon_off\")) }}",
+            "secondary": "{{ states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") }} day{% if states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") | int(0) > 1 %}s{% endif %} streak",
             "tap_action": {
               "action": "none"
             },
@@ -676,10 +676,10 @@
                         }
                       ],
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:bell{% if is_state(\"automation.input_datetime_habit_will_habit_binary_[[n]]_reminder\", \"off\") %}-off{% endif %}-outline",
+                      "icon": "mdi:bell{% if is_state(\"automation.input_datetime_habit_[[user]]_habit_binary_[[n]]_reminder\", \"off\") %}-off{% endif %}-outline",
                       "features_position": "inline",
-                      "entity": "automation.input_datetime_habit_will_habit_binary_[[n]]_reminder",
-                      "primary": "Daily Reminder @ {{ strptime(states('input_datetime.will_habit_binary_[[n]]_reminder_time'), '%H:%M:%S').strftime('%H:%M') }}",
+                      "entity": "automation.input_datetime_habit_[[user]]_habit_binary_[[n]]_reminder",
+                      "primary": "Daily Reminder @ {{ strptime(states('input_datetime.[[user]]_habit_binary_[[n]]_reminder_time'), '%H:%M:%S').strftime('%H:%M') }}",
                       "grid_options": {
                         "columns": 12,
                         "rows": 1
@@ -690,11 +690,11 @@
                       "icon_tap_action": {
                         "action": "none"
                       },
-                      "color": "{{ iif( is_state(\"automation.input_datetime_habit_will_habit_binary_[[n]]_reminder\", \"on\"), \"orange\", \"grey\") }}"
+                      "color": "{{ iif( is_state(\"automation.input_datetime_habit_[[user]]_habit_binary_[[n]]_reminder\", \"on\"), \"orange\", \"grey\") }}"
                     },
                     {
                       "type": "custom:time-picker-card",
-                      "entity": "input_datetime.will_habit_binary_[[n]]_reminder_time",
+                      "entity": "input_datetime.[[user]]_habit_binary_[[n]]_reminder_time",
                       "hour_mode": 24,
                       "hour_step": 1,
                       "minute_step": 5,
@@ -717,17 +717,17 @@
                       "type": "entities",
                       "entities": [
                         {
-                          "entity": "input_text.will_habit_binary_[[n]]_name",
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_name",
                           "type": "custom:text-input-row",
                           "name": "Habit Name"
                         },
                         {
-                          "entity": "input_text.will_habit_binary_[[n]]_icon_on",
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_on",
                           "type": "custom:text-input-row",
                           "name": "Habit Icon (On)"
                         },
                         {
-                          "entity": "input_text.will_habit_binary_[[n]]_icon_off",
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_off",
                           "type": "custom:text-input-row",
                           "name": "Habit Icon (Off)"
                         }
