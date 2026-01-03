@@ -5570,7 +5570,22 @@
                         ]
                       }
                     }
-                  }
+                  },
+                  "visibility": [
+                    {
+                      "condition": "and",
+                      "conditions": [
+                        {
+                          "condition": "time",
+                          "after": "08:00"
+                        },
+                        {
+                          "condition": "time",
+                          "before": "07:00:00"
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "features": [
