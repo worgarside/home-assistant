@@ -121,6 +121,33 @@ icon: mdi:clock-outline
 """,
         )
 
+        # Input number for streak min days per week
+        streak_min_days_path = (
+            REPO_PATH
+            / "entities"
+            / "input_number"
+            / "habit"
+            / f"{user}_habit_binary_{num}_streak_min_days_per_week.yaml"
+        )
+        streak_min_days_path.parent.mkdir(parents=True, exist_ok=True)
+        streak_min_days_path.write_text(
+            f"""---
+name: "{user.title()} | Habit Binary {num}: Streak Min Days Per Week"
+
+icon: mdi:calendar-week
+
+min: 1
+
+max: 7
+
+step: 1
+
+mode: box
+
+initial: 7
+""",
+        )
+
         # Reminder automation
         reminder_automation_path = (
             REPO_PATH
@@ -186,7 +213,18 @@ unique_id: {user}_habit_binary_{num}_streak
 icon: mdi:fire
 
 query: >-
-  WITH daily_last_states AS (
+  WITH min_days_per_week AS (
+    SELECT COALESCE(
+      (SELECT state::integer
+       FROM states
+       INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
+       WHERE states_meta.entity_id = 'input_number.{user}_habit_binary_{num}_streak_min_days_per_week'
+       ORDER BY states.last_updated_ts DESC
+       LIMIT 1),
+      7
+    ) as min_days
+  ),
+  daily_last_states AS (
     SELECT
       DATE(to_timestamp(states.last_updated_ts)) as check_date,
       states.state,
@@ -207,25 +245,54 @@ query: >-
     WHERE rn = 1
       AND state = 'on'
   ),
-  ordered_dates AS (
+  week_groups AS (
     SELECT
-      check_date,
-      (CURRENT_DATE - 1) - check_date as days_ago,
-      ROW_NUMBER() OVER (ORDER BY check_date DESC) as rn
+      DATE_TRUNC('week', check_date - INTERVAL '1 day') + INTERVAL '1 day' as week_start,
+      COUNT(*) as days_count
     FROM valid_dates
-    ORDER BY check_date DESC
+    GROUP BY DATE_TRUNC('week', check_date - INTERVAL '1 day') + INTERVAL '1 day'
   ),
-  consecutive_groups AS (
+  valid_weeks AS (
     SELECT
-      check_date,
-      days_ago,
+      week_start,
+      days_count,
+      EXTRACT(EPOCH FROM ((CURRENT_DATE - 1) - week_start)) / 86400 as days_ago_week_start
+    FROM week_groups, min_days_per_week
+    WHERE days_count >= min_days_per_week.min_days
+  ),
+  yesterday_week_start AS (
+    SELECT DATE_TRUNC('week', (CURRENT_DATE - 1) - INTERVAL '1 day') + INTERVAL '1 day' as week_start
+  ),
+  ordered_weeks AS (
+    SELECT
+      vw.week_start,
+      vw.days_count,
+      vw.days_ago_week_start,
+      ROW_NUMBER() OVER (ORDER BY vw.week_start DESC) as rn,
+      EXTRACT(EPOCH FROM (
+        vw.week_start - LAG(vw.week_start, 1) OVER (ORDER BY vw.week_start DESC)
+      )) / 86400 as days_since_prev_week
+    FROM valid_weeks vw
+    CROSS JOIN yesterday_week_start yws
+    WHERE vw.week_start <= yws.week_start
+  ),
+  consecutive_week_groups AS (
+    SELECT
+      week_start,
+      days_count,
+      days_ago_week_start,
       rn,
-      days_ago - rn + 1 as grp
-    FROM ordered_dates
+      SUM(CASE WHEN days_since_prev_week IS NULL OR days_since_prev_week = 7 THEN 0 ELSE 1 END)
+        OVER (ORDER BY week_start DESC) as grp
+    FROM ordered_weeks
+  ),
+  current_streak_weeks AS (
+    SELECT week_start, days_count
+    FROM consecutive_week_groups
+    WHERE grp = (SELECT grp FROM consecutive_week_groups ORDER BY week_start DESC LIMIT 1)
   )
-  SELECT COUNT(*)::integer as streak
-  FROM consecutive_groups
-  WHERE grp = (SELECT grp FROM consecutive_groups WHERE days_ago = 0 LIMIT 1)
+  SELECT COALESCE(SUM(days_count)::integer, 0) as streak
+  FROM current_streak_weeks
 
 column: streak
 """

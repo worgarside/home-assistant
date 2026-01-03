@@ -3767,7 +3767,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (61)</h3></summary>
+<details><summary><h3>Entities (63)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3901,6 +3901,30 @@ File: [`input_number/electric_blanket_timeout_level_2.yaml`](entities/input_numb
 - Unit Of Measurement: `min`
 
 File: [`input_number/electric_blanket_timeout_level_3.yaml`](entities/input_number/electric_blanket_timeout_level_3.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_1_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_1_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_1_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_2_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_2_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_2_streak_min_days_per_week.yaml)
 </details>
 
 <details><summary><strong>Will | Habit Countable 1</strong></summary>
