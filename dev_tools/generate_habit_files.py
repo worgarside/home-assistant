@@ -192,8 +192,6 @@ icon: mdi:repeat
 
 min: 0
 
-max: 1000
-
 step: 1
 
 mode: box
@@ -295,6 +293,7 @@ action:
         sql_sensor_path = (
             REPO_PATH
             / "entities"
+            / "sensor"
             / "sql"
             / "habit"
             / f"{user}_habit_binary_{num}_streak.yaml"
@@ -314,7 +313,6 @@ query: >-
        FROM states
        INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
        WHERE states_meta.entity_id = 'input_number.{user}_habit_binary_{num}_streak_min_days_per_week'
-         AND state ~ '^[0-9]+\\.?[0-9]*$'
        ORDER BY states.last_updated_ts DESC
        LIMIT 1),
       7
@@ -560,8 +558,6 @@ name: "{user.title()} | Habit Countable {num}: Repeat Reminder Count"
 icon: mdi:repeat
 
 min: 0
-
-max: 1000
 
 step: 1
 
@@ -940,7 +936,7 @@ action:
 
     # SQL sensor for mood streak
     mood_streak_sensor_path = (
-        REPO_PATH / "entities" / "sql" / "mood" / f"{user}_mood_streak.yaml"
+        REPO_PATH / "entities" / "sensor" / "sql" / "mood" / f"{user}_mood_streak.yaml"
     )
     mood_streak_sensor_path.parent.mkdir(parents=True, exist_ok=True)
     mood_streak_sensor_path.write_text(

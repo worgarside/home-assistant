@@ -8047,25 +8047,7 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Sql
 
-<details><summary><h3>Entities (3)</h3></summary>
-
-<details><summary><strong>Will | Habit Binary 1 Streak</strong></summary>
-
-**Entity ID: `sql.will_habit_binary_1_streak`**
-
-- Column: `streak`
-
-File: [`sql/habit/will_habit_binary_1_streak.yaml`](entities/sql/habit/will_habit_binary_1_streak.yaml)
-</details>
-
-<details><summary><strong>Will | Habit Binary 2 Streak</strong></summary>
-
-**Entity ID: `sql.will_habit_binary_2_streak`**
-
-- Column: `streak`
-
-File: [`sql/habit/will_habit_binary_2_streak.yaml`](entities/sql/habit/will_habit_binary_2_streak.yaml)
-</details>
+<details><summary><h3>Entities (1)</h3></summary>
 
 <details><summary><strong>Will | Mood Streak</strong></summary>
 
