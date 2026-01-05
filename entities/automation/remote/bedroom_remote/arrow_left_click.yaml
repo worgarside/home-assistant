@@ -18,3 +18,7 @@ action:
   - service: switch.toggle
     target:
       entity_id: switch.vic_s_electric_blanket
+
+  - alias: Debounce
+    delay:
+      seconds: 1

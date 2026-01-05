@@ -1,0 +1,19 @@
+---
+alias: /input-select/will/mood-today/reset-daily
+
+id: input_select_will_mood_today_reset_daily
+
+description: Reset mood selection at midnight
+
+mode: single
+
+trigger:
+  - platform: time
+    at: "00:00:00"
+
+action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.will_mood_today
+    data:
+      option: Not Set

@@ -1,0 +1,20 @@
+---
+alias: /input-boolean/habit/will/reset-all-daily
+
+id: input_boolean_habit_will_reset_all_daily
+
+description: Reset all Will's binary habit toggles at midnight
+
+mode: single
+
+trigger:
+  - platform: time
+    at: "00:00:00"
+
+action:
+  - repeat:
+      count: "{{ states('sensor.will_habits_binary_count') | int(0) }}"
+      sequence:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: "input_boolean.will_habit_binary_{{ repeat.index }}"

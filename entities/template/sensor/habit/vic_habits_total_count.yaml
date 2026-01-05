@@ -1,0 +1,12 @@
+---
+name: Vic | Habits Total Count
+
+unique_id: vic_habits_total_count
+
+icon: mdi:counter
+
+state: >-
+  {{
+    states('sensor.vic_habits_binary_count') | int(0) +
+    states('sensor.vic_habits_countable_count') | int(0)
+  }}

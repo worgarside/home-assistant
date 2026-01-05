@@ -1,0 +1,12 @@
+---
+name: Will | Habits Total Count
+
+unique_id: will_habits_total_count
+
+icon: mdi:counter
+
+state: >-
+  {{
+    states('sensor.will_habits_binary_count') | int(0) +
+    states('sensor.will_habits_countable_count') | int(0)
+  }}
