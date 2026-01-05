@@ -1,7 +1,7 @@
 ---
-alias: /remote/spare-room/ball-lamp-remote/brightness-move-up
+alias: /remote/garden-light-remote/brightness-move-up
 
-id: remote_spare_room_ball_lamp_remote_brightness_move_up
+id: remote_garden_light_remote_brightness_move_up
 
 mode: single
 
@@ -17,11 +17,11 @@ trigger:
 action:
   - service: light.turn_on
     target:
-      entity_id: light.ball_lamp
+      entity_id: light.garden_light
     data:
       brightness: >-
-        {% if is_state("light.ball_lamp", "on") %}
-          {{ min(state_attr("light.ball_lamp", "brightness") | int(64) + 32, 255) }}
+        {% if is_state("light.garden_light", "on") %}
+          {{ min(state_attr("light.garden_light", "brightness") | int(64) + 32, 255) }}
         {% else %}
           32
         {% endif %}
