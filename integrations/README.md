@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (199)</h3></summary>
+<details><summary><h3>Entities (227)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -850,6 +850,19 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
 </details>
 
+<details><summary><code>/input-boolean/habit/will/reset-all-daily</code></summary>
+
+**Entity ID: `automation.input_boolean_habit_will_reset_all_daily`**
+
+> Reset all Will's binary habit toggles at midnight
+
+- Alias: /input-boolean/habit/will/reset-all-daily
+- ID: `input_boolean_habit_will_reset_all_daily`
+- Mode: `single`
+
+File: [`automation/input_boolean/habit/will/reset_all_daily.yaml`](entities/automation/input_boolean/habit/will/reset_all_daily.yaml)
+</details>
+
 <details><summary><code>/input-boolean/lounge-lights-exercise-mode/off</code></summary>
 
 **Entity ID: `automation.input_boolean_lounge_lights_exercise_mode_off`**
@@ -874,6 +887,468 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/off.yaml`](entities
 - Mode: `single`
 
 File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/on.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/vic-habit-binary-1/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_vic_habit_binary_1_reminder`**
+
+> Remind to log Vic's binary habit 1 at configured reminder time
+
+- Alias: /input-datetime/habit/vic-habit-binary-1/reminder
+- ID: `input_datetime_habit_vic_habit_binary_1_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.vic_habit_binary_1_name')\n  | default('Habit Binary 1')\n}}",
+  "repeat_interval": "{{\n  states('input_number.vic_habit_binary_1_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.vic_habit_binary_1_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/vic_habit_binary_1/reminder.yaml`](entities/automation/input_datetime/habit/vic_habit_binary_1/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/vic-habit-binary-10/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_vic_habit_binary_10_reminder`**
+
+> Remind to log Vic's binary habit 10 at configured reminder time
+
+- Alias: /input-datetime/habit/vic-habit-binary-10/reminder
+- ID: `input_datetime_habit_vic_habit_binary_10_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.vic_habit_binary_10_name')\n  | default('Habit Binary 10')\n}}",
+  "repeat_interval": "{{\n  states('input_number.vic_habit_binary_10_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.vic_habit_binary_10_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/vic_habit_binary_10/reminder.yaml`](entities/automation/input_datetime/habit/vic_habit_binary_10/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/vic-habit-binary-2/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_vic_habit_binary_2_reminder`**
+
+> Remind to log Vic's binary habit 2 at configured reminder time
+
+- Alias: /input-datetime/habit/vic-habit-binary-2/reminder
+- ID: `input_datetime_habit_vic_habit_binary_2_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.vic_habit_binary_2_name')\n  | default('Habit Binary 2')\n}}",
+  "repeat_interval": "{{\n  states('input_number.vic_habit_binary_2_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.vic_habit_binary_2_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/vic_habit_binary_2/reminder.yaml`](entities/automation/input_datetime/habit/vic_habit_binary_2/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/vic-habit-binary-3/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_vic_habit_binary_3_reminder`**
+
+> Remind to log Vic's binary habit 3 at configured reminder time
+
+- Alias: /input-datetime/habit/vic-habit-binary-3/reminder
+- ID: `input_datetime_habit_vic_habit_binary_3_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.vic_habit_binary_3_name')\n  | default('Habit Binary 3')\n}}",
+  "repeat_interval": "{{\n  states('input_number.vic_habit_binary_3_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.vic_habit_binary_3_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/vic_habit_binary_3/reminder.yaml`](entities/automation/input_datetime/habit/vic_habit_binary_3/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/vic-habit-binary-4/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_vic_habit_binary_4_reminder`**
+
+> Remind to log Vic's binary habit 4 at configured reminder time
+
+- Alias: /input-datetime/habit/vic-habit-binary-4/reminder
+- ID: `input_datetime_habit_vic_habit_binary_4_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.vic_habit_binary_4_name')\n  | default('Habit Binary 4')\n}}",
+  "repeat_interval": "{{\n  states('input_number.vic_habit_binary_4_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.vic_habit_binary_4_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/vic_habit_binary_4/reminder.yaml`](entities/automation/input_datetime/habit/vic_habit_binary_4/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/vic-habit-binary-5/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_vic_habit_binary_5_reminder`**
+
+> Remind to log Vic's binary habit 5 at configured reminder time
+
+- Alias: /input-datetime/habit/vic-habit-binary-5/reminder
+- ID: `input_datetime_habit_vic_habit_binary_5_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.vic_habit_binary_5_name')\n  | default('Habit Binary 5')\n}}",
+  "repeat_interval": "{{\n  states('input_number.vic_habit_binary_5_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.vic_habit_binary_5_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/vic_habit_binary_5/reminder.yaml`](entities/automation/input_datetime/habit/vic_habit_binary_5/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/vic-habit-binary-6/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_vic_habit_binary_6_reminder`**
+
+> Remind to log Vic's binary habit 6 at configured reminder time
+
+- Alias: /input-datetime/habit/vic-habit-binary-6/reminder
+- ID: `input_datetime_habit_vic_habit_binary_6_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.vic_habit_binary_6_name')\n  | default('Habit Binary 6')\n}}",
+  "repeat_interval": "{{\n  states('input_number.vic_habit_binary_6_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.vic_habit_binary_6_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/vic_habit_binary_6/reminder.yaml`](entities/automation/input_datetime/habit/vic_habit_binary_6/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/vic-habit-binary-7/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_vic_habit_binary_7_reminder`**
+
+> Remind to log Vic's binary habit 7 at configured reminder time
+
+- Alias: /input-datetime/habit/vic-habit-binary-7/reminder
+- ID: `input_datetime_habit_vic_habit_binary_7_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.vic_habit_binary_7_name')\n  | default('Habit Binary 7')\n}}",
+  "repeat_interval": "{{\n  states('input_number.vic_habit_binary_7_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.vic_habit_binary_7_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/vic_habit_binary_7/reminder.yaml`](entities/automation/input_datetime/habit/vic_habit_binary_7/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/vic-habit-binary-8/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_vic_habit_binary_8_reminder`**
+
+> Remind to log Vic's binary habit 8 at configured reminder time
+
+- Alias: /input-datetime/habit/vic-habit-binary-8/reminder
+- ID: `input_datetime_habit_vic_habit_binary_8_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.vic_habit_binary_8_name')\n  | default('Habit Binary 8')\n}}",
+  "repeat_interval": "{{\n  states('input_number.vic_habit_binary_8_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.vic_habit_binary_8_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/vic_habit_binary_8/reminder.yaml`](entities/automation/input_datetime/habit/vic_habit_binary_8/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/vic-habit-binary-9/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_vic_habit_binary_9_reminder`**
+
+> Remind to log Vic's binary habit 9 at configured reminder time
+
+- Alias: /input-datetime/habit/vic-habit-binary-9/reminder
+- ID: `input_datetime_habit_vic_habit_binary_9_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.vic_habit_binary_9_name')\n  | default('Habit Binary 9')\n}}",
+  "repeat_interval": "{{\n  states('input_number.vic_habit_binary_9_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.vic_habit_binary_9_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/vic_habit_binary_9/reminder.yaml`](entities/automation/input_datetime/habit/vic_habit_binary_9/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-1/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_1_reminder`**
+
+> Remind to log Will's binary habit 1 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-1/reminder
+- ID: `input_datetime_habit_will_habit_binary_1_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.will_habit_binary_1_name')\n  | default('Habit Binary 1')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_1_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_1_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_1/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_1/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-10/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_10_reminder`**
+
+> Remind to log Will's binary habit 10 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-10/reminder
+- ID: `input_datetime_habit_will_habit_binary_10_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.will_habit_binary_10_name')\n  | default('Habit Binary 10')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_10_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_10_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_10/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_10/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-2/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_2_reminder`**
+
+> Remind to log Will's binary habit 2 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-2/reminder
+- ID: `input_datetime_habit_will_habit_binary_2_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.will_habit_binary_2_name')\n  | default('Habit Binary 2')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_2_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_2_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_2/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_2/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-3/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_3_reminder`**
+
+> Remind to log Will's binary habit 3 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-3/reminder
+- ID: `input_datetime_habit_will_habit_binary_3_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.will_habit_binary_3_name')\n  | default('Habit Binary 3')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_3_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_3_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_3/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_3/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-4/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_4_reminder`**
+
+> Remind to log Will's binary habit 4 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-4/reminder
+- ID: `input_datetime_habit_will_habit_binary_4_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.will_habit_binary_4_name')\n  | default('Habit Binary 4')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_4_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_4_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_4/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_4/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-5/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_5_reminder`**
+
+> Remind to log Will's binary habit 5 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-5/reminder
+- ID: `input_datetime_habit_will_habit_binary_5_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.will_habit_binary_5_name')\n  | default('Habit Binary 5')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_5_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_5_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_5/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_5/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-6/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_6_reminder`**
+
+> Remind to log Will's binary habit 6 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-6/reminder
+- ID: `input_datetime_habit_will_habit_binary_6_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.will_habit_binary_6_name')\n  | default('Habit Binary 6')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_6_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_6_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_6/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_6/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-7/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_7_reminder`**
+
+> Remind to log Will's binary habit 7 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-7/reminder
+- ID: `input_datetime_habit_will_habit_binary_7_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.will_habit_binary_7_name')\n  | default('Habit Binary 7')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_7_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_7_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_7/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_7/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-8/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_8_reminder`**
+
+> Remind to log Will's binary habit 8 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-8/reminder
+- ID: `input_datetime_habit_will_habit_binary_8_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.will_habit_binary_8_name')\n  | default('Habit Binary 8')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_8_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_8_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_8/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_8/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-binary-9/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_binary_9_reminder`**
+
+> Remind to log Will's binary habit 9 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-binary-9/reminder
+- ID: `input_datetime_habit_will_habit_binary_9_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{\n  states('input_text.will_habit_binary_9_name')\n  | default('Habit Binary 9')\n}}",
+  "repeat_interval": "{{\n  states('input_number.will_habit_binary_9_repeat_reminder_interval') | int(60)\n}}",
+  "repeat_reminder_count": "{{\n  states('input_number.will_habit_binary_9_repeat_reminder_count') | int(0)\n}}"
+}
+```
+File: [`automation/input_datetime/habit/will_habit_binary_9/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_binary_9/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-countable-1/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_countable_1_reminder`**
+
+> Remind to log Will's countable habit 1 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-countable-1/reminder
+- ID: `input_datetime_habit_will_habit_countable_1_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{ states('input_text.will_habit_countable_1_name') | default('Habit Countable 1') }}",
+  "repeat_interval": "\"{{ states('input_number.will_habit_countable_1_repeat_reminder_interval') | int(60) }}\"",
+  "repeat_reminder_count": "\"{{ states('input_number.will_habit_countable_1_repeat_reminder_count') | int(0) }}\""
+}
+```
+File: [`automation/input_datetime/habit/will_habit_countable_1/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_countable_1/reminder.yaml)
+</details>
+
+<details><summary><code>/input-datetime/habit/will-habit-countable-2/reminder</code></summary>
+
+**Entity ID: `automation.input_datetime_habit_will_habit_countable_2_reminder`**
+
+> Remind to log Will's countable habit 2 at configured reminder time
+
+- Alias: /input-datetime/habit/will-habit-countable-2/reminder
+- ID: `input_datetime_habit_will_habit_countable_2_reminder`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "habit_name": "{{ states('input_text.will_habit_countable_2_name') | default('Habit Countable 2') }}",
+  "repeat_interval": "\"{{ states('input_number.will_habit_countable_2_repeat_reminder_interval') | int(60) }}\"",
+  "repeat_reminder_count": "\"{{ states('input_number.will_habit_countable_2_repeat_reminder_count') | int(0) }}\""
+}
+```
+File: [`automation/input_datetime/habit/will_habit_countable_2/reminder.yaml`](entities/automation/input_datetime/habit/will_habit_countable_2/reminder.yaml)
 </details>
 
 <details><summary><code>/input-datetime/home-assistant-start-time/set-datetime</code></summary>
@@ -908,6 +1383,19 @@ File: [`automation/input_datetime/home_assistant_start_time/set_datetime.yaml`](
 }
 ```
 File: [`automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml`](entities/automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml)
+</details>
+
+<details><summary><code>/input-number/habit/will/reset-all-daily</code></summary>
+
+**Entity ID: `automation.input_number_habit_will_reset_all_daily`**
+
+> Reset all Will's countable habit counters at midnight
+
+- Alias: /input-number/habit/will/reset-all-daily
+- ID: `input_number_habit_will_reset_all_daily`
+- Mode: `single`
+
+File: [`automation/input_number/habit/will/reset_all_daily.yaml`](entities/automation/input_number/habit/will/reset_all_daily.yaml)
 </details>
 
 <details><summary><code>/input-select/gh-cli-active-user/option-selected</code></summary>
@@ -949,6 +1437,32 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
+<details><summary><code>/input-select/vic/mood-today/reset-daily</code></summary>
+
+**Entity ID: `automation.input_select_vic_mood_today_reset_daily`**
+
+> Reset mood selection at midnight
+
+- Alias: /input-select/vic/mood-today/reset-daily
+- ID: `input_select_vic_mood_today_reset_daily`
+- Mode: `single`
+
+File: [`automation/input_select/vic/mood_today/reset_daily.yaml`](entities/automation/input_select/vic/mood_today/reset_daily.yaml)
+</details>
+
+<details><summary><code>/input-select/will/mood-today/reset-daily</code></summary>
+
+**Entity ID: `automation.input_select_will_mood_today_reset_daily`**
+
+> Reset mood selection at midnight
+
+- Alias: /input-select/will/mood-today/reset-daily
+- ID: `input_select_will_mood_today_reset_daily`
+- Mode: `single`
+
+File: [`automation/input_select/will/mood_today/reset_daily.yaml`](entities/automation/input_select/will/mood_today/reset_daily.yaml)
+</details>
+
 <details><summary><code>/input-text/test-mqtt-events-device-name/log-event</code></summary>
 
 **Entity ID: `automation.input_text_test_mqtt_events_device_name_log_event`**
@@ -968,6 +1482,32 @@ File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/au
 }
 ```
 File: [`automation/input_text/test_mqtt_events_device_name/log_event.yaml`](entities/automation/input_text/test_mqtt_events_device_name/log_event.yaml)
+</details>
+
+<details><summary><code>/input-text/vic/mood-note/reset-daily</code></summary>
+
+**Entity ID: `automation.input_text_vic_mood_note_reset_daily`**
+
+> Clear mood note at midnight
+
+- Alias: /input-text/vic/mood-note/reset-daily
+- ID: `input_text_vic_mood_note_reset_daily`
+- Mode: `single`
+
+File: [`automation/input_text/vic/mood_note/reset_daily.yaml`](entities/automation/input_text/vic/mood_note/reset_daily.yaml)
+</details>
+
+<details><summary><code>/input-text/will/mood-note/reset-daily</code></summary>
+
+**Entity ID: `automation.input_text_will_mood_note_reset_daily`**
+
+> Clear mood note at midnight
+
+- Alias: /input-text/will/mood-note/reset-daily
+- ID: `input_text_will_mood_note_reset_daily`
+- Mode: `single`
+
+File: [`automation/input_text/will/mood_note/reset_daily.yaml`](entities/automation/input_text/will/mood_note/reset_daily.yaml)
 </details>
 
 <details><summary><code>/label/critical-battery/low-battery-alert</code></summary>
@@ -3258,7 +3798,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (30)</h3></summary>
+<details><summary><h3>Entities (50)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -3485,6 +4025,186 @@ File: [`input_boolean/auto_reload/auto_reload_zone.yaml`](entities/input_boolean
 File: [`input_boolean/debug_with_persistent_notifications.yaml`](entities/input_boolean/debug_with_persistent_notifications.yaml)
 </details>
 
+<details><summary><strong>Vic | Habit Binary 1</strong></summary>
+
+**Entity ID: `input_boolean.vic_habit_binary_1`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/vic_habit_binary_1.yaml`](entities/input_boolean/habit/vic_habit_binary_1.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 10</strong></summary>
+
+**Entity ID: `input_boolean.vic_habit_binary_10`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/vic_habit_binary_10.yaml`](entities/input_boolean/habit/vic_habit_binary_10.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 2</strong></summary>
+
+**Entity ID: `input_boolean.vic_habit_binary_2`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/vic_habit_binary_2.yaml`](entities/input_boolean/habit/vic_habit_binary_2.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 3</strong></summary>
+
+**Entity ID: `input_boolean.vic_habit_binary_3`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/vic_habit_binary_3.yaml`](entities/input_boolean/habit/vic_habit_binary_3.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 4</strong></summary>
+
+**Entity ID: `input_boolean.vic_habit_binary_4`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/vic_habit_binary_4.yaml`](entities/input_boolean/habit/vic_habit_binary_4.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 5</strong></summary>
+
+**Entity ID: `input_boolean.vic_habit_binary_5`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/vic_habit_binary_5.yaml`](entities/input_boolean/habit/vic_habit_binary_5.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 6</strong></summary>
+
+**Entity ID: `input_boolean.vic_habit_binary_6`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/vic_habit_binary_6.yaml`](entities/input_boolean/habit/vic_habit_binary_6.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 7</strong></summary>
+
+**Entity ID: `input_boolean.vic_habit_binary_7`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/vic_habit_binary_7.yaml`](entities/input_boolean/habit/vic_habit_binary_7.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 8</strong></summary>
+
+**Entity ID: `input_boolean.vic_habit_binary_8`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/vic_habit_binary_8.yaml`](entities/input_boolean/habit/vic_habit_binary_8.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 9</strong></summary>
+
+**Entity ID: `input_boolean.vic_habit_binary_9`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/vic_habit_binary_9.yaml`](entities/input_boolean/habit/vic_habit_binary_9.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_binary_1`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_binary_1.yaml`](entities/input_boolean/habit/will_habit_binary_1.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 10</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_binary_10`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_binary_10.yaml`](entities/input_boolean/habit/will_habit_binary_10.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_binary_2`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_binary_2.yaml`](entities/input_boolean/habit/will_habit_binary_2.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 3</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_binary_3`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_binary_3.yaml`](entities/input_boolean/habit/will_habit_binary_3.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 4</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_binary_4`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_binary_4.yaml`](entities/input_boolean/habit/will_habit_binary_4.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 5</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_binary_5`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_binary_5.yaml`](entities/input_boolean/habit/will_habit_binary_5.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 6</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_binary_6`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_binary_6.yaml`](entities/input_boolean/habit/will_habit_binary_6.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 7</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_binary_7`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_binary_7.yaml`](entities/input_boolean/habit/will_habit_binary_7.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 8</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_binary_8`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_binary_8.yaml`](entities/input_boolean/habit/will_habit_binary_8.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 9</strong></summary>
+
+**Entity ID: `input_boolean.will_habit_binary_9`**
+
+- Icon: [`mdi:checkbox-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-marked-circle-outline/)
+
+File: [`input_boolean/habit/will_habit_binary_9.yaml`](entities/input_boolean/habit/will_habit_binary_9.yaml)
+</details>
+
 <details><summary><strong>Lounge | Lights: Exercise Mode</strong></summary>
 
 **Entity ID: `input_boolean.lounge_lights_exercise_mode`**
@@ -3534,7 +4254,7 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 
 ## Input Datetime
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (27)</h3></summary>
 
 <details><summary><strong>Cosmo Nightly Kitchen Clean Time</strong></summary>
 
@@ -3544,6 +4264,226 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 - Icon: [`mdi:weather-night`](https://pictogrammers.com/library/mdi/icon/weather-night/)
 
 File: [`input_datetime/cosmo_nightly_kitchen_clean_time.yaml`](entities/input_datetime/cosmo_nightly_kitchen_clean_time.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 10: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.vic_habit_binary_10_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/vic_habit_binary_10_reminder_time.yaml`](entities/input_datetime/habit/vic_habit_binary_10_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 1: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.vic_habit_binary_1_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/vic_habit_binary_1_reminder_time.yaml`](entities/input_datetime/habit/vic_habit_binary_1_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 2: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.vic_habit_binary_2_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/vic_habit_binary_2_reminder_time.yaml`](entities/input_datetime/habit/vic_habit_binary_2_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 3: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.vic_habit_binary_3_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/vic_habit_binary_3_reminder_time.yaml`](entities/input_datetime/habit/vic_habit_binary_3_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 4: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.vic_habit_binary_4_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/vic_habit_binary_4_reminder_time.yaml`](entities/input_datetime/habit/vic_habit_binary_4_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 5: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.vic_habit_binary_5_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/vic_habit_binary_5_reminder_time.yaml`](entities/input_datetime/habit/vic_habit_binary_5_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 6: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.vic_habit_binary_6_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/vic_habit_binary_6_reminder_time.yaml`](entities/input_datetime/habit/vic_habit_binary_6_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 7: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.vic_habit_binary_7_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/vic_habit_binary_7_reminder_time.yaml`](entities/input_datetime/habit/vic_habit_binary_7_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 8: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.vic_habit_binary_8_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/vic_habit_binary_8_reminder_time.yaml`](entities/input_datetime/habit/vic_habit_binary_8_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 9: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.vic_habit_binary_9_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/vic_habit_binary_9_reminder_time.yaml`](entities/input_datetime/habit/vic_habit_binary_9_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 10: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_binary_10_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_binary_10_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_10_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_binary_1_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_binary_1_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_1_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_binary_2_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_binary_2_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_2_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 3: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_binary_3_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_binary_3_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_3_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 4: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_binary_4_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_binary_4_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_4_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 5: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_binary_5_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_binary_5_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_5_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 6: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_binary_6_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_binary_6_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_6_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 7: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_binary_7_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_binary_7_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_7_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 8: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_binary_8_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_binary_8_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_8_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 9: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_binary_9_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_binary_9_reminder_time.yaml`](entities/input_datetime/habit/will_habit_binary_9_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_countable_1_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_countable_1_reminder_time.yaml`](entities/input_datetime/habit/will_habit_countable_1_reminder_time.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Reminder Time</strong></summary>
+
+**Entity ID: `input_datetime.will_habit_countable_2_reminder_time`**
+
+- Has Time: `true`
+- Icon: [`mdi:clock-outline`](https://pictogrammers.com/library/mdi/icon/clock-outline/)
+
+File: [`input_datetime/habit/will_habit_countable_2_reminder_time.yaml`](entities/input_datetime/habit/will_habit_countable_2_reminder_time.yaml)
 </details>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
@@ -3594,7 +4534,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (59)</h3></summary>
+<details><summary><h3>Entities (125)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -3728,6 +4668,754 @@ File: [`input_number/electric_blanket_timeout_level_2.yaml`](entities/input_numb
 - Unit Of Measurement: `min`
 
 File: [`input_number/electric_blanket_timeout_level_3.yaml`](entities/input_number/electric_blanket_timeout_level_3.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 10: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_10_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_10_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_10_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 10: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_10_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_10_repeat_reminder_interval.yaml`](entities/input_number/habit/vic_habit_binary_10_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 10: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_10_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_10_streak_min_days_per_week.yaml`](entities/input_number/habit/vic_habit_binary_10_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 1: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_1_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_1_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_1_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 1: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_1_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_1_repeat_reminder_interval.yaml`](entities/input_number/habit/vic_habit_binary_1_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 1: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_1_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_1_streak_min_days_per_week.yaml`](entities/input_number/habit/vic_habit_binary_1_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 2: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_2_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_2_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_2_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 2: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_2_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_2_repeat_reminder_interval.yaml`](entities/input_number/habit/vic_habit_binary_2_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 2: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_2_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_2_streak_min_days_per_week.yaml`](entities/input_number/habit/vic_habit_binary_2_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 3: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_3_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_3_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_3_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 3: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_3_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_3_repeat_reminder_interval.yaml`](entities/input_number/habit/vic_habit_binary_3_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 3: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_3_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_3_streak_min_days_per_week.yaml`](entities/input_number/habit/vic_habit_binary_3_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 4: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_4_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_4_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_4_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 4: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_4_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_4_repeat_reminder_interval.yaml`](entities/input_number/habit/vic_habit_binary_4_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 4: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_4_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_4_streak_min_days_per_week.yaml`](entities/input_number/habit/vic_habit_binary_4_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 5: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_5_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_5_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_5_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 5: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_5_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_5_repeat_reminder_interval.yaml`](entities/input_number/habit/vic_habit_binary_5_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 5: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_5_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_5_streak_min_days_per_week.yaml`](entities/input_number/habit/vic_habit_binary_5_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 6: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_6_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_6_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_6_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 6: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_6_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_6_repeat_reminder_interval.yaml`](entities/input_number/habit/vic_habit_binary_6_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 6: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_6_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_6_streak_min_days_per_week.yaml`](entities/input_number/habit/vic_habit_binary_6_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 7: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_7_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_7_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_7_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 7: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_7_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_7_repeat_reminder_interval.yaml`](entities/input_number/habit/vic_habit_binary_7_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 7: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_7_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_7_streak_min_days_per_week.yaml`](entities/input_number/habit/vic_habit_binary_7_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 8: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_8_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_8_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_8_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 8: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_8_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_8_repeat_reminder_interval.yaml`](entities/input_number/habit/vic_habit_binary_8_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 8: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_8_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_8_streak_min_days_per_week.yaml`](entities/input_number/habit/vic_habit_binary_8_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 9: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_9_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_9_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_9_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 9: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_9_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_9_repeat_reminder_interval.yaml`](entities/input_number/habit/vic_habit_binary_9_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 9: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.vic_habit_binary_9_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/vic_habit_binary_9_streak_min_days_per_week.yaml`](entities/input_number/habit/vic_habit_binary_9_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 10: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_10_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_10_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_10_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 10: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_10_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_10_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_10_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 10: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_10_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_10_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_10_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_1_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_1_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_1_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_1_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_1_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_1_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_1_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_1_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_1_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_2_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_2_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_2_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_2_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_2_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_2_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_2_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_2_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_2_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 3: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_3_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_3_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_3_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 3: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_3_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_3_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_3_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 3: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_3_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_3_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_3_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 4: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_4_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_4_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_4_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 4: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_4_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_4_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_4_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 4: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_4_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_4_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_4_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 5: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_5_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_5_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_5_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 5: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_5_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_5_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_5_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 5: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_5_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_5_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_5_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 6: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_6_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_6_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_6_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 6: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_6_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_6_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_6_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 6: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_6_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_6_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_6_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 7: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_7_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_7_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_7_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 7: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_7_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_7_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_7_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 7: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_7_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_7_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_7_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 8: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_8_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_8_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_8_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 8: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_8_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_8_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_8_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 8: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_8_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_8_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_8_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 9: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_9_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_9_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_9_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 9: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_9_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_9_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_binary_9_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 9: Streak Min Days Per Week</strong></summary>
+
+**Entity ID: `input_number.will_habit_binary_9_streak_min_days_per_week`**
+
+- Icon: [`mdi:calendar-week`](https://pictogrammers.com/library/mdi/icon/calendar-week/)
+- Max: 7
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_binary_9_streak_min_days_per_week.yaml`](entities/input_number/habit/will_habit_binary_9_streak_min_days_per_week.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_1`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+- Max: 100
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_1.yaml`](entities/input_number/habit/will_habit_countable_1.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_1_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_1_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_countable_1_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_1_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_1_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_countable_1_repeat_reminder_interval.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_2`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+- Max: 100
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_2.yaml`](entities/input_number/habit/will_habit_countable_2.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Repeat Reminder Count</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_2_repeat_reminder_count`**
+
+- Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_2_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_countable_2_repeat_reminder_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Repeat Reminder Interval</strong></summary>
+
+**Entity ID: `input_number.will_habit_countable_2_repeat_reminder_interval`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 1440
+- Min: 1
+- Mode: `box`
+
+File: [`input_number/habit/will_habit_countable_2_repeat_reminder_interval.yaml`](entities/input_number/habit/will_habit_countable_2_repeat_reminder_interval.yaml)
 </details>
 
 <details><summary><strong>Hot Water | Proximity Distance</strong></summary>
@@ -4330,7 +6018,7 @@ File: [`input_number/will_s_office_grow_light_trigger_delay.yaml`](entities/inpu
 
 ## Input Select
 
-<details><summary><h3>Entities (8)</h3></summary>
+<details><summary><h3>Entities (10)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -4404,11 +6092,29 @@ File: [`input_select/target_git_branch.yaml`](entities/input_select/target_git_b
 File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_source.yaml)
 </details>
 
+<details><summary><strong>Vic | Mood Today</strong></summary>
+
+**Entity ID: `input_select.vic_mood_today`**
+
+- Icon: [`mdi:emoticon-happy`](https://pictogrammers.com/library/mdi/icon/emoticon-happy/)
+
+File: [`input_select/vic_mood_today.yaml`](entities/input_select/vic_mood_today.yaml)
+</details>
+
+<details><summary><strong>Will | Mood Today</strong></summary>
+
+**Entity ID: `input_select.will_mood_today`**
+
+- Icon: [`mdi:emoticon-happy`](https://pictogrammers.com/library/mdi/icon/emoticon-happy/)
+
+File: [`input_select/will_mood_today.yaml`](entities/input_select/will_mood_today.yaml)
+</details>
+
 </details>
 
 ## Input Text
 
-<details><summary><h3>Entities (20)</h3></summary>
+<details><summary><h3>Entities (88)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -4570,6 +6276,600 @@ File: [`input_text/cube/cube_entity_5.yaml`](entities/input_text/cube/cube_entit
 File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entity_6.yaml)
 </details>
 
+<details><summary><strong>Vic | Habit Binary 10: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_10_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_10_icon_off.yaml`](entities/input_text/habit/vic_habit_binary_10_icon_off.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 10: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_10_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_10_icon_on.yaml`](entities/input_text/habit/vic_habit_binary_10_icon_on.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 10: Name</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_10_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/vic_habit_binary_10_name.yaml`](entities/input_text/habit/vic_habit_binary_10_name.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 1: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_1_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_1_icon_off.yaml`](entities/input_text/habit/vic_habit_binary_1_icon_off.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 1: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_1_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_1_icon_on.yaml`](entities/input_text/habit/vic_habit_binary_1_icon_on.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 1: Name</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_1_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/vic_habit_binary_1_name.yaml`](entities/input_text/habit/vic_habit_binary_1_name.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 2: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_2_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_2_icon_off.yaml`](entities/input_text/habit/vic_habit_binary_2_icon_off.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 2: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_2_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_2_icon_on.yaml`](entities/input_text/habit/vic_habit_binary_2_icon_on.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 2: Name</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_2_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/vic_habit_binary_2_name.yaml`](entities/input_text/habit/vic_habit_binary_2_name.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 3: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_3_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_3_icon_off.yaml`](entities/input_text/habit/vic_habit_binary_3_icon_off.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 3: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_3_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_3_icon_on.yaml`](entities/input_text/habit/vic_habit_binary_3_icon_on.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 3: Name</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_3_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/vic_habit_binary_3_name.yaml`](entities/input_text/habit/vic_habit_binary_3_name.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 4: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_4_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_4_icon_off.yaml`](entities/input_text/habit/vic_habit_binary_4_icon_off.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 4: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_4_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_4_icon_on.yaml`](entities/input_text/habit/vic_habit_binary_4_icon_on.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 4: Name</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_4_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/vic_habit_binary_4_name.yaml`](entities/input_text/habit/vic_habit_binary_4_name.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 5: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_5_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_5_icon_off.yaml`](entities/input_text/habit/vic_habit_binary_5_icon_off.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 5: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_5_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_5_icon_on.yaml`](entities/input_text/habit/vic_habit_binary_5_icon_on.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 5: Name</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_5_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/vic_habit_binary_5_name.yaml`](entities/input_text/habit/vic_habit_binary_5_name.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 6: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_6_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_6_icon_off.yaml`](entities/input_text/habit/vic_habit_binary_6_icon_off.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 6: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_6_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_6_icon_on.yaml`](entities/input_text/habit/vic_habit_binary_6_icon_on.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 6: Name</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_6_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/vic_habit_binary_6_name.yaml`](entities/input_text/habit/vic_habit_binary_6_name.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 7: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_7_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_7_icon_off.yaml`](entities/input_text/habit/vic_habit_binary_7_icon_off.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 7: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_7_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_7_icon_on.yaml`](entities/input_text/habit/vic_habit_binary_7_icon_on.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 7: Name</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_7_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/vic_habit_binary_7_name.yaml`](entities/input_text/habit/vic_habit_binary_7_name.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 8: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_8_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_8_icon_off.yaml`](entities/input_text/habit/vic_habit_binary_8_icon_off.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 8: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_8_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_8_icon_on.yaml`](entities/input_text/habit/vic_habit_binary_8_icon_on.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 8: Name</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_8_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/vic_habit_binary_8_name.yaml`](entities/input_text/habit/vic_habit_binary_8_name.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 9: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_9_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_9_icon_off.yaml`](entities/input_text/habit/vic_habit_binary_9_icon_off.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 9: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_9_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/vic_habit_binary_9_icon_on.yaml`](entities/input_text/habit/vic_habit_binary_9_icon_on.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 9: Name</strong></summary>
+
+**Entity ID: `input_text.vic_habit_binary_9_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/vic_habit_binary_9_name.yaml`](entities/input_text/habit/vic_habit_binary_9_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 10: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_10_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_10_icon_off.yaml`](entities/input_text/habit/will_habit_binary_10_icon_off.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 10: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_10_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_10_icon_on.yaml`](entities/input_text/habit/will_habit_binary_10_icon_on.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 10: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_10_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_binary_10_name.yaml`](entities/input_text/habit/will_habit_binary_10_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_1_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_1_icon_off.yaml`](entities/input_text/habit/will_habit_binary_1_icon_off.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_1_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_1_icon_on.yaml`](entities/input_text/habit/will_habit_binary_1_icon_on.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_1_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_binary_1_name.yaml`](entities/input_text/habit/will_habit_binary_1_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_2_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_2_icon_off.yaml`](entities/input_text/habit/will_habit_binary_2_icon_off.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_2_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_2_icon_on.yaml`](entities/input_text/habit/will_habit_binary_2_icon_on.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_2_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_binary_2_name.yaml`](entities/input_text/habit/will_habit_binary_2_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 3: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_3_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_3_icon_off.yaml`](entities/input_text/habit/will_habit_binary_3_icon_off.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 3: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_3_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_3_icon_on.yaml`](entities/input_text/habit/will_habit_binary_3_icon_on.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 3: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_3_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_binary_3_name.yaml`](entities/input_text/habit/will_habit_binary_3_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 4: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_4_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_4_icon_off.yaml`](entities/input_text/habit/will_habit_binary_4_icon_off.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 4: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_4_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_4_icon_on.yaml`](entities/input_text/habit/will_habit_binary_4_icon_on.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 4: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_4_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_binary_4_name.yaml`](entities/input_text/habit/will_habit_binary_4_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 5: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_5_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_5_icon_off.yaml`](entities/input_text/habit/will_habit_binary_5_icon_off.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 5: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_5_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_5_icon_on.yaml`](entities/input_text/habit/will_habit_binary_5_icon_on.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 5: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_5_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_binary_5_name.yaml`](entities/input_text/habit/will_habit_binary_5_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 6: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_6_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_6_icon_off.yaml`](entities/input_text/habit/will_habit_binary_6_icon_off.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 6: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_6_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_6_icon_on.yaml`](entities/input_text/habit/will_habit_binary_6_icon_on.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 6: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_6_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_binary_6_name.yaml`](entities/input_text/habit/will_habit_binary_6_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 7: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_7_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_7_icon_off.yaml`](entities/input_text/habit/will_habit_binary_7_icon_off.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 7: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_7_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_7_icon_on.yaml`](entities/input_text/habit/will_habit_binary_7_icon_on.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 7: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_7_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_binary_7_name.yaml`](entities/input_text/habit/will_habit_binary_7_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 8: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_8_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_8_icon_off.yaml`](entities/input_text/habit/will_habit_binary_8_icon_off.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 8: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_8_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_8_icon_on.yaml`](entities/input_text/habit/will_habit_binary_8_icon_on.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 8: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_8_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_binary_8_name.yaml`](entities/input_text/habit/will_habit_binary_8_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 9: Icon (Off)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_9_icon_off`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_9_icon_off.yaml`](entities/input_text/habit/will_habit_binary_9_icon_off.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 9: Icon (On)</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_9_icon_on`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_binary_9_icon_on.yaml`](entities/input_text/habit/will_habit_binary_9_icon_on.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 9: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_binary_9_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_binary_9_name.yaml`](entities/input_text/habit/will_habit_binary_9_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1: Icon (Active)</strong></summary>
+
+**Entity ID: `input_text.will_habit_countable_1_icon_active`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_countable_1_icon_active.yaml`](entities/input_text/habit/will_habit_countable_1_icon_active.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1: Icon (Zero)</strong></summary>
+
+**Entity ID: `input_text.will_habit_countable_1_icon_zero`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_countable_1_icon_zero.yaml`](entities/input_text/habit/will_habit_countable_1_icon_zero.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 1: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_countable_1_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_countable_1_name.yaml`](entities/input_text/habit/will_habit_countable_1_name.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Icon (Active)</strong></summary>
+
+**Entity ID: `input_text.will_habit_countable_2_icon_active`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_countable_2_icon_active.yaml`](entities/input_text/habit/will_habit_countable_2_icon_active.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Icon (Zero)</strong></summary>
+
+**Entity ID: `input_text.will_habit_countable_2_icon_zero`**
+
+- Icon: [`mdi:emoticon`](https://pictogrammers.com/library/mdi/icon/emoticon/)
+
+File: [`input_text/habit/will_habit_countable_2_icon_zero.yaml`](entities/input_text/habit/will_habit_countable_2_icon_zero.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Countable 2: Name</strong></summary>
+
+**Entity ID: `input_text.will_habit_countable_2_name`**
+
+- Icon: [`mdi:format-text`](https://pictogrammers.com/library/mdi/icon/format-text/)
+
+File: [`input_text/habit/will_habit_countable_2_name.yaml`](entities/input_text/habit/will_habit_countable_2_name.yaml)
+</details>
+
 <details><summary><strong>Test MQTT Events Device Name</strong></summary>
 
 **Entity ID: `input_text.test_mqtt_events_device_name`**
@@ -4579,6 +6879,15 @@ File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entit
 File: [`input_text/test_mqtt_events_device_name.yaml`](entities/input_text/test_mqtt_events_device_name.yaml)
 </details>
 
+<details><summary><strong>Vic | Mood Note</strong></summary>
+
+**Entity ID: `input_text.vic_mood_note`**
+
+- Icon: [`mdi:text`](https://pictogrammers.com/library/mdi/icon/text/)
+
+File: [`input_text/vic_mood_note.yaml`](entities/input_text/vic_mood_note.yaml)
+</details>
+
 <details><summary><strong>Vic | Work Calendar: Holiday Pattern</strong></summary>
 
 **Entity ID: `input_text.vic_work_calendar_holiday_pattern`**
@@ -4586,6 +6895,15 @@ File: [`input_text/test_mqtt_events_device_name.yaml`](entities/input_text/test_
 - Icon: [`mdi:regex`](https://pictogrammers.com/library/mdi/icon/regex/)
 
 File: [`input_text/vic_work_calendar_holiday_pattern.yaml`](entities/input_text/vic_work_calendar_holiday_pattern.yaml)
+</details>
+
+<details><summary><strong>Will | Mood Note</strong></summary>
+
+**Entity ID: `input_text.will_mood_note`**
+
+- Icon: [`mdi:text`](https://pictogrammers.com/library/mdi/icon/text/)
+
+File: [`input_text/will_mood_note.yaml`](entities/input_text/will_mood_note.yaml)
 </details>
 
 <details><summary><strong>Will's Office Webcam Name</strong></summary>
@@ -7587,6 +9905,30 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 </details>
 
+## Sql
+
+<details><summary><h3>Entities (2)</h3></summary>
+
+<details><summary><strong>Vic | Mood Streak</strong></summary>
+
+**Entity ID: `sql.vic_mood_streak`**
+
+- Column: `streak`
+
+File: [`sql/mood/vic_mood_streak.yaml`](entities/sql/mood/vic_mood_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Mood Streak</strong></summary>
+
+**Entity ID: `sql.will_mood_streak`**
+
+- Column: `streak`
+
+File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml)
+</details>
+
+</details>
+
 ## Switch
 
 <details><summary><h3>Entities (4)</h3></summary>
@@ -7623,7 +9965,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (77)</h3></summary>
+<details><summary><h3>Entities (83)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -8086,6 +10428,60 @@ File: [`template/sensor/entity_counts/low_batteries.yaml`](entities/template/sen
 - Icon: [`mdi:lan-disconnect`](https://pictogrammers.com/library/mdi/icon/lan-disconnect/)
 
 File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/template/sensor/entity_counts/unavailable_entities.yaml)
+</details>
+
+<details><summary><strong>Vic | Habits Binary Count</strong></summary>
+
+**Entity ID: `sensor.vic_habits_binary_count`**
+
+- Icon: [`mdi:toggle-switch`](https://pictogrammers.com/library/mdi/icon/toggle-switch/)
+
+File: [`template/sensor/habit/vic_habits_binary_count.yaml`](entities/template/sensor/habit/vic_habits_binary_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habits Countable Count</strong></summary>
+
+**Entity ID: `sensor.vic_habits_countable_count`**
+
+- Icon: [`mdi:numeric`](https://pictogrammers.com/library/mdi/icon/numeric/)
+
+File: [`template/sensor/habit/vic_habits_countable_count.yaml`](entities/template/sensor/habit/vic_habits_countable_count.yaml)
+</details>
+
+<details><summary><strong>Vic | Habits Total Count</strong></summary>
+
+**Entity ID: `sensor.vic_habits_total_count`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+
+File: [`template/sensor/habit/vic_habits_total_count.yaml`](entities/template/sensor/habit/vic_habits_total_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habits Binary Count</strong></summary>
+
+**Entity ID: `sensor.will_habits_binary_count`**
+
+- Icon: [`mdi:toggle-switch`](https://pictogrammers.com/library/mdi/icon/toggle-switch/)
+
+File: [`template/sensor/habit/will_habits_binary_count.yaml`](entities/template/sensor/habit/will_habits_binary_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habits Countable Count</strong></summary>
+
+**Entity ID: `sensor.will_habits_countable_count`**
+
+- Icon: [`mdi:numeric`](https://pictogrammers.com/library/mdi/icon/numeric/)
+
+File: [`template/sensor/habit/will_habits_countable_count.yaml`](entities/template/sensor/habit/will_habits_countable_count.yaml)
+</details>
+
+<details><summary><strong>Will | Habits Total Count</strong></summary>
+
+**Entity ID: `sensor.will_habits_total_count`**
+
+- Icon: [`mdi:counter`](https://pictogrammers.com/library/mdi/icon/counter/)
+
+File: [`template/sensor/habit/will_habits_total_count.yaml`](entities/template/sensor/habit/will_habits_total_count.yaml)
 </details>
 
 <details><summary><strong>HiFi System: Media Metadata</strong></summary>
