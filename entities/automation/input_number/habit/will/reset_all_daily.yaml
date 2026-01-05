@@ -1,0 +1,22 @@
+---
+alias: /input-number/habit/will/reset-all-daily
+
+id: input_number_habit_will_reset_all_daily
+
+description: Reset all Will's countable habit counters at midnight
+
+mode: single
+
+trigger:
+  - platform: time
+    at: "00:00:00"
+
+action:
+  - repeat:
+      count: "{{ states('sensor.will_habits_countable_count') | int(0) }}"
+      sequence:
+        - service: input_number.set_value
+          target:
+            entity_id: "input_number.will_habit_countable_{{ repeat.index }}"
+          data:
+            value: 0

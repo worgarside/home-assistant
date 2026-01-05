@@ -1,0 +1,19 @@
+---
+alias: /input-text/vic/mood-note/reset-daily
+
+id: input_text_vic_mood_note_reset_daily
+
+description: Clear mood note at midnight
+
+mode: single
+
+trigger:
+  - platform: time
+    at: "00:00:00"
+
+action:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.vic_mood_note
+    data:
+      value: ""
