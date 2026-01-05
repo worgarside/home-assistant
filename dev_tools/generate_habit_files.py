@@ -936,7 +936,7 @@ action:
 
     # SQL sensor for mood streak
     mood_streak_sensor_path = (
-        REPO_PATH / "entities" / "sensor" / "sql" / "mood" / f"{user}_mood_streak.yaml"
+        REPO_PATH / "entities" / "sql" / "mood" / f"{user}_mood_streak.yaml"
     )
     mood_streak_sensor_path.parent.mkdir(parents=True, exist_ok=True)
     mood_streak_sensor_path.write_text(
