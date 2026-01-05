@@ -1,0 +1,65 @@
+---
+alias: /input-datetime/habit/vic-habit-binary-6/reminder
+
+id: input_datetime_habit_vic_habit_binary_6_reminder
+
+description: Remind to log Vic's binary habit 6 at configured reminder time
+
+mode: single
+
+trigger:
+  - platform: time
+    at: input_datetime.vic_habit_binary_6_reminder_time
+
+condition: "{{ not is_state('input_boolean.vic_habit_binary_6', 'on') }}"
+
+variables:
+  habit_name: >-
+    {{
+      states('input_text.vic_habit_binary_6_name')
+      | default('Habit Binary 6')
+    }}
+  repeat_interval: >-
+    {{
+      states('input_number.vic_habit_binary_6_repeat_reminder_interval') | int(60)
+    }}
+  repeat_reminder_count: >-
+    {{
+      states('input_number.vic_habit_binary_6_repeat_reminder_count') | int(0)
+    }}
+
+action:
+  - service: script.notify_vic
+    data:
+      title: "Habit Reminder"
+      message: "Don't forget to mark {{ habit_name }} as complete!"
+      notification_id: vic_habit_binary_6_reminder
+      url: /home-vic/mood-habits
+
+  - if: "{{ repeat_reminder_count | int(0) > 0 }}"
+    then:
+      - repeat:
+          until: >-
+            {%
+              set cutoff_time = (
+                now().replace(hour=0, minute=0, second=0, microsecond=0)
+                + timedelta(days=1)
+                - timedelta(minutes=(repeat_interval + 5))
+              )
+            %}
+            {% set habit_completed = is_state('input_boolean.vic_habit_binary_6', 'on') %}
+            {{
+              now() >= cutoff_time or
+              repeat.index > repeat_reminder_count | int(0) or
+              habit_completed
+            }}
+          sequence:
+            - delay:
+                minutes: "{{ repeat_interval | int(60) }}"
+
+            - service: script.notify_vic
+              data:
+                title: "Habit Reminder"
+                message: "Don't forget to mark {{ habit_name }} as complete!"
+                notification_id: vic_habit_binary_6_reminder
+                url: /home-vic/mood-habits
