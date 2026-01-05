@@ -1,7 +1,7 @@
 ---
-alias: /remote/spare-room/ball-lamp-remote/off
+alias: /remote/garden-light-remote/off
 
-id: remote_spare_room_ball_lamp_remote_off
+id: remote_garden_light_remote_off
 
 mode: single
 
@@ -17,4 +17,4 @@ trigger:
 action:
   - service: light.turn_off
     target:
-      entity_id: light.ball_lamp
+      entity_id: light.garden_light
