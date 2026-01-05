@@ -1,0 +1,25 @@
+---
+alias: /remote/garden-light-remote/brightness-move-down
+
+id: remote_garden_light_remote_brightness_move_down
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 93810fd8a8b1163ba97a3eef93cbdcec
+    type: action
+    subtype: brightness_move_down
+
+action:
+  - if: "{{ is_state('light.garden_light', 'on') }}"
+    then:
+      - service: light.turn_on
+        target:
+          entity_id: light.garden_light
+        data:
+          brightness: >-
+            {{ max(state_attr("light.garden_light", "brightness") | int(32) - 32, 0) }}

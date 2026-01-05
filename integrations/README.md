@@ -2374,6 +2374,58 @@ File: [`automation/remote/charging_hub_button/single.yaml`](entities/automation/
 File: [`automation/remote/coffee_table/double.yaml`](entities/automation/remote/coffee_table/double.yaml)
 </details>
 
+<details><summary><code>/remote/garden-light-remote/brightness-move-down</code></summary>
+
+**Entity ID: `automation.remote_garden_light_remote_brightness_move_down`**
+
+> *No description provided*
+
+- Alias: /remote/garden-light-remote/brightness-move-down
+- ID: `remote_garden_light_remote_brightness_move_down`
+- Mode: `single`
+
+File: [`automation/remote/garden_light_remote/brightness_move_down.yaml`](entities/automation/remote/garden_light_remote/brightness_move_down.yaml)
+</details>
+
+<details><summary><code>/remote/garden-light-remote/brightness-move-up</code></summary>
+
+**Entity ID: `automation.remote_garden_light_remote_brightness_move_up`**
+
+> *No description provided*
+
+- Alias: /remote/garden-light-remote/brightness-move-up
+- ID: `remote_garden_light_remote_brightness_move_up`
+- Mode: `single`
+
+File: [`automation/remote/garden_light_remote/brightness_move_up.yaml`](entities/automation/remote/garden_light_remote/brightness_move_up.yaml)
+</details>
+
+<details><summary><code>/remote/garden-light-remote/off</code></summary>
+
+**Entity ID: `automation.remote_garden_light_remote_off`**
+
+> *No description provided*
+
+- Alias: /remote/garden-light-remote/off
+- ID: `remote_garden_light_remote_off`
+- Mode: `single`
+
+File: [`automation/remote/garden_light_remote/off.yaml`](entities/automation/remote/garden_light_remote/off.yaml)
+</details>
+
+<details><summary><code>/remote/garden-light-remote/on</code></summary>
+
+**Entity ID: `automation.remote_garden_light_remote_on`**
+
+> *No description provided*
+
+- Alias: /remote/garden-light-remote/on
+- ID: `remote_garden_light_remote_on`
+- Mode: `single`
+
+File: [`automation/remote/garden_light_remote/on.yaml`](entities/automation/remote/garden_light_remote/on.yaml)
+</details>
+
 <details><summary><code>/remote/lounge-hue-remote/down-press</code></summary>
 
 **Entity ID: `automation.remote_lounge_hue_remote_down_press`**
@@ -2554,58 +2606,6 @@ File: [`automation/remote/prusa_i3_mk3_power/double_press.yaml`](entities/automa
 - Mode: `single`
 
 File: [`automation/remote/prusa_i3_mk3_power/single_press.yaml`](entities/automation/remote/prusa_i3_mk3_power/single_press.yaml)
-</details>
-
-<details><summary><code>/remote/spare-room/ball-lamp-remote/brightness-move-down</code></summary>
-
-**Entity ID: `automation.remote_spare_room_ball_lamp_remote_brightness_move_down`**
-
-> *No description provided*
-
-- Alias: /remote/spare-room/ball-lamp-remote/brightness-move-down
-- ID: `remote_spare_room_ball_lamp_remote_brightness_move_down`
-- Mode: `single`
-
-File: [`automation/remote/spare_room/ball_lamp_remote/brightness_move_down.yaml`](entities/automation/remote/spare_room/ball_lamp_remote/brightness_move_down.yaml)
-</details>
-
-<details><summary><code>/remote/spare-room/ball-lamp-remote/brightness-move-up</code></summary>
-
-**Entity ID: `automation.remote_spare_room_ball_lamp_remote_brightness_move_up`**
-
-> *No description provided*
-
-- Alias: /remote/spare-room/ball-lamp-remote/brightness-move-up
-- ID: `remote_spare_room_ball_lamp_remote_brightness_move_up`
-- Mode: `single`
-
-File: [`automation/remote/spare_room/ball_lamp_remote/brightness_move_up.yaml`](entities/automation/remote/spare_room/ball_lamp_remote/brightness_move_up.yaml)
-</details>
-
-<details><summary><code>/remote/spare-room/ball-lamp-remote/off</code></summary>
-
-**Entity ID: `automation.remote_spare_room_ball_lamp_remote_off`**
-
-> *No description provided*
-
-- Alias: /remote/spare-room/ball-lamp-remote/off
-- ID: `remote_spare_room_ball_lamp_remote_off`
-- Mode: `single`
-
-File: [`automation/remote/spare_room/ball_lamp_remote/off.yaml`](entities/automation/remote/spare_room/ball_lamp_remote/off.yaml)
-</details>
-
-<details><summary><code>/remote/spare-room/ball-lamp-remote/on</code></summary>
-
-**Entity ID: `automation.remote_spare_room_ball_lamp_remote_on`**
-
-> *No description provided*
-
-- Alias: /remote/spare-room/ball-lamp-remote/on
-- ID: `remote_spare_room_ball_lamp_remote_on`
-- Mode: `single`
-
-File: [`automation/remote/spare_room/ball_lamp_remote/on.yaml`](entities/automation/remote/spare_room/ball_lamp_remote/on.yaml)
 </details>
 
 <details><summary><code>/remote/spare-room/hue-remote/down-press</code></summary>
@@ -4675,6 +4675,7 @@ File: [`input_number/electric_blanket_timeout_level_3.yaml`](entities/input_numb
 **Entity ID: `input_number.vic_habit_binary_10_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/vic_habit_binary_10_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_10_repeat_reminder_count.yaml)
@@ -4709,6 +4710,7 @@ File: [`input_number/habit/vic_habit_binary_10_streak_min_days_per_week.yaml`](e
 **Entity ID: `input_number.vic_habit_binary_1_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/vic_habit_binary_1_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_1_repeat_reminder_count.yaml)
@@ -4743,6 +4745,7 @@ File: [`input_number/habit/vic_habit_binary_1_streak_min_days_per_week.yaml`](en
 **Entity ID: `input_number.vic_habit_binary_2_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/vic_habit_binary_2_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_2_repeat_reminder_count.yaml)
@@ -4777,6 +4780,7 @@ File: [`input_number/habit/vic_habit_binary_2_streak_min_days_per_week.yaml`](en
 **Entity ID: `input_number.vic_habit_binary_3_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/vic_habit_binary_3_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_3_repeat_reminder_count.yaml)
@@ -4811,6 +4815,7 @@ File: [`input_number/habit/vic_habit_binary_3_streak_min_days_per_week.yaml`](en
 **Entity ID: `input_number.vic_habit_binary_4_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/vic_habit_binary_4_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_4_repeat_reminder_count.yaml)
@@ -4845,6 +4850,7 @@ File: [`input_number/habit/vic_habit_binary_4_streak_min_days_per_week.yaml`](en
 **Entity ID: `input_number.vic_habit_binary_5_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/vic_habit_binary_5_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_5_repeat_reminder_count.yaml)
@@ -4879,6 +4885,7 @@ File: [`input_number/habit/vic_habit_binary_5_streak_min_days_per_week.yaml`](en
 **Entity ID: `input_number.vic_habit_binary_6_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/vic_habit_binary_6_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_6_repeat_reminder_count.yaml)
@@ -4913,6 +4920,7 @@ File: [`input_number/habit/vic_habit_binary_6_streak_min_days_per_week.yaml`](en
 **Entity ID: `input_number.vic_habit_binary_7_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/vic_habit_binary_7_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_7_repeat_reminder_count.yaml)
@@ -4947,6 +4955,7 @@ File: [`input_number/habit/vic_habit_binary_7_streak_min_days_per_week.yaml`](en
 **Entity ID: `input_number.vic_habit_binary_8_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/vic_habit_binary_8_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_8_repeat_reminder_count.yaml)
@@ -4981,6 +4990,7 @@ File: [`input_number/habit/vic_habit_binary_8_streak_min_days_per_week.yaml`](en
 **Entity ID: `input_number.vic_habit_binary_9_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/vic_habit_binary_9_repeat_reminder_count.yaml`](entities/input_number/habit/vic_habit_binary_9_repeat_reminder_count.yaml)
@@ -5015,6 +5025,7 @@ File: [`input_number/habit/vic_habit_binary_9_streak_min_days_per_week.yaml`](en
 **Entity ID: `input_number.will_habit_binary_10_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_10_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_10_repeat_reminder_count.yaml)
@@ -5049,6 +5060,7 @@ File: [`input_number/habit/will_habit_binary_10_streak_min_days_per_week.yaml`](
 **Entity ID: `input_number.will_habit_binary_1_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_1_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_1_repeat_reminder_count.yaml)
@@ -5083,6 +5095,7 @@ File: [`input_number/habit/will_habit_binary_1_streak_min_days_per_week.yaml`](e
 **Entity ID: `input_number.will_habit_binary_2_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_2_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_2_repeat_reminder_count.yaml)
@@ -5117,6 +5130,7 @@ File: [`input_number/habit/will_habit_binary_2_streak_min_days_per_week.yaml`](e
 **Entity ID: `input_number.will_habit_binary_3_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_3_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_3_repeat_reminder_count.yaml)
@@ -5151,6 +5165,7 @@ File: [`input_number/habit/will_habit_binary_3_streak_min_days_per_week.yaml`](e
 **Entity ID: `input_number.will_habit_binary_4_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_4_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_4_repeat_reminder_count.yaml)
@@ -5185,6 +5200,7 @@ File: [`input_number/habit/will_habit_binary_4_streak_min_days_per_week.yaml`](e
 **Entity ID: `input_number.will_habit_binary_5_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_5_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_5_repeat_reminder_count.yaml)
@@ -5219,6 +5235,7 @@ File: [`input_number/habit/will_habit_binary_5_streak_min_days_per_week.yaml`](e
 **Entity ID: `input_number.will_habit_binary_6_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_6_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_6_repeat_reminder_count.yaml)
@@ -5253,6 +5270,7 @@ File: [`input_number/habit/will_habit_binary_6_streak_min_days_per_week.yaml`](e
 **Entity ID: `input_number.will_habit_binary_7_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_7_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_7_repeat_reminder_count.yaml)
@@ -5287,6 +5305,7 @@ File: [`input_number/habit/will_habit_binary_7_streak_min_days_per_week.yaml`](e
 **Entity ID: `input_number.will_habit_binary_8_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_8_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_8_repeat_reminder_count.yaml)
@@ -5321,6 +5340,7 @@ File: [`input_number/habit/will_habit_binary_8_streak_min_days_per_week.yaml`](e
 **Entity ID: `input_number.will_habit_binary_9_repeat_reminder_count`**
 
 - Icon: [`mdi:repeat`](https://pictogrammers.com/library/mdi/icon/repeat/)
+- Max: 1000
 - Mode: `box`
 
 File: [`input_number/habit/will_habit_binary_9_repeat_reminder_count.yaml`](entities/input_number/habit/will_habit_binary_9_repeat_reminder_count.yaml)

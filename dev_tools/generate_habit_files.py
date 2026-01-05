@@ -192,6 +192,8 @@ icon: mdi:repeat
 
 min: 0
 
+max: 1000
+
 step: 1
 
 mode: box
@@ -293,7 +295,6 @@ action:
         sql_sensor_path = (
             REPO_PATH
             / "entities"
-            / "sensor"
             / "sql"
             / "habit"
             / f"{user}_habit_binary_{num}_streak.yaml"
@@ -558,6 +559,8 @@ name: "{user.title()} | Habit Countable {num}: Repeat Reminder Count"
 icon: mdi:repeat
 
 min: 0
+
+max: 1000
 
 step: 1
 
