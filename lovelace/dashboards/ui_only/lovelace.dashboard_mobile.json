@@ -4295,6 +4295,24 @@
               ]
             }
           ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Habits",
+          "path": "vic-habits",
+          "icon": "mdi:one-up",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
