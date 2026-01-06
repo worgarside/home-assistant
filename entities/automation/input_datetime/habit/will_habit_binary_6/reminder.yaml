@@ -11,7 +11,11 @@ trigger:
   - platform: time
     at: input_datetime.will_habit_binary_6_reminder_time
 
-condition: "{{ not is_state('input_boolean.will_habit_binary_6', 'on') }}"
+condition: >-
+  {{
+    is_state('input_boolean.will_habit_binary_6', 'off') and
+    states("input_text.will_habit_binary_6_name") not in ["", "unknown"]
+  }}
 
 variables:
   habit_name: >-
