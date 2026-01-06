@@ -4309,6 +4309,18 @@
                 {
                   "type": "heading",
                   "heading": "New section"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_binary_n",
+                  "variables": [
+                    {
+                      "n": 1
+                    },
+                    {
+                      "user": "vic"
+                    }
+                  ]
                 }
               ]
             }
