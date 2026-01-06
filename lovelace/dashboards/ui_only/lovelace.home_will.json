@@ -5650,7 +5650,35 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "New section"
+                  "heading": "Automations",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:lightbulb\n{%- if not states(\"automation.binary_sensor_vic_s_office_occupancy_state_change\") | bool(false) -%}\n-off\n{%- elif area_entities('vic_s_office') | select('match','^light\\.') | select('is_state','on') | list | count > 0 -%}\n-on\n{%- endif -%}\n-outline",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_vic_s_office_occupancy_state_change",
+                  "area": "vic_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": " /binary-sensor/vic-s-office-occupancy/state-change",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_vic_s_office_occupancy_state_change\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Presence-based lighting"
                 }
               ]
             }
