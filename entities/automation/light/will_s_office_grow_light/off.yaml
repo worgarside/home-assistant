@@ -44,9 +44,9 @@ condition:
   - condition: template
     value_template: >
       {{
-        (trigger.id == 'openings' and states('sensor.sun_elevation') | float(10) < 3) or
-        (trigger.id == 'bedroom_door' and (now().hour >= 23 or now().hour < 7)) or
-        (trigger.id == 'occupancy' and states('sensor.sun_elevation') | float(0) < -3) or
+        (trigger.id == 'openings' and states('sensor.sun_elevation') | float(10) < 6) or
+        (trigger.id == 'bedroom_door' and (now().hour >= 23 or now().hour < 9)) or
+        (trigger.id == 'occupancy' and states('sensor.sun_elevation') | float(0) < 6) or
         trigger.id == 'sun_elevation'
       }}
 
