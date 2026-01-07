@@ -598,7 +598,11 @@ trigger:
   - platform: time
     at: input_datetime.XXXUSERXXX_habit_countable_XXXNUMXXX_reminder_time
 
-condition: "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX') | int(0) == 0 }}}}"
+condition: >-
+  {{
+    states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX') | int(0) == 0 and
+    states("input_text.XXXUSERXXX_habit_countable_XXXNUMXXX_name") not in ["", "unknown"]
+  }}
 
 variables:
   habit_name: >-
