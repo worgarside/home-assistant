@@ -11,7 +11,11 @@ trigger:
   - platform: time
     at: input_datetime.will_habit_countable_2_reminder_time
 
-condition: "{{ states('input_number.will_habit_countable_2') | int(0) == 0 }}"
+condition: >-
+  {{
+    states('input_number.will_habit_countable_2') | int(0) == 0 and
+    states("input_text.will_habit_countable_2_name") not in ["", "unknown"]
+  }}
 
 variables:
   habit_name: >-
