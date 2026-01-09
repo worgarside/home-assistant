@@ -20,4 +20,3 @@ action:
   - service: light.turn_off
     target:
       entity_id: light.garden_light
-
