@@ -20,7 +20,7 @@ sequence:
 
     then:
       - alias: Clear sunrise notifications
-        service: notify.mobile_app_victorias_iphone
+        service: notify.mobile_app_vics_iphone
         data:
           message: clear_notification
           data:
@@ -43,7 +43,7 @@ sequence:
             entity_id: person.vic
             state: home
         then:
-          - service: notify.mobile_app_victorias_iphone
+          - service: notify.mobile_app_vics_iphone
             data:
               title: Good morning!
               message: Rise and shine!

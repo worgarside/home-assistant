@@ -110,7 +110,7 @@ sequence:
         error: true
 
   - alias: iPhone
-    service: notify.mobile_app_victorias_iphone
+    service: notify.mobile_app_vics_iphone
     data:
       message: "{{ message }}"
       title: "{{ notif_title }}"
