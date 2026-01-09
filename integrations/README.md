@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (227)</h3></summary>
+<details><summary><h3>Entities (229)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -889,6 +889,19 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/off.yaml`](entities
 File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/on.yaml)
 </details>
 
+<details><summary><code>/input-boolean/lounge-lights-exercise-mode/timeout</code></summary>
+
+**Entity ID: `automation.input_boolean_lounge_lights_exercise_mode_timeout`**
+
+> Turn off lounge lights exercise mode after it has been enabled for N minutes
+
+- Alias: /input-boolean/lounge-lights-exercise-mode/timeout
+- ID: `input_boolean_lounge_lights_exercise_mode_timeout`
+- Mode: `single`
+
+File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml)
+</details>
+
 <details><summary><code>/input-datetime/habit/vic-habit-binary-1/reminder</code></summary>
 
 **Entity ID: `automation.input_datetime_habit_vic_habit_binary_1_reminder`**
@@ -1573,6 +1586,19 @@ File: [`automation/label/restore_state_after_room_vacancy/state_change.yaml`](en
 - Mode: `single`
 
 File: [`automation/light/bedroom_shapes/bon_appetit.yaml`](entities/automation/light/bedroom_shapes/bon_appetit.yaml)
+</details>
+
+<details><summary><code>/light/garden-light/timeout</code></summary>
+
+**Entity ID: `automation.light_garden_light_timeout`**
+
+> Turn off the garden light after it has been on for N minutes
+
+- Alias: /light/garden-light/timeout
+- ID: `light_garden_light_timeout`
+- Mode: `single`
+
+File: [`automation/light/garden_light/timeout.yaml`](entities/automation/light/garden_light/timeout.yaml)
 </details>
 
 <details><summary><code>/light/lounge-lights/stop-tv-reflections</code></summary>
@@ -4534,7 +4560,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (125)</h3></summary>
+<details><summary><h3>Entities (127)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -5870,6 +5896,19 @@ File: [`input_number/timeout/electric_blanket_timeout_level_2.yaml`](entities/in
 File: [`input_number/timeout/electric_blanket_timeout_level_3.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_3.yaml)
 </details>
 
+<details><summary><strong>Garden | Light Timeout</strong></summary>
+
+**Entity ID: `input_number.garden_light_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 240
+- Min: 5
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/timeout/garden_light_timeout.yaml`](entities/input_number/timeout/garden_light_timeout.yaml)
+</details>
+
 <details><summary><strong>Hallway Lights | Timeout</strong></summary>
 
 **Entity ID: `input_number.hallway_lights_timeout`**
@@ -5893,6 +5932,19 @@ File: [`input_number/timeout/hallway_lights_timeout.yaml`](entities/input_number
 - Unit Of Measurement: `mins`
 
 File: [`input_number/timeout/lounge_diffuser_timeout.yaml`](entities/input_number/timeout/lounge_diffuser_timeout.yaml)
+</details>
+
+<details><summary><strong>Lounge | Lights: Exercise Mode Timeout</strong></summary>
+
+**Entity ID: `input_number.lounge_lights_exercise_mode_timeout`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Max: 240
+- Min: 5
+- Mode: `box`
+- Unit Of Measurement: `mins`
+
+File: [`input_number/timeout/lounge_lights_exercise_mode_timeout.yaml`](entities/input_number/timeout/lounge_lights_exercise_mode_timeout.yaml)
 </details>
 
 <details><summary><strong>Lounge | Lights: Timeout</strong></summary>
