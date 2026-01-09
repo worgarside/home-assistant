@@ -1,0 +1,23 @@
+---
+alias: /light/garden-light/timeout
+
+id: light_garden_light_timeout
+
+description: Turn off the garden light after it has been on for N minutes
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: light.garden_light
+    to: "on"
+    for:
+      minutes: "{{ states('input_number.garden_light_timeout') | int(30) }}"
+
+action:
+  - service: light.turn_off
+    target:
+      entity_id: light.garden_light
+

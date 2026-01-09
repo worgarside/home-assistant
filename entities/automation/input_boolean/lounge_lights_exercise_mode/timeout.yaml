@@ -1,0 +1,23 @@
+---
+alias: /input-boolean/lounge-lights-exercise-mode/timeout
+
+id: input_boolean_lounge_lights_exercise_mode_timeout
+
+description: Turn off lounge lights exercise mode after it has been enabled for N minutes
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: input_boolean.lounge_lights_exercise_mode
+    to: "on"
+    for:
+      minutes: "{{ states('input_number.lounge_lights_exercise_mode_timeout') | int(60) }}"
+
+action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.lounge_lights_exercise_mode
+
