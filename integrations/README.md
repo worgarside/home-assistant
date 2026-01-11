@@ -7017,16 +7017,7 @@ File: [`light/mtrxpi_led_matrix_brightness.yaml`](entities/light/mtrxpi_led_matr
 
 ## Media Player
 
-<details><summary><h3>Entities (2)</h3></summary>
-
-<details><summary><strong>HiFi System</strong></summary>
-
-**Entity ID: `media_player.media_player.hifi_system`**
-
-- Platform: `universal`
-
-File: [`media_player/hifi_system.yaml`](entities/media_player/hifi_system.yaml)
-</details>
+<details><summary><h3>Entities (1)</h3></summary>
 
 <details><summary><strong>Topaz SR10</strong></summary>
 
