@@ -638,6 +638,170 @@
               "content": "<div style=\"display: flex; align-items: center; justify-content: center;\">\n  <ha-icon\n    icon=\"[[icon]]\"\n    style=\"\n      width: 28px;\n      height: 28px;\n      margin: 0 10px 0 0;\n    \"\n  ></ha-icon>\n  <span>[[name]]</span>\n</div>\n"
             }
           }
+        },
+        "habit_binary_n": {
+          "card": {
+            "features": [
+              {
+                "type": "toggle"
+              }
+            ],
+            "type": "custom:mushroom-template-card",
+            "features_position": "inline",
+            "entity": "input_boolean.[[user]]_habit_binary_[[n]]",
+            "primary": "{{ states(\"input_text.[[user]]_habit_binary_[[n]]_name\") }}",
+            "color": "{{ iif(is_state(\"input_boolean.[[user]]_habit_binary_[[n]]\", \"on\"), \"green\", \"red\") }}",
+            "icon": "{{ states(iif(is_state(\"input_boolean.[[user]]_habit_binary_[[n]]\", \"on\"), \"input_text.[[user]]_habit_binary_[[n]]_icon_on\", \"input_text.[[user]]_habit_binary_[[n]]_icon_off\")) }}",
+            "secondary": "{{ states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") | int + iif(states(\"input_boolean.[[user]]_habit_binary_[[n]]\") | bool(false), 1, 0) }} day{% if states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") | int(0) > 1 %}s{% endif %} streak",
+            "tap_action": {
+              "action": "none"
+            },
+            "icon_tap_action": {
+              "action": "none"
+            },
+            "hold_action": {
+              "action": "perform-action",
+              "perform_action": "browser_mod.popup",
+              "target": {},
+              "data": {
+                "dismissable": true,
+                "autoclose": false,
+                "content": {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "features": [
+                        {
+                          "type": "toggle"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:bell{% if is_state(\"automation.input_datetime_habit_[[user]]_habit_binary_[[n]]_reminder\", \"off\") %}-off{% endif %}-outline",
+                      "features_position": "inline",
+                      "entity": "automation.input_datetime_habit_[[user]]_habit_binary_[[n]]_reminder",
+                      "primary": "Daily Reminder @ {{ strptime(states('input_datetime.[[user]]_habit_binary_[[n]]_reminder_time'), '%H:%M:%S').strftime('%H:%M') }}",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "color": "{{ iif( is_state(\"automation.input_datetime_habit_[[user]]_habit_binary_[[n]]_reminder\", \"on\"), \"orange\", \"grey\") }}"
+                    },
+                    {
+                      "type": "custom:time-picker-card",
+                      "entity": "input_datetime.[[user]]_habit_binary_[[n]]_reminder_time",
+                      "hour_mode": 24,
+                      "hour_step": 1,
+                      "minute_step": 5,
+                      "layout": {
+                        "hour_mode": "double",
+                        "align_controls": "right",
+                        "name": "inside",
+                        "embedded": false,
+                        "thin": true
+                      },
+                      "hide": {
+                        "seconds": true,
+                        "name": false,
+                        "icon": false
+                      },
+                      "name": "Reminder Time",
+                      "link_values": false
+                    },
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_name",
+                          "type": "custom:text-input-row",
+                          "name": "Habit Name"
+                        },
+                        {
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_on",
+                          "type": "custom:text-input-row",
+                          "name": "Habit Icon (On)"
+                        },
+                        {
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_off",
+                          "type": "custom:text-input-row",
+                          "name": "Habit Icon (Off)"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "markdown",
+                      "content": "Get icons [here](https://pictogrammers.com/library/mdi/)",
+                      "text_only": true
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "primary": "Icon (On)",
+                          "icon": "{{ states(\"input_text.[[user]]_habit_binary_[[n]]_icon_on\") }}",
+                          "features_position": "bottom",
+                          "color": "green"
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "primary": "Icon (Off)",
+                          "icon": "{{ states(\"input_text.[[user]]_habit_binary_[[n]]_icon_off\") }}",
+                          "features_position": "bottom",
+                          "color": "red"
+                        }
+                      ]
+                    },
+                    {
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:numeric-{{ states(\"input_number.[[user]]_habit_binary_[[n]]_streak_min_days_per_week\") | int }}-box-multiple-outline",
+                      "features_position": "inline",
+                      "entity": "input_number.[[user]]_habit_binary_[[n]]_streak_min_days_per_week",
+                      "primary": "Days per week required",
+                      "secondary": "to maintain streak"
+                    },
+                    {
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Reminder interval (minutes)",
+                      "icon": "mdi:clock",
+                      "features_position": "inline",
+                      "entity": "input_number.[[user]]_habit_binary_[[n]]_repeat_reminder_interval"
+                    },
+                    {
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:counter",
+                      "features_position": "inline",
+                      "entity": "input_number.[[user]]_habit_binary_[[n]]_repeat_reminder_count",
+                      "primary": "Max. reminder count"
+                    }
+                  ]
+                }
+              }
+            }
+          }
         }
       },
       "views": [
@@ -5322,6 +5486,98 @@
                   }
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Mood",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "select-options"
+                    }
+                  ],
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:emoticon-{%- if is_state(\"input_select.will_mood_today\", \"Not Set\") -%}\nconfused\n{%- elif is_state(\"input_select.will_mood_today\", \"Very Low\") -%}\ndead\n{%- elif is_state(\"input_select.will_mood_today\", \"Low\") -%}\nsad\n{%- elif is_state(\"input_select.will_mood_today\", \"Okay\") -%}\nneutral\n{%- elif is_state(\"input_select.will_mood_today\", \"Good\") -%}\nhappy\n{%- elif is_state(\"input_select.will_mood_today\", \"Great\") -%}\ncool\n{%- else -%}\ndevil\n{%- endif -%}\n-outline",
+                  "features_position": "inline",
+                  "entity": "input_select.will_mood_today",
+                  "primary": "Today's Mood",
+                  "color": "{%- if is_state(\"input_select.will_mood_today\", \"Not Set\") -%}\n#9E9E9E\n{%- elif is_state(\"input_select.will_mood_today\", \"Very Low\") -%}\n#8B0000\n{%- elif is_state(\"input_select.will_mood_today\", \"Low\") -%}\n#FF5722\n{%- elif is_state(\"input_select.will_mood_today\", \"Okay\") -%}\n#FFC107\n{%- elif is_state(\"input_select.will_mood_today\", \"Good\") -%}\n#4CAF50\n{%- elif is_state(\"input_select.will_mood_today\", \"Great\") -%}\n#00E676\n{%- else -%}\n#9E9E9E\n{%- endif -%}",
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon_tap_action": {
+                    "action": "none"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_text.will_mood_note",
+                  "name": "Mood Notes",
+                  "secondary_info": "state"
+                },
+                {
+                  "type": "heading",
+                  "heading": "Habits",
+                  "heading_style": "subtitle",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_habits_binary_count"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_habits_countable_count"
+                    }
+                  ]
+                },
+                {
+                  "features": [
+                    {
+                      "type": "numeric-input",
+                      "style": "buttons"
+                    }
+                  ],
+                  "type": "custom:mushroom-template-card",
+                  "features_position": "inline",
+                  "entity": "input_number.will_habit_countable_1",
+                  "primary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
+                  "color": "{{ iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"red\", \"green\") }}",
+                  "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_binary_n",
+                  "variables": [
+                    {
+                      "n": 1
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_binary_n",
+                  "variables": [
+                    {
+                      "n": 2
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ]
+                }
+              ],
+              "column_span": 1
             }
           ]
         },
@@ -5351,6 +5607,77 @@
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "switch.hot_water"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lighting Modifier",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lighting_modifier",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.lighting_modifier_minimum",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Minimum"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.lighting_modifier_maximum",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Maximum"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:radiator\n{%- if not states(\"automation.switch_central_heating_off\") | bool(false) -%}\n-off\n{%- endif -%}\n",
+                  "features_position": "bottom",
+                  "entity": "automation.switch_central_heating_off",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/switch/central-heating/off",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.switch_central_heating_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn off all radiators when central heating is turned off"
                 }
               ]
             }

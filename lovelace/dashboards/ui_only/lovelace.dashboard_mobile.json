@@ -41,6 +41,170 @@
               }
             ]
           }
+        },
+        "habit_binary_n": {
+          "card": {
+            "features": [
+              {
+                "type": "toggle"
+              }
+            ],
+            "type": "custom:mushroom-template-card",
+            "features_position": "inline",
+            "entity": "input_boolean.[[user]]_habit_binary_[[n]]",
+            "primary": "{{ states(\"input_text.[[user]]_habit_binary_[[n]]_name\") }}",
+            "color": "{{ iif(is_state(\"input_boolean.[[user]]_habit_binary_[[n]]\", \"on\"), \"green\", \"red\") }}",
+            "icon": "{{ states(iif(is_state(\"input_boolean.[[user]]_habit_binary_[[n]]\", \"on\"), \"input_text.[[user]]_habit_binary_[[n]]_icon_on\", \"input_text.[[user]]_habit_binary_[[n]]_icon_off\")) }}",
+            "secondary": "{{ states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") | int + iif(states(\"input_boolean.[[user]]_habit_binary_[[n]]\") | bool(false), 1, 0) }} day{% if states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") | int(0) > 1 %}s{% endif %} streak",
+            "tap_action": {
+              "action": "none"
+            },
+            "icon_tap_action": {
+              "action": "none"
+            },
+            "hold_action": {
+              "action": "perform-action",
+              "perform_action": "browser_mod.popup",
+              "target": {},
+              "data": {
+                "dismissable": true,
+                "autoclose": false,
+                "content": {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "features": [
+                        {
+                          "type": "toggle"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:bell{% if is_state(\"automation.input_datetime_habit_[[user]]_habit_binary_[[n]]_reminder\", \"off\") %}-off{% endif %}-outline",
+                      "features_position": "inline",
+                      "entity": "automation.input_datetime_habit_[[user]]_habit_binary_[[n]]_reminder",
+                      "primary": "Daily Reminder @ {{ strptime(states('input_datetime.[[user]]_habit_binary_[[n]]_reminder_time'), '%H:%M:%S').strftime('%H:%M') }}",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "color": "{{ iif( is_state(\"automation.input_datetime_habit_[[user]]_habit_binary_[[n]]_reminder\", \"on\"), \"orange\", \"grey\") }}"
+                    },
+                    {
+                      "type": "custom:time-picker-card",
+                      "entity": "input_datetime.[[user]]_habit_binary_[[n]]_reminder_time",
+                      "hour_mode": 24,
+                      "hour_step": 1,
+                      "minute_step": 5,
+                      "layout": {
+                        "hour_mode": "double",
+                        "align_controls": "right",
+                        "name": "inside",
+                        "embedded": false,
+                        "thin": true
+                      },
+                      "hide": {
+                        "seconds": true,
+                        "name": false,
+                        "icon": false
+                      },
+                      "name": "Reminder Time",
+                      "link_values": false
+                    },
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_name",
+                          "type": "custom:text-input-row",
+                          "name": "Habit Name"
+                        },
+                        {
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_on",
+                          "type": "custom:text-input-row",
+                          "name": "Habit Icon (On)"
+                        },
+                        {
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_off",
+                          "type": "custom:text-input-row",
+                          "name": "Habit Icon (Off)"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "markdown",
+                      "content": "Get icons [here](https://pictogrammers.com/library/mdi/)",
+                      "text_only": true
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "primary": "Icon (On)",
+                          "icon": "{{ states(\"input_text.[[user]]_habit_binary_[[n]]_icon_on\") }}",
+                          "features_position": "bottom",
+                          "color": "green"
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "primary": "Icon (Off)",
+                          "icon": "{{ states(\"input_text.[[user]]_habit_binary_[[n]]_icon_off\") }}",
+                          "features_position": "bottom",
+                          "color": "red"
+                        }
+                      ]
+                    },
+                    {
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:numeric-{{ states(\"input_number.[[user]]_habit_binary_[[n]]_streak_min_days_per_week\") | int }}-box-multiple-outline",
+                      "features_position": "inline",
+                      "entity": "input_number.[[user]]_habit_binary_[[n]]_streak_min_days_per_week",
+                      "primary": "Days per week required",
+                      "secondary": "to maintain streak"
+                    },
+                    {
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Reminder interval (minutes)",
+                      "icon": "mdi:clock",
+                      "features_position": "inline",
+                      "entity": "input_number.[[user]]_habit_binary_[[n]]_repeat_reminder_interval"
+                    },
+                    {
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:counter",
+                      "features_position": "inline",
+                      "entity": "input_number.[[user]]_habit_binary_[[n]]_repeat_reminder_count",
+                      "primary": "Max. reminder count"
+                    }
+                  ]
+                }
+              }
+            }
+          }
         }
       },
       "views": [
@@ -283,6 +447,23 @@
                 {
                   "type": "custom:mushroom-light-card",
                   "entity": "light.glowstick",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "show_color_control": false,
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.garden_light",
                   "tap_action": {
                     "action": "more-info"
                   },
@@ -2614,7 +2795,18 @@
                 {
                   "type": "custom:mushroom-number-card",
                   "entity": "input_number.basement_lights_timeout",
-                  "name": "Lights Timeout",
+                  "name": "Total Vacany Timeout",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.basement_room_vacancy_light_timeout",
+                  "name": "Individual Room Timeout",
                   "tap_action": {
                     "action": "more-info"
                   },
@@ -2670,6 +2862,20 @@
                   "area": "kitchen",
                   "color": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"#4CAF50\", \"#FFC107\", \"#FF9800\", \"#F44336\"][level],\n    \"#9E9E9E\"\n  )\n}}",
                   "multiline_secondary": false
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Guide",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "markdown",
+                  "content": "# Light Switch\n\n| Action | Button | Result |\n|--------|-------|---------|\n| Single |  | Regular brightness |\n| Double |  | Max brightness |\n| Triple | Left | Dinner lighting |\n| Hold |  | Reset, re-enable automation |\n"
                 }
               ]
             }
@@ -4212,6 +4418,178 @@
             }
           ],
           "cards": []
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Guest Room",
+          "path": "guest-room",
+          "icon": "mdi:home-roof",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.spare_room_spotlights",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "name": "Spotlights"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.ball_lamp",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "show_color_control": false,
+                  "layout": "horizontal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Habits",
+          "path": "vic-habits",
+          "icon": "mdi:one-up",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_binary_n",
+                  "variables": [
+                    {
+                      "n": 1
+                    },
+                    {
+                      "user": "vic"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_binary_n",
+                  "variables": [
+                    {
+                      "n": 2
+                    },
+                    {
+                      "user": "vic"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_binary_n",
+                  "variables": [
+                    {
+                      "n": 3
+                    },
+                    {
+                      "user": "vic"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_binary_n",
+                  "variables": [
+                    {
+                      "n": 4
+                    },
+                    {
+                      "user": "vic"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": []
+            }
+          ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Dog",
+          "path": "dog",
+          "icon": "mdi:dog",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.garden_light",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "show_color_control": false,
+                  "layout": "horizontal"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.dining_area_hifi_system",
+                  "toggle_power": true,
+                  "source": "full"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
