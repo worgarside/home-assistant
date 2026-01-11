@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (229)</h3></summary>
+<details><summary><h3>Entities (230)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -67,6 +67,19 @@ File: [`automation/binary_sensor/dining_area_occupancy/state_change.yaml`](entit
 - Mode: `single`
 
 File: [`automation/binary_sensor/front_door/open.yaml`](entities/automation/binary_sensor/front_door/open.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/garden-door/open</code></summary>
+
+**Entity ID: `automation.binary_sensor_garden_door_open`**
+
+> *No description provided*
+
+- Alias: /binary-sensor/garden-door/open
+- ID: `binary_sensor_garden_door_open`
+- Mode: `single`
+
+File: [`automation/binary_sensor/garden_door/open.yaml`](entities/automation/binary_sensor/garden_door/open.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/kitchen-hallway-occupancy/on</code></summary>
