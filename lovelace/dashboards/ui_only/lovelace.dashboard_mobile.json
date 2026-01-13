@@ -4580,7 +4580,16 @@
             },
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.desmond_cam"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
