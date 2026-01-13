@@ -1123,6 +1123,16 @@
                     "columns": 6,
                     "rows": 1
                   }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.lava_lamp",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  }
                 }
               ]
             },
