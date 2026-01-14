@@ -4585,6 +4585,15 @@
                   "show_brightness_control": true,
                   "show_color_control": false,
                   "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{% set delta = (now() - states.binary_sensor.garden_door.last_changed).total_seconds() | int %}\n{% set mins = delta // 60 %}\n{% set hrs = mins // 60 %}\n{% set rem_mins = mins % 60 %}\n\n{% if hrs < 1 %}\n  {{ mins }} mins ago\n{% else %}\n  {{ hrs }} hr{{ iif(hrs > 1, 's', '') }} {{ rem_mins }} mins ago\n{% endif %}",
+                  "icon": "{% set delta = (now() - states.binary_sensor.garden_door.last_changed).total_seconds() | int %}\n{% set mins = delta // 60 %}\n{% if mins < 15 %}\n  mdi:check-circle\n{% elif mins < 45 %}\n  mdi:clock-outline\n{% else %}\n  mdi:alert-circle\n{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "binary_sensor.garden_door",
+                  "secondary": "Door last closed",
+                  "color": "{% set delta = (now() - states.binary_sensor.garden_door.last_changed).total_seconds() | int %}\n{% set mins = delta // 60 %}\n{% if mins < 15 %}\n  green\n{% elif mins < 45 %}\n  amber\n{% else %}\n  red\n{% endif %}"
                 }
               ]
             },
