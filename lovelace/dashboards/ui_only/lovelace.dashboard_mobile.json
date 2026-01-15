@@ -4592,7 +4592,7 @@
                   "icon": "{% set delta = (now() - states.binary_sensor.garden_door.last_changed).total_seconds() | int %}\n{% set mins = delta // 60 %}\n{% if mins < 15 %}\n  mdi:check-circle\n{% elif mins < 45 %}\n  mdi:clock-outline\n{% else %}\n  mdi:alert-circle\n{% endif %}",
                   "features_position": "bottom",
                   "entity": "binary_sensor.garden_door",
-                  "secondary": "Door last closed",
+                  "secondary": "Door last {{ iif(is_state(\"binary_sensor.garden_door\", \"on\"), \"open\", \"clos\") }}ed",
                   "color": "{% set delta = (now() - states.binary_sensor.garden_door.last_changed).total_seconds() | int %}\n{% set mins = delta // 60 %}\n{% if mins < 15 %}\n  green\n{% elif mins < 45 %}\n  amber\n{% else %}\n  red\n{% endif %}"
                 }
               ]
