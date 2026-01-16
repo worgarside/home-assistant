@@ -10041,7 +10041,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (83)</h3></summary>
+<details><summary><h3>Entities (84)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10504,6 +10504,29 @@ File: [`template/sensor/entity_counts/low_batteries.yaml`](entities/template/sen
 - Icon: [`mdi:lan-disconnect`](https://pictogrammers.com/library/mdi/icon/lan-disconnect/)
 
 File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/template/sensor/entity_counts/unavailable_entities.yaml)
+</details>
+
+<details><summary><strong>Garden Door | Last Changed</strong></summary>
+
+**Entity ID: `sensor.garden_door_last_changed`**
+
+- Icon:
+
+```jinja
+{%
+  set delta = (
+    states("sensor.date_time_iso") | as_datetime | as_local -
+    states.binary_sensor.garden_door.last_changed
+  ).total_seconds() | int
+%} {% set mins = delta // 60 %} {% if mins < 15 %}
+  mdi:check-circle
+{% elif mins < 45 %}
+  mdi:clock-outline
+{% else %}
+  mdi:alert-circle
+{% endif %}
+```
+File: [`template/sensor/garden_door_last_changed.yaml`](entities/template/sensor/garden_door_last_changed.yaml)
 </details>
 
 <details><summary><strong>Vic | Habits Binary Count</strong></summary>
