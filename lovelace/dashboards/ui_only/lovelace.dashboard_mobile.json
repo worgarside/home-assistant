@@ -4620,7 +4620,17 @@
                   "type": "heading",
                   "icon": "",
                   "heading": "Environment",
-                  "heading_style": "subtitle"
+                  "heading_style": "subtitle",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.desmond_s_crate_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.desmond_s_crate_climate_sensor_humidity"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mini-graph-card",
