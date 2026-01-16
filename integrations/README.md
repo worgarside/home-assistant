@@ -10513,7 +10513,12 @@ File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/templ
 - Icon:
 
 ```jinja
-{% set delta = (now() - states.binary_sensor.garden_door.last_changed).total_seconds() | int %} {% set mins = delta // 60 %} {% if mins < 15 %}
+{%
+  set delta = (
+    states("sensor.date_time_iso") | as_datetime | as_local -
+    states.binary_sensor.garden_door.last_changed
+  ).total_seconds() | int
+%} {% set mins = delta // 60 %} {% if mins < 15 %}
   mdi:check-circle
 {% elif mins < 45 %}
   mdi:clock-outline

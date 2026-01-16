@@ -4,7 +4,12 @@ name: Garden Door | Last Changed
 unique_id: garden_door_last_changed
 
 state: >-
-  {% set delta = (now() - states.binary_sensor.garden_door.last_changed).total_seconds() | int %}
+  {%
+    set delta = (
+      states("sensor.date_time_iso") | as_datetime | as_local -
+      states.binary_sensor.garden_door.last_changed
+    ).total_seconds() | int
+  %}
   {% set mins = delta // 60 %}
   {% set hrs = mins // 60 %}
   {% set rem_mins = mins % 60 %}
@@ -15,7 +20,12 @@ state: >-
   {% endif %}
 
 icon: >-
-  {% set delta = (now() - states.binary_sensor.garden_door.last_changed).total_seconds() | int %}
+  {%
+    set delta = (
+      states("sensor.date_time_iso") | as_datetime | as_local -
+      states.binary_sensor.garden_door.last_changed
+    ).total_seconds() | int
+  %}
   {% set mins = delta // 60 %}
   {% if mins < 15 %}
     mdi:check-circle
