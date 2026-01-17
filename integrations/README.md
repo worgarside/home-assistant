@@ -3347,7 +3347,10 @@ File: [`automation/switch/vic_s_electric_blanket/hard_timeout.yaml`](entities/au
 
 ```json
 {
-  "level": "{{ states('sensor.vic_s_electric_blanket_level') | int(-1) }}"
+  "level": "{{ states('sensor.vic_s_electric_blanket_level') | int(-1) }}",
+  "timeout_level_1": "{{ states('input_number.vic_s_electric_blanket_timeout_level_1') | int(60) }}",
+  "timeout_level_2": "{{ states('input_number.vic_s_electric_blanket_timeout_level_2') | int(60) }}",
+  "timeout_level_3": "{{ states('input_number.vic_s_electric_blanket_timeout_level_3') | int(60) }}"
 }
 ```
 File: [`automation/switch/vic_s_electric_blanket/timeout.yaml`](entities/automation/switch/vic_s_electric_blanket/timeout.yaml)
@@ -3379,7 +3382,10 @@ File: [`automation/switch/will_s_electric_blanket/hard_timeout.yaml`](entities/a
 
 ```json
 {
-  "level": "{{ states('sensor.will_s_electric_blanket_level') | int(-1) }}"
+  "level": "{{ states('sensor.will_s_electric_blanket_level') | int(-1) }}",
+  "timeout_level_1": "{{ states('input_number.will_s_electric_blanket_timeout_level_1') | int(60) }}",
+  "timeout_level_2": "{{ states('input_number.will_s_electric_blanket_timeout_level_2') | int(60) }}",
+  "timeout_level_3": "{{ states('input_number.will_s_electric_blanket_timeout_level_3') | int(60) }}"
 }
 ```
 File: [`automation/switch/will_s_electric_blanket/timeout.yaml`](entities/automation/switch/will_s_electric_blanket/timeout.yaml)
@@ -4569,7 +4575,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (124)</h3></summary>
+<details><summary><h3>Entities (127)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -5830,45 +5836,6 @@ File: [`input_number/timeout/basement_room_vacancy_light_timeout.yaml`](entities
 File: [`input_number/timeout/dry_box_dehumidifier_timeout.yaml`](entities/input_number/timeout/dry_box_dehumidifier_timeout.yaml)
 </details>
 
-<details><summary><strong>Electric Blanket Timeout: Level 1</strong></summary>
-
-**Entity ID: `input_number.electric_blanket_timeout_level_1`**
-
-- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
-- Max: 480
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `min`
-
-File: [`input_number/timeout/electric_blanket_timeout_level_1.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_1.yaml)
-</details>
-
-<details><summary><strong>Electric Blanket Timeout: Level 2</strong></summary>
-
-**Entity ID: `input_number.electric_blanket_timeout_level_2`**
-
-- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
-- Max: 480
-- Min: 1
-- Mode: `slider`
-- Unit Of Measurement: `min`
-
-File: [`input_number/timeout/electric_blanket_timeout_level_2.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_2.yaml)
-</details>
-
-<details><summary><strong>Electric Blanket Timeout: Level 3</strong></summary>
-
-**Entity ID: `input_number.electric_blanket_timeout_level_3`**
-
-- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
-- Max: 480
-- Min: 1
-- Mode: `slider`
-- Unit Of Measurement: `min`
-
-File: [`input_number/timeout/electric_blanket_timeout_level_3.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_3.yaml)
-</details>
-
 <details><summary><strong>Garden | Light Timeout</strong></summary>
 
 **Entity ID: `input_number.garden_light_timeout`**
@@ -5984,6 +5951,45 @@ File: [`input_number/timeout/prusa_i3_hotend_timeout.yaml`](entities/input_numbe
 File: [`input_number/timeout/prusa_i3_power_timeout.yaml`](entities/input_number/timeout/prusa_i3_power_timeout.yaml)
 </details>
 
+<details><summary><strong>Vic's Electric Blanket | Timeout: Level 1</strong></summary>
+
+**Entity ID: `input_number.vic_s_electric_blanket_timeout_level_1`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 480
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/vic_s_electric_blanket_timeout_level_1.yaml`](entities/input_number/timeout/vic_s_electric_blanket_timeout_level_1.yaml)
+</details>
+
+<details><summary><strong>Vic's Electric Blanket | Timeout: Level 2</strong></summary>
+
+**Entity ID: `input_number.vic_s_electric_blanket_timeout_level_2`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 480
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/vic_s_electric_blanket_timeout_level_2.yaml`](entities/input_number/timeout/vic_s_electric_blanket_timeout_level_2.yaml)
+</details>
+
+<details><summary><strong>Vic's Electric Blanket | Timeout: Level 3</strong></summary>
+
+**Entity ID: `input_number.vic_s_electric_blanket_timeout_level_3`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 480
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/vic_s_electric_blanket_timeout_level_3.yaml`](entities/input_number/timeout/vic_s_electric_blanket_timeout_level_3.yaml)
+</details>
+
 <details><summary><strong>Wardrobe Lights | Timeout</strong></summary>
 
 **Entity ID: `input_number.wardrobe_lights_timeout`**
@@ -5995,6 +6001,45 @@ File: [`input_number/timeout/prusa_i3_power_timeout.yaml`](entities/input_number
 - Unit Of Measurement: `s`
 
 File: [`input_number/timeout/wardrobe_lights_timeout.yaml`](entities/input_number/timeout/wardrobe_lights_timeout.yaml)
+</details>
+
+<details><summary><strong>Will's Electric Blanket | Timeout: Level 1</strong></summary>
+
+**Entity ID: `input_number.will_s_electric_blanket_timeout_level_1`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 480
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/will_s_electric_blanket_timeout_level_1.yaml`](entities/input_number/timeout/will_s_electric_blanket_timeout_level_1.yaml)
+</details>
+
+<details><summary><strong>Will's Electric Blanket | Timeout: Level 2</strong></summary>
+
+**Entity ID: `input_number.will_s_electric_blanket_timeout_level_2`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 480
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/will_s_electric_blanket_timeout_level_2.yaml`](entities/input_number/timeout/will_s_electric_blanket_timeout_level_2.yaml)
+</details>
+
+<details><summary><strong>Will's Electric Blanket | Timeout: Level 3</strong></summary>
+
+**Entity ID: `input_number.will_s_electric_blanket_timeout_level_3`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 480
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/will_s_electric_blanket_timeout_level_3.yaml`](entities/input_number/timeout/will_s_electric_blanket_timeout_level_3.yaml)
 </details>
 
 <details><summary><strong>Will's Office | Heating: External Opening Timeout</strong></summary>

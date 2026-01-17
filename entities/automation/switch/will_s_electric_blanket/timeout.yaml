@@ -15,6 +15,9 @@ trigger:
 
 variables:
   level: "{{ states('sensor.will_s_electric_blanket_level') | int(-1) }}"
+  timeout_level_1: "{{ states('input_number.will_s_electric_blanket_timeout_level_1') | int(60) }}"
+  timeout_level_2: "{{ states('input_number.will_s_electric_blanket_timeout_level_2') | int(60) }}"
+  timeout_level_3: "{{ states('input_number.will_s_electric_blanket_timeout_level_3') | int(60) }}"
 
 action:
   - choose:
@@ -26,7 +29,7 @@ action:
       - conditions: "{{ level == 1 }}"
         sequence:
           - delay:
-              minutes: "{{ states('input_number.electric_blanket_timeout_level_1') | int(60) }}"
+              minutes: "{{ timeout_level_1 }}"
           - service: switch.turn_off
             target:
               entity_id: switch.will_s_electric_blanket
@@ -34,7 +37,7 @@ action:
       - conditions: "{{ level == 2 }}"
         sequence:
           - delay:
-              minutes: "{{ states('input_number.electric_blanket_timeout_level_2') | int(60) }}"
+              minutes: "{{ timeout_level_2 }}"
           - service: switch.turn_off
             target:
               entity_id: switch.will_s_electric_blanket
@@ -42,7 +45,7 @@ action:
       - conditions: "{{ level == 3 }}"
         sequence:
           - delay:
-              minutes: "{{ states('input_number.electric_blanket_timeout_level_3') | int(60) }}"
+              minutes: "{{ timeout_level_3 }}"
           - service: switch.turn_off
             target:
               entity_id: switch.will_s_electric_blanket
