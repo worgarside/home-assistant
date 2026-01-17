@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (230)</h3></summary>
+<details><summary><h3>Entities (229)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -2002,19 +2002,6 @@ File: [`automation/notification/apollo_plt1b/ota_mode_on.yaml`](entities/automat
 - Mode: `single`
 
 File: [`automation/notification/apollo_plt1b/turn_ota_mode_off.yaml`](entities/automation/notification/apollo_plt1b/turn_ota_mode_off.yaml)
-</details>
-
-<details><summary><code>/notification/heating-invalid-state</code></summary>
-
-**Entity ID: `automation.notification_heating_invalid_state`**
-
-> Notify when heating is on but shouldn't be (e.g. SwitchBot failure, low battery)
-
-- Alias: /notification/heating-invalid-state
-- ID: `notification_heating_invalid_state`
-- Mode: `single`
-
-File: [`automation/notification/heating_invalid_state.yaml`](entities/automation/notification/heating_invalid_state.yaml)
 </details>
 
 <details><summary><code>/notification/prusa-i3/print-completed</code></summary>
