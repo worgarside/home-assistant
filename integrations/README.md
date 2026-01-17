@@ -3837,7 +3837,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (50)</h3></summary>
+<details><summary><h3>Entities (51)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -4251,6 +4251,15 @@ File: [`input_boolean/habit/will_habit_binary_9.yaml`](entities/input_boolean/ha
 - Icon: [`mdi:dumbbell`](https://pictogrammers.com/library/mdi/icon/dumbbell/)
 
 File: [`input_boolean/lounge_lights_exercise_mode.yaml`](entities/input_boolean/lounge_lights_exercise_mode.yaml)
+</details>
+
+<details><summary><strong>Lounge | Lights: TV Aware</strong></summary>
+
+**Entity ID: `input_boolean.lounge_lights_tv_aware`**
+
+- Icon: [`mdi:television-ambient-light`](https://pictogrammers.com/library/mdi/icon/television-ambient-light/)
+
+File: [`input_boolean/lounge_lights_tv_aware.yaml`](entities/input_boolean/lounge_lights_tv_aware.yaml)
 </details>
 
 <details><summary><strong>Mini CRT Fan</strong></summary>
