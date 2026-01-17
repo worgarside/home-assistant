@@ -4569,7 +4569,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (127)</h3></summary>
+<details><summary><h3>Entities (124)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -4664,45 +4664,6 @@ File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml
 - Unit Of Measurement: %
 
 File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/dry_box/dry_box_max_humidity.yaml)
-</details>
-
-<details><summary><strong>Electric Blanket Timeout: Level 1</strong></summary>
-
-**Entity ID: `input_number.electric_blanket_timeout_level_1`**
-
-- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
-- Max: 480
-- Min: 1
-- Mode: `box`
-- Unit Of Measurement: `min`
-
-File: [`input_number/electric_blanket_timeout_level_1.yaml`](entities/input_number/electric_blanket_timeout_level_1.yaml)
-</details>
-
-<details><summary><strong>Electric Blanket Timeout: Level 2</strong></summary>
-
-**Entity ID: `input_number.electric_blanket_timeout_level_2`**
-
-- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
-- Max: 480
-- Min: 1
-- Mode: `slider`
-- Unit Of Measurement: `min`
-
-File: [`input_number/electric_blanket_timeout_level_2.yaml`](entities/input_number/electric_blanket_timeout_level_2.yaml)
-</details>
-
-<details><summary><strong>Electric Blanket Timeout: Level 3</strong></summary>
-
-**Entity ID: `input_number.electric_blanket_timeout_level_3`**
-
-- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
-- Max: 480
-- Min: 1
-- Mode: `slider`
-- Unit Of Measurement: `min`
-
-File: [`input_number/electric_blanket_timeout_level_3.yaml`](entities/input_number/electric_blanket_timeout_level_3.yaml)
 </details>
 
 <details><summary><strong>Vic | Habit Binary 10: Repeat Reminder Count</strong></summary>
@@ -5873,6 +5834,7 @@ File: [`input_number/timeout/dry_box_dehumidifier_timeout.yaml`](entities/input_
 
 **Entity ID: `input_number.electric_blanket_timeout_level_1`**
 
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
 - Max: 480
 - Min: 1
 - Mode: `box`
@@ -5885,9 +5847,10 @@ File: [`input_number/timeout/electric_blanket_timeout_level_1.yaml`](entities/in
 
 **Entity ID: `input_number.electric_blanket_timeout_level_2`**
 
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
 - Max: 480
 - Min: 1
-- Mode: `box`
+- Mode: `slider`
 - Unit Of Measurement: `min`
 
 File: [`input_number/timeout/electric_blanket_timeout_level_2.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_2.yaml)
@@ -5897,9 +5860,10 @@ File: [`input_number/timeout/electric_blanket_timeout_level_2.yaml`](entities/in
 
 **Entity ID: `input_number.electric_blanket_timeout_level_3`**
 
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
 - Max: 480
 - Min: 1
-- Mode: `box`
+- Mode: `slider`
 - Unit Of Measurement: `min`
 
 File: [`input_number/timeout/electric_blanket_timeout_level_3.yaml`](entities/input_number/timeout/electric_blanket_timeout_level_3.yaml)
