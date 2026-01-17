@@ -29,11 +29,11 @@ action:
         then:
           - if: >
               {{
-                is_state('remote.lounge_tv', 'on') or
-                is_state('remote.lounge_chromecast', 'on') or
-                is_state('media_player.lounge_chromecast', 'on') or
-                is_state('media_player.lounge_tv_2', 'on') or
-                is_state('media_player.lounge_chromecast_remote', 'on')
+                is_state("input_boolean.lounge_lights_tv_aware", "on") and (
+                  is_state('remote.lounge_streamer', 'on') or
+                  is_state('media_player.lounge_streamer', 'on') or
+                  is_state('media_player.lounge_streamer_2', 'on')
+                )
               }}
 
             then:
