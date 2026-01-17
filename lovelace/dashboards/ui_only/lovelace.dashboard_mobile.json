@@ -1446,7 +1446,8 @@
                     "columns": 12,
                     "rows": 1
                   },
-                  "secondary": "Automatic light turn on"
+                  "secondary": "Automatic light turn on",
+                  "color": "{{ iif(is_state(\"input_boolean.lounge_lights_tv_aware\", \"on\"), \"blue\", \"grey\") }}"
                 }
               ]
             }
