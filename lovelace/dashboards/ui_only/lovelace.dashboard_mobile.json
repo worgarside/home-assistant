@@ -2095,21 +2095,6 @@
                   }
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "input_number.will_s_electric_blanket_timeout_level_3",
-                  "name": "Lvl 3",
-                  "secondary_info": "name",
-                  "primary_info": "state",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "layout": "horizontal",
-                  "grid_options": {
-                    "columns": 4,
-                    "rows": 1
-                  }
-                },
-                {
                   "type": "horizontal-stack",
                   "cards": [
                     {
