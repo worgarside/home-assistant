@@ -1,0 +1,24 @@
+---
+alias: /remote/bedroom-remote/arrow-right-click
+
+id: remote_bedroom_remote_arrow_right_click
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 20284ad1e9c6f6ca6b3d3651718dc5d0
+    type: action
+    subtype: arrow_right_click
+
+action:
+  - service: fan.toggle
+    target:
+      entity_id: fan.evaporative_cooler
+
+  - alias: Debounce
+    delay:
+      seconds: 1
