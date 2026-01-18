@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (230)</h3></summary>
+<details><summary><h3>Entities (229)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1612,19 +1612,6 @@ File: [`automation/light/bedroom_shapes/bon_appetit.yaml`](entities/automation/l
 - Mode: `single`
 
 File: [`automation/light/garden_light/timeout.yaml`](entities/automation/light/garden_light/timeout.yaml)
-</details>
-
-<details><summary><code>/light/lounge-lights/stop-tv-reflections</code></summary>
-
-**Entity ID: `automation.light_lounge_lights_stop_tv_reflections`**
-
-> *No description provided*
-
-- Alias: /light/lounge-lights/stop-tv-reflections
-- ID: `light_lounge_lights_stop_tv_reflections`
-- Mode: `single`
-
-File: [`automation/light/lounge_lights/stop_tv_reflections.yaml`](entities/automation/light/lounge_lights/stop_tv_reflections.yaml)
 </details>
 
 <details><summary><code>/light/lower-hallway-lights/timeout</code></summary>
