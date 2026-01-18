@@ -5984,7 +5984,7 @@ File: [`input_number/timeout/vic_s_electric_blanket_timeout_level_1.yaml`](entit
 - Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
 - Max: 480
 - Min: 1
-- Mode: `slider`
+- Mode: `box`
 - Unit Of Measurement: `min`
 
 File: [`input_number/timeout/vic_s_electric_blanket_timeout_level_2.yaml`](entities/input_number/timeout/vic_s_electric_blanket_timeout_level_2.yaml)
@@ -5997,7 +5997,7 @@ File: [`input_number/timeout/vic_s_electric_blanket_timeout_level_2.yaml`](entit
 - Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
 - Max: 480
 - Min: 1
-- Mode: `slider`
+- Mode: `box`
 - Unit Of Measurement: `min`
 
 File: [`input_number/timeout/vic_s_electric_blanket_timeout_level_3.yaml`](entities/input_number/timeout/vic_s_electric_blanket_timeout_level_3.yaml)
@@ -6036,7 +6036,7 @@ File: [`input_number/timeout/will_s_electric_blanket_timeout_level_1.yaml`](enti
 - Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
 - Max: 480
 - Min: 1
-- Mode: `slider`
+- Mode: `box`
 - Unit Of Measurement: `min`
 
 File: [`input_number/timeout/will_s_electric_blanket_timeout_level_2.yaml`](entities/input_number/timeout/will_s_electric_blanket_timeout_level_2.yaml)
@@ -6049,7 +6049,7 @@ File: [`input_number/timeout/will_s_electric_blanket_timeout_level_2.yaml`](enti
 - Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
 - Max: 480
 - Min: 1
-- Mode: `slider`
+- Mode: `box`
 - Unit Of Measurement: `min`
 
 File: [`input_number/timeout/will_s_electric_blanket_timeout_level_3.yaml`](entities/input_number/timeout/will_s_electric_blanket_timeout_level_3.yaml)
