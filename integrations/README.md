@@ -10221,7 +10221,7 @@ File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/templat
 
 <details><summary><strong>Work MacBook Pro Docked</strong></summary>
 
-**Entity ID: `binary_sensor.work_macbook_pro_docked`**
+**Entity ID: `binary_sensor.wills_work_macbook_pro_docked`**
 
 - Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
 

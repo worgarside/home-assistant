@@ -195,7 +195,7 @@ sequence:
       or:
         - alias: Work MBP is active
           condition: state
-          entity_id: binary_sensor.work_macbook_pro_active
+          entity_id: binary_sensor.wills_work_macbook_pro_active
           state: "on"
 
         - alias: Will is at the office
@@ -216,7 +216,7 @@ sequence:
         #   - alias: Will not on A/L - TODO
 
     then:
-      - service: notify.mobile_app_work_macbook_pro
+      - service: notify.mobile_app_wills_work_macbook_pro
         data:
           message: "{{ message }}"
           title: "{{ notif_title }}"
