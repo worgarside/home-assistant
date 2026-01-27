@@ -28,13 +28,13 @@ condition: >-
       trigger.id == "actual-timeout" and
       "FiiO USB DAC-E10" not in [
         states("sensor.wills_macbook_pro_active_audio_output"),
-        states("sensor.work_macbook_pro_active_audio_output"),
+        states("sensor.wills_work_macbook_pro_active_audio_output"),
       ]
     ) or (
       trigger.id == "audio-options-changed" and
       "FiiO USB DAC-E10" not in (
         (state_attr('sensor.wills_macbook_pro_active_audio_output', 'All Audio Output') or []) +
-        (state_attr("sensor.work_macbook_pro_active_audio_output", 'All Audio Output') or [])
+        (state_attr("sensor.wills_work_macbook_pro_active_audio_output", 'All Audio Output') or [])
       )
     )
   }}
