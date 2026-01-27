@@ -10225,7 +10225,7 @@ File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/templat
 
 - Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
 
-File: [`template/binary_sensor/wills_work_macbook_pro_docked.yaml`](entities/template/binary_sensor/wills_work_macbook_pro_docked.yaml)
+File: [`template/binary_sensor/work_macbook_pro_docked.yaml`](entities/template/binary_sensor/work_macbook_pro_docked.yaml)
 </details>
 
 <details><summary><strong>Prusa i3 Thumbnail</strong></summary>
