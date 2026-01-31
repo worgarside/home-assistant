@@ -10206,13 +10206,13 @@ File: [`template/binary_sensor/weekend.yaml`](entities/template/binary_sensor/we
 File: [`template/binary_sensor/will_s_macbook_pro_docked.yaml`](entities/template/binary_sensor/will_s_macbook_pro_docked.yaml)
 </details>
 
-<details><summary><strong>Work MacBook Pro Docked</strong></summary>
+<details><summary><strong>Will's Work MacBook Pro Docked</strong></summary>
 
-**Entity ID: `binary_sensor.work_macbook_pro_docked`**
+**Entity ID: `binary_sensor.will_s_work_macbook_pro_docked`**
 
 - Icon: [`mdi:monitor-share`](https://pictogrammers.com/library/mdi/icon/monitor-share/)
 
-File: [`template/binary_sensor/work_macbook_pro_docked.yaml`](entities/template/binary_sensor/work_macbook_pro_docked.yaml)
+File: [`template/binary_sensor/will_s_work_macbook_pro_docked.yaml`](entities/template/binary_sensor/will_s_work_macbook_pro_docked.yaml)
 </details>
 
 <details><summary><strong>Prusa i3 Thumbnail</strong></summary>
