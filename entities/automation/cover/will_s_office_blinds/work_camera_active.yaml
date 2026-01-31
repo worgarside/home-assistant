@@ -17,7 +17,7 @@ trigger:
     value_template: >-
       {{
         is_state(
-          "sensor.work_macbook_pro_active_camera",
+          "sensor.wills_work_macbook_pro_active_camera",
           states("input_text.will_s_office_webcam_name")
         )
       }}
@@ -44,7 +44,7 @@ action:
             value_template: >-
               {{
                 not is_state(
-                  "sensor.work_macbook_pro_active_camera",
+                  "sensor.wills_work_macbook_pro_active_camera",
                   states("input_text.will_s_office_webcam_name")
                 )
               }}
