@@ -4632,7 +4632,60 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "New section"
+                  "icon": "",
+                  "heading": "Environment",
+                  "heading_style": "subtitle",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.desmond_s_crate_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.desmond_s_crate_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Temperature",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "animate": true,
+                  "line_width": 1,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.spare_room_climate_sensor_temperature",
+                      "color": "#e7c8e8"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.spare_room_climate_sensor_humidity",
+                      "color": "#5bacba"
+                    }
+                  ]
                 }
               ]
             }
