@@ -1,0 +1,79 @@
+---
+alias: /remote/guest-room-remote/arrow-left-click
+
+id: remote_guest_room_remote_arrow_left_click
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 26c898463556d64b10492b4bca9cb5ea
+    type: action
+    subtype: arrow_left_click
+
+action:
+  # Cycle backward: ball lamp only -> spots only -> both on -> ball lamp only
+  - choose:
+      # Both off (initial state) -> turn on spots only
+      - conditions:
+          - condition: state
+            entity_id: light.ball_lamp
+            state: "off"
+          - condition: state
+            entity_id: light.spare_room_spotlights
+            state: "off"
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.spare_room_spotlights
+            data:
+              brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+      # Spots on, ball lamp off -> turn on both
+      - conditions:
+          - condition: state
+            entity_id: light.ball_lamp
+            state: "off"
+          - condition: state
+            entity_id: light.spare_room_spotlights
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.ball_lamp
+            data:
+              brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+      # Both on -> turn off spots (ball lamp only)
+      - conditions:
+          - condition: state
+            entity_id: light.ball_lamp
+            state: "on"
+          - condition: state
+            entity_id: light.spare_room_spotlights
+            state: "on"
+        sequence:
+          - service: light.turn_off
+            target:
+              entity_id: light.spare_room_spotlights
+
+      # Ball lamp on, spots off -> turn on spots and turn off ball lamp (spots only)
+      - conditions:
+          - condition: state
+            entity_id: light.ball_lamp
+            state: "on"
+          - condition: state
+            entity_id: light.spare_room_spotlights
+            state: "off"
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.spare_room_spotlights
+            data:
+              brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+          - service: light.turn_off
+            target:
+              entity_id: light.ball_lamp
