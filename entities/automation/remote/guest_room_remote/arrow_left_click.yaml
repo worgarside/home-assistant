@@ -15,9 +15,9 @@ trigger:
     subtype: arrow_left_click
 
 action:
-  # Cycle backward: off -> spots only -> both on -> ball lamp only -> off
+  # Cycle backward: ball lamp only -> spots only -> both on -> ball lamp only
   - choose:
-      # Both off -> turn on spots only
+      # Both off (initial state) -> turn on spots only
       - conditions:
           - condition: state
             entity_id: light.ball_lamp
@@ -60,7 +60,7 @@ action:
             target:
               entity_id: light.spare_room_spotlights
 
-      # Ball lamp on, spots off -> turn off ball lamp (both off)
+      # Ball lamp on, spots off -> turn on spots and turn off ball lamp (spots only)
       - conditions:
           - condition: state
             entity_id: light.ball_lamp
@@ -69,6 +69,11 @@ action:
             entity_id: light.spare_room_spotlights
             state: "off"
         sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.spare_room_spotlights
+            data:
+              brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
           - service: light.turn_off
             target:
               entity_id: light.ball_lamp
