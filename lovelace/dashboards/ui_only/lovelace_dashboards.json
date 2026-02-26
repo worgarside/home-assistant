@@ -48,6 +48,15 @@
         "require_admin": false,
         "mode": "storage",
         "url_path": "dashboard-mobile"
+      },
+      {
+        "id": "lovelace",
+        "icon": "mdi:view-dashboard",
+        "title": "Overview",
+        "url_path": "lovelace",
+        "require_admin": false,
+        "mode": "storage",
+        "show_in_sidebar": true
       }
     ]
   }

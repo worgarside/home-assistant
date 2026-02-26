@@ -1133,6 +1133,56 @@
                   "double_tap_action": {
                     "action": "toggle"
                   }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.globe",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.backlit_picture",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
                 }
               ]
             },
@@ -4576,6 +4626,91 @@
                   "show_brightness_control": true,
                   "show_color_control": false,
                   "layout": "horizontal"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.spare_room_fan",
+                  "show_percentage_control": false,
+                  "collapsible_controls": true,
+                  "layout": "horizontal",
+                  "icon_animation": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Environment",
+                  "heading_style": "subtitle",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.spare_room_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.spare_room_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Temperature",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "animate": true,
+                  "line_width": 1,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.spare_room_climate_sensor_temperature",
+                      "color": "#e7c8e8"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Humidity",
+                  "show": {
+                    "state": false,
+                    "icon": true,
+                    "line": false,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.spare_room_climate_sensor_humidity",
+                      "color": "#5bacba"
+                    }
+                  ]
                 }
               ]
             }
