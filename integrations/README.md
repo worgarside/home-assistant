@@ -6295,7 +6295,7 @@ File: [`input_select/will_mood_today.yaml`](entities/input_select/will_mood_toda
 
 ## Input Text
 
-<details><summary><h3>Entities (88)</h3></summary>
+<details><summary><h3>Entities (89)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -7094,6 +7094,15 @@ File: [`input_text/will_mood_note.yaml`](entities/input_text/will_mood_note.yaml
 - Icon: [`mdi:camera`](https://pictogrammers.com/library/mdi/icon/camera/)
 
 File: [`input_text/will_s_office_webcam_name.yaml`](entities/input_text/will_s_office_webcam_name.yaml)
+</details>
+
+<details><summary><strong>Will's Workplace Zone Name</strong></summary>
+
+**Entity ID: `input_text.will_s_workplace_zone_name`**
+
+- Icon: [`mdi:office-building-marker`](https://pictogrammers.com/library/mdi/icon/office-building-marker/)
+
+File: [`input_text/will_s_workplace_zone_name.yaml`](entities/input_text/will_s_workplace_zone_name.yaml)
 </details>
 
 </details>
@@ -10137,7 +10146,7 @@ File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml
 
 ## Template
 
-<details><summary><h3>Entities (84)</h3></summary>
+<details><summary><h3>Entities (85)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10286,6 +10295,15 @@ File: [`template/binary_sensor/weekday.yaml`](entities/template/binary_sensor/we
 - Icon: [`mdi:calendar-weekend`](https://pictogrammers.com/library/mdi/icon/calendar-weekend/)
 
 File: [`template/binary_sensor/weekend.yaml`](entities/template/binary_sensor/weekend.yaml)
+</details>
+
+<details><summary><strong>Will at Work</strong></summary>
+
+**Entity ID: `binary_sensor.will_at_work`**
+
+- Icon: [`mdi:badge-account`](https://pictogrammers.com/library/mdi/icon/badge-account/)
+
+File: [`template/binary_sensor/will_at_work.yaml`](entities/template/binary_sensor/will_at_work.yaml)
 </details>
 
 <details><summary><strong>Will's MacBook Pro Docked</strong></summary>
