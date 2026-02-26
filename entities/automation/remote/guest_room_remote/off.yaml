@@ -1,0 +1,20 @@
+---
+alias: /remote/guest-room-remote/off
+
+id: remote_guest_room_remote_off
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 26c898463556d64b10492b4bca9cb5ea
+    type: action
+    subtype: "off"
+
+action:
+  - service: light.turn_off
+    target:
+      area_id: guest_room

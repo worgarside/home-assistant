@@ -1,0 +1,20 @@
+---
+alias: /remote/guest-room-remote/arrow-left-hold
+
+id: remote_guest_room_remote_arrow_left_hold
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 26c898463556d64b10492b4bca9cb5ea
+    type: action
+    subtype: arrow_left_hold
+
+action:
+  - service: fan.toggle
+    target:
+      entity_id: fan.spare_room_fan

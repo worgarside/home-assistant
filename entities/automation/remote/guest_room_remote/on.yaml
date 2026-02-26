@@ -1,0 +1,22 @@
+---
+alias: /remote/guest-room-remote/on
+
+id: remote_guest_room_remote_on
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - domain: mqtt
+    platform: device
+    device_id: 26c898463556d64b10492b4bca9cb5ea
+    type: action
+    subtype: "on"
+
+action:
+  - service: light.turn_on
+    target:
+      area_id: guest_room
+    data:
+      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
