@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (229)</h3></summary>
+<details><summary><h3>Entities (236)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -2450,6 +2450,97 @@ File: [`automation/remote/garden_light_remote/off.yaml`](entities/automation/rem
 - Mode: `single`
 
 File: [`automation/remote/garden_light_remote/on.yaml`](entities/automation/remote/garden_light_remote/on.yaml)
+</details>
+
+<details><summary><code>/remote/guest-room-remote/arrow-left-click</code></summary>
+
+**Entity ID: `automation.remote_guest_room_remote_arrow_left_click`**
+
+> *No description provided*
+
+- Alias: /remote/guest-room-remote/arrow-left-click
+- ID: `remote_guest_room_remote_arrow_left_click`
+- Mode: `single`
+
+File: [`automation/remote/guest_room_remote/arrow_left_click.yaml`](entities/automation/remote/guest_room_remote/arrow_left_click.yaml)
+</details>
+
+<details><summary><code>/remote/guest-room-remote/arrow-left-hold</code></summary>
+
+**Entity ID: `automation.remote_guest_room_remote_arrow_left_hold`**
+
+> *No description provided*
+
+- Alias: /remote/guest-room-remote/arrow-left-hold
+- ID: `remote_guest_room_remote_arrow_left_hold`
+- Mode: `single`
+
+File: [`automation/remote/guest_room_remote/arrow_left_hold.yaml`](entities/automation/remote/guest_room_remote/arrow_left_hold.yaml)
+</details>
+
+<details><summary><code>/remote/guest-room-remote/arrow-right-click</code></summary>
+
+**Entity ID: `automation.remote_guest_room_remote_arrow_right_click`**
+
+> *No description provided*
+
+- Alias: /remote/guest-room-remote/arrow-right-click
+- ID: `remote_guest_room_remote_arrow_right_click`
+- Mode: `single`
+
+File: [`automation/remote/guest_room_remote/arrow_right_click.yaml`](entities/automation/remote/guest_room_remote/arrow_right_click.yaml)
+</details>
+
+<details><summary><code>/remote/guest-room-remote/brightness-move-down</code></summary>
+
+**Entity ID: `automation.remote_guest_room_remote_brightness_move_down`**
+
+> *No description provided*
+
+- Alias: /remote/guest-room-remote/brightness-move-down
+- ID: `remote_guest_room_remote_brightness_move_down`
+- Mode: `single`
+
+File: [`automation/remote/guest_room_remote/brightness_move_down.yaml`](entities/automation/remote/guest_room_remote/brightness_move_down.yaml)
+</details>
+
+<details><summary><code>/remote/guest-room-remote/brightness-move-up</code></summary>
+
+**Entity ID: `automation.remote_guest_room_remote_brightness_move_up`**
+
+> *No description provided*
+
+- Alias: /remote/guest-room-remote/brightness-move-up
+- ID: `remote_guest_room_remote_brightness_move_up`
+- Mode: `single`
+
+File: [`automation/remote/guest_room_remote/brightness_move_up.yaml`](entities/automation/remote/guest_room_remote/brightness_move_up.yaml)
+</details>
+
+<details><summary><code>/remote/guest-room-remote/off</code></summary>
+
+**Entity ID: `automation.remote_guest_room_remote_off`**
+
+> *No description provided*
+
+- Alias: /remote/guest-room-remote/off
+- ID: `remote_guest_room_remote_off`
+- Mode: `single`
+
+File: [`automation/remote/guest_room_remote/off.yaml`](entities/automation/remote/guest_room_remote/off.yaml)
+</details>
+
+<details><summary><code>/remote/guest-room-remote/on</code></summary>
+
+**Entity ID: `automation.remote_guest_room_remote_on`**
+
+> *No description provided*
+
+- Alias: /remote/guest-room-remote/on
+- ID: `remote_guest_room_remote_on`
+- Mode: `single`
+
+File: [`automation/remote/guest_room_remote/on.yaml`](entities/automation/remote/guest_room_remote/on.yaml)
 </details>
 
 <details><summary><code>/remote/lounge-hue-remote/down-press</code></summary>
