@@ -1,0 +1,13 @@
+---
+name: Will at Work
+
+unique_id: will_at_work
+
+icon: mdi:badge-account
+
+state: >-
+  {{
+    states('person.will') | lower
+    ==
+    states('input_text.will_s_workplace_zone_name') | lower
+  }}

@@ -9,8 +9,9 @@ max_exceeded: silent
 
 trigger:
   platform: state
-  entity_id: person.will
-  from: Will Work
+  entity_id: binary_sensor.will_at_work
+  from: "on"
+  to: "off"
   for:
     minutes: 2
 
