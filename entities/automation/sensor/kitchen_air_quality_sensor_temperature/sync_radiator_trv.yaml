@@ -19,7 +19,7 @@ action:
   - service: number.set_value
     target:
       entity_id:
-        - number.kitchen_radiator_external_temperature_input
+        # - number.kitchen_radiator_external_temperature_input
         - number.dining_area_radiator_external_temperature_input
     data:
       value: "{{ states('sensor.kitchen_air_quality_sensor_temperature') | float }}"

@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (236)</h3></summary>
+<details><summary><h3>Entities (237)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -3120,6 +3120,19 @@ File: [`automation/sensor/kitchen_air_quality_sensor_temperature/sync_radiator_t
 }
 ```
 File: [`automation/sensor/lighting_modifier/state.yaml`](entities/automation/sensor/lighting_modifier/state.yaml)
+</details>
+
+<details><summary><code>/sensor/spare-room-climate-sensor-temperature/sync-radiator-trv</code></summary>
+
+**Entity ID: `automation.sensor_spare_room_climate_sensor_temperature_sync_radiator_trv`**
+
+> Sync radiator TRV external temperature input when spare room climate sensor temperature updates
+
+- Alias: /sensor/spare-room-climate-sensor-temperature/sync-radiator-trv
+- ID: `sensor_spare_room_climate_sensor_temperature_sync_radiator_trv`
+- Mode: `single`
+
+File: [`automation/sensor/spare_room_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/spare_room_climate_sensor_temperature/sync_radiator_trv.yaml)
 </details>
 
 <details><summary><code>/sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear</code></summary>
