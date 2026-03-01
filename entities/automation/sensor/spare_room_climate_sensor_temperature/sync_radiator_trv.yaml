@@ -1,0 +1,23 @@
+---
+alias: /sensor/spare-room-climate-sensor-temperature/sync-radiator-trv
+
+id: sensor_spare_room_climate_sensor_temperature_sync_radiator_trv
+
+description: >-
+  Sync radiator TRV external temperature input when spare room climate sensor temperature updates
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.spare_room_climate_sensor_temperature
+    not_to:
+      - "unavailable"
+      - "unknown"
+
+action:
+  - service: number.set_value
+    target:
+      entity_id: number.spare_room_radiator_external_temperature_input
+    data:
+      value: "{{ states('sensor.spare_room_climate_sensor_temperature') | float }}"
