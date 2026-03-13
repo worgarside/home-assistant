@@ -4914,6 +4914,25 @@
                 },
                 {
                   "type": "custom:mushroom-climate-card",
+                  "entity": "climate.kitchen_radiator",
+                  "name": "Kitchen Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
                   "entity": "climate.dining_area_radiator",
                   "name": "Dining Area Radiator",
                   "primary_info": "state",
@@ -4932,10 +4951,23 @@
                   "icon": "mdi:radiator"
                 },
                 {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.kitchen_extractor_vent",
-                  "name": "Extractor Vent",
-                  "icon_animation": true
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.small_kitchen_radiator",
+                  "name": "Small Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
                 }
               ]
             },
