@@ -2447,6 +2447,25 @@
                   "icon": "mdi:radiator"
                 },
                 {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.small_kitchen_radiator",
+                  "name": "Small Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
                   "type": "custom:mushroom-fan-card",
                   "entity": "fan.kitchen_extractor_vent",
                   "name": "Extractor Vent",
@@ -4585,6 +4604,69 @@
               "cards": [
                 {
                   "type": "heading",
+                  "heading": "Spare Room",
+                  "heading_style": "title",
+                  "icon": "",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.spare_room_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.spare_room_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.spare_room_radiator",
+                  "name": "Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.spare_room_fan",
+                  "show_percentage_control": false,
+                  "collapsible_controls": true,
+                  "layout": "horizontal",
+                  "icon_animation": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
                   "icon": "",
                   "heading": "Lights",
                   "heading_style": "subtitle"
@@ -4626,29 +4708,6 @@
                   "show_brightness_control": true,
                   "show_color_control": false,
                   "layout": "horizontal"
-                },
-                {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.spare_room_fan",
-                  "show_percentage_control": false,
-                  "collapsible_controls": true,
-                  "layout": "horizontal",
-                  "icon_animation": true,
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "secondary_info": "name",
-                  "primary_info": "state",
-                  "grid_options": {
-                    "columns": 6,
-                    "rows": 1
-                  }
                 }
               ]
             },
