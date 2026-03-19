@@ -1269,6 +1269,57 @@
                       "color": "#f62727"
                     }
                   ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.vic_s_office_fan_pm_2_5",
+                      "name": "Air Quality",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.vic_s_office_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "gray"
+                    }
+                  ],
+                  "hours_to_show": 6,
+                  "hour24": true,
+                  "points_per_hour": 30,
+                  "line_width": 2,
+                  "min_bound_range": 10,
+                  "lower_bound": "~0",
+                  "upper_bound": "~550",
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100,
+                  "show": {
+                    "fill": true,
+                    "legend": true,
+                    "labels": true,
+                    "icon": false
+                  },
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#28d20d"
+                    },
+                    {
+                      "value": 120,
+                      "color": "#a0ac00"
+                    },
+                    {
+                      "value": 350,
+                      "color": "#da7800"
+                    },
+                    {
+                      "value": 550,
+                      "color": "#f62727"
+                    }
+                  ]
                 }
               ]
             },
@@ -1603,22 +1654,6 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "iframe",
-                  "url": "https://grafana.worgarsi.de/d-solo/defxc2pd3s54wd/proxmox-ve?orgId=1&timezone=browser&panelId=1&__feature.dashboardSceneSolo",
-                  "aspect_ratio": "100%"
-                },
-                {
-                  "type": "iframe",
-                  "url": "https://grafana.worgarsi.de/d-solo/defxc2pd3s54wd/proxmox-ve?orgId=1&timezone=browser&panelId=2&__feature.dashboardSceneSolo",
-                  "aspect_ratio": "100%"
-                }
-              ],
-              "column_span": 2
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.qbittorrent_active_torrents",
                   "icon": "si:qbittorrent",
@@ -1712,6 +1747,16 @@
                   "secondary_info": "name",
                   "icon_color": "teal",
                   "name": "Pending"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_tank_disk_used_percentage",
+                  "name": "Tank"
                 }
               ]
             }
@@ -4906,10 +4951,23 @@
                   "icon": "mdi:radiator"
                 },
                 {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.kitchen_extractor_vent",
-                  "name": "Extractor Vent",
-                  "icon_animation": true
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.small_kitchen_radiator",
+                  "name": "Small Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
                 }
               ]
             },
@@ -5010,6 +5068,46 @@
                       "entity": "sensor.lounge_climate_sensor_humidity"
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Spare Room",
+                  "heading_style": "title",
+                  "icon": "hue:room-computer",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.spare_room_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.spare_room_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.spare_room_radiator",
+                  "name": "Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
                 }
               ]
             },
