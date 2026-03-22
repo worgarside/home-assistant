@@ -929,6 +929,10 @@
                             "name": "Bedroom"
                           },
                           {
+                            "entity": "sensor.desmond_s_crate_climate_sensor_temperature",
+                            "name": "Desmond's Crate"
+                          },
+                          {
                             "entity": "sensor.kitchen_air_quality_sensor_temperature",
                             "name": "Kitchen"
                           },
@@ -995,6 +999,10 @@
                           {
                             "entity": "sensor.bedroom_climate_sensor_humidity",
                             "name": "Bedroom"
+                          },
+                          {
+                            "entity": "sensor.desmond_s_crate_climate_sensor_humidity",
+                            "name": "Desmond's Crate"
                           },
                           {
                             "entity": "sensor.kitchen_air_quality_sensor_humidity",
