@@ -857,7 +857,7 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 
 ```json
 {
-  "tv_is_on": "{{ states('remote.lounge_tv') | bool(false) }}"
+  "tv_is_on": "{{ states('remote.lounge_streamer') | bool(false) }}"
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
