@@ -1,11 +1,13 @@
 ---
-friendly_name: Hot Water
+name: Hot Water
 
 unique_id: hot_water
 
-value_template: "{{ is_state('binary_sensor.boiler_hot_water_led_sensor', 'on') }}"
+default_entity_id: switch.hot_water
 
-icon_template: >-
+state: "{{ is_state('binary_sensor.boiler_hot_water_led_sensor', 'on') }}"
+
+icon: >-
   {% if is_state('binary_sensor.boiler_hot_water_led_sensor', 'on') %}
     mdi:water-boiler
   {% else %}
