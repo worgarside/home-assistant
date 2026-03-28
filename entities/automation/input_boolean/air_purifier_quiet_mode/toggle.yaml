@@ -9,14 +9,14 @@ max_exceeded: silent
 
 trigger:
   - platform: state
-    entity_id: remote.lounge_tv
-    id: lounge_tv_state
+    entity_id: remote.lounge_streamer
+    id: lounge_streamer_state
     to:
       - "on"
       - "off"
 
 variables:
-  tv_is_on: "{{ states('remote.lounge_tv') | bool(false) }}"
+  tv_is_on: "{{ states('remote.lounge_streamer') | bool(false) }}"
 
 action:
   - service: input_boolean.turn_{{ 'on' if tv_is_on else 'off' }}
