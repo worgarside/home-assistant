@@ -1,7 +1,0 @@
----
-
-# https://www.home-assistant.io/integrations/light
-
-light:
-  - platform: template
-    lights: !include_dir_named ../entities/light

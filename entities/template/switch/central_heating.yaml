@@ -1,11 +1,13 @@
 ---
-friendly_name: Central Heating
+name: Central Heating
 
 unique_id: central_heating
 
-value_template: "{{ is_state('binary_sensor.boiler_heating_led_sensor', 'on') }}"
+default_entity_id: switch.central_heating
 
-icon_template: >-
+state: "{{ is_state('binary_sensor.boiler_heating_led_sensor', 'on') }}"
+
+icon: >-
   {% if is_state('binary_sensor.boiler_heating_led_sensor', 'on') %}
     mdi:radiator
   {% else %}
