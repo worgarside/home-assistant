@@ -66,7 +66,7 @@ fields:
 
 sequence:
   - alias: Write body to file
-    service: shell_command.write_file
+    action: shell_command.write_file
     data:
       body: "{{ body }}"
       file: gh_issue_body.b64
@@ -75,7 +75,7 @@ sequence:
   - alias: Check write file response
     if: "{{ write_file_response.returncode | int(None) != 0 }}"
     then:
-      - service: script.log_exception
+      - action: script.log_exception
         data:
           calling_entity: script.gh_issue_create
           message: |
@@ -89,7 +89,7 @@ sequence:
         error: true
 
   - alias: Decode File
-    service: shell_command.base64_decode_file
+    action: shell_command.base64_decode_file
     response_variable: decode_file_response
     data:
       file: gh_issue_body.b64
@@ -98,7 +98,7 @@ sequence:
   - alias: Check decode file response
     if: "{{ decode_file_response.returncode | int(None) != 0 }}"
     then:
-      - service: script.log_exception
+      - action: script.log_exception
         data:
           calling_entity: script.gh_issue_create
           message: |
@@ -112,7 +112,7 @@ sequence:
         error: true
 
   - alias: Switch GH CLI user to `worgarside-hass`
-    service: shell_command.gh
+    action: shell_command.gh
     data:
       command: auth switch
       args: --user worgarside-hass
@@ -126,7 +126,7 @@ sequence:
         --repo "worgarside/{{ repository | default('home-assistant') }}"
 
   - alias: Create issue
-    service: shell_command.gh
+    action: shell_command.gh
     data:
       command: issue create
       args: "{{ message_args }}"
@@ -135,7 +135,7 @@ sequence:
   - alias: Check gh issue create response
     if: "{{ gh_cli_response.returncode | int(None) != 0 }}"
     then:
-      - service: script.log_exception
+      - action: script.log_exception
         data:
           calling_entity: script.gh_issue_create
           message: |
@@ -160,7 +160,7 @@ sequence:
         - gh_issue_body.b64
         - gh_issue_body.txt
       sequence:
-        - service: shell_command.delete_file
+        - action: shell_command.delete_file
           data:
             file: "{{ repeat.item }}"
           response_variable: delete_file_response
@@ -168,7 +168,7 @@ sequence:
         - alias: Check delete file response
           if: "{{ delete_file_response.returncode | int(None) != 0 }}"
           then:
-            - service: script.log_exception
+            - action: script.log_exception
               data:
                 calling_entity: script.gh_issue_create
                 message: |
@@ -178,7 +178,7 @@ sequence:
                   {{ delete_file_response | tojson(indent=2) }}
                   ```
 
-  - service: persistent_notification.create
+  - action: persistent_notification.create
     data:
       title: "GitHub Issue #{{gh_cli_response['stdout'].split('/')[-1] }} Created"
       message: "[{{ issue_title }}]({{ gh_cli_response['stdout'] }})"

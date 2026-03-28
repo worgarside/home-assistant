@@ -15,5 +15,5 @@ trigger:
     subtype: double
 
 action:
-  - service: fan.toggle
+  - action: fan.toggle
     entity_id: fan.desk_fan

@@ -15,7 +15,7 @@ trigger:
       minutes: "{{ states('input_number.prusa_i3_bed_timeout') | int(10) }}"
 
 action:
-  - service: number.set_value
+  - action: number.set_value
     target:
       entity_id: number.prusa_i3_target_bed_temperature
     data:

@@ -17,7 +17,7 @@ trigger:
 condition: "{{ trigger.to_state.state != states('input_select.gh_cli_active_user') }}"
 
 action:
-  - service: input_select.select_option
+  - action: input_select.select_option
     target:
       entity_id: input_select.gh_cli_active_user
     data:

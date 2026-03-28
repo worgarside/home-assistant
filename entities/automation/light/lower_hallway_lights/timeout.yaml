@@ -58,17 +58,17 @@ action:
         state: "off"
 
   - parallel:
-      - service: light.turn_off
+      - action: light.turn_off
         entity_id: light.lower_hallway_1
         data:
           transition: 5
 
-      - service: light.turn_off
+      - action: light.turn_off
         entity_id: light.lower_hallway_2
         data:
           transition: 5
 
-      - service: light.turn_off
+      - action: light.turn_off
         entity_id: light.kitchen_hallway_spotlight
         data:
           transition: 5

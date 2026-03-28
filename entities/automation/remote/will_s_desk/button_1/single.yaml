@@ -21,13 +21,13 @@ action:
         state: "off"
 
     then:
-      - service: light.turn_on
+      - action: light.turn_on
         target:
           entity_id: light.will_s_office_shapes
         data:
           brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
 
     else:
-      - service: light.turn_off
+      - action: light.turn_off
         target:
           entity_id: light.will_s_office_shapes

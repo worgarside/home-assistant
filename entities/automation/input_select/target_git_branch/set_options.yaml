@@ -18,6 +18,6 @@ trigger:
     to:
 
 action:
-  - service: script.target_git_branch_set_options
+  - action: script.target_git_branch_set_options
     data:
       update_remote_branches: "{{ trigger.to_state.entity_id != 'sensor.remote_git_branches' }}"

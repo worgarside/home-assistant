@@ -30,7 +30,7 @@ action:
     variables:
       pct_delta: "{{ (trigger.event.data.args.relative_degrees | float(0)) * (25/90) }}"
 
-  - service: script.turn_on
+  - action: script.turn_on
     target:
       entity_id: script.debug_persistent_notification
     data:
@@ -47,7 +47,7 @@ action:
         conditions: "{{ target_domain == 'light' }}"
 
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id: "{{ target_entity }}"
             data:
@@ -58,7 +58,7 @@ action:
         conditions: "{{ target_domain == 'cover' }}"
 
         sequence:
-          - service: cover.set_cover_position
+          - action: cover.set_cover_position
             target:
               entity_id: "{{ target_entity }}"
             data:
@@ -79,7 +79,7 @@ action:
         conditions: "{{ target_domain == 'media_player' }}"
 
         sequence:
-          - service: media_player.volume_set
+          - action: media_player.volume_set
             target:
               entity_id: "{{ target_entity and states(target_entity) != 'off' }}"
             data:

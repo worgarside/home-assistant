@@ -54,7 +54,7 @@ sequence:
         - if: "{{ not ( suppress_debug_notifications | bool(False) ) }}"
 
           then:
-            - service: script.turn_on
+            - action: script.turn_on
               target:
                 entity_id: script.debug_persistent_notification
               data:
@@ -67,6 +67,6 @@ sequence:
                     {{ repeat.item | tojson(indent=2) }}
                     ```
 
-        - service: "{{ repeat.item.service }}"
+        - action: "{{ repeat.item.service }}"
           target: "{{ repeat.item.target | default({}) }}"
           data: "{{ repeat.item.data | default({}) }}"

@@ -25,7 +25,7 @@ action:
   - if: "{{ is_state('person.will', 'home') }}"
 
     then:
-      - service: script.notify_will
+      - action: script.notify_will
         data:
           title: Home Assistant Alert
           message: >-
@@ -40,7 +40,7 @@ action:
   - if: "{{ is_state('person.vic', 'home') }}"
 
     then:
-      - service: script.notify_vic
+      - action: script.notify_vic
         data:
           title: Lounge diffuser needs water
           message: >-

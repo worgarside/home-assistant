@@ -17,7 +17,7 @@ trigger:
       milliseconds: 500
 
 action:
-  - service: light.turn_on
+  - action: light.turn_on
     target:
       entity_id: light.front_hallway
     data:

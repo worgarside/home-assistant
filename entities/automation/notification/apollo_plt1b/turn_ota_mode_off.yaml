@@ -14,6 +14,6 @@ trigger:
       action: TURN_APOLLO_OTA_MODE_OFF
 
 action:
-  - service: input_boolean.turn_off
+  - action: input_boolean.turn_off
     target:
       entity_id: input_boolean.apollo_ota_mode

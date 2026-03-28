@@ -18,6 +18,6 @@ trigger:
       hours: 2
 
 action:
-  - service: switch.turn_off
+  - action: switch.turn_off
     target:
       entity_id: switch.lounge_christmas_tree

@@ -18,7 +18,7 @@ trigger:
       seconds: "{{ states('input_number.lounge_lights_timeout') | int(60) }}"
 
 action:
-  - service: light.turn_off
+  - action: light.turn_off
     target:
       area_id: lounge
     data:

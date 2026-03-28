@@ -13,7 +13,7 @@ trigger:
     to: "on"
 
 action:
-  - service: script.notify_will
+  - action: script.notify_will
     data:
       title: 🚨 Water Leak Detected!
       message: Water ingress detected in the E1 box on the roof terrace.

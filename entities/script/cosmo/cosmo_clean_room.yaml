@@ -51,7 +51,7 @@ variables:
 
 sequence:
   - alias: Get room ID
-    service: script.cosmo_get_room_id_or_name
+    action: script.cosmo_get_room_id_or_name
     data:
       lookup_value: "{{ room_name }}"
     response_variable: room_id
@@ -70,7 +70,7 @@ sequence:
             ```
         # yamllint enable rule:line-length
 
-      - service: script.log_exception
+      - action: script.log_exception
         data:
           calling_entity: script.cosmo_clean_room
           message: "{{ message }}"
@@ -79,13 +79,13 @@ sequence:
         error: true
 
   - alias: Set suction level
-    service: select.select_option
+    action: select.select_option
     target:
       entity_id: select.cosmo_suction_level
     data:
       option: "{{ suction_level_str }}"
 
-  - service: dreame_vacuum.vacuum_clean_segment
+  - action: dreame_vacuum.vacuum_clean_segment
     target:
       entity_id: vacuum.cosmo
     data:

@@ -31,13 +31,13 @@ turn_on:
               (as_timestamp(states('var.central_heating_last_action')) + 10) - as_timestamp(now())
             }}
 
-  - service: var.set
+  - action: var.set
     target:
       entity_id: var.central_heating_last_action
     data:
       value: "{{ now().isoformat() }}"
 
-  - service: switch.toggle
+  - action: switch.toggle
     target:
       entity_id: switch.boiler_fingerbot_heating
 
@@ -47,7 +47,7 @@ turn_on:
         for:
           seconds: 2
 
-  - service: switch.toggle
+  - action: switch.toggle
     target:
       entity_id: switch.boiler_fingerbot_heating
 
@@ -57,7 +57,7 @@ turn_on:
         for:
           seconds: 2
 
-  - service: switch.toggle
+  - action: switch.toggle
     target:
       entity_id: switch.boiler_fingerbot_heating
 
@@ -80,7 +80,7 @@ turn_off:
               (as_timestamp(states('var.central_heating_last_action')) + 10) - as_timestamp(now())
             }}
 
-  - service: var.set
+  - action: var.set
     target:
       entity_id: var.central_heating_last_action
     data:
@@ -89,7 +89,7 @@ turn_off:
   - repeat:
       while: "{{ is_state('binary_sensor.boiler_heating_led_sensor', 'on') and repeat.index < 10 }}"
       sequence:
-        - service: switch.toggle
+        - action: switch.toggle
           target:
             entity_id: switch.boiler_fingerbot_heating
         - delay:

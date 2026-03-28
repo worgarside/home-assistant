@@ -31,13 +31,13 @@ turn_on:
               (as_timestamp(states('var.hot_water_last_action')) + 10) - as_timestamp(now())
             }}
 
-  - service: var.set
+  - action: var.set
     target:
       entity_id: var.hot_water_last_action
     data:
       value: "{{ now().isoformat() }}"
 
-  - service: switch.toggle
+  - action: switch.toggle
     target:
       entity_id: switch.boiler_fingerbot_hot_water
 
@@ -47,7 +47,7 @@ turn_on:
         for:
           seconds: 2
 
-  - service: switch.toggle
+  - action: switch.toggle
     target:
       entity_id: switch.boiler_fingerbot_hot_water
 
@@ -57,7 +57,7 @@ turn_on:
         for:
           seconds: 2
 
-  - service: switch.toggle
+  - action: switch.toggle
     target:
       entity_id: switch.boiler_fingerbot_hot_water
 
@@ -80,7 +80,7 @@ turn_off:
               (as_timestamp(states('var.hot_water_last_action')) + 10) - as_timestamp(now())
             }}
 
-  - service: var.set
+  - action: var.set
     target:
       entity_id: var.hot_water_last_action
     data:
@@ -93,7 +93,7 @@ turn_off:
           repeat.index < 10
         }}
       sequence:
-        - service: switch.toggle
+        - action: switch.toggle
           target:
             entity_id: switch.boiler_fingerbot_hot_water
         - delay:

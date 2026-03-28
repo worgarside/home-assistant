@@ -33,7 +33,7 @@ sequence:
 
   - condition: "{{ current_speed != target_speed }}"
 
-  - service: fan.set_percentage
+  - action: fan.set_percentage
     target:
       entity_id: fan.air_purifier
     data:

@@ -13,7 +13,7 @@ trigger:
     to: PrintDone
 
 action:
-  - service: script.notify_will
+  - action: script.notify_will
     data:
       title: "Prusa i3: Print Complete!"
       message: "{{ states('sensor.octoprint_print_file') }} is complete."

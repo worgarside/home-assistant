@@ -15,6 +15,6 @@ trigger:
       minutes: "{{ states('input_number.lounge_diffuser_timeout') | int(120) }}"
 
 action:
-  - service: switch.turn_off
+  - action: switch.turn_off
     target:
       entity_id: switch.lounge_diffuser

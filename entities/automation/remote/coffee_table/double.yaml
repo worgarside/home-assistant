@@ -25,7 +25,7 @@ variables:
     enter: B2IJWgKuBFoCQAHAB0ABQAvAA+AFAQW9YmIJWgJAG0ABwAdAAUALwAPgBQHgxDMCAloC
 
 action:
-  - service: text.set_value
+  - action: text.set_value
     target:
       entity_id: text.lounge_ir_blaster_ir_code_to_send
     data:
@@ -43,7 +43,7 @@ action:
         - "{{ codes.down }}"
         - "{{ codes.enter }}"
       sequence:
-        - service: text.set_value
+        - action: text.set_value
           target:
             entity_id: text.lounge_ir_blaster_ir_code_to_send
           data:
@@ -52,7 +52,7 @@ action:
         - delay:
             milliseconds: 50
 
-        - service: text.set_value
+        - action: text.set_value
           target:
             entity_id: text.lounge_ir_blaster_ir_code_to_send
           data:
@@ -61,7 +61,7 @@ action:
         - delay:
             milliseconds: "{{ delay_ms }}"
 
-  - service: text.set_value
+  - action: text.set_value
     target:
       entity_id: text.lounge_ir_blaster_ir_code_to_send
     data:

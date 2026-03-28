@@ -51,7 +51,7 @@ variables:
     }}
 
 sequence:
-  - service: script.turn_on
+  - action: script.turn_on
     target:
       entity_id: script.debug_persistent_notification
     data:
@@ -65,7 +65,7 @@ sequence:
           {% if parameters %}Parameters: {{ parameters }}{% endif %}
           ```
 
-  - service: mqtt.publish
+  - action: mqtt.publish
     data:
       topic: /mtrxpi/matrix/queue-content
       payload: >-

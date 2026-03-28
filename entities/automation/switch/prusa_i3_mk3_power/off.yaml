@@ -13,6 +13,6 @@ trigger:
   to: "off"
 
 action:
-  - service: switch.turn_off
+  - action: switch.turn_off
     target:
       entity_id: switch.prusa_i3_enclosure_fan

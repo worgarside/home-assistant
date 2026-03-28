@@ -21,7 +21,7 @@ sequence:
   - if: "{{ volume_level | default(-999) | float(-999) == -999 }}"
 
     then:
-      - service: script.log_exception
+      - action: script.log_exception
         data:
           calling_entity: script.topaz_sr10_volume_set
           message: "Invalid `volume_level` value: `{{ volume_level | default('<undefined>') }}`"
@@ -62,6 +62,6 @@ sequence:
                 )
               }}
 
-        - service: media_player.volume_{{ up_or_down }}
+        - action: media_player.volume_{{ up_or_down }}
           target:
             entity_id: media_player.topaz_sr10

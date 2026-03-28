@@ -27,7 +27,7 @@ action:
       sequence:
         - if: "{{ is_state(repeat.item, 'on') }}"
           then:
-            - service: light.turn_on
+            - action: light.turn_on
               target:
                 entity_id: "{{ repeat.item }}"
               data:

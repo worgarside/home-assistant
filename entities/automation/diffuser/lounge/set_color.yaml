@@ -24,7 +24,7 @@ action:
   - if: "{{ not is_state('select.lounge_diffuser_light_mode', 'Solid') }}"
 
     then:
-      - service: select.select_option
+      - action: select.select_option
         target:
           entity_id: select.lounge_diffuser_light_mode
         data:
@@ -38,7 +38,7 @@ action:
           seconds: 10
         continue_on_timeout: true
 
-  - service: select.select_option
+  - action: select.select_option
     target:
       entity_id: select.lounge_diffuser_colors
     data:

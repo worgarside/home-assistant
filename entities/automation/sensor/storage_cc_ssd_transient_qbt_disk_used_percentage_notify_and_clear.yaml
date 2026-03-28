@@ -29,14 +29,14 @@ action:
   - if: "{{ trigger.id == 'clear' }}"
 
     then:
-      - service: script.notify_will
+      - action: script.notify_will
         data:
           clear_notification: true
           notification_id: qbt_storage
           message: clear_notification
 
     else:
-      - service: script.notify_will
+      - action: script.notify_will
         data:
           title: >-
             qBittorrent Storage {% if trigger.id != 'full' %}Nearly {% endif %}Full

@@ -15,7 +15,7 @@ trigger:
     subtype: arrow_right_click
 
 action:
-  - service: fan.toggle
+  - action: fan.toggle
     target:
       entity_id: fan.evaporative_cooler
 

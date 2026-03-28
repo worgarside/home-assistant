@@ -45,7 +45,7 @@ condition: >-
   }}
 
 action:
-  - service: mqtt.publish
+  - action: mqtt.publish
     data:
       topic: /mtrxpi/now-playing/parameter/track-metadata
       qos: 1
@@ -63,7 +63,7 @@ action:
 
   - if: "{{ states('sensor.mtrxpi_current_content') != 'now-playing' }}"
     then:
-      - service: script.mtrxpi_queue_content
+      - action: script.mtrxpi_queue_content
         data:
           id: now-playing
           priority: "{{ states('input_number.mtrxpi_now_playing_queue_position') }}"

@@ -14,7 +14,7 @@ trigger:
     to: "off"
 
 action:
-  - service: script.notify_will
+  - action: script.notify_will
     data:
       clear_notification: true
       notification_id: apollo_plt1b_ota_mode_on

@@ -18,7 +18,7 @@ trigger:
 
 action:
   - alias: Set dining area lights to lighting modifier
-    service: light.turn_on
+    action: light.turn_on
     target:
       area_id: dining_area
     data:
@@ -26,6 +26,6 @@ action:
       transition: 1
 
   - alias: Disable dining area occupancy automation
-    service: automation.turn_off
+    action: automation.turn_off
     target:
       entity_id: automation.binary_sensor_dining_area_occupancy_state_change

@@ -16,7 +16,7 @@ trigger:
 condition: "{{ states('sensor.sun_elevation') | float(10) <= 3 }}"
 
 action:
-  - service: light.turn_on
+  - action: light.turn_on
     target:
       entity_id: light.garden_light
     data:

@@ -18,9 +18,9 @@ trigger:
 
 action:
   - alias: Reset kitchen lighting based on current occupancy
-    service: script.kitchen_set_lighting_based_on_occupancy
+    action: script.kitchen_set_lighting_based_on_occupancy
 
   - alias: Re-enable kitchen automation
-    service: automation.turn_on
+    action: automation.turn_on
     target:
       entity_id: automation.binary_sensor_kitchen_occupancy_state_change

@@ -21,7 +21,7 @@ trigger:
       seconds: 30
 
 action:
-  - service: script.debug_persistent_notification
+  - action: script.debug_persistent_notification
     data:
       message: >-
         Speedtest sensor {{ trigger.entity_id }} became unavailable for 30+ seconds.
@@ -29,7 +29,7 @@ action:
       notification_title: Speedtest Sensor Unavailable
       notification_id: speedtest_sensor_unavailable
 
-  - service: homeassistant.reload_config_entry
+  - action: homeassistant.reload_config_entry
     target:
       entity_id: sensor.speedtest_download
     data:

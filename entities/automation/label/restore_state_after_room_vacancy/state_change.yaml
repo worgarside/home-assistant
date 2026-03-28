@@ -54,7 +54,7 @@ trigger:
     event_type: call_service
     event_data:
       domain: var
-      service: reload
+      action: reload
 
 condition: >-
   {{
@@ -84,7 +84,7 @@ action:
       for_each: "{{ label_entities('state_manager') | default([]) }}"
 
       sequence:
-        - service: script.turn_on
+        - action: script.turn_on
           target:
             entity_id: script.state_manager_reset_states
           data:

@@ -25,7 +25,7 @@ variables:
     }}
 
 action:
-  - service: light.turn_on
+  - action: light.turn_on
     target:
       entity_id: light.will_s_office_voice_assistant_led_ring
     data:
@@ -39,7 +39,7 @@ action:
   - if: "{{ was_on }}"
 
     then:
-      - service: light.turn_on
+      - action: light.turn_on
         target:
           entity_id: light.will_s_office_voice_assistant_led_ring
         data:
@@ -47,6 +47,6 @@ action:
           brightness: "{{ saved_brightness }}"
           transition: 1
     else:
-      - service: light.turn_off
+      - action: light.turn_off
         target:
           entity_id: light.will_s_office_voice_assistant_led_ring

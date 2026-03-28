@@ -9,7 +9,7 @@ mode: single
 
 sequence:
   - alias: Set next sunrise to tomorrow at 7:30 AM (weekday) or 8:30 AM (weekend)
-    service: input_datetime.set_datetime
+    action: input_datetime.set_datetime
     target:
       entity_id: input_datetime.next_bedroom_sunrise
     data:

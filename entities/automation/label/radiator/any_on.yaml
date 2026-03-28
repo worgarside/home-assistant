@@ -19,6 +19,6 @@ trigger:
       }}
 
 action:
-  - service: switch.turn_on
+  - action: switch.turn_on
     target:
       entity_id: switch.central_heating

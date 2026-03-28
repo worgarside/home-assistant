@@ -40,6 +40,6 @@ condition: >-
   }}
 
 action:
-  - service: media_player.turn_off
+  - action: media_player.turn_off
     target:
       entity_id: media_player.topaz_sr10

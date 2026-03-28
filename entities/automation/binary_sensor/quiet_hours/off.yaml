@@ -14,7 +14,7 @@ trigger:
   to: "off"
 
 action:
-  - service: number.set_value
+  - action: number.set_value
     target:
       entity_id: number.mtrxpi_matrix_brightness
     data:

@@ -12,7 +12,7 @@ trigger:
     to: "on"
 
 action:
-  - service: script.mtrxpi_queue_content
+  - action: script.mtrxpi_queue_content
     data:
       id: gif-door-animated
       priority: "{{ states('input_number.mtrxpi_gif_door_animated_queue_position') }}"

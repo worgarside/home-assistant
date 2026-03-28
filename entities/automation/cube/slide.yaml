@@ -20,7 +20,7 @@ variables:
   target_domain: "{{ target_entity.split('.')[0] }}"
 
 action:
-  - service: script.turn_on
+  - action: script.turn_on
     target:
       entity_id: script.debug_persistent_notification
     data:
@@ -37,11 +37,11 @@ action:
         conditions: "{{ target_domain == 'light' }}"
 
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id: "{{ target_entity }}"
 
     default:
-      - service: homeassistant.toggle
+      - action: homeassistant.toggle
         target:
           entity_id: "{{ target_entity }}"

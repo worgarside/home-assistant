@@ -13,7 +13,7 @@ sequence:
   - if: "{{ is_state('binary_sensor.kitchen_occupancy', 'on') }}"
     then:
       - parallel:
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id:
                 - light.kitchen_counter_lights
@@ -22,7 +22,7 @@ sequence:
               brightness_pct: "{{ min(modifier * kitchen_multiplier, 100) }}"
               transition: 1
 
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id: light.kitchen_island
             data:
@@ -39,14 +39,14 @@ sequence:
     else:
       - parallel:
           # Kitchen: spotlights at 15%, island at 50%
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id: light.kitchen_spotlights
             data:
               brightness_pct: "{{ (modifier * 0.15) | round(0, 'ceil') }}"
               transition: 1
 
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id:
                 - light.kitchen_island

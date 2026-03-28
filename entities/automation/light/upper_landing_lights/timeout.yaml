@@ -56,12 +56,12 @@ action:
         state: "off"
 
   - parallel:
-      - service: light.turn_off
+      - action: light.turn_off
         entity_id: light.front_hallway
         data:
           transition: 5
 
-      - service: light.turn_off
+      - action: light.turn_off
         entity_id: light.upper_landing_light
         data:
           transition: 5

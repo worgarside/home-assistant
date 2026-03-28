@@ -17,6 +17,6 @@ trigger:
     subtype: single
 
 action:
-  - service: switch.toggle
+  - action: switch.toggle
     target:
       entity_id: switch.charging_hub

@@ -15,7 +15,7 @@ trigger:
     subtype: on_press  # This isn't "on press event, do X" - it's "ON [button has been] press[ed]"
 
 action:
-  - service: light.turn_on
+  - action: light.turn_on
     target:
       area_id: guest_room
     data:

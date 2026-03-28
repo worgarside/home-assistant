@@ -33,7 +33,7 @@ variables:
     }}
 
 action:
-  - service: script.notify_will
+  - action: script.notify_will
     data:
       title: "Habit Reminder"
       message: "Don't forget to mark {{ habit_name }} as complete!"
@@ -61,7 +61,7 @@ action:
             - delay:
                 minutes: "{{ repeat_interval | int(60) }}"
 
-            - service: script.notify_will
+            - action: script.notify_will
               data:
                 title: "Habit Reminder"
                 message: "Don't forget to mark {{ habit_name }} as complete!"

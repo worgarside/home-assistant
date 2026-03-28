@@ -18,7 +18,7 @@ sequence:
     if: "{{ update_remote_branches | default(true) }}"
 
     then:
-      - service: homeassistant.update_entity
+      - action: homeassistant.update_entity
         target:
           entity_id: sensor.remote_git_branches
 
@@ -56,7 +56,7 @@ sequence:
       }}
 
     then:
-      - service: script.turn_on
+      - action: script.turn_on
         target:
           entity_id: script.debug_persistent_notification
         data:
@@ -72,7 +72,7 @@ sequence:
       - stop: No update needed
         response_variable: false_response
 
-  - service: script.turn_on
+  - action: script.turn_on
     target:
       entity_id: script.debug_persistent_notification
     data:
@@ -85,14 +85,14 @@ sequence:
           ```
 
   - alias: Set input_select options to remote git branches
-    service: input_select.set_options
+    action: input_select.set_options
     target:
       entity_id: input_select.target_git_branch
     data:
       options: "{{ branches }}"
 
   - alias: Update current git branch
-    service: homeassistant.update_entity
+    action: homeassistant.update_entity
     target:
       entity_id: sensor.current_git_branch
 
@@ -100,7 +100,7 @@ sequence:
       seconds: 2.5
 
   - alias: Set input_select to current git branch
-    service: input_select.select_option
+    action: input_select.select_option
     target:
       entity_id: input_select.target_git_branch
     data:
