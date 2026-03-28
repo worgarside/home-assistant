@@ -49,7 +49,7 @@ sequence:
                 milliseconds: 100
 
         - alias: Send debug notification
-          service: script.turn_on
+          action: script.turn_on
           target:
             entity_id: script.debug_persistent_notification
           data:
@@ -60,7 +60,7 @@ sequence:
                 Current: {{ state_attr('cover.will_s_office_desk_idasen', 'current_position') }}%
               notification_id: desk_move_{{ position }}
 
-        - service: cover.set_cover_position
+        - action: cover.set_cover_position
           data:
             entity_id: cover.will_s_office_desk_idasen
             position: "{{ position }}"
@@ -81,7 +81,7 @@ sequence:
           continue_on_timeout: true
 
         - alias: Send Debug Notification
-          service: script.turn_on
+          action: script.turn_on
           target:
             entity_id: script.debug_persistent_notification
           data:
@@ -116,4 +116,4 @@ sequence:
         - alias: If not timed out, send stop signal (prevent moving too far/extra retries)
           if: "{{ wait.completed }}"
           then:
-            - service: script.office_desk_stop_moving
+            - action: script.office_desk_stop_moving

@@ -19,6 +19,6 @@ variables:
   tv_is_on: "{{ states('remote.lounge_streamer') | bool(false) }}"
 
 action:
-  - service: input_boolean.turn_{{ 'on' if tv_is_on else 'off' }}
+  - action: input_boolean.turn_{{ 'on' if tv_is_on else 'off' }}
     target:
       entity_id: input_boolean.air_purifier_quiet_mode

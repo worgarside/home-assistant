@@ -54,7 +54,7 @@ variables:
     {{ ns.plants }}
 
 action:
-  - service: script.notify_will
+  - action: script.notify_will
     data:
       title: "Apollo PLT-1B OTA Mode On"
       message: "{{ ', '.join(online) }}"

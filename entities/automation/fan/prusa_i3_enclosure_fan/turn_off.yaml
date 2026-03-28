@@ -17,6 +17,6 @@ trigger:
     to: "off"
 
 action:
-  - service: fan.turn_off
+  - action: fan.turn_off
     target:
       entity_id: fan.prusa_i3_enclosure_fan

@@ -73,13 +73,13 @@ action:
             and not is_state('climate.vic_s_office_fan', 'heat')
           }}
         sequence:
-          - service: climate.set_hvac_mode
+          - action: climate.set_hvac_mode
             target:
               entity_id: climate.vic_s_office_fan
             data:
               hvac_mode: cool
 
-          - service: fan.set_percentage
+          - action: fan.set_percentage
             data:
               percentage: "{{ occupied_speed if room_occupied else 100 }}"
             target:
@@ -90,7 +90,7 @@ action:
 
           # Don't want to blow things around the room
           # Has to be after the percentage is set
-          - service: fan.set_direction
+          - action: fan.set_direction
             data:
               direction: reverse
             target:
@@ -100,7 +100,7 @@ action:
       - alias: Good Air Quality (Empty Room)
         conditions: "{{ trigger.id in ['pm25_low', 'voc_low'] and not room_occupied }}"
         sequence:
-          - service: fan.turn_off
+          - action: fan.turn_off
             target:
               entity_id: fan.vic_s_office_fan
 
@@ -113,7 +113,7 @@ action:
             and is_state_attr('fan.vic_s_office_fan', 'direction', 'reverse')
           }}
         sequence:
-          - service: fan.turn_off
+          - action: fan.turn_off
             target:
               entity_id: fan.vic_s_office_fan
 
@@ -125,13 +125,13 @@ action:
             and is_state('fan.vic_s_office_fan', 'off')
           }}
         sequence:
-          - service: climate.set_hvac_mode
+          - action: climate.set_hvac_mode
             target:
               entity_id: climate.vic_s_office_fan
             data:
               hvac_mode: cool
 
-          - service: fan.set_percentage
+          - action: fan.set_percentage
             data:
               percentage: "{{ occupied_speed if room_occupied else 100 }}"
             target:
@@ -142,7 +142,7 @@ action:
 
           # Don't want to blow things around the room
           # Has to be after the percentage is set
-          - service: fan.set_direction
+          - action: fan.set_direction
             data:
               direction: reverse
             target:

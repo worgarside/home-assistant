@@ -24,11 +24,11 @@ action:
           }}
 
         then:
-          - service: vacuum.pause
+          - action: vacuum.pause
             target:
               entity_id: vacuum.cosmo
 
-      - service: switch.turn_on
+      - action: switch.turn_on
         continue_on_error: true
         target:
           entity_id: switch.basement_christmas_tree

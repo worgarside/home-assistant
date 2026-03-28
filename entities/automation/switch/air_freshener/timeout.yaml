@@ -15,5 +15,5 @@ trigger:
       minutes: "{{ states('input_number.air_freshener_timeout') | int(60) }}"
 
 action:
-  - service: switch.turn_off
+  - action: switch.turn_off
     entity_id: switch.air_freshener

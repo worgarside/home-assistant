@@ -9,7 +9,7 @@ trigger:
   platform: event
   event_type: automation_reloaded
 action:
-  - service: persistent_notification.create
+  - action: persistent_notification.create
     data:
       title: Automation Reload Complete
       notification_id: auto_reload_complete

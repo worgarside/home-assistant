@@ -14,7 +14,7 @@ trigger:
     to: "on"
 
 action:
-  - service: notify.mobile_app_will_s_pixel_6_pro
+  - action: notify.mobile_app_will_s_pixel_6_pro
     data:
       title: "Central heating is on"
       message: "Heating system activated"

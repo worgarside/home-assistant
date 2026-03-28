@@ -26,7 +26,7 @@ action:
             entity_id: light.spare_room_spotlights
             state: "off"
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id: light.spare_room_spotlights
             data:
@@ -41,7 +41,7 @@ action:
             entity_id: light.spare_room_spotlights
             state: "on"
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id: light.ball_lamp
             data:
@@ -56,7 +56,7 @@ action:
             entity_id: light.spare_room_spotlights
             state: "on"
         sequence:
-          - service: light.turn_off
+          - action: light.turn_off
             target:
               entity_id: light.spare_room_spotlights
 
@@ -69,11 +69,11 @@ action:
             entity_id: light.spare_room_spotlights
             state: "off"
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id: light.spare_room_spotlights
             data:
               brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
-          - service: light.turn_off
+          - action: light.turn_off
             target:
               entity_id: light.ball_lamp

@@ -29,7 +29,7 @@ variables:
 sequence:
   - if: "{{ target_area_id is not defined or target_area_id is none or not target_area_id }}"
     then:
-      - service: script.log_exception
+      - action: script.log_exception
         data:
           calling_entity: script.state_manager_attribute_timeout
           message: >-
@@ -54,7 +54,7 @@ sequence:
         {% endfor %}
         {{ ns.output }}
 
-  - service: var.set
+  - action: var.set
     target:
       entity_id: "{{ state_manager }}"
     data:

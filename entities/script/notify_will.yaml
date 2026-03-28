@@ -139,20 +139,20 @@ sequence:
 
     then:
       - alias: Remove HA Notification
-        service: persistent_notification.dismiss
+        action: persistent_notification.dismiss
         data:
           notification_id: "{{ notification_id }}"
 
     else:
       - alias: HA Notification
-        service: persistent_notification.create
+        action: persistent_notification.create
         data:
           message: "{{ message }}"
           notification_id: "{{ notification_id }}"
           title: "{{ notif_title }}"
 
   - alias: Phone
-    service: notify.mobile_app_will_s_pixel_6_pro
+    action: notify.mobile_app_will_s_pixel_6_pro
     data:
       message: "{{ message }}"
       title: "{{ notif_title }}"
@@ -179,7 +179,7 @@ sequence:
           value_template: "{{ clear_notification }}"
 
     then:
-      - service: notify.mobile_app_wills_macbook_pro
+      - action: notify.mobile_app_wills_macbook_pro
         data:
           message: "{{ message }}"
           title: "{{ notif_title }}"
@@ -216,7 +216,7 @@ sequence:
         #   - alias: Will not on A/L - TODO
 
     then:
-      - service: notify.mobile_app_wills_work_macbook_pro
+      - action: notify.mobile_app_wills_work_macbook_pro
         data:
           message: "{{ message }}"
           title: "{{ notif_title }}"

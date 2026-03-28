@@ -42,7 +42,7 @@ action:
   - if: "{{ trigger.to_state.state == 'unavailable' }}"
 
     then:
-      - service: script.notify_will
+      - action: script.notify_will
         data:
           title: "Camera Offline"
           message: "{{ camera_name }} camera is offline"
@@ -51,7 +51,7 @@ action:
           notification_id: camera_offline_{{ camera_name }}
 
     else:
-      - service: script.notify_will
+      - action: script.notify_will
         data:
           clear_notification: true
           notification_id: camera_offline_{{ camera_name }}

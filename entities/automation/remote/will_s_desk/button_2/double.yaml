@@ -15,4 +15,4 @@ trigger:
     subtype: double
 
 action:
-  - service: script.office_desk_standing_mode
+  - action: script.office_desk_standing_mode

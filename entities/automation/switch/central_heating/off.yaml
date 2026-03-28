@@ -17,11 +17,11 @@ trigger:
 
 action:
   - parallel:
-      - service: climate.turn_off
+      - action: climate.turn_off
         target:
           label_id: radiator
 
-      - service: notify.mobile_app_will_s_pixel_6_pro
+      - action: notify.mobile_app_will_s_pixel_6_pro
         data:
           message: clear_notification
           data:

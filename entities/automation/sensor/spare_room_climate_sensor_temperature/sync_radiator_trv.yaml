@@ -16,7 +16,7 @@ trigger:
       - "unknown"
 
 action:
-  - service: number.set_value
+  - action: number.set_value
     target:
       entity_id: number.spare_room_radiator_external_temperature_input
     data:

@@ -20,7 +20,7 @@ variables:
 sequence:
   - if: "{{ target_area_id is not defined or target_area_id is none or not target_area_id }}"
     then:
-      - service: script.log_exception
+      - action: script.log_exception
         data:
           calling_entity: script.state_manager_reset_states
           message: >-
@@ -41,7 +41,7 @@ sequence:
         {% endfor %}
         {{ ns.entities }}
 
-  - service: var.set
+  - action: var.set
     target:
       entity_id: "{{ state_manager }}"
     data:

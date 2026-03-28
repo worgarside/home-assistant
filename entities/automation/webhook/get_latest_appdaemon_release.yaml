@@ -25,7 +25,7 @@ action:
   - variables:
       tag: "{{ trigger.json['ref'] }}"
 
-  - service: persistent_notification.create
+  - action: persistent_notification.create
     data:
       title: "Updating AppDaemon ({{ tag }})"
       message: |
@@ -34,7 +34,7 @@ action:
         {{ trigger.json }}
         ```
 
-  - service: input_text.set_value
+  - action: input_text.set_value
     target:
       entity_id: input_text.ad_get_latest_release
     data:

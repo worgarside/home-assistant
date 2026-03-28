@@ -13,7 +13,7 @@ trigger:
   to: "off"
 
 action:
-  - service: switch.turn_off
+  - action: switch.turn_off
     target:
       entity_id:
         - switch.led_matrix_power

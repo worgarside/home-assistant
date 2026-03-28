@@ -41,7 +41,7 @@ sequence:
         - fan.turn_off
         - media_player.turn_off
       sequence:
-        - service: "{{ repeat.item }}"
+        - action: "{{ repeat.item }}"
           continue_on_error: true
           target:
             area_id: "{{ room }}"
@@ -54,7 +54,7 @@ sequence:
       - repeat:
           for_each: "{{ extra_service_calls }}"
           sequence:
-            - service: "{{ repeat.item.service_call | default('homeassistant.turn_off') }}"
+            - action: "{{ repeat.item.service_call | default('homeassistant.turn_off') }}"
               continue_on_error: true
               target:
                 entity_id: "{{ repeat.item.entity_id }}"

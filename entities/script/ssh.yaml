@@ -45,7 +45,7 @@ sequence:
   - alias: Check Pi exists/is available
     condition: "{{ has_value(ip_addr_entity_id) }}"
 
-  - service: shell_command.ssh
+  - action: shell_command.ssh
     response_variable: ssh_response
     data:
       command: >

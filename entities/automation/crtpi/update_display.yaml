@@ -45,7 +45,7 @@ condition: >-
   }}
 
 action:
-  - service: mqtt.publish
+  - action: mqtt.publish
     data:
       topic: /crtpi/crt-interface/content
       qos: 1

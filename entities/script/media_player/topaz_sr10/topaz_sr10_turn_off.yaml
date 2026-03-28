@@ -16,7 +16,7 @@ sequence:
       }}
 
     then:
-      - service: media_player.media_stop
+      - action: media_player.media_stop
         target:
           entity_id: media_player.topaz_sr10
         continue_on_error: true
@@ -25,7 +25,7 @@ sequence:
         if: "{{ is_state('media_player.topaz_sr10', 'playing') }}"
 
         then:
-          - service: media_player.media_pause
+          - action: media_player.media_pause
             target:
               entity_id: media_player.topaz_sr10
             continue_on_error: true
@@ -43,6 +43,6 @@ sequence:
       - delay:
           seconds: 5
 
-  - service: switch.turn_off
+  - action: switch.turn_off
     target:
       entity_id: switch.office_amp

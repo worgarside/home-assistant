@@ -26,7 +26,7 @@ fields:
 mode: parallel
 
 sequence:
-  - service: system_log.write
+  - action: system_log.write
     data:
       message: "{{ message }}"
       level: debug
@@ -37,7 +37,7 @@ sequence:
     entity_id: input_boolean.debug_with_persistent_notifications
     state: "on"
 
-  - service: persistent_notification.create
+  - action: persistent_notification.create
     data:
       message: "{{ message }}"
       title: "{{ notification_title | default('Notification') }}"

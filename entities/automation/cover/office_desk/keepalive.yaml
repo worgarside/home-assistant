@@ -19,6 +19,6 @@ trigger:
 
 action:
   - alias: Re/Connect to Idasen Desk
-    service: button.press
+    action: button.press
     target:
       entity_id: button.will_s_office_desk_idasen_connect

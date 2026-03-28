@@ -23,7 +23,7 @@ action:
             for:
               minutes: 10
 
-  - service: script.cosmo_clean_room
+  - action: script.cosmo_clean_room
     data:
       room_name: Basement
       suction_level: "{{ states('input_number.nightly_kitchen_clean_suction_level') | int(2) }}"

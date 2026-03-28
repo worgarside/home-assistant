@@ -18,7 +18,7 @@ action:
         state: "off"
     then:
       - alias: Set bedroom shapes to bon appetit effect at 1%
-        service: light.turn_on
+        action: light.turn_on
         target:
           entity_id: light.bedroom_shapes
         data:
@@ -30,13 +30,13 @@ action:
           seconds: 5
 
       - alias: Turn off after effect
-        service: light.turn_off
+        action: light.turn_off
         target:
           entity_id: light.bedroom_shapes
 
     else:
       - alias: Set bedroom shapes to bon appetit effect (preserve brightness)
-        service: light.turn_on
+        action: light.turn_on
         target:
           entity_id: light.bedroom_shapes
         data:

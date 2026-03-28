@@ -15,7 +15,7 @@ trigger:
     subtype: on_press
 
 action:
-  - service: light.turn_on
+  - action: light.turn_on
     target:
       area_id: lounge
     data:

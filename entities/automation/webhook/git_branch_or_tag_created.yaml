@@ -20,7 +20,7 @@ variables:
   repo_url: '{{ trigger.json["repository"]["html_url"] }}'
 
 action:
-  - service: script.turn_on
+  - action: script.turn_on
     target:
       entity_id: script.debug_persistent_notification
     data:
@@ -40,7 +40,7 @@ action:
         conditions: '{{ ref_type == "tag" and ref is match("^\d+\.\d+\.\d+$") }}'
 
         sequence:
-          - service: shell_command.checkout_git_branch
+          - action: shell_command.checkout_git_branch
             data:
               api_token: !secret api_bearer_token
               branch: main
@@ -49,6 +49,6 @@ action:
         conditions: '{{ repository == "home-assistant" and ref_type == "branch" }}'
 
         sequence:
-          - service: homeassistant.update_entity
+          - action: homeassistant.update_entity
             target:
               entity_id: sensor.remote_git_branches

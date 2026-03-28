@@ -15,6 +15,6 @@ action:
   - repeat:
       count: "{{ states('sensor.will_habits_binary_count') | int(0) }}"
       sequence:
-        - service: input_boolean.turn_off
+        - action: input_boolean.turn_off
           target:
             entity_id: "input_boolean.will_habit_binary_{{ repeat.index }}"

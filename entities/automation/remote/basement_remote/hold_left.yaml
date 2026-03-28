@@ -18,9 +18,9 @@ trigger:
 
 action:
   - alias: Reset dining area lighting based on current occupancy
-    service: script.dining_area_set_lighting_based_on_occupancy
+    action: script.dining_area_set_lighting_based_on_occupancy
 
   - alias: Re-enable dining area automation
-    service: automation.turn_on
+    action: automation.turn_on
     target:
       entity_id: automation.binary_sensor_dining_area_occupancy_state_change

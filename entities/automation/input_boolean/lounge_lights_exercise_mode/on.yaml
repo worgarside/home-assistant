@@ -14,7 +14,7 @@ trigger:
     to: "on"
 
 action:
-  - service: var.set
+  - action: var.set
     target:
       entity_id: var.lounge_occupancy_automation_state_pre_exercise_mode
     data:
@@ -26,7 +26,7 @@ action:
         automation.binary_sensor_lounge_occupancy_room_timeout: >-
           {{ states('automation.binary_sensor_lounge_occupancy_room_timeout') | bool(true) }}
 
-  - service: light.turn_on
+  - action: light.turn_on
     alias: Turn all lounge lights to 100%
     target:
       area_id: lounge
@@ -34,12 +34,12 @@ action:
       brightness_pct: 100
       transition: 1
 
-  - service: switch.turn_off
+  - action: switch.turn_off
     alias: Turn off the air freshener
     target:
       entity_id: switch.air_freshener
 
-  - service: automation.turn_off
+  - action: automation.turn_off
     alias: Disable the occupancy automations
     target:
       entity_id:

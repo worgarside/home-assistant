@@ -27,7 +27,7 @@ variables:
     "{{ states('input_number.will_habit_countable_2_repeat_reminder_count') | int(0) }}"
 
 action:
-  - service: script.notify_will
+  - action: script.notify_will
     data:
       title: "Habit Reminder"
       message: "Don't forget to track {{ habit_name }}!"
@@ -55,7 +55,7 @@ action:
             - delay:
                 minutes: "{{ repeat_interval | int(60) }}"
 
-            - service: script.notify_will
+            - action: script.notify_will
               data:
                 title: "Habit Reminder"
                 message: "Don't forget to track {{ habit_name }}!"

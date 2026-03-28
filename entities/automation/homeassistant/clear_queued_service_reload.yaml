@@ -9,7 +9,7 @@ trigger:
   platform: event
   event_type: call_service
   event_data:
-    service: reload
+    action: reload
 
 variables:
   domain: "{{ trigger.event.data.domain }}"
@@ -22,7 +22,7 @@ action:
   - variables:
       new_service_queue: "{{ service_queue | reject('eq', domain) | list }}"
 
-  - service: var.set
+  - action: var.set
     target:
       entity_id: var.auto_reload_queue
     data:

@@ -62,7 +62,7 @@ condition: >-
   }}
 
 action:
-  - service: script.turn_on
+  - action: script.turn_on
     target:
       entity_id: script.debug_persistent_notification
     data:
@@ -93,7 +93,7 @@ action:
           )
         }}
 
-  - service: var.set
+  - action: var.set
     target:
       entity_id: var.auto_reload_queue
     data:
@@ -109,7 +109,7 @@ action:
   - if: "{{ is_state(auto_reload_boolean, 'on') }}"
 
     then:
-      - service: script.turn_on
+      - action: script.turn_on
         target:
           entity_id: script.debug_persistent_notification
         data:
@@ -120,4 +120,4 @@ action:
               `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
             notification_id: "{{ service }}_auto_reload"
 
-      - service: "{{ service }}.reload"
+      - action: "{{ service }}.reload"

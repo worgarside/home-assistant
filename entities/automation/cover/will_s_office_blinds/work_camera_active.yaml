@@ -33,7 +33,7 @@ condition:
     state: home
 
 action:
-  - service: cover.close_cover
+  - action: cover.close_cover
     target:
       entity_id: cover.will_s_office_blinds
 
@@ -51,6 +51,6 @@ action:
             for:
               seconds: 60
 
-      - service: cover.open_cover
+      - action: cover.open_cover
         target:
           entity_id: cover.will_s_office_blinds

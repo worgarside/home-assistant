@@ -14,7 +14,7 @@ trigger:
     to: "off"
 
 action:
-  - service: climate.turn_off
+  - action: climate.turn_off
     target:
       entity_id:
         - climate.bedroom_radiator_1

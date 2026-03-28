@@ -17,6 +17,6 @@ trigger:
       - "off"
 
 action:
-  - service: switch.turn_{{ trigger.to_state.state }}
+  - action: switch.turn_{{ trigger.to_state.state }}
     target:
       entity_id: switch.lounge_diffuser_light

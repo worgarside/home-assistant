@@ -25,7 +25,7 @@ fields:
 sequence:
   - if: "{{ high_magnitude_color is defined }}"
     then:
-      - service: text.set_value
+      - action: text.set_value
         target:
           entity_id: text.mtrxpi_audio_visualiser_high_magnitude_hex_color
         data:
@@ -40,7 +40,7 @@ sequence:
 
   - if: "{{ low_magnitude_color is defined }}"
     then:
-      - service: text.set_value
+      - action: text.set_value
         target:
           entity_id: text.mtrxpi_audio_visualiser_low_magnitude_hex_color
         data:

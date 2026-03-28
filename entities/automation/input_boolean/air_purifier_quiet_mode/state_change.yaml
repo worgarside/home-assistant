@@ -15,6 +15,6 @@ trigger:
 condition: "{{ states('fan.air_purifier') | bool(false) }}"
 
 action:
-  - service: script.turn_on
+  - action: script.turn_on
     target:
       entity_id: script.air_purifier_update_fan_speed

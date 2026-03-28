@@ -13,17 +13,17 @@ trigger:
     to: "0"
 
 action:
-  - service: switch.turn_off
+  - action: switch.turn_off
     continue_on_error: true
     target:
       entity_id: switch.central_heating
 
-  - service: climate.turn_off
+  - action: climate.turn_off
     continue_on_error: true
     target:
       label_id: radiator
 
-  - service: switch.turn_off
+  - action: switch.turn_off
     continue_on_error: true
     target:
       entity_id: switch.lounge_christmas_tree
@@ -44,7 +44,7 @@ action:
         - guest_room
         - roof_terrace
       sequence:
-        - service: script.turn_off_physical_room
+        - action: script.turn_off_physical_room
           data:
             room: "{{ repeat.item }}"
           continue_on_error: true

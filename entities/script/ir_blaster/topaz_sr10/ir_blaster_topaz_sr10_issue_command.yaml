@@ -41,7 +41,7 @@ sequence:
       - conditions: "{{ code is not string }}"
 
         sequence:
-          - service: script.log_exception
+          - action: script.log_exception
             data:
               calling_entity: script.ir_blaster_topaz_sr10_issue_command
               message: No IR Code provided to script
@@ -52,7 +52,7 @@ sequence:
       - conditions: "{{ not is_state('switch.office_amp', 'on') }}"
 
         sequence:
-          - service: script.log_exception
+          - action: script.log_exception
             data:
               calling_entity: script.ir_blaster_topaz_sr10_issue_command
               message: Topaz SR10 not turned on
@@ -60,7 +60,7 @@ sequence:
           - stop: Topaz SR10 not turned on
             error: true
 
-  - service: text.set_value
+  - action: text.set_value
     target:
       entity_id: text.topaz_sr10_ir_controller_ir_code_to_send
     data:
@@ -68,13 +68,13 @@ sequence:
 
   - if: "{{ extra_service_calls is list and extra_service_calls | length > 0 }}"
     then:
-      - service: script.run_dynamic_script
+      - action: script.run_dynamic_script
         data:
           script_id: script.ir_blaster_topaz_sr10_issue_command
           actions: "{{ extra_service_calls }}"
           suppress_debug_notifications: true
 
-  - service: text.set_value
+  - action: text.set_value
     target:
       entity_id: text.topaz_sr10_ir_controller_ir_code_to_send
     data:

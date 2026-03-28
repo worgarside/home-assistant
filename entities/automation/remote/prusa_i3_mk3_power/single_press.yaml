@@ -15,7 +15,7 @@ trigger:
     subtype: single
 
 action:
-  - service: switch.toggle
+  - action: switch.toggle
     target:
       entity_id: switch.prusa_i3_mk3_power
 

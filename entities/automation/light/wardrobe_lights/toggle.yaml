@@ -27,11 +27,11 @@ action:
             state: "on"
 
     then:
-      - service: light.turn_on
+      - action: light.turn_on
         target:
           entity_id: light.wardrobe_lights
 
     else:
-      - service: light.turn_off
+      - action: light.turn_off
         target:
           entity_id: light.wardrobe_lights

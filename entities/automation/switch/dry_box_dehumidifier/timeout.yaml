@@ -18,5 +18,5 @@ trigger:
 # the dehumidifier will turn on if it's still too high
 
 action:
-  - service: switch.turn_off
+  - action: switch.turn_off
     entity_id: switch.dry_box_dehumidifier

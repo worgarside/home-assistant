@@ -21,6 +21,6 @@ trigger:
 condition: "{{ is_state('switch.central_heating', 'on') }}"
 
 action:
-  - service: switch.turn_off
+  - action: switch.turn_off
     target:
       entity_id: switch.central_heating

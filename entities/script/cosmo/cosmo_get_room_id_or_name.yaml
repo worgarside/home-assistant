@@ -40,7 +40,7 @@ sequence:
       {{ (result | string).startswith("ERROR") }}
 
     then:
-      - service: script.turn_on
+      - action: script.turn_on
         target:
           entity_id: script.debug_persistent_notification
         data:
@@ -55,7 +55,7 @@ sequence:
       response:
         value: "{{ result }}"
 
-  - service: script.turn_on
+  - action: script.turn_on
     target:
       entity_id: script.debug_persistent_notification
     data:
