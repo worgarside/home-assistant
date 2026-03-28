@@ -108,7 +108,7 @@ action:
   - condition: "{{ not issue_entity.startswith('restart_required_') }}"
 
   - alias: Debug Notification
-    service: script.turn_on
+    action: script.turn_on
     target:
       entity_id: script.debug_persistent_notification
     data:
@@ -117,7 +117,7 @@ action:
         message: "{{ longform_message }}"
 
   - alias: Check for existing issue
-    service: shell_command.gh
+    action: shell_command.gh
     response_variable: gh_cli_response
     data:
       command: issue list
@@ -141,7 +141,7 @@ action:
       }}
 
     then:
-      - service: shell_command.gh
+      - action: shell_command.gh
         data:
           command: issue close
           args: "{{ issue_number }} -c '{{ longform_message }}' -r completed"
@@ -154,7 +154,7 @@ action:
   - alias: Create issue if no match found
     if: "{{ not issue_number | int(0) }}"
     then:
-      - service: script.turn_on
+      - action: script.turn_on
         target:
           entity_id: script.gh_issue_create
         data:
@@ -168,7 +168,7 @@ action:
             repository: home-assistant
 
     else:
-      - service: persistent_notification.create
+      - action: persistent_notification.create
         data:
           title: Repair issue already logged
           # yamllint disable-line rule:line-length

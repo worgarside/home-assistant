@@ -16,7 +16,7 @@ trigger:
       - unknown
 
 action:
-  - service: script.notify_will
+  - action: script.notify_will
     data:
       title: "Prusa i3: User Input Required!"
       message: The Prusa i3 is waiting for user input.

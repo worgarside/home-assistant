@@ -19,7 +19,7 @@ condition:
 
 action:
   - parallel:
-      - service: script.notify_will
+      - action: script.notify_will
         data:
           title: 🌧️ Rain Alert - Roof Door Open!
           message: >-
@@ -30,7 +30,7 @@ action:
           sticky: true
           persistent: true
 
-      - service: script.notify_vic
+      - action: script.notify_vic
         data:
           title: 🌧️ Rain Alert - Roof Door Open!
           message: >-

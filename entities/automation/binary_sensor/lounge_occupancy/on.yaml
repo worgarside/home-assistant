@@ -17,7 +17,7 @@ trigger:
 
 action:
   - parallel:
-      - service: switch.turn_on
+      - action: switch.turn_on
         continue_on_error: true
         target:
           entity_id: switch.lounge_christmas_tree
@@ -37,12 +37,12 @@ action:
               }}
 
             then:
-              - service: scene.turn_on
+              - action: scene.turn_on
                 target:
                   entity_id: scene.lounge_tv_lighting
 
             else:
-              - service: light.turn_on
+              - action: light.turn_on
                 target:
                   area_id: lounge
                 data:

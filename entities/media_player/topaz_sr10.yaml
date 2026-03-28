@@ -45,15 +45,15 @@ attributes:
 
 commands:
   turn_on:
-    service: switch.turn_on
+    action: switch.turn_on
     target:
       entity_id: switch.office_amp
 
   turn_off:
-    service: script.topaz_sr10_turn_off
+    action: script.topaz_sr10_turn_off
 
   select_source:
-    service: script.ir_blaster_topaz_sr10_issue_command
+    action: script.ir_blaster_topaz_sr10_issue_command
     data:
       code: >-
         {%
@@ -71,48 +71,48 @@ commands:
       # hacv disable: InvalidTemplateVar:source
 
       extra_service_calls:
-        - service: input_select.select_option
+        - action: input_select.select_option
           target:
             entity_id: input_select.topaz_sr10_source
           data:
             option: "{{ source }}" # hacv disable: InvalidTemplateVar:source
 
   volume_up:
-    service: script.ir_blaster_topaz_sr10_issue_command
+    action: script.ir_blaster_topaz_sr10_issue_command
     data:
       code: BxojaBFdAiMCwANAAcALBF0CewYjoANAC0ADQA/ABwUjAiMCXQJAAwR7Bl0CIyABAXsG4AEDASMCQBPgAQNAG4ABAV0CQANAD8ADB4ObGiOYCCMC
       extra_service_calls:
-        - service: input_number.increment
+        - action: input_number.increment
           target:
             entity_id: input_number.topaz_sr10_volume_level
 
-        - service: input_boolean.turn_off
+        - action: input_boolean.turn_off
           target:
             entity_id: input_boolean.topaz_sr10_is_volume_muted
 
   volume_down:
-    service: script.ir_blaster_topaz_sr10_issue_command
+    action: script.ir_blaster_topaz_sr10_issue_command
     data:
       code: BjQjURFhAjLgAAHgBQsCfwYy4AoD4AEXBDICYQIyoAEBfwbgBQNAAUATQAHABwEyAkAvQAMBMgLAE0AHCU+bNCOiCDIC///gAgcCCDIC
       extra_service_calls:
-        - service: input_number.decrement
+        - action: input_number.decrement
           target:
             entity_id: input_number.topaz_sr10_volume_level
 
-        - service: input_boolean.turn_off
+        - action: input_boolean.turn_off
           target:
             entity_id: input_boolean.topaz_sr10_is_volume_muted
 
   volume_set:
-    service: script.topaz_sr10_volume_set
+    action: script.topaz_sr10_volume_set
     data:
       volume_level: "{{ volume_level }}" # hacv disable: InvalidTemplateVar:volume_level
 
   volume_mute:
-    service: script.ir_blaster_topaz_sr10_issue_command
+    action: script.ir_blaster_topaz_sr10_issue_command
     data:
       code: CRojYhEmAiYCZgKAA0AB4AELAW0GQAMAZuACB8ALQBcGJgImAmYCJmABQAfgBwNAAYATQCuAA+ANCw9NmxojmghmAv//GiOaCGYC
       extra_service_calls:
-        - service: input_boolean.toggle
+        - action: input_boolean.toggle
           target:
             entity_id: input_boolean.topaz_sr10_is_volume_muted

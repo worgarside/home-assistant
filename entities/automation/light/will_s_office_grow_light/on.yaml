@@ -43,7 +43,7 @@ trigger:
 action:
   - if: "{{ states('sensor.sun_elevation') | float(0) < -3 }}"
     then:
-      - service: cover.close_cover
+      - action: cover.close_cover
         target:
           entity_id: cover.will_s_office_blinds
 
@@ -52,7 +52,7 @@ action:
           seconds: 30
 
   # Turn on grow light
-  - service: light.turn_on
+  - action: light.turn_on
     target:
       entity_id: light.esphome_rf_bridge_will_s_office_grow_light
     data:

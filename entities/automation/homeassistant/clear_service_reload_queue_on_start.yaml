@@ -15,7 +15,7 @@ variables:
   empty_list: []
 
 action:
-  - service: var.set
+  - action: var.set
     target:
       entity_id: var.auto_reload_queue
     data:

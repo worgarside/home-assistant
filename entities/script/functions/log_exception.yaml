@@ -43,7 +43,7 @@ variables:
     {% endif %}
 
 sequence:
-  - service: persistent_notification.create
+  - action: persistent_notification.create
     data:
       title: ⚠️ Error thrown by {{ entity_domain.replace('_', ' ').title() }}
       message: |
@@ -54,7 +54,7 @@ sequence:
         {{ formatted_message }}
         {%- else %}{{ formatted_message }}{% endif %}
 
-  - service: system_log.write
+  - action: system_log.write
     data:
       message: "{{ message }}"
       level: error

@@ -34,7 +34,7 @@ action:
               sequence:
                 - if: "{{ is_state(entity_id, 'on') }}"
                   then:
-                    - service: light.turn_on
+                    - action: light.turn_on
                       continue_on_error: true
                       target:
                         entity_id: "{{ entity_id }}"
@@ -45,7 +45,7 @@ action:
             # Input Number domain
             - conditions: "{{ entity_domain == 'input_number' }}"
               sequence:
-                - service: input_number.set_value
+                - action: input_number.set_value
                   continue_on_error: true
                   target:
                     entity_id: "{{ entity_id }}"
@@ -55,7 +55,7 @@ action:
             # Number domain
             - conditions: "{{ entity_domain == 'number' }}"
               sequence:
-                - service: number.set_value
+                - action: number.set_value
                   continue_on_error: true
                   target:
                     entity_id: "{{ entity_id }}"
@@ -65,7 +65,7 @@ action:
             # Cover domain
             - conditions: "{{ entity_domain == 'cover' }}"
               sequence:
-                - service: cover.set_cover_position
+                - action: cover.set_cover_position
                   continue_on_error: true
                   target:
                     entity_id: "{{ entity_id }}"
@@ -74,7 +74,7 @@ action:
 
           # Unsupported domain - log exception
           default:
-            - service: script.log_exception
+            - action: script.log_exception
               data:
                 calling_entity: "{{ this.entity_id }}"
                 message: |

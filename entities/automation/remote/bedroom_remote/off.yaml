@@ -15,6 +15,6 @@ trigger:
     subtype: "off"
 
 action:
-  - service: light.turn_off
+  - action: light.turn_off
     target:
       area_id: bedroom

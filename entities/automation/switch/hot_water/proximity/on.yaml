@@ -35,6 +35,6 @@ condition:
     state: towards
 
 action:
-  - service: switch.turn_on
+  - action: switch.turn_on
     target:
       entity_id: switch.hot_water

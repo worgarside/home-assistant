@@ -35,7 +35,7 @@ action:
         - if: "{{ states(repeat.item) | float(100) < 5 }}"
 
           then:
-            - service: script.notify_will
+            - action: script.notify_will
               data:
                 title: "\U0001F50B Critical Battery Alert"
                 message: >-
@@ -50,7 +50,7 @@ action:
                 notification_id: "{{ notification_id }}"
 
           else:
-            - service: script.notify_will
+            - action: script.notify_will
               data:
                 message: clear_notification
                 clear_notification: true

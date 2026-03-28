@@ -30,20 +30,20 @@ icon_template: mdi:brightness-percent
 availability_template: "{{ states('switch.mtrxpi_power') | bool(false) }}"
 
 turn_on:
-  service: number.set_value
+  action: number.set_value
   target:
     entity_id: number.mtrxpi_matrix_brightness
   data:
     value: "{{ states('sensor.lighting_modifier') | int(80) }}"
 
 turn_off:
-  service: script.log_exception
+  action: script.log_exception
   data:
     calling_entity: light.mtrxpi_led_matrix_brightness
     message: Do not turn off the MtrxPi LED Matrix directly, use the content controls instead
 
 set_level:
-  service: number.set_value
+  action: number.set_value
   target:
     entity_id: number.mtrxpi_matrix_brightness
   data:

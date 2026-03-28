@@ -15,7 +15,7 @@ trigger:
     subtype: hold
 
 action:
-  - service: switch.toggle
+  - action: switch.toggle
     entity_id: switch.office_amp
 
   - alias: Prevent rapid toggling

@@ -15,6 +15,6 @@ trigger:
       seconds: "{{ states('input_number.wardrobe_lights_timeout') | int(600) }}"
 
 action:
-  - service: light.turn_off
+  - action: light.turn_off
     target:
       entity_id: light.wardrobe_lights

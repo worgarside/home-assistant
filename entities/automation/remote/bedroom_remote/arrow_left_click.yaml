@@ -15,7 +15,7 @@ trigger:
     subtype: arrow_left_click
 
 action:
-  - service: switch.toggle
+  - action: switch.toggle
     target:
       entity_id: switch.vic_s_electric_blanket
 

@@ -18,6 +18,6 @@ trigger:
       minutes: "{{ states('input_number.lounge_room_timeout') | int(30) }}"
 
 action:
-  - service: script.turn_off_physical_room
+  - action: script.turn_off_physical_room
     data:
       room: lounge

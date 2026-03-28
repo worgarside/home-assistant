@@ -38,14 +38,14 @@ action:
 
         sequence:
           - parallel:
-              - service: light.turn_on
+              - action: light.turn_on
                 target:
                   entity_id: light.front_hallway
                 data:
                   brightness_pct: "{{ brightness }}"
                   transition: 1
 
-              - service: light.turn_on
+              - action: light.turn_on
                 target:
                   entity_id: light.upper_landing_light
                 data:
@@ -58,7 +58,7 @@ action:
             value_template: "{{ trigger.id == 'upper' }}"
 
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id: light.upper_landing_light
             data:
@@ -68,7 +68,7 @@ action:
           - delay:
               seconds: 2.5
 
-          - service: light.turn_on
+          - action: light.turn_on
             target:
               entity_id: light.front_hallway
             data:

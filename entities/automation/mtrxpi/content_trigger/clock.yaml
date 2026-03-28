@@ -13,7 +13,7 @@ trigger:
       - "off"
 
 action:
-  - service: script.mtrxpi_queue_content
+  - action: script.mtrxpi_queue_content
     data:
       id: clock
       priority: >-

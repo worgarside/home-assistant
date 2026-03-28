@@ -34,5 +34,5 @@ condition: >-
   }}
 
 action:
-  - service: switch.turn_off
+  - action: switch.turn_off
     entity_id: switch.prusa_i3_mk3_power

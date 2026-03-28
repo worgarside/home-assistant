@@ -15,7 +15,7 @@ action:
   - repeat:
       count: "{{ states('sensor.will_habits_countable_count') | int(0) }}"
       sequence:
-        - service: input_number.set_value
+        - action: input_number.set_value
           target:
             entity_id: "input_number.will_habit_countable_{{ repeat.index }}"
           data:

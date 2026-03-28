@@ -17,7 +17,7 @@ trigger:
 action:
   - if: "{{ is_state('light.garden_light', 'on') }}"
     then:
-      - service: light.turn_on
+      - action: light.turn_on
         target:
           entity_id: light.garden_light
         data:

@@ -36,20 +36,20 @@ variables:
 
 action:
   - alias: Set sunrise to X minutes from now
-    service: input_datetime.set_datetime
+    action: input_datetime.set_datetime
     target:
       entity_id: input_datetime.next_bedroom_sunrise
     data:
       datetime: "{{ (now() + timedelta(minutes=delay_minutes)).strftime('%Y-%m-%d %H:%M:%S') }}"
 
   - alias: Dim light slowly
-    service: light.turn_off
+    action: light.turn_off
     target:
       entity_id: light.bedroom_shapes
     data:
       transition: 5
 
   - alias: Clear sunrise notifications
-    service: script.send_bedroom_sunrise_notification
+    action: script.send_bedroom_sunrise_notification
     data:
       clear_notification: true

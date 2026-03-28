@@ -28,6 +28,6 @@ trigger:
       hours: 1
 
 action:
-  - service: script.state_manager_attribute_timeout
+  - action: script.state_manager_attribute_timeout
     data:
       state_manager: var.vic_s_office_state_manager

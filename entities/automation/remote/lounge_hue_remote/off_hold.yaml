@@ -15,6 +15,6 @@ trigger:
     subtype: off_hold
 
 action:
-  - service: script.turn_off_physical_room
+  - action: script.turn_off_physical_room
     data:
       room: lounge

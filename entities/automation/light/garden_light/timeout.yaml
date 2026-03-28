@@ -17,6 +17,6 @@ trigger:
       minutes: "{{ states('input_number.garden_light_timeout') | int(30) }}"
 
 action:
-  - service: light.turn_off
+  - action: light.turn_off
     target:
       entity_id: light.garden_light

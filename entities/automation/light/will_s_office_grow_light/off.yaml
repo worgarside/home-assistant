@@ -51,6 +51,6 @@ condition:
       }}
 
 action:
-  - service: light.turn_off
+  - action: light.turn_off
     target:
       entity_id: light.esphome_rf_bridge_will_s_office_grow_light

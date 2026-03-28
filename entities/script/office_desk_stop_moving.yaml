@@ -11,7 +11,7 @@ sequence:
           states('cover.will_s_office_desk_idasen') in ['opening', 'closing']
         }}
     then:
-      - service: cover.set_cover_position
+      - action: cover.set_cover_position
         data:
           entity_id: cover.will_s_office_desk_idasen
           position: >
@@ -22,14 +22,14 @@ sequence:
               {{ state_attr('cover.will_s_office_desk_idasen', 'current_position') | int(-2) + 1 }}
             {% endif %}
 
-  - service: script.turn_off
+  - action: script.turn_off
     target:
       entity_id:
         - script.office_desk_set_position
         - script.office_desk_standing_mode
         - script.office_desk_sitting_mode
 
-  - service: homeassistant.update_entity
+  - action: homeassistant.update_entity
     target:
       entity_id:
         - cover.will_s_office_desk_idasen

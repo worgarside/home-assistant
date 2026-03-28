@@ -6,7 +6,7 @@ mode: single
 max_exceeded: silent
 
 sequence:
-  - service: script.turn_on
+  - action: script.turn_on
     target:
       entity_id: script.office_desk_set_position
     data:

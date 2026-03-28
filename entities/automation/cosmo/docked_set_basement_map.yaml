@@ -17,7 +17,7 @@ trigger:
     to: charging
 
 action:
-  - service: select.select_option
+  - action: select.select_option
     target:
       entity_id: select.cosmo_selected_map
     data:

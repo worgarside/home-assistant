@@ -15,6 +15,6 @@ trigger:
     subtype: arrow_left_hold
 
 action:
-  - service: fan.toggle
+  - action: fan.toggle
     target:
       entity_id: fan.spare_room_fan

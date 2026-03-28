@@ -30,7 +30,7 @@ action:
         sequence:
           - delay:
               minutes: "{{ timeout_level_1 }}"
-          - service: switch.turn_off
+          - action: switch.turn_off
             target:
               entity_id: switch.will_s_electric_blanket
 
@@ -38,7 +38,7 @@ action:
         sequence:
           - delay:
               minutes: "{{ timeout_level_2 }}"
-          - service: switch.turn_off
+          - action: switch.turn_off
             target:
               entity_id: switch.will_s_electric_blanket
 
@@ -46,7 +46,7 @@ action:
         sequence:
           - delay:
               minutes: "{{ timeout_level_3 }}"
-          - service: switch.turn_off
+          - action: switch.turn_off
             target:
               entity_id: switch.will_s_electric_blanket
 

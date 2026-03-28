@@ -21,11 +21,11 @@ fields:
 
 sequence:
   - alias: Run script
-    service: "{{ script_name }}"
+    action: "{{ script_name }}"
     data: "{{ script_args }}"
     response_variable: script_response
 
-  - service: persistent_notification.create
+  - action: persistent_notification.create
     data:
       title: "Script `{{ script_name }}` response"
       message: |
