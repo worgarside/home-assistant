@@ -1942,147 +1942,140 @@
                   "icon": "mdi:filmstrip-box-multiple"
                 },
                 {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 2,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.tdarr_server",
-                      "name": "Server",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "more-info"
-                      },
-                      "icon_color": "blue"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.tdarr_node_gpu_worker",
-                      "name": "GPU worker",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "more-info"
-                      },
-                      "icon_color": "amber"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.tdarr_node_gpu_worker_fps",
-                      "name": "GPU FPS",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "more-info"
-                      },
-                      "icon_color": "orange"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.tdarr_stats_transcodefilesremaining",
-                      "name": "Files remaining",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "more-info"
-                      },
-                      "icon_color": "cyan"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.tdarr_library_all",
-                      "name": "Library (all)",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "more-info"
-                      },
-                      "icon_color": "green"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.tdarr_library_movies",
-                      "name": "Library (movies)",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "more-info"
-                      },
-                      "icon_color": "green"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.tdarr_library_tv",
-                      "name": "Library (TV)",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "more-info"
-                      },
-                      "icon_color": "green"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.tdarr_stats_spacesaved",
-                      "name": "Space saved",
-                      "primary_info": "state",
-                      "secondary_info": "name",
-                      "tap_action": {
-                        "action": "more-info"
-                      },
-                      "hold_action": {
-                        "action": "more-info"
-                      },
-                      "double_tap_action": {
-                        "action": "more-info"
-                      },
-                      "icon_color": "teal"
-                    }
-                  ]
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_server",
+                  "name": "Server",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_node_gpu_worker",
+                  "name": "GPU worker",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "amber"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_node_gpu_worker_fps",
+                  "name": "GPU FPS",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_stats_transcodefilesremaining",
+                  "name": "Files remaining",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_library_all",
+                  "name": "Library (all)",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_library_movies",
+                  "name": "Library (movies)",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_library_tv",
+                  "name": "Library (TV)",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_stats_spacesaved",
+                  "name": "Space saved",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "teal"
                 },
                 {
                   "type": "entities",
