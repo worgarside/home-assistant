@@ -1980,8 +1980,7 @@
                           "name": "Temperature",
                           "color": "#EF5350",
                           "y_axis": "secondary",
-                          "smoothing": true,
-                          "show_fill": false
+                          "smoothing": true
                         }
                       ]
                     },
@@ -2009,16 +2008,14 @@
                           "entity": "sensor.nvidia_geforce_gtx_1660_super_power_usage",
                           "name": "Power",
                           "color": "#66BB6A",
-                          "smoothing": true,
-                          "show_fill": false
+                          "smoothing": true
                         },
                         {
                           "entity": "sensor.nvidia_geforce_gtx_1660_super_memory_used",
                           "name": "VRAM",
                           "color": "#26C6DA",
                           "y_axis": "secondary",
-                          "smoothing": true,
-                          "show_fill": false
+                          "smoothing": true
                         }
                       ]
                     }
