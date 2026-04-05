@@ -1744,11 +1744,62 @@
             },
             {
               "type": "grid",
+              "square": false,
+              "columns": 1,
               "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "PVE Storage",
+                  "icon": "mdi:nas"
+                },
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.storage_cc_tank_disk_used_percentage",
-                  "name": "Tank"
+                  "name": "Tank",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "amber"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_local_disk_used_percentage",
+                  "name": "Local",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "teal"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_local_lvm_disk_used_percentage",
+                  "name": "Local LVM",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_data_vmdata_disk_used_percentage",
+                  "name": "VM Data",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_pbs_backup_disk_used_percentage",
+                  "name": "PBS Backup",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "purple"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_scratch_disk_used_percentage",
+                  "name": "Scratch",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange"
                 }
               ]
             },
