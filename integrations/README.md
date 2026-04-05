@@ -3139,7 +3139,7 @@ File: [`automation/sensor/spare_room_climate_sensor_temperature/sync_radiator_tr
 
 **Entity ID: `automation.sensor_storage_cc_scratch_qbt_disk_used_percentage_notify_and_clear`**
 
-> Notify and clear notification for qBittorrent SSD storage usage thresholds
+> Notify and clear notification for qBittorrent scratch storage usage thresholds
 
 - Alias: /sensor/storage-cc-scratch-qbt-disk-used-percentage-notify-and-clear
 - ID: `sensor_storage_cc_scratch_qbt_disk_used_percentage_notify_and_clear`

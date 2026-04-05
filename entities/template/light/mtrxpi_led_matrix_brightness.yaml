@@ -37,15 +37,14 @@ level: >-
       None
     )
   %}
-  {% if b %}
+  {% if b is not none %}
     {{ (b * 255 / 100) | int }}
   {% endif %}
 
 state: >-
   {{
     iif(
-      has_value("sensor.mtrxpi_current_content") and
-      (states("sensor.mtrxpi_current_content") | default(None) or None) is not none,
+      has_value("sensor.mtrxpi_current_content"),
       "on",
       "off"
     )
