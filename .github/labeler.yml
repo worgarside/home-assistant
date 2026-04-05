@@ -66,6 +66,7 @@ labels:
   - label: ha:cover
     files:
       - ^entities/cover/.+\.yaml$
+      - ^entities/template/cover/.+\.yaml$
 
   - label: ha:command-line
     files:
@@ -150,6 +151,7 @@ labels:
   - label: ha:switch
     files:
       - ^entities/switch/.+\.yaml$
+      - ^entities/template/switch/.+\.yaml$
 
   - label: ha:template
     files:

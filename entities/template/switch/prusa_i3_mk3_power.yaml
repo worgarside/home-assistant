@@ -1,9 +1,11 @@
 ---
-friendly_name: Prusa i3 MK3 Power
+name: Prusa i3 MK3 Power
 
 unique_id: prusa_i3_mk3_power
 
-availability_template: >-
+default_entity_id: switch.prusa_i3_mk3_power
+
+availability: >-
   {{
     not (
       is_state('switch.prusa_i3_mk3', 'unavailable') or
@@ -11,13 +13,13 @@ availability_template: >-
     )
   }}
 
-value_template: >-
+state: >-
   {{
     is_state('switch.prusa_i3_mk3', 'on') and
     ( state_attr('sensor.octoprint_print_status', 'flags') or {} ).get("operational", False)
   }}
 
-icon_template: >-
+icon: >-
   {%
     if (
       is_state("switch.prusa_i3_mk3", "on") and

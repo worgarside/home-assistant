@@ -1,16 +1,18 @@
 ---
-friendly_name: Office Desk
+name: Office Desk
 
 unique_id: office_desk
 
-value_template: "{{ states('cover.will_s_office_desk_idasen') }}"
+default_entity_id: cover.office_desk
 
-position_template: >-
+state: "{{ states('cover.will_s_office_desk_idasen') }}"
+
+position: >-
   {{
     state_attr('cover.will_s_office_desk_idasen', 'current_position') | int(-1)
   }}
 
-icon_template: >-
+icon: >-
   {%
     if (
       state_attr('cover.will_s_office_desk_idasen', 'current_position') | int(default=0) >=
@@ -22,23 +24,23 @@ icon_template: >-
     phu:desk-sit-alt
   {% endif %}
 
-availability_template: >-
+availability: >-
   {{ states('cover.will_s_office_desk_idasen') not in ('unknown', 'unavailable') }}
 
 open_cover:
-  action: script.office_desk_set_position
-  data:
-    position: 100
+  - action: script.office_desk_set_position
+    data:
+      position: 100
 
 close_cover:
-  action: script.office_desk_set_position
-  data:
-    position: 10
+  - action: script.office_desk_set_position
+    data:
+      position: 10
 
 stop_cover:
-  action: script.office_desk_stop_moving
+  - action: script.office_desk_stop_moving
 
 set_cover_position:
-  action: script.office_desk_set_position
-  data_template:
-    position: "{{ position }}"  # hacv disable: InvalidTemplateVar:position
+  - action: script.office_desk_set_position
+    data:
+      position: "{{ position }}"  # hacv disable: InvalidTemplateVar:position
