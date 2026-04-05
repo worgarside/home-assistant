@@ -1932,10 +1932,293 @@
             },
             {
               "type": "grid",
+              "square": false,
+              "columns": 1,
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "New section"
+                  "heading_style": "title",
+                  "heading": "Tdarr",
+                  "icon": "mdi:filmstrip-box-multiple"
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.tdarr_server",
+                      "name": "Server",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "blue"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.tdarr_node_gpu_worker",
+                      "name": "GPU worker",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "amber"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.tdarr_node_gpu_worker_fps",
+                      "name": "GPU FPS",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "orange"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.tdarr_stats_transcodefilesremaining",
+                      "name": "Files remaining",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "cyan"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.tdarr_library_all",
+                      "name": "Library (all)",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "green"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.tdarr_library_movies",
+                      "name": "Library (movies)",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "green"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.tdarr_library_tv",
+                      "name": "Library (TV)",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "green"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.tdarr_stats_spacesaved",
+                      "name": "Space saved",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "teal"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "title": "Controls",
+                  "show_header_toggle": false,
+                  "entities": [
+                    {
+                      "entity": "switch.tdarr_pause_all",
+                      "name": "Pause all"
+                    },
+                    {
+                      "entity": "switch.tdarr_ignore_schedules",
+                      "name": "Ignore schedules"
+                    },
+                    {
+                      "entity": "switch.tdarr_node_gpu_worker_paused",
+                      "name": "GPU worker paused"
+                    },
+                    {
+                      "entity": "switch.tdarr_node_internal_node_paused",
+                      "name": "Internal node paused"
+                    },
+                    {
+                      "entity": "switch.tdarr_node_macbook_pro_paused",
+                      "name": "MacBook Pro node paused"
+                    },
+                    {
+                      "entity": "switch.tdarr_node_tdarr_node_paused",
+                      "name": "Tdarr node paused"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "title": "Stats",
+                  "show_header_toggle": false,
+                  "entities": [
+                    {
+                      "entity": "sensor.tdarr_stats_totalfps"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_transcodedcount"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_transcodeerrorcount"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_stagedcount"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_healthcount"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_healtherrorcount"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "grid_options": {
+                    "columns": "full"
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "hours_to_show": 6,
+                      "name": "6 Hour History \u2014 FPS",
+                      "hour24": true,
+                      "points_per_hour": 4,
+                      "line_width": 2,
+                      "lower_bound": 0,
+                      "upper_bound": "~500",
+                      "lower_bound_secondary": "~0",
+                      "upper_bound_secondary": "~500",
+                      "show": {
+                        "state": false,
+                        "fill": "fade",
+                        "legend": true,
+                        "labels": true,
+                        "icon": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.tdarr_node_gpu_worker_fps",
+                          "name": "GPU worker FPS",
+                          "color": "#FF9800",
+                          "smoothing": true
+                        },
+                        {
+                          "entity": "sensor.tdarr_stats_totalfps",
+                          "name": "Total FPS",
+                          "color": "#26C6DA",
+                          "y_axis": "secondary",
+                          "smoothing": true,
+                          "show_fill": false
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "hours_to_show": 6,
+                      "name": "6 Hour History \u2014 queue",
+                      "hour24": true,
+                      "points_per_hour": 4,
+                      "line_width": 2,
+                      "lower_bound": 0,
+                      "upper_bound": "~",
+                      "lower_bound_secondary": "~0",
+                      "upper_bound_secondary": "~",
+                      "show": {
+                        "state": false,
+                        "fill": "fade",
+                        "legend": true,
+                        "labels": true,
+                        "icon": false,
+                        "name": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.tdarr_stats_transcodefilesremaining",
+                          "name": "Files remaining",
+                          "color": "#FFC107",
+                          "smoothing": true,
+                          "show_fill": false
+                        },
+                        {
+                          "entity": "sensor.tdarr_stats_transcodedcount",
+                          "name": "Transcoded",
+                          "color": "#66BB6A",
+                          "y_axis": "secondary",
+                          "smoothing": true,
+                          "show_fill": false
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
