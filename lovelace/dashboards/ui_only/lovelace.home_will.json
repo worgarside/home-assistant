@@ -1806,6 +1806,24 @@
                     "action": "more-info"
                   },
                   "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.nvidia_geforce_gtx_1660_super_memory_used",
+                  "name": "VRAM",
+                  "icon": "mdi:memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "cyan"
                 }
               ]
             }
