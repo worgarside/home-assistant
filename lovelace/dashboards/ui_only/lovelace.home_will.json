@@ -1204,7 +1204,7 @@
                   "lower_bound_secondary": 0,
                   "upper_bound_secondary": 4,
                   "show": {
-                    "fill": true,
+                    "fill": "fade",
                     "legend": true,
                     "labels": true
                   },
@@ -1254,7 +1254,7 @@
                   "lower_bound_secondary": 0,
                   "upper_bound_secondary": 100,
                   "show": {
-                    "fill": true,
+                    "fill": "fade",
                     "legend": true,
                     "labels": true,
                     "icon": false
@@ -1305,7 +1305,7 @@
                   "lower_bound_secondary": 0,
                   "upper_bound_secondary": 100,
                   "show": {
-                    "fill": true,
+                    "fill": "fade",
                     "legend": true,
                     "labels": true,
                     "icon": false
@@ -5205,7 +5205,8 @@
                     "icon": false,
                     "legend": true,
                     "name": false,
-                    "state": false
+                    "state": false,
+                    "fill": "fade"
                   },
                   "line_width": 2
                 },
