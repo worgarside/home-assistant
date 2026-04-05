@@ -1770,135 +1770,135 @@
             },
             {
               "type": "grid",
+              "square": false,
+              "columns": 1,
               "cards": [
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_utilization",
-                  "name": "Load",
-                  "icon": "mdi:chart-donut",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon_color": "amber"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_temp",
-                  "name": "Temperature",
-                  "icon": "mdi:thermometer",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.nvidia_geforce_gtx_1660_super_memory_used",
-                  "name": "VRAM",
-                  "icon": "mdi:memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.nvidia_geforce_gtx_1660_super_power_usage",
-                  "name": "Power",
-                  "icon": "mdi:flash",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon_color": "green"
+                  "type": "grid",
+                  "square": false,
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_utilization",
+                      "name": "Load",
+                      "icon": "mdi:chart-donut",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "amber"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_temp",
+                      "name": "Temperature",
+                      "icon": "mdi:thermometer",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "orange"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.nvidia_geforce_gtx_1660_super_memory_used",
+                      "name": "VRAM",
+                      "icon": "mdi:memory",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "cyan"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.nvidia_geforce_gtx_1660_super_power_usage",
+                      "name": "Power",
+                      "icon": "mdi:flash",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_color": "green"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "Load & temperature",
+                  "name": "GPU",
+                  "hours_to_show": 24,
+                  "hour24": true,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "lower_bound": 0,
+                  "upper_bound": 130,
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": "~6500",
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "legend": true,
+                    "labels": true
+                  },
                   "entities": [
                     {
                       "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_utilization",
-                      "name": "Utilization",
+                      "name": "Load",
+                      "color": "#FFC107",
                       "smoothing": true
                     },
                     {
                       "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_temp",
                       "name": "Temperature",
-                      "y_axis": "secondary",
-                      "show_line": true,
-                      "show_fill": false,
-                      "color": "#E56B19"
-                    }
-                  ],
-                  "hours_to_show": 24,
-                  "hour24": true,
-                  "points_per_hour": 4,
-                  "line_width": 2,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "lower_bound_secondary": "~0",
-                  "upper_bound_secondary": "~90",
-                  "show": {
-                    "fill": true,
-                    "legend": true,
-                    "labels": true,
-                    "state": false
-                  }
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "Power draw",
-                  "entities": [
+                      "color": "#FF9800",
+                      "smoothing": true,
+                      "show_fill": false
+                    },
                     {
                       "entity": "sensor.nvidia_geforce_gtx_1660_super_power_usage",
                       "name": "Power",
-                      "smoothing": true
+                      "color": "#66BB6A",
+                      "smoothing": true,
+                      "show_fill": false
+                    },
+                    {
+                      "entity": "sensor.nvidia_geforce_gtx_1660_super_memory_used",
+                      "name": "VRAM",
+                      "color": "#26C6DA",
+                      "y_axis": "secondary",
+                      "smoothing": true,
+                      "show_fill": false
                     }
-                  ],
-                  "hours_to_show": 24,
-                  "hour24": true,
-                  "points_per_hour": 4,
-                  "line_width": 2,
-                  "lower_bound": 0,
-                  "upper_bound": "~250",
-                  "show": {
-                    "fill": "fade",
-                    "legend": true,
-                    "labels": true,
-                    "state": false
-                  },
-                  "icon": "mdi:flash"
+                  ]
                 }
               ]
             }
