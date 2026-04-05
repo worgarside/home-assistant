@@ -1926,8 +1926,38 @@
                   "type": "custom:vertical-stack-in-card",
                   "cards": [
                     {
-                      "type": "heading",
-                      "heading": "Auto-Reloading"
+                      "type": "custom:mini-graph-card",
+                      "hours_to_show": 6,
+                      "name": "6 Hour History",
+                      "hour24": true,
+                      "points_per_hour": 4,
+                      "line_width": 2,
+                      "lower_bound": 0,
+                      "upper_bound": 130,
+                      "lower_bound_secondary": 0,
+                      "show": {
+                        "state": false,
+                        "fill": "fade",
+                        "legend": true,
+                        "labels": true,
+                        "icon": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_utilization",
+                          "name": "Load",
+                          "color": "#FFC107",
+                          "smoothing": true
+                        },
+                        {
+                          "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_temp",
+                          "name": "Temperature",
+                          "color": "#FF9800",
+                          "y_axis": "secondary",
+                          "smoothing": true,
+                          "show_fill": false
+                        }
+                      ]
                     }
                   ]
                 }
