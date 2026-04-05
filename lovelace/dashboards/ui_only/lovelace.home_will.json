@@ -1722,39 +1722,12 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.tdarr_stats_spacesaved",
-                  "icon": "",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "name": "Space Saved",
-                  "icon_color": "purple"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.tdarr_stats_transcodedcount",
                   "icon": "mdi:file-video-outline",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "green",
                   "name": "Transcoded"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.tdarr_stats_totalfps",
-                  "icon": "",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "amber",
-                  "name": "Transcoding Speed"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.tdarr_stats_transcodefilesremaining",
-                  "icon": "mdi:file-multiple",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "teal",
-                  "name": "Pending"
                 }
               ]
             },
