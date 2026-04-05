@@ -1565,6 +1565,12 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Proxmox VE",
+                  "icon": "mdi:server-network"
+                },
+                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -1800,6 +1806,61 @@
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "hours_to_show": 6,
+                  "name": "6 Hour History",
+                  "hour24": true,
+                  "points_per_hour": 30,
+                  "line_width": 2,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "legend": true,
+                    "labels": true,
+                    "icon": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.storage_cc_tank_disk_used_percentage",
+                      "name": "Tank",
+                      "color": "#FFC107",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_local_disk_used_percentage",
+                      "name": "Local",
+                      "color": "#009688",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_local_lvm_disk_used_percentage",
+                      "name": "Local LVM",
+                      "color": "#4CAF50",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_data_vmdata_disk_used_percentage",
+                      "name": "VM Data",
+                      "color": "#2196F3",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_pbs_backup_disk_used_percentage",
+                      "name": "PBS Backup",
+                      "color": "#9C27B0",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_scratch_disk_used_percentage",
+                      "name": "Scratch",
+                      "color": "#FF9800",
+                      "smoothing": true
+                    }
+                  ]
                 }
               ]
             },
