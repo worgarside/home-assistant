@@ -1,12 +1,14 @@
 ---
-friendly_name: MtrxPi Power
+name: MtrxPi Power
 
 unique_id: mtrxpi_power
 
-availability_template: >-
+default_entity_id: switch.mtrxpi_power
+
+availability: >-
   {{ has_value('switch.led_matrix_power') and has_value('switch.mtrxpi_raspberry_pi_power') }}
 
-value_template: >-
+state: >-
   {% if (
       is_state('switch.led_matrix_power', 'on') and
       is_state('switch.mtrxpi_raspberry_pi_power', 'on')
@@ -23,7 +25,7 @@ value_template: >-
     unknown
   {% endif %}
 
-icon_template: >-
+icon: >-
   {%
     if this.state | bool(false)
   %}

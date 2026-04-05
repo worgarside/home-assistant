@@ -3135,17 +3135,17 @@ File: [`automation/sensor/lighting_modifier/state.yaml`](entities/automation/sen
 File: [`automation/sensor/spare_room_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/spare_room_climate_sensor_temperature/sync_radiator_trv.yaml)
 </details>
 
-<details><summary><code>/sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear</code></summary>
+<details><summary><code>/sensor/storage-cc-scratch-qbt-disk-used-percentage-notify-and-clear</code></summary>
 
-**Entity ID: `automation.sensor_storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear`**
+**Entity ID: `automation.sensor_storage_cc_scratch_qbt_disk_used_percentage_notify_and_clear`**
 
 > Notify and clear notification for qBittorrent SSD storage usage thresholds
 
-- Alias: /sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear
-- ID: `sensor_storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear`
+- Alias: /sensor/storage-cc-scratch-qbt-disk-used-percentage-notify-and-clear
+- ID: `sensor_storage_cc_scratch_qbt_disk_used_percentage_notify_and_clear`
 - Mode: `single`
 
-File: [`automation/sensor/storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear.yaml`](entities/automation/sensor/storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear.yaml)
+File: [`automation/sensor/storage_cc_scratch_qbt_disk_used_percentage_notify_and_clear.yaml`](entities/automation/sensor/storage_cc_scratch_qbt_disk_used_percentage_notify_and_clear.yaml)
 </details>
 
 <details><summary><code>/sensor/vic-s-office-climate-sensor-temperature/sync-radiator-trv</code></summary>
@@ -3895,19 +3895,6 @@ File: [`command_line/sensor/pve/companion_cube_cpu_temperature.yaml`](entities/c
 - Scan Interval: 1800
 
 File: [`command_line/sensor/remote_git_branches.yaml`](entities/command_line/sensor/remote_git_branches.yaml)
-</details>
-
-</details>
-
-## Cover
-
-<details><summary><h3>Entities (1)</h3></summary>
-
-<details><summary><strong>Office Desk</strong></summary>
-
-**Entity ID: `cover.office_desk`**
-
-File: [`cover/office/office_desk.yaml`](entities/cover/office/office_desk.yaml)
 </details>
 
 </details>
@@ -6212,7 +6199,7 @@ File: [`input_number/will_s_office_grow_light_trigger_delay.yaml`](entities/inpu
 
 ## Input Select
 
-<details><summary><h3>Entities (10)</h3></summary>
+<details><summary><h3>Entities (9)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -6248,15 +6235,6 @@ File: [`input_select/gh_cli_active_user.yaml`](entities/input_select/gh_cli_acti
 - Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
 
 File: [`input_select/mtrxpi/mtrxpi_media_player_source.yaml`](entities/input_select/mtrxpi/mtrxpi_media_player_source.yaml)
-</details>
-
-<details><summary><strong>Office Shapes Artwork Mapping Source</strong></summary>
-
-**Entity ID: `input_select.office_shapes_artwork_mapping_source`**
-
-- Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
-
-File: [`input_select/office_shapes_artwork_mapping_source.yaml`](entities/input_select/office_shapes_artwork_mapping_source.yaml)
 </details>
 
 <details><summary><strong>Pi Stats Legend Sensor Type</strong></summary>
@@ -7116,19 +7094,6 @@ File: [`input_text/will_s_office_webcam_name.yaml`](entities/input_text/will_s_o
 - Icon: [`mdi:office-building-marker`](https://pictogrammers.com/library/mdi/icon/office-building-marker/)
 
 File: [`input_text/will_s_workplace_zone_name.yaml`](entities/input_text/will_s_workplace_zone_name.yaml)
-</details>
-
-</details>
-
-## Light
-
-<details><summary><h3>Entities (1)</h3></summary>
-
-<details><summary><strong>MtrxPi LED Matrix Brightness</strong></summary>
-
-**Entity ID: `light.mtrxpi_led_matrix_brightness`**
-
-File: [`light/mtrxpi_led_matrix_brightness.yaml`](entities/light/mtrxpi_led_matrix_brightness.yaml)
 </details>
 
 </details>
@@ -10123,43 +10088,9 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 </details>
 
-## Switch
-
-<details><summary><h3>Entities (4)</h3></summary>
-
-<details><summary><strong>Central Heating</strong></summary>
-
-**Entity ID: `switch.central_heating`**
-
-File: [`switch/central_heating.yaml`](entities/switch/central_heating.yaml)
-</details>
-
-<details><summary><strong>Hot Water</strong></summary>
-
-**Entity ID: `switch.hot_water`**
-
-File: [`switch/hot_water.yaml`](entities/switch/hot_water.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Power</strong></summary>
-
-**Entity ID: `switch.mtrxpi_power`**
-
-File: [`switch/mtrxpi_power.yaml`](entities/switch/mtrxpi_power.yaml)
-</details>
-
-<details><summary><strong>Prusa i3 MK3 Power</strong></summary>
-
-**Entity ID: `switch.prusa_i3_mk3_power`**
-
-File: [`switch/prusa_i3_mk3_power.yaml`](entities/switch/prusa_i3_mk3_power.yaml)
-</details>
-
-</details>
-
 ## Template
 
-<details><summary><h3>Entities (85)</h3></summary>
+<details><summary><h3>Entities (91)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -11172,6 +11103,107 @@ File: [`template/sensor/will_s_electric_blanket_level.yaml`](entities/template/s
 - Unit Of Measurement: %
 
 File: [`template/sensor/will_s_office_fan_speed.yaml`](entities/template/sensor/will_s_office_fan_speed.yaml)
+</details>
+
+<details><summary><strong>MtrxPi LED Matrix Brightness</strong></summary>
+
+**Entity ID: `template.mtrxpi_led_matrix_brightness`**
+
+- Icon: [`mdi:brightness-percent`](https://pictogrammers.com/library/mdi/icon/brightness-percent/)
+
+File: [`template/light/mtrxpi_led_matrix_brightness.yaml`](entities/template/light/mtrxpi_led_matrix_brightness.yaml)
+</details>
+
+<details><summary><strong>Central Heating</strong></summary>
+
+**Entity ID: `template.central_heating`**
+
+- Icon:
+
+```jinja
+{% if is_state('binary_sensor.boiler_heating_led_sensor', 'on') %}
+  mdi:radiator
+{% else %}
+  mdi:radiator-off
+{% endif %}
+```
+File: [`template/switch/central_heating.yaml`](entities/template/switch/central_heating.yaml)
+</details>
+
+<details><summary><strong>Hot Water</strong></summary>
+
+**Entity ID: `template.hot_water`**
+
+- Icon:
+
+```jinja
+{% if is_state('binary_sensor.boiler_hot_water_led_sensor', 'on') %}
+  mdi:water-boiler
+{% else %}
+  mdi:water-boiler-off
+{% endif %}
+```
+File: [`template/switch/hot_water.yaml`](entities/template/switch/hot_water.yaml)
+</details>
+
+<details><summary><strong>MtrxPi Power</strong></summary>
+
+**Entity ID: `template.mtrxpi_power`**
+
+- Icon:
+
+```jinja
+{%
+  if this.state | bool(false)
+%}
+  mdi:data-matrix-scan
+{% else %}
+  mdi:checkbox-blank-outline
+{% endif %}
+```
+File: [`template/switch/mtrxpi_power.yaml`](entities/template/switch/mtrxpi_power.yaml)
+</details>
+
+<details><summary><strong>Prusa i3 MK3 Power</strong></summary>
+
+**Entity ID: `template.prusa_i3_mk3_power`**
+
+- Icon:
+
+```jinja
+{%
+  if (
+    is_state("switch.prusa_i3_mk3", "on") and
+    states("sensor.prusa_i3_mk3_power") | float(-1) > 0
+  )
+%}
+  mdi:printer-3d
+{% else %}
+  mdi:printer-3d-off
+{% endif %}
+```
+File: [`template/switch/prusa_i3_mk3_power.yaml`](entities/template/switch/prusa_i3_mk3_power.yaml)
+</details>
+
+<details><summary><strong>Office Desk</strong></summary>
+
+**Entity ID: `template.office_desk`**
+
+- Icon:
+
+```jinja
+{%
+  if (
+    state_attr('cover.will_s_office_desk_idasen', 'current_position') | int(default=0) >=
+    ( states('input_number.office_desk_standing_height') | int(default=80) - 5 )
+  )
+%}
+  phu:desk-stand-alt
+{% else %}
+  phu:desk-sit-alt
+{% endif %}
+```
+File: [`template/cover/office_desk.yaml`](entities/template/cover/office_desk.yaml)
 </details>
 
 </details>
