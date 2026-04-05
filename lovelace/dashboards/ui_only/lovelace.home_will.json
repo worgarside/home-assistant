@@ -1891,7 +1891,7 @@
                   "double_tap_action": {
                     "action": "more-info"
                   },
-                  "icon_color": "amber"
+                  "icon_color": "blue"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -1909,7 +1909,7 @@
                   "double_tap_action": {
                     "action": "more-info"
                   },
-                  "icon_color": "orange"
+                  "icon_color": "red"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -1972,13 +1972,13 @@
                         {
                           "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_utilization",
                           "name": "Load",
-                          "color": "#FFC107",
+                          "color": "#2196F3",
                           "smoothing": true
                         },
                         {
                           "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_temp",
                           "name": "Temperature",
-                          "color": "#FF9800",
+                          "color": "#EF5350",
                           "y_axis": "secondary",
                           "smoothing": true,
                           "show_fill": false
