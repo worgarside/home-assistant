@@ -3135,17 +3135,17 @@ File: [`automation/sensor/lighting_modifier/state.yaml`](entities/automation/sen
 File: [`automation/sensor/spare_room_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/spare_room_climate_sensor_temperature/sync_radiator_trv.yaml)
 </details>
 
-<details><summary><code>/sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear</code></summary>
+<details><summary><code>/sensor/storage-cc-scratch-qbt-disk-used-percentage-notify-and-clear</code></summary>
 
-**Entity ID: `automation.sensor_storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear`**
+**Entity ID: `automation.sensor_storage_cc_scratch_qbt_disk_used_percentage_notify_and_clear`**
 
 > Notify and clear notification for qBittorrent SSD storage usage thresholds
 
-- Alias: /sensor/storage-cc-ssd-transient-qbt-disk-used-percentage-notify-and-clear
-- ID: `sensor_storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear`
+- Alias: /sensor/storage-cc-scratch-qbt-disk-used-percentage-notify-and-clear
+- ID: `sensor_storage_cc_scratch_qbt_disk_used_percentage_notify_and_clear`
 - Mode: `single`
 
-File: [`automation/sensor/storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear.yaml`](entities/automation/sensor/storage_cc_ssd_transient_qbt_disk_used_percentage_notify_and_clear.yaml)
+File: [`automation/sensor/storage_cc_scratch_qbt_disk_used_percentage_notify_and_clear.yaml`](entities/automation/sensor/storage_cc_scratch_qbt_disk_used_percentage_notify_and_clear.yaml)
 </details>
 
 <details><summary><code>/sensor/vic-s-office-climate-sensor-temperature/sync-radiator-trv</code></summary>
