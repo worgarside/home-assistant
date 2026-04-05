@@ -1921,6 +1921,15 @@
                       "show_fill": false
                     }
                   ]
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "heading",
+                      "heading": "Auto-Reloading"
+                    }
+                  ]
                 }
               ]
             }
