@@ -1981,6 +1981,13 @@
                           "color": "#EF5350",
                           "y_axis": "secondary",
                           "smoothing": true
+                        },
+                        {
+                          "entity": "sensor.nvidia_geforce_gtx_1660_super_fan_speed",
+                          "name": "Fan Speed",
+                          "color": "#9E9E9E",
+                          "smoothing": true,
+                          "show_line": false
                         }
                       ]
                     },
