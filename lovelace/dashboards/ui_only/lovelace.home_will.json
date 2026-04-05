@@ -1961,6 +1961,23 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_stats_spacesaved",
+                  "name": "Space saved",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "teal"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.tdarr_stats_transcodefilesremaining",
                   "name": "Files remaining",
                   "primary_info": "state",
@@ -2009,23 +2026,6 @@
                     "action": "more-info"
                   },
                   "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.tdarr_stats_spacesaved",
-                  "name": "Space saved",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon_color": "teal"
                 },
                 {
                   "type": "custom:mini-graph-card",
