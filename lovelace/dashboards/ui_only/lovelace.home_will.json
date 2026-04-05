@@ -1665,7 +1665,21 @@
                   "type": "heading",
                   "heading_style": "title",
                   "heading": "qBittorrent",
-                  "icon": "si:qbittorrent"
+                  "icon": "si:qbittorrent",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.qbittorrent_download_speed"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.qbittorrent_upload_speed"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-entity-card",
