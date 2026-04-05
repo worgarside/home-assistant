@@ -1860,7 +1860,6 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "GPU",
                   "hours_to_show": 24,
                   "hour24": true,
                   "points_per_hour": 4,
@@ -1873,7 +1872,9 @@
                     "state": false,
                     "fill": "fade",
                     "legend": true,
-                    "labels": true
+                    "labels": true,
+                    "icon": false,
+                    "name": false
                   },
                   "entities": [
                     {
