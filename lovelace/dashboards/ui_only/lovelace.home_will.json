@@ -1860,7 +1860,8 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "hours_to_show": 24,
+                  "hours_to_show": 6,
+                  "name": "6 Hour History",
                   "hour24": true,
                   "points_per_hour": 4,
                   "line_width": 2,
@@ -1873,8 +1874,7 @@
                     "fill": "fade",
                     "legend": true,
                     "labels": true,
-                    "icon": false,
-                    "name": false
+                    "icon": false
                   },
                   "entities": [
                     {
