@@ -1924,23 +1924,6 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.tdarr_stats_spacesaved",
-                  "name": "Space saved",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon_color": "teal"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.tdarr_node_gpu_worker_fps",
                   "name": "GPU FPS",
                   "primary_info": "state",
@@ -2008,24 +1991,29 @@
                   "icon_color": "green"
                 },
                 {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_stats_spacesaved",
+                  "name": "Space saved",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "teal"
+                },
+                {
                   "type": "entities",
-                  "title": "Controls",
                   "show_header_toggle": false,
                   "entities": [
                     {
                       "entity": "switch.tdarr_pause_all",
                       "name": "Pause all nodes"
-                    }
-                  ]
-                },
-                {
-                  "type": "entities",
-                  "title": "Stats",
-                  "show_header_toggle": false,
-                  "entities": [
-                    {
-                      "entity": "sensor.tdarr_stats_totalfps",
-                      "name": "Total encoding FPS"
                     },
                     {
                       "entity": "sensor.tdarr_stats_transcodedcount",
@@ -2040,10 +2028,6 @@
                       "name": "Files staged"
                     },
                     {
-                      "entity": "sensor.tdarr_stats_healthcount",
-                      "name": "Healthy files"
-                    },
-                    {
                       "entity": "sensor.tdarr_stats_healtherrorcount",
                       "name": "Health check errors"
                     }
@@ -2055,7 +2039,7 @@
                     "columns": "full"
                   },
                   "hours_to_show": 6,
-                  "name": "6 Hour FPS History",
+                  "name": "6 Hour History",
                   "hour24": true,
                   "points_per_hour": 30,
                   "line_width": 2,
