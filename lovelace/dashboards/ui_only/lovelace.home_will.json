@@ -1770,7 +1770,26 @@
             },
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_utilization",
+                  "name": "Load",
+                  "icon": "mdi:chart-donut",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "amber"
+                }
+              ]
             }
           ],
           "cards": [],
