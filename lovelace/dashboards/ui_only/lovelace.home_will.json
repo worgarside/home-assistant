@@ -1212,8 +1212,37 @@
                       "name": "Vic's Office",
                       "color": "#9C27B0",
                       "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.air_purifier_fan_speed_percentage",
+                      "name": "Lounge Fan",
+                      "color": "#FFCC80",
+                      "y_axis": "secondary",
+                      "show_fill": false,
+                      "show_line": true,
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.will_s_office_fan_speed",
+                      "name": "Will's Fan",
+                      "color": "#90CAF9",
+                      "y_axis": "secondary",
+                      "show_fill": false,
+                      "show_line": true,
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.vic_s_office_fan_speed",
+                      "name": "Vic's Fan",
+                      "color": "#CE93D8",
+                      "y_axis": "secondary",
+                      "show_fill": false,
+                      "show_line": true,
+                      "smoothing": true
                     }
-                  ]
+                  ],
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100
                 }
               ]
             },
