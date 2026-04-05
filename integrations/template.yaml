@@ -5,3 +5,6 @@ template:
   - binary_sensor: !include_dir_list ../entities/template/binary_sensor/
   - image: !include_dir_list ../entities/template/image/
   - sensor: !include_dir_list ../entities/template/sensor/
+  - light: !include_dir_list ../entities/template/light/
+  - switch: !include_dir_list ../entities/template/switch/
+  - cover: !include_dir_list ../entities/template/cover/
