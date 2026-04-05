@@ -1853,6 +1853,9 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
+                  "grid_options": {
+                    "columns": "full"
+                  },
                   "cards": [
                     {
                       "type": "custom:mini-graph-card",
@@ -1862,8 +1865,9 @@
                       "points_per_hour": 4,
                       "line_width": 2,
                       "lower_bound": 0,
-                      "upper_bound": 130,
-                      "lower_bound_secondary": 0,
+                      "upper_bound": 100,
+                      "lower_bound_secondary": "~0",
+                      "upper_bound_secondary": "~90",
                       "show": {
                         "state": false,
                         "fill": "fade",
@@ -1896,9 +1900,9 @@
                       "points_per_hour": 4,
                       "line_width": 2,
                       "lower_bound": 0,
-                      "upper_bound": 130,
+                      "upper_bound": "~130",
                       "lower_bound_secondary": 0,
-                      "upper_bound_secondary": "~6500",
+                      "upper_bound_secondary": "6144",
                       "show": {
                         "state": false,
                         "fill": "fade",
