@@ -248,12 +248,15 @@ variables:
     }}}}
 
 action:
-  - service: script.notify_XXXUSERXXX
+  - action: script.notify_XXXUSERXXX
     data:
       title: "Habit Reminder"
       message: "Don't forget to mark {{{{ habit_name }}}} as complete!"
       notification_id: XXXUSERXXX_habit_binary_XXXNUMXXX_reminder
       url: /home-XXXUSERXXX/mood-habits
+      actions:
+        - action: "MARK_HABIT_AS_COMPLETE__XXXUSERUPPERXXX__BINARY_XXXNUMXXX"
+          title: "Mark as Complete"
 
   - if: "{{{{ repeat_reminder_count | int(0) > 0 }}}}"
     then:
@@ -276,12 +279,15 @@ action:
             - delay:
                 minutes: "{{{{ repeat_interval | int(60) }}}}"
 
-            - service: script.notify_XXXUSERXXX
+            - action: script.notify_XXXUSERXXX
               data:
                 title: "Habit Reminder"
                 message: "Don't forget to mark {{{{ habit_name }}}} as complete!"
                 notification_id: XXXUSERXXX_habit_binary_XXXNUMXXX_reminder
                 url: /home-XXXUSERXXX/mood-habits
+                actions:
+                  - action: "MARK_HABIT_AS_COMPLETE__XXXUSERUPPERXXX__BINARY_XXXNUMXXX"
+                    title: "Mark as Complete"
 """  # noqa: E501
         reminder_content = (
             reminder_template
@@ -289,6 +295,7 @@ action:
             .replace("}}}}", "}}")
             .replace("XXXJINJA2SETSTARTXXX", "{%")
             .replace("XXXJINJA2SETENDXXX", "%}")
+            .replace("XXXUSERUPPERXXX", user.upper())
             .replace("XXXUSERXXX", user)
             .replace("XXXNUMXXX", str(num))
             .replace("XXXUSERTITLEXXX", user.title())
@@ -614,12 +621,15 @@ variables:
     "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_count') | int(0) }}}}"
 
 action:
-  - service: script.notify_XXXUSERXXX
+  - action: script.notify_XXXUSERXXX
     data:
       title: "Habit Reminder"
       message: "Don't forget to track {{{{ habit_name }}}}!"
       notification_id: XXXUSERXXX_habit_countable_XXXNUMXXX_reminder
       url: /home-XXXUSERXXX/mood-habits
+      actions:
+        - action: "INCREMENT_HABIT__XXXUSERUPPERXXX__COUNTABLE_XXXNUMXXX"
+          title: "Increment"
 
   - if: "{{{{ repeat_reminder_count | int(0) > 0 }}}}"
     then:
@@ -642,12 +652,15 @@ action:
             - delay:
                 minutes: "{{{{ repeat_interval | int(60) }}}}"
 
-            - service: script.notify_XXXUSERXXX
+            - action: script.notify_XXXUSERXXX
               data:
                 title: "Habit Reminder"
                 message: "Don't forget to track {{{{ habit_name }}}}!"
                 notification_id: XXXUSERXXX_habit_countable_XXXNUMXXX_reminder
                 url: /home-XXXUSERXXX/mood-habits
+                actions:
+                  - action: "INCREMENT_HABIT__XXXUSERUPPERXXX__COUNTABLE_XXXNUMXXX"
+                    title: "Increment"
 """  # noqa: E501
         reminder_content = (
             reminder_template
@@ -655,6 +668,7 @@ action:
             .replace("}}}}", "}}")
             .replace("XXXJINJA2SETSTARTXXX", "{%")
             .replace("XXXJINJA2SETENDXXX", "%}")
+            .replace("XXXUSERUPPERXXX", user.upper())
             .replace("XXXUSERXXX", user)
             .replace("XXXNUMXXX", str(num))
             .replace("XXXUSERTITLEXXX", user.title())
@@ -662,6 +676,115 @@ action:
         reminder_automation_path.write_text(reminder_content)
 
         print(f"    ✓ Generated files for countable habit {num}")
+
+
+def generate_binary_habit_notification_action_files(user: str, total_count: int) -> None:
+    """Generate a single automation that handles mark-complete actions for all binary habits.
+
+    Args:
+        user: User name (e.g., 'will').
+        total_count: Total number of binary habits (determines number of triggers).
+    """
+    print(f"Generating binary habit notification action automation for {user}...")
+
+    automation_path = (
+        REPO_PATH
+        / "entities"
+        / "automation"
+        / "mobile_app"
+        / "notification_action"
+        / "habit"
+        / f"{user}_habit_binary"
+        / "mark_complete.yaml"
+    )
+    automation_path.parent.mkdir(parents=True, exist_ok=True)
+
+    trigger_lines = []
+    for num in range(1, total_count + 1):
+        trigger_lines.append(
+            f"  - platform: event\n"
+            f"    event_type: mobile_app_notification_action\n"
+            f"    event_data:\n"
+            f"      action: MARK_HABIT_AS_COMPLETE__{user.upper()}__BINARY_{num}\n"
+            f'    id: "{num}"',
+        )
+    triggers = "\n\n".join(trigger_lines)
+
+    content = f"""---
+alias: /mobile-app/notification-action/habit/{user}-habit-binary/mark-complete
+
+id: mobile_app_notification_action_habit_{user}_habit_binary_mark_complete
+
+description: Mark {user.title()}'s binary habits as complete from notification action
+
+mode: parallel
+
+trigger:
+{triggers}
+
+action:
+  - action: input_boolean.turn_on
+    target:
+      entity_id: "input_boolean.{user}_habit_binary_{{{{ trigger.id }}}}"
+"""
+    automation_path.write_text(content)
+    print(f"  ✓ Generated binary habit notification action automation for {user}")
+
+
+def generate_countable_habit_notification_action_files(
+    user: str,
+    total_count: int,
+) -> None:
+    """Generate a single automation that handles increment actions for all countable habits.
+
+    Args:
+        user: User name (e.g., 'will').
+        total_count: Total number of countable habits (determines number of triggers).
+    """
+    print(f"Generating countable habit notification action automation for {user}...")
+
+    automation_path = (
+        REPO_PATH
+        / "entities"
+        / "automation"
+        / "mobile_app"
+        / "notification_action"
+        / "habit"
+        / f"{user}_habit_countable"
+        / "increment.yaml"
+    )
+    automation_path.parent.mkdir(parents=True, exist_ok=True)
+
+    trigger_lines = []
+    for num in range(1, total_count + 1):
+        trigger_lines.append(
+            f"  - platform: event\n"
+            f"    event_type: mobile_app_notification_action\n"
+            f"    event_data:\n"
+            f"      action: INCREMENT_HABIT__{user.upper()}__COUNTABLE_{num}\n"
+            f'    id: "{num}"',
+        )
+    triggers = "\n\n".join(trigger_lines)
+
+    content = f"""---
+alias: /mobile-app/notification-action/habit/{user}-habit-countable/increment
+
+id: mobile_app_notification_action_habit_{user}_habit_countable_increment
+
+description: Increment {user.title()}'s countable habits from notification action
+
+mode: parallel
+
+trigger:
+{triggers}
+
+action:
+  - action: input_number.increment
+    target:
+      entity_id: "input_number.{user}_habit_countable_{{{{ trigger.id }}}}"
+"""
+    automation_path.write_text(content)
+    print(f"  ✓ Generated countable habit notification action automation for {user}")
 
 
 def generate_habit_template_sensors(user: str) -> None:
@@ -824,9 +947,11 @@ Examples:
 
     if args.binary:
         generate_binary_habit_files(user, args.count)
+        generate_binary_habit_notification_action_files(user, args.count)
 
     if args.countable:
         generate_countable_habit_files(user, args.count)
+        generate_countable_habit_notification_action_files(user, args.count)
 
     if args.binary or args.countable:
         generate_habit_template_sensors(user)
@@ -903,7 +1028,7 @@ trigger:
     at: "00:00:00"
 
 action:
-  - service: input_select.select_option
+  - action: input_select.select_option
     target:
       entity_id: input_select.{user}_mood_today
     data:
@@ -937,7 +1062,7 @@ trigger:
     at: "00:00:00"
 
 action:
-  - service: input_text.set_value
+  - action: input_text.set_value
     target:
       entity_id: input_text.{user}_mood_note
     data:
