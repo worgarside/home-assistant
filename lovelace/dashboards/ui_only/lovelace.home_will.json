@@ -1853,16 +1853,13 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "grid_options": {
-                    "columns": "full"
-                  },
                   "cards": [
                     {
                       "type": "custom:mini-graph-card",
                       "hours_to_show": 6,
                       "name": "6 Hour History",
                       "hour24": true,
-                      "points_per_hour": 4,
+                      "points_per_hour": 30,
                       "line_width": 2,
                       "lower_bound": 0,
                       "upper_bound": 100,
@@ -1897,7 +1894,7 @@
                       "hours_to_show": 6,
                       "name": "6 Hour History",
                       "hour24": true,
-                      "points_per_hour": 4,
+                      "points_per_hour": 30,
                       "line_width": 2,
                       "lower_bound": 0,
                       "upper_bound": "~130",
