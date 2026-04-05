@@ -8,7 +8,6 @@ mode: queued
 trigger:
   - platform: state
     entity_id:
-      - media_player.hifi_system
       - media_player.spotify_vic
       - media_player.spotify_will
       - media_player.topaz_sr10

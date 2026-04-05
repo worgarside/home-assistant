@@ -6199,7 +6199,7 @@ File: [`input_number/will_s_office_grow_light_trigger_delay.yaml`](entities/inpu
 
 ## Input Select
 
-<details><summary><h3>Entities (10)</h3></summary>
+<details><summary><h3>Entities (9)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -6235,15 +6235,6 @@ File: [`input_select/gh_cli_active_user.yaml`](entities/input_select/gh_cli_acti
 - Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
 
 File: [`input_select/mtrxpi/mtrxpi_media_player_source.yaml`](entities/input_select/mtrxpi/mtrxpi_media_player_source.yaml)
-</details>
-
-<details><summary><strong>Office Shapes Artwork Mapping Source</strong></summary>
-
-**Entity ID: `input_select.office_shapes_artwork_mapping_source`**
-
-- Icon: [`mdi:disc-player`](https://pictogrammers.com/library/mdi/icon/disc-player/)
-
-File: [`input_select/office_shapes_artwork_mapping_source.yaml`](entities/input_select/office_shapes_artwork_mapping_source.yaml)
 </details>
 
 <details><summary><strong>Pi Stats Legend Sensor Type</strong></summary>
