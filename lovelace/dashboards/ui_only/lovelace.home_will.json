@@ -1875,6 +1875,29 @@
                     "labels": true,
                     "state": false
                   }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Power draw",
+                  "entities": [
+                    {
+                      "entity": "sensor.nvidia_geforce_gtx_1660_super_power_usage",
+                      "name": "Power",
+                      "smoothing": true
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "hour24": true,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "lower_bound": 0,
+                  "upper_bound": "~250",
+                  "show": {
+                    "fill": "fade",
+                    "legend": true,
+                    "labels": true
+                  },
+                  "icon": "mdi:flash"
                 }
               ]
             }
