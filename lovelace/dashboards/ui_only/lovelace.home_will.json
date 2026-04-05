@@ -1595,12 +1595,15 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.node_cc_total_updates",
-                  "name": "Pending Updates",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "orange"
+                  "primary": "{{ states(\"sensor.node_cc_total_updates\") | int(0) }} updates",
+                  "secondary": "Pending Updates",
+                  "icon": "mdi:package-up",
+                  "color": "{% set n = states(\"sensor.node_cc_total_updates\") | int(0) %}{% if n == 0 %}green{% elif n <= 10 %}yellow{% elif n <= 50 %}orange{% else %}red{% endif %}",
+                  "tap_action": {
+                    "action": "more-info"
+                  }
                 },
                 {
                   "type": "vertical-stack",
