@@ -1809,10 +1809,10 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "hours_to_show": 6,
-                  "name": "6 Hour History",
+                  "hours_to_show": 48,
+                  "name": "48 Hour History",
                   "hour24": true,
-                  "points_per_hour": 30,
+                  "points_per_hour": 10,
                   "line_width": 2,
                   "lower_bound": 0,
                   "upper_bound": 100,
