@@ -1788,6 +1788,24 @@
                     "action": "more-info"
                   },
                   "icon_color": "amber"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_temp",
+                  "name": "Temperature",
+                  "icon": "mdi:thermometer",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "orange"
                 }
               ]
             }
