@@ -49,6 +49,7 @@ turn_off:
       {{ states('sensor.octoprint_print_status').casefold().startswith('offline') }}
     timeout:
       seconds: 30
+    continue_on_timeout: false  # Abort if OctoPrint hasn't disconnected - a print may be in progress
 
   - action: switch.turn_off
     target:
