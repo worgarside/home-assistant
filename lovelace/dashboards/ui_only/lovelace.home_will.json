@@ -1842,6 +1842,39 @@
                     "action": "more-info"
                   },
                   "icon_color": "green"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Load & temperature",
+                  "entities": [
+                    {
+                      "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_utilization",
+                      "name": "Utilization",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_temp",
+                      "name": "Temperature",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "#E56B19"
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "hour24": true,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "lower_bound_secondary": "~0",
+                  "upper_bound_secondary": "~90",
+                  "show": {
+                    "fill": true,
+                    "legend": true,
+                    "labels": true,
+                    "state": false
+                  }
                 }
               ]
             }
