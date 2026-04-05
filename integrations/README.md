@@ -10090,7 +10090,7 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 ## Template
 
-<details><summary><h3>Entities (91)</h3></summary>
+<details><summary><h3>Entities (92)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10472,6 +10472,35 @@ File: [`template/sensor/address_line_1.yaml`](entities/template/sensor/address_l
 {% endif %}
 ```
 File: [`template/sensor/air_purifier_fan_speed.yaml`](entities/template/sensor/air_purifier_fan_speed.yaml)
+</details>
+
+<details><summary><strong>Air Purifier Fan Speed Percentage</strong></summary>
+
+**Entity ID: `sensor.air_purifier_fan_speed_percentage`**
+
+- Icon:
+
+```jinja
+{% set pct = state_attr('fan.air_purifier', 'percentage') | int(0) %} {% if not states("fan.air_purifier") | bool(false) %}
+  mdi:fan-off
+{% elif state_attr('fan.air_purifier', 'mode') == 'off' %}
+  mdi:fan-off
+{% elif pct <= 0 %}
+  mdi:fan-off
+{% elif pct <= 25 %}
+  mdi:fan-speed-1
+{% elif pct <= 50 %}
+  mdi:fan-speed-2
+{% elif pct <= 75 %}
+  mdi:fan-speed-3
+{% else %}
+  mdi:fan
+{% endif %}
+```
+
+- Unit Of Measurement: %
+
+File: [`template/sensor/air_purifier_fan_speed_percentage.yaml`](entities/template/sensor/air_purifier_fan_speed_percentage.yaml)
 </details>
 
 <details><summary><strong>Current Hour</strong></summary>
