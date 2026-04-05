@@ -2008,32 +2008,6 @@
                   "icon_color": "teal"
                 },
                 {
-                  "type": "entities",
-                  "show_header_toggle": false,
-                  "entities": [
-                    {
-                      "entity": "switch.tdarr_pause_all",
-                      "name": "Pause all nodes"
-                    },
-                    {
-                      "entity": "sensor.tdarr_stats_transcodedcount",
-                      "name": "Files transcoded"
-                    },
-                    {
-                      "entity": "sensor.tdarr_stats_transcodeerrorcount",
-                      "name": "Transcode errors"
-                    },
-                    {
-                      "entity": "sensor.tdarr_stats_stagedcount",
-                      "name": "Files staged"
-                    },
-                    {
-                      "entity": "sensor.tdarr_stats_healtherrorcount",
-                      "name": "Health check errors"
-                    }
-                  ]
-                },
-                {
                   "type": "custom:mini-graph-card",
                   "grid_options": {
                     "columns": "full"
@@ -2058,6 +2032,32 @@
                       "name": "GPU worker FPS",
                       "color": "#FF9800",
                       "smoothing": true
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "show_header_toggle": false,
+                  "entities": [
+                    {
+                      "entity": "switch.tdarr_pause_all",
+                      "name": "Pause all nodes"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_transcodedcount",
+                      "name": "Files transcoded"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_transcodeerrorcount",
+                      "name": "Transcode errors"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_stagedcount",
+                      "name": "Files staged"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_healtherrorcount",
+                      "name": "Health check errors"
                     }
                   ]
                 }
