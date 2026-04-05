@@ -3,15 +3,38 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 REPO_PATH = Path(__file__).parents[1]
+STATE_FILE = Path(__file__).parent / "habit_counts.json"
 
 if REPO_PATH.name != "home-assistant" or not REPO_PATH.is_dir():
     raise RuntimeError(
         "Unable to locate the `home-assistant` repository."
         f" Current path is: {REPO_PATH!s}",
     )
+
+
+def load_state() -> dict[str, dict[str, int]]:
+    """Load previously saved habit counts from state file.
+
+    Returns:
+        Nested dict of {user: {habit_type: count}}, empty if file doesn't exist.
+    """
+    if STATE_FILE.exists():
+        return json.loads(STATE_FILE.read_text())  # type: ignore[no-any-return]
+    return {}
+
+
+def save_state(state: dict[str, dict[str, int]]) -> None:
+    """Persist habit counts to state file.
+
+    Args:
+        state: Nested dict of {user: {habit_type: count}}.
+    """
+    STATE_FILE.write_text(json.dumps(state, indent=2) + "\n")
+    print(f"  ✓ Saved state to {STATE_FILE}")
 
 
 def generate_binary_habit_files(user: str, total_count: int) -> None:
@@ -699,15 +722,14 @@ def generate_binary_habit_notification_action_files(user: str, total_count: int)
     )
     automation_path.parent.mkdir(parents=True, exist_ok=True)
 
-    trigger_lines = []
-    for num in range(1, total_count + 1):
-        trigger_lines.append(
-            f"  - platform: event\n"
-            f"    event_type: mobile_app_notification_action\n"
-            f"    event_data:\n"
-            f"      action: MARK_HABIT_AS_COMPLETE__{user.upper()}__BINARY_{num}\n"
-            f'    id: "{num}"',
-        )
+    trigger_lines = [
+        f"  - platform: event\n"
+        f"    event_type: mobile_app_notification_action\n"
+        f"    event_data:\n"
+        f"      action: MARK_HABIT_AS_COMPLETE__{user.upper()}__BINARY_{num}\n"
+        f'    id: "{num}"'
+        for num in range(1, total_count + 1)
+    ]
     triggers = "\n\n".join(trigger_lines)
 
     content = f"""---
@@ -755,15 +777,14 @@ def generate_countable_habit_notification_action_files(
     )
     automation_path.parent.mkdir(parents=True, exist_ok=True)
 
-    trigger_lines = []
-    for num in range(1, total_count + 1):
-        trigger_lines.append(
-            f"  - platform: event\n"
-            f"    event_type: mobile_app_notification_action\n"
-            f"    event_data:\n"
-            f"      action: INCREMENT_HABIT__{user.upper()}__COUNTABLE_{num}\n"
-            f'    id: "{num}"',
-        )
+    trigger_lines = [
+        f"  - platform: event\n"
+        f"    event_type: mobile_app_notification_action\n"
+        f"    event_data:\n"
+        f"      action: INCREMENT_HABIT__{user.upper()}__COUNTABLE_{num}\n"
+        f'    id: "{num}"'
+        for num in range(1, total_count + 1)
+    ]
     triggers = "\n\n".join(trigger_lines)
 
     content = f"""---
@@ -891,6 +912,36 @@ state: >-
     print(f"  ✓ Generated high-level habit template sensors for {user}")
 
 
+def _run_for_user(
+    user: str,
+    binary_count: int | None,
+    countable_count: int | None,
+    *,
+    mood: bool,
+) -> None:
+    """Run all generators for a single user.
+
+    Args:
+        user: User name (e.g., 'will').
+        binary_count: Number of binary habits to generate, or None to skip.
+        countable_count: Number of countable habits to generate, or None to skip.
+        mood: Whether to generate mood files.
+    """
+    if binary_count is not None:
+        generate_binary_habit_files(user, binary_count)
+        generate_binary_habit_notification_action_files(user, binary_count)
+
+    if countable_count is not None:
+        generate_countable_habit_files(user, countable_count)
+        generate_countable_habit_notification_action_files(user, countable_count)
+
+    if binary_count is not None or countable_count is not None:
+        generate_habit_template_sensors(user)
+
+    if mood:
+        generate_mood_files(user)
+
+
 def main() -> None:
     """Run the habit file generator."""
     parser = argparse.ArgumentParser(
@@ -898,25 +949,32 @@ def main() -> None:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python generate_habit_files.py --user=will --binary 3
+  python generate_habit_files.py --user=will --binary 10
   python generate_habit_files.py --user=will --countable 2
-  python generate_habit_files.py --user=will --binary --countable 5
+  python generate_habit_files.py --user=will --binary 10 --countable 2
+  python generate_habit_files.py --user=will --binary   # uses last saved count
+  python generate_habit_files.py --regenerate-all       # regenerate everything from saved state
         """,
     )
     parser.add_argument(
         "--user",
-        required=True,
-        help="User name (e.g., 'will')",
+        help="User name (e.g., 'will') — not required with --regenerate-all",
     )
     parser.add_argument(
         "--binary",
-        action="store_true",
-        help="Generate binary habits",
+        type=int,
+        nargs="?",
+        const=-1,
+        metavar="COUNT",
+        help="Generate binary habits; omit COUNT to reuse last saved count",
     )
     parser.add_argument(
         "--countable",
-        action="store_true",
-        help="Generate countable habits",
+        type=int,
+        nargs="?",
+        const=-1,
+        metavar="COUNT",
+        help="Generate countable habits; omit COUNT to reuse last saved count",
     )
     parser.add_argument(
         "--mood",
@@ -924,41 +982,91 @@ Examples:
         help="Generate mood tracking files",
     )
     parser.add_argument(
-        "count",
-        type=int,
-        nargs="?",
-        help="Total number of habits desired (required if --binary or --countable is specified)",
+        "--regenerate-all",
+        action="store_true",
+        help="Regenerate all files for all users/types using saved state (ignores other flags)",
     )
 
     args = parser.parse_args()
+    state = load_state()
 
-    if not args.binary and not args.countable and not args.mood:
+    if args.regenerate_all:
+        if not state:
+            parser.error(
+                f"No saved state found at {STATE_FILE}. "
+                "Run with explicit args first to build the state.",
+            )
+        print(f"Regenerating all files from saved state ({STATE_FILE})...")
+        for user, user_state in state.items():
+            print(f"\n--- {user} ---")
+            _run_for_user(
+                user=user,
+                binary_count=user_state.get("binary"),
+                countable_count=user_state.get("countable"),
+                mood=bool(user_state.get("mood", False)),
+            )
+        print("\n✓ Regeneration complete")
+        return
+
+    if not args.user:
+        parser.error("--user is required unless --regenerate-all is specified")
+
+    if args.binary is None and args.countable is None and not args.mood:
         parser.error(
-            "At least one of --binary, --countable, or --mood must be specified",
+            "At least one of --binary, --countable, --mood, or --regenerate-all must be specified",
         )
 
-    if (args.binary or args.countable) and args.count is None:
-        parser.error("Count is required when --binary or --countable is specified")
-
-    if args.count is not None and args.count < 1:
-        parser.error("Count must be a positive integer")
-
     user = args.user.lower()
+    user_state = state.setdefault(user, {})
 
-    if args.binary:
-        generate_binary_habit_files(user, args.count)
-        generate_binary_habit_notification_action_files(user, args.count)
+    binary_count: int | None = None
+    countable_count: int | None = None
 
-    if args.countable:
-        generate_countable_habit_files(user, args.count)
-        generate_countable_habit_notification_action_files(user, args.count)
+    if args.binary is not None:
+        if args.binary == -1:
+            if "binary" in user_state:
+                binary_count = user_state["binary"]
+                print(f"Using saved binary count for {user}: {binary_count}")
+            else:
+                parser.error(
+                    f"No count provided and no saved state for {user}/binary. "
+                    "Provide a count explicitly, e.g. --binary 10",
+                )
+        else:
+            if args.binary < 1:
+                parser.error("--binary count must be a positive integer")
+            binary_count = args.binary
 
-    if args.binary or args.countable:
-        generate_habit_template_sensors(user)
+    if args.countable is not None:
+        if args.countable == -1:
+            if "countable" in user_state:
+                countable_count = user_state["countable"]
+                print(f"Using saved countable count for {user}: {countable_count}")
+            else:
+                parser.error(
+                    f"No count provided and no saved state for {user}/countable. "
+                    "Provide a count explicitly, e.g. --countable 2",
+                )
+        else:
+            if args.countable < 1:
+                parser.error("--countable count must be a positive integer")
+            countable_count = args.countable
 
+    _run_for_user(
+        user=user,
+        binary_count=binary_count,
+        countable_count=countable_count,
+        mood=args.mood,
+    )
+
+    if binary_count is not None:
+        user_state["binary"] = binary_count
+    if countable_count is not None:
+        user_state["countable"] = countable_count
     if args.mood:
-        generate_mood_files(user)
+        user_state["mood"] = True
 
+    save_state(state)
     print("\n✓ Generation complete")
 
 

@@ -70,6 +70,7 @@ lint.ignore = [
 "__init__.py" = ["D104"]
 "dev_tools/**/*.py" = ["T201"]
 "dev_tools/color_generator.py" = ["ERA001"]
+"dev_tools/generate_habit_files.py" = ["PLR0912", "PLR0915", "C901"]
 
 [tool.ruff.lint.pycodestyle]
 max-line-length = 115
