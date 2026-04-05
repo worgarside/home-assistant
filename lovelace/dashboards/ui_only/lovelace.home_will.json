@@ -2287,7 +2287,12 @@
                   "primary": "{% set s = states(\"sensor.frigate_uptime\") | int(0) %}{% set d = s // 86400 %}{% set h = (s % 86400) // 3600 %}{% set m = (s % 3600) // 60 %}{% if d > 0 %}{{ d }}d {{ h }}h{% elif h > 0 %}{{ h }}h {{ m }}m{% else %}{{ m }}m{% endif %}",
                   "secondary": "Uptime",
                   "icon": "mdi:clock-outline",
-                  "icon_color": "teal"
+                  "color": "teal",
+                  "features_position": "bottom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "entity": "sensor.frigate_uptime"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
