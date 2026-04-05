@@ -1571,6 +1571,38 @@
                   "icon": "mdi:server-network"
                 },
                 {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.node_cc_virtual_machines_running",
+                  "name": "VMs",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "indigo"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.node_cc_containers_running",
+                  "name": "Containers",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.node_cc_last_boot",
+                  "name": "Last Boot",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.node_cc_total_updates",
+                  "name": "Pending Updates",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange"
+                },
+                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -2196,6 +2228,120 @@
                       "name": "Health check errors"
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "square": false,
+              "columns": 1,
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Frigate",
+                  "icon": "mdi:cctv"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_frigate_105_status",
+                  "name": "LXC Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.frigate_status",
+                  "name": "Frigate",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_frigate_105_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_frigate_105_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_frigate_105_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.frigate_uptime",
+                  "name": "Uptime",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "teal"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "update.frigate_server",
+                  "name": "Update Available",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "amber"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "square": false,
+              "columns": 1,
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Zigbee",
+                  "icon": "mdi:zigbee"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.zigbee2mqtt_bridge_connection_state_2",
+                  "name": "Z2M Bridge",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.zigbee2mqtt_bridge_version",
+                  "name": "Z2M Version",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.slzb_06m_zigbee_chip_temp",
+                  "name": "Coordinator Temp",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.slzb_06m_zigbee_uptime",
+                  "name": "Coordinator Uptime",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "teal"
                 }
               ]
             }
