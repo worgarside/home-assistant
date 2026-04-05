@@ -10481,15 +10481,17 @@ File: [`template/sensor/air_purifier_fan_speed.yaml`](entities/template/sensor/a
 - Icon:
 
 ```jinja
-{% if not states("fan.air_purifier") | bool(false) %}
+{% set pct = state_attr('fan.air_purifier', 'percentage') | int(0) %} {% if not states("fan.air_purifier") | bool(false) %}
   mdi:fan-off
 {% elif state_attr('fan.air_purifier', 'mode') == 'off' %}
   mdi:fan-off
-{% elif state_attr('fan.air_purifier', 'percentage') | int(0) <= 25 %}
+{% elif pct <= 0 %}
+  mdi:fan-off
+{% elif pct <= 25 %}
   mdi:fan-speed-1
-{% elif state_attr('fan.air_purifier', 'percentage') | int(0) <= 50 %}
+{% elif pct <= 50 %}
   mdi:fan-speed-2
-{% elif state_attr('fan.air_purifier', 'percentage') | int(0) <= 75 %}
+{% elif pct <= 75 %}
   mdi:fan-speed-3
 {% else %}
   mdi:fan
