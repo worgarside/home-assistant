@@ -1698,90 +1698,6 @@
             },
             {
               "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading_style": "title",
-                  "heading": "qBittorrent",
-                  "icon": "si:qbittorrent",
-                  "badges": [
-                    {
-                      "type": "entity",
-                      "show_state": true,
-                      "show_icon": true,
-                      "entity": "sensor.qbittorrent_download_speed"
-                    },
-                    {
-                      "type": "entity",
-                      "show_state": true,
-                      "show_icon": true,
-                      "entity": "sensor.qbittorrent_upload_speed"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qbittorrent_active_torrents",
-                  "icon": "si:qbittorrent",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "name": "Active Torrents"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qbittorrent_global_ratio",
-                  "icon": "mdi:sprout-outline",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "light-green"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "6 Hour History",
-                  "entities": [
-                    {
-                      "entity": "sensor.qbittorrent_upload_speed",
-                      "name": "Upload",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.qbittorrent_download_speed",
-                      "name": "Download",
-                      "color": "#2096F3"
-                    },
-                    {
-                      "entity": "sensor.storage_cc_scratch_qbt_disk_used_percentage",
-                      "name": "QBT Storage",
-                      "color": "#FF9901",
-                      "y_axis": "secondary",
-                      "show_line": false
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "legend": true,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "labels_secondary": true,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 60,
-                  "lower_bound": 0,
-                  "upper_bound": "~20",
-                  "lower_bound_secondary": 0,
-                  "upper_bound_secondary": 100,
-                  "height": 150,
-                  "animate": false,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
               "square": false,
               "columns": 1,
               "cards": [
@@ -1893,6 +1809,90 @@
                       "smoothing": true
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "qBittorrent",
+                  "icon": "si:qbittorrent",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.qbittorrent_download_speed"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.qbittorrent_upload_speed"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qbittorrent_active_torrents",
+                  "icon": "si:qbittorrent",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Active Torrents"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qbittorrent_global_ratio",
+                  "icon": "mdi:sprout-outline",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "light-green"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "6 Hour History",
+                  "entities": [
+                    {
+                      "entity": "sensor.qbittorrent_upload_speed",
+                      "name": "Upload",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.qbittorrent_download_speed",
+                      "name": "Download",
+                      "color": "#2096F3"
+                    },
+                    {
+                      "entity": "sensor.storage_cc_scratch_qbt_disk_used_percentage",
+                      "name": "QBT Storage",
+                      "color": "#FF9901",
+                      "y_axis": "secondary",
+                      "show_line": false
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": true,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "labels_secondary": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 60,
+                  "lower_bound": 0,
+                  "upper_bound": "~20",
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100,
+                  "height": 150,
+                  "animate": false,
+                  "hour24": true,
+                  "line_width": 2
                 }
               ]
             },
