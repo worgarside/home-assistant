@@ -1751,7 +1751,11 @@
                       "show_icon": true,
                       "entity": "sensor.qbittorrent_upload_speed"
                     }
-                  ]
+                  ],
+                  "tap_action": {
+                    "action": "url",
+                    "url_path": "input_text.ad_get_latest_release"
+                  }
                 },
                 {
                   "type": "custom:mushroom-entity-card",
