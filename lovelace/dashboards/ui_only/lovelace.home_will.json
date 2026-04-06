@@ -1751,11 +1751,7 @@
                       "show_icon": true,
                       "entity": "sensor.qbittorrent_upload_speed"
                     }
-                  ],
-                  "tap_action": {
-                    "action": "url",
-                    "url_path": "https://qbt.worgarsi.de/"
-                  }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-entity-card",
