@@ -1208,6 +1208,11 @@
                       "smoothing": true
                     },
                     {
+                      "entity": "sensor.kitchen_air_quality_sensor_pm25",
+                      "name": "Kitchen",
+                      "smoothing": true
+                    },
+                    {
                       "entity": "sensor.vic_s_office_fan_pm_2_5",
                       "name": "Vic's Office",
                       "color": "#9C27B0",
