@@ -1884,12 +1884,12 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.nvidia_geforce_gtx_1660_super_memory_used",
-                  "name": "VRAM Consumption",
+                  "primary": "{% set used = states('sensor.nvidia_geforce_gtx_1660_super_memory_used') | float(0) %}{% set free = states('sensor.nvidia_geforce_gtx_1660_super_memory_free') | float(0) %}{% set total = used + free %}{% set pct = (100 * used / total) | round(0) | int if total > 0 else 0 %}{{ states('sensor.nvidia_geforce_gtx_1660_super_memory_used') }} {{ state_attr('sensor.nvidia_geforce_gtx_1660_super_memory_used', 'unit_of_measurement') }} / {{ pct }}%",
+                  "secondary": "VRAM Consumption",
                   "icon": "mdi:memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "icon_color": "cyan",
                   "tap_action": {
                     "action": "more-info"
                   },
@@ -1898,8 +1898,7 @@
                   },
                   "double_tap_action": {
                     "action": "more-info"
-                  },
-                  "icon_color": "cyan"
+                  }
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
