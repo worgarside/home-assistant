@@ -341,6 +341,8 @@ unique_id: {user}_habit_binary_{num}_streak
 
 icon: mdi:fire
 
+unit_of_measurement: days
+
 query: >-
   WITH min_days_per_week AS (
     SELECT COALESCE(
@@ -1179,6 +1181,8 @@ name: {user.title()} | Mood Streak
 unique_id: {user}_mood_streak
 
 icon: mdi:fire
+
+unit_of_measurement: days
 
 query: >-
   WITH daily_last_states AS (

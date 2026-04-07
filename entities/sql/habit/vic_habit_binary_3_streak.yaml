@@ -5,6 +5,8 @@ unique_id: vic_habit_binary_3_streak
 
 icon: mdi:fire
 
+unit_of_measurement: days
+
 query: >-
   WITH min_days_per_week AS (
     SELECT COALESCE(
