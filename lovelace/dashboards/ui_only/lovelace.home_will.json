@@ -6388,13 +6388,9 @@
                     }
                   ],
                   "hours_to_show": 24,
-                  "points_per_hour": 4,
+                  "points_per_hour": 30,
                   "smoothing": false,
-                  "name": "Temperature vs Threshold",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 3
-                  }
+                  "name": "Temperature vs Threshold"
                 },
                 {
                   "type": "history-graph",
