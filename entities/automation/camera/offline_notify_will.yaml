@@ -3,13 +3,13 @@ alias: /camera/offline-notify-will
 
 id: camera_offline_notify_will
 
-description: Notify Will when either basement or lounge camera goes offline
+description: Notify Will when any security camera goes offline
 
 mode: queued
 
 max_exceeded: silent
 
-max: 4
+max: 8
 
 trigger:
   - platform: state
@@ -28,12 +28,32 @@ trigger:
     for:
       minutes: 1
 
+  - platform: state
+    entity_id: camera.desmond_cam
+    to:
+      - recording
+      - unavailable
+    for:
+      minutes: 1
+
+  - platform: state
+    entity_id: camera.front_door
+    to:
+      - recording
+      - unavailable
+    for:
+      minutes: 1
+
 variables:
   camera_name: >-
     {% if trigger.entity_id == 'camera.basement' %}
       Basement
     {% elif trigger.entity_id == 'camera.lounge' %}
       Lounge
+    {% elif trigger.entity_id == 'camera.desmond_cam' %}
+      Desmond
+    {% elif trigger.entity_id == 'camera.front_door' %}
+      Front Door
     {% else %}
       Unknown
     {% endif %}
