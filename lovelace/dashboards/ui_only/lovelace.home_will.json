@@ -6397,21 +6397,16 @@
                   }
                 },
                 {
-                  "type": "custom:mini-graph-card",
+                  "type": "history-graph",
                   "entities": [
                     {
-                      "entity": "binary_sensor.roof_terrace_window_in_direct_sun",
-                      "name": "Window in Sun"
+                      "entity": "binary_sensor.roof_terrace_window_in_direct_sun"
                     },
                     {
-                      "entity": "binary_sensor.roof_shutters_should_be_open",
-                      "name": "Should Be Open"
+                      "entity": "binary_sensor.roof_shutters_should_be_open"
                     }
                   ],
                   "hours_to_show": 24,
-                  "points_per_hour": 4,
-                  "smoothing": false,
-                  "name": "Sensor States",
                   "grid_options": {
                     "columns": 12,
                     "rows": 2
