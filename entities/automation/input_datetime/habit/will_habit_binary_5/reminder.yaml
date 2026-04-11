@@ -39,6 +39,9 @@ action:
       message: "Don't forget to mark {{ habit_name }} as complete!"
       notification_id: will_habit_binary_5_reminder
       url: /home-will/mood-habits
+      actions:
+        - action: "MARK_HABIT_AS_COMPLETE__WILL__BINARY_5"
+          title: "Mark as Complete"
 
   - if: "{{ repeat_reminder_count | int(0) > 0 }}"
     then:
@@ -67,3 +70,6 @@ action:
                 message: "Don't forget to mark {{ habit_name }} as complete!"
                 notification_id: will_habit_binary_5_reminder
                 url: /home-will/mood-habits
+                actions:
+                  - action: "MARK_HABIT_AS_COMPLETE__WILL__BINARY_5"
+                    title: "Mark as Complete"

@@ -1,0 +1,84 @@
+---
+name: Will | Habit Binary 5 Streak
+
+unique_id: will_habit_binary_5_streak
+
+icon: mdi:fire
+
+unit_of_measurement: days
+
+query: >-
+  WITH min_days_per_week AS (
+    SELECT COALESCE(
+      (SELECT (state::numeric)::integer
+       FROM states
+       INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
+       WHERE states_meta.entity_id = 'input_number.will_habit_binary_5_streak_min_days_per_week'
+       ORDER BY states.last_updated_ts DESC
+       LIMIT 1),
+      7
+    ) AS min_days
+  ),
+  completed_dates AS (
+    SELECT
+      DATE(to_timestamp(states.last_updated_ts)) AS completed_date
+    FROM states
+    INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
+    WHERE states_meta.entity_id = 'input_boolean.will_habit_binary_5'
+      AND states.state = 'on'
+      AND states.last_updated_ts >= EXTRACT(EPOCH FROM (CURRENT_DATE - INTERVAL '366 days'))
+    GROUP BY DATE(to_timestamp(states.last_updated_ts))
+  ),
+  streak_anchor AS (
+    SELECT
+      CASE
+        WHEN EXISTS (
+          SELECT 1
+          FROM completed_dates
+          WHERE completed_date = CURRENT_DATE
+        )
+        THEN CURRENT_DATE
+        ELSE CURRENT_DATE - INTERVAL '1 day'
+      END::date AS streak_end_date
+  ),
+  day_series AS (
+    SELECT
+      day_offset,
+      (sa.streak_end_date - day_offset)::date AS check_date
+    FROM streak_anchor sa
+    CROSS JOIN generate_series(0, 365) AS day_offset
+  ),
+  weekly_completion_counts AS (
+    SELECT
+      DATE_TRUNC('week', completed_date)::date AS week_start,
+      COUNT(*)::integer AS completed_days
+    FROM completed_dates
+    GROUP BY DATE_TRUNC('week', completed_date)::date
+  ),
+  streak_candidates AS (
+    SELECT
+      ds.day_offset,
+      ds.check_date,
+      DATE_TRUNC('week', ds.check_date)::date AS check_week_start,
+      DATE_TRUNC('week', sa.streak_end_date)::date AS anchor_week_start,
+      COALESCE(wcc.completed_days, 0) AS completed_days_in_week
+    FROM day_series ds
+    CROSS JOIN streak_anchor sa
+    LEFT JOIN weekly_completion_counts wcc
+      ON wcc.week_start = DATE_TRUNC('week', ds.check_date)::date
+  ),
+  first_incomplete_day AS (
+    SELECT MIN(sc.day_offset) AS first_gap_offset
+    FROM streak_candidates sc
+    CROSS JOIN min_days_per_week mdpw
+    LEFT JOIN completed_dates cd_day ON cd_day.completed_date = sc.check_date
+    WHERE cd_day.completed_date IS NULL
+       OR (
+         sc.check_week_start <> sc.anchor_week_start
+         AND sc.completed_days_in_week < mdpw.min_days
+       )
+  )
+  SELECT COALESCE(first_gap_offset, 366)::integer AS streak
+  FROM first_incomplete_day
+
+column: streak
