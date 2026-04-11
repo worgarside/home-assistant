@@ -8,45 +8,19 @@ mode: single
 max_exceeded: silent
 
 description: >-
-  Closes the roof terrace shutters when the sun is below the horizon, or when the sun is
-  shining directly on the window and the landing temperature exceeds the close threshold.
-  Re-opening requires temperature to fall a further hysteresis delta below this threshold
-  (preventing flapping) — see the open automation.
+  Closes the roof terrace shutters when the desired-state sensor turns off.
+  All logic (night, direct sun, temperature threshold, hysteresis) lives in
+  binary_sensor.roof_shutters_should_be_open.
 
 trigger:
   - platform: state
-    entity_id: sun.sun
-    to: below_horizon
-
-  - platform: state
-    entity_id: binary_sensor.roof_terrace_window_in_direct_sun
-    to: "on"
-
-  # Temperature crossing the threshold while the sun is already on the window
-  - platform: numeric_state
-    entity_id: sensor.landing_climate_sensor_temperature
-    above: input_number.roof_shutters_close_temperature_threshold
+    entity_id: binary_sensor.roof_shutters_should_be_open
+    to: "off"
 
 condition:
-  # Only act if shutters are not already closed
   - condition: state
     entity_id: cover.roof_shutters
     state: open
-
-  - condition: or
-    conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: below_horizon
-
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: binary_sensor.roof_terrace_window_in_direct_sun
-            state: "on"
-          - condition: numeric_state
-            entity_id: sensor.landing_climate_sensor_temperature
-            above: input_number.roof_shutters_close_temperature_threshold
 
 action:
   - action: cover.close_cover

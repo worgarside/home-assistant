@@ -364,7 +364,7 @@ File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/
 
 **Entity ID: `automation.cover_roof_shutters_close`**
 
-> Closes the roof terrace shutters when the sun is below the horizon, or when the sun is shining directly on the window and the landing temperature exceeds the close threshold. Re-opening requires temperature to fall a further hysteresis delta below this threshold (preventing flapping) — see the open automation.
+> Closes the roof terrace shutters when the desired-state sensor turns off. All logic (night, direct sun, temperature threshold, hysteresis) lives in binary_sensor.roof_shutters_should_be_open.
 
 - Alias: /cover/roof-shutters/close
 - ID: `cover_roof_shutters_close`
@@ -377,7 +377,7 @@ File: [`automation/cover/roof_shutters/close.yaml`](entities/automation/cover/ro
 
 **Entity ID: `automation.cover_roof_shutters_open`**
 
-> Opens the roof terrace shutters when the sun is above the horizon, unless the sun is shining directly on the window and the landing temperature is still above the derived reopen threshold. The reopen threshold is the close threshold minus a hysteresis delta, preventing flapping when temperature hovers near the close boundary.
+> Opens the roof terrace shutters when the desired-state sensor turns on. All logic (night, direct sun, temperature threshold, hysteresis) lives in binary_sensor.roof_shutters_should_be_open.
 
 - Alias: /cover/roof-shutters/open
 - ID: `cover_roof_shutters_open`
@@ -10347,7 +10347,7 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 ## Template
 
-<details><summary><h3>Entities (93)</h3></summary>
+<details><summary><h3>Entities (94)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10469,6 +10469,15 @@ File: [`template/binary_sensor/raspberry_pi_online/rtropi_online.yaml`](entities
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 
 File: [`template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml)
+</details>
+
+<details><summary><strong>Roof Shutters Should Be Open</strong></summary>
+
+**Entity ID: `binary_sensor.roof_shutters_should_be_open`**
+
+- Icon: [`mdi:window-shutter`](https://pictogrammers.com/library/mdi/icon/window-shutter/)
+
+File: [`template/binary_sensor/roof_terrace/roof_shutters_should_be_open.yaml`](entities/template/binary_sensor/roof_terrace/roof_shutters_should_be_open.yaml)
 </details>
 
 <details><summary><strong>Roof Terrace Window in Direct Sun</strong></summary>

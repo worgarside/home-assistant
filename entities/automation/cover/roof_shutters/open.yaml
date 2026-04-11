@@ -8,59 +8,19 @@ mode: single
 max_exceeded: silent
 
 description: >-
-  Opens the roof terrace shutters when the sun is above the horizon, unless the sun is
-  shining directly on the window and the landing temperature is still above the derived
-  reopen threshold. The reopen threshold is the close threshold minus a hysteresis delta,
-  preventing flapping when temperature hovers near the close boundary.
+  Opens the roof terrace shutters when the desired-state sensor turns on.
+  All logic (night, direct sun, temperature threshold, hysteresis) lives in
+  binary_sensor.roof_shutters_should_be_open.
 
 trigger:
   - platform: state
-    entity_id: sun.sun
-    to: above_horizon
-
-  # Sun has moved off the window — safe to open regardless of temperature
-  - platform: state
-    entity_id: binary_sensor.roof_terrace_window_in_direct_sun
-    to: "off"
-
-  # Temperature has dropped sufficiently below the close threshold (hysteresis delta = 2 °C).
-  # A template trigger is used here because numeric_state triggers cannot express arithmetic
-  # on their threshold; the delta must be inlined as a literal in this template.
-  - platform: template
-    value_template: >-
-      {% set delta = 2 %}
-      {% set close_threshold = states(
-        'input_number.roof_shutters_close_temperature_threshold'
-      ) | float(23) %}
-      {% set reopen_threshold = close_threshold - delta %}
-      {{ states('sensor.landing_climate_sensor_temperature') | float(100) < reopen_threshold }}
+    entity_id: binary_sensor.roof_shutters_should_be_open
+    to: "on"
 
 condition:
-  # Only act if shutters are not already open
   - condition: state
     entity_id: cover.roof_shutters
     state: closed
-
-  # Sun must be above the horizon — don't open at night
-  - condition: state
-    entity_id: sun.sun
-    state: above_horizon
-
-  # Open unless direct sun AND temperature is still above the derived reopen threshold.
-  # Uses the same delta as the trigger above — update both if changing the hysteresis offset.
-  - condition: or
-    conditions:
-      - condition: state
-        entity_id: binary_sensor.roof_terrace_window_in_direct_sun
-        state: "off"
-      - condition: template
-        value_template: >-
-          {% set delta = 2 %}
-          {% set close_threshold = states(
-            'input_number.roof_shutters_close_temperature_threshold'
-          ) | float(23) %}
-          {% set reopen_threshold = close_threshold - delta %}
-          {{ states('sensor.landing_climate_sensor_temperature') | float(100) < reopen_threshold }}
 
 action:
   - action: cover.open_cover
