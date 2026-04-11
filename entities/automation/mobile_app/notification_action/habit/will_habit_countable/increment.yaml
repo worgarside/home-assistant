@@ -1,0 +1,26 @@
+---
+alias: /mobile-app/notification-action/habit/will-habit-countable/increment
+
+id: mobile_app_notification_action_habit_will_habit_countable_increment
+
+description: Increment Will's countable habits from notification action
+
+mode: parallel
+
+trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: INCREMENT_HABIT__WILL__COUNTABLE_1
+    id: "1"
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: INCREMENT_HABIT__WILL__COUNTABLE_2
+    id: "2"
+
+action:
+  - action: input_number.increment
+    target:
+      entity_id: "input_number.will_habit_countable_{{ trigger.id }}"

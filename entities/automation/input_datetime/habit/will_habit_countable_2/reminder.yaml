@@ -33,6 +33,9 @@ action:
       message: "Don't forget to track {{ habit_name }}!"
       notification_id: will_habit_countable_2_reminder
       url: /home-will/mood-habits
+      actions:
+        - action: "INCREMENT_HABIT__WILL__COUNTABLE_2"
+          title: "Increment"
 
   - if: "{{ repeat_reminder_count | int(0) > 0 }}"
     then:
@@ -61,3 +64,6 @@ action:
                 message: "Don't forget to track {{ habit_name }}!"
                 notification_id: will_habit_countable_2_reminder
                 url: /home-will/mood-habits
+                actions:
+                  - action: "INCREMENT_HABIT__WILL__COUNTABLE_2"
+                    title: "Increment"
