@@ -1,0 +1,74 @@
+---
+alias: /mobile-app/notification-action/habit/will-habit-binary/mark-complete
+
+id: mobile_app_notification_action_habit_will_habit_binary_mark_complete
+
+description: Mark Will's binary habits as complete from notification action
+
+mode: parallel
+
+trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: MARK_HABIT_AS_COMPLETE__WILL__BINARY_1
+    id: "1"
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: MARK_HABIT_AS_COMPLETE__WILL__BINARY_2
+    id: "2"
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: MARK_HABIT_AS_COMPLETE__WILL__BINARY_3
+    id: "3"
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: MARK_HABIT_AS_COMPLETE__WILL__BINARY_4
+    id: "4"
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: MARK_HABIT_AS_COMPLETE__WILL__BINARY_5
+    id: "5"
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: MARK_HABIT_AS_COMPLETE__WILL__BINARY_6
+    id: "6"
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: MARK_HABIT_AS_COMPLETE__WILL__BINARY_7
+    id: "7"
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: MARK_HABIT_AS_COMPLETE__WILL__BINARY_8
+    id: "8"
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: MARK_HABIT_AS_COMPLETE__WILL__BINARY_9
+    id: "9"
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: MARK_HABIT_AS_COMPLETE__WILL__BINARY_10
+    id: "10"
+
+action:
+  - action: input_boolean.turn_on
+    target:
+      entity_id: "input_boolean.will_habit_binary_{{ trigger.id }}"

@@ -3,15 +3,38 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 REPO_PATH = Path(__file__).parents[1]
+STATE_FILE = Path(__file__).parent / "habit_counts.json"
 
 if REPO_PATH.name != "home-assistant" or not REPO_PATH.is_dir():
     raise RuntimeError(
         "Unable to locate the `home-assistant` repository."
         f" Current path is: {REPO_PATH!s}",
     )
+
+
+def load_state() -> dict[str, dict[str, int]]:
+    """Load previously saved habit counts from state file.
+
+    Returns:
+        Nested dict of {user: {habit_type: count}}, empty if file doesn't exist.
+    """
+    if STATE_FILE.exists():
+        return json.loads(STATE_FILE.read_text())  # type: ignore[no-any-return]
+    return {}
+
+
+def save_state(state: dict[str, dict[str, int]]) -> None:
+    """Persist habit counts to state file.
+
+    Args:
+        state: Nested dict of {user: {habit_type: count}}.
+    """
+    STATE_FILE.write_text(json.dumps(state, indent=2) + "\n")
+    print(f"  ✓ Saved state to {STATE_FILE}")
 
 
 def generate_binary_habit_files(user: str, total_count: int) -> None:
@@ -248,12 +271,15 @@ variables:
     }}}}
 
 action:
-  - service: script.notify_XXXUSERXXX
+  - action: script.notify_XXXUSERXXX
     data:
       title: "Habit Reminder"
       message: "Don't forget to mark {{{{ habit_name }}}} as complete!"
       notification_id: XXXUSERXXX_habit_binary_XXXNUMXXX_reminder
       url: /home-XXXUSERXXX/mood-habits
+      actions:
+        - action: "MARK_HABIT_AS_COMPLETE__XXXUSERUPPERXXX__BINARY_XXXNUMXXX"
+          title: "Mark as Complete"
 
   - if: "{{{{ repeat_reminder_count | int(0) > 0 }}}}"
     then:
@@ -276,12 +302,15 @@ action:
             - delay:
                 minutes: "{{{{ repeat_interval | int(60) }}}}"
 
-            - service: script.notify_XXXUSERXXX
+            - action: script.notify_XXXUSERXXX
               data:
                 title: "Habit Reminder"
                 message: "Don't forget to mark {{{{ habit_name }}}} as complete!"
                 notification_id: XXXUSERXXX_habit_binary_XXXNUMXXX_reminder
                 url: /home-XXXUSERXXX/mood-habits
+                actions:
+                  - action: "MARK_HABIT_AS_COMPLETE__XXXUSERUPPERXXX__BINARY_XXXNUMXXX"
+                    title: "Mark as Complete"
 """  # noqa: E501
         reminder_content = (
             reminder_template
@@ -289,6 +318,7 @@ action:
             .replace("}}}}", "}}")
             .replace("XXXJINJA2SETSTARTXXX", "{%")
             .replace("XXXJINJA2SETENDXXX", "%}")
+            .replace("XXXUSERUPPERXXX", user.upper())
             .replace("XXXUSERXXX", user)
             .replace("XXXNUMXXX", str(num))
             .replace("XXXUSERTITLEXXX", user.title())
@@ -311,6 +341,8 @@ unique_id: {user}_habit_binary_{num}_streak
 
 icon: mdi:fire
 
+unit_of_measurement: days
+
 query: >-
   WITH min_days_per_week AS (
     SELECT COALESCE(
@@ -321,80 +353,69 @@ query: >-
        ORDER BY states.last_updated_ts DESC
        LIMIT 1),
       7
-    ) as min_days
+    ) AS min_days
   ),
-  daily_last_states AS (
+  completed_dates AS (
     SELECT
-      DATE(to_timestamp(states.last_updated_ts)) as check_date,
-      states.state,
-      states.last_updated_ts,
-      ROW_NUMBER() OVER (
-          PARTITION BY DATE(to_timestamp(states.last_updated_ts))
-          ORDER BY states.last_updated_ts DESC
-      ) as rn
+      DATE(to_timestamp(states.last_updated_ts)) AS completed_date
     FROM states
     INNER JOIN states_meta ON states.metadata_id = states_meta.metadata_id
     WHERE states_meta.entity_id = 'input_boolean.{user}_habit_binary_{num}'
-      AND states.last_updated_ts >= EXTRACT(EPOCH FROM (CURRENT_DATE - INTERVAL '365 days'))
-      AND DATE(to_timestamp(states.last_updated_ts)) < CURRENT_DATE
+      AND states.state = 'on'
+      AND states.last_updated_ts >= EXTRACT(EPOCH FROM (CURRENT_DATE - INTERVAL '366 days'))
+    GROUP BY DATE(to_timestamp(states.last_updated_ts))
   ),
-  valid_dates AS (
-    SELECT DISTINCT check_date
-    FROM daily_last_states
-    WHERE rn = 1
-      AND state = 'on'
-  ),
-  week_groups AS (
+  streak_anchor AS (
     SELECT
-      DATE_TRUNC('week', check_date - INTERVAL '1 day') + INTERVAL '1 day' as week_start,
-      COUNT(*) as days_count
-    FROM valid_dates
-    GROUP BY DATE_TRUNC('week', check_date - INTERVAL '1 day') + INTERVAL '1 day'
+      CASE
+        WHEN EXISTS (
+          SELECT 1
+          FROM completed_dates
+          WHERE completed_date = CURRENT_DATE
+        )
+        THEN CURRENT_DATE
+        ELSE CURRENT_DATE - INTERVAL '1 day'
+      END::date AS streak_end_date
   ),
-  yesterday_week_start AS (
-    SELECT DATE_TRUNC('week', (CURRENT_DATE - 1) - INTERVAL '1 day') + INTERVAL '1 day' as week_start
-  ),
-  valid_weeks AS (
+  day_series AS (
     SELECT
-      wg.week_start,
-      wg.days_count,
-      EXTRACT(EPOCH FROM ((CURRENT_DATE - 1) - wg.week_start)) / 86400 as days_ago_week_start
-    FROM week_groups wg
+      day_offset,
+      (sa.streak_end_date - day_offset)::date AS check_date
+    FROM streak_anchor sa
+    CROSS JOIN generate_series(0, 365) AS day_offset
+  ),
+  weekly_completion_counts AS (
+    SELECT
+      DATE_TRUNC('week', completed_date)::date AS week_start,
+      COUNT(*)::integer AS completed_days
+    FROM completed_dates
+    GROUP BY DATE_TRUNC('week', completed_date)::date
+  ),
+  streak_candidates AS (
+    SELECT
+      ds.day_offset,
+      ds.check_date,
+      DATE_TRUNC('week', ds.check_date)::date AS check_week_start,
+      DATE_TRUNC('week', sa.streak_end_date)::date AS anchor_week_start,
+      COALESCE(wcc.completed_days, 0) AS completed_days_in_week
+    FROM day_series ds
+    CROSS JOIN streak_anchor sa
+    LEFT JOIN weekly_completion_counts wcc
+      ON wcc.week_start = DATE_TRUNC('week', ds.check_date)::date
+  ),
+  first_incomplete_day AS (
+    SELECT MIN(sc.day_offset) AS first_gap_offset
+    FROM streak_candidates sc
     CROSS JOIN min_days_per_week mdpw
-    CROSS JOIN yesterday_week_start yws
-    WHERE wg.days_count >= mdpw.min_days
-       OR (wg.week_start = yws.week_start AND wg.days_count > 0)
-  ),
-  ordered_weeks AS (
-    SELECT
-      vw.week_start,
-      vw.days_count,
-      vw.days_ago_week_start,
-      ROW_NUMBER() OVER (ORDER BY vw.week_start DESC) as rn,
-      (EXTRACT(EPOCH FROM (
-        vw.week_start - LAG(vw.week_start, 1) OVER (ORDER BY vw.week_start DESC)
-      )) / 86400)::integer as days_since_prev_week
-    FROM valid_weeks vw
-    CROSS JOIN yesterday_week_start yws
-    WHERE vw.week_start <= yws.week_start
-  ),
-  consecutive_week_groups AS (
-    SELECT
-      week_start,
-      days_count,
-      days_ago_week_start,
-      rn,
-      SUM(CASE WHEN days_since_prev_week IS NULL OR days_since_prev_week = 7 THEN 0 ELSE 1 END)
-        OVER (ORDER BY week_start DESC) as grp
-    FROM ordered_weeks
-  ),
-  current_streak_weeks AS (
-    SELECT week_start, days_count
-    FROM consecutive_week_groups
-    WHERE grp = (SELECT grp FROM consecutive_week_groups ORDER BY week_start DESC LIMIT 1)
+    LEFT JOIN completed_dates cd_day ON cd_day.completed_date = sc.check_date
+    WHERE cd_day.completed_date IS NULL
+       OR (
+         sc.check_week_start <> sc.anchor_week_start
+         AND sc.completed_days_in_week < mdpw.min_days
+       )
   )
-  SELECT COALESCE(SUM(days_count)::integer, 0) as streak
-  FROM current_streak_weeks
+  SELECT COALESCE(first_gap_offset, 366)::integer AS streak
+  FROM first_incomplete_day
 
 column: streak
 """
@@ -614,12 +635,15 @@ variables:
     "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_count') | int(0) }}}}"
 
 action:
-  - service: script.notify_XXXUSERXXX
+  - action: script.notify_XXXUSERXXX
     data:
       title: "Habit Reminder"
       message: "Don't forget to track {{{{ habit_name }}}}!"
       notification_id: XXXUSERXXX_habit_countable_XXXNUMXXX_reminder
       url: /home-XXXUSERXXX/mood-habits
+      actions:
+        - action: "INCREMENT_HABIT__XXXUSERUPPERXXX__COUNTABLE_XXXNUMXXX"
+          title: "Increment"
 
   - if: "{{{{ repeat_reminder_count | int(0) > 0 }}}}"
     then:
@@ -642,12 +666,15 @@ action:
             - delay:
                 minutes: "{{{{ repeat_interval | int(60) }}}}"
 
-            - service: script.notify_XXXUSERXXX
+            - action: script.notify_XXXUSERXXX
               data:
                 title: "Habit Reminder"
                 message: "Don't forget to track {{{{ habit_name }}}}!"
                 notification_id: XXXUSERXXX_habit_countable_XXXNUMXXX_reminder
                 url: /home-XXXUSERXXX/mood-habits
+                actions:
+                  - action: "INCREMENT_HABIT__XXXUSERUPPERXXX__COUNTABLE_XXXNUMXXX"
+                    title: "Increment"
 """  # noqa: E501
         reminder_content = (
             reminder_template
@@ -655,6 +682,7 @@ action:
             .replace("}}}}", "}}")
             .replace("XXXJINJA2SETSTARTXXX", "{%")
             .replace("XXXJINJA2SETENDXXX", "%}")
+            .replace("XXXUSERUPPERXXX", user.upper())
             .replace("XXXUSERXXX", user)
             .replace("XXXNUMXXX", str(num))
             .replace("XXXUSERTITLEXXX", user.title())
@@ -662,6 +690,113 @@ action:
         reminder_automation_path.write_text(reminder_content)
 
         print(f"    ✓ Generated files for countable habit {num}")
+
+
+def generate_binary_habit_notification_action_files(user: str, total_count: int) -> None:
+    """Generate a single automation that handles mark-complete actions for all binary habits.
+
+    Args:
+        user: User name (e.g., 'will').
+        total_count: Total number of binary habits (determines number of triggers).
+    """
+    print(f"Generating binary habit notification action automation for {user}...")
+
+    automation_path = (
+        REPO_PATH
+        / "entities"
+        / "automation"
+        / "mobile_app"
+        / "notification_action"
+        / "habit"
+        / f"{user}_habit_binary"
+        / "mark_complete.yaml"
+    )
+    automation_path.parent.mkdir(parents=True, exist_ok=True)
+
+    trigger_lines = [
+        f"  - platform: event\n"
+        f"    event_type: mobile_app_notification_action\n"
+        f"    event_data:\n"
+        f"      action: MARK_HABIT_AS_COMPLETE__{user.upper()}__BINARY_{num}\n"
+        f'    id: "{num}"'
+        for num in range(1, total_count + 1)
+    ]
+    triggers = "\n\n".join(trigger_lines)
+
+    content = f"""---
+alias: /mobile-app/notification-action/habit/{user}-habit-binary/mark-complete
+
+id: mobile_app_notification_action_habit_{user}_habit_binary_mark_complete
+
+description: Mark {user.title()}'s binary habits as complete from notification action
+
+mode: parallel
+
+trigger:
+{triggers}
+
+action:
+  - action: input_boolean.turn_on
+    target:
+      entity_id: "input_boolean.{user}_habit_binary_{{{{ trigger.id }}}}"
+"""
+    automation_path.write_text(content)
+    print(f"  ✓ Generated binary habit notification action automation for {user}")
+
+
+def generate_countable_habit_notification_action_files(
+    user: str,
+    total_count: int,
+) -> None:
+    """Generate a single automation that handles increment actions for all countable habits.
+
+    Args:
+        user: User name (e.g., 'will').
+        total_count: Total number of countable habits (determines number of triggers).
+    """
+    print(f"Generating countable habit notification action automation for {user}...")
+
+    automation_path = (
+        REPO_PATH
+        / "entities"
+        / "automation"
+        / "mobile_app"
+        / "notification_action"
+        / "habit"
+        / f"{user}_habit_countable"
+        / "increment.yaml"
+    )
+    automation_path.parent.mkdir(parents=True, exist_ok=True)
+
+    trigger_lines = [
+        f"  - platform: event\n"
+        f"    event_type: mobile_app_notification_action\n"
+        f"    event_data:\n"
+        f"      action: INCREMENT_HABIT__{user.upper()}__COUNTABLE_{num}\n"
+        f'    id: "{num}"'
+        for num in range(1, total_count + 1)
+    ]
+    triggers = "\n\n".join(trigger_lines)
+
+    content = f"""---
+alias: /mobile-app/notification-action/habit/{user}-habit-countable/increment
+
+id: mobile_app_notification_action_habit_{user}_habit_countable_increment
+
+description: Increment {user.title()}'s countable habits from notification action
+
+mode: parallel
+
+trigger:
+{triggers}
+
+action:
+  - action: input_number.increment
+    target:
+      entity_id: "input_number.{user}_habit_countable_{{{{ trigger.id }}}}"
+"""
+    automation_path.write_text(content)
+    print(f"  ✓ Generated countable habit notification action automation for {user}")
 
 
 def generate_habit_template_sensors(user: str) -> None:
@@ -768,6 +903,36 @@ state: >-
     print(f"  ✓ Generated high-level habit template sensors for {user}")
 
 
+def _run_for_user(
+    user: str,
+    binary_count: int | None,
+    countable_count: int | None,
+    *,
+    mood: bool,
+) -> None:
+    """Run all generators for a single user.
+
+    Args:
+        user: User name (e.g., 'will').
+        binary_count: Number of binary habits to generate, or None to skip.
+        countable_count: Number of countable habits to generate, or None to skip.
+        mood: Whether to generate mood files.
+    """
+    if binary_count is not None:
+        generate_binary_habit_files(user, binary_count)
+        generate_binary_habit_notification_action_files(user, binary_count)
+
+    if countable_count is not None:
+        generate_countable_habit_files(user, countable_count)
+        generate_countable_habit_notification_action_files(user, countable_count)
+
+    if binary_count is not None or countable_count is not None:
+        generate_habit_template_sensors(user)
+
+    if mood:
+        generate_mood_files(user)
+
+
 def main() -> None:
     """Run the habit file generator."""
     parser = argparse.ArgumentParser(
@@ -775,25 +940,32 @@ def main() -> None:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python generate_habit_files.py --user=will --binary 3
+  python generate_habit_files.py --user=will --binary 10
   python generate_habit_files.py --user=will --countable 2
-  python generate_habit_files.py --user=will --binary --countable 5
+  python generate_habit_files.py --user=will --binary 10 --countable 2
+  python generate_habit_files.py --user=will --binary   # uses last saved count
+  python generate_habit_files.py --regenerate-all       # regenerate everything from saved state
         """,
     )
     parser.add_argument(
         "--user",
-        required=True,
-        help="User name (e.g., 'will')",
+        help="User name (e.g., 'will') — not required with --regenerate-all",
     )
     parser.add_argument(
         "--binary",
-        action="store_true",
-        help="Generate binary habits",
+        type=int,
+        nargs="?",
+        const=-1,
+        metavar="COUNT",
+        help="Generate binary habits; omit COUNT to reuse last saved count",
     )
     parser.add_argument(
         "--countable",
-        action="store_true",
-        help="Generate countable habits",
+        type=int,
+        nargs="?",
+        const=-1,
+        metavar="COUNT",
+        help="Generate countable habits; omit COUNT to reuse last saved count",
     )
     parser.add_argument(
         "--mood",
@@ -801,39 +973,91 @@ Examples:
         help="Generate mood tracking files",
     )
     parser.add_argument(
-        "count",
-        type=int,
-        nargs="?",
-        help="Total number of habits desired (required if --binary or --countable is specified)",
+        "--regenerate-all",
+        action="store_true",
+        help="Regenerate all files for all users/types using saved state (ignores other flags)",
     )
 
     args = parser.parse_args()
+    state = load_state()
 
-    if not args.binary and not args.countable and not args.mood:
+    if args.regenerate_all:
+        if not state:
+            parser.error(
+                f"No saved state found at {STATE_FILE}. "
+                "Run with explicit args first to build the state.",
+            )
+        print(f"Regenerating all files from saved state ({STATE_FILE})...")
+        for user, user_state in state.items():
+            print(f"\n--- {user} ---")
+            _run_for_user(
+                user=user,
+                binary_count=user_state.get("binary"),
+                countable_count=user_state.get("countable"),
+                mood=bool(user_state.get("mood", False)),
+            )
+        print("\n✓ Regeneration complete")
+        return
+
+    if not args.user:
+        parser.error("--user is required unless --regenerate-all is specified")
+
+    if args.binary is None and args.countable is None and not args.mood:
         parser.error(
-            "At least one of --binary, --countable, or --mood must be specified",
+            "At least one of --binary, --countable, --mood, or --regenerate-all must be specified",
         )
 
-    if (args.binary or args.countable) and args.count is None:
-        parser.error("Count is required when --binary or --countable is specified")
-
-    if args.count is not None and args.count < 1:
-        parser.error("Count must be a positive integer")
-
     user = args.user.lower()
+    user_state = state.setdefault(user, {})
 
-    if args.binary:
-        generate_binary_habit_files(user, args.count)
+    binary_count: int | None = None
+    countable_count: int | None = None
 
-    if args.countable:
-        generate_countable_habit_files(user, args.count)
+    if args.binary is not None:
+        if args.binary == -1:
+            if "binary" in user_state:
+                binary_count = user_state["binary"]
+                print(f"Using saved binary count for {user}: {binary_count}")
+            else:
+                parser.error(
+                    f"No count provided and no saved state for {user}/binary. "
+                    "Provide a count explicitly, e.g. --binary 10",
+                )
+        else:
+            if args.binary < 1:
+                parser.error("--binary count must be a positive integer")
+            binary_count = args.binary
 
-    if args.binary or args.countable:
-        generate_habit_template_sensors(user)
+    if args.countable is not None:
+        if args.countable == -1:
+            if "countable" in user_state:
+                countable_count = user_state["countable"]
+                print(f"Using saved countable count for {user}: {countable_count}")
+            else:
+                parser.error(
+                    f"No count provided and no saved state for {user}/countable. "
+                    "Provide a count explicitly, e.g. --countable 2",
+                )
+        else:
+            if args.countable < 1:
+                parser.error("--countable count must be a positive integer")
+            countable_count = args.countable
 
+    _run_for_user(
+        user=user,
+        binary_count=binary_count,
+        countable_count=countable_count,
+        mood=args.mood,
+    )
+
+    if binary_count is not None:
+        user_state["binary"] = binary_count
+    if countable_count is not None:
+        user_state["countable"] = countable_count
     if args.mood:
-        generate_mood_files(user)
+        user_state["mood"] = True
 
+    save_state(state)
     print("\n✓ Generation complete")
 
 
@@ -903,7 +1127,7 @@ trigger:
     at: "00:00:00"
 
 action:
-  - service: input_select.select_option
+  - action: input_select.select_option
     target:
       entity_id: input_select.{user}_mood_today
     data:
@@ -937,7 +1161,7 @@ trigger:
     at: "00:00:00"
 
 action:
-  - service: input_text.set_value
+  - action: input_text.set_value
     target:
       entity_id: input_text.{user}_mood_note
     data:
@@ -957,6 +1181,8 @@ name: {user.title()} | Mood Streak
 unique_id: {user}_mood_streak
 
 icon: mdi:fire
+
+unit_of_measurement: days
 
 query: >-
   WITH daily_last_states AS (
