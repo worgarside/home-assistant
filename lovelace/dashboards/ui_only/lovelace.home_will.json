@@ -6289,6 +6289,158 @@
                   "primary": "Turn off all radiators when central heating is turned off"
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Roof Terrace Shutters",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "tile",
+                  "entity": "cover.roof_shutters",
+                  "name": "Shutters",
+                  "features": [
+                    {
+                      "type": "cover-open-close"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 2
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.roof_shutters_should_be_open",
+                  "name": "Should Be Open",
+                  "secondary_info": "none",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.roof_terrace_window_in_direct_sun",
+                  "name": "Window in Direct Sun",
+                  "secondary_info": "none",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.landing_climate_sensor_temperature",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_shutters_close_temperature_threshold",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Close Threshold",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sun.sun",
+                  "name": "Sun",
+                  "primary_info": "state",
+                  "secondary_info": "none",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.landing_climate_sensor_temperature"
+                    },
+                    {
+                      "entity": "binary_sensor.roof_terrace_window_in_direct_sun"
+                    },
+                    {
+                      "entity": "binary_sensor.roof_shutters_should_be_open"
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 3
+                  }
+                },
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "automation.cover_roof_shutters_open",
+                  "primary": "Open Shutters",
+                  "secondary": "/cover/roof-shutters/open",
+                  "icon": "mdi:window-shutter-open",
+                  "color": "{{ iif(states(\"automation.cover_roof_shutters_open\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "automation.cover_roof_shutters_close",
+                  "primary": "Close Shutters",
+                  "secondary": "/cover/roof-shutters/close",
+                  "icon": "mdi:window-shutter",
+                  "color": "{{ iif(states(\"automation.cover_roof_shutters_close\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                }
+              ]
             }
           ]
         }
