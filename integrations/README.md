@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (237)</h3></summary>
+<details><summary><h3>Entities (240)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1864,6 +1864,45 @@ File: [`automation/mobile_app/notification_action/bedroom_sunrise_stop.yaml`](en
 - Mode: `single`
 
 File: [`automation/mobile_app/notification_action/central_heating_turn_off.yaml`](entities/automation/mobile_app/notification_action/central_heating_turn_off.yaml)
+</details>
+
+<details><summary><code>/mobile-app/notification-action/habit/vic-habit-binary/mark-complete</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_habit_vic_habit_binary_mark_complete`**
+
+> Mark Vic's binary habits as complete from notification action
+
+- Alias: /mobile-app/notification-action/habit/vic-habit-binary/mark-complete
+- ID: `mobile_app_notification_action_habit_vic_habit_binary_mark_complete`
+- Mode: `parallel`
+
+File: [`automation/mobile_app/notification_action/habit/vic_habit_binary/mark_complete.yaml`](entities/automation/mobile_app/notification_action/habit/vic_habit_binary/mark_complete.yaml)
+</details>
+
+<details><summary><code>/mobile-app/notification-action/habit/will-habit-binary/mark-complete</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_habit_will_habit_binary_mark_complete`**
+
+> Mark Will's binary habits as complete from notification action
+
+- Alias: /mobile-app/notification-action/habit/will-habit-binary/mark-complete
+- ID: `mobile_app_notification_action_habit_will_habit_binary_mark_complete`
+- Mode: `parallel`
+
+File: [`automation/mobile_app/notification_action/habit/will_habit_binary/mark_complete.yaml`](entities/automation/mobile_app/notification_action/habit/will_habit_binary/mark_complete.yaml)
+</details>
+
+<details><summary><code>/mobile-app/notification-action/habit/will-habit-countable/increment</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_habit_will_habit_countable_increment`**
+
+> Increment Will's countable habits from notification action
+
+- Alias: /mobile-app/notification-action/habit/will-habit-countable/increment
+- ID: `mobile_app_notification_action_habit_will_habit_countable_increment`
+- Mode: `parallel`
+
+File: [`automation/mobile_app/notification_action/habit/will_habit_countable/increment.yaml`](entities/automation/mobile_app/notification_action/habit/will_habit_countable/increment.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/audio-visualiser</code></summary>
@@ -10066,7 +10105,187 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Sql
 
-<details><summary><h3>Entities (2)</h3></summary>
+<details><summary><h3>Entities (22)</h3></summary>
+
+<details><summary><strong>Vic | Habit Binary 10 Streak</strong></summary>
+
+**Entity ID: `sql.vic_habit_binary_10_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/vic_habit_binary_10_streak.yaml`](entities/sql/habit/vic_habit_binary_10_streak.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 1 Streak</strong></summary>
+
+**Entity ID: `sql.vic_habit_binary_1_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/vic_habit_binary_1_streak.yaml`](entities/sql/habit/vic_habit_binary_1_streak.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 2 Streak</strong></summary>
+
+**Entity ID: `sql.vic_habit_binary_2_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/vic_habit_binary_2_streak.yaml`](entities/sql/habit/vic_habit_binary_2_streak.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 3 Streak</strong></summary>
+
+**Entity ID: `sql.vic_habit_binary_3_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/vic_habit_binary_3_streak.yaml`](entities/sql/habit/vic_habit_binary_3_streak.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 4 Streak</strong></summary>
+
+**Entity ID: `sql.vic_habit_binary_4_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/vic_habit_binary_4_streak.yaml`](entities/sql/habit/vic_habit_binary_4_streak.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 5 Streak</strong></summary>
+
+**Entity ID: `sql.vic_habit_binary_5_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/vic_habit_binary_5_streak.yaml`](entities/sql/habit/vic_habit_binary_5_streak.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 6 Streak</strong></summary>
+
+**Entity ID: `sql.vic_habit_binary_6_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/vic_habit_binary_6_streak.yaml`](entities/sql/habit/vic_habit_binary_6_streak.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 7 Streak</strong></summary>
+
+**Entity ID: `sql.vic_habit_binary_7_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/vic_habit_binary_7_streak.yaml`](entities/sql/habit/vic_habit_binary_7_streak.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 8 Streak</strong></summary>
+
+**Entity ID: `sql.vic_habit_binary_8_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/vic_habit_binary_8_streak.yaml`](entities/sql/habit/vic_habit_binary_8_streak.yaml)
+</details>
+
+<details><summary><strong>Vic | Habit Binary 9 Streak</strong></summary>
+
+**Entity ID: `sql.vic_habit_binary_9_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/vic_habit_binary_9_streak.yaml`](entities/sql/habit/vic_habit_binary_9_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 10 Streak</strong></summary>
+
+**Entity ID: `sql.will_habit_binary_10_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/will_habit_binary_10_streak.yaml`](entities/sql/habit/will_habit_binary_10_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 1 Streak</strong></summary>
+
+**Entity ID: `sql.will_habit_binary_1_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/will_habit_binary_1_streak.yaml`](entities/sql/habit/will_habit_binary_1_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 2 Streak</strong></summary>
+
+**Entity ID: `sql.will_habit_binary_2_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/will_habit_binary_2_streak.yaml`](entities/sql/habit/will_habit_binary_2_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 3 Streak</strong></summary>
+
+**Entity ID: `sql.will_habit_binary_3_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/will_habit_binary_3_streak.yaml`](entities/sql/habit/will_habit_binary_3_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 4 Streak</strong></summary>
+
+**Entity ID: `sql.will_habit_binary_4_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/will_habit_binary_4_streak.yaml`](entities/sql/habit/will_habit_binary_4_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 5 Streak</strong></summary>
+
+**Entity ID: `sql.will_habit_binary_5_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/will_habit_binary_5_streak.yaml`](entities/sql/habit/will_habit_binary_5_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 6 Streak</strong></summary>
+
+**Entity ID: `sql.will_habit_binary_6_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/will_habit_binary_6_streak.yaml`](entities/sql/habit/will_habit_binary_6_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 7 Streak</strong></summary>
+
+**Entity ID: `sql.will_habit_binary_7_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/will_habit_binary_7_streak.yaml`](entities/sql/habit/will_habit_binary_7_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 8 Streak</strong></summary>
+
+**Entity ID: `sql.will_habit_binary_8_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/will_habit_binary_8_streak.yaml`](entities/sql/habit/will_habit_binary_8_streak.yaml)
+</details>
+
+<details><summary><strong>Will | Habit Binary 9 Streak</strong></summary>
+
+**Entity ID: `sql.will_habit_binary_9_streak`**
+
+- Column: `streak`
+
+File: [`sql/habit/will_habit_binary_9_streak.yaml`](entities/sql/habit/will_habit_binary_9_streak.yaml)
+</details>
 
 <details><summary><strong>Vic | Mood Streak</strong></summary>
 
