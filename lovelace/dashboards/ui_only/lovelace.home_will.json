@@ -929,6 +929,10 @@
                             "name": "Bedroom"
                           },
                           {
+                            "entity": "sensor.desmond_s_crate_climate_sensor_temperature",
+                            "name": "Desmond's Crate"
+                          },
+                          {
                             "entity": "sensor.kitchen_air_quality_sensor_temperature",
                             "name": "Kitchen"
                           },
@@ -995,6 +999,10 @@
                           {
                             "entity": "sensor.bedroom_climate_sensor_humidity",
                             "name": "Bedroom"
+                          },
+                          {
+                            "entity": "sensor.desmond_s_crate_climate_sensor_humidity",
+                            "name": "Desmond's Crate"
                           },
                           {
                             "entity": "sensor.kitchen_air_quality_sensor_humidity",
@@ -1171,104 +1179,75 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "entities": [
-                    {
-                      "entity": "sensor.air_purifier_pm2_5",
-                      "name": "Air Quality",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.air_purifier_fan_speed",
-                      "name": "Fan Speed",
-                      "y_axis": "secondary",
-                      "show_line": true,
-                      "show_fill": false,
-                      "color": "gray"
-                    }
-                  ],
+                  "name": "Air Quality",
                   "hours_to_show": 6,
                   "hour24": true,
                   "points_per_hour": 30,
                   "line_width": 2,
                   "min_bound_range": 10,
                   "lower_bound": "~0",
-                  "upper_bound": "~55",
-                  "lower_bound_secondary": 0,
-                  "upper_bound_secondary": 4,
+                  "upper_bound": "~100",
                   "show": {
-                    "fill": true,
-                    "legend": true,
-                    "labels": true
-                  },
-                  "color_thresholds": [
-                    {
-                      "value": 0,
-                      "color": "#28d20d"
-                    },
-                    {
-                      "value": 12,
-                      "color": "#a0ac00"
-                    },
-                    {
-                      "value": 35,
-                      "color": "#da7800"
-                    },
-                    {
-                      "value": 55,
-                      "color": "#f62727"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "entities": [
-                    {
-                      "entity": "sensor.will_s_office_fan_pm_2_5",
-                      "name": "Air Quality",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.will_s_office_fan_speed",
-                      "name": "Fan Speed",
-                      "y_axis": "secondary",
-                      "show_line": true,
-                      "show_fill": false,
-                      "color": "gray"
-                    }
-                  ],
-                  "hours_to_show": 6,
-                  "hour24": true,
-                  "points_per_hour": 30,
-                  "line_width": 2,
-                  "min_bound_range": 10,
-                  "lower_bound": "~0",
-                  "upper_bound": "~550",
-                  "lower_bound_secondary": 0,
-                  "upper_bound_secondary": 100,
-                  "show": {
-                    "fill": true,
+                    "state": false,
+                    "fill": "fade",
                     "legend": true,
                     "labels": true,
                     "icon": false
                   },
-                  "color_thresholds": [
+                  "entities": [
                     {
-                      "value": 0,
-                      "color": "#28d20d"
+                      "entity": "sensor.air_purifier_pm2_5",
+                      "name": "Lounge",
+                      "color": "#FF9800",
+                      "smoothing": true
                     },
                     {
-                      "value": 120,
-                      "color": "#a0ac00"
+                      "entity": "sensor.will_s_office_fan_pm_2_5",
+                      "name": "Will's Office",
+                      "color": "#2196F3",
+                      "smoothing": true
                     },
                     {
-                      "value": 350,
-                      "color": "#da7800"
+                      "entity": "sensor.kitchen_air_quality_sensor_pm25",
+                      "name": "Kitchen",
+                      "smoothing": true
                     },
                     {
-                      "value": 550,
-                      "color": "#f62727"
+                      "entity": "sensor.vic_s_office_fan_pm_2_5",
+                      "name": "Vic's Office",
+                      "color": "#9C27B0",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.air_purifier_fan_speed_percentage",
+                      "name": "Lounge Fan",
+                      "color": "#FFCC80",
+                      "y_axis": "secondary",
+                      "show_fill": false,
+                      "show_line": true,
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.will_s_office_fan_speed",
+                      "name": "Will's Fan",
+                      "color": "#90CAF9",
+                      "y_axis": "secondary",
+                      "show_fill": false,
+                      "show_line": true,
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.vic_s_office_fan_speed",
+                      "name": "Vic's Fan",
+                      "color": "#CE93D8",
+                      "y_axis": "secondary",
+                      "show_fill": false,
+                      "show_line": true,
+                      "smoothing": true
                     }
-                  ]
+                  ],
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100
                 }
               ]
             },
@@ -1506,6 +1485,47 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Proxmox VE",
+                  "icon": "mdi:server-network"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.node_cc_virtual_machines_running",
+                  "name": "VMs",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "indigo"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.node_cc_containers_running",
+                  "name": "Containers",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.node_cc_last_boot",
+                  "name": "Last Boot",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.node_cc_total_updates",
+                  "primary": "{{ states(\"sensor.node_cc_total_updates\") | int(0) }} updates",
+                  "secondary": "Pending Updates",
+                  "icon": "mdi:package-up",
+                  "color": "{% set n = states(\"sensor.node_cc_total_updates\") | int(0) %}{% if n == 0 %}green{% elif n <= 10 %}yellow{% elif n <= 50 %}orange{% else %}red{% endif %}",
+                  "tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -1601,23 +1621,143 @@
             },
             {
               "type": "grid",
+              "square": false,
+              "columns": 1,
               "cards": [
                 {
-                  "type": "iframe",
-                  "url": "https://grafana.worgarsi.de/d-solo/defxc2pd3s54wd/proxmox-ve?orgId=1&timezone=browser&panelId=1&__feature.dashboardSceneSolo",
-                  "aspect_ratio": "100%"
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "PVE Storage",
+                  "icon": "mdi:nas"
                 },
                 {
-                  "type": "iframe",
-                  "url": "https://grafana.worgarsi.de/d-solo/defxc2pd3s54wd/proxmox-ve?orgId=1&timezone=browser&panelId=2&__feature.dashboardSceneSolo",
-                  "aspect_ratio": "100%"
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_tank_disk_used_percentage",
+                  "name": "Tank",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "amber"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_local_disk_used_percentage",
+                  "name": "Local",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "teal"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_local_lvm_disk_used_percentage",
+                  "name": "Local LVM",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_data_vmdata_disk_used_percentage",
+                  "name": "VM Data",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_pbs_backup_disk_used_percentage",
+                  "name": "PBS Backup",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "purple"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_scratch_disk_used_percentage",
+                  "name": "Scratch",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "hours_to_show": 48,
+                  "name": "48 Hour History",
+                  "hour24": true,
+                  "points_per_hour": 10,
+                  "line_width": 2,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "legend": true,
+                    "labels": true,
+                    "icon": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.storage_cc_tank_disk_used_percentage",
+                      "name": "Tank",
+                      "color": "#FFC107",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_local_disk_used_percentage",
+                      "name": "Local",
+                      "color": "#009688",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_local_lvm_disk_used_percentage",
+                      "name": "Local LVM",
+                      "color": "#4CAF50",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_data_vmdata_disk_used_percentage",
+                      "name": "VM Data",
+                      "color": "#2196F3",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_pbs_backup_disk_used_percentage",
+                      "name": "PBS Backup",
+                      "color": "#9C27B0",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_scratch_disk_used_percentage",
+                      "name": "Scratch",
+                      "color": "#FF9800",
+                      "smoothing": true
+                    }
+                  ]
                 }
-              ],
-              "column_span": 2
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "qBittorrent",
+                  "icon": "si:qbittorrent",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.qbittorrent_download_speed"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.qbittorrent_upload_speed"
+                    }
+                  ]
+                },
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.qbittorrent_active_torrents",
@@ -1649,11 +1789,10 @@
                       "color": "#2096F3"
                     },
                     {
-                      "entity": "sensor.storage_cc_ssd_transient_qbt_disk_used_percentage",
+                      "entity": "sensor.storage_cc_scratch_qbt_disk_used_percentage",
                       "name": "QBT Storage",
                       "color": "#FF9901",
-                      "y_axis": "secondary",
-                      "show_line": false
+                      "y_axis": "secondary"
                     }
                   ],
                   "show": {
@@ -1676,42 +1815,458 @@
                   "animate": false,
                   "hour24": true,
                   "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "square": false,
+              "columns": 1,
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "NVIDIA GeForce GTX 1660 SUPER",
+                  "icon": "mdi:expansion-card"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_utilization",
+                  "name": "Load",
+                  "icon": "mdi:chart-donut",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_temp",
+                  "name": "Temperature",
+                  "icon": "mdi:thermometer",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.nvidia_geforce_gtx_1660_super_power_usage",
+                  "name": "Power",
+                  "icon": "mdi:flash",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.nvidia_geforce_gtx_1660_super_memory_used",
+                  "primary": "{% set used = states('sensor.nvidia_geforce_gtx_1660_super_memory_used') | float(0) %}{% set free = states('sensor.nvidia_geforce_gtx_1660_super_memory_free') | float(0) %}{% set total = used + free %}{% set pct = (100 * used / total) | round(0) | int if total > 0 else 0 %}{{ states('sensor.nvidia_geforce_gtx_1660_super_memory_used') }} {{ state_attr('sensor.nvidia_geforce_gtx_1660_super_memory_used', 'unit_of_measurement') }} / {{ pct }}%",
+                  "secondary": "VRAM Consumption",
+                  "icon": "mdi:memory",
+                  "icon_color": "cyan",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "hours_to_show": 6,
+                      "name": "6 Hour History",
+                      "hour24": true,
+                      "points_per_hour": 30,
+                      "line_width": 2,
+                      "lower_bound": 0,
+                      "upper_bound": 100,
+                      "lower_bound_secondary": "~0",
+                      "upper_bound_secondary": "~90",
+                      "show": {
+                        "state": false,
+                        "fill": "fade",
+                        "legend": true,
+                        "labels": true,
+                        "icon": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_utilization",
+                          "name": "Load",
+                          "color": "#2196F3",
+                          "smoothing": true
+                        },
+                        {
+                          "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_temp",
+                          "name": "Temperature",
+                          "color": "#EF5350",
+                          "y_axis": "secondary",
+                          "smoothing": true
+                        },
+                        {
+                          "entity": "sensor.nvidia_geforce_gtx_1660_super_fan_speed",
+                          "name": "Fan Speed",
+                          "color": "#9E9E9E",
+                          "smoothing": true,
+                          "show_line": false
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "hours_to_show": 6,
+                      "name": "6 Hour History",
+                      "hour24": true,
+                      "points_per_hour": 30,
+                      "line_width": 2,
+                      "lower_bound": 0,
+                      "upper_bound": "~130",
+                      "lower_bound_secondary": 0,
+                      "upper_bound_secondary": "6144",
+                      "show": {
+                        "state": false,
+                        "fill": "fade",
+                        "legend": true,
+                        "labels": true,
+                        "icon": false,
+                        "name": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.nvidia_geforce_gtx_1660_super_power_usage",
+                          "name": "Power",
+                          "color": "#66BB6A",
+                          "smoothing": true
+                        },
+                        {
+                          "entity": "sensor.nvidia_geforce_gtx_1660_super_memory_used",
+                          "name": "VRAM",
+                          "color": "#26C6DA",
+                          "y_axis": "secondary",
+                          "smoothing": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "square": false,
+              "columns": 1,
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Tdarr",
+                  "icon": "mdi:filmstrip-box-multiple"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_node_gpu_worker",
+                  "name": "GPU worker",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "amber"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_node_gpu_worker_fps",
+                  "name": "GPU FPS",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "orange"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.tdarr_stats_spacesaved",
-                  "icon": "",
+                  "name": "Space saved",
                   "primary_info": "state",
                   "secondary_info": "name",
-                  "name": "Space Saved",
-                  "icon_color": "purple"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.tdarr_stats_transcodedcount",
-                  "icon": "mdi:file-video-outline",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green",
-                  "name": "Transcoded"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.tdarr_stats_totalfps",
-                  "icon": "",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "amber",
-                  "name": "Transcoding Speed"
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "teal"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.tdarr_stats_transcodefilesremaining",
-                  "icon": "mdi:file-multiple",
+                  "name": "Files remaining",
                   "primary_info": "state",
                   "secondary_info": "name",
-                  "icon_color": "teal",
-                  "name": "Pending"
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_library_movies",
+                  "name": "Library (movies)",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tdarr_library_tv",
+                  "name": "Library (TV)",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "grid_options": {
+                    "columns": "full"
+                  },
+                  "hours_to_show": 6,
+                  "name": "FPS: 6 Hour History",
+                  "hour24": true,
+                  "points_per_hour": 30,
+                  "line_width": 2,
+                  "lower_bound": 0,
+                  "upper_bound": "~500",
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "legend": true,
+                    "labels": true,
+                    "icon": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.tdarr_node_gpu_worker_fps",
+                      "name": "GPU worker FPS",
+                      "color": "#FF9800",
+                      "smoothing": true
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "show_header_toggle": false,
+                  "entities": [
+                    {
+                      "entity": "switch.tdarr_pause_all",
+                      "name": "Pause all nodes"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_transcodedcount",
+                      "name": "Files transcoded"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_transcodeerrorcount",
+                      "name": "Transcode errors"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_stagedcount",
+                      "name": "Files staged"
+                    },
+                    {
+                      "entity": "sensor.tdarr_stats_healtherrorcount",
+                      "name": "Health check errors"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "square": false,
+              "columns": 1,
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Frigate",
+                  "icon": "mdi:cctv"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_frigate_105_status",
+                  "name": "LXC Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.frigate_status",
+                  "name": "Frigate",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_frigate_105_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_frigate_105_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_frigate_105_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{% set s = states(\"sensor.frigate_uptime\") | int(0) %}{% set d = s // 86400 %}{% set h = (s % 86400) // 3600 %}{% set m = (s % 3600) // 60 %}{% if d > 0 %}{{ d }}d {{ h }}h{% elif h > 0 %}{{ h }}h {{ m }}m{% else %}{{ m }}m{% endif %}",
+                  "secondary": "Uptime",
+                  "icon": "mdi:clock-outline",
+                  "color": "teal",
+                  "features_position": "bottom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "entity": "sensor.frigate_uptime"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "update.frigate_server",
+                  "name": "Update Available",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "amber"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "square": false,
+              "columns": 1,
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Zigbee",
+                  "icon": "mdi:zigbee"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.zigbee2mqtt_bridge_connection_state_2",
+                  "name": "Z2M Bridge",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.zigbee2mqtt_bridge_version",
+                  "name": "Z2M Version",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.slzb_06m_zigbee_chip_temp",
+                  "name": "Coordinator Temp",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.slzb_06m_zigbee_uptime",
+                  "name": "Coordinator Uptime",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "teal"
                 }
               ]
             }
@@ -4725,7 +5280,8 @@
                     "icon": false,
                     "legend": true,
                     "name": false,
-                    "state": false
+                    "state": false,
+                    "fill": "fade"
                   },
                   "line_width": 2
                 },
@@ -4906,10 +5462,23 @@
                   "icon": "mdi:radiator"
                 },
                 {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.kitchen_extractor_vent",
-                  "name": "Extractor Vent",
-                  "icon_animation": true
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.small_kitchen_radiator",
+                  "name": "Small Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
                 }
               ]
             },
@@ -5010,6 +5579,46 @@
                       "entity": "sensor.lounge_climate_sensor_humidity"
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Spare Room",
+                  "heading_style": "title",
+                  "icon": "hue:room-computer",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.spare_room_climate_sensor_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.spare_room_climate_sensor_humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.spare_room_radiator",
+                  "name": "Radiator",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:radiator"
                 }
               ]
             },
@@ -5651,7 +6260,7 @@
                 {
                   "type": "heading",
                   "heading": "Automations",
-                  "heading_style": "subtitle",
+                  "heading_style": "title",
                   "icon": ""
                 },
                 {
@@ -5678,6 +6287,198 @@
                     "action": "none"
                   },
                   "primary": "Turn off all radiators when central heating is turned off"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Roof Terrace Shutters",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "tile",
+                  "entity": "cover.roof_shutters",
+                  "name": "Shutters",
+                  "features": [
+                    {
+                      "type": "cover-open-close"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 2
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.roof_shutters_should_be_open",
+                  "name": "Should Be Open",
+                  "secondary_info": "none",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.roof_terrace_window_in_direct_sun",
+                  "name": "Window in Direct Sun",
+                  "secondary_info": "none",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.landing_climate_sensor_temperature",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_shutters_close_temperature_threshold",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Close Threshold",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sun.sun",
+                  "name": "Sun",
+                  "primary_info": "state",
+                  "secondary_info": "none",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Temperature vs Threshold",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "smoothing": false,
+                  "color_thresholds": [
+                    {
+                      "value": 15,
+                      "color": "#2196F3"
+                    },
+                    {
+                      "value": 20,
+                      "color": "#4CAF50"
+                    },
+                    {
+                      "value": 23,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 25,
+                      "color": "#FF5722"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": true
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.landing_climate_sensor_temperature",
+                      "name": "Temperature"
+                    },
+                    {
+                      "entity": "input_number.roof_shutters_close_temperature_threshold",
+                      "name": "Threshold",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ]
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.roof_terrace_window_in_direct_sun"
+                    },
+                    {
+                      "entity": "binary_sensor.roof_shutters_should_be_open"
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 2
+                  }
+                },
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "automation.cover_roof_shutters_open",
+                  "primary": "Open Shutters",
+                  "secondary": "/cover/roof-shutters/open",
+                  "icon": "mdi:window-shutter-open",
+                  "color": "{{ iif(states(\"automation.cover_roof_shutters_open\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "automation.cover_roof_shutters_close",
+                  "primary": "Close Shutters",
+                  "secondary": "/cover/roof-shutters/close",
+                  "icon": "mdi:window-shutter",
+                  "color": "{{ iif(states(\"automation.cover_roof_shutters_close\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
                 }
               ]
             }
