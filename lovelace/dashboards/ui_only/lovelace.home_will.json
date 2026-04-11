@@ -6375,22 +6375,46 @@
                   }
                 },
                 {
-                  "type": "history-graph",
+                  "type": "custom:mini-graph-card",
                   "entities": [
                     {
-                      "entity": "sensor.landing_climate_sensor_temperature"
+                      "entity": "sensor.landing_climate_sensor_temperature",
+                      "name": "Temperature"
                     },
                     {
-                      "entity": "binary_sensor.roof_terrace_window_in_direct_sun"
-                    },
-                    {
-                      "entity": "binary_sensor.roof_shutters_should_be_open"
+                      "entity": "input_number.roof_shutters_close_temperature_threshold",
+                      "name": "Close Threshold",
+                      "color": "#e74c3c"
                     }
                   ],
                   "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "smoothing": false,
+                  "name": "Temperature vs Threshold",
                   "grid_options": {
                     "columns": 12,
                     "rows": 3
+                  }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.roof_terrace_window_in_direct_sun",
+                      "name": "Window in Sun"
+                    },
+                    {
+                      "entity": "binary_sensor.roof_shutters_should_be_open",
+                      "name": "Should Be Open"
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "smoothing": false,
+                  "name": "Sensor States",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 2
                   }
                 },
                 {
