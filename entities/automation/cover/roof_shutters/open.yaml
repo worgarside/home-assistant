@@ -1,0 +1,28 @@
+---
+alias: /cover/roof-shutters/open
+
+id: cover_roof_shutters_open
+
+mode: single
+
+max_exceeded: silent
+
+description: >-
+  Opens the roof terrace shutters when the desired-state sensor turns on.
+  All logic (night, direct sun, temperature threshold, hysteresis) lives in
+  binary_sensor.roof_shutters_should_be_open.
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.roof_shutters_should_be_open
+    to: "on"
+
+condition:
+  - condition: state
+    entity_id: cover.roof_shutters
+    state: closed
+
+action:
+  - action: cover.open_cover
+    target:
+      entity_id: cover.roof_shutters
