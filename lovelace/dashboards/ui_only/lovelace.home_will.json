@@ -6376,6 +6376,34 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
+                  "name": "Temperature vs Threshold",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "smoothing": false,
+                  "color_thresholds": [
+                    {
+                      "value": 15,
+                      "color": "#2196F3"
+                    },
+                    {
+                      "value": 20,
+                      "color": "#4CAF50"
+                    },
+                    {
+                      "value": 23,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 25,
+                      "color": "#FF5722"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": true
+                  },
                   "entities": [
                     {
                       "entity": "sensor.landing_climate_sensor_temperature",
@@ -6383,14 +6411,15 @@
                     },
                     {
                       "entity": "input_number.roof_shutters_close_temperature_threshold",
-                      "name": "Close Threshold",
-                      "color": "#e74c3c"
+                      "name": "Threshold",
+                      "color": "#757575",
+                      "show_line": false
                     }
                   ],
-                  "hours_to_show": 24,
-                  "points_per_hour": 30,
-                  "smoothing": false,
-                  "name": "Temperature vs Threshold"
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 3
+                  }
                 },
                 {
                   "type": "history-graph",
