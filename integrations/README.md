@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (237)</h3></summary>
+<details><summary><h3>Entities (239)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -358,6 +358,32 @@ File: [`automation/cover/office_desk/keepalive.yaml`](entities/automation/cover/
 - Mode: `single`
 
 File: [`automation/cover/office_desk/work_mode.yaml`](entities/automation/cover/office_desk/work_mode.yaml)
+</details>
+
+<details><summary><code>/cover/roof-shutters/close</code></summary>
+
+**Entity ID: `automation.cover_roof_shutters_close`**
+
+> Closes the roof terrace shutters when the sun is below the horizon, or when the sun is shining directly on the window and the landing temperature exceeds the close threshold. Re-opening requires temperature to fall a further hysteresis delta below this threshold (preventing flapping) — see the open automation.
+
+- Alias: /cover/roof-shutters/close
+- ID: `cover_roof_shutters_close`
+- Mode: `single`
+
+File: [`automation/cover/roof_shutters/close.yaml`](entities/automation/cover/roof_shutters/close.yaml)
+</details>
+
+<details><summary><code>/cover/roof-shutters/open</code></summary>
+
+**Entity ID: `automation.cover_roof_shutters_open`**
+
+> Opens the roof terrace shutters when the sun is above the horizon, unless the sun is shining directly on the window and the landing temperature is still above the derived reopen threshold. The reopen threshold is the close threshold minus a hysteresis delta, preventing flapping when temperature hovers near the close boundary.
+
+- Alias: /cover/roof-shutters/open
+- ID: `cover_roof_shutters_open`
+- Mode: `single`
+
+File: [`automation/cover/roof_shutters/open.yaml`](entities/automation/cover/roof_shutters/open.yaml)
 </details>
 
 <details><summary><code>/cover/will-s-office-blinds/auto-close</code></summary>
@@ -4666,7 +4692,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (127)</h3></summary>
+<details><summary><h3>Entities (128)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -5805,6 +5831,18 @@ File: [`input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_voc
 - Unit Of Measurement: °C
 
 File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml)
+</details>
+
+<details><summary><strong>Roof Shutters: Close Temperature Threshold</strong></summary>
+
+**Entity ID: `input_number.roof_shutters_close_temperature_threshold`**
+
+- Max: 35
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: °C
+
+File: [`input_number/threshold/roof_shutters/roof_shutters_close_temperature_threshold.yaml`](entities/input_number/threshold/roof_shutters/roof_shutters_close_temperature_threshold.yaml)
 </details>
 
 <details><summary><strong>Vic's Office Fan: PM2.5 Threshold</strong></summary>
@@ -10090,7 +10128,7 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 ## Template
 
-<details><summary><h3>Entities (92)</h3></summary>
+<details><summary><h3>Entities (93)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10212,6 +10250,15 @@ File: [`template/binary_sensor/raspberry_pi_online/rtropi_online.yaml`](entities
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 
 File: [`template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/vsmppi_online.yaml)
+</details>
+
+<details><summary><strong>Roof Terrace Window in Direct Sun</strong></summary>
+
+**Entity ID: `binary_sensor.roof_terrace_window_in_direct_sun`**
+
+- Icon: [`mdi:weather-sunny`](https://pictogrammers.com/library/mdi/icon/weather-sunny/)
+
+File: [`template/binary_sensor/roof_terrace_window_in_direct_sun.yaml`](entities/template/binary_sensor/roof_terrace_window_in_direct_sun.yaml)
 </details>
 
 <details><summary><strong>Vic at Work</strong></summary>

@@ -1,0 +1,36 @@
+---
+# Geometric first pass: vertical window faces ~260°; sun is "direct" when its azimuth
+# is within ±tolerance of that bearing and elevation is above a floor (low sun ignored).
+name: Roof Terrace Window in Direct Sun
+
+unique_id: roof_terrace_window_in_direct_sun
+
+icon: mdi:weather-sunny
+
+# Avoid evaluating when sun.sun has no usable attributes (prevents bogus on/off from float defaults).
+availability: "{{ states('sun.sun') not in ['unavailable', 'unknown'] }}"
+
+state: >-
+  {# Compass bearing of the sun (0-360°, location and time already baked in). #}
+  {% set sun_az = state_attr('sun.sun', 'azimuth') | float(0) %}
+  {# Angle above horizon; grazing rays below min_elevation are treated as not "direct". #}
+  {% set sun_el = state_attr('sun.sun', 'elevation') | float(0) %}
+  {% set window_bearing = 260 %}
+  {% set azimuth_tolerance = 60 %}
+  {% set min_elevation = 10 %}
+  {# Smallest signed angle sun_az → window_bearing; % wraps at 360° so ±180° is the max step. #}
+  {% set signed_diff = ((sun_az - window_bearing + 180) % 360) - 180 %}
+  {# ON when sun is in front of the window (within cone) and high enough. #}
+  {{ (signed_diff | abs <= azimuth_tolerance) and (sun_el >= min_elevation) }}
+
+# Static thresholds for tuning; dynamic sun values mirror state_attr for dashboards/debug.
+attributes:
+  window_bearing: 260
+
+  azimuth_tolerance: 60
+
+  min_elevation: 10
+
+  current_sun_azimuth: "{{ state_attr('sun.sun', 'azimuth') | float(0) }}"
+
+  current_sun_elevation: "{{ state_attr('sun.sun', 'elevation') | float(0) }}"
