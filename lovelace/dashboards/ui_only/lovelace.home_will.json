@@ -6421,10 +6421,15 @@
                   "type": "history-graph",
                   "entities": [
                     {
-                      "entity": "binary_sensor.roof_terrace_window_in_direct_sun"
+                      "entity": "binary_sensor.roof_terrace_window_in_direct_sun",
+                      "name": "Window in Sun"
                     },
                     {
-                      "entity": "binary_sensor.roof_shutters_should_be_open"
+                      "entity": "binary_sensor.roof_shutters_should_be_open",
+                      "name": "Should Be Open"
+                    },
+                    {
+                      "entity": "cover.roof_shutters"
                     }
                   ],
                   "hours_to_show": 24,
