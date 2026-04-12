@@ -6362,6 +6362,29 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tomorrow_io_wind_speed",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Wind Speed",
+                  "icon_color": "blue",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_shutters_wind_speed_threshold",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Wind Threshold",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "sun.sun",
                   "name": "Sun",
                   "primary_info": "state",
