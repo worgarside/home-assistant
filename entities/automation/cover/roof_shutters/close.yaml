@@ -1,0 +1,28 @@
+---
+alias: /cover/roof-shutters/close
+
+id: cover_roof_shutters_close
+
+mode: single
+
+max_exceeded: silent
+
+description: >-
+  Closes the roof terrace shutters when the desired-state sensor turns off.
+  All logic (night, direct sun, temperature threshold, hysteresis) lives in
+  binary_sensor.roof_shutters_should_be_open.
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.roof_shutters_should_be_open
+    to: "off"
+
+condition:
+  - condition: state
+    entity_id: cover.roof_shutters
+    state: open
+
+action:
+  - action: cover.close_cover
+    target:
+      entity_id: cover.roof_shutters
