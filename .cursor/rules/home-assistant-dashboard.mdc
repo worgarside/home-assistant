@@ -1,0 +1,10 @@
+---
+description: Rules for Home Assistant dashboard creation, editing, and UI configuration via MCP
+alwaysApply: true
+---
+
+# Home Assistant Dashboard Rules
+
+## mini-graph-card
+
+Never include `grid_options` (e.g. `columns`, `rows`) on a `custom:mini-graph-card` unless the user explicitly requests it. The card manages its own sizing and adding `grid_options` breaks the layout. This applies whether the card is being created fresh or updated.

@@ -5891,7 +5891,7 @@ File: [`input_number/threshold/roof_shutters/roof_shutters_close_temperature_thr
 - Max: 20
 - Min: 1
 - Mode: `box`
-- Unit Of Measurement: m/s
+- Unit Of Measurement: `mph`
 
 File: [`input_number/threshold/roof_shutters/roof_shutters_wind_speed_threshold.yaml`](entities/input_number/threshold/roof_shutters/roof_shutters_wind_speed_threshold.yaml)
 </details>

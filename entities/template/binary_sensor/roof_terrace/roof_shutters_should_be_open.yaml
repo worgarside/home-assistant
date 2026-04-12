@@ -18,7 +18,7 @@ availability: >-
         not in ['unavailable', 'unknown']
     and states('sensor.landing_climate_sensor_temperature')
         not in ['unavailable', 'unknown']
-    and states('sensor.tomorrow_io_wind_speed')
+    and states('sensor.met_office_fulham_wind_speed')
         not in ['unavailable', 'unknown']
   }}
 
@@ -35,7 +35,7 @@ state: >-
   {% set reopen_t = close_t - delta %}
   {# When open: close once temp >= close_t. When closed: only reopen once temp < reopen_t. #}
   {% set hot = (temp >= close_t) if this.state != 'off' else (temp >= reopen_t) %}
-  {% set wind = states('sensor.tomorrow_io_wind_speed') | float(0) %}
+  {% set wind = states('sensor.met_office_fulham_wind_speed') | float(0) %}
   {% set wind_t = states(
     'input_number.roof_shutters_wind_speed_threshold'
   ) | float(10) %}
@@ -59,7 +59,7 @@ attributes:
       'input_number.roof_shutters_wind_speed_threshold'
     ) | float(10) }}
   current_wind_speed: >-
-    {{ states('sensor.tomorrow_io_wind_speed') | float(0) }}
+    {{ states('sensor.met_office_fulham_wind_speed') | float(0) }}
   sun_above_horizon: "{{ is_state('sun.sun', 'above_horizon') }}"
   window_in_direct_sun: >-
     {{ is_state('binary_sensor.roof_terrace_window_in_direct_sun', 'on') }}
