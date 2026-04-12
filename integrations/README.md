@@ -4731,8 +4731,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (133)</h3></summary>
-<details><summary><h3>Entities (129)</h3></summary>
+<details><summary><h3>Entities (134)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
