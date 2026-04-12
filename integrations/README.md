@@ -4731,7 +4731,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (129)</h3></summary>
+<details><summary><h3>Entities (130)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -5882,6 +5882,18 @@ File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](en
 - Unit Of Measurement: °C
 
 File: [`input_number/threshold/roof_shutters/roof_shutters_close_temperature_threshold.yaml`](entities/input_number/threshold/roof_shutters/roof_shutters_close_temperature_threshold.yaml)
+</details>
+
+<details><summary><strong>Roof Shutters: Cloud Cover Threshold</strong></summary>
+
+**Entity ID: `input_number.roof_shutters_cloud_cover_threshold`**
+
+- Max: 100
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: %
+
+File: [`input_number/threshold/roof_shutters/roof_shutters_cloud_cover_threshold.yaml`](entities/input_number/threshold/roof_shutters/roof_shutters_cloud_cover_threshold.yaml)
 </details>
 
 <details><summary><strong>Roof Shutters: Wind Speed Threshold</strong></summary>

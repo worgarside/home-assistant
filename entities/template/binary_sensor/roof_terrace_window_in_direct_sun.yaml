@@ -1,6 +1,7 @@
 ---
-# Geometric first pass: vertical window faces ~260°; sun is "direct" when its azimuth
-# is within ±tolerance of that bearing and elevation is above a floor (low sun ignored).
+# Geometric + atmospheric check: vertical window faces ~260°; sun is "direct" when its azimuth
+# is within ±tolerance of that bearing, elevation is above a floor (low sun ignored), and cloud
+# cover is below the configured threshold (overcast skies block meaningful direct sunlight).
 name: Roof Terrace Window in Direct Sun
 
 unique_id: roof_terrace_window_in_direct_sun
@@ -8,6 +9,7 @@ unique_id: roof_terrace_window_in_direct_sun
 icon: mdi:weather-sunny
 
 # Avoid evaluating when sun.sun has no usable attributes (prevents bogus on/off from float defaults).
+# Cloud cover uses float(0) fallback so an unavailable forecast conservatively assumes clear sky.
 availability: "{{ states('sun.sun') not in ['unavailable', 'unknown'] }}"
 
 state: >-
@@ -20,10 +22,15 @@ state: >-
   {% set min_elevation = 10 %}
   {# Smallest signed angle sun_az → window_bearing; % wraps at 360° so ±180° is the max step. #}
   {% set signed_diff = ((sun_az - window_bearing + 180) % 360) - 180 %}
-  {# ON when sun is in front of the window (within cone) and high enough. #}
-  {{ (signed_diff | abs <= azimuth_tolerance) and (sun_el >= min_elevation) }}
+  {# Cloud cover: unavailable sensor defaults to 0% (clear sky) — conservative/safe assumption. #}
+  {% set cloud = states('sensor.tomorrow_io_cloud_cover') | float(0) %}
+  {% set cloud_t = states(
+    'input_number.roof_shutters_cloud_cover_threshold'
+  ) | float(75) %}
+  {# ON when sun is geometrically in front of the window and sky is sufficiently clear. #}
+  {{ (signed_diff | abs <= azimuth_tolerance) and (sun_el >= min_elevation) and (cloud < cloud_t) }}
 
-# Static thresholds for tuning; dynamic sun values mirror state_attr for dashboards/debug.
+# Static thresholds for tuning; dynamic sun/cloud values mirror live data for dashboards/debug.
 attributes:
   window_bearing: 260
 
@@ -31,6 +38,13 @@ attributes:
 
   min_elevation: 10
 
+  cloud_cover_threshold: >-
+    {{ states(
+      'input_number.roof_shutters_cloud_cover_threshold'
+    ) | float(75) }}
+
   current_sun_azimuth: "{{ state_attr('sun.sun', 'azimuth') | float(0) }}"
 
   current_sun_elevation: "{{ state_attr('sun.sun', 'elevation') | float(0) }}"
+
+  current_cloud_cover: "{{ states('sensor.tomorrow_io_cloud_cover') | float(0) }}"
