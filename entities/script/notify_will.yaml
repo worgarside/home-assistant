@@ -80,6 +80,18 @@ fields:
     selector:
       text:
 
+  timeout:
+    description: >-
+      How long (in seconds) the notification should be shown before being auto-dismissed.
+      Only applies to phone notifications.
+    example: "3600"
+    required: false
+    selector:
+      number:
+        min: 0
+        max: 86400
+        unit_of_measurement: s
+
 mode: queued
 
 max: 50
@@ -120,6 +132,8 @@ variables:
   persistent: "{{ persistent | default(false) }}"
 
   image: "{{ image | default('') }}"
+
+  timeout: "{{ timeout | default(None) }}"
 
 sequence:
   - if: >-
@@ -165,6 +179,7 @@ sequence:
         sticky: "{{ sticky }}"
         persistent: "{{ persistent }}"
         image: "{{ image }}"
+        timeout: "{{ timeout }}"
 
   - alias: Personal MacBook Pro
     if:
