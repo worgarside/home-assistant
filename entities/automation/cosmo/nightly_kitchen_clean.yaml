@@ -26,6 +26,10 @@ action:
   - if: "{{ is_state('binary_sensor.kitchen_door_door', 'on') }}"
 
     then:
+      - variables:
+          door_timeout_minutes: >-
+            {{ states('input_number.cosmo_nightly_kitchen_clean_door_close_timeout') | int(60) }}
+
       - alias: Notify Will that the kitchen door is open
         action: script.notify_will
         data:
@@ -35,11 +39,12 @@ action:
             button below.
           notification_id: cosmo_nightly_kitchen_clean_door_open
           mobile_notification_icon: mdi:door-open
+          timeout: "{{ door_timeout_minutes * 60 }}"
           actions:
             - action: COSMO_KITCHEN_CLEAN_ANYWAY
               title: Clean Anyway
 
-      - alias: Wait up to 1 hour for the door to close or for manual override
+      - alias: Wait for the door to close or for manual override
         wait_for_trigger:
           - platform: state
             entity_id: binary_sensor.kitchen_door_door
@@ -49,7 +54,7 @@ action:
             event_data:
               action: COSMO_KITCHEN_CLEAN_ANYWAY
         timeout:
-          hours: 1
+          minutes: "{{ door_timeout_minutes }}"
         continue_on_timeout: true
 
       - alias: Clear the door open notification
@@ -61,7 +66,7 @@ action:
       - if: "{{ not wait.completed }}"
 
         then:
-          - stop: Kitchen door was not closed within 1 hour, skipping clean
+          - stop: Kitchen door was not closed within the timeout, skipping clean
 
   - action: script.cosmo_clean_room
     data:
