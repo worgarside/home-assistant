@@ -4731,7 +4731,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (128)</h3></summary>
+<details><summary><h3>Entities (129)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -4815,6 +4815,19 @@ File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_maximum_auto_top_up.ya
 - Unit Of Measurement: GBP
 
 File: [`input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml`](entities/input_number/cc_pot_top_up/credit_card_pot_top_up_minimum_remainder.yaml)
+</details>
+
+<details><summary><strong>Cosmo Nightly Kitchen Clean: Door Close Timeout</strong></summary>
+
+**Entity ID: `input_number.cosmo_nightly_kitchen_clean_door_close_timeout`**
+
+- Icon: [`mdi:timer-outline`](https://pictogrammers.com/library/mdi/icon/timer-outline/)
+- Max: 120
+- Min: 5
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/cosmo_nightly_kitchen_clean_door_close_timeout.yaml`](entities/input_number/cosmo_nightly_kitchen_clean_door_close_timeout.yaml)
 </details>
 
 <details><summary><strong>Dry Box | Max Humidity</strong></summary>
@@ -9588,6 +9601,18 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
     "selector": {
       "text": null
     }
+  },
+  "timeout": {
+    "description": "How long (in seconds) the notification should be shown before being auto-dismissed. Only applies to phone notifications.",
+    "example": "3600",
+    "required": false,
+    "selector": {
+      "number": {
+        "min": 0,
+        "max": 86400,
+        "unit_of_measurement": "s"
+      }
+    }
   }
 }
 ```
@@ -9607,7 +9632,8 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "group": "{{ group | default('') }}",
   "sticky": "{{ sticky | default(false) }}",
   "persistent": "{{ persistent | default(false) }}",
-  "image": "{{ image | default('') }}"
+  "image": "{{ image | default('') }}",
+  "timeout": "{{ timeout | default(None) }}"
 }
 ```
 File: [`script/notify_will.yaml`](entities/script/notify_will.yaml)
