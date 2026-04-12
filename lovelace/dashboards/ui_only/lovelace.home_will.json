@@ -6441,6 +6441,53 @@
                   ]
                 },
                 {
+                  "type": "custom:mini-graph-card",
+                  "name": "Wind Speed vs Threshold",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "smoothing": false,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#4CAF50"
+                    },
+                    {
+                      "value": 5,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 8,
+                      "color": "#FF5722"
+                    },
+                    {
+                      "value": 12,
+                      "color": "#F44336"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": true
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.tomorrow_io_wind_speed",
+                      "name": "Wind Speed"
+                    },
+                    {
+                      "entity": "input_number.roof_shutters_wind_speed_threshold",
+                      "name": "Threshold",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 3
+                  }
+                },
+                {
                   "type": "history-graph",
                   "entities": [
                     {
