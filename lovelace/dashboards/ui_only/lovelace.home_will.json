@@ -6550,6 +6550,78 @@
                   ]
                 },
                 {
+                  "type": "custom:mini-graph-card",
+                  "name": "Sun Elevation",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "smoothing": true,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#FF7043"
+                    },
+                    {
+                      "value": 10,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 30,
+                      "color": "#FFD54F"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sun.sun",
+                      "attribute": "elevation",
+                      "name": "Elevation (deg)"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Sun Azimuth (window zone: 200-320 deg)",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "smoothing": true,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#78909C"
+                    },
+                    {
+                      "value": 200,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 260,
+                      "color": "#FF9800"
+                    },
+                    {
+                      "value": 321,
+                      "color": "#78909C"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sun.sun",
+                      "attribute": "azimuth",
+                      "name": "Azimuth (deg)"
+                    }
+                  ]
+                },
+                {
                   "type": "history-graph",
                   "entities": [
                     {
