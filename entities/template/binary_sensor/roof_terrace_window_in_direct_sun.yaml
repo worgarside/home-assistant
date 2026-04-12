@@ -1,25 +1,29 @@
 ---
-# Geometric + atmospheric check: vertical window faces ~260°; sun is "direct" when its azimuth
-# is within ±tolerance of that bearing, elevation is above a floor (low sun ignored), and cloud
-# cover is below the configured threshold (overcast skies block meaningful direct sunlight).
+# Geometric + atmospheric check: sun is "direct" when its azimuth is within ±tolerance of the
+# window bearing, elevation is above the minimum floor, and cloud cover is below the threshold.
+# All geometry parameters are configurable via input_numbers; cloud cover falls back to 0%
+# (clear-sky assumption) if the Tomorrow.io sensor is unavailable.
 name: Roof Terrace Window in Direct Sun
 
 unique_id: roof_terrace_window_in_direct_sun
 
 icon: mdi:weather-sunny
 
-# Avoid evaluating when sun.sun has no usable attributes (prevents bogus on/off from float defaults).
-# Cloud cover uses float(0) fallback so an unavailable forecast conservatively assumes clear sky.
+# Only unavailable when sun.sun itself is unavailable; input_numbers and cloud cover use fallbacks.
 availability: "{{ states('sun.sun') not in ['unavailable', 'unknown'] }}"
 
 state: >-
-  {# Compass bearing of the sun (0-360°, location and time already baked in). #}
   {% set sun_az = state_attr('sun.sun', 'azimuth') | float(0) %}
-  {# Angle above horizon; grazing rays below min_elevation are treated as not "direct". #}
   {% set sun_el = state_attr('sun.sun', 'elevation') | float(0) %}
-  {% set window_bearing = 260 %}
-  {% set azimuth_tolerance = 60 %}
-  {% set min_elevation = 10 %}
+  {% set window_bearing = states(
+    'input_number.roof_terrace_window_bearing'
+  ) | float(260) %}
+  {% set azimuth_tolerance = states(
+    'input_number.roof_terrace_window_azimuth_tolerance'
+  ) | float(60) %}
+  {% set min_elevation = states(
+    'input_number.roof_terrace_window_min_elevation'
+  ) | float(10) %}
   {# Smallest signed angle sun_az → window_bearing; % wraps at 360° so ±180° is the max step. #}
   {% set signed_diff = ((sun_az - window_bearing + 180) % 360) - 180 %}
   {# Cloud cover: unavailable sensor defaults to 0% (clear sky) — conservative/safe assumption. #}
@@ -27,16 +31,17 @@ state: >-
   {% set cloud_t = states(
     'input_number.roof_shutters_cloud_cover_threshold'
   ) | float(75) %}
-  {# ON when sun is geometrically in front of the window and sky is sufficiently clear. #}
   {{ (signed_diff | abs <= azimuth_tolerance) and (sun_el >= min_elevation) and (cloud < cloud_t) }}
 
-# Static thresholds for tuning; dynamic sun/cloud values mirror live data for dashboards/debug.
 attributes:
-  window_bearing: 260
+  window_bearing: >-
+    {{ states('input_number.roof_terrace_window_bearing') | float(260) }}
 
-  azimuth_tolerance: 60
+  azimuth_tolerance: >-
+    {{ states('input_number.roof_terrace_window_azimuth_tolerance') | float(60) }}
 
-  min_elevation: 10
+  min_elevation: >-
+    {{ states('input_number.roof_terrace_window_min_elevation') | float(10) }}
 
   cloud_cover_threshold: >-
     {{ states(
