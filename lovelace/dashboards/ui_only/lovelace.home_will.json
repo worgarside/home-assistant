@@ -6362,7 +6362,7 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.tomorrow_io_wind_speed",
+                  "entity": "sensor.met_office_fulham_wind_speed",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "name": "Wind Speed",
@@ -6453,15 +6453,15 @@
                       "color": "#4CAF50"
                     },
                     {
-                      "value": 5,
+                      "value": 10,
                       "color": "#FFC107"
                     },
                     {
-                      "value": 8,
+                      "value": 20,
                       "color": "#FF5722"
                     },
                     {
-                      "value": 12,
+                      "value": 30,
                       "color": "#F44336"
                     }
                   ],
@@ -6472,7 +6472,7 @@
                   },
                   "entities": [
                     {
-                      "entity": "sensor.tomorrow_io_wind_speed",
+                      "entity": "sensor.met_office_fulham_wind_speed",
                       "name": "Wind Speed"
                     },
                     {
