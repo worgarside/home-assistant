@@ -6385,6 +6385,29 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tomorrow_io_cloud_cover",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Cloud Cover",
+                  "icon_color": "grey",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_shutters_cloud_cover_threshold",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Cloud Cover Threshold",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "sun.sun",
                   "name": "Sun",
                   "primary_info": "state",
@@ -6477,6 +6500,49 @@
                     },
                     {
                       "entity": "input_number.roof_shutters_wind_speed_threshold",
+                      "name": "Threshold",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Cloud Cover vs Threshold",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "smoothing": false,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#4CAF50"
+                    },
+                    {
+                      "value": 25,
+                      "color": "#8BC34A"
+                    },
+                    {
+                      "value": 50,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 75,
+                      "color": "#9E9E9E"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": true
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.tomorrow_io_cloud_cover",
+                      "name": "Cloud Cover"
+                    },
+                    {
+                      "entity": "input_number.roof_shutters_cloud_cover_threshold",
                       "name": "Threshold",
                       "color": "#757575",
                       "show_line": false
