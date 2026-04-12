@@ -293,7 +293,7 @@ File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](ent
 
 **Entity ID: `automation.camera_offline_notify_will`**
 
-> Notify Will when either basement or lounge camera goes offline
+> Notify Will when any security camera goes offline
 
 - Alias: /camera/offline-notify-will
 - ID: `camera_offline_notify_will`
@@ -302,7 +302,7 @@ File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](ent
 
 ```json
 {
-  "camera_name": "{% if trigger.entity_id == 'camera.basement' %}\n  Basement\n{% elif trigger.entity_id == 'camera.lounge' %}\n  Lounge\n{% else %}\n  Unknown\n{% endif %}"
+  "camera_name": "{% if trigger.entity_id == 'camera.basement' %}\n  Basement\n{% elif trigger.entity_id == 'camera.lounge' %}\n  Lounge\n{% elif trigger.entity_id == 'camera.desmond_cam' %}\n  Desmond\n{% elif trigger.entity_id == 'camera.front_door' %}\n  Front Door\n{% else %}\n  Unknown\n{% endif %}"
 }
 ```
 File: [`automation/camera/offline_notify_will.yaml`](entities/automation/camera/offline_notify_will.yaml)
