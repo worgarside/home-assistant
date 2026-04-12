@@ -6421,6 +6421,39 @@
                   }
                 },
                 {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_bearing",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Window Bearing",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_azimuth_tolerance",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Azimuth Tolerance",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_min_elevation",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Min Elevation",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
                   "type": "custom:mini-graph-card",
                   "name": "Temperature vs Threshold",
                   "hours_to_show": 24,
@@ -6547,13 +6580,14 @@
                       "color": "#757575",
                       "show_line": false
                     }
-                  ]
+                  ],
+                  "upper_bound": 100
                 },
                 {
                   "type": "custom:mini-graph-card",
                   "name": "Sun Elevation",
                   "hours_to_show": 24,
-                  "points_per_hour": 4,
+                  "points_per_hour": 12,
                   "line_width": 2,
                   "smoothing": true,
                   "color_thresholds": [
@@ -6573,21 +6607,26 @@
                   "color_thresholds_transition": "smooth",
                   "show": {
                     "fill": "fade",
-                    "legend": false
+                    "legend": true
                   },
                   "entities": [
                     {
-                      "entity": "sun.sun",
-                      "attribute": "elevation",
-                      "name": "Elevation (deg)"
+                      "entity": "sensor.sun_elevation",
+                      "name": "Elevation"
+                    },
+                    {
+                      "entity": "input_number.roof_terrace_window_min_elevation",
+                      "name": "Min Elevation",
+                      "color": "#757575",
+                      "show_line": false
                     }
                   ]
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "Sun Azimuth (window zone: 200-320 deg)",
+                  "name": "Sun Azimuth (window zone)",
                   "hours_to_show": 24,
-                  "points_per_hour": 4,
+                  "points_per_hour": 12,
                   "line_width": 2,
                   "smoothing": true,
                   "color_thresholds": [
@@ -6611,13 +6650,18 @@
                   "color_thresholds_transition": "smooth",
                   "show": {
                     "fill": "fade",
-                    "legend": false
+                    "legend": true
                   },
                   "entities": [
                     {
-                      "entity": "sun.sun",
-                      "attribute": "azimuth",
-                      "name": "Azimuth (deg)"
+                      "entity": "sensor.sun_azimuth",
+                      "name": "Azimuth"
+                    },
+                    {
+                      "entity": "input_number.roof_terrace_window_bearing",
+                      "name": "Window Bearing",
+                      "color": "#757575",
+                      "show_line": false
                     }
                   ]
                 },
