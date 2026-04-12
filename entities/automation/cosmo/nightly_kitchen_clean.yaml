@@ -23,6 +23,46 @@ action:
             for:
               minutes: 10
 
+  - if: "{{ is_state('binary_sensor.kitchen_door_door', 'on') }}"
+
+    then:
+      - alias: Notify Will that the kitchen door is open
+        action: script.notify_will
+        data:
+          title: Kitchen Door Open
+          message: >-
+            The kitchen door is open! Cosmo will start once it's closed, or skip ahead with the
+            button below.
+          notification_id: cosmo_nightly_kitchen_clean_door_open
+          mobile_notification_icon: mdi:door-open
+          actions:
+            - action: COSMO_KITCHEN_CLEAN_ANYWAY
+              title: Clean Anyway
+
+      - alias: Wait up to 1 hour for the door to close or for manual override
+        wait_for_trigger:
+          - platform: state
+            entity_id: binary_sensor.kitchen_door_door
+            to: "off"
+          - platform: event
+            event_type: mobile_app_notification_action
+            event_data:
+              action: COSMO_KITCHEN_CLEAN_ANYWAY
+        timeout:
+          hours: 1
+        continue_on_timeout: true
+
+      - alias: Clear the door open notification
+        action: script.notify_will
+        data:
+          clear_notification: true
+          notification_id: cosmo_nightly_kitchen_clean_door_open
+
+      - if: "{{ not wait.completed }}"
+
+        then:
+          - stop: Kitchen door was not closed within 1 hour, skipping clean
+
   - action: script.cosmo_clean_room
     data:
       room_name: Basement
