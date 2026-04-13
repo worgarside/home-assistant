@@ -6057,6 +6057,22 @@
                   "grid_options": {
                     "columns": 6
                   }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.wger_will_body_weight"
+                  ],
+                  "name": "Body Weight (28d)",
+                  "hours_to_show": 672,
+                  "group_by": "date",
+                  "aggregate_func": "max",
+                  "lower_bound": "~0",
+                  "show": {
+                    "state": true,
+                    "average": true,
+                    "extrema": true
+                  }
                 }
               ]
             },
