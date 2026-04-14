@@ -3,8 +3,9 @@
 # sensor rather than containing their own logic — inspect this to understand why
 # the shutters are in (or should be in) a given position.
 #
-# Hysteresis is implemented via `this.state`: closing uses `close_threshold`,
-# reopening requires temperature to have dropped to `close_threshold - delta`.
+# Temperature hysteresis via `this.state`: closing uses `close_threshold`,
+# reopening requires temperature to drop to `close_threshold - delta`.
+# Wind is a simple threshold: closes when wind speed >= wind_threshold.
 name: Roof Shutters Should Be Open
 unique_id: roof_shutters_should_be_open
 
@@ -16,6 +17,8 @@ availability: >-
     and states('binary_sensor.roof_terrace_window_in_direct_sun')
         not in ['unavailable', 'unknown']
     and states('sensor.landing_climate_sensor_temperature')
+        not in ['unavailable', 'unknown']
+    and states('sensor.met_office_fulham_wind_speed')
         not in ['unavailable', 'unknown']
   }}
 
@@ -32,7 +35,12 @@ state: >-
   {% set reopen_t = close_t - delta %}
   {# When open: close once temp >= close_t. When closed: only reopen once temp < reopen_t. #}
   {% set hot = (temp >= close_t) if this.state != 'off' else (temp >= reopen_t) %}
-  {{ sun_up and not (direct_sun and hot) }}
+  {% set wind = states('sensor.met_office_fulham_wind_speed') | float(0) %}
+  {% set wind_t = states(
+    'input_number.roof_shutters_wind_speed_threshold'
+  ) | float(10) %}
+  {% set too_windy = wind >= wind_t %}
+  {{ sun_up and not (direct_sun and hot) and not too_windy }}
 
 attributes:
   close_temperature_threshold: >-
@@ -46,6 +54,12 @@ attributes:
   hysteresis_delta: 2
   current_temperature: >-
     {{ states('sensor.landing_climate_sensor_temperature') | float(100) }}
+  wind_speed_threshold: >-
+    {{ states(
+      'input_number.roof_shutters_wind_speed_threshold'
+    ) | float(10) }}
+  current_wind_speed: >-
+    {{ states('sensor.met_office_fulham_wind_speed') | float(0) }}
   sun_above_horizon: "{{ is_state('sun.sun', 'above_horizon') }}"
   window_in_direct_sun: >-
     {{ is_state('binary_sensor.roof_terrace_window_in_direct_sun', 'on') }}

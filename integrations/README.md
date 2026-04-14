@@ -4731,7 +4731,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (129)</h3></summary>
+<details><summary><h3>Entities (134)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -5895,6 +5895,64 @@ File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](en
 - Unit Of Measurement: °C
 
 File: [`input_number/threshold/roof_shutters/roof_shutters_close_temperature_threshold.yaml`](entities/input_number/threshold/roof_shutters/roof_shutters_close_temperature_threshold.yaml)
+</details>
+
+<details><summary><strong>Roof Shutters: Cloud Cover Threshold</strong></summary>
+
+**Entity ID: `input_number.roof_shutters_cloud_cover_threshold`**
+
+- Max: 100
+- Min: 10
+- Mode: `box`
+- Unit Of Measurement: %
+
+File: [`input_number/threshold/roof_shutters/roof_shutters_cloud_cover_threshold.yaml`](entities/input_number/threshold/roof_shutters/roof_shutters_cloud_cover_threshold.yaml)
+</details>
+
+<details><summary><strong>Roof Shutters: Wind Speed Threshold</strong></summary>
+
+**Entity ID: `input_number.roof_shutters_wind_speed_threshold`**
+
+- Max: 20
+- Min: 1
+- Mode: `box`
+- Unit Of Measurement: `mph`
+
+File: [`input_number/threshold/roof_shutters/roof_shutters_wind_speed_threshold.yaml`](entities/input_number/threshold/roof_shutters/roof_shutters_wind_speed_threshold.yaml)
+</details>
+
+<details><summary><strong>Roof Terrace Window: Azimuth Tolerance</strong></summary>
+
+**Entity ID: `input_number.roof_terrace_window_azimuth_tolerance`**
+
+- Max: 90
+- Min: 5
+- Mode: `box`
+- Unit Of Measurement: °
+
+File: [`input_number/threshold/roof_shutters/roof_terrace_window_azimuth_tolerance.yaml`](entities/input_number/threshold/roof_shutters/roof_terrace_window_azimuth_tolerance.yaml)
+</details>
+
+<details><summary><strong>Roof Terrace Window: Bearing</strong></summary>
+
+**Entity ID: `input_number.roof_terrace_window_bearing`**
+
+- Max: 359
+- Mode: `box`
+- Unit Of Measurement: °
+
+File: [`input_number/threshold/roof_shutters/roof_terrace_window_bearing.yaml`](entities/input_number/threshold/roof_shutters/roof_terrace_window_bearing.yaml)
+</details>
+
+<details><summary><strong>Roof Terrace Window: Min Elevation</strong></summary>
+
+**Entity ID: `input_number.roof_terrace_window_min_elevation`**
+
+- Max: 45
+- Mode: `box`
+- Unit Of Measurement: °
+
+File: [`input_number/threshold/roof_shutters/roof_terrace_window_min_elevation.yaml`](entities/input_number/threshold/roof_shutters/roof_terrace_window_min_elevation.yaml)
 </details>
 
 <details><summary><strong>Vic's Office Fan: PM2.5 Threshold</strong></summary>
@@ -10373,7 +10431,7 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 ## Template
 
-<details><summary><h3>Entities (94)</h3></summary>
+<details><summary><h3>Entities (95)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10986,6 +11044,16 @@ File: [`template/sensor/hifi_system_media_metadata.yaml`](entities/template/sens
 - Unit Of Measurement: %
 
 File: [`template/sensor/lighting_modifier.yaml`](entities/template/sensor/lighting_modifier.yaml)
+</details>
+
+<details><summary><strong>Sun Azimuth</strong></summary>
+
+**Entity ID: `sensor.sun_azimuth`**
+
+- Icon: [`mdi:compass`](https://pictogrammers.com/library/mdi/icon/compass/)
+- Unit Of Measurement: °
+
+File: [`template/sensor/nature/sun_azimuth.yaml`](entities/template/sensor/nature/sun_azimuth.yaml)
 </details>
 
 <details><summary><strong>Sun Elevation</strong></summary>
