@@ -1,0 +1,12 @@
+---
+name: Sun Azimuth
+
+unique_id: sun_azimuth
+
+unit_of_measurement: "°"
+
+icon: mdi:compass
+
+availability: "{{ states('sun.sun') not in ['unavailable', 'unknown'] }}"
+
+state: "{{ state_attr('sun.sun', 'azimuth') | float(0) }}"
