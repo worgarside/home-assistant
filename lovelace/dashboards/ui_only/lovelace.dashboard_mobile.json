@@ -2679,20 +2679,11 @@
                   "icon": "mdi:robot-vacuum"
                 },
                 {
-                  "type": "custom:mushroom-vacuum-card",
+                  "type": "custom:xiaomi-vacuum-map-card",
                   "entity": "vacuum.cosmo",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "commands": [],
-                  "icon_animation": true,
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  },
-                  "hold_action": {
-                    "action": "none"
+                  "map_camera": "camera.cosmo_map",
+                  "calibration_source": {
+                    "camera": true
                   }
                 }
               ]
