@@ -2671,7 +2671,11 @@
                     "rows": 1
                   },
                   "name": "Spotlights"
-                },
+                }
+              ]
+            },
+            {
+              "cards": [
                 {
                   "type": "heading",
                   "heading": "Cosmo",
@@ -2688,6 +2692,28 @@
                     "camera": true
                   },
                   "vacuum_platform": "Tasshack/dreame-vacuum"
+                }
+              ],
+              "visibility": [
+                {
+                  "condition": "or",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "vacuum.cosmo",
+                      "state": "cleaning"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "vacuum.cosmo",
+                      "state": "returning"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "vacuum.cosmo",
+                      "state": "paused"
+                    }
+                  ]
                 }
               ]
             },
