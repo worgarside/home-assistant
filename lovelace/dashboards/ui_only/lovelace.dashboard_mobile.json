@@ -2685,6 +2685,14 @@
                   "calibration_source": {
                     "camera": true
                   }
+                },
+                {
+                  "type": "custom:xiaomi-vacuum-map-card",
+                  "entity": "vacuum.cosmo",
+                  "map_camera": "camera.cosmo_map",
+                  "calibration_source": {
+                    "camera": true
+                  }
                 }
               ]
             },
