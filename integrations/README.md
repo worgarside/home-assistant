@@ -2263,7 +2263,7 @@ File: [`automation/remote/basement_remote/single_right.yaml`](entities/automatio
 
 **Entity ID: `automation.remote_basement_remote_triple_left`**
 
-> Set dining area big light to 100%, spotlights/shelves to min(modifier, 20%), and kitchen to empty state and disable automations
+> Set dining area big light to configured brightness, spotlights/shelves to min(modifier, 20%), and kitchen to empty state and disable automations
 
 - Alias: /remote/basement-remote/triple-left
 - ID: `remote_basement_remote_triple_left`
@@ -4731,7 +4731,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (134)</h3></summary>
+<details><summary><h3>Entities (135)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -5824,6 +5824,18 @@ File: [`input_number/office_desk_standing_height.yaml`](entities/input_number/of
 - Unit Of Measurement: %
 
 File: [`input_number/office_desk_standing_mode_percentage_target.yaml`](entities/input_number/office_desk_standing_mode_percentage_target.yaml)
+</details>
+
+<details><summary><strong>Dining Area | Big Light Brightness (Scene)</strong></summary>
+
+**Entity ID: `input_number.dining_area_big_light_brightness`**
+
+- Max: 100
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: %
+
+File: [`input_number/scene/dining_area_big_light_brightness.yaml`](entities/input_number/scene/dining_area_big_light_brightness.yaml)
 </details>
 
 <details><summary><strong>Charging Hub: Auto-Off Threshold</strong></summary>
