@@ -6424,17 +6424,6 @@
                 },
                 {
                   "type": "custom:mushroom-number-card",
-                  "entity": "input_number.roof_terrace_window_bearing",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "name": "Window Bearing",
-                  "grid_options": {
-                    "columns": 4,
-                    "rows": 1
-                  }
-                },
-                {
-                  "type": "custom:mushroom-number-card",
                   "entity": "input_number.roof_terrace_window_azimuth_tolerance",
                   "primary_info": "state",
                   "secondary_info": "name",
@@ -6450,6 +6439,17 @@
                   "primary_info": "state",
                   "secondary_info": "name",
                   "name": "Min Elevation",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_bearing",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Window Bearing",
                   "grid_options": {
                     "columns": 4,
                     "rows": 1
