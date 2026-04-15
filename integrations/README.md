@@ -5828,14 +5828,14 @@ File: [`input_number/office_desk_standing_mode_percentage_target.yaml`](entities
 
 <details><summary><strong>Dining Area | Big Light Brightness (Scene)</strong></summary>
 
-**Entity ID: `input_number.dining_area_big_light_brightness`**
+**Entity ID: `input_number.dining_area_big_light_brightness_scene`**
 
 - Max: 100
 - Min: 1
 - Mode: `slider`
 - Unit Of Measurement: %
 
-File: [`input_number/scene/dining_area_big_light_brightness.yaml`](entities/input_number/scene/dining_area_big_light_brightness.yaml)
+File: [`input_number/scene/dining_area_big_light_brightness_scene.yaml`](entities/input_number/scene/dining_area_big_light_brightness_scene.yaml)
 </details>
 
 <details><summary><strong>Charging Hub: Auto-Off Threshold</strong></summary>
