@@ -6355,22 +6355,22 @@
                   }
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.landing_climate_sensor_temperature",
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_shutters_close_temperature_threshold",
                   "primary_info": "state",
                   "secondary_info": "name",
-                  "icon_color": "orange",
+                  "name": "Close Threshold",
                   "grid_options": {
                     "columns": 6,
                     "rows": 1
                   }
                 },
                 {
-                  "type": "custom:mushroom-number-card",
-                  "entity": "input_number.roof_shutters_close_temperature_threshold",
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.landing_climate_sensor_temperature",
                   "primary_info": "state",
                   "secondary_info": "name",
-                  "name": "Close Threshold",
+                  "icon_color": "orange",
                   "grid_options": {
                     "columns": 6,
                     "rows": 1
