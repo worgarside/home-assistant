@@ -6057,6 +6057,22 @@
                   "grid_options": {
                     "columns": 6
                   }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.wger_will_body_weight"
+                  ],
+                  "name": "Body Weight (28d)",
+                  "hours_to_show": 672,
+                  "group_by": "date",
+                  "aggregate_func": "max",
+                  "lower_bound": "~0",
+                  "show": {
+                    "state": true,
+                    "average": true,
+                    "extrema": true
+                  }
                 }
               ]
             },
@@ -6340,10 +6356,33 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.met_office_fulham_wind_speed",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Wind Speed",
+                  "icon_color": "blue",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.landing_climate_sensor_temperature",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "orange",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_shutters_wind_speed_threshold",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Wind Threshold",
                   "grid_options": {
                     "columns": 6,
                     "rows": 1
@@ -6362,6 +6401,18 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tomorrow_io_cloud_cover",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Cloud Cover",
+                  "icon_color": "grey",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "sun.sun",
                   "name": "Sun",
                   "primary_info": "state",
@@ -6371,6 +6422,61 @@
                   },
                   "grid_options": {
                     "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_shutters_cloud_cover_threshold",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Cloud Cover Threshold",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_min_elevation",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Min Sun Elevation",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_azimuth_tolerance",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Azimuth Tolerance",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_min_elevation",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Min Elevation",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_bearing",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Window Bearing",
+                  "grid_options": {
+                    "columns": 4,
                     "rows": 1
                   }
                 },
@@ -6402,7 +6508,7 @@
                   "color_thresholds_transition": "smooth",
                   "show": {
                     "fill": "fade",
-                    "legend": true
+                    "legend": false
                   },
                   "entities": [
                     {
@@ -6412,6 +6518,175 @@
                     {
                       "entity": "input_number.roof_shutters_close_temperature_threshold",
                       "name": "Threshold",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Wind Speed vs Threshold",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "smoothing": false,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#4CAF50"
+                    },
+                    {
+                      "value": 10,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 20,
+                      "color": "#FF5722"
+                    },
+                    {
+                      "value": 30,
+                      "color": "#F44336"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.met_office_fulham_wind_speed",
+                      "name": "Wind Speed"
+                    },
+                    {
+                      "entity": "input_number.roof_shutters_wind_speed_threshold",
+                      "name": "Threshold",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Cloud Cover vs Threshold",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "smoothing": false,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#4CAF50"
+                    },
+                    {
+                      "value": 25,
+                      "color": "#8BC34A"
+                    },
+                    {
+                      "value": 50,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 75,
+                      "color": "#9E9E9E"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.tomorrow_io_cloud_cover",
+                      "name": "Cloud Cover"
+                    },
+                    {
+                      "entity": "input_number.roof_shutters_cloud_cover_threshold",
+                      "name": "Threshold",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ],
+                  "upper_bound": 100
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Sun Elevation",
+                  "hours_to_show": 24,
+                  "points_per_hour": 12,
+                  "line_width": 2,
+                  "smoothing": true,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#FF7043"
+                    },
+                    {
+                      "value": 10,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 30,
+                      "color": "#FFD54F"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.sun_elevation",
+                      "name": "Elevation"
+                    },
+                    {
+                      "entity": "input_number.roof_terrace_window_min_elevation",
+                      "name": "Min Elevation",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Sun Azimuth (window zone)",
+                  "hours_to_show": 24,
+                  "points_per_hour": 12,
+                  "line_width": 2,
+                  "smoothing": true,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#78909C"
+                    },
+                    {
+                      "value": 200,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 260,
+                      "color": "#FF9800"
+                    },
+                    {
+                      "value": 321,
+                      "color": "#78909C"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.sun_azimuth",
+                      "name": "Azimuth"
+                    },
+                    {
+                      "entity": "input_number.roof_terrace_window_bearing",
+                      "name": "Window Bearing",
                       "color": "#757575",
                       "show_line": false
                     }

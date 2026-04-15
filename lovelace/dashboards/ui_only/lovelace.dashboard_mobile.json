@@ -2675,6 +2675,49 @@
               ]
             },
             {
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Cosmo",
+                  "heading_style": "subtitle",
+                  "icon": "mdi:robot-vacuum"
+                },
+                {
+                  "type": "custom:xiaomi-vacuum-map-card",
+                  "entity": "vacuum.cosmo",
+                  "map_source": {
+                    "camera": "camera.cosmo_map"
+                  },
+                  "calibration_source": {
+                    "camera": true
+                  },
+                  "vacuum_platform": "Tasshack/dreame-vacuum"
+                }
+              ],
+              "visibility": [
+                {
+                  "condition": "or",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "vacuum.cosmo",
+                      "state": "cleaning"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "vacuum.cosmo",
+                      "state": "returning"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "vacuum.cosmo",
+                      "state": "paused"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "type": "grid",
               "cards": [
                 {
@@ -3006,6 +3049,17 @@
                   "layout": "horizontal"
                 },
                 {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.dining_area_big_light_brightness_scene",
+                  "name": "Dinner Scene Big Light",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "layout": "horizontal"
+                },
+                {
                   "type": "custom:mushroom-entity-card",
                   "entity": "input_datetime.cosmo_nightly_kitchen_clean_time",
                   "name": "Nightly Clean Time",
@@ -3035,6 +3089,26 @@
                   "area": "kitchen",
                   "color": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"#4CAF50\", \"#FFC107\", \"#FF9800\", \"#F44336\"][level],\n    \"#9E9E9E\"\n  )\n}}",
                   "multiline_secondary": false
+                },
+                {
+                  "features": [
+                    {
+                      "style": "slider",
+                      "type": "numeric-input"
+                    }
+                  ],
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_number.cosmo_nightly_kitchen_clean_door_close_timeout",
+                  "name": "Door Close Timeout",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
                 }
               ]
             },
