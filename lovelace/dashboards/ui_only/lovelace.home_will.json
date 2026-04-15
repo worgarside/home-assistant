@@ -6412,11 +6412,14 @@
                   }
                 },
                 {
-                  "type": "custom:mushroom-number-card",
-                  "entity": "input_number.roof_shutters_cloud_cover_threshold",
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sun.sun",
+                  "name": "Sun",
                   "primary_info": "state",
-                  "secondary_info": "name",
-                  "name": "Cloud Cover Threshold",
+                  "secondary_info": "none",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
                   "grid_options": {
                     "columns": 6,
                     "rows": 1
@@ -6430,6 +6433,17 @@
                   "name": "Azimuth Tolerance",
                   "grid_options": {
                     "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_shutters_cloud_cover_threshold",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Cloud Cover Threshold",
+                  "grid_options": {
+                    "columns": 6,
                     "rows": 1
                   }
                 },
@@ -6452,20 +6466,6 @@
                   "name": "Window Bearing",
                   "grid_options": {
                     "columns": 4,
-                    "rows": 1
-                  }
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sun.sun",
-                  "name": "Sun",
-                  "primary_info": "state",
-                  "secondary_info": "none",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "grid_options": {
-                    "columns": 6,
                     "rows": 1
                   }
                 },
