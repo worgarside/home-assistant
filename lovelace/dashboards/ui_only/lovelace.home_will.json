@@ -6744,6 +6744,17 @@
                     "columns": 6,
                     "rows": 1
                   }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_min_elevation",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Min Sun Elevation",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
                 }
               ]
             }
