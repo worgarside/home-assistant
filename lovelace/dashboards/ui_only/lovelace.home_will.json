@@ -6427,23 +6427,23 @@
                 },
                 {
                   "type": "custom:mushroom-number-card",
-                  "entity": "input_number.roof_terrace_window_azimuth_tolerance",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "name": "Azimuth Tolerance",
-                  "grid_options": {
-                    "columns": 4,
-                    "rows": 1
-                  }
-                },
-                {
-                  "type": "custom:mushroom-number-card",
                   "entity": "input_number.roof_shutters_cloud_cover_threshold",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "name": "Cloud Cover Threshold",
                   "grid_options": {
                     "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_azimuth_tolerance",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Azimuth Tolerance",
+                  "grid_options": {
+                    "columns": 4,
                     "rows": 1
                   }
                 },
