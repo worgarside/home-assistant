@@ -1526,9 +1526,11 @@
                   }
                 },
                 {
-                  "type": "button",
-                  "name": "View Monitoring",
+                  "type": "custom:mushroom-template-card",
+                  "primary": "View Monitoring",
+                  "secondary": "Proxmox Monitor",
                   "icon": "mdi:chart-line",
+                  "icon_color": "indigo",
                   "tap_action": {
                     "action": "navigate",
                     "navigation_path": "/home-will/proxmox-monitor"
