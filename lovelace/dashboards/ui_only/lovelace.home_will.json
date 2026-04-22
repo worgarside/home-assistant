@@ -6819,20 +6819,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_adguard_100_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_adguard_100_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_adguard_100_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_adguard_100_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -6912,20 +6910,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_npmplus_101_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_npmplus_101_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_npmplus_101_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_npmplus_101_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7005,20 +7001,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_esphome_102_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_esphome_102_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_esphome_102_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_esphome_102_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7098,20 +7092,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_immich_103_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_immich_103_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_immich_103_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_immich_103_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7191,20 +7183,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_wger_104_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_wger_104_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_wger_104_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_wger_104_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7284,20 +7274,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_frigate_105_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_frigate_105_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_frigate_105_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_frigate_105_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7377,20 +7365,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_qbittorrent_106_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_qbittorrent_106_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_qbittorrent_106_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_qbittorrent_106_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7470,20 +7456,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_postgresql_107_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_postgresql_107_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_postgresql_107_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_postgresql_107_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7563,20 +7547,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_zigbee2mqtt_109_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_zigbee2mqtt_109_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_zigbee2mqtt_109_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_zigbee2mqtt_109_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7656,20 +7638,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_plex_110_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_plex_110_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_plex_110_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_plex_110_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7749,20 +7729,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_influxdb_111_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_influxdb_111_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_influxdb_111_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_influxdb_111_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7842,20 +7820,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_mqtt_113_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_mqtt_113_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_mqtt_113_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_mqtt_113_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -7935,20 +7911,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_grafana_114_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_grafana_114_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_grafana_114_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_grafana_114_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -8028,20 +8002,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_uptimekuma_115_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_uptimekuma_115_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.lxc_uptimekuma_115_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.lxc_uptimekuma_115_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -8121,20 +8093,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.qemu_openwrt_117_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.qemu_openwrt_117_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.qemu_openwrt_117_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.qemu_openwrt_117_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -8214,20 +8184,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.qemu_gpu_worker_118_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.qemu_gpu_worker_118_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.qemu_gpu_worker_118_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.qemu_gpu_worker_118_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -8307,20 +8275,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.qemu_dockarr_119_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.qemu_dockarr_119_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.qemu_dockarr_119_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.qemu_dockarr_119_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
@@ -8400,20 +8366,18 @@
                   "icon_color": "green"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.qemu_haos_123_network_in",
-                  "name": "Net In",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.qemu_haos_123_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
                   "icon": "mdi:download-network-outline",
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.qemu_haos_123_network_out",
-                  "name": "Net Out",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "primary": "{% set mb = states('sensor.qemu_haos_123_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
                   "icon": "mdi:upload-network-outline",
                   "icon_color": "orange"
                 },
