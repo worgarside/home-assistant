@@ -42,7 +42,7 @@ action:
       - alias: Set dining area spotlights and shelves to min(modifier, 20%)
         action: light.turn_on
         target:
-          entity_id: light.dining_area
+          entity_id: light.dining_area_spotlights
         data:
           brightness_pct: "{{ min(states('sensor.lighting_modifier') | int(70), 20) }}"
           transition: 1
