@@ -42,6 +42,6 @@ sequence:
 
           - action: light.turn_off
             target:
-              entity_id: light.dining_area
+              entity_id: light.dining_area_spotlights
             data:
               transition: 1
