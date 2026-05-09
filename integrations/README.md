@@ -5909,16 +5909,15 @@ File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](en
 File: [`input_number/threshold/roof_shutters/roof_shutters_close_temperature_threshold.yaml`](entities/input_number/threshold/roof_shutters/roof_shutters_close_temperature_threshold.yaml)
 </details>
 
-<details><summary><strong>Roof Shutters: Cloud Cover Threshold</strong></summary>
+<details><summary><strong>Roof Shutters: Direct Sun Min UV Index</strong></summary>
 
-**Entity ID: `input_number.roof_shutters_cloud_cover_threshold`**
+**Entity ID: `input_number.roof_shutters_direct_sun_min_uv_index`**
 
-- Max: 100
-- Min: 10
+- Max: 11
 - Mode: `box`
-- Unit Of Measurement: %
+- Unit Of Measurement: UV Index
 
-File: [`input_number/threshold/roof_shutters/roof_shutters_cloud_cover_threshold.yaml`](entities/input_number/threshold/roof_shutters/roof_shutters_cloud_cover_threshold.yaml)
+File: [`input_number/threshold/roof_shutters/roof_shutters_direct_sun_min_uv_index.yaml`](entities/input_number/threshold/roof_shutters/roof_shutters_direct_sun_min_uv_index.yaml)
 </details>
 
 <details><summary><strong>Roof Shutters: Wind Speed Threshold</strong></summary>
@@ -11255,6 +11254,7 @@ File: [`template/sensor/nature/tomorrow_io/tomorrow_io_uv_health_concern.yaml`](
 **Entity ID: `sensor.tomorrow_io_uv_index`**
 
 - Icon: [`mdi:sun-wireless-outline`](https://pictogrammers.com/library/mdi/icon/sun-wireless-outline/)
+- Unit Of Measurement: UV Index
 
 File: [`template/sensor/nature/tomorrow_io/tomorrow_io_uv_index.yaml`](entities/template/sensor/nature/tomorrow_io/tomorrow_io_uv_index.yaml)
 </details>
