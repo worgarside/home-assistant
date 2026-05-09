@@ -403,13 +403,6 @@
                   "icon": "",
                   "heading": "Lights",
                   "heading_style": "subtitle",
-                  "tap_action": {
-                    "action": "perform-action",
-                    "perform_action": "light.toggle",
-                    "target": {
-                      "area_id": "vic_s_office"
-                    }
-                  },
                   "badges": [
                     {
                       "type": "button",
