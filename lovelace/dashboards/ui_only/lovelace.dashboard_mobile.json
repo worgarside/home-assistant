@@ -3509,7 +3509,21 @@
                   "type": "heading",
                   "heading": "Lights",
                   "heading_style": "subtitle",
-                  "badges": []
+                  "badges": [
+                    {
+                      "type": "button",
+                      "icon": "mdi:gesture-tap-button",
+                      "text": "Toggle",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "light.toggle",
+                        "target": {
+                          "area_id": "will_s_office"
+                        },
+                        "data": {}
+                      }
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-light-card",
