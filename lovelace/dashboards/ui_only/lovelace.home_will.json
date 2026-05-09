@@ -1526,6 +1526,17 @@
                   }
                 },
                 {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "View Monitoring",
+                  "secondary": "Proxmox Monitor",
+                  "icon": "mdi:chart-line",
+                  "icon_color": "indigo",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/home-will/proxmox-monitor"
+                  }
+                },
+                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -6057,6 +6068,22 @@
                   "grid_options": {
                     "columns": 6
                   }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    "sensor.wger_will_body_weight"
+                  ],
+                  "name": "Body Weight (28d)",
+                  "hours_to_show": 672,
+                  "group_by": "date",
+                  "aggregate_func": "max",
+                  "lower_bound": "~0",
+                  "show": {
+                    "state": true,
+                    "average": true,
+                    "extrema": true
+                  }
                 }
               ]
             },
@@ -6340,10 +6367,33 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.met_office_fulham_wind_speed",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Wind Speed",
+                  "icon_color": "blue",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.landing_climate_sensor_temperature",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "orange",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_shutters_wind_speed_threshold",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Wind Threshold",
                   "grid_options": {
                     "columns": 6,
                     "rows": 1
@@ -6362,6 +6412,18 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.tomorrow_io_cloud_cover",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Cloud Cover",
+                  "icon_color": "grey",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "sun.sun",
                   "name": "Sun",
                   "primary_info": "state",
@@ -6371,6 +6433,61 @@
                   },
                   "grid_options": {
                     "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_shutters_cloud_cover_threshold",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Cloud Cover Threshold",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_min_elevation",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Min Sun Elevation",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_azimuth_tolerance",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Azimuth Tolerance",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_min_elevation",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Min Elevation",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.roof_terrace_window_bearing",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Window Bearing",
+                  "grid_options": {
+                    "columns": 4,
                     "rows": 1
                   }
                 },
@@ -6402,7 +6519,7 @@
                   "color_thresholds_transition": "smooth",
                   "show": {
                     "fill": "fade",
-                    "legend": true
+                    "legend": false
                   },
                   "entities": [
                     {
@@ -6412,6 +6529,175 @@
                     {
                       "entity": "input_number.roof_shutters_close_temperature_threshold",
                       "name": "Threshold",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Wind Speed vs Threshold",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "smoothing": false,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#4CAF50"
+                    },
+                    {
+                      "value": 10,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 20,
+                      "color": "#FF5722"
+                    },
+                    {
+                      "value": 30,
+                      "color": "#F44336"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.met_office_fulham_wind_speed",
+                      "name": "Wind Speed"
+                    },
+                    {
+                      "entity": "input_number.roof_shutters_wind_speed_threshold",
+                      "name": "Threshold",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Cloud Cover vs Threshold",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "smoothing": false,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#4CAF50"
+                    },
+                    {
+                      "value": 25,
+                      "color": "#8BC34A"
+                    },
+                    {
+                      "value": 50,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 75,
+                      "color": "#9E9E9E"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.tomorrow_io_cloud_cover",
+                      "name": "Cloud Cover"
+                    },
+                    {
+                      "entity": "input_number.roof_shutters_cloud_cover_threshold",
+                      "name": "Threshold",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ],
+                  "upper_bound": 100
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Sun Elevation",
+                  "hours_to_show": 24,
+                  "points_per_hour": 12,
+                  "line_width": 2,
+                  "smoothing": true,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#FF7043"
+                    },
+                    {
+                      "value": 10,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 30,
+                      "color": "#FFD54F"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.sun_elevation",
+                      "name": "Elevation"
+                    },
+                    {
+                      "entity": "input_number.roof_terrace_window_min_elevation",
+                      "name": "Min Elevation",
+                      "color": "#757575",
+                      "show_line": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Sun Azimuth (window zone)",
+                  "hours_to_show": 24,
+                  "points_per_hour": 12,
+                  "line_width": 2,
+                  "smoothing": true,
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#78909C"
+                    },
+                    {
+                      "value": 200,
+                      "color": "#FFC107"
+                    },
+                    {
+                      "value": 260,
+                      "color": "#FF9800"
+                    },
+                    {
+                      "value": 321,
+                      "color": "#78909C"
+                    }
+                  ],
+                  "color_thresholds_transition": "smooth",
+                  "show": {
+                    "fill": "fade",
+                    "legend": false
+                  },
+                  "entities": [
+                    {
+                      "entity": "sensor.sun_azimuth",
+                      "name": "Azimuth"
+                    },
+                    {
+                      "entity": "input_number.roof_terrace_window_bearing",
+                      "name": "Window Bearing",
                       "color": "#757575",
                       "show_line": false
                     }
@@ -6480,6 +6766,1655 @@
                     "columns": 6,
                     "rows": 1
                   }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Proxmox Monitor",
+          "path": "proxmox-monitor",
+          "icon": "mdi:chart-line",
+          "type": "sections",
+          "subview": true,
+          "max_columns": 4,
+          "dense_section_placement": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC adguard (100)",
+                  "icon": "mdi:shield-check"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_adguard_100_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_adguard_100_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_adguard_100_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_adguard_100_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_adguard_100_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_adguard_100_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_adguard_100_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_adguard_100_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_adguard_100_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_adguard_100_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC npmplus (101)",
+                  "icon": "mdi:server-network"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_npmplus_101_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_npmplus_101_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_npmplus_101_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_npmplus_101_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_npmplus_101_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_npmplus_101_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_npmplus_101_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_npmplus_101_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_npmplus_101_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_npmplus_101_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC esphome (102)",
+                  "icon": "mdi:chip"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_esphome_102_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_esphome_102_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_esphome_102_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_esphome_102_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_esphome_102_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_esphome_102_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_esphome_102_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_esphome_102_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_esphome_102_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_esphome_102_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC immich (103)",
+                  "icon": "mdi:image-multiple"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_immich_103_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_immich_103_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_immich_103_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_immich_103_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_immich_103_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_immich_103_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_immich_103_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_immich_103_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_immich_103_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_immich_103_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC wger (104)",
+                  "icon": "mdi:dumbbell"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_wger_104_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_wger_104_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_wger_104_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_wger_104_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_wger_104_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_wger_104_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_wger_104_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_wger_104_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_wger_104_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_wger_104_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC frigate (105)",
+                  "icon": "mdi:cctv"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_frigate_105_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_frigate_105_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_frigate_105_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_frigate_105_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_frigate_105_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_frigate_105_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_frigate_105_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_frigate_105_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_frigate_105_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_frigate_105_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC qbittorrent (106)",
+                  "icon": "mdi:cloud-download"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_qbittorrent_106_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_qbittorrent_106_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_qbittorrent_106_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_qbittorrent_106_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_qbittorrent_106_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_qbittorrent_106_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_qbittorrent_106_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_qbittorrent_106_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_qbittorrent_106_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_qbittorrent_106_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC postgresql (107)",
+                  "icon": "mdi:database"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_postgresql_107_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_postgresql_107_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_postgresql_107_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_postgresql_107_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_postgresql_107_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_postgresql_107_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_postgresql_107_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_postgresql_107_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_postgresql_107_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_postgresql_107_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC zigbee2mqtt (109)",
+                  "icon": "mdi:zigbee"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_zigbee2mqtt_109_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_zigbee2mqtt_109_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_zigbee2mqtt_109_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_zigbee2mqtt_109_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_zigbee2mqtt_109_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_zigbee2mqtt_109_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_zigbee2mqtt_109_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_zigbee2mqtt_109_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_zigbee2mqtt_109_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_zigbee2mqtt_109_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC plex (110)",
+                  "icon": "mdi:plex"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_plex_110_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_plex_110_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_plex_110_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_plex_110_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_plex_110_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_plex_110_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_plex_110_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_plex_110_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_plex_110_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_plex_110_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC influxdb (111)",
+                  "icon": "mdi:chart-areaspline"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_influxdb_111_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_influxdb_111_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_influxdb_111_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_influxdb_111_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_influxdb_111_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_influxdb_111_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_influxdb_111_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_influxdb_111_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_influxdb_111_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_influxdb_111_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC mqtt (113)",
+                  "icon": "mdi:message-fast"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_mqtt_113_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_mqtt_113_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_mqtt_113_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_mqtt_113_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_mqtt_113_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_mqtt_113_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_mqtt_113_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_mqtt_113_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_mqtt_113_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_mqtt_113_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC grafana (114)",
+                  "icon": "mdi:chart-bar"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_grafana_114_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_grafana_114_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_grafana_114_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_grafana_114_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_grafana_114_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_grafana_114_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_grafana_114_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_grafana_114_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_grafana_114_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_grafana_114_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "LXC uptimekuma (115)",
+                  "icon": "mdi:monitor-eye"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.lxc_uptimekuma_115_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_uptimekuma_115_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_uptimekuma_115_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_uptimekuma_115_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_uptimekuma_115_network_in",
+                  "primary": "{% set mb = states('sensor.lxc_uptimekuma_115_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.lxc_uptimekuma_115_network_out",
+                  "primary": "{% set mb = states('sensor.lxc_uptimekuma_115_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.lxc_uptimekuma_115_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.lxc_uptimekuma_115_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "QEMU openwrt (117)",
+                  "icon": "mdi:router-network"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.qemu_openwrt_117_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_openwrt_117_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_openwrt_117_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_openwrt_117_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.qemu_openwrt_117_network_in",
+                  "primary": "{% set mb = states('sensor.qemu_openwrt_117_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.qemu_openwrt_117_network_out",
+                  "primary": "{% set mb = states('sensor.qemu_openwrt_117_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.qemu_openwrt_117_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.qemu_openwrt_117_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "QEMU gpu-worker (118)",
+                  "icon": "mdi:expansion-card"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.qemu_gpu_worker_118_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_gpu_worker_118_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_gpu_worker_118_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_gpu_worker_118_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.qemu_gpu_worker_118_network_in",
+                  "primary": "{% set mb = states('sensor.qemu_gpu_worker_118_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.qemu_gpu_worker_118_network_out",
+                  "primary": "{% set mb = states('sensor.qemu_gpu_worker_118_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.qemu_gpu_worker_118_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.qemu_gpu_worker_118_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "QEMU dockarr (119)",
+                  "icon": "mdi:docker"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.qemu_dockarr_119_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_dockarr_119_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_dockarr_119_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_dockarr_119_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.qemu_dockarr_119_network_in",
+                  "primary": "{% set mb = states('sensor.qemu_dockarr_119_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.qemu_dockarr_119_network_out",
+                  "primary": "{% set mb = states('sensor.qemu_dockarr_119_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.qemu_dockarr_119_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.qemu_dockarr_119_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "QEMU haos (123)",
+                  "icon": "mdi:home-assistant"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.qemu_haos_123_status",
+                  "name": "Status",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_haos_123_cpu_used",
+                  "name": "CPU",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_haos_123_memory_used_percentage",
+                  "name": "Memory",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.qemu_haos_123_disk_used_percentage",
+                  "name": "Disk",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.qemu_haos_123_network_in",
+                  "primary": "{% set mb = states('sensor.qemu_haos_123_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net In",
+                  "icon": "mdi:download-network-outline",
+                  "icon_color": "cyan"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.qemu_haos_123_network_out",
+                  "primary": "{% set mb = states('sensor.qemu_haos_123_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                  "secondary": "Net Out",
+                  "icon": "mdi:upload-network-outline",
+                  "icon_color": "orange"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CPU & Memory (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.qemu_haos_123_cpu_used",
+                      "name": "CPU",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.qemu_haos_123_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#2096F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "legend": false,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 12,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "height": 120,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
                 }
               ]
             }
