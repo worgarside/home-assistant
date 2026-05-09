@@ -6373,11 +6373,11 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.tomorrow_io_cloud_cover",
+                  "entity": "sensor.tomorrow_io_uv_index",
                   "primary_info": "state",
                   "secondary_info": "name",
-                  "name": "Cloud Cover",
-                  "icon_color": "grey",
+                  "name": "UV Index",
+                  "icon_color": "amber",
                   "grid_options": {
                     "columns": 6,
                     "rows": 1
@@ -6399,10 +6399,10 @@
                 },
                 {
                   "type": "custom:mushroom-number-card",
-                  "entity": "input_number.roof_shutters_cloud_cover_threshold",
+                  "entity": "input_number.roof_shutters_direct_sun_min_uv_index",
                   "primary_info": "state",
                   "secondary_info": "name",
-                  "name": "Cloud Cover Threshold",
+                  "name": "Min UV (direct sun)",
                   "grid_options": {
                     "columns": 6,
                     "rows": 1
@@ -6540,7 +6540,7 @@
                 },
                 {
                   "type": "custom:mini-graph-card",
-                  "name": "Cloud Cover vs Threshold",
+                  "name": "UV Index vs min (direct sun)",
                   "hours_to_show": 24,
                   "points_per_hour": 4,
                   "line_width": 2,
@@ -6551,16 +6551,16 @@
                       "color": "#4CAF50"
                     },
                     {
-                      "value": 25,
+                      "value": 3,
                       "color": "#8BC34A"
                     },
                     {
-                      "value": 50,
+                      "value": 6,
                       "color": "#FFC107"
                     },
                     {
-                      "value": 75,
-                      "color": "#9E9E9E"
+                      "value": 8,
+                      "color": "#FF5722"
                     }
                   ],
                   "color_thresholds_transition": "smooth",
@@ -6570,17 +6570,17 @@
                   },
                   "entities": [
                     {
-                      "entity": "sensor.tomorrow_io_cloud_cover",
-                      "name": "Cloud Cover"
+                      "entity": "sensor.tomorrow_io_uv_index",
+                      "name": "UV Index"
                     },
                     {
-                      "entity": "input_number.roof_shutters_cloud_cover_threshold",
-                      "name": "Threshold",
+                      "entity": "input_number.roof_shutters_direct_sun_min_uv_index",
+                      "name": "Min UV",
                       "color": "#757575",
                       "show_line": false
                     }
                   ],
-                  "upper_bound": 100
+                  "upper_bound": 11
                 },
                 {
                   "type": "custom:mini-graph-card",
