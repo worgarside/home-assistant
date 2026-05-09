@@ -4,8 +4,8 @@ alias: /remote/basement-remote/triple-left
 id: remote_basement_remote_triple_left
 
 description: >-
-  Set dining area big light to 100%, spotlights/shelves to min(modifier, 20%), and kitchen
-  to empty state and disable automations
+  Set dining area big light to configured brightness, spotlights/shelves to
+  min(modifier, 20%), and kitchen to empty state and disable automations
 
 mode: single
 
@@ -30,12 +30,13 @@ action:
       entity_id: automation.binary_sensor_kitchen_occupancy_state_change
 
   - parallel:
-      - alias: Set dining area big light to 100%
+      - alias: Set dining area big light to configured brightness
         action: light.turn_on
         target:
           entity_id: light.dining_area_big_light
         data:
-          brightness_pct: 100
+          brightness_pct: >
+            {{ states('input_number.dining_area_big_light_brightness_scene') | int(100) }}
           transition: 1
 
       - alias: Set dining area spotlights and shelves to min(modifier, 20%)
