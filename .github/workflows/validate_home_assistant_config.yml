@@ -23,7 +23,7 @@ jobs:
       version: ${{ steps.current-version.outputs.current-version }}
     steps:
       - name: Clone Repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Get Current Version from .HA_VERSION
         id: current-version
@@ -46,7 +46,7 @@ jobs:
           - ${{ needs.get-current-version.outputs.version }}
     steps:
       - name: Clone Repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: 'Clone Custom Component: `var`'
         run: |
@@ -84,7 +84,7 @@ jobs:
           touch scenes.yaml
 
       - name: Validate Configuration
-        uses: worgarside/action-home-assistant@2ed46e0ffded84d4c67d751e43ef0f2f9d8146aa
+        uses: worgarside/action-home-assistant@main
         with:
           path: .
           secrets: secrets.fake.yaml
