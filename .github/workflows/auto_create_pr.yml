@@ -3,12 +3,8 @@ name: Auto-Create PR
 
 on:
   push:
-    branches:
-      - feature/*
-      - bugfix/*
-      - chore/*
-      - hotfix/*
-      - refactor/*
+    branches-ignore:
+      - main
   workflow_dispatch:
 
 jobs:
