@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (242)</h3></summary>
+<details><summary><h3>Entities (243)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -2054,6 +2054,19 @@ File: [`automation/notification/apollo_plt1b/ota_mode_on.yaml`](entities/automat
 - Mode: `single`
 
 File: [`automation/notification/apollo_plt1b/turn_ota_mode_off.yaml`](entities/automation/notification/apollo_plt1b/turn_ota_mode_off.yaml)
+</details>
+
+<details><summary><code>/notification/external-ip-unavailable</code></summary>
+
+**Entity ID: `automation.notification_external_ip_unavailable`**
+
+> Notify Will when sensor.external_ip becomes unavailable
+
+- Alias: /notification/external-ip-unavailable
+- ID: `notification_external_ip_unavailable`
+- Mode: `single`
+
+File: [`automation/notification/external_ip_unavailable.yaml`](entities/automation/notification/external_ip_unavailable.yaml)
 </details>
 
 <details><summary><code>/notification/prusa-i3/print-completed</code></summary>
