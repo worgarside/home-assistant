@@ -1,0 +1,24 @@
+---
+alias: /notification/external-ip-unavailable
+
+id: notification_external_ip_unavailable
+
+description: Notify Will when sensor.external_ip becomes unavailable
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.external_ip
+    to: unavailable
+    for:
+      minutes: 5
+
+action:
+  - action: script.notify_will
+    data:
+      title: "External IP Unavailable"
+      message: "The external IP sensor is unavailable"
+      notification_id: external_ip_unavailable
+      mobile_notification_icon: mdi:ip-network-outline
+      sticky: true
