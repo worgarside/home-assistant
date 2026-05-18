@@ -16,6 +16,7 @@ trigger:
 
 action:
   - action: script.notify_will
+    continue_on_error: true
     data:
       title: "External IP Unavailable"
       message: "The external IP sensor is unavailable"
