@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (243)</h3></summary>
+<details><summary><h3>Entities (244)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -41,6 +41,19 @@ File: [`automation/binary_sensor/basement_presence/off.yaml`](entities/automatio
 - Mode: `restart`
 
 File: [`automation/binary_sensor/basement_presence/on.yaml`](entities/automation/binary_sensor/basement_presence/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/bedroom-door/late-night-open</code></summary>
+
+**Entity ID: `automation.binary_sensor_bedroom_door_late_night_open`**
+
+> Alert Will if the bedroom door is opened after 11pm when any of his devices have been active in the past 30 minutes.
+
+- Alias: /binary-sensor/bedroom-door/late-night-open
+- ID: `binary_sensor_bedroom_door_late_night_open`
+- Mode: `single`
+
+File: [`automation/binary_sensor/bedroom_door/late_night_open.yaml`](entities/automation/binary_sensor/bedroom_door/late_night_open.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/dining-area-occupancy/state-change</code></summary>
