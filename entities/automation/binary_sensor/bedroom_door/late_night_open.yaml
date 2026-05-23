@@ -1,0 +1,62 @@
+---
+alias: /binary-sensor/bedroom-door/late-night-open
+
+id: binary_sensor_bedroom_door_late_night_open
+
+description: >-
+  Alert Will if the bedroom door is opened after 11pm when any of his devices have been
+  active in the past 30 minutes.
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.bedroom_door_contact
+    from: "off"
+    to: "on"
+
+condition:
+  - condition: time
+    after: "23:00:00"
+    before: "06:00:00"
+
+  - condition: template
+    value_template: >-
+      {%- set mbp_recently_active =
+        is_state('binary_sensor.wills_macbook_pro_active', 'on') or (
+          is_state('binary_sensor.wills_macbook_pro_active', 'off') and
+          (now() - states.binary_sensor.wills_macbook_pro_active.last_changed).total_seconds() < 1800
+        )
+      %}
+      {%- set work_mbp_recently_active =
+        is_state('binary_sensor.wills_work_macbook_pro_active', 'on') or (
+          is_state('binary_sensor.wills_work_macbook_pro_active', 'off') and
+          (
+            now() -
+            states.binary_sensor.wills_work_macbook_pro_active.last_changed
+          ).total_seconds() < 1800
+        )
+      %}
+      {%- set phone_recently_active =
+        is_state('binary_sensor.wills_pixel_6_pro_interactive', 'on') or (
+          is_state('binary_sensor.wills_pixel_6_pro_interactive', 'off') and
+          (
+            now() -
+            states.binary_sensor.wills_pixel_6_pro_interactive.last_changed
+          ).total_seconds() < 1800
+        )
+      %}
+      {{ mbp_recently_active or work_mbp_recently_active or phone_recently_active }}
+
+action:
+  - action: script.notify_will
+    continue_on_error: true
+    data:
+      title: Late Night Door Alert
+      message: The bedroom door was opened after 11pm.
+      notification_id: late_night_bedroom_door_open
+      mobile_notification_icon: mdi:door-alert
+      sticky: true
+      persistent: true
