@@ -3,10 +3,17 @@
 # sensor rather than containing their own logic — inspect this to understand why
 # the shutters are in (or should be in) a given position.
 #
+# Closes when the window has geometric sun and either:
+# - landing temperature is at/above the close threshold (hysteresis on reopen), or
+# - UV index is at/above the threshold (hazy days can be bright but low UV until hot).
+#
 # Temperature hysteresis via `this.state`: closing uses `close_threshold`,
 # reopening requires temperature to drop to `close_threshold - delta`.
 # Wind is a simple threshold: closes when wind speed >= wind_threshold.
+#
+# Unavailable UV defaults high (assume clear sky) so geometry + heat still closes.
 name: Roof Shutters Should Be Open
+
 unique_id: roof_shutters_should_be_open
 
 icon: mdi:window-shutter
@@ -23,7 +30,7 @@ availability: >-
   }}
 
 state: >-
-  {% set direct_sun = is_state(
+  {% set window_sun = is_state(
     'binary_sensor.roof_terrace_window_in_direct_sun', 'on'
   ) %}
   {% set sun_up = is_state('sun.sun', 'above_horizon') %}
@@ -35,12 +42,18 @@ state: >-
   {% set reopen_t = close_t - delta %}
   {# When open: close once temp >= close_t. When closed: only reopen once temp < reopen_t. #}
   {% set hot = (temp >= close_t) if this.state != 'off' else (temp >= reopen_t) %}
+  {% set uv = states('sensor.tomorrow_io_uv_index') | float(99) %}
+  {% set uv_min = states(
+    'input_number.roof_shutters_direct_sun_min_uv_index'
+  ) | float(4) %}
+  {% set strong_uv = uv >= uv_min %}
+  {% set close_for_sun = window_sun and (hot or strong_uv) %}
   {% set wind = states('sensor.met_office_fulham_wind_speed') | float(0) %}
   {% set wind_t = states(
     'input_number.roof_shutters_wind_speed_threshold'
   ) | float(10) %}
   {% set too_windy = wind >= wind_t %}
-  {{ sun_up and not (direct_sun and hot) and not too_windy }}
+  {{ sun_up and not close_for_sun and not too_windy }}
 
 attributes:
   close_temperature_threshold: >-
@@ -54,6 +67,11 @@ attributes:
   hysteresis_delta: 2
   current_temperature: >-
     {{ states('sensor.landing_climate_sensor_temperature') | float(100) }}
+  direct_sun_min_uv_index: >-
+    {{ states(
+      'input_number.roof_shutters_direct_sun_min_uv_index'
+    ) | float(4) }}
+  current_uv_index: "{{ states('sensor.tomorrow_io_uv_index') }}"
   wind_speed_threshold: >-
     {{ states(
       'input_number.roof_shutters_wind_speed_threshold'
@@ -63,3 +81,24 @@ attributes:
   sun_above_horizon: "{{ is_state('sun.sun', 'above_horizon') }}"
   window_in_direct_sun: >-
     {{ is_state('binary_sensor.roof_terrace_window_in_direct_sun', 'on') }}
+  close_for_heat: >-
+    {{
+      is_state('binary_sensor.roof_terrace_window_in_direct_sun', 'on')
+      and (
+        (states('sensor.landing_climate_sensor_temperature') | float(100)
+          >= states('input_number.roof_shutters_close_temperature_threshold')
+            | float(23))
+        if this.state != 'off'
+        else (
+          states('sensor.landing_climate_sensor_temperature') | float(100)
+          >= states('input_number.roof_shutters_close_temperature_threshold')
+            | float(23) - 2
+        )
+      )
+    }}
+  close_for_uv: >-
+    {{
+      is_state('binary_sensor.roof_terrace_window_in_direct_sun', 'on')
+      and states('sensor.tomorrow_io_uv_index') | float(99)
+        >= states('input_number.roof_shutters_direct_sun_min_uv_index') | float(4)
+    }}
