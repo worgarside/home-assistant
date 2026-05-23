@@ -1,11 +1,7 @@
 ---
-# Geometric + atmospheric check: sun is "direct" when its azimuth is within ±tolerance of the
-# window bearing, elevation is above the minimum floor, and UV index is at least the threshold.
-# UV tracks surface-reaching radiation better than cloud cover (thin high cloud can read ~100%
-# cover while UV—and real direct heating—stays high). Geometry parameters are input_numbers.
-#
-# If the UV sensor is unavailable, UV defaults high so behavior matches the old cloud-cover
-# fallback (assume clear sky → more likely to treat as direct sun when geometry matches).
+# Geometric check only: sun is on the window when azimuth is within ±tolerance of the
+# window bearing and elevation is above the minimum floor. UV and temperature are handled
+# in binary_sensor.roof_shutters_should_be_open.
 name: Roof Terrace Window in Direct Sun
 
 unique_id: roof_terrace_window_in_direct_sun
@@ -27,14 +23,8 @@ state: >-
     'input_number.roof_terrace_window_min_elevation'
   ) | float(10) %}
   {% set signed_diff = ((sun_az - window_bearing + 180) % 360) - 180 %}
-  {% set uv = states('sensor.tomorrow_io_uv_index') | float(99) %}
-  {% set uv_min = states(
-    'input_number.roof_shutters_direct_sun_min_uv_index'
-  ) | float(4) %}
   {{
-    (signed_diff | abs <= azimuth_tolerance)
-    and (sun_el >= min_elevation)
-    and (uv >= uv_min)
+    (signed_diff | abs <= azimuth_tolerance) and (sun_el >= min_elevation)
   }}
 
 attributes:
@@ -47,13 +37,6 @@ attributes:
   min_elevation: >-
     {{ states('input_number.roof_terrace_window_min_elevation') | float(10) }}
 
-  direct_sun_min_uv_index: >-
-    {{ states(
-      'input_number.roof_shutters_direct_sun_min_uv_index'
-    ) | float(4) }}
-
   current_sun_azimuth: "{{ state_attr('sun.sun', 'azimuth') | float(0) }}"
 
   current_sun_elevation: "{{ state_attr('sun.sun', 'elevation') | float(0) }}"
-
-  current_uv_index: "{{ states('sensor.tomorrow_io_uv_index') }}"
