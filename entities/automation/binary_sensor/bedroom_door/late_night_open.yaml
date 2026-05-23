@@ -33,13 +33,19 @@ condition:
       {%- set work_mbp_recently_active =
         is_state('binary_sensor.wills_work_macbook_pro_active', 'on') or (
           is_state('binary_sensor.wills_work_macbook_pro_active', 'off') and
-          (now() - states.binary_sensor.wills_work_macbook_pro_active.last_changed).total_seconds() < 1800
+          (
+            now() -
+            states.binary_sensor.wills_work_macbook_pro_active.last_changed
+          ).total_seconds() < 1800
         )
       %}
       {%- set phone_recently_active =
         is_state('binary_sensor.wills_pixel_6_pro_interactive', 'on') or (
           is_state('binary_sensor.wills_pixel_6_pro_interactive', 'off') and
-          (now() - states.binary_sensor.wills_pixel_6_pro_interactive.last_changed).total_seconds() < 1800
+          (
+            now() -
+            states.binary_sensor.wills_pixel_6_pro_interactive.last_changed
+          ).total_seconds() < 1800
         )
       %}
       {{ mbp_recently_active or work_mbp_recently_active or phone_recently_active }}
