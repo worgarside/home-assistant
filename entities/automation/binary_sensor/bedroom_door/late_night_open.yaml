@@ -40,11 +40,11 @@ condition:
         )
       %}
       {%- set phone_recently_active =
-        is_state('binary_sensor.wills_pixel_6_pro_interactive', 'on') or (
-          is_state('binary_sensor.wills_pixel_6_pro_interactive', 'off') and
+        is_state('binary_sensor.will_s_pixel_6_pro_interactive', 'on') or (
+          is_state('binary_sensor.will_s_pixel_6_pro_interactive', 'off') and
           (
             now() -
-            states.binary_sensor.wills_pixel_6_pro_interactive.last_changed
+            states.binary_sensor.will_s_pixel_6_pro_interactive.last_changed
           ).total_seconds() < 1800
         )
       %}
