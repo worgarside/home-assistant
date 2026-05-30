@@ -67,6 +67,6 @@ sequence:
                     {{ repeat.item | tojson(indent=2) }}
                     ```
 
-        - action: "{{ repeat.item.service }}"
+        - action: "{{ repeat.item.action | default(repeat.item.service) }}"
           target: "{{ repeat.item.target | default({}) }}"
           data: "{{ repeat.item.data | default({}) }}"
