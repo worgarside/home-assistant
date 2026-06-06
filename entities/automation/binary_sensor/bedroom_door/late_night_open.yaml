@@ -25,7 +25,7 @@ condition:
   - alias: "Don't alert Will if he is the only person home"
     condition: template
     value_template: >-
-      {{ not (is_state('person.will', 'home') and states('zone.home') | int(0) <= 1) }}
+      {{ not (is_state('person.will', 'home') and states('zone.home') | int(2) <= 1) }}
 
   - condition: template
     value_template: >-
