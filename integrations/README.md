@@ -47,7 +47,7 @@ File: [`automation/binary_sensor/basement_presence/on.yaml`](entities/automation
 
 **Entity ID: `automation.binary_sensor_bedroom_door_late_night_open`**
 
-> Alert Will if the bedroom door is opened after 11pm when any of his devices have been active in the past 30 minutes.
+> Alert Will if the bedroom door is opened after 11pm when any of his devices have been active in the past 30 minutes, unless he is the only person home.
 
 - Alias: /binary-sensor/bedroom-door/late-night-open
 - ID: `binary_sensor_bedroom_door_late_night_open`
