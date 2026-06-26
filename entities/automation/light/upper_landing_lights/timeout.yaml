@@ -24,36 +24,40 @@ trigger:
     to: "off"
 
 condition:
-  # Only proceed if ALL motion sensors are off AND front door is closed
-  - condition: and
+  # Only proceed if no sensors are on and front door is not open (unavailable counts as not on)
+  - condition: not
     conditions:
-      - condition: state
-        entity_id: binary_sensor.front_hallway_motion_sensor_occupancy
-        state: "off"
-      - condition: state
-        entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
-        state: "off"
-      - condition: state
-        entity_id: binary_sensor.front_door_contact
-        state: "off"
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.front_hallway_motion_sensor_occupancy
+            state: "on"
+          - condition: state
+            entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
+            state: "on"
+          - condition: state
+            entity_id: binary_sensor.front_door_contact
+            state: "on"
 
 action:
   # Wait for the configured timeout period
   - delay:
       seconds: "{{ states('input_number.hallway_lights_timeout') | int(120) }}"
 
-  # Check again that all sensors are still off AND front door is still closed after the timeout
-  - condition: and
+  # Check again that no sensors are on and front door is not open after the timeout
+  - condition: not
     conditions:
-      - condition: state
-        entity_id: binary_sensor.front_hallway_motion_sensor_occupancy
-        state: "off"
-      - condition: state
-        entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
-        state: "off"
-      - condition: state
-        entity_id: binary_sensor.front_door_contact
-        state: "off"
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.front_hallway_motion_sensor_occupancy
+            state: "on"
+          - condition: state
+            entity_id: binary_sensor.upper_landing_motion_sensor_occupancy
+            state: "on"
+          - condition: state
+            entity_id: binary_sensor.front_door_contact
+            state: "on"
 
   - parallel:
       - action: light.turn_off
