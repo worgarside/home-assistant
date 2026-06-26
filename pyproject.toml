@@ -10,7 +10,7 @@ requires-python = ">=3.12,<4.0"
 dependencies = [
   "wg-utilities>=5.17.4,<6.0.0",
   "watchdog>=5.0.3,<6.0.0",
-  "paramiko>=3.5.1,<4.0.0",
+  "paramiko>=3.5.1,<6.0.0",
   "mcp-proxy>=0.8.0,<1.0.0",
 ]
 
