@@ -175,7 +175,7 @@ class FileSyncHandler(FileSystemEventHandler):
 
     @property
     def sftp_client(self) -> SFTPClient:
-        """Get the SFTP client.
+        """The SFTP client.
 
         If the client has not been used in the last 60 seconds, a connection check is
         done and the client is re-instantiated if it does not succeed.
