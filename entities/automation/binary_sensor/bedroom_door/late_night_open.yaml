@@ -5,7 +5,7 @@ id: binary_sensor_bedroom_door_late_night_open
 
 description: >-
   Alert Will if the bedroom door is opened after 11pm when any of his devices have been
-  active in the past 30 minutes.
+  active in the past 30 minutes, unless he is the only person home.
 
 mode: single
 
@@ -21,6 +21,11 @@ condition:
   - condition: time
     after: "23:00:00"
     before: "06:00:00"
+
+  - alias: "Don't alert Will if he is the only person home"
+    condition: template
+    value_template: >-
+      {{ not (is_state('person.will', 'home') and states('zone.home') | int(2) <= 1) }}
 
   - condition: template
     value_template: >-
