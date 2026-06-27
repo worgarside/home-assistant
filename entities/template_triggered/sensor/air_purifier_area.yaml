@@ -1,0 +1,24 @@
+---
+trigger:
+  - platform: homeassistant
+    event: start
+
+  - platform: state
+    entity_id: fan.air_purifier
+
+  - platform: event
+    event_type: entity_registry_updated
+    event_data:
+      entity_id: fan.air_purifier
+
+  - platform: event
+    event_type: device_registry_updated
+
+sensor:
+  - name: Air Purifier Area
+
+    unique_id: air_purifier_area
+
+    icon: mdi:air-purifier
+
+    state: "{{ area_id('fan.air_purifier') }}"

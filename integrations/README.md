@@ -10518,7 +10518,7 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 ## Template
 
-<details><summary><h3>Entities (96)</h3></summary>
+<details><summary><h3>Entities (95)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10890,15 +10890,6 @@ File: [`template/sensor/addon_stats/yas_209_bridge_memory_usage.yaml`](entities/
 - Icon: [`mdi:map-marker`](https://pictogrammers.com/library/mdi/icon/map-marker/)
 
 File: [`template/sensor/address_line_1.yaml`](entities/template/sensor/address_line_1.yaml)
-</details>
-
-<details><summary><strong>Air Purifier Area</strong></summary>
-
-**Entity ID: `sensor.air_purifier_area`**
-
-- Icon: [`mdi:air-purifier`](https://pictogrammers.com/library/mdi/icon/air-purifier/)
-
-File: [`template/sensor/air_purifier_area.yaml`](entities/template/sensor/air_purifier_area.yaml)
 </details>
 
 <details><summary><strong>Air Purifier Fan Speed</strong></summary>
@@ -11705,7 +11696,16 @@ File: [`template/cover/office_desk.yaml`](entities/template/cover/office_desk.ya
 
 ## Template
 
-<details><summary><h3>Entities (11)</h3></summary>
+<details><summary><h3>Entities (12)</h3></summary>
+
+<details><summary><strong>Air Purifier Area</strong></summary>
+
+**Entity ID: `template.air_purifier_area`**
+
+- Icon: [`mdi:air-purifier`](https://pictogrammers.com/library/mdi/icon/air-purifier/)
+
+File: [`template_triggered/sensor/air_purifier_area.yaml`](entities/template_triggered/sensor/air_purifier_area.yaml)
+</details>
 
 <details><summary><strong>Apollo PLT 1B | Begonia: Last Online</strong></summary>
 

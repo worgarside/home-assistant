@@ -20,6 +20,12 @@ trigger:
       - "on"
       - "off"
 
+  - trigger: state
+    entity_id: sensor.air_purifier_area
+    to:
+      - lounge
+      - dining_area
+
 variables:
   quiet_mode_should_be_on: >
     {{
