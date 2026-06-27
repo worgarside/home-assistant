@@ -1469,10 +1469,7 @@
                           "cards": [
                             {
                               "type": "tile",
-                              "entity": "timer.pro_breeze_ac_off",
-                              "card_mod": {
-                                "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
-                              }
+                              "entity": "timer.pro_breeze_ac_off"
                             },
                             {
                               "type": "custom:mushroom-entity-card",
@@ -1497,10 +1494,7 @@
                                   "entity": "timer.pro_breeze_ac_off",
                                   "state": "idle"
                                 }
-                              ],
-                              "card_mod": {
-                                "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
-                              }
+                              ]
                             },
                             {
                               "type": "custom:mushroom-template-card",
@@ -1522,10 +1516,7 @@
                                   "entity": "timer.pro_breeze_ac_off",
                                   "state_not": "idle"
                                 }
-                              ],
-                              "card_mod": {
-                                "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
-                              }
+                              ]
                             }
                           ]
                         },
@@ -1534,15 +1525,14 @@
                           "entity": "input_number.pro_breeze_ac_timer_minutes",
                           "name": "Timer Duration",
                           "primary_info": "state",
-                          "secondary_info": "name",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
-                          }
+                          "secondary_info": "name"
                         }
                       ]
                     }
                   ],
-                  "title-card-button-overlay": false
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
                 }
               ]
             }
