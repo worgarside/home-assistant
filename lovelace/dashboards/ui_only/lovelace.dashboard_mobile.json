@@ -3682,6 +3682,32 @@
                   "type": "heading",
                   "heading": "Automations",
                   "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:motion-sensor{% if is_state(\"automation.binary_sensor_lower_hallway_occupancy_on\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_lower_hallway_occupancy_on",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/lower-hallway-occupancy/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_lower_hallway_occupancy_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn on lower hallway lights on occupancy"
                 }
               ]
             },
