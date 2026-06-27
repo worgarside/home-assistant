@@ -1487,6 +1487,136 @@
                     "action": "none"
                   },
                   "primary": "Exercise mode: lights to 100% and disable occupancy"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:dumbbell{% if is_state(\"automation.input_boolean_lounge_lights_exercise_mode_off\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.input_boolean_lounge_lights_exercise_mode_off",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/input-boolean/lounge-lights-exercise-mode/off",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.input_boolean_lounge_lights_exercise_mode_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Exercise mode off: restore occupancy automations"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-outline",
+                  "features_position": "bottom",
+                  "entity": "automation.input_boolean_lounge_lights_exercise_mode_timeout",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/input-boolean/lounge-lights-exercise-mode/timeout",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.input_boolean_lounge_lights_exercise_mode_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn off exercise mode after {{ states(\"input_number.lounge_lights_exercise_mode_timeout\") | int(\"??\") }} minutes"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:volume-off{% if is_state(\"automation.input_boolean_air_purifier_quiet_mode_toggle\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.input_boolean_air_purifier_quiet_mode_toggle",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/input-boolean/air-purifier-quiet-mode/toggle",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.input_boolean_air_purifier_quiet_mode_toggle\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Set air purifier quiet mode when TV is on"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:scent{% if is_state(\"automation.switch_lounge_diffuser_state_change\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.switch_lounge_diffuser_state_change",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/switch/lounge-diffuser/state-change",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.switch_lounge_diffuser_state_change\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Keep diffuser light in sync with diffuser"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:water-percent-alert{% if is_state(\"automation.binary_sensor_lounge_diffuser_needs_water_state_change\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_lounge_diffuser_needs_water_state_change",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/lounge-diffuser-needs-water/state-change",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_lounge_diffuser_needs_water_state_change\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Notify when diffuser needs water"
                 }
               ]
             },
