@@ -1454,6 +1454,15 @@
                 {
                   "type": "tile",
                   "entity": "timer.pro_breeze_ac_off"
+                },
+                {
+                  "type": "tile",
+                  "entity": "input_number.pro_breeze_ac_timer_minutes",
+                  "features": [
+                    {
+                      "type": "numeric-input"
+                    }
+                  ]
                 }
               ]
             }
