@@ -1453,7 +1453,11 @@
                 },
                 {
                   "type": "tile",
-                  "entity": "timer.pro_breeze_ac_off"
+                  "entity": "timer.pro_breeze_ac_off",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 2
+                  }
                 },
                 {
                   "type": "tile",
