@@ -5985,7 +5985,7 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:lightbulb{% if is_state(\"automation.remote_guest_room_remote_on\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:lightbulb",
                       "features_position": "bottom",
                       "entity": "automation.remote_guest_room_remote_on",
                       "area": "guest_room",
@@ -6014,7 +6014,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:lightbulb-off{% if is_state(\"automation.remote_guest_room_remote_off\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:lightbulb-off",
                       "features_position": "bottom",
                       "entity": "automation.remote_guest_room_remote_off",
                       "area": "guest_room",
@@ -6043,7 +6043,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:arrow-left{% if is_state(\"automation.remote_guest_room_remote_arrow_left_click\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:arrow-left",
                       "features_position": "bottom",
                       "entity": "automation.remote_guest_room_remote_arrow_left_click",
                       "area": "guest_room",
@@ -6072,7 +6072,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:fan{% if is_state(\"automation.remote_guest_room_remote_arrow_left_hold\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:fan",
                       "features_position": "bottom",
                       "entity": "automation.remote_guest_room_remote_arrow_left_hold",
                       "area": "guest_room",
@@ -6101,7 +6101,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:arrow-right{% if is_state(\"automation.remote_guest_room_remote_arrow_right_click\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:arrow-right",
                       "features_position": "bottom",
                       "entity": "automation.remote_guest_room_remote_arrow_right_click",
                       "area": "guest_room",
@@ -6130,7 +6130,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:brightness-7{% if is_state(\"automation.remote_guest_room_remote_brightness_move_up\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:brightness-7",
                       "features_position": "bottom",
                       "entity": "automation.remote_guest_room_remote_brightness_move_up",
                       "area": "guest_room",
@@ -6159,7 +6159,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:brightness-5{% if is_state(\"automation.remote_guest_room_remote_brightness_move_down\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:brightness-5",
                       "features_position": "bottom",
                       "entity": "automation.remote_guest_room_remote_brightness_move_down",
                       "area": "guest_room",
@@ -6219,7 +6219,7 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:lightbulb{% if is_state(\"automation.remote_spare_room_hue_remote_on_press\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:lightbulb",
                       "features_position": "bottom",
                       "entity": "automation.remote_spare_room_hue_remote_on_press",
                       "area": "guest_room",
@@ -6248,7 +6248,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:brightness-7{% if is_state(\"automation.remote_spare_room_hue_remote_on_hold\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:brightness-7",
                       "features_position": "bottom",
                       "entity": "automation.remote_spare_room_hue_remote_on_hold",
                       "area": "guest_room",
@@ -6277,7 +6277,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:lightbulb-off{% if is_state(\"automation.remote_spare_room_hue_remote_off_press\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:lightbulb-off",
                       "features_position": "bottom",
                       "entity": "automation.remote_spare_room_hue_remote_off_press",
                       "area": "guest_room",
@@ -6306,7 +6306,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:power-off{% if is_state(\"automation.remote_spare_room_hue_remote_off_hold\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:power-off",
                       "features_position": "bottom",
                       "entity": "automation.remote_spare_room_hue_remote_off_hold",
                       "area": "guest_room",
@@ -6335,7 +6335,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:brightness-7{% if is_state(\"automation.remote_spare_room_hue_remote_up_press\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:brightness-7",
                       "features_position": "bottom",
                       "entity": "automation.remote_spare_room_hue_remote_up_press",
                       "area": "guest_room",
@@ -6364,7 +6364,7 @@
                     },
                     {
                       "type": "custom:mushroom-template-card",
-                      "icon": "mdi:brightness-5{% if is_state(\"automation.remote_spare_room_hue_remote_down_press\", \"off\") %}-off{% endif %}",
+                      "icon": "mdi:brightness-5",
                       "features_position": "bottom",
                       "entity": "automation.remote_spare_room_hue_remote_down_press",
                       "area": "guest_room",
