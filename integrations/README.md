@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (247)</h3></summary>
+<details><summary><h3>Entities (246)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1487,19 +1487,6 @@ File: [`automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml`](enti
 - Mode: `single`
 
 File: [`automation/input_number/habit/will/reset_all_daily.yaml`](entities/automation/input_number/habit/will/reset_all_daily.yaml)
-</details>
-
-<details><summary><code>/input-number/pro-breeze-ac-timer-minutes</code></summary>
-
-**Entity ID: `automation.input_number_pro_breeze_ac_timer_minutes`**
-
-> *No description provided*
-
-- Alias: /input-number/pro-breeze-ac-timer-minutes
-- ID: `input_number_pro_breeze_ac_timer_minutes`
-- Mode: `restart`
-
-File: [`automation/input_number/pro_breeze_ac_timer_minutes.yaml`](entities/automation/input_number/pro_breeze_ac_timer_minutes.yaml)
 </details>
 
 <details><summary><code>/input-select/gh-cli-active-user/option-selected</code></summary>
@@ -8984,7 +8971,7 @@ File: [`rest_command/wger/put_weightentry.yaml`](entities/rest_command/wger/put_
 
 ## Script
 
-<details><summary><h3>Entities (32)</h3></summary>
+<details><summary><h3>Entities (33)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -9853,6 +9840,17 @@ File: [`script/office_desk_standing_mode.yaml`](entities/script/office_desk_stan
 - Mode: `restart`
 
 File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_moving.yaml)
+</details>
+
+<details><summary><strong>Pro Breeze AC Start Off Timer</strong></summary>
+
+**Entity ID: `script.pro_breeze_ac_start_off_timer`**
+
+> *No description provided*
+
+- Mode: `single`
+
+File: [`script/pro_breeze_ac_start_off_timer.yaml`](entities/script/pro_breeze_ac_start_off_timer.yaml)
 </details>
 
 <details><summary><strong>Reset Next Bedroom Sunrise</strong></summary>

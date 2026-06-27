@@ -1,18 +1,12 @@
 ---
-alias: /input-number/pro-breeze-ac-timer-minutes
+alias: Pro Breeze AC Start Off Timer
 
-id: input_number_pro_breeze_ac_timer_minutes
-
-mode: restart
+mode: single
 
 max_exceeded: silent
 
-trigger:
-  - platform: state
-    entity_id: input_number.pro_breeze_ac_timer_minutes
-
-action:
-  - action: timer.set_duration
+sequence:
+  - action: timer.start
     target:
       entity_id: timer.pro_breeze_ac_off
     data:
