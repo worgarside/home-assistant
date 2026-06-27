@@ -21,14 +21,13 @@ trigger:
       - "off"
 
 variables:
-  air_purifier_area: "{{ area_id('fan.air_purifier') }}"
   quiet_mode_should_be_on: >
     {{
       (
-        air_purifier_area == 'lounge' and
+        is_state('sensor.air_purifier_area', 'lounge') and
         is_state('remote.lounge_streamer', 'on')
       ) or (
-        air_purifier_area == 'dining_area' and
+        is_state('sensor.air_purifier_area', 'dining_area') and
         is_state('remote.dining_area_chromecast_remote', 'on')
       )
     }}

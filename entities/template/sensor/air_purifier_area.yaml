@@ -1,0 +1,8 @@
+---
+name: Air Purifier Area
+
+unique_id: air_purifier_area
+
+icon: mdi:air-purifier
+
+state: "{{ area_id('fan.air_purifier') }}"

@@ -5,6 +5,25 @@ alwaysApply: true
 
 # Home Assistant Dashboard Rules
 
+## Lovelace JSON files are read-only
+
+Files under `lovelace/dashboards/ui_only/` (e.g. `lovelace.home_will.json`) are **read-only exports** of storage-mode dashboards. **Do not edit them** when the user asks to update a dashboard.
+
+When the user asks to create or update dashboards, use the **Home Assistant MCP** tools:
+
+1. `ha_config_get_dashboard` — list dashboards, fetch config, or search for cards by `entity_id` / `card_type` / `heading`
+2. `ha_config_set_dashboard` — apply changes via `python_transform` (preferred) or full `config` replacement
+
+Typical workflow:
+
+```
+ha_config_get_dashboard(url_path="home-will", entity_id="sensor.example")
+→ use python_path + config_hash from the result
+→ ha_config_set_dashboard(url_path="home-will", config_hash=..., python_transform=...)
+```
+
+If JSON files are edited by mistake, revert them — the live dashboard is updated via MCP, not the repo JSON.
+
 ## mini-graph-card
 
 Never include `grid_options` (e.g. `columns`, `rows`) on a `custom:mini-graph-card` unless the user explicitly requests it. The card manages its own sizing and adding `grid_options` breaks the layout. This applies whether the card is being created fresh or updated.

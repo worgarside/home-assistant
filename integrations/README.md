@@ -922,8 +922,7 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 
 ```json
 {
-  "air_purifier_area": "{{ area_id('fan.air_purifier') }}",
-  "quiet_mode_should_be_on": "{{\n  (\n    air_purifier_area == 'lounge' and\n    is_state('remote.lounge_streamer', 'on')\n  ) or (\n    air_purifier_area == 'dining_area' and\n    is_state('remote.dining_area_chromecast_remote', 'on')\n  )\n}}\n"
+  "quiet_mode_should_be_on": "{{\n  (\n    is_state('sensor.air_purifier_area', 'lounge') and\n    is_state('remote.lounge_streamer', 'on')\n  ) or (\n    is_state('sensor.air_purifier_area', 'dining_area') and\n    is_state('remote.dining_area_chromecast_remote', 'on')\n  )\n}}\n"
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
@@ -10519,7 +10518,7 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 ## Template
 
-<details><summary><h3>Entities (95)</h3></summary>
+<details><summary><h3>Entities (96)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10891,6 +10890,15 @@ File: [`template/sensor/addon_stats/yas_209_bridge_memory_usage.yaml`](entities/
 - Icon: [`mdi:map-marker`](https://pictogrammers.com/library/mdi/icon/map-marker/)
 
 File: [`template/sensor/address_line_1.yaml`](entities/template/sensor/address_line_1.yaml)
+</details>
+
+<details><summary><strong>Air Purifier Area</strong></summary>
+
+**Entity ID: `sensor.air_purifier_area`**
+
+- Icon: [`mdi:air-purifier`](https://pictogrammers.com/library/mdi/icon/air-purifier/)
+
+File: [`template/sensor/air_purifier_area.yaml`](entities/template/sensor/air_purifier_area.yaml)
 </details>
 
 <details><summary><strong>Air Purifier Fan Speed</strong></summary>
