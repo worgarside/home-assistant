@@ -1450,6 +1450,15 @@
                     }
                   ],
                   "show_current_as_primary": false
+                },
+                {
+                  "type": "custom:simple-timer-card",
+                  "entities": [
+                    {
+                      "entity": "timer.pro_breeze_ac_off",
+                      "mode": "timer"
+                    }
+                  ]
                 }
               ]
             }
