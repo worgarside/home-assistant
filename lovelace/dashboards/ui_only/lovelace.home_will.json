@@ -1454,33 +1454,8 @@
                 {
                   "type": "custom:simple-timer-card",
                   "title": "Pro Breeze AC Timer",
-                  "layout": "vertical",
-                  "style": "bar_horizontal",
-                  "progress_mode": "drain",
-                  "show_active_header": false,
-                  "default_new_timer_duration_mins": 120,
-                  "show_timer_presets": true,
-                  "timer_presets": [
-                    30,
-                    60,
-                    120,
-                    180
-                  ],
-                  "minute_buttons": [
-                    5,
-                    15,
-                    30
-                  ],
-                  "snooze_duration": 15,
-                  "expired_subtitle": "Turning AC off",
                   "entities": [
-                    {
-                      "entity": "timer.pro_breeze_ac_off",
-                      "mode": "timer",
-                      "name": "AC off timer",
-                      "icon": "mdi:air-conditioner",
-                      "keep_timer_visible_when_idle": true
-                    }
+                    "timer.pro_breeze_ac_off"
                   ]
                 }
               ]
