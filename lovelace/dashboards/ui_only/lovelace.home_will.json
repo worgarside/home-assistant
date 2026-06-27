@@ -1458,11 +1458,13 @@
                 {
                   "type": "tile",
                   "entity": "input_number.pro_breeze_ac_timer_minutes",
+                  "vertical": false,
                   "features": [
                     {
                       "type": "numeric-input"
                     }
-                  ]
+                  ],
+                  "features_position": "bottom"
                 }
               ]
             }
