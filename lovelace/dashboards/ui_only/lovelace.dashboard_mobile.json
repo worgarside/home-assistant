@@ -610,32 +610,32 @@
                         {
                           "entity": "automation.remote_vic_s_office_hue_remote_on_press",
                           "name": "On Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_on_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_vic_s_office_hue_remote_on_hold",
                           "name": "On Hold",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_on_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_vic_s_office_hue_remote_off_press",
                           "name": "Off Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_off_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_vic_s_office_hue_remote_off_hold",
                           "name": "Off Hold",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_off_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_vic_s_office_hue_remote_up_press",
                           "name": "Up Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_up_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_vic_s_office_hue_remote_down_press",
                           "name": "Down Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_down_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         }
                       ]
                     },
@@ -649,22 +649,22 @@
                         {
                           "entity": "automation.remote_vic_s_desk_remote_on",
                           "name": "On",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_desk_remote_on\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_vic_s_desk_remote_off",
                           "name": "Off",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_desk_remote_off\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_vic_s_desk_remote_brightness_move_up",
                           "name": "Brightness Move Up",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_desk_remote_brightness_move_up\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_vic_s_desk_remote_brightness_move_down",
                           "name": "Brightness Move Down",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_desk_remote_brightness_move_down\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         }
                       ]
                     }
@@ -1414,32 +1414,32 @@
                         {
                           "entity": "automation.remote_lounge_hue_remote_on_press",
                           "name": "On Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_on_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_lounge_hue_remote_on_hold",
                           "name": "On Hold",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_on_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_lounge_hue_remote_off_press",
                           "name": "Off Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_off_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_lounge_hue_remote_off_hold",
                           "name": "Off Hold",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_off_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_lounge_hue_remote_up_press",
                           "name": "Up Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_up_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_lounge_hue_remote_down_press",
                           "name": "Down Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_down_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         }
                       ]
                     },
@@ -1453,7 +1453,7 @@
                         {
                           "entity": "automation.remote_coffee_table_double",
                           "name": "Reset TV Audio Output",
-                          "icon": "mdi:remote-tv{% if is_state(\"automation.remote_coffee_table_double\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote-tv"
                         }
                       ]
                     }
@@ -2423,32 +2423,32 @@
                         {
                           "entity": "automation.remote_bedroom_remote_on",
                           "name": "On",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_on\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_bedroom_remote_off",
                           "name": "Off",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_off\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_bedroom_remote_arrow_left_click",
                           "name": "Arrow Left Click",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_arrow_left_click\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_bedroom_remote_arrow_right_click",
                           "name": "Arrow Right Click",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_arrow_right_click\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_bedroom_remote_brightness_move_up",
                           "name": "Brightness Move Up",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_brightness_move_up\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_bedroom_remote_brightness_move_down",
                           "name": "Brightness Move Down",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_brightness_move_down\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         }
                       ]
                     },
@@ -2462,32 +2462,32 @@
                         {
                           "entity": "automation.remote_bedroom_hue_remote_on_press",
                           "name": "On Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_on_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_bedroom_hue_remote_on_hold",
                           "name": "On Hold",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_on_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_bedroom_hue_remote_off_press",
                           "name": "Off Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_off_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_bedroom_hue_remote_off_hold",
                           "name": "Off Hold",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_off_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_bedroom_hue_remote_up_press",
                           "name": "Up Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_up_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_bedroom_hue_remote_down_press",
                           "name": "Down Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_down_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         }
                       ]
                     }
@@ -3442,37 +3442,37 @@
                         {
                           "entity": "automation.remote_basement_remote_single_left",
                           "name": "Single Left",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_single_left\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_basement_remote_double_left",
                           "name": "Double Left",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_double_left\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_basement_remote_hold_left",
                           "name": "Hold Left",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_hold_left\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_basement_remote_triple_left",
                           "name": "Triple Left",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_triple_left\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_basement_remote_single_right",
                           "name": "Single Right",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_single_right\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_basement_remote_double_right",
                           "name": "Double Right",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_double_right\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_basement_remote_hold_right",
                           "name": "Hold Right",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_hold_right\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         }
                       ]
                     }
@@ -4625,32 +4625,32 @@
                         {
                           "entity": "automation.remote_will_s_desk_button_1_single",
                           "name": "Single",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_1_single\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_will_s_desk_button_1_double",
                           "name": "Double",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_1_double\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_will_s_desk_button_1_hold",
                           "name": "Hold",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_1_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_will_s_desk_button_2_single",
                           "name": "Single",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_2_single\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_will_s_desk_button_2_double",
                           "name": "Double",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_2_double\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_will_s_desk_button_2_hold",
                           "name": "Hold",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_2_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         }
                       ]
                     },
@@ -4664,32 +4664,32 @@
                         {
                           "entity": "automation.remote_office_hue_remote_on_press",
                           "name": "On Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_on_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_office_hue_remote_on_hold",
                           "name": "On Hold",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_on_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_office_hue_remote_off_press",
                           "name": "Off Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_off_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_office_hue_remote_off_hold",
                           "name": "Off Hold",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_off_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_office_hue_remote_up_press",
                           "name": "Up Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_up_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_office_hue_remote_down_press",
                           "name": "Down Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_down_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         }
                       ]
                     },
@@ -4703,22 +4703,22 @@
                         {
                           "entity": "automation.remote_will_s_office_doorbell_single_press",
                           "name": "Single Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_office_doorbell_single_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_charging_hub_button_single",
                           "name": "Single",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_charging_hub_button_single\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_prusa_i3_mk3_power_single_press",
                           "name": "Single Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_prusa_i3_mk3_power_single_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_prusa_i3_mk3_power_double_press",
                           "name": "Double Press",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_prusa_i3_mk3_power_double_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         }
                       ]
                     }
@@ -5975,37 +5975,37 @@
                         {
                           "entity": "automation.remote_guest_room_remote_on",
                           "name": "Turn On Guest Room Lights",
-                          "icon": "mdi:lightbulb{% if is_state(\"automation.remote_guest_room_remote_on\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:lightbulb"
                         },
                         {
                           "entity": "automation.remote_guest_room_remote_off",
                           "name": "Turn Off Guest Room Lights",
-                          "icon": "mdi:lightbulb-off{% if is_state(\"automation.remote_guest_room_remote_off\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:lightbulb-off"
                         },
                         {
                           "entity": "automation.remote_guest_room_remote_arrow_left_click",
                           "name": "Cycle Lights Backward",
-                          "icon": "mdi:arrow-left{% if is_state(\"automation.remote_guest_room_remote_arrow_left_click\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:arrow-left"
                         },
                         {
                           "entity": "automation.remote_guest_room_remote_arrow_left_hold",
                           "name": "Toggle Spare Room Fan",
-                          "icon": "mdi:fan{% if is_state(\"automation.remote_guest_room_remote_arrow_left_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:fan"
                         },
                         {
                           "entity": "automation.remote_guest_room_remote_arrow_right_click",
                           "name": "Cycle Lights Forward",
-                          "icon": "mdi:arrow-right{% if is_state(\"automation.remote_guest_room_remote_arrow_right_click\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:arrow-right"
                         },
                         {
                           "entity": "automation.remote_guest_room_remote_brightness_move_up",
                           "name": "Brightness Move Up",
-                          "icon": "mdi:brightness-7{% if is_state(\"automation.remote_guest_room_remote_brightness_move_up\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:brightness-7"
                         },
                         {
                           "entity": "automation.remote_guest_room_remote_brightness_move_down",
                           "name": "Brightness Move Down",
-                          "icon": "mdi:brightness-5{% if is_state(\"automation.remote_guest_room_remote_brightness_move_down\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:brightness-5"
                         }
                       ]
                     },
@@ -6019,32 +6019,32 @@
                         {
                           "entity": "automation.remote_spare_room_hue_remote_on_press",
                           "name": "Turn On Guest Room Lights",
-                          "icon": "mdi:lightbulb{% if is_state(\"automation.remote_spare_room_hue_remote_on_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:lightbulb"
                         },
                         {
                           "entity": "automation.remote_spare_room_hue_remote_on_hold",
                           "name": "Turn On At Full Brightness",
-                          "icon": "mdi:brightness-7{% if is_state(\"automation.remote_spare_room_hue_remote_on_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:brightness-7"
                         },
                         {
                           "entity": "automation.remote_spare_room_hue_remote_off_press",
                           "name": "Turn Off Guest Room Lights",
-                          "icon": "mdi:lightbulb-off{% if is_state(\"automation.remote_spare_room_hue_remote_off_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:lightbulb-off"
                         },
                         {
                           "entity": "automation.remote_spare_room_hue_remote_off_hold",
                           "name": "Turn Off Physical Room",
-                          "icon": "mdi:power-off{% if is_state(\"automation.remote_spare_room_hue_remote_off_hold\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:power-off"
                         },
                         {
                           "entity": "automation.remote_spare_room_hue_remote_up_press",
                           "name": "Up Press",
-                          "icon": "mdi:brightness-7{% if is_state(\"automation.remote_spare_room_hue_remote_up_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:brightness-7"
                         },
                         {
                           "entity": "automation.remote_spare_room_hue_remote_down_press",
                           "name": "Down Press",
-                          "icon": "mdi:brightness-5{% if is_state(\"automation.remote_spare_room_hue_remote_down_press\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:brightness-5"
                         }
                       ]
                     }
@@ -6265,22 +6265,22 @@
                         {
                           "entity": "automation.remote_garden_light_remote_on",
                           "name": "On",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_garden_light_remote_on\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_garden_light_remote_off",
                           "name": "Off",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_garden_light_remote_off\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_garden_light_remote_brightness_move_up",
                           "name": "Brightness Move Up",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_garden_light_remote_brightness_move_up\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         },
                         {
                           "entity": "automation.remote_garden_light_remote_brightness_move_down",
                           "name": "Brightness Move Down",
-                          "icon": "mdi:remote{% if is_state(\"automation.remote_garden_light_remote_brightness_move_down\", \"off\") %}-off{% endif %}"
+                          "icon": "mdi:remote"
                         }
                       ]
                     }
