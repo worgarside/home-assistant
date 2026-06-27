@@ -4636,58 +4636,6 @@
                   "primary": "Control extractor vent fan"
                 },
                 {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:robot-vacuum{% if is_state(\"automation.binary_sensor_basement_presence_on\", \"off\") %}-off{% endif %}",
-                  "features_position": "bottom",
-                  "entity": "automation.binary_sensor_basement_presence_on",
-                  "area": "lower_hallway",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/binary-sensor/basement-presence/on",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.binary_sensor_basement_presence_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Auto-pause Cosmo"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:robot-vacuum{% if is_state(\"automation.cosmo_nightly_kitchen_clean\", \"off\") %}-off{% endif %}",
-                  "features_position": "bottom",
-                  "entity": "automation.cosmo_nightly_kitchen_clean",
-                  "area": "kitchen",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/cosmo/nightly-kitchen-clean",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.cosmo_nightly_kitchen_clean\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Cosmo Nightly Clean"
-                },
-                {
                   "type": "custom:expander-card",
                   "title-card": {
                     "type": "custom:mushroom-template-card",
@@ -4793,6 +4741,95 @@
                         "action": "none"
                       },
                       "primary": "Kitchen/Dining Area lights timeout{%- if has_value(\"input_number.basement_lights_timeout\") %} ({{ states(\"input_number.basement_lights_timeout\") | int }}s) {% endif -%}",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  }
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Cosmo",
+                    "secondary": "2 automations",
+                    "icon": "mdi:robot-vacuum",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:robot-vacuum{% if is_state(\"automation.binary_sensor_basement_presence_on\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.binary_sensor_basement_presence_on",
+                      "area": "lower_hallway",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/binary-sensor/basement-presence/on",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.binary_sensor_basement_presence_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Auto-pause Cosmo",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:robot-vacuum{% if is_state(\"automation.cosmo_nightly_kitchen_clean\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.cosmo_nightly_kitchen_clean",
+                      "area": "kitchen",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/cosmo/nightly-kitchen-clean",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.cosmo_nightly_kitchen_clean\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Cosmo Nightly Clean",
                       "card_mod": {
                         "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
                       }
