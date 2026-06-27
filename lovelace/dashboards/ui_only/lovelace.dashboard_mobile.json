@@ -2249,7 +2249,14 @@
                   "secondary_info": "state",
                   "primary_info": "name",
                   "layout": "horizontal",
-                  "icon": "mdi:timer-cog-outline"
+                  "icon": "mdi:timer-cog-outline",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.input_datetime_next_bedroom_sunrise_sunrise_start",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -2261,7 +2268,14 @@
                   "secondary_info": "state",
                   "primary_info": "name",
                   "layout": "horizontal",
-                  "icon": "mdi:brightness-percent"
+                  "icon": "mdi:brightness-percent",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.input_datetime_next_bedroom_sunrise_sunrise_start",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
