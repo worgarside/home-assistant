@@ -1843,7 +1843,10 @@
                       "hold_action": {
                         "action": "none"
                       },
-                      "primary": "Air Freshener Auto-On"
+                      "primary": "Air Freshener Auto-On",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
                     },
                     {
                       "type": "custom:mushroom-template-card",
@@ -1869,7 +1872,10 @@
                       "hold_action": {
                         "action": "none"
                       },
-                      "primary": "Turn air freshener off after {{ states(\"input_number.air_freshener_timeout\") | int(\"??\") }} minutes"
+                      "primary": "Turn air freshener off after {{ states(\"input_number.air_freshener_timeout\") | int(\"??\") }} minutes",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
                     }
                   ],
                   "title-card-button-overlay": false,
@@ -1933,7 +1939,10 @@
                       "hold_action": {
                         "action": "none"
                       },
-                      "primary": "Exercise mode: lights to 100% and disable occupancy"
+                      "primary": "Exercise mode: lights to 100% and disable occupancy",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
                     },
                     {
                       "type": "custom:mushroom-template-card",
@@ -1959,7 +1968,10 @@
                       "hold_action": {
                         "action": "none"
                       },
-                      "primary": "Exercise mode off: restore occupancy automations"
+                      "primary": "Exercise mode off: restore occupancy automations",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
                     },
                     {
                       "type": "custom:mushroom-template-card",
@@ -1985,7 +1997,10 @@
                       "hold_action": {
                         "action": "none"
                       },
-                      "primary": "Turn off exercise mode after {{ states(\"input_number.lounge_lights_exercise_mode_timeout\") | int(\"??\") }} minutes"
+                      "primary": "Turn off exercise mode after {{ states(\"input_number.lounge_lights_exercise_mode_timeout\") | int(\"??\") }} minutes",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
                     }
                   ],
                   "title-card-button-overlay": false,
@@ -2049,7 +2064,10 @@
                       "hold_action": {
                         "action": "none"
                       },
-                      "primary": "Keep diffuser light in sync with diffuser"
+                      "primary": "Keep diffuser light in sync with diffuser",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
                     },
                     {
                       "type": "custom:mushroom-template-card",
@@ -2075,7 +2093,10 @@
                       "hold_action": {
                         "action": "none"
                       },
-                      "primary": "Notify when diffuser needs water"
+                      "primary": "Notify when diffuser needs water",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
                     }
                   ],
                   "title-card-button-overlay": false,
