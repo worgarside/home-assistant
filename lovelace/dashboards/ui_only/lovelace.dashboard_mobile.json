@@ -3164,58 +3164,6 @@
                   "primary": "Reset shapes to bon appetit (10AM)"
                 },
                 {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:calendar",
-                  "features_position": "bottom",
-                  "entity": "automation.schedule_bedroom_heating_schedule_on",
-                  "area": "bedroom",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/schedule/bedroom-heating-schedule/on",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.schedule_bedroom_heating_schedule_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Scheduled heating"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:calendar{% if is_state(\"automation.schedule_bedroom_heating_schedule_off\", \"off\") %}-off{% endif %}",
-                  "features_position": "bottom",
-                  "entity": "automation.schedule_bedroom_heating_schedule_off",
-                  "area": "bedroom",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/schedule/bedroom-heating-schedule/off",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.schedule_bedroom_heating_schedule_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Turn off radiators when heating schedule ends"
-                },
-                {
                   "type": "custom:expander-card",
                   "title-card": {
                     "type": "custom:mushroom-template-card",
@@ -3292,6 +3240,95 @@
                         "action": "none"
                       },
                       "primary": "{% set total_seconds = states('input_number.wardrobe_lights_timeout') | int %} {% set minutes = (total_seconds // 60) | int %} {% set seconds = (total_seconds % 60) | int %}\nTurn wardrobe lights off after {% if minutes > 0 %}\n  {{ minutes }} min{% if minutes > 1 %}s{% endif %}{% if seconds > 0 %} and {{ seconds }} sec{{ 's' if seconds != 1 else '' }}{% endif %}\n{% else %}\n  {{ seconds }} sec{{ 's' if seconds != 1 else '' }}\n{% endif %}",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  }
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Heating",
+                    "secondary": "2 automations",
+                    "icon": "mdi:radiator",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:calendar",
+                      "features_position": "bottom",
+                      "entity": "automation.schedule_bedroom_heating_schedule_on",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/schedule/bedroom-heating-schedule/on",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.schedule_bedroom_heating_schedule_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Scheduled heating",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:calendar{% if is_state(\"automation.schedule_bedroom_heating_schedule_off\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.schedule_bedroom_heating_schedule_off",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/schedule/bedroom-heating-schedule/off",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.schedule_bedroom_heating_schedule_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Turn off radiators when heating schedule ends",
                       "card_mod": {
                         "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
                       }
