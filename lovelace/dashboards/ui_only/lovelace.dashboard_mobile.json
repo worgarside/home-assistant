@@ -3708,6 +3708,136 @@
                     "action": "none"
                   },
                   "primary": "Turn on lower hallway lights on occupancy"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:motion-sensor{% if is_state(\"automation.binary_sensor_main_hallway_motion_sensor_occupancy_on\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_main_hallway_motion_sensor_occupancy_on",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/main-hallway-motion-sensor-occupancy/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_main_hallway_motion_sensor_occupancy_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn on main hallway lights on motion"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:motion-sensor{% if is_state(\"automation.binary_sensor_kitchen_hallway_occupancy_on\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.binary_sensor_kitchen_hallway_occupancy_on",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/binary-sensor/kitchen-hallway-occupancy/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.binary_sensor_kitchen_hallway_occupancy_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn on kitchen hallway lights on occupancy"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:lightbulb{% if is_state(\"automation.light_upper_landing_lights_on\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.light_upper_landing_lights_on",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/light/upper-landing-lights/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_upper_landing_lights_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn on upper landing lights on motion"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-sand",
+                  "features_position": "bottom",
+                  "entity": "automation.light_lower_hallway_lights_timeout",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/light/lower-hallway-lights/timeout",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_lower_hallway_lights_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Lower hallway lights timeout"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer-sand",
+                  "features_position": "bottom",
+                  "entity": "automation.light_upper_landing_lights_timeout",
+                  "area": "lower_hallway",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/light/upper-landing-lights/timeout",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_upper_landing_lights_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Upper landing lights timeout after {{ states(\"input_number.hallway_lights_timeout\") | int(\"??\") }} seconds"
                 }
               ]
             },
