@@ -1798,6 +1798,112 @@
                   "double_tap_action": {
                     "action": "toggle"
                   }
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "tile",
+                    "entity": "climate.pro_breeze_ac_pro_breeze_ac",
+                    "name": "Pro Breeze AC"
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:vertical-stack-in-card",
+                      "cards": [
+                        {
+                          "type": "thermostat",
+                          "entity": "climate.pro_breeze_ac_pro_breeze_ac",
+                          "features": [
+                            {
+                              "type": "climate-swing-modes",
+                              "style": "dropdown"
+                            },
+                            {
+                              "type": "climate-preset-modes",
+                              "style": "dropdown"
+                            },
+                            {
+                              "type": "climate-hvac-modes"
+                            },
+                            {
+                              "type": "climate-fan-modes",
+                              "style": "dropdown"
+                            }
+                          ],
+                          "show_current_as_primary": false
+                        },
+                        {
+                          "type": "grid",
+                          "columns": 2,
+                          "square": false,
+                          "cards": [
+                            {
+                              "type": "tile",
+                              "entity": "timer.pro_breeze_ac_off"
+                            },
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "script.pro_breeze_ac_start_off_timer",
+                              "name": "Start Timer",
+                              "icon": "mdi:timer-play",
+                              "layout": "horizontal",
+                              "fill_container": true,
+                              "primary_info": "name",
+                              "secondary_info": "none",
+                              "icon_type": "icon",
+                              "tap_action": {
+                                "action": "call-service",
+                                "service": "script.turn_on",
+                                "target": {
+                                  "entity_id": "script.pro_breeze_ac_start_off_timer"
+                                }
+                              },
+                              "visibility": [
+                                {
+                                  "condition": "state",
+                                  "entity": "timer.pro_breeze_ac_off",
+                                  "state": "idle"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "custom:mushroom-template-card",
+                              "primary": "Stop Timer",
+                              "icon": "mdi:timer-stop",
+                              "layout": "horizontal",
+                              "fill_container": true,
+                              "entity": "timer.pro_breeze_ac_off",
+                              "tap_action": {
+                                "action": "call-service",
+                                "service": "timer.cancel",
+                                "target": {
+                                  "entity_id": "timer.pro_breeze_ac_off"
+                                }
+                              },
+                              "visibility": [
+                                {
+                                  "condition": "state",
+                                  "entity": "timer.pro_breeze_ac_off",
+                                  "state_not": "idle"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "custom:mushroom-number-card",
+                          "entity": "input_number.pro_breeze_ac_timer_minutes",
+                          "name": "Timer Duration",
+                          "primary_info": "state",
+                          "secondary_info": "name",
+                          "layout": "horizontal"
+                        }
+                      ]
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
                 }
               ]
             },
