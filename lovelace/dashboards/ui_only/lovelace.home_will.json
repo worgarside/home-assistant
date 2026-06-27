@@ -6835,6 +6835,39 @@
                   }
                 }
               ]
+            },
+            {
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Air Purifier",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "tile",
+                  "entity": "input_boolean.air_purifier_quiet_mode",
+                  "name": "Quiet Mode",
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 2
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.air_purifier_area",
+                  "name": "Area",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 2
+                  }
+                }
+              ]
             }
           ],
           "cards": []
