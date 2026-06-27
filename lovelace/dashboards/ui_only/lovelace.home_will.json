@@ -1466,7 +1466,13 @@
                   "grid_options": {
                     "columns": 6,
                     "rows": "auto"
-                  }
+                  },
+                  "button_type": "switch",
+                  "sub_button": {
+                    "main": [],
+                    "bottom": []
+                  },
+                  "name": "Start Timer"
                 },
                 {
                   "type": "tile",
