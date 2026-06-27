@@ -1353,8 +1353,8 @@
                   "visibility": [
                     {
                       "condition": "state",
-                      "entity": "binary_sensor.air_purifier_in_lounge",
-                      "state": "on"
+                      "entity": "sensor.air_purifier_area",
+                      "state": "lounge"
                     }
                   ]
                 },
@@ -1661,8 +1661,8 @@
                   "visibility": [
                     {
                       "condition": "state",
-                      "entity": "binary_sensor.air_purifier_in_lounge",
-                      "state": "on"
+                      "entity": "sensor.air_purifier_area",
+                      "state": "lounge"
                     }
                   ]
                 },
@@ -1746,8 +1746,8 @@
                   "visibility": [
                     {
                       "condition": "state",
-                      "entity": "binary_sensor.air_purifier_in_lounge",
-                      "state": "on"
+                      "entity": "sensor.air_purifier_area",
+                      "state": "lounge"
                     }
                   ]
                 },
@@ -2378,8 +2378,8 @@
                   "conditions": [
                     {
                       "condition": "state",
-                      "entity": "binary_sensor.air_purifier_in_lounge",
-                      "state": "on"
+                      "entity": "sensor.air_purifier_area",
+                      "state": "lounge"
                     },
                     {
                       "condition": "state",
