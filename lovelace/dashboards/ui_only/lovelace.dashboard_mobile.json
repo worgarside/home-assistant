@@ -2384,6 +2384,32 @@
                     "action": "none"
                   },
                   "primary": "Scheduled heating"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:calendar{% if is_state(\"automation.schedule_bedroom_heating_schedule_off\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.schedule_bedroom_heating_schedule_off",
+                  "area": "bedroom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/schedule/bedroom-heating-schedule/off",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.schedule_bedroom_heating_schedule_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn off radiators when heating schedule ends"
                 }
               ]
             },
