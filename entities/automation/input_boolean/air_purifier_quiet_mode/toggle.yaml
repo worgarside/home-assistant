@@ -8,17 +8,37 @@ mode: single
 max_exceeded: silent
 
 trigger:
-  - platform: state
+  - trigger: state
     entity_id: remote.lounge_streamer
-    id: lounge_streamer_state
     to:
       - "on"
       - "off"
 
+  - trigger: state
+    entity_id: remote.dining_area_chromecast_remote
+    to:
+      - "on"
+      - "off"
+
+  - trigger: state
+    entity_id: input_select.air_purifier_quiet_mode_source
+    to:
+      - Lounge Streamer
+      - Dining Area Chromecast
+
 variables:
-  tv_is_on: "{{ states('remote.lounge_streamer') | bool(false) }}"
+  quiet_mode_should_be_on: >
+    {{
+      (
+        is_state('input_select.air_purifier_quiet_mode_source', 'Lounge Streamer') and
+        is_state('remote.lounge_streamer', 'on')
+      ) or (
+        is_state('input_select.air_purifier_quiet_mode_source', 'Dining Area Chromecast') and
+        is_state('remote.dining_area_chromecast_remote', 'on')
+      )
+    }}
 
 action:
-  - action: input_boolean.turn_{{ 'on' if tv_is_on else 'off' }}
+  - action: input_boolean.turn_{{ 'on' if quiet_mode_should_be_on else 'off' }}
     target:
       entity_id: input_boolean.air_purifier_quiet_mode

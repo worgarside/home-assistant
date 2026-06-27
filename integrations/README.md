@@ -922,7 +922,7 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 
 ```json
 {
-  "tv_is_on": "{{ states('remote.lounge_streamer') | bool(false) }}"
+  "quiet_mode_should_be_on": "{{\n  (\n    is_state('input_select.air_purifier_quiet_mode_source', 'Lounge Streamer') and\n    is_state('remote.lounge_streamer', 'on')\n  ) or (\n    is_state('input_select.air_purifier_quiet_mode_source', 'Dining Area Chromecast') and\n    is_state('remote.dining_area_chromecast_remote', 'on')\n  )\n}}\n"
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
@@ -6423,7 +6423,7 @@ File: [`input_number/will_s_office_grow_light_trigger_delay.yaml`](entities/inpu
 
 ## Input Select
 
-<details><summary><h3>Entities (9)</h3></summary>
+<details><summary><h3>Entities (10)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -6432,6 +6432,15 @@ File: [`input_number/will_s_office_grow_light_trigger_delay.yaml`](entities/inpu
 - Icon: [`mdi:docker`](https://pictogrammers.com/library/mdi/icon/docker/)
 
 File: [`input_select/add_on_stats_legend_sensor_type.yaml`](entities/input_select/add_on_stats_legend_sensor_type.yaml)
+</details>
+
+<details><summary><strong>Air Purifier | Quiet Mode Source</strong></summary>
+
+**Entity ID: `input_select.air_purifier_quiet_mode_source`**
+
+- Icon: [`mdi:air-purifier`](https://pictogrammers.com/library/mdi/icon/air-purifier/)
+
+File: [`input_select/air_purifier/air_purifier_quiet_mode_source.yaml`](entities/input_select/air_purifier/air_purifier_quiet_mode_source.yaml)
 </details>
 
 <details><summary><strong>CRTPi | Media Player Source</strong></summary>
