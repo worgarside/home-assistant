@@ -3915,18 +3915,6 @@
                   ]
                 },
                 {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.air_purifier",
-                  "icon_animation": false,
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.air_purifier_area",
-                      "state": "dining_area"
-                    }
-                  ]
-                },
-                {
                   "type": "custom:mushroom-climate-card",
                   "entity": "climate.kitchen_radiator",
                   "name": "Kitchen Radiator",
@@ -3999,6 +3987,18 @@
                   },
                   "primary_info": "state",
                   "secondary_info": "name"
+                },
+                {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.air_purifier",
+                  "icon_animation": false,
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.air_purifier_area",
+                      "state": "dining_area"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-vacuum-card",
