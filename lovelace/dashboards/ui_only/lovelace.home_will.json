@@ -1438,59 +1438,64 @@
                   },
                   "cards": [
                     {
-                      "type": "thermostat",
-                      "entity": "climate.pro_breeze_ac_pro_breeze_ac",
-                      "features": [
-                        {
-                          "type": "climate-swing-modes",
-                          "style": "dropdown"
-                        },
-                        {
-                          "type": "climate-preset-modes",
-                          "style": "dropdown"
-                        },
-                        {
-                          "type": "climate-hvac-modes"
-                        },
-                        {
-                          "type": "climate-fan-modes",
-                          "style": "dropdown"
-                        }
-                      ],
-                      "show_current_as_primary": false
-                    },
-                    {
-                      "type": "grid",
-                      "columns": 2,
-                      "square": false,
+                      "type": "custom:vertical-stack-in-card",
                       "cards": [
                         {
-                          "type": "tile",
-                          "entity": "timer.pro_breeze_ac_off"
+                          "type": "thermostat",
+                          "entity": "climate.pro_breeze_ac_pro_breeze_ac",
+                          "features": [
+                            {
+                              "type": "climate-swing-modes",
+                              "style": "dropdown"
+                            },
+                            {
+                              "type": "climate-preset-modes",
+                              "style": "dropdown"
+                            },
+                            {
+                              "type": "climate-hvac-modes"
+                            },
+                            {
+                              "type": "climate-fan-modes",
+                              "style": "dropdown"
+                            }
+                          ],
+                          "show_current_as_primary": false
                         },
                         {
-                          "type": "custom:bubble-card",
-                          "card_type": "button",
-                          "entity": "script.pro_breeze_ac_start_off_timer",
-                          "button_type": "switch",
-                          "sub_button": {
-                            "main": [],
-                            "bottom": []
-                          },
-                          "name": "Start Timer"
+                          "type": "grid",
+                          "columns": 2,
+                          "square": false,
+                          "cards": [
+                            {
+                              "type": "tile",
+                              "entity": "timer.pro_breeze_ac_off"
+                            },
+                            {
+                              "type": "custom:bubble-card",
+                              "card_type": "button",
+                              "entity": "script.pro_breeze_ac_start_off_timer",
+                              "button_type": "switch",
+                              "sub_button": {
+                                "main": [],
+                                "bottom": []
+                              },
+                              "name": "Start Timer"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "tile",
+                          "entity": "input_number.pro_breeze_ac_timer_minutes",
+                          "vertical": false,
+                          "features": [
+                            {
+                              "type": "numeric-input"
+                            }
+                          ],
+                          "features_position": "inline"
                         }
                       ]
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "input_number.pro_breeze_ac_timer_minutes",
-                      "vertical": false,
-                      "features": [
-                        {
-                          "type": "numeric-input"
-                        }
-                      ],
-                      "features_position": "inline"
                     }
                   ]
                 }
