@@ -1461,6 +1461,10 @@
                 },
                 {
                   "type": "tile",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
                   "entity": "input_number.pro_breeze_ac_timer_minutes",
                   "vertical": false,
                   "features": [
@@ -1468,7 +1472,7 @@
                       "type": "numeric-input"
                     }
                   ],
-                  "features_position": "bottom"
+                  "features_position": "inline"
                 },
                 {
                   "type": "custom:bubble-card",
