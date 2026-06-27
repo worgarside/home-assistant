@@ -378,6 +378,17 @@ packages:
         - $.sensor[0].name
         - $.sensor[0].unique_id
 
+  timer:
+    documentation:
+      id: __file__
+      name: name
+      extra:
+        - duration
+        - restore
+        - icon
+
+    validation: {}
+
   utility_meter:
     documentation:
       id: unique_id

@@ -1,0 +1,25 @@
+---
+alias: /climate/pro-breeze-ac/cancel-off-timer
+
+id: climate_pro_breeze_ac_cancel_off_timer
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: climate.pro_breeze_ac_pro_breeze_ac
+    to: "off"
+
+condition:
+  - condition: state
+    entity_id: timer.pro_breeze_ac_off
+    state:
+      - active
+      - paused
+
+action:
+  - action: timer.cancel
+    target:
+      entity_id: timer.pro_breeze_ac_off

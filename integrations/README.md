@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (244)</h3></summary>
+<details><summary><h3>Entities (246)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -319,6 +319,32 @@ File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](ent
 }
 ```
 File: [`automation/camera/offline_notify_will.yaml`](entities/automation/camera/offline_notify_will.yaml)
+</details>
+
+<details><summary><code>/climate/pro-breeze-ac/cancel-off-timer</code></summary>
+
+**Entity ID: `automation.climate_pro_breeze_ac_cancel_off_timer`**
+
+> *No description provided*
+
+- Alias: /climate/pro-breeze-ac/cancel-off-timer
+- ID: `climate_pro_breeze_ac_cancel_off_timer`
+- Mode: `single`
+
+File: [`automation/climate/pro_breeze_ac/cancel_off_timer.yaml`](entities/automation/climate/pro_breeze_ac/cancel_off_timer.yaml)
+</details>
+
+<details><summary><code>/climate/pro-breeze-ac/off-timer-finished</code></summary>
+
+**Entity ID: `automation.climate_pro_breeze_ac_off_timer_finished`**
+
+> *No description provided*
+
+- Alias: /climate/pro-breeze-ac/off-timer-finished
+- ID: `climate_pro_breeze_ac_off_timer_finished`
+- Mode: `single`
+
+File: [`automation/climate/pro_breeze_ac/off_timer_finished.yaml`](entities/automation/climate/pro_breeze_ac/off_timer_finished.yaml)
 </details>
 
 <details><summary><code>/cosmo/docked-set-basement-map</code></summary>
@@ -4757,7 +4783,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (135)</h3></summary>
+<details><summary><h3>Entities (136)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -6186,6 +6212,19 @@ File: [`input_number/timeout/lounge_lights_timeout.yaml`](entities/input_number/
 - Unit Of Measurement: `min`
 
 File: [`input_number/timeout/lounge_room_timeout.yaml`](entities/input_number/timeout/lounge_room_timeout.yaml)
+</details>
+
+<details><summary><strong>Pro Breeze AC Timer Minutes</strong></summary>
+
+**Entity ID: `input_number.pro_breeze_ac_timer_minutes`**
+
+- Icon: [`mdi:timer-cog`](https://pictogrammers.com/library/mdi/icon/timer-cog/)
+- Max: 1440
+- Min: 5
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/pro_breeze_ac_timer_minutes.yaml`](entities/input_number/timeout/pro_breeze_ac_timer_minutes.yaml)
 </details>
 
 <details><summary><strong>Prusa i3 Bed | Timeout</strong></summary>
@@ -8932,7 +8971,7 @@ File: [`rest_command/wger/put_weightentry.yaml`](entities/rest_command/wger/put_
 
 ## Script
 
-<details><summary><h3>Entities (32)</h3></summary>
+<details><summary><h3>Entities (33)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -9801,6 +9840,17 @@ File: [`script/office_desk_standing_mode.yaml`](entities/script/office_desk_stan
 - Mode: `restart`
 
 File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_moving.yaml)
+</details>
+
+<details><summary><strong>Pro Breeze AC Start Off Timer</strong></summary>
+
+**Entity ID: `script.pro_breeze_ac_start_off_timer`**
+
+> *No description provided*
+
+- Mode: `single`
+
+File: [`script/pro_breeze_ac_start_off_timer.yaml`](entities/script/pro_breeze_ac_start_off_timer.yaml)
 </details>
 
 <details><summary><strong>Reset Next Bedroom Sunrise</strong></summary>
@@ -11759,6 +11809,22 @@ File: [`template_triggered/sensor/topaz_sr10_active_child.yaml`](entities/templa
 - Icon: [`mdi:soundbar`](https://pictogrammers.com/library/mdi/icon/soundbar/)
 
 File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/template_triggered/sensor/will_s_yas_209_bridge_input.yaml)
+</details>
+
+</details>
+
+## Timer
+
+<details><summary><h3>Entities (1)</h3></summary>
+
+<details><summary><strong>Pro Breeze AC Off Timer</strong></summary>
+
+**Entity ID: `timer.pro_breeze_ac_off`**
+
+- Duration: 02:00:00
+- Icon: [`mdi:timer-off`](https://pictogrammers.com/library/mdi/icon/timer-off/)
+
+File: [`timer/pro_breeze_ac_off.yaml`](entities/timer/pro_breeze_ac_off.yaml)
 </details>
 
 </details>
