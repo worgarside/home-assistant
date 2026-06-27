@@ -596,79 +596,356 @@
                   "icon": ""
                 },
                 {
-                  "type": "entities",
-                  "show_header_toggle": false,
-                  "state_color": true,
-                  "entities": [
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Vic's Office Hue Remote",
+                    "secondary": "6 automations",
+                    "icon": "mdi:remote",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
+                  },
+                  "cards": [
                     {
-                      "type": "custom:fold-entity-row",
-                      "head": {
-                        "type": "section",
-                        "label": "Vic's Office Hue Remote"
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_on_press",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
                       },
-                      "entities": [
-                        {
-                          "entity": "automation.remote_vic_s_office_hue_remote_on_press",
-                          "name": "On Press",
-                          "icon": "mdi:remote"
-                        },
-                        {
-                          "entity": "automation.remote_vic_s_office_hue_remote_on_hold",
-                          "name": "On Hold",
-                          "icon": "mdi:remote"
-                        },
-                        {
-                          "entity": "automation.remote_vic_s_office_hue_remote_off_press",
-                          "name": "Off Press",
-                          "icon": "mdi:remote"
-                        },
-                        {
-                          "entity": "automation.remote_vic_s_office_hue_remote_off_hold",
-                          "name": "Off Hold",
-                          "icon": "mdi:remote"
-                        },
-                        {
-                          "entity": "automation.remote_vic_s_office_hue_remote_up_press",
-                          "name": "Up Press",
-                          "icon": "mdi:remote"
-                        },
-                        {
-                          "entity": "automation.remote_vic_s_office_hue_remote_down_press",
-                          "name": "Down Press",
-                          "icon": "mdi:remote"
-                        }
-                      ]
+                      "secondary": "/remote/vic-s-office-hue-remote-on-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_on_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "On Press",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
                     },
                     {
-                      "type": "custom:fold-entity-row",
-                      "head": {
-                        "type": "section",
-                        "label": "Vic's Desk Remote"
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_on_hold",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
                       },
-                      "entities": [
-                        {
-                          "entity": "automation.remote_vic_s_desk_remote_on",
-                          "name": "On",
-                          "icon": "mdi:remote"
-                        },
-                        {
-                          "entity": "automation.remote_vic_s_desk_remote_off",
-                          "name": "Off",
-                          "icon": "mdi:remote"
-                        },
-                        {
-                          "entity": "automation.remote_vic_s_desk_remote_brightness_move_up",
-                          "name": "Brightness Move Up",
-                          "icon": "mdi:remote"
-                        },
-                        {
-                          "entity": "automation.remote_vic_s_desk_remote_brightness_move_down",
-                          "name": "Brightness Move Down",
-                          "icon": "mdi:remote"
-                        }
-                      ]
+                      "secondary": "/remote/vic-s-office-hue-remote-on-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_on_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "On Hold",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_off_press",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-office-hue-remote-off-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_off_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Off Press",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_off_hold",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-office-hue-remote-off-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_off_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Off Hold",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_up_press",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-office-hue-remote-up-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_up_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Up Press",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_down_press",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-office-hue-remote-down-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_down_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Down Press",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
                     }
-                  ]
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  }
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Vic's Desk Remote",
+                    "secondary": "4 automations",
+                    "icon": "mdi:remote",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_desk_remote_on",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-desk-remote-on",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_desk_remote_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "On",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_desk_remote_off",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-desk-remote-off",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_desk_remote_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Off",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_desk_remote_brightness_move_up",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-desk-remote-brightness-move-up",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_desk_remote_brightness_move_up\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Brightness Move Up",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_desk_remote_brightness_move_down",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-desk-remote-brightness-move-down",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_desk_remote_brightness_move_down\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Brightness Move Down",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
