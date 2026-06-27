@@ -1096,7 +1096,14 @@
                   "secondary_info": "state",
                   "primary_info": "name",
                   "layout": "horizontal",
-                  "name": "PM2.5 Threshold"
+                  "name": "PM2.5 Threshold",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.fan_vic_s_office_fan_control",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -1107,7 +1114,14 @@
                   "secondary_info": "state",
                   "primary_info": "name",
                   "layout": "horizontal",
-                  "name": "VOC Index Threshold"
+                  "name": "VOC Index Threshold",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.fan_vic_s_office_fan_control",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -1119,7 +1133,14 @@
                   "primary_info": "name",
                   "layout": "horizontal",
                   "name": "Purifier Speed",
-                  "icon": "mdi:speedometer-slow"
+                  "icon": "mdi:speedometer-slow",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.fan_vic_s_office_fan_control",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -1130,7 +1151,14 @@
                   "grid_options": {
                     "columns": 12,
                     "rows": 1
-                  }
+                  },
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.switch_central_heating_vic_office_preheat",
+                      "state": "on"
+                    }
+                  ]
                 }
               ]
             }
@@ -2272,7 +2300,14 @@
                   },
                   "secondary_info": "state",
                   "primary_info": "name",
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.binary_sensor_lounge_occupancy_off",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -2288,7 +2323,14 @@
                   "double_tap_action": {
                     "action": "none"
                   },
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.switch_air_freshener_timeout",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -2299,7 +2341,14 @@
                   },
                   "secondary_info": "state",
                   "primary_info": "name",
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.binary_sensor_lounge_occupancy_room_timeout",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "features": [
@@ -3513,7 +3562,14 @@
                   },
                   "secondary_info": "state",
                   "primary_info": "name",
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.light_wardrobe_lights_auto_off",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -4643,7 +4699,14 @@
                   },
                   "secondary_info": "name",
                   "primary_info": "state",
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.binary_sensor_basement_presence_off",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -4654,7 +4717,14 @@
                   },
                   "secondary_info": "name",
                   "primary_info": "state",
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.binary_sensor_basement_presence_off",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -4665,7 +4735,14 @@
                   },
                   "secondary_info": "name",
                   "primary_info": "state",
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.fan_kitchen_extractor_vent_control",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -4676,7 +4753,14 @@
                   },
                   "secondary_info": "name",
                   "primary_info": "state",
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.fan_kitchen_extractor_vent_control",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -4701,7 +4785,14 @@
                   "grid_options": {
                     "columns": 12,
                     "rows": 1
-                  }
+                  },
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.cosmo_nightly_kitchen_clean",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "features": [
@@ -4718,7 +4809,14 @@
                   "entity": "input_number.nightly_kitchen_clean_suction_level",
                   "area": "kitchen",
                   "color": "{% set level = states(\"input_number.nightly_kitchen_clean_suction_level\") | int(-1) %}\n{{\n  iif(\n    0 <= level <= 3,\n    [\"#4CAF50\", \"#FFC107\", \"#FF9800\", \"#F44336\"][level],\n    \"#9E9E9E\"\n  )\n}}",
-                  "multiline_secondary": false
+                  "multiline_secondary": false,
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.cosmo_nightly_kitchen_clean",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "features": [
@@ -4738,7 +4836,14 @@
                   "grid_options": {
                     "columns": 12,
                     "rows": 1
-                  }
+                  },
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.cosmo_nightly_kitchen_clean",
+                      "state": "on"
+                    }
+                  ]
                 }
               ]
             },
@@ -5111,7 +5216,24 @@
                   },
                   "secondary_info": "name",
                   "primary_info": "state",
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "visibility": [
+                    {
+                      "condition": "or",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "automation.light_lower_hallway_lights_timeout",
+                          "state": "on"
+                        },
+                        {
+                          "condition": "state",
+                          "entity": "automation.light_upper_landing_lights_timeout",
+                          "state": "on"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -6306,7 +6428,14 @@
                   },
                   "secondary_info": "state",
                   "primary_info": "name",
-                  "layout": "horizontal"
+                  "layout": "horizontal",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.binary_sensor_will_s_office_external_opening_detected_on",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -6317,7 +6446,14 @@
                   "secondary_info": "state",
                   "primary_info": "name",
                   "layout": "horizontal",
-                  "name": "PM2.5 Threshold"
+                  "name": "PM2.5 Threshold",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.fan_will_s_office_fan_control",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -6328,7 +6464,14 @@
                   "secondary_info": "state",
                   "primary_info": "name",
                   "layout": "horizontal",
-                  "name": "VOC Index Threshold"
+                  "name": "VOC Index Threshold",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.fan_will_s_office_fan_control",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -6340,7 +6483,14 @@
                   "primary_info": "name",
                   "layout": "horizontal",
                   "name": "Purifier Speed",
-                  "icon": "mdi:speedometer-slow"
+                  "icon": "mdi:speedometer-slow",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.fan_will_s_office_fan_control",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
@@ -6358,7 +6508,14 @@
                   "type": "custom:mushroom-number-card",
                   "entity": "input_number.will_s_office_grow_light_trigger_delay",
                   "layout": "horizontal",
-                  "name": "Grow Light: Trigger Delay"
+                  "name": "Grow Light: Trigger Delay",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.light_will_s_office_grow_light_on",
+                      "state": "on"
+                    }
+                  ]
                 }
               ]
             }
