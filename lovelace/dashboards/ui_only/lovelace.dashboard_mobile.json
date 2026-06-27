@@ -1308,7 +1308,7 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "icon": "mdi:air-purifier{% if is_state(\"fan.air_purifier\", \"off\") %}-off{% endif %}",
+                  "icon": "mdi:air-purifier{% if is_state(\"automation.fan_air_purifier_control\", \"off\") %}-off{% endif %}",
                   "features_position": "bottom",
                   "entity": "automation.fan_air_purifier_control",
                   "area": "lounge",
@@ -2113,7 +2113,7 @@
                     "columns": 12,
                     "rows": 1
                   },
-                  "color": "{{ iif(states(\"automation.light_wardrobe_lights_auto_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "color": "{{ iif(states(\"automation.input_datetime_next_bedroom_sunrise_sunrise_start\") | bool(false), \"#04b7d6\", \"grey\") }}",
                   "icon_tap_action": {
                     "action": "more-info"
                   },
@@ -2217,7 +2217,7 @@
                     "columns": 12,
                     "rows": 1
                   },
-                  "color": "{{ iif(states(\"automation.light_wardrobe_lights_auto_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "color": "{{ iif(states(\"automation.schedule_bedroom_heating_schedule_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
                   "icon_tap_action": {
                     "action": "more-info"
                   },
