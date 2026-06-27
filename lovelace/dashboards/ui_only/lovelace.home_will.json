@@ -1456,7 +1456,21 @@
                   "title": "Pro Breeze AC Timer",
                   "entities": [
                     "timer.pro_breeze_ac_off"
-                  ]
+                  ],
+                  "default_new_timer_duration_mins": 120,
+                  "show_timer_presets": true,
+                  "timer_presets": [
+                    30,
+                    60,
+                    120,
+                    180
+                  ],
+                  "minute_buttons": [
+                    5,
+                    15,
+                    30
+                  ],
+                  "snooze_duration": 15
                 }
               ]
             }
