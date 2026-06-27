@@ -4280,7 +4280,8 @@
                   "show": {
                     "state": false,
                     "icon": true,
-                    "name": true
+                    "name": true,
+                    "legend": true
                   },
                   "hours_to_show": 24,
                   "points_per_hour": 4,
@@ -4290,16 +4291,33 @@
                   "height": 150,
                   "entities": [
                     {
+                      "entity": "sensor.air_purifier_pm2_5",
+                      "name": "Air Purifier",
+                      "color": "#656f70"
+                    },
+                    {
                       "entity": "sensor.air_purifier_fan_speed",
-                      "name": "Fan Speed",
+                      "name": "Purifier Fan",
                       "y_axis": "secondary",
                       "show_line": true,
                       "show_fill": false,
                       "color": "#333333"
                     },
                     {
-                      "entity": "sensor.air_purifier_pm2_5",
-                      "color": "#656f70"
+                      "entity": "sensor.kitchen_air_quality_sensor_pm25",
+                      "color": "#656f70",
+                      "name": "Kitchen PM 2.5"
+                    },
+                    {
+                      "entity": "input_number.kitchen_extractor_vent_pm2_5_threshold",
+                      "color": "green",
+                      "show_line": false,
+                      "show_legend": false
+                    },
+                    {
+                      "entity": "sensor.kitchen_air_quality_sensor_voc_index",
+                      "color": "#311e40",
+                      "name": "VOC Index"
                     }
                   ],
                   "visibility": [
@@ -4341,6 +4359,13 @@
                       "entity": "sensor.kitchen_air_quality_sensor_voc_index",
                       "color": "#311e40",
                       "name": "VOC Index"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.air_purifier_area",
+                      "state_not": "dining_area"
                     }
                   ]
                 },
