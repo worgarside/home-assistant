@@ -1479,7 +1479,7 @@
                               "entity": "script.pro_breeze_ac_start_off_timer",
                               "name": "Start Timer",
                               "icon": "mdi:timer-play",
-                              "layout": "vertical",
+                              "layout": "horizontal",
                               "fill_container": true,
                               "primary_info": "name",
                               "secondary_info": "none",
@@ -1541,7 +1541,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "title-card-button-overlay": false
                 }
               ]
             }
