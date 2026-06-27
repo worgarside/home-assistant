@@ -1500,7 +1500,7 @@
                               "type": "custom:mushroom-template-card",
                               "primary": "Stop Timer",
                               "icon": "mdi:timer-stop",
-                              "layout": "vertical",
+                              "layout": "horizontal",
                               "fill_container": true,
                               "entity": "timer.pro_breeze_ac_off",
                               "tap_action": {
