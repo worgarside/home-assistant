@@ -1508,20 +1508,17 @@
                               }
                             },
                             {
-                              "type": "custom:mushroom-entity-card",
-                              "entity": "script.pro_breeze_ac_stop_off_timer",
-                              "name": "Stop Timer",
+                              "type": "custom:mushroom-template-card",
+                              "primary": "Stop Timer",
                               "icon": "mdi:timer-stop",
                               "layout": "vertical",
                               "fill_container": true,
-                              "primary_info": "name",
-                              "secondary_info": "none",
-                              "icon_type": "icon",
+                              "entity": "timer.pro_breeze_ac_off",
                               "tap_action": {
                                 "action": "call-service",
-                                "service": "script.turn_on",
+                                "service": "timer.cancel",
                                 "target": {
-                                  "entity_id": "script.pro_breeze_ac_stop_off_timer"
+                                  "entity_id": "timer.pro_breeze_ac_off"
                                 }
                               },
                               "visibility": [
