@@ -6287,8 +6287,8 @@
         {
           "type": "sections",
           "max_columns": 4,
-          "title": "Control Panel",
-          "path": "control-panel",
+          "title": "Control Panel / Diagnostics",
+          "path": "control-panel-diagnostics",
           "icon": "mdi:tune-vertical",
           "sections": [
             {
@@ -6836,7 +6836,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "cards": []
         },
         {
           "title": "Proxmox Monitor",
