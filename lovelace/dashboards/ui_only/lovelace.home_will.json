@@ -1469,6 +1469,11 @@
                     }
                   ],
                   "features_position": "bottom"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "script.pro_breeze_ac_start_off_timer"
                 }
               ]
             }
