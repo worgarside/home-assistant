@@ -698,6 +698,32 @@
                     "action": "none"
                   },
                   "primary": "Pre-heat if heating is already on"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:floor-lamp-outdoor",
+                  "features_position": "bottom",
+                  "entity": "automation.light_garden_light_timeout",
+                  "area": "vic_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/light/garden-light/timeout",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.light_garden_light_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn off garden light after {{ states(\"input_number.garden_light_timeout\") | int(\"??\") }} minutes"
                 }
               ]
             },
