@@ -20,20 +20,15 @@ trigger:
       - "on"
       - "off"
 
-  - trigger: state
-    entity_id: input_select.air_purifier_room
-    to:
-      - Lounge
-      - Dining Area
-
 variables:
+  air_purifier_area: "{{ area_id('fan.air_purifier') }}"
   quiet_mode_should_be_on: >
     {{
       (
-        is_state('input_select.air_purifier_room', 'Lounge') and
+        air_purifier_area == 'lounge' and
         is_state('remote.lounge_streamer', 'on')
       ) or (
-        is_state('input_select.air_purifier_room', 'Dining Area') and
+        air_purifier_area == 'dining_area' and
         is_state('remote.dining_area_chromecast_remote', 'on')
       )
     }}
