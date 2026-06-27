@@ -6376,56 +6376,93 @@
                   "primary": "Auto-purify air ({{ states(\"input_number.will_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.will_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.will_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )"
                 },
                 {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:spotlight",
-                  "features_position": "bottom",
-                  "entity": "automation.light_will_s_office_grow_light_on",
-                  "area": "office",
-                  "tap_action": {
-                    "action": "more-info"
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Grow Light",
+                    "secondary": "2 automations",
+                    "icon": "mdi:spotlight",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
                   },
-                  "secondary": "/light/will-s-office-grow-light/on",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.light_will_s_office_grow_light_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Turn grow light on after {{ states(\"input_number.will_s_office_grow_light_trigger_delay\") | int(\"??\") }} minutes of absence and darkness"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:spotlight{% if is_state(\"automation.light_will_s_office_grow_light_off\", \"off\") %}-off{% endif %}",
-                  "features_position": "bottom",
-                  "entity": "automation.light_will_s_office_grow_light_off",
-                  "area": "office",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/light/will-s-office-grow-light/off",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.light_will_s_office_grow_light_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Turn grow light off when conditions change"
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:spotlight",
+                      "features_position": "bottom",
+                      "entity": "automation.light_will_s_office_grow_light_on",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/light/will-s-office-grow-light/on",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.light_will_s_office_grow_light_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Turn grow light on after {{ states(\"input_number.will_s_office_grow_light_trigger_delay\") | int(\"??\") }} minutes of absence and darkness",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:spotlight{% if is_state(\"automation.light_will_s_office_grow_light_off\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.light_will_s_office_grow_light_off",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/light/will-s-office-grow-light/off",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.light_will_s_office_grow_light_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Turn grow light off when conditions change",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  }
                 },
                 {
                   "type": "custom:expander-card",
