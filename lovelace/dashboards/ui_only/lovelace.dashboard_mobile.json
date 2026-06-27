@@ -1461,6 +1461,32 @@
                     "action": "none"
                   },
                   "primary": "Turn air freshener off after {{ states(\"input_number.air_freshener_timeout\") | int(\"??\") }} minutes"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:dumbbell{% if is_state(\"automation.input_boolean_lounge_lights_exercise_mode_on\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.input_boolean_lounge_lights_exercise_mode_on",
+                  "area": "lounge",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/input-boolean/lounge-lights-exercise-mode/on",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.input_boolean_lounge_lights_exercise_mode_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Exercise mode: lights to 100% and disable occupancy"
                 }
               ]
             },
