@@ -1496,6 +1496,41 @@
                                   "entity_id": "script.pro_breeze_ac_start_off_timer"
                                 }
                               },
+                              "visibility": [
+                                {
+                                  "condition": "state",
+                                  "entity": "timer.pro_breeze_ac_off",
+                                  "state": "idle"
+                                }
+                              ],
+                              "card_mod": {
+                                "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
+                              }
+                            },
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "script.pro_breeze_ac_stop_off_timer",
+                              "name": "Stop Timer",
+                              "icon": "mdi:timer-stop",
+                              "layout": "vertical",
+                              "fill_container": true,
+                              "primary_info": "name",
+                              "secondary_info": "none",
+                              "icon_type": "icon",
+                              "tap_action": {
+                                "action": "call-service",
+                                "service": "script.turn_on",
+                                "target": {
+                                  "entity_id": "script.pro_breeze_ac_stop_off_timer"
+                                }
+                              },
+                              "visibility": [
+                                {
+                                  "condition": "state",
+                                  "entity": "timer.pro_breeze_ac_off",
+                                  "state_not": "idle"
+                                }
+                              ],
                               "card_mod": {
                                 "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
                               }
