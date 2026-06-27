@@ -619,7 +619,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Presence-based lighting"
+                  "primary": "Presence-based lighting",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -645,6 +648,9 @@
                   },
                   "hold_action": {
                     "action": "none"
+                  },
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
                   }
                 },
                 {
@@ -671,7 +677,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Auto-purify air ({{ states(\"input_number.vic_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.vic_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.vic_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )"
+                  "primary": "Auto-purify air ({{ states(\"input_number.vic_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.vic_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.vic_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -697,7 +706,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Pre-heat if heating is already on"
+                  "primary": "Pre-heat if heating is already on",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -723,7 +735,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Turn off garden light after {{ states(\"input_number.garden_light_timeout\") | int(\"??\") }} minutes"
+                  "primary": "Turn off garden light after {{ states(\"input_number.garden_light_timeout\") | int(\"??\") }} minutes",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:expander-card",
@@ -1742,7 +1757,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Turn lights off after {{ states(\"input_number.lounge_lights_timeout\") | int(\"??\") }} seconds of vacancy"
+                  "primary": "Turn lights off after {{ states(\"input_number.lounge_lights_timeout\") | int(\"??\") }} seconds of vacancy",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -1768,7 +1786,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Turn whole room off after {{ states(\"input_number.lounge_room_timeout\") | int(\"??\") }} minutes"
+                  "primary": "Turn whole room off after {{ states(\"input_number.lounge_room_timeout\") | int(\"??\") }} minutes",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -1794,7 +1815,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Turn lights on"
+                  "primary": "Turn lights on",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:expander-card",
@@ -3135,7 +3159,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Sunrise lighting: increase to {{ states(\"input_number.bedroom_sunrise_max_brightness\") | int(\"??\") }}% over {{ states(\"input_number.bedroom_sunrise_duration\") | int(\"??\") }} minutes"
+                  "primary": "Sunrise lighting: increase to {{ states(\"input_number.bedroom_sunrise_max_brightness\") | int(\"??\") }}% over {{ states(\"input_number.bedroom_sunrise_duration\") | int(\"??\") }} minutes",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -3161,7 +3188,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Reset shapes to bon appetit (10AM)"
+                  "primary": "Reset shapes to bon appetit (10AM)",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:expander-card",
@@ -4633,7 +4663,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Control extractor vent fan"
+                  "primary": "Control extractor vent fan",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:expander-card",
@@ -6318,7 +6351,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Presence-based lighting"
+                  "primary": "Presence-based lighting",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -6344,7 +6380,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Disable heating on door/window open"
+                  "primary": "Disable heating on door/window open",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -6370,7 +6409,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Auto-purify air ({{ states(\"input_number.will_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.will_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.will_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )"
+                  "primary": "Auto-purify air ({{ states(\"input_number.will_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.will_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.will_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -6396,7 +6438,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Turn grow light on after {{ states(\"input_number.will_s_office_grow_light_trigger_delay\") | int(\"??\") }} minutes of absence and darkness"
+                  "primary": "Turn grow light on after {{ states(\"input_number.will_s_office_grow_light_trigger_delay\") | int(\"??\") }} minutes of absence and darkness",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -6422,7 +6467,10 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Turn grow light off when conditions change"
+                  "primary": "Turn grow light off when conditions change",
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; }"
+                  }
                 },
                 {
                   "type": "custom:expander-card",
