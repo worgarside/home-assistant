@@ -1468,13 +1468,8 @@
                           "square": false,
                           "cards": [
                             {
-                              "type": "custom:mushroom-entity-card",
+                              "type": "tile",
                               "entity": "timer.pro_breeze_ac_off",
-                              "name": "Off Timer",
-                              "layout": "vertical",
-                              "fill_container": true,
-                              "primary_info": "state",
-                              "secondary_info": "name",
                               "card_mod": {
                                 "style": "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
                               }
