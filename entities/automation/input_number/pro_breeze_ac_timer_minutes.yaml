@@ -1,0 +1,21 @@
+---
+alias: /input-number/pro-breeze-ac-timer-minutes
+
+id: input_number_pro_breeze_ac_timer_minutes
+
+mode: restart
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: input_number.pro_breeze_ac_timer_minutes
+
+action:
+  - action: timer.set_duration
+    target:
+      entity_id: timer.pro_breeze_ac_off
+    data:
+      duration: >-
+        {% set minutes = states('input_number.pro_breeze_ac_timer_minutes') | int(120) %}
+        {{ "%02d:%02d:00" | format(minutes // 60, minutes % 60) }}

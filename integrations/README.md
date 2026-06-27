@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (246)</h3></summary>
+<details><summary><h3>Entities (247)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1487,6 +1487,19 @@ File: [`automation/input_datetime/next_bedroom_sunrise/sunrise_start.yaml`](enti
 - Mode: `single`
 
 File: [`automation/input_number/habit/will/reset_all_daily.yaml`](entities/automation/input_number/habit/will/reset_all_daily.yaml)
+</details>
+
+<details><summary><code>/input-number/pro-breeze-ac-timer-minutes</code></summary>
+
+**Entity ID: `automation.input_number_pro_breeze_ac_timer_minutes`**
+
+> *No description provided*
+
+- Alias: /input-number/pro-breeze-ac-timer-minutes
+- ID: `input_number_pro_breeze_ac_timer_minutes`
+- Mode: `restart`
+
+File: [`automation/input_number/pro_breeze_ac_timer_minutes.yaml`](entities/automation/input_number/pro_breeze_ac_timer_minutes.yaml)
 </details>
 
 <details><summary><code>/input-select/gh-cli-active-user/option-selected</code></summary>
@@ -4783,7 +4796,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (135)</h3></summary>
+<details><summary><h3>Entities (136)</h3></summary>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -6212,6 +6225,19 @@ File: [`input_number/timeout/lounge_lights_timeout.yaml`](entities/input_number/
 - Unit Of Measurement: `min`
 
 File: [`input_number/timeout/lounge_room_timeout.yaml`](entities/input_number/timeout/lounge_room_timeout.yaml)
+</details>
+
+<details><summary><strong>Pro Breeze AC Timer Minutes</strong></summary>
+
+**Entity ID: `input_number.pro_breeze_ac_timer_minutes`**
+
+- Icon: [`mdi:timer-cog`](https://pictogrammers.com/library/mdi/icon/timer-cog/)
+- Max: 1440
+- Min: 5
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/pro_breeze_ac_timer_minutes.yaml`](entities/input_number/timeout/pro_breeze_ac_timer_minutes.yaml)
 </details>
 
 <details><summary><strong>Prusa i3 Bed | Timeout</strong></summary>
