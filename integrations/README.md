@@ -922,7 +922,7 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 
 ```json
 {
-  "tv_is_on": "{{ states('remote.lounge_streamer') | bool(false) }}"
+  "quiet_mode_should_be_on": "{{\n  (\n    is_state('sensor.air_purifier_area', 'lounge') and\n    is_state('remote.lounge_streamer', 'on')\n  ) or (\n    is_state('sensor.air_purifier_area', 'dining_area') and\n    is_state('remote.dining_area_chromecast_remote', 'on')\n  )\n}}\n"
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
@@ -11696,7 +11696,16 @@ File: [`template/cover/office_desk.yaml`](entities/template/cover/office_desk.ya
 
 ## Template
 
-<details><summary><h3>Entities (11)</h3></summary>
+<details><summary><h3>Entities (12)</h3></summary>
+
+<details><summary><strong>Air Purifier Area</strong></summary>
+
+**Entity ID: `template.air_purifier_area`**
+
+- Icon: [`mdi:air-purifier`](https://pictogrammers.com/library/mdi/icon/air-purifier/)
+
+File: [`template_triggered/sensor/air_purifier_area.yaml`](entities/template_triggered/sensor/air_purifier_area.yaml)
+</details>
 
 <details><summary><strong>Apollo PLT 1B | Begonia: Last Online</strong></summary>
 
