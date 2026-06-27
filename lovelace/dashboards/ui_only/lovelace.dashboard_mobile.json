@@ -3507,6 +3507,208 @@
           "cards": []
         },
         {
+          "title": "Hallway & Landing",
+          "path": "hallway-landing",
+          "icon": "mdi:stairs",
+          "type": "sections",
+          "max_columns": 4,
+          "sections": [
+            {
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Hallway & Landing",
+                  "heading_style": "title",
+                  "icon": "mdi:stairs",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.front_hallway_motion_sensor_occupancy"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.upper_landing_motion_sensor_occupancy"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.lower_hallway_occupancy"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lights",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.front_hallway",
+                  "name": "Front Hallway",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.upper_landing_light",
+                  "name": "Upper Landing",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.lower_hallway_1",
+                  "name": "Lower Hallway 1",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.lower_hallway_2",
+                  "name": "Lower Hallway 2",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.kitchen_hallway_spotlight",
+                  "name": "Kitchen Hallway",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "layout": "horizontal",
+                  "show_color_control": false,
+                  "show_color_temp_control": false,
+                  "collapsible_controls": true,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                }
+              ]
+            },
+            {
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle"
+                }
+              ]
+            },
+            {
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Controls",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.hallway_lights_timeout",
+                  "name": "Hallway Lights Timeout",
+                  "icon": "mdi:timer-sand",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "name",
+                  "primary_info": "state",
+                  "layout": "horizontal"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "type": "sections",
           "badges": [
             {
