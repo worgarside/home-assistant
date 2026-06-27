@@ -1720,32 +1720,6 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "icon": "mdi:power-socket-uk",
-                  "features_position": "bottom",
-                  "entity": "automation.switch_air_freshener_turn_on",
-                  "area": "lounge",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/switch/air-freshener/turn-on",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.switch_air_freshener_turn_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Air Freshener Auto-On"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
                   "icon": "mdi:motion-sensor{% if is_state(\"automation.binary_sensor_lounge_occupancy_off\", \"off\") %}-off{% endif %}",
                   "features_position": "bottom",
                   "entity": "automation.binary_sensor_lounge_occupancy_off",
@@ -1821,32 +1795,6 @@
                     "action": "none"
                   },
                   "primary": "Turn lights on"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:timer-outline",
-                  "features_position": "bottom",
-                  "entity": "automation.switch_air_freshener_timeout",
-                  "area": "lounge",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/switch/air-freshener/timeout",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.switch_air_freshener_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Turn air freshener off after {{ states(\"input_number.air_freshener_timeout\") | int(\"??\") }} minutes"
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -1977,6 +1925,96 @@
                     "action": "none"
                   },
                   "primary": "Notify when diffuser needs water"
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Air Freshener",
+                    "secondary": "2 automations",
+                    "icon": "mdi:spray",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:power-socket-uk",
+                      "features_position": "bottom",
+                      "entity": "automation.switch_air_freshener_turn_on",
+                      "area": "lounge",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/switch/air-freshener/turn-on",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.switch_air_freshener_turn_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Air Freshener Auto-On"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:timer-outline",
+                      "features_position": "bottom",
+                      "entity": "automation.switch_air_freshener_timeout",
+                      "area": "lounge",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/switch/air-freshener/timeout",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.switch_air_freshener_timeout\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Turn air freshener off after {{ states(\"input_number.air_freshener_timeout\") | int(\"??\") }} minutes"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.air_purifier_area",
+                      "state": "lounge"
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  }
                 },
                 {
                   "type": "custom:expander-card",
