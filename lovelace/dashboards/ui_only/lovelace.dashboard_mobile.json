@@ -5586,9 +5586,19 @@
                 {
                   "type": "custom:expander-card",
                   "title-card": {
-                    "type": "tile",
-                    "name": "Guest Room Remote",
-                    "icon": "mdi:remote"
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Guest Room Remote",
+                    "secondary": "7 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
                   },
                   "cards": [
                     {
@@ -5781,9 +5791,19 @@
                 {
                   "type": "custom:expander-card",
                   "title-card": {
-                    "type": "tile",
-                    "name": "Spare Room Hue Remote",
-                    "icon": "mdi:remote"
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Spare Room Hue Remote",
+                    "secondary": "6 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
                   },
                   "cards": [
                     {
