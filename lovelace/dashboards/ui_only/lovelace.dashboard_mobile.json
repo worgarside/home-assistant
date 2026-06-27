@@ -3915,6 +3915,18 @@
                   ]
                 },
                 {
+                  "type": "custom:mushroom-fan-card",
+                  "entity": "fan.air_purifier",
+                  "icon_animation": false,
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.air_purifier_area",
+                      "state": "dining_area"
+                    }
+                  ]
+                },
+                {
                   "type": "custom:mushroom-climate-card",
                   "entity": "climate.kitchen_radiator",
                   "name": "Kitchen Radiator",
@@ -4268,6 +4280,42 @@
                   "show": {
                     "state": false,
                     "icon": true,
+                    "name": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 1,
+                  "icon": "mdi:flower",
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.air_purifier_fan_speed",
+                      "name": "Fan Speed",
+                      "y_axis": "secondary",
+                      "show_line": true,
+                      "show_fill": false,
+                      "color": "#333333"
+                    },
+                    {
+                      "entity": "sensor.air_purifier_pm2_5",
+                      "color": "#656f70"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.air_purifier_area",
+                      "state": "dining_area"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Air Quality",
+                  "show": {
+                    "state": false,
+                    "icon": true,
                     "name": true,
                     "legend": true
                   },
@@ -4347,6 +4395,102 @@
                   "heading": "Automations",
                   "heading_style": "subtitle",
                   "icon": ""
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Air Purifier",
+                    "secondary": "2 automations",
+                    "icon": "mdi:air-purifier",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:air-purifier{% if is_state(\"automation.fan_air_purifier_control\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.fan_air_purifier_control",
+                      "area": "dining_area",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/fan/air-purifier/control",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.fan_air_purifier_control\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Set Air Purifier level automatically",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:volume-off{% if is_state(\"automation.input_boolean_air_purifier_quiet_mode_toggle\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.input_boolean_air_purifier_quiet_mode_toggle",
+                      "area": "dining_area",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/input-boolean/air-purifier-quiet-mode/toggle",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.input_boolean_air_purifier_quiet_mode_toggle\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Set air purifier quiet mode when TV is on",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.air_purifier_area",
+                      "state": "dining_area"
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
