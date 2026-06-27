@@ -6319,6 +6319,42 @@
               "cards": [
                 {
                   "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "title",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:radiator\n{%- if not states(\"automation.switch_central_heating_off\") | bool(false) -%}\n-off\n{%- endif -%}\n",
+                  "features_position": "bottom",
+                  "entity": "automation.switch_central_heating_off",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/switch/central-heating/off",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.switch_central_heating_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Turn off all radiators when central heating is turned off"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
                   "heading": "Lighting Modifier",
                   "heading_style": "title"
                 },
@@ -6381,42 +6417,6 @@
                     "columns": 6,
                     "rows": 1
                   }
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Automations",
-                  "heading_style": "title",
-                  "icon": ""
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:radiator\n{%- if not states(\"automation.switch_central_heating_off\") | bool(false) -%}\n-off\n{%- endif -%}\n",
-                  "features_position": "bottom",
-                  "entity": "automation.switch_central_heating_off",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "secondary": "/switch/central-heating/off",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.switch_central_heating_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Turn off all radiators when central heating is turned off"
                 }
               ]
             },
