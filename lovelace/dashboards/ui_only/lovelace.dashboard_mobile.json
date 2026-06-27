@@ -1313,7 +1313,14 @@
                 {
                   "type": "custom:mushroom-fan-card",
                   "entity": "fan.air_purifier",
-                  "icon_animation": false
+                  "icon_animation": false,
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.air_purifier_area",
+                      "state": "lounge"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -1349,14 +1356,7 @@
                   },
                   "double_tap_action": {
                     "action": "toggle"
-                  },
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.air_purifier_area",
-                      "state": "lounge"
-                    }
-                  ]
+                  }
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -1742,14 +1742,7 @@
                   "hold_action": {
                     "action": "none"
                   },
-                  "primary": "Air Freshener Auto-On",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.air_purifier_area",
-                      "state": "lounge"
-                    }
-                  ]
+                  "primary": "Air Freshener Auto-On"
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -2072,8 +2065,9 @@
                   "clear-children": true,
                   "visibility": [
                     {
-                      "condition": "template",
-                      "value_template": "{{ area_id('fan.air_purifier') == 'lounge' }}"
+                      "condition": "state",
+                      "entity": "sensor.air_purifier_area",
+                      "state": "lounge"
                     }
                   ],
                   "card_mod": {
@@ -2374,35 +2368,27 @@
                   ]
                 },
                 {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.air_purifier_area",
-                      "state": "lounge"
-                    },
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.air_freshener_timeout",
+                  "name": "Air Freshener Timeout",
+                  "display_mode": "slider",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "layout": "horizontal",
+                  "visibility": [
                     {
                       "condition": "state",
                       "entity": "automation.switch_air_freshener_timeout",
                       "state": "on"
                     }
-                  ],
-                  "card": {
-                    "type": "custom:mushroom-number-card",
-                    "entity": "input_number.air_freshener_timeout",
-                    "name": "Air Freshener Timeout",
-                    "display_mode": "slider",
-                    "tap_action": {
-                      "action": "more-info"
-                    },
-                    "hold_action": {
-                      "action": "none"
-                    },
-                    "double_tap_action": {
-                      "action": "none"
-                    },
-                    "layout": "horizontal"
-                  }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-number-card",
