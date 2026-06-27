@@ -5576,6 +5576,380 @@
               ]
             },
             {
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "tile",
+                    "name": "Guest Room Remote",
+                    "icon": "mdi:remote"
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:lightbulb{% if is_state(\"automation.remote_guest_room_remote_on\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_guest_room_remote_on",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/guest-room-remote/on",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_guest_room_remote_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Turn on guest room lights"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:lightbulb-off{% if is_state(\"automation.remote_guest_room_remote_off\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_guest_room_remote_off",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/guest-room-remote/off",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_guest_room_remote_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Turn off guest room lights"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:arrow-left{% if is_state(\"automation.remote_guest_room_remote_arrow_left_click\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_guest_room_remote_arrow_left_click",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/guest-room-remote/arrow-left-click",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_guest_room_remote_arrow_left_click\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Cycle lights backward"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:fan{% if is_state(\"automation.remote_guest_room_remote_arrow_left_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_guest_room_remote_arrow_left_hold",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/guest-room-remote/arrow-left-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_guest_room_remote_arrow_left_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Toggle spare room fan"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:arrow-right{% if is_state(\"automation.remote_guest_room_remote_arrow_right_click\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_guest_room_remote_arrow_right_click",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/guest-room-remote/arrow-right-click",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_guest_room_remote_arrow_right_click\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Cycle lights forward"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:brightness-7{% if is_state(\"automation.remote_guest_room_remote_brightness_move_up\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_guest_room_remote_brightness_move_up",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/guest-room-remote/brightness-move-up",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_guest_room_remote_brightness_move_up\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Brightness up"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:brightness-5{% if is_state(\"automation.remote_guest_room_remote_brightness_move_down\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_guest_room_remote_brightness_move_down",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/guest-room-remote/brightness-move-down",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_guest_room_remote_brightness_move_down\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Brightness down"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "tile",
+                    "name": "Spare Room Hue Remote",
+                    "icon": "mdi:remote"
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:lightbulb{% if is_state(\"automation.remote_spare_room_hue_remote_on_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_spare_room_hue_remote_on_press",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/spare-room/hue-remote/on-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_spare_room_hue_remote_on_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Turn on guest room lights"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:brightness-7{% if is_state(\"automation.remote_spare_room_hue_remote_on_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_spare_room_hue_remote_on_hold",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/spare-room/hue-remote/on-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_spare_room_hue_remote_on_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Turn on at full brightness"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:lightbulb-off{% if is_state(\"automation.remote_spare_room_hue_remote_off_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_spare_room_hue_remote_off_press",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/spare-room/hue-remote/off-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_spare_room_hue_remote_off_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Turn off guest room lights"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:power-off{% if is_state(\"automation.remote_spare_room_hue_remote_off_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_spare_room_hue_remote_off_hold",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/spare-room/hue-remote/off-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_spare_room_hue_remote_off_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Turn off physical room"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:brightness-7{% if is_state(\"automation.remote_spare_room_hue_remote_up_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_spare_room_hue_remote_up_press",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/spare-room/hue-remote/up-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_spare_room_hue_remote_up_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Brightness up"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:brightness-5{% if is_state(\"automation.remote_spare_room_hue_remote_down_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_spare_room_hue_remote_down_press",
+                      "area": "guest_room",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/spare-room/hue-remote/down-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_spare_room_hue_remote_down_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Brightness down"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
+                }
+              ]
+            },
+            {
               "type": "grid",
               "cards": [
                 {
