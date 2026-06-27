@@ -6358,17 +6358,19 @@
                 },
                 {
                   "type": "tile",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
                   "entity": "input_boolean.air_purifier_quiet_mode",
                   "name": "Quiet Mode",
+                  "vertical": false,
                   "features": [
                     {
                       "type": "toggle"
                     }
                   ],
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 2
-                  }
+                  "features_position": "inline"
                 },
                 {
                   "type": "tile",
