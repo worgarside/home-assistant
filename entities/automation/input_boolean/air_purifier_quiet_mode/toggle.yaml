@@ -21,19 +21,19 @@ trigger:
       - "off"
 
   - trigger: state
-    entity_id: input_select.air_purifier_quiet_mode_source
+    entity_id: input_select.air_purifier_room
     to:
-      - Lounge Streamer
-      - Dining Area Chromecast
+      - Lounge
+      - Dining Area
 
 variables:
   quiet_mode_should_be_on: >
     {{
       (
-        is_state('input_select.air_purifier_quiet_mode_source', 'Lounge Streamer') and
+        is_state('input_select.air_purifier_room', 'Lounge') and
         is_state('remote.lounge_streamer', 'on')
       ) or (
-        is_state('input_select.air_purifier_quiet_mode_source', 'Dining Area Chromecast') and
+        is_state('input_select.air_purifier_room', 'Dining Area') and
         is_state('remote.dining_area_chromecast_remote', 'on')
       )
     }}
