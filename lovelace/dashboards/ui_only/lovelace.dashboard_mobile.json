@@ -596,6 +596,312 @@
                   "icon": ""
                 },
                 {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Vic's Office Hue Remote",
+                    "secondary": "6 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_on_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_on_press",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-office-hue-remote/on-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_on_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_on_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_on_hold",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-office-hue-remote/on-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_on_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on hold"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_off_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_off_press",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-office-hue-remote/off-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_off_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_off_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_off_hold",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-office-hue-remote/off-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_off_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off hold"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_up_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_up_press",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-office-hue-remote/up-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_up_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "up press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_office_hue_remote_down_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_office_hue_remote_down_press",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-office-hue-remote/down-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_office_hue_remote_down_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "down press"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Vic's Desk Remote",
+                    "secondary": "4 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_desk_remote_on\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_desk_remote_on",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-desk-remote/on",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_desk_remote_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_desk_remote_off\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_desk_remote_off",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-desk-remote/off",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_desk_remote_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_desk_remote_brightness_move_up\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_desk_remote_brightness_move_up",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-desk-remote/brightness-move-up",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_desk_remote_brightness_move_up\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "brightness move up"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_vic_s_desk_remote_brightness_move_down\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_vic_s_desk_remote_brightness_move_down",
+                      "area": "vic_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/vic-s-desk-remote/brightness-move-down",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_vic_s_desk_remote_brightness_move_down\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "brightness move down"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
+                },
+                {
                   "type": "custom:mushroom-template-card",
                   "icon": "mdi:lightbulb\n{%- if not states(\"automation.binary_sensor_vic_s_office_occupancy_state_change\") | bool(false) -%}\n-off\n{%- elif area_entities('vic_s_office') | select('match','^light\\.') | select('is_state','on') | list | count > 0 -%}\n-on\n{%- endif -%}\n-outline",
                   "features_position": "bottom",
@@ -929,14 +1235,6 @@
                       "entity": "sensor.lounge_climate_sensor_humidity"
                     }
                   ]
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "automation.remote_coffee_table_double",
-                  "name": "Reset TV Audio Output",
-                  "secondary_info": "none",
-                  "icon": "mdi:remote-tv",
-                  "icon_color": "pink"
                 },
                 {
                   "type": "custom:mushroom-fan-card",
@@ -1331,6 +1629,234 @@
                   "heading": "Automations",
                   "heading_style": "subtitle",
                   "icon": ""
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Lounge Hue Remote",
+                    "secondary": "6 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_on_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_lounge_hue_remote_on_press",
+                      "area": "lounge",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/lounge-hue-remote/on-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_lounge_hue_remote_on_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_on_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_lounge_hue_remote_on_hold",
+                      "area": "lounge",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/lounge-hue-remote/on-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_lounge_hue_remote_on_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on hold"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_off_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_lounge_hue_remote_off_press",
+                      "area": "lounge",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/lounge-hue-remote/off-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_lounge_hue_remote_off_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_off_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_lounge_hue_remote_off_hold",
+                      "area": "lounge",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/lounge-hue-remote/off-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_lounge_hue_remote_off_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off hold"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_up_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_lounge_hue_remote_up_press",
+                      "area": "lounge",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/lounge-hue-remote/up-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_lounge_hue_remote_up_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "up press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_lounge_hue_remote_down_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_lounge_hue_remote_down_press",
+                      "area": "lounge",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/lounge-hue-remote/down-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_lounge_hue_remote_down_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "down press"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Coffee Table Remote",
+                    "secondary": "1 automation",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote-tv{% if is_state(\"automation.remote_coffee_table_double\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_coffee_table_double",
+                      "area": "lounge",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/coffee-table/double",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_coffee_table_double\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Reset TV Audio Output"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -2282,6 +2808,364 @@
                   "icon": ""
                 },
                 {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Bedroom Remote",
+                    "secondary": "6 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_on\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_remote_on",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-remote/on",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_remote_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_off\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_remote_off",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-remote/off",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_remote_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_arrow_left_click\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_remote_arrow_left_click",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-remote/arrow-left-click",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_remote_arrow_left_click\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "arrow left click"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_arrow_right_click\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_remote_arrow_right_click",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-remote/arrow-right-click",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_remote_arrow_right_click\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "arrow right click"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_brightness_move_up\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_remote_brightness_move_up",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-remote/brightness-move-up",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_remote_brightness_move_up\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "brightness move up"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_remote_brightness_move_down\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_remote_brightness_move_down",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-remote/brightness-move-down",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_remote_brightness_move_down\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "brightness move down"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Bedroom Hue Remote",
+                    "secondary": "6 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_on_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_hue_remote_on_press",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-hue-remote/on-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_hue_remote_on_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_on_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_hue_remote_on_hold",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-hue-remote/on-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_hue_remote_on_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on hold"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_off_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_hue_remote_off_press",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-hue-remote/off-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_hue_remote_off_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_off_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_hue_remote_off_hold",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-hue-remote/off-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_hue_remote_off_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off hold"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_up_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_hue_remote_up_press",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-hue-remote/up-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_hue_remote_up_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "up press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_bedroom_hue_remote_down_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_bedroom_hue_remote_down_press",
+                      "area": "bedroom",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/bedroom-hue-remote/down-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_bedroom_hue_remote_down_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "down press"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
+                },
+                {
                   "type": "custom:mushroom-template-card",
                   "icon": "mdi:weather-sunset-up",
                   "features_position": "bottom",
@@ -3214,6 +4098,211 @@
                   "heading": "Automations",
                   "heading_style": "subtitle",
                   "icon": ""
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Basement Remote",
+                    "secondary": "7 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_single_left\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_basement_remote_single_left",
+                      "area": "basement",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/basement-remote/single-left",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_basement_remote_single_left\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "single left"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_double_left\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_basement_remote_double_left",
+                      "area": "basement",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/basement-remote/double-left",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_basement_remote_double_left\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "double left"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_hold_left\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_basement_remote_hold_left",
+                      "area": "basement",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/basement-remote/hold-left",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_basement_remote_hold_left\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "hold left"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_triple_left\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_basement_remote_triple_left",
+                      "area": "basement",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/basement-remote/triple-left",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_basement_remote_triple_left\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "triple left"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_single_right\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_basement_remote_single_right",
+                      "area": "basement",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/basement-remote/single-right",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_basement_remote_single_right\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "single right"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_double_right\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_basement_remote_double_right",
+                      "area": "basement",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/basement-remote/double-right",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_basement_remote_double_right\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "double right"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_basement_remote_hold_right\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_basement_remote_hold_right",
+                      "area": "basement",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/basement-remote/hold-right",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_basement_remote_hold_right\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "hold right"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -4346,6 +5435,491 @@
                   "heading": "Automations",
                   "heading_style": "subtitle",
                   "icon": ""
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Will's Desk",
+                    "secondary": "6 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_1_single\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_will_s_desk_button_1_single",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/will-s-desk/button-1/single",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_will_s_desk_button_1_single\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "single"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_1_double\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_will_s_desk_button_1_double",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/will-s-desk/button-1/double",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_will_s_desk_button_1_double\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "double"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_1_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_will_s_desk_button_1_hold",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/will-s-desk/button-1/hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_will_s_desk_button_1_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "hold"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_2_single\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_will_s_desk_button_2_single",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/will-s-desk/button-2/single",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_will_s_desk_button_2_single\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "single"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_2_double\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_will_s_desk_button_2_double",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/will-s-desk/button-2/double",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_will_s_desk_button_2_double\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "double"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_desk_button_2_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_will_s_desk_button_2_hold",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/will-s-desk/button-2/hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_will_s_desk_button_2_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "hold"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Office Hue Remote",
+                    "secondary": "6 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_on_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_office_hue_remote_on_press",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/office-hue-remote/on-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_office_hue_remote_on_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_on_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_office_hue_remote_on_hold",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/office-hue-remote/on-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_office_hue_remote_on_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on hold"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_off_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_office_hue_remote_off_press",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/office-hue-remote/off-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_office_hue_remote_off_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_off_hold\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_office_hue_remote_off_hold",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/office-hue-remote/off-hold",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_office_hue_remote_off_hold\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off hold"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_up_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_office_hue_remote_up_press",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/office-hue-remote/up-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_office_hue_remote_up_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "up press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_office_hue_remote_down_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_office_hue_remote_down_press",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/office-hue-remote/down-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_office_hue_remote_down_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "down press"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Office Buttons",
+                    "secondary": "4 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_will_s_office_doorbell_single_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_will_s_office_doorbell_single_press",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/will-s-office/doorbell/single-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_will_s_office_doorbell_single_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "single press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_charging_hub_button_single\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_charging_hub_button_single",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/charging-hub-button/single",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_charging_hub_button_single\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "single"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_prusa_i3_mk3_power_single_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_prusa_i3_mk3_power_single_press",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/prusa-i3-mk3-power/single-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_prusa_i3_mk3_power_single_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "single press"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_prusa_i3_mk3_power_double_press\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_prusa_i3_mk3_power_double_press",
+                      "area": "office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/prusa-i3-mk3-power/double-press",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_prusa_i3_mk3_power_double_press\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "double press"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -6156,6 +7730,143 @@
                       "camera_entity": "camera.lounge"
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Garden Light Remote",
+                    "secondary": "4 automations",
+                    "icon": "mdi:remote",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_garden_light_remote_on\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_garden_light_remote_on",
+                      "area": "garden",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/garden-light-remote/on",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_garden_light_remote_on\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "on"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_garden_light_remote_off\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_garden_light_remote_off",
+                      "area": "garden",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/garden-light-remote/off",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_garden_light_remote_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "off"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_garden_light_remote_brightness_move_up\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_garden_light_remote_brightness_move_up",
+                      "area": "garden",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/garden-light-remote/brightness-move-up",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_garden_light_remote_brightness_move_up\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "brightness move up"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:remote{% if is_state(\"automation.remote_garden_light_remote_brightness_move_down\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.remote_garden_light_remote_brightness_move_down",
+                      "area": "garden",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/remote/garden-light-remote/brightness-move-down",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.remote_garden_light_remote_brightness_move_down\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "brightness move down"
+                    }
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true
                 }
               ]
             },
