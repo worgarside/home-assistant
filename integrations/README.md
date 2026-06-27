@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (244)</h3></summary>
+<details><summary><h3>Entities (246)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -319,6 +319,32 @@ File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](ent
 }
 ```
 File: [`automation/camera/offline_notify_will.yaml`](entities/automation/camera/offline_notify_will.yaml)
+</details>
+
+<details><summary><code>/climate/pro-breeze-ac/cancel-off-timer</code></summary>
+
+**Entity ID: `automation.climate_pro_breeze_ac_cancel_off_timer`**
+
+> *No description provided*
+
+- Alias: /climate/pro-breeze-ac/cancel-off-timer
+- ID: `climate_pro_breeze_ac_cancel_off_timer`
+- Mode: `single`
+
+File: [`automation/climate/pro_breeze_ac/cancel_off_timer.yaml`](entities/automation/climate/pro_breeze_ac/cancel_off_timer.yaml)
+</details>
+
+<details><summary><code>/climate/pro-breeze-ac/off-timer-finished</code></summary>
+
+**Entity ID: `automation.climate_pro_breeze_ac_off_timer_finished`**
+
+> *No description provided*
+
+- Alias: /climate/pro-breeze-ac/off-timer-finished
+- ID: `climate_pro_breeze_ac_off_timer_finished`
+- Mode: `single`
+
+File: [`automation/climate/pro_breeze_ac/off_timer_finished.yaml`](entities/automation/climate/pro_breeze_ac/off_timer_finished.yaml)
 </details>
 
 <details><summary><code>/cosmo/docked-set-basement-map</code></summary>
@@ -11759,6 +11785,22 @@ File: [`template_triggered/sensor/topaz_sr10_active_child.yaml`](entities/templa
 - Icon: [`mdi:soundbar`](https://pictogrammers.com/library/mdi/icon/soundbar/)
 
 File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/template_triggered/sensor/will_s_yas_209_bridge_input.yaml)
+</details>
+
+</details>
+
+## Timer
+
+<details><summary><h3>Entities (1)</h3></summary>
+
+<details><summary><strong>Pro Breeze AC Off Timer</strong></summary>
+
+**Entity ID: `timer.pro_breeze_ac_off`**
+
+- Duration: 02:00:00
+- Icon: [`mdi:timer-off`](https://pictogrammers.com/library/mdi/icon/timer-off/)
+
+File: [`timer/pro_breeze_ac_off.yaml`](entities/timer/pro_breeze_ac_off.yaml)
 </details>
 
 </details>

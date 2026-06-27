@@ -1,0 +1,26 @@
+---
+alias: /climate/pro-breeze-ac/off-timer-finished
+
+id: climate_pro_breeze_ac_off_timer_finished
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.pro_breeze_ac_off
+
+condition:
+  - condition: not
+    conditions:
+      - condition: state
+        entity_id: climate.pro_breeze_ac_pro_breeze_ac
+        state: "off"
+
+action:
+  - action: climate.turn_off
+    target:
+      entity_id: climate.pro_breeze_ac_pro_breeze_ac
