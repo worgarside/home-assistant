@@ -1460,6 +1460,15 @@
                   }
                 },
                 {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "script.pro_breeze_ac_start_off_timer",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  }
+                },
+                {
                   "type": "tile",
                   "grid_options": {
                     "columns": 12,
@@ -1473,11 +1482,6 @@
                     }
                   ],
                   "features_position": "inline"
-                },
-                {
-                  "type": "custom:bubble-card",
-                  "card_type": "button",
-                  "entity": "script.pro_breeze_ac_start_off_timer"
                 }
               ]
             }
