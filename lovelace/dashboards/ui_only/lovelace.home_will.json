@@ -1428,6 +1428,28 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "thermostat",
+                  "entity": "climate.pro_breeze_ac_pro_breeze_ac",
+                  "features": [
+                    {
+                      "type": "climate-swing-modes",
+                      "style": "dropdown"
+                    },
+                    {
+                      "type": "climate-preset-modes",
+                      "style": "dropdown"
+                    },
+                    {
+                      "type": "climate-hvac-modes"
+                    },
+                    {
+                      "type": "climate-fan-modes",
+                      "style": "dropdown"
+                    }
+                  ],
+                  "show_current_as_primary": false
                 }
               ]
             }
