@@ -8997,7 +8997,7 @@ File: [`rest_command/wger/put_weightentry.yaml`](entities/rest_command/wger/put_
 
 ## Script
 
-<details><summary><h3>Entities (34)</h3></summary>
+<details><summary><h3>Entities (33)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -9866,17 +9866,6 @@ File: [`script/office_desk_standing_mode.yaml`](entities/script/office_desk_stan
 - Mode: `restart`
 
 File: [`script/office_desk_stop_moving.yaml`](entities/script/office_desk_stop_moving.yaml)
-</details>
-
-<details><summary><strong>ovo backfill monthly totals</strong></summary>
-
-**Entity ID: `script.backfill_monthly_totals`**
-
-> One-time backfill of OVO month-to-date totals from recorder history. Safe to run once after deploying the var-based OVO tracking; skips if intervals were already processed.
-
-- Mode: `single`
-
-File: [`script/ovo/backfill_monthly_totals.yaml`](entities/script/ovo/backfill_monthly_totals.yaml)
 </details>
 
 <details><summary><strong>Pro Breeze AC Start Off Timer</strong></summary>
