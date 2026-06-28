@@ -6940,7 +6940,7 @@
                 {
                   "type": "custom:mushroom-template-card",
                   "primary": "Total Spend (MTD)",
-                  "secondary": "\u00a3{{ (states('sensor.ovo_electricity_monthly_cost') | float(0) + states('sensor.ovo_gas_monthly_cost') | float(0)) | round(2) }}",
+                  "secondary": "\u00a3{{ (states('var.ovo_electricity_monthly_cost') | float(0) + states('var.ovo_gas_monthly_cost') | float(0)) | round(2) }}",
                   "icon": "mdi:cash-multiple",
                   "icon_color": "green",
                   "grid_options": {
@@ -6950,7 +6950,7 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.ovo_electricity_monthly_usage",
+                  "entity": "var.ovo_electricity_monthly_usage",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "amber",
@@ -6961,7 +6961,7 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.ovo_electricity_monthly_cost",
+                  "entity": "var.ovo_electricity_monthly_cost",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "green",
@@ -6972,7 +6972,7 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.ovo_gas_monthly_usage",
+                  "entity": "var.ovo_gas_monthly_usage",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "deep-orange",
@@ -6983,7 +6983,7 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.ovo_gas_monthly_cost",
+                  "entity": "var.ovo_gas_monthly_cost",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "green",
@@ -6994,7 +6994,7 @@
                 },
                 {
                   "type": "heading",
-                  "heading": "Yesterday",
+                  "heading": "Latest Settled Day",
                   "heading_style": "subtitle",
                   "icon": ""
                 },
@@ -7002,7 +7002,7 @@
                   "type": "custom:mushroom-template-card",
                   "entity": "sensor.ovo_last_electricity_reading",
                   "primary": "Electricity",
-                  "secondary": "{{ state_attr('sensor.ovo_electricity_daily_usage', 'last_period') }} kWh \u00b7 \u00a3{{ state_attr('sensor.ovo_electricity_daily_cost', 'last_period') }}",
+                  "secondary": "{{ states('sensor.ovo_last_electricity_reading') }} kWh \u00b7 \u00a3{{ states('sensor.ovo_last_electricity_cost') }}",
                   "icon": "mdi:flash",
                   "icon_color": "amber",
                   "grid_options": {
@@ -7017,7 +7017,7 @@
                   "type": "custom:mushroom-template-card",
                   "entity": "sensor.ovo_last_gas_reading",
                   "primary": "Gas",
-                  "secondary": "{{ state_attr('sensor.ovo_gas_daily_usage', 'last_period') | float(0) | round(2) }} kWh \u00b7 \u00a3{{ state_attr('sensor.ovo_gas_daily_cost', 'last_period') }}",
+                  "secondary": "{{ states('sensor.ovo_last_gas_reading') | float(0) | round(2) }} kWh \u00b7 \u00a3{{ states('sensor.ovo_last_gas_cost') }}",
                   "icon": "mdi:fire",
                   "icon_color": "deep-orange",
                   "grid_options": {
@@ -7070,7 +7070,7 @@
                       },
                       "entities": [
                         {
-                          "entity": "sensor.ovo_electricity_monthly_usage",
+                          "entity": "var.ovo_electricity_monthly_usage",
                           "name": "Electricity"
                         }
                       ]
@@ -7088,7 +7088,7 @@
                       },
                       "entities": [
                         {
-                          "entity": "sensor.ovo_electricity_monthly_cost",
+                          "entity": "var.ovo_electricity_monthly_cost",
                           "name": "Cost"
                         }
                       ]
@@ -7106,7 +7106,7 @@
                       },
                       "entities": [
                         {
-                          "entity": "sensor.ovo_gas_monthly_usage",
+                          "entity": "var.ovo_gas_monthly_usage",
                           "name": "Gas"
                         }
                       ]
@@ -7124,7 +7124,7 @@
                       },
                       "entities": [
                         {
-                          "entity": "sensor.ovo_gas_monthly_cost",
+                          "entity": "var.ovo_gas_monthly_cost",
                           "name": "Cost"
                         }
                       ]
