@@ -6928,6 +6928,210 @@
                   }
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Energy Usage",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "Total Spend (MTD)",
+                  "secondary": "\u00a3{{ (states('sensor.ovo_electricity_monthly_cost') | float(0) + states('sensor.ovo_gas_monthly_cost') | float(0)) | round(2) }}",
+                  "icon": "mdi:cash-multiple",
+                  "icon_color": "green",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.ovo_electricity_monthly_usage",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "amber",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.ovo_electricity_monthly_cost",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.ovo_gas_monthly_usage",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "deep-orange",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.ovo_gas_monthly_cost",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "heading",
+                  "heading": "Yesterday",
+                  "heading_style": "subtitle",
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.ovo_last_electricity_reading",
+                  "primary": "Electricity",
+                  "secondary": "{{ state_attr('sensor.ovo_electricity_daily_usage', 'last_period') }} kWh \u00b7 \u00a3{{ state_attr('sensor.ovo_electricity_daily_cost', 'last_period') }}",
+                  "icon": "mdi:flash",
+                  "icon_color": "amber",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.ovo_last_gas_reading",
+                  "primary": "Gas",
+                  "secondary": "{{ state_attr('sensor.ovo_gas_daily_usage', 'last_period') | float(0) | round(2) }} kWh \u00b7 \u00a3{{ state_attr('sensor.ovo_gas_daily_cost', 'last_period') }}",
+                  "icon": "mdi:fire",
+                  "icon_color": "deep-orange",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Trends",
+                    "secondary": "4 charts",
+                    "icon": "mdi:chart-line",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
+                  },
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Electricity Usage (MTD)",
+                      "hours_to_show": 720,
+                      "points_per_hour": 0.5,
+                      "line_width": 2,
+                      "smoothing": true,
+                      "show": {
+                        "fill": "fade",
+                        "legend": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.ovo_electricity_monthly_usage",
+                          "name": "Electricity"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Electricity Cost (MTD)",
+                      "hours_to_show": 720,
+                      "points_per_hour": 0.5,
+                      "line_width": 2,
+                      "smoothing": true,
+                      "show": {
+                        "fill": "fade",
+                        "legend": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.ovo_electricity_monthly_cost",
+                          "name": "Cost"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Gas Usage (MTD)",
+                      "hours_to_show": 720,
+                      "points_per_hour": 0.5,
+                      "line_width": 2,
+                      "smoothing": true,
+                      "show": {
+                        "fill": "fade",
+                        "legend": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.ovo_gas_monthly_usage",
+                          "name": "Gas"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Gas Cost (MTD)",
+                      "hours_to_show": 720,
+                      "points_per_hour": 0.5,
+                      "line_width": 2,
+                      "smoothing": true,
+                      "show": {
+                        "fill": "fade",
+                        "legend": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.ovo_gas_monthly_cost",
+                          "name": "Cost"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ],
           "cards": [],
