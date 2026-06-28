@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (246)</h3></summary>
+<details><summary><h3>Entities (248)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -3237,6 +3237,32 @@ File: [`automation/sensor/kitchen_air_quality_sensor_temperature/sync_radiator_t
 }
 ```
 File: [`automation/sensor/lighting_modifier/state.yaml`](entities/automation/sensor/lighting_modifier/state.yaml)
+</details>
+
+<details><summary><code>/sensor/ovo-last-electricity-end-time/accumulate</code></summary>
+
+**Entity ID: `automation.sensor_ovo_last_electricity_end_time_accumulate`**
+
+> Accumulate OVO daily electricity usage and cost into monthly totals when a new settled interval is reported. OVO replaces the last-reading sensors with each interval's values, so utility meters under-count; this adds each interval once, keyed by end time.
+
+- Alias: /sensor/ovo-last-electricity-end-time/accumulate
+- ID: `sensor_ovo_last_electricity_end_time_accumulate`
+- Mode: `single`
+
+File: [`automation/sensor/ovo_last_electricity_end_time/accumulate.yaml`](entities/automation/sensor/ovo_last_electricity_end_time/accumulate.yaml)
+</details>
+
+<details><summary><code>/sensor/ovo-last-gas-end-time/accumulate</code></summary>
+
+**Entity ID: `automation.sensor_ovo_last_gas_end_time_accumulate`**
+
+> Accumulate OVO daily gas usage and cost into monthly totals when a new settled interval is reported. OVO replaces the last-reading sensors with each interval's values, so utility meters under-count; this adds each interval once, keyed by end time.
+
+- Alias: /sensor/ovo-last-gas-end-time/accumulate
+- ID: `sensor_ovo_last_gas_end_time_accumulate`
+- Mode: `single`
+
+File: [`automation/sensor/ovo_last_gas_end_time/accumulate.yaml`](entities/automation/sensor/ovo_last_gas_end_time/accumulate.yaml)
 </details>
 
 <details><summary><code>/sensor/spare-room-climate-sensor-temperature/sync-radiator-trv</code></summary>
@@ -11838,71 +11864,9 @@ File: [`timer/pro_breeze_ac_off.yaml`](entities/timer/pro_breeze_ac_off.yaml)
 
 </details>
 
-## Utility Meter
-
-<details><summary><h3>Entities (8)</h3></summary>
-
-<details><summary><strong>OVO | Electricity: Daily Cost</strong></summary>
-
-**Entity ID: `utility_meter.ovo_electricity_daily_cost`**
-
-File: [`utility_meter/ovo_electricity_daily_cost.yaml`](entities/utility_meter/ovo_electricity_daily_cost.yaml)
-</details>
-
-<details><summary><strong>OVO | Electricity: Daily Usage</strong></summary>
-
-**Entity ID: `utility_meter.ovo_electricity_daily_usage`**
-
-File: [`utility_meter/ovo_electricity_daily_usage.yaml`](entities/utility_meter/ovo_electricity_daily_usage.yaml)
-</details>
-
-<details><summary><strong>OVO | Electricity: Monthly Cost</strong></summary>
-
-**Entity ID: `utility_meter.ovo_electricity_monthly_cost`**
-
-File: [`utility_meter/ovo_electricity_monthly_cost.yaml`](entities/utility_meter/ovo_electricity_monthly_cost.yaml)
-</details>
-
-<details><summary><strong>OVO | Electricity: Monthly Usage</strong></summary>
-
-**Entity ID: `utility_meter.ovo_electricity_monthly_usage`**
-
-File: [`utility_meter/ovo_electricity_monthly_usage.yaml`](entities/utility_meter/ovo_electricity_monthly_usage.yaml)
-</details>
-
-<details><summary><strong>OVO | Gas: Daily Cost</strong></summary>
-
-**Entity ID: `utility_meter.ovo_gas_daily_cost`**
-
-File: [`utility_meter/ovo_gas_daily_cost.yaml`](entities/utility_meter/ovo_gas_daily_cost.yaml)
-</details>
-
-<details><summary><strong>OVO | Gas: Daily Usage</strong></summary>
-
-**Entity ID: `utility_meter.ovo_gas_daily_usage`**
-
-File: [`utility_meter/ovo_gas_daily_usage.yaml`](entities/utility_meter/ovo_gas_daily_usage.yaml)
-</details>
-
-<details><summary><strong>OVO | Gas: Monthly Cost</strong></summary>
-
-**Entity ID: `utility_meter.ovo_gas_monthly_cost`**
-
-File: [`utility_meter/ovo_gas_monthly_cost.yaml`](entities/utility_meter/ovo_gas_monthly_cost.yaml)
-</details>
-
-<details><summary><strong>OVO | Gas: Monthly Usage</strong></summary>
-
-**Entity ID: `utility_meter.ovo_gas_monthly_usage`**
-
-File: [`utility_meter/ovo_gas_monthly_usage.yaml`](entities/utility_meter/ovo_gas_monthly_usage.yaml)
-</details>
-
-</details>
-
 ## Var
 
-<details><summary><h3>Entities (18)</h3></summary>
+<details><summary><h3>Entities (22)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -11975,6 +11939,46 @@ File: [`var/hot_water_last_action.yaml`](entities/var/hot_water_last_action.yaml
 **Entity ID: `var.lounge_occupancy_automation_state_pre_exercise_mode`**
 
 File: [`var/lounge_occupancy_automation_state_pre_exercise_mode.yaml`](entities/var/lounge_occupancy_automation_state_pre_exercise_mode.yaml)
+</details>
+
+<details><summary><strong>OVO | Electricity: Monthly Cost</strong></summary>
+
+**Entity ID: `var.ovo_electricity_monthly_cost`**
+
+- Icon: [`mdi:flash`](https://pictogrammers.com/library/mdi/icon/flash/)
+- Unit Of Measurement: GBP
+
+File: [`var/ovo/ovo_electricity_monthly_cost.yaml`](entities/var/ovo/ovo_electricity_monthly_cost.yaml)
+</details>
+
+<details><summary><strong>OVO | Electricity: Monthly Usage</strong></summary>
+
+**Entity ID: `var.ovo_electricity_monthly_usage`**
+
+- Icon: [`mdi:flash`](https://pictogrammers.com/library/mdi/icon/flash/)
+- Unit Of Measurement: kWh
+
+File: [`var/ovo/ovo_electricity_monthly_usage.yaml`](entities/var/ovo/ovo_electricity_monthly_usage.yaml)
+</details>
+
+<details><summary><strong>OVO | Gas: Monthly Cost</strong></summary>
+
+**Entity ID: `var.ovo_gas_monthly_cost`**
+
+- Icon: [`mdi:fire`](https://pictogrammers.com/library/mdi/icon/fire/)
+- Unit Of Measurement: GBP
+
+File: [`var/ovo/ovo_gas_monthly_cost.yaml`](entities/var/ovo/ovo_gas_monthly_cost.yaml)
+</details>
+
+<details><summary><strong>OVO | Gas: Monthly Usage</strong></summary>
+
+**Entity ID: `var.ovo_gas_monthly_usage`**
+
+- Icon: [`mdi:fire`](https://pictogrammers.com/library/mdi/icon/fire/)
+- Unit Of Measurement: kWh
+
+File: [`var/ovo/ovo_gas_monthly_usage.yaml`](entities/var/ovo/ovo_gas_monthly_usage.yaml)
 </details>
 
 <details><summary><strong>Spotify Tempo (Will)</strong></summary>

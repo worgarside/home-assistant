@@ -1,0 +1,65 @@
+---
+alias: /sensor/ovo-last-electricity-end-time/accumulate
+
+id: sensor_ovo_last_electricity_end_time_accumulate
+
+description: >-
+  Accumulate OVO daily electricity usage and cost into monthly totals when a
+  new settled interval is reported. OVO replaces the last-reading sensors with
+  each interval's values, so utility meters under-count; this adds each
+  interval once, keyed by end time.
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: sensor.ovo_last_electricity_end_time
+  - platform: homeassistant
+    event: start
+
+action:
+  - variables:
+      interval_end: "{{ states('sensor.ovo_last_electricity_end_time') }}"
+      current_month: "{{ now().strftime('%Y-%m') }}"
+      last_processed: >-
+        {{ state_attr('var.ovo_electricity_monthly_cost', 'last_processed_end_time') }}
+      stored_month: "{{ state_attr('var.ovo_electricity_monthly_cost', 'billing_month') }}"
+      daily_cost: "{{ states('sensor.ovo_last_electricity_cost') | float(0) }}"
+      daily_usage: "{{ states('sensor.ovo_last_electricity_reading') | float(0) }}"
+      current_cost_total: >-
+        {{
+          states('var.ovo_electricity_monthly_cost') | float(0)
+          if stored_month == current_month
+          else 0
+        }}
+      current_usage_total: >-
+        {{
+          states('var.ovo_electricity_monthly_usage') | float(0)
+          if stored_month == current_month
+          else 0
+        }}
+
+  - if: >-
+      {{
+        interval_end not in ['unknown', 'unavailable', '']
+        and interval_end != last_processed
+        and (daily_cost > 0 or daily_usage > 0)
+      }}
+    then:
+      - action: var.set
+        target:
+          entity_id: var.ovo_electricity_monthly_cost
+        data:
+          value: "{{ (current_cost_total + daily_cost) | round(2) }}"
+          attributes:
+            last_processed_end_time: "{{ interval_end }}"
+            billing_month: "{{ current_month }}"
+
+      - action: var.set
+        target:
+          entity_id: var.ovo_electricity_monthly_usage
+        data:
+          value: "{{ (current_usage_total + daily_usage) | round(3) }}"
+          attributes:
+            last_processed_end_time: "{{ interval_end }}"
+            billing_month: "{{ current_month }}"
