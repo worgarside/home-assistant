@@ -937,6 +937,10 @@
                             "name": "Kitchen"
                           },
                           {
+                            "entity": "sensor.landing_climate_sensor_temperature",
+                            "name": "Landing"
+                          },
+                          {
                             "entity": "sensor.lounge_climate_sensor_temperature",
                             "name": "Lounge"
                           },
@@ -1007,6 +1011,10 @@
                           {
                             "entity": "sensor.kitchen_air_quality_sensor_humidity",
                             "name": "Kitchen"
+                          },
+                          {
+                            "entity": "sensor.landing_climate_sensor_humidity",
+                            "name": "Landing"
                           },
                           {
                             "entity": "sensor.lounge_climate_sensor_humidity",
