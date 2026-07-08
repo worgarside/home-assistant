@@ -8,3 +8,8 @@ icon: mdi:fire
 restore: true
 
 unique_id: var_ovo_ovo_gas_monthly_cost
+
+# Declared here so var restore persists bookkeeping across HA restarts
+attributes:
+  last_processed_end_time: ""
+  billing_month: ""
