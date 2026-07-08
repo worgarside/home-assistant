@@ -117,24 +117,19 @@
                       "link_values": false
                     },
                     {
-                      "type": "entities",
-                      "entities": [
-                        {
-                          "entity": "input_text.[[user]]_habit_binary_[[n]]_name",
-                          "type": "custom:text-input-row",
-                          "name": "Habit Name"
-                        },
-                        {
-                          "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_on",
-                          "type": "custom:text-input-row",
-                          "name": "Habit Icon (On)"
-                        },
-                        {
-                          "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_off",
-                          "type": "custom:text-input-row",
-                          "name": "Habit Icon (Off)"
-                        }
-                      ]
+                      "type": "custom:text-input-row",
+                      "entity": "input_text.[[user]]_habit_binary_[[n]]_name",
+                      "name": "Habit Name"
+                    },
+                    {
+                      "type": "custom:text-input-row",
+                      "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_on",
+                      "name": "Habit Icon (On)"
+                    },
+                    {
+                      "type": "custom:text-input-row",
+                      "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_off",
+                      "name": "Habit Icon (Off)"
                     },
                     {
                       "type": "markdown",
