@@ -6493,6 +6493,16 @@
                     "columns": 6,
                     "rows": 1
                   }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "fan.air_purifier",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
                 }
               ]
             },
