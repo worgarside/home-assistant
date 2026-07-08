@@ -7,43 +7,64 @@ description: >-
   Accumulate OVO daily gas usage and cost into monthly totals when a new settled
   interval is reported. OVO replaces the last-reading sensors with each
   interval's values, so utility meters under-count; this adds each interval
-  once, keyed by end time.
+  once, keyed by end time. Monthly totals are Lovelace-only (var entities are not
+  recorded into long-term statistics / Energy dashboard).
 
-mode: single
+mode: queued
 
 trigger:
   - platform: state
-    entity_id: sensor.ovo_last_gas_end_time
+    entity_id:
+      - sensor.ovo_last_gas_end_time
+      - sensor.ovo_last_gas_cost
+      - sensor.ovo_last_gas_reading
   - platform: homeassistant
     event: start
 
 action:
   - variables:
       interval_end: "{{ states('sensor.ovo_last_gas_end_time') }}"
-      current_month: "{{ now().strftime('%Y-%m') }}"
-      last_processed: >-
+      interval_month: >-
+        {{
+          (interval_end | as_datetime).strftime('%Y-%m')
+          if interval_end not in ['unknown', 'unavailable', '']
+          else ''
+        }}
+      readings_ready: >-
+        {{
+          states.sensor.ovo_last_gas_cost.last_updated
+          >= states.sensor.ovo_last_gas_end_time.last_updated
+          and states.sensor.ovo_last_gas_reading.last_updated
+          >= states.sensor.ovo_last_gas_end_time.last_updated
+        }}
+      last_processed_cost: >-
         {{ state_attr('var.ovo_gas_monthly_cost', 'last_processed_end_time') }}
-      stored_month: "{{ state_attr('var.ovo_gas_monthly_cost', 'billing_month') }}"
+      stored_month_cost: "{{ state_attr('var.ovo_gas_monthly_cost', 'billing_month') }}"
+      last_processed_usage: >-
+        {{ state_attr('var.ovo_gas_monthly_usage', 'last_processed_end_time') }}
+      stored_month_usage: "{{ state_attr('var.ovo_gas_monthly_usage', 'billing_month') }}"
       daily_cost: "{{ states('sensor.ovo_last_gas_cost') | float(0) }}"
       daily_usage: "{{ states('sensor.ovo_last_gas_reading') | float(0) }}"
       current_cost_total: >-
         {{
           states('var.ovo_gas_monthly_cost') | float(0)
-          if stored_month == current_month
+          if stored_month_cost == interval_month
           else 0
         }}
       current_usage_total: >-
         {{
           states('var.ovo_gas_monthly_usage') | float(0)
-          if stored_month == current_month
+          if stored_month_usage == interval_month
           else 0
         }}
 
   - if: >-
       {{
-        interval_end not in ['unknown', 'unavailable', '']
-        and interval_end != last_processed
-        and (daily_cost > 0 or daily_usage > 0)
+        readings_ready
+        and interval_end not in ['unknown', 'unavailable', '']
+        and interval_month != ''
+        and interval_end != last_processed_cost
+        and daily_cost > 0
       }}
     then:
       - action: var.set
@@ -53,8 +74,17 @@ action:
           value: "{{ (current_cost_total + daily_cost) | round(2) }}"
           attributes:
             last_processed_end_time: "{{ interval_end }}"
-            billing_month: "{{ current_month }}"
+            billing_month: "{{ interval_month }}"
 
+  - if: >-
+      {{
+        readings_ready
+        and interval_end not in ['unknown', 'unavailable', '']
+        and interval_month != ''
+        and interval_end != last_processed_usage
+        and daily_usage > 0
+      }}
+    then:
       - action: var.set
         target:
           entity_id: var.ovo_gas_monthly_usage
@@ -62,4 +92,4 @@ action:
           value: "{{ (current_usage_total + daily_usage) | round(3) }}"
           attributes:
             last_processed_end_time: "{{ interval_end }}"
-            billing_month: "{{ current_month }}"
+            billing_month: "{{ interval_month }}"
