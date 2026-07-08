@@ -661,28 +661,48 @@
                 "dismissable": true,
                 "autoclose": false,
                 "content": {
-                  "type": "custom:mini-graph-card",
-                  "name": "{{ states(\"input_text.[[user]]_habit_binary_[[n]]_name\") }} Streak",
-                  "entities": [
+                  "type": "vertical-stack",
+                  "cards": [
                     {
-                      "entity": "sensor.[[user]]_habit_binary_[[n]]_streak",
-                      "name": "Streak",
-                      "color": "#4CAF50"
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{{ states('input_text.[[user]]_habit_binary_[[n]]_name') }} Streak",
+                      "secondary": "{{ states('sensor.[[user]]_habit_binary_[[n]]_streak') | int(0) }} day{% if states('sensor.[[user]]_habit_binary_[[n]]_streak') | int(0) != 1 %}s{% endif %}",
+                      "icon": "mdi:fire",
+                      "icon_color": "orange",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  padding-bottom: 0 !important;\n}\n"
+                      }
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "entities": [
+                        {
+                          "entity": "sensor.[[user]]_habit_binary_[[n]]_streak",
+                          "name": "Streak",
+                          "color": "#4CAF50"
+                        }
+                      ],
+                      "unit": "days",
+                      "height": 220,
+                      "hours_to_show": 336,
+                      "points_per_hour": 0.25,
+                      "line_width": 2,
+                      "show": {
+                        "icon": false,
+                        "name": false,
+                        "state": true,
+                        "legend": false,
+                        "labels": true,
+                        "fill": "fade"
+                      },
+                      "card_mod": {
+                        "style": "ha-card.type-custom-mini-graph-card {\n  box-shadow: none;\n  border: none;\n}\n"
+                      }
                     }
-                  ],
-                  "unit": "days",
-                  "height": 220,
-                  "hours_to_show": 336,
-                  "points_per_hour": 0.25,
-                  "line_width": 2,
-                  "show": {
-                    "icon": true,
-                    "name": true,
-                    "state": true,
-                    "legend": false,
-                    "labels": true,
-                    "fill": "fade"
-                  }
+                  ]
                 }
               }
             },
