@@ -765,19 +765,22 @@
                       "link_values": false
                     },
                     {
-                      "type": "custom:text-input-row",
-                      "entity": "input_text.[[user]]_habit_binary_[[n]]_name",
-                      "name": "Habit Name"
-                    },
-                    {
-                      "type": "custom:text-input-row",
-                      "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_on",
-                      "name": "Habit Icon (On)"
-                    },
-                    {
-                      "type": "custom:text-input-row",
-                      "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_off",
-                      "name": "Habit Icon (Off)"
+                      "type": "entities",
+                      "show_header_toggle": false,
+                      "entities": [
+                        {
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_name",
+                          "name": "Habit Name"
+                        },
+                        {
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_on",
+                          "name": "Habit Icon (On)"
+                        },
+                        {
+                          "entity": "input_text.[[user]]_habit_binary_[[n]]_icon_off",
+                          "name": "Habit Icon (Off)"
+                        }
+                      ]
                     },
                     {
                       "type": "markdown",
