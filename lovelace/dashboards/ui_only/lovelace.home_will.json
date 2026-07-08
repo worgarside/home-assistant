@@ -6531,7 +6531,9 @@
                       "entity": "sensor.air_purifier_pm2_5",
                       "color": "#656f70"
                     }
-                  ]
+                  ],
+                  "lower_bound": 0,
+                  "lower_bound_secondary": 0
                 }
               ]
             },
