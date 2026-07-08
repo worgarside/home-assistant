@@ -1662,7 +1662,11 @@
                       "entity": "sensor.air_purifier_area",
                       "state": "lounge"
                     }
-                  ]
+                  ],
+                  "lower_bound": 0,
+                  "upper_bound": "~100",
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 4
                 },
                 {
                   "type": "custom:mini-graph-card",
@@ -4515,7 +4519,11 @@
                       "entity": "sensor.air_purifier_area",
                       "state": "dining_area"
                     }
-                  ]
+                  ],
+                  "lower_bound": 0,
+                  "upper_bound": "~100",
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 4
                 },
                 {
                   "type": "custom:mini-graph-card",
