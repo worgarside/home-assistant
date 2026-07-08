@@ -35,6 +35,8 @@ action:
     timeout:
       minutes: 2
 
-  - action: switch.turn_off
-    target:
-      entity_id: switch.charging_hub
+  - if: "{{ wait.completed }}"
+    then:
+      - action: switch.turn_off
+        target:
+          entity_id: switch.charging_hub
