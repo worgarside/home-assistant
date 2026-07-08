@@ -654,7 +654,37 @@
             "icon": "{{ states(iif(is_state(\"input_boolean.[[user]]_habit_binary_[[n]]\", \"on\"), \"input_text.[[user]]_habit_binary_[[n]]_icon_on\", \"input_text.[[user]]_habit_binary_[[n]]_icon_off\")) }}",
             "secondary": "{{ states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") | int + iif(states(\"input_boolean.[[user]]_habit_binary_[[n]]\") | bool(false), 1, 0) }} day{% if states(\"sensor.[[user]]_habit_binary_[[n]]_streak\") | int(0) > 1 %}s{% endif %} streak",
             "tap_action": {
-              "action": "none"
+              "action": "perform-action",
+              "perform_action": "browser_mod.popup",
+              "target": {},
+              "data": {
+                "dismissable": true,
+                "autoclose": false,
+                "content": {
+                  "type": "custom:mini-graph-card",
+                  "name": "{{ states(\"input_text.[[user]]_habit_binary_[[n]]_name\") }} Streak",
+                  "entities": [
+                    {
+                      "entity": "sensor.[[user]]_habit_binary_[[n]]_streak",
+                      "name": "Streak",
+                      "color": "#4CAF50"
+                    }
+                  ],
+                  "unit": "days",
+                  "height": 220,
+                  "hours_to_show": 336,
+                  "points_per_hour": 0.25,
+                  "line_width": 2,
+                  "show": {
+                    "icon": true,
+                    "name": true,
+                    "state": true,
+                    "legend": false,
+                    "labels": true,
+                    "fill": "fade"
+                  }
+                }
+              }
             },
             "icon_tap_action": {
               "action": "none"
