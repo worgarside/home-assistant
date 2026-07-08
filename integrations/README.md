@@ -3243,11 +3243,11 @@ File: [`automation/sensor/lighting_modifier/state.yaml`](entities/automation/sen
 
 **Entity ID: `automation.sensor_ovo_last_electricity_end_time_accumulate`**
 
-> Accumulate OVO daily electricity usage and cost into monthly totals when a new settled interval is reported. OVO replaces the last-reading sensors with each interval's values, so utility meters under-count; this adds each interval once, keyed by end time.
+> Accumulate OVO daily electricity usage and cost into monthly totals when a new settled interval is reported. OVO replaces the last-reading sensors with each interval's values, so utility meters under-count; this adds each interval once, keyed by end time. Monthly totals are Lovelace-only (var entities are not recorded into long-term statistics / Energy dashboard).
 
 - Alias: /sensor/ovo-last-electricity-end-time/accumulate
 - ID: `sensor_ovo_last_electricity_end_time_accumulate`
-- Mode: `single`
+- Mode: `queued`
 
 File: [`automation/sensor/ovo_last_electricity_end_time/accumulate.yaml`](entities/automation/sensor/ovo_last_electricity_end_time/accumulate.yaml)
 </details>
@@ -3256,11 +3256,11 @@ File: [`automation/sensor/ovo_last_electricity_end_time/accumulate.yaml`](entiti
 
 **Entity ID: `automation.sensor_ovo_last_gas_end_time_accumulate`**
 
-> Accumulate OVO daily gas usage and cost into monthly totals when a new settled interval is reported. OVO replaces the last-reading sensors with each interval's values, so utility meters under-count; this adds each interval once, keyed by end time.
+> Accumulate OVO daily gas usage and cost into monthly totals when a new settled interval is reported. OVO replaces the last-reading sensors with each interval's values, so utility meters under-count; this adds each interval once, keyed by end time. Monthly totals are Lovelace-only (var entities are not recorded into long-term statistics / Energy dashboard).
 
 - Alias: /sensor/ovo-last-gas-end-time/accumulate
 - ID: `sensor_ovo_last_gas_end_time_accumulate`
-- Mode: `single`
+- Mode: `queued`
 
 File: [`automation/sensor/ovo_last_gas_end_time/accumulate.yaml`](entities/automation/sensor/ovo_last_gas_end_time/accumulate.yaml)
 </details>
