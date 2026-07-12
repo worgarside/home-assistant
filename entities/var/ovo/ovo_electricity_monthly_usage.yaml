@@ -1,0 +1,15 @@
+---
+friendly_name: "OVO | Electricity: Monthly Usage"
+
+unit_of_measurement: kWh
+
+icon: mdi:flash
+
+restore: true
+
+unique_id: var_ovo_ovo_electricity_monthly_usage
+
+# Declared here so var restore persists bookkeeping across HA restarts
+attributes:
+  last_processed_end_time: ""
+  billing_month: ""
