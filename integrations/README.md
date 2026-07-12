@@ -6510,7 +6510,7 @@ File: [`input_select/will_mood_today.yaml`](entities/input_select/will_mood_toda
 
 ## Input Text
 
-<details><summary><h3>Entities (89)</h3></summary>
+<details><summary><h3>Entities (90)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -6556,6 +6556,15 @@ File: [`input_text/appdaemon/truelayer_auth_token_amex.yaml`](entities/input_tex
 - Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
 
 File: [`input_text/appdaemon/truelayer_auth_token_amex_auto_saver.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex_auto_saver.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Auth Token (Amex Vic)</strong></summary>
+
+**Entity ID: `input_text.truelayer_auth_token_amex_vic`**
+
+- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
+
+File: [`input_text/appdaemon/truelayer_auth_token_amex_vic.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex_vic.yaml)
 </details>
 
 <details><summary><strong>TrueLayer Auth Token (HSBC)</strong></summary>
@@ -11902,7 +11911,7 @@ File: [`utility_meter/ovo_gas_monthly_usage.yaml`](entities/utility_meter/ovo_ga
 
 ## Var
 
-<details><summary><h3>Entities (18)</h3></summary>
+<details><summary><h3>Entities (19)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -12004,6 +12013,16 @@ File: [`var/tasker/tasker_pixel_now_playing.yaml`](entities/var/tasker/tasker_pi
 - Unit Of Measurement: GBP
 
 File: [`var/truelayer/truelayer_balance_amex.yaml`](entities/var/truelayer/truelayer_balance_amex.yaml)
+</details>
+
+<details><summary><strong>Amex Vic Balance</strong></summary>
+
+**Entity ID: `var.truelayer_balance_amex_vic`**
+
+- Icon: si:americanexpress
+- Unit Of Measurement: GBP
+
+File: [`var/truelayer/truelayer_balance_amex_vic.yaml`](entities/var/truelayer/truelayer_balance_amex_vic.yaml)
 </details>
 
 <details><summary><strong>HSBC Current Account Balance</strong></summary>
