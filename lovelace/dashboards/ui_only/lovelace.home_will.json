@@ -2681,6 +2681,15 @@
                   },
                   "icon_color": "",
                   "multiline_secondary": false
+                },
+                {
+                  "type": "button",
+                  "name": "Threshold Alerts",
+                  "icon": "mdi:bell-alert",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/home-will/threshold-alerts"
+                  }
                 }
               ]
             },
