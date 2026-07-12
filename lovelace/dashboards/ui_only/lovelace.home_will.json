@@ -8973,6 +8973,36 @@
               ]
             }
           ]
+        },
+        {
+          "title": "Threshold Alerts",
+          "path": "threshold-alerts",
+          "icon": "mdi:bell-alert",
+          "type": "sections",
+          "subview": true,
+          "back_path": "home",
+          "max_columns": 2,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Threshold Alerts",
+                  "heading_style": "title",
+                  "icon": "mdi:bell-alert"
+                },
+                {
+                  "type": "markdown",
+                  "content": "Pick a numeric entity and an exact integer threshold. Labels are created on demand as `Alert Below Threshold: N` / `Alert Above Threshold: N`."
+                },
+                {
+                  "type": "custom:threshold-alerts-card",
+                  "title": "Threshold Alerts"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
