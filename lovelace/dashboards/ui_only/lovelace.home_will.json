@@ -968,62 +968,94 @@
                           {
                             "entity": "sensor.airing_cupboard_climate_sensor_temperature",
                             "name": "Airing Cupboard",
-                            "color": "#E51919"
+                            "color": "#E51919",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.bathroom_climate_sensor_temperature",
                             "name": "Bathroom",
-                            "color": "#E57F19"
+                            "color": "#E57F19",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.bedroom_climate_sensor_temperature",
                             "name": "Bedroom",
-                            "color": "#E5E519"
+                            "color": "#E5E519",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.desmond_s_crate_climate_sensor_temperature",
                             "name": "Desmond's Crate",
-                            "color": "#7FE519"
+                            "color": "#7FE519",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.kitchen_air_quality_sensor_temperature",
                             "name": "Kitchen",
-                            "color": "#19E519"
+                            "color": "#19E519",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.landing_climate_sensor_temperature",
                             "name": "Landing",
-                            "color": "#19E57F"
+                            "color": "#19E57F",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.lounge_climate_sensor_temperature",
                             "name": "Lounge",
-                            "color": "#19E5E5"
+                            "color": "#19E5E5",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.roof_terrace_climate_sensor_temperature",
                             "name": "Roof",
-                            "color": "#197FE5"
+                            "color": "#197FE5",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.spare_room_climate_sensor_temperature",
                             "name": "Spare Room",
-                            "color": "#1919E5"
+                            "color": "#1919E5",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.vic_s_office_climate_sensor_temperature",
                             "name": "Vic's Office",
-                            "color": "#7F19E5"
+                            "color": "#7F19E5",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.will_s_office_climate_sensor_temperature",
                             "name": "Will's Office",
-                            "color": "#E519E5"
+                            "color": "#E519E5",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.met_office_fulham_temperature",
                             "name": "Hammersmith",
-                            "color": "#E5197F"
+                            "color": "#E5197F",
+                            "show_line": true,
+                            "show_fill": false
+                          },
+                          {
+                            "entity": "sensor.average_home_temperature",
+                            "name": "Average Home",
+                            "color": "rgba(255, 255, 255, 0.35)",
+                            "show_line": false,
+                            "show_fill": true,
+                            "show_points": false
                           }
                         ],
                         "height": 250,
@@ -1037,7 +1069,7 @@
                         "animate": false,
                         "smoothing": true,
                         "show": {
-                          "fill": "fade",
+                          "fill": false,
                           "icon": false,
                           "state": false,
                           "legend": true,
@@ -1056,62 +1088,94 @@
                           {
                             "entity": "sensor.airing_cupboard_climate_sensor_humidity",
                             "name": "Airing Cupboard",
-                            "color": "#E51919"
+                            "color": "#E51919",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.bathroom_climate_sensor_humidity",
                             "name": "Bathroom",
-                            "color": "#E57F19"
+                            "color": "#E57F19",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.bedroom_climate_sensor_humidity",
                             "name": "Bedroom",
-                            "color": "#E5E519"
+                            "color": "#E5E519",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.desmond_s_crate_climate_sensor_humidity",
                             "name": "Desmond's Crate",
-                            "color": "#7FE519"
+                            "color": "#7FE519",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.kitchen_air_quality_sensor_humidity",
                             "name": "Kitchen",
-                            "color": "#19E519"
+                            "color": "#19E519",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.landing_climate_sensor_humidity",
                             "name": "Landing",
-                            "color": "#19E57F"
+                            "color": "#19E57F",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.lounge_climate_sensor_humidity",
                             "name": "Lounge",
-                            "color": "#19E5E5"
+                            "color": "#19E5E5",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.roof_terrace_climate_sensor_humidity",
                             "name": "Roof",
-                            "color": "#197FE5"
+                            "color": "#197FE5",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.spare_room_climate_sensor_humidity",
                             "name": "Spare Room",
-                            "color": "#1919E5"
+                            "color": "#1919E5",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.vic_s_office_climate_sensor_humidity",
                             "name": "Vic's Office",
-                            "color": "#7F19E5"
+                            "color": "#7F19E5",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.will_s_office_climate_sensor_humidity",
                             "name": "Will's Office",
-                            "color": "#E519E5"
+                            "color": "#E519E5",
+                            "show_line": true,
+                            "show_fill": false
                           },
                           {
                             "entity": "sensor.met_office_fulham_humidity",
                             "name": "Hammersmith",
-                            "color": "#E5197F"
+                            "color": "#E5197F",
+                            "show_line": true,
+                            "show_fill": false
+                          },
+                          {
+                            "entity": "sensor.average_home_humidity",
+                            "name": "Average Home",
+                            "color": "rgba(255, 255, 255, 0.35)",
+                            "show_line": false,
+                            "show_fill": true,
+                            "show_points": false
                           }
                         ],
                         "height": 250,
@@ -1125,7 +1189,7 @@
                         "upper_bound": "~70",
                         "animate": false,
                         "show": {
-                          "fill": "fade",
+                          "fill": false,
                           "icon": false,
                           "state": false,
                           "legend": true,
