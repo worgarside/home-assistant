@@ -10544,7 +10544,7 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 ## Template
 
-<details><summary><h3>Entities (95)</h3></summary>
+<details><summary><h3>Entities (97)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10973,6 +10973,24 @@ File: [`template/sensor/air_purifier_fan_speed.yaml`](entities/template/sensor/a
 - Unit Of Measurement: %
 
 File: [`template/sensor/air_purifier_fan_speed_percentage.yaml`](entities/template/sensor/air_purifier_fan_speed_percentage.yaml)
+</details>
+
+<details><summary><strong>Average Home Humidity</strong></summary>
+
+**Entity ID: `sensor.average_home_humidity`**
+
+- Unit Of Measurement: %
+
+File: [`template/sensor/average_home_humidity.yaml`](entities/template/sensor/average_home_humidity.yaml)
+</details>
+
+<details><summary><strong>Average Home Temperature</strong></summary>
+
+**Entity ID: `sensor.average_home_temperature`**
+
+- Unit Of Measurement: °C
+
+File: [`template/sensor/average_home_temperature.yaml`](entities/template/sensor/average_home_temperature.yaml)
 </details>
 
 <details><summary><strong>Current Hour</strong></summary>

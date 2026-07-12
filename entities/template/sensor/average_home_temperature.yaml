@@ -1,0 +1,44 @@
+---
+name: Average Home Temperature
+
+unique_id: average_home_temperature
+
+device_class: temperature
+
+state_class: measurement
+
+unit_of_measurement: "°C"
+
+state: >-
+  {% set ns = namespace(values=[]) %}
+
+  {% for entity in expand(label_entities('home_temperature_average_source') | default([])) %}
+    {% if entity.attributes.device_class == 'temperature' and has_value(entity.entity_id) %}
+      {% set ns.values = ns.values + [entity.state | float] %}
+    {% endif %}
+  {% endfor %}
+
+  {{ (ns.values | sum / ns.values | count) | round(1) if ns.values | count > 0 else none }}
+
+attributes:
+  source_entity_count: >-
+    {% set ns = namespace(entities=[]) %}
+
+    {% for entity in expand(label_entities('home_temperature_average_source') | default([])) %}
+      {% if entity.attributes.device_class == 'temperature' and has_value(entity.entity_id) %}
+        {% set ns.entities = ns.entities + [entity.entity_id] %}
+      {% endif %}
+    {% endfor %}
+
+    {{ ns.entities | count }}
+
+  source_entities: >-
+    {% set ns = namespace(entities=[]) %}
+
+    {% for entity in expand(label_entities('home_temperature_average_source') | default([])) %}
+      {% if entity.attributes.device_class == 'temperature' and has_value(entity.entity_id) %}
+        {% set ns.entities = ns.entities + [entity.entity_id] %}
+      {% endif %}
+    {% endfor %}
+
+    {{ ns.entities }}
