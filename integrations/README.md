@@ -11875,7 +11875,7 @@ File: [`timer/pro_breeze_ac_off.yaml`](entities/timer/pro_breeze_ac_off.yaml)
 
 ## Var
 
-<details><summary><h3>Entities (22)</h3></summary>
+<details><summary><h3>Entities (23)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
