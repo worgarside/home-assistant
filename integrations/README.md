@@ -11884,7 +11884,7 @@ File: [`timer/pro_breeze_ac_off.yaml`](entities/timer/pro_breeze_ac_off.yaml)
 
 ## Var
 
-<details><summary><h3>Entities (22)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -12076,6 +12076,60 @@ File: [`var/truelayer/truelayer_balance_starling_current_account.yaml`](entities
 - Unit Of Measurement: GBP
 
 File: [`var/truelayer/truelayer_balance_starling_joint_account.yaml`](entities/var/truelayer/truelayer_balance_starling_joint_account.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Reauth (Amex)</strong></summary>
+
+**Entity ID: `var.truelayer_reauth_amex`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/truelayer/truelayer_reauth_amex.yaml`](entities/var/truelayer/truelayer_reauth_amex.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Reauth (Amex Auto Saver)</strong></summary>
+
+**Entity ID: `var.truelayer_reauth_amex_auto_saver`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/truelayer/truelayer_reauth_amex_auto_saver.yaml`](entities/var/truelayer/truelayer_reauth_amex_auto_saver.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Reauth (HSBC)</strong></summary>
+
+**Entity ID: `var.truelayer_reauth_hsbc`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/truelayer/truelayer_reauth_hsbc.yaml`](entities/var/truelayer/truelayer_reauth_hsbc.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Reauth (Santander)</strong></summary>
+
+**Entity ID: `var.truelayer_reauth_santander`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/truelayer/truelayer_reauth_santander.yaml`](entities/var/truelayer/truelayer_reauth_santander.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Reauth (Starling)</strong></summary>
+
+**Entity ID: `var.truelayer_reauth_starling`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/truelayer/truelayer_reauth_starling.yaml`](entities/var/truelayer/truelayer_reauth_starling.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Reauth (Starling Joint)</strong></summary>
+
+**Entity ID: `var.truelayer_reauth_starling_joint`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/truelayer/truelayer_reauth_starling_joint.yaml`](entities/var/truelayer/truelayer_reauth_starling_joint.yaml)
 </details>
 
 <details><summary><strong>Vic's Office State Manager</strong></summary>
