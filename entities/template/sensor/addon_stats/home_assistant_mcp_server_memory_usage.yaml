@@ -1,0 +1,7 @@
+---
+icon: mdi:memory
+name: Home Assistant MCP Server Memory Usage
+state: >-
+  {{ state_attr('sensor.home_assistant_mcp_server_status', 'data').memory_percent | default(0) }}
+unique_id: home_assistant_mcp_server_memory_usage
+unit_of_measurement: "%"

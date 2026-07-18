@@ -3778,7 +3778,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Command Line
 
-<details><summary><h3>Entities (26)</h3></summary>
+<details><summary><h3>Entities (28)</h3></summary>
 
 <details><summary><strong>AppDaemon Status</strong></summary>
 
@@ -3800,14 +3800,14 @@ File: [`command_line/sensor/addons/appdaemon_status.yaml`](entities/command_line
 File: [`command_line/sensor/addons/castsponsorskip_status.yaml`](entities/command_line/sensor/addons/castsponsorskip_status.yaml)
 </details>
 
-<details><summary><strong>ESPHome Add-on Status</strong></summary>
+<details><summary><strong>Home Assistant MCP Server Status</strong></summary>
 
-**Entity ID: `sensor.esphome_add_on_status`**
+**Entity ID: `sensor.home_assistant_mcp_server_status`**
 
-- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/5c53de3b_esphome/stats`
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/81f33d0f_ha_mcp/stats`
 - Scan Interval: 60
 
-File: [`command_line/sensor/addons/esphome_add_on_status.yaml`](entities/command_line/sensor/addons/esphome_add_on_status.yaml)
+File: [`command_line/sensor/addons/home_assistant_mcp_server_status.yaml`](entities/command_line/sensor/addons/home_assistant_mcp_server_status.yaml)
 </details>
 
 <details><summary><strong>Item Warehouse API Status</strong></summary>
@@ -3828,6 +3828,26 @@ File: [`command_line/sensor/addons/item_warehouse_api.yaml`](entities/command_li
 - Scan Interval: 60
 
 File: [`command_line/sensor/addons/item_warehouse_website.yaml`](entities/command_line/sensor/addons/item_warehouse_website.yaml)
+</details>
+
+<details><summary><strong>Remote API Proxy Status</strong></summary>
+
+**Entity ID: `sensor.remote_api_proxy_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/77f1785d_remote_api/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/remote_api_proxy_status.yaml`](entities/command_line/sensor/addons/remote_api_proxy_status.yaml)
+</details>
+
+<details><summary><strong>Tailscale Status</strong></summary>
+
+**Entity ID: `sensor.tailscale_status`**
+
+- Command: `curl -sSL -H "Authorization: Bearer abc123" http://supervisor/addons/a0d7b954_tailscale/stats`
+- Scan Interval: 60
+
+File: [`command_line/sensor/addons/tailscale_status.yaml`](entities/command_line/sensor/addons/tailscale_status.yaml)
 </details>
 
 <details><summary><strong>Terminal & SSH Add-on Status</strong></summary>
@@ -10544,7 +10564,7 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 ## Template
 
-<details><summary><h3>Entities (97)</h3></summary>
+<details><summary><h3>Entities (101)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10789,24 +10809,24 @@ File: [`template/sensor/addon_stats/castsponsorskip_cpu_usage.yaml`](entities/te
 File: [`template/sensor/addon_stats/castsponsorskip_memory_usage.yaml`](entities/template/sensor/addon_stats/castsponsorskip_memory_usage.yaml)
 </details>
 
-<details><summary><strong>ESPHome Add-on CPU Usage</strong></summary>
+<details><summary><strong>Home Assistant MCP Server CPU Usage</strong></summary>
 
-**Entity ID: `sensor.esphome_add_on_cpu_usage`**
+**Entity ID: `sensor.home_assistant_mcp_server_cpu_usage`**
 
 - Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
 - Unit Of Measurement: %
 
-File: [`template/sensor/addon_stats/esphome_add_on_cpu_usage.yaml`](entities/template/sensor/addon_stats/esphome_add_on_cpu_usage.yaml)
+File: [`template/sensor/addon_stats/home_assistant_mcp_server_cpu_usage.yaml`](entities/template/sensor/addon_stats/home_assistant_mcp_server_cpu_usage.yaml)
 </details>
 
-<details><summary><strong>ESPHome Add-on Memory Usage</strong></summary>
+<details><summary><strong>Home Assistant MCP Server Memory Usage</strong></summary>
 
-**Entity ID: `sensor.esphome_add_on_memory_usage`**
+**Entity ID: `sensor.home_assistant_mcp_server_memory_usage`**
 
 - Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
 - Unit Of Measurement: %
 
-File: [`template/sensor/addon_stats/esphome_add_on_memory_usage.yaml`](entities/template/sensor/addon_stats/esphome_add_on_memory_usage.yaml)
+File: [`template/sensor/addon_stats/home_assistant_mcp_server_memory_usage.yaml`](entities/template/sensor/addon_stats/home_assistant_mcp_server_memory_usage.yaml)
 </details>
 
 <details><summary><strong>Item Warehouse API CPU Usage</strong></summary>
@@ -10847,6 +10867,46 @@ File: [`template/sensor/addon_stats/item_warehouse_website_cpu_usage.yaml`](enti
 - Unit Of Measurement: %
 
 File: [`template/sensor/addon_stats/item_warehouse_website_memory_usage.yaml`](entities/template/sensor/addon_stats/item_warehouse_website_memory_usage.yaml)
+</details>
+
+<details><summary><strong>Remote API Proxy CPU Usage</strong></summary>
+
+**Entity ID: `sensor.remote_api_proxy_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/remote_api_proxy_cpu_usage.yaml`](entities/template/sensor/addon_stats/remote_api_proxy_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>Remote API Proxy Memory Usage</strong></summary>
+
+**Entity ID: `sensor.remote_api_proxy_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/remote_api_proxy_memory_usage.yaml`](entities/template/sensor/addon_stats/remote_api_proxy_memory_usage.yaml)
+</details>
+
+<details><summary><strong>Tailscale CPU Usage</strong></summary>
+
+**Entity ID: `sensor.tailscale_cpu_usage`**
+
+- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/tailscale_cpu_usage.yaml`](entities/template/sensor/addon_stats/tailscale_cpu_usage.yaml)
+</details>
+
+<details><summary><strong>Tailscale Memory Usage</strong></summary>
+
+**Entity ID: `sensor.tailscale_memory_usage`**
+
+- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/addon_stats/tailscale_memory_usage.yaml`](entities/template/sensor/addon_stats/tailscale_memory_usage.yaml)
 </details>
 
 <details><summary><strong>Terminal & SSH Add-on CPU Usage</strong></summary>

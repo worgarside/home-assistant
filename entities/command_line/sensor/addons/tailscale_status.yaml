@@ -1,0 +1,9 @@
+---
+sensor:
+  command: !secret addon_stats_command_tailscale
+  json_attributes:
+    - data
+  name: Tailscale Status
+  scan_interval: 60
+  unique_id: tailscale_status
+  value_template: "{{ value_json.result }}"

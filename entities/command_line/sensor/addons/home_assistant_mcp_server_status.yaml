@@ -1,0 +1,9 @@
+---
+sensor:
+  command: !secret addon_stats_command_ha_mcp
+  json_attributes:
+    - data
+  name: Home Assistant MCP Server Status
+  scan_interval: 60
+  unique_id: home_assistant_mcp_server_status
+  value_template: "{{ value_json.result }}"

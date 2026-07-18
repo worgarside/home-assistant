@@ -1,0 +1,27 @@
+---
+description: Never run write/mutating git commands; ask the user instead. Read-only git is fine.
+alwaysApply: true
+---
+
+# Git: No Write Commands
+
+Do **not** run any write or mutating git commands. Read-only git is fine.
+
+## Allowed (read-only)
+
+- `git status`, `git diff`, `git log`, `git show`
+- `git branch` (list only), `git rev-parse`, `git merge-base`
+- `git check-ignore`, `git ls-files`, and similar inspect-only commands
+
+## Not allowed without asking
+
+Any command that mutates git state or the working tree, including but not limited to:
+
+- `git add`, `git commit`, `git push`, `git pull`, `git fetch` (if it updates refs you rely on writing)
+- `git checkout`, `git switch`, `git restore`, `git reset`, `git merge`, `git rebase`, `git cherry-pick`
+- `git stash`, `git branch -d/-D/-m`, `git tag` (create/delete), `git clean`
+- Any `git` invocation with flags that write (e.g. `--amend`, hook-skipping flags used to force a write)
+
+## What to do instead
+
+If a write git command is needed, **ask the user**. They will grant permission or discuss as required. Do not attempt workarounds (e.g. shell redirects that stage files, `gh` mutating git state, or MCP git write tools).
