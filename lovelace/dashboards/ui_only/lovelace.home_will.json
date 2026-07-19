@@ -3089,51 +3089,6 @@
                           "color": "#E51919"
                         },
                         {
-                          "name": "Item Warehouse API"
-                        },
-                        {
-                          "slug": "item_warehouse_api"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#E59319"
-                        },
-                        {
-                          "name": "Item Warehouse Website"
-                        },
-                        {
-                          "slug": "item_warehouse_website"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#BCE519"
-                        },
-                        {
-                          "name": "VSCode"
-                        },
-                        {
-                          "slug": "visual_studio_code_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#42E519"
-                        },
-                        {
                           "name": "AppDaemon"
                         },
                         {
@@ -3146,22 +3101,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#19E56B"
-                        },
-                        {
-                          "name": "Terminal & SSH"
-                        },
-                        {
-                          "slug": "terminal_ssh_add_on"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#19E5E5"
+                          "color": "#E5E519"
                         },
                         {
                           "name": "CastSponsorSkip"
@@ -3176,13 +3116,13 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#196BE5"
+                          "color": "#19E519"
                         },
                         {
-                          "name": "YAS-209 Bridge"
+                          "name": "HA MCP Server"
                         },
                         {
-                          "slug": "yas_209_bridge"
+                          "slug": "home_assistant_mcp_server"
                         }
                       ]
                     },
@@ -3191,22 +3131,7 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#4219E5"
-                        },
-                        {
-                          "name": "Remote API proxy"
-                        },
-                        {
-                          "slug": "remote_api_proxy"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "addon_active_entity_template",
-                      "variables": [
-                        {
-                          "color": "#BC19E5"
+                          "color": "#19E5E5"
                         },
                         {
                           "name": "Tailscale"
@@ -3221,13 +3146,28 @@
                       "template": "addon_active_entity_template",
                       "variables": [
                         {
-                          "color": "#E51993"
+                          "color": "#1919E5"
                         },
                         {
-                          "name": "HA MCP Server"
+                          "name": "Terminal & SSH"
                         },
                         {
-                          "slug": "home_assistant_mcp_server"
+                          "slug": "terminal_ssh_add_on"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "addon_active_entity_template",
+                      "variables": [
+                        {
+                          "color": "#E519E5"
+                        },
+                        {
+                          "name": "VSCode"
+                        },
+                        {
+                          "slug": "visual_studio_code_add_on"
                         }
                       ]
                     }
@@ -3238,44 +3178,28 @@
                   "name": "CPU Usage (6 Hours)",
                   "entities": [
                     {
-                      "entity": "sensor.item_warehouse_api_cpu_usage",
+                      "entity": "sensor.appdaemon_cpu_usage",
                       "color": "#E51919"
                     },
                     {
-                      "entity": "sensor.item_warehouse_website_cpu_usage",
-                      "color": "#E59319"
-                    },
-                    {
-                      "entity": "sensor.visual_studio_code_add_on_cpu_usage",
-                      "color": "#BCE519"
-                    },
-                    {
-                      "entity": "sensor.appdaemon_cpu_usage",
-                      "color": "#42E519"
-                    },
-                    {
-                      "entity": "sensor.terminal_ssh_add_on_cpu_usage",
-                      "color": "#19E56B"
-                    },
-                    {
                       "entity": "sensor.castsponsorskip_cpu_usage",
-                      "color": "#19E5E5"
-                    },
-                    {
-                      "entity": "sensor.yas_209_bridge_cpu_usage",
-                      "color": "#196BE5"
-                    },
-                    {
-                      "entity": "sensor.remote_api_proxy_cpu_usage",
-                      "color": "#4219E5"
-                    },
-                    {
-                      "entity": "sensor.tailscale_cpu_usage",
-                      "color": "#BC19E5"
+                      "color": "#E5E519"
                     },
                     {
                       "entity": "sensor.home_assistant_mcp_server_cpu_usage",
-                      "color": "#E51993"
+                      "color": "#19E519"
+                    },
+                    {
+                      "entity": "sensor.tailscale_cpu_usage",
+                      "color": "#19E5E5"
+                    },
+                    {
+                      "entity": "sensor.terminal_ssh_add_on_cpu_usage",
+                      "color": "#1919E5"
+                    },
+                    {
+                      "entity": "sensor.visual_studio_code_add_on_cpu_usage",
+                      "color": "#E519E5"
                     }
                   ],
                   "show": {
@@ -3302,44 +3226,28 @@
                   "name": "Memory Usage (6 Hours)",
                   "entities": [
                     {
-                      "entity": "sensor.item_warehouse_api_memory_usage",
+                      "entity": "sensor.appdaemon_memory_usage",
                       "color": "#E51919"
                     },
                     {
-                      "entity": "sensor.item_warehouse_website_memory_usage",
-                      "color": "#E59319"
-                    },
-                    {
-                      "entity": "sensor.visual_studio_code_add_on_memory_usage",
-                      "color": "#BCE519"
-                    },
-                    {
-                      "entity": "sensor.appdaemon_memory_usage",
-                      "color": "#42E519"
-                    },
-                    {
-                      "entity": "sensor.terminal_ssh_add_on_memory_usage",
-                      "color": "#19E56B"
-                    },
-                    {
                       "entity": "sensor.castsponsorskip_memory_usage",
-                      "color": "#19E5E5"
-                    },
-                    {
-                      "entity": "sensor.yas_209_bridge_memory_usage",
-                      "color": "#196BE5"
-                    },
-                    {
-                      "entity": "sensor.remote_api_proxy_memory_usage",
-                      "color": "#4219E5"
-                    },
-                    {
-                      "entity": "sensor.tailscale_memory_usage",
-                      "color": "#BC19E5"
+                      "color": "#E5E519"
                     },
                     {
                       "entity": "sensor.home_assistant_mcp_server_memory_usage",
-                      "color": "#E51993"
+                      "color": "#19E519"
+                    },
+                    {
+                      "entity": "sensor.tailscale_memory_usage",
+                      "color": "#19E5E5"
+                    },
+                    {
+                      "entity": "sensor.terminal_ssh_add_on_memory_usage",
+                      "color": "#1919E5"
+                    },
+                    {
+                      "entity": "sensor.visual_studio_code_add_on_memory_usage",
+                      "color": "#E519E5"
                     }
                   ],
                   "show": {
