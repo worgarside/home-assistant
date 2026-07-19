@@ -7388,6 +7388,17 @@
                   "features_position": "inline"
                 },
                 {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.air_purifier_quiet_mode_ceiling",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Ceiling",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
                   "type": "tile",
                   "entity": "sensor.air_purifier_area",
                   "name": "Area",
