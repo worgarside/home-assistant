@@ -4603,7 +4603,15 @@
                 {
                   "type": "heading",
                   "heading": "VaultPi System Monitor",
-                  "icon": "mdi:raspberry-pi"
+                  "icon": "mdi:raspberry-pi",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.vaultpi_wg_scripts_version"
+                    }
+                  ]
                 },
                 {
                   "square": false,
