@@ -851,6 +851,106 @@
               }
             }
           }
+        },
+        "proxmox_guest_monitor_template": {
+          "card": {
+            "type": "vertical-stack",
+            "cards": [
+              {
+                "type": "heading",
+                "heading": "[[title]]",
+                "icon": "[[icon]]"
+              },
+              {
+                "type": "grid",
+                "columns": 2,
+                "square": false,
+                "cards": [
+                  {
+                    "type": "custom:mushroom-entity-card",
+                    "entity": "binary_sensor.[[prefix]]_status",
+                    "name": "Status",
+                    "primary_info": "state",
+                    "secondary_info": "name",
+                    "icon_color": "green"
+                  },
+                  {
+                    "type": "custom:mushroom-entity-card",
+                    "entity": "sensor.[[prefix]]_cpu_used",
+                    "name": "CPU",
+                    "primary_info": "state",
+                    "secondary_info": "name",
+                    "icon_color": "red"
+                  },
+                  {
+                    "type": "custom:mushroom-entity-card",
+                    "entity": "sensor.[[prefix]]_memory_used_percentage",
+                    "name": "Memory",
+                    "primary_info": "state",
+                    "secondary_info": "name",
+                    "icon_color": "blue"
+                  },
+                  {
+                    "type": "custom:mushroom-entity-card",
+                    "entity": "sensor.[[prefix]]_disk_used_percentage",
+                    "name": "Disk",
+                    "primary_info": "state",
+                    "secondary_info": "name",
+                    "icon_color": "green"
+                  },
+                  {
+                    "type": "custom:mushroom-template-card",
+                    "entity": "sensor.[[prefix]]_network_in",
+                    "primary": "{% set mb = states('sensor.[[prefix]]_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                    "secondary": "Net In",
+                    "icon": "mdi:download-network-outline",
+                    "icon_color": "cyan"
+                  },
+                  {
+                    "type": "custom:mushroom-template-card",
+                    "entity": "sensor.[[prefix]]_network_out",
+                    "primary": "{% set mb = states('sensor.[[prefix]]_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
+                    "secondary": "Net Out",
+                    "icon": "mdi:upload-network-outline",
+                    "icon_color": "orange"
+                  }
+                ]
+              },
+              {
+                "type": "custom:mini-graph-card",
+                "name": "CPU & Memory (6h)",
+                "entities": [
+                  {
+                    "entity": "sensor.[[prefix]]_cpu_used",
+                    "name": "CPU",
+                    "color": "#F54336"
+                  },
+                  {
+                    "entity": "sensor.[[prefix]]_memory_used_percentage",
+                    "name": "Memory",
+                    "color": "#2096F3"
+                  }
+                ],
+                "show": {
+                  "state": false,
+                  "fill": "fade",
+                  "name": true,
+                  "icon": false,
+                  "labels": true,
+                  "legend": false,
+                  "unit": true
+                },
+                "hours_to_show": 6,
+                "points_per_hour": 12,
+                "lower_bound": 0,
+                "upper_bound": 100,
+                "height": 120,
+                "animate": true,
+                "hour24": true,
+                "line_width": 2
+              }
+            ]
+          }
         }
       },
       "views": [
@@ -1698,7 +1798,27 @@
                   "type": "heading",
                   "heading_style": "title",
                   "heading": "Proxmox VE",
-                  "icon": "mdi:server-network"
+                  "icon": "mdi:server-network",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "binary_sensor.node_cc_status"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.node_cc_cpu_used"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.node_cc_memory_used_percentage"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -1717,23 +1837,41 @@
                   "icon_color": "cyan"
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.node_cc_last_boot",
-                  "name": "Last Boot",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
+                  "primary": "{{ relative_time(as_datetime(states('sensor.node_cc_last_boot'))) }}",
+                  "secondary": "Uptime",
+                  "icon": "mdi:clock-outline",
+                  "icon_color": "green",
+                  "tap_action": {
+                    "action": "more-info"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "entity": "sensor.node_cc_total_updates",
-                  "primary": "{{ states(\"sensor.node_cc_total_updates\") | int(0) }} updates",
-                  "secondary": "Pending Updates",
+                  "entity": "binary_sensor.node_cc_updates_packages",
+                  "primary": "{{ states('sensor.node_cc_total_updates') | int(0) }} updates",
+                  "secondary": "{{ 'Pending updates' if is_state('binary_sensor.node_cc_updates_packages', 'on') else 'Up to date' }}",
                   "icon": "mdi:package-up",
                   "color": "{% set n = states(\"sensor.node_cc_total_updates\") | int(0) %}{% if n == 0 %}green{% elif n <= 10 %}yellow{% elif n <= 50 %}orange{% else %}red{% endif %}",
                   "tap_action": {
                     "action": "more-info"
                   }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.node_cc_swap_used_percentage",
+                  "name": "Swap",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange",
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "sensor.node_cc_swap_used_percentage",
+                      "above": 0
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -1849,7 +1987,21 @@
                   "type": "heading",
                   "heading_style": "title",
                   "heading": "PVE Storage",
-                  "icon": "mdi:nas"
+                  "icon": "mdi:nas",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.storage_cc_pbs_backup_disk_used_percentage"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.storage_cc_data_vmdata_disk_used_percentage"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -1869,19 +2021,19 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.storage_cc_local_lvm_disk_used_percentage",
-                  "name": "Local LVM",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.storage_cc_data_vmdata_disk_used_percentage",
                   "name": "VM Data",
                   "primary_info": "state",
                   "secondary_info": "name",
                   "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.storage_cc_scratch_disk_used_percentage",
+                  "name": "Scratch",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "orange"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -1893,11 +2045,11 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.storage_cc_scratch_disk_used_percentage",
-                  "name": "Scratch",
+                  "entity": "sensor.storage_cc_pbs_vaultpi_disk_used_percentage",
+                  "name": "PBS VaultPi",
                   "primary_info": "state",
                   "secondary_info": "name",
-                  "icon_color": "orange"
+                  "icon_color": "deep-purple"
                 },
                 {
                   "type": "custom:mini-graph-card",
@@ -1929,12 +2081,6 @@
                       "smoothing": true
                     },
                     {
-                      "entity": "sensor.storage_cc_local_lvm_disk_used_percentage",
-                      "name": "Local LVM",
-                      "color": "#4CAF50",
-                      "smoothing": true
-                    },
-                    {
                       "entity": "sensor.storage_cc_data_vmdata_disk_used_percentage",
                       "name": "VM Data",
                       "color": "#2196F3",
@@ -1947,9 +2093,21 @@
                       "smoothing": true
                     },
                     {
+                      "entity": "sensor.storage_cc_pbs_vaultpi_disk_used_percentage",
+                      "name": "PBS VaultPi",
+                      "color": "#673AB7",
+                      "smoothing": true
+                    },
+                    {
                       "entity": "sensor.storage_cc_scratch_disk_used_percentage",
                       "name": "Scratch",
                       "color": "#FF9800",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.storage_cc_scratch_qbt_disk_used_percentage",
+                      "name": "Scratch qBT",
+                      "color": "#E91E63",
                       "smoothing": true
                     }
                   ]
@@ -1976,6 +2134,12 @@
                       "show_state": true,
                       "show_icon": true,
                       "entity": "sensor.qbittorrent_upload_speed"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.storage_cc_scratch_qbt_disk_used_percentage"
                     }
                   ]
                 },
@@ -2048,7 +2212,21 @@
                   "type": "heading",
                   "heading_style": "title",
                   "heading": "NVIDIA GeForce GTX 1660 SUPER",
-                  "icon": "mdi:expansion-card"
+                  "icon": "mdi:expansion-card",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_utilization"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.nvidia_geforce_gtx_1660_super_gpu_temp"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -2103,6 +2281,18 @@
                     "action": "more-info"
                   },
                   "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.nvidia_geforce_gtx_1660_super_fan_speed",
+                  "name": "Fan",
+                  "icon": "mdi:fan",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "cyan",
+                  "tap_action": {
+                    "action": "more-info"
+                  }
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -2213,7 +2403,33 @@
                   "type": "heading",
                   "heading_style": "title",
                   "heading": "Tdarr",
-                  "icon": "mdi:filmstrip-box-multiple"
+                  "icon": "mdi:filmstrip-box-multiple",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.tdarr_node_gpu_worker_fps"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "switch.tdarr_pause_all"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.tdarr_stats_transcodeerrorcount"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.tdarr_stats_healtherrorcount"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -2381,81 +2597,36 @@
                 {
                   "type": "heading",
                   "heading_style": "title",
-                  "heading": "Frigate",
-                  "icon": "mdi:cctv"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_frigate_105_status",
-                  "name": "LXC Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.frigate_status",
-                  "name": "Frigate",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_frigate_105_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_frigate_105_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_frigate_105_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "primary": "{% set s = states(\"sensor.frigate_uptime\") | int(0) %}{% set d = s // 86400 %}{% set h = (s % 86400) // 3600 %}{% set m = (s % 3600) // 60 %}{% if d > 0 %}{{ d }}d {{ h }}h{% elif h > 0 %}{{ h }}h {{ m }}m{% else %}{{ m }}m{% endif %}",
-                  "secondary": "Uptime",
-                  "icon": "mdi:clock-outline",
-                  "color": "teal",
-                  "features_position": "bottom",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "entity": "sensor.frigate_uptime"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "update.frigate_server",
-                  "name": "Update Available",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "amber"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "square": false,
-              "columns": 1,
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading_style": "title",
                   "heading": "Zigbee",
-                  "icon": "mdi:zigbee"
+                  "icon": "mdi:zigbee",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "binary_sensor.zigbee2mqtt_bridge_connection_state_2"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.slzb_06m_zigbee_chip_temp"
+                    },
+                    {
+                      "type": "button",
+                      "icon": "mdi:restart",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "button.press",
+                        "target": {
+                          "entity_id": "button.zigbee2mqtt_bridge_restart"
+                        },
+                        "confirmation": {
+                          "text": "Restart the Zigbee2MQTT bridge?"
+                        }
+                      }
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -5041,6 +5212,39 @@
                   "heading": "Auto-Saver"
                 },
                 {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_amex_auto_saver",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex Auto Saver Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_amex_auto_saver', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_amex_auto_saver",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -5125,6 +5329,171 @@
                 {
                   "type": "heading",
                   "heading": "Finances"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_amex",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_amex', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_amex",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_hsbc",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **HSBC Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_hsbc', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_hsbc",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_santander",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Santander Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_santander', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_santander",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_starling",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_starling', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_starling",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_starling_joint",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling Joint Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_starling_joint', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_starling_joint",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
                 },
                 {
                   "square": false,
@@ -5297,6 +5666,14 @@
                       "entity": "input_text.truelayer_auth_token_starling"
                     }
                   ]
+                }
+              ],
+              "visibility": [
+                {
+                  "condition": "state",
+                  "attribute": "elevation",
+                  "entity": "sun.sun",
+                  "state": "999"
                 }
               ]
             }
@@ -7346,89 +7723,349 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "LXC adguard (100)",
-                  "icon": "mdi:shield-check"
-                },
+                  "heading_style": "title",
+                  "heading": "LXC Containers",
+                  "icon": "mdi:linux"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
                 {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_adguard_100_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_adguard_100_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_adguard_100_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_adguard_100_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_adguard_100_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_adguard_100_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_adguard_100_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_adguard_100_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
                     {
-                      "entity": "sensor.lxc_adguard_100_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
+                      "prefix": "lxc_adguard_100"
                     },
                     {
-                      "entity": "sensor.lxc_adguard_100_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
+                      "title": "LXC adguard (100)"
+                    },
+                    {
+                      "icon": "mdi:shield-check"
                     }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_npmplus_101"
+                    },
+                    {
+                      "title": "LXC npmplus (101)"
+                    },
+                    {
+                      "icon": "mdi:server-network"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_esphome_102"
+                    },
+                    {
+                      "title": "LXC esphome (102)"
+                    },
+                    {
+                      "icon": "mdi:chip"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_immich_103"
+                    },
+                    {
+                      "title": "LXC immich (103)"
+                    },
+                    {
+                      "icon": "mdi:image-multiple"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_wger_104"
+                    },
+                    {
+                      "title": "LXC wger (104)"
+                    },
+                    {
+                      "icon": "mdi:dumbbell"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_qbittorrent_106"
+                    },
+                    {
+                      "title": "LXC qbittorrent (106)"
+                    },
+                    {
+                      "icon": "mdi:cloud-download"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_postgresql_107"
+                    },
+                    {
+                      "title": "LXC postgresql (107)"
+                    },
+                    {
+                      "icon": "mdi:database"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_backplane_108"
+                    },
+                    {
+                      "title": "LXC backplane (108)"
+                    },
+                    {
+                      "icon": "mdi:lan"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_zigbee2mqtt_109"
+                    },
+                    {
+                      "title": "LXC zigbee2mqtt (109)"
+                    },
+                    {
+                      "icon": "mdi:zigbee"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_plex_110"
+                    },
+                    {
+                      "title": "LXC plex (110)"
+                    },
+                    {
+                      "icon": "mdi:plex"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_influxdb_111"
+                    },
+                    {
+                      "title": "LXC influxdb (111)"
+                    },
+                    {
+                      "icon": "mdi:chart-areaspline"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_mqtt_113"
+                    },
+                    {
+                      "title": "LXC mqtt (113)"
+                    },
+                    {
+                      "icon": "mdi:message-fast"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_grafana_114"
+                    },
+                    {
+                      "title": "LXC grafana (114)"
+                    },
+                    {
+                      "icon": "mdi:chart-bar"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_uptimekuma_115"
+                    },
+                    {
+                      "title": "LXC uptimekuma (115)"
+                    },
+                    {
+                      "icon": "mdi:monitor-eye"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_proxmox_backup_server_116"
+                    },
+                    {
+                      "title": "LXC proxmox-backup-server (116)"
+                    },
+                    {
+                      "icon": "mdi:backup-restore"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_openwrt_bastion_121"
+                    },
+                    {
+                      "title": "LXC openwrt-bastion (121)"
+                    },
+                    {
+                      "icon": "mdi:shield-key"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
+                      "prefix": "lxc_frigate_125"
+                    },
+                    {
+                      "title": "LXC frigate (125)"
+                    },
+                    {
+                      "icon": "mdi:cctv"
+                    }
+                  ]
                 }
               ]
             },
@@ -7437,89 +8074,9 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "LXC npmplus (101)",
-                  "icon": "mdi:server-network"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_npmplus_101_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_npmplus_101_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_npmplus_101_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_npmplus_101_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_npmplus_101_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_npmplus_101_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_npmplus_101_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_npmplus_101_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.lxc_npmplus_101_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.lxc_npmplus_101_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
+                  "heading_style": "title",
+                  "heading": "Virtual Machines",
+                  "icon": "mdi:server"
                 }
               ]
             },
@@ -7527,90 +8084,19 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "heading",
-                  "heading": "LXC esphome (102)",
-                  "icon": "mdi:chip"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_esphome_102_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_esphome_102_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_esphome_102_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_esphome_102_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_esphome_102_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_esphome_102_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_esphome_102_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_esphome_102_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
                     {
-                      "entity": "sensor.lxc_esphome_102_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
+                      "prefix": "qemu_authentik_112"
                     },
                     {
-                      "entity": "sensor.lxc_esphome_102_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
+                      "title": "QEMU authentik (112)"
+                    },
+                    {
+                      "icon": "mdi:key-chain"
                     }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
+                  ]
                 }
               ]
             },
@@ -7618,90 +8104,19 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "heading",
-                  "heading": "LXC immich (103)",
-                  "icon": "mdi:image-multiple"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_immich_103_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_immich_103_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_immich_103_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_immich_103_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_immich_103_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_immich_103_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_immich_103_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_immich_103_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
                     {
-                      "entity": "sensor.lxc_immich_103_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
+                      "prefix": "qemu_openwrt_117"
                     },
                     {
-                      "entity": "sensor.lxc_immich_103_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
+                      "title": "QEMU openwrt (117)"
+                    },
+                    {
+                      "icon": "mdi:router-network"
                     }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
+                  ]
                 }
               ]
             },
@@ -7709,90 +8124,19 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "heading",
-                  "heading": "LXC wger (104)",
-                  "icon": "mdi:dumbbell"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_wger_104_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_wger_104_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_wger_104_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_wger_104_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_wger_104_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_wger_104_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_wger_104_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_wger_104_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
                     {
-                      "entity": "sensor.lxc_wger_104_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
+                      "prefix": "qemu_gpu_worker_118"
                     },
                     {
-                      "entity": "sensor.lxc_wger_104_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
+                      "title": "QEMU gpu-worker (118)"
+                    },
+                    {
+                      "icon": "mdi:expansion-card"
                     }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
+                  ]
                 }
               ]
             },
@@ -7800,90 +8144,19 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "heading",
-                  "heading": "LXC frigate (105)",
-                  "icon": "mdi:cctv"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_frigate_105_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_frigate_105_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_frigate_105_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_frigate_105_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_frigate_105_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_frigate_105_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_frigate_105_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_frigate_105_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
                     {
-                      "entity": "sensor.lxc_frigate_105_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
+                      "prefix": "qemu_dockarr_119"
                     },
                     {
-                      "entity": "sensor.lxc_frigate_105_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
+                      "title": "QEMU dockarr (119)"
+                    },
+                    {
+                      "icon": "mdi:docker"
                     }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
+                  ]
                 }
               ]
             },
@@ -7891,1091 +8164,19 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "heading",
-                  "heading": "LXC qbittorrent (106)",
-                  "icon": "mdi:cloud-download"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_qbittorrent_106_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_qbittorrent_106_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_qbittorrent_106_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_qbittorrent_106_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_qbittorrent_106_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_qbittorrent_106_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_qbittorrent_106_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_qbittorrent_106_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
                     {
-                      "entity": "sensor.lxc_qbittorrent_106_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
+                      "prefix": "qemu_haos_123"
                     },
                     {
-                      "entity": "sensor.lxc_qbittorrent_106_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "LXC postgresql (107)",
-                  "icon": "mdi:database"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_postgresql_107_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_postgresql_107_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_postgresql_107_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_postgresql_107_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_postgresql_107_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_postgresql_107_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_postgresql_107_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_postgresql_107_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.lxc_postgresql_107_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
+                      "title": "QEMU haos (123)"
                     },
                     {
-                      "entity": "sensor.lxc_postgresql_107_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
+                      "icon": "mdi:home-assistant"
                     }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "LXC zigbee2mqtt (109)",
-                  "icon": "mdi:zigbee"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_zigbee2mqtt_109_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_zigbee2mqtt_109_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_zigbee2mqtt_109_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_zigbee2mqtt_109_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_zigbee2mqtt_109_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_zigbee2mqtt_109_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_zigbee2mqtt_109_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_zigbee2mqtt_109_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.lxc_zigbee2mqtt_109_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.lxc_zigbee2mqtt_109_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "LXC plex (110)",
-                  "icon": "mdi:plex"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_plex_110_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_plex_110_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_plex_110_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_plex_110_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_plex_110_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_plex_110_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_plex_110_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_plex_110_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.lxc_plex_110_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.lxc_plex_110_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "LXC influxdb (111)",
-                  "icon": "mdi:chart-areaspline"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_influxdb_111_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_influxdb_111_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_influxdb_111_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_influxdb_111_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_influxdb_111_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_influxdb_111_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_influxdb_111_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_influxdb_111_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.lxc_influxdb_111_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.lxc_influxdb_111_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "LXC mqtt (113)",
-                  "icon": "mdi:message-fast"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_mqtt_113_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_mqtt_113_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_mqtt_113_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_mqtt_113_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_mqtt_113_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_mqtt_113_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_mqtt_113_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_mqtt_113_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.lxc_mqtt_113_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.lxc_mqtt_113_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "LXC grafana (114)",
-                  "icon": "mdi:chart-bar"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_grafana_114_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_grafana_114_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_grafana_114_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_grafana_114_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_grafana_114_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_grafana_114_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_grafana_114_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_grafana_114_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.lxc_grafana_114_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.lxc_grafana_114_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "LXC uptimekuma (115)",
-                  "icon": "mdi:monitor-eye"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.lxc_uptimekuma_115_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_uptimekuma_115_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_uptimekuma_115_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.lxc_uptimekuma_115_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_uptimekuma_115_network_in",
-                  "primary": "{% set mb = states('sensor.lxc_uptimekuma_115_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.lxc_uptimekuma_115_network_out",
-                  "primary": "{% set mb = states('sensor.lxc_uptimekuma_115_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.lxc_uptimekuma_115_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.lxc_uptimekuma_115_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "QEMU openwrt (117)",
-                  "icon": "mdi:router-network"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.qemu_openwrt_117_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_openwrt_117_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_openwrt_117_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_openwrt_117_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.qemu_openwrt_117_network_in",
-                  "primary": "{% set mb = states('sensor.qemu_openwrt_117_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.qemu_openwrt_117_network_out",
-                  "primary": "{% set mb = states('sensor.qemu_openwrt_117_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.qemu_openwrt_117_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.qemu_openwrt_117_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "QEMU gpu-worker (118)",
-                  "icon": "mdi:expansion-card"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.qemu_gpu_worker_118_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_gpu_worker_118_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_gpu_worker_118_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_gpu_worker_118_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.qemu_gpu_worker_118_network_in",
-                  "primary": "{% set mb = states('sensor.qemu_gpu_worker_118_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.qemu_gpu_worker_118_network_out",
-                  "primary": "{% set mb = states('sensor.qemu_gpu_worker_118_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.qemu_gpu_worker_118_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.qemu_gpu_worker_118_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "QEMU dockarr (119)",
-                  "icon": "mdi:docker"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.qemu_dockarr_119_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_dockarr_119_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_dockarr_119_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_dockarr_119_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.qemu_dockarr_119_network_in",
-                  "primary": "{% set mb = states('sensor.qemu_dockarr_119_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.qemu_dockarr_119_network_out",
-                  "primary": "{% set mb = states('sensor.qemu_dockarr_119_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.qemu_dockarr_119_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.qemu_dockarr_119_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "QEMU haos (123)",
-                  "icon": "mdi:home-assistant"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "binary_sensor.qemu_haos_123_status",
-                  "name": "Status",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_haos_123_cpu_used",
-                  "name": "CPU",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "red"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_haos_123_memory_used_percentage",
-                  "name": "Memory",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "blue"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "sensor.qemu_haos_123_disk_used_percentage",
-                  "name": "Disk",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "green"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.qemu_haos_123_network_in",
-                  "primary": "{% set mb = states('sensor.qemu_haos_123_network_in') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net In",
-                  "icon": "mdi:download-network-outline",
-                  "icon_color": "cyan"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "sensor.qemu_haos_123_network_out",
-                  "primary": "{% set mb = states('sensor.qemu_haos_123_network_out') | float(0) %}{% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB{% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB{% else %}{{ mb | round(1) }} MB{% endif %}",
-                  "secondary": "Net Out",
-                  "icon": "mdi:upload-network-outline",
-                  "icon_color": "orange"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CPU & Memory (6h)",
-                  "entities": [
-                    {
-                      "entity": "sensor.qemu_haos_123_cpu_used",
-                      "name": "CPU",
-                      "color": "#F54336"
-                    },
-                    {
-                      "entity": "sensor.qemu_haos_123_memory_used_percentage",
-                      "name": "Memory",
-                      "color": "#2096F3"
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "legend": false,
-                    "unit": true
-                  },
-                  "hours_to_show": 6,
-                  "points_per_hour": 12,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "height": 120,
-                  "animate": true,
-                  "hour24": true,
-                  "line_width": 2
+                  ]
                 }
               ]
             }
