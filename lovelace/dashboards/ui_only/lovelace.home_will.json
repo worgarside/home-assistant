@@ -3074,7 +3074,12 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "Apps"
+                  "heading": "Apps",
+                  "heading_style": "title",
+                  "tap_action": {
+                    "action": "url",
+                    "url_path": "/apps"
+                  }
                 },
                 {
                   "square": false,
