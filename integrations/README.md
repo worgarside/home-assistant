@@ -922,7 +922,7 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 
 ```json
 {
-  "quiet_mode_should_be_on": "{{\n  (\n    is_state('sensor.air_purifier_area', 'lounge') and\n    is_state('remote.lounge_streamer', 'on')\n  ) or (\n    is_state('sensor.air_purifier_area', 'dining_area') and\n    is_state('remote.dining_area_chromecast_remote', 'on')\n  )\n}}\n"
+  "quiet_mode_should_be_on": "{{\n  (\n    is_state('sensor.air_purifier_area', 'lounge') and\n    is_state('remote.lounge_streamer', 'on')\n  ) or (\n    is_state('sensor.air_purifier_area', 'dining_area') and\n    is_state('media_player.dining_area_hifi_system_2', 'on')\n  )\n}}\n"
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
@@ -4829,7 +4829,20 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (136)</h3></summary>
+<details><summary><h3>Entities (137)</h3></summary>
+
+<details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
+
+**Entity ID: `input_number.air_purifier_quiet_mode_ceiling`**
+
+- Icon: [`mdi:fan-chevron-up`](https://pictogrammers.com/library/mdi/icon/fan-chevron-up/)
+- Max: 100
+- Min: 25
+- Mode: `slider`
+- Unit Of Measurement: %
+
+File: [`input_number/air_purifier/air_purifier_quiet_mode_ceiling.yaml`](entities/input_number/air_purifier/air_purifier_quiet_mode_ceiling.yaml)
+</details>
 
 <details><summary><strong>Auto-Save Debit Transaction Percentage</strong></summary>
 
@@ -9048,6 +9061,7 @@ File: [`script/dining_area_set_lighting_based_on_occupancy.yaml`](entities/scrip
 {
   "pm2_5": "{{ states('sensor.air_purifier_pm2_5') | float(0) }}",
   "quiet_mode": "{{ states('input_boolean.air_purifier_quiet_mode') | bool(false) }}",
+  "quiet_mode_ceiling": "{{ states('input_number.air_purifier_quiet_mode_ceiling') | int(50) }}",
   "current_speed": "{{ state_attr('fan.air_purifier', 'percentage') | int(0) }}"
 }
 ```
