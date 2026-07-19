@@ -922,7 +922,7 @@ File: [`automation/input_boolean/air_purifier_quiet_mode/state_change.yaml`](ent
 
 ```json
 {
-  "quiet_mode_should_be_on": "{{\n  (\n    is_state('sensor.air_purifier_area', 'lounge') and\n    is_state('remote.lounge_streamer', 'on')\n  ) or (\n    is_state('sensor.air_purifier_area', 'dining_area') and\n    is_state('remote.dining_area_chromecast_remote', 'on')\n  )\n}}\n"
+  "quiet_mode_should_be_on": "{{\n  (\n    is_state('sensor.air_purifier_area', 'lounge') and\n    is_state('remote.lounge_streamer', 'on')\n  ) or (\n    is_state('sensor.air_purifier_area', 'dining_area') and\n    is_state('media_player.dining_area_hifi_system_2', 'on')\n  )\n}}\n"
 }
 ```
 File: [`automation/input_boolean/air_purifier_quiet_mode/toggle.yaml`](entities/automation/input_boolean/air_purifier_quiet_mode/toggle.yaml)
