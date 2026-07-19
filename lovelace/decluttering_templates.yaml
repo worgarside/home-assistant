@@ -1142,3 +1142,84 @@ addon_active_entity_template:
           box-shadow: none;
           border: none;
         }
+
+proxmox_guest_monitor_template:
+  card:
+    type: vertical-stack
+    cards:
+      - type: heading
+        heading: "[[title]]"
+        icon: "[[icon]]"
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.[[prefix]]_status
+            name: Status
+            primary_info: state
+            secondary_info: name
+            icon_color: green
+          - type: custom:mushroom-entity-card
+            entity: sensor.[[prefix]]_cpu_used
+            name: CPU
+            primary_info: state
+            secondary_info: name
+            icon_color: red
+          - type: custom:mushroom-entity-card
+            entity: sensor.[[prefix]]_memory_used_percentage
+            name: Memory
+            primary_info: state
+            secondary_info: name
+            icon_color: blue
+          - type: custom:mushroom-entity-card
+            entity: sensor.[[prefix]]_disk_used_percentage
+            name: Disk
+            primary_info: state
+            secondary_info: name
+            icon_color: green
+          - type: custom:mushroom-template-card
+            entity: sensor.[[prefix]]_network_in
+            primary: >-
+              {% set mb = states('sensor.[[prefix]]_network_in') | float(0) %}
+              {% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB
+              {% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB
+              {% else %}{{ mb | round(1) }} MB{% endif %}
+            secondary: Net In
+            icon: mdi:download-network-outline
+            icon_color: cyan
+          - type: custom:mushroom-template-card
+            entity: sensor.[[prefix]]_network_out
+            primary: >-
+              {% set mb = states('sensor.[[prefix]]_network_out') | float(0) %}
+              {% if mb >= 1000000 %}{{ (mb / 1000000) | round(2) }} TB
+              {% elif mb >= 1000 %}{{ (mb / 1000) | round(2) }} GB
+              {% else %}{{ mb | round(1) }} MB{% endif %}
+            secondary: Net Out
+            icon: mdi:upload-network-outline
+            icon_color: orange
+      - type: custom:mini-graph-card
+        name: CPU & Memory (6h)
+        entities:
+          - entity: sensor.[[prefix]]_cpu_used
+            name: CPU
+            color: "#F54336"
+          - entity: sensor.[[prefix]]_memory_used_percentage
+            name: Memory
+            color: "#2096F3"
+        show:
+          state: false
+          fill: fade
+          name: true
+          icon: false
+          labels: true
+          legend: false
+          unit: true
+        hours_to_show: 6
+        points_per_hour: 12
+        lower_bound: 0
+        upper_bound: 100
+        height: 120
+        animate: true
+        hour24: true
+        line_width: 2

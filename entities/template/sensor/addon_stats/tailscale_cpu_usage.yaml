@@ -1,0 +1,6 @@
+---
+icon: mdi:cpu-32-bit
+name: Tailscale CPU Usage
+state: "{{ state_attr('sensor.tailscale_status', 'data').cpu_percent | default(0) }}"
+unique_id: tailscale_cpu_usage
+unit_of_measurement: "%"

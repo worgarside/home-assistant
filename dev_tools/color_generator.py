@@ -72,13 +72,18 @@ def generate_unique_colors(n: int, *, include_prefix: bool = False) -> list[str]
 
 
 def get_addon_colors() -> None:
-    """Generate colors for the Add-ons."""
+    """Generate colors for the Apps."""
     addon_names = (
+        ("Item Warehouse API", "item_warehouse_api"),
+        ("Item Warehouse Website", "item_warehouse_website"),
+        ("Studio Code Server", "visual_studio_code_add_on"),
         ("AppDaemon", "appdaemon"),
-        ("ESPHome", "esphome_add_on"),
-        ("SponsorBlock", "castsponsorskip"),
         ("Terminal & SSH", "terminal_ssh_add_on"),
-        ("VSCode", "visual_studio_code_add_on"),
+        ("CastSponsorSkip", "castsponsorskip"),
+        ("YAS-209 Bridge", "yas_209_bridge"),
+        ("Remote API proxy", "remote_api_proxy"),
+        ("Tailscale", "tailscale"),
+        ("Home Assistant MCP Server", "home_assistant_mcp_server"),
     )
 
     template = """  - type: custom:decluttering-card
