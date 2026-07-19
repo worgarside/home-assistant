@@ -4747,6 +4747,108 @@
               "cards": [
                 {
                   "type": "heading",
+                  "heading": "Immich Backup",
+                  "icon": "mdi:image-multiple",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.vaultpi_immich_backup_running",
+                      "show_state": true,
+                      "show_icon": true
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.vaultpi_immich_backup_last_result",
+                      "show_state": true,
+                      "show_icon": true
+                    }
+                  ]
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.vaultpi_immich_backup_running",
+                      "name": "Running",
+                      "icon_color": "cyan",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_immich_backup_last_result",
+                      "name": "Last Result",
+                      "icon": "mdi:check-circle-outline",
+                      "icon_color": "green",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_immich_backup_last_success",
+                      "name": "Last Success",
+                      "icon": "mdi:clock-check-outline",
+                      "icon_color": "teal",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_immich_backup_last_failure",
+                      "name": "Last Failure",
+                      "icon": "mdi:clock-alert-outline",
+                      "icon_color": "red",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_immich_backup_duration",
+                      "name": "Duration",
+                      "icon": "mdi:timer-outline",
+                      "icon_color": "amber",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_immich_backup_source_count",
+                      "name": "Source Count",
+                      "icon": "mdi:file-tree",
+                      "icon_color": "indigo",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_disk_usage_mnt_vault_hdd_immich",
+                      "name": "Immich Disk Usage",
+                      "icon": "mdi:harddisk",
+                      "icon_color": "teal",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_immich_backup_last_error",
+                      "name": "Last Error",
+                      "icon": "mdi:alert-circle-outline",
+                      "icon_color": "orange",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
                   "heading": "Backup Storage",
                   "icon": "mdi:harddisk",
                   "badges": [
