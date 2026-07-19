@@ -7385,7 +7385,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (136)</h3></summary>
+<details><summary><h3>Entities (123)</h3></summary>
 
 <details><summary><strong>MtrxPi | Audio Visualiser: Chunk Size</strong></summary>
 
@@ -8187,16 +8187,6 @@ File: [`mqtt/sensor/growpi/pi_stats_start_time.yaml`](entities/mqtt/sensor/growp
 File: [`mqtt/sensor/growpi/uptime.yaml`](entities/mqtt/sensor/growpi/uptime.yaml)
 </details>
 
-<details><summary><strong>MtrxPi Active Git Ref</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_active_git_ref`**
-
-- Icon: [`mdi:source-branch-sync`](https://pictogrammers.com/library/mdi/icon/source-branch-sync/)
-- State Topic: /homeassistant/mtrxpi/stats
-
-File: [`mqtt/sensor/mtrxpi/active_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/active_git_ref.yaml)
-</details>
-
 <details><summary><strong>MtrxPi | Audio Processor: Max Magnitude</strong></summary>
 
 **Entity ID: `sensor.mtrxpi_audio_processor_max_magnitude`**
@@ -8207,49 +8197,6 @@ File: [`mqtt/sensor/mtrxpi/active_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/act
 - Unit Of Measurement:
 
 File: [`mqtt/sensor/mtrxpi/audio_processor/max_magnitude.yaml`](entities/mqtt/sensor/mtrxpi/audio_processor/max_magnitude.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Average Load (15 min)</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_average_load_15_min`**
-
-- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
-- State Class: `measurement`
-- State Topic: /homeassistant/mtrxpi/stats
-
-File: [`mqtt/sensor/mtrxpi/average_load_15_min.yaml`](entities/mqtt/sensor/mtrxpi/average_load_15_min.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Average Load (1 min)</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_average_load_1_min`**
-
-- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
-- State Class: `measurement`
-- State Topic: /homeassistant/mtrxpi/stats
-
-File: [`mqtt/sensor/mtrxpi/average_load_1_min.yaml`](entities/mqtt/sensor/mtrxpi/average_load_1_min.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Average Load (5 min)</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_average_load_5_min`**
-
-- Icon: [`mdi:weight`](https://pictogrammers.com/library/mdi/icon/weight/)
-- State Class: `measurement`
-- State Topic: /homeassistant/mtrxpi/stats
-
-File: [`mqtt/sensor/mtrxpi/average_load_5_min.yaml`](entities/mqtt/sensor/mtrxpi/average_load_5_min.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Boot Time</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_boot_time`**
-
-- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
-- State Topic: /homeassistant/mtrxpi/stats
-
-File: [`mqtt/sensor/mtrxpi/boot_time.yaml`](entities/mqtt/sensor/mtrxpi/boot_time.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Content Queue</strong></summary>
@@ -8263,30 +8210,6 @@ File: [`mqtt/sensor/mtrxpi/boot_time.yaml`](entities/mqtt/sensor/mtrxpi/boot_tim
 File: [`mqtt/sensor/mtrxpi/content_queue.yaml`](entities/mqtt/sensor/mtrxpi/content_queue.yaml)
 </details>
 
-<details><summary><strong>MtrxPi CPU Temperature</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_cpu_temperature`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- State Class: `measurement`
-- State Topic: /homeassistant/mtrxpi/stats
-- Unit Of Measurement: °C
-
-File: [`mqtt/sensor/mtrxpi/cpu_temperature.yaml`](entities/mqtt/sensor/mtrxpi/cpu_temperature.yaml)
-</details>
-
-<details><summary><strong>MtrxPi CPU Usage</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_cpu_usage`**
-
-- Icon: [`mdi:cpu-32-bit`](https://pictogrammers.com/library/mdi/icon/cpu-32-bit/)
-- State Class: `measurement`
-- State Topic: /homeassistant/mtrxpi/stats
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/mtrxpi/cpu_usage.yaml`](entities/mqtt/sensor/mtrxpi/cpu_usage.yaml)
-</details>
-
 <details><summary><strong>MtrxPi | Current Content</strong></summary>
 
 **Entity ID: `sensor.mtrxpi_current_content`**
@@ -8295,60 +8218,6 @@ File: [`mqtt/sensor/mtrxpi/cpu_usage.yaml`](entities/mqtt/sensor/mtrxpi/cpu_usag
 - State Topic: /mtrxpi/matrix/current-content
 
 File: [`mqtt/sensor/mtrxpi/current_content.yaml`](entities/mqtt/sensor/mtrxpi/current_content.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Disk Usage</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_disk_usage`**
-
-- Icon: [`mdi:harddisk`](https://pictogrammers.com/library/mdi/icon/harddisk/)
-- State Class: `measurement`
-- State Topic: /homeassistant/mtrxpi/stats
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/mtrxpi/disk_usage.yaml`](entities/mqtt/sensor/mtrxpi/disk_usage.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Local Git Ref</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_local_git_ref`**
-
-- Icon: [`mdi:source-repository`](https://pictogrammers.com/library/mdi/icon/source-repository/)
-- State Topic: /homeassistant/mtrxpi/stats
-
-File: [`mqtt/sensor/mtrxpi/local_git_ref.yaml`](entities/mqtt/sensor/mtrxpi/local_git_ref.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Local IP Address</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_local_ip_address`**
-
-- Icon: [`mdi:ip-network-outline`](https://pictogrammers.com/library/mdi/icon/ip-network-outline/)
-- State Topic: /homeassistant/mtrxpi/stats
-
-File: [`mqtt/sensor/mtrxpi/local_ip_address.yaml`](entities/mqtt/sensor/mtrxpi/local_ip_address.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Memory Usage</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_memory_usage`**
-
-- Icon: [`mdi:memory`](https://pictogrammers.com/library/mdi/icon/memory/)
-- State Class: `measurement`
-- State Topic: /homeassistant/mtrxpi/stats
-- Unit Of Measurement: %
-
-File: [`mqtt/sensor/mtrxpi/memory_usage.yaml`](entities/mqtt/sensor/mtrxpi/memory_usage.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Pi Stats Start Time</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_pi_stats_start_time`**
-
-- Icon: [`mdi:console`](https://pictogrammers.com/library/mdi/icon/console/)
-- State Topic: /homeassistant/mtrxpi/stats
-
-File: [`mqtt/sensor/mtrxpi/pi_stats_start_time.yaml`](entities/mqtt/sensor/mtrxpi/pi_stats_start_time.yaml)
 </details>
 
 <details><summary><strong>MtrxPi | Snake: Food Count</strong></summary>
@@ -8385,18 +8254,6 @@ File: [`mqtt/sensor/mtrxpi/snake/high_score.yaml`](entities/mqtt/sensor/mtrxpi/s
 - Unit Of Measurement: `cells`
 
 File: [`mqtt/sensor/mtrxpi/snake/snake_length.yaml`](entities/mqtt/sensor/mtrxpi/snake/snake_length.yaml)
-</details>
-
-<details><summary><strong>MtrxPi Uptime</strong></summary>
-
-**Entity ID: `sensor.mtrxpi_uptime`**
-
-- Icon: [`mdi:timer-cog-outline`](https://pictogrammers.com/library/mdi/icon/timer-cog-outline/)
-- State Class: `measurement`
-- State Topic: /homeassistant/mtrxpi/stats
-- Unit Of Measurement: `s`
-
-File: [`mqtt/sensor/mtrxpi/uptime.yaml`](entities/mqtt/sensor/mtrxpi/uptime.yaml)
 </details>
 
 <details><summary><strong>OctoPi Active Git Ref</strong></summary>
