@@ -4749,6 +4749,348 @@
           "cards": []
         },
         {
+          "title": "VaultPi",
+          "path": "vaultpi",
+          "icon": "mdi:safe",
+          "type": "sections",
+          "max_columns": 3,
+          "cards": [],
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "VaultPi System Monitor",
+                  "icon": "mdi:raspberry-pi"
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "name": "Last Boot Time",
+                      "icon": "mdi:console",
+                      "entity": "sensor.vaultpi_boot_time",
+                      "icon_color": "green",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "name": "Pi Stats Start Time",
+                      "icon": "mdi:console",
+                      "entity": "sensor.vaultpi_pi_stats_start_time",
+                      "icon_color": "amber",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_local_ip_address",
+                      "icon_color": "yellow",
+                      "name": "IP Address",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_active_git_ref",
+                      "name": "WG Scripts",
+                      "icon_color": "blue-grey",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "grid",
+                      "columns": 2,
+                      "square": false,
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.vaultpi_cpu_usage",
+                          "icon_color": "red",
+                          "name": "CPU Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.vaultpi_memory_usage",
+                          "icon_color": "blue",
+                          "name": "Memory Usage",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.vaultpi_disk_usage_home",
+                          "icon_color": "green",
+                          "name": "Disk Usage (/home)",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.vaultpi_cpu_temperature",
+                          "icon_color": "orange",
+                          "name": "CPU Temperature",
+                          "icon": "mdi:thermometer-lines",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "6 Hour History",
+                      "entities": [
+                        {
+                          "entity": "sensor.vaultpi_cpu_usage",
+                          "name": "CPU",
+                          "color": "#F54336"
+                        },
+                        {
+                          "entity": "sensor.vaultpi_memory_usage",
+                          "name": "Memory",
+                          "color": "#2096F3"
+                        },
+                        {
+                          "entity": "sensor.vaultpi_disk_usage_home",
+                          "name": "Disk (/home)",
+                          "color": "#4DAF50"
+                        },
+                        {
+                          "entity": "sensor.vaultpi_cpu_temperature",
+                          "name": "CPU Temperature",
+                          "color": "#FF9901",
+                          "y_axis": "secondary"
+                        }
+                      ],
+                      "show": {
+                        "state": false,
+                        "legend": false,
+                        "fill": "fade",
+                        "name": true,
+                        "icon": false,
+                        "labels": true,
+                        "labels_secondary": true,
+                        "unit": true
+                      },
+                      "hours_to_show": 6,
+                      "points_per_hour": 60,
+                      "lower_bound": 0,
+                      "upper_bound": "~50",
+                      "lower_bound_secondary": "~40",
+                      "upper_bound_secondary": "~70",
+                      "height": 150,
+                      "animate": true,
+                      "hour24": true,
+                      "line_width": 2
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Backup Storage",
+                  "icon": "mdi:harddisk",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.vaultpi_disk_usage_mnt_vault_hdd_pbs",
+                      "show_state": true,
+                      "show_icon": true
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.vaultpi_disk_usage_mnt_vault_hdd_immich",
+                      "show_state": true,
+                      "show_icon": true
+                    }
+                  ]
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_disk_usage_mnt_vault_hdd_pbs",
+                      "name": "PBS (/mnt/vault-hdd/pbs)",
+                      "icon": "mdi:backup-restore",
+                      "icon_color": "indigo",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_disk_usage_mnt_vault_hdd_immich",
+                      "name": "Immich (/mnt/vault-hdd/immich)",
+                      "icon": "mdi:image-multiple",
+                      "icon_color": "teal",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.storage_cc_pbs_vaultpi_disk_used_percentage",
+                      "name": "PBS Datastore Used",
+                      "icon": "mdi:database",
+                      "icon_color": "deep-purple",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.storage_cc_pbs_vaultpi_disk_used",
+                      "name": "PBS Datastore Used (GB)",
+                      "icon": "mdi:database-outline",
+                      "icon_color": "purple",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Storage History",
+                  "entities": [
+                    {
+                      "entity": "sensor.vaultpi_disk_usage_mnt_vault_hdd_pbs",
+                      "name": "PBS",
+                      "color": "#3F51B5"
+                    },
+                    {
+                      "entity": "sensor.vaultpi_disk_usage_mnt_vault_hdd_immich",
+                      "name": "Immich",
+                      "color": "#009688"
+                    },
+                    {
+                      "entity": "sensor.storage_cc_pbs_vaultpi_disk_used_percentage",
+                      "name": "PBS Datastore",
+                      "color": "#7E57C2"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": true,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "lower_bound": 0,
+                  "upper_bound": "~100",
+                  "height": 150,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Load Averages",
+                  "icon": "mdi:chart-timeline-variant"
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 3,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_average_load_1_min",
+                      "name": "1 min",
+                      "icon_color": "red",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_average_load_5_min",
+                      "name": "5 min",
+                      "icon_color": "orange",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.vaultpi_average_load_15_min",
+                      "name": "15 min",
+                      "icon_color": "amber",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Load History",
+                  "entities": [
+                    {
+                      "entity": "sensor.vaultpi_average_load_1_min",
+                      "name": "1 min",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.vaultpi_average_load_5_min",
+                      "name": "5 min",
+                      "color": "#FF9901"
+                    },
+                    {
+                      "entity": "sensor.vaultpi_average_load_15_min",
+                      "name": "15 min",
+                      "color": "#FFC107"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": true,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 60,
+                  "lower_bound": 0,
+                  "height": 150,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
           "title": "CRT Pi",
           "path": "crtpi",
           "icon": "mdi:television-classic",
