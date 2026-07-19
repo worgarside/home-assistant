@@ -2611,20 +2611,6 @@
                       "show_state": true,
                       "show_icon": true,
                       "entity": "sensor.slzb_06m_zigbee_chip_temp"
-                    },
-                    {
-                      "type": "button",
-                      "icon": "mdi:restart",
-                      "tap_action": {
-                        "action": "perform-action",
-                        "perform_action": "button.press",
-                        "target": {
-                          "entity_id": "button.zigbee2mqtt_bridge_restart"
-                        },
-                        "confirmation": {
-                          "text": "Restart the Zigbee2MQTT bridge?"
-                        }
-                      }
                     }
                   ]
                 },
