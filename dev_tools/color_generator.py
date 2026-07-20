@@ -38,7 +38,7 @@ def lighten_color(color: str, amount: float) -> str:
 
     try:
         c = mc.cnames[color]
-    except Exception:  # noqa: BLE001
+    except Exception:  # ruff:ignore[blind-except]
         c = color
 
     c = colorsys.rgb_to_hls(*mc.to_rgb(c))
