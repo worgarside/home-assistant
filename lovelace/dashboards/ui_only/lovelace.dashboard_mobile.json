@@ -6382,6 +6382,32 @@
                   "primary": "Auto-purify air ({{ states(\"input_number.will_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.will_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.will_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )"
                 },
                 {
+                  "type": "custom:mushroom-template-card",
+                  "icon": "mdi:timer{% if is_state(\"automation.switch_charging_hub_turn_on_daily\", \"off\") %}-off{% endif %}",
+                  "features_position": "bottom",
+                  "entity": "automation.switch_charging_hub_turn_on_daily",
+                  "area": "will_s_office",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary": "/switch/charging-hub/turn-on-daily",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "color": "{{ iif(states(\"automation.switch_charging_hub_turn_on_daily\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "primary": "Daily auto turn-on"
+                },
+                {
                   "type": "custom:expander-card",
                   "title-card": {
                     "type": "custom:mushroom-template-card",
@@ -7131,6 +7157,24 @@
                     {
                       "condition": "state",
                       "entity": "automation.light_will_s_office_grow_light_on",
+                      "state": "on"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.charging_hub_auto_off_threshold",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "secondary_info": "state",
+                  "primary_info": "name",
+                  "layout": "horizontal",
+                  "name": "Auto-Off Threshold",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "automation.switch_charging_hub_turn_off",
                       "state": "on"
                     }
                   ]
