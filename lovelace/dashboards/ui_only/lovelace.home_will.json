@@ -4681,6 +4681,24 @@
                           "icon": "mdi:thermometer-lines",
                           "primary_info": "state",
                           "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.vaultpi_fan_speed",
+                          "icon": "mdi:fan",
+                          "icon_color": "cyan",
+                          "name": "Fan Speed",
+                          "primary_info": "state",
+                          "secondary_info": "name"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "sensor.vaultpi_fan_pwm",
+                          "icon": "mdi:fan-speed-1",
+                          "icon_color": "deep-purple",
+                          "name": "Fan PWM",
+                          "primary_info": "state",
+                          "secondary_info": "name"
                         }
                       ]
                     },
@@ -4708,6 +4726,11 @@
                           "name": "CPU Temperature",
                           "color": "#FF9901",
                           "y_axis": "secondary"
+                        },
+                        {
+                          "entity": "sensor.vaultpi_fan_pwm",
+                          "name": "Fan PWM",
+                          "color": "#7C4DFF"
                         }
                       ],
                       "show": {
