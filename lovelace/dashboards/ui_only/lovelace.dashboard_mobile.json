@@ -6491,7 +6491,13 @@
                         "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
                       }
                     }
-                  ]
+                  ],
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  }
                 },
                 {
                   "type": "custom:expander-card",
