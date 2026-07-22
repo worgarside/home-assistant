@@ -6037,6 +6037,35 @@
                   ]
                 },
                 {
+                  "type": "custom:mini-graph-card",
+                  "name": "Charging Hub Power",
+                  "show": {
+                    "state": true,
+                    "icon": true,
+                    "name": true,
+                    "legend": true
+                  },
+                  "hours_to_show": 24,
+                  "points_per_hour": 10,
+                  "line_width": 1,
+                  "icon": "mdi:power-plug",
+                  "animate": true,
+                  "height": 150,
+                  "entities": [
+                    {
+                      "entity": "sensor.charging_hub_power",
+                      "name": "Power",
+                      "color": "#04b7d6"
+                    },
+                    {
+                      "entity": "input_number.charging_hub_auto_off_threshold",
+                      "color": "green",
+                      "show_line": false,
+                      "show_legend": false
+                    }
+                  ]
+                },
+                {
                   "type": "custom:mushroom-cover-card",
                   "entity": "cover.will_s_office_blinds",
                   "show_position_control": true,
