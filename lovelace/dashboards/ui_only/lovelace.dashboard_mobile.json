@@ -6411,30 +6411,87 @@
                   "primary": "Auto-purify air ({{ states(\"input_number.will_s_office_fan_purifier_speed\") | int(\"??\") }}% speed when PM2.5 is > {{ states(\"input_number.will_s_office_fan_pm2_5_threshold\") | int(\"??\") }} {{ state_attr(\"input_number.will_s_office_fan_pm2_5_threshold\", \"unit_of_measurement\") }} )"
                 },
                 {
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:timer{% if is_state(\"automation.switch_charging_hub_turn_on_daily\", \"off\") %}-off{% endif %}",
-                  "features_position": "bottom",
-                  "entity": "automation.switch_charging_hub_turn_on_daily",
-                  "area": "will_s_office",
-                  "tap_action": {
-                    "action": "more-info"
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Charging Hub",
+                    "secondary": "2 automations",
+                    "icon": "mdi:power-plug",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
                   },
-                  "secondary": "/switch/charging-hub/turn-on-daily",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "color": "{{ iif(states(\"automation.switch_charging_hub_turn_on_daily\") | bool(false), \"#04b7d6\", \"grey\") }}",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary": "Daily auto turn-on"
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:timer{% if is_state(\"automation.switch_charging_hub_turn_on_daily\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.switch_charging_hub_turn_on_daily",
+                      "area": "will_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/switch/charging-hub/turn-on-daily",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.switch_charging_hub_turn_on_daily\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Daily auto turn-on",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:power-plug{% if is_state(\"automation.switch_charging_hub_turn_off\", \"off\") %}-off{% endif %}",
+                      "features_position": "bottom",
+                      "entity": "automation.switch_charging_hub_turn_off",
+                      "area": "will_s_office",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "secondary": "/switch/charging-hub/turn-off",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      },
+                      "color": "{{ iif(states(\"automation.switch_charging_hub_turn_off\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "double_tap_action": {
+                        "action": "toggle"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "primary": "Auto turn-off when power \u2264 {{ states(\"input_number.charging_hub_auto_off_threshold\") }} {{ state_attr(\"input_number.charging_hub_auto_off_threshold\", \"unit_of_measurement\") }}",
+                      "card_mod": {
+                        "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 2px 8px !important; min-height: 42px !important; }"
+                      }
+                    }
+                  ]
                 },
                 {
                   "type": "custom:expander-card",
