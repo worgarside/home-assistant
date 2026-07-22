@@ -6146,6 +6146,100 @@
                   "state": "999"
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Student Loan",
+                  "icon": "mdi:bank"
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.student_loan_balance",
+                      "icon": "mdi:currency-gbp",
+                      "icon_color": "red",
+                      "name": "Balance",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.student_loan_interest_rate",
+                      "icon": "mdi:percent",
+                      "icon_color": "orange",
+                      "name": "Interest Rate",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.student_loan_interest_added",
+                      "icon": "mdi:trending-up",
+                      "icon_color": "deep-orange",
+                      "name": "Interest Added",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.student_loan_salary_repayments",
+                      "icon": "mdi:bank-transfer-out",
+                      "icon_color": "green",
+                      "name": "Salary Repayments",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.student_loan_direct_repayments",
+                      "icon": "mdi:cash-fast",
+                      "icon_color": "teal",
+                      "name": "Direct Repayments",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.student_loan_current_year",
+                      "icon": "mdi:calendar",
+                      "icon_color": "blue",
+                      "name": "Year",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.student_loan_balance",
+                      "color": "#ef5350"
+                    }
+                  ],
+                  "show": {
+                    "state": true,
+                    "icon": false,
+                    "legend": false,
+                    "labels": true,
+                    "fill": "fade",
+                    "name": false
+                  },
+                  "hours_to_show": 8760,
+                  "points_per_hour": 0.001,
+                  "lower_bound": 0,
+                  "height": 150,
+                  "line_width": 2,
+                  "font_size": 75
+                }
+              ]
             }
           ]
         },
