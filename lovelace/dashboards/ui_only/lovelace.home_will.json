@@ -1864,14 +1864,7 @@
                   "name": "Swap",
                   "primary_info": "state",
                   "secondary_info": "name",
-                  "icon_color": "orange",
-                  "visibility": [
-                    {
-                      "condition": "numeric_state",
-                      "entity": "sensor.node_cc_swap_used_percentage",
-                      "above": 0
-                    }
-                  ]
+                  "icon_color": "orange"
                 },
                 {
                   "type": "custom:mushroom-template-card",
