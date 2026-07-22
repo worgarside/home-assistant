@@ -1499,7 +1499,12 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "Office"
+                  "heading": "Office",
+                  "heading_style": "title",
+                  "tap_action": {
+                    "action": "url",
+                    "url_path": "dashboard-mobile/will-s-office"
+                  }
                 },
                 {
                   "type": "grid",
