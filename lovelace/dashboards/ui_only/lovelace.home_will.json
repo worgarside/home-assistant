@@ -7373,7 +7373,14 @@
                   "name": "Live Ride",
                   "grid_options": {
                     "columns": 12
-                  }
+                  },
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.joroto_exercise_bike_pedalling",
+                      "state": "on"
+                    }
+                  ]
                 }
               ]
             },
