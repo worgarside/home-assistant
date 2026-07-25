@@ -7300,26 +7300,26 @@
                   }
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.joroto_exercise_bike_cadence",
-                  "name": "Cadence",
+                  "primary": "{{ states('sensor.joroto_exercise_bike_cadence') | float(0) | round(1) }} rpm",
+                  "secondary": "Cadence",
                   "icon": "mdi:rotate-360",
-                  "icon_color": "cyan",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "color": "cyan",
+                  "features_position": "bottom",
                   "grid_options": {
                     "columns": 3,
                     "rows": 1
                   }
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.joroto_exercise_bike_speed",
-                  "name": "Speed",
+                  "primary": "{{ states('sensor.joroto_exercise_bike_speed') | float(0) | round(1) }} km/h",
+                  "secondary": "Speed",
                   "icon": "mdi:speedometer",
-                  "icon_color": "blue",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "color": "blue",
+                  "features_position": "bottom",
                   "grid_options": {
                     "columns": 3,
                     "rows": 1
@@ -7339,13 +7339,13 @@
                   }
                 },
                 {
-                  "type": "custom:mushroom-entity-card",
+                  "type": "custom:mushroom-template-card",
                   "entity": "sensor.joroto_exercise_bike_crank_revolutions",
-                  "name": "Cranks",
+                  "primary": "{{ states('sensor.joroto_exercise_bike_crank_revolutions') | int(0) }}",
+                  "secondary": "Cranks",
                   "icon": "mdi:counter",
-                  "icon_color": "purple",
-                  "primary_info": "state",
-                  "secondary_info": "name",
+                  "color": "purple",
+                  "features_position": "bottom",
                   "grid_options": {
                     "columns": 3,
                     "rows": 1
