@@ -7257,6 +7257,131 @@
               "cards": [
                 {
                   "type": "heading",
+                  "heading": "JOROTO Exercise Bike",
+                  "heading_style": "subtitle",
+                  "icon": "mdi:bike",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.joroto_exercise_bike_connected",
+                      "show_state": true
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.joroto_exercise_bike_pedalling",
+                      "show_state": true
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "binary_sensor.joroto_exercise_bike_connected",
+                  "primary": "{{ iif(is_state('binary_sensor.joroto_exercise_bike_connected', 'on'), 'Connected', 'Disconnected') }}",
+                  "secondary": "Bluetooth",
+                  "icon": "mdi:bluetooth{{ iif(is_state('binary_sensor.joroto_exercise_bike_connected', 'on'), '-connect', '-off') }}",
+                  "color": "{{ iif(is_state('binary_sensor.joroto_exercise_bike_connected', 'on'), 'green', 'grey') }}",
+                  "features_position": "bottom",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "binary_sensor.joroto_exercise_bike_pedalling",
+                  "primary": "{{ iif(is_state('binary_sensor.joroto_exercise_bike_pedalling', 'on'), 'Pedalling', 'Idle') }}",
+                  "secondary": "Status",
+                  "icon": "mdi:bike{{ iif(is_state('binary_sensor.joroto_exercise_bike_pedalling', 'on'), '-fast', '') }}",
+                  "color": "{{ iif(is_state('binary_sensor.joroto_exercise_bike_pedalling', 'on'), 'teal', 'grey') }}",
+                  "features_position": "bottom",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.joroto_exercise_bike_cadence",
+                  "name": "Cadence",
+                  "icon": "mdi:rotate-360",
+                  "icon_color": "cyan",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.joroto_exercise_bike_speed",
+                  "name": "Speed",
+                  "icon": "mdi:speedometer",
+                  "icon_color": "blue",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "sensor.joroto_exercise_bike_distance",
+                  "primary": "{{ (states('sensor.joroto_exercise_bike_distance') | float(0) / 1000) | round(2) }} km",
+                  "secondary": "Distance",
+                  "icon": "mdi:map-marker-distance",
+                  "color": "indigo",
+                  "features_position": "bottom",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.joroto_exercise_bike_crank_revolutions",
+                  "name": "Cranks",
+                  "icon": "mdi:counter",
+                  "icon_color": "purple",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "grid_options": {
+                    "columns": 3,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.joroto_exercise_bike_cadence",
+                      "name": "Cadence"
+                    },
+                    {
+                      "entity": "sensor.joroto_exercise_bike_speed",
+                      "name": "Speed"
+                    }
+                  ],
+                  "hours_to_show": 1,
+                  "points_per_hour": 60,
+                  "show": {
+                    "state": true,
+                    "legend": true
+                  },
+                  "lower_bound": 0,
+                  "name": "Live Ride",
+                  "grid_options": {
+                    "columns": 12
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
                   "heading": "Automations",
                   "heading_style": "subtitle",
                   "icon": ""
