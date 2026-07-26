@@ -18,11 +18,6 @@ condition: >-
   }}
 
 variables:
-  habit_name: >-
-    {{
-      states('input_text.vic_habit_binary_10_name')
-      | default('Habit Binary 10')
-    }}
   repeat_interval: >-
     {{
       states('input_number.vic_habit_binary_10_repeat_reminder_interval') | int(60)
@@ -33,15 +28,12 @@ variables:
     }}
 
 action:
-  - action: script.notify_vic
+  - action: script.habit_send_reminder
     data:
-      title: "Habit Reminder"
-      message: "Don't forget to mark {{ habit_name }} as complete!"
-      notification_id: vic_habit_binary_10_reminder
-      url: /home-vic/mood-habits
-      actions:
-        - action: "MARK_HABIT_AS_COMPLETE__VIC__BINARY_10"
-          title: "Mark as Complete"
+      user: vic
+      habit_type: binary
+      habit_number: 10
+      reminder_index: 1
 
   - if: "{{ repeat_reminder_count | int(0) > 0 }}"
     then:
@@ -64,12 +56,9 @@ action:
             - delay:
                 minutes: "{{ repeat_interval | int(60) }}"
 
-            - action: script.notify_vic
+            - action: script.habit_send_reminder
               data:
-                title: "Habit Reminder"
-                message: "Don't forget to mark {{ habit_name }} as complete!"
-                notification_id: vic_habit_binary_10_reminder
-                url: /home-vic/mood-habits
-                actions:
-                  - action: "MARK_HABIT_AS_COMPLETE__VIC__BINARY_10"
-                    title: "Mark as Complete"
+                user: vic
+                habit_type: binary
+                habit_number: 10
+                reminder_index: "{{ repeat.index + 1 }}"

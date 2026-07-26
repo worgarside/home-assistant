@@ -18,11 +18,6 @@ condition: >-
   }}
 
 variables:
-  habit_name: >-
-    {{
-      states('input_text.will_habit_binary_7_name')
-      | default('Habit Binary 7')
-    }}
   repeat_interval: >-
     {{
       states('input_number.will_habit_binary_7_repeat_reminder_interval') | int(60)
@@ -33,15 +28,12 @@ variables:
     }}
 
 action:
-  - action: script.notify_will
+  - action: script.habit_send_reminder
     data:
-      title: "Habit Reminder"
-      message: "Don't forget to mark {{ habit_name }} as complete!"
-      notification_id: will_habit_binary_7_reminder
-      url: /home-will/mood-habits
-      actions:
-        - action: "MARK_HABIT_AS_COMPLETE__WILL__BINARY_7"
-          title: "Mark as Complete"
+      user: will
+      habit_type: binary
+      habit_number: 7
+      reminder_index: 1
 
   - if: "{{ repeat_reminder_count | int(0) > 0 }}"
     then:
@@ -64,12 +56,9 @@ action:
             - delay:
                 minutes: "{{ repeat_interval | int(60) }}"
 
-            - action: script.notify_will
+            - action: script.habit_send_reminder
               data:
-                title: "Habit Reminder"
-                message: "Don't forget to mark {{ habit_name }} as complete!"
-                notification_id: will_habit_binary_7_reminder
-                url: /home-will/mood-habits
-                actions:
-                  - action: "MARK_HABIT_AS_COMPLETE__WILL__BINARY_7"
-                    title: "Mark as Complete"
+                user: will
+                habit_type: binary
+                habit_number: 7
+                reminder_index: "{{ repeat.index + 1 }}"

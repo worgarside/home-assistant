@@ -18,24 +18,22 @@ condition: >-
   }}
 
 variables:
-  habit_name: >-
-    {{ states('input_text.will_habit_countable_2_name')
-    | default('Habit Countable 2') }}
   repeat_interval: >-
-    "{{ states('input_number.will_habit_countable_2_repeat_reminder_interval') | int(60) }}"
+    {{
+      states('input_number.will_habit_countable_2_repeat_reminder_interval') | int(60)
+    }}
   repeat_reminder_count: >-
-    "{{ states('input_number.will_habit_countable_2_repeat_reminder_count') | int(0) }}"
+    {{
+      states('input_number.will_habit_countable_2_repeat_reminder_count') | int(0)
+    }}
 
 action:
-  - action: script.notify_will
+  - action: script.habit_send_reminder
     data:
-      title: "Habit Reminder"
-      message: "Don't forget to track {{ habit_name }}!"
-      notification_id: will_habit_countable_2_reminder
-      url: /home-will/mood-habits
-      actions:
-        - action: "INCREMENT_HABIT__WILL__COUNTABLE_2"
-          title: "Increment"
+      user: will
+      habit_type: countable
+      habit_number: 2
+      reminder_index: 1
 
   - if: "{{ repeat_reminder_count | int(0) > 0 }}"
     then:
@@ -58,12 +56,9 @@ action:
             - delay:
                 minutes: "{{ repeat_interval | int(60) }}"
 
-            - action: script.notify_will
+            - action: script.habit_send_reminder
               data:
-                title: "Habit Reminder"
-                message: "Don't forget to track {{ habit_name }}!"
-                notification_id: will_habit_countable_2_reminder
-                url: /home-will/mood-habits
-                actions:
-                  - action: "INCREMENT_HABIT__WILL__COUNTABLE_2"
-                    title: "Increment"
+                user: will
+                habit_type: countable
+                habit_number: 2
+                reminder_index: "{{ repeat.index + 1 }}"

@@ -225,6 +225,23 @@ initial: 0
 """,
         )
 
+        # Input boolean for AI reminder messages
+        ai_reminder_path = (
+            REPO_PATH
+            / "entities"
+            / "input_boolean"
+            / "habit"
+            / f"{user}_habit_binary_{num}_ai_reminder.yaml"
+        )
+        ai_reminder_path.parent.mkdir(parents=True, exist_ok=True)
+        ai_reminder_path.write_text(
+            f"""---
+name: "{user.title()} | Habit Binary {num}: AI Reminder"
+
+icon: mdi:brain
+""",
+        )
+
         # Reminder automation
         reminder_automation_path = (
             REPO_PATH
@@ -256,11 +273,6 @@ condition: >-
   }}}}
 
 variables:
-  habit_name: >-
-    {{{{
-      states('input_text.XXXUSERXXX_habit_binary_XXXNUMXXX_name')
-      | default('Habit Binary XXXNUMXXX')
-    }}}}
   repeat_interval: >-
     {{{{
       states('input_number.XXXUSERXXX_habit_binary_XXXNUMXXX_repeat_reminder_interval') | int(60)
@@ -271,15 +283,12 @@ variables:
     }}}}
 
 action:
-  - action: script.notify_XXXUSERXXX
+  - action: script.habit_send_reminder
     data:
-      title: "Habit Reminder"
-      message: "Don't forget to mark {{{{ habit_name }}}} as complete!"
-      notification_id: XXXUSERXXX_habit_binary_XXXNUMXXX_reminder
-      url: /home-XXXUSERXXX/mood-habits
-      actions:
-        - action: "MARK_HABIT_AS_COMPLETE__XXXUSERUPPERXXX__BINARY_XXXNUMXXX"
-          title: "Mark as Complete"
+      user: XXXUSERXXX
+      habit_type: binary
+      habit_number: XXXNUMXXX
+      reminder_index: 1
 
   - if: "{{{{ repeat_reminder_count | int(0) > 0 }}}}"
     then:
@@ -302,15 +311,12 @@ action:
             - delay:
                 minutes: "{{{{ repeat_interval | int(60) }}}}"
 
-            - action: script.notify_XXXUSERXXX
+            - action: script.habit_send_reminder
               data:
-                title: "Habit Reminder"
-                message: "Don't forget to mark {{{{ habit_name }}}} as complete!"
-                notification_id: XXXUSERXXX_habit_binary_XXXNUMXXX_reminder
-                url: /home-XXXUSERXXX/mood-habits
-                actions:
-                  - action: "MARK_HABIT_AS_COMPLETE__XXXUSERUPPERXXX__BINARY_XXXNUMXXX"
-                    title: "Mark as Complete"
+                user: XXXUSERXXX
+                habit_type: binary
+                habit_number: XXXNUMXXX
+                reminder_index: "{{{{ repeat.index + 1 }}}}"
 """  # noqa: E501
         reminder_content = (
             reminder_template
@@ -318,7 +324,6 @@ action:
             .replace("}}}}", "}}")
             .replace("XXXJINJA2SETSTARTXXX", "{%")
             .replace("XXXJINJA2SETENDXXX", "%}")
-            .replace("XXXUSERUPPERXXX", user.upper())
             .replace("XXXUSERXXX", user)
             .replace("XXXNUMXXX", str(num))
             .replace("XXXUSERTITLEXXX", user.title())
@@ -595,6 +600,23 @@ initial: 0
 """,
         )
 
+        # Input boolean for AI reminder messages
+        ai_reminder_path = (
+            REPO_PATH
+            / "entities"
+            / "input_boolean"
+            / "habit"
+            / f"{user}_habit_countable_{num}_ai_reminder.yaml"
+        )
+        ai_reminder_path.parent.mkdir(parents=True, exist_ok=True)
+        ai_reminder_path.write_text(
+            f"""---
+name: "{user.title()} | Habit Countable {num}: AI Reminder"
+
+icon: mdi:brain
+""",
+        )
+
         # Reminder automation
         reminder_automation_path = (
             REPO_PATH
@@ -620,30 +642,28 @@ trigger:
     at: input_datetime.XXXUSERXXX_habit_countable_XXXNUMXXX_reminder_time
 
 condition: >-
-  {{
+  {{{{
     states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX') | int(0) == 0 and
     states("input_text.XXXUSERXXX_habit_countable_XXXNUMXXX_name") not in ["", "unknown"]
-  }}
+  }}}}
 
 variables:
-  habit_name: >-
-    {{{{ states('input_text.XXXUSERXXX_habit_countable_XXXNUMXXX_name')
-    | default('Habit Countable XXXNUMXXX') }}}}
   repeat_interval: >-
-    "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_interval') | int(60) }}}}"
+    {{{{
+      states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_interval') | int(60)
+    }}}}
   repeat_reminder_count: >-
-    "{{{{ states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_count') | int(0) }}}}"
+    {{{{
+      states('input_number.XXXUSERXXX_habit_countable_XXXNUMXXX_repeat_reminder_count') | int(0)
+    }}}}
 
 action:
-  - action: script.notify_XXXUSERXXX
+  - action: script.habit_send_reminder
     data:
-      title: "Habit Reminder"
-      message: "Don't forget to track {{{{ habit_name }}}}!"
-      notification_id: XXXUSERXXX_habit_countable_XXXNUMXXX_reminder
-      url: /home-XXXUSERXXX/mood-habits
-      actions:
-        - action: "INCREMENT_HABIT__XXXUSERUPPERXXX__COUNTABLE_XXXNUMXXX"
-          title: "Increment"
+      user: XXXUSERXXX
+      habit_type: countable
+      habit_number: XXXNUMXXX
+      reminder_index: 1
 
   - if: "{{{{ repeat_reminder_count | int(0) > 0 }}}}"
     then:
@@ -666,15 +686,12 @@ action:
             - delay:
                 minutes: "{{{{ repeat_interval | int(60) }}}}"
 
-            - action: script.notify_XXXUSERXXX
+            - action: script.habit_send_reminder
               data:
-                title: "Habit Reminder"
-                message: "Don't forget to track {{{{ habit_name }}}}!"
-                notification_id: XXXUSERXXX_habit_countable_XXXNUMXXX_reminder
-                url: /home-XXXUSERXXX/mood-habits
-                actions:
-                  - action: "INCREMENT_HABIT__XXXUSERUPPERXXX__COUNTABLE_XXXNUMXXX"
-                    title: "Increment"
+                user: XXXUSERXXX
+                habit_type: countable
+                habit_number: XXXNUMXXX
+                reminder_index: "{{{{ repeat.index + 1 }}}}"
 """  # noqa: E501
         reminder_content = (
             reminder_template
@@ -682,7 +699,6 @@ action:
             .replace("}}}}", "}}")
             .replace("XXXJINJA2SETSTARTXXX", "{%")
             .replace("XXXJINJA2SETENDXXX", "%}")
-            .replace("XXXUSERUPPERXXX", user.upper())
             .replace("XXXUSERXXX", user)
             .replace("XXXNUMXXX", str(num))
             .replace("XXXUSERTITLEXXX", user.title())

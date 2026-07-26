@@ -1,0 +1,183 @@
+---
+alias: Habit Send Reminder
+
+description: >-
+  Send a habit reminder notification, optionally generating a dynamic message
+  with ai_task.generate_data when the habit's AI reminder toggle is on.
+
+mode: queued
+
+max: 20
+
+fields:
+  user:
+    description: Habit owner (will or vic)
+    required: true
+    example: will
+    selector:
+      select:
+        options:
+          - will
+          - vic
+
+  habit_type:
+    description: Habit type (binary or countable)
+    required: true
+    example: binary
+    selector:
+      select:
+        options:
+          - binary
+          - countable
+
+  habit_number:
+    description: Habit slot number
+    required: true
+    example: 1
+    selector:
+      number:
+        min: 1
+        max: 100
+        mode: box
+
+  reminder_index:
+    description: >-
+      Reminder attempt index (1 = initial, 2+ = repeats). Defaults to 1.
+    required: false
+    default: 1
+    selector:
+      number:
+        min: 1
+        max: 1000
+        mode: box
+
+variables:
+  user: "{{ user | lower }}"
+  habit_type: "{{ habit_type | lower }}"
+  habit_number: "{{ habit_number | int }}"
+  reminder_index: "{{ reminder_index | default(1) | int(1) }}"
+  habit_prefix: "{{ user }}_habit_{{ habit_type }}_{{ habit_number }}"
+  habit_name_entity: "input_text.{{ habit_prefix }}_name"
+  ai_toggle_entity: "input_boolean.{{ habit_prefix }}_ai_reminder"
+  streak_entity: "sensor.{{ habit_prefix }}_streak"
+  mood_entity: "input_select.{{ user }}_mood_today"
+  mood_note_entity: "input_text.{{ user }}_mood_note"
+  habit_name: >-
+    {{
+      states(habit_name_entity)
+      | default('Habit ' ~ (habit_type | title) ~ ' ' ~ habit_number)
+    }}
+  streak_days: >-
+    {{
+      states(streak_entity)
+      if has_value(streak_entity)
+      else 'unavailable'
+    }}
+  mood_today: >-
+    {{
+      states(mood_entity)
+      if has_value(mood_entity)
+      else 'unavailable'
+    }}
+  mood_note: >-
+    {{
+      states(mood_note_entity)
+      if has_value(mood_note_entity)
+        and states(mood_note_entity) not in ['', 'unknown', 'unavailable']
+      else ''
+    }}
+  habit_state: >-
+    {{
+      states('input_boolean.' ~ habit_prefix)
+      if habit_type == 'binary'
+      else states('input_number.' ~ habit_prefix) | int(0)
+    }}
+  fallback_message: >-
+    {{
+      "Don't forget to mark " ~ habit_name ~ " as complete!"
+      if habit_type == 'binary'
+      else "Don't forget to track " ~ habit_name ~ "!"
+    }}
+  notification_id: "{{ habit_prefix }}_reminder"
+  notification_url: "/home-{{ user }}/mood-habits"
+  action_id: >-
+    {{
+      "MARK_HABIT_AS_COMPLETE__" ~ (user | upper) ~ "__BINARY_" ~ habit_number
+      if habit_type == 'binary'
+      else "INCREMENT_HABIT__" ~ (user | upper) ~ "__COUNTABLE_" ~ habit_number
+    }}
+  action_title: >-
+    {{ 'Mark as Complete' if habit_type == 'binary' else 'Increment' }}
+  use_ai: "{{ is_state(ai_toggle_entity, 'on') }}"
+  generated_message: ""
+
+sequence:
+  - if: "{{ use_ai }}"
+    then:
+      - alias: Generate AI reminder message
+        continue_on_error: true
+        action: ai_task.generate_data
+        response_variable: ai_result
+        data:
+          task_name: "habit reminder {{ habit_prefix }}"
+          instructions: >-
+            Write one short habit reminder notification message.
+
+            Tone: neutral, positive, and encouraging. Do not be sarcastic,
+            preachy, or overly casual. Do not invent facts.
+
+            Requirements:
+            - Return only the message text via the structured field
+            - One or two short sentences maximum
+            - Mention the habit name naturally
+            - You may mention streak, mood, or that this is a repeat
+              reminder when that context is useful
+            - Do not include markdown, emojis, quotes, or a title
+
+            Context:
+            - User: {{ user | title }}
+            - Habit name: {{ habit_name }}
+            - Habit type: {{ habit_type }}
+            - Habit state today: {{ habit_state }}
+            - Current streak (days): {{ streak_days }}
+            - Mood today: {{ mood_today }}
+            - Mood note: {{ mood_note if mood_note else 'none' }}
+            - Local time: {{ now().strftime('%H:%M') }}
+            - Reminder attempt: {{ reminder_index }}
+              (1 is the first reminder; higher means a repeat)
+          structure:
+            message:
+              description: >-
+                A concise neutral encouraging habit reminder message
+              required: true
+              selector:
+                text:
+      - variables:
+          generated_message: >-
+            {{
+              ai_result.data.message
+              if ai_result is defined
+                and ai_result.data is defined
+                and ai_result.data.message is defined
+                and (ai_result.data.message | string | trim) != ''
+              else ''
+            }}
+
+  - variables:
+      message: >-
+        {{
+          generated_message
+          if generated_message | string | trim != ''
+          else fallback_message
+        }}
+
+  - alias: Send habit reminder notification
+    action: "script.notify_{{ user }}"
+    data:
+      title: "Habit Reminder"
+      message: "{{ message }}"
+      notification_id: "{{ notification_id }}"
+      url: "{{ notification_url }}"
+      actions:
+        - action: "{{ action_id }}"
+          title: "{{ action_title }}"
