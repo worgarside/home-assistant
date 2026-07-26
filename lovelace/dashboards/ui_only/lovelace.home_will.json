@@ -845,6 +845,26 @@
                       "features_position": "inline",
                       "entity": "input_number.[[user]]_habit_binary_[[n]]_repeat_reminder_count",
                       "primary": "Max. reminder count"
+                    },
+                    {
+                      "features": [
+                        {
+                          "type": "toggle"
+                        }
+                      ],
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:brain",
+                      "features_position": "inline",
+                      "entity": "input_boolean.[[user]]_habit_binary_[[n]]_ai_reminder",
+                      "primary": "AI reminder message",
+                      "secondary": "Generate dynamic notification text",
+                      "color": "{{ iif(is_state(\"input_boolean.[[user]]_habit_binary_[[n]]_ai_reminder\", \"on\"), \"purple\", \"grey\") }}",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      }
                     }
                   ]
                 }
