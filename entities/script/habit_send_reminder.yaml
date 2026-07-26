@@ -117,10 +117,9 @@ sequence:
       - alias: Generate AI reminder message
         continue_on_error: true
         action: ai_task.generate_data
-        target:
-          entity_id: ai_task.habit_reminder_ai
         response_variable: ai_result
         data:
+          entity_id: ai_task.habit_reminder_ai
           task_name: "habit reminder {{ habit_prefix }}"
           instructions: >-
             Write one short habit reminder notification message.
