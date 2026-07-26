@@ -128,7 +128,7 @@ sequence:
             preachy, or overly casual. Do not invent facts.
 
             Requirements:
-            - Return only the message text via the structured field
+            - Return only the notification message text
             - One or two short sentences maximum
             - Mention the habit name naturally
             - You may mention streak, mood, or that this is a repeat
@@ -146,21 +146,13 @@ sequence:
             - Local time: {{ now().strftime('%H:%M') }}
             - Reminder attempt: {{ reminder_index }}
               (1 is the first reminder; higher means a repeat)
-          structure:
-            message:
-              description: >-
-                A concise neutral encouraging habit reminder message
-              required: true
-              selector:
-                text:
       - variables:
           generated_message: >-
             {{
-              ai_result.data.message
+              ai_result.data
               if ai_result is defined
                 and ai_result.data is defined
-                and ai_result.data.message is defined
-                and (ai_result.data.message | string | trim) != ''
+                and (ai_result.data | string | trim) != ''
               else ''
             }}
 
