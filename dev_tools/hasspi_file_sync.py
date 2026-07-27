@@ -193,7 +193,7 @@ class FileSyncHandler(FileSystemEventHandler):
         if self._last_sftp_use < int(time()) - 60:
             LOGGER.debug(
                 "Checking SFTP connection. Last use: %s",
-                datetime.fromtimestamp(self._last_sftp_use).isoformat(),  # noqa: DTZ006
+                datetime.fromtimestamp(self._last_sftp_use).isoformat(),  # ruff:ignore[call-datetime-fromtimestamp]
             )
             try:
                 self._sftp_client.stat(".")
@@ -215,7 +215,7 @@ def create_ssh_client() -> SSHClient:
         SSHClient: The SSH client.
     """
     ssh_client = SSHClient()
-    ssh_client.set_missing_host_key_policy(AutoAddPolicy())  # noqa: S507
+    ssh_client.set_missing_host_key_policy(AutoAddPolicy())  # ruff:ignore[ssh-no-host-key-verification]
 
     ssh_config = SSHConfig.from_path(Path("~/.ssh/config").expanduser().as_posix())
 
