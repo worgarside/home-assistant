@@ -8800,190 +8800,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Cursor Ultra",
-                  "icon": "mdi:cursor-default-click",
-                  "badges": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.cursor_usage_status",
-                      "show_state": true
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.cursor_cycle_days_remaining",
-                      "show_state": true
-                    }
-                  ]
-                },
-                {
-                  "type": "gauge",
-                  "entity": "sensor.cursor_included_usage_percent",
-                  "name": "Included Usage",
-                  "min": 0,
-                  "max": 100,
-                  "needle": true,
-                  "severity": [
-                    {
-                      "value": 50,
-                      "color": "green"
-                    },
-                    {
-                      "value": 75,
-                      "color": "yellow"
-                    },
-                    {
-                      "value": 90,
-                      "color": "orange"
-                    },
-                    {
-                      "value": 100,
-                      "color": "red"
-                    }
-                  ]
-                },
-                {
-                  "square": false,
-                  "type": "grid",
-                  "columns": 2,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.cursor_included_usage_used",
-                      "name": "Used",
-                      "icon": "mdi:currency-usd",
-                      "icon_color": "orange",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.cursor_included_usage_remaining",
-                      "name": "Remaining",
-                      "icon": "mdi:currency-usd-off",
-                      "icon_color": "green",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.cursor_usage_pace",
-                      "name": "Pace",
-                      "icon": "mdi:speedometer",
-                      "icon_color": "blue",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.cursor_projected_cycle_usage",
-                      "name": "Projected",
-                      "icon": "mdi:chart-timeline-variant-shimmer",
-                      "icon_color": "purple",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.cursor_auto_usage_percent",
-                      "name": "Auto %",
-                      "icon": "mdi:robot",
-                      "icon_color": "teal",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.cursor_api_usage_percent",
-                      "name": "API %",
-                      "icon": "mdi:api",
-                      "icon_color": "cyan",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.cursor_session_token_expiry",
-                      "name": "Token Expiry",
-                      "icon": "mdi:key-variant",
-                      "icon_color": "amber",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.cursor_cycle_percent_elapsed",
-                      "name": "Cycle Elapsed",
-                      "icon": "mdi:progress-clock",
-                      "icon_color": "indigo",
-                      "primary_info": "state",
-                      "secondary_info": "name"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "Included Usage %",
-                  "entities": [
-                    {
-                      "entity": "sensor.cursor_included_usage_percent",
-                      "name": "Included",
-                      "color": "#2196F3"
-                    },
-                    {
-                      "entity": "sensor.cursor_cycle_percent_elapsed",
-                      "name": "Cycle Elapsed",
-                      "color": "#9E9E9E",
-                      "show_fill": false
-                    }
-                  ],
-                  "hours_to_show": 720,
-                  "points_per_hour": 1,
-                  "line_width": 2,
-                  "lower_bound": 0,
-                  "upper_bound": 100,
-                  "show": {
-                    "state": true,
-                    "icon": false,
-                    "legend": true,
-                    "labels": true,
-                    "fill": "fade",
-                    "name": true
-                  },
-                  "height": 150
-                },
-                {
-                  "type": "markdown",
-                  "title": "Spend by Model",
-                  "content": "{% set models = state_attr('sensor.cursor_usage_by_model', 'models') or {} %}\n{% set ns = namespace(rows=[]) %}\n{% for name, data in models.items() %}\n  {% set ns.rows = ns.rows + [(data.total_cents | float(0), name)] %}\n{% endfor %}\n{% for cents, name in ns.rows | sort(reverse=true) %}\n- **{{ '%.2f'|format(cents / 100) }}** \u2014 `{{ name }}`\n{% endfor %}"
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.cursor_usage_status",
-                      "name": "Status"
-                    },
-                    {
-                      "entity": "sensor.cursor_billing_cycle_start",
-                      "name": "Cycle Start"
-                    },
-                    {
-                      "entity": "sensor.cursor_billing_cycle_end",
-                      "name": "Cycle End"
-                    },
-                    {
-                      "entity": "sensor.cursor_included_usage_limit",
-                      "name": "Included Limit"
-                    }
-                  ]
-                }
-              ]
             }
           ],
           "cards": [],
@@ -9487,6 +9303,199 @@
                 {
                   "type": "custom:threshold-alerts-card",
                   "title": "Threshold Alerts"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tooling",
+          "path": "tooling",
+          "icon": "mdi:toolbox-outline",
+          "type": "sections",
+          "max_columns": 3,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Cursor Ultra",
+                  "icon": "mdi:cursor-default-click",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.cursor_usage_status",
+                      "show_state": true
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.cursor_cycle_days_remaining",
+                      "show_state": true
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.cursor_included_usage_percent",
+                  "name": "Included Usage",
+                  "min": 0,
+                  "max": 100,
+                  "needle": true,
+                  "severity": [
+                    {
+                      "value": 50,
+                      "color": "green"
+                    },
+                    {
+                      "value": 75,
+                      "color": "yellow"
+                    },
+                    {
+                      "value": 90,
+                      "color": "orange"
+                    },
+                    {
+                      "value": 100,
+                      "color": "red"
+                    }
+                  ]
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "columns": 2,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.cursor_included_usage_used",
+                      "name": "Used",
+                      "icon": "mdi:currency-usd",
+                      "icon_color": "orange",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.cursor_included_usage_remaining",
+                      "name": "Remaining",
+                      "icon": "mdi:currency-usd-off",
+                      "icon_color": "green",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.cursor_usage_pace",
+                      "name": "Pace",
+                      "icon": "mdi:speedometer",
+                      "icon_color": "blue",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.cursor_projected_cycle_usage",
+                      "name": "Projected",
+                      "icon": "mdi:chart-timeline-variant-shimmer",
+                      "icon_color": "purple",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.cursor_auto_usage_percent",
+                      "name": "Auto %",
+                      "icon": "mdi:robot",
+                      "icon_color": "teal",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.cursor_api_usage_percent",
+                      "name": "API %",
+                      "icon": "mdi:api",
+                      "icon_color": "cyan",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.cursor_session_token_expiry",
+                      "name": "Token Expiry",
+                      "icon": "mdi:key-variant",
+                      "icon_color": "amber",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.cursor_cycle_percent_elapsed",
+                      "name": "Cycle Elapsed",
+                      "icon": "mdi:progress-clock",
+                      "icon_color": "indigo",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Included Usage %",
+                  "entities": [
+                    {
+                      "entity": "sensor.cursor_included_usage_percent",
+                      "name": "Included",
+                      "color": "#2196F3"
+                    },
+                    {
+                      "entity": "sensor.cursor_cycle_percent_elapsed",
+                      "name": "Cycle Elapsed",
+                      "color": "#9E9E9E",
+                      "show_fill": false
+                    }
+                  ],
+                  "hours_to_show": 720,
+                  "points_per_hour": 1,
+                  "line_width": 2,
+                  "lower_bound": 0,
+                  "upper_bound": 100,
+                  "show": {
+                    "state": true,
+                    "icon": false,
+                    "legend": true,
+                    "labels": true,
+                    "fill": "fade",
+                    "name": true
+                  },
+                  "height": 150
+                },
+                {
+                  "type": "markdown",
+                  "title": "Spend by Model",
+                  "content": "{% set models = state_attr('sensor.cursor_usage_by_model', 'models') or {} %}\n{% set ns = namespace(rows=[]) %}\n{% for name, data in models.items() %}\n  {% set ns.rows = ns.rows + [(data.total_cents | float(0), name)] %}\n{% endfor %}\n{% for cents, name in ns.rows | sort(reverse=true) %}\n- **{{ '%.2f'|format(cents / 100) }}** \u2014 `{{ name }}`\n{% endfor %}"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.cursor_usage_status",
+                      "name": "Status"
+                    },
+                    {
+                      "entity": "sensor.cursor_billing_cycle_start",
+                      "name": "Cycle Start"
+                    },
+                    {
+                      "entity": "sensor.cursor_billing_cycle_end",
+                      "name": "Cycle End"
+                    },
+                    {
+                      "entity": "sensor.cursor_included_usage_limit",
+                      "name": "Included Limit"
+                    }
+                  ]
                 }
               ]
             }
