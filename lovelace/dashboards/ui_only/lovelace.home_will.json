@@ -8163,9 +8163,9 @@
                           {
                             "type": "custom:mushroom-template-card",
                             "icon": "mdi:bell-outline",
-                            "primary": "Daily Reminder @ {{ states('time.will_mood_reminder_time')[:5] }}",
+                            "primary": "{% if is_state('switch.will_mood_reminders', 'on') %}Daily Reminder @ {{ states('time.will_mood_reminder_time')[:5] }}{% else %}Reminders off{% endif %}",
                             "entity": "time.will_mood_reminder_time",
-                            "color": "orange",
+                            "color": "{{ 'orange' if is_state('switch.will_mood_reminders', 'on') else 'disabled' }}",
                             "tap_action": {
                               "action": "more-info"
                             },
@@ -8177,6 +8177,10 @@
                             "type": "entities",
                             "show_header_toggle": false,
                             "entities": [
+                              {
+                                "entity": "switch.will_mood_reminders",
+                                "name": "Reminders enabled"
+                              },
                               {
                                 "entity": "time.will_mood_reminder_time",
                                 "name": "Reminder Time"
