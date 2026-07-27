@@ -8017,7 +8017,79 @@
                     "action": "none"
                   },
                   "hold_action": {
-                    "action": "more-info"
+                    "action": "perform-action",
+                    "perform_action": "browser_mod.popup",
+                    "target": {},
+                    "data": {
+                      "dismissable": true,
+                      "autoclose": false,
+                      "content": {
+                        "type": "vertical-stack",
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-template-card",
+                            "icon": "mdi:bell-outline",
+                            "primary": "Daily Reminder @ {{ states('time.will_mood_reminder_time')[:5] }}",
+                            "entity": "time.will_mood_reminder_time",
+                            "color": "orange",
+                            "tap_action": {
+                              "action": "more-info"
+                            },
+                            "icon_tap_action": {
+                              "action": "more-info"
+                            }
+                          },
+                          {
+                            "type": "entities",
+                            "show_header_toggle": false,
+                            "entities": [
+                              {
+                                "entity": "time.will_mood_reminder_time",
+                                "name": "Reminder Time"
+                              },
+                              {
+                                "entity": "datetime.will_mood_next_reminder",
+                                "name": "Next Reminder"
+                              },
+                              {
+                                "entity": "number.will_mood_repeat_count",
+                                "name": "Max. reminder count"
+                              },
+                              {
+                                "entity": "number.will_mood_repeat_interval",
+                                "name": "Reminder interval (minutes)"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "custom:mushroom-template-card",
+                            "features": [
+                              {
+                                "type": "numeric-input",
+                                "style": "buttons"
+                              }
+                            ],
+                            "features_position": "inline",
+                            "entity": "number.will_mood_repeat_interval",
+                            "icon": "mdi:clock",
+                            "primary": "Reminder interval (minutes)"
+                          },
+                          {
+                            "type": "custom:mushroom-template-card",
+                            "features": [
+                              {
+                                "type": "numeric-input",
+                                "style": "buttons"
+                              }
+                            ],
+                            "features_position": "inline",
+                            "entity": "number.will_mood_repeat_count",
+                            "icon": "mdi:counter",
+                            "primary": "Max. reminder count"
+                          }
+                        ]
+                      }
+                    }
                   },
                   "icon_tap_action": {
                     "action": "none"
