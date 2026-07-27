@@ -29,6 +29,7 @@ variables:
 
 action:
   - action: script.habit_send_reminder
+    continue_on_error: true
     data:
       user: will
       habit_type: countable
@@ -57,6 +58,7 @@ action:
                 minutes: "{{ repeat_interval | int(60) }}"
 
             - action: script.habit_send_reminder
+              continue_on_error: true
               data:
                 user: will
                 habit_type: countable

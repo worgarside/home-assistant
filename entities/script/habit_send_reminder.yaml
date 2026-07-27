@@ -5,7 +5,7 @@ description: >-
   Send a habit reminder notification, optionally generating a dynamic message
   with ai_task.generate_data when the habit's AI reminder toggle is on.
 
-mode: queued
+mode: parallel
 
 max: 20
 
@@ -60,37 +60,10 @@ variables:
   habit_name_entity: "input_text.{{ habit_prefix }}_name"
   ai_toggle_entity: "input_boolean.{{ habit_prefix }}_ai_reminder"
   streak_entity: "sensor.{{ habit_prefix }}_streak"
-  mood_entity: "input_select.{{ user }}_mood_today"
-  mood_note_entity: "input_text.{{ user }}_mood_note"
   habit_name: >-
     {{
       states(habit_name_entity)
       | default('Habit ' ~ (habit_type | title) ~ ' ' ~ habit_number)
-    }}
-  streak_days: >-
-    {{
-      states(streak_entity)
-      if has_value(streak_entity)
-      else 'unavailable'
-    }}
-  mood_today: >-
-    {{
-      states(mood_entity)
-      if has_value(mood_entity)
-      else 'unavailable'
-    }}
-  mood_note: >-
-    {{
-      states(mood_note_entity)
-      if has_value(mood_note_entity)
-        and states(mood_note_entity) not in ['', 'unknown', 'unavailable']
-      else ''
-    }}
-  habit_state: >-
-    {{
-      states('input_boolean.' ~ habit_prefix)
-      if habit_type == 'binary'
-      else states('input_number.' ~ habit_prefix) | int(0)
     }}
   fallback_message: >-
     {{
@@ -110,34 +83,187 @@ variables:
     {{ 'Mark as Complete' if habit_type == 'binary' else 'Increment' }}
   use_ai: "{{ is_state(ai_toggle_entity, 'on') }}"
   generated_message: ""
-  person_entity: "person.{{ user }}"
-  person_state: "{{ states(person_entity) }}"
-  location_category: >-
-    {% set in_zones = state_attr(person_entity, 'in_zones') | default([], true) %}
-    {% set home_zones = label_entities('habit_context_home') | default([]) %}
-    {% set work_zones = label_entities('habit_context_work') | default([]) %}
-    {% set family_zones = label_entities('habit_context_family') | default([]) %}
-    {% if in_zones | select('in', home_zones) | list | count > 0 %}
-      home
-    {% elif in_zones | select('in', work_zones) | list | count > 0 %}
-      work
-    {% elif in_zones | select('in', family_zones) | list | count > 0 %}
-      family location
-    {% elif is_state('binary_sensor.' ~ user ~ '_at_work', 'on') %}
-      work
-    {% elif person_state == 'home' %}
-      home
-    {% elif person_state == 'not_home' %}
-      away from known zones
-    {% elif person_state not in ['unknown', 'unavailable', ''] %}
-      known but unclassified location
-    {% else %}
-      unknown
-    {% endif %}
 
 sequence:
   - if: "{{ use_ai }}"
     then:
+      - variables:
+          mood_entity: "input_select.{{ user }}_mood_today"
+          mood_note_entity: "input_text.{{ user }}_mood_note"
+          person_entity: "person.{{ user }}"
+          calendar_entities: >-
+            {{ label_entities('habit_context_calendar_' ~ user) | default([], true) }}
+          activity_entity: >-
+            {{
+              'sensor.will_s_pixel_6_pro_detected_activity'
+              if user == 'will'
+              else 'sensor.vics_iphone_activity'
+            }}
+          steps_entity: >-
+            {{
+              'sensor.will_s_pixel_6_pro_daily_steps'
+              if user == 'will'
+              else 'sensor.vics_iphone_steps'
+            }}
+          streak_days: >-
+            {{ states(streak_entity) if has_value(streak_entity) else '' }}
+          days_since_completion: >-
+            {% set days = state_attr(streak_entity, 'days_since_completion') %}
+            {{ days if days is not none and days | int(-1) >= 0 else '' }}
+          mood_today: >-
+            {{ states(mood_entity) if has_value(mood_entity) else '' }}
+          mood_note: >-
+            {{
+              states(mood_note_entity)
+              if has_value(mood_note_entity)
+                and states(mood_note_entity) not in ['', 'unknown', 'unavailable']
+              else ''
+            }}
+          location_category: >-
+            {% set person_state = states(person_entity) %}
+            {% set in_zones = state_attr(person_entity, 'in_zones') | default([], true) %}
+            {% set home_zones = label_entities('habit_context_home') | default([]) %}
+            {% set work_zones = label_entities('habit_context_work') | default([]) %}
+            {% set family_zones = label_entities('habit_context_family') | default([]) %}
+            {% if in_zones | select('in', home_zones) | list | count > 0 %}
+              home
+            {% elif in_zones | select('in', work_zones) | list | count > 0 %}
+              work
+            {% elif in_zones | select('in', family_zones) | list | count > 0 %}
+              family location
+            {% elif is_state('binary_sensor.' ~ user ~ '_at_work', 'on') %}
+              work
+            {% elif person_state == 'home' %}
+              home
+            {% elif person_state == 'not_home' %}
+              away from known zones
+            {% elif person_state not in ['unknown', 'unavailable', ''] %}
+              known but unclassified location
+            {% else %}
+              unknown
+            {% endif %}
+          workday: "{{ 'yes' if is_state('binary_sensor.workday', 'on') else 'no' }}"
+          activity_state: >-
+            {{ states(activity_entity) if has_value(activity_entity) else '' }}
+          steps_today: >-
+            {{ states(steps_entity) | int if has_value(steps_entity) else '' }}
+          bike_active_minutes: >-
+            {{
+              (
+                states('sensor.joroto_exercise_bike_active_time')
+                | float(0) / 60
+              )
+              | round(1)
+              if has_value('sensor.joroto_exercise_bike_active_time')
+              else ''
+            }}
+          weather_summary: >-
+            {% set condition = states('weather.met_office_fulham') %}
+            {% set temperature = state_attr('weather.met_office_fulham', 'temperature') %}
+            {{
+              condition ~ ', ' ~ temperature ~ '°C'
+              if condition not in ['unknown', 'unavailable'] and temperature is not none
+              else ''
+            }}
+          daylight_remaining: >-
+            {% set setting = state_attr('sun.sun', 'next_setting') %}
+            {{
+              ((as_timestamp(setting) - as_timestamp(now())) / 60) | round | int
+              if setting is not none and is_state('sun.sun', 'above_horizon')
+              else 0
+            }}
+          repeat_reminder_count: >-
+            {{
+              states('input_number.' ~ habit_prefix ~ '_repeat_reminder_count')
+              | int(0)
+            }}
+          reminder_attempt: >-
+            {{
+              'first reminder today'
+              if reminder_index | int(1) == 1
+              else (
+                'final reminder today (attempt ' ~ reminder_index ~ ')'
+                if reminder_index | int(1) > repeat_reminder_count | int(0)
+                else (
+                  'repeat reminder ' ~ reminder_index ~ ' of '
+                  ~ (repeat_reminder_count | int(0) + 1)
+                )
+              )
+            }}
+
+      - if: "{{ calendar_entities | count > 0 }}"
+        then:
+          - alias: Get upcoming calendar events
+            continue_on_error: true
+            action: calendar.get_events
+            response_variable: calendar_result
+            target:
+              entity_id: "{{ calendar_entities }}"
+            data:
+              duration:
+                hours: 8
+
+      - variables:
+          calendar_availability: >-
+            {% set calendars = calendar_result | default({}, true) %}
+            {% if calendar_entities | count == 0 or calendars | count == 0 %}
+              {{ '' }}
+            {% else %}
+              {% set now_timestamp = as_timestamp(now()) %}
+              {% set ns = namespace(busy_until=0, next_start=0) %}
+              {% for calendar in calendars.values() %}
+                {% for event in calendar.events | default([], true) %}
+                  {% if 'T' in (event.start | string) %}
+                    {% set start = as_timestamp(event.start, 0) %}
+                    {% set finish = as_timestamp(event.end, 0) %}
+                    {% if start <= now_timestamp < finish and finish > ns.busy_until %}
+                      {% set ns.busy_until = finish %}
+                    {% elif start > now_timestamp and
+                      (ns.next_start == 0 or start < ns.next_start) %}
+                      {% set ns.next_start = start %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+              {% if ns.busy_until > 0 %}
+                in a meeting for the next
+                {{ ((ns.busy_until - now_timestamp) / 60) | round | int }} minutes
+              {% elif ns.next_start > 0 %}
+                free for the next
+                {{ ((ns.next_start - now_timestamp) / 60) | round | int }} minutes
+              {% else %}
+                nothing scheduled in the next 8 hours
+              {% endif %}
+            {% endif %}
+          context_pairs: >-
+            {{
+              [
+                ['User', user | title],
+                ['Habit name', habit_name],
+                ['Habit type', habit_type],
+                ['Current streak (days)', streak_days],
+                ['Days since last completed', days_since_completion],
+                ['Mood today', mood_today],
+                ['Mood note', mood_note],
+                ['Location category', location_category],
+                ['Calendar availability', calendar_availability],
+                ['Workday', workday],
+                ['Current physical activity', activity_state],
+                ['Steps so far today', steps_today],
+                ['Exercise bike active (minutes)', bike_active_minutes],
+                ['Weather', weather_summary],
+                ['Daylight remaining (minutes)', daylight_remaining],
+                ['Local time', now().strftime('%H:%M')],
+                ['Reminder attempt', reminder_attempt],
+              ]
+              | rejectattr(
+                '1',
+                'in',
+                ['', 'none', 'unknown', 'unavailable', 'Not Set', 0, None],
+              )
+              | list
+            }}
+
       - alias: Generate AI reminder message
         continue_on_error: true
         action: ai_task.generate_data
@@ -145,7 +271,7 @@ sequence:
         data:
           entity_id: ai_task.habit_reminder_ai
           task_name: "habit reminder {{ habit_prefix }}"
-          instructions: >-
+          instructions: |-
             Write one short habit reminder notification message.
 
             Tone: neutral, positive, and encouraging. Do not be sarcastic,
@@ -161,21 +287,17 @@ sequence:
               is feasible right now. For example, do not encourage doing
               skincare immediately when the user is at work; still give a
               useful reminder (e.g. do it later, or keep a streak in mind)
+            - If the user is in a meeting or has only a short free window,
+              suggest a realistic later time instead of interrupting them
+            - Use weather and daylight only when they materially affect an
+              outdoor habit
             - Do not name specific places, addresses, or coordinates
             - Do not include markdown, emojis, quotes, or a title
 
             Context:
-            - User: {{ user | title }}
-            - Habit name: {{ habit_name }}
-            - Habit type: {{ habit_type }}
-            - Habit state today: {{ habit_state }}
-            - Current streak (days): {{ streak_days }}
-            - Mood today: {{ mood_today }}
-            - Mood note: {{ mood_note if mood_note else 'none' }}
-            - Location category: {{ location_category }}
-            - Local time: {{ now().strftime('%H:%M') }}
-            - Reminder attempt: {{ reminder_index }}
-              (1 is the first reminder; higher means a repeat)
+            {% for label, value in context_pairs %}
+            - {{ label }}: {{ value }}
+            {% endfor %}
       - variables:
           generated_message: >-
             {{

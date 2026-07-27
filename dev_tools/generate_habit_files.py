@@ -284,6 +284,7 @@ variables:
 
 action:
   - action: script.habit_send_reminder
+    continue_on_error: true
     data:
       user: XXXUSERXXX
       habit_type: binary
@@ -312,6 +313,7 @@ action:
                 minutes: "{{{{ repeat_interval | int(60) }}}}"
 
             - action: script.habit_send_reminder
+              continue_on_error: true
               data:
                 user: XXXUSERXXX
                 habit_type: binary
@@ -418,8 +420,17 @@ query: >-
          sc.check_week_start <> sc.anchor_week_start
          AND sc.completed_days_in_week < mdpw.min_days
        )
+  ),
+  last_completion AS (
+    SELECT MAX(completed_date) AS last_date
+    FROM completed_dates
   )
-  SELECT COALESCE(first_gap_offset, 366)::integer AS streak
+  SELECT
+    COALESCE(first_gap_offset, 366)::integer AS streak,
+    COALESCE(
+      (CURRENT_DATE - (SELECT last_date FROM last_completion))::integer,
+      -1
+    ) AS days_since_completion
   FROM first_incomplete_day
 
 column: streak
@@ -659,6 +670,7 @@ variables:
 
 action:
   - action: script.habit_send_reminder
+    continue_on_error: true
     data:
       user: XXXUSERXXX
       habit_type: countable
@@ -687,6 +699,7 @@ action:
                 minutes: "{{{{ repeat_interval | int(60) }}}}"
 
             - action: script.habit_send_reminder
+              continue_on_error: true
               data:
                 user: XXXUSERXXX
                 habit_type: countable

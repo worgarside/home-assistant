@@ -9484,7 +9484,7 @@ File: [`script/functions/state_manager/state_manager_reset_states.yaml`](entitie
 }
 ```
 
-- Mode: `queued`
+- Mode: `parallel`
 - Variables:
 
 ```json
@@ -9497,23 +9497,14 @@ File: [`script/functions/state_manager/state_manager_reset_states.yaml`](entitie
   "habit_name_entity": "input_text.{{ habit_prefix }}_name",
   "ai_toggle_entity": "input_boolean.{{ habit_prefix }}_ai_reminder",
   "streak_entity": "sensor.{{ habit_prefix }}_streak",
-  "mood_entity": "input_select.{{ user }}_mood_today",
-  "mood_note_entity": "input_text.{{ user }}_mood_note",
   "habit_name": "{{\n  states(habit_name_entity)\n  | default('Habit ' ~ (habit_type | title) ~ ' ' ~ habit_number)\n}}",
-  "streak_days": "{{\n  states(streak_entity)\n  if has_value(streak_entity)\n  else 'unavailable'\n}}",
-  "mood_today": "{{\n  states(mood_entity)\n  if has_value(mood_entity)\n  else 'unavailable'\n}}",
-  "mood_note": "{{\n  states(mood_note_entity)\n  if has_value(mood_note_entity)\n    and states(mood_note_entity) not in ['', 'unknown', 'unavailable']\n  else ''\n}}",
-  "habit_state": "{{\n  states('input_boolean.' ~ habit_prefix)\n  if habit_type == 'binary'\n  else states('input_number.' ~ habit_prefix) | int(0)\n}}",
   "fallback_message": "{{\n  \"Don't forget to mark \" ~ habit_name ~ \" as complete!\"\n  if habit_type == 'binary'\n  else \"Don't forget to track \" ~ habit_name ~ \"!\"\n}}",
   "notification_id": "{{ habit_prefix }}_reminder",
   "notification_url": "/home-{{ user }}/mood-habits",
   "action_id": "{{\n  \"MARK_HABIT_AS_COMPLETE__\" ~ (user | upper) ~ \"__BINARY_\" ~ habit_number\n  if habit_type == 'binary'\n  else \"INCREMENT_HABIT__\" ~ (user | upper) ~ \"__COUNTABLE_\" ~ habit_number\n}}",
   "action_title": "{{ 'Mark as Complete' if habit_type == 'binary' else 'Increment' }}",
   "use_ai": "{{ is_state(ai_toggle_entity, 'on') }}",
-  "generated_message": "",
-  "person_entity": "person.{{ user }}",
-  "person_state": "{{ states(person_entity) }}",
-  "location_category": "{% set in_zones = state_attr(person_entity, 'in_zones') | default([], true) %} {% set home_zones = label_entities('habit_context_home') | default([]) %} {% set work_zones = label_entities('habit_context_work') | default([]) %} {% set family_zones = label_entities('habit_context_family') | default([]) %} {% if in_zones | select('in', home_zones) | list | count > 0 %}\n  home\n{% elif in_zones | select('in', work_zones) | list | count > 0 %}\n  work\n{% elif in_zones | select('in', family_zones) | list | count > 0 %}\n  family location\n{% elif is_state('binary_sensor.' ~ user ~ '_at_work', 'on') %}\n  work\n{% elif person_state == 'home' %}\n  home\n{% elif person_state == 'not_home' %}\n  away from known zones\n{% elif person_state not in ['unknown', 'unavailable', ''] %}\n  known but unclassified location\n{% else %}\n  unknown\n{% endif %}"
+  "generated_message": ""
 }
 ```
 File: [`script/habit_send_reminder.yaml`](entities/script/habit_send_reminder.yaml)
