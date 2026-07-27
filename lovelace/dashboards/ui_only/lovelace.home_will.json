@@ -6163,6 +6163,39 @@
                   }
                 },
                 {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.monzo_reauth_auto_saver",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo Auto Saver needs reauth**<br>**[Authenticate]({{ state_attr('var.monzo_reauth_auto_saver', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.monzo_auth_token_auto_saver",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
                   "type": "vertical-stack",
                   "cards": [
                     {
@@ -6247,6 +6280,39 @@
                 {
                   "type": "heading",
                   "heading": "Finances"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.monzo_reauth_cc_pot_top_up",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo CC Pot Top-Up needs reauth**<br>**[Authenticate]({{ state_attr('var.monzo_reauth_cc_pot_top_up', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.monzo_auth_token_cc_pot_top_up",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
                 },
                 {
                   "type": "conditional",
