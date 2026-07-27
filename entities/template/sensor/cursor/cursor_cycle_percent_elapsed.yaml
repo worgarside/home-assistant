@@ -1,0 +1,30 @@
+---
+name: Cursor Cycle Percent Elapsed
+
+unique_id: cursor_cycle_percent_elapsed
+
+availability: >-
+  {{
+    has_value('sensor.cursor_billing_cycle_start')
+    and has_value('sensor.cursor_billing_cycle_end')
+  }}
+
+state: >-
+  {% set cycle_start = as_timestamp(states('sensor.cursor_billing_cycle_start')) %}
+  {% set cycle_end = as_timestamp(states('sensor.cursor_billing_cycle_end')) %}
+  {% set duration = cycle_end - cycle_start %}
+  {% set elapsed = as_timestamp(now()) - cycle_start %}
+  {% set percentage = (elapsed / duration * 100) if duration > 0 else 0 %}
+  {% if percentage < 0 %}
+    0
+  {% elif percentage > 100 %}
+    100
+  {% else %}
+    {{ percentage | round(2) }}
+  {% endif %}
+
+unit_of_measurement: "%"
+
+state_class: measurement
+
+icon: mdi:progress-clock

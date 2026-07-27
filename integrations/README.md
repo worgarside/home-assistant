@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (248)</h3></summary>
+<details><summary><h3>Entities (249)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -3701,6 +3701,19 @@ File: [`automation/var/vic_s_office_state_manager/attribute_timeout.yaml`](entit
 - Mode: `single`
 
 File: [`automation/var/will_s_office_state_manager/attribute_timeout.yaml`](entities/automation/var/will_s_office_state_manager/attribute_timeout.yaml)
+</details>
+
+<details><summary><code>/webhook/cursor-session-token</code></summary>
+
+**Entity ID: `automation.webhook_cursor_session_token`**
+
+> *No description provided*
+
+- Alias: /webhook/cursor-session-token
+- ID: `webhook_cursor_session_token`
+- Mode: `queued`
+
+File: [`automation/webhook/cursor_session_token.yaml`](entities/automation/webhook/cursor_session_token.yaml)
 </details>
 
 <details><summary><code>/webhook/get-latest-appdaemon-release</code></summary>
@@ -10450,7 +10463,7 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 ## Template
 
-<details><summary><h3>Entities (102)</h3></summary>
+<details><summary><h3>Entities (106)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10975,6 +10988,45 @@ File: [`template/sensor/basement/basement_bayesian_presence_probability.yaml`](e
 mdi:clock-time-{{ hours[this.state | int(12) - 1] }}-outline
 ```
 File: [`template/sensor/current_hour.yaml`](entities/template/sensor/current_hour.yaml)
+</details>
+
+<details><summary><strong>Cursor Cycle Days Remaining</strong></summary>
+
+**Entity ID: `sensor.cursor_cycle_days_remaining`**
+
+- Icon: [`mdi:calendar-clock`](https://pictogrammers.com/library/mdi/icon/calendar-clock/)
+- Unit Of Measurement: `d`
+
+File: [`template/sensor/cursor/cursor_cycle_days_remaining.yaml`](entities/template/sensor/cursor/cursor_cycle_days_remaining.yaml)
+</details>
+
+<details><summary><strong>Cursor Cycle Percent Elapsed</strong></summary>
+
+**Entity ID: `sensor.cursor_cycle_percent_elapsed`**
+
+- Icon: [`mdi:progress-clock`](https://pictogrammers.com/library/mdi/icon/progress-clock/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/cursor/cursor_cycle_percent_elapsed.yaml`](entities/template/sensor/cursor/cursor_cycle_percent_elapsed.yaml)
+</details>
+
+<details><summary><strong>Cursor Projected Cycle Usage</strong></summary>
+
+**Entity ID: `sensor.cursor_projected_cycle_usage`**
+
+- Icon: [`mdi:chart-timeline-variant-shimmer`](https://pictogrammers.com/library/mdi/icon/chart-timeline-variant-shimmer/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/cursor/cursor_projected_cycle_usage.yaml`](entities/template/sensor/cursor/cursor_projected_cycle_usage.yaml)
+</details>
+
+<details><summary><strong>Cursor Usage Pace</strong></summary>
+
+**Entity ID: `sensor.cursor_usage_pace`**
+
+- Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
+
+File: [`template/sensor/cursor/cursor_usage_pace.yaml`](entities/template/sensor/cursor/cursor_usage_pace.yaml)
 </details>
 
 <details><summary><strong>Vic and Will Distance</strong></summary>
