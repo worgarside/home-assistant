@@ -1,0 +1,47 @@
+---
+# Provisional human-presence inference for the basement.
+#
+# Probabilities are conservative starting estimates, not statistically learned
+# values — there are no ground-truth human-presence labels. FP2 is deliberately
+# weak evidence because recent history shows it is sticky (~86% on-time).
+#
+# Shadow mode: existing automations still consume binary_sensor.basement_occupancy.
+platform: bayesian
+
+name: Basement Bayesian Presence
+
+unique_id: basement_bayesian_presence
+
+device_class: occupancy
+
+# Baseline: basement is human-occupied roughly 10% of the time
+prior: 0.1
+
+# Prefer fewer false positives while evaluating in shadow mode
+probability_threshold: 0.8
+
+observations:
+  # Primary: Frigate person detection
+  - platform: state
+    entity_id: binary_sensor.basement_person_occupancy
+    to_state: "on"
+    # When humans are present, Frigate usually sees them
+    prob_given_true: 0.85
+    # False person detections are uncommon
+    prob_given_false: 0.05
+
+  # Supporting: generic camera motion (dependent on Frigate — keep moderate)
+  - platform: state
+    entity_id: binary_sensor.basement_motion
+    to_state: "on"
+    prob_given_true: 0.8
+    # Motion often fires without humans (pets, lighting, vacuum)
+    prob_given_false: 0.25
+
+  # Weak persistence: Aqara FP2 basement zone (sticky — weak alone)
+  - platform: state
+    entity_id: binary_sensor.basement_occupancy
+    to_state: "on"
+    prob_given_true: 0.9
+    # High false-on rate; FP2 alone must not cross the threshold
+    prob_given_false: 0.8

@@ -3776,6 +3776,21 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 </details>
 
+## Binary Sensor
+
+<details><summary><h3>Entities (1)</h3></summary>
+
+<details><summary><strong>Basement Bayesian Presence</strong></summary>
+
+**Entity ID: `binary_sensor.basement_bayesian_presence`**
+
+- Platform: `bayesian`
+
+File: [`binary_sensor/basement_bayesian_presence.yaml`](entities/binary_sensor/basement_bayesian_presence.yaml)
+</details>
+
+</details>
+
 ## Command Line
 
 <details><summary><h3>Entities (28)</h3></summary>
@@ -10435,7 +10450,7 @@ File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml
 
 ## Template
 
-<details><summary><h3>Entities (101)</h3></summary>
+<details><summary><h3>Entities (102)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -10922,6 +10937,16 @@ File: [`template/sensor/average_home_humidity.yaml`](entities/template/sensor/av
 - Unit Of Measurement: °C
 
 File: [`template/sensor/average_home_temperature.yaml`](entities/template/sensor/average_home_temperature.yaml)
+</details>
+
+<details><summary><strong>Basement Bayesian Presence Probability</strong></summary>
+
+**Entity ID: `sensor.basement_bayesian_presence_probability`**
+
+- Icon: [`mdi:percent-outline`](https://pictogrammers.com/library/mdi/icon/percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/basement/basement_bayesian_presence_probability.yaml`](entities/template/sensor/basement/basement_bayesian_presence_probability.yaml)
 </details>
 
 <details><summary><strong>Current Hour</strong></summary>
