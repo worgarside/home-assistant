@@ -1,0 +1,18 @@
+---
+name: Cursor Cycle Days Remaining
+
+unique_id: cursor_cycle_days_remaining
+
+availability: "{{ has_value('sensor.cursor_billing_cycle_end') }}"
+
+state: >-
+  {% set cycle_end = as_timestamp(states('sensor.cursor_billing_cycle_end')) %}
+  {{ [0, (cycle_end - as_timestamp(now())) / 86400] | max | round(2) }}
+
+unit_of_measurement: d
+
+device_class: duration
+
+state_class: measurement
+
+icon: mdi:calendar-clock

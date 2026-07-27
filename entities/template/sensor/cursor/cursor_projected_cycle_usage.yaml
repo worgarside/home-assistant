@@ -1,0 +1,21 @@
+---
+name: Cursor Projected Cycle Usage
+
+unique_id: cursor_projected_cycle_usage
+
+availability: >-
+  {{
+    has_value('sensor.cursor_included_usage_percent')
+    and has_value('sensor.cursor_cycle_percent_elapsed')
+  }}
+
+state: >-
+  {% set used = states('sensor.cursor_included_usage_percent') | float(0) %}
+  {% set elapsed = states('sensor.cursor_cycle_percent_elapsed') | float(0) %}
+  {{ (used / elapsed * 100) | round(2) if elapsed > 0 else 0 }}
+
+unit_of_measurement: "%"
+
+state_class: measurement
+
+icon: mdi:chart-timeline-variant-shimmer
