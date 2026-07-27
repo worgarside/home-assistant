@@ -9495,7 +9495,10 @@ File: [`script/functions/state_manager/state_manager_reset_states.yaml`](entitie
   "action_id": "{{\n  \"MARK_HABIT_AS_COMPLETE__\" ~ (user | upper) ~ \"__BINARY_\" ~ habit_number\n  if habit_type == 'binary'\n  else \"INCREMENT_HABIT__\" ~ (user | upper) ~ \"__COUNTABLE_\" ~ habit_number\n}}",
   "action_title": "{{ 'Mark as Complete' if habit_type == 'binary' else 'Increment' }}",
   "use_ai": "{{ is_state(ai_toggle_entity, 'on') }}",
-  "generated_message": ""
+  "generated_message": "",
+  "person_entity": "person.{{ user }}",
+  "person_state": "{{ states(person_entity) }}",
+  "location_category": "{% set in_zones = state_attr(person_entity, 'in_zones') | default([], true) %} {% set home_zones = label_entities('habit_context_home') | default([]) %} {% set work_zones = label_entities('habit_context_work') | default([]) %} {% set family_zones = label_entities('habit_context_family') | default([]) %} {% if in_zones | select('in', home_zones) | list | count > 0 %}\n  home\n{% elif in_zones | select('in', work_zones) | list | count > 0 %}\n  work\n{% elif in_zones | select('in', family_zones) | list | count > 0 %}\n  family location\n{% elif is_state('binary_sensor.' ~ user ~ '_at_work', 'on') %}\n  work\n{% elif person_state == 'home' %}\n  home\n{% elif person_state == 'not_home' %}\n  away from known zones\n{% elif person_state not in ['unknown', 'unavailable', ''] %}\n  known but unclassified location\n{% else %}\n  unknown\n{% endif %}"
 }
 ```
 File: [`script/habit_send_reminder.yaml`](entities/script/habit_send_reminder.yaml)

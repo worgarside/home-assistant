@@ -110,6 +110,30 @@ variables:
     {{ 'Mark as Complete' if habit_type == 'binary' else 'Increment' }}
   use_ai: "{{ is_state(ai_toggle_entity, 'on') }}"
   generated_message: ""
+  person_entity: "person.{{ user }}"
+  person_state: "{{ states(person_entity) }}"
+  location_category: >-
+    {% set in_zones = state_attr(person_entity, 'in_zones') | default([], true) %}
+    {% set home_zones = label_entities('habit_context_home') | default([]) %}
+    {% set work_zones = label_entities('habit_context_work') | default([]) %}
+    {% set family_zones = label_entities('habit_context_family') | default([]) %}
+    {% if in_zones | select('in', home_zones) | list | count > 0 %}
+      home
+    {% elif in_zones | select('in', work_zones) | list | count > 0 %}
+      work
+    {% elif in_zones | select('in', family_zones) | list | count > 0 %}
+      family location
+    {% elif is_state('binary_sensor.' ~ user ~ '_at_work', 'on') %}
+      work
+    {% elif person_state == 'home' %}
+      home
+    {% elif person_state == 'not_home' %}
+      away from known zones
+    {% elif person_state not in ['unknown', 'unavailable', ''] %}
+      known but unclassified location
+    {% else %}
+      unknown
+    {% endif %}
 
 sequence:
   - if: "{{ use_ai }}"
@@ -133,6 +157,11 @@ sequence:
             - Mention the habit name naturally
             - You may mention streak, mood, or that this is a repeat
               reminder when that context is useful
+            - Use location only when it materially affects whether the habit
+              is feasible right now. For example, do not encourage doing
+              skincare immediately when the user is at work; still give a
+              useful reminder (e.g. do it later, or keep a streak in mind)
+            - Do not name specific places, addresses, or coordinates
             - Do not include markdown, emojis, quotes, or a title
 
             Context:
@@ -143,6 +172,7 @@ sequence:
             - Current streak (days): {{ streak_days }}
             - Mood today: {{ mood_today }}
             - Mood note: {{ mood_note if mood_note else 'none' }}
+            - Location category: {{ location_category }}
             - Local time: {{ now().strftime('%H:%M') }}
             - Reminder attempt: {{ reminder_index }}
               (1 is the first reminder; higher means a repeat)
