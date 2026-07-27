@@ -8251,6 +8251,357 @@
               "cards": [
                 {
                   "type": "heading",
+                  "heading": "Basement Bayesian Presence",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Inputs & Configuration",
+                    "secondary": "11 items",
+                    "icon": "mdi:tune-variant",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
+                  },
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.basement_bayesian_presence",
+                      "name": "Bayesian Presence",
+                      "secondary_info": "none",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.basement_bayesian_presence_probability",
+                      "name": "Posterior Probability",
+                      "primary_info": "state",
+                      "secondary_info": "name",
+                      "icon_color": "cyan",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "grid_options": {
+                        "columns": 6,
+                        "rows": 1
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Threshold",
+                      "secondary": "80% (YAML)",
+                      "icon": "mdi:chart-timeline-variant",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "grid_options": {
+                        "columns": 6,
+                        "rows": 1
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.basement_occupancy",
+                      "name": "FP2 Occupancy",
+                      "secondary_info": "none",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "grid_options": {
+                        "columns": 6,
+                        "rows": 1
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.basement_person_occupancy",
+                      "name": "Frigate Person",
+                      "secondary_info": "none",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "grid_options": {
+                        "columns": 6,
+                        "rows": 1
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.basement_motion",
+                      "name": "Frigate Motion",
+                      "secondary_info": "none",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "grid_options": {
+                        "columns": 6,
+                        "rows": 1
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Prior",
+                      "secondary": "10%",
+                      "icon": "mdi:percent-outline",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "grid_options": {
+                        "columns": 6,
+                        "rows": 1
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Frigate Person",
+                      "secondary": "P(T)=0.85 / P(F)=0.05",
+                      "icon": "mdi:account-eye",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "grid_options": {
+                        "columns": 4,
+                        "rows": 1
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Motion",
+                      "secondary": "P(T)=0.80 / P(F)=0.25",
+                      "icon": "mdi:motion-sensor",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "grid_options": {
+                        "columns": 4,
+                        "rows": 1
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "FP2",
+                      "secondary": "P(T)=0.90 / P(F)=0.80",
+                      "icon": "mdi:radar",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "grid_options": {
+                        "columns": 4,
+                        "rows": 1
+                      }
+                    },
+                    {
+                      "type": "markdown",
+                      "content": "Shadow mode: automations below still consume `binary_sensor.basement_occupancy` (FP2). Probabilities are provisional estimates.",
+                      "grid_options": {
+                        "columns": 12,
+                        "rows": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Graphs",
+                    "secondary": "2 charts",
+                    "icon": "mdi:chart-line",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
+                  },
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "Probability vs 80% Threshold",
+                      "hours_to_show": 24,
+                      "points_per_hour": 4,
+                      "line_width": 2,
+                      "smoothing": false,
+                      "lower_bound": 0,
+                      "upper_bound": 100,
+                      "color_thresholds": [
+                        {
+                          "value": 0,
+                          "color": "#78909C"
+                        },
+                        {
+                          "value": 50,
+                          "color": "#FFC107"
+                        },
+                        {
+                          "value": 80,
+                          "color": "#4CAF50"
+                        }
+                      ],
+                      "color_thresholds_transition": "smooth",
+                      "show": {
+                        "fill": "fade",
+                        "legend": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.basement_bayesian_presence_probability",
+                          "name": "Probability"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "history-graph",
+                      "hours_to_show": 24,
+                      "entities": [
+                        {
+                          "entity": "binary_sensor.basement_bayesian_presence",
+                          "name": "Bayesian"
+                        },
+                        {
+                          "entity": "binary_sensor.basement_person_occupancy",
+                          "name": "Frigate Person"
+                        },
+                        {
+                          "entity": "binary_sensor.basement_motion",
+                          "name": "Motion"
+                        },
+                        {
+                          "entity": "binary_sensor.basement_occupancy",
+                          "name": "FP2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "automation.binary_sensor_basement_presence_on",
+                  "primary": "Presence On",
+                  "secondary": "/binary-sensor/basement-presence/on \u00b7 still uses FP2",
+                  "icon": "mdi:motion-sensor",
+                  "color": "{{ iif(states('automation.binary_sensor_basement_presence_on') | bool(false), '#04b7d6', 'grey') }}",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "automation.binary_sensor_basement_presence_off",
+                  "primary": "Presence Off",
+                  "secondary": "/binary-sensor/basement-presence/off \u00b7 still uses FP2",
+                  "icon": "mdi:motion-sensor-off",
+                  "color": "{{ iif(states('automation.binary_sensor_basement_presence_off') | bool(false), '#04b7d6', 'grey') }}",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
                   "heading": "Energy Usage",
                   "heading_style": "title"
                 },
