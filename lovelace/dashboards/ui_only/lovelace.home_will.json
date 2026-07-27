@@ -9441,6 +9441,27 @@
                   ]
                 },
                 {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.cursor_usage_status",
+                      "name": "Status"
+                    },
+                    {
+                      "entity": "sensor.cursor_billing_cycle_start",
+                      "name": "Cycle Start"
+                    },
+                    {
+                      "entity": "sensor.cursor_billing_cycle_end",
+                      "name": "Cycle End"
+                    },
+                    {
+                      "entity": "sensor.cursor_included_usage_limit",
+                      "name": "Included Limit"
+                    }
+                  ]
+                },
+                {
                   "type": "custom:mini-graph-card",
                   "name": "Included Usage %",
                   "entities": [
@@ -9472,33 +9493,12 @@
                   "height": 150
                 },
                 {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.cursor_usage_status",
-                      "name": "Status"
-                    },
-                    {
-                      "entity": "sensor.cursor_billing_cycle_start",
-                      "name": "Cycle Start"
-                    },
-                    {
-                      "entity": "sensor.cursor_billing_cycle_end",
-                      "name": "Cycle End"
-                    },
-                    {
-                      "entity": "sensor.cursor_included_usage_limit",
-                      "name": "Included Limit"
-                    }
-                  ]
-                },
-                {
                   "type": "markdown",
                   "title": "Spend by Model",
                   "content": "{% set models = state_attr('sensor.cursor_usage_by_model', 'models') or {} %}\n{% set ns = namespace(rows=[]) %}\n{% for name, data in models.items() %}\n  {% set ns.rows = ns.rows + [(data.total_cents | float(0), name)] %}\n{% endfor %}\n{% for cents, name in ns.rows | sort(reverse=true) %}\n- **{{ '%.2f'|format(cents / 100) }}** \u2014 `{{ name }}`\n{% endfor %}"
                 }
               ],
-              "column_span": 1
+              "column_span": 3
             }
           ]
         }
