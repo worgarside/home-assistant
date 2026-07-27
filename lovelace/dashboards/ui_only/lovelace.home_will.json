@@ -1037,7 +1037,8 @@
                       "smoothing": false,
                       "card_mod": {
                         "style": "ha-card.type-custom-mini-graph-card {\n  box-shadow: none;\n  border: none;\n}\n"
-                      }
+                      },
+                      "lower_bound": 0
                     }
                   ]
                 }
@@ -1248,7 +1249,8 @@
                       "smoothing": false,
                       "card_mod": {
                         "style": "ha-card.type-custom-mini-graph-card {\n  box-shadow: none;\n  border: none;\n}\n"
-                      }
+                      },
+                      "lower_bound": 0
                     }
                   ]
                 }
