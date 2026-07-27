@@ -311,7 +311,7 @@ action:
                 actions:
                   - action: "MARK_HABIT_AS_COMPLETE__XXXUSERUPPERXXX__BINARY_XXXNUMXXX"
                     title: "Mark as Complete"
-"""  # noqa: E501
+"""  # ruff:ignore[line-too-long]
         reminder_content = (
             reminder_template
             .replace("{{{{", "{{")
@@ -675,7 +675,7 @@ action:
                 actions:
                   - action: "INCREMENT_HABIT__XXXUSERUPPERXXX__COUNTABLE_XXXNUMXXX"
                     title: "Increment"
-"""  # noqa: E501
+"""  # ruff:ignore[line-too-long]
         reminder_content = (
             reminder_template
             .replace("{{{{", "{{")
@@ -1227,7 +1227,7 @@ query: >-
   WHERE grp = (SELECT grp FROM consecutive_groups WHERE days_ago = 0 LIMIT 1)
 
 column: streak
-""",  # noqa: S608
+""",  # ruff:ignore[hardcoded-sql-expression]
     )
 
     print(f"  ✓ Generated mood files for {user}")
