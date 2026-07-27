@@ -971,6 +971,485 @@
               }
             ]
           }
+        },
+        "habit_slot_binary": {
+          "card": {
+            "type": "custom:mushroom-template-card",
+            "features": [
+              {
+                "type": "toggle"
+              }
+            ],
+            "features_position": "inline",
+            "entity": "switch.[[user]]_habit_[[n]]_state",
+            "primary": "{{ states('text.[[user]]_habit_[[n]]_name') }}",
+            "secondary": "{{ states('sensor.[[user]]_habit_[[n]]_streak') | int(0) }} day{% if states('sensor.[[user]]_habit_[[n]]_streak') | int(0) != 1 %}s{% endif %} streak",
+            "color": "{{ iif(is_state('switch.[[user]]_habit_[[n]]_state', 'on'), 'green', 'red') }}",
+            "icon": "{{ states(iif(is_state('switch.[[user]]_habit_[[n]]_state', 'on'), 'text.[[user]]_habit_[[n]]_icon_on', 'text.[[user]]_habit_[[n]]_icon_off')) }}",
+            "icon_tap_action": {
+              "action": "none"
+            },
+            "tap_action": {
+              "action": "perform-action",
+              "perform_action": "browser_mod.popup",
+              "target": {},
+              "data": {
+                "dismissable": true,
+                "autoclose": false,
+                "title": "{{ states('text.[[user]]_habit_[[n]]_name') }}",
+                "content": {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{{ states('text.[[user]]_habit_[[n]]_name') }} Streak",
+                      "secondary": "{{ states('sensor.[[user]]_habit_[[n]]_streak') | int(0) }} day{% if states('sensor.[[user]]_habit_[[n]]_streak') | int(0) != 1 %}s{% endif %}",
+                      "icon": "mdi:fire",
+                      "icon_color": "orange",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  padding-bottom: 0 !important;\n}\n"
+                      }
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "entities": [
+                        {
+                          "entity": "sensor.[[user]]_habit_[[n]]_streak",
+                          "name": "Streak",
+                          "color": "#4CAF50"
+                        }
+                      ],
+                      "unit": "days",
+                      "height": 220,
+                      "hours_to_show": 672,
+                      "points_per_hour": 0.041666666666666664,
+                      "line_width": 2,
+                      "show": {
+                        "icon": false,
+                        "name": false,
+                        "state": true,
+                        "legend": false,
+                        "labels": true,
+                        "fill": "fade"
+                      },
+                      "smoothing": false,
+                      "card_mod": {
+                        "style": "ha-card.type-custom-mini-graph-card {\n  box-shadow: none;\n  border: none;\n}\n"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "hold_action": {
+              "action": "perform-action",
+              "perform_action": "browser_mod.popup",
+              "target": {},
+              "data": {
+                "dismissable": true,
+                "autoclose": false,
+                "title": "{{ states('text.[[user]]_habit_[[n]]_name') }} settings",
+                "content": {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:bell-outline",
+                      "primary": "Daily Reminder @ {{ states('time.[[user]]_habit_[[n]]_reminder_time')[:5] }}",
+                      "entity": "time.[[user]]_habit_[[n]]_reminder_time",
+                      "color": "orange",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entities",
+                      "show_header_toggle": false,
+                      "entities": [
+                        {
+                          "entity": "time.[[user]]_habit_[[n]]_reminder_time",
+                          "name": "Reminder Time"
+                        },
+                        {
+                          "entity": "text.[[user]]_habit_[[n]]_name",
+                          "name": "Habit Name"
+                        },
+                        {
+                          "entity": "select.[[user]]_habit_[[n]]_type",
+                          "name": "Habit Type"
+                        },
+                        {
+                          "entity": "text.[[user]]_habit_[[n]]_icon_on",
+                          "name": "Habit Icon (On)"
+                        },
+                        {
+                          "entity": "text.[[user]]_habit_[[n]]_icon_off",
+                          "name": "Habit Icon (Off)"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "markdown",
+                      "content": "Get icons [here](https://pictogrammers.com/library/mdi/)",
+                      "text_only": true
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "primary": "Icon (On)",
+                          "icon": "{{ states('text.[[user]]_habit_[[n]]_icon_on') }}",
+                          "features_position": "bottom",
+                          "color": "green"
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "primary": "Icon (Off)",
+                          "icon": "{{ states('text.[[user]]_habit_[[n]]_icon_off') }}",
+                          "features_position": "bottom",
+                          "color": "red"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "features_position": "inline",
+                      "entity": "number.[[user]]_habit_[[n]]_streak_min_days",
+                      "icon": "mdi:numeric-{{ states('number.[[user]]_habit_[[n]]_streak_min_days') | int }}-box-multiple-outline",
+                      "primary": "Days per week required",
+                      "secondary": "to maintain streak"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "features_position": "inline",
+                      "entity": "number.[[user]]_habit_[[n]]_repeat_interval",
+                      "icon": "mdi:clock",
+                      "primary": "Reminder interval (minutes)"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "features_position": "inline",
+                      "entity": "number.[[user]]_habit_[[n]]_repeat_count",
+                      "icon": "mdi:counter",
+                      "primary": "Max. reminder count"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "features": [
+                        {
+                          "type": "toggle"
+                        }
+                      ],
+                      "features_position": "inline",
+                      "entity": "switch.[[user]]_habit_[[n]]_ai",
+                      "icon": "mdi:brain",
+                      "primary": "AI reminder message",
+                      "secondary": "Generate dynamic notification text",
+                      "color": "{{ iif(is_state('switch.[[user]]_habit_[[n]]_ai', 'on'), 'purple', 'grey') }}",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "habit_slot_countable": {
+          "card": {
+            "type": "custom:mushroom-template-card",
+            "features": [
+              {
+                "type": "numeric-input",
+                "style": "buttons"
+              }
+            ],
+            "features_position": "inline",
+            "entity": "number.[[user]]_habit_[[n]]_count",
+            "primary": "{{ states('text.[[user]]_habit_[[n]]_name') }}",
+            "secondary": "{{ states('sensor.[[user]]_habit_[[n]]_streak') | int(0) }} day{% if states('sensor.[[user]]_habit_[[n]]_streak') | int(0) != 1 %}s{% endif %} streak",
+            "color": "{{ iif(states('number.[[user]]_habit_[[n]]_count') | int(0) > 0, 'red', 'green') }}",
+            "icon": "{{ states(iif(states('number.[[user]]_habit_[[n]]_count') | int(0) > 0, 'text.[[user]]_habit_[[n]]_icon_active', 'text.[[user]]_habit_[[n]]_icon_zero')) }}",
+            "icon_tap_action": {
+              "action": "none"
+            },
+            "tap_action": {
+              "action": "perform-action",
+              "perform_action": "browser_mod.popup",
+              "target": {},
+              "data": {
+                "dismissable": true,
+                "autoclose": false,
+                "title": "{{ states('text.[[user]]_habit_[[n]]_name') }}",
+                "content": {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "{{ states('text.[[user]]_habit_[[n]]_name') }} Streak",
+                      "secondary": "{{ states('sensor.[[user]]_habit_[[n]]_streak') | int(0) }} day{% if states('sensor.[[user]]_habit_[[n]]_streak') | int(0) != 1 %}s{% endif %}",
+                      "icon": "mdi:fire",
+                      "icon_color": "orange",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  padding-bottom: 0 !important;\n}\n"
+                      }
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "entities": [
+                        {
+                          "entity": "sensor.[[user]]_habit_[[n]]_streak",
+                          "name": "Streak",
+                          "color": "#4CAF50"
+                        }
+                      ],
+                      "unit": "days",
+                      "height": 220,
+                      "hours_to_show": 672,
+                      "points_per_hour": 0.041666666666666664,
+                      "line_width": 2,
+                      "show": {
+                        "icon": false,
+                        "name": false,
+                        "state": true,
+                        "legend": false,
+                        "labels": true,
+                        "fill": "fade"
+                      },
+                      "smoothing": false,
+                      "card_mod": {
+                        "style": "ha-card.type-custom-mini-graph-card {\n  box-shadow: none;\n  border: none;\n}\n"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "hold_action": {
+              "action": "perform-action",
+              "perform_action": "browser_mod.popup",
+              "target": {},
+              "data": {
+                "dismissable": true,
+                "autoclose": false,
+                "title": "{{ states('text.[[user]]_habit_[[n]]_name') }} settings",
+                "content": {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:bell-outline",
+                      "primary": "Daily Reminder @ {{ states('time.[[user]]_habit_[[n]]_reminder_time')[:5] }}",
+                      "entity": "time.[[user]]_habit_[[n]]_reminder_time",
+                      "color": "orange",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entities",
+                      "show_header_toggle": false,
+                      "entities": [
+                        {
+                          "entity": "time.[[user]]_habit_[[n]]_reminder_time",
+                          "name": "Reminder Time"
+                        },
+                        {
+                          "entity": "text.[[user]]_habit_[[n]]_name",
+                          "name": "Habit Name"
+                        },
+                        {
+                          "entity": "select.[[user]]_habit_[[n]]_type",
+                          "name": "Habit Type"
+                        },
+                        {
+                          "entity": "text.[[user]]_habit_[[n]]_icon_active",
+                          "name": "Habit Icon (Active)"
+                        },
+                        {
+                          "entity": "text.[[user]]_habit_[[n]]_icon_zero",
+                          "name": "Habit Icon (Zero)"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "markdown",
+                      "content": "Get icons [here](https://pictogrammers.com/library/mdi/)",
+                      "text_only": true
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "primary": "Icon (Active)",
+                          "icon": "{{ states('text.[[user]]_habit_[[n]]_icon_active') }}",
+                          "features_position": "bottom",
+                          "color": "red"
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "primary": "Icon (Zero)",
+                          "icon": "{{ states('text.[[user]]_habit_[[n]]_icon_zero') }}",
+                          "features_position": "bottom",
+                          "color": "green"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "features_position": "inline",
+                      "entity": "number.[[user]]_habit_[[n]]_streak_min_days",
+                      "icon": "mdi:numeric-{{ states('number.[[user]]_habit_[[n]]_streak_min_days') | int }}-box-multiple-outline",
+                      "primary": "Days per week required",
+                      "secondary": "to maintain streak"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "features_position": "inline",
+                      "entity": "number.[[user]]_habit_[[n]]_repeat_interval",
+                      "icon": "mdi:clock",
+                      "primary": "Reminder interval (minutes)"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "features": [
+                        {
+                          "type": "numeric-input",
+                          "style": "buttons"
+                        }
+                      ],
+                      "features_position": "inline",
+                      "entity": "number.[[user]]_habit_[[n]]_repeat_count",
+                      "icon": "mdi:counter",
+                      "primary": "Max. reminder count"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "features": [
+                        {
+                          "type": "toggle"
+                        }
+                      ],
+                      "features_position": "inline",
+                      "entity": "switch.[[user]]_habit_[[n]]_ai",
+                      "icon": "mdi:brain",
+                      "primary": "AI reminder message",
+                      "secondary": "Generate dynamic notification text",
+                      "color": "{{ iif(is_state('switch.[[user]]_habit_[[n]]_ai', 'on'), 'purple', 'grey') }}",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "habit_slot_new": {
+          "card": {
+            "type": "custom:mushroom-template-card",
+            "entity": "text.[[user]]_habit_[[n]]_name",
+            "primary": "New habit",
+            "secondary": "Tap to name this slot",
+            "icon": "mdi:plus-circle-outline",
+            "color": "grey",
+            "icon_tap_action": {
+              "action": "none"
+            },
+            "hold_action": {
+              "action": "more-info"
+            },
+            "tap_action": {
+              "action": "perform-action",
+              "perform_action": "browser_mod.popup",
+              "target": {},
+              "data": {
+                "dismissable": true,
+                "autoclose": false,
+                "title": "New habit",
+                "content": {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "markdown",
+                      "content": "Give this spare slot a name to create the habit. Clear the name later to delete it.",
+                      "text_only": true
+                    },
+                    {
+                      "type": "entities",
+                      "show_header_toggle": false,
+                      "entities": [
+                        {
+                          "entity": "text.[[user]]_habit_[[n]]_name",
+                          "name": "Habit Name"
+                        },
+                        {
+                          "entity": "select.[[user]]_habit_[[n]]_type",
+                          "name": "Habit Type"
+                        },
+                        {
+                          "entity": "time.[[user]]_habit_[[n]]_reminder_time",
+                          "name": "Reminder Time"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
         }
       },
       "views": [
@@ -7446,20 +7925,27 @@
                 {
                   "type": "heading",
                   "heading": "Mood",
-                  "heading_style": "subtitle"
+                  "heading_style": "subtitle",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.will_mood_streak",
+                      "show_state": true
+                    }
+                  ]
                 },
                 {
+                  "type": "custom:mushroom-template-card",
                   "features": [
                     {
                       "type": "select-options"
                     }
                   ],
-                  "type": "custom:mushroom-template-card",
-                  "icon": "mdi:emoticon-{%- if is_state(\"input_select.will_mood_today\", \"Not Set\") -%}\nconfused\n{%- elif is_state(\"input_select.will_mood_today\", \"Very Low\") -%}\ndead\n{%- elif is_state(\"input_select.will_mood_today\", \"Low\") -%}\nsad\n{%- elif is_state(\"input_select.will_mood_today\", \"Okay\") -%}\nneutral\n{%- elif is_state(\"input_select.will_mood_today\", \"Good\") -%}\nhappy\n{%- elif is_state(\"input_select.will_mood_today\", \"Great\") -%}\ncool\n{%- else -%}\ndevil\n{%- endif -%}\n-outline",
                   "features_position": "inline",
-                  "entity": "input_select.will_mood_today",
+                  "entity": "select.will_mood_today",
                   "primary": "Today's Mood",
-                  "color": "{%- if is_state(\"input_select.will_mood_today\", \"Not Set\") -%}\n#9E9E9E\n{%- elif is_state(\"input_select.will_mood_today\", \"Very Low\") -%}\n#8B0000\n{%- elif is_state(\"input_select.will_mood_today\", \"Low\") -%}\n#FF5722\n{%- elif is_state(\"input_select.will_mood_today\", \"Okay\") -%}\n#FFC107\n{%- elif is_state(\"input_select.will_mood_today\", \"Good\") -%}\n#4CAF50\n{%- elif is_state(\"input_select.will_mood_today\", \"Great\") -%}\n#00E676\n{%- else -%}\n#9E9E9E\n{%- endif -%}",
+                  "icon": "mdi:emoticon-{%- if is_state(\"select.will_mood_today\", \"Not Set\") -%}\nconfused\n{%- elif is_state(\"select.will_mood_today\", \"Very Low\") -%}\ndead\n{%- elif is_state(\"select.will_mood_today\", \"Low\") -%}\nsad\n{%- elif is_state(\"select.will_mood_today\", \"Okay\") -%}\nneutral\n{%- elif is_state(\"select.will_mood_today\", \"Good\") -%}\nhappy\n{%- elif is_state(\"select.will_mood_today\", \"Great\") -%}\ncool\n{%- else -%}\ndevil\n{%- endif -%}\n-outline",
+                  "color": "{%- if is_state(\"select.will_mood_today\", \"Not Set\") -%}\n#9E9E9E\n{%- elif is_state(\"select.will_mood_today\", \"Very Low\") -%}\n#8B0000\n{%- elif is_state(\"select.will_mood_today\", \"Low\") -%}\n#FF5722\n{%- elif is_state(\"select.will_mood_today\", \"Okay\") -%}\n#FFC107\n{%- elif is_state(\"select.will_mood_today\", \"Good\") -%}\n#4CAF50\n{%- elif is_state(\"select.will_mood_today\", \"Great\") -%}\n#00E676\n{%- else -%}\n#9E9E9E\n{%- endif -%}",
                   "tap_action": {
                     "action": "none"
                   },
@@ -7472,42 +7958,18 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
-                  "entity": "input_text.will_mood_note",
+                  "entity": "text.will_mood_note",
                   "name": "Mood Notes",
                   "secondary_info": "state"
                 },
                 {
                   "type": "heading",
                   "heading": "Habits",
-                  "heading_style": "subtitle",
-                  "badges": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.will_habits_binary_count"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.will_habits_countable_count"
-                    }
-                  ]
-                },
-                {
-                  "features": [
-                    {
-                      "type": "numeric-input",
-                      "style": "buttons"
-                    }
-                  ],
-                  "type": "custom:mushroom-template-card",
-                  "features_position": "inline",
-                  "entity": "input_number.will_habit_countable_1",
-                  "primary": "{{ states(\"input_text.will_habit_countable_1_name\") }}",
-                  "color": "{{ iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"red\", \"green\") }}",
-                  "icon": "{{ states(iif(states(\"input_number.will_habit_countable_1\") | int(0) > 0, \"input_text.will_habit_countable_1_icon_active\", \"input_text.will_habit_countable_1_icon_zero\")) }}"
+                  "heading_style": "subtitle"
                 },
                 {
                   "type": "custom:decluttering-card",
-                  "template": "habit_binary_n",
+                  "template": "habit_slot_binary",
                   "variables": [
                     {
                       "n": 1
@@ -7515,11 +7977,28 @@
                     {
                       "user": "will"
                     }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_1_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_1_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_1_type",
+                      "state": "binary"
+                    }
                   ]
                 },
                 {
                   "type": "custom:decluttering-card",
-                  "template": "habit_binary_n",
+                  "template": "habit_slot_binary",
                   "variables": [
                     {
                       "n": 2
@@ -7527,17 +8006,734 @@
                     {
                       "user": "will"
                     }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_2_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_2_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_2_type",
+                      "state": "binary"
+                    }
                   ]
                 },
                 {
                   "type": "custom:decluttering-card",
-                  "template": "habit_binary_n",
+                  "template": "habit_slot_binary",
                   "variables": [
                     {
                       "n": 3
                     },
                     {
                       "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_3_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_3_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_3_type",
+                      "state": "binary"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_binary",
+                  "variables": [
+                    {
+                      "n": 4
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_4_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_4_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_4_type",
+                      "state": "binary"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_binary",
+                  "variables": [
+                    {
+                      "n": 5
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_5_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_5_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_5_type",
+                      "state": "binary"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_binary",
+                  "variables": [
+                    {
+                      "n": 6
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_6_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_6_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_6_type",
+                      "state": "binary"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_binary",
+                  "variables": [
+                    {
+                      "n": 7
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_7_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_7_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_7_type",
+                      "state": "binary"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_binary",
+                  "variables": [
+                    {
+                      "n": 8
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_8_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_8_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_8_type",
+                      "state": "binary"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_binary",
+                  "variables": [
+                    {
+                      "n": 9
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_9_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_9_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_9_type",
+                      "state": "binary"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_binary",
+                  "variables": [
+                    {
+                      "n": 10
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_10_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_10_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_10_type",
+                      "state": "binary"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_countable",
+                  "variables": [
+                    {
+                      "n": 1
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_1_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_1_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_1_type",
+                      "state": "countable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_countable",
+                  "variables": [
+                    {
+                      "n": 2
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_2_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_2_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_2_type",
+                      "state": "countable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_countable",
+                  "variables": [
+                    {
+                      "n": 3
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_3_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_3_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_3_type",
+                      "state": "countable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_countable",
+                  "variables": [
+                    {
+                      "n": 4
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_4_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_4_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_4_type",
+                      "state": "countable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_countable",
+                  "variables": [
+                    {
+                      "n": 5
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_5_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_5_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_5_type",
+                      "state": "countable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_countable",
+                  "variables": [
+                    {
+                      "n": 6
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_6_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_6_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_6_type",
+                      "state": "countable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_countable",
+                  "variables": [
+                    {
+                      "n": 7
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_7_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_7_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_7_type",
+                      "state": "countable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_countable",
+                  "variables": [
+                    {
+                      "n": 8
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_8_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_8_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_8_type",
+                      "state": "countable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_countable",
+                  "variables": [
+                    {
+                      "n": 9
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_9_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_9_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_9_type",
+                      "state": "countable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_countable",
+                  "variables": [
+                    {
+                      "n": 10
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_10_name",
+                      "state_not": "unknown"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_10_name",
+                      "state_not": ""
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "select.will_habit_10_type",
+                      "state": "countable"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_new",
+                  "variables": [
+                    {
+                      "n": 1
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_1_name",
+                      "state": "unknown"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_new",
+                  "variables": [
+                    {
+                      "n": 2
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_2_name",
+                      "state": "unknown"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_new",
+                  "variables": [
+                    {
+                      "n": 3
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_3_name",
+                      "state": "unknown"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_new",
+                  "variables": [
+                    {
+                      "n": 4
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_4_name",
+                      "state": "unknown"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_new",
+                  "variables": [
+                    {
+                      "n": 5
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_5_name",
+                      "state": "unknown"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_new",
+                  "variables": [
+                    {
+                      "n": 6
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_6_name",
+                      "state": "unknown"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_new",
+                  "variables": [
+                    {
+                      "n": 7
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_7_name",
+                      "state": "unknown"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_new",
+                  "variables": [
+                    {
+                      "n": 8
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_8_name",
+                      "state": "unknown"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_new",
+                  "variables": [
+                    {
+                      "n": 9
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_9_name",
+                      "state": "unknown"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "habit_slot_new",
+                  "variables": [
+                    {
+                      "n": 10
+                    },
+                    {
+                      "user": "will"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "text.will_habit_10_name",
+                      "state": "unknown"
                     }
                   ]
                 }
