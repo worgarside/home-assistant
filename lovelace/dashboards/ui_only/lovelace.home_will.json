@@ -9441,11 +9441,6 @@
                   ]
                 },
                 {
-                  "type": "markdown",
-                  "title": "Spend by Model",
-                  "content": "{% set models = state_attr('sensor.cursor_usage_by_model', 'models') or {} %}\n{% set ns = namespace(rows=[]) %}\n{% for name, data in models.items() %}\n  {% set ns.rows = ns.rows + [(data.total_cents | float(0), name)] %}\n{% endfor %}\n{% for cents, name in ns.rows | sort(reverse=true) %}\n- **{{ '%.2f'|format(cents / 100) }}** \u2014 `{{ name }}`\n{% endfor %}"
-                },
-                {
                   "type": "custom:mini-graph-card",
                   "name": "Included Usage %",
                   "entities": [
@@ -9496,9 +9491,14 @@
                       "name": "Included Limit"
                     }
                   ]
+                },
+                {
+                  "type": "markdown",
+                  "title": "Spend by Model",
+                  "content": "{% set models = state_attr('sensor.cursor_usage_by_model', 'models') or {} %}\n{% set ns = namespace(rows=[]) %}\n{% for name, data in models.items() %}\n  {% set ns.rows = ns.rows + [(data.total_cents | float(0), name)] %}\n{% endfor %}\n{% for cents, name in ns.rows | sort(reverse=true) %}\n- **{{ '%.2f'|format(cents / 100) }}** \u2014 `{{ name }}`\n{% endfor %}"
                 }
               ],
-              "column_span": 3
+              "column_span": 1
             }
           ]
         }
