@@ -996,7 +996,6 @@
               "data": {
                 "dismissable": true,
                 "autoclose": false,
-                "title": "{{ states('text.[[user]]_habit_[[n]]_name') }}",
                 "content": {
                   "type": "vertical-stack",
                   "cards": [
@@ -1051,7 +1050,6 @@
               "data": {
                 "dismissable": true,
                 "autoclose": false,
-                "title": "{{ states('text.[[user]]_habit_[[n]]_name') }} settings",
                 "content": {
                   "type": "vertical-stack",
                   "cards": [
@@ -1209,7 +1207,6 @@
               "data": {
                 "dismissable": true,
                 "autoclose": false,
-                "title": "{{ states('text.[[user]]_habit_[[n]]_name') }}",
                 "content": {
                   "type": "vertical-stack",
                   "cards": [
@@ -1264,7 +1261,6 @@
               "data": {
                 "dismissable": true,
                 "autoclose": false,
-                "title": "{{ states('text.[[user]]_habit_[[n]]_name') }} settings",
                 "content": {
                   "type": "vertical-stack",
                   "cards": [
