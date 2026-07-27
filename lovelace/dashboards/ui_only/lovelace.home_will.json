@@ -1013,6 +1013,23 @@
                       }
                     },
                     {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:bell-ring-outline",
+                      "primary": "Next reminder",
+                      "secondary": "{{ states('datetime.[[user]]_habit_[[n]]_next_reminder') }}",
+                      "entity": "datetime.[[user]]_habit_[[n]]_next_reminder",
+                      "color": "orange",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  padding-bottom: 0 !important;\n}\n"
+                      }
+                    },
+                    {
                       "type": "custom:mini-graph-card",
                       "entities": [
                         {
@@ -1068,12 +1085,29 @@
                       }
                     },
                     {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:bell-ring-outline",
+                      "primary": "Next @ {{ states('datetime.[[user]]_habit_[[n]]_next_reminder') }}",
+                      "entity": "datetime.[[user]]_habit_[[n]]_next_reminder",
+                      "color": "deep-orange",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
                       "type": "entities",
                       "show_header_toggle": false,
                       "entities": [
                         {
                           "entity": "time.[[user]]_habit_[[n]]_reminder_time",
                           "name": "Reminder Time"
+                        },
+                        {
+                          "entity": "datetime.[[user]]_habit_[[n]]_next_reminder",
+                          "name": "Next Reminder"
                         },
                         {
                           "entity": "text.[[user]]_habit_[[n]]_name",
@@ -1225,6 +1259,23 @@
                       }
                     },
                     {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:bell-ring-outline",
+                      "primary": "Next reminder",
+                      "secondary": "{{ states('datetime.[[user]]_habit_[[n]]_next_reminder') }}",
+                      "entity": "datetime.[[user]]_habit_[[n]]_next_reminder",
+                      "color": "orange",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      },
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  padding-bottom: 0 !important;\n}\n"
+                      }
+                    },
+                    {
                       "type": "custom:mini-graph-card",
                       "entities": [
                         {
@@ -1280,12 +1331,29 @@
                       }
                     },
                     {
+                      "type": "custom:mushroom-template-card",
+                      "icon": "mdi:bell-ring-outline",
+                      "primary": "Next @ {{ states('datetime.[[user]]_habit_[[n]]_next_reminder') }}",
+                      "entity": "datetime.[[user]]_habit_[[n]]_next_reminder",
+                      "color": "deep-orange",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
                       "type": "entities",
                       "show_header_toggle": false,
                       "entities": [
                         {
                           "entity": "time.[[user]]_habit_[[n]]_reminder_time",
                           "name": "Reminder Time"
+                        },
+                        {
+                          "entity": "datetime.[[user]]_habit_[[n]]_next_reminder",
+                          "name": "Next Reminder"
                         },
                         {
                           "entity": "text.[[user]]_habit_[[n]]_name",
