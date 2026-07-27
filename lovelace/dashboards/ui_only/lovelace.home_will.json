@@ -6663,6 +6663,24 @@
                       "name": "Year",
                       "primary_info": "state",
                       "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.student_loan_as_of_date",
+                      "icon": "mdi:calendar-check",
+                      "icon_color": "indigo",
+                      "name": "As Of",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.student_loan_last_successful_scrape",
+                      "icon": "mdi:cloud-check-outline",
+                      "icon_color": "grey",
+                      "name": "Last Scrape",
+                      "primary_info": "state",
+                      "secondary_info": "name"
                     }
                   ]
                 },
