@@ -1016,7 +1016,7 @@
                       "type": "custom:mushroom-template-card",
                       "icon": "mdi:bell-ring-outline",
                       "primary": "Next reminder",
-                      "secondary": "{{ states('datetime.[[user]]_habit_[[n]]_next_reminder') }}",
+                      "secondary": "{{ (states('datetime.[[user]]_habit_[[n]]_next_reminder') | as_datetime | as_local).strftime('%Y-%m-%d %H:%M') if has_value('datetime.[[user]]_habit_[[n]]_next_reminder') else '\u2014' }}",
                       "entity": "datetime.[[user]]_habit_[[n]]_next_reminder",
                       "color": "orange",
                       "tap_action": {
@@ -1087,7 +1087,7 @@
                     {
                       "type": "custom:mushroom-template-card",
                       "icon": "mdi:bell-ring-outline",
-                      "primary": "Next @ {{ states('datetime.[[user]]_habit_[[n]]_next_reminder') }}",
+                      "primary": "Next @ {{ (states('datetime.[[user]]_habit_[[n]]_next_reminder') | as_datetime | as_local).strftime('%Y-%m-%d %H:%M') if has_value('datetime.[[user]]_habit_[[n]]_next_reminder') else '\u2014' }}",
                       "entity": "datetime.[[user]]_habit_[[n]]_next_reminder",
                       "color": "deep-orange",
                       "tap_action": {
@@ -1262,7 +1262,7 @@
                       "type": "custom:mushroom-template-card",
                       "icon": "mdi:bell-ring-outline",
                       "primary": "Next reminder",
-                      "secondary": "{{ states('datetime.[[user]]_habit_[[n]]_next_reminder') }}",
+                      "secondary": "{{ (states('datetime.[[user]]_habit_[[n]]_next_reminder') | as_datetime | as_local).strftime('%Y-%m-%d %H:%M') if has_value('datetime.[[user]]_habit_[[n]]_next_reminder') else '\u2014' }}",
                       "entity": "datetime.[[user]]_habit_[[n]]_next_reminder",
                       "color": "orange",
                       "tap_action": {
@@ -1333,7 +1333,7 @@
                     {
                       "type": "custom:mushroom-template-card",
                       "icon": "mdi:bell-ring-outline",
-                      "primary": "Next @ {{ states('datetime.[[user]]_habit_[[n]]_next_reminder') }}",
+                      "primary": "Next @ {{ (states('datetime.[[user]]_habit_[[n]]_next_reminder') | as_datetime | as_local).strftime('%Y-%m-%d %H:%M') if has_value('datetime.[[user]]_habit_[[n]]_next_reminder') else '\u2014' }}",
                       "entity": "datetime.[[user]]_habit_[[n]]_next_reminder",
                       "color": "deep-orange",
                       "tap_action": {
