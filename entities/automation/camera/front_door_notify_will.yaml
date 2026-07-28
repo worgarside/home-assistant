@@ -1,0 +1,78 @@
+---
+alias: /camera/front-door-notify-will
+
+id: camera_front_door_notify_will
+
+description: >-
+  Notify Will immediately when Frigate starts a front-door person alert, then update the same
+  notification with Frigate's AI-generated review summary.
+
+mode: parallel
+
+max: 10
+
+max_exceeded: silent
+
+trigger:
+  - platform: mqtt
+    topic: frigate/reviews
+    value_template: "{{ value_json.type }}"
+    payload: new
+    id: new
+
+  - platform: mqtt
+    topic: frigate/reviews
+    value_template: "{{ value_json.type }}"
+    payload: genai
+    id: genai
+
+variables:
+  review: "{{ trigger.payload_json.get('after', {}) }}"
+  review_data: "{{ review.get('data', {}) }}"
+  objects: "{{ review_data.get('objects', []) }}"
+  detections: "{{ review_data.get('detections', []) }}"
+  review_id: "{{ review.get('id', '') }}"
+  detection_id: "{{ detections | first | default(review_id, true) }}"
+  metadata: "{{ review_data.get('metadata', {}) }}"
+  notification_title: >-
+    {{
+      metadata.get('title', 'Front Door Activity')
+      if trigger.id == 'genai'
+      else 'Person at the Front Door'
+    }}
+  notification_message: >-
+    {{
+      metadata.get('shortSummary', 'Frigate detected a person at the front door.')
+      if trigger.id == 'genai'
+      else 'Frigate detected a person at the front door.'
+    }}
+  snapshot_url: "/api/frigate/notifications/{{ detection_id }}/snapshot.jpg"
+  clip_url: "/api/frigate/notifications/{{ detection_id }}/front_door/clip.mp4"
+
+condition:
+  - condition: template
+    value_template: >-
+      {{
+        review.get('camera') == 'front_door' and
+        review.get('severity') == 'alert' and
+        'person' in objects and
+        review_id | length > 0 and
+        detection_id | length > 0
+      }}
+
+action:
+  - action: script.notify_will
+    continue_on_error: true
+    data:
+      title: "{{ notification_title }}"
+      message: "{{ notification_message }}"
+      notification_id: frigate_front_door_{{ review_id }}
+      mobile_notification_icon: mdi:doorbell-video
+      group: frigate-front-door
+      sticky: true
+      image: "{{ snapshot_url }}"
+      url: "{{ clip_url }}"
+      actions:
+        - action: URI
+          title: View Clip
+          uri: "{{ clip_url }}"
