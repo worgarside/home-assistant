@@ -8237,7 +8237,11 @@
                   "type": "custom:mushroom-entity-card",
                   "entity": "text.will_mood_note",
                   "name": "Mood Notes",
-                  "secondary_info": "state"
+                  "secondary_info": "state",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
                 },
                 {
                   "type": "heading",
