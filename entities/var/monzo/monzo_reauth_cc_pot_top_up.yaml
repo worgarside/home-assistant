@@ -1,0 +1,12 @@
+---
+friendly_name: Monzo Reauth (CC Pot Top-Up)
+
+icon: mdi:key-alert-outline
+
+restore: true
+
+unique_id: var_monzo_monzo_reauth_cc_pot_top_up
+
+# Declared here so var restore persists the auth link across HA restarts
+attributes:
+  auth_link: ""
