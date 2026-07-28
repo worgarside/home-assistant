@@ -11892,7 +11892,7 @@ File: [`timer/pro_breeze_ac_off.yaml`](entities/timer/pro_breeze_ac_off.yaml)
 
 ## Var
 
-<details><summary><h3>Entities (28)</h3></summary>
+<details><summary><h3>Entities (30)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -11965,6 +11965,24 @@ File: [`var/hot_water_last_action.yaml`](entities/var/hot_water_last_action.yaml
 **Entity ID: `var.lounge_occupancy_automation_state_pre_exercise_mode`**
 
 File: [`var/lounge_occupancy_automation_state_pre_exercise_mode.yaml`](entities/var/lounge_occupancy_automation_state_pre_exercise_mode.yaml)
+</details>
+
+<details><summary><strong>Monzo Reauth (Auto Saver)</strong></summary>
+
+**Entity ID: `var.monzo_reauth_auto_saver`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/monzo/monzo_reauth_auto_saver.yaml`](entities/var/monzo/monzo_reauth_auto_saver.yaml)
+</details>
+
+<details><summary><strong>Monzo Reauth (CC Pot Top-Up)</strong></summary>
+
+**Entity ID: `var.monzo_reauth_cc_pot_top_up`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/monzo/monzo_reauth_cc_pot_top_up.yaml`](entities/var/monzo/monzo_reauth_cc_pot_top_up.yaml)
 </details>
 
 <details><summary><strong>OVO | Electricity: Monthly Cost</strong></summary>
