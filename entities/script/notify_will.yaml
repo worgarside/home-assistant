@@ -135,6 +135,15 @@ variables:
 
   timeout: "{{ timeout | default(None) }}"
 
+  ha_message: >-
+    {%- if image %}
+      {{ message }}
+
+      ![image]({{ image }})
+    {%- else %}
+      {{ message }}
+    {%- endif %}
+
 sequence:
   - if: >-
       {{
@@ -160,8 +169,9 @@ sequence:
     else:
       - alias: HA Notification
         action: persistent_notification.create
+        continue_on_error: true
         data:
-          message: "{{ message }}"
+          message: "{{ ha_message }}"
           notification_id: "{{ notification_id }}"
           title: "{{ notif_title }}"
 

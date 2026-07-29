@@ -7423,7 +7423,8 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "sticky": "{{ sticky | default(false) }}",
   "persistent": "{{ persistent | default(false) }}",
   "image": "{{ image | default('') }}",
-  "timeout": "{{ timeout | default(None) }}"
+  "timeout": "{{ timeout | default(None) }}",
+  "ha_message": "{%- if image %}\n  {{ message }}\n\n  ![image]({{ image }})\n{%- else %}\n  {{ message }}\n{%- endif %}"
 }
 ```
 File: [`script/notify_will.yaml`](entities/script/notify_will.yaml)
