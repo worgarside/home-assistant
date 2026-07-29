@@ -302,33 +302,51 @@ File: [`automation/binary_sensor/will_s_office/external_opening_detected/on.yaml
 File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](entities/automation/binary_sensor/will_s_office/occupancy/state_change.yaml)
 </details>
 
-<details><summary><code>/camera/front-door-notify-will</code></summary>
+<details><summary><code>/camera/frigate-notify-will</code></summary>
 
-**Entity ID: `automation.camera_front_door_notify_will`**
+**Entity ID: `automation.camera_frigate_notify_will`**
 
-> Notify Will immediately when Frigate starts a front-door person alert, then update the same notification with Frigate's AI-generated review summary.
+> Notify Will immediately when Frigate starts a person, cat, or dog review for the front door, basement, or lounge, then update the same notification with Frigate's AI-generated summary.
 
-- Alias: /camera/front-door-notify-will
-- ID: `camera_front_door_notify_will`
+- Alias: /camera/frigate-notify-will
+- ID: `camera_frigate_notify_will`
 - Mode: `parallel`
 - Variables:
 
 ```json
 {
+  "supported_cameras": [
+    "front_door",
+    "basement",
+    "lounge"
+  ],
+  "supported_objects": [
+    "person",
+    "cat",
+    "dog"
+  ],
+  "camera_names": {
+    "front_door": "Front Door",
+    "basement": "Basement",
+    "lounge": "Lounge"
+  },
   "review": "{{ trigger.payload_json.get('after', {}) }}",
   "review_data": "{{ review.get('data', {}) }}",
+  "camera": "{{ review.get('camera', '') }}",
+  "camera_name": "{{ camera_names.get(camera, camera | replace('_', ' ') | title) }}",
   "objects": "{{ review_data.get('objects', []) }}",
   "detections": "{{ review_data.get('detections', []) }}",
   "review_id": "{{ review.get('id', '') }}",
   "detection_id": "{{ detections | first | default(review_id, true) }}",
   "metadata": "{{ review_data.get('metadata', {}) }}",
-  "notification_title": "{{\n  metadata.get('title', 'Front Door Activity')\n  if trigger.id == 'genai'\n  else 'Person at the Front Door'\n}}",
-  "notification_message": "{{\n  metadata.get('shortSummary', 'Frigate detected a person at the front door.')\n  if trigger.id == 'genai'\n  else 'Frigate detected a person at the front door.'\n}}",
+  "detected_object": "{{\n  'person'\n  if 'person' in objects\n  else 'dog'\n  if 'dog' in objects\n  else 'cat'\n  if 'cat' in objects\n  else 'activity'\n}}",
+  "notification_title": "{{\n  metadata.get('title', detected_object | title ~ ' on ' ~ camera_name)\n  if trigger.id == 'genai'\n  else detected_object | title ~ ' on ' ~ camera_name\n}}",
+  "notification_message": "{{\n  metadata.get(\n    'shortSummary',\n    'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n  )\n  if trigger.id == 'genai'\n  else 'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n}}",
   "snapshot_url": "/api/frigate/notifications/{{ detection_id }}/snapshot.jpg",
-  "clip_url": "/api/frigate/notifications/{{ detection_id }}/front_door/clip.mp4"
+  "clip_url": "/api/frigate/notifications/{{ detection_id }}/{{ camera }}/clip.mp4"
 }
 ```
-File: [`automation/camera/front_door_notify_will.yaml`](entities/automation/camera/front_door_notify_will.yaml)
+File: [`automation/camera/frigate_notify_will.yaml`](entities/automation/camera/frigate_notify_will.yaml)
 </details>
 
 <details><summary><code>/camera/offline-notify-will</code></summary>

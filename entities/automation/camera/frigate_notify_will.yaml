@@ -1,0 +1,106 @@
+---
+alias: /camera/frigate-notify-will
+
+id: camera_frigate_notify_will
+
+description: >-
+  Notify Will immediately when Frigate starts a person, cat, or dog review for the front door,
+  basement, or lounge, then update the same notification with Frigate's AI-generated summary.
+
+mode: parallel
+
+max: 10
+
+max_exceeded: silent
+
+trigger:
+  - platform: mqtt
+    topic: frigate/reviews
+    value_template: "{{ value_json.type }}"
+    payload: new
+    id: new
+
+  - platform: mqtt
+    topic: frigate/reviews
+    value_template: "{{ value_json.type }}"
+    payload: genai
+    id: genai
+
+variables:
+  supported_cameras:
+    - front_door
+    - basement
+    - lounge
+  supported_objects:
+    - person
+    - cat
+    - dog
+  camera_names:
+    front_door: Front Door
+    basement: Basement
+    lounge: Lounge
+  review: "{{ trigger.payload_json.get('after', {}) }}"
+  review_data: "{{ review.get('data', {}) }}"
+  camera: "{{ review.get('camera', '') }}"
+  camera_name: "{{ camera_names.get(camera, camera | replace('_', ' ') | title) }}"
+  objects: "{{ review_data.get('objects', []) }}"
+  detections: "{{ review_data.get('detections', []) }}"
+  review_id: "{{ review.get('id', '') }}"
+  detection_id: "{{ detections | first | default(review_id, true) }}"
+  metadata: "{{ review_data.get('metadata', {}) }}"
+  detected_object: >-
+    {{
+      'person'
+      if 'person' in objects
+      else 'dog'
+      if 'dog' in objects
+      else 'cat'
+      if 'cat' in objects
+      else 'activity'
+    }}
+  notification_title: >-
+    {{
+      metadata.get('title', detected_object | title ~ ' on ' ~ camera_name)
+      if trigger.id == 'genai'
+      else detected_object | title ~ ' on ' ~ camera_name
+    }}
+  notification_message: >-
+    {{
+      metadata.get(
+        'shortSummary',
+        'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'
+      )
+      if trigger.id == 'genai'
+      else 'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'
+    }}
+  snapshot_url: "/api/frigate/notifications/{{ detection_id }}/snapshot.jpg"
+  clip_url: "/api/frigate/notifications/{{ detection_id }}/{{ camera }}/clip.mp4"
+
+condition:
+  - condition: template
+    value_template: >-
+      {{
+        camera in supported_cameras and
+        review.get('severity') in ['alert', 'detection'] and
+        objects | select('in', supported_objects) | list | count > 0 and
+        review_id | length > 0 and
+        detection_id | length > 0
+      }}
+
+action:
+  - action: script.notify_will
+    continue_on_error: true
+    data:
+      title: "{{ notification_title }}"
+      message: "{{ notification_message }}"
+      notification_id: frigate_{{ camera }}_{{ review_id }}
+      mobile_notification_icon: >-
+        {{ 'mdi:doorbell-video' if camera == 'front_door' else 'mdi:cctv' }}
+      group: "frigate-{{ camera | replace('_', '-') }}"
+      sticky: true
+      image: "{{ snapshot_url }}"
+      url: "{{ clip_url }}"
+      actions:
+        - action: URI
+          title: View Clip
+          uri: "{{ clip_url }}"
