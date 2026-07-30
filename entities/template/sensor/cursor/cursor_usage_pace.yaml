@@ -1,0 +1,19 @@
+---
+name: Cursor Usage Pace
+
+unique_id: cursor_usage_pace
+
+availability: >-
+  {{
+    has_value('sensor.cursor_included_usage_percent')
+    and has_value('sensor.cursor_cycle_percent_elapsed')
+  }}
+
+state: >-
+  {% set used = states('sensor.cursor_included_usage_percent') | float(0) %}
+  {% set elapsed = states('sensor.cursor_cycle_percent_elapsed') | float(0) %}
+  {{ (used / elapsed) | round(3) if elapsed > 0 else 0 }}
+
+state_class: measurement
+
+icon: mdi:speedometer

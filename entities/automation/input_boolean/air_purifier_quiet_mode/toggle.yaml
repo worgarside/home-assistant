@@ -15,7 +15,7 @@ trigger:
       - "off"
 
   - trigger: state
-    entity_id: remote.dining_area_chromecast_remote
+    entity_id: media_player.dining_area_hifi_system_2  # denonavr
     to:
       - "on"
       - "off"
@@ -34,7 +34,7 @@ variables:
         is_state('remote.lounge_streamer', 'on')
       ) or (
         is_state('sensor.air_purifier_area', 'dining_area') and
-        is_state('remote.dining_area_chromecast_remote', 'on')
+        is_state('media_player.dining_area_hifi_system_2', 'on')
       )
     }}
 

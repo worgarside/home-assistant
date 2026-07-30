@@ -1,0 +1,27 @@
+---
+description: Deploy HA config via user-driven git (commit/push/checkout on HA). Never SSH/rsync/SFTP sync.
+alwaysApply: true
+---
+
+# Home Assistant Deploy via Git
+
+Do **not** transfer config files to the live HA instance yourself (no SSH, rsync, SFTP, scp, or file-sync watchers).
+
+## Deployment process (user-owned)
+
+1. Agent finishes local YAML/config changes
+2. **User** commits and pushes
+3. **User** checks out the new branch on HA
+4. User tells the agent the process is complete
+5. Agent may then reload integrations via MCP and verify live state
+
+## Agent responsibilities
+
+- Ask the user to commit/push/checkout on HA whenever local config must reach the instance
+- After the user confirms deploy is done, use MCP to reload (`command_line`, `template`, etc.) and verify entities
+- Storage-mode dashboards may still be updated directly via MCP (`ha_config_set_dashboard`); that does not replace git deploy for YAML entities
+
+## Do not
+
+- Run `make sync-files`, `hasspi_file_sync`, rsync/scp/sftp to hasspi, or equivalent
+- Assume files are live on HA until the user confirms checkout is complete

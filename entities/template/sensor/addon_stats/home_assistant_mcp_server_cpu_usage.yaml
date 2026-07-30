@@ -1,0 +1,7 @@
+---
+icon: mdi:cpu-32-bit
+name: Home Assistant MCP Server CPU Usage
+state: >-
+  {{ state_attr('sensor.home_assistant_mcp_server_status', 'data').cpu_percent | default(0) }}
+unique_id: home_assistant_mcp_server_cpu_usage
+unit_of_measurement: "%"

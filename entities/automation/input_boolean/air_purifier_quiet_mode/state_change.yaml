@@ -9,7 +9,9 @@ max_exceeded: silent
 
 trigger:
   - platform: state
-    entity_id: input_boolean.air_purifier_quiet_mode
+    entity_id:
+      - input_boolean.air_purifier_quiet_mode
+      - input_number.air_purifier_quiet_mode_ceiling
 
 # Only run if it's on
 condition: "{{ states('fan.air_purifier') | bool(false) }}"

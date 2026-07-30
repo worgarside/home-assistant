@@ -12,24 +12,23 @@ variables:
 
   quiet_mode: "{{ states('input_boolean.air_purifier_quiet_mode') | bool(false) }}"
 
+  quiet_mode_ceiling: "{{ states('input_number.air_purifier_quiet_mode_ceiling') | int(50) }}"
+
   current_speed: "{{ state_attr('fan.air_purifier', 'percentage') | int(0) }}"
 
 sequence:
   - variables:
       target_speed: >-
-        {% if quiet_mode %}
-          {{ iif(pm2_5 > 12, 50, 25) }}
+        {% if pm2_5 > 55 %}
+          {% set raw = 100 %}
+        {% elif pm2_5 > 35 %}
+          {% set raw = 75 %}
+        {% elif pm2_5 > 12 %}
+          {% set raw = 50 %}
         {% else %}
-          {% if pm2_5 > 55 %}
-            100
-          {% elif pm2_5 > 35 %}
-            75
-          {% elif pm2_5 > 12 %}
-            50
-          {% else %}
-            25
-          {% endif %}
+          {% set raw = 25 %}
         {% endif %}
+        {{ [raw, quiet_mode_ceiling | int(50)] | min if quiet_mode | bool else raw }}
 
   - condition: "{{ current_speed != target_speed }}"
 

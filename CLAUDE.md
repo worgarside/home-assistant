@@ -186,7 +186,13 @@ max_exceeded: silent          # suppress logs for high-frequency triggers
 
 ## Dashboard Rules
 
-- **Never** add `grid_options` (`columns`, `rows`) to a `custom:mini-graph-card` — it breaks layout.
+- **Never** add `grid_options` (`columns`, `rows`) to a `custom:mini-graph-card` — it breaks layout. This applies to hand-authored dashboard config such as `lovelace/decluttering_templates.yaml`.
+
+### `lovelace/dashboards/ui_only/*.json` — always ignore, completely
+
+Everything under `lovelace/dashboards/ui_only/` (e.g. `lovelace.lovelace.json`, `lovelace.home_will.json`, `lovelace_dashboards.json`, and any sibling file matching that pattern) is auto-generated: it's synced straight out of the live HA instance purely for history/backup, not authored by hand, and racks up a large volume of fully automated commits. It frequently does not reflect the actual intended configuration.
+
+Never take these files into account for any purpose, in any context — code review (PR or local diff), reasoning about repo history/blame, searching for current behavior, or anything else. Treat them as if they don't exist: don't read their contents to inform an answer, don't comment on changes to them, don't flag their commit noise, and don't use them as evidence of what the "real" dashboard config is. If a diff or commit touches only these files, treat it as a no-op for review/analysis purposes.
 
 ## Debugging
 

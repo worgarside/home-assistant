@@ -1,0 +1,25 @@
+---
+alias: /webhook/cursor-session-token
+
+id: webhook_cursor_session_token
+
+mode: queued
+
+trigger:
+  - platform: webhook
+    webhook_id: cursor_session_token
+    allowed_methods:
+      - POST
+    local_only: true
+
+action:
+  - if: >-
+      {{
+        trigger.json is mapping
+        and trigger.json.get("token", "") is string
+        and trigger.json.get("token", "") | length > 0
+      }}
+    then:
+      - event: cursor_session_token
+        event_data:
+          token: "{{ trigger.json['token'] }}"
