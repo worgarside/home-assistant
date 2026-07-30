@@ -80,7 +80,11 @@ fields:
       boolean:
 
   image:
-    description: Optional image for the notification
+    description: >-
+      Optional image for the notification. Companion apps accept
+      /api/camera_proxy/... directly; for the HA UI notification those are
+      snapshotted to /local/images/notifications/ first. Absolute http(s) and
+      /local/ paths are embedded as-is.
     example: /api/camera_proxy/camera.octoprint_camera
     required: false
     selector:
@@ -143,6 +147,37 @@ variables:
 
   timeout: "{{ timeout | default(None) }}"
 
+  # Persistent notifications can only render /local/ (www) or absolute http(s)
+  # images. Companion apps accept /api/camera_proxy/... so snapshot those first.
+  camera_entity: >-
+    {{
+      image
+      | regex_findall('^/api/camera_proxy/(camera\\.[\\w.]+)$')
+      | first
+      | default(none)
+    }}
+
+  snapshot_basename: "{{ notification_id | regex_replace('[^\\w.-]', '_') }}.jpg"
+
+  ha_image: >-
+    {%- if image.startswith('/local/')
+          or image.startswith('http://')
+          or image.startswith('https://') -%}
+      {{ image }}
+    {%- elif camera_entity -%}
+      /local/images/notifications/{{ snapshot_basename }}
+    {%- else -%}
+    {%- endif %}
+
+  ha_message: >-
+    {%- if ha_image -%}
+      {{ message }}
+
+      ![image]({{ ha_image }})
+    {%- else -%}
+      {{ message }}
+    {%- endif %}
+
 sequence:
   - if: >-
       {{
@@ -166,10 +201,21 @@ sequence:
           notification_id: "{{ notification_id }}"
 
     else:
+      - if: "{{ camera_entity is not none }}"
+        then:
+          - alias: Snapshot camera for HA notification
+            action: camera.snapshot
+            continue_on_error: true
+            target:
+              entity_id: "{{ camera_entity }}"
+            data:
+              filename: /config/www/images/notifications/{{ snapshot_basename }}
+
       - alias: HA Notification
         action: persistent_notification.create
+        continue_on_error: true
         data:
-          message: "{{ message }}"
+          message: "{{ ha_message }}"
           notification_id: "{{ notification_id }}"
           title: "{{ notif_title }}"
 
