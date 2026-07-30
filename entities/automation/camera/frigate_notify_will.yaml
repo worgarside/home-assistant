@@ -6,7 +6,8 @@ id: camera_frigate_notify_will
 description: >-
   Notify Will immediately for front-door and pet reviews, then silently update the notification
   with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and
-  only when nobody is home.
+  only when nobody is home. When input_boolean.frigate_notify_all is on, the noise-reduction
+  gating is bypassed and all supported camera/object reviews notify.
 
 mode: parallel
 
@@ -91,6 +92,10 @@ condition:
 
   - condition: or
     conditions:
+      - condition: state
+        entity_id: input_boolean.frigate_notify_all
+        state: "on"
+
       - condition: and
         conditions:
           - condition: trigger
