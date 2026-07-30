@@ -9266,7 +9266,7 @@ File: [`timer/pro_breeze_ac_off.yaml`](entities/timer/pro_breeze_ac_off.yaml)
 
 ## Var
 
-<details><summary><h3>Entities (31)</h3></summary>
+<details><summary><h3>Entities (32)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -9504,6 +9504,15 @@ File: [`var/truelayer/truelayer_reauth_amex.yaml`](entities/var/truelayer/truela
 - Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
 
 File: [`var/truelayer/truelayer_reauth_amex_auto_saver.yaml`](entities/var/truelayer/truelayer_reauth_amex_auto_saver.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Reauth (Amex Vic)</strong></summary>
+
+**Entity ID: `var.truelayer_reauth_amex_vic`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/truelayer/truelayer_reauth_amex_vic.yaml`](entities/var/truelayer/truelayer_reauth_amex_vic.yaml)
 </details>
 
 <details><summary><strong>TrueLayer Reauth (HSBC)</strong></summary>
