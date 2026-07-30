@@ -82,9 +82,10 @@ fields:
   image:
     description: >-
       Optional image for the notification. Companion apps accept
-      /api/camera_proxy/... directly; for the HA UI notification those are
-      snapshotted to /local/images/notifications/ first. Absolute http(s) and
-      /local/ paths are embedded as-is.
+      /api/camera_proxy/... and /api/frigate/notifications/... directly.
+      Camera-proxy paths are snapshotted to /local/images/notifications/ for
+      the HA UI; absolute http(s), /local/, and /api/frigate/ paths are
+      embedded as-is.
     example: /api/camera_proxy/camera.octoprint_camera
     required: false
     selector:
@@ -147,8 +148,9 @@ variables:
 
   timeout: "{{ timeout | default(None) }}"
 
-  # Persistent notifications can only render /local/ (www) or absolute http(s)
-  # images. Companion apps accept /api/camera_proxy/... so snapshot those first.
+  # Persistent notifications can render /local/ (www), absolute http(s), and
+  # /api/frigate/notifications/... (unauthenticated proxy). Companion apps also
+  # accept /api/camera_proxy/... so snapshot those to /local/ first.
   camera_entity: >-
     {{
       image
@@ -162,7 +164,8 @@ variables:
   ha_image: >-
     {%- if image.startswith('/local/')
           or image.startswith('http://')
-          or image.startswith('https://') -%}
+          or image.startswith('https://')
+          or image.startswith('/api/frigate/') -%}
       {{ image }}
     {%- elif camera_entity -%}
       /local/images/notifications/{{ snapshot_basename }}

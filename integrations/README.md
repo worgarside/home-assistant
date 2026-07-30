@@ -7352,7 +7352,7 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
     }
   },
   "image": {
-    "description": "Optional image for the notification. Companion apps accept /api/camera_proxy/... directly; for the HA UI notification those are snapshotted to /local/images/notifications/ first. Absolute http(s) and /local/ paths are embedded as-is.",
+    "description": "Optional image for the notification. Companion apps accept /api/camera_proxy/... and /api/frigate/notifications/... directly. Camera-proxy paths are snapshotted to /local/images/notifications/ for the HA UI; absolute http(s), /local/, and /api/frigate/ paths are embedded as-is.",
     "example": "/api/camera_proxy/camera.octoprint_camera",
     "required": false,
     "selector": {
@@ -7394,7 +7394,7 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "timeout": "{{ timeout | default(None) }}",
   "camera_entity": "{{\n  image\n  | regex_findall('^/api/camera_proxy/(camera\\\\.[\\\\w.]+)$')\n  | first\n  | default(none)\n}}",
   "snapshot_basename": "{{ notification_id | regex_replace('[^\\w.-]', '_') }}.jpg",
-  "ha_image": "{%- if image.startswith('/local/')\n      or image.startswith('http://')\n      or image.startswith('https://') -%}\n  {{ image }}\n{%- elif camera_entity -%}\n  /local/images/notifications/{{ snapshot_basename }}\n{%- else -%} {%- endif %}",
+  "ha_image": "{%- if image.startswith('/local/')\n      or image.startswith('http://')\n      or image.startswith('https://')\n      or image.startswith('/api/frigate/') -%}\n  {{ image }}\n{%- elif camera_entity -%}\n  /local/images/notifications/{{ snapshot_basename }}\n{%- else -%} {%- endif %}",
   "ha_message": "{%- if ha_image -%}\n  {{ message }}\n\n  ![image]({{ ha_image }})\n{%- else -%}\n  {{ message }}\n{%- endif %}"
 }
 ```
