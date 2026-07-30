@@ -37,8 +37,8 @@ variables:
   review_data: "{{ review.get('data', {}) }}"
   camera: "{{ review.get('camera', '') }}"
   objects: "{{ review_data.get('objects', []) }}"
-  reviews_since_caption: >-
-    {{ states('input_number.frigate_genai_reviews_since_caption') | int(0) }}
+  uncaptioned_review_streak: >-
+    {{ states('input_number.frigate_uncaptioned_review_streak') | int(0) }}
 
 condition:
   - condition: template
@@ -57,9 +57,9 @@ action:
         sequence:
           - action: input_number.set_value
             target:
-              entity_id: input_number.frigate_genai_reviews_since_caption
+              entity_id: input_number.frigate_uncaptioned_review_streak
             data:
-              value: "{{ [reviews_since_caption + 1, 20] | min }}"
+              value: "{{ [uncaptioned_review_streak + 1, 20] | min }}"
 
           - action: input_datetime.set_datetime
             target:
@@ -73,7 +73,7 @@ action:
         sequence:
           - action: input_number.set_value
             target:
-              entity_id: input_number.frigate_genai_reviews_since_caption
+              entity_id: input_number.frigate_uncaptioned_review_streak
             data:
               value: 0
 

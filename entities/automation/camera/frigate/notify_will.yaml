@@ -60,11 +60,11 @@ variables:
   camera_name: "{{ camera_names.get(camera, camera | replace('_', ' ') | title) }}"
 
   objects: "{{ review_data.get('objects', []) }}"
-  
+
   sub_labels: "{{ review_data.get('sub_labels', []) }}"
-  
+
   recognized_name: "{{ sub_labels | first | default('', true) }}"
-  
+
   detections: "{{ review_data.get('detections', []) }}"
 
   review_id: "{{ review.get('id', '') }}"

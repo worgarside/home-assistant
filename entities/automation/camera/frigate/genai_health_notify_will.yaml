@@ -10,21 +10,15 @@ mode: single
 max_exceeded: silent
 
 trigger:
-  - platform: time_pattern
-    minutes: "/1"
-
-variables:
-  last_review_ended: >-
-    {{ as_timestamp(states('input_datetime.frigate_last_genai_review_ended'), 0) }}
+  - platform: state
+    entity_id: input_datetime.frigate_last_genai_review_ended
+    for:
+      minutes: 5
 
 condition:
   - condition: numeric_state
-    entity_id: input_number.frigate_genai_reviews_since_caption
+    entity_id: input_number.frigate_uncaptioned_review_streak
     above: 1
-
-  - condition: template
-    value_template: >-
-      {{ last_review_ended > 0 and now().timestamp() - last_review_ended >= 300 }}
 
   - condition: state
     entity_id: input_boolean.frigate_genai_health_alert

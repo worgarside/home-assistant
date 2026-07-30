@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (219)</h3></summary>
+<details><summary><h3>Entities (224)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -302,13 +302,118 @@ File: [`automation/binary_sensor/will_s_office/external_opening_detected/on.yaml
 File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](entities/automation/binary_sensor/will_s_office/occupancy/state_change.yaml)
 </details>
 
-<details><summary><code>/camera/frigate-notify-will</code></summary>
+<details><summary><code>/camera/frigate/audio-safety-notify-will</code></summary>
+
+**Entity ID: `automation.camera_frigate_audio_safety_notify_will`**
+
+> Immediately notify Will when Frigate detects a safety-critical sound
+
+- Alias: /camera/frigate/audio-safety-notify-will
+- ID: `camera_frigate_audio_safety_notify_will`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "topic_parts": "{{ trigger.topic.split('/') }}",
+  "camera": "{{ topic_parts[1] if topic_parts | count == 4 else '' }}",
+  "audio_type": "{{ topic_parts[3] if topic_parts | count == 4 else '' }}",
+  "camera_names": {
+    "front_door": "Front Door",
+    "basement": "Basement",
+    "lounge": "Lounge"
+  },
+  "audio_names": {
+    "fire_alarm": "Fire alarm",
+    "scream": "Scream",
+    "yell": "Yelling"
+  },
+  "camera_name": "{{ camera_names.get(camera, camera | replace('_', ' ') | title) }}",
+  "audio_name": "{{ audio_names.get(audio_type, audio_type | replace('_', ' ') | title) }}"
+}
+```
+File: [`automation/camera/frigate/audio_safety_notify_will.yaml`](entities/automation/camera/frigate/audio_safety_notify_will.yaml)
+</details>
+
+<details><summary><code>/camera/frigate/bark-notify-will</code></summary>
+
+**Entity ID: `automation.camera_frigate_bark_notify_will`**
+
+> Notify Will about barking while nobody is home, with a fifteen-minute cooldown
+
+- Alias: /camera/frigate/bark-notify-will
+- ID: `camera_frigate_bark_notify_will`
+- Mode: `single`
+- Variables:
+
+```json
+{
+  "topic_parts": "{{ trigger.topic.split('/') }}",
+  "camera": "{{ topic_parts[1] if topic_parts | count == 4 else '' }}",
+  "camera_names": {
+    "front_door": "Front Door",
+    "basement": "Basement",
+    "lounge": "Lounge"
+  },
+  "camera_name": "{{ camera_names.get(camera, camera | replace('_', ' ') | title) }}"
+}
+```
+File: [`automation/camera/frigate/bark_notify_will.yaml`](entities/automation/camera/frigate/bark_notify_will.yaml)
+</details>
+
+<details><summary><code>/camera/frigate/genai-health-notify-will</code></summary>
+
+**Entity ID: `automation.camera_frigate_genai_health_notify_will`**
+
+> Warn Will when two ended Frigate reviews receive no AI-generated caption
+
+- Alias: /camera/frigate/genai-health-notify-will
+- ID: `camera_frigate_genai_health_notify_will`
+- Mode: `single`
+
+File: [`automation/camera/frigate/genai_health_notify_will.yaml`](entities/automation/camera/frigate/genai_health_notify_will.yaml)
+</details>
+
+<details><summary><code>/camera/frigate/genai-health-tracker</code></summary>
+
+**Entity ID: `automation.camera_frigate_genai_health_tracker`**
+
+> Track ended Frigate reviews that have not been followed by an AI-generated caption
+
+- Alias: /camera/frigate/genai-health-tracker
+- ID: `camera_frigate_genai_health_tracker`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "supported_cameras": [
+    "front_door",
+    "basement",
+    "lounge"
+  ],
+  "supported_objects": [
+    "person",
+    "cat",
+    "dog"
+  ],
+  "review": "{{ trigger.payload_json.get('after', {}) }}",
+  "review_data": "{{ review.get('data', {}) }}",
+  "camera": "{{ review.get('camera', '') }}",
+  "objects": "{{ review_data.get('objects', []) }}",
+  "uncaptioned_review_streak": "{{ states('input_number.frigate_uncaptioned_review_streak') | int(0) }}"
+}
+```
+File: [`automation/camera/frigate/genai_health_tracker.yaml`](entities/automation/camera/frigate/genai_health_tracker.yaml)
+</details>
+
+<details><summary><code>/camera/frigate/notify-will</code></summary>
 
 **Entity ID: `automation.camera_frigate_notify_will`**
 
 > Notify Will immediately for front-door and pet reviews, then silently update the notification with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and only when nobody is home. When input_boolean.frigate_bypass_filters is on, the noise-reduction gating is bypassed and all supported camera/object reviews notify.
 
-- Alias: /camera/frigate-notify-will
+- Alias: /camera/frigate/notify-will
 - ID: `camera_frigate_notify_will`
 - Mode: `parallel`
 - Variables:
@@ -335,19 +440,21 @@ File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](ent
   "camera": "{{ review.get('camera', '') }}",
   "camera_name": "{{ camera_names.get(camera, camera | replace('_', ' ') | title) }}",
   "objects": "{{ review_data.get('objects', []) }}",
+  "sub_labels": "{{ review_data.get('sub_labels', []) }}",
+  "recognized_name": "{{ sub_labels | first | default('', true) }}",
   "detections": "{{ review_data.get('detections', []) }}",
   "review_id": "{{ review.get('id', '') }}",
   "detection_id": "{{ detections | first | default(review_id, true) }}",
   "metadata": "{{ review_data.get('metadata', {}) }}",
   "is_pet": "{{ 'cat' in objects or 'dog' in objects }}",
   "detected_object": "{{\n  'person'\n  if 'person' in objects\n  else 'dog'\n  if 'dog' in objects\n  else 'cat'\n  if 'cat' in objects\n  else 'activity'\n}}",
-  "notification_title": "{{\n  metadata.get('title', detected_object | title ~ ' on ' ~ camera_name)\n  if trigger.id == 'genai'\n  else detected_object | title ~ ' on ' ~ camera_name\n}}",
-  "notification_message": "{{\n  metadata.get(\n    'shortSummary',\n    'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n  )\n  if trigger.id == 'genai'\n  else 'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n}}",
+  "notification_title": "{{\n  metadata.get('title', detected_object | title ~ ' on ' ~ camera_name)\n  if trigger.id == 'genai'\n  else recognized_name ~ ' on ' ~ camera_name\n  if recognized_name | length > 0\n  else detected_object | title ~ ' on ' ~ camera_name\n}}",
+  "notification_message": "{{\n  metadata.get(\n    'shortSummary',\n    'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n  )\n  if trigger.id == 'genai'\n  else 'Frigate recognised ' ~ recognized_name ~ ' on the ' ~ camera_name ~ ' camera.'\n  if recognized_name | length > 0\n  else 'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n}}",
   "snapshot_url": "/api/frigate/notifications/{{ detection_id }}/snapshot.jpg",
   "clip_url": "/api/frigate/notifications/{{ detection_id }}/{{ camera }}/clip.mp4"
 }
 ```
-File: [`automation/camera/frigate_notify_will.yaml`](entities/automation/camera/frigate_notify_will.yaml)
+File: [`automation/camera/frigate/notify_will.yaml`](entities/automation/camera/frigate/notify_will.yaml)
 </details>
 
 <details><summary><code>/camera/offline-notify-will</code></summary>
@@ -2708,6 +2815,19 @@ File: [`automation/sensor/kitchen_air_quality_sensor_temperature/sync_radiator_t
 File: [`automation/sensor/lighting_modifier/state.yaml`](entities/automation/sensor/lighting_modifier/state.yaml)
 </details>
 
+<details><summary><code>/sensor/ollama-api-status/notify-will</code></summary>
+
+**Entity ID: `automation.sensor_ollama_api_status_notify_will`**
+
+> Notify Will when the Ollama API is unavailable and when it recovers
+
+- Alias: /sensor/ollama-api-status/notify-will
+- ID: `sensor_ollama_api_status_notify_will`
+- Mode: `queued`
+
+File: [`automation/sensor/ollama_api_status/notify_will.yaml`](entities/automation/sensor/ollama_api_status/notify_will.yaml)
+</details>
+
 <details><summary><code>/sensor/ovo-last-electricity-end-time/accumulate</code></summary>
 
 **Entity ID: `automation.sensor_ovo_last_electricity_end_time_accumulate`**
@@ -3581,7 +3701,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (32)</h3></summary>
+<details><summary><h3>Entities (33)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -3817,6 +3937,15 @@ File: [`input_boolean/debug_with_persistent_notifications.yaml`](entities/input_
 File: [`input_boolean/frigate_bypass_filters.yaml`](entities/input_boolean/frigate_bypass_filters.yaml)
 </details>
 
+<details><summary><strong>Frigate GenAI Health Alert</strong></summary>
+
+**Entity ID: `input_boolean.frigate_genai_health_alert`**
+
+- Icon: [`mdi:image-alert-outline`](https://pictogrammers.com/library/mdi/icon/image-alert-outline/)
+
+File: [`input_boolean/frigate_genai_health_alert.yaml`](entities/input_boolean/frigate_genai_health_alert.yaml)
+</details>
+
 <details><summary><strong>Lounge | Lights: Exercise Mode</strong></summary>
 
 **Entity ID: `input_boolean.lounge_lights_exercise_mode`**
@@ -3875,7 +4004,7 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 
 ## Input Datetime
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
 
 <details><summary><strong>Cosmo Nightly Kitchen Clean Time</strong></summary>
 
@@ -3885,6 +4014,17 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 - Icon: [`mdi:weather-night`](https://pictogrammers.com/library/mdi/icon/weather-night/)
 
 File: [`input_datetime/cosmo_nightly_kitchen_clean_time.yaml`](entities/input_datetime/cosmo_nightly_kitchen_clean_time.yaml)
+</details>
+
+<details><summary><strong>Frigate Last GenAI Review Ended</strong></summary>
+
+**Entity ID: `input_datetime.frigate_last_genai_review_ended`**
+
+- Has Date: `true`
+- Has Time: `true`
+- Icon: [`mdi:clock-alert-outline`](https://pictogrammers.com/library/mdi/icon/clock-alert-outline/)
+
+File: [`input_datetime/frigate_last_genai_review_ended.yaml`](entities/input_datetime/frigate_last_genai_review_ended.yaml)
 </details>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
@@ -3935,7 +4075,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (71)</h3></summary>
+<details><summary><h3>Entities (73)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
@@ -4056,6 +4196,28 @@ File: [`input_number/cosmo_nightly_kitchen_clean_door_close_timeout.yaml`](entit
 - Unit Of Measurement: %
 
 File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/dry_box/dry_box_max_humidity.yaml)
+</details>
+
+<details><summary><strong>Frigate GenAI Reviews Since Caption</strong></summary>
+
+**Entity ID: `input_number.frigate_genai_reviews_since_caption`**
+
+- Icon: [`mdi:image-text`](https://pictogrammers.com/library/mdi/icon/image-text/)
+- Max: 20
+- Mode: `box`
+
+File: [`input_number/frigate_genai_reviews_since_caption.yaml`](entities/input_number/frigate_genai_reviews_since_caption.yaml)
+</details>
+
+<details><summary><strong>Frigate Uncaptioned Review Streak</strong></summary>
+
+**Entity ID: `input_number.frigate_uncaptioned_review_streak`**
+
+- Icon: [`mdi:image-text`](https://pictogrammers.com/library/mdi/icon/image-text/)
+- Max: 20
+- Mode: `box`
+
+File: [`input_number/frigate_uncaptioned_review_streak.yaml`](entities/input_number/frigate_uncaptioned_review_streak.yaml)
 </details>
 
 <details><summary><strong>Hot Water | Proximity Distance</strong></summary>
@@ -6543,13 +6705,21 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 ## Rest
 
-<details><summary><h3>Entities (5)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
 
 <details><summary><code>rest.external_ip</code></summary>
 
 - Resource: https://api.ipify.org/?format=json
 
 File: [`rest/external_ip.yaml`](entities/rest/external_ip.yaml)
+</details>
+
+<details><summary><code>rest.ollama_api_status</code></summary>
+
+- Resource: http://10.0.0.118:11434/api/tags
+- Method: GET
+
+File: [`rest/ollama_api_status.yaml`](entities/rest/ollama_api_status.yaml)
 </details>
 
 <details><summary><code>rest.tomorrow_io_realtime_weather</code></summary>
