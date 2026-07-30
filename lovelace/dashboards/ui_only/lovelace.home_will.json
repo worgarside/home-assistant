@@ -9023,6 +9023,181 @@
               "cards": [
                 {
                   "type": "heading",
+                  "heading": "Frigate",
+                  "heading_style": "title",
+                  "icon": "mdi:cctv"
+                },
+                {
+                  "type": "tile",
+                  "entity": "input_boolean.frigate_notify_all",
+                  "name": "Notify All",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "inline",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "automation.camera_frigate_notify_will",
+                  "primary": "Frigate notify Will",
+                  "secondary": "/camera/frigate-notify-will",
+                  "icon": "mdi:bell\n{%- if not states(\"automation.camera_frigate_notify_will\") | bool(false) -%}\n-off\n{%- endif -%}\n",
+                  "color": "{{ iif(states(\"automation.camera_frigate_notify_will\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "features_position": "bottom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.frigate_status",
+                  "name": "Status",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.lxc_frigate_125_status",
+                  "name": "LXC",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "heading",
+                  "heading": "Detection",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.front_door_detect",
+                  "name": "Front Door",
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "inline",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.basement_detect",
+                  "name": "Basement",
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "inline",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.lounge_detect",
+                  "name": "Lounge",
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "inline",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "heading",
+                  "heading": "Person Occupancy",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.front_door_person_occupancy",
+                  "name": "Front Door",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.basement_person_occupancy",
+                  "name": "Basement",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.lounge_person_occupancy",
+                  "name": "Lounge",
+                  "grid_options": {
+                    "columns": 4,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "heading",
+                  "heading": "Diagnostics",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.frigate_ov_inference_speed",
+                  "name": "Inference",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.frigate_intel_vaapi_gpu_load",
+                  "name": "GPU Load",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
                   "heading": "Roof Terrace Shutters",
                   "heading_style": "title"
                 },
