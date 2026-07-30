@@ -6,7 +6,7 @@ id: camera_frigate_notify_will
 description: >-
   Notify Will immediately for front-door and pet reviews, then silently update the notification
   with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and
-  only when nobody is home. When input_boolean.frigate_notify_all is on, the noise-reduction
+  only when nobody is home. When input_boolean.frigate_bypass_filters is on, the noise-reduction
   gating is bypassed and all supported camera/object reviews notify.
 
 mode: parallel
@@ -29,28 +29,42 @@ trigger:
     id: genai
 
 variables:
+
   supported_cameras:
     - front_door
     - basement
     - lounge
+
   supported_objects:
     - person
     - cat
     - dog
+
   camera_names:
     front_door: Front Door
     basement: Basement
     lounge: Lounge
+
   review: "{{ trigger.payload_json.get('after', {}) }}"
+
   review_data: "{{ review.get('data', {}) }}"
+
   camera: "{{ review.get('camera', '') }}"
+
   camera_name: "{{ camera_names.get(camera, camera | replace('_', ' ') | title) }}"
+
   objects: "{{ review_data.get('objects', []) }}"
+
   detections: "{{ review_data.get('detections', []) }}"
+
   review_id: "{{ review.get('id', '') }}"
+
   detection_id: "{{ detections | first | default(review_id, true) }}"
+
   metadata: "{{ review_data.get('metadata', {}) }}"
+
   is_pet: "{{ 'cat' in objects or 'dog' in objects }}"
+
   detected_object: >-
     {{
       'person'
@@ -61,12 +75,14 @@ variables:
       if 'cat' in objects
       else 'activity'
     }}
+
   notification_title: >-
     {{
       metadata.get('title', detected_object | title ~ ' on ' ~ camera_name)
       if trigger.id == 'genai'
       else detected_object | title ~ ' on ' ~ camera_name
     }}
+
   notification_message: >-
     {{
       metadata.get(
@@ -76,7 +92,9 @@ variables:
       if trigger.id == 'genai'
       else 'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'
     }}
+
   snapshot_url: "/api/frigate/notifications/{{ detection_id }}/snapshot.jpg"
+
   clip_url: "/api/frigate/notifications/{{ detection_id }}/{{ camera }}/clip.mp4"
 
 condition:
@@ -93,7 +111,7 @@ condition:
   - condition: or
     conditions:
       - condition: state
-        entity_id: input_boolean.frigate_notify_all
+        entity_id: input_boolean.frigate_bypass_filters
         state: "on"
 
       - condition: and

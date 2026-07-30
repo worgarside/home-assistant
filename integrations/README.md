@@ -306,7 +306,7 @@ File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](ent
 
 **Entity ID: `automation.camera_frigate_notify_will`**
 
-> Notify Will immediately for front-door and pet reviews, then silently update the notification with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and only when nobody is home. When input_boolean.frigate_notify_all is on, the noise-reduction gating is bypassed and all supported camera/object reviews notify.
+> Notify Will immediately for front-door and pet reviews, then silently update the notification with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and only when nobody is home. When input_boolean.frigate_bypass_filters is on, the noise-reduction gating is bypassed and all supported camera/object reviews notify.
 
 - Alias: /camera/frigate-notify-will
 - ID: `camera_frigate_notify_will`
@@ -3808,13 +3808,13 @@ File: [`input_boolean/auto_reload/auto_reload_zone.yaml`](entities/input_boolean
 File: [`input_boolean/debug_with_persistent_notifications.yaml`](entities/input_boolean/debug_with_persistent_notifications.yaml)
 </details>
 
-<details><summary><strong>Frigate | Notify All</strong></summary>
+<details><summary><strong>Frigate | Bypass Filters</strong></summary>
 
-**Entity ID: `input_boolean.frigate_notify_all`**
+**Entity ID: `input_boolean.frigate_bypass_filters`**
 
 - Icon: [`mdi:cctv`](https://pictogrammers.com/library/mdi/icon/cctv/)
 
-File: [`input_boolean/frigate_notify_all.yaml`](entities/input_boolean/frigate_notify_all.yaml)
+File: [`input_boolean/frigate_bypass_filters.yaml`](entities/input_boolean/frigate_bypass_filters.yaml)
 </details>
 
 <details><summary><strong>Lounge | Lights: Exercise Mode</strong></summary>
