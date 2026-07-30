@@ -1,5 +1,5 @@
 ---
-alias: /camera/frigate-notify-will
+alias: /camera/frigate/notify-will
 
 id: camera_frigate_notify_will
 
@@ -28,6 +28,12 @@ trigger:
     payload: genai
     id: genai
 
+  - platform: mqtt
+    topic: frigate/reviews
+    value_template: "{{ value_json.type }}"
+    payload: update
+    id: update
+
 variables:
 
   supported_cameras:
@@ -54,7 +60,11 @@ variables:
   camera_name: "{{ camera_names.get(camera, camera | replace('_', ' ') | title) }}"
 
   objects: "{{ review_data.get('objects', []) }}"
-
+  
+  sub_labels: "{{ review_data.get('sub_labels', []) }}"
+  
+  recognized_name: "{{ sub_labels | first | default('', true) }}"
+  
   detections: "{{ review_data.get('detections', []) }}"
 
   review_id: "{{ review.get('id', '') }}"
@@ -80,6 +90,8 @@ variables:
     {{
       metadata.get('title', detected_object | title ~ ' on ' ~ camera_name)
       if trigger.id == 'genai'
+      else recognized_name ~ ' on ' ~ camera_name
+      if recognized_name | length > 0
       else detected_object | title ~ ' on ' ~ camera_name
     }}
 
@@ -90,6 +102,8 @@ variables:
         'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'
       )
       if trigger.id == 'genai'
+      else 'Frigate recognised ' ~ recognized_name ~ ' on the ' ~ camera_name ~ ' camera.'
+      if recognized_name | length > 0
       else 'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'
     }}
 
@@ -98,6 +112,7 @@ variables:
   clip_url: "/api/frigate/notifications/{{ detection_id }}/{{ camera }}/clip.mp4"
 
 condition:
+  # Valid camera, severity, object type, and IDs needed for notification media
   - condition: template
     value_template: >-
       {{
@@ -108,12 +123,14 @@ condition:
         detection_id | length > 0
       }}
 
+  # Notify only for the review stages and locations we care about
   - condition: or
     conditions:
       - condition: state
         entity_id: input_boolean.frigate_bypass_filters
         state: "on"
 
+      # Immediate alert: front door or pets only (skip indoor people)
       - condition: and
         conditions:
           - condition: trigger
@@ -121,10 +138,26 @@ condition:
           - condition: template
             value_template: "{{ camera == 'front_door' or is_pet }}"
 
+      # GenAI summary: front door / pets always; indoor people only when away
       - condition: and
         conditions:
           - condition: trigger
             id: genai
+          - condition: or
+            conditions:
+              - condition: template
+                value_template: "{{ camera == 'front_door' or is_pet }}"
+              - condition: numeric_state
+                entity_id: zone.home
+                below: 1
+
+      # Face recognition update: named person only; same location rules as genai
+      - condition: and
+        conditions:
+          - condition: trigger
+            id: update
+          - condition: template
+            value_template: "{{ recognized_name | length > 0 }}"
           - condition: or
             conditions:
               - condition: template
