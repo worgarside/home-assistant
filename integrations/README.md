@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (223)</h3></summary>
+<details><summary><h3>Entities (219)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1088,32 +1088,6 @@ File: [`automation/input_select/target_git_branch/option_selected.yaml`](entitie
 File: [`automation/input_select/target_git_branch/set_options.yaml`](entities/automation/input_select/target_git_branch/set_options.yaml)
 </details>
 
-<details><summary><code>/input-select/vic/mood-today/reset-daily</code></summary>
-
-**Entity ID: `automation.input_select_vic_mood_today_reset_daily`**
-
-> Reset mood selection at midnight
-
-- Alias: /input-select/vic/mood-today/reset-daily
-- ID: `input_select_vic_mood_today_reset_daily`
-- Mode: `single`
-
-File: [`automation/input_select/vic/mood_today/reset_daily.yaml`](entities/automation/input_select/vic/mood_today/reset_daily.yaml)
-</details>
-
-<details><summary><code>/input-select/will/mood-today/reset-daily</code></summary>
-
-**Entity ID: `automation.input_select_will_mood_today_reset_daily`**
-
-> Reset mood selection at midnight
-
-- Alias: /input-select/will/mood-today/reset-daily
-- ID: `input_select_will_mood_today_reset_daily`
-- Mode: `single`
-
-File: [`automation/input_select/will/mood_today/reset_daily.yaml`](entities/automation/input_select/will/mood_today/reset_daily.yaml)
-</details>
-
 <details><summary><code>/input-text/test-mqtt-events-device-name/log-event</code></summary>
 
 **Entity ID: `automation.input_text_test_mqtt_events_device_name_log_event`**
@@ -1133,32 +1107,6 @@ File: [`automation/input_select/will/mood_today/reset_daily.yaml`](entities/auto
 }
 ```
 File: [`automation/input_text/test_mqtt_events_device_name/log_event.yaml`](entities/automation/input_text/test_mqtt_events_device_name/log_event.yaml)
-</details>
-
-<details><summary><code>/input-text/vic/mood-note/reset-daily</code></summary>
-
-**Entity ID: `automation.input_text_vic_mood_note_reset_daily`**
-
-> Clear mood note at midnight
-
-- Alias: /input-text/vic/mood-note/reset-daily
-- ID: `input_text_vic_mood_note_reset_daily`
-- Mode: `single`
-
-File: [`automation/input_text/vic/mood_note/reset_daily.yaml`](entities/automation/input_text/vic/mood_note/reset_daily.yaml)
-</details>
-
-<details><summary><code>/input-text/will/mood-note/reset-daily</code></summary>
-
-**Entity ID: `automation.input_text_will_mood_note_reset_daily`**
-
-> Clear mood note at midnight
-
-- Alias: /input-text/will/mood-note/reset-daily
-- ID: `input_text_will_mood_note_reset_daily`
-- Mode: `single`
-
-File: [`automation/input_text/will/mood_note/reset_daily.yaml`](entities/automation/input_text/will/mood_note/reset_daily.yaml)
 </details>
 
 <details><summary><code>/label/critical-battery/low-battery-alert</code></summary>
@@ -4863,7 +4811,7 @@ File: [`input_number/will_s_office_grow_light_trigger_delay.yaml`](entities/inpu
 
 ## Input Select
 
-<details><summary><h3>Entities (9)</h3></summary>
+<details><summary><h3>Entities (7)</h3></summary>
 
 <details><summary><strong>Add-on Stats Legend Sensor Type</strong></summary>
 
@@ -4928,29 +4876,11 @@ File: [`input_select/target_git_branch.yaml`](entities/input_select/target_git_b
 File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_source.yaml)
 </details>
 
-<details><summary><strong>Vic | Mood Today</strong></summary>
-
-**Entity ID: `input_select.vic_mood_today`**
-
-- Icon: [`mdi:emoticon-happy`](https://pictogrammers.com/library/mdi/icon/emoticon-happy/)
-
-File: [`input_select/vic_mood_today.yaml`](entities/input_select/vic_mood_today.yaml)
-</details>
-
-<details><summary><strong>Will | Mood Today</strong></summary>
-
-**Entity ID: `input_select.will_mood_today`**
-
-- Icon: [`mdi:emoticon-happy`](https://pictogrammers.com/library/mdi/icon/emoticon-happy/)
-
-File: [`input_select/will_mood_today.yaml`](entities/input_select/will_mood_today.yaml)
-</details>
-
 </details>
 
 ## Input Text
 
-<details><summary><h3>Entities (23)</h3></summary>
+<details><summary><h3>Entities (21)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -5121,15 +5051,6 @@ File: [`input_text/cube/cube_entity_6.yaml`](entities/input_text/cube/cube_entit
 File: [`input_text/test_mqtt_events_device_name.yaml`](entities/input_text/test_mqtt_events_device_name.yaml)
 </details>
 
-<details><summary><strong>Vic | Mood Note</strong></summary>
-
-**Entity ID: `input_text.vic_mood_note`**
-
-- Icon: [`mdi:text`](https://pictogrammers.com/library/mdi/icon/text/)
-
-File: [`input_text/vic_mood_note.yaml`](entities/input_text/vic_mood_note.yaml)
-</details>
-
 <details><summary><strong>Vic | Work Calendar: Holiday Pattern</strong></summary>
 
 **Entity ID: `input_text.vic_work_calendar_holiday_pattern`**
@@ -5137,15 +5058,6 @@ File: [`input_text/vic_mood_note.yaml`](entities/input_text/vic_mood_note.yaml)
 - Icon: [`mdi:regex`](https://pictogrammers.com/library/mdi/icon/regex/)
 
 File: [`input_text/vic_work_calendar_holiday_pattern.yaml`](entities/input_text/vic_work_calendar_holiday_pattern.yaml)
-</details>
-
-<details><summary><strong>Will | Mood Note</strong></summary>
-
-**Entity ID: `input_text.will_mood_note`**
-
-- Icon: [`mdi:text`](https://pictogrammers.com/library/mdi/icon/text/)
-
-File: [`input_text/will_mood_note.yaml`](entities/input_text/will_mood_note.yaml)
 </details>
 
 <details><summary><strong>Will's Office Webcam Name</strong></summary>
@@ -8024,30 +7936,6 @@ File: [`shell_command/ssh.yaml`](entities/shell_command/ssh.yaml)
 <details><summary><code>shell_command.toggle_pr_label</code></summary>
 
 File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_label.yaml)
-</details>
-
-</details>
-
-## Sql
-
-<details><summary><h3>Entities (2)</h3></summary>
-
-<details><summary><strong>Vic | Mood Streak</strong></summary>
-
-**Entity ID: `sql.vic_mood_streak`**
-
-- Column: `streak`
-
-File: [`sql/mood/vic_mood_streak.yaml`](entities/sql/mood/vic_mood_streak.yaml)
-</details>
-
-<details><summary><strong>Will | Mood Streak</strong></summary>
-
-**Entity ID: `sql.will_mood_streak`**
-
-- Column: `streak`
-
-File: [`sql/mood/will_mood_streak.yaml`](entities/sql/mood/will_mood_streak.yaml)
 </details>
 
 </details>
