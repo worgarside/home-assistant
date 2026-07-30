@@ -1,0 +1,46 @@
+---
+alias: /camera/frigate/bark-notify-will
+
+id: camera_frigate_bark_notify_will
+
+description: Notify Will about barking while nobody is home, with a fifteen-minute cooldown
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: mqtt
+    topic: frigate/+/audio/bark
+    payload: "ON"
+
+variables:
+  topic_parts: "{{ trigger.topic.split('/') }}"
+  camera: "{{ topic_parts[1] if topic_parts | count == 4 else '' }}"
+  camera_names:
+    front_door: Front Door
+    basement: Basement
+    lounge: Lounge
+  camera_name: "{{ camera_names.get(camera, camera | replace('_', ' ') | title) }}"
+
+condition:
+  - condition: template
+    value_template: "{{ camera in camera_names }}"
+
+  - condition: numeric_state
+    entity_id: zone.home
+    below: 1
+
+action:
+  - action: script.notify_will
+    data:
+      title: Desmond may be barking
+      message: "Frigate heard barking on the {{ camera_name }} camera while nobody is home."
+      notification_id: frigate_bark
+      mobile_notification_icon: mdi:dog
+      group: frigate-pets
+      image: "/api/camera_proxy/camera.{{ camera }}"
+
+  - alias: Suppress repeated barking alerts
+    delay:
+      minutes: 15
