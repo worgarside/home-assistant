@@ -1,0 +1,46 @@
+---
+alias: /sensor/ollama-api-status/notify-will
+
+id: sensor_ollama_api_status_notify_will
+
+description: Notify Will when the Ollama API is unavailable and when it recovers
+
+mode: queued
+
+max: 5
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: sensor.ollama_api_status
+    to: unavailable
+    for:
+      minutes: 5
+    id: offline
+
+  - platform: state
+    entity_id: sensor.ollama_api_status
+    from: unavailable
+    to: online
+    id: recovered
+
+action:
+  - if:
+      - condition: trigger
+        id: offline
+    then:
+      - action: script.notify_will
+        data:
+          title: Ollama is unavailable
+          message: Home Assistant has been unable to reach the Ollama API for five minutes.
+          notification_id: ollama_api_unavailable
+          mobile_notification_icon: mdi:server-network-off
+          group: ollama-api-health
+          sticky: true
+    else:
+      - action: script.notify_will
+        data:
+          clear_notification: true
+          notification_id: ollama_api_unavailable
+          message: clear_notification
