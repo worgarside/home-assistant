@@ -4,8 +4,9 @@ alias: /camera/frigate-notify-will
 id: camera_frigate_notify_will
 
 description: >-
-  Notify Will immediately when Frigate starts a person, cat, or dog review for the front door,
-  basement, or lounge, then update the same notification with Frigate's AI-generated summary.
+  Notify Will immediately for front-door and pet reviews, then silently update the notification
+  with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and
+  only when nobody is home.
 
 mode: parallel
 
@@ -48,6 +49,7 @@ variables:
   review_id: "{{ review.get('id', '') }}"
   detection_id: "{{ detections | first | default(review_id, true) }}"
   metadata: "{{ review_data.get('metadata', {}) }}"
+  is_pet: "{{ 'cat' in objects or 'dog' in objects }}"
   detected_object: >-
     {{
       'person'
@@ -87,6 +89,27 @@ condition:
         detection_id | length > 0
       }}
 
+  - condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: trigger
+            id: new
+          - condition: template
+            value_template: "{{ camera == 'front_door' or is_pet }}"
+
+      - condition: and
+        conditions:
+          - condition: trigger
+            id: genai
+          - condition: or
+            conditions:
+              - condition: template
+                value_template: "{{ camera == 'front_door' or is_pet }}"
+              - condition: numeric_state
+                entity_id: zone.home
+                below: 1
+
 action:
   - action: script.notify_will
     continue_on_error: true
@@ -98,6 +121,7 @@ action:
         {{ 'mdi:doorbell-video' if camera == 'front_door' else 'mdi:cctv' }}
       group: "frigate-{{ camera | replace('_', '-') }}"
       sticky: true
+      alert_once: true
       image: "{{ snapshot_url }}"
       url: "{{ clip_url }}"
       actions:

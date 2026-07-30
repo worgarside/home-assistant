@@ -306,7 +306,7 @@ File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](ent
 
 **Entity ID: `automation.camera_frigate_notify_will`**
 
-> Notify Will immediately when Frigate starts a person, cat, or dog review for the front door, basement, or lounge, then update the same notification with Frigate's AI-generated summary.
+> Notify Will immediately for front-door and pet reviews, then silently update the notification with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and only when nobody is home.
 
 - Alias: /camera/frigate-notify-will
 - ID: `camera_frigate_notify_will`
@@ -339,6 +339,7 @@ File: [`automation/binary_sensor/will_s_office/occupancy/state_change.yaml`](ent
   "review_id": "{{ review.get('id', '') }}",
   "detection_id": "{{ detections | first | default(review_id, true) }}",
   "metadata": "{{ review_data.get('metadata', {}) }}",
+  "is_pet": "{{ 'cat' in objects or 'dog' in objects }}",
   "detected_object": "{{\n  'person'\n  if 'person' in objects\n  else 'dog'\n  if 'dog' in objects\n  else 'cat'\n  if 'cat' in objects\n  else 'activity'\n}}",
   "notification_title": "{{\n  metadata.get('title', detected_object | title ~ ' on ' ~ camera_name)\n  if trigger.id == 'genai'\n  else detected_object | title ~ ' on ' ~ camera_name\n}}",
   "notification_message": "{{\n  metadata.get(\n    'shortSummary',\n    'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n  )\n  if trigger.id == 'genai'\n  else 'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n}}",
@@ -7431,6 +7432,13 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
       "boolean": null
     }
   },
+  "alert_once": {
+    "description": "Only sound or vibrate once when updating an Android notification with the same tag",
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
+  },
   "image": {
     "description": "Optional image for the notification",
     "example": "/api/camera_proxy/camera.octoprint_camera",
@@ -7469,6 +7477,7 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "group": "{{ group | default('') }}",
   "sticky": "{{ sticky | default(false) }}",
   "persistent": "{{ persistent | default(false) }}",
+  "alert_once": "{{ alert_once | default(false) }}",
   "image": "{{ image | default('') }}",
   "timeout": "{{ timeout | default(None) }}"
 }

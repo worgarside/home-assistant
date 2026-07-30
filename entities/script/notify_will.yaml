@@ -73,6 +73,12 @@ fields:
     selector:
       boolean:
 
+  alert_once:
+    description: Only sound or vibrate once when updating an Android notification with the same tag
+    required: false
+    selector:
+      boolean:
+
   image:
     description: Optional image for the notification
     example: /api/camera_proxy/camera.octoprint_camera
@@ -131,6 +137,8 @@ variables:
 
   persistent: "{{ persistent | default(false) }}"
 
+  alert_once: "{{ alert_once | default(false) }}"
+
   image: "{{ image | default('') }}"
 
   timeout: "{{ timeout | default(None) }}"
@@ -178,6 +186,7 @@ sequence:
         group: "{{ group }}"
         sticky: "{{ sticky }}"
         persistent: "{{ persistent }}"
+        alert_once: "{{ alert_once }}"
         image: "{{ image }}"
         timeout: "{{ timeout }}"
 
