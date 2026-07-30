@@ -1,0 +1,93 @@
+---
+alias: /camera/frigate/genai-health-tracker
+
+id: camera_frigate_genai_health_tracker
+
+description: Track ended Frigate reviews that have not been followed by an AI-generated caption
+
+mode: queued
+
+max: 50
+
+max_exceeded: silent
+
+trigger:
+  - platform: mqtt
+    topic: frigate/reviews
+    value_template: "{{ value_json.type }}"
+    payload: end
+    id: review_end
+
+  - platform: mqtt
+    topic: frigate/reviews
+    value_template: "{{ value_json.type }}"
+    payload: genai
+    id: genai
+
+variables:
+  supported_cameras:
+    - front_door
+    - basement
+    - lounge
+  supported_objects:
+    - person
+    - cat
+    - dog
+  review: "{{ trigger.payload_json.get('after', {}) }}"
+  review_data: "{{ review.get('data', {}) }}"
+  camera: "{{ review.get('camera', '') }}"
+  objects: "{{ review_data.get('objects', []) }}"
+  reviews_since_caption: >-
+    {{ states('input_number.frigate_genai_reviews_since_caption') | int(0) }}
+
+condition:
+  - condition: template
+    value_template: >-
+      {{
+        camera in supported_cameras and
+        review.get('severity') in ['alert', 'detection'] and
+        objects | select('in', supported_objects) | list | count > 0
+      }}
+
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: review_end
+        sequence:
+          - action: input_number.set_value
+            target:
+              entity_id: input_number.frigate_genai_reviews_since_caption
+            data:
+              value: "{{ [reviews_since_caption + 1, 20] | min }}"
+
+          - action: input_datetime.set_datetime
+            target:
+              entity_id: input_datetime.frigate_last_genai_review_ended
+            data:
+              datetime: "{{ now().replace(microsecond=0).isoformat() }}"
+
+      - conditions:
+          - condition: trigger
+            id: genai
+        sequence:
+          - action: input_number.set_value
+            target:
+              entity_id: input_number.frigate_genai_reviews_since_caption
+            data:
+              value: 0
+
+          - if:
+              - condition: state
+                entity_id: input_boolean.frigate_genai_health_alert
+                state: "on"
+            then:
+              - action: input_boolean.turn_off
+                target:
+                  entity_id: input_boolean.frigate_genai_health_alert
+
+              - action: script.notify_will
+                data:
+                  clear_notification: true
+                  notification_id: frigate_genai_health
+                  message: clear_notification
