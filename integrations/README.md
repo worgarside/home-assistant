@@ -4832,7 +4832,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (21)</h3></summary>
+<details><summary><h3>Entities (22)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -4878,6 +4878,15 @@ File: [`input_text/appdaemon/truelayer_auth_token_amex.yaml`](entities/input_tex
 - Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
 
 File: [`input_text/appdaemon/truelayer_auth_token_amex_auto_saver.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex_auto_saver.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Auth Token (Amex Vic)</strong></summary>
+
+**Entity ID: `input_text.truelayer_auth_token_amex_vic`**
+
+- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
+
+File: [`input_text/appdaemon/truelayer_auth_token_amex_vic.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex_vic.yaml)
 </details>
 
 <details><summary><strong>TrueLayer Auth Token (HSBC)</strong></summary>
@@ -9257,7 +9266,7 @@ File: [`timer/pro_breeze_ac_off.yaml`](entities/timer/pro_breeze_ac_off.yaml)
 
 ## Var
 
-<details><summary><h3>Entities (30)</h3></summary>
+<details><summary><h3>Entities (32)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -9419,6 +9428,16 @@ File: [`var/tasker/tasker_pixel_now_playing.yaml`](entities/var/tasker/tasker_pi
 File: [`var/truelayer/truelayer_balance_amex.yaml`](entities/var/truelayer/truelayer_balance_amex.yaml)
 </details>
 
+<details><summary><strong>Amex Vic Balance</strong></summary>
+
+**Entity ID: `var.truelayer_balance_amex_vic`**
+
+- Icon: si:americanexpress
+- Unit Of Measurement: GBP
+
+File: [`var/truelayer/truelayer_balance_amex_vic.yaml`](entities/var/truelayer/truelayer_balance_amex_vic.yaml)
+</details>
+
 <details><summary><strong>HSBC Current Account Balance</strong></summary>
 
 **Entity ID: `var.truelayer_balance_hsbc_current_account`**
@@ -9485,6 +9504,15 @@ File: [`var/truelayer/truelayer_reauth_amex.yaml`](entities/var/truelayer/truela
 - Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
 
 File: [`var/truelayer/truelayer_reauth_amex_auto_saver.yaml`](entities/var/truelayer/truelayer_reauth_amex_auto_saver.yaml)
+</details>
+
+<details><summary><strong>TrueLayer Reauth (Amex Vic)</strong></summary>
+
+**Entity ID: `var.truelayer_reauth_amex_vic`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/truelayer/truelayer_reauth_amex_vic.yaml`](entities/var/truelayer/truelayer_reauth_amex_vic.yaml)
 </details>
 
 <details><summary><strong>TrueLayer Reauth (HSBC)</strong></summary>
