@@ -10828,6 +10828,18 @@
                       "color": "#2196F3"
                     },
                     {
+                      "entity": "sensor.cursor_auto_usage_percent",
+                      "name": "Auto %",
+                      "color": "#009688",
+                      "show_fill": false
+                    },
+                    {
+                      "entity": "sensor.cursor_api_usage_percent",
+                      "name": "API %",
+                      "color": "#00BCD4",
+                      "show_fill": false
+                    },
+                    {
                       "entity": "sensor.cursor_cycle_percent_elapsed",
                       "name": "Cycle Elapsed",
                       "color": "#9E9E9E",
