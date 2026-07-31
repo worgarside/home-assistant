@@ -174,9 +174,7 @@ variables:
 
   ha_message: >-
     {%- if ha_image -%}
-      {{ message }}
-
-      ![image]({{ ha_image }})
+      {{ message }}{{ "\n\n" }}![image]({{ ha_image }})
     {%- else -%}
       {{ message }}
     {%- endif %}

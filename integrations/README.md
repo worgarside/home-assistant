@@ -7553,7 +7553,7 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "camera_entity": "{{\n  image\n  | regex_findall('^/api/camera_proxy/(camera\\\\.[\\\\w.]+)$')\n  | first\n  | default(none)\n}}",
   "snapshot_basename": "{{ notification_id | regex_replace('[^\\w.-]', '_') }}.jpg",
   "ha_image": "{%- if image.startswith('/local/')\n      or image.startswith('http://')\n      or image.startswith('https://')\n      or image.startswith('/api/frigate/') -%}\n  {{ image }}\n{%- elif camera_entity -%}\n  /local/images/notifications/{{ snapshot_basename }}\n{%- else -%} {%- endif %}",
-  "ha_message": "{%- if ha_image -%}\n  {{ message }}\n\n  ![image]({{ ha_image }})\n{%- else -%}\n  {{ message }}\n{%- endif %}"
+  "ha_message": "{%- if ha_image -%}\n  {{ message }}{{ \"\\n\\n\" }}![image]({{ ha_image }})\n{%- else -%}\n  {{ message }}\n{%- endif %}"
 }
 ```
 File: [`script/notify_will.yaml`](entities/script/notify_will.yaml)
