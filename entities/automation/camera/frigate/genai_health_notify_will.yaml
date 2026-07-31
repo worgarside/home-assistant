@@ -30,6 +30,7 @@ action:
       entity_id: input_boolean.frigate_genai_health_alert
 
   - action: script.notify_will
+    continue_on_error: true
     data:
       title: Frigate captions may be unhealthy
       message: >-

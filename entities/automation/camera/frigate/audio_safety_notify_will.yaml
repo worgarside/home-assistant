@@ -41,6 +41,7 @@ condition:
 
 action:
   - action: script.notify_will
+    continue_on_error: true
     data:
       title: "{{ audio_name }} detected"
       message: "Frigate heard {{ audio_name | lower }} on the {{ camera_name }} camera."

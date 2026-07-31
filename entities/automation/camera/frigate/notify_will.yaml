@@ -109,7 +109,7 @@ variables:
 
   snapshot_url: "/api/frigate/notifications/{{ detection_id }}/snapshot.jpg"
 
-  clip_url: "/api/frigate/notifications/{{ detection_id }}/{{ camera }}/clip.mp4"
+  clip_url: "/api/frigate/notifications/{{ detection_id }}/clip.mp4"
 
 condition:
   # Valid camera, severity, object type, and IDs needed for notification media

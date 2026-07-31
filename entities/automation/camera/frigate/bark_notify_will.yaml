@@ -33,6 +33,7 @@ condition:
 
 action:
   - action: script.notify_will
+    continue_on_error: true
     data:
       title: Desmond may be barking
       message: "Frigate heard barking on the {{ camera_name }} camera while nobody is home."

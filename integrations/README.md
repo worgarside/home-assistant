@@ -451,7 +451,7 @@ File: [`automation/camera/frigate/genai_health_tracker.yaml`](entities/automatio
   "notification_title": "{{\n  metadata.get('title', detected_object | title ~ ' on ' ~ camera_name)\n  if trigger.id == 'genai'\n  else recognized_name ~ ' on ' ~ camera_name\n  if recognized_name | length > 0\n  else detected_object | title ~ ' on ' ~ camera_name\n}}",
   "notification_message": "{{\n  metadata.get(\n    'shortSummary',\n    'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n  )\n  if trigger.id == 'genai'\n  else 'Frigate recognised ' ~ recognized_name ~ ' on the ' ~ camera_name ~ ' camera.'\n  if recognized_name | length > 0\n  else 'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n}}",
   "snapshot_url": "/api/frigate/notifications/{{ detection_id }}/snapshot.jpg",
-  "clip_url": "/api/frigate/notifications/{{ detection_id }}/{{ camera }}/clip.mp4"
+  "clip_url": "/api/frigate/notifications/{{ detection_id }}/clip.mp4"
 }
 ```
 File: [`automation/camera/frigate/notify_will.yaml`](entities/automation/camera/frigate/notify_will.yaml)
@@ -4075,7 +4075,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (73)</h3></summary>
+<details><summary><h3>Entities (72)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
@@ -4196,17 +4196,6 @@ File: [`input_number/cosmo_nightly_kitchen_clean_door_close_timeout.yaml`](entit
 - Unit Of Measurement: %
 
 File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/dry_box/dry_box_max_humidity.yaml)
-</details>
-
-<details><summary><strong>Frigate GenAI Reviews Since Caption</strong></summary>
-
-**Entity ID: `input_number.frigate_genai_reviews_since_caption`**
-
-- Icon: [`mdi:image-text`](https://pictogrammers.com/library/mdi/icon/image-text/)
-- Max: 20
-- Mode: `box`
-
-File: [`input_number/frigate_genai_reviews_since_caption.yaml`](entities/input_number/frigate_genai_reviews_since_caption.yaml)
 </details>
 
 <details><summary><strong>Frigate Uncaptioned Review Streak</strong></summary>
