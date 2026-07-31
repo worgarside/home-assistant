@@ -29,13 +29,11 @@ variables:
   service: "{{ service_mapping.get(domain, domain) }}"
 
   file_key: >-
-    {% set path = trigger.event.data.path %}
-    {% set prefix = "/config/entities/" ~ domain ~ "/" %}
-    {% if path.startswith(prefix) %}
-      {{ path[prefix | length:] }}
-    {% else %}
-      {{ trigger.event.data.file }}
-    {% endif %}
+    {{
+      trigger.event.data.path[(("/config/entities/" ~ domain ~ "/") | length):]
+      if trigger.event.data.path.startswith("/config/entities/" ~ domain ~ "/")
+      else trigger.event.data.file
+    }}
 
   reloadable_services:
     - automation
@@ -80,13 +78,11 @@ action:
         notification_id: "{{ service }}_auto_reload_required"
 
   - variables:
-      raw_pending: "{{ state_attr('var.auto_reload_queue', 'pending') }}"
-
       pending: >-
         {{
-          raw_pending
-          if raw_pending is mapping
-          else (raw_pending | default('{}', true) | from_json)
+          state_attr('var.auto_reload_queue', 'pending')
+          | default('{}', true)
+          | from_json
         }}
 
       domain_files: "{{ pending.get(service, []) }}"

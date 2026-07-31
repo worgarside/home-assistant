@@ -820,7 +820,7 @@ File: [`automation/homeassistant/clear_service_reload_queue_on_start.yaml`](enti
     "template_triggered": "template"
   },
   "service": "{{ service_mapping.get(domain, domain) }}",
-  "file_key": "{% set path = trigger.event.data.path %} {% set prefix = \"/config/entities/\" ~ domain ~ \"/\" %} {% if path.startswith(prefix) %}\n  {{ path[prefix | length:] }}\n{% else %}\n  {{ trigger.event.data.file }}\n{% endif %}",
+  "file_key": "{{\n  trigger.event.data.path[((\"/config/entities/\" ~ domain ~ \"/\") | length):]\n  if trigger.event.data.path.startswith(\"/config/entities/\" ~ domain ~ \"/\")\n  else trigger.event.data.file\n}}",
   "reloadable_services": [
     "automation",
     "command_line",
@@ -7718,8 +7718,7 @@ File: [`script/system/script_response_debugger.yaml`](entities/script/system/scr
 
 ```json
 {
-  "raw_pending": "{{ state_attr('var.auto_reload_queue', 'pending') }}",
-  "pending": "{{\n  raw_pending\n  if raw_pending is mapping\n  else (raw_pending | default('{}', true) | from_json)\n}}",
+  "pending": "{{\n  state_attr('var.auto_reload_queue', 'pending')\n  | default('{}', true)\n  | from_json\n}}",
   "snapshot": "{{ pending.get(domain, []) }}"
 }
 ```

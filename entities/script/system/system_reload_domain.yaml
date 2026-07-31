@@ -42,13 +42,11 @@ fields:
           - zone
 
 variables:
-  raw_pending: "{{ state_attr('var.auto_reload_queue', 'pending') }}"
-
   pending: >-
     {{
-      raw_pending
-      if raw_pending is mapping
-      else (raw_pending | default('{}', true) | from_json)
+      state_attr('var.auto_reload_queue', 'pending')
+      | default('{}', true)
+      | from_json
     }}
 
   snapshot: "{{ pending.get(domain, []) }}"
@@ -57,88 +55,49 @@ sequence:
   - choose:
       - conditions: "{{ domain == 'script' }}"
         sequence:
-          - if: "{{ snapshot | length > 0 }}"
-            then:
-              - variables:
-                  remaining_files: >-
-                    {{
-                      pending.get(domain, [])
-                      | reject('in', snapshot)
-                      | list
-                    }}
-
-                  new_pending: >-
-                    {% set ns = namespace(result={}) %}
-                    {% for key, value in pending.items() %}
-                      {% if key != domain %}
-                        {% set ns.result = dict(ns.result, **{key: value}) %}
-                      {% elif remaining_files | length > 0 %}
-                        {% set ns.result = dict(ns.result, **{key: remaining_files}) %}
-                      {% endif %}
-                    {% endfor %}
-                    {{ ns.result }}
-
-                  pending_domain_count: >-
-                    {{ new_pending.values() | reject('eq', []) | list | count }}
-
-              - action: var.set
-                target:
-                  entity_id: var.auto_reload_queue
-                data:
-                  value: "{{ pending_domain_count }}"
-                  attributes: >-
-                    {{
-                      {
-                        "pending": new_pending | to_json
-                      }
-                    }}
-
           - action: script.reload
 
     default:
       - action: "{{ domain }}.reload"
 
-      - if: "{{ snapshot | length > 0 }}"
-        then:
-          - variables:
-              raw_pending_after: "{{ state_attr('var.auto_reload_queue', 'pending') }}"
+  - if: "{{ snapshot | length > 0 }}"
+    then:
+      - variables:
+          pending_after: >-
+            {{
+              state_attr('var.auto_reload_queue', 'pending')
+              | default('{}', true)
+              | from_json
+            }}
 
-              pending_after: >-
-                {{
-                  raw_pending_after
-                  if raw_pending_after is mapping
-                  else (raw_pending_after | default('{}', true) | from_json)
-                }}
+          remaining_files: >-
+            {{
+              pending_after.get(domain, [])
+              | reject('in', snapshot)
+              | list
+            }}
 
-              remaining_files: >-
-                {{
-                  pending_after.get(domain, [])
-                  | reject('in', snapshot)
-                  | list
-                }}
+          new_pending: >-
+            {% set ns = namespace(result={}) %}
+            {% for key, value in pending_after.items() %}
+              {% if key != domain %}
+                {% set ns.result = dict(ns.result, **{key: value}) %}
+              {% elif remaining_files | length > 0 %}
+                {% set ns.result = dict(ns.result, **{key: remaining_files}) %}
+              {% endif %}
+            {% endfor %}
+            {{ ns.result }}
 
-              new_pending: >-
-                {% set ns = namespace(result={}) %}
-                {% for key, value in pending_after.items() %}
-                  {% if key != domain %}
-                    {% set ns.result = dict(ns.result, **{key: value}) %}
-                  {% elif remaining_files | length > 0 %}
-                    {% set ns.result = dict(ns.result, **{key: remaining_files}) %}
-                  {% endif %}
-                {% endfor %}
-                {{ ns.result }}
+          pending_domain_count: "{{ new_pending | length }}"
 
-              pending_domain_count: >-
-                {{ new_pending.values() | reject('eq', []) | list | count }}
-
-          - action: var.set
-            target:
-              entity_id: var.auto_reload_queue
-            data:
-              value: "{{ pending_domain_count }}"
-              attributes: >-
-                {{
-                  {
-                    "pending": new_pending | to_json
-                  }
-                }}
+      - action: var.set
+        target:
+          entity_id: var.auto_reload_queue
+        data:
+          value: "{{ pending_domain_count }}"
+          attributes: >-
+            {{
+              {
+                "pending": new_pending | to_json
+              }
+            }}
