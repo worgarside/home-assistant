@@ -12,7 +12,7 @@ trigger:
     event: start
 
 variables:
-  empty_list: []
+  empty_pending: {}
 
 action:
   - action: var.set
@@ -23,7 +23,6 @@ action:
       attributes: >-
         {{
           {
-            "service_queue": empty_list | to_json,
-            "files": empty_list | to_json,
+            "pending": empty_pending | to_json,
           }
         }}

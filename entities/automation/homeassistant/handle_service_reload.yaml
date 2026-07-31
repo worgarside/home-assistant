@@ -28,7 +28,14 @@ variables:
 
   service: "{{ service_mapping.get(domain, domain) }}"
 
-  orig_service_queue: "{{ state_attr('var.auto_reload_queue', 'service_queue') or [] }}"
+  file_key: >-
+    {% set path = trigger.event.data.path %}
+    {% set prefix = "/config/entities/" ~ domain ~ "/" %}
+    {% if path.startswith(prefix) %}
+      {{ path[prefix | length:] }}
+    {% else %}
+      {{ trigger.event.data.file }}
+    {% endif %}
 
   reloadable_services:
     - automation
@@ -73,36 +80,40 @@ action:
         notification_id: "{{ service }}_auto_reload_required"
 
   - variables:
-      orig_files: "{{ state_attr('var.auto_reload_queue', 'files') or [] }}"
+      raw_pending: "{{ state_attr('var.auto_reload_queue', 'pending') }}"
 
-      new_files: >-
+      pending: >-
+        {{
+          raw_pending
+          if raw_pending is mapping
+          else (raw_pending | default('{}', true) | from_json)
+        }}
+
+      domain_files: "{{ pending.get(service, []) }}"
+
+      new_domain_files: >-
         {{
           iif(
-            trigger.event.data.file in orig_files,
-            orig_files,
-            orig_files + [trigger.event.data.file]
+            file_key in domain_files,
+            domain_files,
+            domain_files + [file_key]
           )
         }}
 
-      new_service_queue: >-
-        {{
-          iif(
-            service in orig_service_queue,
-            orig_service_queue,
-            orig_service_queue + [service]
-          )
-        }}
+      new_pending: "{{ dict(pending, **{service: new_domain_files}) }}"
+
+      pending_domain_count: >-
+        {{ new_pending.values() | reject('eq', []) | list | count }}
 
   - action: var.set
     target:
       entity_id: var.auto_reload_queue
     data:
-      value: "{{ new_service_queue | length }}"
+      value: "{{ pending_domain_count }}"
       attributes: >-
         {{
           {
-            "files":  new_files | to_json,
-            "service_queue": new_service_queue | to_json
+            "pending": new_pending | to_json
           }
         }}
 
@@ -120,4 +131,6 @@ action:
               `{{ trigger.event.data.folder }}/{{ trigger.event.data.file}}`
             notification_id: "{{ service }}_auto_reload"
 
-      - action: "{{ service }}.reload"
+      - action: script.system_reload_domain
+        data:
+          domain: "{{ service }}"

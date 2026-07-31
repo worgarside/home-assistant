@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (218)</h3></summary>
+<details><summary><h3>Entities (217)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -782,26 +782,6 @@ File: [`automation/fan/will_s_office_fan/control.yaml`](entities/automation/fan/
 File: [`automation/gh_cli/user_updated.yaml`](entities/automation/gh_cli/user_updated.yaml)
 </details>
 
-<details><summary><code>/homeassistant/clear-queued-service-reload</code></summary>
-
-**Entity ID: `automation.homeassistant_clear_queued_service_reload`**
-
-> *No description provided*
-
-- Alias: /homeassistant/clear-queued-service-reload
-- ID: `homeassistant_clear_queued_service_reload`
-- Mode: `queued`
-- Variables:
-
-```json
-{
-  "domain": "{{ trigger.event.data.domain }}",
-  "service_queue": "{{ state_attr('var.auto_reload_queue', 'service_queue') | default([]) }}"
-}
-```
-File: [`automation/homeassistant/clear_queued_service_reload.yaml`](entities/automation/homeassistant/clear_queued_service_reload.yaml)
-</details>
-
 <details><summary><code>/homeassistant/clear-service-reload-queue-on-start</code></summary>
 
 **Entity ID: `automation.homeassistant_clear_service_reload_queue_on_start`**
@@ -815,7 +795,7 @@ File: [`automation/homeassistant/clear_queued_service_reload.yaml`](entities/aut
 
 ```json
 {
-  "empty_list": []
+  "empty_pending": {}
 }
 ```
 File: [`automation/homeassistant/clear_service_reload_queue_on_start.yaml`](entities/automation/homeassistant/clear_service_reload_queue_on_start.yaml)
@@ -840,7 +820,7 @@ File: [`automation/homeassistant/clear_service_reload_queue_on_start.yaml`](enti
     "template_triggered": "template"
   },
   "service": "{{ service_mapping.get(domain, domain) }}",
-  "orig_service_queue": "{{ state_attr('var.auto_reload_queue', 'service_queue') or [] }}",
+  "file_key": "{% set path = trigger.event.data.path %} {% set prefix = \"/config/entities/\" ~ domain ~ \"/\" %} {% if path.startswith(prefix) %}\n  {{ path[prefix | length:] }}\n{% else %}\n  {{ trigger.event.data.file }}\n{% endif %}",
   "reloadable_services": [
     "automation",
     "command_line",
@@ -6547,7 +6527,7 @@ File: [`rest_command/wger/put_weightentry.yaml`](entities/rest_command/wger/put_
 
 ## Script
 
-<details><summary><h3>Entities (33)</h3></summary>
+<details><summary><h3>Entities (34)</h3></summary>
 
 <details><summary><strong>AD: Monzo Auto Save</strong></summary>
 
@@ -7686,6 +7666,64 @@ File: [`script/system/reset_restart_required_files_changed.yaml`](entities/scrip
 - Mode: `parallel`
 
 File: [`script/system/script_response_debugger.yaml`](entities/script/system/script_response_debugger.yaml)
+</details>
+
+<details><summary><strong>System Reload Domain</strong></summary>
+
+**Entity ID: `script.system_reload_domain`**
+
+> Reload a Home Assistant domain and clear only the auto-reload queue snapshot captured for that reload. New file changes during the reload remain pending.
+
+- Fields:
+
+```json
+{
+  "domain": {
+    "name": "Domain",
+    "description": "The reloadable domain to reload",
+    "required": true,
+    "selector": {
+      "select": {
+        "options": [
+          "automation",
+          "command_line",
+          "conversation",
+          "group",
+          "input_boolean",
+          "input_button",
+          "input_datetime",
+          "input_number",
+          "input_select",
+          "input_text",
+          "mqtt",
+          "rest",
+          "rest_command",
+          "scene",
+          "schedule",
+          "script",
+          "template",
+          "timer",
+          "universal",
+          "var",
+          "zone"
+        ]
+      }
+    }
+  }
+}
+```
+
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "raw_pending": "{{ state_attr('var.auto_reload_queue', 'pending') }}",
+  "pending": "{{\n  raw_pending\n  if raw_pending is mapping\n  else (raw_pending | default('{}', true) | from_json)\n}}",
+  "snapshot": "{{ pending.get(domain, []) }}"
+}
+```
+File: [`script/system/system_reload_domain.yaml`](entities/script/system/system_reload_domain.yaml)
 </details>
 
 <details><summary><strong>Turn Off Physical Room</strong></summary>
