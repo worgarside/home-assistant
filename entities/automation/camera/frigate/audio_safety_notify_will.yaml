@@ -36,7 +36,7 @@ condition:
     value_template: >-
       {{
         camera in camera_names and
-        audio_type in ['fire_alarm', 'scream', 'yell']
+        audio_type in audio_names
       }}
 
 action:
