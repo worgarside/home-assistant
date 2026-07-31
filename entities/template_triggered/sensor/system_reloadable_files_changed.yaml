@@ -27,7 +27,7 @@ trigger:
     event_type: call_service
     event_data:
       domain: homeassistant
-      action: reload_all
+      service: reload_all
 
 sensor:
   - name: "System: Reloadable Files Changed"

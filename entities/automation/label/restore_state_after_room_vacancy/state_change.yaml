@@ -54,7 +54,7 @@ trigger:
     event_type: call_service
     event_data:
       domain: var
-      action: reload
+      service: reload
 
 condition: >-
   {{

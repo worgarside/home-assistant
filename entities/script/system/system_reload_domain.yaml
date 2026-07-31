@@ -1,0 +1,138 @@
+---
+alias: System Reload Domain
+
+description: >-
+  Reload a Home Assistant domain, repeating until no files remain pending for
+  it (so changes that land mid-reload are picked up by another pass rather
+  than left pending), then release the domain's auto-reload in-flight lock.
+
+mode: queued
+
+max: 50
+
+max_exceeded: silent
+
+fields:
+  domain:
+    name: Domain
+    description: The reloadable domain to reload
+    required: true
+    selector:
+      select:
+        options:
+          - automation
+          - command_line
+          - conversation
+          - group
+          - input_boolean
+          - input_button
+          - input_datetime
+          - input_number
+          - input_select
+          - input_text
+          - mqtt
+          - rest
+          - rest_command
+          - scene
+          - schedule
+          - script
+          - template
+          - timer
+          - universal
+          - var
+          - zone
+
+sequence:
+  - repeat:
+      while:
+        - condition: template
+          value_template: >-
+            {{
+              (
+                state_attr('var.auto_reload_queue', 'pending')
+                | default('{}', true)
+                | from_json
+              ).get(domain, [])
+              | length > 0 and repeat.index <= 20
+            }}
+      sequence:
+        - variables:
+            snapshot: >-
+              {{
+                (
+                  state_attr('var.auto_reload_queue', 'pending')
+                  | default('{}', true)
+                  | from_json
+                ).get(domain, [])
+              }}
+
+        - choose:
+            - conditions: "{{ domain == 'script' }}"
+              sequence:
+                - action: script.reload
+                  continue_on_error: true
+
+          default:
+            - action: "{{ domain }}.reload"
+              continue_on_error: true
+
+        - variables:
+            pending_after: >-
+              {{
+                state_attr('var.auto_reload_queue', 'pending')
+                | default('{}', true)
+                | from_json
+              }}
+
+            remaining_files: >-
+              {{
+                pending_after.get(domain, [])
+                | reject('in', snapshot)
+                | list
+              }}
+
+            new_pending: >-
+              {% set ns = namespace(result={}) %}
+              {% for key, value in pending_after.items() %}
+                {% if key != domain %}
+                  {% set ns.result = dict(ns.result, **{key: value}) %}
+                {% elif remaining_files | length > 0 %}
+                  {% set ns.result = dict(ns.result, **{key: remaining_files}) %}
+                {% endif %}
+              {% endfor %}
+              {{ ns.result }}
+
+            pending_domain_count: "{{ new_pending | length }}"
+
+        - action: var.set
+          target:
+            entity_id: var.auto_reload_queue
+          data:
+            value: "{{ pending_domain_count }}"
+            attributes: >-
+              {{
+                {
+                  "pending": new_pending | to_json
+                }
+              }}
+
+  - variables:
+      in_flight_remaining: >-
+        {{
+          state_attr('var.auto_reload_queue', 'in_flight')
+          | default('[]', true)
+          | from_json
+          | reject('eq', domain)
+          | list
+        }}
+
+  - action: var.set
+    target:
+      entity_id: var.auto_reload_queue
+    data:
+      attributes: >-
+        {{
+          {
+            "in_flight": in_flight_remaining | to_json
+          }
+        }}

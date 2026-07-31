@@ -12,8 +12,8 @@ unique_id: var_auto_reload_queue
 initial_value: 0
 
 attributes:
-  files: >-
-    []
+  pending: >-
+    {}
 
-  service_queue: >-
+  in_flight: >-
     []
