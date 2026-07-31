@@ -9,7 +9,7 @@ trigger:
   platform: event
   event_type: call_service
   event_data:
-    action: reload
+    service: reload
 
 variables:
   domain: "{{ trigger.event.data.domain }}"
