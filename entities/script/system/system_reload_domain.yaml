@@ -53,7 +53,7 @@ sequence:
                 | default('{}', true)
                 | from_json
               ).get(domain, [])
-              | length > 0
+              | length > 0 and repeat.index <= 20
             }}
       sequence:
         - variables:
