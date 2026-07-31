@@ -795,7 +795,8 @@ File: [`automation/gh_cli/user_updated.yaml`](entities/automation/gh_cli/user_up
 
 ```json
 {
-  "empty_pending": {}
+  "empty_pending": {},
+  "empty_in_flight": []
 }
 ```
 File: [`automation/homeassistant/clear_service_reload_queue_on_start.yaml`](entities/automation/homeassistant/clear_service_reload_queue_on_start.yaml)
@@ -7672,7 +7673,7 @@ File: [`script/system/script_response_debugger.yaml`](entities/script/system/scr
 
 **Entity ID: `script.system_reload_domain`**
 
-> Reload a Home Assistant domain and clear only the auto-reload queue snapshot captured for that reload. New file changes during the reload remain pending.
+> Reload a Home Assistant domain, repeating until no files remain pending for it (so changes that land mid-reload are picked up by another pass rather than left pending), then release the domain's auto-reload in-flight lock.
 
 - Fields:
 
@@ -7714,14 +7715,7 @@ File: [`script/system/script_response_debugger.yaml`](entities/script/system/scr
 ```
 
 - Mode: `queued`
-- Variables:
 
-```json
-{
-  "pending": "{{\n  state_attr('var.auto_reload_queue', 'pending')\n  | default('{}', true)\n  | from_json\n}}",
-  "snapshot": "{{ pending.get(domain, []) }}"
-}
-```
 File: [`script/system/system_reload_domain.yaml`](entities/script/system/system_reload_domain.yaml)
 </details>
 

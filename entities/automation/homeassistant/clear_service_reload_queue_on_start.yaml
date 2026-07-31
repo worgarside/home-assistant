@@ -14,6 +14,8 @@ trigger:
 variables:
   empty_pending: {}
 
+  empty_in_flight: []
+
 action:
   - action: var.set
     target:
@@ -24,5 +26,6 @@ action:
         {{
           {
             "pending": empty_pending | to_json,
+            "in_flight": empty_in_flight | to_json,
           }
         }}

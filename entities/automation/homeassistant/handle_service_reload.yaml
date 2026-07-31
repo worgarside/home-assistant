@@ -85,6 +85,13 @@ action:
           | from_json
         }}
 
+      in_flight: >-
+        {{
+          state_attr('var.auto_reload_queue', 'in_flight')
+          | default('[]', true)
+          | from_json
+        }}
+
       domain_files: "{{ pending.get(service, []) }}"
 
       new_domain_files: >-
@@ -101,6 +108,17 @@ action:
       pending_domain_count: >-
         {{ new_pending.values() | reject('eq', []) | list | count }}
 
+      dispatch_reload: >-
+        {{
+          service not in in_flight and
+          is_state(auto_reload_boolean, 'on')
+        }}
+
+      new_in_flight: >-
+        {{
+          (in_flight + [service]) if dispatch_reload else in_flight
+        }}
+
   - action: var.set
     target:
       entity_id: var.auto_reload_queue
@@ -109,11 +127,12 @@ action:
       attributes: >-
         {{
           {
-            "pending": new_pending | to_json
+            "pending": new_pending | to_json,
+            "in_flight": new_in_flight | to_json
           }
         }}
 
-  - if: "{{ is_state(auto_reload_boolean, 'on') }}"
+  - if: "{{ dispatch_reload }}"
 
     then:
       - action: script.turn_on
