@@ -9297,7 +9297,7 @@ File: [`timer/pro_breeze_ac_off.yaml`](entities/timer/pro_breeze_ac_off.yaml)
 
 ## Var
 
-<details><summary><h3>Entities (32)</h3></summary>
+<details><summary><h3>Entities (34)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -9428,6 +9428,24 @@ File: [`var/ovo/ovo_gas_monthly_cost.yaml`](entities/var/ovo/ovo_gas_monthly_cos
 - Unit Of Measurement: kWh
 
 File: [`var/ovo/ovo_gas_monthly_usage.yaml`](entities/var/ovo/ovo_gas_monthly_usage.yaml)
+</details>
+
+<details><summary><strong>Spotify Reauth (Auto Saver)</strong></summary>
+
+**Entity ID: `var.spotify_reauth_auto_saver`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/spotify/spotify_reauth_auto_saver.yaml`](entities/var/spotify/spotify_reauth_auto_saver.yaml)
+</details>
+
+<details><summary><strong>Spotify Reauth (Track Processor)</strong></summary>
+
+**Entity ID: `var.spotify_reauth_track_processor`**
+
+- Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
+
+File: [`var/spotify/spotify_reauth_track_processor.yaml`](entities/var/spotify/spotify_reauth_track_processor.yaml)
 </details>
 
 <details><summary><strong>Spotify Tempo (Will)</strong></summary>
