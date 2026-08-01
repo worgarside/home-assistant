@@ -1,0 +1,83 @@
+---
+alias: /camera/frigate/genai-presence-control
+
+id: camera_frigate_genai_presence_control
+
+description: >-
+  Keep front-door descriptions enabled, while avoiding Ollama work for normal indoor
+  activity when somebody is home. Interior descriptions are restored two minutes
+  after the house becomes empty.
+
+mode: restart
+
+trigger:
+  - platform: homeassistant
+    event: start
+
+  - platform: numeric_state
+    entity_id: zone.home
+    above: 0
+    id: occupied
+
+  - platform: state
+    entity_id: zone.home
+    to: "0"
+    id: empty
+
+variables:
+  interior_cameras:
+    - basement
+    - lounge
+
+action:
+  # The front door is security-facing, so never suppress its descriptions.
+  - action: mqtt.publish
+    data:
+      topic: frigate/front_door/review_descriptions/set
+      payload: "ON"
+
+  - choose:
+      - conditions:
+          - condition: numeric_state
+            entity_id: zone.home
+            above: 0
+        sequence:
+          - repeat:
+              for_each: "{{ interior_cameras }}"
+              sequence:
+                - action: mqtt.publish
+                  data:
+                    topic: "frigate/{{ repeat.item }}/review_descriptions/set"
+                    payload: "OFF"
+
+          # Descriptions are intentionally absent while occupied, not unhealthy.
+          - action: input_number.set_value
+            target:
+              entity_id: input_number.frigate_uncaptioned_review_streak
+            data:
+              value: 0
+
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.frigate_genai_health_alert
+
+      - conditions:
+          - condition: numeric_state
+            entity_id: zone.home
+            below: 1
+        sequence:
+          - delay:
+              minutes: 2
+
+          # Re-check after the grace period; mode: restart cancels this if someone returns.
+          - condition: numeric_state
+            entity_id: zone.home
+            below: 1
+
+          - repeat:
+              for_each: "{{ interior_cameras }}"
+              sequence:
+                - action: mqtt.publish
+                  data:
+                    topic: "frigate/{{ repeat.item }}/review_descriptions/set"
+                    payload: "ON"

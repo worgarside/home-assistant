@@ -1,0 +1,53 @@
+---
+alias: /camera/frigate/audio-safety-notify-will
+
+id: camera_frigate_audio_safety_notify_will
+
+description: Immediately notify Will when Frigate detects a safety-critical sound
+
+mode: queued
+
+max: 10
+
+max_exceeded: silent
+
+trigger:
+  - platform: mqtt
+    topic: frigate/+/audio/+
+    payload: "ON"
+
+variables:
+  topic_parts: "{{ trigger.topic.split('/') }}"
+  camera: "{{ topic_parts[1] if topic_parts | count == 4 else '' }}"
+  audio_type: "{{ topic_parts[3] if topic_parts | count == 4 else '' }}"
+  camera_names:
+    front_door: Front Door
+    basement: Basement
+    lounge: Lounge
+  audio_names:
+    fire_alarm: Fire alarm
+    scream: Scream
+    yell: Yelling
+  camera_name: "{{ camera_names.get(camera, camera | replace('_', ' ') | title) }}"
+  audio_name: "{{ audio_names.get(audio_type, audio_type | replace('_', ' ') | title) }}"
+
+condition:
+  - condition: template
+    value_template: >-
+      {{
+        camera in camera_names and
+        audio_type in audio_names
+      }}
+
+action:
+  - action: script.notify_will
+    continue_on_error: true
+    data:
+      title: "{{ audio_name }} detected"
+      message: "Frigate heard {{ audio_name | lower }} on the {{ camera_name }} camera."
+      notification_id: frigate_audio_{{ camera }}_{{ audio_type }}
+      mobile_notification_icon: mdi:alarm-light
+      group: frigate-audio-safety
+      sticky: true
+      persistent: true
+      image: "/api/camera_proxy/camera.{{ camera }}"

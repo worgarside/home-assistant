@@ -1,0 +1,17 @@
+---
+resource: http://10.0.0.118:11434/api/tags
+
+scan_interval: 60
+
+timeout: 10
+
+method: GET
+
+sensor:
+  - unique_id: ollama_api_status
+
+    name: Ollama API Status
+
+    value_template: "online"
+
+    icon: mdi:server-network

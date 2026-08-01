@@ -1,0 +1,42 @@
+---
+alias: /camera/frigate/genai-health-notify-will
+
+id: camera_frigate_genai_health_notify_will
+
+description: Warn Will when two ended Frigate reviews receive no AI-generated caption
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: input_datetime.frigate_last_genai_review_ended
+    for:
+      minutes: 5
+
+condition:
+  - condition: numeric_state
+    entity_id: input_number.frigate_uncaptioned_review_streak
+    above: 1
+
+  - condition: state
+    entity_id: input_boolean.frigate_genai_health_alert
+    state: "off"
+
+action:
+  - action: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.frigate_genai_health_alert
+
+  - action: script.notify_will
+    continue_on_error: true
+    data:
+      title: Frigate captions may be unhealthy
+      message: >-
+        At least two completed Frigate reviews have not received an AI-generated caption.
+        Check Frigate and Ollama logs.
+      notification_id: frigate_genai_health
+      mobile_notification_icon: mdi:image-alert-outline
+      group: frigate-health
+      sticky: true
