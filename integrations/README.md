@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (223)</h3></summary>
+<details><summary><h3>Entities (224)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -401,10 +401,33 @@ File: [`automation/camera/frigate/genai_health_notify_will.yaml`](entities/autom
   "review_data": "{{ review.get('data', {}) }}",
   "camera": "{{ review.get('camera', '') }}",
   "objects": "{{ review_data.get('objects', []) }}",
-  "uncaptioned_review_streak": "{{ states('input_number.frigate_uncaptioned_review_streak') | int(0) }}"
+  "uncaptioned_review_streak": "{{ states('input_number.frigate_uncaptioned_review_streak') | int(0) }}",
+  "description_expected": "{{ camera == 'front_door' or states('zone.home') | int(0) < 1 }}"
 }
 ```
 File: [`automation/camera/frigate/genai_health_tracker.yaml`](entities/automation/camera/frigate/genai_health_tracker.yaml)
+</details>
+
+<details><summary><code>/camera/frigate/genai-presence-control</code></summary>
+
+**Entity ID: `automation.camera_frigate_genai_presence_control`**
+
+> Keep front-door descriptions enabled, while avoiding Ollama work for normal indoor activity when somebody is home. Interior descriptions are restored two minutes after the house becomes empty.
+
+- Alias: /camera/frigate/genai-presence-control
+- ID: `camera_frigate_genai_presence_control`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "interior_cameras": [
+    "basement",
+    "lounge"
+  ]
+}
+```
+File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automation/camera/frigate/genai_presence_control.yaml)
 </details>
 
 <details><summary><code>/camera/frigate/notify-will</code></summary>

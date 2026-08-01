@@ -39,6 +39,8 @@ variables:
   objects: "{{ review_data.get('objects', []) }}"
   uncaptioned_review_streak: >-
     {{ states('input_number.frigate_uncaptioned_review_streak') | int(0) }}
+  description_expected: >-
+    {{ camera == 'front_door' or states('zone.home') | int(0) < 1 }}
 
 condition:
   - condition: template
@@ -46,7 +48,8 @@ condition:
       {{
         camera in supported_cameras and
         review.get('severity') in ['alert', 'detection'] and
-        objects | select('in', supported_objects) | list | count > 0
+        objects | select('in', supported_objects) | list | count > 0 and
+        description_expected
       }}
 
 action:
