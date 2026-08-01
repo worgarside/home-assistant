@@ -6550,7 +6550,7 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_amex_auto_saver', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex Auto Saver needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_amex_auto_saver', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('var.truelayer_reauth_amex_auto_saver', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex Auto Saver needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
                           "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
@@ -6595,7 +6595,7 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "{% set auth_link = state_attr('var.monzo_reauth_auto_saver', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo Auto Saver needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "content": "{% set auth_link = state_attr('var.monzo_reauth_auto_saver', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('var.monzo_reauth_auto_saver', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo Auto Saver needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
                           "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
@@ -6640,7 +6640,7 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "{% set auth_link = state_attr('var.spotify_reauth_auto_saver', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Spotify Auto Saver needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "content": "{% set auth_link = state_attr('var.spotify_reauth_auto_saver', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('var.spotify_reauth_auto_saver', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Spotify Auto Saver needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
                           "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
@@ -6685,7 +6685,7 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "{% set auth_link = state_attr('var.monzo_reauth_cc_pot_top_up', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo CC Pot Top-Up needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "content": "{% set auth_link = state_attr('var.monzo_reauth_cc_pot_top_up', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('var.monzo_reauth_cc_pot_top_up', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo CC Pot Top-Up needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
                           "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
@@ -6730,7 +6730,7 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_amex', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_amex', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('var.truelayer_reauth_amex', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
                           "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
@@ -6775,7 +6775,7 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_hsbc', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **HSBC needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_hsbc', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('var.truelayer_reauth_hsbc', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **HSBC needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
                           "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
@@ -6820,7 +6820,7 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_santander', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Santander needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_santander', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('var.truelayer_reauth_santander', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Santander needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
                           "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
@@ -6865,7 +6865,7 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_starling', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_starling', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('var.truelayer_reauth_starling', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
                           "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
@@ -6910,7 +6910,7 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_starling_joint', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling Joint needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_starling_joint', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('var.truelayer_reauth_starling_joint', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling Joint needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
                           "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
@@ -6955,7 +6955,7 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "{% set auth_link = state_attr('var.spotify_reauth_track_processor', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Spotify Track Processor needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "content": "{% set auth_link = state_attr('var.spotify_reauth_track_processor', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('var.spotify_reauth_track_processor', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Spotify Track Processor needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
                           "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
