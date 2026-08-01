@@ -7109,6 +7109,120 @@
           "sections": [
             {
               "type": "grid",
+              "column_span": 2,
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Jellyfin",
+                  "heading_style": "title",
+                  "icon": "mdi:jellyfish",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.jellyha_companion_cube_active_sessions",
+                      "show_state": true,
+                      "show_name": true
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.jellyha_companion_cube_websocket_status",
+                      "show_state": true,
+                      "show_name": true
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.jellyha_companion_cube_now_playing_worgarside",
+                      "state_not": "idle"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:jellyha-now-playing-card",
+                    "entity": "sensor.jellyha_companion_cube_now_playing_worgarside",
+                    "title": "Now Playing \u2014 Will",
+                    "show_background": true,
+                    "show_time": true
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.jellyha_companion_cube_now_playing_vic",
+                      "state_not": "idle"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:jellyha-now-playing-card",
+                    "entity": "sensor.jellyha_companion_cube_now_playing_vic",
+                    "title": "Now Playing \u2014 Vic",
+                    "show_background": true,
+                    "show_time": true
+                  }
+                },
+                {
+                  "type": "custom:jellyha-library-card",
+                  "entity": "sensor.jellyha_companion_cube_library",
+                  "title": "Recently Added",
+                  "layout": "carousel",
+                  "media_type": "both",
+                  "items_per_page": 4,
+                  "max_pages": 3,
+                  "filter_newly_added": true,
+                  "show_now_playing": true,
+                  "show_search": true,
+                  "new_badge_days": 14,
+                  "show_watched_status": true,
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.jellyha_companion_cube_library",
+                  "name": "Library",
+                  "icon": "mdi:movie-open",
+                  "grid_options": {
+                    "columns": 3
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.jellyha_companion_cube_unwatched_movies",
+                  "name": "Unwatched films",
+                  "icon": "mdi:movie-outline",
+                  "grid_options": {
+                    "columns": 3
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.jellyha_companion_cube_unwatched_series",
+                  "name": "Unwatched series",
+                  "icon": "mdi:television",
+                  "grid_options": {
+                    "columns": 3
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.jellyha_companion_cube_unwatched_episodes",
+                  "name": "Unwatched episodes",
+                  "icon": "mdi:playlist-play",
+                  "grid_options": {
+                    "columns": 3
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
               "cards": [
                 {
                   "type": "heading",
