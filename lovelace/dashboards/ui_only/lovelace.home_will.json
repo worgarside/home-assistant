@@ -7152,33 +7152,12 @@
                 },
                 {
                   "type": "custom:upcoming-media-card",
-                  "entity": "sensor.radarr_upcoming_media",
+                  "entity": "sensor.radarr_upcoming_media_radarr_upcoming_media",
                   "image_style": "fanart",
                   "collapse": "flag=true",
                   "sort_by": "airdate",
                   "enable_tooltips": true,
                   "clock": 24
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Recently Added",
-                  "heading_style": "title",
-                  "icon": "mdi:plex"
-                },
-                {
-                  "type": "custom:upcoming-media-card",
-                  "entity": "sensor.plex_recently_added",
-                  "image_style": "fanart",
-                  "collapse": "flag=true",
-                  "sort_by": "airdate",
-                  "enable_tooltips": true,
-                  "clock": 24,
-                  "date": "ddmm"
                 }
               ]
             }
