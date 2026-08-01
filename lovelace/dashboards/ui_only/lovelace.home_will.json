@@ -7232,9 +7232,10 @@
                   "badges": [
                     {
                       "type": "entity",
+                      "entity": "sensor.jellyha_companion_cube_library",
                       "show_state": true,
                       "show_icon": true,
-                      "entity": "sensor.companion_cube_library_tv_programmes"
+                      "state_content": "series"
                     }
                   ]
                 },
@@ -7260,7 +7261,10 @@
                   "badges": [
                     {
                       "type": "entity",
-                      "entity": "sensor.companion_cube_library_films"
+                      "entity": "sensor.jellyha_companion_cube_library",
+                      "show_state": true,
+                      "show_icon": true,
+                      "state_content": "movies"
                     }
                   ]
                 },
