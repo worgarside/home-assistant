@@ -73,8 +73,19 @@ fields:
     selector:
       boolean:
 
+  alert_once:
+    description: Only sound or vibrate once when updating an Android notification with the same tag
+    required: false
+    selector:
+      boolean:
+
   image:
-    description: Optional image for the notification
+    description: >-
+      Optional image for the notification. Companion apps accept
+      /api/camera_proxy/... and /api/frigate/notifications/... directly.
+      Camera-proxy paths are snapshotted to /local/images/notifications/ for
+      the HA UI; absolute http(s), /local/, and /api/frigate/ paths are
+      embedded as-is.
     example: /api/camera_proxy/camera.octoprint_camera
     required: false
     selector:
@@ -131,9 +142,42 @@ variables:
 
   persistent: "{{ persistent | default(false) }}"
 
+  alert_once: "{{ alert_once | default(false) }}"
+
   image: "{{ image | default('') }}"
 
   timeout: "{{ timeout | default(None) }}"
+
+  # Persistent notifications can render /local/ (www), absolute http(s), and
+  # /api/frigate/notifications/... (unauthenticated proxy). Companion apps also
+  # accept /api/camera_proxy/... so snapshot those to /local/ first.
+  camera_entity: >-
+    {{
+      image
+      | regex_findall('^/api/camera_proxy/(camera\\.[\\w.]+)$')
+      | first
+      | default(none)
+    }}
+
+  snapshot_basename: "{{ notification_id | regex_replace('[^\\w.-]', '_') }}.jpg"
+
+  ha_image: >-
+    {%- if image.startswith('/local/')
+          or image.startswith('http://')
+          or image.startswith('https://')
+          or image.startswith('/api/frigate/') -%}
+      {{ image }}
+    {%- elif camera_entity -%}
+      /local/images/notifications/{{ snapshot_basename }}
+    {%- else -%}
+    {%- endif %}
+
+  ha_message: >-
+    {%- if ha_image -%}
+      {{ message }}{{ "\n\n" }}![image]({{ ha_image }})
+    {%- else -%}
+      {{ message }}
+    {%- endif %}
 
 sequence:
   - if: >-
@@ -158,10 +202,21 @@ sequence:
           notification_id: "{{ notification_id }}"
 
     else:
+      - if: "{{ camera_entity is not none }}"
+        then:
+          - alias: Snapshot camera for HA notification
+            action: camera.snapshot
+            continue_on_error: true
+            target:
+              entity_id: "{{ camera_entity }}"
+            data:
+              filename: /config/www/images/notifications/{{ snapshot_basename }}
+
       - alias: HA Notification
         action: persistent_notification.create
+        continue_on_error: true
         data:
-          message: "{{ message }}"
+          message: "{{ ha_message }}"
           notification_id: "{{ notification_id }}"
           title: "{{ notif_title }}"
 
@@ -178,6 +233,7 @@ sequence:
         group: "{{ group }}"
         sticky: "{{ sticky }}"
         persistent: "{{ persistent }}"
+        alert_once: "{{ alert_once }}"
         image: "{{ image }}"
         timeout: "{{ timeout }}"
 

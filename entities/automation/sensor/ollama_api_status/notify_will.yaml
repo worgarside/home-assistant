@@ -1,0 +1,79 @@
+---
+alias: /sensor/ollama-api-status/notify-will
+
+id: sensor_ollama_api_status_notify_will
+
+description: Notify Will when the Ollama API is unavailable and when it recovers
+
+mode: queued
+
+max: 5
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: sensor.ollama_api_status
+    to: unavailable
+    for:
+      minutes: 5
+    id: offline
+
+  - platform: state
+    entity_id: sensor.ollama_api_status
+    from: unavailable
+    to: online
+    id: recovered
+
+  - platform: homeassistant
+    event: start
+    id: startup
+
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: startup
+          - condition: state
+            entity_id: sensor.ollama_api_status
+            state: unavailable
+        sequence:
+          - delay:
+              minutes: 5
+
+          - if:
+              - condition: state
+                entity_id: sensor.ollama_api_status
+                state: unavailable
+            then:
+              - action: script.notify_will
+                continue_on_error: true
+                data:
+                  title: Ollama is unavailable
+                  message: Home Assistant has been unable to reach the Ollama API for five minutes.
+                  notification_id: ollama_api_unavailable
+                  mobile_notification_icon: mdi:server-network-off
+                  group: ollama-api-health
+                  sticky: true
+
+      - conditions:
+          - condition: trigger
+            id: offline
+        sequence:
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              title: Ollama is unavailable
+              message: Home Assistant has been unable to reach the Ollama API for five minutes.
+              notification_id: ollama_api_unavailable
+              mobile_notification_icon: mdi:server-network-off
+              group: ollama-api-health
+              sticky: true
+
+    default:
+      - action: script.notify_will
+        continue_on_error: true
+        data:
+          clear_notification: true
+          notification_id: ollama_api_unavailable
+          message: clear_notification
