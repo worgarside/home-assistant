@@ -7160,6 +7160,101 @@
                   "clock": 24
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Playback",
+                  "heading_style": "title",
+                  "icon": "mdi:play-circle"
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.bedroom_chromecast",
+                  "name": "Bedroom"
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.dining_area_hifi_system",
+                  "name": "Dining HiFi"
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.lounge_streamer",
+                  "name": "Lounge"
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.office_nest_mini",
+                  "name": "Office"
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.topaz_sr10",
+                  "name": "Topaz"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Library & Downloads",
+                  "heading_style": "title",
+                  "icon": "mdi:download-network"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.sonarr_queue",
+                  "name": "TV queue",
+                  "icon": "mdi:television"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.sonarr_wanted",
+                  "name": "TV wanted",
+                  "icon": "mdi:television-plus"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.radarr_queue",
+                  "name": "Movie queue",
+                  "icon": "mdi:movie-open"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.radarr_films",
+                  "name": "Movies",
+                  "icon": "mdi:movie"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.qbittorrent_active_torrents",
+                  "name": "Active downloads",
+                  "icon": "mdi:download"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.qbittorrent_download_speed",
+                  "name": "Download speed",
+                  "icon": "mdi:speedometer"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.qbittorrent_errored_torrents",
+                  "name": "Torrent errors",
+                  "icon": "mdi:alert-circle"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.qbittorrent_connection_status",
+                  "name": "qBittorrent connection",
+                  "icon": "mdi:wan"
+                }
+              ]
             }
           ]
         },
