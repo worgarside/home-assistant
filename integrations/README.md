@@ -4006,6 +4006,111 @@ File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities
 
 </details>
 
+## Input Button
+
+<details><summary><h3>Entities (11)</h3></summary>
+
+<details><summary><strong>OAuth Reauth | Monzo Auto Saver</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_monzo_auto_saver`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_monzo_auto_saver.yaml`](entities/input_button/oauth/oauth_reauth_monzo_auto_saver.yaml)
+</details>
+
+<details><summary><strong>OAuth Reauth | Monzo CC Pot Top-Up</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_monzo_cc_pot_top_up`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_monzo_cc_pot_top_up.yaml`](entities/input_button/oauth/oauth_reauth_monzo_cc_pot_top_up.yaml)
+</details>
+
+<details><summary><strong>OAuth Reauth | Spotify Auto Saver</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_spotify_auto_saver`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_spotify_auto_saver.yaml`](entities/input_button/oauth/oauth_reauth_spotify_auto_saver.yaml)
+</details>
+
+<details><summary><strong>OAuth Reauth | Spotify Track Processor</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_spotify_track_processor`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_spotify_track_processor.yaml`](entities/input_button/oauth/oauth_reauth_spotify_track_processor.yaml)
+</details>
+
+<details><summary><strong>OAuth Reauth | TrueLayer Amex</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_truelayer_amex`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_truelayer_amex.yaml`](entities/input_button/oauth/oauth_reauth_truelayer_amex.yaml)
+</details>
+
+<details><summary><strong>OAuth Reauth | TrueLayer Amex Auto Saver</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_truelayer_amex_auto_saver`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_truelayer_amex_auto_saver.yaml`](entities/input_button/oauth/oauth_reauth_truelayer_amex_auto_saver.yaml)
+</details>
+
+<details><summary><strong>OAuth Reauth | TrueLayer Amex Vic</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_truelayer_amex_vic`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_truelayer_amex_vic.yaml`](entities/input_button/oauth/oauth_reauth_truelayer_amex_vic.yaml)
+</details>
+
+<details><summary><strong>OAuth Reauth | TrueLayer HSBC</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_truelayer_hsbc`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_truelayer_hsbc.yaml`](entities/input_button/oauth/oauth_reauth_truelayer_hsbc.yaml)
+</details>
+
+<details><summary><strong>OAuth Reauth | TrueLayer Santander</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_truelayer_santander`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_truelayer_santander.yaml`](entities/input_button/oauth/oauth_reauth_truelayer_santander.yaml)
+</details>
+
+<details><summary><strong>OAuth Reauth | TrueLayer Starling</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_truelayer_starling`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_truelayer_starling.yaml`](entities/input_button/oauth/oauth_reauth_truelayer_starling.yaml)
+</details>
+
+<details><summary><strong>OAuth Reauth | TrueLayer Starling Joint</strong></summary>
+
+**Entity ID: `input_button.oauth_reauth_truelayer_starling_joint`**
+
+- Icon: [`mdi:key-refresh`](https://pictogrammers.com/library/mdi/icon/key-refresh/)
+
+File: [`input_button/oauth/oauth_reauth_truelayer_starling_joint.yaml`](entities/input_button/oauth/oauth_reauth_truelayer_starling_joint.yaml)
+</details>
+
+</details>
+
 ## Input Datetime
 
 <details><summary><h3>Entities (6)</h3></summary>
@@ -5044,7 +5149,7 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 
 ## Input Text
 
-<details><summary><h3>Entities (22)</h3></summary>
+<details><summary><h3>Entities (12)</h3></summary>
 
 <details><summary><strong>AD: Get Latest Release</strong></summary>
 
@@ -5054,96 +5159,6 @@ File: [`input_select/topaz_sr10_source.yaml`](entities/input_select/topaz_sr10_s
 - Pattern: ^\d+\.\d+\.\d+$
 
 File: [`input_text/appdaemon/ad_get_latest_release.yaml`](entities/input_text/appdaemon/ad_get_latest_release.yaml)
-</details>
-
-<details><summary><strong>Monzo Auth Token (Auto Saver)</strong></summary>
-
-**Entity ID: `input_text.monzo_auth_token_auto_saver`**
-
-- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
-
-File: [`input_text/appdaemon/monzo_auth_token_auto_saver.yaml`](entities/input_text/appdaemon/monzo_auth_token_auto_saver.yaml)
-</details>
-
-<details><summary><strong>Monzo Auth Token (CC Pot Top-Up)</strong></summary>
-
-**Entity ID: `input_text.monzo_auth_token_cc_pot_top_up`**
-
-- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
-
-File: [`input_text/appdaemon/monzo_auth_token_cc_pot_top_up.yaml`](entities/input_text/appdaemon/monzo_auth_token_cc_pot_top_up.yaml)
-</details>
-
-<details><summary><strong>TrueLayer Auth Token (Amex)</strong></summary>
-
-**Entity ID: `input_text.truelayer_auth_token_amex`**
-
-- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
-
-File: [`input_text/appdaemon/truelayer_auth_token_amex.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex.yaml)
-</details>
-
-<details><summary><strong>TrueLayer Auth Token (Amex Auto Saver)</strong></summary>
-
-**Entity ID: `input_text.truelayer_auth_token_amex_auto_saver`**
-
-- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
-
-File: [`input_text/appdaemon/truelayer_auth_token_amex_auto_saver.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex_auto_saver.yaml)
-</details>
-
-<details><summary><strong>TrueLayer Auth Token (Amex Vic)</strong></summary>
-
-**Entity ID: `input_text.truelayer_auth_token_amex_vic`**
-
-- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
-
-File: [`input_text/appdaemon/truelayer_auth_token_amex_vic.yaml`](entities/input_text/appdaemon/truelayer_auth_token_amex_vic.yaml)
-</details>
-
-<details><summary><strong>TrueLayer Auth Token (HSBC)</strong></summary>
-
-**Entity ID: `input_text.truelayer_auth_token_hsbc`**
-
-- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
-
-File: [`input_text/appdaemon/truelayer_auth_token_hsbc.yaml`](entities/input_text/appdaemon/truelayer_auth_token_hsbc.yaml)
-</details>
-
-<details><summary><strong>TrueLayer Auth Token (Monzo)</strong></summary>
-
-**Entity ID: `input_text.truelayer_auth_token_monzo`**
-
-- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
-
-File: [`input_text/appdaemon/truelayer_auth_token_monzo.yaml`](entities/input_text/appdaemon/truelayer_auth_token_monzo.yaml)
-</details>
-
-<details><summary><strong>TrueLayer Auth Token (Santander)</strong></summary>
-
-**Entity ID: `input_text.truelayer_auth_token_santander`**
-
-- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
-
-File: [`input_text/appdaemon/truelayer_auth_token_santander.yaml`](entities/input_text/appdaemon/truelayer_auth_token_santander.yaml)
-</details>
-
-<details><summary><strong>TrueLayer Auth Token (Starling)</strong></summary>
-
-**Entity ID: `input_text.truelayer_auth_token_starling`**
-
-- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
-
-File: [`input_text/appdaemon/truelayer_auth_token_starling.yaml`](entities/input_text/appdaemon/truelayer_auth_token_starling.yaml)
-</details>
-
-<details><summary><strong>TrueLayer Auth Token (Starling Joint)</strong></summary>
-
-**Entity ID: `input_text.truelayer_auth_token_starling_joint`**
-
-- Icon: [`mdi:application-variable`](https://pictogrammers.com/library/mdi/icon/application-variable/)
-
-File: [`input_text/appdaemon/truelayer_auth_token_starling_joint.yaml`](entities/input_text/appdaemon/truelayer_auth_token_starling_joint.yaml)
 </details>
 
 <details><summary><strong>Auto-Save Naughty Transaction Pattern</strong></summary>
