@@ -6195,7 +6195,9 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "Auto-Saver"
+                  "heading": "OAuth Connections",
+                  "heading_style": "title",
+                  "icon": "mdi:key-chain"
                 },
                 {
                   "type": "conditional",
@@ -6210,21 +6212,33 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex Auto Saver Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_amex_auto_saver', 'auth_link') }})** then paste the code below.",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_amex_auto_saver', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex Auto Saver needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
-                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
                       },
                       {
-                        "type": "entities",
-                        "entities": [
-                          {
-                            "entity": "input_text.truelayer_auth_token_amex_auto_saver",
-                            "name": "Paste auth code"
+                        "type": "custom:mushroom-template-card",
+                        "entity": "input_button.oauth_reauth_truelayer_amex_auto_saver",
+                        "primary": "Generate fresh link",
+                        "secondary": "Replaces any existing link and restarts the 15-minute timer",
+                        "icon": "mdi:credit-card-refresh",
+                        "icon_color": "orange",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "input_button.press",
+                          "target": {
+                            "entity_id": "input_button.oauth_reauth_truelayer_amex_auto_saver"
                           }
-                        ],
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        },
                         "card_mod": {
-                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                          "style": "ha-card { border: none; box-shadow: none; background: none; }"
                         }
                       }
                     ]
@@ -6243,25 +6257,649 @@
                     "cards": [
                       {
                         "type": "markdown",
-                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo Auto Saver needs reauth**<br>**[Authenticate]({{ state_attr('var.monzo_reauth_auto_saver', 'auth_link') }})** then paste the code below.",
+                        "content": "{% set auth_link = state_attr('var.monzo_reauth_auto_saver', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo Auto Saver needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
                         "card_mod": {
-                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
                         }
                       },
                       {
-                        "type": "entities",
-                        "entities": [
-                          {
-                            "entity": "input_text.monzo_auth_token_auto_saver",
-                            "name": "Paste auth code"
+                        "type": "custom:mushroom-template-card",
+                        "entity": "input_button.oauth_reauth_monzo_auto_saver",
+                        "primary": "Generate fresh link",
+                        "secondary": "Replaces any existing link and restarts the 15-minute timer",
+                        "icon": "si:monzo",
+                        "icon_color": "orange",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "input_button.press",
+                          "target": {
+                            "entity_id": "input_button.oauth_reauth_monzo_auto_saver"
                           }
-                        ],
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        },
                         "card_mod": {
-                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                          "style": "ha-card { border: none; box-shadow: none; background: none; }"
                         }
                       }
                     ]
                   }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.spotify_reauth_auto_saver",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "{% set auth_link = state_attr('var.spotify_reauth_auto_saver', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Spotify Auto Saver needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "custom:mushroom-template-card",
+                        "entity": "input_button.oauth_reauth_spotify_auto_saver",
+                        "primary": "Generate fresh link",
+                        "secondary": "Replaces any existing link and restarts the 15-minute timer",
+                        "icon": "mdi:spotify",
+                        "icon_color": "orange",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "input_button.press",
+                          "target": {
+                            "entity_id": "input_button.oauth_reauth_spotify_auto_saver"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        },
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.monzo_reauth_cc_pot_top_up",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "{% set auth_link = state_attr('var.monzo_reauth_cc_pot_top_up', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo CC Pot Top-Up needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "custom:mushroom-template-card",
+                        "entity": "input_button.oauth_reauth_monzo_cc_pot_top_up",
+                        "primary": "Generate fresh link",
+                        "secondary": "Replaces any existing link and restarts the 15-minute timer",
+                        "icon": "si:monzo",
+                        "icon_color": "orange",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "input_button.press",
+                          "target": {
+                            "entity_id": "input_button.oauth_reauth_monzo_cc_pot_top_up"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        },
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_amex",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_amex', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "custom:mushroom-template-card",
+                        "entity": "input_button.oauth_reauth_truelayer_amex",
+                        "primary": "Generate fresh link",
+                        "secondary": "Replaces any existing link and restarts the 15-minute timer",
+                        "icon": "mdi:credit-card",
+                        "icon_color": "orange",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "input_button.press",
+                          "target": {
+                            "entity_id": "input_button.oauth_reauth_truelayer_amex"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        },
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_hsbc",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_hsbc', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **HSBC needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "custom:mushroom-template-card",
+                        "entity": "input_button.oauth_reauth_truelayer_hsbc",
+                        "primary": "Generate fresh link",
+                        "secondary": "Replaces any existing link and restarts the 15-minute timer",
+                        "icon": "mdi:bank",
+                        "icon_color": "orange",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "input_button.press",
+                          "target": {
+                            "entity_id": "input_button.oauth_reauth_truelayer_hsbc"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        },
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_santander",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_santander', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Santander needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "custom:mushroom-template-card",
+                        "entity": "input_button.oauth_reauth_truelayer_santander",
+                        "primary": "Generate fresh link",
+                        "secondary": "Replaces any existing link and restarts the 15-minute timer",
+                        "icon": "mdi:bank",
+                        "icon_color": "orange",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "input_button.press",
+                          "target": {
+                            "entity_id": "input_button.oauth_reauth_truelayer_santander"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        },
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_starling",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_starling', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "custom:mushroom-template-card",
+                        "entity": "input_button.oauth_reauth_truelayer_starling",
+                        "primary": "Generate fresh link",
+                        "secondary": "Replaces any existing link and restarts the 15-minute timer",
+                        "icon": "mdi:bank",
+                        "icon_color": "orange",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "input_button.press",
+                          "target": {
+                            "entity_id": "input_button.oauth_reauth_truelayer_starling"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        },
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_starling_joint",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "{% set auth_link = state_attr('var.truelayer_reauth_starling_joint', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling Joint needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "custom:mushroom-template-card",
+                        "entity": "input_button.oauth_reauth_truelayer_starling_joint",
+                        "primary": "Generate fresh link",
+                        "secondary": "Replaces any existing link and restarts the 15-minute timer",
+                        "icon": "mdi:account-multiple",
+                        "icon_color": "orange",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "input_button.press",
+                          "target": {
+                            "entity_id": "input_button.oauth_reauth_truelayer_starling_joint"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        },
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.spotify_reauth_track_processor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "{% set auth_link = state_attr('var.spotify_reauth_track_processor', 'auth_link') %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Spotify Track Processor needs reauthorization**\n\n{% if auth_link %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires 15 minutes after generation{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "custom:mushroom-template-card",
+                        "entity": "input_button.oauth_reauth_spotify_track_processor",
+                        "primary": "Generate fresh link",
+                        "secondary": "Replaces any existing link and restarts the 15-minute timer",
+                        "icon": "mdi:spotify",
+                        "icon_color": "orange",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "input_button.press",
+                          "target": {
+                            "entity_id": "input_button.oauth_reauth_spotify_track_processor"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        },
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Manual reauthorization",
+                    "secondary": "Generate a fresh link for any connection",
+                    "icon": "mdi:key-refresh",
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }"
+                    }
+                  },
+                  "title-card-button-overlay": false,
+                  "clear": false,
+                  "clear-children": true,
+                  "cards": [
+                    {
+                      "type": "grid",
+                      "columns": 2,
+                      "square": false,
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "input_button.oauth_reauth_truelayer_amex_auto_saver",
+                          "primary": "Amex Auto Saver",
+                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_amex_auto_saver', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
+                          "icon": "mdi:credit-card-refresh",
+                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_amex_auto_saver', 'on') else 'blue' }}",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "input_button.press",
+                            "target": {
+                              "entity_id": "input_button.oauth_reauth_truelayer_amex_auto_saver"
+                            }
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "input_button.oauth_reauth_monzo_auto_saver",
+                          "primary": "Monzo Auto Saver",
+                          "secondary": "{{ 'Authorization required' if is_state('var.monzo_reauth_auto_saver', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
+                          "icon": "si:monzo",
+                          "icon_color": "{{ 'red' if is_state('var.monzo_reauth_auto_saver', 'on') else 'red' }}",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "input_button.press",
+                            "target": {
+                              "entity_id": "input_button.oauth_reauth_monzo_auto_saver"
+                            }
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "input_button.oauth_reauth_spotify_auto_saver",
+                          "primary": "Spotify Auto Saver",
+                          "secondary": "{{ 'Authorization required' if is_state('var.spotify_reauth_auto_saver', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
+                          "icon": "mdi:spotify",
+                          "icon_color": "{{ 'red' if is_state('var.spotify_reauth_auto_saver', 'on') else 'green' }}",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "input_button.press",
+                            "target": {
+                              "entity_id": "input_button.oauth_reauth_spotify_auto_saver"
+                            }
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "input_button.oauth_reauth_monzo_cc_pot_top_up",
+                          "primary": "Monzo CC Pot Top-Up",
+                          "secondary": "{{ 'Authorization required' if is_state('var.monzo_reauth_cc_pot_top_up', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
+                          "icon": "si:monzo",
+                          "icon_color": "{{ 'red' if is_state('var.monzo_reauth_cc_pot_top_up', 'on') else 'red' }}",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "input_button.press",
+                            "target": {
+                              "entity_id": "input_button.oauth_reauth_monzo_cc_pot_top_up"
+                            }
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "input_button.oauth_reauth_truelayer_amex",
+                          "primary": "Amex",
+                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_amex', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
+                          "icon": "mdi:credit-card",
+                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_amex', 'on') else 'blue' }}",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "input_button.press",
+                            "target": {
+                              "entity_id": "input_button.oauth_reauth_truelayer_amex"
+                            }
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "input_button.oauth_reauth_truelayer_hsbc",
+                          "primary": "HSBC",
+                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_hsbc', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
+                          "icon": "mdi:bank",
+                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_hsbc', 'on') else 'red' }}",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "input_button.press",
+                            "target": {
+                              "entity_id": "input_button.oauth_reauth_truelayer_hsbc"
+                            }
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "input_button.oauth_reauth_truelayer_santander",
+                          "primary": "Santander",
+                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_santander', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
+                          "icon": "mdi:bank",
+                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_santander', 'on') else 'red' }}",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "input_button.press",
+                            "target": {
+                              "entity_id": "input_button.oauth_reauth_truelayer_santander"
+                            }
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "input_button.oauth_reauth_truelayer_starling",
+                          "primary": "Starling",
+                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_starling', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
+                          "icon": "mdi:bank",
+                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_starling', 'on') else 'purple' }}",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "input_button.press",
+                            "target": {
+                              "entity_id": "input_button.oauth_reauth_truelayer_starling"
+                            }
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "input_button.oauth_reauth_truelayer_starling_joint",
+                          "primary": "Starling Joint",
+                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_starling_joint', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
+                          "icon": "mdi:account-multiple",
+                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_starling_joint', 'on') else 'purple' }}",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "input_button.press",
+                            "target": {
+                              "entity_id": "input_button.oauth_reauth_truelayer_starling_joint"
+                            }
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "input_button.oauth_reauth_spotify_track_processor",
+                          "primary": "Spotify Track Processor",
+                          "secondary": "{{ 'Authorization required' if is_state('var.spotify_reauth_track_processor', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
+                          "icon": "mdi:spotify",
+                          "icon_color": "{{ 'red' if is_state('var.spotify_reauth_track_processor', 'on') else 'green' }}",
+                          "tap_action": {
+                            "action": "perform-action",
+                            "perform_action": "input_button.press",
+                            "target": {
+                              "entity_id": "input_button.oauth_reauth_spotify_track_processor"
+                            }
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Auto-Saver"
                 },
                 {
                   "type": "vertical-stack",
@@ -6348,204 +6986,6 @@
                 {
                   "type": "heading",
                   "heading": "Finances"
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "var.monzo_reauth_cc_pot_top_up",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:vertical-stack-in-card",
-                    "cards": [
-                      {
-                        "type": "markdown",
-                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo CC Pot Top-Up needs reauth**<br>**[Authenticate]({{ state_attr('var.monzo_reauth_cc_pot_top_up', 'auth_link') }})** then paste the code below.",
-                        "card_mod": {
-                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
-                        }
-                      },
-                      {
-                        "type": "entities",
-                        "entities": [
-                          {
-                            "entity": "input_text.monzo_auth_token_cc_pot_top_up",
-                            "name": "Paste auth code"
-                          }
-                        ],
-                        "card_mod": {
-                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "var.truelayer_reauth_amex",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:vertical-stack-in-card",
-                    "cards": [
-                      {
-                        "type": "markdown",
-                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_amex', 'auth_link') }})** then paste the code below.",
-                        "card_mod": {
-                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
-                        }
-                      },
-                      {
-                        "type": "entities",
-                        "entities": [
-                          {
-                            "entity": "input_text.truelayer_auth_token_amex",
-                            "name": "Paste auth code"
-                          }
-                        ],
-                        "card_mod": {
-                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "var.truelayer_reauth_hsbc",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:vertical-stack-in-card",
-                    "cards": [
-                      {
-                        "type": "markdown",
-                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **HSBC Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_hsbc', 'auth_link') }})** then paste the code below.",
-                        "card_mod": {
-                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
-                        }
-                      },
-                      {
-                        "type": "entities",
-                        "entities": [
-                          {
-                            "entity": "input_text.truelayer_auth_token_hsbc",
-                            "name": "Paste auth code"
-                          }
-                        ],
-                        "card_mod": {
-                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "var.truelayer_reauth_santander",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:vertical-stack-in-card",
-                    "cards": [
-                      {
-                        "type": "markdown",
-                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Santander Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_santander', 'auth_link') }})** then paste the code below.",
-                        "card_mod": {
-                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
-                        }
-                      },
-                      {
-                        "type": "entities",
-                        "entities": [
-                          {
-                            "entity": "input_text.truelayer_auth_token_santander",
-                            "name": "Paste auth code"
-                          }
-                        ],
-                        "card_mod": {
-                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "var.truelayer_reauth_starling",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:vertical-stack-in-card",
-                    "cards": [
-                      {
-                        "type": "markdown",
-                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_starling', 'auth_link') }})** then paste the code below.",
-                        "card_mod": {
-                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
-                        }
-                      },
-                      {
-                        "type": "entities",
-                        "entities": [
-                          {
-                            "entity": "input_text.truelayer_auth_token_starling",
-                            "name": "Paste auth code"
-                          }
-                        ],
-                        "card_mod": {
-                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "var.truelayer_reauth_starling_joint",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:vertical-stack-in-card",
-                    "cards": [
-                      {
-                        "type": "markdown",
-                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling Joint Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_starling_joint', 'auth_link') }})** then paste the code below.",
-                        "card_mod": {
-                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
-                        }
-                      },
-                      {
-                        "type": "entities",
-                        "entities": [
-                          {
-                            "entity": "input_text.truelayer_auth_token_starling_joint",
-                            "name": "Paste auth code"
-                          }
-                        ],
-                        "card_mod": {
-                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
-                        }
-                      }
-                    ]
-                  }
                 },
                 {
                   "square": false,
