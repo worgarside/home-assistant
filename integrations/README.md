@@ -7430,6 +7430,45 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
     "selector": {
       "text": null
     }
+  },
+  "sticky": {
+    "description": "Whether to dismiss the notification upon selecting it or not",
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
+  },
+  "timeout": {
+    "description": "How long the phone notification remains before being dismissed",
+    "required": false,
+    "selector": {
+      "number": {
+        "min": 0,
+        "max": 86400,
+        "unit_of_measurement": "s"
+      }
+    }
+  },
+  "chronometer": {
+    "description": "Show an Android count-up or countdown timer",
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
+  },
+  "when": {
+    "description": "Timer reference point as a Unix timestamp or relative seconds",
+    "required": false,
+    "selector": {
+      "number": null
+    }
+  },
+  "when_relative": {
+    "description": "Treat the timer reference point as seconds from now",
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
   }
 }
 ```
@@ -7446,7 +7485,12 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
   "mobile_notification_icon": "{{ mobile_notification_icon | default('mdi:home-assistant') }}",
   "notif_title": "{{ title | default('Home Assistant') }}",
   "url": "{{ url | default('') }}",
-  "group": "{{ group | default('') }}"
+  "group": "{{ group | default('') }}",
+  "sticky": "{{ sticky | default(false) }}",
+  "timeout": "{{ timeout | default(None) }}",
+  "chronometer": "{{ chronometer | default(false) }}",
+  "when": "{{ when | default(None) }}",
+  "when_relative": "{{ when_relative | default(false) }}"
 }
 ```
 File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
@@ -7566,6 +7610,27 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
         "unit_of_measurement": "s"
       }
     }
+  },
+  "chronometer": {
+    "description": "Show an Android count-up or countdown timer",
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
+  },
+  "when": {
+    "description": "Timer reference point as a Unix timestamp or relative seconds",
+    "required": false,
+    "selector": {
+      "number": null
+    }
+  },
+  "when_relative": {
+    "description": "Treat the timer reference point as seconds from now",
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
   }
 }
 ```
@@ -7588,6 +7653,9 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "alert_once": "{{ alert_once | default(false) }}",
   "image": "{{ image | default('') }}",
   "timeout": "{{ timeout | default(None) }}",
+  "chronometer": "{{ chronometer | default(false) }}",
+  "when": "{{ when | default(None) }}",
+  "when_relative": "{{ when_relative | default(false) }}",
   "camera_entity": "{{\n  image\n  | regex_findall('^/api/camera_proxy/(camera\\\\.[\\\\w.]+)$')\n  | first\n  | default(none)\n}}",
   "snapshot_basename": "{{ notification_id | regex_replace('[^\\w.-]', '_') }}.jpg",
   "ha_image": "{%- if image.startswith('/local/')\n      or image.startswith('http://')\n      or image.startswith('https://')\n      or image.startswith('/api/frigate/') -%}\n  {{ image }}\n{%- elif camera_entity -%}\n  /local/images/notifications/{{ snapshot_basename }}\n{%- else -%} {%- endif %}",

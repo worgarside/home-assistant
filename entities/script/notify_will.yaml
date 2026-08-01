@@ -103,6 +103,24 @@ fields:
         max: 86400
         unit_of_measurement: s
 
+  chronometer:
+    description: Show an Android count-up or countdown timer
+    required: false
+    selector:
+      boolean:
+
+  when:
+    description: Timer reference point as a Unix timestamp or relative seconds
+    required: false
+    selector:
+      number:
+
+  when_relative:
+    description: Treat the timer reference point as seconds from now
+    required: false
+    selector:
+      boolean:
+
 mode: queued
 
 max: 50
@@ -147,6 +165,12 @@ variables:
   image: "{{ image | default('') }}"
 
   timeout: "{{ timeout | default(None) }}"
+
+  chronometer: "{{ chronometer | default(false) }}"
+
+  when: "{{ when | default(None) }}"
+
+  when_relative: "{{ when_relative | default(false) }}"
 
   # Persistent notifications can render /local/ (www), absolute http(s), and
   # /api/frigate/notifications/... (unauthenticated proxy). Companion apps also
@@ -236,6 +260,9 @@ sequence:
         alert_once: "{{ alert_once }}"
         image: "{{ image }}"
         timeout: "{{ timeout }}"
+        chronometer: "{{ chronometer }}"
+        when: "{{ when }}"
+        when_relative: "{{ when_relative }}"
 
   - alias: Personal MacBook Pro
     if:
