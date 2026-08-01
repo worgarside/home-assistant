@@ -8742,7 +8742,8 @@
                 {
                   "type": "heading",
                   "heading": "Boiler",
-                  "heading_style": "title"
+                  "heading_style": "title",
+                  "icon": "mdi:water-boiler"
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -8795,8 +8796,130 @@
               "cards": [
                 {
                   "type": "heading",
+                  "heading": "Charging Hub",
+                  "heading_style": "title",
+                  "icon": "mdi:power-socket-uk"
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.charging_hub",
+                  "name": "Charging Hub",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "inline",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.charging_hub_auto_off_threshold",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Auto-Off Threshold",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "features_position": "bottom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "entity": "automation.switch_charging_hub_turn_off",
+                  "primary": "Turn off when below threshold",
+                  "secondary": "/switch/charging-hub/turn-off",
+                  "icon": "mdi:power-plug\n{%- if not states(\"automation.switch_charging_hub_turn_off\") | bool(false) -%}\n-off\n{%- endif -%}\n",
+                  "color": "{{ iif(states(\"automation.switch_charging_hub_turn_off\") | bool(false), \"#04b7d6\", \"grey\") }}"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "features_position": "bottom",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "entity": "automation.switch_charging_hub_turn_on_daily",
+                  "primary": "Turn on daily",
+                  "secondary": "/switch/charging-hub/turn-on-daily",
+                  "icon": "mdi:calendar-clock\n{%- if not states(\"automation.switch_charging_hub_turn_on_daily\") | bool(false) -%}\n-off\n{%- endif -%}\n",
+                  "color": "{{ iif(states(\"automation.switch_charging_hub_turn_on_daily\") | bool(false), \"#04b7d6\", \"grey\") }}"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Power vs Auto-Off Threshold",
+                  "icon": "mdi:chart-line",
+                  "hours_to_show": 24,
+                  "points_per_hour": 4,
+                  "line_width": 2,
+                  "height": 150,
+                  "animate": true,
+                  "show": {
+                    "state": true,
+                    "icon": true,
+                    "name": true
+                  },
+                  "lower_bound": 0,
+                  "entities": [
+                    {
+                      "entity": "sensor.charging_hub_power",
+                      "name": "Current power",
+                      "color": "#04b7d6"
+                    },
+                    {
+                      "entity": "input_number.charging_hub_auto_off_threshold",
+                      "name": "Auto-off threshold",
+                      "color": "#ff9800",
+                      "show_fill": false
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 4
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
                   "heading": "Lighting Modifier",
-                  "heading_style": "title"
+                  "heading_style": "title",
+                  "icon": "mdi:brightness-6"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -8831,7 +8954,7 @@
                   "type": "heading",
                   "heading": "Air Purifier",
                   "heading_style": "title",
-                  "icon": ""
+                  "icon": "mdi:air-purifier"
                 },
                 {
                   "type": "tile",
@@ -9095,7 +9218,8 @@
                 {
                   "type": "heading",
                   "heading": "Roof Terrace Shutters",
-                  "heading_style": "title"
+                  "heading_style": "title",
+                  "icon": "mdi:blinds-horizontal"
                 },
                 {
                   "type": "custom:expander-card",
@@ -9609,7 +9733,8 @@
                 {
                   "type": "heading",
                   "heading": "Basement Bayesian Presence",
-                  "heading_style": "title"
+                  "heading_style": "title",
+                  "icon": "mdi:account-question-outline"
                 },
                 {
                   "type": "custom:expander-card",
@@ -9960,7 +10085,8 @@
                 {
                   "type": "heading",
                   "heading": "Energy Usage",
-                  "heading_style": "title"
+                  "heading_style": "title",
+                  "icon": "mdi:lightning-bolt"
                 },
                 {
                   "type": "custom:mushroom-template-card",
