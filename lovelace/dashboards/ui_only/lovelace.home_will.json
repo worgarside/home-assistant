@@ -2240,7 +2240,10 @@
                   "title-card": {
                     "type": "tile",
                     "entity": "climate.pro_breeze_ac_pro_breeze_ac",
-                    "name": "Pro Breeze AC"
+                    "name": "Pro Breeze AC",
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }"
+                    }
                   },
                   "cards": [
                     {
@@ -2340,7 +2343,12 @@
                   "title-card-button-overlay": false,
                   "clear": false,
                   "clear-children": true,
-                  "title-card-clickable": true
+                  "title-card-clickable": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  },
+                  "padding": "0",
+                  "title-card-padding": "0"
                 }
               ]
             }
@@ -6782,8 +6790,10 @@
                       "action": "none"
                     },
                     "card_mod": {
-                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }"
-                    }
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    },
+                    "layout": "horizontal",
+                    "fill_container": true
                   },
                   "title-card-button-overlay": false,
                   "clear": false,
@@ -7011,7 +7021,12 @@
                     "columns": "full",
                     "rows": 1
                   },
-                  "title-card-clickable": true
+                  "title-card-clickable": true,
+                  "card_mod": {
+                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
+                  },
+                  "padding": "0",
+                  "title-card-padding": "0"
                 }
               ]
             }
@@ -9807,7 +9822,9 @@
                   "card_mod": {
                     "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
                   },
-                  "title-card-clickable": true
+                  "title-card-clickable": true,
+                  "padding": "0",
+                  "title-card-padding": "0"
                 },
                 {
                   "type": "custom:expander-card",
@@ -10068,7 +10085,9 @@
                   "card_mod": {
                     "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
                   },
-                  "title-card-clickable": true
+                  "title-card-clickable": true,
+                  "padding": "0",
+                  "title-card-padding": "0"
                 },
                 {
                   "type": "heading",
@@ -10334,7 +10353,9 @@
                     }
                   },
                   "title-card-button-overlay": false,
-                  "title-card-clickable": true
+                  "title-card-clickable": true,
+                  "padding": "0",
+                  "title-card-padding": "0"
                 },
                 {
                   "type": "custom:expander-card",
@@ -10423,7 +10444,9 @@
                       ]
                     }
                   ],
-                  "title-card-clickable": true
+                  "title-card-clickable": true,
+                  "padding": "0",
+                  "title-card-padding": "0"
                 },
                 {
                   "type": "custom:expander-card",
@@ -10488,7 +10511,9 @@
                   "clear-children": true,
                   "card_mod": {
                     "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  }
+                  },
+                  "padding": "0",
+                  "title-card-padding": "0"
                 },
                 {
                   "type": "custom:expander-card",
@@ -10597,7 +10622,9 @@
                   "clear-children": true,
                   "card_mod": {
                     "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  }
+                  },
+                  "padding": "0",
+                  "title-card-padding": "0"
                 },
                 {
                   "type": "custom:expander-card",
@@ -10706,7 +10733,9 @@
                   "clear-children": true,
                   "card_mod": {
                     "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  }
+                  },
+                  "padding": "0",
+                  "title-card-padding": "0"
                 },
                 {
                   "type": "heading",
@@ -10959,7 +10988,9 @@
                       ]
                     }
                   ],
-                  "title-card-clickable": true
+                  "title-card-clickable": true,
+                  "padding": "0",
+                  "title-card-padding": "0"
                 }
               ]
             }
