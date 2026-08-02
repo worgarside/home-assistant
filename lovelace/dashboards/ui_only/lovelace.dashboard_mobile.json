@@ -4242,6 +4242,12 @@
                   "heading_style": "subtitle",
                   "badges": [
                     {
+                      "type": "entity",
+                      "entity": "binary_sensor.kitchen_occupancy",
+                      "show_state": false,
+                      "show_icon": true
+                    },
+                    {
                       "type": "button",
                       "icon": "mdi:gesture-tap-button",
                       "text": "Toggle",
@@ -4340,6 +4346,12 @@
                   "heading": "Dining Area Lights",
                   "heading_style": "subtitle",
                   "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.dining_area_occupancy",
+                      "show_state": false,
+                      "show_icon": true
+                    },
                     {
                       "type": "button",
                       "icon": "mdi:gesture-tap-button",
