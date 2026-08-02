@@ -3398,7 +3398,8 @@
                   "icon": "mdi:reload{% if states(\"var.auto_reload_queue\") | int(0) != 0 %}-alert{% endif %}",
                   "entity": "var.auto_reload_queue",
                   "tap_action": {
-                    "action": "more-info"
+                    "action": "more-info",
+                    "entity": "script.system_reload_domain"
                   },
                   "icon_color": "",
                   "multiline_secondary": false
