@@ -423,6 +423,12 @@
                   "heading_style": "subtitle",
                   "badges": [
                     {
+                      "type": "entity",
+                      "entity": "binary_sensor.vic_s_office_occupancy",
+                      "show_state": false,
+                      "show_icon": true
+                    },
+                    {
                       "type": "button",
                       "icon": "mdi:gesture-tap-button",
                       "text": "Toggle",
@@ -1412,6 +1418,12 @@
                   "heading": "Lights",
                   "heading_style": "subtitle",
                   "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.lounge_occupancy",
+                      "show_state": false,
+                      "show_icon": true
+                    },
                     {
                       "type": "button",
                       "icon": "mdi:gesture-tap-button",
@@ -6161,6 +6173,12 @@
                   "heading": "Lights",
                   "heading_style": "subtitle",
                   "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.will_s_office_occupancy",
+                      "show_state": false,
+                      "show_icon": true
+                    },
                     {
                       "type": "button",
                       "icon": "mdi:gesture-tap-button",
