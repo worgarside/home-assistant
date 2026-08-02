@@ -1,11 +1,11 @@
 ---
-friendly_name: TrueLayer Reauth (Starling)
+friendly_name: Spotify Reauth (Track Processor)
 
 icon: mdi:key-alert-outline
 
 restore: true
 
-unique_id: var_truelayer_truelayer_reauth_starling
+unique_id: var_spotify_spotify_reauth_track_processor
 
 # Declared here so var restore persists the auth link across HA restarts
 attributes:

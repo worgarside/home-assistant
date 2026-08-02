@@ -60,6 +60,39 @@ fields:
     selector:
       text:
 
+  sticky:
+    description: Whether to dismiss the notification upon selecting it or not
+    required: false
+    selector:
+      boolean:
+
+  timeout:
+    description: How long the phone notification remains before being dismissed
+    required: false
+    selector:
+      number:
+        min: 0
+        max: 86400
+        unit_of_measurement: s
+
+  chronometer:
+    description: Show an Android count-up or countdown timer
+    required: false
+    selector:
+      boolean:
+
+  when:
+    description: Timer reference point as a Unix timestamp or relative seconds
+    required: false
+    selector:
+      number:
+
+  when_relative:
+    description: Treat the timer reference point as seconds from now
+    required: false
+    selector:
+      boolean:
+
 mode: queued
 
 max: 50
@@ -95,6 +128,16 @@ variables:
 
   group: "{{ group | default('') }}"
 
+  sticky: "{{ sticky | default(false) }}"
+
+  timeout: "{{ timeout | default(None) }}"
+
+  chronometer: "{{ chronometer | default(false) }}"
+
+  when: "{{ when | default(None) }}"
+
+  when_relative: "{{ when_relative | default(false) }}"
+
 sequence:
   - if: >-
       {{
@@ -120,6 +163,11 @@ sequence:
         notification_icon: "{{ mobile_notification_icon }}"
         url: "{{ url }}"
         group: "{{ group }}"
+        sticky: "{{ sticky }}"
+        timeout: "{{ timeout }}"
+        chronometer: "{{ chronometer }}"
+        when: "{{ when }}"
+        when_relative: "{{ when_relative }}"
 
   - alias: iPad
     action: notify.mobile_app_ipad
@@ -132,6 +180,11 @@ sequence:
         notification_icon: "{{ mobile_notification_icon }}"
         url: "{{ url }}"
         group: "{{ group }}"
+        sticky: "{{ sticky }}"
+        timeout: "{{ timeout }}"
+        chronometer: "{{ chronometer }}"
+        when: "{{ when }}"
+        when_relative: "{{ when_relative }}"
 
   - alias: MacBook Air
     if:
@@ -155,3 +208,8 @@ sequence:
             tag: "{{ notification_id }}"
             url: "{{ url }}"
             group: "{{ group }}"
+            sticky: "{{ sticky }}"
+            timeout: "{{ timeout }}"
+            chronometer: "{{ chronometer }}"
+            when: "{{ when }}"
+            when_relative: "{{ when_relative }}"
