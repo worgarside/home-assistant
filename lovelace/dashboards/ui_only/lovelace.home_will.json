@@ -6792,7 +6792,9 @@
                     "type": "custom:mushroom-template-card",
                     "primary": "Manual reauthorization",
                     "secondary": "Generate a fresh link for any connection",
-                    "icon": "mdi:key-refresh",
+                    "icon": "mdi:shield-key",
+                    "layout": "horizontal",
+                    "fill_container": true,
                     "tap_action": {
                       "action": "none"
                     },
@@ -6804,10 +6806,7 @@
                     },
                     "card_mod": {
                       "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
-                    },
-                    "layout": "horizontal",
-                    "fill_container": true,
-                    "icon_color": "amber"
+                    }
                   },
                   "title-card-button-overlay": false,
                   "clear": false,
