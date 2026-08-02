@@ -10,3 +10,4 @@ unique_id: var_truelayer_truelayer_reauth_amex_vic
 # Declared here so var restore persists the auth link across HA restarts
 attributes:
   auth_link: ""
+  auth_link_expires_at: 0
