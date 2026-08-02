@@ -7170,18 +7170,8 @@
                   "entity": "sensor.jellyha_companion_cube_library",
                   "title": "Recently Added",
                   "layout": "carousel",
-                  "media_type": "both",
-                  "items_per_page": 4,
-                  "max_pages": 3,
-                  "filter_newly_added": true,
-                  "show_now_playing": true,
-                  "show_search": true,
-                  "new_badge_days": 14,
-                  "show_watched_status": true,
-                  "grid_options": {
-                    "columns": "full",
-                    "rows": "auto"
-                  }
+                  "items_per_page": 3,
+                  "max_pages": 3
                 },
                 {
                   "type": "tile",
