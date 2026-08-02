@@ -7176,7 +7176,10 @@
                   "show_search": true,
                   "filter_newly_added": false,
                   "new_badge_days": 14,
-                  "show_watched_status": true
+                  "show_watched_status": true,
+                  "grid_options": {
+                    "rows": "auto"
+                  }
                 },
                 {
                   "type": "tile",
