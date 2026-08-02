@@ -10441,6 +10441,211 @@
                     "columns": 6,
                     "rows": 1
                   }
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title": "Basement Supporting Evidence",
+                  "expanded": false,
+                  "cards": [
+                    {
+                      "type": "entities",
+                      "title": "Additional inputs",
+                      "entities": [
+                        {
+                          "entity": "binary_sensor.basement_presence_retained",
+                          "name": "Retained Bayesian presence (5 min)"
+                        },
+                        {
+                          "entity": "binary_sensor.basement_cat_occupancy",
+                          "name": "Frigate cat"
+                        },
+                        {
+                          "entity": "binary_sensor.basement_dog_occupancy",
+                          "name": "Frigate dog"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "entities",
+                      "title": "24-hour occupied time",
+                      "entities": [
+                        {
+                          "entity": "sensor.basement_bayesian_presence_24h",
+                          "name": "Bayesian"
+                        },
+                        {
+                          "entity": "sensor.basement_fp2_presence_24h",
+                          "name": "FP2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title": "Kitchen Bayesian Presence",
+                  "expanded": false,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.kitchen_bayesian_presence",
+                      "name": "Bayesian Presence",
+                      "secondary_info": "none",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.kitchen_bayesian_presence_probability",
+                      "name": "Posterior Probability",
+                      "secondary_info": "none",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entities",
+                      "title": "Evidence inputs",
+                      "entities": [
+                        {
+                          "entity": "binary_sensor.kitchen_person_occupancy",
+                          "name": "Frigate person zone"
+                        },
+                        {
+                          "entity": "binary_sensor.kitchen_occupancy",
+                          "name": "FP2 kitchen zone"
+                        },
+                        {
+                          "entity": "binary_sensor.basement_presence_retained",
+                          "name": "Retained basement presence"
+                        },
+                        {
+                          "entity": "binary_sensor.kitchen_cat_occupancy",
+                          "name": "Frigate cat zone"
+                        },
+                        {
+                          "entity": "binary_sensor.kitchen_dog_occupancy",
+                          "name": "Frigate dog zone"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "entities",
+                      "title": "24-hour occupied time",
+                      "entities": [
+                        {
+                          "entity": "sensor.kitchen_bayesian_presence_24h",
+                          "name": "Bayesian"
+                        },
+                        {
+                          "entity": "sensor.kitchen_fp2_presence_24h",
+                          "name": "FP2"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "history-graph",
+                      "hours_to_show": 24,
+                      "entities": [
+                        {
+                          "entity": "binary_sensor.kitchen_bayesian_presence",
+                          "name": "Bayesian"
+                        },
+                        {
+                          "entity": "binary_sensor.kitchen_person_occupancy",
+                          "name": "Frigate Person"
+                        },
+                        {
+                          "entity": "binary_sensor.kitchen_occupancy",
+                          "name": "FP2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:expander-card",
+                  "title": "Dining Area Bayesian Presence",
+                  "expanded": false,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.dining_area_bayesian_presence",
+                      "name": "Bayesian Presence",
+                      "secondary_info": "none",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.dining_area_bayesian_presence_probability",
+                      "name": "Posterior Probability",
+                      "secondary_info": "none",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "entities",
+                      "title": "Evidence inputs",
+                      "entities": [
+                        {
+                          "entity": "binary_sensor.dining_area_person_occupancy",
+                          "name": "Frigate person zone"
+                        },
+                        {
+                          "entity": "binary_sensor.dining_area_occupancy",
+                          "name": "FP2 dining-area zone"
+                        },
+                        {
+                          "entity": "binary_sensor.basement_presence_retained",
+                          "name": "Retained basement presence"
+                        },
+                        {
+                          "entity": "binary_sensor.dining_area_cat_occupancy",
+                          "name": "Frigate cat zone"
+                        },
+                        {
+                          "entity": "binary_sensor.dining_area_dog_occupancy",
+                          "name": "Frigate dog zone"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "entities",
+                      "title": "24-hour occupied time",
+                      "entities": [
+                        {
+                          "entity": "sensor.dining_area_bayesian_presence_24h",
+                          "name": "Bayesian"
+                        },
+                        {
+                          "entity": "sensor.dining_area_fp2_presence_24h",
+                          "name": "FP2"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "history-graph",
+                      "hours_to_show": 24,
+                      "entities": [
+                        {
+                          "entity": "binary_sensor.dining_area_bayesian_presence",
+                          "name": "Bayesian"
+                        },
+                        {
+                          "entity": "binary_sensor.dining_area_person_occupancy",
+                          "name": "Frigate Person"
+                        },
+                        {
+                          "entity": "binary_sensor.dining_area_occupancy",
+                          "name": "FP2"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             },
