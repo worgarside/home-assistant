@@ -47,22 +47,24 @@ sequence:
       while:
         - condition: template
           value_template: >-
+            {% set value = state_attr('var.auto_reload_queue', 'pending') %}
             {{
               (
-                state_attr('var.auto_reload_queue', 'pending')
-                | default('{}', true)
-                | from_json
+                value
+                if value is mapping
+                else value | default('{}', true) | from_json({})
               ).get(domain, [])
               | length > 0 and repeat.index <= 20
             }}
       sequence:
         - variables:
             snapshot: >-
+              {% set value = state_attr('var.auto_reload_queue', 'pending') %}
               {{
                 (
-                  state_attr('var.auto_reload_queue', 'pending')
-                  | default('{}', true)
-                  | from_json
+                  value
+                  if value is mapping
+                  else value | default('{}', true) | from_json({})
                 ).get(domain, [])
               }}
 
@@ -78,10 +80,11 @@ sequence:
 
         - variables:
             pending_after: >-
+              {% set value = state_attr('var.auto_reload_queue', 'pending') %}
               {{
-                state_attr('var.auto_reload_queue', 'pending')
-                | default('{}', true)
-                | from_json
+                value
+                if value is mapping
+                else value | default('{}', true) | from_json({})
               }}
 
             remaining_files: >-
@@ -118,10 +121,13 @@ sequence:
 
   - variables:
       in_flight_remaining: >-
+        {% set value = state_attr('var.auto_reload_queue', 'in_flight') %}
         {{
-          state_attr('var.auto_reload_queue', 'in_flight')
-          | default('[]', true)
-          | from_json
+          (
+            value
+            if value is sequence and value is not string
+            else value | default('[]', true) | from_json([])
+          )
           | reject('eq', domain)
           | list
         }}
