@@ -6623,6 +6623,13 @@
                     {
                       "icon": "mdi:credit-card-refresh"
                     }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "var.truelayer_reauth_amex_auto_saver",
+                      "state": "on"
+                    }
                   ]
                 },
                 {
@@ -6640,6 +6647,13 @@
                     },
                     {
                       "icon": "si:monzo"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "var.monzo_reauth_auto_saver",
+                      "state": "on"
                     }
                   ]
                 },
@@ -6659,6 +6673,13 @@
                     {
                       "icon": "mdi:spotify"
                     }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "var.spotify_reauth_auto_saver",
+                      "state": "on"
+                    }
                   ]
                 },
                 {
@@ -6676,6 +6697,13 @@
                     },
                     {
                       "icon": "si:monzo"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "var.monzo_reauth_cc_pot_top_up",
+                      "state": "on"
                     }
                   ]
                 },
@@ -6695,6 +6723,13 @@
                     {
                       "icon": "mdi:credit-card"
                     }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "var.truelayer_reauth_amex",
+                      "state": "on"
+                    }
                   ]
                 },
                 {
@@ -6712,6 +6747,13 @@
                     },
                     {
                       "icon": "mdi:bank"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "var.truelayer_reauth_hsbc",
+                      "state": "on"
                     }
                   ]
                 },
@@ -6731,6 +6773,13 @@
                     {
                       "icon": "mdi:bank"
                     }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "var.truelayer_reauth_santander",
+                      "state": "on"
+                    }
                   ]
                 },
                 {
@@ -6748,6 +6797,13 @@
                     },
                     {
                       "icon": "mdi:bank"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "var.truelayer_reauth_starling",
+                      "state": "on"
                     }
                   ]
                 },
@@ -6767,6 +6823,13 @@
                     {
                       "icon": "mdi:account-multiple"
                     }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "var.truelayer_reauth_starling_joint",
+                      "state": "on"
+                    }
                   ]
                 },
                 {
@@ -6784,6 +6847,13 @@
                     },
                     {
                       "icon": "mdi:spotify"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "var.spotify_reauth_track_processor",
+                      "state": "on"
                     }
                   ]
                 },
