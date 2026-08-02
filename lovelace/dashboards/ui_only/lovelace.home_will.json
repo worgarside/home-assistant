@@ -9554,6 +9554,29 @@
                 },
                 {
                   "type": "heading",
+                  "heading": "Basement Zones",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.kitchen_person_occupancy",
+                  "name": "Kitchen",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.dining_area_person_occupancy",
+                  "name": "Dining Area",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "heading",
                   "heading": "Diagnostics",
                   "heading_style": "subtitle"
                 },
