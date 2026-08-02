@@ -2238,11 +2238,24 @@
                 {
                   "type": "custom:expander-card",
                   "title-card": {
-                    "type": "tile",
+                    "type": "custom:mushroom-template-card",
                     "entity": "climate.pro_breeze_ac_pro_breeze_ac",
-                    "name": "Pro Breeze AC",
+                    "primary": "Pro Breeze AC",
+                    "secondary": "{{ states(entity) | replace('_', ' ') | title }}",
+                    "icon": "mdi:air-conditioner",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
                     "card_mod": {
-                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }"
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
                     }
                   },
                   "cards": [
