@@ -1,0 +1,50 @@
+---
+# Provisional human-presence inference for the kitchen.
+#
+# Shadow mode: existing automations still consume binary_sensor.kitchen_occupancy.
+platform: bayesian
+
+name: Kitchen Bayesian Presence
+
+unique_id: kitchen_bayesian_presence
+
+device_class: occupancy
+
+prior: 0.05
+
+probability_threshold: 0.8
+
+observations:
+  # Strong: Frigate's kitchen zone has identified a person
+  - platform: state
+    entity_id: binary_sensor.kitchen_person_occupancy
+    to_state: "on"
+    prob_given_true: 0.9
+    prob_given_false: 0.03
+
+  # Gate: the kitchen cannot be human-occupied when the wider basement is vacant
+  - platform: state
+    entity_id: binary_sensor.basement_presence_retained
+    to_state: "on"
+    prob_given_true: 0.98
+    prob_given_false: 0.3
+
+  # Supporting: FP2 kitchen zone, which is useful but can be sticky
+  - platform: state
+    entity_id: binary_sensor.kitchen_occupancy
+    to_state: "on"
+    prob_given_true: 0.9
+    prob_given_false: 0.45
+
+  # Negative evidence: zone activity attributable to a pet, not a person
+  - platform: template
+    value_template: >-
+      {{
+        is_state('binary_sensor.kitchen_person_occupancy', 'off') and
+        (
+          is_state('binary_sensor.kitchen_cat_occupancy', 'on') or
+          is_state('binary_sensor.kitchen_dog_occupancy', 'on')
+        )
+      }}
+    prob_given_true: 0.05
+    prob_given_false: 0.25

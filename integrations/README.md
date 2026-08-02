@@ -3384,7 +3384,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Binary Sensor
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (3)</h3></summary>
 
 <details><summary><strong>Basement Bayesian Presence</strong></summary>
 
@@ -3393,6 +3393,24 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 - Platform: `bayesian`
 
 File: [`binary_sensor/basement_bayesian_presence.yaml`](entities/binary_sensor/basement_bayesian_presence.yaml)
+</details>
+
+<details><summary><strong>Dining Area Bayesian Presence</strong></summary>
+
+**Entity ID: `binary_sensor.dining_area_bayesian_presence`**
+
+- Platform: `bayesian`
+
+File: [`binary_sensor/dining_area_bayesian_presence.yaml`](entities/binary_sensor/dining_area_bayesian_presence.yaml)
+</details>
+
+<details><summary><strong>Kitchen Bayesian Presence</strong></summary>
+
+**Entity ID: `binary_sensor.kitchen_bayesian_presence`**
+
+- Platform: `bayesian`
+
+File: [`binary_sensor/kitchen_bayesian_presence.yaml`](entities/binary_sensor/kitchen_bayesian_presence.yaml)
 </details>
 
 </details>
@@ -8094,7 +8112,43 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (6)</h3></summary>
+<details><summary><h3>Entities (12)</h3></summary>
+
+<details><summary><strong>Basement Bayesian Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.basement_bayesian_presence`**
+
+- Platform: `history_stats`
+
+File: [`sensor/basement_bayesian_presence_24h.yaml`](entities/sensor/basement_bayesian_presence_24h.yaml)
+</details>
+
+<details><summary><strong>Basement FP2 Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.basement_occupancy`**
+
+- Platform: `history_stats`
+
+File: [`sensor/basement_fp2_presence_24h.yaml`](entities/sensor/basement_fp2_presence_24h.yaml)
+</details>
+
+<details><summary><strong>Dining Area Bayesian Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.dining_area_bayesian_presence`**
+
+- Platform: `history_stats`
+
+File: [`sensor/dining_area_bayesian_presence_24h.yaml`](entities/sensor/dining_area_bayesian_presence_24h.yaml)
+</details>
+
+<details><summary><strong>Dining Area FP2 Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.dining_area_occupancy`**
+
+- Platform: `history_stats`
+
+File: [`sensor/dining_area_fp2_presence_24h.yaml`](entities/sensor/dining_area_fp2_presence_24h.yaml)
+</details>
 
 <details><summary><strong>Hallway Radiator Temperature Derivative</strong></summary>
 
@@ -8103,6 +8157,24 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 - Platform: `derivative`
 
 File: [`sensor/hallway_radiator_temperature_derivative.yaml`](entities/sensor/hallway_radiator_temperature_derivative.yaml)
+</details>
+
+<details><summary><strong>Kitchen Bayesian Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.kitchen_bayesian_presence`**
+
+- Platform: `history_stats`
+
+File: [`sensor/kitchen_bayesian_presence_24h.yaml`](entities/sensor/kitchen_bayesian_presence_24h.yaml)
+</details>
+
+<details><summary><strong>Kitchen FP2 Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.kitchen_occupancy`**
+
+- Platform: `history_stats`
+
+File: [`sensor/kitchen_fp2_presence_24h.yaml`](entities/sensor/kitchen_fp2_presence_24h.yaml)
 </details>
 
 <details><summary><strong>Office Desk Occupied Cumulative Time</strong></summary>
@@ -8256,7 +8328,7 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Template
 
-<details><summary><h3>Entities (100)</h3></summary>
+<details><summary><h3>Entities (103)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -8265,6 +8337,13 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 - Icon: [`mdi:calendar-star`](https://pictogrammers.com/library/mdi/icon/calendar-star/)
 
 File: [`template/binary_sensor/bank_holiday.yaml`](entities/template/binary_sensor/bank_holiday.yaml)
+</details>
+
+<details><summary><strong>Basement Presence Retained</strong></summary>
+
+**Entity ID: `binary_sensor.basement_presence_retained`**
+
+File: [`template/binary_sensor/basement_presence_retained.yaml`](entities/template/binary_sensor/basement_presence_retained.yaml)
 </details>
 
 <details><summary><strong>Before Midday</strong></summary>
@@ -8752,7 +8831,7 @@ File: [`template/sensor/average_home_temperature.yaml`](entities/template/sensor
 - Icon: [`mdi:percent-outline`](https://pictogrammers.com/library/mdi/icon/percent-outline/)
 - Unit Of Measurement: %
 
-File: [`template/sensor/basement/basement_bayesian_presence_probability.yaml`](entities/template/sensor/basement/basement_bayesian_presence_probability.yaml)
+File: [`template/sensor/basement_bayesian_presence_probability.yaml`](entities/template/sensor/basement_bayesian_presence_probability.yaml)
 </details>
 
 <details><summary><strong>Current Hour</strong></summary>
@@ -8820,6 +8899,16 @@ File: [`template/sensor/cursor/cursor_projected_cycle_usage.yaml`](entities/temp
 - Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
 
 File: [`template/sensor/cursor/cursor_usage_pace.yaml`](entities/template/sensor/cursor/cursor_usage_pace.yaml)
+</details>
+
+<details><summary><strong>Dining Area Bayesian Presence Probability</strong></summary>
+
+**Entity ID: `sensor.dining_area_bayesian_presence_probability`**
+
+- Icon: [`mdi:percent-outline`](https://pictogrammers.com/library/mdi/icon/percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/dining_area_bayesian_presence_probability.yaml`](entities/template/sensor/dining_area_bayesian_presence_probability.yaml)
 </details>
 
 <details><summary><strong>Vic and Will Distance</strong></summary>
@@ -8912,6 +9001,16 @@ File: [`template/sensor/garden_door_last_changed.yaml`](entities/template/sensor
 **Entity ID: `sensor.hifi_system_media_metadata`**
 
 File: [`template/sensor/hifi_system_media_metadata.yaml`](entities/template/sensor/hifi_system_media_metadata.yaml)
+</details>
+
+<details><summary><strong>Kitchen Bayesian Presence Probability</strong></summary>
+
+**Entity ID: `sensor.kitchen_bayesian_presence_probability`**
+
+- Icon: [`mdi:percent-outline`](https://pictogrammers.com/library/mdi/icon/percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/kitchen_bayesian_presence_probability.yaml`](entities/template/sensor/kitchen_bayesian_presence_probability.yaml)
 </details>
 
 <details><summary><strong>Lighting Modifier</strong></summary>

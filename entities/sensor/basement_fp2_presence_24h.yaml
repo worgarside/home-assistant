@@ -1,0 +1,17 @@
+---
+# https://www.home-assistant.io/integrations/history_stats/
+platform: history_stats
+
+name: Basement FP2 Presence 24h
+
+unique_id: basement_fp2_presence_24h
+
+entity_id: binary_sensor.basement_occupancy
+
+state: "on"
+
+type: ratio
+
+start: "{{ now() - timedelta(hours=24) }}"
+
+end: "{{ now() }}"
