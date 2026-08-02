@@ -7009,7 +7009,8 @@
                   "grid_options": {
                     "columns": "full",
                     "rows": 1
-                  }
+                  },
+                  "title-card-clickable": true
                 }
               ]
             }
@@ -9804,7 +9805,8 @@
                   "clear-children": true,
                   "card_mod": {
                     "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  }
+                  },
+                  "title-card-clickable": true
                 },
                 {
                   "type": "custom:expander-card",
@@ -10064,7 +10066,8 @@
                   "clear-children": true,
                   "card_mod": {
                     "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  }
+                  },
+                  "title-card-clickable": true
                 },
                 {
                   "type": "heading",
@@ -10856,7 +10859,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "title-card-clickable": true
                 }
               ]
             }
