@@ -3723,7 +3723,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (33)</h3></summary>
+<details><summary><h3>Entities (34)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -3939,6 +3939,15 @@ File: [`input_boolean/auto_reload/auto_reload_var.yaml`](entities/input_boolean/
 - Icon: [`mdi:reload`](https://pictogrammers.com/library/mdi/icon/reload/)
 
 File: [`input_boolean/auto_reload/auto_reload_zone.yaml`](entities/input_boolean/auto_reload/auto_reload_zone.yaml)
+</details>
+
+<details><summary><strong>Charging Hub: Auto-Off Notification</strong></summary>
+
+**Entity ID: `input_boolean.charging_hub_auto_off_notification`**
+
+- Icon: [`mdi:bell-ring-outline`](https://pictogrammers.com/library/mdi/icon/bell-ring-outline/)
+
+File: [`input_boolean/charging_hub/charging_hub_auto_off_notification.yaml`](entities/input_boolean/charging_hub/charging_hub_auto_off_notification.yaml)
 </details>
 
 <details><summary><strong>Debug with Persistent Notifications</strong></summary>
