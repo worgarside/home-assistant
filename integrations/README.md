@@ -21,7 +21,7 @@ File: [`automation/automation/auto_reload_complete.yaml`](entities/automation/au
 
 **Entity ID: `automation.binary_sensor_basement_presence_off`**
 
-> Resumes Cosmo (vacuum.cosmo) when kitchen presence is cleared for 1 minute and Cosmo is paused, but only if he was cleaning the basement.
+> Turns off the basement after the configured human-presence retention period and resumes Cosmo when he was paused while cleaning the basement.
 
 - Alias: /binary-sensor/basement-presence/off
 - ID: `binary_sensor_basement_presence_off`
@@ -8348,11 +8348,11 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 File: [`template/binary_sensor/bank_holiday.yaml`](entities/template/binary_sensor/bank_holiday.yaml)
 </details>
 
-<details><summary><strong>Basement Presence Retained</strong></summary>
+<details><summary><strong>Basement Human Presence</strong></summary>
 
-**Entity ID: `binary_sensor.basement_presence_retained`**
+**Entity ID: `binary_sensor.basement_human_presence`**
 
-File: [`template/binary_sensor/basement_presence_retained.yaml`](entities/template/binary_sensor/basement_presence_retained.yaml)
+File: [`template/binary_sensor/basement_human_presence.yaml`](entities/template/binary_sensor/basement_human_presence.yaml)
 </details>
 
 <details><summary><strong>Before Midday</strong></summary>

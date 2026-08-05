@@ -1,0 +1,14 @@
+---
+name: Basement Human Presence
+
+unique_id: basement_human_presence
+
+device_class: occupancy
+
+availability: >-
+  {{ states('binary_sensor.basement_person_occupancy') in ['on', 'off'] }}
+
+delay_off:
+  seconds: "{{ states('input_number.basement_lights_timeout') | int(300) }}"
+
+state: "{{ is_state('binary_sensor.basement_person_occupancy', 'on') }}"

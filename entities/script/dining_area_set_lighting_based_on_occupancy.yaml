@@ -10,7 +10,7 @@ variables:
   modifier: "{{ states('sensor.lighting_modifier') | int(70) }}"
 
 sequence:
-  - if: "{{ is_state('binary_sensor.dining_area_bayesian_presence', 'on') }}"
+  - if: "{{ is_state('binary_sensor.dining_area_person_occupancy', 'on') }}"
     then:
       # Dining area lights at full brightness
       - action: light.turn_on

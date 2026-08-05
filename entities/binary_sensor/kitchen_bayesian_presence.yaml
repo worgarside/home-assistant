@@ -1,7 +1,7 @@
 ---
 # Provisional human-presence inference for the kitchen.
 #
-# Shadow mode: existing automations still consume binary_sensor.kitchen_occupancy.
+# Diagnostic only: automations consume binary_sensor.kitchen_person_occupancy.
 platform: bayesian
 
 name: Kitchen Bayesian Presence
@@ -24,7 +24,7 @@ observations:
 
   # Gate: the kitchen cannot be human-occupied when the wider basement is vacant
   - platform: state
-    entity_id: binary_sensor.basement_presence_retained
+    entity_id: binary_sensor.basement_human_presence
     to_state: "on"
     prob_given_true: 0.98
     prob_given_false: 0.3

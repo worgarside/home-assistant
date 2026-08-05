@@ -11,7 +11,7 @@ max_exceeded: silent
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.basement_occupancy
+    entity_id: binary_sensor.basement_human_presence
     to: "on"
 
 action:

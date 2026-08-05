@@ -5,7 +5,7 @@
 # values — there are no ground-truth human-presence labels. FP2 is deliberately
 # weak evidence because recent history shows it is sticky (~86% on-time).
 #
-# Shadow mode: existing automations still consume binary_sensor.basement_occupancy.
+# Diagnostic only: automations consume binary_sensor.basement_human_presence.
 platform: bayesian
 
 name: Basement Bayesian Presence
