@@ -11207,6 +11207,56 @@
                   "title-card-padding": "0"
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "MQTT Event Testing",
+                  "heading_style": "title",
+                  "icon": "mdi:access-point-network"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_text.test_mqtt_events_device_name",
+                  "name": "Device Name",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "cyan",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "entity": "automation.input_text_test_mqtt_events_device_name_log_event",
+                  "primary": "Log MQTT Device Events",
+                  "secondary": "/input-text/test-mqtt-events-device-name/log-event",
+                  "icon": "mdi:access-point-network\n{%- if not states('automation.input_text_test_mqtt_events_device_name_log_event') | bool(false) -%}\n-off\n{%- endif -%}\n",
+                  "color": "{{ iif(states('automation.input_text_test_mqtt_events_device_name_log_event') | bool(false), '#04b7d6', 'grey') }}",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                }
+              ]
             }
           ],
           "cards": [],
