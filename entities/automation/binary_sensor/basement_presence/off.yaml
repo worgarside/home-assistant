@@ -19,6 +19,8 @@ trigger:
     for:
       seconds: "{{ states('input_number.basement_lights_timeout') | int(60) }}"
 
+condition: "{{ is_state('input_boolean.visitor_mode', 'off') }}"
+
 action:
   - parallel:
       - if: >

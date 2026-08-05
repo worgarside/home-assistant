@@ -1,0 +1,58 @@
+---
+alias: /input-boolean/visitor-mode/on
+
+id: input_boolean_visitor_mode_on
+
+description: Turn on indoor room lights at full brightness for visitors
+
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: input_boolean.visitor_mode
+    from: "off"
+    to: "on"
+
+variables:
+  indoor_areas:
+    - dining_area
+    - kitchen
+    - lower_hallway
+    - front_hallway
+    - lounge
+    - vic_s_office
+    - bathroom
+    - bedroom
+    - landing
+    - office
+    - guest_room
+
+  excluded_lights:
+    - light.apollo_plt_1b_1510d0_rgb_light
+    - light.apollo_plt_1b_1511bc_rgb_light
+    - light.apollo_plt_1b_151430_rgb_light
+    - light.apollo_plt_1b_1743a8_rgb_light
+    - light.evaporative_cooler_ambient_light
+    - light.will_s_office_voice_assistant_led_ring
+
+  target_lights: >-
+    {% set ns = namespace(entities=[]) %}
+    {% for area in indoor_areas %}
+      {% set ns.entities = ns.entities + area_entities(area) %}
+    {% endfor %}
+    {{
+      ns.entities
+      | select('match', '^light\\.')
+      | reject('in', excluded_lights)
+      | unique
+      | list
+    }}
+
+action:
+  - action: light.turn_on
+    continue_on_error: true
+    target:
+      entity_id: "{{ target_lights }}"
+    data:
+      brightness_pct: 100
+      transition: 1
