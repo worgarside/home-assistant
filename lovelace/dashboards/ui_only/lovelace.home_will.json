@@ -1509,6 +1509,35 @@
               ]
             }
           }
+        },
+        "visitor_mode_chip_template": {
+          "card": {
+            "type": "custom:mushroom-chips-card",
+            "alignment": "end",
+            "chips": [
+              {
+                "type": "entity",
+                "entity": "input_boolean.visitor_mode",
+                "name": "Visitor Mode",
+                "content_info": "name",
+                "icon": "mdi:account-group",
+                "icon_color": "amber",
+                "tap_action": {
+                  "action": "toggle"
+                },
+                "hold_action": {
+                  "action": "more-info"
+                }
+              }
+            ],
+            "visibility": [
+              {
+                "condition": "state",
+                "entity": "input_boolean.visitor_mode",
+                "state": "on"
+              }
+            ]
+          }
         }
       },
       "views": [
@@ -1521,6 +1550,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
                 {
                   "type": "horizontal-stack",
                   "cards": [
@@ -2380,6 +2413,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
+                {
                   "type": "heading",
                   "heading_style": "title",
                   "heading": "Proxmox VE",
@@ -3228,6 +3265,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
+                {
                   "type": "heading",
                   "heading": "Version Control"
                 },
@@ -3942,6 +3983,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
+                {
                   "type": "heading",
                   "heading": "Prusa i3 Mk3"
                 },
@@ -4420,6 +4465,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
                 {
                   "type": "heading",
                   "heading": "LED Matrix Controller"
@@ -5168,6 +5217,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
+                {
                   "type": "heading",
                   "heading": "VaultPi System Monitor",
                   "icon": "mdi:raspberry-pi",
@@ -5643,6 +5696,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
+                {
                   "type": "heading",
                   "heading": "VSMPPi System Monitor"
                 },
@@ -5799,6 +5856,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
                 {
                   "type": "heading",
                   "heading": "CRT TV Internal Conditions"
@@ -6093,154 +6154,163 @@
           "type": "panel",
           "cards": [
             {
-              "type": "custom:swipe-card",
-              "parameters": {
-                "slidesPerGroup": 1,
-                "speed": 75,
-                "slidesPerView": 1,
-                "breakpoints": {
-                  "640": {
-                    "slidesPerView": 2,
-                    "spaceBetween": 20
-                  },
-                  "1280": {
-                    "slidesPerView": 3,
-                    "spaceBetween": 30
-                  },
-                  "1920": {
-                    "slidesPerView": 4,
-                    "spaceBetween": 40
-                  },
-                  "2560": {
-                    "slidesPerView": 5,
-                    "spaceBetween": 50
-                  }
-                },
-                "scrollbar": {
-                  "enabled": true,
-                  "hide": false,
-                  "draggable": true,
-                  "snapOnRelease": true
-                }
-              },
+              "type": "vertical-stack",
               "cards": [
                 {
                   "type": "custom:decluttering-card",
-                  "template": "repo_pr_list_card_template",
-                  "variables": [
-                    {
-                      "repo_name": "Add-on: Item Warehouse"
-                    },
-                    {
-                      "repo_slug": "add_on_item_warehouse"
-                    }
-                  ]
+                  "template": "visitor_mode_chip_template"
                 },
                 {
-                  "type": "custom:decluttering-card",
-                  "template": "repo_pr_list_card_template",
-                  "variables": [
-                    {
-                      "repo_name": "GitHub Config Files"
+                  "type": "custom:swipe-card",
+                  "parameters": {
+                    "slidesPerGroup": 1,
+                    "speed": 75,
+                    "slidesPerView": 1,
+                    "breakpoints": {
+                      "640": {
+                        "slidesPerView": 2,
+                        "spaceBetween": 20
+                      },
+                      "1280": {
+                        "slidesPerView": 3,
+                        "spaceBetween": 30
+                      },
+                      "1920": {
+                        "slidesPerView": 4,
+                        "spaceBetween": 40
+                      },
+                      "2560": {
+                        "slidesPerView": 5,
+                        "spaceBetween": 50
+                      }
                     },
-                    {
-                      "repo_slug": "github_config_files"
+                    "scrollbar": {
+                      "enabled": true,
+                      "hide": false,
+                      "draggable": true,
+                      "snapOnRelease": true
                     }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "repo_pr_list_card_template",
-                  "variables": [
+                  },
+                  "cards": [
                     {
-                      "repo_name": "Home Assistant"
+                      "type": "custom:decluttering-card",
+                      "template": "repo_pr_list_card_template",
+                      "variables": [
+                        {
+                          "repo_name": "Add-on: Item Warehouse"
+                        },
+                        {
+                          "repo_slug": "add_on_item_warehouse"
+                        }
+                      ]
                     },
                     {
-                      "repo_slug": "home_assistant"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "repo_pr_list_card_template",
-                  "variables": [
-                    {
-                      "repo_name": "Home Assistant Config Validator"
+                      "type": "custom:decluttering-card",
+                      "template": "repo_pr_list_card_template",
+                      "variables": [
+                        {
+                          "repo_name": "GitHub Config Files"
+                        },
+                        {
+                          "repo_slug": "github_config_files"
+                        }
+                      ]
                     },
                     {
-                      "repo_slug": "home_assistant_config_validator"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "repo_pr_list_card_template",
-                  "variables": [
-                    {
-                      "repo_name": "LED Matrix Controller"
+                      "type": "custom:decluttering-card",
+                      "template": "repo_pr_list_card_template",
+                      "variables": [
+                        {
+                          "repo_name": "Home Assistant"
+                        },
+                        {
+                          "repo_slug": "home_assistant"
+                        }
+                      ]
                     },
                     {
-                      "repo_slug": "led_matrix_now_playing"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "repo_pr_list_card_template",
-                  "variables": [
-                    {
-                      "repo_name": "Python Template"
+                      "type": "custom:decluttering-card",
+                      "template": "repo_pr_list_card_template",
+                      "variables": [
+                        {
+                          "repo_name": "Home Assistant Config Validator"
+                        },
+                        {
+                          "repo_slug": "home_assistant_config_validator"
+                        }
+                      ]
                     },
                     {
-                      "repo_slug": "python_template"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "repo_pr_list_card_template",
-                  "variables": [
-                    {
-                      "repo_name": "Smart Mini CRT Interface"
+                      "type": "custom:decluttering-card",
+                      "template": "repo_pr_list_card_template",
+                      "variables": [
+                        {
+                          "repo_name": "LED Matrix Controller"
+                        },
+                        {
+                          "repo_slug": "led_matrix_now_playing"
+                        }
+                      ]
                     },
                     {
-                      "repo_slug": "smart_mini_crt_interface"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "repo_pr_list_card_template",
-                  "variables": [
-                    {
-                      "repo_name": "Very Slow Movie Player"
+                      "type": "custom:decluttering-card",
+                      "template": "repo_pr_list_card_template",
+                      "variables": [
+                        {
+                          "repo_name": "Python Template"
+                        },
+                        {
+                          "repo_slug": "python_template"
+                        }
+                      ]
                     },
                     {
-                      "repo_slug": "very_slow_movie_player"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "repo_pr_list_card_template",
-                  "variables": [
-                    {
-                      "repo_name": "WG Scripts"
+                      "type": "custom:decluttering-card",
+                      "template": "repo_pr_list_card_template",
+                      "variables": [
+                        {
+                          "repo_name": "Smart Mini CRT Interface"
+                        },
+                        {
+                          "repo_slug": "smart_mini_crt_interface"
+                        }
+                      ]
                     },
                     {
-                      "repo_slug": "wg_scripts"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "repo_pr_list_card_template",
-                  "variables": [
-                    {
-                      "repo_name": "WG Utilities"
+                      "type": "custom:decluttering-card",
+                      "template": "repo_pr_list_card_template",
+                      "variables": [
+                        {
+                          "repo_name": "Very Slow Movie Player"
+                        },
+                        {
+                          "repo_slug": "very_slow_movie_player"
+                        }
+                      ]
                     },
                     {
-                      "repo_slug": "wg_utilities"
+                      "type": "custom:decluttering-card",
+                      "template": "repo_pr_list_card_template",
+                      "variables": [
+                        {
+                          "repo_name": "WG Scripts"
+                        },
+                        {
+                          "repo_slug": "wg_scripts"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:decluttering-card",
+                      "template": "repo_pr_list_card_template",
+                      "variables": [
+                        {
+                          "repo_name": "WG Utilities"
+                        },
+                        {
+                          "repo_slug": "wg_utilities"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -6263,6 +6333,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
                 {
                   "type": "heading",
                   "heading": "Auto-Saver"
@@ -7127,6 +7201,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
+                {
                   "square": false,
                   "type": "grid",
                   "cards": [
@@ -7212,6 +7290,10 @@
               "type": "grid",
               "column_span": 2,
               "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
                 {
                   "type": "heading",
                   "heading": "Jellyfin",
@@ -7489,6 +7571,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
+                {
                   "type": "custom:mini-graph-card",
                   "entities": [
                     {
@@ -7641,6 +7727,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
                 {
                   "type": "heading",
                   "heading_style": "title",
@@ -8140,6 +8230,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
                 {
                   "type": "heading",
                   "heading": "Health",
@@ -9207,6 +9301,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
+                {
                   "type": "heading",
                   "heading": "Boiler",
                   "heading_style": "title",
@@ -9402,6 +9500,22 @@
                   "heading": "Lighting Modifier",
                   "heading_style": "title",
                   "icon": "mdi:brightness-6"
+                },
+                {
+                  "type": "tile",
+                  "entity": "input_boolean.visitor_mode",
+                  "name": "Visitor Mode",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "inline",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -11111,6 +11225,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
+                {
                   "type": "heading",
                   "heading_style": "title",
                   "heading": "LXC Containers",
@@ -11584,6 +11702,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
+                {
                   "type": "heading",
                   "heading": "Threshold Alerts",
                   "heading_style": "title",
@@ -11611,6 +11733,10 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "visitor_mode_chip_template"
+                },
                 {
                   "type": "heading",
                   "heading": "Cursor Ultra",
