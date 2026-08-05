@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (225)</h3></summary>
+<details><summary><h3>Entities (226)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1126,6 +1126,26 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/
 File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml)
 </details>
 
+<details><summary><code>/input-boolean/visitor-mode/off</code></summary>
+
+**Entity ID: `automation.input_boolean_visitor_mode_off`**
+
+> Restore normal occupancy lighting and vacancy timeouts after Visitor Mode
+
+- Alias: /input-boolean/visitor-mode/off
+- ID: `input_boolean_visitor_mode_off`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}",
+  "upper_landing_brightness": "{{\n  [states('sensor.lighting_modifier') | int(70), 20] | max\n  if 12 <= now().hour < 23\n  else states('sensor.lighting_modifier') | int(70)\n}}"
+}
+```
+File: [`automation/input_boolean/visitor_mode/off.yaml`](entities/automation/input_boolean/visitor_mode/off.yaml)
+</details>
+
 <details><summary><code>/input-boolean/visitor-mode/on</code></summary>
 
 **Entity ID: `automation.input_boolean_visitor_mode_on`**
@@ -1145,7 +1165,6 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](enti
     "lower_hallway",
     "front_hallway",
     "lounge",
-    "bathroom",
     "landing"
   ],
   "excluded_lights": [

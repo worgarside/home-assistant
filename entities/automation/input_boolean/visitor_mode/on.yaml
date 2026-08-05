@@ -20,7 +20,6 @@ variables:
     - lower_hallway
     - front_hallway
     - lounge
-    - bathroom
     - landing
 
   excluded_lights:
@@ -50,5 +49,6 @@ action:
     target:
       entity_id: "{{ target_lights }}"
     data:
-      brightness_pct: "{{ states('sensor.lighting_modifier') | int(70) }}"
+      brightness_pct: >-
+        {{ state_attr('sensor.lighting_modifier', 'visitor_mode_brightness') | int(100) }}
       transition: 1
