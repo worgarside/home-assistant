@@ -430,14 +430,14 @@ File: [`automation/camera/frigate/genai_health_tracker.yaml`](entities/automatio
 File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automation/camera/frigate/genai_presence_control.yaml)
 </details>
 
-<details><summary><code>/camera/frigate/notify-will</code></summary>
+<details><summary><code>/camera/frigate/notify</code></summary>
 
-**Entity ID: `automation.camera_frigate_notify_will`**
+**Entity ID: `automation.camera_frigate_notify`**
 
-> Notify Will immediately for front-door and pet reviews, then silently update the notification with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and only when nobody is home. When input_boolean.frigate_bypass_filters is on, the noise-reduction gating is bypassed and all supported camera/object reviews notify.
+> Notify Will and Vic immediately for front-door and pet reviews, then silently update their notifications with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and only when nobody is home. input_boolean.frigate_bypass_filters bypasses the noise-reduction gating for Will only; Vic's notifications are always filtered.
 
-- Alias: /camera/frigate/notify-will
-- ID: `camera_frigate_notify_will`
+- Alias: /camera/frigate/notify
+- ID: `camera_frigate_notify`
 - Mode: `parallel`
 - Variables:
 
@@ -477,7 +477,7 @@ File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automat
   "clip_url": "/api/frigate/notifications/{{ detection_id }}/clip.mp4"
 }
 ```
-File: [`automation/camera/frigate/notify_will.yaml`](entities/automation/camera/frigate/notify_will.yaml)
+File: [`automation/camera/frigate/notify.yaml`](entities/automation/camera/frigate/notify.yaml)
 </details>
 
 <details><summary><code>/camera/offline-notify-will</code></summary>
@@ -7496,6 +7496,14 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
       "boolean": null
     }
   },
+  "image": {
+    "description": "Optional image for the notification",
+    "example": "/api/frigate/notifications/example/snapshot.jpg",
+    "required": false,
+    "selector": {
+      "text": null
+    }
+  },
   "timeout": {
     "description": "How long the phone notification remains before being dismissed",
     "required": false,
@@ -7545,6 +7553,7 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
   "url": "{{ url | default('') }}",
   "group": "{{ group | default('') }}",
   "sticky": "{{ sticky | default(false) }}",
+  "image": "{{ image | default('') }}",
   "timeout": "{{ timeout | default(None) }}",
   "chronometer": "{{ chronometer | default(false) }}",
   "when": "{{ when | default(None) }}",
