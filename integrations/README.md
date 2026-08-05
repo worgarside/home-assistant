@@ -1145,12 +1145,8 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](enti
     "lower_hallway",
     "front_hallway",
     "lounge",
-    "vic_s_office",
     "bathroom",
-    "bedroom",
-    "landing",
-    "office",
-    "guest_room"
+    "landing"
   ],
   "excluded_lights": [
     "light.apollo_plt_1b_1510d0_rgb_light",
