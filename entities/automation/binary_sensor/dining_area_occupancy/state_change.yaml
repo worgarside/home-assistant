@@ -11,6 +11,8 @@ trigger:
   - platform: state
     entity_id: binary_sensor.dining_area_bayesian_presence
     to: "on"
+    for:
+      seconds: 10
 
   - platform: state
     entity_id: binary_sensor.dining_area_bayesian_presence
