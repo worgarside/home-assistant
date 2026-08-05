@@ -493,31 +493,35 @@ File: [`automation/camera/frigate/notify_will.yaml`](entities/automation/camera/
 
 ```json
 {
-  "camera_keys": {
-    "sensor.frigate_front_door_recordings_last_5_minutes": "front_door",
-    "sensor.frigate_lounge_recordings_last_5_minutes": "lounge",
-    "sensor.frigate_basement_recordings_last_5_minutes": "basement",
-    "sensor.frigate_desmond_cam_recordings_last_5_minutes": "desmond_cam"
-  },
-  "camera_names": {
-    "front_door": "Front Door",
-    "lounge": "Lounge",
-    "basement": "Basement",
-    "desmond_cam": "Desmond Cam"
-  },
-  "recording_switches": {
-    "front_door": "switch.front_door_recordings",
-    "lounge": "switch.lounge_recordings",
-    "basement": "switch.basement_recordings",
-    "desmond_cam": "switch.desmond_cam_recordings"
+  "cameras": {
+    "sensor.frigate_front_door_recordings_in_health_window": {
+      "key": "front_door",
+      "name": "Front Door",
+      "recording_switch": "switch.front_door_recordings"
+    },
+    "sensor.frigate_lounge_recordings_in_health_window": {
+      "key": "lounge",
+      "name": "Lounge",
+      "recording_switch": "switch.lounge_recordings"
+    },
+    "sensor.frigate_basement_recordings_in_health_window": {
+      "key": "basement",
+      "name": "Basement",
+      "recording_switch": "switch.basement_recordings"
+    },
+    "sensor.frigate_desmond_cam_recordings_in_health_window": {
+      "key": "desmond_cam",
+      "name": "Desmond Cam",
+      "recording_switch": "switch.desmond_cam_recordings"
+    }
   },
   "sensor_entity": "{{ trigger.entity_id }}",
-  "camera_key": "{{ camera_keys[sensor_entity] }}",
-  "camera_name": "{{ camera_names[camera_key] }}",
-  "recording_switch": "{{ recording_switches[camera_key] }}",
+  "camera": "{{ cameras[sensor_entity] }}",
+  "camera_key": "{{ camera.key }}",
+  "camera_name": "{{ camera.name }}",
+  "recording_switch": "{{ camera.recording_switch }}",
   "notification_id": "frigate_recording_health_{{ camera_key }}",
-  "last_reboot": "{{ states('input_datetime.frigate_recording_health_last_reboot') }}",
-  "cooldown_expired": "{{\n  not has_value('input_datetime.frigate_recording_health_last_reboot')\n  or as_timestamp(now()) - as_timestamp(last_reboot, 0) >= 21600\n}}"
+  "cooldown_expired": "{{\n  not has_value('button.lxc_frigate_125_reboot')\n  or as_timestamp(now()) - as_timestamp(states('button.lxc_frigate_125_reboot'), 0)\n    >= (states('input_number.frigate_recording_health_reboot_cooldown_hours') | int(6)) * 3600\n}}"
 }
 ```
 File: [`automation/camera/frigate/recording_health.yaml`](entities/automation/camera/frigate/recording_health.yaml)
@@ -4214,7 +4218,7 @@ File: [`input_button/oauth/oauth_reauth_truelayer_starling_joint.yaml`](entities
 
 ## Input Datetime
 
-<details><summary><h3>Entities (7)</h3></summary>
+<details><summary><h3>Entities (6)</h3></summary>
 
 <details><summary><strong>Cosmo Nightly Kitchen Clean Time</strong></summary>
 
@@ -4235,17 +4239,6 @@ File: [`input_datetime/cosmo_nightly_kitchen_clean_time.yaml`](entities/input_da
 - Icon: [`mdi:clock-alert-outline`](https://pictogrammers.com/library/mdi/icon/clock-alert-outline/)
 
 File: [`input_datetime/frigate_last_genai_review_ended.yaml`](entities/input_datetime/frigate_last_genai_review_ended.yaml)
-</details>
-
-<details><summary><strong>Frigate Recording Health Last Reboot</strong></summary>
-
-**Entity ID: `input_datetime.frigate_recording_health_last_reboot`**
-
-- Has Date: `true`
-- Has Time: `true`
-- Icon: [`mdi:restart-alert`](https://pictogrammers.com/library/mdi/icon/restart-alert/)
-
-File: [`input_datetime/frigate_recording_health_last_reboot.yaml`](entities/input_datetime/frigate_recording_health_last_reboot.yaml)
 </details>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
@@ -4296,7 +4289,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (72)</h3></summary>
+<details><summary><h3>Entities (75)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
@@ -4417,6 +4410,45 @@ File: [`input_number/cosmo_nightly_kitchen_clean_door_close_timeout.yaml`](entit
 - Unit Of Measurement: %
 
 File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/dry_box/dry_box_max_humidity.yaml)
+</details>
+
+<details><summary><strong>Frigate Recording Health Failure Window Minutes</strong></summary>
+
+**Entity ID: `input_number.frigate_recording_health_failure_window_minutes`**
+
+- Icon: [`mdi:timer-alert-outline`](https://pictogrammers.com/library/mdi/icon/timer-alert-outline/)
+- Max: 30
+- Min: 3
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/frigate_recording_health_failure_window_minutes.yaml`](entities/input_number/frigate_recording_health_failure_window_minutes.yaml)
+</details>
+
+<details><summary><strong>Frigate Recording Health Reboot Cooldown Hours</strong></summary>
+
+**Entity ID: `input_number.frigate_recording_health_reboot_cooldown_hours`**
+
+- Icon: [`mdi:timer-lock-outline`](https://pictogrammers.com/library/mdi/icon/timer-lock-outline/)
+- Max: 48
+- Min: 6
+- Mode: `slider`
+- Unit Of Measurement: `h`
+
+File: [`input_number/frigate_recording_health_reboot_cooldown_hours.yaml`](entities/input_number/frigate_recording_health_reboot_cooldown_hours.yaml)
+</details>
+
+<details><summary><strong>Frigate Recording Health Recovery Timeout Minutes</strong></summary>
+
+**Entity ID: `input_number.frigate_recording_health_recovery_timeout_minutes`**
+
+- Icon: [`mdi:timer-refresh-outline`](https://pictogrammers.com/library/mdi/icon/timer-refresh-outline/)
+- Max: 30
+- Min: 5
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/frigate_recording_health_recovery_timeout_minutes.yaml`](entities/input_number/frigate_recording_health_recovery_timeout_minutes.yaml)
 </details>
 
 <details><summary><strong>Frigate Uncaptioned Review Streak</strong></summary>

@@ -1,7 +1,9 @@
 ---
 resource_template: >-
   {%- set end = as_timestamp(now()) | int -%}
-  {%- set start = end - 300 -%}
+  {%- set window_entity = 'input_number.frigate_recording_health_failure_window_minutes' -%}
+  {%- set window = states(window_entity) | int(3) -%}
+  {%- set start = end - window * 60 -%}
   http://10.0.0.125:5000/api/basement/recordings?after={{ start }}&before={{ end }}
 
 scan_interval: 60
@@ -11,9 +13,9 @@ timeout: 10
 method: GET
 
 sensor:
-  - unique_id: frigate_basement_recordings_last_5_minutes
+  - unique_id: frigate_basement_recordings_in_health_window
 
-    name: Frigate Basement Recordings Last 5 Minutes
+    name: Frigate Basement Recordings in Health Window
 
     value_template: "{{ value_json | count }}"
 
