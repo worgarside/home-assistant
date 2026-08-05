@@ -9905,11 +9905,11 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "entity": "automation.camera_frigate_notify_will",
-                  "primary": "Frigate notify Will",
-                  "secondary": "/camera/frigate-notify-will",
-                  "icon": "mdi:bell\n{%- if not states(\"automation.camera_frigate_notify_will\") | bool(false) -%}\n-off\n{%- endif -%}\n",
-                  "color": "{{ iif(states(\"automation.camera_frigate_notify_will\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "entity": "automation.camera_frigate_notify",
+                  "primary": "Frigate notify",
+                  "secondary": "/camera/frigate-notify",
+                  "icon": "mdi:bell\n{%- if not states(\"automation.camera_frigate_notify\") | bool(false) -%}\n-off\n{%- endif -%}\n",
+                  "color": "{{ iif(states(\"automation.camera_frigate_notify\") | bool(false), \"#04b7d6\", \"grey\") }}",
                   "features_position": "bottom",
                   "tap_action": {
                     "action": "more-info"
