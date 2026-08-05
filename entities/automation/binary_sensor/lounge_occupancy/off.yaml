@@ -17,6 +17,8 @@ trigger:
     for:
       seconds: "{{ states('input_number.lounge_lights_timeout') | int(60) }}"
 
+condition: "{{ is_state('input_boolean.visitor_mode', 'off') }}"
+
 action:
   - action: light.turn_off
     target:

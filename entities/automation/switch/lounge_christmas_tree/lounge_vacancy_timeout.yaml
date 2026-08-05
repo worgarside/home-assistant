@@ -17,6 +17,8 @@ trigger:
     for:
       hours: 2
 
+condition: "{{ is_state('input_boolean.visitor_mode', 'off') }}"
+
 action:
   - action: switch.turn_off
     target:

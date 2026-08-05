@@ -17,6 +17,8 @@ trigger:
     from: "on"
     to: "off"
 
+condition: "{{ is_state('input_boolean.visitor_mode', 'off') }}"
+
 action:
   - parallel:
       - if: >

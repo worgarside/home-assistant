@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (224)</h3></summary>
+<details><summary><h3>Entities (225)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -430,14 +430,14 @@ File: [`automation/camera/frigate/genai_health_tracker.yaml`](entities/automatio
 File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automation/camera/frigate/genai_presence_control.yaml)
 </details>
 
-<details><summary><code>/camera/frigate/notify-will</code></summary>
+<details><summary><code>/camera/frigate/notify</code></summary>
 
-**Entity ID: `automation.camera_frigate_notify_will`**
+**Entity ID: `automation.camera_frigate_notify`**
 
-> Notify Will immediately for front-door and pet reviews, then silently update the notification with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and only when nobody is home. When input_boolean.frigate_bypass_filters is on, the noise-reduction gating is bypassed and all supported camera/object reviews notify.
+> Notify Will and Vic immediately for front-door and pet reviews, then silently update their notifications with Frigate's AI-generated summary. Indoor person reviews notify only after AI processing and only when nobody is home. input_boolean.frigate_bypass_filters bypasses the noise-reduction gating for Will only; Vic's notifications are always filtered.
 
-- Alias: /camera/frigate/notify-will
-- ID: `camera_frigate_notify_will`
+- Alias: /camera/frigate/notify
+- ID: `camera_frigate_notify`
 - Mode: `parallel`
 - Variables:
 
@@ -477,7 +477,7 @@ File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automat
   "clip_url": "/api/frigate/notifications/{{ detection_id }}/clip.mp4"
 }
 ```
-File: [`automation/camera/frigate/notify_will.yaml`](entities/automation/camera/frigate/notify_will.yaml)
+File: [`automation/camera/frigate/notify.yaml`](entities/automation/camera/frigate/notify.yaml)
 </details>
 
 <details><summary><code>/camera/offline-notify-will</code></summary>
@@ -1124,6 +1124,46 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/
 - Mode: `single`
 
 File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml)
+</details>
+
+<details><summary><code>/input-boolean/visitor-mode/on</code></summary>
+
+**Entity ID: `automation.input_boolean_visitor_mode_on`**
+
+> Turn on indoor room lights at full brightness for visitors
+
+- Alias: /input-boolean/visitor-mode/on
+- ID: `input_boolean_visitor_mode_on`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "indoor_areas": [
+    "dining_area",
+    "kitchen",
+    "lower_hallway",
+    "front_hallway",
+    "lounge",
+    "vic_s_office",
+    "bathroom",
+    "bedroom",
+    "landing",
+    "office",
+    "guest_room"
+  ],
+  "excluded_lights": [
+    "light.apollo_plt_1b_1510d0_rgb_light",
+    "light.apollo_plt_1b_1511bc_rgb_light",
+    "light.apollo_plt_1b_151430_rgb_light",
+    "light.apollo_plt_1b_1743a8_rgb_light",
+    "light.evaporative_cooler_ambient_light",
+    "light.will_s_office_voice_assistant_led_ring"
+  ],
+  "target_lights": "{% set ns = namespace(entities=[]) %} {% for area in indoor_areas %}\n  {% set ns.entities = ns.entities + area_entities(area) %}\n{% endfor %} {{\n  ns.entities\n  | select('match', '^light\\\\.')\n  | reject('in', excluded_lights)\n  | unique\n  | list\n}}"
+}
+```
+File: [`automation/input_boolean/visitor_mode/on.yaml`](entities/automation/input_boolean/visitor_mode/on.yaml)
 </details>
 
 <details><summary><code>/input-datetime/home-assistant-start-time/set-datetime</code></summary>
@@ -3723,7 +3763,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (34)</h3></summary>
+<details><summary><h3>Entities (35)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -4029,6 +4069,15 @@ File: [`input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml`](entities/inpu
 - Icon: [`mdi:fan-off`](https://pictogrammers.com/library/mdi/icon/fan-off/)
 
 File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities/input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml)
+</details>
+
+<details><summary><strong>Visitor Mode</strong></summary>
+
+**Entity ID: `input_boolean.visitor_mode`**
+
+- Icon: [`mdi:account-group`](https://pictogrammers.com/library/mdi/icon/account-group/)
+
+File: [`input_boolean/visitor_mode.yaml`](entities/input_boolean/visitor_mode.yaml)
 </details>
 
 </details>
@@ -7465,6 +7514,14 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
       "boolean": null
     }
   },
+  "image": {
+    "description": "Optional image for the notification",
+    "example": "/api/frigate/notifications/example/snapshot.jpg",
+    "required": false,
+    "selector": {
+      "text": null
+    }
+  },
   "timeout": {
     "description": "How long the phone notification remains before being dismissed",
     "required": false,
@@ -7514,6 +7571,7 @@ File: [`script/mtrxpi/mtrxpi_queue_content.yaml`](entities/script/mtrxpi/mtrxpi_
   "url": "{{ url | default('') }}",
   "group": "{{ group | default('') }}",
   "sticky": "{{ sticky | default(false) }}",
+  "image": "{{ image | default('') }}",
   "timeout": "{{ timeout | default(None) }}",
   "chronometer": "{{ chronometer | default(false) }}",
   "when": "{{ when | default(None) }}",
