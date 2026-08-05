@@ -1,0 +1,147 @@
+---
+alias: /camera/frigate/recording-health
+
+id: camera_frigate_recording_health
+
+description: >-
+  Detect cameras that have stopped creating recordings and perform one rate-limited Frigate LXC
+  reboot before escalating to Will.
+
+mode: queued
+
+max_exceeded: silent
+
+max: 4
+
+trigger:
+  - platform: numeric_state
+    entity_id:
+      - sensor.frigate_front_door_recordings_last_5_minutes
+      - sensor.frigate_lounge_recordings_last_5_minutes
+      - sensor.frigate_basement_recordings_last_5_minutes
+      - sensor.frigate_desmond_cam_recordings_last_5_minutes
+    below: 1
+    for:
+      minutes: 3
+
+variables:
+  camera_keys:
+    sensor.frigate_front_door_recordings_last_5_minutes: front_door
+    sensor.frigate_lounge_recordings_last_5_minutes: lounge
+    sensor.frigate_basement_recordings_last_5_minutes: basement
+    sensor.frigate_desmond_cam_recordings_last_5_minutes: desmond_cam
+
+  camera_names:
+    front_door: Front Door
+    lounge: Lounge
+    basement: Basement
+    desmond_cam: Desmond Cam
+
+  recording_switches:
+    front_door: switch.front_door_recordings
+    lounge: switch.lounge_recordings
+    basement: switch.basement_recordings
+    desmond_cam: switch.desmond_cam_recordings
+
+  sensor_entity: "{{ trigger.entity_id }}"
+
+  camera_key: "{{ camera_keys[sensor_entity] }}"
+
+  camera_name: "{{ camera_names[camera_key] }}"
+
+  recording_switch: "{{ recording_switches[camera_key] }}"
+
+  notification_id: frigate_recording_health_{{ camera_key }}
+
+  last_reboot: "{{ states('input_datetime.frigate_recording_health_last_reboot') }}"
+
+  cooldown_expired: >-
+    {{
+      not has_value('input_datetime.frigate_recording_health_last_reboot')
+      or as_timestamp(now()) - as_timestamp(last_reboot, 0) >= 21600
+    }}
+
+action:
+  - alias: Confirm recording should be active and the sensor is still empty
+    condition: template
+    value_template: >-
+      {{ is_state(recording_switch, 'on') and states(sensor_entity) | int(-1) == 0 }}
+
+  - if: "{{ cooldown_expired }}"
+
+    then:
+      - alias: Store the recovery attempt time before rebooting
+        action: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.frigate_recording_health_last_reboot
+        data:
+          datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+
+      - alias: Notify that automatic recovery is starting
+        action: script.notify_will
+        data:
+          title: Frigate Recording Failure
+          message: >-
+            {{ camera_name }} has created no recordings for at least three minutes. Home Assistant
+            is restarting the Frigate LXC once and will verify recovery automatically.
+          group: frigate-health
+          notification_id: "{{ notification_id }}"
+          mobile_notification_icon: mdi:video-off
+          alert_once: true
+          sticky: true
+
+      - alias: Reboot the Frigate LXC
+        action: button.press
+        continue_on_error: true
+        target:
+          entity_id: button.lxc_frigate_125_reboot
+
+      - alias: Wait for fresh recordings
+        wait_template: "{{ states(sensor_entity) | int(0) > 0 }}"
+        timeout:
+          minutes: 5
+        continue_on_timeout: true
+
+      - if: "{{ wait.completed }}"
+
+        then:
+          - alias: Report successful self-healing
+            action: script.notify_will
+            data:
+              title: Frigate Recording Recovered
+              message: >-
+                {{ camera_name }} is creating recordings again after the automatic Frigate restart.
+              group: frigate-health
+              notification_id: "{{ notification_id }}"
+              mobile_notification_icon: mdi:video-check
+              alert_once: true
+              timeout: 300
+
+        else:
+          - alias: Escalate failed automatic recovery
+            action: script.notify_will
+            data:
+              title: Frigate Recovery Failed
+              message: >-
+                {{ camera_name }} still has no new recordings after the automatic Frigate restart.
+                Reboot or power-cycle the physical camera, then restart Frigate once it is online.
+              group: frigate-health
+              notification_id: "{{ notification_id }}"
+              mobile_notification_icon: mdi:camera-off
+              sticky: true
+              persistent: true
+
+    else:
+      - alias: Escalate without rebooting during the cooldown
+        action: script.notify_will
+        data:
+          title: Frigate Recording Failure
+          message: >-
+            {{ camera_name }} has stopped creating recordings. Automatic recovery is in its
+            six-hour cooldown, so Frigate was not restarted again.
+          group: frigate-health
+          notification_id: "{{ notification_id }}"
+          mobile_notification_icon: mdi:video-off
+          alert_once: true
+          sticky: true
+          persistent: true

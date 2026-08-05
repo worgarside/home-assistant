@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (224)</h3></summary>
+<details><summary><h3>Entities (225)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -478,6 +478,49 @@ File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automat
 }
 ```
 File: [`automation/camera/frigate/notify_will.yaml`](entities/automation/camera/frigate/notify_will.yaml)
+</details>
+
+<details><summary><code>/camera/frigate/recording-health</code></summary>
+
+**Entity ID: `automation.camera_frigate_recording_health`**
+
+> Detect cameras that have stopped creating recordings and perform one rate-limited Frigate LXC reboot before escalating to Will.
+
+- Alias: /camera/frigate/recording-health
+- ID: `camera_frigate_recording_health`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "camera_keys": {
+    "sensor.frigate_front_door_recordings_last_5_minutes": "front_door",
+    "sensor.frigate_lounge_recordings_last_5_minutes": "lounge",
+    "sensor.frigate_basement_recordings_last_5_minutes": "basement",
+    "sensor.frigate_desmond_cam_recordings_last_5_minutes": "desmond_cam"
+  },
+  "camera_names": {
+    "front_door": "Front Door",
+    "lounge": "Lounge",
+    "basement": "Basement",
+    "desmond_cam": "Desmond Cam"
+  },
+  "recording_switches": {
+    "front_door": "switch.front_door_recordings",
+    "lounge": "switch.lounge_recordings",
+    "basement": "switch.basement_recordings",
+    "desmond_cam": "switch.desmond_cam_recordings"
+  },
+  "sensor_entity": "{{ trigger.entity_id }}",
+  "camera_key": "{{ camera_keys[sensor_entity] }}",
+  "camera_name": "{{ camera_names[camera_key] }}",
+  "recording_switch": "{{ recording_switches[camera_key] }}",
+  "notification_id": "frigate_recording_health_{{ camera_key }}",
+  "last_reboot": "{{ states('input_datetime.frigate_recording_health_last_reboot') }}",
+  "cooldown_expired": "{{\n  not has_value('input_datetime.frigate_recording_health_last_reboot')\n  or as_timestamp(now()) - as_timestamp(last_reboot, 0) >= 21600\n}}"
+}
+```
+File: [`automation/camera/frigate/recording_health.yaml`](entities/automation/camera/frigate/recording_health.yaml)
 </details>
 
 <details><summary><code>/camera/offline-notify-will</code></summary>
@@ -4122,7 +4165,7 @@ File: [`input_button/oauth/oauth_reauth_truelayer_starling_joint.yaml`](entities
 
 ## Input Datetime
 
-<details><summary><h3>Entities (6)</h3></summary>
+<details><summary><h3>Entities (7)</h3></summary>
 
 <details><summary><strong>Cosmo Nightly Kitchen Clean Time</strong></summary>
 
@@ -4143,6 +4186,17 @@ File: [`input_datetime/cosmo_nightly_kitchen_clean_time.yaml`](entities/input_da
 - Icon: [`mdi:clock-alert-outline`](https://pictogrammers.com/library/mdi/icon/clock-alert-outline/)
 
 File: [`input_datetime/frigate_last_genai_review_ended.yaml`](entities/input_datetime/frigate_last_genai_review_ended.yaml)
+</details>
+
+<details><summary><strong>Frigate Recording Health Last Reboot</strong></summary>
+
+**Entity ID: `input_datetime.frigate_recording_health_last_reboot`**
+
+- Has Date: `true`
+- Has Time: `true`
+- Icon: [`mdi:restart-alert`](https://pictogrammers.com/library/mdi/icon/restart-alert/)
+
+File: [`input_datetime/frigate_recording_health_last_reboot.yaml`](entities/input_datetime/frigate_recording_health_last_reboot.yaml)
 </details>
 
 <details><summary><strong>Home Assistant Start Time</strong></summary>
@@ -6722,13 +6776,41 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 ## Rest
 
-<details><summary><h3>Entities (6)</h3></summary>
+<details><summary><h3>Entities (10)</h3></summary>
 
 <details><summary><code>rest.external_ip</code></summary>
 
 - Resource: https://api.ipify.org/?format=json
 
 File: [`rest/external_ip.yaml`](entities/rest/external_ip.yaml)
+</details>
+
+<details><summary><code>rest.frigate_basement_recordings</code></summary>
+
+- Method: GET
+
+File: [`rest/frigate_basement_recordings.yaml`](entities/rest/frigate_basement_recordings.yaml)
+</details>
+
+<details><summary><code>rest.frigate_desmond_cam_recordings</code></summary>
+
+- Method: GET
+
+File: [`rest/frigate_desmond_cam_recordings.yaml`](entities/rest/frigate_desmond_cam_recordings.yaml)
+</details>
+
+<details><summary><code>rest.frigate_front_door_recordings</code></summary>
+
+- Method: GET
+
+File: [`rest/frigate_front_door_recordings.yaml`](entities/rest/frigate_front_door_recordings.yaml)
+</details>
+
+<details><summary><code>rest.frigate_lounge_recordings</code></summary>
+
+- Method: GET
+
+File: [`rest/frigate_lounge_recordings.yaml`](entities/rest/frigate_lounge_recordings.yaml)
 </details>
 
 <details><summary><code>rest.ollama_api_status</code></summary>
