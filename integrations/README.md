@@ -1169,6 +1169,46 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/
 File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml)
 </details>
 
+<details><summary><code>/input-boolean/visitor-mode/on</code></summary>
+
+**Entity ID: `automation.input_boolean_visitor_mode_on`**
+
+> Turn on indoor room lights at full brightness for visitors
+
+- Alias: /input-boolean/visitor-mode/on
+- ID: `input_boolean_visitor_mode_on`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "indoor_areas": [
+    "dining_area",
+    "kitchen",
+    "lower_hallway",
+    "front_hallway",
+    "lounge",
+    "vic_s_office",
+    "bathroom",
+    "bedroom",
+    "landing",
+    "office",
+    "guest_room"
+  ],
+  "excluded_lights": [
+    "light.apollo_plt_1b_1510d0_rgb_light",
+    "light.apollo_plt_1b_1511bc_rgb_light",
+    "light.apollo_plt_1b_151430_rgb_light",
+    "light.apollo_plt_1b_1743a8_rgb_light",
+    "light.evaporative_cooler_ambient_light",
+    "light.will_s_office_voice_assistant_led_ring"
+  ],
+  "target_lights": "{% set ns = namespace(entities=[]) %} {% for area in indoor_areas %}\n  {% set ns.entities = ns.entities + area_entities(area) %}\n{% endfor %} {{\n  ns.entities\n  | select('match', '^light\\\\.')\n  | reject('in', excluded_lights)\n  | unique\n  | list\n}}"
+}
+```
+File: [`automation/input_boolean/visitor_mode/on.yaml`](entities/automation/input_boolean/visitor_mode/on.yaml)
+</details>
+
 <details><summary><code>/input-datetime/home-assistant-start-time/set-datetime</code></summary>
 
 **Entity ID: `automation.input_datetime_home_assistant_start_time_set_datetime`**
@@ -3748,7 +3788,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (34)</h3></summary>
+<details><summary><h3>Entities (35)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -4054,6 +4094,15 @@ File: [`input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml`](entities/inpu
 - Icon: [`mdi:fan-off`](https://pictogrammers.com/library/mdi/icon/fan-off/)
 
 File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities/input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml)
+</details>
+
+<details><summary><strong>Visitor Mode</strong></summary>
+
+**Entity ID: `input_boolean.visitor_mode`**
+
+- Icon: [`mdi:account-group`](https://pictogrammers.com/library/mdi/icon/account-group/)
+
+File: [`input_boolean/visitor_mode.yaml`](entities/input_boolean/visitor_mode.yaml)
 </details>
 
 </details>
