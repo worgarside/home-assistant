@@ -66,6 +66,13 @@ fields:
     selector:
       boolean:
 
+  image:
+    description: Optional image for the notification
+    example: /api/frigate/notifications/example/snapshot.jpg
+    required: false
+    selector:
+      text:
+
   timeout:
     description: How long the phone notification remains before being dismissed
     required: false
@@ -130,6 +137,8 @@ variables:
 
   sticky: "{{ sticky | default(false) }}"
 
+  image: "{{ image | default('') }}"
+
   timeout: "{{ timeout | default(None) }}"
 
   chronometer: "{{ chronometer | default(false) }}"
@@ -164,6 +173,7 @@ sequence:
         url: "{{ url }}"
         group: "{{ group }}"
         sticky: "{{ sticky }}"
+        image: "{{ image }}"
         timeout: "{{ timeout }}"
         chronometer: "{{ chronometer }}"
         when: "{{ when }}"
@@ -181,6 +191,7 @@ sequence:
         url: "{{ url }}"
         group: "{{ group }}"
         sticky: "{{ sticky }}"
+        image: "{{ image }}"
         timeout: "{{ timeout }}"
         chronometer: "{{ chronometer }}"
         when: "{{ when }}"
@@ -209,6 +220,7 @@ sequence:
             url: "{{ url }}"
             group: "{{ group }}"
             sticky: "{{ sticky }}"
+            image: "{{ image }}"
             timeout: "{{ timeout }}"
             chronometer: "{{ chronometer }}"
             when: "{{ when }}"
