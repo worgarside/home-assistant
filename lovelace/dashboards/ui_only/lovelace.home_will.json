@@ -1509,35 +1509,6 @@
               ]
             }
           }
-        },
-        "visitor_mode_chip_template": {
-          "card": {
-            "type": "custom:mushroom-chips-card",
-            "alignment": "end",
-            "chips": [
-              {
-                "type": "entity",
-                "entity": "input_boolean.visitor_mode",
-                "name": "Visitor Mode",
-                "content_info": "name",
-                "icon": "mdi:account-group",
-                "icon_color": "amber",
-                "tap_action": {
-                  "action": "toggle"
-                },
-                "hold_action": {
-                  "action": "more-info"
-                }
-              }
-            ],
-            "visibility": [
-              {
-                "condition": "state",
-                "entity": "input_boolean.visitor_mode",
-                "state": "on"
-              }
-            ]
-          }
         }
       },
       "views": [
@@ -1550,10 +1521,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "horizontal-stack",
                   "cards": [
@@ -2400,7 +2367,30 @@
             }
           ],
           "max_columns": 3,
-          "cards": []
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "sections",
@@ -2412,10 +2402,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading_style": "title",
@@ -3253,7 +3239,30 @@
             }
           ],
           "cards": [],
-          "dense_section_placement": true
+          "dense_section_placement": true,
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
+          ]
         },
         {
           "icon": "mdi:raspberry-pi",
@@ -3264,10 +3273,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "Version Control"
@@ -3971,7 +3976,30 @@
             }
           ],
           "max_columns": 3,
-          "cards": []
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
+          ]
         },
         {
           "title": "Makerspace",
@@ -3982,10 +4010,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "Prusa i3 Mk3"
@@ -4453,7 +4477,30 @@
             }
           ],
           "max_columns": 3,
-          "cards": []
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
+          ]
         },
         {
           "title": "LED Matrix Controller",
@@ -4465,10 +4512,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "LED Matrix Controller"
@@ -5203,7 +5246,30 @@
               ]
             }
           ],
-          "cards": []
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
+          ]
         },
         {
           "title": "VaultPi",
@@ -5216,10 +5282,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "VaultPi System Monitor",
@@ -5682,6 +5744,29 @@
                 }
               ]
             }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
           ]
         },
         {
@@ -5695,10 +5780,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "VSMPPi System Monitor"
@@ -5845,7 +5926,30 @@
               ]
             }
           ],
-          "cards": []
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
+          ]
         },
         {
           "title": "CRT Pi",
@@ -5856,10 +5960,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "CRT TV Internal Conditions"
@@ -6145,6 +6245,29 @@
                 }
               ]
             }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
           ]
         },
         {
@@ -6154,163 +6277,154 @@
           "type": "panel",
           "cards": [
             {
-              "type": "vertical-stack",
+              "type": "custom:swipe-card",
+              "parameters": {
+                "slidesPerGroup": 1,
+                "speed": 75,
+                "slidesPerView": 1,
+                "breakpoints": {
+                  "640": {
+                    "slidesPerView": 2,
+                    "spaceBetween": 20
+                  },
+                  "1280": {
+                    "slidesPerView": 3,
+                    "spaceBetween": 30
+                  },
+                  "1920": {
+                    "slidesPerView": 4,
+                    "spaceBetween": 40
+                  },
+                  "2560": {
+                    "slidesPerView": 5,
+                    "spaceBetween": 50
+                  }
+                },
+                "scrollbar": {
+                  "enabled": true,
+                  "hide": false,
+                  "draggable": true,
+                  "snapOnRelease": true
+                }
+              },
               "cards": [
                 {
                   "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Add-on: Item Warehouse"
+                    },
+                    {
+                      "repo_slug": "add_on_item_warehouse"
+                    }
+                  ]
                 },
                 {
-                  "type": "custom:swipe-card",
-                  "parameters": {
-                    "slidesPerGroup": 1,
-                    "speed": 75,
-                    "slidesPerView": 1,
-                    "breakpoints": {
-                      "640": {
-                        "slidesPerView": 2,
-                        "spaceBetween": 20
-                      },
-                      "1280": {
-                        "slidesPerView": 3,
-                        "spaceBetween": 30
-                      },
-                      "1920": {
-                        "slidesPerView": 4,
-                        "spaceBetween": 40
-                      },
-                      "2560": {
-                        "slidesPerView": 5,
-                        "spaceBetween": 50
-                      }
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "GitHub Config Files"
                     },
-                    "scrollbar": {
-                      "enabled": true,
-                      "hide": false,
-                      "draggable": true,
-                      "snapOnRelease": true
+                    {
+                      "repo_slug": "github_config_files"
                     }
-                  },
-                  "cards": [
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
                     {
-                      "type": "custom:decluttering-card",
-                      "template": "repo_pr_list_card_template",
-                      "variables": [
-                        {
-                          "repo_name": "Add-on: Item Warehouse"
-                        },
-                        {
-                          "repo_slug": "add_on_item_warehouse"
-                        }
-                      ]
+                      "repo_name": "Home Assistant"
                     },
                     {
-                      "type": "custom:decluttering-card",
-                      "template": "repo_pr_list_card_template",
-                      "variables": [
-                        {
-                          "repo_name": "GitHub Config Files"
-                        },
-                        {
-                          "repo_slug": "github_config_files"
-                        }
-                      ]
+                      "repo_slug": "home_assistant"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Home Assistant Config Validator"
                     },
                     {
-                      "type": "custom:decluttering-card",
-                      "template": "repo_pr_list_card_template",
-                      "variables": [
-                        {
-                          "repo_name": "Home Assistant"
-                        },
-                        {
-                          "repo_slug": "home_assistant"
-                        }
-                      ]
+                      "repo_slug": "home_assistant_config_validator"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "LED Matrix Controller"
                     },
                     {
-                      "type": "custom:decluttering-card",
-                      "template": "repo_pr_list_card_template",
-                      "variables": [
-                        {
-                          "repo_name": "Home Assistant Config Validator"
-                        },
-                        {
-                          "repo_slug": "home_assistant_config_validator"
-                        }
-                      ]
+                      "repo_slug": "led_matrix_now_playing"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Python Template"
                     },
                     {
-                      "type": "custom:decluttering-card",
-                      "template": "repo_pr_list_card_template",
-                      "variables": [
-                        {
-                          "repo_name": "LED Matrix Controller"
-                        },
-                        {
-                          "repo_slug": "led_matrix_now_playing"
-                        }
-                      ]
+                      "repo_slug": "python_template"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Smart Mini CRT Interface"
                     },
                     {
-                      "type": "custom:decluttering-card",
-                      "template": "repo_pr_list_card_template",
-                      "variables": [
-                        {
-                          "repo_name": "Python Template"
-                        },
-                        {
-                          "repo_slug": "python_template"
-                        }
-                      ]
+                      "repo_slug": "smart_mini_crt_interface"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "Very Slow Movie Player"
                     },
                     {
-                      "type": "custom:decluttering-card",
-                      "template": "repo_pr_list_card_template",
-                      "variables": [
-                        {
-                          "repo_name": "Smart Mini CRT Interface"
-                        },
-                        {
-                          "repo_slug": "smart_mini_crt_interface"
-                        }
-                      ]
+                      "repo_slug": "very_slow_movie_player"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "WG Scripts"
                     },
                     {
-                      "type": "custom:decluttering-card",
-                      "template": "repo_pr_list_card_template",
-                      "variables": [
-                        {
-                          "repo_name": "Very Slow Movie Player"
-                        },
-                        {
-                          "repo_slug": "very_slow_movie_player"
-                        }
-                      ]
+                      "repo_slug": "wg_scripts"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "repo_pr_list_card_template",
+                  "variables": [
+                    {
+                      "repo_name": "WG Utilities"
                     },
                     {
-                      "type": "custom:decluttering-card",
-                      "template": "repo_pr_list_card_template",
-                      "variables": [
-                        {
-                          "repo_name": "WG Scripts"
-                        },
-                        {
-                          "repo_slug": "wg_scripts"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:decluttering-card",
-                      "template": "repo_pr_list_card_template",
-                      "variables": [
-                        {
-                          "repo_name": "WG Utilities"
-                        },
-                        {
-                          "repo_slug": "wg_utilities"
-                        }
-                      ]
+                      "repo_slug": "wg_utilities"
                     }
                   ]
                 }
@@ -6320,6 +6434,29 @@
           "visible": [
             {
               "user": "8f996a70fc1d4c9ea269be0e7d85beff"
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
             }
           ]
         },
@@ -6333,10 +6470,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "Auto-Saver"
@@ -7189,7 +7322,30 @@
               ]
             }
           ],
-          "max_columns": 3
+          "max_columns": 3,
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
+          ]
         },
         {
           "title": "Cube",
@@ -7200,10 +7356,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "square": false,
                   "type": "grid",
@@ -7277,7 +7429,30 @@
               "user": "8f996a70fc1d4c9ea269be0e7d85beff"
             }
           ],
-          "cards": []
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "sections",
@@ -7290,10 +7465,6 @@
               "type": "grid",
               "column_span": 2,
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "Jellyfin",
@@ -7558,6 +7729,29 @@
                 }
               ]
             }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
           ]
         },
         {
@@ -7570,10 +7764,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "custom:mini-graph-card",
                   "entities": [
@@ -7715,6 +7905,29 @@
                 }
               ]
             }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
           ]
         },
         {
@@ -7727,10 +7940,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading_style": "title",
@@ -8212,6 +8421,27 @@
                   "state": "heat"
                 }
               ]
+            },
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
             }
           ],
           "header": {
@@ -8230,10 +8460,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "Health",
@@ -9288,7 +9514,30 @@
               ]
             }
           ],
-          "cards": []
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "sections",
@@ -9300,10 +9549,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "Boiler",
@@ -11260,7 +11505,30 @@
             }
           ],
           "cards": [],
-          "dense_section_placement": true
+          "dense_section_placement": true,
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
+          ]
         },
         {
           "title": "Proxmox Monitor",
@@ -11274,10 +11542,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading_style": "title",
@@ -11737,6 +12001,29 @@
                 }
               ]
             }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
           ]
         },
         {
@@ -11751,10 +12038,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "Threshold Alerts",
@@ -11771,6 +12054,29 @@
                 }
               ]
             }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
+            }
           ]
         },
         {
@@ -11783,10 +12089,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "visitor_mode_chip_template"
-                },
                 {
                   "type": "heading",
                   "heading": "Cursor Ultra",
@@ -11979,6 +12281,29 @@
                 }
               ],
               "column_span": 3
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.visitor_mode",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.visitor_mode",
+                  "state": "on"
+                }
+              ]
             }
           ]
         }
