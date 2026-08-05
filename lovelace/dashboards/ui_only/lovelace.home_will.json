@@ -9295,6 +9295,22 @@
                   }
                 },
                 {
+                  "type": "tile",
+                  "entity": "input_boolean.charging_hub_auto_off_notification",
+                  "name": "Auto-Off Notification",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "inline",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
                   "type": "custom:mushroom-template-card",
                   "features_position": "bottom",
                   "tap_action": {
