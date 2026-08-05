@@ -36,6 +36,8 @@ trigger:
 
 variables:
 
+  home_assistant_external_url: !secret home_assistant_external_url
+
   supported_cameras:
     - front_door
     - basement
@@ -107,9 +109,11 @@ variables:
       else 'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'
     }}
 
-  snapshot_url: "/api/frigate/notifications/{{ detection_id }}/snapshot.jpg"
+  snapshot_url: >-
+    {{ home_assistant_external_url }}/api/frigate/notifications/{{ detection_id }}/snapshot.jpg
 
-  clip_url: "/api/frigate/notifications/{{ detection_id }}/clip.mp4"
+  clip_url: >-
+    {{ home_assistant_external_url }}/api/frigate/notifications/{{ detection_id }}/clip.mp4
 
 condition:
   # Valid camera, severity, object type, and IDs needed for notification media

@@ -443,6 +443,7 @@ File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automat
 
 ```json
 {
+  "home_assistant_external_url": "https://home-assistant.example.com",
   "supported_cameras": [
     "front_door",
     "basement",
@@ -473,8 +474,8 @@ File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automat
   "detected_object": "{{\n  'person'\n  if 'person' in objects\n  else 'dog'\n  if 'dog' in objects\n  else 'cat'\n  if 'cat' in objects\n  else 'activity'\n}}",
   "notification_title": "{{\n  metadata.get('title', detected_object | title ~ ' on ' ~ camera_name)\n  if trigger.id == 'genai'\n  else recognized_name ~ ' on ' ~ camera_name\n  if recognized_name | length > 0\n  else detected_object | title ~ ' on ' ~ camera_name\n}}",
   "notification_message": "{{\n  metadata.get(\n    'shortSummary',\n    'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n  )\n  if trigger.id == 'genai'\n  else 'Frigate recognised ' ~ recognized_name ~ ' on the ' ~ camera_name ~ ' camera.'\n  if recognized_name | length > 0\n  else 'Frigate detected a ' ~ detected_object ~ ' on the ' ~ camera_name ~ ' camera.'\n}}",
-  "snapshot_url": "/api/frigate/notifications/{{ detection_id }}/snapshot.jpg",
-  "clip_url": "/api/frigate/notifications/{{ detection_id }}/clip.mp4"
+  "snapshot_url": "{{ home_assistant_external_url }}/api/frigate/notifications/{{ detection_id }}/snapshot.jpg",
+  "clip_url": "{{ home_assistant_external_url }}/api/frigate/notifications/{{ detection_id }}/clip.mp4"
 }
 ```
 File: [`automation/camera/frigate/notify.yaml`](entities/automation/camera/frigate/notify.yaml)
