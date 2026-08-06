@@ -5,9 +5,9 @@ id: camera_frigate_notify
 
 description: >-
   Notify Will and Vic immediately for front-door and pet reviews, then silently update their
-  notifications with Frigate's AI-generated summary. Indoor person reviews notify only after AI
-  processing and only when nobody is home. input_boolean.frigate_bypass_filters bypasses the
-  noise-reduction gating for Will only; Vic's notifications are always filtered.
+  notifications with Frigate's AI-generated summary. Under normal filtering, pet and indoor
+  person reviews notify only when nobody is home. input_boolean.frigate_bypass_filters bypasses
+  the noise-reduction gating for Will only; Vic's notifications are always filtered.
 
 mode: parallel
 
@@ -133,15 +133,19 @@ action:
       - conditions:
           - condition: or
             conditions:
-              # Immediate alert: front door or pets only (skip indoor people)
+              # Immediate alert: front-door people, or pets while nobody is home
               - condition: and
                 conditions:
                   - condition: trigger
                     id: new
                   - condition: template
-                    value_template: "{{ camera == 'front_door' or is_pet }}"
+                    value_template: >-
+                      {{
+                        (not is_pet and camera == 'front_door') or
+                        (is_pet and states('zone.home') | int(0) < 1)
+                      }}
 
-              # GenAI summary: front door / pets always; indoor people only when away
+              # GenAI summary: front-door people always; pets and indoor people only when away
               - condition: and
                 conditions:
                   - condition: trigger
@@ -149,12 +153,12 @@ action:
                   - condition: or
                     conditions:
                       - condition: template
-                        value_template: "{{ camera == 'front_door' or is_pet }}"
+                        value_template: "{{ not is_pet and camera == 'front_door' }}"
                       - condition: numeric_state
                         entity_id: zone.home
                         below: 1
 
-              # Face recognition update: named person only; same location rules as genai
+              # Face recognition update: named object; same location rules as genai
               - condition: and
                 conditions:
                   - condition: trigger
@@ -164,7 +168,7 @@ action:
                   - condition: or
                     conditions:
                       - condition: template
-                        value_template: "{{ camera == 'front_door' or is_pet }}"
+                        value_template: "{{ not is_pet and camera == 'front_door' }}"
                       - condition: numeric_state
                         entity_id: zone.home
                         below: 1
