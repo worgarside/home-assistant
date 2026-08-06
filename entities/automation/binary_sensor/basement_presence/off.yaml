@@ -4,8 +4,8 @@ alias: /binary-sensor/basement-presence/off
 id: binary_sensor_basement_presence_off
 
 description: >-
-  Turns off the basement after the configured human-presence retention period and resumes Cosmo
-  when he was paused while cleaning the basement.
+  Resumes Cosmo (vacuum.cosmo) when kitchen presence is cleared for 1 minute and Cosmo is paused,
+  but only if he was cleaning the basement.
 
 mode: single
 
@@ -13,9 +13,11 @@ max_exceeded: silent
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.basement_human_presence
+    entity_id: binary_sensor.basement_occupancy
     from: "on"
     to: "off"
+    for:
+      seconds: "{{ states('input_number.basement_lights_timeout') | int(60) }}"
 
 condition: "{{ is_state('input_boolean.visitor_mode', 'off') }}"
 

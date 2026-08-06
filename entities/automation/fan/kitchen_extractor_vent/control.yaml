@@ -32,12 +32,14 @@ trigger:
     id: voc_low
 
   - platform: state
-    entity_id: binary_sensor.basement_human_presence
+    entity_id: binary_sensor.basement_occupancy
     to: "off"
+    for:
+      minutes: 1
     id: kitchen_exited
 
   - platform: state
-    entity_id: binary_sensor.basement_human_presence
+    entity_id: binary_sensor.basement_occupancy
     to: "on"
     id: kitchen_entered
 

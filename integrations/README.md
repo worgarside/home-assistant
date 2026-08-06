@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (225)</h3></summary>
+<details><summary><h3>Entities (227)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -21,7 +21,7 @@ File: [`automation/automation/auto_reload_complete.yaml`](entities/automation/au
 
 **Entity ID: `automation.binary_sensor_basement_presence_off`**
 
-> Turns off the basement after the configured human-presence retention period and resumes Cosmo when he was paused while cleaning the basement.
+> Resumes Cosmo (vacuum.cosmo) when kitchen presence is cleared for 1 minute and Cosmo is paused, but only if he was cleaning the basement.
 
 - Alias: /binary-sensor/basement-presence/off
 - ID: `binary_sensor_basement_presence_off`
@@ -1313,6 +1313,26 @@ File: [`automation/label/radiator/any_on.yaml`](entities/automation/label/radiat
 File: [`automation/label/restore_state_after_room_vacancy/state_change.yaml`](entities/automation/label/restore_state_after_room_vacancy/state_change.yaml)
 </details>
 
+<details><summary><code>/light/basement-lights/unoccupied-alert</code></summary>
+
+**Entity ID: `automation.light_basement_lights_unoccupied_alert`**
+
+> Warn Will when a kitchen or dining-area light has remained on while Frigate has continuously reported no person. This automation is advisory and never changes lights or automations itself.
+
+- Alias: /light/basement-lights/unoccupied-alert
+- ID: `light_basement_lights_unoccupied_alert`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "timeout_minutes": "{{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}",
+  "on_light_names": "{{\n  expand(\n    'light.dining_area_big_light',\n    'light.dining_area_spotlights',\n    'light.dining_area_shelves',\n    'light.kitchen_counter_lights',\n    'light.kitchen_island',\n    'light.kitchen_spotlights'\n  )\n  | selectattr('state', 'eq', 'on')\n  | map(attribute='name')\n  | join(', ')\n}}"
+}
+```
+File: [`automation/light/basement_lights/unoccupied_alert.yaml`](entities/automation/light/basement_lights/unoccupied_alert.yaml)
+</details>
+
 <details><summary><code>/light/bedroom-shapes/bon-appetit</code></summary>
 
 **Entity ID: `automation.light_bedroom_shapes_bon_appetit`**
@@ -1544,6 +1564,19 @@ File: [`automation/media_player/topaz_sr10/on.yaml`](entities/automation/media_p
 - Mode: `single`
 
 File: [`automation/media_player/topaz_sr10/timeout.yaml`](entities/automation/media_player/topaz_sr10/timeout.yaml)
+</details>
+
+<details><summary><code>/mobile-app/notification-action/basement-lights-unoccupied-alert</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_basement_lights_unoccupied_alert`**
+
+> Handle the actions offered by the basement-lights unoccupied alert.
+
+- Alias: /mobile-app/notification-action/basement-lights-unoccupied-alert
+- ID: `mobile_app_notification_action_basement_lights_unoccupied_alert`
+- Mode: `queued`
+
+File: [`automation/mobile_app/notification_action/basement_lights_unoccupied_alert.yaml`](entities/automation/mobile_app/notification_action/basement_lights_unoccupied_alert.yaml)
 </details>
 
 <details><summary><code>/mobile-app/notification-action/bedroom-sunrise-delay</code></summary>
@@ -4261,7 +4294,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (72)</h3></summary>
+<details><summary><h3>Entities (73)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
@@ -4845,6 +4878,19 @@ File: [`input_number/timeout/air_freshener_timeout.yaml`](entities/input_number/
 - Unit Of Measurement: `s`
 
 File: [`input_number/timeout/basement_lights_timeout.yaml`](entities/input_number/timeout/basement_lights_timeout.yaml)
+</details>
+
+<details><summary><strong>Basement Lights | Unoccupied Alert Timeout</strong></summary>
+
+**Entity ID: `input_number.basement_lights_unoccupied_alert_timeout`**
+
+- Icon: [`mdi:timer-alert-outline`](https://pictogrammers.com/library/mdi/icon/timer-alert-outline/)
+- Max: 180
+- Min: 5
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/basement_lights_unoccupied_alert_timeout.yaml`](entities/input_number/timeout/basement_lights_unoccupied_alert_timeout.yaml)
 </details>
 
 <details><summary><strong>Basement | Room Vacancy Light Timeout</strong></summary>

@@ -10,7 +10,7 @@ variables:
   modifier: "{{ states('sensor.lighting_modifier') | int(70) }}"
 
 sequence:
-  - if: "{{ is_state('binary_sensor.kitchen_person_occupancy', 'on') }}"
+  - if: "{{ is_state('binary_sensor.kitchen_occupancy', 'on') }}"
     then:
       - parallel:
           - action: light.turn_on

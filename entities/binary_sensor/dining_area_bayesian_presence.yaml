@@ -1,7 +1,7 @@
 ---
 # Provisional human-presence inference for the dining area.
 #
-# Diagnostic only: automations consume binary_sensor.dining_area_person_occupancy.
+# Shadow mode: lighting automations consume binary_sensor.dining_area_occupancy.
 platform: bayesian
 
 name: Dining Area Bayesian Presence

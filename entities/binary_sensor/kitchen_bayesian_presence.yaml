@@ -1,7 +1,7 @@
 ---
 # Provisional human-presence inference for the kitchen.
 #
-# Diagnostic only: automations consume binary_sensor.kitchen_person_occupancy.
+# Shadow mode: lighting automations consume binary_sensor.kitchen_occupancy.
 platform: bayesian
 
 name: Kitchen Bayesian Presence

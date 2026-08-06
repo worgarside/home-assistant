@@ -12,13 +12,13 @@ trigger:
   at: input_datetime.cosmo_nightly_kitchen_clean_time
 
 action:
-  - if: "{{ not is_state('binary_sensor.basement_human_presence', 'off') }}"
+  - if: "{{ states('binary_sensor.basement_occupancy') | bool(false) }}"
 
     then:
       - alias: Wait for nobody in the kitchen
         wait_for_trigger:
           - platform: state
-            entity_id: binary_sensor.basement_human_presence
+            entity_id: binary_sensor.basement_occupancy
             to: "off"
             for:
               minutes: 10
