@@ -434,7 +434,7 @@ File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automat
 
 **Entity ID: `automation.camera_frigate_notify`**
 
-> Notify Will and Vic immediately for front-door and pet reviews, then silently update their notifications with Frigate's AI-generated summary. Under normal filtering, pet and indoor person reviews notify only when nobody is home. input_boolean.frigate_bypass_filters bypasses the noise-reduction gating for Will only; Vic's notifications are always filtered.
+> Notify Will and Vic immediately for front-door reviews, then silently update their notifications with Frigate's AI-generated summary. Under normal filtering, pet and indoor person reviews notify only when nobody is home. input_boolean.frigate_bypass_filters bypasses the noise-reduction gating for Will only; Vic's notifications are always filtered.
 
 - Alias: /camera/frigate/notify
 - ID: `camera_frigate_notify`

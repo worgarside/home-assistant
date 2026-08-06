@@ -4,7 +4,7 @@ alias: /camera/frigate/notify
 id: camera_frigate_notify
 
 description: >-
-  Notify Will and Vic immediately for front-door and pet reviews, then silently update their
+  Notify Will and Vic immediately for front-door reviews, then silently update their
   notifications with Frigate's AI-generated summary. Under normal filtering, pet and indoor
   person reviews notify only when nobody is home. input_boolean.frigate_bypass_filters bypasses
   the noise-reduction gating for Will only; Vic's notifications are always filtered.
@@ -138,12 +138,17 @@ action:
                 conditions:
                   - condition: trigger
                     id: new
-                  - condition: template
-                    value_template: >-
-                      {{
-                        (not is_pet and camera == 'front_door') or
-                        (is_pet and states('zone.home') | int(0) < 1)
-                      }}
+                  - condition: or
+                    conditions:
+                      - condition: template
+                        value_template: "{{ not is_pet and camera == 'front_door' }}"
+                      - condition: and
+                        conditions:
+                          - condition: template
+                            value_template: "{{ is_pet }}"
+                          - condition: numeric_state
+                            entity_id: zone.home
+                            below: 1
 
               # GenAI summary: front-door people always; pets and indoor people only when away
               - condition: and
