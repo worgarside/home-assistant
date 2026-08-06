@@ -29,13 +29,6 @@ repos:
         stages:
           - commit-msg
 
-  - repo: https://github.com/worgarside/pre-commit-hooks-dependency-sync
-    rev: 1.5.1
-    hooks:
-      - id: sync-additional-dependencies
-        args:
-          - --package-manager=uv
-
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.12.1
     hooks:

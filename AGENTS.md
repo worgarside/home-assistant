@@ -36,23 +36,6 @@ example overview, search, entity, state, history, service-list, template-eval,
 and automation-trace tools. Do not wait for the user to request live context
 when correctness depends on it, and never guess live behavior.
 
-## Development commands
-
-Use the `justfile` as the development command surface:
-
-```bash
-just setup          # install locked dependencies and prek hooks
-just check          # run every prek hook
-just ci             # run the local equivalents of blocking CI checks
-just typecheck      # run basedpyright
-just entities       # validate entities and regenerate documentation
-just actionlint     # validate GitHub Actions workflows
-just ha-validate    # run HA config validation locally through act
-```
-
-Use `uv` for Python dependency and command execution. Use `prek`, not
-`pre-commit`, for hook installation and execution.
-
 ## Git safety
 
 Never run commands that mutate git state or the working tree. Read-only
