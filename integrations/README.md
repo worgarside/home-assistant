@@ -1139,8 +1139,7 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](enti
 
 ```json
 {
-  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}",
-  "upper_landing_brightness": "{{\n  [states('sensor.lighting_modifier') | int(70), 20] | max\n  if 12 <= now().hour < 23\n  else states('sensor.lighting_modifier') | int(70)\n}}"
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
 }
 ```
 File: [`automation/input_boolean/visitor_mode/off.yaml`](entities/automation/input_boolean/visitor_mode/off.yaml)
