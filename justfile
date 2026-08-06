@@ -7,7 +7,7 @@ default:
 # Install locked dependencies and prek git hooks
 setup:
     uv sync --locked --all-groups
-    uv run --frozen prek install
+    uv run --frozen prek install --force
 
 # Run the same blocking checks as CI
 ci:
