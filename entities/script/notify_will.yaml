@@ -280,6 +280,7 @@ sequence:
       - if: "{{ image | length > 0 }}"
         then:
           - action: notify.mobile_app_wills_macbook_pro
+            continue_on_error: true
             data:
               message: "{{ message }}"
               title: "{{ notif_title }}"
@@ -291,6 +292,7 @@ sequence:
                 image: "{{ image }}"
         else:
           - action: notify.mobile_app_wills_macbook_pro
+            continue_on_error: true
             data:
               message: "{{ message }}"
               title: "{{ notif_title }}"
@@ -329,6 +331,7 @@ sequence:
       - if: "{{ image | length > 0 }}"
         then:
           - action: notify.mobile_app_wills_work_macbook_pro
+            continue_on_error: true
             data:
               message: "{{ message }}"
               title: "{{ notif_title }}"
@@ -340,6 +343,7 @@ sequence:
                 image: "{{ image }}"
         else:
           - action: notify.mobile_app_wills_work_macbook_pro
+            continue_on_error: true
             data:
               message: "{{ message }}"
               title: "{{ notif_title }}"
