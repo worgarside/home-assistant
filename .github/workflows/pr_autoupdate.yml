@@ -22,5 +22,7 @@ jobs:
         github.event_name == 'pull_request' &&
         github.event.label.name == 'bot:keep-updated'
       )
-    uses: worgarside/github-config-files/.github/workflows/__pr_autoupdate.yml@main
+    # github-config-files has no releases; pin the latest audited main commit.
+    # yamllint disable-line rule:line-length
+    uses: worgarside/github-config-files/.github/workflows/__pr_autoupdate.yml@be008ae8f54348a000172e13598711c384dbc69b
     secrets: inherit

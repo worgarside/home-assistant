@@ -42,10 +42,6 @@
     description: Pull requests that update GitHub Actions code
     color: "000000"
 
-  - name: hasspi-sync
-    description: Sync files with HAssPi
-    color: 53C2F1
-
   - name: hotfix
     description: Something isn't working and needs to be fixed ASAP
     color: D73A4A
@@ -93,9 +89,9 @@
     color: "414141"
     description: PR for updating the tools used in this repo
 
-  - name: ha:appdaemon
+  - name: ha:binary-sensors
     color: "E51919"
-    description: AppDaemon apps for Home Assistant
+    description: Binary sensor entities for Home Assistant
 
   - name: ha:automations
     color: "E54619"
@@ -117,6 +113,10 @@
     color: "CEE519"
     description: Custom Components added to Home Assistant
 
+  - name: ha:custom-zha-quirks
+    color: "46E519"
+    description: Custom ZHA device quirks
+
   - name: ha:device-tracker
     color: "A1E519"
     description: Track device locations and presence
@@ -124,10 +124,6 @@
   - name: ha:esphome
     color: "74E519"
     description: ESPHome configuration files
-
-  - name: ha:groups
-    color: "46E519"
-    description: Group entities together for easy control
 
   - name: ha:input-boolean
     color: "19E519"
@@ -153,6 +149,10 @@
     color: "19CEE5"
     description: Text input controls
 
+  - name: ha:integrations
+    color: "19B8E5"
+    description: Home Assistant integration configuration
+
   - name: ha:lovelace
     color: "19A1E5"
     description: Lovelace UI configuration files
@@ -165,17 +165,13 @@
     color: "1946E5"
     description: MQTT broker and clients
 
-  - name: ha:pyscript
+  - name: ha:rest
     color: "1919E5"
-    description: Custom Python scripts for Home Assistant
+    description: RESTful entities for Home Assistant
 
   - name: ha:rest-command
     color: "4619E5"
     description: RESTful API commands
-
-  - name: ha:scenes
-    color: "7419E5"
-    description: Preconfigured sets of entity states
 
   - name: ha:scripts
     color: "A119E5"
@@ -196,6 +192,14 @@
   - name: ha:template
     color: "E51974"
     description: Template entities for customization
+
+  - name: ha:template-triggered
+    color: "7419E5"
+    description: Trigger-based template entities
+
+  - name: ha:timer
+    color: "B519E5"
+    description: Timer helpers
 
   - name: ha:variables
     color: "E51946"

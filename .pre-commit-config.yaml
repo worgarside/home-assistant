@@ -2,13 +2,44 @@
 default_language_version:
   python: python3.12
 
+default_install_hook_types:
+  - commit-msg
+  - pre-commit
+
+exclude: ^lovelace/dashboards/ui_only/
+
 repos:
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.4.0
+    hooks:
+      - id: conventional-pre-commit
+        args:
+          - build
+          - chore
+          - ci
+          - deps
+          - docs
+          - feat
+          - fix
+          - hotfix
+          - perf
+          - refactor
+          - style
+          - test
+        stages:
+          - commit-msg
+
   - repo: https://github.com/worgarside/pre-commit-hooks-dependency-sync
     rev: 1.5.1
     hooks:
       - id: sync-additional-dependencies
         args:
           - --package-manager=uv
+
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.12.1
+    hooks:
+      - id: uv-lock
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -63,8 +94,13 @@ repos:
           - parsable
           - --strict
 
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.0
+    rev: v0.16.1
     hooks:
       - id: ruff-check
         args:
@@ -79,21 +115,6 @@ repos:
       - id: beautysh
         language_version: python3.11 # Uses pkg_resources -.-
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v2.3.0
-    hooks:
-      - id: mypy
-        exclude: "^(custom_zha_quirks|custom_components)/.+\\.py$"
-        args:
-          - --strict
-          - --show-error-codes
-        additional_dependencies:
-          - types-paramiko
-          - watchdog==5.0.3
-          - wg-utilities==5.17.4
-          - matplotlib==3.10.8
-          - types-PyYAML
-
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
@@ -107,3 +128,12 @@ repos:
       - id: codespell
         additional_dependencies:
           - tomli
+
+  - repo: local
+    hooks:
+      - id: basedpyright
+        name: basedpyright
+        entry: uv run --frozen basedpyright
+        language: system
+        pass_filenames: false
+        files: ^(dev_tools/.+\.py|pyproject\.toml|uv\.lock)$
