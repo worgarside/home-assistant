@@ -55,8 +55,8 @@ variables:
 
   cooldown_expired: >-
     {{
-      not has_value('button.lxc_frigate_125_reboot')
-      or as_timestamp(now()) - as_timestamp(states('button.lxc_frigate_125_reboot'), 0)
+      not has_value('sensor.lxc_frigate_125_last_boot')
+      or as_timestamp(now()) - as_timestamp(states('sensor.lxc_frigate_125_last_boot'), 0)
         >= (states('input_number.frigate_recording_health_reboot_cooldown_hours') | int(6)) * 3600
     }}
 
@@ -92,11 +92,43 @@ action:
       - variables:
           last_boot_before: "{{ states('sensor.lxc_frigate_125_last_boot') }}"
 
+          last_reboot_command_before: "{{ states('button.lxc_frigate_125_reboot') }}"
+
       - alias: Reboot the Frigate LXC
         action: button.press
         continue_on_error: true
         target:
           entity_id: button.lxc_frigate_125_reboot
+
+      - alias: Confirm the reboot command was dispatched
+        wait_template: >-
+          {{
+            has_value('button.lxc_frigate_125_reboot')
+            and states('button.lxc_frigate_125_reboot') != last_reboot_command_before
+          }}
+        timeout:
+          seconds: 5
+        continue_on_timeout: true
+
+      - if: "{{ not wait.completed }}"
+
+        then:
+          - alias: Report failed reboot dispatch
+            action: script.notify_will
+            continue_on_error: true
+            data:
+              title: Frigate Reboot Command Failed
+              message: >-
+                {{ camera_name }} has no recordings, but Home Assistant could not dispatch the
+                Frigate LXC reboot command. Check the LXC reboot control.
+              group: frigate-health
+              notification_id: "{{ notification_id }}"
+              mobile_notification_icon: mdi:restart-alert
+              sticky: true
+              persistent: true
+
+          - stop: Frigate LXC reboot command was not dispatched
+            error: true
 
       - alias: Wait for reboot and fresh recordings
         wait_template: >-

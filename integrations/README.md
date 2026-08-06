@@ -521,7 +521,7 @@ File: [`automation/camera/frigate/notify_will.yaml`](entities/automation/camera/
   "camera_name": "{{ camera.name }}",
   "recording_switch": "{{ camera.recording_switch }}",
   "notification_id": "frigate_recording_health_{{ camera_key }}",
-  "cooldown_expired": "{{\n  not has_value('button.lxc_frigate_125_reboot')\n  or as_timestamp(now()) - as_timestamp(states('button.lxc_frigate_125_reboot'), 0)\n    >= (states('input_number.frigate_recording_health_reboot_cooldown_hours') | int(6)) * 3600\n}}"
+  "cooldown_expired": "{{\n  not has_value('sensor.lxc_frigate_125_last_boot')\n  or as_timestamp(now()) - as_timestamp(states('sensor.lxc_frigate_125_last_boot'), 0)\n    >= (states('input_number.frigate_recording_health_reboot_cooldown_hours') | int(6)) * 3600\n}}"
 }
 ```
 File: [`automation/camera/frigate/recording_health.yaml`](entities/automation/camera/frigate/recording_health.yaml)
