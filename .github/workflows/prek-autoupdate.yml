@@ -66,10 +66,28 @@ jobs:
           git push origin "$BRANCH"
           echo "created=true" >> "$GITHUB_OUTPUT"
 
+      - name: Check for open pull request
+        if: steps.commit.outputs.created == 'true'
+        id: pull-request
+        env:
+          GH_TOKEN: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
+        run: |
+          open_pull_requests=$(
+            gh pr list \
+              --repo "$GITHUB_REPOSITORY" \
+              --head "$BRANCH" \
+              --state open \
+              --json number \
+              --jq length
+          )
+          if [[ "$open_pull_requests" == 0 ]]; then
+            echo "open=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Create pull request
         if: >-
-          steps.switch-branch.outcome == 'failure' &&
-          steps.commit.outputs.created == 'true'
+          steps.commit.outputs.created == 'true' &&
+          steps.pull-request.outputs.open == 'false'
         env:
           GH_TOKEN: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
         run: |
