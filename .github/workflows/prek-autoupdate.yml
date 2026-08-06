@@ -80,8 +80,7 @@ jobs:
               --body-file /tmp/output \
               --base main \
               --head "$BRANCH" \
-              --label tools \
-              --label bot:keep-updated
+              --label tools
           )
 
           GH_TOKEN="${{ secrets.WORGARSIDE_TOKEN }}" gh pr merge \

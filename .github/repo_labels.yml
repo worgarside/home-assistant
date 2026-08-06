@@ -17,11 +17,6 @@
     description: Do not close this PR, even if it's empty (bot command)
     color: 2C6AAB
 
-  - name: bot:keep-updated
-    from_name: keep-updated
-    description: Keep this PR updated from its base branch (bot command)
-    color: 87FAA6
-
   - name: dependencies
     description: Pull requests that update a dependency file
     color: 0366D6

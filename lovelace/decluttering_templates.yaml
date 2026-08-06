@@ -686,12 +686,6 @@ pr_summary_card_template:
                   - type: custom:decluttering-card
                     template: semver_label_toggler_card_template
                     variables:
-                      - label: "bot:keep-updated"
-                      - repo_slug: "[[repo_slug]]"
-                      - pr_count_id: "[[pr_count_id]]"
-                  - type: custom:decluttering-card
-                    template: semver_label_toggler_card_template
-                    variables:
                       - label: "non-functional"
                       - repo_slug: "[[repo_slug]]"
                       - pr_count_id: "[[pr_count_id]]"
@@ -917,7 +911,6 @@ pr_summary_card_template:
                 'chore': {'font': '#E48545', 'background': '#8B45132D'},
                 'bot:delete-on-merge': {'font': '#FF8181', 'background': '#8B00002D'},
                 'bot:do-not-close': {'font': '#6CA2D9', 'background': '#2C6AAB2D'},
-                'bot:keep-updated': {'font': '#84F9A3', 'background': '#87FAA62D'},
                 'dependencies': {'font': '#59A8FC', 'background': '#0366D62D'},
                 'documentation': {'font': '#35AAFF', 'background': '#0075CA2D'},
                 'enhancement': {'font': '#9FEEEE', 'background': '#A2EEEF2D'},
