@@ -199,11 +199,11 @@ action:
                   group: "frigate-{{ camera | replace('_', '-') }}"
                   sticky: true
                   image: "{{ snapshot_url }}"
-                  url: "{{ clip_url }}"
+                  url: "{{ clip_url | replace('/clip.mp4', '/master.m3u8') }}"
                   actions:
                     - action: URI
                       title: View Clip
-                      uri: "{{ clip_url }}"
+                      uri: "{{ clip_url | replace('/clip.mp4', '/master.m3u8') }}"
 
     # Only Will receives reviews excluded by the normal filters
     default:
