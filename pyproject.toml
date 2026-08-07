@@ -35,6 +35,9 @@ build_command = """
   git add uv.lock
 """
 
+[tool.semantic_release.remote]
+ignore_token_for_push = true
+
 [tool.semantic_release.commit_parser_options]
 allowed_tags = [
   "build",
