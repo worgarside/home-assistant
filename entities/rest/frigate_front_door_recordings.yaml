@@ -1,0 +1,25 @@
+---
+resource_template: >-
+  {%- set end = as_timestamp(now()) | int -%}
+  {%- set window_entity = 'input_number.frigate_recording_health_failure_window_minutes' -%}
+  {%- set window = states(window_entity) | int(3) -%}
+  {%- set start = end - window * 60 -%}
+  {# Tailscale provides authenticated, encrypted transport for this peer address. #}
+  http://100.81.62.18:5000/api/front_door/recordings?after={{ start }}&before={{ end }}
+
+scan_interval: 60
+
+timeout: 10
+
+method: GET
+
+sensor:
+  - unique_id: frigate_front_door_recordings_in_health_window
+
+    name: Frigate Front Door Recordings in Health Window
+
+    value_template: "{{ value_json | count }}"
+
+    unit_of_measurement: segments
+
+    icon: mdi:video-check

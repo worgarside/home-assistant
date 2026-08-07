@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (225)</h3></summary>
+<details><summary><h3>Entities (226)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -479,6 +479,53 @@ File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automat
 }
 ```
 File: [`automation/camera/frigate/notify.yaml`](entities/automation/camera/frigate/notify.yaml)
+</details>
+
+<details><summary><code>/camera/frigate/recording-health</code></summary>
+
+**Entity ID: `automation.camera_frigate_recording_health`**
+
+> Detect cameras that have stopped creating recordings and perform one rate-limited Frigate LXC reboot before escalating to Will.
+
+- Alias: /camera/frigate/recording-health
+- ID: `camera_frigate_recording_health`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "cameras": {
+    "sensor.frigate_front_door_recordings_in_health_window": {
+      "key": "front_door",
+      "name": "Front Door",
+      "recording_switch": "switch.front_door_recordings"
+    },
+    "sensor.frigate_lounge_recordings_in_health_window": {
+      "key": "lounge",
+      "name": "Lounge",
+      "recording_switch": "switch.lounge_recordings"
+    },
+    "sensor.frigate_basement_recordings_in_health_window": {
+      "key": "basement",
+      "name": "Basement",
+      "recording_switch": "switch.basement_recordings"
+    },
+    "sensor.frigate_desmond_cam_recordings_in_health_window": {
+      "key": "desmond_cam",
+      "name": "Desmond Cam",
+      "recording_switch": "switch.desmond_cam_recordings"
+    }
+  },
+  "sensor_entity": "{{ trigger.entity_id }}",
+  "camera": "{{ cameras[sensor_entity] }}",
+  "camera_key": "{{ camera.key }}",
+  "camera_name": "{{ camera.name }}",
+  "recording_switch": "{{ camera.recording_switch }}",
+  "notification_id": "frigate_recording_health_{{ camera_key }}",
+  "cooldown_expired": "{{\n  not has_value('sensor.lxc_frigate_125_last_boot')\n  or as_timestamp(now()) - as_timestamp(states('sensor.lxc_frigate_125_last_boot'), 0)\n    >= (states('input_number.frigate_recording_health_reboot_cooldown_hours') | int(6)) * 3600\n}}"
+}
+```
+File: [`automation/camera/frigate/recording_health.yaml`](entities/automation/camera/frigate/recording_health.yaml)
 </details>
 
 <details><summary><code>/camera/offline-notify-will</code></summary>
@@ -4243,7 +4290,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (72)</h3></summary>
+<details><summary><h3>Entities (75)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
@@ -4364,6 +4411,45 @@ File: [`input_number/cosmo_nightly_kitchen_clean_door_close_timeout.yaml`](entit
 - Unit Of Measurement: %
 
 File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/dry_box/dry_box_max_humidity.yaml)
+</details>
+
+<details><summary><strong>Frigate Recording Health Failure Window Minutes</strong></summary>
+
+**Entity ID: `input_number.frigate_recording_health_failure_window_minutes`**
+
+- Icon: [`mdi:timer-alert-outline`](https://pictogrammers.com/library/mdi/icon/timer-alert-outline/)
+- Max: 30
+- Min: 3
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/frigate_recording_health_failure_window_minutes.yaml`](entities/input_number/frigate_recording_health_failure_window_minutes.yaml)
+</details>
+
+<details><summary><strong>Frigate Recording Health Reboot Cooldown Hours</strong></summary>
+
+**Entity ID: `input_number.frigate_recording_health_reboot_cooldown_hours`**
+
+- Icon: [`mdi:timer-lock-outline`](https://pictogrammers.com/library/mdi/icon/timer-lock-outline/)
+- Max: 48
+- Min: 6
+- Mode: `slider`
+- Unit Of Measurement: `h`
+
+File: [`input_number/frigate_recording_health_reboot_cooldown_hours.yaml`](entities/input_number/frigate_recording_health_reboot_cooldown_hours.yaml)
+</details>
+
+<details><summary><strong>Frigate Recording Health Recovery Timeout Minutes</strong></summary>
+
+**Entity ID: `input_number.frigate_recording_health_recovery_timeout_minutes`**
+
+- Icon: [`mdi:timer-refresh-outline`](https://pictogrammers.com/library/mdi/icon/timer-refresh-outline/)
+- Max: 30
+- Min: 5
+- Mode: `slider`
+- Unit Of Measurement: `min`
+
+File: [`input_number/frigate_recording_health_recovery_timeout_minutes.yaml`](entities/input_number/frigate_recording_health_recovery_timeout_minutes.yaml)
 </details>
 
 <details><summary><strong>Frigate Uncaptioned Review Streak</strong></summary>
@@ -6772,13 +6858,41 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 ## Rest
 
-<details><summary><h3>Entities (6)</h3></summary>
+<details><summary><h3>Entities (10)</h3></summary>
 
 <details><summary><code>rest.external_ip</code></summary>
 
 - Resource: https://api.ipify.org/?format=json
 
 File: [`rest/external_ip.yaml`](entities/rest/external_ip.yaml)
+</details>
+
+<details><summary><code>rest.frigate_basement_recordings</code></summary>
+
+- Method: GET
+
+File: [`rest/frigate_basement_recordings.yaml`](entities/rest/frigate_basement_recordings.yaml)
+</details>
+
+<details><summary><code>rest.frigate_desmond_cam_recordings</code></summary>
+
+- Method: GET
+
+File: [`rest/frigate_desmond_cam_recordings.yaml`](entities/rest/frigate_desmond_cam_recordings.yaml)
+</details>
+
+<details><summary><code>rest.frigate_front_door_recordings</code></summary>
+
+- Method: GET
+
+File: [`rest/frigate_front_door_recordings.yaml`](entities/rest/frigate_front_door_recordings.yaml)
+</details>
+
+<details><summary><code>rest.frigate_lounge_recordings</code></summary>
+
+- Method: GET
+
+File: [`rest/frigate_lounge_recordings.yaml`](entities/rest/frigate_lounge_recordings.yaml)
 </details>
 
 <details><summary><code>rest.ollama_api_status</code></summary>
