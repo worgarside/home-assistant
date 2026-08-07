@@ -1,0 +1,108 @@
+---
+name: Prek Auto-Update
+
+on:
+  schedule:
+    - cron: 0 1 * * *
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prek-autoupdate
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Update prek hooks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      BRANCH: chore/prek-autoupdate
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
+
+      - name: Switch to update branch
+        id: switch-branch
+        continue-on-error: true
+        run: git checkout "$BRANCH"
+
+      - name: Create update branch
+        if: steps.switch-branch.outcome == 'failure'
+        run: git checkout -b "$BRANCH"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: true
+          python-version: "3.12"
+
+      - name: Install locked dependencies
+        run: uv sync --locked --all-groups
+
+      - name: Update hooks
+        run: uv run --frozen prek auto-update --cooldown-days 3 > /tmp/output 2>&1
+
+      - name: Commit changes
+        id: commit
+        run: |
+          if [[ -z "$(git status --short)" ]]; then
+            echo "No hook updates available."
+            exit 0
+          fi
+
+          git config user.name "worgarside-dev"
+          git config user.email "worgarside.dev@gmail.com"
+          git add .pre-commit-config.yaml
+          git commit -m "ci: update prek hooks" --no-verify
+          git push origin "$BRANCH"
+          echo "created=true" >> "$GITHUB_OUTPUT"
+
+      - name: Check for open pull request
+        if: steps.commit.outputs.created == 'true'
+        id: pull-request
+        env:
+          GH_TOKEN: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
+        run: |
+          open_pull_requests=$(
+            gh pr list \
+              --repo "$GITHUB_REPOSITORY" \
+              --head "$BRANCH" \
+              --state open \
+              --json number \
+              --jq length
+          )
+          if [[ "$open_pull_requests" == 0 ]]; then
+            echo "open=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create pull request
+        if: >-
+          steps.commit.outputs.created == 'true' &&
+          steps.pull-request.outputs.open == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
+        run: |
+          pull_request=$(
+            gh pr create \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "ci: update prek hooks" \
+              --body-file /tmp/output \
+              --base main \
+              --head "$BRANCH" \
+              --label tools
+          )
+
+          GH_TOKEN="${{ secrets.WORGARSIDE_TOKEN }}" gh pr merge \
+            "$pull_request" \
+            --repo "$GITHUB_REPOSITORY" \
+            --squash \
+            --auto

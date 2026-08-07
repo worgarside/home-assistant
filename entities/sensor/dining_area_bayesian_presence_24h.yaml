@@ -1,0 +1,17 @@
+---
+# https://www.home-assistant.io/integrations/history_stats/
+platform: history_stats
+
+name: Dining Area Bayesian Presence 24h
+
+unique_id: dining_area_bayesian_presence_24h
+
+entity_id: binary_sensor.dining_area_bayesian_presence
+
+state: "on"
+
+type: ratio
+
+start: "{{ now() - timedelta(hours=24) }}"
+
+end: "{{ now() }}"

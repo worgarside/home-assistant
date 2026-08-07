@@ -8,41 +8,51 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.12,<4.0"
 dependencies = [
-  "wg-utilities>=5.17.4,<6.0.0",
-  "watchdog>=5.0.3,<6.0.0",
-  "paramiko>=3.5.1,<6.0.0",
   "mcp-proxy>=0.8.0,<1.0.0",
 ]
 
-[project.optional-dependencies]
-dev = [
-  "matplotlib>=3.10.3,<4.0.0",
-  "pyyaml>=6.0.2,<7.0.0",
-]
-
-[tool.mypy]
+[tool.basedpyright]
+include = ["dev_tools"]
 exclude = ["_local_sandbox"]
-follow_imports = "normal"
-disallow_any_generics = true
-disallow_subclassing_any = true
-disallow_untyped_calls = true
-disallow_untyped_decorators = true
-disallow_untyped_defs = true
-
-warn_return_any = true
-warn_unused_ignores = true
-warn_unused_configs = true
-warn_redundant_casts = true
-
-no_implicit_optional = true
-strict_optional = true
-
-strict_equality = true
-show_error_codes = true
+pythonVersion = "3.12"
+typeCheckingMode = "strict"
+reportMissingTypeStubs = "error"
+reportUnnecessaryTypeIgnoreComment = "error"
 
 [tool.codespell]
 ignore-words-list = "hass,iif"
 skip = '*.json,*.csv,*.xml,*.lock'
+
+[tool.semantic_release]
+tag_format = "{version}"
+version_toml = ["pyproject.toml:project.version"]
+commit_message = "chore(release): {version}"
+major_on_zero = false
+allow_zero_version = true
+build_command = """
+  python -m pip install uv
+  uv lock
+  git add uv.lock
+"""
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = [
+  "build",
+  "chore",
+  "ci",
+  "deps",
+  "docs",
+  "feat",
+  "fix",
+  "hotfix",
+  "perf",
+  "refactor",
+  "style",
+  "test",
+]
+minor_tags = ["feat"]
+patch_tags = ["build", "deps", "fix", "hotfix", "perf"]
+parse_squash_commits = false
 
 [tool.ruff]
 fix = true
@@ -90,3 +100,11 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 docstring-code-format = true
 docstring-code-line-length = "dynamic"
+
+[dependency-groups]
+dev = [
+  "basedpyright>=1.39.9",
+  "matplotlib>=3.10.3,<4.0.0",
+  "prek>=0.4.12",
+  "pyyaml>=6.0.2,<7.0.0",
+]

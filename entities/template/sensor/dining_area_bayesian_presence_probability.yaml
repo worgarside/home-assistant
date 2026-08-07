@@ -1,0 +1,24 @@
+---
+name: Dining Area Bayesian Presence Probability
+
+unique_id: dining_area_bayesian_presence_probability
+
+unit_of_measurement: "%"
+
+icon: mdi:percent-outline
+
+availability: >-
+  {{
+    states('binary_sensor.dining_area_bayesian_presence')
+    not in ['unavailable', 'unknown']
+    and state_attr('binary_sensor.dining_area_bayesian_presence', 'probability')
+    is not none
+  }}
+
+state: >-
+  {{
+    (
+      state_attr('binary_sensor.dining_area_bayesian_presence', 'probability')
+      | float(0) * 100
+    ) | round(0)
+  }}

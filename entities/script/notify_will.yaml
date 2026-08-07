@@ -277,16 +277,30 @@ sequence:
           value_template: "{{ clear_notification }}"
 
     then:
-      - action: notify.mobile_app_wills_macbook_pro
-        data:
-          message: "{{ message }}"
-          title: "{{ notif_title }}"
-          data:
-            actions: "{{ actions }}"
-            tag: "{{ notification_id }}"
-            group: "{{ group }}"
-            url: "{{ url }}"
-            image: "{{ image }}"
+      - if: "{{ image | length > 0 }}"
+        then:
+          - action: notify.mobile_app_wills_macbook_pro
+            continue_on_error: true
+            data:
+              message: "{{ message }}"
+              title: "{{ notif_title }}"
+              data:
+                actions: "{{ actions }}"
+                tag: "{{ notification_id }}"
+                group: "{{ group }}"
+                url: "{{ url }}"
+                image: "{{ image }}"
+        else:
+          - action: notify.mobile_app_wills_macbook_pro
+            continue_on_error: true
+            data:
+              message: "{{ message }}"
+              title: "{{ notif_title }}"
+              data:
+                actions: "{{ actions }}"
+                tag: "{{ notification_id }}"
+                group: "{{ group }}"
+                url: "{{ url }}"
 
   - alias: Work MacBook Pro
     if:
@@ -314,13 +328,27 @@ sequence:
         #   - alias: Will not on A/L - TODO
 
     then:
-      - action: notify.mobile_app_wills_work_macbook_pro
-        data:
-          message: "{{ message }}"
-          title: "{{ notif_title }}"
-          data:
-            actions: "{{ actions }}"
-            tag: "{{ notification_id }}"
-            group: "{{ group }}"
-            url: "{{ url }}"
-            image: "{{ image }}"
+      - if: "{{ image | length > 0 }}"
+        then:
+          - action: notify.mobile_app_wills_work_macbook_pro
+            continue_on_error: true
+            data:
+              message: "{{ message }}"
+              title: "{{ notif_title }}"
+              data:
+                actions: "{{ actions }}"
+                tag: "{{ notification_id }}"
+                group: "{{ group }}"
+                url: "{{ url }}"
+                image: "{{ image }}"
+        else:
+          - action: notify.mobile_app_wills_work_macbook_pro
+            continue_on_error: true
+            data:
+              message: "{{ message }}"
+              title: "{{ notif_title }}"
+              data:
+                actions: "{{ actions }}"
+                tag: "{{ notification_id }}"
+                group: "{{ group }}"
+                url: "{{ url }}"
