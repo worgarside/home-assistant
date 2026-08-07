@@ -1,0 +1,432 @@
+---
+alias: /input-boolean/visitor-mode/off
+
+id: input_boolean_visitor_mode_off
+
+description: Restore normal occupancy lighting and vacancy timeouts after Visitor Mode
+
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: input_boolean.visitor_mode
+    from: "on"
+    to: "off"
+
+variables:
+  brightness: "{{ states('sensor.lighting_modifier') | int(70) }}"
+
+action:
+  - parallel:
+      - alias: Restore dining area lighting
+        sequence:
+          - if: "{{ is_state('binary_sensor.dining_area_occupancy', 'on') }}"
+            then:
+              - action: script.dining_area_set_lighting_based_on_occupancy
+            else:
+              - wait_for_trigger:
+                  - platform: state
+                    entity_id: binary_sensor.dining_area_occupancy
+                    to: "on"
+                  - platform: state
+                    entity_id: input_boolean.visitor_mode
+                    to: "on"
+                timeout:
+                  seconds: >-
+                    {{ states('input_number.basement_room_vacancy_light_timeout') | int(5) }}
+                continue_on_timeout: true
+
+              - condition: template
+                value_template: "{{ wait.trigger is none }}"
+
+              - condition: state
+                entity_id: input_boolean.visitor_mode
+                state: "off"
+
+              - condition: state
+                entity_id: binary_sensor.dining_area_occupancy
+                state: "off"
+
+              - action: script.dining_area_set_lighting_based_on_occupancy
+
+      - alias: Restore kitchen lighting
+        sequence:
+          - if: "{{ is_state('binary_sensor.kitchen_occupancy', 'on') }}"
+            then:
+              - action: script.kitchen_set_lighting_based_on_occupancy
+            else:
+              - wait_for_trigger:
+                  - platform: state
+                    entity_id: binary_sensor.kitchen_occupancy
+                    to: "on"
+                  - platform: state
+                    entity_id: input_boolean.visitor_mode
+                    to: "on"
+                timeout:
+                  seconds: >-
+                    {{
+                      states('input_number.basement_room_vacancy_light_timeout') | int(5)
+                      + 5
+                    }}
+                continue_on_timeout: true
+
+              - condition: template
+                value_template: "{{ wait.trigger is none }}"
+
+              - condition: state
+                entity_id: input_boolean.visitor_mode
+                state: "off"
+
+              - condition: state
+                entity_id: binary_sensor.kitchen_occupancy
+                state: "off"
+
+              - action: script.kitchen_set_lighting_based_on_occupancy
+
+      - alias: Restore lounge lighting and room state
+        sequence:
+          - if: "{{ is_state('binary_sensor.lounge_occupancy', 'on') }}"
+            then:
+              - parallel:
+                  - action: switch.turn_on
+                    continue_on_error: true
+                    target:
+                      entity_id: switch.lounge_christmas_tree
+
+                  - if:
+                      - condition: time
+                        after: "06:00"
+                        before: "23:30"
+                    then:
+                      - if: >-
+                          {{
+                            is_state('input_boolean.lounge_lights_tv_aware', 'on') and (
+                              is_state('remote.lounge_streamer', 'on') or
+                              is_state('media_player.lounge_streamer', 'on') or
+                              is_state('media_player.lounge_streamer_2', 'on')
+                            )
+                          }}
+                        then:
+                          - action: scene.turn_on
+                            target:
+                              entity_id: scene.lounge_tv_lighting
+                        else:
+                          - action: light.turn_on
+                            target:
+                              area_id: lounge
+                            data:
+                              brightness_pct: "{{ brightness }}"
+                              transition: 1
+            else:
+              - parallel:
+                  - alias: Lounge lighting timeout
+                    sequence:
+                      - wait_for_trigger:
+                          - platform: state
+                            entity_id: binary_sensor.lounge_occupancy
+                            to: "on"
+                          - platform: state
+                            entity_id: input_boolean.visitor_mode
+                            to: "on"
+                        timeout:
+                          seconds: >-
+                            {{ states('input_number.lounge_lights_timeout') | int(60) }}
+                        continue_on_timeout: true
+
+                      - condition: template
+                        value_template: "{{ wait.trigger is none }}"
+
+                      - condition: state
+                        entity_id: input_boolean.visitor_mode
+                        state: "off"
+
+                      - condition: state
+                        entity_id: binary_sensor.lounge_occupancy
+                        state: "off"
+
+                      - action: light.turn_off
+                        target:
+                          area_id: lounge
+                        data:
+                          transition: 5
+
+                  - alias: Lounge room timeout
+                    sequence:
+                      - wait_for_trigger:
+                          - platform: state
+                            entity_id: binary_sensor.lounge_occupancy
+                            to: "on"
+                          - platform: state
+                            entity_id: input_boolean.visitor_mode
+                            to: "on"
+                        timeout:
+                          minutes: >-
+                            {{ states('input_number.lounge_room_timeout') | int(30) }}
+                        continue_on_timeout: true
+
+                      - condition: template
+                        value_template: "{{ wait.trigger is none }}"
+
+                      - condition: state
+                        entity_id: input_boolean.visitor_mode
+                        state: "off"
+
+                      - condition: state
+                        entity_id: binary_sensor.lounge_occupancy
+                        state: "off"
+
+                      - action: script.turn_off_physical_room
+                        data:
+                          room: lounge
+
+      - alias: Restore lower hallway lighting
+        sequence:
+          - if: >-
+              {{
+                is_state('binary_sensor.lower_hallway_occupancy', 'on') or
+                is_state('binary_sensor.main_hallway_motion_sensor_occupancy', 'on') or
+                is_state('binary_sensor.kitchen_hallway_occupancy', 'on')
+              }}
+            then:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.lower_hallway_1
+                    - light.lower_hallway_2
+                    - light.kitchen_hallway_spotlight
+                data:
+                  brightness_pct: "{{ brightness }}"
+                  transition: 1
+            else:
+              - wait_for_trigger:
+                  - platform: state
+                    entity_id:
+                      - binary_sensor.lower_hallway_occupancy
+                      - binary_sensor.main_hallway_motion_sensor_occupancy
+                      - binary_sensor.kitchen_hallway_occupancy
+                    to: "on"
+                  - platform: state
+                    entity_id: input_boolean.visitor_mode
+                    to: "on"
+                timeout:
+                  seconds: "{{ states('input_number.hallway_lights_timeout') | int(120) }}"
+                continue_on_timeout: true
+
+              - condition: template
+                value_template: "{{ wait.trigger is none }}"
+
+              - condition: state
+                entity_id: input_boolean.visitor_mode
+                state: "off"
+
+              - condition: template
+                value_template: >-
+                  {{
+                    not is_state('binary_sensor.lower_hallway_occupancy', 'on') and
+                    not is_state('binary_sensor.main_hallway_motion_sensor_occupancy', 'on') and
+                    not is_state('binary_sensor.kitchen_hallway_occupancy', 'on')
+                  }}
+
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.lower_hallway_1
+                    - light.lower_hallway_2
+                    - light.kitchen_hallway_spotlight
+                data:
+                  transition: 5
+
+      - alias: Restore upper hallway lighting
+        sequence:
+          - if: >-
+              {{
+                is_state('binary_sensor.front_hallway_motion_sensor_occupancy', 'on') or
+                is_state('binary_sensor.upper_landing_motion_sensor_occupancy', 'on') or
+                is_state('binary_sensor.front_door_contact', 'on')
+              }}
+            then:
+              - parallel:
+                  - action: light.turn_on
+                    target:
+                      entity_id: light.front_hallway
+                    data:
+                      brightness_pct: "{{ brightness }}"
+                      transition: 1
+
+                  - action: light.turn_on
+                    target:
+                      entity_id: light.upper_landing_light
+                    data:
+                      brightness_pct: "{{ brightness }}"
+                      transition: 1
+            else:
+              - wait_for_trigger:
+                  - platform: state
+                    entity_id:
+                      - binary_sensor.front_hallway_motion_sensor_occupancy
+                      - binary_sensor.upper_landing_motion_sensor_occupancy
+                      - binary_sensor.front_door_contact
+                    to: "on"
+                  - platform: state
+                    entity_id: input_boolean.visitor_mode
+                    to: "on"
+                timeout:
+                  seconds: "{{ states('input_number.hallway_lights_timeout') | int(120) }}"
+                continue_on_timeout: true
+
+              - condition: template
+                value_template: "{{ wait.trigger is none }}"
+
+              - condition: state
+                entity_id: input_boolean.visitor_mode
+                state: "off"
+
+              - condition: template
+                value_template: >-
+                  {{
+                    not is_state('binary_sensor.front_hallway_motion_sensor_occupancy', 'on') and
+                    not is_state('binary_sensor.upper_landing_motion_sensor_occupancy', 'on') and
+                    not is_state('binary_sensor.front_door_contact', 'on')
+                  }}
+
+              - parallel:
+                  - action: light.turn_off
+                    target:
+                      entity_id: light.front_hallway
+                    data:
+                      transition: 5
+
+                  - action: light.turn_off
+                    target:
+                      entity_id: light.upper_landing_light
+                    data:
+                      transition: 5
+
+      - alias: Restart basement vacancy timeout
+        sequence:
+          - if: "{{ is_state('binary_sensor.basement_occupancy', 'off') }}"
+            then:
+              - wait_for_trigger:
+                  - platform: state
+                    entity_id: binary_sensor.basement_occupancy
+                    to: "on"
+                  - platform: state
+                    entity_id: input_boolean.visitor_mode
+                    to: "on"
+                timeout:
+                  seconds: "{{ states('input_number.basement_lights_timeout') | int(60) }}"
+                continue_on_timeout: true
+
+              - condition: template
+                value_template: "{{ wait.trigger is none }}"
+
+              - condition: state
+                entity_id: input_boolean.visitor_mode
+                state: "off"
+
+              - condition: state
+                entity_id: binary_sensor.basement_occupancy
+                state: "off"
+
+              - parallel:
+                  - if: >-
+                      {{
+                        is_state('vacuum.cosmo', 'paused') and
+                        is_state('sensor.cosmo_current_room', 'Basement')
+                      }}
+                    then:
+                      - action: vacuum.start
+                        target:
+                          entity_id: vacuum.cosmo
+
+                  - action: light.turn_off
+                    target:
+                      floor_id: basement
+                    data:
+                      transition: 5
+
+                  - action: switch.turn_off
+                    continue_on_error: true
+                    target:
+                      entity_id: switch.basement_christmas_tree
+
+                  - alias: Re-enable dining area automation
+                    action: automation.turn_on
+                    target:
+                      entity_id: automation.binary_sensor_dining_area_occupancy_state_change
+
+                  - alias: Re-enable kitchen automation
+                    action: automation.turn_on
+                    target:
+                      entity_id: automation.binary_sensor_kitchen_occupancy_state_change
+
+      - alias: Restart garden light timeout
+        sequence:
+          - if: "{{ is_state('light.garden_light', 'on') }}"
+            then:
+              - wait_for_trigger:
+                  - platform: state
+                    entity_id: light.garden_light
+                    to: "off"
+                  - platform: state
+                    entity_id: input_boolean.visitor_mode
+                    to: "on"
+                timeout:
+                  minutes: "{{ states('input_number.garden_light_timeout') | int(30) }}"
+                continue_on_timeout: true
+
+              - condition: template
+                value_template: "{{ wait.trigger is none }}"
+
+              - condition: state
+                entity_id: input_boolean.visitor_mode
+                state: "off"
+
+              - condition: state
+                entity_id: light.garden_light
+                state: "on"
+
+              - action: light.turn_off
+                target:
+                  entity_id: light.garden_light
+
+      - alias: Restart lounge Christmas tree timeout
+        sequence:
+          - if: >-
+              {{
+                is_state('binary_sensor.lounge_occupancy', 'off') and
+                is_state('switch.lounge_christmas_tree', 'on')
+              }}
+            then:
+              - wait_for_trigger:
+                  - platform: state
+                    entity_id: binary_sensor.lounge_occupancy
+                    to: "on"
+                  - platform: state
+                    entity_id: switch.lounge_christmas_tree
+                    to: "off"
+                  - platform: state
+                    entity_id: input_boolean.visitor_mode
+                    to: "on"
+                timeout:
+                  hours: 2
+                continue_on_timeout: true
+
+              - condition: template
+                value_template: "{{ wait.trigger is none }}"
+
+              - condition: state
+                entity_id: input_boolean.visitor_mode
+                state: "off"
+
+              - condition: state
+                entity_id: binary_sensor.lounge_occupancy
+                state: "off"
+
+              - condition: state
+                entity_id: switch.lounge_christmas_tree
+                state: "on"
+
+              - action: switch.turn_off
+                target:
+                  entity_id: switch.lounge_christmas_tree

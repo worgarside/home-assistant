@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (225)</h3></summary>
+<details><summary><h3>Entities (228)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1130,6 +1130,25 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/
 File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml)
 </details>
 
+<details><summary><code>/input-boolean/visitor-mode/off</code></summary>
+
+**Entity ID: `automation.input_boolean_visitor_mode_off`**
+
+> Restore normal occupancy lighting and vacancy timeouts after Visitor Mode
+
+- Alias: /input-boolean/visitor-mode/off
+- ID: `input_boolean_visitor_mode_off`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/input_boolean/visitor_mode/off.yaml`](entities/automation/input_boolean/visitor_mode/off.yaml)
+</details>
+
 <details><summary><code>/input-boolean/visitor-mode/on</code></summary>
 
 **Entity ID: `automation.input_boolean_visitor_mode_on`**
@@ -1149,12 +1168,7 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](enti
     "lower_hallway",
     "front_hallway",
     "lounge",
-    "vic_s_office",
-    "bathroom",
-    "bedroom",
-    "landing",
-    "office",
-    "guest_room"
+    "landing"
   ],
   "excluded_lights": [
     "light.apollo_plt_1b_1510d0_rgb_light",
@@ -1314,6 +1328,26 @@ File: [`automation/label/radiator/any_on.yaml`](entities/automation/label/radiat
 - Mode: `restart`
 
 File: [`automation/label/restore_state_after_room_vacancy/state_change.yaml`](entities/automation/label/restore_state_after_room_vacancy/state_change.yaml)
+</details>
+
+<details><summary><code>/light/basement-lights/unoccupied-alert</code></summary>
+
+**Entity ID: `automation.light_basement_lights_unoccupied_alert`**
+
+> Warn Will when a kitchen or dining-area light has remained on while Frigate has continuously reported no person. This automation is advisory and never changes lights or automations itself.
+
+- Alias: /light/basement-lights/unoccupied-alert
+- ID: `light_basement_lights_unoccupied_alert`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "timeout_minutes": "{{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}",
+  "on_light_names": "{{\n  expand(\n    'light.dining_area_big_light',\n    'light.dining_area_spotlights',\n    'light.dining_area_shelves',\n    'light.kitchen_counter_lights',\n    'light.kitchen_island',\n    'light.kitchen_spotlights'\n  )\n  | selectattr('state', 'eq', 'on')\n  | map(attribute='name')\n  | join(', ')\n}}"
+}
+```
+File: [`automation/light/basement_lights/unoccupied_alert.yaml`](entities/automation/light/basement_lights/unoccupied_alert.yaml)
 </details>
 
 <details><summary><code>/light/bedroom-shapes/bon-appetit</code></summary>
@@ -1547,6 +1581,19 @@ File: [`automation/media_player/topaz_sr10/on.yaml`](entities/automation/media_p
 - Mode: `single`
 
 File: [`automation/media_player/topaz_sr10/timeout.yaml`](entities/automation/media_player/topaz_sr10/timeout.yaml)
+</details>
+
+<details><summary><code>/mobile-app/notification-action/basement-lights-unoccupied-alert</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_basement_lights_unoccupied_alert`**
+
+> Handle the actions offered by the basement-lights unoccupied alert.
+
+- Alias: /mobile-app/notification-action/basement-lights-unoccupied-alert
+- ID: `mobile_app_notification_action_basement_lights_unoccupied_alert`
+- Mode: `queued`
+
+File: [`automation/mobile_app/notification_action/basement_lights_unoccupied_alert.yaml`](entities/automation/mobile_app/notification_action/basement_lights_unoccupied_alert.yaml)
 </details>
 
 <details><summary><code>/mobile-app/notification-action/bedroom-sunrise-delay</code></summary>
@@ -3428,7 +3475,7 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 
 ## Binary Sensor
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (3)</h3></summary>
 
 <details><summary><strong>Basement Bayesian Presence</strong></summary>
 
@@ -3437,6 +3484,24 @@ File: [`automation/webhook/update_pull_request_sensor.yaml`](entities/automation
 - Platform: `bayesian`
 
 File: [`binary_sensor/basement_bayesian_presence.yaml`](entities/binary_sensor/basement_bayesian_presence.yaml)
+</details>
+
+<details><summary><strong>Dining Area Bayesian Presence</strong></summary>
+
+**Entity ID: `binary_sensor.dining_area_bayesian_presence`**
+
+- Platform: `bayesian`
+
+File: [`binary_sensor/dining_area_bayesian_presence.yaml`](entities/binary_sensor/dining_area_bayesian_presence.yaml)
+</details>
+
+<details><summary><strong>Kitchen Bayesian Presence</strong></summary>
+
+**Entity ID: `binary_sensor.kitchen_bayesian_presence`**
+
+- Platform: `bayesian`
+
+File: [`binary_sensor/kitchen_bayesian_presence.yaml`](entities/binary_sensor/kitchen_bayesian_presence.yaml)
 </details>
 
 </details>
@@ -4246,7 +4311,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (72)</h3></summary>
+<details><summary><h3>Entities (74)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
@@ -4832,6 +4897,19 @@ File: [`input_number/timeout/air_freshener_timeout.yaml`](entities/input_number/
 File: [`input_number/timeout/basement_lights_timeout.yaml`](entities/input_number/timeout/basement_lights_timeout.yaml)
 </details>
 
+<details><summary><strong>Basement Lights | Unoccupied Alert Timeout</strong></summary>
+
+**Entity ID: `input_number.basement_lights_unoccupied_alert_timeout`**
+
+- Icon: [`mdi:timer-alert-outline`](https://pictogrammers.com/library/mdi/icon/timer-alert-outline/)
+- Max: 180
+- Min: 5
+- Mode: `box`
+- Unit Of Measurement: `min`
+
+File: [`input_number/timeout/basement_lights_unoccupied_alert_timeout.yaml`](entities/input_number/timeout/basement_lights_unoccupied_alert_timeout.yaml)
+</details>
+
 <details><summary><strong>Basement | Room Vacancy Light Timeout</strong></summary>
 
 **Entity ID: `input_number.basement_room_vacancy_light_timeout`**
@@ -5112,6 +5190,18 @@ File: [`input_number/topaz_sr10/topaz_sr10_power_off_timeout.yaml`](entities/inp
 - Unit Of Measurement: dB
 
 File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_number/topaz_sr10/topaz_sr10_volume_level.yaml)
+</details>
+
+<details><summary><strong>Visitor Mode Brightness</strong></summary>
+
+**Entity ID: `input_number.visitor_mode_brightness`**
+
+- Max: 100
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: %
+
+File: [`input_number/visitor_mode_brightness.yaml`](entities/input_number/visitor_mode_brightness.yaml)
 </details>
 
 <details><summary><strong>Will's Office | Grow Light: Daytime Light Level Threshold</strong></summary>
@@ -8165,7 +8255,43 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 
 ## Sensor
 
-<details><summary><h3>Entities (6)</h3></summary>
+<details><summary><h3>Entities (12)</h3></summary>
+
+<details><summary><strong>Basement Bayesian Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.basement_bayesian_presence`**
+
+- Platform: `history_stats`
+
+File: [`sensor/basement_bayesian_presence_24h.yaml`](entities/sensor/basement_bayesian_presence_24h.yaml)
+</details>
+
+<details><summary><strong>Basement FP2 Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.basement_occupancy`**
+
+- Platform: `history_stats`
+
+File: [`sensor/basement_fp2_presence_24h.yaml`](entities/sensor/basement_fp2_presence_24h.yaml)
+</details>
+
+<details><summary><strong>Dining Area Bayesian Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.dining_area_bayesian_presence`**
+
+- Platform: `history_stats`
+
+File: [`sensor/dining_area_bayesian_presence_24h.yaml`](entities/sensor/dining_area_bayesian_presence_24h.yaml)
+</details>
+
+<details><summary><strong>Dining Area FP2 Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.dining_area_occupancy`**
+
+- Platform: `history_stats`
+
+File: [`sensor/dining_area_fp2_presence_24h.yaml`](entities/sensor/dining_area_fp2_presence_24h.yaml)
+</details>
 
 <details><summary><strong>Hallway Radiator Temperature Derivative</strong></summary>
 
@@ -8174,6 +8300,24 @@ File: [`script/turn_off_physical_room.yaml`](entities/script/turn_off_physical_r
 - Platform: `derivative`
 
 File: [`sensor/hallway_radiator_temperature_derivative.yaml`](entities/sensor/hallway_radiator_temperature_derivative.yaml)
+</details>
+
+<details><summary><strong>Kitchen Bayesian Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.kitchen_bayesian_presence`**
+
+- Platform: `history_stats`
+
+File: [`sensor/kitchen_bayesian_presence_24h.yaml`](entities/sensor/kitchen_bayesian_presence_24h.yaml)
+</details>
+
+<details><summary><strong>Kitchen FP2 Presence 24h</strong></summary>
+
+**Entity ID: `sensor.binary_sensor.kitchen_occupancy`**
+
+- Platform: `history_stats`
+
+File: [`sensor/kitchen_fp2_presence_24h.yaml`](entities/sensor/kitchen_fp2_presence_24h.yaml)
 </details>
 
 <details><summary><strong>Office Desk Occupied Cumulative Time</strong></summary>
@@ -8327,7 +8471,7 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Template
 
-<details><summary><h3>Entities (100)</h3></summary>
+<details><summary><h3>Entities (103)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -8336,6 +8480,13 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 - Icon: [`mdi:calendar-star`](https://pictogrammers.com/library/mdi/icon/calendar-star/)
 
 File: [`template/binary_sensor/bank_holiday.yaml`](entities/template/binary_sensor/bank_holiday.yaml)
+</details>
+
+<details><summary><strong>Basement Human Presence</strong></summary>
+
+**Entity ID: `binary_sensor.basement_human_presence`**
+
+File: [`template/binary_sensor/basement_human_presence.yaml`](entities/template/binary_sensor/basement_human_presence.yaml)
 </details>
 
 <details><summary><strong>Before Midday</strong></summary>
@@ -8823,7 +8974,7 @@ File: [`template/sensor/average_home_temperature.yaml`](entities/template/sensor
 - Icon: [`mdi:percent-outline`](https://pictogrammers.com/library/mdi/icon/percent-outline/)
 - Unit Of Measurement: %
 
-File: [`template/sensor/basement/basement_bayesian_presence_probability.yaml`](entities/template/sensor/basement/basement_bayesian_presence_probability.yaml)
+File: [`template/sensor/basement_bayesian_presence_probability.yaml`](entities/template/sensor/basement_bayesian_presence_probability.yaml)
 </details>
 
 <details><summary><strong>Current Hour</strong></summary>
@@ -8891,6 +9042,16 @@ File: [`template/sensor/cursor/cursor_projected_cycle_usage.yaml`](entities/temp
 - Icon: [`mdi:speedometer`](https://pictogrammers.com/library/mdi/icon/speedometer/)
 
 File: [`template/sensor/cursor/cursor_usage_pace.yaml`](entities/template/sensor/cursor/cursor_usage_pace.yaml)
+</details>
+
+<details><summary><strong>Dining Area Bayesian Presence Probability</strong></summary>
+
+**Entity ID: `sensor.dining_area_bayesian_presence_probability`**
+
+- Icon: [`mdi:percent-outline`](https://pictogrammers.com/library/mdi/icon/percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/dining_area_bayesian_presence_probability.yaml`](entities/template/sensor/dining_area_bayesian_presence_probability.yaml)
 </details>
 
 <details><summary><strong>Vic and Will Distance</strong></summary>
@@ -8983,6 +9144,16 @@ File: [`template/sensor/garden_door_last_changed.yaml`](entities/template/sensor
 **Entity ID: `sensor.hifi_system_media_metadata`**
 
 File: [`template/sensor/hifi_system_media_metadata.yaml`](entities/template/sensor/hifi_system_media_metadata.yaml)
+</details>
+
+<details><summary><strong>Kitchen Bayesian Presence Probability</strong></summary>
+
+**Entity ID: `sensor.kitchen_bayesian_presence_probability`**
+
+- Icon: [`mdi:percent-outline`](https://pictogrammers.com/library/mdi/icon/percent-outline/)
+- Unit Of Measurement: %
+
+File: [`template/sensor/kitchen_bayesian_presence_probability.yaml`](entities/template/sensor/kitchen_bayesian_presence_probability.yaml)
 </details>
 
 <details><summary><strong>Lighting Modifier</strong></summary>

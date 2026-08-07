@@ -1,0 +1,24 @@
+---
+name: Kitchen Bayesian Presence Probability
+
+unique_id: kitchen_bayesian_presence_probability
+
+unit_of_measurement: "%"
+
+icon: mdi:percent-outline
+
+availability: >-
+  {{
+    states('binary_sensor.kitchen_bayesian_presence')
+    not in ['unavailable', 'unknown']
+    and state_attr('binary_sensor.kitchen_bayesian_presence', 'probability')
+    is not none
+  }}
+
+state: >-
+  {{
+    (
+      state_attr('binary_sensor.kitchen_bayesian_presence', 'probability')
+      | float(0) * 100
+    ) | round(0)
+  }}

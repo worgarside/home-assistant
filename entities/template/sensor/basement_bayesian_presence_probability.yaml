@@ -20,5 +20,5 @@ state: >-
     (
       state_attr('binary_sensor.basement_bayesian_presence', 'probability')
       | float(0) * 100
-    ) | round(1)
+    ) | round(0)
   }}
