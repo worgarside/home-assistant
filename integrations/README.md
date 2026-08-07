@@ -4308,7 +4308,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (73)</h3></summary>
+<details><summary><h3>Entities (74)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
