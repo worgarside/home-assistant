@@ -277,7 +277,7 @@ sequence:
           value_template: "{{ clear_notification }}"
 
     then:
-      - if: "{{ image | length > 0 }}"
+      - if: "{{ ha_image | length > 0 }}"
         then:
           - action: notify.mobile_app_wills_macbook_pro
             continue_on_error: true
@@ -289,7 +289,7 @@ sequence:
                 tag: "{{ notification_id }}"
                 group: "{{ group }}"
                 url: "{{ url }}"
-                image: "{{ image }}"
+                image: "{{ ha_image }}"
         else:
           - action: notify.mobile_app_wills_macbook_pro
             continue_on_error: true
@@ -328,7 +328,7 @@ sequence:
         #   - alias: Will not on A/L - TODO
 
     then:
-      - if: "{{ image | length > 0 }}"
+      - if: "{{ ha_image | length > 0 }}"
         then:
           - action: notify.mobile_app_wills_work_macbook_pro
             continue_on_error: true
@@ -340,7 +340,7 @@ sequence:
                 tag: "{{ notification_id }}"
                 group: "{{ group }}"
                 url: "{{ url }}"
-                image: "{{ image }}"
+                image: "{{ ha_image }}"
         else:
           - action: notify.mobile_app_wills_work_macbook_pro
             continue_on_error: true
