@@ -4,10 +4,10 @@ alias: /camera/frigate/notify
 id: camera_frigate_notify
 
 description: >-
-  Notify Will and Vic immediately for front-door and pet reviews, then silently update their
-  notifications with Frigate's AI-generated summary. Indoor person reviews notify only after AI
-  processing and only when nobody is home. input_boolean.frigate_bypass_filters bypasses the
-  noise-reduction gating for Will only; Vic's notifications are always filtered.
+  Notify Will and Vic immediately for front-door reviews, then silently update their
+  notifications with Frigate's AI-generated summary. Under normal filtering, pet and indoor
+  person reviews notify only when nobody is home. input_boolean.frigate_bypass_filters bypasses
+  the noise-reduction gating for Will only; Vic's notifications are always filtered.
 
 mode: parallel
 
@@ -77,6 +77,18 @@ variables:
 
   is_pet: "{{ 'cat' in objects or 'dog' in objects }}"
 
+  is_away: "{{ states('zone.home') | int(0) < 1 }}"
+
+  is_front_door_person: "{{ not is_pet and camera == 'front_door' }}"
+
+  notify_normally: >-
+    {{
+      (trigger.id == 'new' and (is_front_door_person or (is_pet and is_away)))
+      or (trigger.id == 'genai' and (is_front_door_person or is_away))
+      or (trigger.id == 'update' and recognized_name | length > 0
+          and (is_front_door_person or is_away))
+    }}
+
   detected_object: >-
     {{
       'person'
@@ -128,89 +140,11 @@ condition:
       }}
 
 action:
-  - choose:
-      # Apply the normal notification filters to both recipients
-      - conditions:
-          - condition: or
-            conditions:
-              # Immediate alert: front door or pets only (skip indoor people)
-              - condition: and
-                conditions:
-                  - condition: trigger
-                    id: new
-                  - condition: template
-                    value_template: "{{ camera == 'front_door' or is_pet }}"
-
-              # GenAI summary: front door / pets always; indoor people only when away
-              - condition: and
-                conditions:
-                  - condition: trigger
-                    id: genai
-                  - condition: or
-                    conditions:
-                      - condition: template
-                        value_template: "{{ camera == 'front_door' or is_pet }}"
-                      - condition: numeric_state
-                        entity_id: zone.home
-                        below: 1
-
-              # Face recognition update: named person only; same location rules as genai
-              - condition: and
-                conditions:
-                  - condition: trigger
-                    id: update
-                  - condition: template
-                    value_template: "{{ recognized_name | length > 0 }}"
-                  - condition: or
-                    conditions:
-                      - condition: template
-                        value_template: "{{ camera == 'front_door' or is_pet }}"
-                      - condition: numeric_state
-                        entity_id: zone.home
-                        below: 1
-        sequence:
-          - parallel:
-              - action: script.notify_will
-                continue_on_error: true
-                data:
-                  title: "{{ notification_title }}"
-                  message: "{{ notification_message }}"
-                  notification_id: frigate_{{ camera }}_{{ review_id }}
-                  mobile_notification_icon: >-
-                    {{ 'mdi:doorbell-video' if camera == 'front_door' else 'mdi:cctv' }}
-                  group: "frigate-{{ camera | replace('_', '-') }}"
-                  sticky: true
-                  alert_once: true
-                  image: "{{ snapshot_url }}"
-                  url: "{{ clip_url }}"
-                  actions:
-                    - action: URI
-                      title: View Clip
-                      uri: "{{ clip_url }}"
-
-              - action: script.notify_vic
-                continue_on_error: true
-                data:
-                  title: "{{ notification_title }}"
-                  message: "{{ notification_message }}"
-                  notification_id: frigate_{{ camera }}_{{ review_id }}
-                  mobile_notification_icon: >-
-                    {{ 'mdi:doorbell-video' if camera == 'front_door' else 'mdi:cctv' }}
-                  group: "frigate-{{ camera | replace('_', '-') }}"
-                  sticky: true
-                  image: "{{ snapshot_url }}"
-                  url: "{{ clip_url }}"
-                  actions:
-                    - action: URI
-                      title: View Clip
-                      uri: "{{ clip_url }}"
-
-    # Only Will receives reviews excluded by the normal filters
-    default:
-      - if:
-          - condition: state
-            entity_id: input_boolean.frigate_bypass_filters
-            state: "on"
+  - parallel:
+      # Will gets normally-filtered reviews, plus anything let through by
+      # input_boolean.frigate_bypass_filters
+      - if: >-
+          {{ notify_normally or is_state('input_boolean.frigate_bypass_filters', 'on') }}
         then:
           - action: script.notify_will
             continue_on_error: true
@@ -223,6 +157,26 @@ action:
               group: "frigate-{{ camera | replace('_', '-') }}"
               sticky: true
               alert_once: true
+              image: "{{ snapshot_url }}"
+              url: "{{ clip_url }}"
+              actions:
+                - action: URI
+                  title: View Clip
+                  uri: "{{ clip_url }}"
+
+      # Vic only gets normally-filtered reviews; bypass_filters doesn't apply to her
+      - if: "{{ notify_normally }}"
+        then:
+          - action: script.notify_vic
+            continue_on_error: true
+            data:
+              title: "{{ notification_title }}"
+              message: "{{ notification_message }}"
+              notification_id: frigate_{{ camera }}_{{ review_id }}
+              mobile_notification_icon: >-
+                {{ 'mdi:doorbell-video' if camera == 'front_door' else 'mdi:cctv' }}
+              group: "frigate-{{ camera | replace('_', '-') }}"
+              sticky: true
               image: "{{ snapshot_url }}"
               url: "{{ clip_url }}"
               actions:
