@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (227)</h3></summary>
+<details><summary><h3>Entities (228)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1127,6 +1127,25 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/on.yaml`](entities/
 File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](entities/automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml)
 </details>
 
+<details><summary><code>/input-boolean/visitor-mode/off</code></summary>
+
+**Entity ID: `automation.input_boolean_visitor_mode_off`**
+
+> Restore normal occupancy lighting and vacancy timeouts after Visitor Mode
+
+- Alias: /input-boolean/visitor-mode/off
+- ID: `input_boolean_visitor_mode_off`
+- Mode: `restart`
+- Variables:
+
+```json
+{
+  "brightness": "{{ states('sensor.lighting_modifier') | int(70) }}"
+}
+```
+File: [`automation/input_boolean/visitor_mode/off.yaml`](entities/automation/input_boolean/visitor_mode/off.yaml)
+</details>
+
 <details><summary><code>/input-boolean/visitor-mode/on</code></summary>
 
 **Entity ID: `automation.input_boolean_visitor_mode_on`**
@@ -1146,12 +1165,7 @@ File: [`automation/input_boolean/lounge_lights_exercise_mode/timeout.yaml`](enti
     "lower_hallway",
     "front_hallway",
     "lounge",
-    "vic_s_office",
-    "bathroom",
-    "bedroom",
-    "landing",
-    "office",
-    "guest_room"
+    "landing"
   ],
   "excluded_lights": [
     "light.apollo_plt_1b_1510d0_rgb_light",
@@ -4294,7 +4308,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (73)</h3></summary>
+<details><summary><h3>Entities (74)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
@@ -5173,6 +5187,18 @@ File: [`input_number/topaz_sr10/topaz_sr10_power_off_timeout.yaml`](entities/inp
 - Unit Of Measurement: dB
 
 File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_number/topaz_sr10/topaz_sr10_volume_level.yaml)
+</details>
+
+<details><summary><strong>Visitor Mode Brightness</strong></summary>
+
+**Entity ID: `input_number.visitor_mode_brightness`**
+
+- Max: 100
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: %
+
+File: [`input_number/visitor_mode_brightness.yaml`](entities/input_number/visitor_mode_brightness.yaml)
 </details>
 
 <details><summary><strong>Will's Office | Grow Light: Daytime Light Level Threshold</strong></summary>
