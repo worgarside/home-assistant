@@ -38,11 +38,17 @@ when correctness depends on it, and never guess live behavior.
 
 ## Git safety
 
-Never run commands that mutate git state or the working tree. Read-only
-commands such as `git status`, `git diff`, `git log`, `git show`, and
-`git rev-parse` are allowed. Do not run `git add`, `commit`, `push`, `pull`,
-`fetch`, `checkout`, `switch`, `restore`, `reset`, `merge`, `rebase`, `stash`,
-`tag`, `clean`, or equivalents. Ask the user to perform required git
+Do not mutate git state or the working tree unless the user explicitly requests
+the operation. Read-only commands such as `git status`, `git diff`, `git log`,
+`git show`, and `git rev-parse` are always allowed. Creating a worktree and its
+branch is allowed when the user asks for a worktree. Create branches from a
+remote base with `--no-track` so they do not inherit the base branch as their
+upstream. When the user asks to publish the branch or configure its upstream,
+push it under its own name with `git push -u origin HEAD`.
+
+Without explicit user authorization, do not run `git add`, `commit`, `push`,
+`pull`, `fetch`, `checkout`, `switch`, `restore`, `reset`, `merge`, `rebase`,
+`stash`, `tag`, `clean`, or equivalents. Ask the user to perform required git
 operations; do not work around this with GitHub APIs, MCP, or shell redirects.
 
 ## Deployment
