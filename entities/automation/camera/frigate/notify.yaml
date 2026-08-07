@@ -79,7 +79,7 @@ variables:
 
   is_away: "{{ states('zone.home') | int(0) < 1 }}"
 
-  is_front_door_person: "{{ not is_pet and camera == 'front_door' }}"
+  is_front_door_person: "{{ 'person' in objects and camera == 'front_door' }}"
 
   notify_normally: >-
     {{

@@ -472,7 +472,7 @@ File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automat
   "metadata": "{{ review_data.get('metadata', {}) }}",
   "is_pet": "{{ 'cat' in objects or 'dog' in objects }}",
   "is_away": "{{ states('zone.home') | int(0) < 1 }}",
-  "is_front_door_person": "{{ not is_pet and camera == 'front_door' }}",
+  "is_front_door_person": "{{ 'person' in objects and camera == 'front_door' }}",
   "notify_normally": "{{\n  (trigger.id == 'new' and (is_front_door_person or (is_pet and is_away)))\n  or (trigger.id == 'genai' and (is_front_door_person or is_away))\n  or (trigger.id == 'update' and recognized_name | length > 0\n      and (is_front_door_person or is_away))\n}}",
   "detected_object": "{{\n  'person'\n  if 'person' in objects\n  else 'dog'\n  if 'dog' in objects\n  else 'cat'\n  if 'cat' in objects\n  else 'activity'\n}}",
   "notification_title": "{{\n  metadata.get('title', detected_object | title ~ ' on ' ~ camera_name)\n  if trigger.id == 'genai'\n  else recognized_name ~ ' on ' ~ camera_name\n  if recognized_name | length > 0\n  else detected_object | title ~ ' on ' ~ camera_name\n}}",
