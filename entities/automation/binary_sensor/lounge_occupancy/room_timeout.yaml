@@ -17,6 +17,8 @@ trigger:
     for:
       minutes: "{{ states('input_number.lounge_room_timeout') | int(30) }}"
 
+condition: "{{ is_state('input_boolean.visitor_mode', 'off') }}"
+
 action:
   - action: script.turn_off_physical_room
     data:

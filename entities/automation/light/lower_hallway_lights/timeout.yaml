@@ -24,6 +24,10 @@ trigger:
     to: "off"
 
 condition:
+  - condition: state
+    entity_id: input_boolean.visitor_mode
+    state: "off"
+
   # Only proceed if no motion sensors are on (unavailable counts as not on)
   - condition: not
     conditions:
@@ -43,6 +47,11 @@ action:
   # Wait for the configured timeout period
   - delay:
       seconds: "{{ states('input_number.hallway_lights_timeout') | int(120) }}"
+
+  # Cleaner/guest mode may have been enabled while the timeout was running
+  - condition: state
+    entity_id: input_boolean.visitor_mode
+    state: "off"
 
   # Check again that no sensors are on after the timeout
   - condition: not

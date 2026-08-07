@@ -16,6 +16,8 @@ trigger:
     for:
       minutes: "{{ states('input_number.garden_light_timeout') | int(30) }}"
 
+condition: "{{ is_state('input_boolean.visitor_mode', 'off') }}"
+
 action:
   - action: light.turn_off
     target:

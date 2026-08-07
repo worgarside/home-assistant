@@ -4,12 +4,16 @@ from __future__ import annotations
 
 import colorsys
 from pathlib import Path
+from typing import cast
 
 import matplotlib.colors as mc
 from yaml import safe_load
 
-LABELS = safe_load(
-    Path(__file__).parents[1].joinpath(".github/repo_labels.yml").read_text(),
+LABELS = cast(
+    "list[dict[str, str]]",
+    safe_load(
+        Path(__file__).parents[1].joinpath(".github/repo_labels.yml").read_text(),
+    ),
 )
 
 
@@ -57,7 +61,7 @@ def generate_unique_colors(n: int, *, include_prefix: bool = False) -> list[str]
         raise ValueError(n)
 
     step = 360.0 / n if n > 1 else 0
-    colors = []
+    colors: list[str] = []
 
     for i in range(n):
         hue = i * step
@@ -148,7 +152,7 @@ def gen_github_label_colors() -> None:
     # border_alpha = 0.298
 
     colors = {lbl["name"]: lbl["color"] for lbl in LABELS}
-    output = {}
+    output: dict[str, dict[str, str]] = {}
     for label_name, orig in colors.items():
         label_r, label_g, label_b = (int(i * 255) for i in mc.to_rgb("#" + orig))
         label_h, label_l, label_s = colorsys.rgb_to_hls(
@@ -225,34 +229,10 @@ def gen_github_label_colors() -> None:
 
 def get_repo_label_colors() -> None:
     """Generate colors for the repository labels."""
-    repo_labels = (
-        ("ha:appdaemon", "AppDaemon apps for Home Assistant"),
-        ("ha:automations", "Automations to control devices"),
-        ("ha:config", "Configuration files for Home Assistant"),
-        ("ha:command-line", "Command line sensors"),
-        ("ha:cover", "Window blinds, curtains, and garage doors"),
-        ("ha:custom-components", "Custom Components added to Home Assistant"),
-        ("ha:device-tracker", "Track device locations and presence"),
-        ("ha:esphome", "ESPHome configuration files"),
-        ("ha:groups", "Group entities together for easy control"),
-        ("ha:input-boolean", "Binary on/off input controls"),
-        ("ha:input-button", "Momentary push button input controls"),
-        ("ha:input-datetime", "Date and time input controls"),
-        ("ha:input-number", "Numeric input controls"),
-        ("ha:input-select", "Dropdown selection input controls"),
-        ("ha:input-text", "Text input controls"),
-        ("ha:lovelace", "Lovelace UI configuration files"),
-        ("ha:media-player", "Music and video playback devices"),
-        ("ha:mqtt", "MQTT broker and clients"),
-        ("ha:pyscript", "Custom Python scripts for Home Assistant"),
-        ("ha:rest-command", "RESTful API commands"),
-        ("ha:scenes", "Preconfigured sets of entity states"),
-        ("ha:scripts", "Reusable blocks of automation code"),
-        ("ha:sensors", "Gather data about the environment"),
-        ("ha:shell-command", "Shell commands to run on the host system"),
-        ("ha:switch", "On/off switches for devices"),
-        ("ha:template", "Template entities for customization"),
-        ("ha:variables", "Global variables for use in automations"),
+    repo_labels = tuple(
+        (label["name"], label.get("description", ""))
+        for label in LABELS
+        if label["name"].startswith("ha:")
     )
 
     for i, c in enumerate(generate_unique_colors(len(repo_labels))):
