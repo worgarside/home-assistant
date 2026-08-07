@@ -1,0 +1,187 @@
+---
+alias: /light/basement-lights/unoccupied-alert
+
+id: light_basement_lights_unoccupied_alert
+
+description: >-
+  Warn Will when a kitchen or dining-area light has remained on while Frigate has continuously
+  reported no person. This automation is advisory and never changes lights or automations itself.
+
+mode: restart
+
+max_exceeded: silent
+
+variables:
+  timeout_minutes: >-
+    {{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}
+
+  on_light_names: >-
+    {{
+      expand(
+        'light.dining_area_big_light',
+        'light.dining_area_spotlights',
+        'light.dining_area_shelves',
+        'light.kitchen_counter_lights',
+        'light.kitchen_island',
+        'light.kitchen_spotlights'
+      )
+      | selectattr('state', 'eq', 'on')
+      | map(attribute='name')
+      | join(', ')
+    }}
+
+trigger:
+  - platform: state
+    entity_id:
+      - light.dining_area_big_light
+      - light.dining_area_spotlights
+      - light.dining_area_shelves
+      - light.kitchen_counter_lights
+      - light.kitchen_island
+      - light.kitchen_spotlights
+    to: "on"
+    for:
+      minutes: >-
+        {{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}
+
+  - platform: state
+    entity_id: binary_sensor.basement_person_occupancy
+    to: "off"
+    for:
+      minutes: >-
+        {{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}
+
+  - platform: state
+    entity_id:
+      - light.dining_area_big_light
+      - light.dining_area_spotlights
+      - light.dining_area_shelves
+      - light.kitchen_counter_lights
+      - light.kitchen_island
+      - light.kitchen_spotlights
+    to: "off"
+
+  - platform: state
+    entity_id: binary_sensor.basement_person_occupancy
+    to: "on"
+
+  # Reconcile after restarts or reloads, which reset state-trigger `for` timers.
+  - platform: time_pattern
+    hours: "/1"
+
+action:
+  - choose:
+      - alias: Clear when Frigate sees a person
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.basement_person_occupancy
+            state: "on"
+        sequence:
+          - action: script.notify_will
+            data:
+              clear_notification: true
+              notification_id: basement_lights_unoccupied_alert
+
+      - alias: Clear when all monitored lights are off
+        conditions:
+          - condition: state
+            entity_id:
+              - light.dining_area_big_light
+              - light.dining_area_spotlights
+              - light.dining_area_shelves
+              - light.kitchen_counter_lights
+              - light.kitchen_island
+              - light.kitchen_spotlights
+            state: "off"
+        sequence:
+          - action: script.notify_will
+            data:
+              clear_notification: true
+              notification_id: basement_lights_unoccupied_alert
+
+      - alias: Alert after continuous lighting and Frigate vacancy
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.basement_person_occupancy
+            state: "off"
+            for:
+              minutes: >-
+                {{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}
+
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: light.dining_area_big_light
+                state: "on"
+                for:
+                  minutes: >-
+                    {{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}
+              - condition: state
+                entity_id: light.dining_area_spotlights
+                state: "on"
+                for:
+                  minutes: >-
+                    {{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}
+              - condition: state
+                entity_id: light.dining_area_shelves
+                state: "on"
+                for:
+                  minutes: >-
+                    {{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}
+              - condition: state
+                entity_id: light.kitchen_counter_lights
+                state: "on"
+                for:
+                  minutes: >-
+                    {{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}
+              - condition: state
+                entity_id: light.kitchen_island
+                state: "on"
+                for:
+                  minutes: >-
+                    {{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}
+              - condition: state
+                entity_id: light.kitchen_spotlights
+                state: "on"
+                for:
+                  minutes: >-
+                    {{ states('input_number.basement_lights_unoccupied_alert_timeout') | int(30) }}
+
+        sequence:
+          # Offer the re-enable actions only when an occupancy automation is
+          # currently disabled; otherwise the alert is turn-off only.
+          - variables:
+              alert_actions: >-
+                {{
+                  [
+                    {"action": "BASEMENT_LIGHTS_TURN_OFF", "title": "Turn Lights Off"}
+                  ] + (
+                    [
+                      {"action": "BASEMENT_AUTOMATIONS_TURN_ON", "title": "Re-enable Automations"},
+                      {
+                        "action": "BASEMENT_LIGHTS_TURN_OFF_AND_AUTOMATIONS_TURN_ON",
+                        "title": "Turn Off + Re-enable"
+                      }
+                    ]
+                    if (
+                      is_state('automation.binary_sensor_dining_area_occupancy_state_change', 'off')
+                      or is_state('automation.binary_sensor_kitchen_occupancy_state_change', 'off')
+                    )
+                    else []
+                  )
+                }}
+
+          - action: script.notify_will
+            data:
+              title: Basement Lights May Have Been Left On
+              message: >-
+                Frigate has detected no person for {{ timeout_minutes }} minutes, while these
+                lights have remained on: {{ on_light_names }}.
+              notification_id: basement_lights_unoccupied_alert
+              mobile_notification_icon: mdi:lightbulb-alert
+              group: basement-lights
+              sticky: true
+              persistent: true
+              alert_once: true
+              image: /api/camera_proxy/camera.basement
+              actions: "{{ alert_actions }}"
