@@ -1,0 +1,179 @@
+# Configuration file for `prek`, a git hook framework written in Rust.
+# See https://prek.j178.dev for more information.
+#:schema https://www.schemastore.org/prek.json
+
+default_language_version = { python = "python3.12" }
+default_install_hook_types = [
+  "commit-msg",
+  "pre-commit"
+  ]
+exclude = "^lovelace/dashboards/ui_only/"
+
+[[repos]]
+repo = "https://github.com/compilerla/conventional-pre-commit"
+rev = "v4.4.0"
+hooks = [
+  {
+    id = "conventional-pre-commit",
+    args = [
+      "build",
+      "chore",
+      "ci",
+      "deps",
+      "docs",
+      "feat",
+      "fix",
+      "hotfix",
+      "perf",
+      "refactor",
+      "style",
+      "test"
+    ],
+    stages = ["commit-msg"]
+  }
+]
+
+[[repos]]
+repo = "https://github.com/astral-sh/uv-pre-commit"
+rev = "0.12.1"
+hooks = [
+  { id = "uv-lock" }
+]
+
+[[repos]]
+repo = "https://github.com/pre-commit/pre-commit-hooks"
+rev = "v6.0.0"
+hooks = [
+  {
+    id = "check-added-large-files",
+    args = ["--maxkb=1000"]
+  },
+  { id = "check-case-conflict" },
+  { id = "check-merge-conflict" },
+  { id = "debug-statements" },
+  { id = "end-of-file-fixer" },
+  { id = "mixed-line-ending" },
+  {
+    id = "pretty-format-json",
+    args = [
+      "--no-sort-keys",
+      "--autofix",
+      "--indent",
+      "2"
+    ]
+  },
+  { id = "trailing-whitespace" }
+]
+
+[[repos]]
+repo = "https://github.com/worgarside/home-assistant-config-validator"
+rev = "4.3.7"
+hooks = [
+  {
+    id = "validate-entities",
+    args = [
+      "--fix",
+      "--validate-all"
+    ]
+  },
+  { id = "generate-readme" }
+]
+
+[[repos]]
+repo = "https://github.com/jumanjihouse/pre-commit-hook-yamlfmt"
+rev = "0.2.3"
+hooks = [
+  {
+    id = "yamlfmt",
+    exclude = "esphome",
+    args = [
+      "--mapping",
+      "2",
+      "--sequence",
+      "4",
+      "--offset",
+      "2",
+      "--width",
+      "4096",
+      "--preserve-quotes"
+    ]
+  }
+]
+
+[[repos]]
+repo = "https://github.com/adrienverge/yamllint.git"
+rev = "v1.38.0"
+hooks = [
+  {
+    id = "yamllint",
+    args = [
+      "--format",
+      "parsable",
+      "--strict"
+    ]
+  }
+]
+
+[[repos]]
+repo = "https://github.com/rhysd/actionlint"
+rev = "v1.7.12"
+hooks = [
+  { id = "actionlint" }
+]
+
+[[repos]]
+repo = "https://github.com/astral-sh/ruff-pre-commit"
+rev = "v0.16.1"
+hooks = [
+  {
+    id = "ruff-check",
+    args = ["--fix"],
+    exclude = '^(custom_zha_quirks|custom_components)/.+\.py$'
+  },
+  {
+    id = "ruff-format",
+    exclude = '^(custom_zha_quirks|custom_components)/.+\.py$'
+  }
+]
+
+[[repos]]
+repo = "https://github.com/lovesegfault/beautysh"
+rev = "v6.4.3"
+hooks = [
+  {
+    id = "beautysh",
+    language_version = "python3.11"
+  }
+]
+
+[[repos]]
+repo = "https://github.com/pre-commit/pygrep-hooks"
+rev = "v1.10.0"
+hooks = [
+  { id = "python-check-blanket-noqa" },
+  { id = "python-check-blanket-type-ignore" },
+  { id = "python-check-mock-methods" }
+]
+
+[[repos]]
+repo = "https://github.com/codespell-project/codespell"
+rev = "v2.4.3"
+hooks = [
+  {
+    id = "codespell",
+    additional_dependencies = ["tomli"]
+  }
+]
+
+[[repos]]
+repo = "local"
+hooks = [
+  {
+    id = "basedpyright",
+    name = "basedpyright",
+    entry = "uv run --frozen basedpyright",
+    language = "system",
+    pass_filenames = false,
+    files = '^(dev_tools/.+\.py|pyproject\.toml|uv\.lock)$'
+  }
+]

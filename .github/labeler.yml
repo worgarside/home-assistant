@@ -2,7 +2,7 @@
 dependencies:
   - changed-files:
       - any-glob-to-any-file:
-          - .pre-commit-config.yaml
+          - prek.toml
           - pyproject.toml
           - uv.lock
 

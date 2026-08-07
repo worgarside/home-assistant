@@ -74,7 +74,7 @@ jobs:
     name: Close Empty PR
     # github-config-files has no releases; pin the latest audited main commit.
     # yamllint disable-line rule:line-length
-    uses: worgarside/github-config-files/.github/workflows/__close_empty_pr.yml@be008ae8f54348a000172e13598711c384dbc69b
+    uses: worgarside/github-config-files/.github/workflows/__close-empty-pr.yml@be008ae8f54348a000172e13598711c384dbc69b
     if: >-
       github.event_name == 'pull_request' &&
       github.event.pull_request.state == 'open'
