@@ -42,15 +42,17 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          # Required so semantic-release can push with the deploy key.
+          persist-credentials: true
           ref: ${{ github.ref }}
-          token: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
+          ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
 
       - name: Release
         id: release
         # yamllint disable-line rule:line-length
         uses: python-semantic-release/python-semantic-release@39dd2052f2ce8282a5d932c31d58a2ca06d2550e # v10.6.1
         with:
-          github_token: ${{ secrets.WORGARSIDE_DEV_TOKEN }}
+          github_token: ${{ github.token }}
           git_committer_name: worgarside-dev
           git_committer_email: worgarside.dev@gmail.com
           config_file: pyproject.toml
