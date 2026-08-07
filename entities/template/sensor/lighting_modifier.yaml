@@ -7,9 +7,6 @@ unit_of_measurement: "%"
 
 icon: mdi:brightness-percent
 
-attributes:
-  visitor_mode_brightness: 100
-
 state: >-
   {% set sun = states("sensor.sun_elevation") | float(0) %}
   {% set quiet_hours = states("binary_sensor.quiet_hours") | bool(false) %}

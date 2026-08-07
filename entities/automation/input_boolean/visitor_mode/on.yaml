@@ -50,5 +50,5 @@ action:
       entity_id: "{{ target_lights }}"
     data:
       brightness_pct: >-
-        {{ state_attr('sensor.lighting_modifier', 'visitor_mode_brightness') | int(70) }}
+        {{ states('input_number.visitor_mode_brightness') | int(70) }}
       transition: 1

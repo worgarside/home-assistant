@@ -37,7 +37,7 @@ action:
                 continue_on_timeout: true
 
               - condition: template
-                value_template: "{{ not wait.completed }}"
+                value_template: "{{ wait.trigger is none }}"
 
               - condition: state
                 entity_id: input_boolean.visitor_mode
@@ -71,7 +71,7 @@ action:
                 continue_on_timeout: true
 
               - condition: template
-                value_template: "{{ not wait.completed }}"
+                value_template: "{{ wait.trigger is none }}"
 
               - condition: state
                 entity_id: input_boolean.visitor_mode
@@ -134,7 +134,7 @@ action:
                         continue_on_timeout: true
 
                       - condition: template
-                        value_template: "{{ not wait.completed }}"
+                        value_template: "{{ wait.trigger is none }}"
 
                       - condition: state
                         entity_id: input_boolean.visitor_mode
@@ -165,7 +165,7 @@ action:
                         continue_on_timeout: true
 
                       - condition: template
-                        value_template: "{{ not wait.completed }}"
+                        value_template: "{{ wait.trigger is none }}"
 
                       - condition: state
                         entity_id: input_boolean.visitor_mode
@@ -213,7 +213,7 @@ action:
                 continue_on_timeout: true
 
               - condition: template
-                value_template: "{{ not wait.completed }}"
+                value_template: "{{ wait.trigger is none }}"
 
               - condition: state
                 entity_id: input_boolean.visitor_mode
@@ -275,7 +275,7 @@ action:
                 continue_on_timeout: true
 
               - condition: template
-                value_template: "{{ not wait.completed }}"
+                value_template: "{{ wait.trigger is none }}"
 
               - condition: state
                 entity_id: input_boolean.visitor_mode
@@ -318,7 +318,7 @@ action:
                 continue_on_timeout: true
 
               - condition: template
-                value_template: "{{ not wait.completed }}"
+                value_template: "{{ wait.trigger is none }}"
 
               - condition: state
                 entity_id: input_boolean.visitor_mode
@@ -376,7 +376,7 @@ action:
                 continue_on_timeout: true
 
               - condition: template
-                value_template: "{{ not wait.completed }}"
+                value_template: "{{ wait.trigger is none }}"
 
               - condition: state
                 entity_id: input_boolean.visitor_mode
@@ -413,7 +413,7 @@ action:
                 continue_on_timeout: true
 
               - condition: template
-                value_template: "{{ not wait.completed }}"
+                value_template: "{{ wait.trigger is none }}"
 
               - condition: state
                 entity_id: input_boolean.visitor_mode

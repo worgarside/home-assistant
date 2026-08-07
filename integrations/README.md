@@ -4256,7 +4256,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (72)</h3></summary>
+<details><summary><h3>Entities (73)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
@@ -5122,6 +5122,18 @@ File: [`input_number/topaz_sr10/topaz_sr10_power_off_timeout.yaml`](entities/inp
 - Unit Of Measurement: dB
 
 File: [`input_number/topaz_sr10/topaz_sr10_volume_level.yaml`](entities/input_number/topaz_sr10/topaz_sr10_volume_level.yaml)
+</details>
+
+<details><summary><strong>Visitor Mode Brightness</strong></summary>
+
+**Entity ID: `input_number.visitor_mode_brightness`**
+
+- Max: 100
+- Min: 1
+- Mode: `slider`
+- Unit Of Measurement: %
+
+File: [`input_number/visitor_mode_brightness.yaml`](entities/input_number/visitor_mode_brightness.yaml)
 </details>
 
 <details><summary><strong>Will's Office | Grow Light: Daytime Light Level Threshold</strong></summary>
