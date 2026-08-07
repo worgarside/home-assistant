@@ -1,0 +1,85 @@
+---
+alias: /mobile-app/notification-action/basement-lights-unoccupied-alert
+
+id: mobile_app_notification_action_basement_lights_unoccupied_alert
+
+description: Handle the actions offered by the basement-lights unoccupied alert.
+
+mode: queued
+
+max: 5
+
+trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: BASEMENT_LIGHTS_TURN_OFF
+    id: turn_lights_off
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: BASEMENT_AUTOMATIONS_TURN_ON
+    id: turn_automations_on
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: BASEMENT_LIGHTS_TURN_OFF_AND_AUTOMATIONS_TURN_ON
+    id: turn_lights_off_and_automations_on
+
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: turn_lights_off
+        sequence:
+          - action: light.turn_off
+            target:
+              entity_id:
+                - light.dining_area_big_light
+                - light.dining_area_spotlights
+                - light.dining_area_shelves
+                - light.kitchen_counter_lights
+                - light.kitchen_island
+                - light.kitchen_spotlights
+            data:
+              transition: 5
+
+      - conditions:
+          - condition: trigger
+            id: turn_automations_on
+        sequence:
+          - action: automation.turn_on
+            target:
+              entity_id:
+                - automation.binary_sensor_dining_area_occupancy_state_change
+                - automation.binary_sensor_kitchen_occupancy_state_change
+
+      - conditions:
+          - condition: trigger
+            id: turn_lights_off_and_automations_on
+        sequence:
+          - parallel:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.dining_area_big_light
+                    - light.dining_area_spotlights
+                    - light.dining_area_shelves
+                    - light.kitchen_counter_lights
+                    - light.kitchen_island
+                    - light.kitchen_spotlights
+                data:
+                  transition: 5
+
+              - action: automation.turn_on
+                target:
+                  entity_id:
+                    - automation.binary_sensor_dining_area_occupancy_state_change
+                    - automation.binary_sensor_kitchen_occupancy_state_change
+
+  - action: script.notify_will
+    data:
+      clear_notification: true
+      notification_id: basement_lights_unoccupied_alert
