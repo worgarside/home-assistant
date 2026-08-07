@@ -1,162 +1,163 @@
 ---
-version: 1
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .pre-commit-config.yaml
+          - pyproject.toml
+          - uv.lock
 
-appendOnly: true
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - docs/**
 
-labels:
-  - label: bug
-    branch: ^bugfix/.+$
+github-actions:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/workflows/*.yaml
+          - .github/workflows/*.yml
 
-  - label: chore
-    branch: ^chore/.+$
+python:
+  - changed-files:
+      - any-glob-to-any-file: "**/*.py"
 
-  - label: dependencies
-    files:
-      - ^Pipfile\.lock$
-      - ^poetry\.lock$
-      - ^requirements\.txt$
+tests:
+  - changed-files:
+      - any-glob-to-any-file: tests/**
 
-  - label: dependencies
-    authors:
-      - dependabot[bot]
-      - pre-commit-ci[bot]
+ha:automations:
+  - changed-files:
+      - any-glob-to-any-file: entities/automation/**/*.yaml
 
-  - label: documentation
-    files:
-      - ^docs/.+$
-      - ^.+\.md$
+ha:binary-sensors:
+  - changed-files:
+      - any-glob-to-any-file:
+          - entities/binary_sensor/**/*.yaml
+          - entities/template/binary_sensor/**/*.yaml
 
-  - label: enhancement
-    branch: ^feature/.+$
+ha:command-line:
+  - changed-files:
+      - any-glob-to-any-file: entities/command_line/**/*.yaml
 
-  - label: github-actions
-    files:
-      - ^\.github/workflows/.+\.ya?ml$
+ha:config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - configuration.yaml
+          - customizations/**/*.yaml
 
-  - label: python
-    files:
-      - ^.+\.py$
+ha:cover:
+  - changed-files:
+      - any-glob-to-any-file: entities/template/cover/**/*.yaml
 
-  - label: release
-    base-branch: ^main$
-    branch: ^release/.+$
+ha:custom-components:
+  - changed-files:
+      - any-glob-to-any-file: custom_components/**
 
-  - label: refactor
-    branch: ^refactor/.+$
+ha:custom-zha-quirks:
+  - changed-files:
+      - any-glob-to-any-file: custom_zha_quirks/**/*.py
 
-  - label: tests
-    files:
-      - ^tests/.+$
+ha:device-tracker:
+  - changed-files:
+      - any-glob-to-any-file: entities/device_tracker/**/*.yaml
 
-  - label: ha:appdaemon
-    files:
-      - ^appdaemon.+$
+ha:esphome:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .gitmodules
+          - esphome
+          - esphome/**/*.yaml
 
-  - label: ha:appdaemon
-    title: ^.+appdaemon.+
+ha:input-boolean:
+  - changed-files:
+      - any-glob-to-any-file: entities/input_boolean/**/*.yaml
 
-  - label: ha:automations
-    files:
-      - ^entities/automation/.+\.yaml$
+ha:input-button:
+  - changed-files:
+      - any-glob-to-any-file: entities/input_button/**/*.yaml
 
-  - label: ha:config
-    files:
-      - ^configuration\.yaml$
+ha:input-datetime:
+  - changed-files:
+      - any-glob-to-any-file: entities/input_datetime/**/*.yaml
 
-  - label: ha:cover
-    files:
-      - ^entities/cover/.+\.yaml$
-      - ^entities/template/cover/.+\.yaml$
+ha:input-number:
+  - changed-files:
+      - any-glob-to-any-file: entities/input_number/**/*.yaml
 
-  - label: ha:command-line
-    files:
-      - ^entities/command_line/.+\.yaml$
+ha:input-select:
+  - changed-files:
+      - any-glob-to-any-file: entities/input_select/**/*.yaml
 
-  - label: ha:custom-components
-    files:
-      - ^custom_components/.+$
+ha:input-text:
+  - changed-files:
+      - any-glob-to-any-file: entities/input_text/**/*.yaml
 
-  - label: ha:device-tracker
-    files:
-      - ^entities/device_tracker/.+\.yaml$
+ha:integrations:
+  - changed-files:
+      - any-glob-to-any-file: integrations/**/*.yaml
 
-  - label: ha:esphome
-    files:
-      - ^esphome/.+\.yaml$
+ha:lovelace:
+  - changed-files:
+      - any-glob-to-any-file:
+          - lovelace/**/*.yaml
+          - lovelace/**/*.yml
+          - lovelace.yaml
+          - ui-lovelace.yaml
 
-  - label: ha:groups
-    files:
-      - ^entities/group/.+\.yaml$
+ha:media-player:
+  - changed-files:
+      - any-glob-to-any-file: entities/media_player/**/*.yaml
 
-  - label: ha:input-boolean
-    files:
-      - ^entities/input_boolean/.+\.yaml$
+ha:mqtt:
+  - changed-files:
+      - any-glob-to-any-file: entities/mqtt/**/*.yaml
 
-  - label: ha:input-button
-    files:
-      - ^entities/input_button/.+\.yaml$
+ha:rest:
+  - changed-files:
+      - any-glob-to-any-file: entities/rest/**/*.yaml
 
-  - label: ha:input-datetime
-    files:
-      - ^entities/input_datetime/.+\.yaml$
+ha:rest-command:
+  - changed-files:
+      - any-glob-to-any-file: entities/rest_command/**/*.yaml
 
-  - label: ha:input-number
-    files:
-      - ^entities/input_number/.+\.yaml$
+ha:scripts:
+  - changed-files:
+      - any-glob-to-any-file: entities/script/**/*.yaml
 
-  - label: ha:input-select
-    files:
-      - ^entities/input_select/.+\.yaml$
+ha:sensors:
+  - changed-files:
+      - any-glob-to-any-file:
+          - entities/command_line/sensor/**/*.yaml
+          - entities/mqtt/sensor/**/*.yaml
+          - entities/sensor/**/*.yaml
+          - entities/template/sensor/**/*.yaml
+          - entities/template_triggered/sensor/**/*.yaml
 
-  - label: ha:input-text
-    files:
-      - ^entities/input_text/.+\.yaml$
+ha:shell-command:
+  - changed-files:
+      - any-glob-to-any-file:
+          - entities/shell_command/**/*.yaml
+          - resources/shell_command/**
 
-  - label: ha:lovelace
-    files:
-      - ^lovelace/.+$
-      - (^|/)lovelace\.yaml$
-      - (^|/)lovelace/.+\.yaml$
-      - ^ui-lovelace\.yaml$
+ha:switch:
+  - changed-files:
+      - any-glob-to-any-file:
+          - entities/mqtt/switch/**/*.yaml
+          - entities/template/switch/**/*.yaml
 
-  - label: ha:media-player
-    files:
-      - ^entities/media_player/.+\.yaml$
+ha:template:
+  - changed-files:
+      - any-glob-to-any-file: entities/template/**/*.yaml
 
-  - label: ha:mqtt
-    files:
-      - ^entities/mqtt/.+\.yaml$
+ha:template-triggered:
+  - changed-files:
+      - any-glob-to-any-file: entities/template_triggered/**/*.yaml
 
-  - label: ha:rest-command
-    files:
-      - ^entities/rest_command/.+\.yaml$
+ha:timer:
+  - changed-files:
+      - any-glob-to-any-file: entities/timer/**/*.yaml
 
-  - label: ha:scenes
-    files:
-      - ^entities/scene/.+\.yaml$
-
-  - label: ha:scripts
-    files:
-      - ^entities/script/.+\.yaml$
-
-  - label: ha:sensors
-    files:
-      - ^entities/sensor/.+\.yaml$
-
-  - label: ha:shell-command
-    files:
-      - ^entities/shell_command/.+\.yaml$
-      - ^resources/shell_command/.+\.yaml$
-
-  - label: ha:switch
-    files:
-      - ^entities/switch/.+\.yaml$
-      - ^entities/template/switch/.+\.yaml$
-
-  - label: ha:template
-    files:
-      - ^entities/template/.+\.yaml$
-
-  - label: ha:variables
-    files:
-      - ^entities/var/.+\.yaml$
+ha:variables:
+  - changed-files:
+      - any-glob-to-any-file: entities/var/**/*.yaml

@@ -686,12 +686,6 @@ pr_summary_card_template:
                   - type: custom:decluttering-card
                     template: semver_label_toggler_card_template
                     variables:
-                      - label: "bot:keep-updated"
-                      - repo_slug: "[[repo_slug]]"
-                      - pr_count_id: "[[pr_count_id]]"
-                  - type: custom:decluttering-card
-                    template: semver_label_toggler_card_template
-                    variables:
                       - label: "non-functional"
                       - repo_slug: "[[repo_slug]]"
                       - pr_count_id: "[[pr_count_id]]"
@@ -916,13 +910,12 @@ pr_summary_card_template:
                 'bug': {'font': '#EA9CA5', 'background': '#D73A4A2D'},
                 'chore': {'font': '#E48545', 'background': '#8B45132D'},
                 'bot:delete-on-merge': {'font': '#FF8181', 'background': '#8B00002D'},
-                'bot:keep-updated': {'font': '#84F9A3', 'background': '#87FAA62D'},
+                'bot:do-not-close': {'font': '#6CA2D9', 'background': '#2C6AAB2D'},
                 'dependencies': {'font': '#59A8FC', 'background': '#0366D62D'},
                 'documentation': {'font': '#35AAFF', 'background': '#0075CA2D'},
                 'enhancement': {'font': '#9FEEEE', 'background': '#A2EEEF2D'},
                 'feature-request': {'font': '#9FEEEE', 'background': '#A2EEEF2D'},
                 'github-actions': {'font': '#999999', 'background': '#0000002D'},
-                'hasspi-sync': {'font': '#51C2EF', 'background': '#53C2F12D'},
                 'hotfix': {'font': '#EA9CA5', 'background': '#D73A4A2D'},
                 'major': {'font': '#FFC5C5', 'background': '#FF00002D'},
                 'minor': {'font': '#FFA100', 'background': '#FFA5002D'},
@@ -930,36 +923,40 @@ pr_summary_card_template:
                 'patch': {'font': '#FEFF00', 'background': '#FFFF002D'},
                 'python': {'font': '#7DA5E2', 'background': '#2B67C62D'},
                 'release': {'font': '#F687F8', 'background': '#C30AC62D'},
+                'refactor': {'font': '#27B7D7', 'background': '#2BB9D92D'},
                 'skip-changelog': {'font': '#FFFFFF', 'background': '#FFFFFF2D'},
                 'sync': {'font': '#EAEAEA', 'background': '#EDEDED2D'},
                 'tests': {'font': '#17DF21', 'background': '#0E8A162D'},
                 'tools': {'font': '#979797', 'background': '#4141412D'},
-                'ha:appdaemon': {'font': '#F5ADAD', 'background': '#E519192D'},
-                'ha:automations': {'font': '#EF8C70', 'background': '#E548192D'},
-                'ha:config': {'font': '#E88534', 'background': '#E577192D'},
-                'ha:command-line': {'font': '#E0A118', 'background': '#E5A6192D'},
-                'ha:cover': {'font': '#E0D018', 'background': '#E5D5192D'},
-                'ha:custom-components': {'font': '#C2E018', 'background': '#C6E5192D'},
-                'ha:device-tracker': {'font': '#97E018', 'background': '#97E5192D'},
-                'ha:groups': {'font': '#65E018', 'background': '#67E5192D'},
-                'ha:input-boolean': {'font': '#3AE018', 'background': '#38E5192D'},
-                'ha:input-button': {'font': '#18E026', 'background': '#19E5292D'},
-                'ha:input-datetime': {'font': '#18E054', 'background': '#19E5582D'},
-                'ha:input-number': {'font': '#18E083', 'background': '#19E5872D'},
-                'ha:input-select': {'font': '#18E0B2', 'background': '#19E5B62D'},
-                'ha:input-text': {'font': '#18E0E0', 'background': '#19E5E52D'},
-                'ha:lovelace': {'font': '#19B7E2', 'background': '#19B6E52D'},
-                'ha:media-player': {'font': '#53A7EB', 'background': '#1987E52D'},
-                'ha:mqtt': {'font': '#8FAFF2', 'background': '#1958E52D'},
-                'ha:pyscript': {'font': '#CCCFF9', 'background': '#1929E52D'},
-                'ha:rest-command': {'font': '#DAD4FA', 'background': '#3819E52D'},
-                'ha:scenes': {'font': '#D6C2F8', 'background': '#6719E52D'},
-                'ha:scripts': {'font': '#DBB0F6', 'background': '#9719E52D'},
-                'ha:sensors': {'font': '#E69EF4', 'background': '#C619E52D'},
-                'ha:shell-command': {'font': '#F394EC', 'background': '#E519D52D'},
-                'ha:switch': {'font': '#F39AD9', 'background': '#E519A62D'},
-                'ha:template': {'font': '#F4A1C8', 'background': '#E519772D'},
-                'ha:variables': {'font': '#F5A7B9', 'background': '#E519482D'}
+                'ha:binary-sensors': {'font': '#F5ADAD', 'background': '#E519192D'},
+                'ha:automations': {'font': '#EF8E73', 'background': '#E546192D'},
+                'ha:config': {'font': '#E88438', 'background': '#E574192D'},
+                'ha:command-line': {'font': '#E09E18', 'background': '#E5A1192D'},
+                'ha:cover': {'font': '#E0C918', 'background': '#E5CE192D'},
+                'ha:custom-components': {'font': '#CCE018', 'background': '#CEE5192D'},
+                'ha:custom-zha-quirks': {'font': '#47E018', 'background': '#46E5192D'},
+                'ha:device-tracker': {'font': '#9EE018', 'background': '#A1E5192D'},
+                'ha:esphome': {'font': '#72E018', 'background': '#74E5192D'},
+                'ha:input-boolean': {'font': '#18E018', 'background': '#19E5192D'},
+                'ha:input-button': {'font': '#18E044', 'background': '#19E5462D'},
+                'ha:input-datetime': {'font': '#18E06F', 'background': '#19E5742D'},
+                'ha:input-number': {'font': '#18E09E', 'background': '#19E5A12D'},
+                'ha:input-select': {'font': '#18E0C9', 'background': '#19E5CE2D'},
+                'ha:input-text': {'font': '#18CCE0', 'background': '#19CEE52D'},
+                'ha:integrations': {'font': '#18B5E0', 'background': '#19B8E52D'},
+                'ha:lovelace': {'font': '#31AEE8', 'background': '#19A1E52D'},
+                'ha:media-player': {'font': '#6BA6EE', 'background': '#1974E52D'},
+                'ha:mqtt': {'font': '#A6B9F5', 'background': '#1946E52D'},
+                'ha:rest': {'font': '#E0E0FB', 'background': '#1919E52D'},
+                'ha:rest-command': {'font': '#D8CFF9', 'background': '#4619E52D'},
+                'ha:scripts': {'font': '#DDACF5', 'background': '#A119E52D'},
+                'ha:sensors': {'font': '#E99BF3', 'background': '#CE19E52D'},
+                'ha:shell-command': {'font': '#F395E9', 'background': '#E519CE2D'},
+                'ha:switch': {'font': '#F39BD6', 'background': '#E519A12D'},
+                'ha:template': {'font': '#F4A1C6', 'background': '#E519742D'},
+                'ha:template-triggered': {'font': '#D7BDF7', 'background': '#7419E52D'},
+                'ha:timer': {'font': '#E1A5F5', 'background': '#B519E52D'},
+                'ha:variables': {'font': '#F5A7B9', 'background': '#E519462D'}
               };
 
               const defaultColor = {
