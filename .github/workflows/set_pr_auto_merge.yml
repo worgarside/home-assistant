@@ -16,9 +16,7 @@ jobs:
   set-auto-merge:
     name: Set PR Auto Merge
     if: ${{ !github.event.pull_request.draft }}
-    # github-config-files has no releases; pin the latest audited main commit.
-    # yamllint disable-line rule:line-length
-    uses: worgarside/github-config-files/.github/workflows/__set_pr_auto_merge.yml@be008ae8f54348a000172e13598711c384dbc69b
+    uses: worgarside/github-config-files/.github/workflows/__set_pr_auto_merge.yml@main
     with:
       head-ref: ${{ github.head_ref }}
       pr-html-url: ${{ github.event.pull_request.html_url }}

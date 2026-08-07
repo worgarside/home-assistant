@@ -2,82 +2,39 @@
 name: Manage PR
 
 on:
-  merge_group:
   pull_request:
     types:
-      - edited
+      - labeled
+      - unlabeled
       - opened
       - reopened
       - synchronize
       - ready_for_review
+      - auto_merge_enabled
+      - auto_merge_disabled
 
 concurrency:
-  group: >-
-    manage-pr-${{
-      github.event.pull_request.number ||
-      github.event.merge_group.head_sha
-    }}
+  # yamllint disable-line rule:line-length
+  group: manage-pr-${{ github.event.pull_request.number }}-${{ github.event.action }}
   cancel-in-progress: true
 
 jobs:
-  label:
-    name: Apply labels
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+  manage-pr-labels:
+    name: Manage PR Labels
+    uses: worgarside/github-config-files/.github/workflows/__manage_pr_labels.yml@main
     permissions:
       contents: read
       pull-requests: write
-    steps:
-      - name: Apply path labels
-        uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13 # v7.0.0
-        with:
-          configuration-path: .github/labeler.yml
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          sync-labels: false
-
-  validate-title:
-    name: Validate conventional PR title
-    if: >-
-      github.event_name == 'merge_group' ||
-      !github.event.pull_request.draft
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    permissions:
-      pull-requests: read
-    steps:
-      - name: Validate title
-        if: github.event_name == 'pull_request'
-        uses: amannn/action-semantic-pull-request@48f256284bd46cdaab1048c3721360e808335d50 # v6.1.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          types: |
-            build
-            chore
-            ci
-            deps
-            docs
-            feat
-            fix
-            hotfix
-            perf
-            refactor
-            style
-            test
-
-      - name: Accept merge queue commit
-        if: github.event_name == 'merge_group'
-        run: echo "PR titles were validated before entering the merge queue."
+    with:
+      head-ref: ${{ github.head_ref }}
+      pr-author: ${{ github.event.pull_request.user.login }}
+      pr-number: ${{ github.event.pull_request.number }}
+    secrets: inherit
 
   close-empty-pr:
     name: Close Empty PR
-    # github-config-files has no releases; pin the latest audited main commit.
-    # yamllint disable-line rule:line-length
-    uses: worgarside/github-config-files/.github/workflows/__close_empty_pr.yml@be008ae8f54348a000172e13598711c384dbc69b
-    if: >-
-      github.event_name == 'pull_request' &&
-      github.event.pull_request.state == 'open'
+    uses: worgarside/github-config-files/.github/workflows/__close_empty_pr.yml@main
+    if: github.event.pull_request.state == 'open'
     permissions:
       contents: read
       pull-requests: write
