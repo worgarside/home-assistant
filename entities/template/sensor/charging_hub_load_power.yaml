@@ -1,0 +1,27 @@
+---
+name: Charging Hub Load Power
+
+unique_id: charging_hub_load_power
+
+# The native Zigbee2MQTT power sensor retains a stale/non-zero value when the plug is off.
+availability: >-
+  {{
+    has_value('switch.charging_hub')
+    and (
+      is_state('switch.charging_hub', 'off')
+      or has_value('sensor.charging_hub_power')
+    )
+  }}
+
+state: >-
+  {% if is_state('switch.charging_hub', 'off') %}
+    0
+  {% else %}
+    {{ states('sensor.charging_hub_power') | float }}
+  {% endif %}
+
+device_class: power
+
+state_class: measurement
+
+unit_of_measurement: W
