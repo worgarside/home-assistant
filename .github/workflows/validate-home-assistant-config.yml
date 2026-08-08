@@ -1,0 +1,96 @@
+---
+name: Validate Home Assistant Config
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+concurrency:
+  group: validate-home-assistant-config-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  get-current-version:
+    name: Get Current Version Number
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.current-version.outputs.current-version }}
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Get Current Version from .HA_VERSION
+        id: current-version
+        run: |
+          HA_VERSION=$(<.HA_VERSION)
+          echo "current-version=$HA_VERSION" >> "${GITHUB_OUTPUT}"
+
+  validate-home-assistant-config:
+    name: Validate Home Assistant Configuration
+    runs-on: ubuntu-latest
+    needs:
+      - get-current-version
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - stable
+          - beta
+          - dev
+          - ${{ needs.get-current-version.outputs.version }}
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: 'Clone Custom Component: `var`'
+        run: |
+          git clone https://github.com/snarky-snark/home-assistant-variables.git \
+            --depth 1
+          mkdir -p ./custom_components/
+          mv -vn home-assistant-variables/custom_components/* ./custom_components/var/
+          rm -rf home-assistant-variables
+
+      - name: 'Clone Custom Component: `spotcast`'
+        run: |
+          git clone https://github.com/fondberg/spotcast \
+            --depth 1
+          mv -vn spotcast/custom_components/* ./custom_components/spotcast/
+          rm -rf spotcast
+
+      - name: 'Clone Custom Component: `plex_recently_added`'
+        run: |
+          git clone https://github.com/custom-components/sensor.plex_recently_added \
+            --depth 1
+
+          mv -vn sensor.plex_recently_added/custom_components/* \
+            ./custom_components/plex_recently_added/
+
+          rm -rf sensor.plex_recently_added
+
+      - name: Local Workspace Workarounds
+        run: |
+          mkdir -p ./.storage
+
+          sed -i 's/\/config/\/github\/workspace/g' integrations/zha.yaml
+
+          sed -i 's/\/config/\/github\/workspace/g' configuration.yaml
+
+          touch scenes.yaml
+
+      - name: Validate Configuration
+        uses: worgarside/action-home-assistant@main
+        with:
+          path: .
+          secrets: secrets.fake.yaml
+          version: ${{ matrix.version }}
+          catch_error_logs: >-
+            matrix.version == needs.get-current-version.outputs.version ||
+            matrix.version == 'stable'
+          ignore_error_log_pattern: >-
+            failed to setup triggers and has been disabled: Unknown device '[0-9a-f]{32}'
