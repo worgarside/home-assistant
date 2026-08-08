@@ -1462,53 +1462,6 @@
               }
             }
           }
-        },
-        "oauth_reauth_card_template": {
-          "card": {
-            "type": "conditional",
-            "conditions": [
-              {
-                "entity": "[[reauth_entity]]",
-                "state": "on"
-              }
-            ],
-            "card": {
-              "type": "custom:vertical-stack-in-card",
-              "cards": [
-                {
-                  "type": "markdown",
-                  "content": "{% set auth_link = state_attr('[[reauth_entity]]', 'auth_link') %}\n{% set auth_link_expires_at = state_attr('[[reauth_entity]]', 'auth_link_expires_at') | float(0) %}\n<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **[[name]] needs reauthorization**\n\n{% if auth_link and auth_link_expires_at > as_timestamp(now()) %}**[Continue authentication]({{ auth_link }})** \u00b7 link expires at {{ auth_link_expires_at | timestamp_custom('%H:%M', true) }}{% else %}There is no active authorization link. Generate a fresh one below.{% endif %}",
-                  "card_mod": {
-                    "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 8px 0 2px !important; margin: 0 !important; }"
-                  }
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "[[button_entity]]",
-                  "primary": "Generate fresh link",
-                  "secondary": "Replaces any existing link and restarts the 15-minute timer",
-                  "icon": "[[icon]]",
-                  "icon_color": "orange",
-                  "tap_action": {
-                    "action": "perform-action",
-                    "perform_action": "input_button.press",
-                    "target": {
-                      "entity_id": "[[button_entity]]"
-                    }
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  },
-                  "card_mod": {
-                    "style": "ha-card { border: none; box-shadow: none; background: none; }"
-                  }
-                }
-              ]
-            }
-          }
         }
       },
       "views": [
@@ -1610,7 +1563,7 @@
                   "type": "custom:clock-weather-card",
                   "entity": "weather.met_office_fulham",
                   "date_pattern": "DDDD",
-                  "time_pattern": "HH:mm"
+                  "time_pattern": "HH:mm:ss"
                 },
                 {
                   "type": "custom:tabbed-card",
@@ -2238,25 +2191,9 @@
                 {
                   "type": "custom:expander-card",
                   "title-card": {
-                    "type": "custom:mushroom-template-card",
+                    "type": "tile",
                     "entity": "climate.pro_breeze_ac_pro_breeze_ac",
-                    "primary": "Pro Breeze AC",
-                    "secondary": "{{ states(entity) | replace('_', ' ') | title }}",
-                    "icon": "mdi:air-conditioner",
-                    "layout": "horizontal",
-                    "fill_container": true,
-                    "tap_action": {
-                      "action": "none"
-                    },
-                    "hold_action": {
-                      "action": "none"
-                    },
-                    "double_tap_action": {
-                      "action": "none"
-                    },
-                    "card_mod": {
-                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
-                    }
+                    "name": "Pro Breeze AC"
                   },
                   "cards": [
                     {
@@ -2355,42 +2292,13 @@
                   ],
                   "title-card-button-overlay": false,
                   "clear": false,
-                  "clear-children": true,
-                  "title-card-clickable": true,
-                  "card_mod": {
-                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  },
-                  "padding": "0",
-                  "title-card-padding": "0"
+                  "clear-children": true
                 }
               ]
             }
           ],
           "max_columns": 3,
-          "cards": [],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
-          ]
+          "cards": []
         },
         {
           "type": "sections",
@@ -3239,30 +3147,7 @@
             }
           ],
           "cards": [],
-          "dense_section_placement": true,
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
-          ]
+          "dense_section_placement": true
         },
         {
           "icon": "mdi:raspberry-pi",
@@ -3440,12 +3325,11 @@
                 {
                   "type": "custom:mushroom-template-card",
                   "primary": "{{ states(\"var.auto_reload_queue\") | int(0) }} domains",
-                  "secondary": "{% set pending = state_attr('var.auto_reload_queue', 'pending') | default('{}', true) %}{% set flying = state_attr('var.auto_reload_queue', 'in_flight') | default('[]', true) %}{% set p = pending if pending is mapping else (pending | from_json) %}{% set f = flying if flying is list else (flying | from_json) %}{% if p %}{{ p.keys() | list | join(', ') }}{% else %}idle{% endif %}{% if f %} \u00b7 \u21bb {{ f | join(', ') }}{% endif %}",
+                  "secondary": "{{ state_attr(\"var.auto_reload_queue\", \"service_queue\") | tojson }} ",
                   "icon": "mdi:reload{% if states(\"var.auto_reload_queue\") | int(0) != 0 %}-alert{% endif %}",
                   "entity": "var.auto_reload_queue",
                   "tap_action": {
-                    "action": "more-info",
-                    "entity": "script.system_reload_domain"
+                    "action": "more-info"
                   },
                   "icon_color": "",
                   "multiline_secondary": false
@@ -3976,30 +3860,7 @@
             }
           ],
           "max_columns": 3,
-          "cards": [],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
-          ]
+          "cards": []
         },
         {
           "title": "Makerspace",
@@ -4477,30 +4338,7 @@
             }
           ],
           "max_columns": 3,
-          "cards": [],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
-          ]
+          "cards": []
         },
         {
           "title": "LED Matrix Controller",
@@ -5246,30 +5084,7 @@
               ]
             }
           ],
-          "cards": [],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
-          ]
+          "cards": []
         },
         {
           "title": "VaultPi",
@@ -5744,29 +5559,6 @@
                 }
               ]
             }
-          ],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
           ]
         },
         {
@@ -5926,30 +5718,7 @@
               ]
             }
           ],
-          "cards": [],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
-          ]
+          "cards": []
         },
         {
           "title": "CRT Pi",
@@ -6245,29 +6014,6 @@
                 }
               ]
             }
-          ],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
           ]
         },
         {
@@ -6435,29 +6181,6 @@
             {
               "user": "8f996a70fc1d4c9ea269be0e7d85beff"
             }
-          ],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
           ]
         },
         {
@@ -6473,6 +6196,72 @@
                 {
                   "type": "heading",
                   "heading": "Auto-Saver"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_amex_auto_saver",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex Auto Saver Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_amex_auto_saver', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_amex_auto_saver",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.monzo_reauth_auto_saver",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo Auto Saver needs reauth**<br>**[Authenticate]({{ state_attr('var.monzo_reauth_auto_saver', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.monzo_auth_token_auto_saver",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
                 },
                 {
                   "type": "vertical-stack",
@@ -6559,6 +6348,204 @@
                 {
                   "type": "heading",
                   "heading": "Finances"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.monzo_reauth_cc_pot_top_up",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Monzo CC Pot Top-Up needs reauth**<br>**[Authenticate]({{ state_attr('var.monzo_reauth_cc_pot_top_up', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.monzo_auth_token_cc_pot_top_up",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_amex",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Amex Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_amex', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_amex",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_hsbc",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **HSBC Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_hsbc', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_hsbc",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_santander",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Santander Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_santander', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_santander",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_starling",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_starling', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_starling",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "var.truelayer_reauth_starling_joint",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:vertical-stack-in-card",
+                    "cards": [
+                      {
+                        "type": "markdown",
+                        "content": "<ha-icon icon=\"mdi:key-alert\" style=\"--mdc-icon-size: 26px; color: #ef5350\"></ha-icon> **Starling Joint Open Banking needs reauth**<br>**[Authenticate]({{ state_attr('var.truelayer_reauth_starling_joint', 'auth_link') }})** then paste the code below.",
+                        "card_mod": {
+                          "style": "ha-card { background: linear-gradient(135deg, rgba(239,83,80,0.18), rgba(239,83,80,0.06)); border: 1px solid rgba(239,83,80,0.45); border-radius: 12px; padding: 2px 12px !important; } .card-content { padding: 2px 0 !important; margin: 0 !important; }"
+                        }
+                      },
+                      {
+                        "type": "entities",
+                        "entities": [
+                          {
+                            "entity": "input_text.truelayer_auth_token_starling_joint",
+                            "name": "Paste auth code"
+                          }
+                        ],
+                        "card_mod": {
+                          "style": "ha-card { border: none; box-shadow: none; background: none; padding: 0 12px 8px 12px; }"
+                        }
+                      }
+                    ]
+                  }
                 },
                 {
                   "square": false,
@@ -6698,6 +6685,55 @@
               "cards": [
                 {
                   "type": "heading",
+                  "heading": "New section"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "input_text.monzo_auth_token_auto_saver"
+                    },
+                    {
+                      "entity": "input_text.monzo_auth_token_cc_pot_top_up"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_amex_auto_saver"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_amex"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_hsbc"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_monzo"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_santander"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_starling_joint"
+                    },
+                    {
+                      "entity": "input_text.truelayer_auth_token_starling"
+                    }
+                  ]
+                }
+              ],
+              "visibility": [
+                {
+                  "condition": "state",
+                  "attribute": "elevation",
+                  "entity": "sun.sun",
+                  "state": "999"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
                   "heading": "Student Loan",
                   "icon": "mdi:bank"
                 },
@@ -6804,546 +6840,6 @@
                   "font_size": 75
                 }
               ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "OAuth Connections",
-                  "heading_style": "title",
-                  "icon": "mdi:key-chain"
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "oauth_reauth_card_template",
-                  "variables": [
-                    {
-                      "name": "Amex Auto Saver"
-                    },
-                    {
-                      "reauth_entity": "var.truelayer_reauth_amex_auto_saver"
-                    },
-                    {
-                      "button_entity": "input_button.oauth_reauth_truelayer_amex_auto_saver"
-                    },
-                    {
-                      "icon": "mdi:credit-card-refresh"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "var.truelayer_reauth_amex_auto_saver",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "oauth_reauth_card_template",
-                  "variables": [
-                    {
-                      "name": "Monzo Auto Saver"
-                    },
-                    {
-                      "reauth_entity": "var.monzo_reauth_auto_saver"
-                    },
-                    {
-                      "button_entity": "input_button.oauth_reauth_monzo_auto_saver"
-                    },
-                    {
-                      "icon": "si:monzo"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "var.monzo_reauth_auto_saver",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "oauth_reauth_card_template",
-                  "variables": [
-                    {
-                      "name": "Spotify Auto Saver"
-                    },
-                    {
-                      "reauth_entity": "var.spotify_reauth_auto_saver"
-                    },
-                    {
-                      "button_entity": "input_button.oauth_reauth_spotify_auto_saver"
-                    },
-                    {
-                      "icon": "mdi:spotify"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "var.spotify_reauth_auto_saver",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "oauth_reauth_card_template",
-                  "variables": [
-                    {
-                      "name": "Monzo CC Pot Top-Up"
-                    },
-                    {
-                      "reauth_entity": "var.monzo_reauth_cc_pot_top_up"
-                    },
-                    {
-                      "button_entity": "input_button.oauth_reauth_monzo_cc_pot_top_up"
-                    },
-                    {
-                      "icon": "si:monzo"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "var.monzo_reauth_cc_pot_top_up",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "oauth_reauth_card_template",
-                  "variables": [
-                    {
-                      "name": "Amex"
-                    },
-                    {
-                      "reauth_entity": "var.truelayer_reauth_amex"
-                    },
-                    {
-                      "button_entity": "input_button.oauth_reauth_truelayer_amex"
-                    },
-                    {
-                      "icon": "mdi:credit-card"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "var.truelayer_reauth_amex",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "oauth_reauth_card_template",
-                  "variables": [
-                    {
-                      "name": "HSBC"
-                    },
-                    {
-                      "reauth_entity": "var.truelayer_reauth_hsbc"
-                    },
-                    {
-                      "button_entity": "input_button.oauth_reauth_truelayer_hsbc"
-                    },
-                    {
-                      "icon": "mdi:bank"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "var.truelayer_reauth_hsbc",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "oauth_reauth_card_template",
-                  "variables": [
-                    {
-                      "name": "Santander"
-                    },
-                    {
-                      "reauth_entity": "var.truelayer_reauth_santander"
-                    },
-                    {
-                      "button_entity": "input_button.oauth_reauth_truelayer_santander"
-                    },
-                    {
-                      "icon": "mdi:bank"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "var.truelayer_reauth_santander",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "oauth_reauth_card_template",
-                  "variables": [
-                    {
-                      "name": "Starling"
-                    },
-                    {
-                      "reauth_entity": "var.truelayer_reauth_starling"
-                    },
-                    {
-                      "button_entity": "input_button.oauth_reauth_truelayer_starling"
-                    },
-                    {
-                      "icon": "mdi:bank"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "var.truelayer_reauth_starling",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "oauth_reauth_card_template",
-                  "variables": [
-                    {
-                      "name": "Starling Joint"
-                    },
-                    {
-                      "reauth_entity": "var.truelayer_reauth_starling_joint"
-                    },
-                    {
-                      "button_entity": "input_button.oauth_reauth_truelayer_starling_joint"
-                    },
-                    {
-                      "icon": "mdi:account-multiple"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "var.truelayer_reauth_starling_joint",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "oauth_reauth_card_template",
-                  "variables": [
-                    {
-                      "name": "Spotify Track Processor"
-                    },
-                    {
-                      "reauth_entity": "var.spotify_reauth_track_processor"
-                    },
-                    {
-                      "button_entity": "input_button.oauth_reauth_spotify_track_processor"
-                    },
-                    {
-                      "icon": "mdi:spotify"
-                    }
-                  ],
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "var.spotify_reauth_track_processor",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:expander-card",
-                  "title-card": {
-                    "type": "custom:mushroom-template-card",
-                    "primary": "Manual reauthorization",
-                    "secondary": "Generate a fresh link for any connection",
-                    "icon": "mdi:shield-key",
-                    "layout": "horizontal",
-                    "fill_container": true,
-                    "tap_action": {
-                      "action": "none"
-                    },
-                    "hold_action": {
-                      "action": "none"
-                    },
-                    "double_tap_action": {
-                      "action": "none"
-                    },
-                    "card_mod": {
-                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
-                    }
-                  },
-                  "title-card-button-overlay": false,
-                  "clear": false,
-                  "clear-children": true,
-                  "cards": [
-                    {
-                      "type": "grid",
-                      "columns": 2,
-                      "square": false,
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-template-card",
-                          "entity": "input_button.oauth_reauth_truelayer_amex_auto_saver",
-                          "primary": "Amex Auto Saver",
-                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_amex_auto_saver', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
-                          "icon": "mdi:credit-card-refresh",
-                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_amex_auto_saver', 'on') else 'blue' }}",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "input_button.press",
-                            "target": {
-                              "entity_id": "input_button.oauth_reauth_truelayer_amex_auto_saver"
-                            }
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-template-card",
-                          "entity": "input_button.oauth_reauth_monzo_auto_saver",
-                          "primary": "Monzo Auto Saver",
-                          "secondary": "{{ 'Authorization required' if is_state('var.monzo_reauth_auto_saver', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
-                          "icon": "si:monzo",
-                          "icon_color": "{{ 'red' if is_state('var.monzo_reauth_auto_saver', 'on') else 'red' }}",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "input_button.press",
-                            "target": {
-                              "entity_id": "input_button.oauth_reauth_monzo_auto_saver"
-                            }
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-template-card",
-                          "entity": "input_button.oauth_reauth_spotify_auto_saver",
-                          "primary": "Spotify Auto Saver",
-                          "secondary": "{{ 'Authorization required' if is_state('var.spotify_reauth_auto_saver', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
-                          "icon": "mdi:spotify",
-                          "icon_color": "{{ 'red' if is_state('var.spotify_reauth_auto_saver', 'on') else 'green' }}",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "input_button.press",
-                            "target": {
-                              "entity_id": "input_button.oauth_reauth_spotify_auto_saver"
-                            }
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-template-card",
-                          "entity": "input_button.oauth_reauth_monzo_cc_pot_top_up",
-                          "primary": "Monzo CC Pot Top-Up",
-                          "secondary": "{{ 'Authorization required' if is_state('var.monzo_reauth_cc_pot_top_up', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
-                          "icon": "si:monzo",
-                          "icon_color": "{{ 'red' if is_state('var.monzo_reauth_cc_pot_top_up', 'on') else 'red' }}",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "input_button.press",
-                            "target": {
-                              "entity_id": "input_button.oauth_reauth_monzo_cc_pot_top_up"
-                            }
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-template-card",
-                          "entity": "input_button.oauth_reauth_truelayer_amex",
-                          "primary": "Amex",
-                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_amex', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
-                          "icon": "mdi:credit-card",
-                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_amex', 'on') else 'blue' }}",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "input_button.press",
-                            "target": {
-                              "entity_id": "input_button.oauth_reauth_truelayer_amex"
-                            }
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-template-card",
-                          "entity": "input_button.oauth_reauth_truelayer_hsbc",
-                          "primary": "HSBC",
-                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_hsbc', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
-                          "icon": "mdi:bank",
-                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_hsbc', 'on') else 'red' }}",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "input_button.press",
-                            "target": {
-                              "entity_id": "input_button.oauth_reauth_truelayer_hsbc"
-                            }
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-template-card",
-                          "entity": "input_button.oauth_reauth_truelayer_santander",
-                          "primary": "Santander",
-                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_santander', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
-                          "icon": "mdi:bank",
-                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_santander', 'on') else 'red' }}",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "input_button.press",
-                            "target": {
-                              "entity_id": "input_button.oauth_reauth_truelayer_santander"
-                            }
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-template-card",
-                          "entity": "input_button.oauth_reauth_truelayer_starling",
-                          "primary": "Starling",
-                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_starling', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
-                          "icon": "mdi:bank",
-                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_starling', 'on') else 'purple' }}",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "input_button.press",
-                            "target": {
-                              "entity_id": "input_button.oauth_reauth_truelayer_starling"
-                            }
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-template-card",
-                          "entity": "input_button.oauth_reauth_truelayer_starling_joint",
-                          "primary": "Starling Joint",
-                          "secondary": "{{ 'Authorization required' if is_state('var.truelayer_reauth_starling_joint', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
-                          "icon": "mdi:account-multiple",
-                          "icon_color": "{{ 'red' if is_state('var.truelayer_reauth_starling_joint', 'on') else 'purple' }}",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "input_button.press",
-                            "target": {
-                              "entity_id": "input_button.oauth_reauth_truelayer_starling_joint"
-                            }
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        },
-                        {
-                          "type": "custom:mushroom-template-card",
-                          "entity": "input_button.oauth_reauth_spotify_track_processor",
-                          "primary": "Spotify Track Processor",
-                          "secondary": "{{ 'Authorization required' if is_state('var.spotify_reauth_track_processor', 'on') else 'Connected \u00b7 tap to reauthorize' }}",
-                          "icon": "mdi:spotify",
-                          "icon_color": "{{ 'red' if is_state('var.spotify_reauth_track_processor', 'on') else 'green' }}",
-                          "tap_action": {
-                            "action": "perform-action",
-                            "perform_action": "input_button.press",
-                            "target": {
-                              "entity_id": "input_button.oauth_reauth_spotify_track_processor"
-                            }
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        }
-                      ]
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full",
-                    "rows": 1
-                  },
-                  "title-card-clickable": true,
-                  "card_mod": {
-                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  },
-                  "padding": "0",
-                  "title-card-padding": "0"
-                }
-              ]
-            }
-          ],
-          "max_columns": 3,
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
             }
           ]
         },
@@ -7429,30 +6925,7 @@
               "user": "8f996a70fc1d4c9ea269be0e7d85beff"
             }
           ],
-          "cards": [],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
-          ]
+          "cards": []
         },
         {
           "type": "sections",
@@ -7461,121 +6934,6 @@
           "path": "media",
           "icon": "mdi:play-network-outline",
           "sections": [
-            {
-              "type": "grid",
-              "column_span": 2,
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Jellyfin",
-                  "heading_style": "title",
-                  "icon": "mdi:jellyfish",
-                  "badges": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.jellyha_companion_cube_active_sessions",
-                      "show_state": true,
-                      "show_name": true
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.jellyha_companion_cube_websocket_status",
-                      "show_state": true,
-                      "show_name": true
-                    }
-                  ]
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.jellyha_companion_cube_now_playing_worgarside",
-                      "state_not": "idle"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:jellyha-now-playing-card",
-                    "entity": "sensor.jellyha_companion_cube_now_playing_worgarside",
-                    "title": "Now Playing \u2014 Will",
-                    "show_background": true,
-                    "show_time": true
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "condition": "state",
-                      "entity": "sensor.jellyha_companion_cube_now_playing_vic",
-                      "state_not": "idle"
-                    }
-                  ],
-                  "card": {
-                    "type": "custom:jellyha-now-playing-card",
-                    "entity": "sensor.jellyha_companion_cube_now_playing_vic",
-                    "title": "Now Playing \u2014 Vic",
-                    "show_background": true,
-                    "show_time": true
-                  }
-                },
-                {
-                  "type": "custom:jellyha-library-card",
-                  "entity": "sensor.jellyha_companion_cube_library",
-                  "title": "Recently Added",
-                  "layout": "list",
-                  "items_per_page": 6,
-                  "max_pages": 3,
-                  "show_now_playing": true,
-                  "show_search": true,
-                  "filter_newly_added": false,
-                  "new_badge_days": 14,
-                  "show_watched_status": true,
-                  "grid_options": {
-                    "rows": "auto",
-                    "columns": 24
-                  },
-                  "media_type": "both",
-                  "columns": 8
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.jellyha_companion_cube_library",
-                  "name": "Library",
-                  "icon": "mdi:movie-open",
-                  "grid_options": {
-                    "columns": 3
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.jellyha_companion_cube_unwatched_movies",
-                  "name": "Unwatched films",
-                  "icon": "mdi:movie-outline",
-                  "grid_options": {
-                    "columns": 3
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.jellyha_companion_cube_unwatched_series",
-                  "name": "Unwatched series",
-                  "icon": "mdi:television",
-                  "grid_options": {
-                    "columns": 3
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.jellyha_companion_cube_unwatched_episodes",
-                  "name": "Unwatched episodes",
-                  "icon": "mdi:playlist-play",
-                  "grid_options": {
-                    "columns": 3
-                  }
-                }
-              ]
-            },
             {
               "type": "grid",
               "cards": [
@@ -7587,10 +6945,9 @@
                   "badges": [
                     {
                       "type": "entity",
-                      "entity": "sensor.jellyha_companion_cube_library",
                       "show_state": true,
                       "show_icon": true,
-                      "state_content": "series"
+                      "entity": "sensor.companion_cube_library_tv_programmes"
                     }
                   ]
                 },
@@ -7616,16 +6973,13 @@
                   "badges": [
                     {
                       "type": "entity",
-                      "entity": "sensor.jellyha_companion_cube_library",
-                      "show_state": true,
-                      "show_icon": true,
-                      "state_content": "movies"
+                      "entity": "sensor.companion_cube_library_films"
                     }
                   ]
                 },
                 {
                   "type": "custom:upcoming-media-card",
-                  "entity": "sensor.radarr_upcoming_media_radarr_upcoming_media",
+                  "entity": "sensor.radarr_upcoming_media",
                   "image_style": "fanart",
                   "collapse": "flag=true",
                   "sort_by": "airdate",
@@ -7639,116 +6993,19 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "Playback",
+                  "heading": "Recently Added",
                   "heading_style": "title",
-                  "icon": "mdi:play-circle"
+                  "icon": "mdi:plex"
                 },
                 {
-                  "type": "custom:mini-media-player",
-                  "entity": "media_player.bedroom_chromecast",
-                  "name": "Bedroom"
-                },
-                {
-                  "type": "custom:mini-media-player",
-                  "entity": "media_player.dining_area_hifi_system",
-                  "name": "Dining HiFi"
-                },
-                {
-                  "type": "custom:mini-media-player",
-                  "entity": "media_player.lounge_streamer",
-                  "name": "Lounge"
-                },
-                {
-                  "type": "custom:mini-media-player",
-                  "entity": "media_player.office_nest_mini",
-                  "name": "Office"
-                },
-                {
-                  "type": "custom:mini-media-player",
-                  "entity": "media_player.topaz_sr10",
-                  "name": "Topaz"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Library & Downloads",
-                  "heading_style": "title",
-                  "icon": "mdi:download-network"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.sonarr_queue",
-                  "name": "TV queue",
-                  "icon": "mdi:television"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.sonarr_wanted",
-                  "name": "TV wanted",
-                  "icon": "mdi:television-plus"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.radarr_queue",
-                  "name": "Movie queue",
-                  "icon": "mdi:movie-open"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.radarr_films",
-                  "name": "Movies",
-                  "icon": "mdi:movie"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.qbittorrent_active_torrents",
-                  "name": "Active downloads",
-                  "icon": "mdi:download"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.qbittorrent_download_speed",
-                  "name": "Download speed",
-                  "icon": "mdi:speedometer"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.qbittorrent_errored_torrents",
-                  "name": "Torrent errors",
-                  "icon": "mdi:alert-circle"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.qbittorrent_connection_status",
-                  "name": "qBittorrent connection",
-                  "icon": "mdi:wan"
-                }
-              ]
-            }
-          ],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
+                  "type": "custom:upcoming-media-card",
+                  "entity": "sensor.plex_recently_added",
+                  "image_style": "fanart",
+                  "collapse": "flag=true",
+                  "sort_by": "airdate",
+                  "enable_tooltips": true,
+                  "clock": 24,
+                  "date": "ddmm"
                 }
               ]
             }
@@ -7902,29 +7159,6 @@
                   "primary_info": "state",
                   "secondary_info": "none",
                   "icon_color": "#7f19e5"
-                }
-              ]
-            }
-          ],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
                 }
               ]
             }
@@ -8419,27 +7653,6 @@
                   "condition": "state",
                   "entity": "climate.will_s_office_radiator",
                   "state": "heat"
-                }
-              ]
-            },
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
                 }
               ]
             }
@@ -9514,30 +8727,7 @@
               ]
             }
           ],
-          "cards": [],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
-          ]
+          "cards": []
         },
         {
           "type": "sections",
@@ -9552,8 +8742,7 @@
                 {
                   "type": "heading",
                   "heading": "Boiler",
-                  "heading_style": "title",
-                  "icon": "mdi:water-boiler"
+                  "heading_style": "title"
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -9606,161 +8795,8 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "Charging Hub",
-                  "heading_style": "title",
-                  "icon": "mdi:power-socket-uk"
-                },
-                {
-                  "type": "tile",
-                  "entity": "switch.charging_hub",
-                  "name": "Charging Hub",
-                  "vertical": false,
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "features_position": "inline",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  }
-                },
-                {
-                  "type": "custom:mushroom-number-card",
-                  "entity": "input_number.charging_hub_auto_off_threshold",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "name": "Auto-Off Threshold",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "input_boolean.charging_hub_auto_off_notification",
-                  "name": "Auto-Off Notification",
-                  "vertical": false,
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "features_position": "inline",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  }
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "features_position": "bottom",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "entity": "automation.switch_charging_hub_turn_off",
-                  "primary": "Turn off when below threshold",
-                  "secondary": "/switch/charging-hub/turn-off",
-                  "icon": "mdi:power-plug\n{%- if not states(\"automation.switch_charging_hub_turn_off\") | bool(false) -%}\n-off\n{%- endif -%}\n",
-                  "color": "{{ iif(states(\"automation.switch_charging_hub_turn_off\") | bool(false), \"#04b7d6\", \"grey\") }}"
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "features_position": "bottom",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  },
-                  "entity": "automation.switch_charging_hub_turn_on_daily",
-                  "primary": "Turn on daily",
-                  "secondary": "/switch/charging-hub/turn-on-daily",
-                  "icon": "mdi:calendar-clock\n{%- if not states(\"automation.switch_charging_hub_turn_on_daily\") | bool(false) -%}\n-off\n{%- endif -%}\n",
-                  "color": "{{ iif(states(\"automation.switch_charging_hub_turn_on_daily\") | bool(false), \"#04b7d6\", \"grey\") }}"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "Power vs Auto-Off Threshold",
-                  "icon": "mdi:chart-line",
-                  "hours_to_show": 6,
-                  "points_per_hour": 21,
-                  "line_width": 2,
-                  "animate": true,
-                  "show": {
-                    "state": true,
-                    "icon": true,
-                    "name": true
-                  },
-                  "lower_bound": 0,
-                  "entities": [
-                    {
-                      "entity": "sensor.charging_hub_load_power",
-                      "name": "Current power",
-                      "color": "#04b7d6"
-                    },
-                    {
-                      "entity": "input_number.charging_hub_auto_off_threshold",
-                      "name": "Auto-off threshold",
-                      "color": "#ff9800",
-                      "show_fill": false
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 4
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
                   "heading": "Lighting Modifier",
-                  "heading_style": "title",
-                  "icon": "mdi:brightness-6"
-                },
-                {
-                  "type": "tile",
-                  "entity": "input_boolean.visitor_mode",
-                  "name": "Visitor Mode",
-                  "vertical": false,
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "features_position": "inline",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  }
+                  "heading_style": "title"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -9795,7 +8831,7 @@
                   "type": "heading",
                   "heading": "Air Purifier",
                   "heading_style": "title",
-                  "icon": "mdi:air-purifier"
+                  "icon": ""
                 },
                 {
                   "type": "tile",
@@ -9905,11 +8941,11 @@
                 },
                 {
                   "type": "custom:mushroom-template-card",
-                  "entity": "automation.camera_frigate_notify",
-                  "primary": "Frigate notify",
-                  "secondary": "/camera/frigate-notify",
-                  "icon": "mdi:bell\n{%- if not states(\"automation.camera_frigate_notify\") | bool(false) -%}\n-off\n{%- endif -%}\n",
-                  "color": "{{ iif(states(\"automation.camera_frigate_notify\") | bool(false), \"#04b7d6\", \"grey\") }}",
+                  "entity": "automation.camera_frigate_notify_will",
+                  "primary": "Frigate notify Will",
+                  "secondary": "/camera/frigate-notify-will",
+                  "icon": "mdi:bell\n{%- if not states(\"automation.camera_frigate_notify_will\") | bool(false) -%}\n-off\n{%- endif -%}\n",
+                  "color": "{{ iif(states(\"automation.camera_frigate_notify_will\") | bool(false), \"#04b7d6\", \"grey\") }}",
                   "features_position": "bottom",
                   "tap_action": {
                     "action": "more-info"
@@ -10030,29 +9066,6 @@
                 },
                 {
                   "type": "heading",
-                  "heading": "Basement Zones",
-                  "heading_style": "subtitle"
-                },
-                {
-                  "type": "tile",
-                  "entity": "binary_sensor.kitchen_person_occupancy",
-                  "name": "Kitchen",
-                  "grid_options": {
-                    "columns": 6,
-                    "rows": 1
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "binary_sensor.dining_area_person_occupancy",
-                  "name": "Dining Area",
-                  "grid_options": {
-                    "columns": 6,
-                    "rows": 1
-                  }
-                },
-                {
-                  "type": "heading",
                   "heading": "Diagnostics",
                   "heading_style": "subtitle"
                 },
@@ -10082,8 +9095,7 @@
                 {
                   "type": "heading",
                   "heading": "Roof Terrace Shutters",
-                  "heading_style": "title",
-                  "icon": "mdi:blinds-horizontal"
+                  "heading_style": "title"
                 },
                 {
                   "type": "custom:expander-card",
@@ -10280,10 +9292,7 @@
                   "clear-children": true,
                   "card_mod": {
                     "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  },
-                  "title-card-clickable": true,
-                  "padding": "0",
-                  "title-card-padding": "0"
+                  }
                 },
                 {
                   "type": "custom:expander-card",
@@ -10543,10 +9552,7 @@
                   "clear-children": true,
                   "card_mod": {
                     "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  },
-                  "title-card-clickable": true,
-                  "padding": "0",
-                  "title-card-padding": "0"
+                  }
                 },
                 {
                   "type": "heading",
@@ -10603,11 +9609,31 @@
                 {
                   "type": "heading",
                   "heading": "Basement Bayesian Presence",
-                  "heading_style": "title",
-                  "icon": "mdi:account-question-outline"
+                  "heading_style": "title"
                 },
                 {
                   "type": "custom:expander-card",
+                  "title-card": {
+                    "type": "custom:mushroom-template-card",
+                    "primary": "Inputs & Configuration",
+                    "secondary": "11 items",
+                    "icon": "mdi:tune-variant",
+                    "layout": "horizontal",
+                    "fill_container": true,
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "card_mod": {
+                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
+                    }
+                  },
+                  "title-card-button-overlay": false,
                   "clear": false,
                   "clear-children": true,
                   "card_mod": {
@@ -10789,32 +9815,7 @@
                         "rows": 1
                       }
                     }
-                  ],
-                  "expanded": false,
-                  "title-card": {
-                    "type": "custom:mushroom-template-card",
-                    "primary": "Inputs & Configuration",
-                    "secondary": "11 items",
-                    "icon": "mdi:tune-variant",
-                    "layout": "horizontal",
-                    "fill_container": true,
-                    "tap_action": {
-                      "action": "none"
-                    },
-                    "hold_action": {
-                      "action": "none"
-                    },
-                    "double_tap_action": {
-                      "action": "none"
-                    },
-                    "card_mod": {
-                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
-                    }
-                  },
-                  "title-card-button-overlay": false,
-                  "title-card-clickable": true,
-                  "padding": "0",
-                  "title-card-padding": "0"
+                  ]
                 },
                 {
                   "type": "custom:expander-card",
@@ -10902,299 +9903,7 @@
                         }
                       ]
                     }
-                  ],
-                  "title-card-clickable": true,
-                  "padding": "0",
-                  "title-card-padding": "0"
-                },
-                {
-                  "type": "custom:expander-card",
-                  "expanded": false,
-                  "cards": [
-                    {
-                      "type": "entities",
-                      "title": "Additional inputs",
-                      "entities": [
-                        {
-                          "entity": "binary_sensor.basement_presence_retained",
-                          "name": "Retained Bayesian presence (5 min)"
-                        },
-                        {
-                          "entity": "binary_sensor.basement_cat_occupancy",
-                          "name": "Frigate cat"
-                        },
-                        {
-                          "entity": "binary_sensor.basement_dog_occupancy",
-                          "name": "Frigate dog"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "entities",
-                      "title": "24-hour occupied time",
-                      "entities": [
-                        {
-                          "entity": "sensor.basement_bayesian_presence_24h",
-                          "name": "Bayesian"
-                        },
-                        {
-                          "entity": "sensor.basement_fp2_presence_24h",
-                          "name": "FP2"
-                        }
-                      ]
-                    }
-                  ],
-                  "title-card": {
-                    "type": "custom:mushroom-template-card",
-                    "primary": "Basement Supporting Evidence",
-                    "secondary": "pets + 24h ratios",
-                    "icon": "mdi:paw",
-                    "layout": "horizontal",
-                    "fill_container": true,
-                    "tap_action": {
-                      "action": "none"
-                    },
-                    "hold_action": {
-                      "action": "none"
-                    },
-                    "double_tap_action": {
-                      "action": "none"
-                    },
-                    "card_mod": {
-                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
-                    }
-                  },
-                  "title-card-button-overlay": false,
-                  "title-card-clickable": true,
-                  "clear": false,
-                  "clear-children": true,
-                  "card_mod": {
-                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  },
-                  "padding": "0",
-                  "title-card-padding": "0"
-                },
-                {
-                  "type": "custom:expander-card",
-                  "expanded": false,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.kitchen_bayesian_presence",
-                      "name": "Bayesian Presence",
-                      "secondary_info": "none",
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.kitchen_bayesian_presence_probability",
-                      "name": "Posterior Probability",
-                      "secondary_info": "none",
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
-                      "type": "entities",
-                      "title": "Evidence inputs",
-                      "entities": [
-                        {
-                          "entity": "binary_sensor.kitchen_person_occupancy",
-                          "name": "Frigate person zone"
-                        },
-                        {
-                          "entity": "binary_sensor.kitchen_occupancy",
-                          "name": "FP2 kitchen zone"
-                        },
-                        {
-                          "entity": "binary_sensor.basement_presence_retained",
-                          "name": "Retained basement presence"
-                        },
-                        {
-                          "entity": "binary_sensor.kitchen_cat_occupancy",
-                          "name": "Frigate cat zone"
-                        },
-                        {
-                          "entity": "binary_sensor.kitchen_dog_occupancy",
-                          "name": "Frigate dog zone"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "entities",
-                      "title": "24-hour occupied time",
-                      "entities": [
-                        {
-                          "entity": "sensor.kitchen_bayesian_presence_24h",
-                          "name": "Bayesian"
-                        },
-                        {
-                          "entity": "sensor.kitchen_fp2_presence_24h",
-                          "name": "FP2"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "history-graph",
-                      "hours_to_show": 24,
-                      "entities": [
-                        {
-                          "entity": "binary_sensor.kitchen_bayesian_presence",
-                          "name": "Bayesian"
-                        },
-                        {
-                          "entity": "binary_sensor.kitchen_person_occupancy",
-                          "name": "Frigate Person"
-                        },
-                        {
-                          "entity": "binary_sensor.kitchen_occupancy",
-                          "name": "FP2"
-                        }
-                      ]
-                    }
-                  ],
-                  "title-card": {
-                    "type": "custom:mushroom-template-card",
-                    "primary": "Kitchen Bayesian Presence",
-                    "secondary": "shadow mode",
-                    "icon": "mdi:countertop",
-                    "layout": "horizontal",
-                    "fill_container": true,
-                    "tap_action": {
-                      "action": "none"
-                    },
-                    "hold_action": {
-                      "action": "none"
-                    },
-                    "double_tap_action": {
-                      "action": "none"
-                    },
-                    "card_mod": {
-                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
-                    }
-                  },
-                  "title-card-button-overlay": false,
-                  "title-card-clickable": true,
-                  "clear": false,
-                  "clear-children": true,
-                  "card_mod": {
-                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  },
-                  "padding": "0",
-                  "title-card-padding": "0"
-                },
-                {
-                  "type": "custom:expander-card",
-                  "expanded": false,
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.dining_area_bayesian_presence",
-                      "name": "Bayesian Presence",
-                      "secondary_info": "none",
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.dining_area_bayesian_presence_probability",
-                      "name": "Posterior Probability",
-                      "secondary_info": "none",
-                      "tap_action": {
-                        "action": "more-info"
-                      }
-                    },
-                    {
-                      "type": "entities",
-                      "title": "Evidence inputs",
-                      "entities": [
-                        {
-                          "entity": "binary_sensor.dining_area_person_occupancy",
-                          "name": "Frigate person zone"
-                        },
-                        {
-                          "entity": "binary_sensor.dining_area_occupancy",
-                          "name": "FP2 dining-area zone"
-                        },
-                        {
-                          "entity": "binary_sensor.basement_presence_retained",
-                          "name": "Retained basement presence"
-                        },
-                        {
-                          "entity": "binary_sensor.dining_area_cat_occupancy",
-                          "name": "Frigate cat zone"
-                        },
-                        {
-                          "entity": "binary_sensor.dining_area_dog_occupancy",
-                          "name": "Frigate dog zone"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "entities",
-                      "title": "24-hour occupied time",
-                      "entities": [
-                        {
-                          "entity": "sensor.dining_area_bayesian_presence_24h",
-                          "name": "Bayesian"
-                        },
-                        {
-                          "entity": "sensor.dining_area_fp2_presence_24h",
-                          "name": "FP2"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "history-graph",
-                      "hours_to_show": 24,
-                      "entities": [
-                        {
-                          "entity": "binary_sensor.dining_area_bayesian_presence",
-                          "name": "Bayesian"
-                        },
-                        {
-                          "entity": "binary_sensor.dining_area_person_occupancy",
-                          "name": "Frigate Person"
-                        },
-                        {
-                          "entity": "binary_sensor.dining_area_occupancy",
-                          "name": "FP2"
-                        }
-                      ]
-                    }
-                  ],
-                  "title-card": {
-                    "type": "custom:mushroom-template-card",
-                    "primary": "Dining Area Bayesian Presence",
-                    "secondary": "shadow mode",
-                    "icon": "mdi:table-chair",
-                    "layout": "horizontal",
-                    "fill_container": true,
-                    "tap_action": {
-                      "action": "none"
-                    },
-                    "hold_action": {
-                      "action": "none"
-                    },
-                    "double_tap_action": {
-                      "action": "none"
-                    },
-                    "card_mod": {
-                      "style": "ha-card { margin: 0 !important; box-shadow: none !important; border-width: 0 !important; }\nmushroom-card { padding: 4px 10px !important; min-height: 44px !important; }"
-                    }
-                  },
-                  "title-card-button-overlay": false,
-                  "title-card-clickable": true,
-                  "clear": false,
-                  "clear-children": true,
-                  "card_mod": {
-                    "style": "ha-card { margin: 0 0 6px 0 !important; padding: 0 !important; }\n:host { --ha-card-border-radius: 14px; }"
-                  },
-                  "padding": "0",
-                  "title-card-padding": "0"
+                  ]
                 },
                 {
                   "type": "heading",
@@ -11251,8 +9960,7 @@
                 {
                   "type": "heading",
                   "heading": "Energy Usage",
-                  "heading_style": "title",
-                  "icon": "mdi:lightning-bolt"
+                  "heading_style": "title"
                 },
                 {
                   "type": "custom:mushroom-template-card",
@@ -11446,89 +10154,13 @@
                         }
                       ]
                     }
-                  ],
-                  "title-card-clickable": true,
-                  "padding": "0",
-                  "title-card-padding": "0"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "MQTT Event Testing",
-                  "heading_style": "title",
-                  "icon": "mdi:access-point-network"
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "input_text.test_mqtt_events_device_name",
-                  "name": "Device Name",
-                  "primary_info": "state",
-                  "secondary_info": "name",
-                  "icon_color": "cyan",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  }
-                },
-                {
-                  "type": "custom:mushroom-template-card",
-                  "entity": "automation.input_text_test_mqtt_events_device_name_log_event",
-                  "primary": "Log MQTT Device Events",
-                  "secondary": "/input-text/test-mqtt-events-device-name/log-event",
-                  "icon": "mdi:access-point-network\n{%- if not states('automation.input_text_test_mqtt_events_device_name_log_event') | bool(false) -%}\n-off\n{%- endif -%}\n",
-                  "color": "{{ iif(states('automation.input_text_test_mqtt_events_device_name_log_event') | bool(false), '#04b7d6', 'grey') }}",
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "double_tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 1
-                  }
+                  ]
                 }
               ]
             }
           ],
           "cards": [],
-          "dense_section_placement": true,
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
-          ]
+          "dense_section_placement": true
         },
         {
           "title": "Proxmox Monitor",
@@ -12001,29 +10633,6 @@
                 }
               ]
             }
-          ],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
-            }
           ]
         },
         {
@@ -12051,29 +10660,6 @@
                 {
                   "type": "custom:threshold-alerts-card",
                   "title": "Threshold Alerts"
-                }
-              ]
-            }
-          ],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
                 }
               ]
             }
@@ -12281,29 +10867,6 @@
                 }
               ],
               "column_span": 3
-            }
-          ],
-          "badges": [
-            {
-              "type": "entity",
-              "entity": "input_boolean.visitor_mode",
-              "show_name": true,
-              "show_state": false,
-              "show_icon": true,
-              "color": "amber",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "hold_action": {
-                "action": "more-info"
-              },
-              "visibility": [
-                {
-                  "condition": "state",
-                  "entity": "input_boolean.visitor_mode",
-                  "state": "on"
-                }
-              ]
             }
           ]
         }
