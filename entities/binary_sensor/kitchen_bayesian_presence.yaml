@@ -12,7 +12,9 @@ device_class: occupancy
 
 prior: 0.05
 
-probability_threshold: 0.8
+# Keep corroborated presence through brief Frigate zone dropouts: with retained basement human
+# presence and FP2 kitchen occupancy both on, the posterior is approximately 4.3%.
+probability_threshold: 0.04
 
 observations:
   # Strong: Frigate's kitchen zone has identified a person
