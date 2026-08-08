@@ -8471,7 +8471,7 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Template
 
-<details><summary><h3>Entities (103)</h3></summary>
+<details><summary><h3>Entities (104)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -8975,6 +8975,15 @@ File: [`template/sensor/average_home_temperature.yaml`](entities/template/sensor
 - Unit Of Measurement: %
 
 File: [`template/sensor/basement_bayesian_presence_probability.yaml`](entities/template/sensor/basement_bayesian_presence_probability.yaml)
+</details>
+
+<details><summary><strong>Charging Hub Load Power</strong></summary>
+
+**Entity ID: `sensor.charging_hub_load_power`**
+
+- Unit Of Measurement: W
+
+File: [`template/sensor/charging_hub_load_power.yaml`](entities/template/sensor/charging_hub_load_power.yaml)
 </details>
 
 <details><summary><strong>Current Hour</strong></summary>
