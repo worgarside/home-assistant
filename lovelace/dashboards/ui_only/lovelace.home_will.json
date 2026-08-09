@@ -5058,7 +5058,22 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "MtrxPi System Monitor"
+                  "heading": "MtrxPi System Monitor",
+                  "icon": "mdi:raspberry-pi",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.mtrxpi_online",
+                      "show_state": true,
+                      "show_icon": true
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.mtrxpi_wg_scripts_version",
+                      "show_state": true,
+                      "show_icon": true
+                    }
+                  ]
                 },
                 {
                   "square": false,
@@ -5212,6 +5227,338 @@
                   "toggle_power": true,
                   "group": false,
                   "volume_stateless": false
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Host Health",
+                  "heading_style": "title",
+                  "icon": "mdi:heart-pulse",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.mtrxpi_throttling_active",
+                      "show_state": true,
+                      "show_icon": true
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.mtrxpi_reboot_required",
+                      "show_state": true,
+                      "show_icon": true
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.mtrxpi_pending_updates",
+                      "show_state": true,
+                      "show_icon": true
+                    }
+                  ]
+                },
+                {
+                  "type": "grid",
+                  "columns": 2,
+                  "square": false,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "sensor.mtrxpi_uptime",
+                      "primary": "{% set s = states('sensor.mtrxpi_uptime') | int(0) %}{% set d = s // 86400 %}{% set h = (s % 86400) // 3600 %}{% set m = (s % 3600) // 60 %}{{ (d ~ 'd ') if d else '' }}{{ h }}h {{ m }}m",
+                      "secondary": "Uptime",
+                      "icon": "mdi:clock-outline",
+                      "color": "green",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_cpu_frequency",
+                      "name": "CPU Frequency",
+                      "icon": "mdi:sine-wave",
+                      "icon_color": "purple",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_swap_usage",
+                      "name": "Swap Usage",
+                      "icon": "mdi:swap-horizontal",
+                      "icon_color": "blue",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_cpu_iowait",
+                      "name": "CPU I/O Wait",
+                      "icon": "mdi:timer-sand",
+                      "icon_color": "orange",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "sensor.mtrxpi_pending_updates",
+                      "primary": "{{ states('sensor.mtrxpi_pending_updates') | int(0) }}",
+                      "secondary": "Pending Updates",
+                      "icon": "mdi:package-up",
+                      "color": "{{ 'green' if states('sensor.mtrxpi_pending_updates') | int(0) == 0 else 'amber' }}",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "binary_sensor.mtrxpi_reboot_required",
+                      "primary": "{{ 'Reboot required' if is_state('binary_sensor.mtrxpi_reboot_required', 'on') else 'No reboot needed' }}",
+                      "secondary": "Package State",
+                      "icon": "{{ 'mdi:restart-alert' if is_state('binary_sensor.mtrxpi_reboot_required', 'on') else 'mdi:check-circle-outline' }}",
+                      "color": "{{ 'red' if is_state('binary_sensor.mtrxpi_reboot_required', 'on') else 'green' }}",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "binary_sensor.mtrxpi_throttling_active",
+                      "primary": "{{ 'Throttling' if is_state('binary_sensor.mtrxpi_throttling_active', 'on') else 'Not throttled' }}",
+                      "secondary": "Throttling Now",
+                      "icon": "{{ 'mdi:speedometer-slow' if is_state('binary_sensor.mtrxpi_throttling_active', 'on') else 'mdi:speedometer' }}",
+                      "color": "{{ 'red' if is_state('binary_sensor.mtrxpi_throttling_active', 'on') else 'green' }}",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "binary_sensor.mtrxpi_throttling_occurred",
+                      "primary": "{{ 'Occurred' if is_state('binary_sensor.mtrxpi_throttling_occurred', 'on') else 'None' }}",
+                      "secondary": "Throttling Since Boot",
+                      "icon": "{{ 'mdi:alert-circle-outline' if is_state('binary_sensor.mtrxpi_throttling_occurred', 'on') else 'mdi:check-circle-outline' }}",
+                      "color": "{{ 'orange' if is_state('binary_sensor.mtrxpi_throttling_occurred', 'on') else 'green' }}",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Host Pressure (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.mtrxpi_cpu_iowait",
+                      "name": "I/O Wait",
+                      "color": "#FF9800"
+                    },
+                    {
+                      "entity": "sensor.mtrxpi_swap_usage",
+                      "name": "Swap",
+                      "color": "#2196F3"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": true,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 60,
+                  "lower_bound": 0,
+                  "upper_bound": "~10",
+                  "height": 150,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Network",
+                  "heading_style": "title",
+                  "icon": "mdi:lan",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.mtrxpi_network_link",
+                      "show_state": true,
+                      "show_icon": true
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.mtrxpi_network_interface",
+                      "show_state": true,
+                      "show_icon": true
+                    }
+                  ]
+                },
+                {
+                  "type": "grid",
+                  "columns": 2,
+                  "square": false,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.mtrxpi_network_link",
+                      "name": "Link",
+                      "icon": "mdi:lan-connect",
+                      "icon_color": "green",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_network_interface",
+                      "name": "Interface",
+                      "icon": "mdi:ethernet",
+                      "icon_color": "cyan",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_network_receive",
+                      "name": "Receive",
+                      "icon": "mdi:download-network-outline",
+                      "icon_color": "blue",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_network_transmit",
+                      "name": "Transmit",
+                      "icon": "mdi:upload-network-outline",
+                      "icon_color": "teal",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Network Throughput (6h)",
+                  "entities": [
+                    {
+                      "entity": "sensor.mtrxpi_network_receive",
+                      "name": "Receive",
+                      "color": "#2196F3"
+                    },
+                    {
+                      "entity": "sensor.mtrxpi_network_transmit",
+                      "name": "Transmit",
+                      "color": "#009688"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": true,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 60,
+                  "lower_bound": 0,
+                  "height": 150,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Load Averages",
+                  "heading_style": "title",
+                  "icon": "mdi:chart-timeline-variant"
+                },
+                {
+                  "type": "grid",
+                  "columns": 3,
+                  "square": false,
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_average_load_1_min",
+                      "name": "1 min",
+                      "icon_color": "red",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_average_load_5_min",
+                      "name": "5 min",
+                      "icon_color": "orange",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.mtrxpi_average_load_15_min",
+                      "name": "15 min",
+                      "icon_color": "amber",
+                      "primary_info": "state",
+                      "secondary_info": "name"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Load History",
+                  "entities": [
+                    {
+                      "entity": "sensor.mtrxpi_average_load_1_min",
+                      "name": "1 min",
+                      "color": "#F54336"
+                    },
+                    {
+                      "entity": "sensor.mtrxpi_average_load_5_min",
+                      "name": "5 min",
+                      "color": "#FF9901"
+                    },
+                    {
+                      "entity": "sensor.mtrxpi_average_load_15_min",
+                      "name": "15 min",
+                      "color": "#FFC107"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": true,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 60,
+                  "lower_bound": 0,
+                  "height": 150,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
                 }
               ]
             },
