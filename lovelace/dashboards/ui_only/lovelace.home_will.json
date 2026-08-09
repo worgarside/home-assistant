@@ -5466,7 +5466,7 @@
                   "type": "heading",
                   "heading": "Disk Health",
                   "heading_style": "title",
-                  "icon": "mdi:harddisk-check",
+                  "icon": "mdi:harddisk",
                   "badges": [
                     {
                       "type": "entity",
@@ -5507,7 +5507,7 @@
                       "entity": "binary_sensor.vaultpi_smart_dev_nvme0_health",
                       "primary": "{{ 'Healthy' if is_state('binary_sensor.vaultpi_smart_dev_nvme0_health', 'off') else 'SMART problem' }}",
                       "secondary": "SMART Health",
-                      "icon": "{{ 'mdi:harddisk-check' if is_state('binary_sensor.vaultpi_smart_dev_nvme0_health', 'off') else 'mdi:harddisk-alert' }}",
+                      "icon": "{{ 'mdi:check-circle-outline' if is_state('binary_sensor.vaultpi_smart_dev_nvme0_health', 'off') else 'mdi:alert-circle-outline' }}",
                       "color": "{{ 'green' if is_state('binary_sensor.vaultpi_smart_dev_nvme0_health', 'off') else 'red' }}",
                       "tap_action": {
                         "action": "more-info"
@@ -5549,7 +5549,7 @@
                       "entity": "binary_sensor.vaultpi_smart_dev_sda_health",
                       "primary": "{{ 'Healthy' if is_state('binary_sensor.vaultpi_smart_dev_sda_health', 'off') else 'SMART problem' }}",
                       "secondary": "SMART Health",
-                      "icon": "{{ 'mdi:harddisk-check' if is_state('binary_sensor.vaultpi_smart_dev_sda_health', 'off') else 'mdi:harddisk-alert' }}",
+                      "icon": "{{ 'mdi:check-circle-outline' if is_state('binary_sensor.vaultpi_smart_dev_sda_health', 'off') else 'mdi:alert-circle-outline' }}",
                       "color": "{{ 'green' if is_state('binary_sensor.vaultpi_smart_dev_sda_health', 'off') else 'red' }}",
                       "tap_action": {
                         "action": "more-info"
@@ -5591,7 +5591,7 @@
                       "entity": "binary_sensor.vaultpi_smart_dev_sdb_health",
                       "primary": "{{ 'Healthy' if is_state('binary_sensor.vaultpi_smart_dev_sdb_health', 'off') else 'SMART problem' }}",
                       "secondary": "SMART Health",
-                      "icon": "{{ 'mdi:harddisk-check' if is_state('binary_sensor.vaultpi_smart_dev_sdb_health', 'off') else 'mdi:harddisk-alert' }}",
+                      "icon": "{{ 'mdi:check-circle-outline' if is_state('binary_sensor.vaultpi_smart_dev_sdb_health', 'off') else 'mdi:alert-circle-outline' }}",
                       "color": "{{ 'green' if is_state('binary_sensor.vaultpi_smart_dev_sdb_health', 'off') else 'red' }}",
                       "tap_action": {
                         "action": "more-info"
