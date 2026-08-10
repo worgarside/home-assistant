@@ -186,7 +186,8 @@ action:
               mobile_notification_icon: mdi:harddisk-alert
               group: vaultpi-storage-health
               critical: true
-              tts_message: Critical alert. VaultPi storage is still unavailable.
+              # Spell it phonetically so Android TTS says "Vault Pie", not "Volt Pee".
+              tts_message: Critical alert. Vault Pie storage is still unavailable.
               actions:
                 - action: ACK_VAULTPI_STORAGE
                   title: Acknowledge
