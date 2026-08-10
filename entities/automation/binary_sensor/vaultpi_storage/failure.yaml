@@ -16,7 +16,7 @@ trigger:
     entity_id:
       - binary_sensor.vaultpi_mount_vault_hdd_problem
       - binary_sensor.vaultpi_mount_vault_ssd_problem
-    to: "on"
+    not_to: "off"
     for:
       minutes: 2
     id: mount_failure
@@ -68,8 +68,8 @@ action:
 
   - variables:
       publisher_online: "{{ is_state('binary_sensor.vaultpi_pi_stats_online', 'on') }}"
-      hdd_problem: "{{ is_state('binary_sensor.vaultpi_mount_vault_hdd_problem', 'on') }}"
-      ssd_problem: "{{ is_state('binary_sensor.vaultpi_mount_vault_ssd_problem', 'on') }}"
+      hdd_problem: "{{ not is_state('binary_sensor.vaultpi_mount_vault_hdd_problem', 'off') }}"
+      ssd_problem: "{{ not is_state('binary_sensor.vaultpi_mount_vault_ssd_problem', 'off') }}"
       fault_active: "{{ not publisher_online or hdd_problem or ssd_problem }}"
       all_healthy: >-
         {{
@@ -94,7 +94,7 @@ action:
           | default([], true)
         }}
       hdd_status: >-
-        {% if hdd_problem %}
+        {% if is_state('binary_sensor.vaultpi_mount_vault_hdd_problem', 'on') %}
           {{ hdd_reasons | join(', ') }}
         {% elif is_state('binary_sensor.vaultpi_mount_vault_hdd_problem', 'off') %}
           healthy
@@ -102,7 +102,7 @@ action:
           unavailable
         {% endif %}
       ssd_status: >-
-        {% if ssd_problem %}
+        {% if is_state('binary_sensor.vaultpi_mount_vault_ssd_problem', 'on') %}
           {{ ssd_reasons | join(', ') }}
         {% elif is_state('binary_sensor.vaultpi_mount_vault_ssd_problem', 'off') %}
           healthy
@@ -144,6 +144,13 @@ action:
             data:
               clear_notification: true
               notification_id: vaultpi_storage_failure
+              message: clear_notification
+
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              clear_notification: true
+              notification_id: vaultpi_storage_failure_tts
               message: clear_notification
 
           - action: script.notify_will

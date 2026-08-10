@@ -64,3 +64,10 @@ action:
               clear_notification: true
               notification_id: vaultpi_storage_failure
               message: clear_notification
+
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              clear_notification: true
+              notification_id: vaultpi_storage_failure_tts
+              message: clear_notification
