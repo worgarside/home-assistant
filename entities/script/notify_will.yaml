@@ -269,6 +269,7 @@ sequence:
     if: "{{ critical and not clear_notification }}"
     then:
       - action: notify.mobile_app_will_s_pixel_6_pro
+        continue_on_error: true
         data:
           message: "{{ message }}"
           title: "{{ notif_title }}"
@@ -291,6 +292,7 @@ sequence:
             channel: alarm_stream
     else:
       - action: notify.mobile_app_will_s_pixel_6_pro
+        continue_on_error: true
         data:
           message: "{{ message }}"
           title: "{{ notif_title }}"

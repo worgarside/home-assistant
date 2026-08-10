@@ -208,6 +208,21 @@ action:
             target:
               entity_id: timer.vaultpi_storage_alert_escalation
 
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              title: Critical VaultPi storage failure
+              message: "{{ alert_message }}"
+              notification_id: vaultpi_storage_failure
+              mobile_notification_icon: mdi:harddisk-alert
+              group: vaultpi-storage-health
+              critical: true
+              actions:
+                - action: ACK_VAULTPI_STORAGE
+                  title: Acknowledge
+                - action: SNOOZE_VAULTPI_STORAGE_1H
+                  title: Snooze 1 hour
+
       - conditions:
           - condition: template
             value_template: "{{ fault_active and startup_grace_complete }}"
