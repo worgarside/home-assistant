@@ -1,0 +1,66 @@
+---
+alias: /mobile-app/notification-action/vaultpi-storage-alert
+
+id: mobile_app_notification_action_vaultpi_storage_alert
+
+description: Handle acknowledgement and maintenance snooze actions for VaultPi alerts
+
+mode: queued
+
+max: 5
+
+trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: ACK_VAULTPI_STORAGE
+    id: acknowledge
+
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: SNOOZE_VAULTPI_STORAGE_1H
+    id: snooze
+
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: acknowledge
+          - condition: state
+            entity_id: input_boolean.vaultpi_storage_alert_active
+            state: "on"
+        sequence:
+          - action: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.vaultpi_storage_alert_acknowledged
+
+          - action: timer.cancel
+            target:
+              entity_id: timer.vaultpi_storage_alert_escalation
+
+      - conditions:
+          - condition: trigger
+            id: snooze
+          - condition: state
+            entity_id: input_boolean.vaultpi_storage_alert_active
+            state: "on"
+        sequence:
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.vaultpi_storage_alert_acknowledged
+
+          - action: timer.cancel
+            target:
+              entity_id: timer.vaultpi_storage_alert_escalation
+
+          - action: timer.start
+            target:
+              entity_id: timer.vaultpi_storage_alert_snooze
+
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              clear_notification: true
+              notification_id: vaultpi_storage_failure
+              message: clear_notification

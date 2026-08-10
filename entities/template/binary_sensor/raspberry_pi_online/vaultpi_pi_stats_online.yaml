@@ -1,0 +1,24 @@
+---
+name: VaultPi Pi Stats Online
+
+unique_id: vaultpi_pi_stats_online
+
+icon: mdi:raspberry-pi
+
+device_class: connectivity
+
+state: >-
+  {% set uptime = states.sensor.vaultpi_uptime %}
+  {{
+    uptime is defined and
+    uptime.state not in ['unknown', 'unavailable'] and
+    (now() - uptime.last_changed).total_seconds() < 150
+  }}
+
+attributes:
+  last_reported: >-
+    {% if states.sensor.vaultpi_uptime is defined %}
+      {{ states.sensor.vaultpi_uptime.last_changed }}
+    {% else %}
+      {{ none }}
+    {% endif %}
