@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (228)</h3></summary>
+<details><summary><h3>Entities (230)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -236,6 +236,19 @@ File: [`automation/binary_sensor/quiet_hours/on.yaml`](entities/automation/binar
 - Mode: `single`
 
 File: [`automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml`](entities/automation/binary_sensor/roof_shutters_e1_box_leak_sensor/on.yaml)
+</details>
+
+<details><summary><code>/binary-sensor/vaultpi-storage/failure</code></summary>
+
+**Entity ID: `automation.binary_sensor_vaultpi_storage_failure`**
+
+> Alert loudly for persistent VaultPi storage or pi_stats failures and clear on recovery
+
+- Alias: /binary-sensor/vaultpi-storage/failure
+- ID: `binary_sensor_vaultpi_storage_failure`
+- Mode: `queued`
+
+File: [`automation/binary_sensor/vaultpi_storage/failure.yaml`](entities/automation/binary_sensor/vaultpi_storage/failure.yaml)
 </details>
 
 <details><summary><code>/binary-sensor/vic-s-office/occupancy/state-change</code></summary>
@@ -1639,6 +1652,19 @@ File: [`automation/mobile_app/notification_action/bedroom_sunrise_stop.yaml`](en
 - Mode: `single`
 
 File: [`automation/mobile_app/notification_action/central_heating_turn_off.yaml`](entities/automation/mobile_app/notification_action/central_heating_turn_off.yaml)
+</details>
+
+<details><summary><code>/mobile-app/notification-action/vaultpi-storage-alert</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_vaultpi_storage_alert`**
+
+> Handle acknowledgement and maintenance snooze actions for VaultPi alerts
+
+- Alias: /mobile-app/notification-action/vaultpi-storage-alert
+- ID: `mobile_app_notification_action_vaultpi_storage_alert`
+- Mode: `queued`
+
+File: [`automation/mobile_app/notification_action/vaultpi_storage_alert.yaml`](entities/automation/mobile_app/notification_action/vaultpi_storage_alert.yaml)
 </details>
 
 <details><summary><code>/mtrxpi/content-trigger/audio-visualiser</code></summary>
@@ -3814,7 +3840,7 @@ File: [`device_tracker/luci/openwrt_vm.yaml`](entities/device_tracker/luci/openw
 
 ## Input Boolean
 
-<details><summary><h3>Entities (35)</h3></summary>
+<details><summary><h3>Entities (37)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -4120,6 +4146,24 @@ File: [`input_boolean/topaz_sr10/topaz_sr10_is_volume_muted.yaml`](entities/inpu
 - Icon: [`mdi:fan-off`](https://pictogrammers.com/library/mdi/icon/fan-off/)
 
 File: [`input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml`](entities/input_boolean/turn_off_bedroom_fan_for_scheduled_heating.yaml)
+</details>
+
+<details><summary><strong>VaultPi Storage Alert Acknowledged</strong></summary>
+
+**Entity ID: `input_boolean.vaultpi_storage_alert_acknowledged`**
+
+- Icon: [`mdi:check-circle-outline`](https://pictogrammers.com/library/mdi/icon/check-circle-outline/)
+
+File: [`input_boolean/vaultpi_storage_alert_acknowledged.yaml`](entities/input_boolean/vaultpi_storage_alert_acknowledged.yaml)
+</details>
+
+<details><summary><strong>VaultPi Storage Alert Active</strong></summary>
+
+**Entity ID: `input_boolean.vaultpi_storage_alert_active`**
+
+- Icon: [`mdi:harddisk-alert`](https://pictogrammers.com/library/mdi/icon/harddisk-alert/)
+
+File: [`input_boolean/vaultpi_storage_alert_active.yaml`](entities/input_boolean/vaultpi_storage_alert_active.yaml)
 </details>
 
 <details><summary><strong>Visitor Mode</strong></summary>
@@ -7752,6 +7796,22 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
       "boolean": null
     }
   },
+  "critical": {
+    "description": "Deliver this notification through Android's alarm stream at high priority, bypassing normal quiet notification behaviour.",
+    "required": false,
+    "selector": {
+      "boolean": null
+    }
+  },
+  "tts_message": {
+    "description": "Optional text to speak on Will's Pixel using the maximum alarm stream. Intended only for unacknowledged critical escalations.",
+    "required": false,
+    "selector": {
+      "text": {
+        "multiline": true
+      }
+    }
+  },
   "image": {
     "description": "Optional image for the notification. Companion apps accept /api/camera_proxy/... and /api/frigate/notifications/... directly. Camera-proxy paths are snapshotted to /local/images/notifications/ for the HA UI; absolute http(s), /local/, and /api/frigate/ paths are embedded as-is.",
     "example": "/api/camera_proxy/camera.octoprint_camera",
@@ -7812,6 +7872,8 @@ File: [`script/notify_vic.yaml`](entities/script/notify_vic.yaml)
   "sticky": "{{ sticky | default(false) }}",
   "persistent": "{{ persistent | default(false) }}",
   "alert_once": "{{ alert_once | default(false) }}",
+  "critical": "{{ critical | default(false) | bool(false) }}",
+  "tts_message": "{{ tts_message | default('') }}",
   "image": "{{ image | default('') }}",
   "timeout": "{{ timeout | default(None) }}",
   "chronometer": "{{ chronometer | default(false) }}",
@@ -8471,7 +8533,7 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Template
 
-<details><summary><h3>Entities (104)</h3></summary>
+<details><summary><h3>Entities (105)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -8591,6 +8653,15 @@ File: [`template/binary_sensor/raspberry_pi_online/octopi_online.yaml`](entities
 - Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
 
 File: [`template/binary_sensor/raspberry_pi_online/rtropi_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/rtropi_online.yaml)
+</details>
+
+<details><summary><strong>VaultPi Pi Stats Online</strong></summary>
+
+**Entity ID: `binary_sensor.vaultpi_pi_stats_online`**
+
+- Icon: [`mdi:raspberry-pi`](https://pictogrammers.com/library/mdi/icon/raspberry-pi/)
+
+File: [`template/binary_sensor/raspberry_pi_online/vaultpi_pi_stats_online.yaml`](entities/template/binary_sensor/raspberry_pi_online/vaultpi_pi_stats_online.yaml)
 </details>
 
 <details><summary><strong>VSMPPi Online</strong></summary>
@@ -9866,7 +9937,7 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 
 ## Timer
 
-<details><summary><h3>Entities (1)</h3></summary>
+<details><summary><h3>Entities (3)</h3></summary>
 
 <details><summary><strong>Pro Breeze AC Off Timer</strong></summary>
 
@@ -9876,6 +9947,28 @@ File: [`template_triggered/sensor/will_s_yas_209_bridge_input.yaml`](entities/te
 - Icon: [`mdi:timer-off`](https://pictogrammers.com/library/mdi/icon/timer-off/)
 
 File: [`timer/pro_breeze_ac_off.yaml`](entities/timer/pro_breeze_ac_off.yaml)
+</details>
+
+<details><summary><strong>VaultPi Storage Alert Escalation</strong></summary>
+
+**Entity ID: `timer.vaultpi_storage_alert_escalation`**
+
+- Duration: 00:10:00
+- Restore: `true`
+- Icon: [`mdi:alarm-light-outline`](https://pictogrammers.com/library/mdi/icon/alarm-light-outline/)
+
+File: [`timer/vaultpi_storage_alert_escalation.yaml`](entities/timer/vaultpi_storage_alert_escalation.yaml)
+</details>
+
+<details><summary><strong>VaultPi Storage Alert Snooze</strong></summary>
+
+**Entity ID: `timer.vaultpi_storage_alert_snooze`**
+
+- Duration: 01:00:00
+- Restore: `true`
+- Icon: [`mdi:timer-pause-outline`](https://pictogrammers.com/library/mdi/icon/timer-pause-outline/)
+
+File: [`timer/vaultpi_storage_alert_snooze.yaml`](entities/timer/vaultpi_storage_alert_snooze.yaml)
 </details>
 
 </details>

@@ -79,6 +79,23 @@ fields:
     selector:
       boolean:
 
+  critical:
+    description: >-
+      Deliver this notification through Android's alarm stream at high priority,
+      bypassing normal quiet notification behaviour.
+    required: false
+    selector:
+      boolean:
+
+  tts_message:
+    description: >-
+      Optional text to speak on Will's Pixel using the maximum alarm stream.
+      Intended only for unacknowledged critical escalations.
+    required: false
+    selector:
+      text:
+        multiline: true
+
   image:
     description: >-
       Optional image for the notification. Companion apps accept
@@ -161,6 +178,10 @@ variables:
   persistent: "{{ persistent | default(false) }}"
 
   alert_once: "{{ alert_once | default(false) }}"
+
+  critical: "{{ critical | default(false) | bool(false) }}"
+
+  tts_message: "{{ tts_message | default('') }}"
 
   image: "{{ image | default('') }}"
 
@@ -245,24 +266,64 @@ sequence:
           title: "{{ notif_title }}"
 
   - alias: Phone
-    action: notify.mobile_app_will_s_pixel_6_pro
-    data:
-      message: "{{ message }}"
-      title: "{{ notif_title }}"
-      data:
-        actions: "{{ actions }}"
-        tag: "{{ notification_id }}"
-        notification_icon: "{{ mobile_notification_icon }}"
-        clickAction: "{{ url }}"
-        group: "{{ group }}"
-        sticky: "{{ sticky }}"
-        persistent: "{{ persistent }}"
-        alert_once: "{{ alert_once }}"
-        image: "{{ image }}"
-        timeout: "{{ timeout }}"
-        chronometer: "{{ chronometer }}"
-        when: "{{ when }}"
-        when_relative: "{{ when_relative }}"
+    if: "{{ critical and not clear_notification }}"
+    then:
+      - action: notify.mobile_app_will_s_pixel_6_pro
+        continue_on_error: true
+        data:
+          message: "{{ message }}"
+          title: "{{ notif_title }}"
+          data:
+            actions: "{{ actions }}"
+            tag: "{{ notification_id }}"
+            notification_icon: "{{ mobile_notification_icon }}"
+            clickAction: "{{ url }}"
+            group: "{{ group }}"
+            sticky: true
+            persistent: true
+            alert_once: "{{ alert_once }}"
+            image: "{{ image }}"
+            timeout: "{{ timeout }}"
+            chronometer: "{{ chronometer }}"
+            when: "{{ when }}"
+            when_relative: "{{ when_relative }}"
+            ttl: 0
+            priority: high
+            channel: alarm_stream
+    else:
+      - action: notify.mobile_app_will_s_pixel_6_pro
+        continue_on_error: true
+        data:
+          message: "{{ message }}"
+          title: "{{ notif_title }}"
+          data:
+            actions: "{{ actions }}"
+            tag: "{{ notification_id }}"
+            notification_icon: "{{ mobile_notification_icon }}"
+            clickAction: "{{ url }}"
+            group: "{{ group }}"
+            sticky: "{{ sticky }}"
+            persistent: "{{ persistent }}"
+            alert_once: "{{ alert_once }}"
+            image: "{{ image }}"
+            timeout: "{{ timeout }}"
+            chronometer: "{{ chronometer }}"
+            when: "{{ when }}"
+            when_relative: "{{ when_relative }}"
+
+  - alias: Critical TTS escalation
+    if: "{{ critical and not clear_notification and tts_message | length > 0 }}"
+    then:
+      - action: notify.mobile_app_will_s_pixel_6_pro
+        continue_on_error: true
+        data:
+          message: TTS
+          data:
+            tts_text: "{{ tts_message }}"
+            media_stream: alarm_stream_max
+            tag: "{{ notification_id }}_tts"
+            ttl: 0
+            priority: high
 
   - alias: Personal MacBook Pro
     if:

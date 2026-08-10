@@ -1,0 +1,272 @@
+---
+alias: /binary-sensor/vaultpi-storage/failure
+
+id: binary_sensor_vaultpi_storage_failure
+
+description: Alert loudly for persistent VaultPi storage or pi_stats failures and clear on recovery
+
+mode: queued
+
+max: 10
+
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.vaultpi_mount_vault_hdd_problem
+      - binary_sensor.vaultpi_mount_vault_ssd_problem
+    not_to: "off"
+    for:
+      minutes: 2
+    id: mount_failure
+
+  - platform: state
+    entity_id: binary_sensor.vaultpi_pi_stats_online
+    to: "off"
+    id: publisher_failure
+
+  - platform: state
+    entity_id:
+      - binary_sensor.vaultpi_mount_vault_hdd_problem
+      - binary_sensor.vaultpi_mount_vault_ssd_problem
+    to: "off"
+    for:
+      minutes: 2
+    id: health_changed
+
+  - platform: state
+    entity_id: binary_sensor.vaultpi_pi_stats_online
+    to: "on"
+    for:
+      minutes: 2
+    id: health_changed
+
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.vaultpi_storage_alert_snooze
+    id: snooze_finished
+
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.vaultpi_storage_alert_escalation
+    id: escalation_finished
+
+  - platform: homeassistant
+    event: start
+    id: startup
+
+action:
+  - if:
+      - condition: trigger
+        id: startup
+    then:
+      - delay:
+          minutes: 5
+
+  - variables:
+      publisher_online: "{{ is_state('binary_sensor.vaultpi_pi_stats_online', 'on') }}"
+      hdd_problem: "{{ not is_state('binary_sensor.vaultpi_mount_vault_hdd_problem', 'off') }}"
+      ssd_problem: "{{ not is_state('binary_sensor.vaultpi_mount_vault_ssd_problem', 'off') }}"
+      fault_active: "{{ not publisher_online or hdd_problem or ssd_problem }}"
+      all_healthy: >-
+        {{
+          publisher_online and
+          is_state('binary_sensor.vaultpi_mount_vault_hdd_problem', 'off') and
+          is_state('binary_sensor.vaultpi_mount_vault_ssd_problem', 'off')
+        }}
+      startup_grace_complete: >-
+        {{
+          as_timestamp(now()) -
+          as_timestamp(states('input_datetime.home_assistant_start_time'), as_timestamp(now()))
+          >= 300
+        }}
+      hdd_reasons: >-
+        {{
+          state_attr('binary_sensor.vaultpi_mount_vault_hdd_problem', 'reasons')
+          | default([], true)
+        }}
+      ssd_reasons: >-
+        {{
+          state_attr('binary_sensor.vaultpi_mount_vault_ssd_problem', 'reasons')
+          | default([], true)
+        }}
+      hdd_status: >-
+        {% if is_state('binary_sensor.vaultpi_mount_vault_hdd_problem', 'on') %}
+          {{ hdd_reasons | join(', ') }}
+        {% elif is_state('binary_sensor.vaultpi_mount_vault_hdd_problem', 'off') %}
+          healthy
+        {% else %}
+          unavailable
+        {% endif %}
+      ssd_status: >-
+        {% if is_state('binary_sensor.vaultpi_mount_vault_ssd_problem', 'on') %}
+          {{ ssd_reasons | join(', ') }}
+        {% elif is_state('binary_sensor.vaultpi_mount_vault_ssd_problem', 'off') %}
+          healthy
+        {% else %}
+          unavailable
+        {% endif %}
+      pbs_vaultpi_available: >-
+        {{ states('sensor.storage_cc_pbs_vaultpi_disk_total') not in ['unknown', 'unavailable'] }}
+      alert_message: >-
+        VaultPi storage is unhealthy.
+        Pi Stats: {{ 'online' if publisher_online else 'offline or stale' }}.
+        HDD: {{ hdd_status }}.
+        SSD: {{ ssd_status }}.
+        PBS VaultPi storage telemetry:
+        {{ 'available' if pbs_vaultpi_available else 'unavailable (downstream corroboration)' }}.
+
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: "{{ all_healthy }}"
+          - condition: state
+            entity_id: input_boolean.vaultpi_storage_alert_active
+            state: "on"
+        sequence:
+          - action: timer.cancel
+            target:
+              entity_id:
+                - timer.vaultpi_storage_alert_snooze
+                - timer.vaultpi_storage_alert_escalation
+
+          - action: input_boolean.turn_off
+            target:
+              entity_id:
+                - input_boolean.vaultpi_storage_alert_active
+                - input_boolean.vaultpi_storage_alert_acknowledged
+
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              clear_notification: true
+              notification_id: vaultpi_storage_failure
+              message: clear_notification
+
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              clear_notification: true
+              notification_id: vaultpi_storage_failure_tts
+              message: clear_notification
+
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              title: VaultPi storage recovered
+              message: VaultPi mount and publisher health have been stable for two minutes.
+              notification_id: vaultpi_storage_recovered
+              mobile_notification_icon: mdi:harddisk-check
+              group: vaultpi-storage-health
+
+      - conditions:
+          - condition: trigger
+            id: escalation_finished
+          - condition: template
+            value_template: "{{ fault_active }}"
+          - condition: state
+            entity_id: input_boolean.vaultpi_storage_alert_active
+            state: "on"
+          - condition: state
+            entity_id: input_boolean.vaultpi_storage_alert_acknowledged
+            state: "off"
+          - condition: state
+            entity_id: timer.vaultpi_storage_alert_snooze
+            state: idle
+        sequence:
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              title: Critical VaultPi storage failure
+              message: "{{ alert_message }} The fault has remained unacknowledged for ten minutes."
+              notification_id: vaultpi_storage_failure
+              mobile_notification_icon: mdi:harddisk-alert
+              group: vaultpi-storage-health
+              critical: true
+              # Spell it phonetically so Android TTS says "Vault Pie", not "Volt Pee".
+              tts_message: Critical alert. Vault Pie storage is still unavailable.
+              actions:
+                - action: ACK_VAULTPI_STORAGE
+                  title: Acknowledge
+                - action: SNOOZE_VAULTPI_STORAGE_1H
+                  title: Snooze 1 hour
+
+      - conditions:
+          - condition: trigger
+            id: startup
+          - condition: template
+            value_template: "{{ fault_active }}"
+          - condition: state
+            entity_id: input_boolean.vaultpi_storage_alert_active
+            state: "on"
+          - condition: state
+            entity_id: input_boolean.vaultpi_storage_alert_acknowledged
+            state: "off"
+          - condition: state
+            entity_id: timer.vaultpi_storage_alert_snooze
+            state: idle
+          - condition: state
+            entity_id: timer.vaultpi_storage_alert_escalation
+            state: idle
+        sequence:
+          - action: timer.start
+            target:
+              entity_id: timer.vaultpi_storage_alert_escalation
+
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              title: Critical VaultPi storage failure
+              message: "{{ alert_message }}"
+              notification_id: vaultpi_storage_failure
+              mobile_notification_icon: mdi:harddisk-alert
+              group: vaultpi-storage-health
+              critical: true
+              actions:
+                - action: ACK_VAULTPI_STORAGE
+                  title: Acknowledge
+                - action: SNOOZE_VAULTPI_STORAGE_1H
+                  title: Snooze 1 hour
+
+      - conditions:
+          - condition: template
+            value_template: "{{ fault_active and startup_grace_complete }}"
+          - condition: state
+            entity_id: input_boolean.vaultpi_storage_alert_acknowledged
+            state: "off"
+          - condition: state
+            entity_id: timer.vaultpi_storage_alert_snooze
+            state: idle
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: input_boolean.vaultpi_storage_alert_active
+                state: "off"
+              - condition: trigger
+                id: snooze_finished
+        sequence:
+          - action: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.vaultpi_storage_alert_active
+
+          - action: timer.start
+            target:
+              entity_id: timer.vaultpi_storage_alert_escalation
+
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              title: Critical VaultPi storage failure
+              message: "{{ alert_message }}"
+              notification_id: vaultpi_storage_failure
+              mobile_notification_icon: mdi:harddisk-alert
+              group: vaultpi-storage-health
+              critical: true
+              actions:
+                - action: ACK_VAULTPI_STORAGE
+                  title: Acknowledge
+                - action: SNOOZE_VAULTPI_STORAGE_1H
+                  title: Snooze 1 hour
