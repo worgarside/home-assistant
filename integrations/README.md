@@ -4355,7 +4355,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (74)</h3></summary>
+<details><summary><h3>Entities (75)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
@@ -4487,6 +4487,18 @@ File: [`input_number/dry_box/dry_box_max_humidity.yaml`](entities/input_number/d
 - Mode: `box`
 
 File: [`input_number/frigate_uncaptioned_review_streak.yaml`](entities/input_number/frigate_uncaptioned_review_streak.yaml)
+</details>
+
+<details><summary><strong>Hayfever Pollen Threshold</strong></summary>
+
+**Entity ID: `input_number.hayfever_pollen_threshold`**
+
+- Icon: [`mdi:flower-pollen`](https://pictogrammers.com/library/mdi/icon/flower-pollen/)
+- Max: 5
+- Mode: `slider`
+- Unit Of Measurement: UPI
+
+File: [`input_number/hayfever_pollen_threshold.yaml`](entities/input_number/hayfever_pollen_threshold.yaml)
 </details>
 
 <details><summary><strong>Hot Water | Proximity Distance</strong></summary>
@@ -6909,13 +6921,21 @@ File: [`mqtt/text/mtrxpi/audio_visualiser/low_magnitude_hex_color.yaml`](entitie
 
 ## Rest
 
-<details><summary><h3>Entities (6)</h3></summary>
+<details><summary><h3>Entities (7)</h3></summary>
 
 <details><summary><code>rest.external_ip</code></summary>
 
 - Resource: https://api.ipify.org/?format=json
 
 File: [`rest/external_ip.yaml`](entities/rest/external_ip.yaml)
+</details>
+
+<details><summary><code>rest.google_pollen_forecast</code></summary>
+
+- Resource: https://pollen.googleapis.com/v1/forecast:lookup
+- Method: GET
+
+File: [`rest/google_pollen_forecast.yaml`](entities/rest/google_pollen_forecast.yaml)
 </details>
 
 <details><summary><code>rest.ollama_api_status</code></summary>
@@ -8533,7 +8553,7 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Template
 
-<details><summary><h3>Entities (105)</h3></summary>
+<details><summary><h3>Entities (107)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -8689,6 +8709,15 @@ File: [`template/binary_sensor/roof_terrace/roof_shutters_should_be_open.yaml`](
 - Icon: [`mdi:weather-sunny`](https://pictogrammers.com/library/mdi/icon/weather-sunny/)
 
 File: [`template/binary_sensor/roof_terrace_window_in_direct_sun.yaml`](entities/template/binary_sensor/roof_terrace_window_in_direct_sun.yaml)
+</details>
+
+<details><summary><strong>Take Hayfever Tablet Required</strong></summary>
+
+**Entity ID: `binary_sensor.take_hayfever_tablet_required`**
+
+- Icon: [`mdi:pill`](https://pictogrammers.com/library/mdi/icon/pill/)
+
+File: [`template/binary_sensor/take_hayfever_tablet_required.yaml`](entities/template/binary_sensor/take_hayfever_tablet_required.yaml)
 </details>
 
 <details><summary><strong>Vic at Work</strong></summary>
@@ -9562,6 +9591,16 @@ File: [`template/sensor/office_desk/office_desk_standing_time_remaining.yaml`](e
 **Entity ID: `sensor.person_cosmo`**
 
 File: [`template/sensor/person/person_cosmo.yaml`](entities/template/sensor/person/person_cosmo.yaml)
+</details>
+
+<details><summary><strong>Pollen Forecast 5 Day Max</strong></summary>
+
+**Entity ID: `sensor.pollen_forecast_5_day_max`**
+
+- Icon: [`mdi:flower-pollen`](https://pictogrammers.com/library/mdi/icon/flower-pollen/)
+- Unit Of Measurement: UPI
+
+File: [`template/sensor/pollen_forecast_5_day_max.yaml`](entities/template/sensor/pollen_forecast_5_day_max.yaml)
 </details>
 
 <details><summary><strong>Spotify Will Garside Media Album Artwork Internal URL</strong></summary>

@@ -1,0 +1,81 @@
+---
+# https://developers.google.com/maps/documentation/pollen/forecast
+
+resource: https://pollen.googleapis.com/v1/forecast:lookup
+
+method: GET
+
+scan_interval: 21600
+
+params:
+  key: !secret google_pollen_api_key
+  location.latitude: !secret latitude
+  location.longitude: !secret longitude
+  days: 5
+  plantsDescription: "false"
+
+headers:
+  accept: application/json
+
+sensor:
+  - name: Google Pollen Forecast
+
+    unique_id: google_pollen_forecast
+
+    icon: mdi:flower-pollen
+
+    force_update: true
+
+    value_template: >-
+      {% set daily_info = value_json.get("dailyInfo", none)
+        if value_json is mapping else none %}
+      {% set ns = namespace(
+        valid=(
+          daily_info is sequence and
+          daily_info is not string and
+          0 < daily_info | count <= 5
+        )
+      ) %}
+
+      {% if ns.valid %}
+        {% for day_info in daily_info %}
+          {% if day_info is not mapping %}
+            {% set ns.valid = false %}
+          {% else %}
+            {% set date = day_info.get("date", none) %}
+            {% set pollen_types = day_info.get("pollenTypeInfo", none) %}
+
+            {% if date is not mapping or
+              date.get("year", none) is not number or
+              date.get("month", none) is not number or
+              date.get("day", none) is not number or
+              pollen_types is not sequence or
+              pollen_types is string %}
+              {% set ns.valid = false %}
+            {% else %}
+              {% for pollen_type in pollen_types %}
+                {% if pollen_type is not mapping %}
+                  {% set ns.valid = false %}
+                {% elif pollen_type.get("code", none) in ["GRASS", "TREE", "WEED"] %}
+                  {% set index_info = pollen_type.get("indexInfo", none) %}
+
+                  {% if index_info is not none and (
+                    index_info is not mapping or
+                    index_info.get("code", none) != "UPI" or
+                    index_info.get("value", none) is not number or
+                    not 0 <= index_info.get("value") <= 5
+                  ) %}
+                    {% set ns.valid = false %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {{ "valid" if ns.valid else "malformed" }}
+
+    json_attributes:
+      - regionCode
+      - dailyInfo

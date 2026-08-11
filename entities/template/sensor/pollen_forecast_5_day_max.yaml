@@ -1,0 +1,41 @@
+---
+name: Pollen Forecast 5 Day Max
+
+unique_id: pollen_forecast_5_day_max
+
+unit_of_measurement: UPI
+
+icon: mdi:flower-pollen
+
+availability: "{{ is_state('sensor.google_pollen_forecast', 'valid') }}"
+
+state: >-
+  {% set ns = namespace(max_upi=0) %}
+
+  {% for day_info in state_attr('sensor.google_pollen_forecast', 'dailyInfo')
+    | default([], true) %}
+    {% for pollen_type in day_info.get('pollenTypeInfo', []) %}
+      {% if pollen_type.get('code', none) in ['GRASS', 'TREE', 'WEED'] %}
+        {% set index_info = pollen_type.get('indexInfo', {}) | default({}, true) %}
+        {% set ns.max_upi = max(
+          ns.max_upi,
+          index_info.get('value', 0) | int(0)
+        ) %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+
+  {{ ns.max_upi }}
+
+attributes:
+  source_url: https://pollen.googleapis.com/v1/forecast:lookup
+
+  region_code: "{{ state_attr('sensor.google_pollen_forecast', 'regionCode') }}"
+
+  forecast_days: >-
+    {{ state_attr('sensor.google_pollen_forecast', 'dailyInfo')
+      | default([], true) | count }}
+
+  source_last_updated: >-
+    {% set source = states.sensor.google_pollen_forecast | default(none) %}
+    {{ source.last_updated.isoformat() if source is not none else none }}

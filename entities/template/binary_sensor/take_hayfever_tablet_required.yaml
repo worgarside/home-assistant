@@ -1,0 +1,68 @@
+---
+name: Take Hayfever Tablet Required
+
+unique_id: take_hayfever_tablet_required
+
+icon: mdi:pill
+
+state: >-
+  {% set source_state = states('sensor.google_pollen_forecast') %}
+  {% set max_upi = states('sensor.pollen_forecast_5_day_max') %}
+  {% set threshold = states('input_number.hayfever_pollen_threshold') %}
+
+  {% if source_state != 'valid' or
+    not is_number(max_upi) or
+    not is_number(threshold) %}
+    true
+  {% else %}
+    {% set source_age_seconds = as_timestamp(now()) - as_timestamp(
+      states.sensor.google_pollen_forecast.last_updated,
+      0
+    ) %}
+    {{ source_age_seconds > 43200 or max_upi | float > threshold | float }}
+  {% endif %}
+
+attributes:
+  attribution: "Source: Includes pollen data from Google"
+
+  source_url: https://pollen.googleapis.com/v1/forecast:lookup
+
+  reason: >-
+    {% set source_state = states('sensor.google_pollen_forecast') %}
+    {% set max_upi = states('sensor.pollen_forecast_5_day_max') %}
+    {% set threshold = states('input_number.hayfever_pollen_threshold') %}
+
+    {% if source_state in ['unknown', 'unavailable'] %}
+      source_unavailable
+    {% elif source_state != 'valid' %}
+      source_malformed
+    {% elif as_timestamp(now()) - as_timestamp(
+      states.sensor.google_pollen_forecast.last_updated,
+      0
+    ) > 43200 %}
+      source_stale
+    {% elif not is_number(max_upi) %}
+      maximum_unavailable
+    {% elif not is_number(threshold) %}
+      threshold_unavailable
+    {% elif max_upi | float > threshold | float %}
+      above_threshold
+    {% else %}
+      at_or_below_threshold
+    {% endif %}
+
+  max_upi: >-
+    {% set max_upi = states('sensor.pollen_forecast_5_day_max') %}
+    {{ max_upi | int if is_number(max_upi) else none }}
+
+  threshold: >-
+    {% set threshold = states('input_number.hayfever_pollen_threshold') %}
+    {{ threshold | int if is_number(threshold) else none }}
+
+  source_age_hours: >-
+    {% set source = states.sensor.google_pollen_forecast | default(none) %}
+    {{ (
+      (as_timestamp(now()) - as_timestamp(source.last_updated, 0)) / 3600
+    ) | round(2) if source is not none else none }}
+
+  stale_after_hours: 12
