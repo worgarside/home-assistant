@@ -9975,7 +9975,7 @@ File: [`timer/vaultpi_storage_alert_snooze.yaml`](entities/timer/vaultpi_storage
 
 ## Var
 
-<details><summary><h3>Entities (34)</h3></summary>
+<details><summary><h3>Entities (33)</h3></summary>
 
 <details><summary><strong>Auto-Reload Queue</strong></summary>
 
@@ -10124,16 +10124,6 @@ File: [`var/spotify/spotify_reauth_auto_saver.yaml`](entities/var/spotify/spotif
 - Icon: [`mdi:key-alert-outline`](https://pictogrammers.com/library/mdi/icon/key-alert-outline/)
 
 File: [`var/spotify/spotify_reauth_track_processor.yaml`](entities/var/spotify/spotify_reauth_track_processor.yaml)
-</details>
-
-<details><summary><strong>Spotify Tempo (Will)</strong></summary>
-
-**Entity ID: `var.spotify_tempo_will`**
-
-- Icon: [`mdi:metronome`](https://pictogrammers.com/library/mdi/icon/metronome/)
-- Unit Of Measurement: BPM
-
-File: [`var/spotify/spotify_tempo_will.yaml`](entities/var/spotify/spotify_tempo_will.yaml)
 </details>
 
 <details><summary><strong>Pixel Now Playing (Tasker)</strong></summary>
