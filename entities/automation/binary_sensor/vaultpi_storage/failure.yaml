@@ -24,6 +24,8 @@ trigger:
   - platform: state
     entity_id: binary_sensor.vaultpi_pi_stats_online
     to: "off"
+    for:
+      minutes: 2
     id: publisher_failure
 
   - platform: state
