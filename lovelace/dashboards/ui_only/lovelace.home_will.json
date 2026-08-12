@@ -2371,6 +2371,19 @@
           "badges": [
             {
               "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
               "entity": "input_boolean.visitor_mode",
               "show_name": true,
               "show_state": false,
@@ -3243,6 +3256,19 @@
           "badges": [
             {
               "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
               "entity": "input_boolean.visitor_mode",
               "show_name": true,
               "show_state": false,
@@ -3980,6 +4006,19 @@
           "badges": [
             {
               "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
               "entity": "input_boolean.visitor_mode",
               "show_name": true,
               "show_state": false,
@@ -4479,6 +4518,19 @@
           "max_columns": 3,
           "cards": [],
           "badges": [
+            {
+              "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
             {
               "type": "entity",
               "entity": "input_boolean.visitor_mode",
@@ -5597,6 +5649,19 @@
           "badges": [
             {
               "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
               "entity": "input_boolean.visitor_mode",
               "show_name": true,
               "show_state": false,
@@ -6546,6 +6611,19 @@
           "badges": [
             {
               "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
               "entity": "input_boolean.visitor_mode",
               "show_name": true,
               "show_state": false,
@@ -6726,6 +6804,19 @@
           ],
           "cards": [],
           "badges": [
+            {
+              "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
             {
               "type": "entity",
               "entity": "input_boolean.visitor_mode",
@@ -7047,6 +7138,19 @@
           "badges": [
             {
               "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
               "entity": "input_boolean.visitor_mode",
               "show_name": true,
               "show_state": false,
@@ -7235,6 +7339,19 @@
             }
           ],
           "badges": [
+            {
+              "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
             {
               "type": "entity",
               "entity": "input_boolean.visitor_mode",
@@ -8124,6 +8241,19 @@
           "badges": [
             {
               "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
               "entity": "input_boolean.visitor_mode",
               "show_name": true,
               "show_state": false,
@@ -8229,6 +8359,19 @@
           ],
           "cards": [],
           "badges": [
+            {
+              "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
             {
               "type": "entity",
               "entity": "input_boolean.visitor_mode",
@@ -8531,6 +8674,19 @@
           "badges": [
             {
               "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
               "entity": "input_boolean.visitor_mode",
               "show_name": true,
               "show_state": false,
@@ -8705,6 +8861,19 @@
             }
           ],
           "badges": [
+            {
+              "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
             {
               "type": "entity",
               "entity": "input_boolean.visitor_mode",
@@ -9114,6 +9283,19 @@
             }
           ],
           "badges": [
+            {
+              "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
             {
               "type": "entity",
               "show_name": true,
@@ -10314,6 +10496,19 @@
           ],
           "cards": [],
           "badges": [
+            {
+              "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
             {
               "type": "entity",
               "entity": "input_boolean.visitor_mode",
@@ -12307,6 +12502,19 @@
           "badges": [
             {
               "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
               "entity": "input_boolean.visitor_mode",
               "show_name": true,
               "show_state": false,
@@ -12803,6 +13011,19 @@
           "badges": [
             {
               "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
+            {
+              "type": "entity",
               "entity": "input_boolean.visitor_mode",
               "show_name": true,
               "show_state": false,
@@ -12854,6 +13075,19 @@
             }
           ],
           "badges": [
+            {
+              "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
             {
               "type": "entity",
               "entity": "input_boolean.visitor_mode",
@@ -13082,6 +13316,19 @@
             }
           ],
           "badges": [
+            {
+              "type": "entity",
+              "entity": "switch.holiday_presence",
+              "show_name": true,
+              "show_state": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "switch.holiday_presence",
+                  "state": "on"
+                }
+              ]
+            },
             {
               "type": "entity",
               "entity": "input_boolean.visitor_mode",
