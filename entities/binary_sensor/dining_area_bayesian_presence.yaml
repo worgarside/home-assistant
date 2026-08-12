@@ -12,7 +12,9 @@ device_class: occupancy
 
 prior: 0.08
 
-probability_threshold: 0.8
+# A Frigate person plus retained basement presence reaches about 66% when FP2
+# briefly drops out; pet evidence still keeps the posterior well below this.
+probability_threshold: 0.66
 
 observations:
   # Strong: Frigate's dining-area zone has identified a person
