@@ -1,0 +1,38 @@
+---
+alias: /sensor/holiday-mode/prompt
+
+id: sensor_holiday_mode_prompt
+
+description: Ask Will whether to enable holiday mode once both residents are more than 20 miles from home
+
+mode: single
+
+trigger:
+  - platform: numeric_state
+    entity_id:
+      - sensor.will_distance_from_home
+      - sensor.vic_distance_from_home
+    above: 20
+
+condition:
+  - condition: numeric_state
+    entity_id: sensor.will_distance_from_home
+    above: 20
+
+  - condition: numeric_state
+    entity_id: sensor.vic_distance_from_home
+    above: 20
+
+action:
+  - action: notify.mobile_app_will_s_pixel_6_pro
+    continue_on_error: true
+    data:
+      title: Enable holiday mode?
+      message: >-
+        You're {{ states('sensor.will_distance_from_home') | float(0) | round(1) }} miles from home
+      data:
+        tag: holiday_mode_prompt
+        notification_icon: mdi:beach
+        actions:
+          - action: TURN_ON_HOLIDAY_MODE
+            title: Enable holiday mode

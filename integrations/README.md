@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (230)</h3></summary>
+<details><summary><h3>Entities (232)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -1654,6 +1654,19 @@ File: [`automation/mobile_app/notification_action/bedroom_sunrise_stop.yaml`](en
 File: [`automation/mobile_app/notification_action/central_heating_turn_off.yaml`](entities/automation/mobile_app/notification_action/central_heating_turn_off.yaml)
 </details>
 
+<details><summary><code>/mobile-app/notification-action/holiday-mode-turn-on</code></summary>
+
+**Entity ID: `automation.mobile_app_notification_action_holiday_mode_turn_on`**
+
+> Enable holiday presence simulation from Will's notification action
+
+- Alias: /mobile-app/notification-action/holiday-mode-turn-on
+- ID: `mobile_app_notification_action_holiday_mode_turn_on`
+- Mode: `single`
+
+File: [`automation/mobile_app/notification_action/holiday_mode_turn_on.yaml`](entities/automation/mobile_app/notification_action/holiday_mode_turn_on.yaml)
+</details>
+
 <details><summary><code>/mobile-app/notification-action/vaultpi-storage-alert</code></summary>
 
 **Entity ID: `automation.mobile_app_notification_action_vaultpi_storage_alert`**
@@ -2901,6 +2914,19 @@ File: [`automation/schedule/hot_water/on.yaml`](entities/automation/schedule/hot
 - Mode: `single`
 
 File: [`automation/sensor/bedroom_climate_sensor_temperature/sync_radiator_trv.yaml`](entities/automation/sensor/bedroom_climate_sensor_temperature/sync_radiator_trv.yaml)
+</details>
+
+<details><summary><code>/sensor/holiday-mode/prompt</code></summary>
+
+**Entity ID: `automation.sensor_holiday_mode_prompt`**
+
+> Ask Will whether to enable holiday mode once both residents are more than 20 miles from home
+
+- Alias: /sensor/holiday-mode/prompt
+- ID: `sensor_holiday_mode_prompt`
+- Mode: `single`
+
+File: [`automation/sensor/holiday_mode/prompt.yaml`](entities/automation/sensor/holiday_mode/prompt.yaml)
 </details>
 
 <details><summary><code>/sensor/kitchen-air-quality-sensor-temperature/sync-radiator-trv</code></summary>
