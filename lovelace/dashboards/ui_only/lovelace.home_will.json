@@ -2373,14 +2373,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -3258,14 +3266,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -4008,14 +4024,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -4522,14 +4546,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -5651,14 +5683,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -6613,14 +6653,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -6808,14 +6856,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -7140,14 +7196,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -7343,14 +7407,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -8243,14 +8315,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -8363,14 +8443,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -8676,14 +8764,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -8865,14 +8961,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -9287,14 +9391,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -10500,14 +10612,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -12504,14 +12624,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -13013,14 +13141,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -13079,14 +13215,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
@@ -13320,14 +13464,22 @@
               "type": "entity",
               "entity": "switch.holiday_presence",
               "show_name": true,
-              "show_state": true,
+              "show_state": false,
               "visibility": [
                 {
                   "condition": "state",
                   "entity": "switch.holiday_presence",
                   "state": "on"
                 }
-              ]
+              ],
+              "show_icon": true,
+              "color": "amber",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "hold_action": {
+                "action": "more-info"
+              }
             },
             {
               "type": "entity",
