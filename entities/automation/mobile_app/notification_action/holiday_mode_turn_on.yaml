@@ -1,0 +1,19 @@
+---
+alias: /mobile-app/notification-action/holiday-mode-turn-on
+
+id: mobile_app_notification_action_holiday_mode_turn_on
+
+description: Enable holiday presence simulation from Will's notification action
+
+mode: single
+
+trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: TURN_ON_HOLIDAY_MODE
+
+action:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.holiday_presence
