@@ -29,14 +29,6 @@ trigger:
       minutes: 1
 
   - platform: state
-    entity_id: camera.desmond_cam
-    to:
-      - recording
-      - unavailable
-    for:
-      minutes: 1
-
-  - platform: state
     entity_id: camera.front_door
     to:
       - recording
@@ -50,8 +42,6 @@ variables:
       Basement
     {% elif trigger.entity_id == 'camera.lounge' %}
       Lounge
-    {% elif trigger.entity_id == 'camera.desmond_cam' %}
-      Desmond
     {% elif trigger.entity_id == 'camera.front_door' %}
       Front Door
     {% else %}

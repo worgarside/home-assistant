@@ -510,7 +510,7 @@ File: [`automation/camera/frigate/notify.yaml`](entities/automation/camera/friga
 
 ```json
 {
-  "camera_name": "{% if trigger.entity_id == 'camera.basement' %}\n  Basement\n{% elif trigger.entity_id == 'camera.lounge' %}\n  Lounge\n{% elif trigger.entity_id == 'camera.desmond_cam' %}\n  Desmond\n{% elif trigger.entity_id == 'camera.front_door' %}\n  Front Door\n{% else %}\n  Unknown\n{% endif %}"
+  "camera_name": "{% if trigger.entity_id == 'camera.basement' %}\n  Basement\n{% elif trigger.entity_id == 'camera.lounge' %}\n  Lounge\n{% elif trigger.entity_id == 'camera.front_door' %}\n  Front Door\n{% else %}\n  Unknown\n{% endif %}"
 }
 ```
 File: [`automation/camera/offline_notify_will.yaml`](entities/automation/camera/offline_notify_will.yaml)
