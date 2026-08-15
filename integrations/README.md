@@ -447,7 +447,7 @@ File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automat
 
 **Entity ID: `automation.camera_frigate_notify`**
 
-> Notify Will and Vic immediately for front-door reviews, then silently update their notifications with Frigate's AI-generated summary. Under normal filtering, pet and indoor person reviews notify only when nobody is home. input_boolean.frigate_bypass_filters bypasses the noise-reduction gating for Will only; Vic's notifications are always filtered.
+> Notify Will and Vic immediately for front-door reviews, then silently update their notifications with Frigate's AI-generated summary. Under normal filtering, pet and indoor person reviews notify only when nobody is home. input_boolean.frigate_bypass_filters bypasses the noise-reduction gating for Will only; Vic's notifications are enabled by input_boolean.frigate_notify_vic and are always filtered.
 
 - Alias: /camera/frigate/notify
 - ID: `camera_frigate_notify`
@@ -3859,7 +3859,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (37)</h3></summary>
+<details><summary><h3>Entities (38)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -4111,6 +4111,15 @@ File: [`input_boolean/frigate_bypass_filters.yaml`](entities/input_boolean/friga
 - Icon: [`mdi:image-alert-outline`](https://pictogrammers.com/library/mdi/icon/image-alert-outline/)
 
 File: [`input_boolean/frigate_genai_health_alert.yaml`](entities/input_boolean/frigate_genai_health_alert.yaml)
+</details>
+
+<details><summary><strong>Frigate | Notify Vic</strong></summary>
+
+**Entity ID: `input_boolean.frigate_notify_vic`**
+
+- Icon: [`mdi:cctv`](https://pictogrammers.com/library/mdi/icon/cctv/)
+
+File: [`input_boolean/frigate_notify_vic.yaml`](entities/input_boolean/frigate_notify_vic.yaml)
 </details>
 
 <details><summary><strong>Lounge | Lights: Exercise Mode</strong></summary>
