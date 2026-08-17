@@ -1,0 +1,101 @@
+---
+alias: /camera/frigate/detector-watchdog-notify-will
+
+id: camera_frigate_detector_watchdog_notify_will
+
+description: Notify Will when Frigate object detection fails, escalates, or recovers
+
+mode: queued
+
+max: 10
+
+max_exceeded: silent
+
+trigger:
+  - platform: mqtt
+    topic: frigate/watchdog/detector
+
+variables:
+  watchdog_state: "{{ trigger.payload_json.get('state', '') }}"
+
+  restart_grace_seconds: >-
+    {{ trigger.payload_json.get('restart_grace_seconds', 45) | int(45) }}
+
+  retry_after_minutes: >-
+    {{
+      (
+        trigger.payload_json.get('retry_after_seconds', 0) | int(0) / 60
+      )
+      | round(0, 'ceil')
+      | int(0)
+    }}
+
+  failure_reason: "{{ trigger.payload_json.get('reason', '') }}"
+
+  failure_error: "{{ trigger.payload_json.get('error', '') }}"
+
+condition:
+  - condition: template
+    value_template: "{{ watchdog_state in ['problem', 'critical', 'resolved'] }}"
+
+action:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: "{{ watchdog_state == 'resolved' }}"
+        sequence:
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              title: Frigate detection recovered
+              message: >-
+                Frigate object detection recovered after a full service restart.
+                Cameras and event notifications should be processing normally again.
+              notification_id: frigate_detector_watchdog
+              mobile_notification_icon: mdi:cctv
+              group: frigate-health
+              sticky: false
+              persistent: false
+
+      - conditions:
+          - condition: template
+            value_template: "{{ watchdog_state == 'critical' }}"
+        sequence:
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              title: Frigate detection needs attention
+              message: >-
+                {% if failure_reason == 'automatic_restart_suppressed' %}
+                  A second detector failure occurred inside the restart safety window,
+                  so the watchdog did not restart Frigate again. Check Frigate manually.
+                  Automatic recovery becomes available again in about
+                  {{ retry_after_minutes }} minutes.
+                {% elif failure_reason == 'frigate_full_restart_request_failed' %}
+                  The watchdog detected a stalled object detector but could not request
+                  a full Frigate restart{% if failure_error %}: {{ failure_error }}{% endif %}.
+                  Check Frigate manually.
+                {% else %}
+                  Frigate object detection needs manual attention. Check the watchdog
+                  and Frigate logs.
+                {% endif %}
+              notification_id: frigate_detector_watchdog
+              mobile_notification_icon: mdi:alert-octagon
+              group: frigate-health
+              sticky: true
+              persistent: true
+
+    default:
+      - action: script.notify_will
+        continue_on_error: true
+        data:
+          title: Frigate detection problem
+          message: >-
+            Frigate restarted its object detector process, which means object detection
+            had stalled. The watchdog will perform a full Frigate restart in
+            {{ restart_grace_seconds }} seconds unless Frigate restarts first.
+          notification_id: frigate_detector_watchdog
+          mobile_notification_icon: mdi:cctv-off
+          group: frigate-health
+          sticky: true
+          persistent: true

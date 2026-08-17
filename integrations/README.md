@@ -2,7 +2,7 @@
 
 ## Automation
 
-<details><summary><h3>Entities (232)</h3></summary>
+<details><summary><h3>Entities (233)</h3></summary>
 
 <details><summary><code>/automation/auto-reload-complete</code></summary>
 
@@ -372,6 +372,29 @@ File: [`automation/camera/frigate/audio_safety_notify_will.yaml`](entities/autom
 }
 ```
 File: [`automation/camera/frigate/bark_notify_will.yaml`](entities/automation/camera/frigate/bark_notify_will.yaml)
+</details>
+
+<details><summary><code>/camera/frigate/detector-watchdog-notify-will</code></summary>
+
+**Entity ID: `automation.camera_frigate_detector_watchdog_notify_will`**
+
+> Notify Will when Frigate object detection fails, escalates, or recovers
+
+- Alias: /camera/frigate/detector-watchdog-notify-will
+- ID: `camera_frigate_detector_watchdog_notify_will`
+- Mode: `queued`
+- Variables:
+
+```json
+{
+  "watchdog_state": "{{ trigger.payload_json.get('state', '') }}",
+  "restart_grace_seconds": "{{ trigger.payload_json.get('restart_grace_seconds', 45) | int(45) }}",
+  "retry_after_minutes": "{{\n  (\n    trigger.payload_json.get('retry_after_seconds', 0) | int(0) / 60\n  )\n  | round(0, 'ceil')\n  | int(0)\n}}",
+  "failure_reason": "{{ trigger.payload_json.get('reason', '') }}",
+  "failure_error": "{{ trigger.payload_json.get('error', '') }}"
+}
+```
+File: [`automation/camera/frigate/detector_watchdog_notify_will.yaml`](entities/automation/camera/frigate/detector_watchdog_notify_will.yaml)
 </details>
 
 <details><summary><code>/camera/frigate/genai-health-notify-will</code></summary>
