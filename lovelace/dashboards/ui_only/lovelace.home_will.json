@@ -12813,6 +12813,26 @@
                   "template": "proxmox_guest_monitor_template",
                   "variables": [
                     {
+                      "prefix": "lxc_gha_runner_105"
+                    },
+                    {
+                      "title": "LXC gha-runner (105)"
+                    },
+                    {
+                      "icon": "mdi:linux"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:decluttering-card",
+                  "template": "proxmox_guest_monitor_template",
+                  "variables": [
+                    {
                       "prefix": "lxc_qbittorrent_106"
                     },
                     {
