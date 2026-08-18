@@ -6,6 +6,8 @@ id: light_basement_lights_unoccupied_alert
 description: >-
   Warn Will when a kitchen or dining-area light has remained on while Frigate has continuously
   reported no person. This automation is advisory and never changes lights or automations itself.
+  Holiday presence simulation suppresses the alert, because those lights are turned on
+  deliberately while the house is empty.
 
 mode: restart
 
@@ -65,12 +67,28 @@ trigger:
     entity_id: binary_sensor.basement_person_occupancy
     to: "on"
 
+  - platform: state
+    entity_id: switch.holiday_presence
+    to: "on"
+
   # Reconcile after restarts or reloads, which reset state-trigger `for` timers.
   - platform: time_pattern
     hours: "/1"
 
 action:
   - choose:
+      - alias: Suppress while holiday presence is simulating occupancy
+        conditions:
+          - condition: state
+            entity_id: switch.holiday_presence
+            state: "on"
+        sequence:
+          - action: script.notify_will
+            continue_on_error: true
+            data:
+              clear_notification: true
+              notification_id: basement_lights_unoccupied_alert
+
       - alias: Clear when Frigate sees a person
         conditions:
           - condition: state
