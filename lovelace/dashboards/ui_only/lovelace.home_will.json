@@ -10855,9 +10855,14 @@
               "cards": [
                 {
                   "type": "heading",
-                  "heading": "Lighting Modifier",
+                  "heading": "Lighting Controls",
                   "heading_style": "title",
                   "icon": "mdi:brightness-6"
+                },
+                {
+                  "type": "heading",
+                  "heading": "Visitor Mode",
+                  "heading_style": "subtitle"
                 },
                 {
                   "type": "tile",
@@ -10885,6 +10890,11 @@
                     "columns": 12,
                     "rows": 1
                   }
+                },
+                {
+                  "type": "heading",
+                  "heading": "Lighting Modifier",
+                  "heading_style": "subtitle"
                 },
                 {
                   "type": "custom:mushroom-entity-card",
