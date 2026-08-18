@@ -10876,6 +10876,17 @@
                   }
                 },
                 {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.visitor_mode_brightness",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "name": "Visitor Mode Brightness",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  }
+                },
+                {
                   "type": "custom:mushroom-entity-card",
                   "entity": "sensor.lighting_modifier",
                   "primary_info": "state",
