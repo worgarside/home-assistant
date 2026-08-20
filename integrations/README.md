@@ -447,7 +447,7 @@ File: [`automation/camera/frigate/genai_presence_control.yaml`](entities/automat
 
 **Entity ID: `automation.camera_frigate_notify`**
 
-> Notify Will and Vic immediately for front-door reviews, then silently update their notifications with Frigate's AI-generated summary. Under normal filtering, pet and indoor person reviews notify only when nobody is home. input_boolean.frigate_bypass_filters bypasses the noise-reduction gating for Will only; Vic's notifications are always filtered.
+> Notify Will and Vic immediately for front-door reviews, then silently update their notifications with Frigate's AI-generated summary. Under normal filtering, pet and indoor person reviews notify only when nobody is home. input_boolean.frigate_bypass_filters bypasses the noise-reduction gating for Will only; Vic's notifications are enabled by input_boolean.frigate_notify_vic and are always filtered.
 
 - Alias: /camera/frigate/notify
 - ID: `camera_frigate_notify`
@@ -1347,7 +1347,7 @@ File: [`automation/label/restore_state_after_room_vacancy/state_change.yaml`](en
 
 **Entity ID: `automation.light_basement_lights_unoccupied_alert`**
 
-> Warn Will when a kitchen or dining-area light has remained on while Frigate has continuously reported no person. This automation is advisory and never changes lights or automations itself.
+> Warn Will when a kitchen or dining-area light has remained on while Frigate has continuously reported no person. This automation is advisory and never changes lights or automations itself. Holiday presence simulation suppresses the alert, because those lights are turned on deliberately while the house is empty.
 
 - Alias: /light/basement-lights/unoccupied-alert
 - ID: `light_basement_lights_unoccupied_alert`
@@ -3859,7 +3859,7 @@ File: [`device_tracker/google_maps/primary_gmail_address.yaml`](entities/device_
 
 ## Input Boolean
 
-<details><summary><h3>Entities (37)</h3></summary>
+<details><summary><h3>Entities (38)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode</strong></summary>
 
@@ -4111,6 +4111,15 @@ File: [`input_boolean/frigate_bypass_filters.yaml`](entities/input_boolean/friga
 - Icon: [`mdi:image-alert-outline`](https://pictogrammers.com/library/mdi/icon/image-alert-outline/)
 
 File: [`input_boolean/frigate_genai_health_alert.yaml`](entities/input_boolean/frigate_genai_health_alert.yaml)
+</details>
+
+<details><summary><strong>Frigate | Notify Vic</strong></summary>
+
+**Entity ID: `input_boolean.frigate_notify_vic`**
+
+- Icon: [`mdi:cctv`](https://pictogrammers.com/library/mdi/icon/cctv/)
+
+File: [`input_boolean/frigate_notify_vic.yaml`](entities/input_boolean/frigate_notify_vic.yaml)
 </details>
 
 <details><summary><strong>Lounge | Lights: Exercise Mode</strong></summary>

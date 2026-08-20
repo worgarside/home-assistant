@@ -7,7 +7,8 @@ description: >-
   Notify Will and Vic immediately for front-door reviews, then silently update their
   notifications with Frigate's AI-generated summary. Under normal filtering, pet and indoor
   person reviews notify only when nobody is home. input_boolean.frigate_bypass_filters bypasses
-  the noise-reduction gating for Will only; Vic's notifications are always filtered.
+  the noise-reduction gating for Will only; Vic's notifications are enabled by
+  input_boolean.frigate_notify_vic and are always filtered.
 
 mode: parallel
 
@@ -164,8 +165,10 @@ action:
                   title: View Clip
                   uri: "{{ clip_url }}"
 
-      # Vic only gets normally-filtered reviews; bypass_filters doesn't apply to her
-      - if: "{{ notify_normally }}"
+      # Vic only gets normally-filtered reviews while her notification toggle is enabled;
+      # bypass_filters doesn't apply to her
+      - if: >-
+          {{ notify_normally and is_state('input_boolean.frigate_notify_vic', 'on') }}
         then:
           - action: script.notify_vic
             continue_on_error: true
