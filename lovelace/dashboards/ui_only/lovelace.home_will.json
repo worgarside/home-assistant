@@ -2763,7 +2763,11 @@
                       "show_icon": true,
                       "entity": "sensor.storage_cc_scratch_qbt_disk_used_percentage"
                     }
-                  ]
+                  ],
+                  "tap_action": {
+                    "action": "url",
+                    "url_path": "https://qbt.worgarsi.de"
+                  }
                 },
                 {
                   "type": "custom:mushroom-entity-card",
