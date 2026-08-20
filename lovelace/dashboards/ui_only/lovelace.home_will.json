@@ -12929,26 +12929,6 @@
                   "template": "proxmox_guest_monitor_template",
                   "variables": [
                     {
-                      "prefix": "lxc_plex_110"
-                    },
-                    {
-                      "title": "LXC plex (110)"
-                    },
-                    {
-                      "icon": "mdi:plex"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "proxmox_guest_monitor_template",
-                  "variables": [
-                    {
                       "prefix": "lxc_influxdb_111"
                     },
                     {
@@ -13036,26 +13016,6 @@
                     },
                     {
                       "icon": "mdi:backup-restore"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:decluttering-card",
-                  "template": "proxmox_guest_monitor_template",
-                  "variables": [
-                    {
-                      "prefix": "lxc_openwrt_bastion_121"
-                    },
-                    {
-                      "title": "LXC openwrt-bastion (121)"
-                    },
-                    {
-                      "icon": "mdi:shield-key"
                     }
                   ]
                 }
