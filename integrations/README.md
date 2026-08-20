@@ -4811,7 +4811,7 @@ File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](en
 
 - Icon: [`mdi:harddisk-remove`](https://pictogrammers.com/library/mdi/icon/harddisk-remove/)
 - Max: 100
-- Min: 95
+- Min: 5
 - Mode: `box`
 - Unit Of Measurement: %
 
