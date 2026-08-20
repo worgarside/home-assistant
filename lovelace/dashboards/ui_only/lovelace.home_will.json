@@ -2447,7 +2447,11 @@
                       "show_icon": true,
                       "entity": "sensor.node_cc_memory_used_percentage"
                     }
-                  ]
+                  ],
+                  "tap_action": {
+                    "action": "url",
+                    "url_path": "https://pve.worgarsi.de"
+                  }
                 },
                 {
                   "type": "custom:mushroom-entity-card",
@@ -3230,7 +3234,11 @@
                       "show_icon": true,
                       "entity": "sensor.slzb_06m_zigbee_chip_temp"
                     }
-                  ]
+                  ],
+                  "tap_action": {
+                    "action": "url",
+                    "url_path": "https://z2m.worgarsi.de"
+                  }
                 },
                 {
                   "type": "custom:mushroom-entity-card",
