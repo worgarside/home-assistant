@@ -18,10 +18,6 @@ trigger:
     above: 98
   - platform: numeric_state
     entity_id: sensor.storage_cc_scratch_qbt_disk_used_percentage
-    above: 99.99
-    id: full
-  - platform: numeric_state
-    entity_id: sensor.storage_cc_scratch_qbt_disk_used_percentage
     below: 80
     id: clear
 
@@ -38,8 +34,7 @@ action:
     else:
       - action: script.notify_will
         data:
-          title: >-
-            qBittorrent Storage {% if trigger.id != 'full' %}Nearly {% endif %}Full
+          title: qBittorrent Storage Nearly Full
           message: >-
             qBittorrent storage usage is at
             {{ states('sensor.storage_cc_scratch_qbt_disk_used_percentage') | float(0) | round(0) }}%
