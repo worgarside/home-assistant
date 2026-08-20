@@ -2,6 +2,89 @@
 
 <!-- version list -->
 
+## v3.32.0 (2026-08-20)
+
+### Bug Fixes
+
+- Address charging hub power sensor issues
+  ([#2821](https://github.com/worgarside/home-assistant/pull/2821),
+  [`8993c40`](https://github.com/worgarside/home-assistant/commit/8993c404ee1aa3be4857861d005bfbdc86b60480))
+
+- Retain corroborated kitchen presence
+  ([#2822](https://github.com/worgarside/home-assistant/pull/2822),
+  [`1f07313`](https://github.com/worgarside/home-assistant/commit/1f0731306935bfe7599b85c8d2e628d71741c5d7))
+
+- Update notification logic for attachments
+  ([#2817](https://github.com/worgarside/home-assistant/pull/2817),
+  [`4883c4c`](https://github.com/worgarside/home-assistant/commit/4883c4c0d3ad39a53d3e6e79337e7aa3eff752ba))
+
+- **automation**: Debounce VaultPi publisher outages
+  ([#2836](https://github.com/worgarside/home-assistant/pull/2836),
+  [`88d1e2a`](https://github.com/worgarside/home-assistant/commit/88d1e2ad0350db8ab0b9bf507f2e1b7edefd585c))
+
+- **binary-sensor**: Retain dining presence during FP2 dropouts
+  ([#2840](https://github.com/worgarside/home-assistant/pull/2840),
+  [`76fc93e`](https://github.com/worgarside/home-assistant/commit/76fc93e1e11787af46f422803506b46ed6e9d76c))
+
+### Chores
+
+- Remove desmond cam usage in automation
+  ([#2842](https://github.com/worgarside/home-assistant/pull/2842),
+  [`934a27e`](https://github.com/worgarside/home-assistant/commit/934a27e3f2a46b6fdd74128e83a75e7e6117fc50))
+
+- Remove unused luci device tracker
+  ([#2841](https://github.com/worgarside/home-assistant/pull/2841),
+  [`09ea986`](https://github.com/worgarside/home-assistant/commit/09ea98686607f577c4a530a4e30e0f8bbd578418))
+
+- Remove unused Spotify Tempo variable
+  ([#2838](https://github.com/worgarside/home-assistant/pull/2838),
+  [`a80359f`](https://github.com/worgarside/home-assistant/commit/a80359fe0ecbb27aaf28f72a3404771ef10ea775))
+
+- **sync**: Pin github-config-files workflows to 0.3.3
+  ([#2823](https://github.com/worgarside/home-assistant/pull/2823),
+  [`5ba2d7c`](https://github.com/worgarside/home-assistant/commit/5ba2d7c795d0f7e276778d37959efd9e0b395ba5))
+
+- **sync**: Pin github-config-files workflows to 0.5.3
+  ([#2829](https://github.com/worgarside/home-assistant/pull/2829),
+  [`237b7a7`](https://github.com/worgarside/home-assistant/commit/237b7a7bf0159842a3b9ec47d8bb4830fd0b83c2))
+
+### Continuous Integration
+
+- Prek autoupdate ([#2835](https://github.com/worgarside/home-assistant/pull/2835),
+  [`6128821`](https://github.com/worgarside/home-assistant/commit/612882190548b2dc8aedeb0f86d5e2ccc2708656))
+
+- Update prek hooks ([#2824](https://github.com/worgarside/home-assistant/pull/2824),
+  [`7699125`](https://github.com/worgarside/home-assistant/commit/7699125c4df4ad2156e2c71f2fc882a5894a4e96))
+
+- 🤖 `prek autoupdate` ([#2844](https://github.com/worgarside/home-assistant/pull/2844),
+  [`176dec3`](https://github.com/worgarside/home-assistant/commit/176dec3630db2e96902e791391a5a2a50ad9430e))
+
+### Features
+
+- Add control for Vic's notifications
+  ([`e77cef8`](https://github.com/worgarside/home-assistant/commit/e77cef8e286e297b29a3b7ca15f9154f41b4a3e9))
+
+- Handle holiday mode in light alerts
+  ([#2847](https://github.com/worgarside/home-assistant/pull/2847),
+  [`4316249`](https://github.com/worgarside/home-assistant/commit/431624938c6f9a0f13922d976af79a41da72d803))
+
+- Simplify disk usage notification automation
+  ([#2849](https://github.com/worgarside/home-assistant/pull/2849),
+  [`6cfdf3a`](https://github.com/worgarside/home-assistant/commit/6cfdf3a83b9f20be206c824e9581eff7943d72b3))
+
+- **automation**: Add alert system for VaultPi storage and pi_stats failures
+  ([#2828](https://github.com/worgarside/home-assistant/pull/2828),
+  [`c2e0d05`](https://github.com/worgarside/home-assistant/commit/c2e0d05e3072fd2260f4655aedc11b5706afd76e))
+
+- **automation**: Add holiday mode activation via notification
+  ([#2839](https://github.com/worgarside/home-assistant/pull/2839),
+  [`8a3373e`](https://github.com/worgarside/home-assistant/commit/8a3373e44422329da40eb9d3d67d228001a07bef))
+
+- **threshold**: Add qBittorrent storage cleanup threshold
+  ([#2850](https://github.com/worgarside/home-assistant/pull/2850),
+  [`3fa77c4`](https://github.com/worgarside/home-assistant/commit/3fa77c4e1b8ac254e83db78b57dcc61e44bfa438))
+
+
 ## v3.31.0 (2026-08-07)
 
 ### Bug Fixes
