@@ -3039,7 +3039,11 @@
                       "show_icon": true,
                       "entity": "sensor.tdarr_stats_healtherrorcount"
                     }
-                  ]
+                  ],
+                  "tap_action": {
+                    "action": "url",
+                    "url_path": "https://tdarr.worgarsi.de"
+                  }
                 },
                 {
                   "type": "custom:mushroom-entity-card",
