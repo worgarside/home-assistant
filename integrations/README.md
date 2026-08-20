@@ -4383,7 +4383,7 @@ File: [`input_datetime/rain_flash_cooldown.yaml`](entities/input_datetime/rain_f
 
 ## Input Number
 
-<details><summary><h3>Entities (74)</h3></summary>
+<details><summary><h3>Entities (75)</h3></summary>
 
 <details><summary><strong>Air Purifier | Quiet Mode Ceiling</strong></summary>
 
@@ -4803,6 +4803,19 @@ File: [`input_number/threshold/kitchen_extractor_vent/kitchen_extractor_vent_voc
 - Unit Of Measurement: °C
 
 File: [`input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml`](entities/input_number/threshold/octopi_fan/octopi_fan_auto_on_threshold.yaml)
+</details>
+
+<details><summary><strong>qBittorrent: Storage Cleanup Threshold</strong></summary>
+
+**Entity ID: `input_number.qbittorrent_storage_cleanup_threshold`**
+
+- Icon: [`mdi:harddisk-remove`](https://pictogrammers.com/library/mdi/icon/harddisk-remove/)
+- Max: 100
+- Min: 5
+- Mode: `box`
+- Unit Of Measurement: %
+
+File: [`input_number/threshold/qbittorrent/qbittorrent_storage_cleanup_threshold.yaml`](entities/input_number/threshold/qbittorrent/qbittorrent_storage_cleanup_threshold.yaml)
 </details>
 
 <details><summary><strong>Roof Shutters: Close Temperature Threshold</strong></summary>
