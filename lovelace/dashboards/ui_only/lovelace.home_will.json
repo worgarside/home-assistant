@@ -2921,6 +2921,142 @@
             },
             {
               "type": "grid",
+              "square": false,
+              "columns": 1,
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "GitHub Actions Runner",
+                  "icon": "mdi:github",
+                  "badges": [
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.github_actions_runner_active_slots"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "sensor.github_actions_runner_waiting_jobs"
+                    },
+                    {
+                      "type": "entity",
+                      "show_state": true,
+                      "show_icon": true,
+                      "entity": "binary_sensor.github_actions_runner_saturated"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.github_actions_runner_active_slots",
+                  "name": "Active Slots",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "green"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.github_actions_runner_available_slots",
+                  "name": "Available Slots",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.github_actions_runner_waiting_jobs",
+                  "name": "Waiting Jobs",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "amber"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.github_actions_runner_saturated",
+                  "name": "Saturated",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Runner Slot Usage",
+                  "entities": [
+                    {
+                      "entity": "sensor.github_actions_runner_active_slots",
+                      "name": "Active",
+                      "color": "#4CAF50"
+                    },
+                    {
+                      "entity": "sensor.github_actions_runner_available_slots",
+                      "name": "Available",
+                      "color": "#2196F3"
+                    },
+                    {
+                      "entity": "sensor.github_actions_runner_waiting_jobs",
+                      "name": "Waiting",
+                      "color": "#FFC107"
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": true,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 6,
+                  "points_per_hour": 60,
+                  "lower_bound": 0,
+                  "height": 150,
+                  "animate": true,
+                  "hour24": true,
+                  "line_width": 2
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Runner Pressure",
+                  "entities": [
+                    {
+                      "entity": "sensor.github_actions_runner_active_slots",
+                      "name": "Active",
+                      "color": "#4CAF50",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.github_actions_runner_waiting_jobs",
+                      "name": "Waiting",
+                      "color": "#FFC107",
+                      "smoothing": true
+                    }
+                  ],
+                  "show": {
+                    "state": false,
+                    "legend": true,
+                    "fill": "fade",
+                    "name": true,
+                    "icon": false,
+                    "labels": true,
+                    "unit": true
+                  },
+                  "hours_to_show": 48,
+                  "points_per_hour": 10,
+                  "lower_bound": 0,
+                  "height": 150,
+                  "animate": false,
+                  "hour24": true,
+                  "line_width": 2
+                }
+              ]
+            },
+            {
+              "type": "grid",
               "cards": [
                 {
                   "type": "heading",
