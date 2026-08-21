@@ -1199,6 +1199,26 @@
                         }
                       ],
                       "features_position": "inline",
+                      "entity": "switch.[[user]]_habit_[[n]]_end_of_day_reminder",
+                      "icon": "mdi:weather-sunset-down",
+                      "primary": "End-of-day reminder",
+                      "secondary": "23:55 if still incomplete",
+                      "color": "{{ iif(is_state('switch.[[user]]_habit_[[n]]_end_of_day_reminder', 'on'), 'orange', 'grey') }}",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "features": [
+                        {
+                          "type": "toggle"
+                        }
+                      ],
+                      "features_position": "inline",
                       "entity": "switch.[[user]]_habit_[[n]]_ai",
                       "icon": "mdi:brain",
                       "primary": "AI reminder message",
@@ -1436,6 +1456,26 @@
                       "entity": "number.[[user]]_habit_[[n]]_repeat_count",
                       "icon": "mdi:counter",
                       "primary": "Max. reminder count"
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "features": [
+                        {
+                          "type": "toggle"
+                        }
+                      ],
+                      "features_position": "inline",
+                      "entity": "switch.[[user]]_habit_[[n]]_end_of_day_reminder",
+                      "icon": "mdi:weather-sunset-down",
+                      "primary": "End-of-day reminder",
+                      "secondary": "23:55 if still incomplete",
+                      "color": "{{ iif(is_state('switch.[[user]]_habit_[[n]]_end_of_day_reminder', 'on'), 'orange', 'grey') }}",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "icon_tap_action": {
+                        "action": "more-info"
+                      }
                     },
                     {
                       "type": "custom:mushroom-template-card",
