@@ -17,8 +17,9 @@ device_class: occupancy
 # Baseline: basement is human-occupied roughly 10% of the time
 prior: 0.1
 
-# Prefer fewer false positives while evaluating in shadow mode
-probability_threshold: 0.8
+# A Frigate person plus FP2 occupancy reaches about 43% when camera motion has
+# stopped (a common seated-person case); the next lower observed posterior is 8%.
+probability_threshold: 0.42
 
 observations:
   # Primary: Frigate person detection
