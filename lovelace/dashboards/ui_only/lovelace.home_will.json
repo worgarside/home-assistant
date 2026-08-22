@@ -3091,40 +3091,6 @@
                   "line_width": 2,
                   "lower_bound_secondary": 0,
                   "upper_bound_secondary": 100
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "Runner Pressure",
-                  "entities": [
-                    {
-                      "entity": "sensor.github_actions_runner_active_slots",
-                      "name": "Active",
-                      "color": "#4CAF50",
-                      "smoothing": true
-                    },
-                    {
-                      "entity": "sensor.github_actions_runner_waiting_jobs",
-                      "name": "Waiting",
-                      "color": "#FFC107",
-                      "smoothing": true
-                    }
-                  ],
-                  "show": {
-                    "state": false,
-                    "legend": true,
-                    "fill": "fade",
-                    "name": true,
-                    "icon": false,
-                    "labels": true,
-                    "unit": true
-                  },
-                  "hours_to_show": 48,
-                  "points_per_hour": 10,
-                  "lower_bound": 0,
-                  "height": 150,
-                  "animate": false,
-                  "hour24": true,
-                  "line_width": 2
                 }
               ]
             },
