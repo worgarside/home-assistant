@@ -3218,6 +3218,17 @@
                   "animate": false,
                   "hour24": true,
                   "line_width": 2
+                },
+                {
+                  "type": "custom:mushroom-number-card",
+                  "entity": "input_number.qbittorrent_storage_cleanup_threshold",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "layout": "horizontal",
+                  "name": "Storage Cleanup Threshold",
+                  "display_mode": "buttons"
                 }
               ]
             },
