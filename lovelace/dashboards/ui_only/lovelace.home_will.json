@@ -3056,6 +3056,20 @@
                       "entity": "sensor.github_actions_runner_waiting_jobs",
                       "name": "Waiting",
                       "color": "#FFC107"
+                    },
+                    {
+                      "entity": "sensor.lxc_gha_runner_105_cpu_used",
+                      "name": "CPU",
+                      "color": "#F44336",
+                      "y_axis": "secondary",
+                      "smoothing": true
+                    },
+                    {
+                      "entity": "sensor.lxc_gha_runner_105_memory_used_percentage",
+                      "name": "Memory",
+                      "color": "#9C27B0",
+                      "y_axis": "secondary",
+                      "smoothing": true
                     }
                   ],
                   "show": {
@@ -3065,7 +3079,8 @@
                     "name": true,
                     "icon": false,
                     "labels": true,
-                    "unit": true
+                    "unit": true,
+                    "labels_secondary": true
                   },
                   "hours_to_show": 6,
                   "points_per_hour": 60,
@@ -3073,7 +3088,9 @@
                   "height": 150,
                   "animate": true,
                   "hour24": true,
-                  "line_width": 2
+                  "line_width": 2,
+                  "lower_bound_secondary": 0,
+                  "upper_bound_secondary": 100
                 },
                 {
                   "type": "custom:mini-graph-card",
