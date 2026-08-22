@@ -1,0 +1,18 @@
+---
+expire_after: 180
+
+icon: mdi:github
+
+json_attributes_topic: /homeassistant/gha-runner/stats
+
+name: GitHub Actions Runner Slots
+
+state_class: measurement
+
+state_topic: /homeassistant/gha-runner/stats
+
+unique_id: github_actions_runner_slots
+
+unit_of_measurement: jobs
+
+value_template: "{{ value_json.active }}"

@@ -36,3 +36,12 @@ Published semantic-version tags trigger the production instance to pull
 
 Storage-mode dashboards are updated through Home Assistant MCP tools. Files in
 `lovelace/dashboards/ui_only/` are generated, read-only exports.
+
+The Proxmox VE dashboard's GitHub Actions runner section consumes retained
+MQTT telemetry from `/homeassistant/gha-runner/stats`. The raw MQTT entity keeps
+the stable `sensor.github_actions_runner_slots` ID, with template entities for
+active slots, available slots, waiting jobs, and saturation. During deployment,
+reload the command-line integration after checkout so it removes its source
+entity, then restart Home Assistant to load the MQTT sensor path. Verify the
+registry does not allocate a duplicate `_2` entity ID. A missed heartbeat makes
+the raw and derived telemetry unavailable after three minutes.

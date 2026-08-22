@@ -19,6 +19,8 @@ The main authored paths are:
 - `dev_tools/` — maintained Python utilities
 
 Zigbee2MQTT runs separately in a Proxmox LXC and exposes devices through MQTT.
+The GitHub Actions runner publishes retained concurrency telemetry to MQTT; the
+raw sensor and its derived template entities feed the Proxmox VE dashboard.
 Home Assistant has branch-selection and per-domain auto-reload helpers for the
 user-owned git deployment workflow.
 

@@ -1,0 +1,14 @@
+---
+availability: "{{ has_value('sensor.github_actions_runner_slots') }}"
+
+icon: mdi:play-network-outline
+
+name: GitHub Actions Runner Active Slots
+
+state: "{{ states('sensor.github_actions_runner_slots') | int(0) }}"
+
+state_class: measurement
+
+unique_id: github_actions_runner_active_slots
+
+unit_of_measurement: jobs

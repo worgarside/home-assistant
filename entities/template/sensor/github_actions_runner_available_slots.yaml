@@ -1,0 +1,18 @@
+---
+availability: >-
+  {{
+    has_value('sensor.github_actions_runner_slots')
+    and state_attr('sensor.github_actions_runner_slots', 'available_slots') is not none
+  }}
+
+icon: mdi:checkbox-multiple-marked-circle-outline
+
+name: GitHub Actions Runner Available Slots
+
+state: "{{ state_attr('sensor.github_actions_runner_slots', 'available_slots') | int(0) }}"
+
+state_class: measurement
+
+unique_id: github_actions_runner_available_slots
+
+unit_of_measurement: jobs
