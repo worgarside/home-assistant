@@ -5522,7 +5522,7 @@ File: [`media_player/topaz_sr10.yaml`](entities/media_player/topaz_sr10.yaml)
 
 ## Mqtt
 
-<details><summary><h3>Entities (123)</h3></summary>
+<details><summary><h3>Entities (124)</h3></summary>
 
 <details><summary><strong>MtrxPi | Audio Visualiser: Chunk Size</strong></summary>
 
@@ -6179,6 +6179,18 @@ File: [`mqtt/sensor/crtpi/pi_stats_start_time.yaml`](entities/mqtt/sensor/crtpi/
 - Unit Of Measurement: `s`
 
 File: [`mqtt/sensor/crtpi/uptime.yaml`](entities/mqtt/sensor/crtpi/uptime.yaml)
+</details>
+
+<details><summary><strong>GitHub Actions Runner Slots</strong></summary>
+
+**Entity ID: `sensor.github_actions_runner_slots`**
+
+- Icon: [`mdi:github`](https://pictogrammers.com/library/mdi/icon/github/)
+- State Class: `measurement`
+- State Topic: /homeassistant/gha-runner/stats
+- Unit Of Measurement: `jobs`
+
+File: [`mqtt/sensor/github_actions_runner_slots.yaml`](entities/mqtt/sensor/github_actions_runner_slots.yaml)
 </details>
 
 <details><summary><strong>GrowPi Active Git Ref</strong></summary>
@@ -8574,7 +8586,7 @@ File: [`shell_command/toggle_pr_label.yaml`](entities/shell_command/toggle_pr_la
 
 ## Template
 
-<details><summary><h3>Entities (105)</h3></summary>
+<details><summary><h3>Entities (109)</h3></summary>
 
 <details><summary><strong>Bank Holiday</strong></summary>
 
@@ -8599,6 +8611,15 @@ File: [`template/binary_sensor/basement_human_presence.yaml`](entities/template/
 - Icon: [`mdi:clock-time-twelve-outline`](https://pictogrammers.com/library/mdi/icon/clock-time-twelve-outline/)
 
 File: [`template/binary_sensor/before_midday.yaml`](entities/template/binary_sensor/before_midday.yaml)
+</details>
+
+<details><summary><strong>GitHub Actions Runner Saturated</strong></summary>
+
+**Entity ID: `binary_sensor.github_actions_runner_saturated`**
+
+- Icon: [`mdi:gauge-full`](https://pictogrammers.com/library/mdi/icon/gauge-full/)
+
+File: [`template/binary_sensor/github_actions_runner_saturated.yaml`](entities/template/binary_sensor/github_actions_runner_saturated.yaml)
 </details>
 
 <details><summary><strong>Office Desk Occupied</strong></summary>
@@ -9258,6 +9279,36 @@ File: [`template/sensor/entity_counts/unavailable_entities.yaml`](entities/templ
 {% endif %}
 ```
 File: [`template/sensor/garden_door_last_changed.yaml`](entities/template/sensor/garden_door_last_changed.yaml)
+</details>
+
+<details><summary><strong>GitHub Actions Runner Active Slots</strong></summary>
+
+**Entity ID: `sensor.github_actions_runner_active_slots`**
+
+- Icon: [`mdi:play-network-outline`](https://pictogrammers.com/library/mdi/icon/play-network-outline/)
+- Unit Of Measurement: `jobs`
+
+File: [`template/sensor/github_actions_runner_active_slots.yaml`](entities/template/sensor/github_actions_runner_active_slots.yaml)
+</details>
+
+<details><summary><strong>GitHub Actions Runner Available Slots</strong></summary>
+
+**Entity ID: `sensor.github_actions_runner_available_slots`**
+
+- Icon: [`mdi:checkbox-multiple-marked-circle-outline`](https://pictogrammers.com/library/mdi/icon/checkbox-multiple-marked-circle-outline/)
+- Unit Of Measurement: `jobs`
+
+File: [`template/sensor/github_actions_runner_available_slots.yaml`](entities/template/sensor/github_actions_runner_available_slots.yaml)
+</details>
+
+<details><summary><strong>GitHub Actions Runner Waiting Jobs</strong></summary>
+
+**Entity ID: `sensor.github_actions_runner_waiting_jobs`**
+
+- Icon: [`mdi:timer-sand`](https://pictogrammers.com/library/mdi/icon/timer-sand/)
+- Unit Of Measurement: `jobs`
+
+File: [`template/sensor/github_actions_runner_waiting_jobs.yaml`](entities/template/sensor/github_actions_runner_waiting_jobs.yaml)
 </details>
 
 <details><summary><strong>HiFi System: Media Metadata</strong></summary>

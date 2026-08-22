@@ -1,0 +1,14 @@
+---
+availability: >-
+  {{
+    has_value('sensor.github_actions_runner_slots')
+    and state_attr('sensor.github_actions_runner_slots', 'saturated') is not none
+  }}
+
+icon: mdi:gauge-full
+
+name: GitHub Actions Runner Saturated
+
+state: "{{ state_attr('sensor.github_actions_runner_slots', 'saturated') | bool(false) }}"
+
+unique_id: github_actions_runner_saturated
