@@ -2992,6 +2992,22 @@
                 },
                 {
                   "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_gha_runner_105_cpu_used",
+                  "name": "LXC CPU Usage",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "red"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.lxc_gha_runner_105_memory_used_percentage",
+                  "name": "LXC Memory Usage",
+                  "primary_info": "state",
+                  "secondary_info": "name",
+                  "icon_color": "blue"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
                   "entity": "sensor.github_actions_runner_active_slots",
                   "name": "Active Slots",
                   "primary_info": "state",
